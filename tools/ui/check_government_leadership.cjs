@@ -22,6 +22,39 @@ function fixture(){
 const show=(data=fixture(),state={})=>render(data,{tab:'leadership',...state});
 const reference=(data,date='1990-01-01')=>({...copy(data.party_leadership),date,enabled:false});
 
+function campaignStatus(extra={}) { return {date:'1990-02-11',party:{status:'recorded_holder',label:'Saved party officeholder',note:'Party leadership is retained.'},national_office:{status:'excluded',label:'Excluded from national office',note:'The campaign term limit prevents another national appointment.'},death_date:null,office_excluded_date:'1990-02-10',note:'Selection requires an actual campaign event.',...extra}; }
+test('saved national-office exclusion is visible without removing party leadership or claiming contender status',()=>{
+ const data=fixture(),entry=data.party_leadership.parties[0].campaign[0];
+ entry.executive_eligibility={authorized:true,role:'parliamentary_government_contender'};entry.campaign_succession=campaignStatus();
+ const before=copy(data),html=show(freeze(data));
+ assert.match(html,/Saved party officeholder/);assert.match(html,/Excluded from national office/);assert.match(html,/data-gov-succession-exclusion>1990-02-10/);
+ assert.match(html,/Party leadership is retained/);assert.match(html,/Selection requires an actual campaign event/);assert.doesNotMatch(html,/Government contender/);assert.deepEqual(data,before);
+});
+test('historical and uncertain records never display supplied campaign sanctions or exclusions',()=>{
+ const data=fixture(),party=data.party_leadership.parties[0];
+ party.historical[0].campaign_succession=campaignStatus({office_excluded_date:'1990-02-10'});
+ party.eligible[0].campaign_succession=campaignStatus();party.uncertain_historical=[copy(party.historical[0])];
+ const ref=reference(data),html=show(data,{leadershipMode:'reference',leadershipDate:ref.date,leadershipReference:{data:ref}});
+ assert.match(html,/Neil Kinnock/);assert.doesNotMatch(html,/data-gov-succession|1990-02-10|Excluded from national office/);
+});
+test('an older campaign payload does not infer live eligibility or record a zero exclusion date',()=>{
+ const data=fixture();let html=show(data);assert.doesNotMatch(html,/data-gov-succession/);
+ data.party_leadership.parties[0].campaign[0].campaign_succession=campaignStatus({office_excluded_date:null,national_office:{status:'role_permitted',label:'Role permits national office',note:'Actual selection remains conditional.'}});
+ html=show(data);assert.match(html,/Role permits national office/);assert.match(html,/Actual selection remains conditional/);assert.doesNotMatch(html,/data-gov-succession-exclusion|data-gov-succession-death|Will become/);
+ data.party_leadership.enabled=false;assert.doesNotMatch(show(data),/data-gov-succession/);
+});
+test('native succession labels, recorded dates and explanations are escaped',()=>{
+ const data=fixture();data.party_leadership.parties[0].campaign[0].campaign_succession=campaignStatus({death_date:'<death>',office_excluded_date:'<excluded>',note:'<script>bad()</script>',national_office:{status:'deceased',label:'<Native label>',note:'<Native reason>'}});
+ const html=show(data);for(const value of ['death','excluded','Native label','Native reason'])assert(html.includes('&lt;'+value+'&gt;'));
+ assert.match(html,/&lt;script&gt;bad\(\)&lt;\/script&gt;/);assert.doesNotMatch(html,/<script>|<death>|<excluded>|<Native label>/);
+});
+test('fictional future templates do not borrow campaign eligibility, while actual pool entries retain native restrictions',()=>{
+ const data=futureFixture(),party=data.party_leadership.parties[2];party.future_preview[0].campaign_succession=campaignStatus();
+ assert.doesNotMatch(show(data),/data-gov-succession/);
+ party.future_candidates=copy(party.future_preview);party.future_candidates[0].eligible=true;
+ assert.match(show(data),/data-gov-succession/);assert.match(show(data),/Excluded from national office/);
+});
+
 function futureFixture(){
  const data=fixture(),fiction={origin:'fictional_successor',nation:'UK',party:'uk_tiny',component:null,profile_id:'parliamentary_proportional',profile_label:'Coalition negotiator',ideology:'Liberal',fictional_biography:'An invented local organizer who built a career negotiating coalition agreements.',eligible_from:'2026-09-08',eligible_until_exclusive:'2036-01-01',editorial_status:'authored_fiction_needs_country_review',research_basis:[{id:'party_roles',url:'https://www.parliament.uk/about/mps-and-lords/members/partysystem/',fact:'Parties organize parliamentary work.',applies_to:'Institutional framing only; not evidence of a real person.'}],assumptions:['Names and biographies are fictional.']};
  data.party_leadership.future_policy={historical_reference_through:'2026-09-07',from:'2026-09-08',until_exclusive:'2036-01-01',eligible:false,selection:'actual_succession_events_only',incumbents_retained:true};

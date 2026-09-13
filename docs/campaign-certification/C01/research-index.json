@@ -5,17 +5,74 @@
   "g2_prerequisite_satisfied": false,
   "runtime_roster_modified": false,
   "counts": {
-    "country_packets": 5,
-    "countries_without_new_discovery_packet": 155,
-    "organization_observations": 742,
+    "country_packets": 6,
+    "countries_without_new_discovery_packet": 154,
+    "organization_observations": 773,
     "institution_observations": 18,
-    "sources": 40,
-    "source_claims": 1426,
-    "discovery_batches": 79,
+    "sources": 45,
+    "source_claims": 1460,
+    "discovery_batches": 83,
     "exhaustive_country_censuses": 0
   },
   "interpretation": "Source-backed discovery observations are not verified game parties, complete office histories or permission to create portraits. Reporting years do not establish organization lifespans. Unknown representation is not absence.",
   "countries": [
+    {
+      "nation": "Brazil",
+      "packet": "docs/campaign-certification/C01/research/brazil.json",
+      "organization_observations": 31,
+      "institution_observations": 0,
+      "role_observations": 0,
+      "source_claims": 34,
+      "mapping_pending": 31,
+      "country_census_complete": false,
+      "unrepresented_organization_count": null,
+      "coverage": {
+        "status": "partial_primary_source_inventory",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "exhaustive_organization_register_reviewed": false,
+        "unrepresented_organization_total": null,
+        "art_completion_claim": false,
+        "bounded_registers": [
+          {
+            "kind": "2024_election_funding_table_rows",
+            "election_year": 2024,
+            "records": 29,
+            "dated_release_rows": 27,
+            "undated_release_rows": 2,
+            "source": "br_tse_fefc_2024",
+            "specific_table_rows_reviewed": true,
+            "registry_as_of_date": null
+          },
+          {
+            "kind": "registration_decision_observation",
+            "attested_on": "2025-11-04",
+            "records": 1,
+            "source": "br_tse_missao_20251104"
+          },
+          {
+            "kind": "party_name_decision_observation",
+            "records": 1,
+            "sources": [
+              "br_tse_pmb_rename_20251202",
+              "br_trerj_pmb_name_notices"
+            ]
+          }
+        ],
+        "interpretation": "31 organization observations are not 31 distinct parties: 29 election-funding labels, one later registration decision and one separate PMB naming record. The reviewed HTML funding table is historical election data, not a time-frozen registry as of the research cutoff. The June 2024 aggregate announcement does not date the later release rows.",
+        "unresolved": [
+          "No full Brazilian organization census or leadership timeline from 1990 through 7 September 2026 has been established.",
+          "Reconcile FEFC labels and exact process references with dated legal identities, complete names, extinct organizations, splits, mergers and name changes.",
+          "The current live registry was not used to backdate leaders or party names. A pre-cutoff archived registry snapshot remains to be obtained.",
+          "PCB and PMB release cells are dashes: no date, refusal, nonpayment, inactivity or exclusion is inferred.",
+          "The PMB article and initial notice use different names; retain the later explicit rectification and research underlying decisions before creating lifecycle intervals.",
+          "Federations, informal parties, parties in formation and institutions are outside this bounded intake; absence here does not establish nonexistence.",
+          "All game mappings, leadership roles, continuous lifecycle intervals, successor eligibility and portrait permissions remain unknown."
+        ]
+      }
+    },
     {
       "nation": "France",
       "packet": "docs/campaign-certification/C01/research/france.json",
@@ -284,6 +341,93 @@
     }
   ],
   "work_orders": [
+    {
+      "id": "C01-Brazil-DISC-B001",
+      "nation": "Brazil",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-Brazil-ORG-001",
+        "C01-Brazil-ROLE-001"
+      ],
+      "members": [
+        "br_tse_fefc_2024_party_01",
+        "br_tse_fefc_2024_party_02",
+        "br_tse_fefc_2024_party_03",
+        "br_tse_fefc_2024_party_04",
+        "br_tse_fefc_2024_party_05",
+        "br_tse_fefc_2024_party_06",
+        "br_tse_fefc_2024_party_07",
+        "br_tse_fefc_2024_party_08",
+        "br_tse_fefc_2024_party_09",
+        "br_tse_fefc_2024_party_10"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-Brazil-DISC-B002",
+      "nation": "Brazil",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-Brazil-ORG-001",
+        "C01-Brazil-ROLE-001"
+      ],
+      "members": [
+        "br_tse_fefc_2024_party_11",
+        "br_tse_fefc_2024_party_12",
+        "br_tse_fefc_2024_party_13",
+        "br_tse_fefc_2024_party_14",
+        "br_tse_fefc_2024_party_15",
+        "br_tse_fefc_2024_party_16",
+        "br_tse_fefc_2024_party_17",
+        "br_tse_fefc_2024_party_18",
+        "br_tse_fefc_2024_party_19",
+        "br_tse_fefc_2024_party_20"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-Brazil-DISC-B003",
+      "nation": "Brazil",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-Brazil-ORG-001",
+        "C01-Brazil-ROLE-001"
+      ],
+      "members": [
+        "br_tse_fefc_2024_party_21",
+        "br_tse_fefc_2024_party_22",
+        "br_tse_fefc_2024_party_23",
+        "br_tse_fefc_2024_party_24",
+        "br_tse_fefc_2024_party_25",
+        "br_tse_fefc_2024_party_26",
+        "br_tse_fefc_2024_party_27",
+        "br_tse_fefc_2024_party_28",
+        "br_tse_fefc_2024_party_29",
+        "br_tse_missao_registration_2025"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-Brazil-DISC-B004",
+      "nation": "Brazil",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-Brazil-ORG-001",
+        "C01-Brazil-ROLE-001"
+      ],
+      "members": [
+        "br_pmb_name_decisions_2025_2026"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
     {
       "id": "C01-France-DISC-B001",
       "nation": "France",
@@ -2152,6 +2296,11 @@
     }
   ],
   "source_files": [
+    {
+      "path": "docs/campaign-certification/C01/research/brazil.json",
+      "bytes": 85773,
+      "sha256": "4709177ebd35439933819a9319a7aca829b217bc7e486280705a7acdbf89ef66"
+    },
     {
       "path": "docs/campaign-certification/C01/research/france.json",
       "bytes": 1803439,

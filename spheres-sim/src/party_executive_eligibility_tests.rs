@@ -60,7 +60,7 @@ fn staged_us_chairs_and_french_party_officers_render_without_becoming_presidents
         assert_eq!(party_holder(&w,nation,party).person,chair);
         let original=executive_id_with(&w,&r,nation).unwrap();
         let before=serde_json::to_value(&w).unwrap();
-        let display=view_with(&w,nation,0,"1990-01-01",&r);
+        let display=view_with(&w,nation,0,"1990-01-01",&r,true);
         let row=display["parties"].as_array().unwrap().iter().find(|p|p["party_id"]==party).unwrap();
         assert!(row["historical"].as_array().unwrap().iter().any(|h|h["person"]["id"]==chair));
         assert_eq!(row["campaign"][0]["person"]["id"],chair);
@@ -141,7 +141,7 @@ fn future_party_templates_need_a_distinct_presidential_grant_without_identity_ch
         assert!(executive_id_with(&w,r,nation).is_none());
         assert!(!policy.allows_future(c));
         assert_eq!(executive_eligibility::future_info(c)["role"],"party_only");
-        let preview=view_with(&w,nation,today(&w),"2030-01-01",r);
+        let preview=view_with(&w,nation,today(&w),"2030-01-01",r,true);
         let row=preview["parties"].as_array().unwrap().iter().find(|p|p["party_id"]==party).unwrap();
         assert!(row["future_candidates"].as_array().unwrap().iter().any(|c|c["eligible"]==true));
         assert!(row["future_preview"].as_array().unwrap().iter().all(|c|

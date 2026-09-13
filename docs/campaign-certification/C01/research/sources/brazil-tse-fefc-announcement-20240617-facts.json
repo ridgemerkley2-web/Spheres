@@ -1,0 +1,24 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://www.tse.jus.br/comunicacao/noticias/2024/Junho/saiba-quanto-cada-partido-vai-receber-do-total-do-fundo-especial-de-campanha",
+  "accessed_date": "2026-09-13",
+  "published_date": "2024-06-17",
+  "access_method": "official_html_text_read_with_web_tool",
+  "source_response_bytes": null,
+  "source_response_sha256": null,
+  "provenance_note": "Derived from the official page text exposed by the web tool. The original HTTP body was not captured; no original-response checksum or pre-cutoff archived snapshot is claimed.",
+  "rights_note": "Derived public factual observations with attribution only. No source artwork, photographs, signatures, page layout or expressive article text is republished. No portrait or open-license permission is asserted.",
+  "reported_party_total": 29,
+  "attested_on": "2024-06-17",
+  "page_updated_date": "2026-07-08",
+  "claims": [
+    {
+      "id": "br_tse_fefc_20240617_total",
+      "text": "The 17 June 2024 announcement identifies 29 parties in the 2024 FEFC distribution.",
+      "attested_on": "2024-06-17",
+      "locator": "First article paragraph",
+      "uncertainty": "A dated aggregate only. The later FEFC criteria/release table is not treated as a snapshot published on this announcement date."
+    }
+  ],
+  "scope": "Announcement paragraph only. Its embedded table image could not be inspected and supplies no row-level facts here."
+}

@@ -47,6 +47,8 @@ mod diplomatic_commitments;
 #[cfg(test)]
 mod s10e_commitment_fixture_tests;
 #[cfg(test)]
+mod s10f_succession_fixture_tests;
+#[cfg(test)]
 mod s10_government_tests;
 #[cfg(test)]
 mod s10_decision_tests;

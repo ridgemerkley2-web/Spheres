@@ -1,0 +1,23 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://www.tse.jus.br/comunicacao/noticias/2025/Dezembro/partido-da-mulher-brasileira-pmb-passara-a-se-chamar-democrata",
+  "accessed_date": "2026-09-13",
+  "published_date": "2025-12-02",
+  "access_method": "official_article_text_read_in_search_index; direct page extraction unavailable",
+  "source_response_bytes": null,
+  "source_response_sha256": null,
+  "provenance_note": "Derived from the official page text exposed by the web tool. The original HTTP body was not captured; no original-response checksum or pre-cutoff archived snapshot is claimed.",
+  "rights_note": "Derived public factual observations with attribution only. No source artwork, photographs, signatures, page layout or expressive article text is republished. No portrait or open-license permission is asserted.",
+  "claims": [
+    {
+      "id": "br_tse_pmb_name_decision_20251202",
+      "text": "On 2 December 2025 TSE approved PMB name changes and required further statutory corrections within 90 days.",
+      "attested_on": "2025-12-02",
+      "locator": "Opening paragraph and Outras alterações",
+      "uncertainty": "The article uses Democrata. The official notice describes O DEMOCRATA and a later rectification; preserve that discrepancy instead of assigning a seamless name interval. Compliance with requested corrections was not reviewed."
+    }
+  ],
+  "article_name": "Democrata",
+  "referenced_process": "0001554-73.2014.6.00.0000",
+  "scope": "Official indexed article text only, not the attached judgment or its full statutory consolidation."
+}

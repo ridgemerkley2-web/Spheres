@@ -1,0 +1,1900 @@
+{
+  "version": 1,
+  "nation": "Brazil",
+  "research_cutoff": "2026-09-07",
+  "sources": [
+    {
+      "id": "br_tse_fefc_2024",
+      "title": "FEFC 2024: party distribution criteria and reported release dates",
+      "url": "https://www.tse.jus.br/eleicoes/eleicoes-2024-content/prestacao-de-contas/fundo-especial-de-financiamento-de-campanha-fefc",
+      "publisher": "Tribunal Superior Eleitoral",
+      "published_date": null,
+      "accessed_date": "2026-09-13",
+      "access_method": "official_html_text_read_with_web_tool",
+      "rights_note": "Derived public factual observations with attribution only. No source artwork, photographs, signatures, page layout or expressive article text is republished. No portrait or open-license permission is asserted.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/brazil-tse-fefc-2024-facts.json",
+        "bytes": 12304,
+        "sha256": "0c22a2dfec4372452883c4c2cd887557716d5b031605d8a42baf44ba6151d55a"
+      },
+      "claims": [
+        {
+          "id": "br_tse_fefc_2024_row_01",
+          "text": "MDB: FEFC release 2024-08-20.",
+          "attested_on": "2024-08-20",
+          "locator": {
+            "table": "Critérios fixados pelos partidos para distribuição do FEFC aos seus candidatos",
+            "source_row": 1,
+            "criteria_case_number_as_displayed": "0613111-56.2024.6.00.0000"
+          },
+          "uncertainty": "Election-funding observation only; this is not a leadership term, organizational lifespan, complete registry, current-status finding or game mapping. The historical date is the reported release event, not page publication; a dash remains unknown and is not refusal or nonpayment."
+        },
+        {
+          "id": "br_tse_fefc_2024_row_02",
+          "text": "PDT: FEFC release 2024-08-20.",
+          "attested_on": "2024-08-20",
+          "locator": {
+            "table": "Critérios fixados pelos partidos para distribuição do FEFC aos seus candidatos",
+            "source_row": 2,
+            "criteria_case_number_as_displayed": "0613177-36.2024.6.00.0000"
+          },
+          "uncertainty": "Election-funding observation only; this is not a leadership term, organizational lifespan, complete registry, current-status finding or game mapping. The historical date is the reported release event, not page publication; a dash remains unknown and is not refusal or nonpayment."
+        },
+        {
+          "id": "br_tse_fefc_2024_row_03",
+          "text": "PT: FEFC release 2024-08-20.",
+          "attested_on": "2024-08-20",
+          "locator": {
+            "table": "Critérios fixados pelos partidos para distribuição do FEFC aos seus candidatos",
+            "source_row": 3,
+            "criteria_case_number_as_displayed": "0613102-94.2024.6.00.0000"
+          },
+          "uncertainty": "Election-funding observation only; this is not a leadership term, organizational lifespan, complete registry, current-status finding or game mapping. The historical date is the reported release event, not page publication; a dash remains unknown and is not refusal or nonpayment."
+        },
+        {
+          "id": "br_tse_fefc_2024_row_04",
+          "text": "PCdoB: FEFC release 2024-08-20.",
+          "attested_on": "2024-08-20",
+          "locator": {
+            "table": "Critérios fixados pelos partidos para distribuição do FEFC aos seus candidatos",
+            "source_row": 4,
+            "criteria_case_number_as_displayed": "0612861-23.2024.6.00.0000"
+          },
+          "uncertainty": "Election-funding observation only; this is not a leadership term, organizational lifespan, complete registry, current-status finding or game mapping. The historical date is the reported release event, not page publication; a dash remains unknown and is not refusal or nonpayment."
+        },
+        {
+          "id": "br_tse_fefc_2024_row_05",
+          "text": "PSB: FEFC release 2024-08-20.",
+          "attested_on": "2024-08-20",
+          "locator": {
+            "table": "Critérios fixados pelos partidos para distribuição do FEFC aos seus candidatos",
+            "source_row": 5,
+            "criteria_case_number_as_displayed": "0613078-66.2024.6.00.0000"
+          },
+          "uncertainty": "Election-funding observation only; this is not a leadership term, organizational lifespan, complete registry, current-status finding or game mapping. The historical date is the reported release event, not page publication; a dash remains unknown and is not refusal or nonpayment."
+        },
+        {
+          "id": "br_tse_fefc_2024_row_06",
+          "text": "PSDB: FEFC release 2024-08-20.",
+          "attested_on": "2024-08-20",
+          "locator": {
+            "table": "Critérios fixados pelos partidos para distribuição do FEFC aos seus candidatos",
+            "source_row": 6,
+            "criteria_case_number_as_displayed": "0613046-61.2024.6.00.0000"
+          },
+          "uncertainty": "Election-funding observation only; this is not a leadership term, organizational lifespan, complete registry, current-status finding or game mapping. The historical date is the reported release event, not page publication; a dash remains unknown and is not refusal or nonpayment."
+        },
+        {
+          "id": "br_tse_fefc_2024_row_07",
+          "text": "AGIR: FEFC release 2024-08-29.",
+          "attested_on": "2024-08-29",
+          "locator": {
+            "table": "Critérios fixados pelos partidos para distribuição do FEFC aos seus candidatos",
+            "source_row": 7,
+            "criteria_case_number_as_displayed": "0613121-03.2024.6.00.0000"
+          },
+          "uncertainty": "Election-funding observation only; this is not a leadership term, organizational lifespan, complete registry, current-status finding or game mapping. The historical date is the reported release event, not page publication; a dash remains unknown and is not refusal or nonpayment."
+        },
+        {
+          "id": "br_tse_fefc_2024_row_08",
+          "text": "MOBILIZA: FEFC release 2024-08-29.",
+          "attested_on": "2024-08-29",
+          "locator": {
+            "table": "Critérios fixados pelos partidos para distribuição do FEFC aos seus candidatos",
+            "source_row": 8,
+            "criteria_case_number_as_displayed": "0613209-41.2024.6.00.0000"
+          },
+          "uncertainty": "Election-funding observation only; this is not a leadership term, organizational lifespan, complete registry, current-status finding or game mapping. The historical date is the reported release event, not page publication; a dash remains unknown and is not refusal or nonpayment."
+        },
+        {
+          "id": "br_tse_fefc_2024_row_09",
+          "text": "CIDADANIA: FEFC release 2024-08-20.",
+          "attested_on": "2024-08-20",
+          "locator": {
+            "table": "Critérios fixados pelos partidos para distribuição do FEFC aos seus candidatos",
+            "source_row": 9,
+            "criteria_case_number_as_displayed": "0613087-28.2024.6.00.0000"
+          },
+          "uncertainty": "Election-funding observation only; this is not a leadership term, organizational lifespan, complete registry, current-status finding or game mapping. The historical date is the reported release event, not page publication; a dash remains unknown and is not refusal or nonpayment."
+        },
+        {
+          "id": "br_tse_fefc_2024_row_10",
+          "text": "PV: FEFC release 2024-08-20.",
+          "attested_on": "2024-08-20",
+          "locator": {
+            "table": "Critérios fixados pelos partidos para distribuição do FEFC aos seus candidatos",
+            "source_row": 10,
+            "criteria_case_number_as_displayed": "0613097-72.2024.6.00.0000"
+          },
+          "uncertainty": "Election-funding observation only; this is not a leadership term, organizational lifespan, complete registry, current-status finding or game mapping. The historical date is the reported release event, not page publication; a dash remains unknown and is not refusal or nonpayment."
+        },
+        {
+          "id": "br_tse_fefc_2024_row_11",
+          "text": "AVANTE: FEFC release 2024-08-20.",
+          "attested_on": "2024-08-20",
+          "locator": {
+            "table": "Critérios fixados pelos partidos para distribuição do FEFC aos seus candidatos",
+            "source_row": 11,
+            "criteria_case_number_as_displayed": "0613074-29.2024.6.00.0000"
+          },
+          "uncertainty": "Election-funding observation only; this is not a leadership term, organizational lifespan, complete registry, current-status finding or game mapping. The historical date is the reported release event, not page publication; a dash remains unknown and is not refusal or nonpayment."
+        },
+        {
+          "id": "br_tse_fefc_2024_row_12",
+          "text": "PSTU: FEFC release 2024-08-23.",
+          "attested_on": "2024-08-23",
+          "locator": {
+            "table": "Critérios fixados pelos partidos para distribuição do FEFC aos seus candidatos",
+            "source_row": 12,
+            "criteria_case_number_as_displayed": "0613094-20.2024.6.00.0000"
+          },
+          "uncertainty": "Election-funding observation only; this is not a leadership term, organizational lifespan, complete registry, current-status finding or game mapping. The historical date is the reported release event, not page publication; a dash remains unknown and is not refusal or nonpayment."
+        },
+        {
+          "id": "br_tse_fefc_2024_row_13",
+          "text": "PCB: FEFC release unspecified (dash).",
+          "attested_on": null,
+          "locator": {
+            "table": "Critérios fixados pelos partidos para distribuição do FEFC aos seus candidatos",
+            "source_row": 13,
+            "criteria_case_number_as_displayed": "0613144-46.2024.6.00.0000"
+          },
+          "uncertainty": "Election-funding observation only; this is not a leadership term, organizational lifespan, complete registry, current-status finding or game mapping. The historical date is the reported release event, not page publication; a dash remains unknown and is not refusal or nonpayment."
+        },
+        {
+          "id": "br_tse_fefc_2024_row_14",
+          "text": "PRTB: FEFC release 2024-08-20.",
+          "attested_on": "2024-08-20",
+          "locator": {
+            "table": "Critérios fixados pelos partidos para distribuição do FEFC aos seus candidatos",
+            "source_row": 14,
+            "criteria_case_number_as_displayed": "0613176-51.2024.6.00.0000"
+          },
+          "uncertainty": "Election-funding observation only; this is not a leadership term, organizational lifespan, complete registry, current-status finding or game mapping. The historical date is the reported release event, not page publication; a dash remains unknown and is not refusal or nonpayment."
+        },
+        {
+          "id": "br_tse_fefc_2024_row_15",
+          "text": "DC: FEFC release 2024-08-20.",
+          "attested_on": "2024-08-20",
+          "locator": {
+            "table": "Critérios fixados pelos partidos para distribuição do FEFC aos seus candidatos",
+            "source_row": 15,
+            "criteria_case_number_as_displayed": "0613098-57.2024.6.00.0000"
+          },
+          "uncertainty": "Election-funding observation only; this is not a leadership term, organizational lifespan, complete registry, current-status finding or game mapping. The historical date is the reported release event, not page publication; a dash remains unknown and is not refusal or nonpayment."
+        },
+        {
+          "id": "br_tse_fefc_2024_row_16",
+          "text": "PCO: FEFC release 2024-09-26.",
+          "attested_on": "2024-09-26",
+          "locator": {
+            "table": "Critérios fixados pelos partidos para distribuição do FEFC aos seus candidatos",
+            "source_row": 16,
+            "criteria_case_number_as_displayed": "0613116-78.2024.6.00.0000"
+          },
+          "uncertainty": "Election-funding observation only; this is not a leadership term, organizational lifespan, complete registry, current-status finding or game mapping. The historical date is the reported release event, not page publication; a dash remains unknown and is not refusal or nonpayment."
+        },
+        {
+          "id": "br_tse_fefc_2024_row_17",
+          "text": "PODEMOS: FEFC release 2024-08-20.",
+          "attested_on": "2024-08-20",
+          "locator": {
+            "table": "Critérios fixados pelos partidos para distribuição do FEFC aos seus candidatos",
+            "source_row": 17,
+            "criteria_case_number_as_displayed": "0613032-77.2024.6.00.0000"
+          },
+          "uncertainty": "Election-funding observation only; this is not a leadership term, organizational lifespan, complete registry, current-status finding or game mapping. The historical date is the reported release event, not page publication; a dash remains unknown and is not refusal or nonpayment."
+        },
+        {
+          "id": "br_tse_fefc_2024_row_18",
+          "text": "REPUBLICANOS: FEFC release 2024-08-20.",
+          "attested_on": "2024-08-20",
+          "locator": {
+            "table": "Critérios fixados pelos partidos para distribuição do FEFC aos seus candidatos",
+            "source_row": 18,
+            "criteria_case_number_as_displayed": "0612912-34.2024.6.00.0000"
+          },
+          "uncertainty": "Election-funding observation only; this is not a leadership term, organizational lifespan, complete registry, current-status finding or game mapping. The historical date is the reported release event, not page publication; a dash remains unknown and is not refusal or nonpayment."
+        },
+        {
+          "id": "br_tse_fefc_2024_row_19",
+          "text": "PSOL: FEFC release 2024-08-20.",
+          "attested_on": "2024-08-20",
+          "locator": {
+            "table": "Critérios fixados pelos partidos para distribuição do FEFC aos seus candidatos",
+            "source_row": 19,
+            "criteria_case_number_as_displayed": "0613081-21.2024.6.00.0000"
+          },
+          "uncertainty": "Election-funding observation only; this is not a leadership term, organizational lifespan, complete registry, current-status finding or game mapping. The historical date is the reported release event, not page publication; a dash remains unknown and is not refusal or nonpayment."
+        },
+        {
+          "id": "br_tse_fefc_2024_row_20",
+          "text": "PL: FEFC release 2024-08-20.",
+          "attested_on": "2024-08-20",
+          "locator": {
+            "table": "Critérios fixados pelos partidos para distribuição do FEFC aos seus candidatos",
+            "source_row": 20,
+            "criteria_case_number_as_displayed": "0612875-07.2024.6.00.0000"
+          },
+          "uncertainty": "Election-funding observation only; this is not a leadership term, organizational lifespan, complete registry, current-status finding or game mapping. The historical date is the reported release event, not page publication; a dash remains unknown and is not refusal or nonpayment."
+        },
+        {
+          "id": "br_tse_fefc_2024_row_21",
+          "text": "PSD: FEFC release 2024-08-20.",
+          "attested_on": "2024-08-20",
+          "locator": {
+            "table": "Critérios fixados pelos partidos para distribuição do FEFC aos seus candidatos",
+            "source_row": 21,
+            "criteria_case_number_as_displayed": "0613084-73.2024.6.00.0000"
+          },
+          "uncertainty": "Election-funding observation only; this is not a leadership term, organizational lifespan, complete registry, current-status finding or game mapping. The historical date is the reported release event, not page publication; a dash remains unknown and is not refusal or nonpayment."
+        },
+        {
+          "id": "br_tse_fefc_2024_row_22",
+          "text": "SOLIDARIEDADE: FEFC release 2024-08-20.",
+          "attested_on": "2024-08-20",
+          "locator": {
+            "table": "Critérios fixados pelos partidos para distribuição do FEFC aos seus candidatos",
+            "source_row": 22,
+            "criteria_case_number_as_displayed": "0613045-76.2024.6.00.0000"
+          },
+          "uncertainty": "Election-funding observation only; this is not a leadership term, organizational lifespan, complete registry, current-status finding or game mapping. The historical date is the reported release event, not page publication; a dash remains unknown and is not refusal or nonpayment."
+        },
+        {
+          "id": "br_tse_fefc_2024_row_23",
+          "text": "NOVO: FEFC release 2024-08-20.",
+          "attested_on": "2024-08-20",
+          "locator": {
+            "table": "Critérios fixados pelos partidos para distribuição do FEFC aos seus candidatos",
+            "source_row": 23,
+            "criteria_case_number_as_displayed": "0613035-32.2024.6.00.0000"
+          },
+          "uncertainty": "Election-funding observation only; this is not a leadership term, organizational lifespan, complete registry, current-status finding or game mapping. The historical date is the reported release event, not page publication; a dash remains unknown and is not refusal or nonpayment."
+        },
+        {
+          "id": "br_tse_fefc_2024_row_24",
+          "text": "REDE: FEFC release 2024-08-20.",
+          "attested_on": "2024-08-20",
+          "locator": {
+            "table": "Critérios fixados pelos partidos para distribuição do FEFC aos seus candidatos",
+            "source_row": 24,
+            "criteria_case_number_as_displayed": "0613123-70.2024.6.00.0000"
+          },
+          "uncertainty": "Election-funding observation only; this is not a leadership term, organizational lifespan, complete registry, current-status finding or game mapping. The historical date is the reported release event, not page publication; a dash remains unknown and is not refusal or nonpayment."
+        },
+        {
+          "id": "br_tse_fefc_2024_row_25",
+          "text": "PMB: FEFC release unspecified (dash).",
+          "attested_on": null,
+          "locator": {
+            "table": "Critérios fixados pelos partidos para distribuição do FEFC aos seus candidatos",
+            "source_row": 25,
+            "criteria_case_number_as_displayed": "0613118-48.2024.6.00.0000"
+          },
+          "uncertainty": "Election-funding observation only; this is not a leadership term, organizational lifespan, complete registry, current-status finding or game mapping. The historical date is the reported release event, not page publication; a dash remains unknown and is not refusal or nonpayment."
+        },
+        {
+          "id": "br_tse_fefc_2024_row_26",
+          "text": "UP: FEFC release 2024-08-20.",
+          "attested_on": "2024-08-20",
+          "locator": {
+            "table": "Critérios fixados pelos partidos para distribuição do FEFC aos seus candidatos",
+            "source_row": 26,
+            "criteria_case_number_as_displayed": "0613092-50.2024.6.00.0000"
+          },
+          "uncertainty": "Election-funding observation only; this is not a leadership term, organizational lifespan, complete registry, current-status finding or game mapping. The historical date is the reported release event, not page publication; a dash remains unknown and is not refusal or nonpayment."
+        },
+        {
+          "id": "br_tse_fefc_2024_row_27",
+          "text": "UNIÃO: FEFC release 2024-08-20.",
+          "attested_on": "2024-08-20",
+          "locator": {
+            "table": "Critérios fixados pelos partidos para distribuição do FEFC aos seus candidatos",
+            "source_row": 27,
+            "criteria_case_number_as_displayed": "0613083-88.2024.6.00.0000"
+          },
+          "uncertainty": "Election-funding observation only; this is not a leadership term, organizational lifespan, complete registry, current-status finding or game mapping. The historical date is the reported release event, not page publication; a dash remains unknown and is not refusal or nonpayment."
+        },
+        {
+          "id": "br_tse_fefc_2024_row_28",
+          "text": "PRD: FEFC release 2024-08-20.",
+          "attested_on": "2024-08-20",
+          "locator": {
+            "table": "Critérios fixados pelos partidos para distribuição do FEFC aos seus candidatos",
+            "source_row": 28,
+            "criteria_case_number_as_displayed": "0613108-04.2024.6.00.0000"
+          },
+          "uncertainty": "Election-funding observation only; this is not a leadership term, organizational lifespan, complete registry, current-status finding or game mapping. The historical date is the reported release event, not page publication; a dash remains unknown and is not refusal or nonpayment."
+        },
+        {
+          "id": "br_tse_fefc_2024_row_29",
+          "text": "PROGRESSISTAS: FEFC release 2024-08-20.",
+          "attested_on": "2024-08-20",
+          "locator": {
+            "table": "Critérios fixados pelos partidos para distribuição do FEFC aos seus candidatos",
+            "source_row": 29,
+            "criteria_case_number_as_displayed": "0612998.05.2024.6.00.0000"
+          },
+          "uncertainty": "Election-funding observation only; this is not a leadership term, organizational lifespan, complete registry, current-status finding or game mapping. The historical date is the reported release event, not page publication; a dash remains unknown and is not refusal or nonpayment."
+        }
+      ],
+      "scope_note": "Derived from the official page text exposed by the web tool. The original HTTP body was not captured; no original-response checksum or pre-cutoff archived snapshot is claimed."
+    },
+    {
+      "id": "br_tse_fefc_announcement_20240617",
+      "title": "Saiba quanto cada partido vai receber do total do Fundo Especial de Campanha",
+      "url": "https://www.tse.jus.br/comunicacao/noticias/2024/Junho/saiba-quanto-cada-partido-vai-receber-do-total-do-fundo-especial-de-campanha",
+      "publisher": "Tribunal Superior Eleitoral",
+      "published_date": "2024-06-17",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_html_text_read_with_web_tool",
+      "rights_note": "Derived public factual observations with attribution only. No source artwork, photographs, signatures, page layout or expressive article text is republished. No portrait or open-license permission is asserted.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/brazil-tse-fefc-announcement-20240617-facts.json",
+        "bytes": 1460,
+        "sha256": "99cfaceecd928d113279c36ad0cd74b92b2e66adeae7579709a2ee03c14df3af"
+      },
+      "claims": [
+        {
+          "id": "br_tse_fefc_20240617_total",
+          "text": "The 17 June 2024 announcement identifies 29 parties in the 2024 FEFC distribution.",
+          "attested_on": "2024-06-17",
+          "locator": "First article paragraph",
+          "uncertainty": "A dated aggregate only. The later FEFC criteria/release table is not treated as a snapshot published on this announcement date."
+        }
+      ],
+      "scope_note": "Derived from the official page text exposed by the web tool. The original HTTP body was not captured; no original-response checksum or pre-cutoff archived snapshot is claimed."
+    },
+    {
+      "id": "br_tse_missao_20251104",
+      "title": "TSE aprova registro e homologa estatuto do Partido Missão",
+      "url": "https://www.tse.jus.br/comunicacao/noticias/2025/Novembro/tse-aprova-registro-e-homologa-estatuto-do-partido-missao",
+      "publisher": "Tribunal Superior Eleitoral",
+      "published_date": "2025-11-04",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_article_opening_read_in_search_index; direct page extraction unavailable",
+      "rights_note": "Derived public factual observations with attribution only. No source artwork, photographs, signatures, page layout or expressive article text is republished. No portrait or open-license permission is asserted.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/brazil-tse-missao-20251104-facts.json",
+        "bytes": 1491,
+        "sha256": "5f98541258833c1b6ae139804029e3d579c05f5160e7fe49d46a0c83a47a8038"
+      },
+      "claims": [
+        {
+          "id": "br_tse_missao_registration_20251104",
+          "text": "Missão registration and statute approved on 4 November 2025; electoral number 14.",
+          "attested_on": "2025-11-04",
+          "locator": "Opening article paragraph",
+          "uncertainty": "Registration decision only; no unbroken status, organizational foundation date, leadership holder or relationship to earlier users of number 14 is inferred."
+        }
+      ],
+      "scope_note": "Derived from the official page text exposed by the web tool. The original HTTP body was not captured; no original-response checksum or pre-cutoff archived snapshot is claimed."
+    },
+    {
+      "id": "br_tse_pmb_rename_20251202",
+      "title": "Partido da Mulher Brasileira (PMB) passará a se chamar Democrata",
+      "url": "https://www.tse.jus.br/comunicacao/noticias/2025/Dezembro/partido-da-mulher-brasileira-pmb-passara-a-se-chamar-democrata",
+      "publisher": "Tribunal Superior Eleitoral",
+      "published_date": "2025-12-02",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_article_text_read_in_search_index; direct page extraction unavailable",
+      "rights_note": "Derived public factual observations with attribution only. No source artwork, photographs, signatures, page layout or expressive article text is republished. No portrait or open-license permission is asserted.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/brazil-tse-pmb-name-20251202-facts.json",
+        "bytes": 1608,
+        "sha256": "5c766c4c5032c71f08ed13b5e5ed257597e9d9af83c57d53073af6652f1dfec7"
+      },
+      "claims": [
+        {
+          "id": "br_tse_pmb_name_decision_20251202",
+          "text": "On 2 December 2025 TSE approved PMB name changes and required further statutory corrections within 90 days.",
+          "attested_on": "2025-12-02",
+          "locator": "Opening paragraph and Outras alterações",
+          "uncertainty": "The article uses Democrata. The official notice describes O DEMOCRATA and a later rectification; preserve that discrepancy instead of assigning a seamless name interval. Compliance with requested corrections was not reviewed."
+        }
+      ],
+      "scope_note": "Derived from the official page text exposed by the web tool. The original HTTP body was not captured; no original-response checksum or pre-cutoff archived snapshot is claimed."
+    },
+    {
+      "id": "br_trerj_pmb_name_notices",
+      "title": "Comunicados: Aviso SJD 10/2025 and Aviso SJD 1/2026",
+      "url": "https://www.tre-rj.jus.br/servicos-judiciais/comunicados",
+      "publisher": "Tribunal Regional Eleitoral do Rio de Janeiro",
+      "published_date": null,
+      "accessed_date": "2026-09-13",
+      "access_method": "official_html_text_read_with_web_tool",
+      "rights_note": "Derived public factual observations with attribution only. No source artwork, photographs, signatures, page layout or expressive article text is republished. No portrait or open-license permission is asserted.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/brazil-trerj-pmb-name-notices-facts.json",
+        "bytes": 1779,
+        "sha256": "4f56a0706013f37fe0b4033acc48afc010b5a0d0bd3db864766229704949e3a2"
+      },
+      "claims": [
+        {
+          "id": "br_trerj_pmb_initial_name_20251202",
+          "text": "Aviso 10/2025 reports O DEMOCRATA (DEMOCRATA) for the 2 December 2025 decision.",
+          "attested_on": "2025-12-02",
+          "locator": "2025, Aviso SJD 10/2025",
+          "uncertainty": "Notice summary only; superseding rectification is recorded separately. This is not a new party, merger, dissolution or leadership change."
+        },
+        {
+          "id": "br_trerj_pmb_name_rectification_20260212",
+          "text": "Aviso 1/2026 reports a 12 February 2026 rectification to DEMOCRATA, removing O.",
+          "attested_on": "2026-02-12",
+          "locator": "2026, Aviso SJD 1/2026",
+          "uncertainty": "Dated decision reported by the official notice index. No subsequent status or compliance result is inferred."
+        }
+      ],
+      "scope_note": "Derived from the official page text exposed by the web tool. The original HTTP body was not captured; no original-response checksum or pre-cutoff archived snapshot is claimed."
+    }
+  ],
+  "organizations": [
+    {
+      "id": "br_tse_fefc_2024_party_01",
+      "name": "MDB",
+      "kind": "political_party_election_funding_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_fefc_2024"
+      ],
+      "claim_ids": [
+        "br_tse_fefc_2024_row_01"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "source_identifier": {
+        "kind": "election_funding_criteria_case",
+        "value": "0613111-56.2024.6.00.0000",
+        "note": "Visible process reference identifies this funding record, not a permanent legal party identity; punctuation is retained."
+      },
+      "funding_observation": {
+        "election_year": 2024,
+        "release_date": "2024-08-20",
+        "release_cell_as_displayed": "20.8.2024",
+        "attested_on": "2024-08-20",
+        "from": null,
+        "until": null,
+        "amount": null,
+        "consolidated_current_status": null
+      },
+      "expanded_name": null
+    },
+    {
+      "id": "br_tse_fefc_2024_party_02",
+      "name": "PDT",
+      "kind": "political_party_election_funding_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_fefc_2024"
+      ],
+      "claim_ids": [
+        "br_tse_fefc_2024_row_02"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "source_identifier": {
+        "kind": "election_funding_criteria_case",
+        "value": "0613177-36.2024.6.00.0000",
+        "note": "Visible process reference identifies this funding record, not a permanent legal party identity; punctuation is retained."
+      },
+      "funding_observation": {
+        "election_year": 2024,
+        "release_date": "2024-08-20",
+        "release_cell_as_displayed": "20.8.2024",
+        "attested_on": "2024-08-20",
+        "from": null,
+        "until": null,
+        "amount": null,
+        "consolidated_current_status": null
+      },
+      "expanded_name": null
+    },
+    {
+      "id": "br_tse_fefc_2024_party_03",
+      "name": "PT",
+      "kind": "political_party_election_funding_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_fefc_2024"
+      ],
+      "claim_ids": [
+        "br_tse_fefc_2024_row_03"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "source_identifier": {
+        "kind": "election_funding_criteria_case",
+        "value": "0613102-94.2024.6.00.0000",
+        "note": "Visible process reference identifies this funding record, not a permanent legal party identity; punctuation is retained."
+      },
+      "funding_observation": {
+        "election_year": 2024,
+        "release_date": "2024-08-20",
+        "release_cell_as_displayed": "20.8.2024",
+        "attested_on": "2024-08-20",
+        "from": null,
+        "until": null,
+        "amount": null,
+        "consolidated_current_status": null
+      },
+      "expanded_name": null
+    },
+    {
+      "id": "br_tse_fefc_2024_party_04",
+      "name": "PCdoB",
+      "kind": "political_party_election_funding_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_fefc_2024"
+      ],
+      "claim_ids": [
+        "br_tse_fefc_2024_row_04"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "source_identifier": {
+        "kind": "election_funding_criteria_case",
+        "value": "0612861-23.2024.6.00.0000",
+        "note": "Visible process reference identifies this funding record, not a permanent legal party identity; punctuation is retained."
+      },
+      "funding_observation": {
+        "election_year": 2024,
+        "release_date": "2024-08-20",
+        "release_cell_as_displayed": "20.8.2024",
+        "attested_on": "2024-08-20",
+        "from": null,
+        "until": null,
+        "amount": null,
+        "consolidated_current_status": null
+      },
+      "expanded_name": null
+    },
+    {
+      "id": "br_tse_fefc_2024_party_05",
+      "name": "PSB",
+      "kind": "political_party_election_funding_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_fefc_2024"
+      ],
+      "claim_ids": [
+        "br_tse_fefc_2024_row_05"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "source_identifier": {
+        "kind": "election_funding_criteria_case",
+        "value": "0613078-66.2024.6.00.0000",
+        "note": "Visible process reference identifies this funding record, not a permanent legal party identity; punctuation is retained."
+      },
+      "funding_observation": {
+        "election_year": 2024,
+        "release_date": "2024-08-20",
+        "release_cell_as_displayed": "20.8.2024",
+        "attested_on": "2024-08-20",
+        "from": null,
+        "until": null,
+        "amount": null,
+        "consolidated_current_status": null
+      },
+      "expanded_name": null
+    },
+    {
+      "id": "br_tse_fefc_2024_party_06",
+      "name": "PSDB",
+      "kind": "political_party_election_funding_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_fefc_2024"
+      ],
+      "claim_ids": [
+        "br_tse_fefc_2024_row_06"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "source_identifier": {
+        "kind": "election_funding_criteria_case",
+        "value": "0613046-61.2024.6.00.0000",
+        "note": "Visible process reference identifies this funding record, not a permanent legal party identity; punctuation is retained."
+      },
+      "funding_observation": {
+        "election_year": 2024,
+        "release_date": "2024-08-20",
+        "release_cell_as_displayed": "20.8.2024",
+        "attested_on": "2024-08-20",
+        "from": null,
+        "until": null,
+        "amount": null,
+        "consolidated_current_status": null
+      },
+      "expanded_name": null
+    },
+    {
+      "id": "br_tse_fefc_2024_party_07",
+      "name": "AGIR",
+      "kind": "political_party_election_funding_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_fefc_2024"
+      ],
+      "claim_ids": [
+        "br_tse_fefc_2024_row_07"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "source_identifier": {
+        "kind": "election_funding_criteria_case",
+        "value": "0613121-03.2024.6.00.0000",
+        "note": "Visible process reference identifies this funding record, not a permanent legal party identity; punctuation is retained."
+      },
+      "funding_observation": {
+        "election_year": 2024,
+        "release_date": "2024-08-29",
+        "release_cell_as_displayed": "29.8.2024",
+        "attested_on": "2024-08-29",
+        "from": null,
+        "until": null,
+        "amount": null,
+        "consolidated_current_status": null
+      },
+      "expanded_name": null
+    },
+    {
+      "id": "br_tse_fefc_2024_party_08",
+      "name": "MOBILIZA",
+      "kind": "political_party_election_funding_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_fefc_2024"
+      ],
+      "claim_ids": [
+        "br_tse_fefc_2024_row_08"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "source_identifier": {
+        "kind": "election_funding_criteria_case",
+        "value": "0613209-41.2024.6.00.0000",
+        "note": "Visible process reference identifies this funding record, not a permanent legal party identity; punctuation is retained."
+      },
+      "funding_observation": {
+        "election_year": 2024,
+        "release_date": "2024-08-29",
+        "release_cell_as_displayed": "29.8.2024",
+        "attested_on": "2024-08-29",
+        "from": null,
+        "until": null,
+        "amount": null,
+        "consolidated_current_status": null
+      },
+      "expanded_name": null
+    },
+    {
+      "id": "br_tse_fefc_2024_party_09",
+      "name": "CIDADANIA",
+      "kind": "political_party_election_funding_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_fefc_2024"
+      ],
+      "claim_ids": [
+        "br_tse_fefc_2024_row_09"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "source_identifier": {
+        "kind": "election_funding_criteria_case",
+        "value": "0613087-28.2024.6.00.0000",
+        "note": "Visible process reference identifies this funding record, not a permanent legal party identity; punctuation is retained."
+      },
+      "funding_observation": {
+        "election_year": 2024,
+        "release_date": "2024-08-20",
+        "release_cell_as_displayed": "20.8.2024",
+        "attested_on": "2024-08-20",
+        "from": null,
+        "until": null,
+        "amount": null,
+        "consolidated_current_status": null
+      },
+      "expanded_name": null
+    },
+    {
+      "id": "br_tse_fefc_2024_party_10",
+      "name": "PV",
+      "kind": "political_party_election_funding_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_fefc_2024"
+      ],
+      "claim_ids": [
+        "br_tse_fefc_2024_row_10"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "source_identifier": {
+        "kind": "election_funding_criteria_case",
+        "value": "0613097-72.2024.6.00.0000",
+        "note": "Visible process reference identifies this funding record, not a permanent legal party identity; punctuation is retained."
+      },
+      "funding_observation": {
+        "election_year": 2024,
+        "release_date": "2024-08-20",
+        "release_cell_as_displayed": "20.8.2024",
+        "attested_on": "2024-08-20",
+        "from": null,
+        "until": null,
+        "amount": null,
+        "consolidated_current_status": null
+      },
+      "expanded_name": null
+    },
+    {
+      "id": "br_tse_fefc_2024_party_11",
+      "name": "AVANTE",
+      "kind": "political_party_election_funding_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_fefc_2024"
+      ],
+      "claim_ids": [
+        "br_tse_fefc_2024_row_11"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "source_identifier": {
+        "kind": "election_funding_criteria_case",
+        "value": "0613074-29.2024.6.00.0000",
+        "note": "Visible process reference identifies this funding record, not a permanent legal party identity; punctuation is retained."
+      },
+      "funding_observation": {
+        "election_year": 2024,
+        "release_date": "2024-08-20",
+        "release_cell_as_displayed": "20.8.2024",
+        "attested_on": "2024-08-20",
+        "from": null,
+        "until": null,
+        "amount": null,
+        "consolidated_current_status": null
+      },
+      "expanded_name": null
+    },
+    {
+      "id": "br_tse_fefc_2024_party_12",
+      "name": "PSTU",
+      "kind": "political_party_election_funding_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_fefc_2024"
+      ],
+      "claim_ids": [
+        "br_tse_fefc_2024_row_12"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "source_identifier": {
+        "kind": "election_funding_criteria_case",
+        "value": "0613094-20.2024.6.00.0000",
+        "note": "Visible process reference identifies this funding record, not a permanent legal party identity; punctuation is retained."
+      },
+      "funding_observation": {
+        "election_year": 2024,
+        "release_date": "2024-08-23",
+        "release_cell_as_displayed": "23.8.2024",
+        "attested_on": "2024-08-23",
+        "from": null,
+        "until": null,
+        "amount": null,
+        "consolidated_current_status": null
+      },
+      "expanded_name": null
+    },
+    {
+      "id": "br_tse_fefc_2024_party_13",
+      "name": "PCB",
+      "kind": "political_party_election_funding_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_fefc_2024"
+      ],
+      "claim_ids": [
+        "br_tse_fefc_2024_row_13"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "source_identifier": {
+        "kind": "election_funding_criteria_case",
+        "value": "0613144-46.2024.6.00.0000",
+        "note": "Visible process reference identifies this funding record, not a permanent legal party identity; punctuation is retained."
+      },
+      "funding_observation": {
+        "election_year": 2024,
+        "release_date": null,
+        "release_cell_as_displayed": "-",
+        "attested_on": null,
+        "from": null,
+        "until": null,
+        "amount": null,
+        "consolidated_current_status": null
+      },
+      "expanded_name": null
+    },
+    {
+      "id": "br_tse_fefc_2024_party_14",
+      "name": "PRTB",
+      "kind": "political_party_election_funding_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_fefc_2024"
+      ],
+      "claim_ids": [
+        "br_tse_fefc_2024_row_14"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "source_identifier": {
+        "kind": "election_funding_criteria_case",
+        "value": "0613176-51.2024.6.00.0000",
+        "note": "Visible process reference identifies this funding record, not a permanent legal party identity; punctuation is retained."
+      },
+      "funding_observation": {
+        "election_year": 2024,
+        "release_date": "2024-08-20",
+        "release_cell_as_displayed": "20.8.2024",
+        "attested_on": "2024-08-20",
+        "from": null,
+        "until": null,
+        "amount": null,
+        "consolidated_current_status": null
+      },
+      "expanded_name": null
+    },
+    {
+      "id": "br_tse_fefc_2024_party_15",
+      "name": "DC",
+      "kind": "political_party_election_funding_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_fefc_2024"
+      ],
+      "claim_ids": [
+        "br_tse_fefc_2024_row_15"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "source_identifier": {
+        "kind": "election_funding_criteria_case",
+        "value": "0613098-57.2024.6.00.0000",
+        "note": "Visible process reference identifies this funding record, not a permanent legal party identity; punctuation is retained."
+      },
+      "funding_observation": {
+        "election_year": 2024,
+        "release_date": "2024-08-20",
+        "release_cell_as_displayed": "20.8.2024",
+        "attested_on": "2024-08-20",
+        "from": null,
+        "until": null,
+        "amount": null,
+        "consolidated_current_status": null
+      },
+      "expanded_name": null
+    },
+    {
+      "id": "br_tse_fefc_2024_party_16",
+      "name": "PCO",
+      "kind": "political_party_election_funding_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_fefc_2024"
+      ],
+      "claim_ids": [
+        "br_tse_fefc_2024_row_16"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "source_identifier": {
+        "kind": "election_funding_criteria_case",
+        "value": "0613116-78.2024.6.00.0000",
+        "note": "Visible process reference identifies this funding record, not a permanent legal party identity; punctuation is retained."
+      },
+      "funding_observation": {
+        "election_year": 2024,
+        "release_date": "2024-09-26",
+        "release_cell_as_displayed": "26.9.2024",
+        "attested_on": "2024-09-26",
+        "from": null,
+        "until": null,
+        "amount": null,
+        "consolidated_current_status": null
+      },
+      "expanded_name": null
+    },
+    {
+      "id": "br_tse_fefc_2024_party_17",
+      "name": "PODEMOS",
+      "kind": "political_party_election_funding_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_fefc_2024"
+      ],
+      "claim_ids": [
+        "br_tse_fefc_2024_row_17"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "source_identifier": {
+        "kind": "election_funding_criteria_case",
+        "value": "0613032-77.2024.6.00.0000",
+        "note": "Visible process reference identifies this funding record, not a permanent legal party identity; punctuation is retained."
+      },
+      "funding_observation": {
+        "election_year": 2024,
+        "release_date": "2024-08-20",
+        "release_cell_as_displayed": "20.8.2024",
+        "attested_on": "2024-08-20",
+        "from": null,
+        "until": null,
+        "amount": null,
+        "consolidated_current_status": null
+      },
+      "expanded_name": null
+    },
+    {
+      "id": "br_tse_fefc_2024_party_18",
+      "name": "REPUBLICANOS",
+      "kind": "political_party_election_funding_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_fefc_2024"
+      ],
+      "claim_ids": [
+        "br_tse_fefc_2024_row_18"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "source_identifier": {
+        "kind": "election_funding_criteria_case",
+        "value": "0612912-34.2024.6.00.0000",
+        "note": "Visible process reference identifies this funding record, not a permanent legal party identity; punctuation is retained."
+      },
+      "funding_observation": {
+        "election_year": 2024,
+        "release_date": "2024-08-20",
+        "release_cell_as_displayed": "20.8.2024",
+        "attested_on": "2024-08-20",
+        "from": null,
+        "until": null,
+        "amount": null,
+        "consolidated_current_status": null
+      },
+      "expanded_name": null
+    },
+    {
+      "id": "br_tse_fefc_2024_party_19",
+      "name": "PSOL",
+      "kind": "political_party_election_funding_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_fefc_2024"
+      ],
+      "claim_ids": [
+        "br_tse_fefc_2024_row_19"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "source_identifier": {
+        "kind": "election_funding_criteria_case",
+        "value": "0613081-21.2024.6.00.0000",
+        "note": "Visible process reference identifies this funding record, not a permanent legal party identity; punctuation is retained."
+      },
+      "funding_observation": {
+        "election_year": 2024,
+        "release_date": "2024-08-20",
+        "release_cell_as_displayed": "20.8.2024",
+        "attested_on": "2024-08-20",
+        "from": null,
+        "until": null,
+        "amount": null,
+        "consolidated_current_status": null
+      },
+      "expanded_name": null
+    },
+    {
+      "id": "br_tse_fefc_2024_party_20",
+      "name": "PL",
+      "kind": "political_party_election_funding_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_fefc_2024"
+      ],
+      "claim_ids": [
+        "br_tse_fefc_2024_row_20"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "source_identifier": {
+        "kind": "election_funding_criteria_case",
+        "value": "0612875-07.2024.6.00.0000",
+        "note": "Visible process reference identifies this funding record, not a permanent legal party identity; punctuation is retained."
+      },
+      "funding_observation": {
+        "election_year": 2024,
+        "release_date": "2024-08-20",
+        "release_cell_as_displayed": "20.8.2024",
+        "attested_on": "2024-08-20",
+        "from": null,
+        "until": null,
+        "amount": null,
+        "consolidated_current_status": null
+      },
+      "expanded_name": null
+    },
+    {
+      "id": "br_tse_fefc_2024_party_21",
+      "name": "PSD",
+      "kind": "political_party_election_funding_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_fefc_2024"
+      ],
+      "claim_ids": [
+        "br_tse_fefc_2024_row_21"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "source_identifier": {
+        "kind": "election_funding_criteria_case",
+        "value": "0613084-73.2024.6.00.0000",
+        "note": "Visible process reference identifies this funding record, not a permanent legal party identity; punctuation is retained."
+      },
+      "funding_observation": {
+        "election_year": 2024,
+        "release_date": "2024-08-20",
+        "release_cell_as_displayed": "20.8.2024",
+        "attested_on": "2024-08-20",
+        "from": null,
+        "until": null,
+        "amount": null,
+        "consolidated_current_status": null
+      },
+      "expanded_name": null
+    },
+    {
+      "id": "br_tse_fefc_2024_party_22",
+      "name": "SOLIDARIEDADE",
+      "kind": "political_party_election_funding_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_fefc_2024"
+      ],
+      "claim_ids": [
+        "br_tse_fefc_2024_row_22"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "source_identifier": {
+        "kind": "election_funding_criteria_case",
+        "value": "0613045-76.2024.6.00.0000",
+        "note": "Visible process reference identifies this funding record, not a permanent legal party identity; punctuation is retained."
+      },
+      "funding_observation": {
+        "election_year": 2024,
+        "release_date": "2024-08-20",
+        "release_cell_as_displayed": "20.8.2024",
+        "attested_on": "2024-08-20",
+        "from": null,
+        "until": null,
+        "amount": null,
+        "consolidated_current_status": null
+      },
+      "expanded_name": null
+    },
+    {
+      "id": "br_tse_fefc_2024_party_23",
+      "name": "NOVO",
+      "kind": "political_party_election_funding_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_fefc_2024"
+      ],
+      "claim_ids": [
+        "br_tse_fefc_2024_row_23"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "source_identifier": {
+        "kind": "election_funding_criteria_case",
+        "value": "0613035-32.2024.6.00.0000",
+        "note": "Visible process reference identifies this funding record, not a permanent legal party identity; punctuation is retained."
+      },
+      "funding_observation": {
+        "election_year": 2024,
+        "release_date": "2024-08-20",
+        "release_cell_as_displayed": "20.8.2024",
+        "attested_on": "2024-08-20",
+        "from": null,
+        "until": null,
+        "amount": null,
+        "consolidated_current_status": null
+      },
+      "expanded_name": null
+    },
+    {
+      "id": "br_tse_fefc_2024_party_24",
+      "name": "REDE",
+      "kind": "political_party_election_funding_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_fefc_2024"
+      ],
+      "claim_ids": [
+        "br_tse_fefc_2024_row_24"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "source_identifier": {
+        "kind": "election_funding_criteria_case",
+        "value": "0613123-70.2024.6.00.0000",
+        "note": "Visible process reference identifies this funding record, not a permanent legal party identity; punctuation is retained."
+      },
+      "funding_observation": {
+        "election_year": 2024,
+        "release_date": "2024-08-20",
+        "release_cell_as_displayed": "20.8.2024",
+        "attested_on": "2024-08-20",
+        "from": null,
+        "until": null,
+        "amount": null,
+        "consolidated_current_status": null
+      },
+      "expanded_name": null
+    },
+    {
+      "id": "br_tse_fefc_2024_party_25",
+      "name": "PMB",
+      "kind": "political_party_election_funding_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_fefc_2024"
+      ],
+      "claim_ids": [
+        "br_tse_fefc_2024_row_25"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "source_identifier": {
+        "kind": "election_funding_criteria_case",
+        "value": "0613118-48.2024.6.00.0000",
+        "note": "Visible process reference identifies this funding record, not a permanent legal party identity; punctuation is retained."
+      },
+      "funding_observation": {
+        "election_year": 2024,
+        "release_date": null,
+        "release_cell_as_displayed": "-",
+        "attested_on": null,
+        "from": null,
+        "until": null,
+        "amount": null,
+        "consolidated_current_status": null
+      },
+      "expanded_name": null
+    },
+    {
+      "id": "br_tse_fefc_2024_party_26",
+      "name": "UP",
+      "kind": "political_party_election_funding_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_fefc_2024"
+      ],
+      "claim_ids": [
+        "br_tse_fefc_2024_row_26"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "source_identifier": {
+        "kind": "election_funding_criteria_case",
+        "value": "0613092-50.2024.6.00.0000",
+        "note": "Visible process reference identifies this funding record, not a permanent legal party identity; punctuation is retained."
+      },
+      "funding_observation": {
+        "election_year": 2024,
+        "release_date": "2024-08-20",
+        "release_cell_as_displayed": "20.8.2024",
+        "attested_on": "2024-08-20",
+        "from": null,
+        "until": null,
+        "amount": null,
+        "consolidated_current_status": null
+      },
+      "expanded_name": null
+    },
+    {
+      "id": "br_tse_fefc_2024_party_27",
+      "name": "UNIÃO",
+      "kind": "political_party_election_funding_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_fefc_2024"
+      ],
+      "claim_ids": [
+        "br_tse_fefc_2024_row_27"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "source_identifier": {
+        "kind": "election_funding_criteria_case",
+        "value": "0613083-88.2024.6.00.0000",
+        "note": "Visible process reference identifies this funding record, not a permanent legal party identity; punctuation is retained."
+      },
+      "funding_observation": {
+        "election_year": 2024,
+        "release_date": "2024-08-20",
+        "release_cell_as_displayed": "20.8.2024",
+        "attested_on": "2024-08-20",
+        "from": null,
+        "until": null,
+        "amount": null,
+        "consolidated_current_status": null
+      },
+      "expanded_name": null
+    },
+    {
+      "id": "br_tse_fefc_2024_party_28",
+      "name": "PRD",
+      "kind": "political_party_election_funding_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_fefc_2024"
+      ],
+      "claim_ids": [
+        "br_tse_fefc_2024_row_28"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "source_identifier": {
+        "kind": "election_funding_criteria_case",
+        "value": "0613108-04.2024.6.00.0000",
+        "note": "Visible process reference identifies this funding record, not a permanent legal party identity; punctuation is retained."
+      },
+      "funding_observation": {
+        "election_year": 2024,
+        "release_date": "2024-08-20",
+        "release_cell_as_displayed": "20.8.2024",
+        "attested_on": "2024-08-20",
+        "from": null,
+        "until": null,
+        "amount": null,
+        "consolidated_current_status": null
+      },
+      "expanded_name": null
+    },
+    {
+      "id": "br_tse_fefc_2024_party_29",
+      "name": "PROGRESSISTAS",
+      "kind": "political_party_election_funding_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_fefc_2024"
+      ],
+      "claim_ids": [
+        "br_tse_fefc_2024_row_29"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "source_identifier": {
+        "kind": "election_funding_criteria_case",
+        "value": "0612998.05.2024.6.00.0000",
+        "note": "Visible process reference identifies this funding record, not a permanent legal party identity; punctuation is retained."
+      },
+      "funding_observation": {
+        "election_year": 2024,
+        "release_date": "2024-08-20",
+        "release_cell_as_displayed": "20.8.2024",
+        "attested_on": "2024-08-20",
+        "from": null,
+        "until": null,
+        "amount": null,
+        "consolidated_current_status": null
+      },
+      "expanded_name": null
+    },
+    {
+      "id": "br_tse_missao_registration_2025",
+      "name": "Partido Missão",
+      "kind": "political_party_registration_decision_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_missao_20251104"
+      ],
+      "claim_ids": [
+        "br_tse_missao_registration_20251104"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "recognition": {
+        "attested_on": "2025-11-04",
+        "from": null,
+        "until": null,
+        "decision": "registration_and_statute_approved",
+        "electoral_number": 14,
+        "consolidated_current_status": null
+      }
+    },
+    {
+      "id": "br_pmb_name_decisions_2025_2026",
+      "name": "Partido da Mulher Brasileira (PMB) / Democrata",
+      "kind": "political_party_name_decision_observation",
+      "jurisdiction": "Brazil",
+      "represented_party_ids": [],
+      "reconciled_organization_id": null,
+      "lifecycle": {
+        "status": "unresearched",
+        "from": null,
+        "until": null,
+        "note": "A sourced observation or decision date does not establish organizational foundation, dissolution or a complete continuous status interval."
+      },
+      "roles": [],
+      "sources": [
+        "br_tse_pmb_rename_20251202",
+        "br_trerj_pmb_name_notices"
+      ],
+      "claim_ids": [
+        "br_tse_pmb_name_decision_20251202",
+        "br_trerj_pmb_initial_name_20251202",
+        "br_trerj_pmb_name_rectification_20260212"
+      ],
+      "coverage": {
+        "status": "reporting_identity_only",
+        "unresolved": [
+          "Reconcile the exact source identity and separately dated name variants before any game mapping.",
+          "Research organizational history and separate party, parliamentary and executive offices from 1990 through the fixed cutoff.",
+          "No leadership, succession eligibility, likeness, portrait-reuse permission or complete present-day status is established."
+        ]
+      },
+      "name_observations": [
+        {
+          "name": "O DEMOCRATA",
+          "attested_on": "2025-12-02",
+          "source": "br_trerj_pmb_name_notices",
+          "claim_id": "br_trerj_pmb_initial_name_20251202"
+        },
+        {
+          "name": "Democrata",
+          "attested_on": "2025-12-02",
+          "source": "br_tse_pmb_rename_20251202",
+          "claim_id": "br_tse_pmb_name_decision_20251202"
+        },
+        {
+          "name": "DEMOCRATA",
+          "attested_on": "2026-02-12",
+          "source": "br_trerj_pmb_name_notices",
+          "claim_id": "br_trerj_pmb_name_rectification_20260212"
+        }
+      ],
+      "identity_reconciliation": {
+        "candidate_observation_id": "br_tse_fefc_2024_party_25",
+        "status": "pending",
+        "automatic_merge": false,
+        "note": "The shared PMB label is a reconciliation lead only. Source-level name decisions belong to one reported process; the 2024 funding case remains a separate observation."
+      }
+    }
+  ],
+  "institutions": [],
+  "coverage": {
+    "status": "partial_primary_source_inventory",
+    "period": {
+      "from": "1990-01-01",
+      "through": "2026-09-07"
+    },
+    "exhaustive_organization_register_reviewed": false,
+    "unrepresented_organization_total": null,
+    "art_completion_claim": false,
+    "bounded_registers": [
+      {
+        "kind": "2024_election_funding_table_rows",
+        "election_year": 2024,
+        "records": 29,
+        "dated_release_rows": 27,
+        "undated_release_rows": 2,
+        "source": "br_tse_fefc_2024",
+        "specific_table_rows_reviewed": true,
+        "registry_as_of_date": null
+      },
+      {
+        "kind": "registration_decision_observation",
+        "attested_on": "2025-11-04",
+        "records": 1,
+        "source": "br_tse_missao_20251104"
+      },
+      {
+        "kind": "party_name_decision_observation",
+        "records": 1,
+        "sources": [
+          "br_tse_pmb_rename_20251202",
+          "br_trerj_pmb_name_notices"
+        ]
+      }
+    ],
+    "interpretation": "31 organization observations are not 31 distinct parties: 29 election-funding labels, one later registration decision and one separate PMB naming record. The reviewed HTML funding table is historical election data, not a time-frozen registry as of the research cutoff. The June 2024 aggregate announcement does not date the later release rows.",
+    "unresolved": [
+      "No full Brazilian organization census or leadership timeline from 1990 through 7 September 2026 has been established.",
+      "Reconcile FEFC labels and exact process references with dated legal identities, complete names, extinct organizations, splits, mergers and name changes.",
+      "The current live registry was not used to backdate leaders or party names. A pre-cutoff archived registry snapshot remains to be obtained.",
+      "PCB and PMB release cells are dashes: no date, refusal, nonpayment, inactivity or exclusion is inferred.",
+      "The PMB article and initial notice use different names; retain the later explicit rectification and research underlying decisions before creating lifecycle intervals.",
+      "Federations, informal parties, parties in formation and institutions are outside this bounded intake; absence here does not establish nonexistence.",
+      "All game mappings, leadership roles, continuous lifecycle intervals, successor eligibility and portrait permissions remain unknown."
+    ]
+  }
+}

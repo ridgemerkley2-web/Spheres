@@ -315,6 +315,17 @@
   #govScreen .gov-ui-party-leadership-card,#govScreen .gov-ui-leadership-tools,#govScreen .gov-ui-person-art { background:Canvas; color:CanvasText; border-color:CanvasText; }
 }
 
+#govScreen .gov-ui-succession { margin:16px 0; padding:14px; border:1px solid var(--gov-line); border-left:3px solid #d4b779; border-radius:10px; background:#d4b7790d; }
+#govScreen .gov-ui-succession dl { display:grid; grid-template-columns:minmax(0,1fr); gap:12px; margin:12px 0; }
+#govScreen .gov-ui-succession dt { font-size:12px; line-height:1.5; color:var(--gov-muted); }
+#govScreen .gov-ui-succession dd { margin:4px 0 0; font-size:14px; line-height:1.5; font-weight:650; overflow-wrap:anywhere; }
+#govScreen .gov-ui-succession .gov-ui-note { font-size:12px; line-height:1.65; }
+@media(max-width:600px) {
+  #govScreen .gov-ui-person { grid-template-columns:minmax(0,1fr); }
+  #govScreen .gov-ui-person-art { width:106px; min-height:132px; }
+  #govScreen .gov-ui-succession { padding:12px; }
+}
+
 /* Physical leader miniatures and their shared-context inspection room. */
 #govScreen .gov-ui-person-model { position:relative; border-radius:12px; padding:8px 6px; background:radial-gradient(ellipse at 50% 35%,#54707855,transparent 72%),linear-gradient(170deg,#233d44,#101f2c); }
 #govScreen .gov-ui-person-model canvas { display:block; width:100%; height:162px; filter:drop-shadow(0 5px 4px #0005); }

@@ -1,0 +1,29 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://www.tre-rj.jus.br/servicos-judiciais/comunicados",
+  "accessed_date": "2026-09-13",
+  "published_date": null,
+  "access_method": "official_html_text_read_with_web_tool",
+  "source_response_bytes": null,
+  "source_response_sha256": null,
+  "provenance_note": "Derived from the official page text exposed by the web tool. The original HTTP body was not captured; no original-response checksum or pre-cutoff archived snapshot is claimed.",
+  "rights_note": "Derived public factual observations with attribution only. No source artwork, photographs, signatures, page layout or expressive article text is republished. No portrait or open-license permission is asserted.",
+  "claims": [
+    {
+      "id": "br_trerj_pmb_initial_name_20251202",
+      "text": "Aviso 10/2025 reports O DEMOCRATA (DEMOCRATA) for the 2 December 2025 decision.",
+      "attested_on": "2025-12-02",
+      "locator": "2025, Aviso SJD 10/2025",
+      "uncertainty": "Notice summary only; superseding rectification is recorded separately. This is not a new party, merger, dissolution or leadership change."
+    },
+    {
+      "id": "br_trerj_pmb_name_rectification_20260212",
+      "text": "Aviso 1/2026 reports a 12 February 2026 rectification to DEMOCRATA, removing O.",
+      "attested_on": "2026-02-12",
+      "locator": "2026, Aviso SJD 1/2026",
+      "uncertainty": "Dated decision reported by the official notice index. No subsequent status or compliance result is inferred."
+    }
+  ],
+  "referenced_process": "0001554-73.2014.6.00.0000",
+  "scope": "Only the two named HTML notice summaries were reviewed. Notice publication dates are not inferred from their decision dates; the original PDFs were not visually reviewed."
+}
