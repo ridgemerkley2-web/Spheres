@@ -1,0 +1,21 @@
+AssertionError [ERR_ASSERTION]: Native ground projection failed: Traceback (most recent call last):
+  File "<string>", line 8, in <module>
+    calendar={k:w[k] for k in ['year','month','day']};assert all(isinstance(v,int) for v in calendar.values())
+                ~^^^
+KeyError: 'day'
+
+
+1 !== 0
+
+    at nativeFacts (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\S11-browser-reader-debug-2.cjs:79:35)
+    at inspect (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\S11-browser-reader-debug-2.cjs:81:141)
+    at capture (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\S11-browser-reader-debug-2.cjs:91:131)
+    at async inspectStage (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\S11-browser-reader-debug-2.cjs:206:84)
+    at async main (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\S11-browser-reader-debug-2.cjs:238:15) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 1,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}

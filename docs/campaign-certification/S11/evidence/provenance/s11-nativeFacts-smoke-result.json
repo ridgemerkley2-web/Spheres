@@ -1,0 +1,175 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S11-final-native-fixture\\before.json",
+      "holdings": 6,
+      "ledgers": {
+        "company": {
+          "id": 1,
+          "nation": "France"
+        },
+        "refit": null,
+        "vehicle_delivery": null,
+        "ammunition_delivery": null
+      },
+      "envelope": {
+        "sha256": "3b343101acc9f1807ebb7b5459bcaaacefb5baa0d9c3f763c604198c54262486",
+        "bytes": 13523,
+        "saved_unix": 1789352986,
+        "history_points": 1,
+        "dispatches": 0,
+        "wrapper_count": 2
+      }
+    },
+    {
+      "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S11-browser-final-browser\\france-h7r1uO\\server\\captures\\s11-audit-loaded.json",
+      "holdings": 6,
+      "ledgers": {
+        "company": {
+          "id": 1,
+          "nation": "France"
+        },
+        "refit": null,
+        "vehicle_delivery": null,
+        "ammunition_delivery": null
+      },
+      "envelope": {
+        "sha256": "3b343101acc9f1807ebb7b5459bcaaacefb5baa0d9c3f763c604198c54262486",
+        "bytes": 13523,
+        "saved_unix": 1789353149,
+        "history_points": 1,
+        "dispatches": 0,
+        "wrapper_count": 2
+      }
+    },
+    {
+      "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S11-final-native-fixture\\expected-retire.json",
+      "holdings": 7,
+      "ledgers": {
+        "company": {
+          "id": 1,
+          "nation": "France"
+        },
+        "refit": {
+          "advance_received_bn": 0.00042209013942307684,
+          "booked_day": 791,
+          "cancelled_day": null,
+          "cancelled_units": 0,
+          "closed_day": 831,
+          "completed_units": 1,
+          "earned_revenue_bn": 0.00042209013942307684,
+          "escrow_bn": 0,
+          "fabrication_expense_bn": 0.0003219999999999999,
+          "id": 265,
+          "last_work_day": 831,
+          "materials_expense_bn": 0.00004503559915040648,
+          "product": 3,
+          "quantity": 1,
+          "reason": "A whole conversion returned to the government Arsenal at its existing cohort age. Its fixed service fee was released once; no new vehicle or ammunition was created.",
+          "recipe_per_unit": [
+            0,
+            0.0006730769230769232,
+            0,
+            0.008076923076923077,
+            0,
+            0,
+            0.6461538461538462,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "refund_day": null,
+          "refunded_bn": 0,
+          "resources_used": [
+            0,
+            0.0006730769230769232,
+            0,
+            0.008076923076923077,
+            0,
+            0,
+            0.6461538461538462,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "settled_day": 791,
+          "source_revision": "ammo-demo",
+          "status": "complete",
+          "target_revision": "France-design-1",
+          "total_price_bn": 0.00042209013942307684,
+          "unit_days": 40,
+          "unit_fabrication_cost_bn": 0.00032199999999999997,
+          "unit_inputs": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "unit_material_cost_bn": 0,
+          "unit_material_quote_bn": 0.00004503490384615384,
+          "unit_price_bn": 0.00042209013942307684,
+          "unit_started_day": null,
+          "unit_work_days": 0,
+          "working_capital_locked_bn": 0
+        },
+        "vehicle_delivery": {
+          "buyer": "France",
+          "company": 1,
+          "cost_basis_bn": 0.002270325,
+          "delivered_day": 798,
+          "district": "FRA_auvergne-rh-ne-alpes",
+          "due_day": 798,
+          "id": 267,
+          "product": 3,
+          "purchased_day": 791,
+          "quantity": 1,
+          "reason": "Received into the exact-revision Arsenal; ordinary maintenance and ammunition rules now apply.",
+          "revision_id": "France-design-1",
+          "settled_day": 791,
+          "status": "delivered",
+          "total_price_bn": 0.00261087375,
+          "unit_price_bn": 0.00261087375
+        },
+        "ammunition_delivery": {
+          "buyer": "France",
+          "company": 1,
+          "cost_basis_bn": 0.00000909005,
+          "delivered_day": 798,
+          "district": "FRA_auvergne-rh-ne-alpes",
+          "due_day": 798,
+          "family": "autocannon_25",
+          "id": 269,
+          "product": 264,
+          "purchased_day": 791,
+          "quantity": 500,
+          "reason": "Received into the existing national ammunition store with a matching paid supplier receipt. Ordinary compatibility and consumption rules apply.",
+          "settled_day": 791,
+          "status": "delivered",
+          "total_price_bn": 0.0000104535575,
+          "unit_price_bn": 2.0907115e-8
+        }
+      },
+      "envelope": {
+        "sha256": "e5fcc4cae8c7fabe02e984b4055375b92d0eb513f31d76a154f41f33ba08e843",
+        "bytes": 1053510,
+        "saved_unix": 1789353078,
+        "history_points": 42,
+        "dispatches": 71,
+        "wrapper_count": 2
+      }
+    }
+  ]
+}

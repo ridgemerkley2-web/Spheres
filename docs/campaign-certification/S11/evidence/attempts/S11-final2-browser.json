@@ -1,0 +1,23 @@
+{
+  "revision": "d9afd1604219e160cc9deaa4b3999df7db5cde57",
+  "lane": "browser",
+  "clean_before": true,
+  "command": [
+    "node",
+    "tools/ui/ci-ground-operations.cjs"
+  ],
+  "runner_sha256": "e8caf2f9e7730c0c01eb2c522bf4bdc4f7e8a8b632b37443c37eaf4377284bbe",
+  "started_utc": "2026-09-14T03:01:38.885621+00:00",
+  "fixture": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S11-final2-native-fixture",
+  "binary_sha256_before": "dd16f0b1d92c11fcf3d867abe3c3669caa8f1a96720821f12110a3d1762d9a21",
+  "exit_code": 0,
+  "finished_utc": "2026-09-14T03:07:38.777500+00:00",
+  "revision_after": "d9afd1604219e160cc9deaa4b3999df7db5cde57",
+  "clean_after": true,
+  "log_sha256": "eefc782aadbfd93afb3197ce41baec6370b0957caf06b183322a7ecc6ca03575",
+  "binary": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\spheres-web.exe",
+    "sha256": "dd16f0b1d92c11fcf3d867abe3c3669caa8f1a96720821f12110a3d1762d9a21"
+  },
+  "passed": true
+}

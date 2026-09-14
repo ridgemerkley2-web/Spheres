@@ -1,0 +1,433 @@
+{
+  "diagnostic_only": true,
+  "source_input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S11-development-fixture-04\\before.json",
+  "source_sha256": "20a5aef70c9e0e4857e53f8894aa1474ece1db23f26fc1d4ad18b0fea21aef22",
+  "binary_sha256": "0aa82b6b4c1c71b2444afa6cb56e425a1796d072b217ab8ee2906cf8bb37730b",
+  "commands": [],
+  "advances": [],
+  "screenshots": [
+    "ground-header-1440.png",
+    "ground-roles-1440.png",
+    "ground-models-1440.png",
+    "ground-actions-1440.png",
+    "theatre-1440.png",
+    "ground-header-390.png",
+    "ground-roles-390.png",
+    "ground-models-390.png",
+    "ground-actions-390.png",
+    "theatre-390.png",
+    "ground-header-320.png",
+    "ground-roles-320.png",
+    "ground-models-320.png",
+    "ground-actions-320.png",
+    "theatre-320.png"
+  ],
+  "readings": [
+    {
+      "width": 1440,
+      "boxes": [
+        {
+          "element": "military-operations",
+          "width": 525,
+          "scroll": 525,
+          "rect": {
+            "left": 57,
+            "right": 583.59375
+          }
+        },
+        {
+          "element": "military-ground-roles",
+          "width": 483,
+          "scroll": 483,
+          "rect": {
+            "left": 78,
+            "right": 562.59375
+          }
+        },
+        {
+          "element": "military-role-grid",
+          "width": 459,
+          "scroll": 459,
+          "rect": {
+            "left": 91,
+            "right": 549.59375
+          }
+        },
+        {
+          "element": "military-ground-roles",
+          "width": 483,
+          "scroll": 483,
+          "rect": {
+            "left": 78,
+            "right": 562.59375
+          }
+        },
+        {
+          "element": "military-role-grid",
+          "width": 459,
+          "scroll": 459,
+          "rect": {
+            "left": 91,
+            "right": 549.59375
+          }
+        },
+        {
+          "element": "military-ground-fleet",
+          "width": 485,
+          "scroll": 485,
+          "rect": {
+            "left": 78,
+            "right": 562.59375
+          }
+        },
+        {
+          "element": "military-model",
+          "width": 235,
+          "scroll": 235,
+          "rect": {
+            "left": 78,
+            "right": 315.296875
+          }
+        },
+        {
+          "element": "military-model",
+          "width": 235,
+          "scroll": 235,
+          "rect": {
+            "left": 325.296875,
+            "right": 562.59375
+          }
+        },
+        {
+          "element": "military-model",
+          "width": 235,
+          "scroll": 235,
+          "rect": {
+            "left": 78,
+            "right": 315.296875
+          }
+        },
+        {
+          "element": "military-model",
+          "width": 235,
+          "scroll": 235,
+          "rect": {
+            "left": 325.296875,
+            "right": 562.59375
+          }
+        },
+        {
+          "element": "military-model",
+          "width": 235,
+          "scroll": 235,
+          "rect": {
+            "left": 78,
+            "right": 315.296875
+          }
+        },
+        {
+          "element": "military-model",
+          "width": 235,
+          "scroll": 235,
+          "rect": {
+            "left": 325.296875,
+            "right": 562.59375
+          }
+        },
+        {
+          "element": "military-equipment-actions",
+          "width": 485,
+          "scroll": 485,
+          "rect": {
+            "left": 78,
+            "right": 562.59375
+          }
+        }
+      ],
+      "text": "NATIONAL COMMAND\nYour forces and reserves\nNational force\n44.00\nCommitted\n44.00\nUncommitted\n0.00\n\nOverseas: 0.00 committed · 1.87 sustainable. These are force points, not troop counts.\n\nCommitments share one national force. Access, equipment and your commitment rung limit allocations. Forces must still travel; theatre command shows those that have arrived.\n\nWestern Europe\n\nHome theatre · 22.00 committed · 22.00 supported commitment · magazine use 4.12% / month\n\nCeiling as a share of national force\nAutomatic staff allocation\n0% · keep in reserve\n5%\n10%\n15%\n25%\n50%\n75%\n100%\nApply allocation · free\nHow your ground equipment helps here\n\nThese are the simulation's current support effects for this commitment, before local combat conditions. They are not extra force points or guaranteed battle results.\n\nFind targets\n1.6%\nReconnaissance helps the force find and engage targets. It does not reveal exact enemy strength.\nProtected movement\n0.8%\nIFVs and APCs support ground advance. Terrain, preparation and the standing order still matter.\nFire support\n1.7%\nServiceable support under the shared magazine system.\nAir defense\n2.3%\nLocal protection from serviceable air-defense equipment under the shared magazine system.\n\nCustom ground weapons currently share the national magazine. Review Ammunition to prepare compatible stores and activate physical supply.\n\nWestern Europe\n\nHome theatre · 22.00 committed · 22.00 supported commitment · magazine use 4.12% / month\n\nCeiling as a share of national force\nAutomatic staff allocation\n0% · keep in reserve\n5%\n10%\n15%\n25%\n50%\n75%\n100%\nApply allocation · free\nHow your ground equipment helps here\n\nThese are the simulation's current support effects for this commitment, before local combat conditions. They are not extra force points or guaranteed battle results.\n\nFind targets\n1.6%\nReconnaissance helps the force find and engage targets. It does not reveal exact enemy strength.\nProtected movement\n0.8%\nIFVs and APCs support ground advance. Terrain, preparation and the standing order still matter.\nFire support\n1.7%\nServiceable support under the shared magazine system.\nAir defense\n2.3%\nLocal protection from serviceable air-defense equipment under the shared magazine system.\n\nCustom ground weapons currently share the national magazine. Review Ammunition to prepare compatible stores and activate physical supply.\n\nHow equipment supports operations\nEQUIPMENT DESK\nGround equipment in service\n\nDelivered tanks and specialist vehicles support one shared national force. Refit reservations leave service. Maintenance and age affect their contribution; compatible stores determine firing. Force allocations are commitments, while the operation board records arrivals.\n\nLast settled fleet support: 100.0%. Support date: 1992-03-01.\n\n6 ground models in national holdings\nMechanized infantry support\nAmmunition demonstration IFV\nOwned\n10\nAvailable\n10\nIn refit\n0\n\nAmmunition: 25 mm autocannon. Condition and upkeep support: 100.0%. This is a capability factor, not a count of ready vehicles.\n\nMobile air defense\nS11 Mobile air defense\nOwned\n1,000\nAvailable\n1,000\nIn refit\n0\n\nAmmunition: Air-defense cannon. Condition and upkeep support: 100.0%. This is a capability factor, not a count of ready vehicles.\n\nProtected troop transport\nS11 Protected troop transport\nOwned\n1,000\nAvailable\n1,000\nIn refit\n0\n\nAmmunition: 12.7 mm machine gun. Condition and upkeep support: 100.0%. This is a capability factor, not a count of ready vehicles.\n\nIndirect fire support\nS11 Indirect fire support\nOwned\n1,000\nAvailable\n1,000\nIn refit\n0\n\nAmmunition: 122 mm high explosive. Condition and upkeep support: 100.0%. This is a capability factor, not a count of ready vehicles.\n\nBattlefield reconnaissance\nS11 Battlefield reconnaissance\nOwned\n1,000\nAvailable\n1,000\nIn refit\n0\n\nAmmunition: 12.7 mm machine gun. Condition and upkeep support: 100.0%. This is a capability factor, not a count of ready vehicles.\n\nMain battle tank\nS11 Main battle tank\nOwned\n5,000\nAvailable\n5,000\nIn refit\n0\n\nAmmunition: 105 mm mixed-purpose. Condition and upkeep support: 100.0%. This is a capability factor, not a count of ready vehicles.\n\nAvailable holdings support the national force. They are shared across commitments; each theatre does not receive another copy of these vehicles.\n\nNo ground-equipment loss settlement has been recorded yet.\n\nService, refit and retirement\nCompatible ammunition\nBuy from suppliers"
+    },
+    {
+      "width": 1440,
+      "sheet": {
+        "width": 1402,
+        "scroll": 1402
+      }
+    },
+    {
+      "width": 390,
+      "boxes": [
+        {
+          "element": "military-operations",
+          "width": 351,
+          "scroll": 351,
+          "rect": {
+            "left": 19,
+            "right": 372
+          }
+        },
+        {
+          "element": "military-ground-roles",
+          "width": 321,
+          "scroll": 321,
+          "rect": {
+            "left": 34,
+            "right": 357
+          }
+        },
+        {
+          "element": "military-role-grid",
+          "width": 297,
+          "scroll": 297,
+          "rect": {
+            "left": 47,
+            "right": 344
+          }
+        },
+        {
+          "element": "military-ground-roles",
+          "width": 321,
+          "scroll": 321,
+          "rect": {
+            "left": 34,
+            "right": 357
+          }
+        },
+        {
+          "element": "military-role-grid",
+          "width": 297,
+          "scroll": 297,
+          "rect": {
+            "left": 47,
+            "right": 344
+          }
+        },
+        {
+          "element": "military-ground-fleet",
+          "width": 323,
+          "scroll": 323,
+          "rect": {
+            "left": 34,
+            "right": 357
+          }
+        },
+        {
+          "element": "military-model",
+          "width": 321,
+          "scroll": 321,
+          "rect": {
+            "left": 34,
+            "right": 357
+          }
+        },
+        {
+          "element": "military-model",
+          "width": 321,
+          "scroll": 321,
+          "rect": {
+            "left": 34,
+            "right": 357
+          }
+        },
+        {
+          "element": "military-model",
+          "width": 321,
+          "scroll": 321,
+          "rect": {
+            "left": 34,
+            "right": 357
+          }
+        },
+        {
+          "element": "military-model",
+          "width": 321,
+          "scroll": 321,
+          "rect": {
+            "left": 34,
+            "right": 357
+          }
+        },
+        {
+          "element": "military-model",
+          "width": 321,
+          "scroll": 321,
+          "rect": {
+            "left": 34,
+            "right": 357
+          }
+        },
+        {
+          "element": "military-model",
+          "width": 321,
+          "scroll": 321,
+          "rect": {
+            "left": 34,
+            "right": 357
+          }
+        },
+        {
+          "element": "military-equipment-actions",
+          "width": 323,
+          "scroll": 323,
+          "rect": {
+            "left": 34,
+            "right": 357
+          }
+        }
+      ],
+      "text": "NATIONAL COMMAND\nYour forces and reserves\nNational force\n44.00\nCommitted\n44.00\nUncommitted\n0.00\n\nOverseas: 0.00 committed · 1.87 sustainable. These are force points, not troop counts.\n\nCommitments share one national force. Access, equipment and your commitment rung limit allocations. Forces must still travel; theatre command shows those that have arrived.\n\nWestern Europe\n\nHome theatre · 22.00 committed · 22.00 supported commitment · magazine use 4.12% / month\n\nCeiling as a share of national force\nAutomatic staff allocation\n0% · keep in reserve\n5%\n10%\n15%\n25%\n50%\n75%\n100%\nApply allocation · free\nHow your ground equipment helps here\n\nThese are the simulation's current support effects for this commitment, before local combat conditions. They are not extra force points or guaranteed battle results.\n\nFind targets\n1.6%\nReconnaissance helps the force find and engage targets. It does not reveal exact enemy strength.\nProtected movement\n0.8%\nIFVs and APCs support ground advance. Terrain, preparation and the standing order still matter.\nFire support\n1.7%\nServiceable support under the shared magazine system.\nAir defense\n2.3%\nLocal protection from serviceable air-defense equipment under the shared magazine system.\n\nCustom ground weapons currently share the national magazine. Review Ammunition to prepare compatible stores and activate physical supply.\n\nWestern Europe\n\nHome theatre · 22.00 committed · 22.00 supported commitment · magazine use 4.12% / month\n\nCeiling as a share of national force\nAutomatic staff allocation\n0% · keep in reserve\n5%\n10%\n15%\n25%\n50%\n75%\n100%\nApply allocation · free\nHow your ground equipment helps here\n\nThese are the simulation's current support effects for this commitment, before local combat conditions. They are not extra force points or guaranteed battle results.\n\nFind targets\n1.6%\nReconnaissance helps the force find and engage targets. It does not reveal exact enemy strength.\nProtected movement\n0.8%\nIFVs and APCs support ground advance. Terrain, preparation and the standing order still matter.\nFire support\n1.7%\nServiceable support under the shared magazine system.\nAir defense\n2.3%\nLocal protection from serviceable air-defense equipment under the shared magazine system.\n\nCustom ground weapons currently share the national magazine. Review Ammunition to prepare compatible stores and activate physical supply.\n\nHow equipment supports operations\nEQUIPMENT DESK\nGround equipment in service\n\nDelivered tanks and specialist vehicles support one shared national force. Refit reservations leave service. Maintenance and age affect their contribution; compatible stores determine firing. Force allocations are commitments, while the operation board records arrivals.\n\nLast settled fleet support: 100.0%. Support date: 1992-03-01.\n\n6 ground models in national holdings\nMechanized infantry support\nAmmunition demonstration IFV\nOwned\n10\nAvailable\n10\nIn refit\n0\n\nAmmunition: 25 mm autocannon. Condition and upkeep support: 100.0%. This is a capability factor, not a count of ready vehicles.\n\nMobile air defense\nS11 Mobile air defense\nOwned\n1,000\nAvailable\n1,000\nIn refit\n0\n\nAmmunition: Air-defense cannon. Condition and upkeep support: 100.0%. This is a capability factor, not a count of ready vehicles.\n\nProtected troop transport\nS11 Protected troop transport\nOwned\n1,000\nAvailable\n1,000\nIn refit\n0\n\nAmmunition: 12.7 mm machine gun. Condition and upkeep support: 100.0%. This is a capability factor, not a count of ready vehicles.\n\nIndirect fire support\nS11 Indirect fire support\nOwned\n1,000\nAvailable\n1,000\nIn refit\n0\n\nAmmunition: 122 mm high explosive. Condition and upkeep support: 100.0%. This is a capability factor, not a count of ready vehicles.\n\nBattlefield reconnaissance\nS11 Battlefield reconnaissance\nOwned\n1,000\nAvailable\n1,000\nIn refit\n0\n\nAmmunition: 12.7 mm machine gun. Condition and upkeep support: 100.0%. This is a capability factor, not a count of ready vehicles.\n\nMain battle tank\nS11 Main battle tank\nOwned\n5,000\nAvailable\n5,000\nIn refit\n0\n\nAmmunition: 105 mm mixed-purpose. Condition and upkeep support: 100.0%. This is a capability factor, not a count of ready vehicles.\n\nAvailable holdings support the national force. They are shared across commitments; each theatre does not receive another copy of these vehicles.\n\nNo ground-equipment loss settlement has been recorded yet.\n\nService, refit and retirement\nCompatible ammunition\nBuy from suppliers"
+    },
+    {
+      "width": 390,
+      "sheet": {
+        "width": 372,
+        "scroll": 372
+      }
+    },
+    {
+      "width": 320,
+      "boxes": [
+        {
+          "element": "military-operations",
+          "width": 281,
+          "scroll": 281,
+          "rect": {
+            "left": 19,
+            "right": 302
+          }
+        },
+        {
+          "element": "military-ground-roles",
+          "width": 251,
+          "scroll": 251,
+          "rect": {
+            "left": 34,
+            "right": 287
+          }
+        },
+        {
+          "element": "military-role-grid",
+          "width": 227,
+          "scroll": 227,
+          "rect": {
+            "left": 47,
+            "right": 274
+          }
+        },
+        {
+          "element": "military-ground-roles",
+          "width": 251,
+          "scroll": 251,
+          "rect": {
+            "left": 34,
+            "right": 287
+          }
+        },
+        {
+          "element": "military-role-grid",
+          "width": 227,
+          "scroll": 227,
+          "rect": {
+            "left": 47,
+            "right": 274
+          }
+        },
+        {
+          "element": "military-ground-fleet",
+          "width": 253,
+          "scroll": 253,
+          "rect": {
+            "left": 34,
+            "right": 287
+          }
+        },
+        {
+          "element": "military-model",
+          "width": 251,
+          "scroll": 251,
+          "rect": {
+            "left": 34,
+            "right": 287
+          }
+        },
+        {
+          "element": "military-model",
+          "width": 251,
+          "scroll": 251,
+          "rect": {
+            "left": 34,
+            "right": 287
+          }
+        },
+        {
+          "element": "military-model",
+          "width": 251,
+          "scroll": 251,
+          "rect": {
+            "left": 34,
+            "right": 287
+          }
+        },
+        {
+          "element": "military-model",
+          "width": 251,
+          "scroll": 251,
+          "rect": {
+            "left": 34,
+            "right": 287
+          }
+        },
+        {
+          "element": "military-model",
+          "width": 251,
+          "scroll": 251,
+          "rect": {
+            "left": 34,
+            "right": 287
+          }
+        },
+        {
+          "element": "military-model",
+          "width": 251,
+          "scroll": 251,
+          "rect": {
+            "left": 34,
+            "right": 287
+          }
+        },
+        {
+          "element": "military-equipment-actions",
+          "width": 253,
+          "scroll": 253,
+          "rect": {
+            "left": 34,
+            "right": 287
+          }
+        }
+      ],
+      "text": "NATIONAL COMMAND\nYour forces and reserves\nNational force\n44.00\nCommitted\n44.00\nUncommitted\n0.00\n\nOverseas: 0.00 committed · 1.87 sustainable. These are force points, not troop counts.\n\nCommitments share one national force. Access, equipment and your commitment rung limit allocations. Forces must still travel; theatre command shows those that have arrived.\n\nWestern Europe\n\nHome theatre · 22.00 committed · 22.00 supported commitment · magazine use 4.12% / month\n\nCeiling as a share of national force\nAutomatic staff allocation\n0% · keep in reserve\n5%\n10%\n15%\n25%\n50%\n75%\n100%\nApply allocation · free\nHow your ground equipment helps here\n\nThese are the simulation's current support effects for this commitment, before local combat conditions. They are not extra force points or guaranteed battle results.\n\nFind targets\n1.6%\nReconnaissance helps the force find and engage targets. It does not reveal exact enemy strength.\nProtected movement\n0.8%\nIFVs and APCs support ground advance. Terrain, preparation and the standing order still matter.\nFire support\n1.7%\nServiceable support under the shared magazine system.\nAir defense\n2.3%\nLocal protection from serviceable air-defense equipment under the shared magazine system.\n\nCustom ground weapons currently share the national magazine. Review Ammunition to prepare compatible stores and activate physical supply.\n\nWestern Europe\n\nHome theatre · 22.00 committed · 22.00 supported commitment · magazine use 4.12% / month\n\nCeiling as a share of national force\nAutomatic staff allocation\n0% · keep in reserve\n5%\n10%\n15%\n25%\n50%\n75%\n100%\nApply allocation · free\nHow your ground equipment helps here\n\nThese are the simulation's current support effects for this commitment, before local combat conditions. They are not extra force points or guaranteed battle results.\n\nFind targets\n1.6%\nReconnaissance helps the force find and engage targets. It does not reveal exact enemy strength.\nProtected movement\n0.8%\nIFVs and APCs support ground advance. Terrain, preparation and the standing order still matter.\nFire support\n1.7%\nServiceable support under the shared magazine system.\nAir defense\n2.3%\nLocal protection from serviceable air-defense equipment under the shared magazine system.\n\nCustom ground weapons currently share the national magazine. Review Ammunition to prepare compatible stores and activate physical supply.\n\nHow equipment supports operations\nEQUIPMENT DESK\nGround equipment in service\n\nDelivered tanks and specialist vehicles support one shared national force. Refit reservations leave service. Maintenance and age affect their contribution; compatible stores determine firing. Force allocations are commitments, while the operation board records arrivals.\n\nLast settled fleet support: 100.0%. Support date: 1992-03-01.\n\n6 ground models in national holdings\nMechanized infantry support\nAmmunition demonstration IFV\nOwned\n10\nAvailable\n10\nIn refit\n0\n\nAmmunition: 25 mm autocannon. Condition and upkeep support: 100.0%. This is a capability factor, not a count of ready vehicles.\n\nMobile air defense\nS11 Mobile air defense\nOwned\n1,000\nAvailable\n1,000\nIn refit\n0\n\nAmmunition: Air-defense cannon. Condition and upkeep support: 100.0%. This is a capability factor, not a count of ready vehicles.\n\nProtected troop transport\nS11 Protected troop transport\nOwned\n1,000\nAvailable\n1,000\nIn refit\n0\n\nAmmunition: 12.7 mm machine gun. Condition and upkeep support: 100.0%. This is a capability factor, not a count of ready vehicles.\n\nIndirect fire support\nS11 Indirect fire support\nOwned\n1,000\nAvailable\n1,000\nIn refit\n0\n\nAmmunition: 122 mm high explosive. Condition and upkeep support: 100.0%. This is a capability factor, not a count of ready vehicles.\n\nBattlefield reconnaissance\nS11 Battlefield reconnaissance\nOwned\n1,000\nAvailable\n1,000\nIn refit\n0\n\nAmmunition: 12.7 mm machine gun. Condition and upkeep support: 100.0%. This is a capability factor, not a count of ready vehicles.\n\nMain battle tank\nS11 Main battle tank\nOwned\n5,000\nAvailable\n5,000\nIn refit\n0\n\nAmmunition: 105 mm mixed-purpose. Condition and upkeep support: 100.0%. This is a capability factor, not a count of ready vehicles.\n\nAvailable holdings support the national force. They are shared across commitments; each theatre does not receive another copy of these vehicles.\n\nNo ground-equipment loss settlement has been recorded yet.\n\nService, refit and retirement\nCompatible ammunition\nBuy from suppliers"
+    },
+    {
+      "width": 320,
+      "sheet": {
+        "width": 302,
+        "scroll": 302
+      }
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "url": "http://127.0.0.1:53756",
+  "build": {
+    "branch": "codex/campaign-certification",
+    "built_at_unix_seconds": 1789352793,
+    "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+    "distribution": "Local offline game server; source and attribution accompany the release",
+    "revision": "c3cea31b2234",
+    "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S11-visual-diagnostic\\run-8qbcjA\\server",
+    "version": "0.6.0"
+  },
+  "opening": {
+    "date": "2 Mar 1992"
+  },
+  "server_stopped": true
+}

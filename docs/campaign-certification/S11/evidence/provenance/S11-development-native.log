@@ -1,0 +1,40 @@
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+error[E0283]: type annotations needed
+   --> spheres-sim\src\equipment_ground_receipt_tests.rs:185:99
+    |
+185 |     assert_eq!(row.remaining_delivered, w.nation(USA).arsenal.held.iter().map(|h| h.units as u64).sum());
+    |                                                                                                   ^^^ cannot infer type of the type parameter `S` declared on the method `sum`
+    |
+    = note: the type must implement `Sum<u64>`
+help: the trait `Sum` is implemented for `u64`
+   --> /rustc/88d9e12ae178fab0fb5cc050a94da85685d449ea/library\core\src\iter\traits\accum.rs:50:8
+   ::: /rustc/88d9e12ae178fab0fb5cc050a94da85685d449ea/library\core\src\iter\traits\accum.rs:206:0
+    |
+    = note: in this macro invocation
+note: required by a bound in `std::iter::Iterator::sum`
+   --> /rustc/88d9e12ae178fab0fb5cc050a94da85685d449ea/library\core\src\iter\traits\iterator.rs:3669:4
+    = note: this error originates in the macro `integer_sum_product` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider specifying a concrete type for the type parameter `S`
+    |
+185 |     assert_eq!(row.remaining_delivered, w.nation(USA).arsenal.held.iter().map(|h| h.units as u64).sum::</* Type */>());
+    |                                                                                                      ++++++++++++++
+
+error[E0283]: type annotations needed
+   --> spheres-sim\src\equipment_ground_receipt_tests.rs:185:99
+    |
+185 |     assert_eq!(row.remaining_delivered, w.nation(USA).arsenal.held.iter().map(|h| h.units as u64).sum());
+    |     ----------------------------------------------------------------------------------------------^^^---
+    |     |                                                                                             |
+    |     |                                                                                             cannot infer type of the type parameter `S` declared on the method `sum`
+    |     type must be known at this point
+    |
+    = note: multiple `impl`s satisfying `u64: PartialEq<_>` found in the following crates: `core`, `serde_json`:
+            - impl PartialEq for u64;
+            - impl PartialEq<serde_json::Value> for u64;
+help: consider specifying a concrete type for the type parameter `S`
+    |
+185 |     assert_eq!(row.remaining_delivered, w.nation(USA).arsenal.held.iter().map(|h| h.units as u64).sum::</* Type */>());
+    |                                                                                                      ++++++++++++++
+
+For more information about this error, try `rustc --explain E0283`.
+error: could not compile `spheres-sim` (lib test) due to 2 previous errors

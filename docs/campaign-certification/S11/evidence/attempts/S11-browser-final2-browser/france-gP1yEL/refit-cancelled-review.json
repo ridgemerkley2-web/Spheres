@@ -1,0 +1,338 @@
+{
+  "actions": [
+    {
+      "command": {
+        "company": 1,
+        "kind": "company_refit",
+        "product": 3,
+        "quantity": 1,
+        "quote": "company-v1-6e3488badb601cb7",
+        "source": "ammo-demo"
+      },
+      "detail": null,
+      "enabled": true,
+      "label": "Commission manufacturer refit",
+      "reason": null
+    },
+    {
+      "enabled": true,
+      "label": "Review manufacturer and service contracts",
+      "navigate": {
+        "action": "equipment",
+        "tab": "companies"
+      }
+    },
+    {
+      "enabled": true,
+      "label": "Review fleet in service",
+      "navigate": {
+        "action": "equipment",
+        "tab": "service"
+      }
+    }
+  ],
+  "as_of_day": 791,
+  "blockers": [],
+  "comparison": {
+    "available": true,
+    "changes": [
+      {
+        "after": "Night-vision observation optics",
+        "before": "Daylight observation optics",
+        "label": "Observation optics",
+        "slot": "sensors"
+      }
+    ],
+    "conditions": [
+      "Acquisition is a hypothetical current-input-price estimate using each profile, including frozen revision figures. It is not the historical purchase price, available company stock or an affordable offer. Actual inventory needs a fresh native quote."
+    ],
+    "detail": "Exact certified specifications before and after conversion. Capability changes apply only to each completed vehicle returned to service; its age is preserved. The reviewed service fee appears separately.",
+    "id": "ammo-demo",
+    "name": "Ammunition demonstration IFV",
+    "rows": [
+      {
+        "after": 0.9475,
+        "before": 0.9175,
+        "better_when": "higher",
+        "delta": 0.030000000000000027,
+        "key": "land_factor",
+        "label": "Land contribution",
+        "unit": "×"
+      },
+      {
+        "after": 0.88,
+        "before": 0.88,
+        "better_when": "higher",
+        "delta": 0,
+        "key": "firepower",
+        "label": "Firepower",
+        "unit": "rating"
+      },
+      {
+        "after": 0.78,
+        "before": 0.78,
+        "better_when": "higher",
+        "delta": 0,
+        "key": "protection",
+        "label": "Protection",
+        "unit": "rating"
+      },
+      {
+        "after": 1.01,
+        "before": 1.01,
+        "better_when": "higher",
+        "delta": 0,
+        "key": "mobility",
+        "label": "Mobility",
+        "unit": "rating"
+      },
+      {
+        "after": 1.12,
+        "before": 1,
+        "better_when": "higher",
+        "delta": 0.1200000000000001,
+        "key": "observation",
+        "label": "Observation",
+        "unit": "rating"
+      },
+      {
+        "after": 4.33e-7,
+        "before": 4.13e-7,
+        "better_when": "lower",
+        "delta": 2.000000000000002e-8,
+        "key": "maintenance",
+        "label": "Maintenance per vehicle / day",
+        "unit": "bn"
+      },
+      {
+        "after": 16,
+        "before": 15,
+        "better_when": "neutral",
+        "delta": 1,
+        "key": "load",
+        "label": "Installation load",
+        "unit": "points"
+      },
+      {
+        "after": 0.308,
+        "before": 0.308,
+        "better_when": "higher",
+        "delta": 0,
+        "key": "fire_support",
+        "label": "Fire support",
+        "unit": "rating"
+      },
+      {
+        "after": 0.47268,
+        "before": 0.47268,
+        "better_when": "higher",
+        "delta": 0,
+        "key": "protected_mobility",
+        "label": "Protected mobility",
+        "unit": "rating"
+      },
+      {
+        "after": 0.22400000000000003,
+        "before": 0.2,
+        "better_when": "higher",
+        "delta": 0.02400000000000002,
+        "key": "reconnaissance",
+        "label": "Reconnaissance support",
+        "unit": "rating"
+      },
+      {
+        "after": 0,
+        "before": 0,
+        "better_when": "higher",
+        "delta": 0,
+        "key": "air_defense",
+        "label": "Air defense",
+        "unit": "rating"
+      },
+      {
+        "after": 0.00276928855,
+        "before": 0.0026115005,
+        "better_when": "lower",
+        "delta": 0.00015778805000000009,
+        "key": "acquisition_estimate",
+        "label": "Indicative later acquisition",
+        "unit": "bn"
+      }
+    ],
+    "same_role": true
+  },
+  "costs": [
+    {
+      "amount_bn": 0.00042209013942307684,
+      "label": "Fixed contract price",
+      "period": "one advance · Defense procurement"
+    },
+    {
+      "amount_bn": 0.00042209013942307684,
+      "label": "Fixed service price per vehicle",
+      "period": "parts, conversion work and manufacturer margin included"
+    },
+    {
+      "amount_bn": 0.0003670349038461538,
+      "label": "Company capital needed for the next vehicle",
+      "period": "manufacturer funds inputs and reserves all conversion labor"
+    },
+    {
+      "amount_bn": 0.01148149489999996,
+      "label": "Company cash available",
+      "period": "excludes customer escrow and reserved labor funds"
+    },
+    {
+      "amount_bn": 4.13e-7,
+      "label": "Maintenance before refit",
+      "period": "all quoted vehicles / day · continues during withdrawal"
+    },
+    {
+      "amount_bn": 4.33e-7,
+      "label": "Maintenance after conversion",
+      "period": "all quoted vehicles / day · as each returns"
+    }
+  ],
+  "date": "2 Mar 1992",
+  "detail": "Commission a fixed-price conversion of equipment you already own. Review the specifications, temporary loss of availability and company work requirements before paying the advance.",
+  "metrics": [
+    {
+      "label": "Manufacturer",
+      "value": "Interface Refit Works"
+    },
+    {
+      "label": "Current model",
+      "value": "Ammunition demonstration IFV"
+    },
+    {
+      "label": "Certified upgrade",
+      "value": "Night observation IFV"
+    },
+    {
+      "label": "Vehicles to withdraw",
+      "value": 1
+    },
+    {
+      "label": "Unreserved source equipment",
+      "value": 10
+    },
+    {
+      "label": "Source equipment already reserved",
+      "value": 0
+    }
+  ],
+  "nation": "France",
+  "refit": {
+    "source": {
+      "name": "Ammunition demonstration IFV",
+      "revision": "ammo-demo",
+      "spec": {
+        "components": {
+          "active_protection": "aps_none",
+          "ammunition": "ground_ammo_autocannon",
+          "armament": "ground_gun_25",
+          "communications": "comms_radio",
+          "fire_control": "fcs_basic",
+          "mobility": "engine_diesel_600",
+          "protection": "ground_armor_light",
+          "sensors": "optics_day",
+          "suspension": "suspension_torsion",
+          "tracks": "tracks_standard",
+          "transmission": "transmission_manual",
+          "troop_compartment": "ground_troops_standard",
+          "turret": "ground_turret_autocannon"
+        },
+        "platform": "ground_ifv"
+      }
+    },
+    "target": {
+      "name": "Night observation IFV",
+      "revision": "France-design-1",
+      "spec": {
+        "components": {
+          "active_protection": "aps_none",
+          "ammunition": "ground_ammo_autocannon",
+          "armament": "ground_gun_25",
+          "communications": "comms_radio",
+          "fire_control": "fcs_basic",
+          "mobility": "engine_diesel_600",
+          "protection": "ground_armor_light",
+          "sensors": "optics_night",
+          "suspension": "suspension_torsion",
+          "tracks": "tracks_standard",
+          "transmission": "transmission_manual",
+          "troop_compartment": "ground_troops_standard",
+          "turret": "ground_turret_autocannon"
+        },
+        "platform": "ground_ifv"
+      }
+    }
+  },
+  "requirements": [
+    "These are your existing vehicles. They remain government-owned, retain their age, and cannot fight or be retired while reserved. The manufacturer does not sell them back as stock.",
+    "A completed refit changes only the returned vehicle's exact specifications. Compatible ammunition, maintenance and aircraft basing remain necessary; the contract grants no ammunition or new vehicles.",
+    "Your advance is held for this contract after fiscal settlement. Only the fee for each completed, returned vehicle becomes company revenue. It cannot finance unrelated company stock while held.",
+    "This contract uses the existing company plant. Development runs first, then refit contracts, then equipment and ammunition restocking. Starting a refit can delay stock replenishment.",
+    "Cancel only unstarted vehicles for a refund of their fixed service price. Once work starts on a vehicle, its inputs and full labor funding are committed and its conversion continues.",
+    "Fixed-price manufacturer service: the full Defense procurement payment settles into locked public escrow. The company buys real inputs and reserves its own labor capital. Only a completed whole conversion earns the fixed unit fee and returns the unit to the same Arsenal, preserving current cohort age. Source units remain government property, pay source upkeep and cannot fight, retire or be reserved again. Work uses the existing conversion rules and one shared plant slot: active development first, contracted refits next, finite stock afterward. Cancel unstarted units for their full fixed fee; an already started unit remains reserved until its conversion finishes. Cancellation before fiscal close waits for the original payment to settle before refund. Refunds return treasury cash or retire debt; they do not recreate departmental authority. No new delivery stage, ammunition or models are granted. Price, margin and durations are game assumptions. This new contract includes the frozen component and utility quote in its fixed fee. Actual conversion uses qualified staff, shared power and company-paid inputs; escrow never finances that work. The operations panel shows today's exact packet after booking."
+  ],
+  "service_effects": {
+    "detail": "The source vehicles leave deployable service immediately. Upgraded capability returns one vehicle at a time as conversion finishes. Reserved vehicles continue to age and require maintenance.",
+    "metrics": [
+      {
+        "label": "Source vehicles available now",
+        "value": "10 → 9"
+      },
+      {
+        "label": "Current maintenance requirement",
+        "value": "$4.005m / day → $4.005m / day"
+      },
+      {
+        "label": "Land composition factor",
+        "value": "0.960× → 0.960×"
+      },
+      {
+        "label": "Strike composition factor",
+        "value": "0.650× → 0.650×"
+      },
+      {
+        "label": "Fire support bonus",
+        "value": "1.724% → 1.724%"
+      },
+      {
+        "label": "Protected mobility bonus",
+        "value": "0.772% → 0.771%"
+      },
+      {
+        "label": "Reconnaissance bonus",
+        "value": "1.632% → 1.632%"
+      },
+      {
+        "label": "Air defense bonus",
+        "value": "2.309% → 2.309%"
+      }
+    ],
+    "title": "What withdrawal changes now",
+    "warnings": []
+  },
+  "session_id": "34572-1789354906832229300-1",
+  "timing": [
+    {
+      "label": "Conversion work per vehicle",
+      "value": "40 days"
+    },
+    {
+      "label": "Total minimum conversion work",
+      "value": "40 days"
+    },
+    {
+      "label": "First return estimate",
+      "value": "No dated estimate · review company capital and earlier work"
+    },
+    {
+      "label": "All vehicles returned",
+      "value": "No dated estimate · shared plant and real inputs required"
+    }
+  ],
+  "valid": true
+}

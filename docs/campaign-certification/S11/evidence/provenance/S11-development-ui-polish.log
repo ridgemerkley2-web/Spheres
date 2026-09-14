@@ -1,0 +1,21 @@
+✔ live national totals, per-theatre ceilings and peaceful reserves remain visible (1.0694ms)
+✔ zero and automatic allocations send distinct exact commands (1.5492ms)
+✔ invalid input is rejected before dispatch (0.3103ms)
+✔ one in-flight order, with recoverable failure feedback (0.2179ms)
+✔ physical stores override fleet potential without hiding movement or reconnaissance (0.3875ms)
+✔ standoff strike commitments do not claim ground specialist effects (0.2071ms)
+✔ current holdings and dated national loss receipts remain distinct and escape model names (18.2806ms)
+✔ allocation blocks a second form and uncertain responses never report success (0.3603ms)
+✔ equipment shortcuts pass only supported destinations and surface host refusal (0.4487ms)
+✔ old, detached and busy allocation forms cannot dispatch or open equipment (4.2139ms)
+✔ one confirmed allocation adopts its response; uncertain or stale responses do not (1.8393ms)
+✔ valid equipment shortcuts pause and open the exact existing tab without a command (1.6252ms)
+✔ editing the ordinary host retains its required CRLF line endings (2.0792ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 86.998

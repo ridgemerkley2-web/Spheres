@@ -1,0 +1,433 @@
+{
+  "authored_preconditions": [
+    "France seed 1990 with daily military, manufacturing, logistics and departmental budgets enabled",
+    "Existing native manufacturer fixture grants 10 baseline IFVs, $100bn treasury, no debt, 1000 political capital, raw inventories of one million units per commodity, an arms plant and bounded opening departmental authority",
+    "The manufacturer and night-optics IFV revision were established and certified through reviewed commands and partial daily economic work before this archive",
+    "Second arms-plant slot authored for public ammunition fabrication; baseline certified holdings authored: 5000 tanks and 1000 each APC, reconnaissance, artillery and air defense",
+    "One supplier IFV and 1000 supplier autocannon rounds were actually manufactured, then stock targets set to zero; 20000 rounds of each compatible national family came from paid public fabrication orders",
+    "Connected economy, population, fiscal recovery, company network, supplier catalogue and campaign leadership adopted through existing mature-save enrollment APIs before export; four local grid and generation levels and 100 advanced components are authored opening support property",
+    "Starting conflicts, defense pacts and sanctions cleared; native France-Italy and France-Spain conflicts authored in Western Europe, at invasion posture with French seize and opposing hold objectives",
+    "Operational migration enabled on those fronts; France advance orders use zero tactical reserve. No force, stock, money, grants, dates or outcomes are authored after before.json"
+  ],
+  "before_file": "before.json",
+  "commands": {
+    "allocation_auto": {
+      "conflict": 1,
+      "kind": "force_allocation",
+      "share_bp": null
+    },
+    "allocation_zero": {
+      "conflict": 1,
+      "kind": "force_allocation",
+      "share_bp": 0
+    },
+    "ammunition_activate": {
+      "kind": "equipment_ammo_activate"
+    },
+    "maintenance": {
+      "daily_budget_mn": 10.0,
+      "kind": "equipment_maintenance"
+    },
+    "purchase": {
+      "company": 1,
+      "kind": "company_purchase",
+      "product": 3,
+      "quantity": 1
+    },
+    "refit": {
+      "company": 1,
+      "kind": "company_refit",
+      "product": 3,
+      "quantity": 1,
+      "source": "ammo-demo"
+    },
+    "reserve_front_one": {
+      "conflict": 1,
+      "kind": "force_allocation",
+      "share_bp": 0
+    },
+    "reserve_front_two": {
+      "conflict": 2,
+      "kind": "force_allocation",
+      "share_bp": 0
+    },
+    "resupply": {
+      "company": 1,
+      "kind": "company_ammo_purchase",
+      "product": 264,
+      "quantity": 500
+    },
+    "retire": {
+      "kind": "equipment_retire",
+      "quantity": 1,
+      "revision": "s11-tank"
+    }
+  },
+  "compiled_revision": "c3cea31b2234",
+  "days_advanced": 41,
+  "expected_stages": {
+    "allocation_auto": "expected-allocation_auto.json",
+    "allocation_zero": "expected-allocation_zero.json",
+    "ammunition_activate": "expected-ammunition_activate.json",
+    "combat_day_1": "expected-combat_day_1.json",
+    "combat_day_2": "expected-combat_day_2.json",
+    "combat_day_3": "expected-combat_day_3.json",
+    "combat_day_4": "expected-combat_day_4.json",
+    "combat_day_5": "expected-combat_day_5.json",
+    "combat_day_6": "expected-combat_day_6.json",
+    "combat_day_7": "expected-combat_day_7.json",
+    "maintenance": "expected-maintenance.json",
+    "purchase": "expected-purchase.json",
+    "refit": "expected-refit.json",
+    "reserve_front_one": "expected-reserve_front_one.json",
+    "reserve_front_two": "expected-reserve_front_two.json",
+    "resupply": "expected-resupply.json",
+    "retire": "expected-retire.json",
+    "service_day_1": "expected-service_day_1.json",
+    "service_day_10": "expected-service_day_10.json",
+    "service_day_11": "expected-service_day_11.json",
+    "service_day_12": "expected-service_day_12.json",
+    "service_day_13": "expected-service_day_13.json",
+    "service_day_14": "expected-service_day_14.json",
+    "service_day_15": "expected-service_day_15.json",
+    "service_day_16": "expected-service_day_16.json",
+    "service_day_17": "expected-service_day_17.json",
+    "service_day_18": "expected-service_day_18.json",
+    "service_day_19": "expected-service_day_19.json",
+    "service_day_2": "expected-service_day_2.json",
+    "service_day_20": "expected-service_day_20.json",
+    "service_day_21": "expected-service_day_21.json",
+    "service_day_22": "expected-service_day_22.json",
+    "service_day_23": "expected-service_day_23.json",
+    "service_day_24": "expected-service_day_24.json",
+    "service_day_25": "expected-service_day_25.json",
+    "service_day_26": "expected-service_day_26.json",
+    "service_day_27": "expected-service_day_27.json",
+    "service_day_28": "expected-service_day_28.json",
+    "service_day_29": "expected-service_day_29.json",
+    "service_day_3": "expected-service_day_3.json",
+    "service_day_30": "expected-service_day_30.json",
+    "service_day_31": "expected-service_day_31.json",
+    "service_day_32": "expected-service_day_32.json",
+    "service_day_33": "expected-service_day_33.json",
+    "service_day_34": "expected-service_day_34.json",
+    "service_day_4": "expected-service_day_4.json",
+    "service_day_5": "expected-service_day_5.json",
+    "service_day_6": "expected-service_day_6.json",
+    "service_day_7": "expected-service_day_7.json",
+    "service_day_8": "expected-service_day_8.json",
+    "service_day_9": "expected-service_day_9.json"
+  },
+  "fixture": "s11-authored-ground-equipment-loop",
+  "native_confirmations": [
+    {
+      "confirmed_command": {
+        "conflict": 1,
+        "kind": "force_allocation",
+        "share_bp": 0
+      },
+      "id": "allocation_zero"
+    },
+    {
+      "confirmed_command": {
+        "conflict": 1,
+        "kind": "force_allocation",
+        "share_bp": null
+      },
+      "id": "allocation_auto"
+    },
+    {
+      "confirmed_command": {
+        "daily_budget_mn": 10.0,
+        "kind": "equipment_maintenance"
+      },
+      "id": "maintenance"
+    },
+    {
+      "confirmed_command": {
+        "kind": "equipment_ammo_activate"
+      },
+      "id": "ammunition_activate"
+    },
+    {
+      "confirmed_command": {
+        "company": 1,
+        "kind": "company_refit",
+        "product": 3,
+        "quantity": 1,
+        "quote": "company-v1-6e3488badb601cb7",
+        "source": "ammo-demo"
+      },
+      "id": "refit"
+    },
+    {
+      "confirmed_command": {
+        "company": 1,
+        "kind": "company_purchase",
+        "product": 3,
+        "quantity": 1,
+        "quote": "company-v1-03dba356cfaaa4e2"
+      },
+      "id": "purchase"
+    },
+    {
+      "confirmed_command": {
+        "company": 1,
+        "kind": "company_ammo_purchase",
+        "product": 264,
+        "quantity": 500,
+        "quote": "company-v1-0eb4ca6087e4be66"
+      },
+      "id": "resupply"
+    },
+    {
+      "confirmed_command": {
+        "conflict": 1,
+        "kind": "force_allocation",
+        "share_bp": 0
+      },
+      "id": "reserve_front_one"
+    },
+    {
+      "confirmed_command": {
+        "conflict": 2,
+        "kind": "force_allocation",
+        "share_bp": 0
+      },
+      "id": "reserve_front_two"
+    },
+    {
+      "confirmed_command": {
+        "kind": "equipment_retire",
+        "quantity": 1,
+        "revision": "s11-tank"
+      },
+      "id": "retire"
+    }
+  ],
+  "opening_day": 791,
+  "player": "France",
+  "preparation_days_after_manufacturer_ready": 529,
+  "require_losses": true,
+  "required_outcomes": {
+    "ammunition_delivery": 269,
+    "company": 1,
+    "conflicts": [
+      1,
+      2
+    ],
+    "refit": 265,
+    "retired_quantity": 1,
+    "retired_revision": "s11-tank",
+    "target_revision": "France-design-1",
+    "vehicle_delivery": 267
+  },
+  "scope": "Explicit authored France military and supplier scenario; ordinary reviewed controls and full daily continuation after import. Not historical equipment holdings, an unassisted campaign or final campaign certification.",
+  "steps": [
+    {
+      "command": "allocation_zero",
+      "id": "allocation_zero"
+    },
+    {
+      "command": "allocation_auto",
+      "id": "allocation_auto"
+    },
+    {
+      "command": "maintenance",
+      "id": "maintenance"
+    },
+    {
+      "command": "ammunition_activate",
+      "id": "ammunition_activate"
+    },
+    {
+      "command": "refit",
+      "id": "refit"
+    },
+    {
+      "command": "purchase",
+      "id": "purchase"
+    },
+    {
+      "command": "resupply",
+      "id": "resupply"
+    },
+    {
+      "days": 1,
+      "id": "combat_day_1"
+    },
+    {
+      "days": 1,
+      "id": "combat_day_2"
+    },
+    {
+      "days": 1,
+      "id": "combat_day_3"
+    },
+    {
+      "days": 1,
+      "id": "combat_day_4"
+    },
+    {
+      "days": 1,
+      "id": "combat_day_5"
+    },
+    {
+      "days": 1,
+      "id": "combat_day_6"
+    },
+    {
+      "days": 1,
+      "id": "combat_day_7"
+    },
+    {
+      "command": "reserve_front_one",
+      "id": "reserve_front_one"
+    },
+    {
+      "command": "reserve_front_two",
+      "id": "reserve_front_two"
+    },
+    {
+      "days": 1,
+      "id": "service_day_1"
+    },
+    {
+      "days": 1,
+      "id": "service_day_2"
+    },
+    {
+      "days": 1,
+      "id": "service_day_3"
+    },
+    {
+      "days": 1,
+      "id": "service_day_4"
+    },
+    {
+      "days": 1,
+      "id": "service_day_5"
+    },
+    {
+      "days": 1,
+      "id": "service_day_6"
+    },
+    {
+      "days": 1,
+      "id": "service_day_7"
+    },
+    {
+      "days": 1,
+      "id": "service_day_8"
+    },
+    {
+      "days": 1,
+      "id": "service_day_9"
+    },
+    {
+      "days": 1,
+      "id": "service_day_10"
+    },
+    {
+      "days": 1,
+      "id": "service_day_11"
+    },
+    {
+      "days": 1,
+      "id": "service_day_12"
+    },
+    {
+      "days": 1,
+      "id": "service_day_13"
+    },
+    {
+      "days": 1,
+      "id": "service_day_14"
+    },
+    {
+      "days": 1,
+      "id": "service_day_15"
+    },
+    {
+      "days": 1,
+      "id": "service_day_16"
+    },
+    {
+      "days": 1,
+      "id": "service_day_17"
+    },
+    {
+      "days": 1,
+      "id": "service_day_18"
+    },
+    {
+      "days": 1,
+      "id": "service_day_19"
+    },
+    {
+      "days": 1,
+      "id": "service_day_20"
+    },
+    {
+      "days": 1,
+      "id": "service_day_21"
+    },
+    {
+      "days": 1,
+      "id": "service_day_22"
+    },
+    {
+      "days": 1,
+      "id": "service_day_23"
+    },
+    {
+      "days": 1,
+      "id": "service_day_24"
+    },
+    {
+      "days": 1,
+      "id": "service_day_25"
+    },
+    {
+      "days": 1,
+      "id": "service_day_26"
+    },
+    {
+      "days": 1,
+      "id": "service_day_27"
+    },
+    {
+      "days": 1,
+      "id": "service_day_28"
+    },
+    {
+      "days": 1,
+      "id": "service_day_29"
+    },
+    {
+      "days": 1,
+      "id": "service_day_30"
+    },
+    {
+      "days": 1,
+      "id": "service_day_31"
+    },
+    {
+      "days": 1,
+      "id": "service_day_32"
+    },
+    {
+      "days": 1,
+      "id": "service_day_33"
+    },
+    {
+      "days": 1,
+      "id": "service_day_34"
+    },
+    {
+      "command": "retire",
+      "id": "retire"
+    }
+  ],
+  "version": 1
+}

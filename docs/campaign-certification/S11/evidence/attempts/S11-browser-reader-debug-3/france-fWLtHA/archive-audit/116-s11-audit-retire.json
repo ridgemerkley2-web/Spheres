@@ -1,0 +1,213 @@
+{
+  "version": 1,
+  "input": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S11-browser-reader-debug-3\\france-fWLtHA\\server\\captures\\s11-audit-retire.json",
+    "bytes": 17708765,
+    "sha256": "c4df2009e73cd4a3acec367cfb4022451c81c0bbc0608ff97fc6c65a207e5611"
+  },
+  "requested": {
+    "buyer": "France",
+    "revision": null,
+    "seller": null,
+    "company": null,
+    "product": null
+  },
+  "buyer": {
+    "id": "France",
+    "tech_sha256": "7a73ddd50060208a7eea36e7d29da3f76af753b6972f8af3c20e6070a563ff4f",
+    "learned_sha256": "50edc262344620ebd2c9cabf9297150b2175819f0e9ac19b0bb104e61072cba3",
+    "revision_ids": [
+      "France-design-1",
+      "ammo-demo",
+      "s11-air-defense",
+      "s11-apc",
+      "s11-artillery",
+      "s11-recon",
+      "s11-tank"
+    ],
+    "held_by_revision": {
+      "ammo-demo": 9,
+      "s11-tank": 4998,
+      "s11-apc": 1000,
+      "s11-recon": 1000,
+      "s11-artillery": 1000,
+      "s11-air-defense": 1000,
+      "France-design-1": 2
+    },
+    "held_units": 0,
+    "buyer_revision": null,
+    "maintenance_plan": {
+      "daily_limit_bn": 0.01,
+      "from_day": 1,
+      "receipt": {
+        "authority_bn": 2.1560615717942797,
+        "custom_paid_bn": 0.004005117000000001,
+        "custom_required_bn": 0.004005117000000001,
+        "daily_limit_bn": 0.01,
+        "day": 831,
+        "legacy_paid_bn": 0,
+        "legacy_required_bn": 0
+      }
+    },
+    "program_budget": {
+      "day": 831,
+      "settled_day": 831,
+      "spent_today_bn": [
+        [
+          0.03762623758022128,
+          0.03762623758022128,
+          0.03762623758022128,
+          0.03762623758022128,
+          0.037626237580221294
+        ],
+        [
+          0.027090891057759324,
+          0.027090891057759324,
+          0.027090891057759324,
+          0.027090891057759324,
+          0.02709089105775933
+        ],
+        [
+          0.030100990064177022,
+          0.030100990064177022,
+          0.030100990064177022,
+          0.030100990064177022,
+          0.030100990064177033
+        ],
+        [
+          0.04214138608984785,
+          0.04214138608984785,
+          0.04214138608984785,
+          0.04214138608984785,
+          0.042141386089847827
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0.014698847951899532
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0.0040087767141544165,
+          0.0040087767141544165,
+          0.0040087767141544165,
+          0.004008776714154415
+        ],
+        [
+          0.025318589773606837,
+          0.025318589773606837,
+          0.004005117000000001,
+          0,
+          0
+        ],
+        [
+          0.010535346522461962,
+          0.010535346522461962,
+          0.010535346522461962,
+          0.010535346522461962,
+          0.010535346522461957
+        ],
+        [
+          0.0030100990064177028,
+          0.0030100990064177028,
+          0.0030100990064177028,
+          0.0030100990064177028,
+          0.0030100990064177036
+        ]
+      ],
+      "prepaid_used_today_bn": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    }
+  },
+  "supplier": null,
+  "imports": {
+    "ids": [],
+    "matching": []
+  },
+  "canonical": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S11-browser-reader-debug-3\\france-fWLtHA\\archive-audit\\116-s11-audit-retire.canonical",
+    "bytes": 16895994,
+    "sha256": "f7145162229b23d30b9eb5a76c13eb295501a77cf8a59b8896bcac050ed66929",
+    "format": "s08-typed-canonical-world-v1-js-f64",
+    "ignored_paths": []
+  }
+}

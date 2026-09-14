@@ -1,0 +1,154 @@
+{
+  "actions": [
+    {
+      "command": {
+        "company": 1,
+        "kind": "company_purchase",
+        "product": 3,
+        "quantity": 1,
+        "quote": "company-v1-03dba356cfaaa4e2"
+      },
+      "detail": null,
+      "enabled": true,
+      "label": "Buy available equipment",
+      "reason": null
+    }
+  ],
+  "as_of_day": 791,
+  "blockers": [],
+  "costs": [
+    {
+      "amount_bn": 0.00261087375,
+      "label": "Supplier price",
+      "period": "per vehicle · fabrication and inputs included"
+    },
+    {
+      "amount_bn": 0.00261087375,
+      "label": "Total equipment purchase",
+      "period": "one purchase · Defense procurement"
+    },
+    {
+      "amount_bn": 4.33e-7,
+      "label": "Added maintenance requirement",
+      "period": "per day after delivery · all purchased vehicles"
+    }
+  ],
+  "date": "2 Mar 1992",
+  "detail": "Buy existing finished stock at this reviewed price. Purchased vehicles enter service only after payment settlement and delivery.",
+  "metrics": [
+    {
+      "label": "Manufacturer",
+      "value": "Interface Refit Works"
+    },
+    {
+      "label": "Exact model",
+      "value": "Night observation IFV"
+    },
+    {
+      "label": "Frozen revision",
+      "value": "France-design-1"
+    },
+    {
+      "label": "Units to buy",
+      "value": 1
+    },
+    {
+      "label": "Platform",
+      "value": "Infantry fighting vehicle"
+    },
+    {
+      "label": "Land contribution",
+      "value": "0.948×"
+    },
+    {
+      "label": "Firepower rating",
+      "value": 0.88
+    },
+    {
+      "label": "Protection rating",
+      "value": 0.78
+    },
+    {
+      "label": "Mobility rating",
+      "value": 1.01
+    },
+    {
+      "label": "Observation rating",
+      "value": 1.12
+    },
+    {
+      "label": "Installation load",
+      "value": "16 / 22"
+    },
+    {
+      "label": "Fire support",
+      "value": 0.308
+    },
+    {
+      "label": "Protected mobility",
+      "value": 0.47268
+    },
+    {
+      "label": "Reconnaissance support",
+      "value": 0.22400000000000003
+    },
+    {
+      "label": "Air defense",
+      "value": 0
+    },
+    {
+      "label": "Compatible ammunition",
+      "value": "25 mm autocannon"
+    },
+    {
+      "label": "Supplier stock before purchase",
+      "value": 1
+    }
+  ],
+  "nation": "France",
+  "requirements": [
+    "Only the reviewed available quantity is purchased. A remaining fleet shortage is not converted into an automatic order or a production commitment.",
+    "The supplier's price does not change the frozen combat profile. Service support and compatible ammunition remain necessary after delivery.",
+    "The existing Defense procurement account funds this transaction once. Company receipts become spendable only when their corresponding public payment is settled.",
+    "Buys only finished company-owned stock. Price includes paid materials and fabrication plus a 15% modeled margin; development and tooling are not charged again. Domestic delivery is seven days after fiscal settlement. Transit pauses if the shipping province is unavailable; paid property is retained and resumes on restored access."
+  ],
+  "service_effects": {
+    "detail": "Your usable fleet stays unchanged until delivery. Paid inbound vehicles count toward your exact-model target; the supplier's remaining stock stays outside your Arsenal.",
+    "metrics": [
+      {
+        "label": "Supplier stock before purchase",
+        "value": 1
+      },
+      {
+        "label": "Supplier stock after purchase",
+        "value": 0
+      },
+      {
+        "label": "Delivered and available now",
+        "value": 0
+      },
+      {
+        "label": "Government-owned incoming before purchase",
+        "value": 0
+      },
+      {
+        "label": "Government-owned incoming after purchase",
+        "value": 1
+      }
+    ],
+    "title": "What this purchase changes",
+    "warnings": []
+  },
+  "session_id": "42792-1789353932227962700-1",
+  "timing": [
+    {
+      "label": "Estimate at current conditions",
+      "value": "7 days"
+    },
+    {
+      "label": "Delivery after settlement",
+      "value": "7 accessible days"
+    }
+  ],
+  "valid": true
+}

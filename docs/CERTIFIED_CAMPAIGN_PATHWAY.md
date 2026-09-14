@@ -1,6 +1,6 @@
 # Spheres — pathway to a certified campaign
 
-**Approved pathway · 10 September 2026 · S01–S10 complete; S11 in progress; S12–S30 planned.**
+**Approved pathway · 10 September 2026 · S01–S11 complete; S12–S30 planned.**
 
 S10 closes its qualified gameplay scope under the explicit amendment below.
 C01 and worldwide character work remain incomplete; CP1 is not earned.
@@ -63,7 +63,7 @@ deliverables as finished.
 | Marker | Meaning |
 | --- | --- |
 | `S00` | Complete: user approved beginning S01 on 10 September 2026. |
-| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S10 are complete; S11 is in progress; S12–S30 remain planned. |
+| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S11 are complete; S12–S30 remain planned. |
 | `C01`–`C07` | Character-production workstreams, with uniquely numbered country batches below. |
 | `E01`–`E06` | Retained expansion work after the first certified release. |
 | `G0`–`G5` | Evidence gates joining groups of sessions. |
@@ -584,15 +584,15 @@ stopped after S10.h.
 
 #### S11 — Finish the ground equipment-to-operation loop
 
-**Status:** In progress · **Requires:** S05, S09
+**Status:** Complete · **Requires:** S05, S09
 
-The [S11 work record](campaign-certification/S11/README.md) tracks implementation and qualification. S12 remains planned.
+The [S11 work record](campaign-certification/S11/README.md) records the qualified build and complete evidence. S12 remains planned.
 
 **Completion marker:** Procured ground equipment produces understandable capability and losses in the integrated operations model.
 
-- [ ] Field, supply, repair/refit and retire representative tank and specialist holdings through ordinary controls.
-- [ ] Reports explain relevant reconnaissance, protection, fire-support and air-defense effects without a second hidden strength system.
-- [ ] Shared deployments, stores and losses conserve holdings across simultaneous conflicts and reloads.
+- [x] Field, supply, repair/refit and retire representative tank and specialist holdings through ordinary controls.
+- [x] Reports explain relevant reconnaissance, protection, fire-support and air-defense effects without a second hidden strength system.
+- [x] Shared deployments, stores and losses conserve holdings across simultaneous conflicts and reloads.
 
 <a id="s12"></a>
 
@@ -1001,4 +1001,4 @@ separate from the still-required C06/S23 historical-content gates.
 
 ## Authorized execution boundary
 
-S04 and S05 are complete on the recorded runtime and evidence. G1 decision: **earned**. The pinned integrated build passes both native/Node platforms, original-save and transaction qualification, actual desktop/narrow browser journeys, map review and both predefined performance confirmations. This earns the bounded unified-playset gate locally; full campaign and release certification remain later work. Execution stopped after S05 as requested. On 11 September 2026, “Next” authorized S06. S06 is complete on its recorded runtime and evidence. On 11 September 2026, “Next” authorized S07. S07 is complete on its recorded runtime and evidence. A subsequent “Next” authorized S08, which completed on 12 September 2026 on its recorded runtime and evidence; execution stopped before S09. On 12 September 2026, “next” authorized S09. S09 is complete on its recorded runtime and evidence; execution stopped before S10. The subsequent Continue authorized S10. S10.a through S10.h completed as bounded increments while S10 and C01 were still open. The later instruction “Continue. Finish S10” and the recorded scope amendment authorized closure of S10's qualified gameplay scope. S10 is complete and G2 is earned on the final report's exact evidence. C01 remains incomplete, and C06/S23 content requirements still block CP1 certification. Execution stopped after S10; S11 and later sessions require a new instruction. No later campaign, content or release certificate is awarded.
+S04 and S05 are complete on the recorded runtime and evidence. G1 decision: **earned**. The pinned integrated build passes both native/Node platforms, original-save and transaction qualification, actual desktop/narrow browser journeys, map review and both predefined performance confirmations. This earns the bounded unified-playset gate locally; full campaign and release certification remain later work. Execution stopped after S05 as requested. On 11 September 2026, “Next” authorized S06. S06 is complete on its recorded runtime and evidence. On 11 September 2026, “Next” authorized S07. S07 is complete on its recorded runtime and evidence. A subsequent “Next” authorized S08, which completed on 12 September 2026 on its recorded runtime and evidence; execution stopped before S09. On 12 September 2026, “next” authorized S09. S09 is complete on its recorded runtime and evidence; execution stopped before S10. The subsequent Continue authorized S10. S10.a through S10.h completed as bounded increments while S10 and C01 were still open. The later instruction “Continue. Finish S10” and the recorded scope amendment authorized closure of S10's qualified gameplay scope. S10 is complete and G2 is earned on the final report's exact evidence. C01 remains incomplete, and C06/S23 content requirements still block CP1 certification. The subsequent “Next” authorized S11. S11 is complete on its exact recorded build and authored France journey. Execution stopped after S11; S12 and later sessions require a new instruction. No later campaign, content or release certificate is awarded.

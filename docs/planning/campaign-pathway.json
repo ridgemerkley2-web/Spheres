@@ -316,7 +316,7 @@
       "id": "S11",
       "phase": "military",
       "title": "Finish the ground equipment-to-operation loop",
-      "status": "in_progress",
+      "status": "complete",
       "depends": [
         "S05",
         "S09"
@@ -327,7 +327,11 @@
         "Reports explain relevant reconnaissance, protection, fire-support and air-defense effects without a second hidden strength system.",
         "Shared deployments, stores and losses conserve holdings across simultaneous conflicts and reloads."
       ],
-      "evidence": "../campaign-certification/S11/README.md"
+      "evidence": "../campaign-certification/S11/README.md",
+      "closure": {
+        "evidence": "docs/campaign-certification/S11/manifest.json",
+        "candidate_revision": "d9afd1604219e160cc9deaa4b3999df7db5cde57"
+      }
     },
     {
       "id": "S12",
@@ -883,12 +887,12 @@
       }
     ]
   },
-  "last_completed_session": "S10",
-  "next_session": "S11",
+  "last_completed_session": "S11",
+  "next_session": "S12",
   "execution": {
     "authorized_through": "S11",
     "stop_boundary": "S11",
-    "status": "running",
+    "status": "stopped",
     "previous_stop": "S10 gameplay closure",
     "instruction": "Next",
     "instruction_date": "2026-09-13",

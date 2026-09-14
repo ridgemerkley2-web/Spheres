@@ -1,0 +1,442 @@
+warning: unused import: `path::PathBuf`
+ --> spheres-web\vendor\tiny_http\src\connection.rs:7:5
+  |
+7 |     path::PathBuf,
+  |     ^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `SequentialWriter`
+ --> spheres-web\vendor\tiny_http\src\util\mod.rs:7:28
+  |
+7 | pub use self::sequential::{SequentialWriter, SequentialWriterBuilder};
+  |                            ^^^^^^^^^^^^^^^^
+
+warning: trait `MustBeShareDummy` is never used
+   --> spheres-web\vendor\tiny_http\src\lib.rs:164:7
+    |
+164 | trait MustBeShareDummy: Sync + Send {}
+    |       ^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `tiny_http` (lib) generated 3 warnings (run `cargo fix --lib -p tiny_http` to apply 2 suggestions)
+    Finished `release` profile [optimized] target(s) in 0.11s
+     Running unittests src\main.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_web-55caf82b2dcec446.exe)
+
+running 405 tests
+test arsenal_model_tests::component_illustrations_are_embedded_and_allowlisted ... ok
+test arsenal_model_tests::a_selected_city_shows_a_birds_eye_and_denies_the_street_plan ... ok
+test arsenal_model_tests::the_card_renderer_ships_a_surface_treatment ... ok
+test arsenal_model_tests::catalogue_renderer_is_shared_and_fallback_keeps_existing_controls ... ok
+test arsenal_model_tests::claude_models_cover_the_live_equipment_deck_in_both_directions ... ok
+test companies_view::tests::contractor_parser_bounds_identity_and_requires_reviewed_tokens ... ok
+test campaign_api_tests::operation_parser_refuses_invalid_numbers_missing_fields_and_unknown_enums ... ok
+test construction_outcomes::tests::s07_legacy_and_captured_receipts_do_not_gain_new_national_or_worker_attribution ... ok
+test campaign_api_tests::operation_parser_binds_the_actor_and_preserves_intent ... ok
+test campaign_api_tests::diplomatic_parser_binds_the_actor_and_refuses_forged_nested_fields ... ok
+test companies_view::tests::directory_and_adoption_preview_are_pure_and_player_scoped ... ok
+test construction_outcomes::tests::s07_rated_operating_recipe_is_native_scaled_and_separate_from_recorded_consumption ... ok
+test construction_outcomes::tests::s07_shipyard_separates_dock_operation_energy_and_equipment_funding_actions ... ok
+test decision_review::tests::mature_review_latency ... ignored, Requires an explicitly named, read-only mature campaign archive
+test decision_review::tests::campaign_aim_review_shows_the_exact_frozen_target_and_duration ... ok
+test construction_outcomes::tests::s07_new_industry_receipts_match_gdp_date_and_do_not_double_count_inherited_output ... ok
+test construction_outcomes::tests::s07_power_summary_never_combines_different_receipt_dates ... ok
+test decision_review::tests::proven_review_refusal_and_uncertain_older_session_are_distinct ... ok
+test construction_outcomes::tests::s07_starter_package_has_one_producer_and_completed_construction_links_to_it ... ok
+test campaign_api_tests::invalid_or_foreign_operations_leave_the_saved_world_unchanged ... ok
+test decision_review::tests::s10d_reply_review_names_the_request_and_refuses_on_its_exclusive_deadline ... ok
+test campaign_api_tests::operational_enemy_views_hide_exact_posture_and_label_the_public_force_estimate ... ok
+test decision_review::tests::sanction_review_reads_the_actual_mitigated_growth_term ... ok
+test campaign_api_tests::a_war_declared_before_the_first_browser_tick_still_requires_deployment ... ok
+test diplomatic_commitments::tests::s10e_blocked_and_foreign_call_reviews_never_project_an_acceptance ... ok
+test diplomatic_commitments::tests::s10e_changed_call_decline_does_not_invent_participation_or_upkeep_changes ... ok
+test diplomatic_sanctions::tests::s10g_disabled_freight_is_not_reported_as_an_open_route ... ok
+test decision_review::tests::reviewed_bank_receipt_has_one_persistent_dated_dispatch ... ok
+test decision_review::tests::s10d_changed_guarantee_review_closes_without_claiming_abandonment_losses ... ok
+test diplomatic_commitments::tests::s10e_nuclear_refusal_remains_native_even_when_basing_is_available ... ok
+test diplomatic_sanctions::tests::s10g_mature_open_route_preview_latency ... ignored, Requires an explicitly named, read-only mature campaign archive
+test campaign_api_tests::protected_aim_retry_charges_political_capital_once ... ok
+test diplomatic_sanctions::tests::s10g_improvement_quotes_actual_caps_and_full_price_even_without_a_relation_change ... ok
+test campaign_api_tests::warfare_adoption_is_explicit_and_load_retains_the_selected_rule ... ok
+test diplomatic_commitments::tests::s10e_upkeep_estimate_matches_the_real_charge_in_both_cadences_and_book_modes ... ok
+test diplomatic_commitments::tests::s10e_saved_overview_is_pure_and_preserves_real_dates_and_disruptions ... ok
+test diplomatic_sanctions::tests::s10g_native_refusal_retains_bilateral_identity_and_has_no_after_or_authority ... ok
+test diplomatic_sanctions::tests::s10g_lifting_the_last_bilateral_sanction_does_not_end_opposing_conflict ... ok
+test diplomatic_sanctions::tests::s10g_sanction_quotes_saved_treaty_loss_as_later_settlement_not_immediate_deletion ... ok
+test diplomatic_commitments::tests::s10e_expired_or_reused_conflict_identity_is_context_only_and_never_authority ... ok
+test diplomatic_sanctions::tests::s10g_repeated_sanction_or_empty_lift_discloses_no_change_and_no_charge ... ok
+test diplomatic_sanctions::tests::s10g_sanctions_board_is_pure_directional_and_has_no_foreign_lift_authority ... ok
+test diplomatic_sanctions::tests::s10g_reverse_policy_change_invalidates_lift_review_before_any_mutation ... ok
+test equipment_view::ammunition_reserve_view_tests::automatic_reserve_authorization_and_clearing_explain_retained_orders ... ok
+test diplomatic_sanctions::tests::s10g_lift_keeps_reverse_and_other_sanctions_and_uses_exact_native_freight_and_growth ... ok
+test equipment_view::ammunition_reserve_view_tests::reserve_reviews_are_pure_and_targets_create_no_work_or_rounds ... ok
+test equipment_view::ammunition_view_tests::ammunition_reading_and_order_review_are_pure_and_do_not_grant_rounds ... ok
+test equipment_view::ammunition_reserve_view_tests::reserve_parser_rejects_ambiguous_automation_and_invalid_targets_without_mutation ... ok
+test equipment_view::aviation_view_tests::aviation_mismatched_guidance_is_blocked_and_refit_comparison_uses_strike ... ok
+test equipment_view::ammunition_view_tests::ammunition_activation_is_reviewed_prospective_and_has_no_starting_stock ... ok
+test equipment_view::aviation_view_tests::aviation_catalogue_and_previews_show_real_role_costs_and_are_pure ... ok
+test equipment_view::ammunition_view_tests::malformed_ammunition_commands_cannot_mutate_or_bypass_compatibility ... ok
+test construction_outcomes::tests::s07_new_capacity_waits_for_matching_and_never_invents_completed_output ... ok
+test construction_outcomes::tests::s07_expansion_keeps_dated_capacity_workers_and_charges_separate_from_current_jobs ... ok
+test equipment_view::company_ammunition_view_tests::ammunition_parser_rejects_ambiguous_quantities_and_uses_player_authority ... ok
+test decision_review::tests::s10d_guarantee_decline_review_shows_capped_native_losses_and_commits_once ... ok
+test equipment_view::company_refit_view_tests::refit_parser_is_strict_and_keeps_player_authority ... ok
+test equipment_view::company_ammunition_view_tests::converted_reserve_review_keeps_preference_and_removes_public_batch_recommendation ... ok
+test equipment_view::company_ammunition_view_tests::supplier_offer_and_review_preserve_state_and_explain_separate_ownership ... ok
+test equipment_view::company_view_tests::company_board_and_review_are_pure_and_do_not_grant_opening_assets ... ok
+test equipment_view::company_refit_view_tests::manufacturer_refit_review_is_pure_and_compares_exact_upgrade_without_new_model_costs ... ok
+test equipment_view::company_view_tests::s08_fresh_tonga_paid_supplier_market_export ... ignored, Requires an empty SPHERES_S08_SUPPLIER_EXPORT directory; advances up to 3000 real fresh-campaign days
+test campaign_api_tests::recorded_warfare_review_uses_native_adoption_and_executed_daily_reports ... ok
+test equipment_view::company_refit_view_tests::cancellation_review_and_card_explain_refund_pending_original_settlement ... ok
+test equipment_view::company_view_tests::company_parser_uses_player_authority_and_preserves_review_token ... ok
+test equipment_view::company_view_tests::company_quote_token_expires_when_funding_or_capital_changes ... ok
+test equipment_view::company_view_tests::company_confirmation_owns_one_slot_and_only_one_capital_receivable ... ok
+test diplomatic_commitments::tests::s10e_call_acceptance_quotes_and_saves_actual_posture_without_inventing_instruments ... ok
+test equipment_view::company_view_tests::s08_import_parser_keeps_foreign_seller_separate_from_authenticated_buyer ... ok
+test equipment_view::company_view_tests::s08_live_paid_product_work_is_distinct_from_last_capital_review ... ok
+test companies_view::tests::directory_fixture_records_paid_company_and_construction_service ... ok
+test equipment_view::company_view_tests::s08_market_preserves_native_stock_affordability_and_foreign_identity_in_pure_reads ... ok
+test equipment_view::company_refit_view_tests::refit_booking_replay_preserves_one_deposit_reservation_and_target_projection ... ok
+test equipment_view::company_view_tests::s08_changed_stock_or_access_cannot_reuse_a_reviewed_import ... ok
+test equipment_view::aviation_view_tests::aviation_store_reviews_keep_ground_activation_separate_and_archive_exactly ... ok
+test equipment_view::company_view_tests::tank_designer_commissions_supplier_and_retains_original_independent_specs ... ok
+test equipment_view::guidance_tests::s09_guidance_enumerates_coupled_packages_without_bypassing_research_or_load ... ok
+test equipment_view::company_view_tests::lost_company_response_replays_receipt_without_creating_another_company ... ok
+test equipment_view::guidance_tests::s09_research_unlock_details_use_real_parts_and_prospective_compiled_examples ... ok
+test equipment_view::guidance_tests::s09_guidance_costs_match_native_development_terms_not_purchase_affordability ... ok
+test equipment_view::company_view_tests::s08_import_purchase_and_cancellation_reviews_retain_exact_native_quotes_and_no_research_grant ... ok
+test equipment_view::planning_tests::comparisons_use_frozen_revision_prices_and_explain_role_changes ... ok
+test equipment_view::guidance_tests::s09_preview_and_comparison_leave_old_revision_holdings_and_research_unchanged ... ok
+test equipment_view::maintenance_view_tests::maintenance_review_is_pure_and_confirmed_limit_starts_a_dated_invoice ... ok
+test equipment_view::planning_tests::ground_research_lists_its_unlocks_and_established_starter_components ... ok
+test equipment_view::maintenance_view_tests::malformed_maintenance_values_are_refused_and_unconfigured_campaign_remains_legacy ... ok
+test equipment_view::planning_tests::comparison_reports_real_deltas_and_is_pure ... ok
+test campaign_api_tests::campaign_views_are_pure_and_orders_survive_the_browser_load_path ... ok
+test equipment_view::planning_tests::modernization_proposes_valid_known_upgrades_without_touching_the_fleet ... ok
+test equipment_view::service_view_tests::empty_fleet_explains_next_step_without_inventing_service_coverage ... ok
+test equipment_view::planning_tests::research_tree_reflects_dependencies_and_never_changes_knowledge ... ok
+test equipment_view::guidance_tests::s09_single_component_example_shortcut_matches_exhaustive_package_selection ... ok
+test equipment_view::replenishment_view_tests::supply_review_exposes_actual_payment_and_partial_shipments_without_mutation ... ok
+test equipment_view::replenishment_view_tests::malformed_supply_choices_cannot_bypass_the_review_contract ... ok
+test equipment_view::service_view_tests::retirement_quote_is_pure_matches_sim_and_only_confirmed_command_removes_available_stock ... ok
+test equipment_view::supply_automation_view_tests::empty_material_outlook_does_not_block_a_valid_future_policy ... ok
+test equipment_view::company_view_tests::s08_request_local_supplier_reads_preserve_both_board_sections ... ok
+test equipment_view::supply_view_tests::invalid_plant_retains_material_bill_but_cannot_confirm ... ok
+test equipment_view::service_view_tests::retirement_rejects_reserved_or_stale_quantities_and_malformed_commands ... ok
+test equipment_view::supply_automation_view_tests::purchasing_policy_parser_and_semantic_limits_fail_closed ... ok
+test equipment_view::guidance_tests::s09_all_platform_recommendations_are_known_legal_deterministic_and_pure ... ok
+test equipment_view::supply_automation_view_tests::purchasing_policy_review_is_pure_and_manual_is_the_default ... ok
+test equipment_view::supply_view_tests::national_supply_counts_stock_once_and_retains_paused_outstanding_bills ... ok
+test equipment_view::target_view_tests::target_suggestions_are_reviewed_and_honor_source_goal ... ok
+test equipment_view::target_view_tests::target_library_action_and_preview_are_pure_and_only_confirmation_saves ... ok
+test equipment_view::tests::equipment_order_parser_keeps_nation_authority_and_rejects_fractional_units ... ok
+test equipment_view::tests::equipment_drafts_can_keep_unknown_components_but_cannot_develop_them ... ok
+test equipment_view::tests::equipment_routes_require_current_campaign_on_get_and_post ... ok
+test equipment_view::supply_view_tests::unstarted_funding_has_no_calendar_date_and_preview_remains_read_only ... ok
+test equipment_view::tests::detailed_catalogue_prices_every_vehicle_type_with_its_independent_slots ... ok
+test equipment_view::supply_view_tests::fabrication_gap_survives_save_and_is_visible_in_the_project_review ... ok
+test fiscal_recovery_view::tests::view_is_current_player_only_and_never_enrolls_or_changes_money ... ok
+test equipment_view::tests::equipment_research_appears_in_current_research_without_adding_technology_nodes ... ok
+test equipment_view::supply_view_tests::production_quote_discloses_whole_recipe_before_order_without_mutation ... ok
+test equipment_view::service_view_tests::service_reading_separates_available_reserved_and_incoming_without_changing_world ... ok
+test government_view::tests::government_election_review_includes_the_actual_successor_office ... ok
+test government_view::tests::government_election_review_is_an_exact_immediate_result ... ok
+test equipment_view::tests::equipment_reads_and_order_quotes_are_pure_and_use_simulation_prices ... ok
+test government_view::tests::government_briefing_is_pure_and_preserves_existing_action_contracts ... ok
+test government_view::tests::government_preview_requires_own_exact_current_action ... ok
+test government_view::tests::government_reviews_retain_live_refusals_and_off_world_state ... ok
+test equipment_view::company_view_tests::every_current_platform_commissions_its_exact_model_through_a_company ... ok
+test government_view::tests::government_expulsion_review_quotes_actual_clamped_pc_and_majority_loss ... ok
+test history::tests::s08_history_available_ids_match_full_row_formatting_on_deltas_and_archive_changes ... ok
+test history::tests::selected_series_and_delta_equal_full_history ... ok
+test money_commitments::tests::accepted_supplier_invoice_is_not_added_to_fresh_fiscal_cash_or_paid_delivery ... ok
+test equipment_view::company_ammunition_view_tests::purchase_review_nets_only_paid_incoming_and_transport_retries_once ... ok
+test money_commitments::tests::building_totals_use_frozen_paid_terms_and_include_hidden_paused_projects ... ok
+test money_commitments::tests::imported_commitments_follow_original_payment_escrow_and_release_without_an_extra_bill ... ok
+test government_view::tests::government_institution_review_shows_real_cash_debt_and_pc_without_spending ... ok
+test money_commitments::tests::missing_saved_model_terms_are_unknown_and_cancelled_or_certified_work_is_excluded ... ok
+test equipment_view::company_view_tests::s08_declared_small_country_purchase_policy_uses_the_actual_priced_budget_review ... ok
+test military_operations_api_tests::allocation_parser_binds_the_player_and_rejects_malformed_numbers ... ok
+test money_commitments::tests::paid_property_is_separate_from_fresh_bills_and_cargo_does_not_invent_a_price ... ok
+test money_commitments::tests::unfinished_model_and_public_work_use_saved_base_prices_without_repricing_or_counting_fees_twice ... ok
+test operations_view::tests::empty_fleet_and_unfunded_stock_do_not_invent_support_or_loss_reports ... ok
+test money_view::tests::fiscal_details_keep_signed_interest_and_inclusions_out_of_cash_legs ... ok
+test money_view::tests::old_accounts_and_other_countries_are_not_created_by_reads ... ok
+test operations_view::tests::ground_panel_preserves_native_operations_and_excludes_aircraft_and_refit_reservations ... ok
+test performance::campaign_lifetime_profile ... ignored, 30-year actual daily worlds; run alone for meaningful timing
+test performance::s08_daily_subsystem_diagnosis ... ignored, explicit saved-campaign subsystem diagnosis; not a performance acceptance run
+test performance::s08_read_model_diagnosis ... ignored, read-only component diagnosis on an explicit saved campaign; not an acceptance run
+test performance::s08_supplier_import_profile ... ignored, requires the genuine earned-stock S08 campaign and an uncontended run
+test page_art_assets::tests::every_page_painting_is_embedded_and_requests_are_allowlisted ... ok
+test money_view::tests::payments_reconcile_actual_cash_and_debt_and_survive_reload_without_preview_writes ... ok
+test person_portraits::tests::fictional_designs_require_exact_catalogue_identity_and_future_eras ... ok
+test person_portraits::tests::archived_models_remain_available_but_never_become_active_avatars ... ok
+test person_portraits::tests::tupou_cartoon_exposes_its_artwork_license_with_exact_person_and_era ... ok
+test person_portraits::tests::avatars_are_exact_people_with_half_open_eras_and_no_national_fallback ... ok
+test person_portraits::tests::registered_fictional_art_only_decorates_explicit_future_previews_before_cutoff ... ok
+test person_portraits::tests::registered_cartoons_exist_and_have_source_and_visual_review ... ok
+test history::tests::multidecade_archive_preserves_dates_lifespans_and_daily_detail ... ok
+test history::tests::event_pages_preserve_the_entire_archive_across_new_dispatches ... ok
+test s05_active_fixture_tests::original_active_company_stages_preserve_property_across_load_and_explicit_adoption ... ignored, requires original pinned active exporter files and provenance in SPHERES_S05_ACTIVE_FIXTURES
+test s02_connected_economy_api_tests::s02_parser_binds_enrollment_and_training_to_the_player ... ok
+test money_view::tests::approved_correction_records_settings_and_only_later_observed_outcomes ... ok
+test person_portraits::tests::historical_browsing_is_read_only_and_retains_every_party ... ok
+test person_portraits::tests::original_executive_art_is_read_only_in_old_campaigns_and_never_survives_succession ... ok
+test s02_connected_economy_api_tests::s02_shipyard_only_province_exposes_naval_start_and_separate_reserved_slots ... ok
+test s05_fresh_startup_tests::opening_market_refuses_a_disabled_market_without_changes ... ok
+test s05_master_migration_tests::actual_pinned_master_archive_preserves_property_history_and_next_day ... ignored, Requires SPHERES_S05_MASTER_ARCHIVE pointing to the unchanged archive generated by the recorded pinned-master executable
+test equipment_view::tests::s08_checked_read_matches_actual_command_refusals_and_price_order ... ok
+test equipment_view::company_view_tests::s08_no_factory_country_can_review_import_access_without_any_opening_stock_grant ... ok
+test equipment_view::tests::equipment_archives_roundtrip_and_old_world_shape_refuses_them ... ok
+test equipment_view::supply_automation_view_tests::dated_purchase_receipts_keep_their_original_limits_after_edit_and_clear ... ok
+test s05_save_matrix_tests::standalone_party_v1_preserves_real_supplier_books_for_equipment_versions_2_through_5 ... ignored, Requires the unchanged original 28-file export manifest in SPHERES_S05_ACTIVE_FIXTURES
+test s05_fresh_startup_tests::legacy_load_keeps_company_and_operational_upgrades_opt_in ... ok
+test military_operations_api_tests::browser_rules_allocation_command_and_snapshot_agree_across_load ... ok
+test s05_save_matrix_tests::achieved_goals_survive_more_than_twenty_four_abandoned_goals_and_reload ... ok
+test s05_fresh_startup_tests::setup_without_a_selected_nation_and_tiny_new_campaign_use_unified_rules ... ok
+test s10_decision_tests::s10_accepted_defense_call_joins_native_side_and_rung_exactly_once ... ok
+test s05_fresh_startup_tests::fresh_start_adopts_all_capabilities_without_free_work_or_supplier_stock ... ok
+test s10_decision_tests::s10_answered_offer_records_actual_date_once_and_late_confirmation_is_pure ... ok
+test s10_decision_tests::s10_foreign_malformed_self_and_unaffordable_decisions_refuse_purely ... ok
+test s10_decision_tests::s10_government_review_has_the_same_server_staleness_guard ... ok
+test s10_decision_tests::s10_accepted_trade_and_pact_reviews_preserve_native_effects_and_one_receipt ... ok
+test s05_save_matrix_tests::browser_archive_retains_pending_midmonth_close_and_resumes_daily_once ... ok
+test s10_decision_tests::s10_reads_and_derived_caches_do_not_invalidate_a_review ... ok
+test s02_connected_economy_api_tests::s02_connected_reading_is_pure_and_exposes_the_same_snapshot_in_cash_flow_and_state ... ok
+test s10_decision_tests::s10_review_cannot_move_to_another_command_batch_channel_or_receipt ... ok
+test s10_decision_tests::s10_review_refuses_other_tab_changes_ticks_and_replacements_before_mutation ... ok
+test s05_fresh_startup_tests::fresh_startup_repeat_and_save_resume_preserve_exact_owned_state ... ok
+test s10_decision_tests::s10_standing_policy_preserves_pending_offers_and_deadlines_survive_reload ... ok
+test s10_government_tests::s10_foreign_and_newly_unaffordable_reviews_refuse_without_touching_either_country ... ok
+test s10_decision_tests::s10_peg_exit_review_shows_capped_costs_and_does_not_reset_rate_or_recharge ... ok
+test performance::aged_checkpoint_stress_uses_priced_commands_and_preserves_the_archive ... ok
+test s10d_inbox_fixture_tests::s10d_export_disposable_diplomatic_inbox_fixture ... ignored, Exports authored native inbox archives only to a NEW SPHERES_S10D_INBOX_FIXTURE_DIR
+test s10e_commitment_fixture_tests::s10e_export_disposable_diplomatic_commitment_fixture ... ignored, Exports authored native commitment archives only to a NEW SPHERES_S10E_COMMITMENT_FIXTURE_DIR
+test s10f_succession_fixture_tests::s10f_export_disposable_succession_fixtures ... ignored, Exports authored succession archives only to a NEW SPHERES_S10F_SUCCESSION_FIXTURE_DIR
+test s10g_sanctions_fixture_tests::s10g_export_disposable_sanctions_fixture ... ignored, Exports only to a NEW SPHERES_S10G_SANCTIONS_FIXTURE_DIR
+test s11_fixture_tests::s11_export_disposable_ground_operations_fixture ... ignored, Exports only to a NEW absolute SPHERES_S11_FIXTURE_DIR
+test s10_decision_tests::s10_review_is_pure_and_commits_exact_native_consequences_once ... ok
+test s10_government_tests::s10_four_government_roles_serve_actual_offices_and_all_authored_parties_purely ... ok
+test s10_government_tests::s10_actual_future_succession_respects_executive_review_and_recorded_monarchy_heir ... ok
+test s05_fresh_startup_tests::opening_market_preserves_legacy_cover_and_posts_nothing ... ok
+test s02_connected_economy_api_tests::s02_new_campaign_and_loaded_legacy_have_distinct_economy_enrollment ... ok
+test s10_government_tests::s10_reviewed_elections_and_institution_payments_match_native_results_and_reload ... ok
+test tests::a_deal_the_page_sends_is_the_sims_own ... ok
+test tests::a_body_that_is_not_json_is_a_failed_request_not_an_empty_one ... ok
+test tests::a_dossier_figure_stays_inside_its_own_column ... ok
+test tests::a_focused_slider_does_not_kill_every_shortcut ... ok
+test s08_route_pool_tests::s08_game_route_pool_is_private_to_campaign_and_resets_on_save_load ... ok
+test s05_save_matrix_tests::pending_peace_and_real_movement_survive_archive_then_consent_settles_once ... ok
+test s05_campaign_api_tests::integrated_paid_orders_reconcile_exactly_once_and_changed_receipts_refuse ... ok
+test tests::a_globe_that_comes_back_clears_every_mark_of_the_failure ... ok
+test tests::a_globe_that_cannot_draw_says_so ... ok
+test tests::a_headline_is_only_about_the_nations_it_names ... ok
+test storage::tests::failed_write_keeps_previous_valid_campaign_and_archive ... ok
+test tests::a_major_event_stops_the_clock_and_the_server_is_what_decides ... ok
+test tests::a_join_the_server_cannot_read_is_refused_not_rewritten ... ok
+test tests::a_name_at_the_edge_of_the_world_is_not_cut_by_it ... ok
+test storage::tests::slots_cannot_escape_root_and_three_autosaves_rotate ... ok
+test storage::tests::envelope_load_preserves_sim_timeline_and_archive_legacy_still_loads ... ok
+test tests::a_nation_the_roster_does_not_know_is_refused_not_ignored ... ok
+test tests::a_nation_can_show_where_its_figures_came_from ... ok
+test tests::a_price_the_player_cannot_pay_is_marked_and_refused ... ok
+test tests::a_nation_with_a_space_in_its_name_survives_the_query_string ... ok
+test tests::a_one_day_advance_still_reports_the_event_the_clock_must_stop_on ... ok
+test tests::a_seed_the_server_cannot_use_is_refused_not_replaced ... ok
+test tests::a_series_that_ends_early_is_labelled_where_it_ends ... ok
+test s08_route_pool_tests::s08_game_route_pool_preserves_cold_full_ticks_and_command_order_across_calendars ... ok
+test tests::a_span_the_server_cannot_use_does_not_move_the_clock_some_other_distance ... ok
+test tests::a_refused_start_says_so_instead_of_freezing_the_setup_screen ... ok
+test tests::a_theatre_the_server_cannot_use_is_refused_not_replaced ... ok
+test tests::a_stability_arm_is_quoted_as_where_order_settles ... ok
+test tests::an_aim_is_carried_onto_the_quarrel_it_opened ... ok
+test tests::agency_browser_contract_revalidates_and_preserves_pending_decisions ... ok
+test tests::a_nation_the_world_is_not_holding_is_refused_not_fatal ... ok
+test tests::an_aim_the_server_cannot_read_is_refused_not_replaced ... ok
+test tests::browser_growth_model_gap ... ignored
+test tests::a_successor_is_not_told_it_is_a_bug ... ok
+test tests::browser_surface_posts_days_not_months ... ok
+test tests::cabinet_city_art_is_accessible_embedded_and_served_without_external_assets ... ok
+test tests::browser_advance_rejects_every_malformed_batch_before_mutation ... ok
+test tests::browser_clock_advances_daily_and_histories_settle_monthly ... ok
+test s10_government_tests::s10_historical_browsing_and_future_eligibility_never_replace_saved_incumbents ... ok
+test tests::cash_flow_annual_estimates_and_construction_quote_reuse_authoritative_sources ... ok
+test tests::cash_flow_open_day_never_masquerades_as_a_closed_posting ... ok
+test tests::cash_flow_priorities_explain_a_negative_interest_credit ... ok
+test tests::cash_flow_posted_components_reconcile_without_recharging_prepaid_equipment ... ok
+test tests::a_microstates_history_is_not_flattened_into_steps ... ok
+test tests::cash_flow_priorities_put_funding_and_renewal_first_and_keep_the_three_item_limit ... ok
+test tests::campaign_aim_browser_commands_freeze_and_close_model_targets ... ok
+test tests::cash_flow_priorities_use_actual_ministry_sources_and_stable_ties ... ok
+test tests::cash_flow_priorities_keep_annual_estimates_separate_from_a_settled_surplus ... ok
+test tests::classify_corpus ... ignored
+test tests::cash_flow_priorities_decompose_the_same_dated_interest_deficit_without_mutation ... ok
+test tests::cash_flow_route_is_bound_to_the_current_campaign ... ok
+test tests::choosing_a_domination_agenda_reaches_the_sim_by_stable_id ... ok
+test tests::competition_commands_bind_actor_and_reject_overflow ... ok
+test tests::cash_flow_read_preserves_unknown_opening_balances_and_does_not_enroll ... ok
+test tests::competition_capacity_plan_is_exact_read_only_and_keeps_fractional_assets ... ok
+test tests::competition_browser_reads_are_pure_and_cover_every_starting_economy ... ok
+test tests::competition_enable_is_explicit_and_never_grants_money_or_factories ... ok
+test s05_save_matrix_tests::standalone_party_v1_with_no_equipment_and_native_equipment_v1_uses_both_loaders ... ok
+test tests::daily_manufacturing_two_days_stock_shows_no_false_monthly_shortage ... ok
+test tests::construction_impact_preview_is_read_only_scoped_and_validates_the_reviewed_project ... ok
+test tests::daily_browser_history_records_real_first_day_progress ... ok
+test tests::daily_quotes_preserve_stock_units_and_the_actual_january_ledger_in_february ... ok
+test tests::construction_suggestions_are_read_only_owned_and_match_reviewed_contracts ... ok
+test tests::department_contract_is_strict_read_only_and_has_fifty_rows_and_ten_investments ... ok
+test tests::daily_research_and_manufacturing_cards_quote_the_sims_actual_draw ... ok
+test tests::department_assets_and_snapshot_are_wired_without_enrolling_on_read ... ok
+test tests::browser_new_snapshot_and_first_history_are_daily ... ok
+test tests::economic_readings_refresh_daily_and_distinguish_settlement_date ... ok
+test tests::construction_requirements_explain_exact_site_refusals_without_mutation ... ok
+test tests::every_kit_in_the_deck_has_a_model ... ok
+test tests::every_district_figure_says_apportioned ... ok
+test tests::every_ministry_arm_on_the_card_is_the_arm_the_sim_charges ... ok
+test tests::every_nation_has_a_historical_figure_and_flag ... ok
+test tests::exchange_reads_require_the_exact_active_campaign_session ... ok
+test tests::every_nation_on_the_board_has_somewhere_to_be_drawn ... ok
+test tests::guidance_route_requires_the_exact_active_campaign_session ... ok
+test tests::browser_advance_lost_response_retry_is_exactly_once_and_session_bound ... ok
+test tests::headlines_land_in_the_right_bucket ... ok
+test tests::economic_ledgers_cover_every_living_country_and_reconcile_without_mutation ... ok
+test tests::funded_construction_api_is_actor_bound_pure_and_quotes_the_shared_cash_limit ... ok
+test tests::first_budget_quote_includes_opening_debt_and_ordered_policy_without_mutating_world ... ok
+test tests::domination_is_a_complete_server_authored_campaign_contract ... ok
+test tests::headlines_name_the_nations_they_are_about ... ok
+test tests::industry_board_route_requires_the_current_campaign ... ok
+test tests::industry_board_keeps_research_credit_separate_from_factory_output ... ok
+test tests::industry_board_is_pure_without_competition_and_never_invents_opening_output ... ok
+test tests::industry_board_serves_exact_dated_receipts_and_current_owned_assets ... ok
+test tests::logistics_cargo_labels_distinguish_in_transit_held_and_actually_arrived ... ok
+test tests::logistics_api_is_a_stable_view_of_the_latest_audit ... ok
+test tests::guidance_without_a_player_is_a_read_only_setup_snapshot ... ok
+test tests::logistics_policy_button_reaches_one_strict_atomic_command ... ok
+test tests::module_only_province_is_visible_without_rounding_integer_capabilities ... ok
+test tests::manufacturing_api_uses_real_plants_budget_arsenal_and_session_identity ... ok
+test tests::month_index_counts_from_january_1990 ... ok
+test tests::module_quotes_are_pure_scaled_actor_bound_and_reject_invalid_capacity ... ok
+test tests::no_two_domain_tabs_wear_the_same_label ... ok
+test tests::no_nation_on_the_board_is_shown_as_nothing ... ok
+test tests::o_says_why_it_does_nothing_in_resources_shading ... ok
+test tests::pausing_retires_the_day_that_is_already_in_flight ... ok
+test tests::guidance_serves_one_players_state_and_production_at_the_same_date_without_orders ... ok
+test tests::production_api_names_the_full_planning_portfolio ... ok
+test tests::economic_order_receipts_are_once_only_current_and_campaign_bound ... ok
+test tests::production_board_is_wired_end_to_end ... ok
+test tests::one_nation_can_be_asked_for_alone ... ok
+test tests::province_dossier_reads_live_population_and_exact_geometry ... ok
+test tests::province_economy_api_is_live_for_foreign_owners_and_keeps_population ... ok
+test tests::province_economy_assets_ship_locally_and_keep_accounting_in_rust ... ok
+test tests::loading_a_legacy_midmonth_save_finishes_its_open_books_before_daily_play ... ok
+test tests::research_card_discloses_old_midmonth_hold_without_inventing_acquisitions ... ok
+test tests::production_api_is_player_scoped_stable_and_live ... ok
+test tests::room_paintings_are_embedded_webp_and_paths_are_allowlisted ... ok
+test tests::s08_moved_nation_arrays_preserve_original_serialized_rows ... ok
+test tests::stability_read_model_uses_the_integrators_terms_and_calendar_scale ... ok
+test tests::strategic_supply_mission_has_one_ranked_objective_and_honest_idle_state ... ok
+test tests::strategic_supply_command_serves_the_live_twelve_line_forecast ... ok
+test tests::strategic_supply_red_requires_an_authoritative_recorded_block ... ok
+test tests::ten_ministry_budget_reaches_the_atomic_fiscal_command ... ok
+test tests::materials_quote_and_commands_are_pure_bounded_and_actor_bound ... ok
+test tests::the_board_keys_are_on_the_card ... ok
+test tests::the_back_a_movement_card_quotes_the_odds_the_sim_rolls ... ok
+test tests::the_bar_hatches_foreign_backing_and_names_the_sponsor_only_after_exposure ... ok
+test tests::the_arcade_market_strip_and_foreign_ledger_are_served ... ok
+test tests::the_button_reaches_the_sim_through_the_command_route ... ok
+test tests::the_browser_carries_a_pause_play_toggle_and_a_truthful_readout ... ok
+test tests::the_browser_computes_one_balance ... ok
+test tests::the_budget_card_reads_the_sim ... ok
+test s05_save_matrix_tests::malformed_archives_and_mismatched_direct_party_books_refuse_clearly ... ok
+test tests::the_clock_does_not_run_without_a_game ... ok
+test tests::the_clock_keys_are_hoi4s ... ok
+test tests::the_board_reads_the_sim ... ok
+test tests::the_eight_research_shares_add_to_a_hundred ... ok
+test tests::the_conflict_sheet_is_rebuilt_every_tick ... ok
+test tests::the_commodity_key_does_not_spend_the_first_press_on_the_fetch ... ok
+test tests::the_clock_never_has_two_days_in_flight ... ok
+test tests::the_conflict_sheet_quotes_the_price_the_queue_charges ... ok
+test tests::the_event_log_cannot_be_squeezed_out_of_existence ... ok
+test tests::the_find_hint_is_painted_on_something ... ok
+test tests::the_equipment_models_are_self_contained_and_degrade_to_the_glyph ... ok
+test tests::the_globe_survives_a_tick ... ok
+test tests::the_government_commands_parse_from_the_page ... ok
+test tests::the_globe_and_the_shader_project_the_same_world ... ok
+test tests::the_globe_ships_its_camera_and_its_cities ... ok
+test tests::the_front_edges_are_two_independent_rings ... ok
+test tests::the_government_screen_has_its_own_key_and_escape_closes_it ... ok
+test tests::the_header_carries_the_discontent_chip_and_the_ruling_swatch ... ok
+test tests::the_ideology_map_mode_colours_by_ruling_bloc_and_hatches_the_watch ... ok
+test tests::new_campaign_industrial_estimates_are_visible_without_reseeding_loaded_saves ... ok
+test tests::the_government_screen_is_served_not_computed ... ok
+test tests::the_logistics_dispatch_board_is_wired_end_to_end ... ok
+test tests::the_map_hover_ignores_events_the_capture_retargeted ... ok
+test tests::the_map_resolves_a_click_from_the_press_not_the_click ... ok
+test tests::the_map_shading_chips_are_not_sliced_by_a_narrow_column ... ok
+test tests::the_levers_are_served_with_the_sim_s_price_refusal_and_effects ... ok
+test tests::the_levers_and_the_covert_kinds_parse_from_the_page ... ok
+test tests::the_map_ships_terrain_and_rivers ... ok
+test tests::the_mine_card_develops_a_mapped_province ... ok
+test tests::the_now_marker_does_not_paint_over_an_era_name ... ok
+test tests::the_clock_still_moves_after_your_nation_is_gone ... ok
+test tests::the_money_card_is_one_set_of_books ... ok
+test tests::the_panel_exists_and_is_wired_to_the_route ... ok
+test tests::the_page_can_see_who_is_running_the_central_bank ... ok
+test tests::the_pause_key_reaches_the_clock_from_every_screen ... ok
+test tests::the_picker_is_a_keyboard_playable_full_screen_showcase ... ok
+test tests::the_force_line_is_the_force_the_sim_sustains ... ok
+test tests::the_political_arm_is_on_in_play_and_null_headless ... ok
+test tests::the_picker_shows_the_board_it_will_deal ... ok
+test tests::the_port_and_the_browser_flag_come_from_the_command_line_then_the_environment ... ok
+test tests::the_political_arm_s_headlines_are_filed_and_promoted ... ok
+test tests::the_research_card_and_the_sim_agree_on_the_month ... ok
+test tests::the_resource_headlines_land_in_the_right_bucket ... ok
+test tests::the_market_is_on_for_the_browser_and_off_for_the_suite ... ok
+test tests::materials_signing_and_cancellation_receipts_are_once_only_without_free_packs ... ok
+test tests::the_shortcut_card_opens_before_a_game_exists ... ok
+test tests::the_shortcut_card_swallows_the_keys_behind_it ... ok
+test tests::the_six_presence_rows_print_no_number ... ok
+test tests::the_research_board_never_quotes_a_schedule_in_millennia ... ok
+test tests::the_speed_ladder_is_five_levels_of_real_milliseconds ... ok
+test tests::a_nation_with_no_debt_is_not_shown_paying_it_down ... ok
+test tests::the_state_payload_carries_district_deltas ... ok
+test tests::the_stock_tip_is_painted_on_something ... ok
+test tests::the_take_card_is_greyed_until_the_trade_route_has_closed ... ok
+test tests::the_tech_graph_resolves_a_click_from_the_press_not_the_click ... ok
+test tests::the_talks_answer_is_the_sims_and_says_why ... ok
+test s05_campaign_api_tests::integrated_paid_day_retry_archive_reload_and_next_day_keep_one_timeline ... ok
+test tests::the_tech_legend_is_painted_on_something ... ok
+test tests::the_state_payload_carries_the_offers ... ok
+test tests::the_tech_screens_keys_are_all_on_the_card ... ok
+test tests::the_tree_payload_carries_the_list_price ... ok
+test tests::the_basing_panel_does_not_sell_what_the_theatre_already_gives ... ok
+test tests::the_war_decoration_takes_no_pointer_events ... ok
+test tests::the_world_offers_the_player_something_and_says_why ... ok
+test tests::the_world_tint_and_the_dossier_are_served ... ok
+test tests::the_watch_reads_calibration_pending_and_the_dock_names_the_road ... ok
+test tests::the_war_card_says_which_side_holds_what ... ok
+test tests::welfare_reuses_pensions_budget_and_save_slot ... ok
+test transport::tests::malformed_immediate_batch_never_half_commits ... ok
+test tests::the_war_card_takes_its_class_from_the_sim ... ok
+test transport::tests::diplomatic_receipt_retry_posts_one_cost_and_one_dispatch ... ok
+test tests::the_series_ends_when_a_nation_does ... ok
+test storage::tests::combined_company_save_import_retains_capability_and_archive_without_load_adoption ... ok
+test storage::tests::integrated_paid_work_survives_interrupted_write_and_valid_backup_recovery ... ok
+test tests::the_panel_prices_sanctions_the_way_the_sim_charges_them ... ok
+test tests::a_funded_project_is_not_reported_as_stalled ... ok
+test storage::tests::integrated_warfare_archive_and_standalone_import_keep_every_capability ... ok
+test tests::the_log_filters_reach_the_world_the_sim_writes ... ok
+test tests::a_dissolved_state_is_not_served_as_a_live_belligerent ... ok
+test tests::the_policy_panel_reads_the_sim ... ok
+test tests::the_ladder_offers_only_what_the_world_will_sell ... ok
+
+test result: ok. 388 passed; 0 failed; 17 ignored; 0 measured; 0 filtered out; finished in 43.55s
+
+     Running tests\http_connections.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\http_connections-8051dd677c5ff060.exe)
+
+running 1 test
+test connection_pool::s09_regression::s09_a_burst_must_not_strand_connections_behind_idle_keepalive_workers ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

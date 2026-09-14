@@ -1,0 +1,45 @@
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+warning: unused import: `path::PathBuf`
+ --> spheres-web\vendor\tiny_http\src\connection.rs:7:5
+  |
+7 |     path::PathBuf,
+  |     ^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `SequentialWriter`
+ --> spheres-web\vendor\tiny_http\src\util\mod.rs:7:28
+  |
+7 | pub use self::sequential::{SequentialWriter, SequentialWriterBuilder};
+  |                            ^^^^^^^^^^^^^^^^
+
+warning: trait `MustBeShareDummy` is never used
+   --> spheres-web\vendor\tiny_http\src\lib.rs:164:7
+    |
+164 | trait MustBeShareDummy: Sync + Send {}
+    |       ^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `tiny_http` (lib) generated 3 warnings (run `cargo fix --lib -p tiny_http` to apply 2 suggestions)
+   Compiling spheres-web v0.6.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-web)
+    Finished `release` profile [optimized] target(s) in 3m 09s
+     Running unittests src\main.rs (../integration-target\release\deps\spheres_web-55caf82b2dcec446.exe)
+
+running 1 test
+
+thread 's11_fixture_tests::s11_export_disposable_ground_operations_fixture' (26492) panicked at spheres-web\src\s11_fixture_tests.rs:31:5:
+assertion `left == right` failed: {"daily_budget_mn":10.0,"district":"FRA_auvergne-rh-ne-alpes","family":"autocannon_25","kind":"equipment_ammo_order","quantity":20000}: {"actions":[{"command":{"daily_budget_mn":10.0,"district":"FRA_auvergne-rh-ne-alpes","family":"autocannon_25","kind":"equipment_ammo_order","quantity":20000},"detail":null,"enabled":false,"label":"Start ammunition batch","reason":"This province needs a free completed arms-plant slot."}],"blockers":["This province needs a free completed arms-plant slot."],"costs":[{"amount_bn":0.00035999999999999997,"label":"Finite fabrication bill","period":"paid as work progresses; raw inputs separate"},{"amount_bn":0.01,"label":"Maximum daily payment","period":"remaining Defense maintenance funds may constrain it"}],"detail":"Review the exact family, finite fabrication bill and raw inputs. Starting work does not create free rounds or immediately charge the full bill.","metrics":[{"label":"Ammunition family","value":"25 mm autocannon"},{"label":"Rounds to manufacture","value":20000}],"nation":"France","requirements":["Consumes one shared arms-plant slot. Work begins on an eligible future funding day; completed whole rounds enter stores. This order does not activate physical ammunition for combat.","coal: 0.002 kt for the entire batch; acquire these through the shared Resources market.","copper: 1.2 t for the entire batch; acquire these through the shared Resources market.","iron: 2.4 t for the entire batch; acquire these through the shared Resources market."],"session_id":"32900-1789352369489526800-0","timing":[{"label":"Minimum physical work","value":"4 days"}],"valid":false}
+  left: Bool(false)
+ right: true
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test s11_fixture_tests::s11_export_disposable_ground_operations_fixture ... FAILED
+
+failures:
+
+failures:
+    s11_fixture_tests::s11_export_disposable_ground_operations_fixture
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 404 filtered out; finished in 0.06s
+
+error: test failed, to rerun pass `-p spheres-web --bin spheres-web`

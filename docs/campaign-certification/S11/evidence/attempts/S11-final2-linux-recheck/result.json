@@ -1,0 +1,208 @@
+{
+  "format": "spheres-s11-linux/v1",
+  "revision": "d9afd1604219e160cc9deaa4b3999df7db5cde57",
+  "started_utc": "2026-09-14T03:11:52.061687+00:00",
+  "status": "passed",
+  "scope": "Full qualification composed from three unchanged successful native lanes and a fresh full Node run with the installed Python interpreter. The failed Node attempt is retained in native_parent.",
+  "runner_sha256": "dada0a07a843e2c071318e9babbd4e08ef22885aa5a13062033a1c1399411d53",
+  "derived_from": {
+    "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/run-s10-final-linux.py",
+    "sha256": "a27a4149a6e70f656118236ff97a4613e429279ae628a65134b585989f1209da"
+  },
+  "source_verification": "Windows git.exe on the same complete NTFS checkout; test and compile processes use the existing Linux toolchain and target directory.",
+  "environment": {
+    "GIT_DIR": "/mnt/c/Users/ridge/Spheres/.git/worktrees/integration",
+    "GIT_WORK_TREE": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+    "GIT_OPTIONAL_LOCKS": "0",
+    "CARGO_BUILD_JOBS": "4",
+    "GIT_CONFIG_COUNT": "1",
+    "GIT_CONFIG_KEY_0": "core.autocrlf",
+    "GIT_CONFIG_VALUE_0": "true",
+    "CARGO_HOME": "/home/ridge/.cache/spheres-s05-tools/cargo",
+    "RUSTUP_HOME": "/home/ridge/.cache/spheres-s05-tools/rustup",
+    "CARGO_TARGET_DIR": "/home/ridge/.cache/spheres-s05-target",
+    "CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER": "/home/ridge/.cache/spheres-s05-tools/bin/cc",
+    "CC": "/home/ridge/.cache/spheres-s05-tools/bin/cc",
+    "TMPDIR": "/home/ridge/.cache/spheres-s05-runs/tmp",
+    "SPHERES_AUDIT_PYTHON": "/usr/bin/python3"
+  },
+  "checks": [
+    {
+      "name": "web",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--release",
+        "-p",
+        "spheres-web",
+        "--no-fail-fast"
+      ],
+      "started_utc": "2026-09-14T02:57:29.147940+00:00",
+      "finished_utc": "2026-09-14T03:02:03.924956+00:00",
+      "elapsed_seconds": 274.777083662,
+      "exit_code": 0,
+      "log": "../S11-final2-linux/web.log",
+      "log_sha256": "ef4e1baf5a549055086d56453790cfdcd2a8b01ee1a3fb224ab9594b7dd59cd4",
+      "totals": {
+        "passed": 389,
+        "failed": 0,
+        "ignored": 17,
+        "completed_targets": 2
+      },
+      "source_before": {
+        "head": "d9afd1604219e160cc9deaa4b3999df7db5cde57",
+        "status": ""
+      },
+      "source_after": {
+        "head": "d9afd1604219e160cc9deaa4b3999df7db5cde57",
+        "status": ""
+      },
+      "passed": true,
+      "test_binary": {
+        "path": "/home/ridge/.cache/spheres-s05-target/release/deps/spheres_web-20279169217b1e37",
+        "bytes": 347438592,
+        "sha256": "9b8f8b39f484b2d467de005e7f46a25da1f97b35e8a74523d8010789e67dffb2"
+      }
+    },
+    {
+      "name": "sim",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--release",
+        "-p",
+        "spheres-sim",
+        "--lib",
+        "--no-fail-fast"
+      ],
+      "started_utc": "2026-09-14T03:02:04.575451+00:00",
+      "finished_utc": "2026-09-14T03:06:07.197778+00:00",
+      "elapsed_seconds": 242.62232765700003,
+      "exit_code": 0,
+      "log": "../S11-final2-linux/sim.log",
+      "log_sha256": "b74cbed3a9e20fa9879649ee1d48af0192125d06da83ed7e75736bb2b5d6ffbe",
+      "totals": {
+        "passed": 812,
+        "failed": 0,
+        "ignored": 26,
+        "completed_targets": 1
+      },
+      "source_before": {
+        "head": "d9afd1604219e160cc9deaa4b3999df7db5cde57",
+        "status": ""
+      },
+      "source_after": {
+        "head": "d9afd1604219e160cc9deaa4b3999df7db5cde57",
+        "status": ""
+      },
+      "passed": true
+    },
+    {
+      "name": "integration",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--release",
+        "-p",
+        "spheres-sim",
+        "--test",
+        "ground_equipment_integration",
+        "--test",
+        "military_operations",
+        "--test",
+        "campaign_operations",
+        "--test",
+        "equipment_integration",
+        "--test",
+        "company_refits",
+        "--test",
+        "equipment_supply_automation",
+        "--test",
+        "company_ammunition",
+        "--test",
+        "ammunition_reserves",
+        "--test",
+        "aviation_ammunition",
+        "--test",
+        "campaign_movement_audit",
+        "--test",
+        "campaign_peace_audit",
+        "--no-fail-fast"
+      ],
+      "started_utc": "2026-09-14T03:06:07.513987+00:00",
+      "finished_utc": "2026-09-14T03:06:18.932072+00:00",
+      "elapsed_seconds": 11.418081619999953,
+      "exit_code": 0,
+      "log": "../S11-final2-linux/integration.log",
+      "log_sha256": "ed0996cbf868d0a0790732aded030089f26215c899a3ef42a13b68382f38e1c8",
+      "totals": {
+        "passed": 83,
+        "failed": 0,
+        "ignored": 2,
+        "completed_targets": 11
+      },
+      "source_before": {
+        "head": "d9afd1604219e160cc9deaa4b3999df7db5cde57",
+        "status": ""
+      },
+      "source_after": {
+        "head": "d9afd1604219e160cc9deaa4b3999df7db5cde57",
+        "status": ""
+      },
+      "passed": true
+    },
+    {
+      "name": "node",
+      "command": [
+        "node",
+        "tools/ui/run-unit.cjs"
+      ],
+      "started_utc": "2026-09-14T03:11:52.226319+00:00",
+      "source_before": {
+        "head": "d9afd1604219e160cc9deaa4b3999df7db5cde57",
+        "status": ""
+      },
+      "log": "node.log",
+      "finished_utc": "2026-09-14T03:14:24.107886+00:00",
+      "elapsed_seconds": 151.881589362,
+      "exit_code": 0,
+      "log_sha256": "91befab524c1d719fd9158e71b47b8fd5f19f515b1812b42130fcec6a43f341e",
+      "totals": {
+        "tests": 1582,
+        "passed": 1581,
+        "failed": 0,
+        "skipped": 1
+      },
+      "source_after": {
+        "head": "d9afd1604219e160cc9deaa4b3999df7db5cde57",
+        "status": ""
+      },
+      "passed": true
+    }
+  ],
+  "source_before": {
+    "head": "d9afd1604219e160cc9deaa4b3999df7db5cde57",
+    "status": ""
+  },
+  "toolchain_sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801",
+  "passed": true,
+  "native_parent": {
+    "path": "../S11-final2-linux/result.json",
+    "sha256": "858a77549bdd43191b68920beb1b2d616689f94d05e3b6aeed563e53f9af7340",
+    "reused_checks": [
+      "web",
+      "sim",
+      "integration"
+    ],
+    "reason": "Only Node interpreter setup changed; no source or native binary change. Native results are retained from the prior exact candidate, not claimed as rerun."
+  },
+  "source_after": {
+    "head": "d9afd1604219e160cc9deaa4b3999df7db5cde57",
+    "status": ""
+  },
+  "runner_sha256_after": "dada0a07a843e2c071318e9babbd4e08ef22885aa5a13062033a1c1399411d53",
+  "finished_utc": "2026-09-14T03:14:24.375479+00:00"
+}

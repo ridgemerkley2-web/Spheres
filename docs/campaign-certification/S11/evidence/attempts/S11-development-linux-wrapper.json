@@ -1,0 +1,8 @@
+{
+  "qualification": false,
+  "log": "S11-development-linux-ground.log",
+  "test_totals": {"passed": 24, "failed": 0, "ignored": 0},
+  "wrapper_exit_code": 1,
+  "wrapper_error": "/bin/sh: 1: exit: Illegal number:",
+  "explanation": "The development shell wrapper lost its exit-status variable after the native tests passed. This attempt is retained as a wrapper failure; source-pinned Linux qualification uses the direct Python runner."
+}

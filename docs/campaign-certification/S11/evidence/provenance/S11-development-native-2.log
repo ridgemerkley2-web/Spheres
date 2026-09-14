@@ -1,0 +1,45 @@
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+    Finished `release` profile [optimized] target(s) in 2m 48s
+     Running unittests src\lib.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_sim-de8a2e7790f15db6.exe)
+
+running 22 tests
+test equipment::aviation_tests::aircraft_components_change_frozen_air_effects_and_keep_ground_neutral ... ok
+test equipment::ground_readiness_tests::s11_ground_condition_scales_rounds_and_fire_once_without_repricing_the_reference ... ok
+test campaign::tests::physical_dry_ground_keeps_maneuver_and_observation_but_cannot_fire ... ok
+test equipment::ground_receipt_tests::ground_receipt_aggregates_physical_rows_without_merging_or_mutating_them ... ok
+test equipment::ground_receipt_tests::ground_receipt_stays_sparse_for_aircraft_orders_only_peace_and_zero_allocation ... ok
+test equipment::ammunition_operation_tests::ammunition_air_only_offense_uses_no_ground_rounds_and_aa_requires_real_air_exposure ... ok
+test tests::mountain_ground_is_taken_more_slowly ... ok
+test tests::a_concession_prefers_the_ground_actually_held ... ok
+test operations::aviation_loss_tests::grounded_aircraft_in_a_fighting_coalition_take_no_force_or_inventory_loss ... ok
+test equipment::aviation_tests::version_seven_ground_library_remains_sparse_and_airframe_changes_are_new_builds ... ok
+test equipment::ground_receipt_tests::ground_receipt_old_saves_remain_absent_and_ended_wars_retired_stock_remain_valid ... ok
+test campaign::tests::physical_air_defense_requires_paid_interceptors_and_cannot_attack_ground ... ok
+test war::ground_role_tests::ground_specialist_ratings_are_consumed_by_distinct_battle_equations ... ok
+test campaign_supply::tests::deployment_quote_is_pure_and_cannot_use_unconsented_foreign_ground ... ok
+test equipment::ground_readiness_tests::s11_ground_partial_service_shares_stores_and_losses_across_fronts_and_reload ... ok
+test equipment::ground_receipt_tests::ground_receipt_all_nine_platforms_report_actual_whole_losses_across_fronts ... ok
+test equipment::ground_receipt_tests::ground_receipt_fractional_loss_and_refit_reserve_continue_exactly_after_reload ... FAILED
+test war::ammunition_firing_tests::ground_ammunition_scales_fires_linearly_and_retains_nonfiring_roles ... ok
+test equipment::ground_readiness_tests::s11_ground_support_gate_also_applies_beside_parked_aircraft ... ok
+test equipment::tests::ground_families_complete_paid_development_and_share_physical_production ... ok
+test equipment::ground_receipt_tests::ground_receipt_rejects_corrupt_dates_ids_arithmetic_and_nonfinite_carry_without_mutation ... ok
+test equipment::ground_readiness_tests::s11_ground_weapons_require_paid_support_for_every_family ... ok
+
+failures:
+
+---- equipment::ground_receipt_tests::ground_receipt_fractional_loss_and_refit_reserve_continue_exactly_after_reload stdout ----
+
+thread 'equipment::ground_receipt_tests::ground_receipt_fractional_loss_and_refit_reserve_continue_exactly_after_reload' (38052) panicked at spheres-sim\src\equipment_ground_receipt_tests.rs:95:39:
+called `Result::unwrap()` on an `Err` value: "Invalid custom ammunition inventory, production or consumption ledger."
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    equipment::ground_receipt_tests::ground_receipt_fractional_loss_and_refit_reserve_continue_exactly_after_reload
+
+test result: FAILED. 21 passed; 1 failed; 0 ignored; 0 measured; 814 filtered out; finished in 0.56s
+
+error: test failed, to rerun pass `-p spheres-sim --lib`
+error: 1 target failed:
+    `-p spheres-sim --lib`

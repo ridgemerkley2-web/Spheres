@@ -1,0 +1,21 @@
+AssertionError [ERR_ASSERTION]: Native ground projection failed: Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    n=next(n for n in w['nations'] if n['id']=='France'); e=n.get('equipment') or {}
+                      ~^^^^^^^^^^^
+KeyError: 'nations'
+
+
+1 !== 0
+
+    at nativeFacts (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\ci-ground-operations.cjs:73:35)
+    at inspect (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\ci-ground-operations.cjs:75:141)
+    at capture (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\ci-ground-operations.cjs:85:131)
+    at async inspectStage (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\ci-ground-operations.cjs:199:84)
+    at async main (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\ci-ground-operations.cjs:208:167) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 1,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}

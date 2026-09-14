@@ -1,0 +1,92 @@
+{
+  "actions": [
+    {
+      "command": {
+        "kind": "equipment_retire",
+        "quantity": 1,
+        "revision": "s11-tank"
+      },
+      "detail": null,
+      "enabled": true,
+      "label": "Confirm vehicle retirement",
+      "reason": null
+    }
+  ],
+  "blockers": [],
+  "costs": [],
+  "detail": "Review the quantity and loss of available equipment before confirming retirement. Opening this comparison changes nothing.",
+  "metrics": [],
+  "nation": "France",
+  "requirements": [
+    "Retirement permanently removes these delivered vehicles without a cash refund or recovered materials. Remaining vehicles keep their average age. Lower physical maintenance demand takes effect at a future support settlement; current receipts and departmental allocations stay unchanged. Production orders and refit reservations continue."
+  ],
+  "service_effects": {
+    "detail": "Retirement removes physical vehicles immediately. Survivors keep their age and condition. National composition includes inherited equipment at the current recorded support level; normal settlement recalculates support later. Small changes may round to the same displayed value.",
+    "metrics": [
+      {
+        "label": "Vehicles retired",
+        "value": 1
+      },
+      {
+        "label": "Delivered vehicles remaining",
+        "value": "4999 → 4998"
+      },
+      {
+        "label": "Available for operations",
+        "value": "4999 → 4998"
+      },
+      {
+        "label": "Refit reservations retained",
+        "value": 0
+      },
+      {
+        "label": "Custom fleet maintenance requirement",
+        "value": "$4.005m / day → $4.005m / day"
+      },
+      {
+        "label": "Maintenance requirement removed",
+        "value": "$466.00 / day"
+      },
+      {
+        "label": "Cash and material refund",
+        "value": "None"
+      }
+    ],
+    "roles": [
+      {
+        "label": "Land composition factor",
+        "value": "0.960× → 0.960×"
+      },
+      {
+        "label": "Strike composition factor",
+        "value": "0.650× → 0.650×"
+      },
+      {
+        "label": "Fire support bonus",
+        "value": "1.725% → 1.725%"
+      },
+      {
+        "label": "Protected mobility bonus",
+        "value": "0.772% → 0.772%"
+      },
+      {
+        "label": "Reconnaissance bonus",
+        "value": "1.633% → 1.633%"
+      },
+      {
+        "label": "Air defense bonus",
+        "value": "2.309% → 2.310%"
+      }
+    ],
+    "status": "Review permanent withdrawal",
+    "title": "Fleet after retirement",
+    "warnings": [
+      "Retirement cannot be undone by the game. Replacing these vehicles requires new production or delivery.",
+      "Lower maintenance need can reduce future invoices. Existing budget allocations and already-recorded payments stay unchanged.",
+      "Refit reservations, pending deliveries, production contracts and saved design revisions are retained."
+    ]
+  },
+  "session_id": "37284-1789354292392853700-1",
+  "timing": [],
+  "valid": true
+}

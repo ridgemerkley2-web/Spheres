@@ -1,0 +1,91 @@
+warning: unused import: `path::PathBuf`
+ --> spheres-web\vendor\tiny_http\src\connection.rs:7:5
+  |
+7 |     path::PathBuf,
+  |     ^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `SequentialWriter`
+ --> spheres-web\vendor\tiny_http\src\util\mod.rs:7:28
+  |
+7 | pub use self::sequential::{SequentialWriter, SequentialWriterBuilder};
+  |                            ^^^^^^^^^^^^^^^^
+
+warning: trait `MustBeShareDummy` is never used
+   --> spheres-web\vendor\tiny_http\src\lib.rs:164:7
+    |
+164 | trait MustBeShareDummy: Sync + Send {}
+    |       ^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `tiny_http` (lib) generated 3 warnings (run `cargo fix --lib -p tiny_http` to apply 2 suggestions)
+   Compiling spheres-web v0.6.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-web)
+    Finished `release` profile [optimized] target(s) in 1m 17s
+     Running unittests src\main.rs (../integration-target\release\deps\spheres_web-55caf82b2dcec446.exe)
+
+running 1 test
+S11_STAGE=allocation_zero DATE=2 Mar 1992
+S11_STAGE=allocation_auto DATE=2 Mar 1992
+S11_STAGE=maintenance DATE=2 Mar 1992
+S11_STAGE=ammunition_activate DATE=2 Mar 1992
+S11_STAGE=refit DATE=2 Mar 1992
+S11_STAGE=purchase DATE=2 Mar 1992
+S11_STAGE=resupply DATE=2 Mar 1992
+S11_STAGE=combat_day_1 DATE=3 Mar 1992
+S11_STAGE=combat_day_2 DATE=4 Mar 1992
+S11_STAGE=combat_day_3 DATE=5 Mar 1992
+S11_STAGE=combat_day_4 DATE=6 Mar 1992
+S11_STAGE=combat_day_5 DATE=7 Mar 1992
+S11_STAGE=combat_day_6 DATE=8 Mar 1992
+S11_STAGE=combat_day_7 DATE=9 Mar 1992
+S11_STAGE=reserve_front_one DATE=9 Mar 1992
+S11_STAGE=reserve_front_two DATE=9 Mar 1992
+S11_STAGE=service_day_1 DATE=10 Mar 1992
+S11_STAGE=service_day_2 DATE=11 Mar 1992
+S11_STAGE=service_day_3 DATE=12 Mar 1992
+S11_STAGE=service_day_4 DATE=13 Mar 1992
+S11_STAGE=service_day_5 DATE=14 Mar 1992
+S11_STAGE=service_day_6 DATE=15 Mar 1992
+S11_STAGE=service_day_7 DATE=16 Mar 1992
+S11_STAGE=service_day_8 DATE=17 Mar 1992
+S11_STAGE=service_day_9 DATE=18 Mar 1992
+S11_STAGE=service_day_10 DATE=19 Mar 1992
+S11_STAGE=service_day_11 DATE=20 Mar 1992
+S11_STAGE=service_day_12 DATE=21 Mar 1992
+S11_STAGE=service_day_13 DATE=22 Mar 1992
+S11_STAGE=service_day_14 DATE=23 Mar 1992
+S11_STAGE=service_day_15 DATE=24 Mar 1992
+S11_STAGE=service_day_16 DATE=25 Mar 1992
+S11_STAGE=service_day_17 DATE=26 Mar 1992
+S11_STAGE=service_day_18 DATE=27 Mar 1992
+S11_STAGE=service_day_19 DATE=28 Mar 1992
+S11_STAGE=service_day_20 DATE=29 Mar 1992
+S11_STAGE=service_day_21 DATE=30 Mar 1992
+S11_STAGE=service_day_22 DATE=31 Mar 1992
+S11_STAGE=service_day_23 DATE=1 Apr 1992
+S11_STAGE=service_day_24 DATE=2 Apr 1992
+test s11_fixture_tests::s11_export_disposable_ground_operations_fixture has been running for over 60 seconds
+S11_STAGE=service_day_25 DATE=3 Apr 1992
+S11_STAGE=service_day_26 DATE=4 Apr 1992
+S11_STAGE=service_day_27 DATE=5 Apr 1992
+S11_STAGE=service_day_28 DATE=6 Apr 1992
+S11_STAGE=service_day_29 DATE=7 Apr 1992
+S11_STAGE=service_day_30 DATE=8 Apr 1992
+S11_STAGE=service_day_31 DATE=9 Apr 1992
+S11_STAGE=service_day_32 DATE=10 Apr 1992
+S11_STAGE=service_day_33 DATE=11 Apr 1992
+S11_STAGE=service_day_34 DATE=12 Apr 1992
+S11_STAGE=retire DATE=12 Apr 1992
+S11_FIXTURE_MANIFEST=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/evidence/S11-development-fixture-04\manifest.json
+test s11_fixture_tests::s11_export_disposable_ground_operations_fixture ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 404 filtered out; finished in 81.77s
+
+     Running tests\http_connections.rs (../integration-target\release\deps\http_connections-8051dd677c5ff060.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out; finished in 0.00s
+

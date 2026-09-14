@@ -1,0 +1,56 @@
+{
+  "format": "spheres-s11-closure-config/v1",
+  "candidate_revision": "REPLACE_WITH_FINAL_40_CHARACTER_GIT_REVISION",
+  "repository": "integration",
+  "windows": {
+    "web": {
+      "proof": "evidence/S11-CANDIDATE-web.json",
+      "log": "evidence/S11-CANDIDATE-web.log"
+    },
+    "sim": {
+      "proof": "evidence/S11-CANDIDATE-sim.json",
+      "log": "evidence/S11-CANDIDATE-sim.log"
+    },
+    "integration": {
+      "proof": "evidence/S11-CANDIDATE-integration.json",
+      "log": "evidence/S11-CANDIDATE-integration.log"
+    },
+    "node": {
+      "proof": "evidence/S11-CANDIDATE-node.json",
+      "log": "evidence/S11-CANDIDATE-node.log"
+    },
+    "binary": {
+      "proof": "evidence/S11-CANDIDATE-binary.json",
+      "log": "evidence/S11-CANDIDATE-binary.log"
+    },
+    "fixture": {
+      "proof": "evidence/S11-CANDIDATE-fixture.json",
+      "log": "evidence/S11-CANDIDATE-fixture.log"
+    },
+    "browser": {
+      "proof": "evidence/S11-CANDIDATE-browser.json",
+      "log": "evidence/S11-CANDIDATE-browser.log"
+    }
+  },
+  "linux_result": "evidence/S11-CANDIDATE-linux/result.json",
+  "fixture_manifest": "evidence/S11-CANDIDATE-native-fixture/manifest.json",
+  "browser_result": "evidence/S11-browser-CANDIDATE-browser/france-REPLACE/result.json",
+  "review_launch": "S11-review-launch.json",
+  "preservation": "evidence/S11-preservation-final.json",
+  "inventory": "integration/docs/campaign-certification/S11/evidence/inventory.json",
+  "selection": "S11-evidence-selection.json",
+  "visual_review": {
+    "passed": true,
+    "widths": [
+      1440,
+      390,
+      320
+    ],
+    "screenshots": [
+      "ground-final-1440.png",
+      "ground-final-390.png",
+      "ground-final-320.png"
+    ],
+    "notes": "REPLACE with findings from screenshots actually inspected before applying closure."
+  }
+}

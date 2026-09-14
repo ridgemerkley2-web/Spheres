@@ -1,0 +1,140 @@
+{
+  "actions": [
+    {
+      "command": {
+        "company": 1,
+        "kind": "company_ammo_purchase",
+        "product": 264,
+        "quantity": 500,
+        "quote": "company-v1-0eb4ca6087e4be66"
+      },
+      "detail": null,
+      "enabled": true,
+      "label": "Buy available ammunition",
+      "reason": null
+    },
+    {
+      "enabled": true,
+      "label": "Review ammunition stores and reserves",
+      "navigate": {
+        "action": "equipment",
+        "tab": "ammunition"
+      }
+    },
+    {
+      "enabled": true,
+      "label": "Review Maintenance & supply funding",
+      "navigate": {
+        "action": "budget",
+        "department": 2,
+        "ministry": "defense"
+      }
+    }
+  ],
+  "as_of_day": 791,
+  "blockers": [],
+  "costs": [
+    {
+      "amount_bn": 2.0907115e-8,
+      "label": "Supplier unit price",
+      "period": "per round · includes materials and fabrication"
+    },
+    {
+      "amount_bn": 0.0000104535575,
+      "label": "Total ammunition purchase",
+      "period": "one purchase · Defense Maintenance & supply"
+    },
+    {
+      "amount_bn": 0.004005130000000001,
+      "label": "Protected fleet upkeep",
+      "period": "unpaid requirement today · retained before this purchase"
+    },
+    {
+      "amount_bn": 1.3216992303225816,
+      "label": "Available after upkeep protection",
+      "period": "shared Maintenance & supply authority"
+    }
+  ],
+  "date": "2 Mar 1992",
+  "detail": "Buy this exact ammunition family from finished company stock. Paid rounds count toward your reserve but cannot be fired until they arrive.",
+  "metrics": [
+    {
+      "label": "Manufacturer",
+      "value": "Interface Refit Works"
+    },
+    {
+      "label": "Exact ammunition family",
+      "value": "25 mm autocannon"
+    },
+    {
+      "label": "In national stores",
+      "value": "20,000 rounds"
+    },
+    {
+      "label": "One-month planning reserve",
+      "value": "16,200 rounds"
+    },
+    {
+      "label": "Unfinished public output",
+      "value": "0 rounds"
+    },
+    {
+      "label": "Purchased company stock in transit",
+      "value": "0 rounds"
+    },
+    {
+      "label": "Reserve gap after all commitments",
+      "value": "0 rounds"
+    },
+    {
+      "label": "Quantity to buy",
+      "value": "500 rounds"
+    },
+    {
+      "label": "Available finished stock",
+      "value": "1,000 rounds"
+    }
+  ],
+  "nation": "France",
+  "requirements": [
+    "Compatible certified models: Night observation IFV, Ammunition demonstration IFV.",
+    "Ammunition keeps its exact family. It grants no vehicles, strength, extra capacity or ground ammunition activation. Aircraft always require their physical mission stores.",
+    "Maintenance & supply funds this purchase once, after protecting today's unpaid fleet upkeep. Payment must settle before delivery begins; arrival adds the purchased physical stores once.",
+    "Purchase existing finished company ammunition with Defense maintenance and supply authority after protecting today's actual fleet upkeep. Price is average paid input and fabrication cost plus the existing 15% margin. Company revenue settles once with the public fiscal day. Purchased stock becomes usable only after seven accessible transit days; no physical-ammunition activation, weapon model or public fabrication order is created."
+  ],
+  "service_effects": {
+    "detail": "Usable ammunition stays unchanged until delivery. Only paid incoming rounds reduce the national reserve gap; unsold company inventory remains outside national stores.",
+    "metrics": [
+      {
+        "label": "National stores now",
+        "value": "20,000"
+      },
+      {
+        "label": "Purchased incoming before",
+        "value": 0
+      },
+      {
+        "label": "Purchased incoming after",
+        "value": 500
+      },
+      {
+        "label": "Reserve gap before",
+        "value": 0
+      },
+      {
+        "label": "Reserve gap after",
+        "value": 0
+      }
+    ],
+    "title": "What this purchase changes",
+    "warnings": []
+  },
+  "session_id": "34572-1789354906832229300-1",
+  "timing": [
+    {
+      "label": "Delivery after payment settlement",
+      "value": "7 accessible days"
+    }
+  ],
+  "valid": true
+}

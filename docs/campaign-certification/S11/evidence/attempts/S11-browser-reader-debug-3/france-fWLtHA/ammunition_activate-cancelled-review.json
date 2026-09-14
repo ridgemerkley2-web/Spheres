@@ -1,0 +1,34 @@
+{
+  "actions": [
+    {
+      "command": {
+        "kind": "equipment_ammo_activate"
+      },
+      "detail": null,
+      "enabled": true,
+      "label": "Activate physical ammunition",
+      "reason": null
+    }
+  ],
+  "blockers": [],
+  "costs": [],
+  "detail": "Your custom ground fleet will depend on compatible physical stores. Review the Ammunition tab before activating: manufacturing orders that have not completed cannot supply combat.",
+  "metrics": [
+    {
+      "label": "Effective",
+      "value": "Next eligible date after confirmation"
+    },
+    {
+      "label": "Starting ammunition grant",
+      "value": "None"
+    }
+  ],
+  "nation": "France",
+  "requirements": [
+    "Activation changes how custom ground weapons receive ammunition. It cannot be switched back to free shared supply; prepare compatible stocks first. Inherited equipment retains its share of the existing magazine.",
+    "Consumption is planned across all conserved deployments once. Empty stores limit firing; mobility and observation retain their separate operational roles. Extra stock grants no standing-force bonus."
+  ],
+  "session_id": "37284-1789354292392853700-1",
+  "timing": [],
+  "valid": true
+}

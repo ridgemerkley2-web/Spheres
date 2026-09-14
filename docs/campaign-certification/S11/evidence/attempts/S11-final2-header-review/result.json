@@ -1,0 +1,110 @@
+{
+  "visual_diagnostic_only": true,
+  "passed": false,
+  "url": "http://127.0.0.1:7856",
+  "requests": [
+    {
+      "method": "POST",
+      "path": "/api/program-preview"
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "header-1440.png",
+      "sha256": "559dc3e20d69c7804431077b893bc5fbd98404abaa3059f570e92cdc441e9fa2"
+    },
+    {
+      "file": "header-320.png",
+      "sha256": "4bc2e8dfe2bb3d0a8ca80990c4d5ff15b281a66b0100fb75401736f2616deccf"
+    }
+  ],
+  "readings": [
+    {
+      "width": 1440,
+      "display": "block",
+      "client_width": 485,
+      "scroll_width": 485,
+      "header": {
+        "x": 78,
+        "y": 405,
+        "width": 484.59375,
+        "height": 89.5,
+        "top": 405,
+        "bottom": 494.5,
+        "left": 78,
+        "right": 562.59375
+      },
+      "eyebrow": {
+        "x": 94,
+        "y": 416,
+        "width": 137.28125,
+        "height": 15,
+        "top": 416,
+        "bottom": 431,
+        "left": 94,
+        "right": 231.28125
+      },
+      "title": {
+        "x": 94,
+        "y": 439.5,
+        "width": 452.59375,
+        "height": 30,
+        "top": 439.5,
+        "bottom": 469.5,
+        "left": 94,
+        "right": 546.59375
+      },
+      "text": "NATIONAL COMMAND\nYour forces and reserves"
+    },
+    {
+      "width": 320,
+      "display": "block",
+      "client_width": 253,
+      "scroll_width": 253,
+      "header": {
+        "x": 34,
+        "y": 399,
+        "width": 253,
+        "height": 119.5,
+        "top": 399,
+        "bottom": 518.5,
+        "left": 34,
+        "right": 287
+      },
+      "eyebrow": {
+        "x": 50,
+        "y": 410,
+        "width": 137.28125,
+        "height": 15,
+        "top": 410,
+        "bottom": 425,
+        "left": 50,
+        "right": 187.28125
+      },
+      "title": {
+        "x": 50,
+        "y": 433.5,
+        "width": 221,
+        "height": 60,
+        "top": 433.5,
+        "bottom": 493.5,
+        "left": 50,
+        "right": 271
+      },
+      "text": "NATIONAL COMMAND\nYour forces and reserves"
+    }
+  ],
+  "errors": [],
+  "build": {
+    "branch": "codex/campaign-certification",
+    "built_at_unix_seconds": 1789354623,
+    "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+    "distribution": "Local offline game server; source and attribution accompany the release",
+    "revision": "d9afd1604219",
+    "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S11-20260913-200815",
+    "version": "0.6.0"
+  },
+  "before_state_sha256": "d1b6f7c990ea3bb8b2901695ddb0f3c5135cb5c15b2230dff7da22cb3817adec",
+  "after_state_sha256": "d1b6f7c990ea3bb8b2901695ddb0f3c5135cb5c15b2230dff7da22cb3817adec",
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ [\n+   {\n+     method: 'POST',\n+     path: '/api/program-preview'\n+   }\n+ ]\n- []\n\n    at main (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\S11-final2-header-review.cjs:22:10)"
+}

@@ -1,0 +1,70 @@
+{
+  "format": "spheres-s11-closure-config/v1",
+  "candidate_revision": "d9afd1604219e160cc9deaa4b3999df7db5cde57",
+  "repository": "integration",
+  "windows": {
+    "web": {
+      "proof": "evidence/S11-final2-web.json",
+      "log": "evidence/S11-final2-web.log"
+    },
+    "sim": {
+      "proof": "evidence/S11-final2-sim.json",
+      "log": "evidence/S11-final2-sim.log"
+    },
+    "integration": {
+      "proof": "evidence/S11-final2-integration.json",
+      "log": "evidence/S11-final2-integration.log"
+    },
+    "node": {
+      "proof": "evidence/S11-final2-node.json",
+      "log": "evidence/S11-final2-node.log"
+    },
+    "binary": {
+      "proof": "evidence/S11-final2-binary.json",
+      "log": "evidence/S11-final2-binary.log"
+    },
+    "fixture": {
+      "proof": "evidence/S11-final2-fixture.json",
+      "log": "evidence/S11-final2-fixture.log"
+    },
+    "browser": {
+      "proof": "evidence/S11-final2-browser.json",
+      "log": "evidence/S11-final2-browser.log"
+    }
+  },
+  "linux_result": "evidence/S11-final2-linux-recheck/result.json",
+  "fixture_manifest": "evidence/S11-final2-native-fixture/manifest.json",
+  "browser_result": "evidence/S11-browser-final2-browser/france-gP1yEL/result.json",
+  "review_launch": "S11-review-launch.json",
+  "preservation": "evidence/S11-preservation-final.json",
+  "inventory": "integration/docs/campaign-certification/S11/evidence/inventory.json",
+  "selection": "S11-evidence-selection.json",
+  "visual_review": {
+    "passed": true,
+    "widths": [
+      1440,
+      390,
+      320
+    ],
+    "screenshots": [
+      "ground-opening-desktop.png",
+      "ground-shortcut-service.png",
+      "refit-review.png",
+      "maintenance-review.png",
+      "ground-final-1440.png",
+      "ground-final-390.png",
+      "ground-final-320.png",
+      "ground-losses-1440.png",
+      "ground-losses-390.png",
+      "ground-losses-320.png",
+      "ground-theatre-1440.png",
+      "ground-theatre-390.png",
+      "ground-theatre-320.png"
+    ],
+    "notes": "Equipment counts, dated losses, reservation labels and theatre controls are readable at 1440, 390 and 320 pixels. Separate captures of the same build confirm the Operations heading stacks without overlap at 1440 and 320 pixels. This was Codex visual inspection; no independent human playtest is claimed.",
+    "report": {
+      "path": "S11-final2-visual-review.json",
+      "sha256": "2c73c527d19a3368d97e6ab7e172da52b198a1403e7c14869c617200cca11cbe"
+    }
+  }
+}

@@ -1,0 +1,64 @@
+   Compiling spheres-web v0.6.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-web)
+warning: unused import: `path::PathBuf`
+ --> spheres-web\vendor\tiny_http\src\connection.rs:7:5
+  |
+7 |     path::PathBuf,
+  |     ^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `SequentialWriter`
+ --> spheres-web\vendor\tiny_http\src\util\mod.rs:7:28
+  |
+7 | pub use self::sequential::{SequentialWriter, SequentialWriterBuilder};
+  |                            ^^^^^^^^^^^^^^^^
+
+warning: trait `MustBeShareDummy` is never used
+   --> spheres-web\vendor\tiny_http\src\lib.rs:164:7
+    |
+164 | trait MustBeShareDummy: Sync + Send {}
+    |       ^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+warning: `tiny_http` (lib) generated 3 warnings (run `cargo fix --lib -p tiny_http` to apply 2 suggestions)
+error[E0603]: function `stage_fiscal` is private
+   --> spheres-web\src\s11_fixture_tests.rs:71:15
+    |
+ 71 |     programs::stage_fiscal(w.nation_mut(ME), 0.0, 0.0);
+    |               ^^^^^^^^^^^^ private function
+    |
+note: the function `stage_fiscal` is defined here
+   --> spheres-sim\src\programs.rs:590:1
+    |
+590 | pub(crate) fn stage_fiscal(n: &mut Nation, revenue_share: f64, annual_interest_bn: f64) {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0603]: function `complete_capability` is private
+   --> spheres-web\src\s11_fixture_tests.rs:348:21
+    |
+348 |         production::complete_capability(&mut g.world, &district, ProjectKind::PowerGrid);
+    |                     ^^^^^^^^^^^^^^^^^^^ private function
+    |
+note: the function `complete_capability` is defined here
+   --> spheres-sim\src\production.rs:772:1
+    |
+772 | pub(crate) fn complete_capability(w: &mut WorldState, district: &str, kind: ProjectKind) {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0603]: function `complete_capability` is private
+   --> spheres-web\src\s11_fixture_tests.rs:349:21
+    |
+349 |         production::complete_capability(&mut g.world, &district, ProjectKind::Generation);
+    |                     ^^^^^^^^^^^^^^^^^^^ private function
+    |
+note: the function `complete_capability` is defined here
+   --> spheres-sim\src\production.rs:772:1
+    |
+772 | pub(crate) fn complete_capability(w: &mut WorldState, district: &str, kind: ProjectKind) {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For more information about this error, try `rustc --explain E0603`.
+error: could not compile `spheres-web` (bin "spheres-web" test) due to 3 previous errors
+warning: build failed, waiting for other jobs to finish...
