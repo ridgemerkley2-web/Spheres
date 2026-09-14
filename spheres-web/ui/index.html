@@ -8783,9 +8783,17 @@ function bindForceAllocations(container) {
     await adopt(response, false);
   }, clockPause);
   window.MilitaryOperationsUI?.bind(container, async command => {
+    if (campaignState!==S || !container?.isConnected || COMMAND_CHANNEL.busy || COMMAND_CHANNEL.pending || advancing || pendingAdvance) throw new Error("The campaign or current order changed. Reopen this conflict before submitting.");
     const response = await api("/api/command", { commands: [command] });
+    if (campaignState!==S) throw new Error("The campaign changed before this order was confirmed.");
+    if (response.command_pending) throw new Error("This order awaits confirmation. Use the pending order controls before sending another.");
     if (response.errors?.length) throw new Error(response.errors[0]);
     await adopt(response, false);
+  }, async tab => {
+    if (campaignState!==S || !container?.isConnected || COMMAND_CHANNEL.busy || COMMAND_CHANNEL.pending || advancing || pendingAdvance) throw new Error("The campaign or current order changed. Reopen Operations before reviewing equipment.");
+    if (!["service", "ammunition", "companies"].includes(tab)) throw new Error("This equipment page is unavailable.");
+    clockPause();
+    await openEquipment({tab});
   });
 }
 

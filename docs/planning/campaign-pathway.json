@@ -316,7 +316,7 @@
       "id": "S11",
       "phase": "military",
       "title": "Finish the ground equipment-to-operation loop",
-      "status": "planned",
+      "status": "in_progress",
       "depends": [
         "S05",
         "S09"
@@ -326,7 +326,8 @@
         "Field, supply, repair/refit and retire representative tank and specialist holdings through ordinary controls.",
         "Reports explain relevant reconnaissance, protection, fire-support and air-defense effects without a second hidden strength system.",
         "Shared deployments, stores and losses conserve holdings across simultaneous conflicts and reloads."
-      ]
+      ],
+      "evidence": "../campaign-certification/S11/README.md"
     },
     {
       "id": "S12",
@@ -885,11 +886,11 @@
   "last_completed_session": "S10",
   "next_session": "S11",
   "execution": {
-    "authorized_through": "S10",
-    "stop_boundary": "S10",
-    "status": "stopped",
-    "previous_stop": "S10 gameplay qualification",
-    "instruction": "Continue. Finish S10",
+    "authorized_through": "S11",
+    "stop_boundary": "S11",
+    "status": "running",
+    "previous_stop": "S10 gameplay closure",
+    "instruction": "Next",
     "instruction_date": "2026-09-13",
     "next_session_requires_instruction": true
   },

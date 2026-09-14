@@ -1,6 +1,6 @@
 # Spheres — pathway to a certified campaign
 
-**Approved pathway · 10 September 2026 · S01–S10 complete; S11–S30 planned.**
+**Approved pathway · 10 September 2026 · S01–S10 complete; S11 in progress; S12–S30 planned.**
 
 S10 closes its qualified gameplay scope under the explicit amendment below.
 C01 and worldwide character work remain incomplete; CP1 is not earned.
@@ -63,7 +63,7 @@ deliverables as finished.
 | Marker | Meaning |
 | --- | --- |
 | `S00` | Complete: user approved beginning S01 on 10 September 2026. |
-| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S10 are complete; S11–S30 remain planned. |
+| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S10 are complete; S11 is in progress; S12–S30 remain planned. |
 | `C01`–`C07` | Character-production workstreams, with uniquely numbered country batches below. |
 | `E01`–`E06` | Retained expansion work after the first certified release. |
 | `G0`–`G5` | Evidence gates joining groups of sessions. |
@@ -502,7 +502,7 @@ Evidence and recommendation funding limits: [S09 qualification](campaign-certifi
 The [final gameplay qualification](campaign-certification/S10/final/README.md)
 records the exact candidate, scope amendment and checks supporting G2.
 C01 remains open and feeds the required C06/S23 content gates. Execution
-stops after S10; S11 is planned.
+stopped after S10. The subsequent “Next” instruction authorizes S11.
 
 ##### Historical increment records
 
@@ -584,7 +584,9 @@ stopped after S10.h.
 
 #### S11 — Finish the ground equipment-to-operation loop
 
-**Status:** Planned · **Requires:** S05, S09
+**Status:** In progress · **Requires:** S05, S09
+
+The [S11 work record](campaign-certification/S11/README.md) tracks implementation and qualification. S12 remains planned.
 
 **Completion marker:** Procured ground equipment produces understandable capability and losses in the integrated operations model.
 

@@ -169,10 +169,13 @@ pub(crate) fn plan_ammunition(
         if vehicles == 0.0 {
             continue;
         }
+        // Physical holdings keep their place in the national reference even
+        // while unsupported. Only serviceable vehicles demand or fire rounds;
+        // this is the same age/maintenance contribution used by operations.
+        let supported =
+            crate::arsenal::combat_value(n, h) / revision.profile.reference_weight_bn;
         let air_defense = revision.spec.platform == "ground_air_defense";
         let exposure: f64 = if let Some(aviation) = &revision.profile.aviation {
-            let supported =
-                crate::arsenal::combat_value(n, h) / revision.profile.reference_weight_bn;
             let share = deployments
                 .iter()
                 .filter(|d| !d.ground)
@@ -183,13 +186,13 @@ pub(crate) fn plan_ammunition(
                 * aviation.stores_per_sortie
                 * share
         } else if ground_active {
-            deployments
+            supported / vehicles * deployments
                 .iter()
                 .filter(|d| d.ground)
                 .map(|d| {
                     d.deployed_share * d.intensity * if air_defense { d.air_exposure } else { 1.0 }
                 })
-                .sum()
+                .sum::<f64>()
         } else {
             0.0
         };
@@ -259,6 +262,23 @@ pub struct GroundAmmoEffects {
     pub physical_dry: bool,
 }
 
+// Operations' role cap describes the composition of serviceable land stock.
+// Converting it to a physical firing contribution requires the *same whole-land*
+// readiness ratio, not a second condition penalty on the specialist cohort.
+fn ground_support_fraction(n: &Nation) -> f64 {
+    let mut physical = 0.0;
+    let mut supported = 0.0;
+    for h in &n.arsenal.held {
+        let Some(def) = crate::arsenal::DECK.get(h.kit as usize) else { continue; };
+        if !matches!(def.class, crate::arsenal::Class::Armour | crate::arsenal::Class::Infantry) { continue; }
+        physical += h.design_id.as_deref().and_then(|id| profile(n,id)).map_or(
+            h.units.max(0.0) * def.unit_cost,
+            |p| crate::arsenal::available_design_units(h) as f64 * p.reference_weight_bn);
+        supported += crate::arsenal::combat_value(n,h);
+    }
+    if physical > 0.0 { (supported / physical).clamp(0.0,1.0) } else { 0.0 }
+}
+
 pub(crate) fn ammunition_effects(
     w: &WorldState,
     id: NationId,
@@ -311,15 +331,15 @@ pub(crate) fn ammunition_effects(
             .find(|r| r.family == family)
             .map_or(0.0, |r| r.coverage);
         custom_weight += physical;
+        let service = crate::arsenal::combat_value(n, h);
         // Air-defense weapons intercept only. Their bodies and observation are
         // retained through maneuver_fraction, never as a free offensive gun.
         let anti_air = revision.spec.platform == "ground_air_defense";
-        firing_weight += physical * if anti_air { 0.0 } else { coverage };
+        firing_weight += service * if anti_air { 0.0 } else { coverage };
         if !anti_air {
-            offensive_used += physical * coverage;
+            offensive_used += service * coverage;
         }
         if let Some(roles) = revision.profile.ground_roles {
-            let service = crate::arsenal::combat_value(n, h);
             support_full += service * roles.fire_support;
             support_ready += service * roles.fire_support * coverage;
             defense_full += service * roles.air_defense;
@@ -335,6 +355,7 @@ pub(crate) fn ammunition_effects(
     let fire_fraction = overview.legacy_share * magazine + custom_share * custom_fraction;
     let maneuver_fraction = overview.legacy_share * magazine + custom_share;
     let support = caps.ground_roles.fire_support
+        * ground_support_fraction(n)
         * if support_full > 0.0 {
             (support_ready / support_full).clamp(0.0, 1.0)
         } else {
@@ -342,6 +363,7 @@ pub(crate) fn ammunition_effects(
         };
     let defense = if deployment.air_exposure > 0.0 {
         caps.ground_roles.air_defense
+            * ground_support_fraction(n)
             * if defense_full > 0.0 {
                 (defense_ready / defense_full).clamp(0.0, 1.0)
             } else {
@@ -462,11 +484,11 @@ fn aviation_ammunition_effects(
         } else {
             magazine
         };
+        let service = crate::arsenal::combat_value(n, h);
         if ground_active && revision.spec.platform != "ground_air_defense" {
-            ground_firing += raw * coverage;
+            ground_firing += service * coverage;
         }
         if let Some(roles) = revision.profile.ground_roles {
-            let service = crate::arsenal::combat_value(n, h);
             support_full += service * roles.fire_support;
             support_ready += service * roles.fire_support * coverage;
             defense_full += service * roles.air_defense;
@@ -478,6 +500,7 @@ fn aviation_ammunition_effects(
     let ground_share = (ground_reference / total).clamp(0.0, 1.0);
     let support = caps.ground_roles.fire_support
         * ground_share
+        * ground_support_fraction(n)
         * if support_full > 0.0 {
             (support_ready / support_full).clamp(0.0, 1.0)
         } else {
@@ -486,6 +509,7 @@ fn aviation_ammunition_effects(
     let defense = if deployment.air_exposure > 0.0 {
         caps.ground_roles.air_defense
             * ground_share
+            * ground_support_fraction(n)
             * if defense_full > 0.0 {
                 (defense_ready / defense_full).clamp(0.0, 1.0)
             } else {
@@ -953,3 +977,7 @@ pub(crate) mod ammunition_operation_tests {
         assert_eq!(crate::save(&loaded), crate::save(&w));
     }
 }
+
+#[cfg(test)]
+#[path = "equipment_ground_readiness_tests.rs"]
+mod ground_readiness_tests;

@@ -155,7 +155,7 @@ fn company_refit_rows(w:&WorldState,me:NationId,raw:&Value)->Vec<Value> {
 }
 
 #[cfg(test)]
-mod company_refit_view_tests {
+pub(crate) mod company_refit_view_tests {
     use super::*;
     const ME:NationId=NationId::France;
     const SOURCE:&str="ammo-demo";
@@ -165,7 +165,7 @@ mod company_refit_view_tests {
     fn apply(g:&mut super::super::Game,c:&Value) {
         let parsed=super::super::parse_command(&g.world,c,ME).unwrap();spheres_sim::apply_command(&mut g.world,&parsed).unwrap();
     }
-    fn day(w:&mut WorldState) {
+    pub(crate) fn day(w:&mut WorldState) {
         if w.nation(ME).program_budget.as_ref().unwrap().fiscal_year!=w.year {
             let departments=w.nation(ME).program_budget.as_ref().unwrap().departments;let allocations=w.nation(ME).budget_for(w.year).allocations;
             spheres_sim::apply_command(w,&Command::SetProgramBudget{nation:ME,fiscal_year:w.year,allocations,departments}).unwrap();
@@ -174,7 +174,7 @@ mod company_refit_view_tests {
         let p=w.nation_mut(ME).program_budget.as_mut().unwrap();p.revenue_today_bn=0.0;p.interest_today_bn=0.0;p.fiscal_staged=true;
         spheres_sim::programs::finish_day(w);companies::settle_receivables(w);spheres_sim::clock::advance_date(w);
     }
-    fn ready()->(super::super::Game,u32,u32,String) {
+    pub(crate) fn ready()->(super::super::Game,u32,u32,String) {
         // Synthetic source vehicles, cash, raw materials and one factory make
         // the interface fixture explicit. The target license is actually earned
         // through a reviewed development command and daily company work.

@@ -35,6 +35,7 @@ mod s05_save_matrix_tests;
 #[cfg(test)]
 mod s05_campaign_api_tests;
 mod equipment_view;
+mod operations_view;
 mod government_view;
 mod fiscal_recovery_view;
 mod money_commitments;
@@ -57,6 +58,8 @@ mod s10_government_tests;
 mod s10_decision_tests;
 #[cfg(test)]
 mod s10d_inbox_fixture_tests;
+#[cfg(test)]
+mod s11_fixture_tests;
 #[cfg(test)]
 mod performance;
 #[cfg(test)]
@@ -5647,7 +5650,7 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         "dead": dead,
         "wars": wars,
         "operations": w.player.filter(|id| w.nation_opt(*id).is_some_and(|n| n.alive))
-            .map(|id| spheres_sim::operations::view(w, id)),
+            .map(|id| operations_view::view(w, id)),
         "warfare_adoption":w.player.filter(|id|w.nation_opt(*id).is_some_and(|n|n.alive)).map(|id|warfare_adoption_json(w,id)),
         // The sim's held/contested threshold for per-district front control,
         // served so the browser never re-derives it (its literal is only a

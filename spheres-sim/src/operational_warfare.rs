@@ -23,12 +23,22 @@ pub fn enable(w:&mut WorldState)->Result<(),String> {
     if !clock::is_daily(w)||!w.rules.military_operations||w.rules.operational_warfare>1 {
         return Err("Operational warfare requires supported daily military operations.".into());
     }
+    crate::equipment::validate_ground_operations_receipts(w)?;
     if w.rules.operational_warfare==1 {return validate(w);}
     if !w.campaign.is_empty()||!w.campaign_supply.is_empty()||!w.campaign_peace.is_empty() {
         return Err("Undeclared operational property must be migrated before enabling this campaign.".into());
     }
     let mut staged=w.clone();staged.rules.operational_warfare=1;
-    campaign::enroll(&mut staged);validate(&staged)?;*w=staged;Ok(())
+    // Legacy national operations can retain a loss receipt after its conflict
+    // ends. Reserve those validated identities once during explicit adoption;
+    // they do not count as active wars eligible for front migration. General
+    // high-water discovery must not let a forged enabled receipt validate itself.
+    staged.campaign.conflict_id_high_water=w.nations.iter()
+        .filter_map(|n|n.equipment.as_ref().and_then(|s|s.ground_operations_receipt.as_ref()))
+        .flat_map(|r|r.conflicts.iter().copied()).max().unwrap_or(0);
+    campaign::enroll(&mut staged);
+    crate::equipment::validate_ground_operations_receipts(&staged)?;
+    validate(&staged)?;*w=staged;Ok(())
 }
 pub fn validate(w:&WorldState)->Result<(),String> {
     if has_state(w)&&!campaign::enabled(w) {

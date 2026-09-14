@@ -130,6 +130,7 @@ pub const COMPONENTS: &[ComponentDef] = &[
 
 include!("equipment_specs.rs");
 include!("equipment_ground.rs");
+include!("equipment_ground_receipt.rs");
 include!("equipment_aviation.rs");
 include!("equipment_supply.rs");
 include!("equipment_service.rs");
@@ -312,6 +313,8 @@ pub struct EquipmentState {
     pub supply_automation: Option<EquipmentSupplyAutomation>,
     #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
     pub company_refits: BTreeMap<u32, CompanyRefitClaim>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub ground_operations_receipt: Option<GroundOperationsReceipt>,
 }
 impl Default for EquipmentState {
     fn default() -> Self {
@@ -340,6 +343,7 @@ impl Default for EquipmentState {
             ammunition_reserves: BTreeMap::new(),
             supply_automation: None,
             company_refits: BTreeMap::new(),
+            ground_operations_receipt: None,
         }
     }
 }
@@ -520,7 +524,7 @@ pub(crate) fn actor_refusal(w: &WorldState, id: NationId) -> Option<String> {
     if !crate::economic_ai::may_direct(w, id) {
         return Some("You cannot direct this government's equipment programme.".into());
     }
-    None
+    validate_ground_operations_receipt_on(w, w.nation(id)).err()
 }
 pub(crate) fn name_refusal(name: &str) -> Option<String> {
     (name.trim().is_empty() || name.chars().count() > 80 || name.chars().any(char::is_control))
@@ -1537,6 +1541,7 @@ pub fn validate_state(n: &Nation) -> Result<(), String> {
     validate_ammunition(n)?;
     validate_ammunition_reserves(n)?;
     validate_supply_automation(n)?;
+    validate_ground_operations_receipt(n)?;
     if s.revisions.len() > MAX_REVISIONS
         || s.projects.len() > MAX_PROJECTS
         || s.drafts.len() > MAX_REVISIONS

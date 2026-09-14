@@ -355,13 +355,16 @@ impl Snapshot {
     /// Apply each nation's force and inventory debit once after every theatre
     /// has resolved against the same opening deployment and equipment snapshot.
     pub fn settle(self, w: &mut WorldState) {
+        let day = crate::clock::absolute_day(w);
         for (id, plan) in &self.ammunition { crate::equipment::settle_ammunition(w, *id, plan); }
         for (id, opening) in self.strength {
             let mut loss = 0.0;
             let mut material = [0.0; 6];
             let mut aircraft_material = BTreeMap::<String, f64>::new();
+            let mut ground_conflicts = Vec::new();
             for ((_, cid), (amount, rung, force)) in self.losses.range((id,0)..=(id,u32::MAX)) {
                 loss += force;
+                if *rung != 6 && *amount > 0.0 { ground_conflicts.push(*cid); }
                 // Half of force casualties represent irrecoverable materiel;
                 // the rest are personnel/damage already represented by force
                 // regeneration. Space stocks are not destroyed in land combat.
@@ -384,6 +387,8 @@ impl Snapshot {
             let n = w.nation_mut(id);
             n.mil_strength = (opening - loss).max(0.0);
             if let Some(m) = self.magazines.get(&id) { n.munitions = *m; }
+            let ground_opening = if ground_conflicts.is_empty() { Vec::new() }
+                else { crate::equipment::ground_operations_opening(n) };
             let equipment = n.equipment.as_ref();
             for h in &mut n.arsenal.held {
                 if let Some(design) = h.design_id.as_deref().filter(|design| equipment
@@ -395,6 +400,7 @@ impl Snapshot {
                 }
                 if let Some(d) = arsenal::DECK.get(h.kit as usize) { arsenal::apply_holding_loss(h, material[class_index(d.class)]); }
             }
+            crate::equipment::settle_ground_operations_receipt(n, day, ground_conflicts, ground_opening);
         }
     }
 }

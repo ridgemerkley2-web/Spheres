@@ -1737,6 +1737,7 @@ pub fn load(s: &str) -> Result<WorldState, String> {
             }
         }
     }
+    equipment::validate_ground_operations_receipts(&w)?;
     companies::validate_state(&w)?;
     supplier_catalogue::validate(&w)?;
     // This one documented upgrade expands only the old empty Japanese

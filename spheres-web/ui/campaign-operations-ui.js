@@ -52,7 +52,7 @@
       <dl class="campaign-metrics">
         ${metric("Readiness", percent(view.readiness), "Cohesion and fatigue")}
         ${metric("Supply coverage", percent(supply.coverage), supply.eta_days == null ? "Delivery time unknown" : `Next delivery: ${supply.eta_days} day${supply.eta_days === 1 ? "" : "s"}`)}
-        ${metric("Fielded force", number(view.fielded), "Force points")}
+        ${metric("Arrived in theatre", number(view.fielded), "Force points in assigned sectors")}
         ${metric("National reserve", number(view.reserve), "Shared across theatres")}
       </dl>
       <p class="campaign-caption campaign-force-detail">This theatre: ${esc(number(view.in_transit))} in transit · ${esc(number(view.garrison))} on garrison duty.</p>
