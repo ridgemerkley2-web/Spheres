@@ -14,12 +14,14 @@ pub const MAX_ORDERS: usize = 8192;
 pub enum MissionKind {
     SupportArmy,
     StrikeTarget,
+    DefendSkies,
 }
 impl MissionKind {
     pub fn name(self) -> &'static str {
         match self {
             Self::SupportArmy => "Support army",
             Self::StrikeTarget => "Strike target",
+            Self::DefendSkies => "Defend skies",
         }
     }
 }
@@ -43,6 +45,18 @@ pub struct MissionReport {
     pub aircraft_lost: u32,
     pub applied_power: f64,
     pub contacted: bool,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub defense: Option<AirDefenseEffect>,
+}
+/// Air and ground defenses share one physical loss settlement. These are
+/// expected losses of this flight, never additional whole-aircraft kill claims.
+#[derive(Clone, Debug, Default, Serialize, Deserialize, PartialEq)]
+#[serde(deny_unknown_fields)]
+pub struct AirDefenseEffect {
+    pub opposing_missions: u32,
+    pub prevented_power: f64,
+    pub air_combat_expected_loss: f64,
+    pub ground_defense_expected_loss: f64,
 }
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
@@ -79,6 +93,8 @@ pub struct MissionPlan {
     pub service_days: u8,
     pub contacted: bool,
     pub applied_power: f64,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub defense: Option<AirDefenseEffect>,
 }
 #[derive(Clone, Debug, Default, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
@@ -159,7 +175,13 @@ fn target_reason(
         .get(target)
         .map_or(if *base_a { 1.0 } else { -1.0 }, |v| *v as f64);
     let side = c.side_of(id).unwrap_or(false);
-    if (side && h >= front::HELD_BAND) || (!side && h <= -front::HELD_BAND) {
+    if kind == MissionKind::DefendSkies {
+        if (side && h <= -front::HELD_BAND) || (!side && h >= front::HELD_BAND) {
+            return Some(
+                "Choose a friendly-held or contested province to protect in this conflict.".into(),
+            );
+        }
+    } else if (side && h >= front::HELD_BAND) || (!side && h <= -front::HELD_BAND) {
         return Some("Choose an enemy-held or contested province; friendly territory is not a strike target.".into());
     }
     if kind == MissionKind::SupportArmy
@@ -232,7 +254,15 @@ fn quote_inner(
 ) -> MissionQuote {
     let mut q=MissionQuote{valid:false,reason:None,aircraft:0,distance_km:0.0,radius_km:0.0,family:String::new(),stores_required:0.0,stores_available:0.0,sorties:0.0,force_share:0.0,launch_day:clock::absolute_day(w).saturating_add(1),detail:"One next-day mission. Aircraft remain national property; this order reserves the squadron until launch or cancellation. All fronts share finite force allocation and compatible stores. Partial store coverage reduces competing sorties proportionally. Return flight is included in the radius; survivors need funded service before flying again. Rates are modeled game values.".into()};
     let result = (|| -> Result<(), String> {
-        if let Some(r) = equipment::actor_refusal(w, id) {
+        let unavailable = if check_busy {
+            equipment::actor_refusal(w, id)
+        } else {
+            // Issuing an order requires current command authority. An already
+            // authorized saved order launches for its own country after a
+            // player switch as long as its physical conditions still hold.
+            equipment::operational_refusal(w, id)
+        };
+        if let Some(r) = unavailable {
             return Err(r);
         }
         if !crate::campaign::enabled(w) {
@@ -268,6 +298,14 @@ fn quote_inner(
         q.distance_km = airbases::target_in_range(w, id, s, target)?;
         let n = w.nation(id);
         let r = &n.equipment.as_ref().unwrap().revisions[&s.revision];
+        let fighter = r.spec.platform == "air_fighter";
+        if (kind == MissionKind::DefendSkies) != fighter {
+            return Err(if fighter {
+                "This fighter is equipped for Defend skies. Assign an attack aircraft for Support army or Strike target."
+            } else {
+                "Defend skies needs a delivered fighter model with air-to-air missiles. Attack aircraft cannot intercept."
+            }.into());
+        }
         q.radius_km = airbases::range_km(&r.spec);
         let a = r
             .profile
@@ -275,6 +313,9 @@ fn quote_inner(
             .as_ref()
             .ok_or("This revision is not an aircraft.")?;
         q.family = a.store_family.clone();
+        if kind == MissionKind::DefendSkies {
+            q.detail = "One next-day patrol over this province. Paid fighters share finite missiles across all missions and reduce incoming Support army and Strike target missions here. Ground air defense remains separate. Each aircraft can be lost only once. A quiet patrol still consumes its reviewed stores and requires funded service. Return flight is included in the radius. Rates are modeled game values.".into();
+        }
         q.force_share = operations::nominal_share(w, id, conflict);
         if q.force_share <= EPS {
             return Err("Allocate national force to this conflict before flying a mission.".into());
@@ -386,6 +427,7 @@ fn empty_report(day: i32, summary: &str) -> MissionReport {
         aircraft_lost: 0,
         applied_power: 0.0,
         contacted: false,
+        defense: None,
     }
 }
 fn reference(n: &crate::world::Nation) -> f64 {
@@ -407,6 +449,13 @@ fn reference(n: &crate::world::Nation) -> f64 {
         })
         .sum::<f64>()
         .max(EPS)
+}
+fn mission_factor(a: &equipment::AviationProfile, kind: MissionKind) -> f64 {
+    if kind == MissionKind::DefendSkies {
+        a.intercept_factor
+    } else {
+        a.strike_factor
+    }
 }
 /// Freeze eligibility before either side consumes ammunition or loses force.
 pub(crate) fn prepare(w: &mut WorldState) {
@@ -454,7 +503,7 @@ pub(crate) fn prepare(w: &mut WorldState) {
             * r.profile.reference_weight_bn
             / reference(n)
             * ready
-            * a.strike_factor;
+            * mission_factor(a, o.kind);
         plans.push(MissionPlan {
             order: o.id,
             nation: o.nation,
@@ -474,6 +523,7 @@ pub(crate) fn prepare(w: &mut WorldState) {
             service_days: if b.support_level >= 1 { 1 } else { 2 },
             contacted: false,
             applied_power: 0.0,
+            defense: None,
         });
     }
     plans.sort_by_key(|p| p.order);
@@ -520,7 +570,7 @@ pub(crate) fn requirements(w: &WorldState, id: NationId) -> BTreeMap<String, f64
 }
 pub(crate) fn exposure(w: &WorldState, id: NationId, conflict: u32) -> f64 {
     active_plans(w)
-        .filter(|p| p.nation == id && p.conflict == conflict)
+        .filter(|p| p.nation == id && p.conflict == conflict && p.kind != MissionKind::DefendSkies)
         .map(|p| p.power * p.coverage)
         .sum()
 }
@@ -530,15 +580,87 @@ pub(crate) fn targets(w: &WorldState, conflict: u32) -> Vec<String> {
         .map(|p| p.target.clone())
         .collect()
 }
+/// Resolve each defended area from the immutable opening launch plans. All
+/// defenders share all opposing strike flights proportionally; looping over
+/// squadrons never grants another copy of a target or its available aircraft.
+fn interceptions(w: &WorldState, c: &Conflict, target: &str) -> BTreeMap<u32, AirDefenseEffect> {
+    let plans: Vec<_> = active_plans(w)
+        .filter(|p| p.conflict == c.id && p.target == target)
+        .collect();
+    let mut effects = BTreeMap::new();
+    for side in [true, false] {
+        let defenders: Vec<_> = plans
+            .iter()
+            .copied()
+            .filter(|p| p.kind == MissionKind::DefendSkies && c.side_of(p.nation) == Some(side))
+            .collect();
+        let attackers: Vec<_> = plans
+            .iter()
+            .copied()
+            .filter(|p| p.kind != MissionKind::DefendSkies && c.side_of(p.nation) == Some(!side))
+            .collect();
+        let defense: f64 = defenders.iter().map(|p| p.power * p.coverage).sum();
+        let attack: f64 = attackers.iter().map(|p| p.power * p.coverage).sum();
+        let suppression = if defense > EPS && attack > EPS {
+            (0.85 * defense / (defense + attack)).clamp(0.0, 0.85)
+        } else {
+            0.0
+        };
+        for p in defenders {
+            let share = p.power * p.coverage / defense.max(EPS);
+            let launched = (p.sorties * p.coverage).min(p.aircraft as f64);
+            effects.insert(
+                p.order,
+                AirDefenseEffect {
+                    opposing_missions: attackers.len() as u32,
+                    prevented_power: attack * suppression * share,
+                    air_combat_expected_loss: if attack > EPS {
+                        launched * 0.08 * attack / (defense + attack).max(EPS)
+                    } else {
+                        0.0
+                    },
+                    ground_defense_expected_loss: 0.0,
+                },
+            );
+        }
+        if defense > EPS {
+            for p in attackers {
+                let launched = (p.sorties * p.coverage).min(p.aircraft as f64);
+                effects.insert(
+                    p.order,
+                    AirDefenseEffect {
+                        opposing_missions: plans
+                            .iter()
+                            .filter(|p| {
+                                p.kind == MissionKind::DefendSkies
+                                    && c.side_of(p.nation) == Some(side)
+                            })
+                            .count() as u32,
+                        prevented_power: p.power * p.coverage * suppression,
+                        air_combat_expected_loss: launched * 0.12 * suppression,
+                        ground_defense_expected_loss: 0.0,
+                    },
+                );
+            }
+        }
+    }
+    effects
+}
 /// The distinct aircraft, shared allocation, age, upkeep and family coverage
 /// are already included. No separate copy per ground sector or target.
 pub(crate) fn fire(w: &WorldState, c: &Conflict, target: &str, side: bool) -> (f64, f64) {
     let mut strike = 0.0;
     let mut support = 0.0;
-    for p in active_plans(w)
-        .filter(|p| p.conflict == c.id && p.target == target && c.side_of(p.nation) == Some(side))
-    {
-        let v = p.power * p.coverage;
+    let intercepted = interceptions(w, c, target);
+    for p in active_plans(w).filter(|p| {
+        p.conflict == c.id
+            && p.target == target
+            && c.side_of(p.nation) == Some(side)
+            && p.kind != MissionKind::DefendSkies
+    }) {
+        let v = (p.power * p.coverage
+            - intercepted.get(&p.order).map_or(0.0, |e| e.prevented_power))
+        .max(0.0);
         strike += v;
         if p.kind == MissionKind::SupportArmy {
             support += v;
@@ -555,6 +677,7 @@ pub(crate) fn record_contact(
     opposing: &[(NationId, f64)],
 ) {
     let day = clock::absolute_day(w);
+    let intercepted = interceptions(w, c, target);
     let protection: BTreeMap<String, u8> = w
         .airbases
         .iter()
@@ -572,15 +695,34 @@ pub(crate) fn record_contact(
         .iter_mut()
         .filter(|p| p.conflict == c.id && p.target == target)
     {
+        // Assignment, rather than addition, also makes repeated contact
+        // inspection harmless before the single physical settlement.
+        p.defense = intercepted.get(&p.order).cloned();
+        p.contacted = false;
+        p.applied_power = 0.0;
+        p.expected_loss = 0.0;
+        if p.kind == MissionKind::DefendSkies {
+            if let Some(e) = &p.defense {
+                p.contacted = e.opposing_missions > 0;
+                p.applied_power = e.prevented_power;
+                p.expected_loss = e.air_combat_expected_loss.min(p.aircraft as f64);
+            }
+            continue;
+        }
         let enemies: Vec<_> = opposing
             .iter()
             .filter(|(id, _)| c.side_of(*id) != c.side_of(p.nation))
             .collect();
-        if enemies.is_empty() {
-            continue;
+        let air_loss = p
+            .defense
+            .as_ref()
+            .map_or(0.0, |e| e.air_combat_expected_loss);
+        let prevented = p.defense.as_ref().map_or(0.0, |e| e.prevented_power);
+        p.contacted =
+            !enemies.is_empty() || p.defense.as_ref().is_some_and(|e| e.opposing_missions > 0);
+        if !enemies.is_empty() {
+            p.applied_power = (p.power * p.coverage - prevented).max(0.0);
         }
-        p.contacted = true;
-        p.applied_power = p.power * p.coverage;
         let defense = enemies
             .iter()
             .map(|(_, v)| *v)
@@ -588,7 +730,15 @@ pub(crate) fn record_contact(
             .clamp(0.0, 0.7);
         let launched = (p.sorties * p.coverage).min(p.aircraft as f64);
         let protect = 1.0 - 0.08 * protection.get(&p.base).copied().unwrap_or(0).min(5) as f64;
-        p.expected_loss = (launched * (0.003 + 0.06 * defense) * protect).min(p.aircraft as f64);
+        let ground_loss = if enemies.is_empty() {
+            0.0
+        } else {
+            (launched - air_loss).max(0.0) * (0.003 + 0.06 * defense) * protect
+        };
+        if let Some(e) = &mut p.defense {
+            e.ground_defense_expected_loss = ground_loss;
+        }
+        p.expected_loss = (air_loss + ground_loss).min(p.aircraft as f64);
     }
 }
 /// After the shared ammunition and ground-equipment settlement.
@@ -658,7 +808,30 @@ pub(crate) fn settle(w: &mut WorldState) {
             }
         }
         aviation::reconcile(n);
-        reports.push((p.order,MissionStatus::Flown,MissionReport{day,summary:format!("{} at {}: {:.2} sortie equivalents, {:.2} {} stores, {} aircraft lost. {} Survivors need {} funded service day(s).",p.kind.name(),p.target,p.sorties*p.coverage,p.required*p.coverage,p.family,lost,if p.contacted{"Applied to the campaign contact; ground battle results remain in Operations."}else{"No opposing formation remained in contact; no target effect was applied."},p.service_days),aircraft:p.aircraft,sorties:p.sorties*p.coverage,family:p.family,stores_used:p.required*p.coverage,aircraft_lost:lost,applied_power:p.applied_power,contacted:p.contacted}));
+        let outcome = if p.kind == MissionKind::DefendSkies {
+            if p.contacted {
+                "Intercepted hostile aircraft; the prevented strike power is recorded below."
+            } else {
+                "Patrol completed without hostile aircraft in this area. No ground attack was made."
+            }
+        } else if p.contacted {
+            if p.defense.is_some() {
+                "Resolved against the campaign contact and defending fighters; ground battle results remain in Operations."
+            } else {
+                "Applied to the campaign contact; ground battle results remain in Operations."
+            }
+        } else {
+            "No opposing formation remained in contact; no target effect was applied."
+        };
+        reports.push((p.order, MissionStatus::Flown, MissionReport {
+            day,
+            summary: format!("{} at {}: {:.2} sortie equivalents, {:.2} {} stores, {} aircraft lost. {} Survivors need {} funded service day(s).",
+                p.kind.name(), p.target, p.sorties * p.coverage, p.required * p.coverage,
+                p.family, lost, outcome, p.service_days),
+            aircraft: p.aircraft, sorties: p.sorties * p.coverage, family: p.family,
+            stores_used: p.required * p.coverage, aircraft_lost: lost,
+            applied_power: p.applied_power, contacted: p.contacted, defense: p.defense,
+        }));
     }
     let s = w.air_missions.as_mut().unwrap();
     s.settled_day = Some(day);
@@ -719,7 +892,11 @@ pub fn validate(w: &WorldState) -> Result<(), String> {
                     && (r.aircraft != 0
                         || r.stores_used != 0.0
                         || r.aircraft_lost != 0
-                        || r.applied_power != 0.0))
+                        || r.applied_power != 0.0
+                        || r.defense.is_some()))
+                || r.defense
+                    .as_ref()
+                    .is_some_and(|e| !valid_defense_effect(e, r.aircraft, r.contacted))
             {
                 return Err(fail());
             }
@@ -731,7 +908,12 @@ pub fn validate(w: &WorldState) -> Result<(), String> {
         {
             if r.day < o.launch_day
                 || r.aircraft == 0
-                || !matches!(r.family.as_str(), "air_bomb_unguided" | "air_bomb_guided")
+                || !matches!(
+                    r.family.as_str(),
+                    "air_bomb_unguided" | "air_bomb_guided" | "air_missile_short_range"
+                )
+                || ((o.kind == MissionKind::DefendSkies) != (r.family == "air_missile_short_range"))
+                || (o.kind == MissionKind::DefendSkies && r.contacted && r.defense.is_none())
                 || r.sorties <= 0.0
                 || r.stores_used <= 0.0
                 || (!r.contacted && r.applied_power != 0.0)
@@ -742,7 +924,13 @@ pub fn validate(w: &WorldState) -> Result<(), String> {
         }
     }
     let mut plans = BTreeSet::new();
-    if s.orders.iter().any(|o|o.status==MissionStatus::Queued&&s.prepared_day.is_some_and(|d|o.launch_day<=d)&&!s.plans.iter().any(|p|p.order==o.id)){return Err(fail());}
+    if s.orders.iter().any(|o| {
+        o.status == MissionStatus::Queued
+            && s.prepared_day.is_some_and(|d| o.launch_day <= d)
+            && !s.plans.iter().any(|p| p.order == o.id)
+    }) {
+        return Err(fail());
+    }
     let mut family_requirements = BTreeMap::<(NationId, String), f64>::new();
     for p in &s.plans {
         *family_requirements
@@ -776,6 +964,17 @@ pub fn validate(w: &WorldState) -> Result<(), String> {
             || p.applied_power > p.power * p.coverage + EPS
             || (!p.contacted && (p.applied_power != 0.0 || p.expected_loss != 0.0))
             || equipment::ammo_def(&p.family).is_none()
+            || p.defense.as_ref().is_some_and(|e| {
+                !valid_defense_effect(e, p.aircraft, p.contacted)
+                    || (e.air_combat_expected_loss + e.ground_defense_expected_loss
+                        - p.expected_loss)
+                        .abs()
+                        > EPS
+                    || e.prevented_power > p.power * p.coverage + EPS
+                    || (p.kind == MissionKind::DefendSkies
+                        && (e.ground_defense_expected_loss != 0.0
+                            || (p.applied_power - e.prevented_power).abs() > EPS))
+            })
         {
             return Err(fail());
         }
@@ -791,6 +990,7 @@ pub fn validate(w: &WorldState) -> Result<(), String> {
             return Err(fail());
         };
         if a.store_family != p.family
+            || ((p.kind == MissionKind::DefendSkies) != (revision.spec.platform == "air_fighter"))
             || (p.required - p.sorties * a.stores_per_sortie).abs() > EPS
             || airbases::base(w, &p.base).is_none()
             || p.required <= 0.0
@@ -815,6 +1015,7 @@ pub fn validate(w: &WorldState) -> Result<(), String> {
                 || p.contacted
                 || p.applied_power != 0.0
                 || p.expected_loss != 0.0
+                || p.defense.is_some()
                 || (p.coverage - coverage).abs() > EPS
                 || stores
                     .last_consumption
@@ -844,7 +1045,7 @@ pub fn validate(w: &WorldState) -> Result<(), String> {
                 * revision.profile.reference_weight_bn
                 / reference(w.nation(p.nation))
                 * service_fraction(w, p.nation, &p.revision)
-                * a.strike_factor;
+                * mission_factor(a, p.kind);
             if !q.valid
                 || (p.required - q.stores_required).abs() > EPS
                 || (p.sorties - q.sorties).abs() > EPS
@@ -861,6 +1062,7 @@ pub fn validate(w: &WorldState) -> Result<(), String> {
                 || (r.stores_used - p.required * p.coverage).abs() > EPS
                 || r.contacted != p.contacted
                 || r.applied_power != p.applied_power
+                || r.defense != p.defense
             {
                 return Err(fail());
             }
@@ -882,6 +1084,30 @@ pub fn validate(w: &WorldState) -> Result<(), String> {
     Ok(())
 }
 
+fn valid_defense_effect(e: &AirDefenseEffect, aircraft: u32, contacted: bool) -> bool {
+    let finite = [
+        e.prevented_power,
+        e.air_combat_expected_loss,
+        e.ground_defense_expected_loss,
+    ]
+    .iter()
+    .all(|v| v.is_finite() && *v >= 0.0);
+    finite
+        && e.opposing_missions as usize <= MAX_ORDERS
+        && e.air_combat_expected_loss + e.ground_defense_expected_loss <= aircraft as f64 + EPS
+        && (contacted
+            || (e.opposing_missions == 0
+                && e.prevented_power == 0.0
+                && e.air_combat_expected_loss == 0.0
+                && e.ground_defense_expected_loss == 0.0))
+        && (e.opposing_missions > 0
+            || (e.prevented_power == 0.0 && e.air_combat_expected_loss == 0.0))
+}
+
 #[cfg(test)]
 #[path = "airmissions_tests.rs"]
 mod tests;
+
+#[cfg(test)]
+#[path = "airmissions_defense_tests.rs"]
+mod defense_tests;

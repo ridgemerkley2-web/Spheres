@@ -51,12 +51,20 @@ function components(src, origin) {
   return [...src.matchAll(/component!\("([^"]+)","([^"]+)","([^"]+)"/g)]
     .map(([, id, name, slot]) => ({ id, name, slot, origin }));
 }
-const AVIATION_COMPONENTS = components(aviationSrc, "equipment_aviation.rs");
-const CATALOGUE = [...components(specsSrc, "equipment_specs.rs"), ...components(groundSrc, "equipment_ground.rs"), ...AVIATION_COMPONENTS];
+function aviationCatalogue(name, expected) {
+  const body = new RegExp(`pub const ${name}: &\\[ComponentDef\\] = &\\[([^]*?)\\];`).exec(aviationSrc);
+  if (!body) throw new Error(`cannot read ${name}`);
+  const found = components(body[1], "equipment_aviation.rs");
+  if (found.length !== expected) throw new Error(`${name} changed: found ${found.length} components; review its coverage derivation`);
+  return found;
+}
+const AVIATION_COMPONENTS = aviationCatalogue("AVIATION_COMPONENTS", 18);
+const FIGHTER_COMPONENTS = aviationCatalogue("FIGHTER_COMPONENTS", 9);
+const CATALOGUE = [...components(specsSrc, "equipment_specs.rs"), ...components(groundSrc, "equipment_ground.rs"), ...AVIATION_COMPONENTS, ...FIGHTER_COMPONENTS];
 const BY_ID = new Map(CATALOGUE.map(c => [c.id, c]));
 if (CATALOGUE.length < 60) throw new Error(`the catalogue scrape found only ${CATALOGUE.length} components`);
 if (BY_ID.size !== CATALOGUE.length) throw new Error("the catalogue contains duplicate component IDs");
-if (AVIATION_COMPONENTS.length !== 18) throw new Error(`aviation catalogue changed: found ${AVIATION_COMPONENTS.length} components; review its coverage derivation`);
+if (components(aviationSrc, "").length !== AVIATION_COMPONENTS.length + FIGHTER_COMPONENTS.length) throw new Error("an aircraft component catalogue is missing from the coverage derivation");
 
 // ---------------------------------------------------------------------------
 // The default specification of every platform, from the Rust that builds it
@@ -85,17 +93,25 @@ const GROUND_PLATFORMS = ["ground_ifv", "ground_apc", "ground_recon", "ground_ar
 const aviationPlatformsBody = /pub fn is_aviation_platform\([^]*?matches!\(platform,([^]*?)\)/.exec(aviationSrc);
 if (!aviationPlatformsBody) throw new Error("cannot read aviation platform identities");
 const AVIATION_PLATFORMS = [...aviationPlatformsBody[1].matchAll(/"(air_[a-z_]+)"/g)].map(m => m[1]);
-if (AVIATION_PLATFORMS.length !== 2) throw new Error("aviation platform set changed; review coverage derivation");
+const fighterPlatform = /pub fn is_fighter_platform\([^]*?platform == "(air_[a-z_]+)"/.exec(aviationSrc);
+if (!fighterPlatform || !AVIATION_PLATFORMS.includes(fighterPlatform[1])) throw new Error("cannot read fighter platform identity");
+const FIGHTER_PLATFORM = fighterPlatform[1];
+const ATTACK_PLATFORMS = AVIATION_PLATFORMS.filter(p => p !== FIGHTER_PLATFORM);
+if (AVIATION_PLATFORMS.length !== 3 || ATTACK_PLATFORMS.length !== 2) throw new Error("aviation platform set changed; review coverage derivation");
 const PLATFORMS = [...TANK_PLATFORMS, ...GROUND_PLATFORMS, ...AVIATION_PLATFORMS];
 const isGround = platform => GROUND_PLATFORMS.includes(platform);
 const isAviation = platform => AVIATION_PLATFORMS.includes(platform);
 const aviationDefaultBody = aviationSrc.slice(aviationSrc.indexOf("pub fn aviation_default_spec"), aviationSrc.indexOf("pub fn aviation_component_compatible"));
 const strikePlatform = /let strike = platform == "([a-z_]+)"/.exec(aviationDefaultBody);
 if (!strikePlatform) throw new Error("cannot read aircraft default condition");
+const fighterDefaultBody = aviationDefaultBody.slice(0, strikePlatform.index);
+if (!fighterDefaultBody.includes("if is_fighter_platform(platform)")) throw new Error("cannot read fighter default branch");
+const attackDefaultBody = aviationDefaultBody.slice(strikePlatform.index);
 
 function defaultSpec(platform) {
   if (isAviation(platform)) {
-    const resolved = aviationDefaultBody.replace(/\(\s*"([a-z_]+)"\s*,\s*if strike\s*\{\s*"([a-z_]+)"\s*\}\s*else\s*\{\s*"([a-z_]+)"\s*\}\s*,?\s*\)/g,
+    if (platform === FIGHTER_PLATFORM) return new Map(pairs(fighterDefaultBody));
+    const resolved = attackDefaultBody.replace(/\(\s*"([a-z_]+)"\s*,\s*if strike\s*\{\s*"([a-z_]+)"\s*\}\s*else\s*\{\s*"([a-z_]+)"\s*\}\s*,?\s*\)/g,
       (_, slot, strike, light) => `("${slot}","${platform === strikePlatform[1] ? strike : light}")`);
     return new Map(pairs(resolved));
   }
@@ -192,10 +208,17 @@ const allow = (platform, slot, id) => {
   const exclusion = /platform != "([a-z_]+)"\s*\|\| !matches!\(\s*c\.id,([^]*?)\)/.exec(compatible);
   if (!exclusion) throw new Error("cannot read aircraft installation exclusion list");
   const banned = new Set(idsIn(exclusion[2]));
-  for (const platform of AVIATION_PLATFORMS) for (const c of AVIATION_COMPONENTS) {
+  for (const platform of ATTACK_PLATFORMS) for (const c of AVIATION_COMPONENTS) {
     if (platform === exclusion[1] && banned.has(c.id)) continue;
     allow(platform, c.slot, c.id);
   }
+  const fighterBranch = compatible.slice(0, compatible.indexOf("is_aviation_platform(platform)"));
+  if (!fighterBranch.includes("if is_fighter_platform(platform)") || !fighterBranch.includes("FIGHTER_COMPONENTS.iter().any(|x| x.id == c.id)")) throw new Error("fighter compatibility ownership changed");
+  const shared = /matches!\(\s*c\.id,([^]*?)\)/.exec(fighterBranch);
+  if (!shared) throw new Error("cannot read shared fighter installations");
+  const sharedIds = idsIn(shared[1]);
+  if (sharedIds.length !== 4 || sharedIds.some(id => !AVIATION_COMPONENTS.some(c => c.id === id))) throw new Error("fighter shared-installation set changed; review coverage derivation");
+  for (const c of [...FIGHTER_COMPONENTS, ...sharedIds.map(id => BY_ID.get(id))]) allow(FIGHTER_PLATFORM, c.slot, c.id);
 }
 // Guard the derivation: every platform's own default must be legal on it, and
 // no slot the platform carries may end up with nothing to choose from.
@@ -406,11 +429,13 @@ under \`component_compatible\`, selected one slot at a time against that platfor
 own \`default_spec\`. Paired weapon/mount/payload validity is a separate gate in the
 simulation and is deliberately not applied here: changing more than one slot would
 make it impossible to say which component caused the change in the mesh.
-The sweep includes ${AVIATION_PLATFORMS.length} tactical aircraft and all ${AVIATION_COMPONENTS.length} aircraft components.
-Aircraft currently use inspection geometry at every requested detail setting;
-an aircraft LOD1 comparison measures the same inspection geometry, not a separate
-authored low-detail aircraft model. The historical baseline below covers ground
-equipment only; it predates the aircraft catalogue.
+The sweep includes ${ATTACK_PLATFORMS.length} attack-aircraft platforms and one fighter,
+with ${AVIATION_COMPONENTS.length} attack-aircraft components and ${FIGHTER_COMPONENTS.length} fighter-only components.
+The fighter also accepts the four shared countermeasure and fuel installations
+specified by the native compatibility rule. Fighter installations are measured
+on the fighter; they are never substituted into a bomber. Aircraft LOD1 uses
+the generator's separate lower-detail geometry recipe. The historical baseline
+below covers ground equipment only; it predates the aircraft catalogue.
 
 For each pair the tool builds both meshes and compares the position and colour
 buffers, the per-part vertex ranges keyed by slot and ordinal, the model bounds,

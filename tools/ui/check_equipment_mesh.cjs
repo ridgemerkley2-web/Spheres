@@ -539,8 +539,8 @@ check('the committed component coverage report still matches the geometry',()=>{
   assert.match(run.stdout,/0 weak \/ 0 absent/,`the report still records holes:\n${run.stdout}`);
 });
 
-const aircraft=Object.fromEntries(['air_light_attack','air_tactical_strike'].map(platform=>[platform,build({platform})]));
-check('light attack and tactical strike are distinct complete aircraft with eight pickable specifications',()=>{
+const aircraft=Object.fromEntries(['air_light_attack','air_tactical_strike','air_fighter'].map(platform=>[platform,build({platform})]));
+check('attack aircraft and fighters are distinct complete aircraft with eight pickable specifications',()=>{
   const sim=fs.readFileSync(path.resolve(__dirname,'../../spheres-sim/src/equipment_aviation.rs'),'utf8');
   const slots=[...sim.slice(sim.indexOf('pub const AVIATION_SLOTS'),sim.indexOf('];')+2).matchAll(/"(air_\w+)"/g)].map(m=>m[1]);assert.equal(slots.length,8);
   for(const [platform,mesh] of Object.entries(aircraft)){
@@ -551,18 +551,37 @@ check('light attack and tactical strike are distinct complete aircraft with eigh
     const spec={name:'Test aircraft',platform,components:mesh.specification.components},before=JSON.stringify(spec);assert.equal(digest(build(spec)),digest(mesh));assert.equal(JSON.stringify(spec),before);
   }
   assert.notEqual(digest(aircraft.air_light_attack),digest(aircraft.air_tactical_strike));
+  assert.notEqual(digest(aircraft.air_fighter),digest(aircraft.air_light_attack));
+  assert.notEqual(digest(aircraft.air_fighter),digest(aircraft.air_tactical_strike));
   assert(aircraft.air_tactical_strike.bounds.max[2]>aircraft.air_light_attack.bounds.max[2]+2);
   assert.equal(aircraft.air_light_attack.parts.filter(p=>p.slot==='air_engine').length,1);assert.equal(aircraft.air_tactical_strike.parts.filter(p=>p.slot==='air_engine').length,2);
 });
-check('every aviation component resolves from the live catalogue and every selectable upgrade changes its own visible assembly',()=>{
+check('every aircraft component resolves on its native role and every selectable upgrade changes its own visible assembly',()=>{
   const sim=fs.readFileSync(path.resolve(__dirname,'../../spheres-sim/src/equipment_aviation.rs'),'utf8');
-  const rows=[...sim.matchAll(/component!\("(air_\w+)","[^"]+","(air_\w+)"/g)];assert.equal(rows.length,18);
-  for(const [,id,slot] of rows){
-    const original=aircraft.air_tactical_strike,next=build({platform:'air_tactical_strike',components:{...original.specification.components,[slot]:id}});validate(next,'air');assert.equal(next.specification.components[slot],id);
-    if(original.specification.components[slot]!==id){
-      const selected=m=>m.parts.filter(p=>p.slot===slot).flatMap(p=>Array.from(m.positions.slice(p.first*3,(p.first+p.count)*3)));
-      assert.notDeepEqual(selected(next),selected(original),id+' must change its selected assembly');
+  const catalogue=(name,count)=>{
+    const body=new RegExp(`pub const ${name}: &\\[ComponentDef\\] = &\\[([^]*?)\\];`).exec(sim);assert(body, name);
+    const rows=[...body[1].matchAll(/component!\("(air_\w+)","[^"]+","(air_\w+)"/g)];assert.equal(rows.length,count,name);return rows;
+  };
+  const attack=catalogue('AVIATION_COMPONENTS',18),fighter=catalogue('FIGHTER_COMPONENTS',9);
+  assert.equal([...sim.matchAll(/component!\("(air_\w+)"/g)].length,attack.length+fighter.length,'Every native aircraft catalogue must be exercised');
+  const compatible=sim.slice(sim.indexOf('pub fn aviation_component_compatible'),sim.indexOf('fn aviation_configuration_refusals'));
+  const shared=/matches!\(\s*c\.id,([^]*?)\)/.exec(compatible);assert(shared);
+  const sharedIds=[...shared[1].matchAll(/"(air_\w+)"/g)].map(m=>m[1]);assert.equal(sharedIds.length,4);
+  const fighterRows=[...fighter,...attack.filter(([,id])=>sharedIds.includes(id))];assert.equal(fighterRows.length,13);
+  for(const [platform,rows] of [['air_tactical_strike',attack],['air_fighter',fighterRows]]){
+    for(const [,id,slot] of rows){
+      const original=aircraft[platform],next=build({platform,components:{...original.specification.components,[slot]:id}});validate(next,'air');assert.equal(next.specification.components[slot],id);
+      if(original.specification.components[slot]!==id){
+        const selected=m=>m.parts.filter(p=>p.slot===slot).flatMap(p=>Array.from(m.positions.slice(p.first*3,(p.first+p.count)*3)));
+        assert.notDeepEqual(selected(next),selected(original),id+' must change its selected assembly');
+      }
     }
+  }
+  for(const [,id,slot] of fighter)for(const platform of ['air_light_attack','air_tactical_strike']){
+    const next=build({platform,components:{[slot]:id}});assert.deepEqual(next.specification,aircraft[platform].specification,`${id} cannot be fitted to ${platform}`);
+  }
+  for(const [,id,slot] of attack.filter(([,id])=>!sharedIds.includes(id))){
+    const next=build({platform:'air_fighter',components:{[slot]:id}});assert.deepEqual(next.specification,aircraft.air_fighter.specification,`${id} cannot be fitted to a fighter`);
   }
 });
 check('light aircraft reject heavy-only visuals and omit stale ground slots',()=>{

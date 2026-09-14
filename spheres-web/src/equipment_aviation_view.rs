@@ -4,6 +4,7 @@ fn aviation_board(w:&WorldState,me:NationId)->Value {
     let Some(state)=n.equipment.as_ref() else {return Value::Null;};
     let models:Vec<_>=state.revisions.values().filter(|r|r.profile.aviation.is_some()).collect();
     if models.is_empty(){return Value::Null;}
+    let fighters=models.iter().any(|r|eq::is_fighter_platform(&r.spec.platform));
     if let Some(air)=&n.aviation {
         let assigned:u64=air.squadrons.iter().map(|q|q.assigned as u64).sum();
         let ready:u64=air.squadrons.iter().filter(|q|spheres_sim::airbases::squadron_blocker(w,me,q).is_none()).map(|q|q.assigned as u64).sum();
@@ -21,7 +22,7 @@ fn aviation_board(w:&WorldState,me:NationId)->Value {
         let supported=lots.iter().map(|h|spheres_sim::arsenal::combat_value(n,h)/r.profile.reference_weight_bn).sum::<f64>()+0.0;
         held+=lots.iter().map(|h|h.units).sum::<f64>();available+=count;supported_total+=supported;
         let family=eq::ammo_def(&a.store_family).map_or(a.store_family.as_str(),|d|d.name);
-        rows.push(json!({"label":r.name,"value":format!("{count} available · {supported:.2} supported aircraft equivalents"),"detail":format!("{} · {:.1} sorties / aircraft / month before deployment limits · {} stores per sortie · {:.3}× supported strike effectiveness. Stores are manufactured separately.",family,a.sorties_per_aircraft_month,a.stores_per_sortie,a.strike_factor)}));
+        rows.push(json!({"label":r.name,"value":format!("{count} available · {supported:.2} supported aircraft equivalents"),"detail":if eq::is_fighter_platform(&r.spec.platform){format!("{} · {:.1} patrol sorties / aircraft / month before deployment limits · {} missiles per sortie · {:.3}× supported interception effectiveness. Form a squadron and review Defend skies; fighters do not attack ground forces.",family,a.sorties_per_aircraft_month,a.stores_per_sortie,a.intercept_factor)}else{format!("{} · {:.1} sorties / aircraft / month before deployment limits · {} stores per sortie · {:.3}× supported strike effectiveness. Stores are manufactured separately.",family,a.sorties_per_aircraft_month,a.stores_per_sortie,a.strike_factor)}}));
     }
     let required:f64=usage.families.iter().filter(|f|f.family.starts_with("air_bomb_")).map(|f|f.required).sum();
     let supplied:f64=usage.families.iter().filter(|f|f.family.starts_with("air_bomb_")).map(|f|f.used).sum();
@@ -34,16 +35,17 @@ fn aviation_board(w:&WorldState,me:NationId)->Value {
         rows.push(json!({"label":format!("Air raid · {}",c.theatre.name()),"value":if access{"Theatre access available"}else{"No basing access · aircraft cannot launch"},"detail":format!("{:.1}% of national force allocated to this operation. Mission stores are apportioned with other air raids before use.",if n.mil_strength>0.0{100.0*d.deployed/n.mil_strength}else{0.0})}));
     }
     let mut warnings=vec![];
+    if fighters{warnings.push("Fighters need assigned squadrons, completed geographic bases and reviewed Defend skies patrols. Compatible missiles cannot be replaced by attack-aircraft bombs.".into());}
     if held>0.0&&available==0 {warnings.push("Your aircraft are withdrawn for refit. They launch no sorties until they return to available service.".to_string());}
     if available>0&&supported_total<=1e-9{warnings.push("Maintenance currently supports no aircraft. Fund fleet upkeep before launching sorties.".into());}
     if raids>accessible{warnings.push("One or more air raids lack theatre basing access. Resolve access through diplomacy before these aircraft can launch there.".into());}
     if required>supplied+1e-9 {warnings.push("Compatible aircraft stores are below current mission demand. Manufacture the exact bomb family in Ammunition; other ammunition cannot substitute.".into());}
     if state.maintenance_plan.is_none(){warnings.push("Set an actual maintenance plan before manufacturing mission stores. Aircraft upkeep and store fabrication share Defense maintenance funding.".into());}
-    json!({"title":"Tactical aviation readiness","status":if required>supplied+1e-9{"Mission stores needed"}else if available==0{"Awaiting available aircraft"}else if supported_total<=1e-9{"Aircraft maintenance needed"}else if raids==0{"No air raids assigned"}else if accessible==0{"Theatre access needed"}else{"Review current air operations"},
-        "detail":"Delivered tactical aircraft serve rung-6 air raids with theatre basing access and a share of the national deployment. Their supported sortie rate and selected payload determine physical store use. These aircraft provide no ground fire, air-superiority mission or transport lift. Ground ammunition activation remains a separate choice.",
+    json!({"title":if fighters{"Aircraft readiness"}else{"Tactical aviation readiness"},"status":if fighters{"Assign squadrons in Air command"}else if required>supplied+1e-9{"Mission stores needed"}else if available==0{"Awaiting available aircraft"}else if supported_total<=1e-9{"Aircraft maintenance needed"}else if raids==0{"No air raids assigned"}else if accessible==0{"Theatre access needed"}else{"Review current air operations"},
+        "detail":if fighters{"Fighter aircraft need a squadron, a geographic base and a reviewed Defend skies patrol. Attack aircraft keep their strike role. Both consume their exact supported mission-store family. Ground ammunition activation remains separate."}else{"Delivered tactical aircraft serve rung-6 air raids with theatre basing access and a share of the national deployment. Their supported sortie rate and selected payload determine physical store use. These aircraft provide no ground fire, air-superiority mission or transport lift. Ground ammunition activation remains a separate choice."},
         "metrics":[metric("Aircraft models",models.len()),metric("Delivered aircraft",held),metric("Available aircraft",available),metric("Air raids with theatre access",format!("{accessible} / {raids}")),metric("Mission stores required this tick",ammo_quantity(required)),metric("Mission stores available for this tick",ammo_quantity(supplied))],
         "roles_title":"Aircraft and mission loadouts","roles":rows,"warnings":warnings,
-        "actions":[nav("Prepare aircraft mission stores",json!({"action":"equipment","tab":"ammunition"})),
+        "actions":[if fighters{nav("Open Air command",json!({"action":"equipment","tab":"flight"}))}else{nav("Prepare aircraft mission stores",json!({"action":"equipment","tab":"ammunition"}))},
             if models.iter().any(|r|company_supplies_revision(w,me,&r.id)){nav("Review aircraft manufacturers",json!({"action":"equipment","tab":"companies"}))}else{nav("Follow aircraft production",json!({"action":"equipment","tab":"production"}))},
             nav("Review Defense maintenance funding",json!({"action":"budget","ministry":"defense","department":2}))]})
 }
@@ -70,16 +72,16 @@ mod aviation_view_tests {
     }
     #[test]
     fn aviation_catalogue_and_previews_show_real_role_costs_and_are_pure() {
-        let g=ammunition_view_tests::fixture();let before=spheres_sim::save(&g.world);let board=view(&g.world,ID,&g.session_id);
+        let mut g=ammunition_view_tests::fixture();g.world.nation_mut(ID).equipment.as_mut().unwrap().learned.extend(["air_propulsion_integration","air_mission_systems","air_fighter_integration"].into_iter().map(String::from));let before=spheres_sim::save(&g.world);let board=view(&g.world,ID,&g.session_id);
         assert!(board["aviation"].is_null());
         let aircraft:Vec<_>=board["platforms"].as_array().unwrap().iter().filter(|p|p["family"]=="aviation").collect();
-        assert_eq!(aircraft.len(),2);assert!(aircraft.iter().all(|p|p["slots"].as_array().unwrap().len()==8));
+        assert_eq!(aircraft.len(),3);assert!(aircraft.iter().all(|p|p["slots"].as_array().unwrap().len()==8));
         for p in aircraft {
             let mut draft=p["default_spec"].clone();draft["name"]=json!("Air preview");
             let q=preview(&g.world,ID,&g.session_id,&draft).unwrap();assert_eq!(q["valid"],true,"{q}");
-            assert!(q["metrics"].as_array().unwrap().iter().any(|m|m["label"]=="Supported strike effectiveness"));
+            assert!(q["metrics"].as_array().unwrap().iter().any(|m|m["label"]==if p["id"]=="air_fighter"{"Supported interception effectiveness"}else{"Supported strike effectiveness"}));
             assert!(!q["metrics"].as_array().unwrap().iter().any(|m|m["label"]=="Land contribution"));
-            assert!(q["detail"].as_str().unwrap().contains("mission stores"));
+            assert!(q["detail"].as_str().unwrap().contains(if p["id"]=="air_fighter"{"compatible missiles"}else{"mission stores"}));
             assert_eq!(q["actions"][1]["navigate"]["tab"],"companies","New aircraft use a developing manufacturer");
             // Existing explicit public contracts retain their priced command.
             let command=json!({"kind":"equipment_develop","name":"Existing public air contract","platform":draft["platform"],"components":draft["components"],"daily_budget_mn":0.5});

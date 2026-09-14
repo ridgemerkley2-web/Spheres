@@ -139,6 +139,12 @@ fn develop_model(
     budget: f64,
     target: u32,
 ) -> u32 {
+    // Authored seller-only research for the added S16 platform. The buying
+    // country still receives only the paid finished model, with no research grant.
+    if platform == "air_fighter" {
+        w.nation_mut(HOME).equipment.get_or_insert_with(Default::default).learned
+            .extend(["air_propulsion_integration", "air_mission_systems", "air_fighter_integration"].map(str::to_string));
+    }
     let spec = equipment::default_spec(platform);
     let quote = companies::development_quote(w, HOME, company, name, &spec, budget, target);
     assert!(quote.valid, "{:?}", quote.reason);
@@ -309,9 +315,9 @@ fn restored(w: &WorldState) -> WorldState {
     loaded
 }
 #[test]
-fn s08_eleven_paid_supplier_platforms_import_exact_models_without_factory_research_or_duplicate_payment(
+fn s08_all_paid_supplier_platforms_import_exact_models_without_factory_research_or_duplicate_payment(
 ) {
-    assert_eq!(equipment::PLATFORMS.len(), 11);
+    assert_eq!(equipment::PLATFORMS.len(), 12);
     for platform in equipment::PLATFORMS {
         let (mut w, c, p) = stocked(platform.id);
         let source = product(&w, c, p).revision_id.clone();

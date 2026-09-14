@@ -1,7 +1,7 @@
 // Read-only ammunition procurement adapters. Prices, eligibility, payments and
 // ownership transitions come from the company simulator, including in reviews.
 fn company_ammo_unit(family:&str)->&'static str {
-    if family.starts_with("air_bomb_"){ "mission store" }else{ "round" }
+    if family == "air_missile_short_range" { "missile" } else if family.starts_with("air_bomb_"){ "mission store" }else{ "round" }
 }
 
 fn company_ammo_need(w:&WorldState,me:NationId,family:&str)->Value {

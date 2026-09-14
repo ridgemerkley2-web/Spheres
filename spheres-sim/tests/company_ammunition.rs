@@ -84,6 +84,8 @@ fn compatible_spec(family: &str) -> equipment::DesignSpec {
                 spec.components.insert(slot.into(), component.into());
             }
         }
+    } else if family == "air_missile_short_range" {
+        spec = equipment::default_spec("air_fighter");
     } else {
         spec = equipment::default_spec("air_light_attack");
         if family == "air_bomb_guided" {
@@ -373,7 +375,7 @@ fn reconcile(w: &WorldState, company: u32) {
 
 #[test]
 fn all_twenty_three_families_require_company_inputs_and_cash_then_one_paid_delivery() {
-    assert_eq!(equipment::ammo_catalog().len(), 23);
+    assert_eq!(equipment::ammo_catalog().len(), 24);
     for def in equipment::ammo_catalog() {
         let (mut w, district) = fixture(&[def.id]);
         let company = establish(&mut w, &district, 1.0);

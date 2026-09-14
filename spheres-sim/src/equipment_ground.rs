@@ -15,7 +15,7 @@ pub fn platform_slots(platform: &str) -> &'static [&'static str] {
         "ground_recon" => &GROUND_RECON_SLOTS, "ground_artillery" => &GROUND_ARTILLERY_SLOTS,
         "ground_air_defense" => &GROUND_AIR_DEFENSE_SLOTS,
         "tank_standard" | "tank_heavy" | "tank_light" | "tank_destroyer" => &DESIGN_SLOTS,
-        "air_light_attack" | "air_tactical_strike" => &AVIATION_SLOTS,
+        "air_light_attack" | "air_tactical_strike" | "air_fighter" => &AVIATION_SLOTS,
         _ => &[],
     }
 }
@@ -26,7 +26,7 @@ pub fn platform_role(platform: &str) -> &'static str {
         "ground_air_defense" => "Mobile air defense", "tank_light" => "Light armored combat",
         "tank_heavy" => "Heavy armored assault", "tank_destroyer" => "Anti-armor combat",
         "tank_standard" => "Main battle tank", "air_light_attack" => "Light tactical air strike",
-        "air_tactical_strike" => "Tactical air strike", _ => "Unknown platform",
+        "air_tactical_strike" => "Tactical air strike", "air_fighter" => "Defensive interception", _ => "Unknown platform",
     }
 }
 
@@ -189,7 +189,7 @@ pub fn research_branch(id: &str) -> &'static str {
         "tank_autoloader"|"ground_medium_weapons"|"ground_artillery_automation"|"ground_guided_weapons" => "weapons",
         "ground_modular_armor" => "armor", "tank_fire_control_1990"|"ground_sensor_fusion" => "optics",
         "ground_secure_radios"|"ground_battlefield_network" => "communications",
-        "air_propulsion_integration" => "engines", "air_mission_systems" => "optics", "air_guided_strike" => "weapons", _ => "unknown",
+        "air_propulsion_integration" => "engines", "air_mission_systems" => "optics", "air_guided_strike" | "air_fighter_integration" => "weapons", _ => "unknown",
     }
 }
 pub fn research_prerequisites(id: &str) -> &'static [&'static str] {
@@ -199,7 +199,8 @@ pub fn research_prerequisites(id: &str) -> &'static [&'static str] {
         "ground_guided_weapons" => &["ground_medium_weapons","tank_fire_control_1990"],
         "ground_sensor_fusion" => &["tank_fire_control_1990"],
         "ground_battlefield_network" => &["ground_secure_radios","ground_sensor_fusion"],
-        "air_guided_strike" => &["air_mission_systems"], _ => &[],
+        "air_guided_strike" => &["air_mission_systems"],
+        "air_fighter_integration" => &["air_propulsion_integration", "air_mission_systems"], _ => &[],
     }
 }
 fn research_requirements(n: &Nation, id: &str) -> Result<(),String> {

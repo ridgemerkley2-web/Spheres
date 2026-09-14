@@ -1,0 +1,334 @@
+{
+  "source_revision": "ab17714",
+  "source_path": "spheres-web/ui/equipment-mesh.js",
+  "hash_contract": "All typed geometry buffers plus exact enumerable metadata, in build order.",
+  "rows": [
+    {
+      "spec": {
+        "platform": "tank_standard",
+        "lod": 0
+      },
+      "sha256": "2bfdb4ca5671bf070725c665518696152030f2fd89761f3383255c47ede70569"
+    },
+    {
+      "spec": {
+        "platform": "tank_standard",
+        "lod": 1
+      },
+      "sha256": "98e6f2d8f1a016d5ee26ede08e7a59cc98f0e3a1598c26505d96b1d75f0ecea9"
+    },
+    {
+      "spec": {
+        "platform": "tank_standard",
+        "lod": 2
+      },
+      "sha256": "c194390e61cba0179b878454e557a8eaa5a5a9b42937674027805507b74e82c5"
+    },
+    {
+      "spec": {
+        "platform": "tank_heavy",
+        "lod": 0
+      },
+      "sha256": "d0fbde2922baca415d9be84efe33c1620e0a51ec15abf9ecde0ebb81102254af"
+    },
+    {
+      "spec": {
+        "platform": "tank_heavy",
+        "lod": 1
+      },
+      "sha256": "0d4949702ac20954ca938b42410440f2ae1230f985cc72e7c5841d675124f257"
+    },
+    {
+      "spec": {
+        "platform": "tank_heavy",
+        "lod": 2
+      },
+      "sha256": "1bfab6602f71e8d7200181fceed09f17e25a0d5623dbbd22074a376d861ea2f9"
+    },
+    {
+      "spec": {
+        "platform": "tank_light",
+        "lod": 0
+      },
+      "sha256": "299045935a27881bbc1208ea01c79f4f4b19e3bee3a3b9775111f81e156c4f29"
+    },
+    {
+      "spec": {
+        "platform": "tank_light",
+        "lod": 1
+      },
+      "sha256": "2332b89f9bb2e37801cb2651cc0530d25a86481650580369156e4b454c1d86b6"
+    },
+    {
+      "spec": {
+        "platform": "tank_light",
+        "lod": 2
+      },
+      "sha256": "824a742a993b80b43149b636f53414eed1977a1e805c7127ea982daf6b65c254"
+    },
+    {
+      "spec": {
+        "platform": "tank_destroyer",
+        "lod": 0
+      },
+      "sha256": "f7916c271b6ff95954ce9c2dbc95df010e4c6b09edf62f747617cb21eb8281c7"
+    },
+    {
+      "spec": {
+        "platform": "tank_destroyer",
+        "lod": 1
+      },
+      "sha256": "af6981079ffd9b5a95263f32ffa7ba46fa02ca1979ae0ef7a488a7d2bc06241b"
+    },
+    {
+      "spec": {
+        "platform": "tank_destroyer",
+        "lod": 2
+      },
+      "sha256": "d2b45c21c606f20fd9ff9aeb35d8430e7bbc190e86a76d15cbfbb7d2c0d01387"
+    },
+    {
+      "spec": {
+        "platform": "ground_ifv",
+        "lod": 0
+      },
+      "sha256": "f1fbd7dc1c0e4c44e88e5b86ff4f5b3747940d5f8801e91fb2edcfa1d4554b8f"
+    },
+    {
+      "spec": {
+        "platform": "ground_ifv",
+        "lod": 1
+      },
+      "sha256": "a0301f3d57307b20e48ca50a486376d350e06ccee661b7efe341a988e2754128"
+    },
+    {
+      "spec": {
+        "platform": "ground_ifv",
+        "lod": 2
+      },
+      "sha256": "d5f3458951a7046a2b5912e6d6a061b2b60c7b0766ee674f31cbcf623b248331"
+    },
+    {
+      "spec": {
+        "platform": "ground_apc",
+        "lod": 0
+      },
+      "sha256": "fa82bac5dc66b4a0367c40039daee2433b7c55f7b00ceb32ba14d85adff46d95"
+    },
+    {
+      "spec": {
+        "platform": "ground_apc",
+        "lod": 1
+      },
+      "sha256": "57b6ca89c3cd5ac40365f71d4fad400972d763ff2de131cd608a7e189ce0c820"
+    },
+    {
+      "spec": {
+        "platform": "ground_apc",
+        "lod": 2
+      },
+      "sha256": "d93072c823256aebf7b0427b9b334154e85ead8e341f8f4bb1dc20ef630d6e14"
+    },
+    {
+      "spec": {
+        "platform": "ground_recon",
+        "lod": 0
+      },
+      "sha256": "b088822088d8a1a477bdbdd5516b55f754cae91d1356a24cb1f8a5589f6a4078"
+    },
+    {
+      "spec": {
+        "platform": "ground_recon",
+        "lod": 1
+      },
+      "sha256": "831b2479f7c8aa301e45b019b7ea006fbfa998953cd854cf4b6eae373eab575f"
+    },
+    {
+      "spec": {
+        "platform": "ground_recon",
+        "lod": 2
+      },
+      "sha256": "9b5b1c8a2fa905fd91ea4c0994b54795c9f42f0617ba039c6efef1a9735d829b"
+    },
+    {
+      "spec": {
+        "platform": "ground_artillery",
+        "lod": 0
+      },
+      "sha256": "5e15a2f508597abc8b8a9f34d4ca75b815689a3954941d23366474ae4ddb2d0b"
+    },
+    {
+      "spec": {
+        "platform": "ground_artillery",
+        "lod": 1
+      },
+      "sha256": "3269b43d966b3c7b271060d996573951cfed1f6ee2da5d4f1e98a6c5642c836c"
+    },
+    {
+      "spec": {
+        "platform": "ground_artillery",
+        "lod": 2
+      },
+      "sha256": "becfc5e165c6f50c857d5e4bcfc3cb633107e69705fc0df70512b1a553438e15"
+    },
+    {
+      "spec": {
+        "platform": "ground_air_defense",
+        "lod": 0
+      },
+      "sha256": "fa2a8827012f451f04e7b726552966967cef04cf34ea705ff1a685e7905e5c28"
+    },
+    {
+      "spec": {
+        "platform": "ground_air_defense",
+        "lod": 1
+      },
+      "sha256": "3a4da7fd8036d9f86e1148f7ec0b32c5d7831136481f6df47f1d340e8498f69a"
+    },
+    {
+      "spec": {
+        "platform": "ground_air_defense",
+        "lod": 2
+      },
+      "sha256": "e5419d2771760d975e1906f3b2c30c6ff1512011964bcaf22d05e8aeedc19e14"
+    },
+    {
+      "spec": {
+        "platform": "air_light_attack",
+        "lod": 0
+      },
+      "sha256": "fa733349753cd2b1677104b57b5b4e3b28c1fb05ea56d4ee263d27ecef4a07a4"
+    },
+    {
+      "spec": {
+        "platform": "air_light_attack",
+        "lod": 1
+      },
+      "sha256": "591ab71e2bbaec77864e5e3dfdfb2ed978292df884aca9895c200f66597c473b"
+    },
+    {
+      "spec": {
+        "platform": "air_light_attack",
+        "lod": 2
+      },
+      "sha256": "d4b0cf7ead7a83574bec8c7d0a197a051965bc9586808378bb5343431dab11f9"
+    },
+    {
+      "spec": {
+        "platform": "air_tactical_strike",
+        "lod": 0
+      },
+      "sha256": "b4997e7065658347fc18ce03fdbec7b7f11b912c7f9ea460c4eff043cafc153e"
+    },
+    {
+      "spec": {
+        "platform": "air_tactical_strike",
+        "lod": 1
+      },
+      "sha256": "d373ebb1361309b1eb6efc9e29a87ec1d3f2446c03c35dcba5ad7e60742906cf"
+    },
+    {
+      "spec": {
+        "platform": "air_tactical_strike",
+        "lod": 2
+      },
+      "sha256": "1de7a48ae88a94fba83f1e6b6db0e5d4275aafb6f10328dc6e3c2c7c6c40429b"
+    },
+    {
+      "spec": {
+        "platform": "air_light_attack",
+        "components": {
+          "air_engine": "air_engine_efficient",
+          "air_wing": "air_wing_stable",
+          "air_radar": "air_radar_mapping",
+          "air_avionics": "air_avionics_digital",
+          "air_countermeasures": "air_countermeasures_ecm",
+          "air_payload": "air_payload_guided",
+          "air_fuel": "air_fuel_extended"
+        },
+        "lod": 0
+      },
+      "sha256": "5b0670b3fb1496bf9a940caaf4c7e60364059456e4fff23585dafbc724c8540e"
+    },
+    {
+      "spec": {
+        "platform": "air_light_attack",
+        "components": {
+          "air_engine": "air_engine_efficient",
+          "air_wing": "air_wing_stable",
+          "air_radar": "air_radar_mapping",
+          "air_avionics": "air_avionics_digital",
+          "air_countermeasures": "air_countermeasures_ecm",
+          "air_payload": "air_payload_guided",
+          "air_fuel": "air_fuel_extended"
+        },
+        "lod": 1
+      },
+      "sha256": "a38b26c9f3d2ba38a1f3708f24a6e896b7e31ed6d42bac337b5b46b9288247ae"
+    },
+    {
+      "spec": {
+        "platform": "air_light_attack",
+        "components": {
+          "air_engine": "air_engine_efficient",
+          "air_wing": "air_wing_stable",
+          "air_radar": "air_radar_mapping",
+          "air_avionics": "air_avionics_digital",
+          "air_countermeasures": "air_countermeasures_ecm",
+          "air_payload": "air_payload_guided",
+          "air_fuel": "air_fuel_extended"
+        },
+        "lod": 2
+      },
+      "sha256": "46cb5cc960a4a4af2a5aaed636c158587cb9e986f977cdf44e08ec7a0aaa203a"
+    },
+    {
+      "spec": {
+        "platform": "air_tactical_strike",
+        "components": {
+          "air_engine": "air_engine_efficient",
+          "air_wing": "air_wing_stable",
+          "air_radar": "air_radar_mapping",
+          "air_avionics": "air_avionics_digital",
+          "air_countermeasures": "air_countermeasures_ecm",
+          "air_payload": "air_payload_guided",
+          "air_fuel": "air_fuel_extended"
+        },
+        "lod": 0
+      },
+      "sha256": "4fb2d7eb32cbf54a35c17b3277ed4e7aee4905e21a756cd1a49ecfa080d1c3e2"
+    },
+    {
+      "spec": {
+        "platform": "air_tactical_strike",
+        "components": {
+          "air_engine": "air_engine_efficient",
+          "air_wing": "air_wing_stable",
+          "air_radar": "air_radar_mapping",
+          "air_avionics": "air_avionics_digital",
+          "air_countermeasures": "air_countermeasures_ecm",
+          "air_payload": "air_payload_guided",
+          "air_fuel": "air_fuel_extended"
+        },
+        "lod": 1
+      },
+      "sha256": "b9be50c226113eeced87f63aba5051e97436cc5dddbfa9cd2b24a013f31ed64d"
+    },
+    {
+      "spec": {
+        "platform": "air_tactical_strike",
+        "components": {
+          "air_engine": "air_engine_efficient",
+          "air_wing": "air_wing_stable",
+          "air_radar": "air_radar_mapping",
+          "air_avionics": "air_avionics_digital",
+          "air_countermeasures": "air_countermeasures_ecm",
+          "air_payload": "air_payload_guided",
+          "air_fuel": "air_fuel_extended"
+        },
+        "lod": 2
+      },
+      "sha256": "b9405932f0dbcc40262077fdf8e2aecbc2099f739851c88e4329eb56ef1fe5fd"
+    }
+  ]
+}

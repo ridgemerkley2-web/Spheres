@@ -1,4 +1,4 @@
-// Tactical strike aircraft. Prices, sortie rates and effectiveness are game
+// Tactical strike aircraft and fighters. Prices, sortie rates and effectiveness are game
 // assumptions. Basing and finite stores are resolved by military operations.
 pub const AVIATION_SLOTS: [&str; 8] = [
     "air_engine",
@@ -15,26 +15,34 @@ pub const AVIATION_SLOTS: [&str; 8] = [
 #[serde(deny_unknown_fields)]
 pub struct AviationProfile {
     pub strike_factor: f64,
+    /// Sparse on all pre-fighter profiles; interception and bombing are distinct.
+    #[serde(default, skip_serializing_if = "zero_intercept_factor")]
+    pub intercept_factor: f64,
     pub sorties_per_aircraft_month: f64,
     pub stores_per_sortie: f64,
     pub store_family: String,
 }
+fn zero_intercept_factor(value: &f64) -> bool { *value == 0.0 }
 impl AviationProfile {
     pub fn valid(&self) -> bool {
         self.strike_factor.is_finite()
-            && (0.75..=1.25).contains(&self.strike_factor)
+            && self.intercept_factor.is_finite()
+            && if self.store_family == "air_missile_short_range" {
+                self.strike_factor == 0.0 && (0.75..=1.25).contains(&self.intercept_factor)
+            } else {
+                (0.75..=1.25).contains(&self.strike_factor) && self.intercept_factor == 0.0
+            }
             && self.sorties_per_aircraft_month.is_finite()
             && (6.0..=20.0).contains(&self.sorties_per_aircraft_month)
             && matches!(self.stores_per_sortie, 2.0 | 4.0)
-            && matches!(
-                self.store_family.as_str(),
-                "air_bomb_unguided" | "air_bomb_guided"
-            )
+            && is_aviation_store(&self.store_family)
     }
 }
 
+pub fn is_fighter_platform(platform: &str) -> bool { platform == "air_fighter" }
+
 pub fn is_aviation_platform(platform: &str) -> bool {
-    matches!(platform, "air_light_attack" | "air_tactical_strike")
+    matches!(platform, "air_light_attack" | "air_tactical_strike" | "air_fighter")
 }
 
 pub fn design_base_kit(spec: &DesignSpec) -> &'static str {
@@ -65,9 +73,32 @@ pub const AVIATION_COMPONENTS: &[ComponentDef] = &[
     component!("air_fuel_standard","Standard endurance installation","air_fuel",1,0.0003,0.00000013,0.0,0.0,0.0,0.0,None,None,"Baseline sustained sortie output within a theatre with available basing. Operating costs are paid through actual maintenance."),
     component!("air_fuel_extended","Extended endurance installation","air_fuel",2,0.0007,0.0000003,0.0,0.0,0.0,0.0,None,None,"Improves sustained sortie output at extra installation and operating cost. Does not bypass basing consent or create strategic lift."),
 ];
+// These fighter-only installations cannot be spliced into an older bomber.
+// They require the same completed integration, while stores are manufactured
+// through their separate finished-ammunition recipe and payment ledger.
+pub const FIGHTER_COMPONENTS: &[ComponentDef] = &[
+    component!("air_engine_interceptor","Interceptor engine","air_engine",4,0.0045,0.0000014,0.0,0.0,0.0,0.0,Some("air_fighter_integration"),None,"Fighter-only propulsion. Supports the modeled baseline defensive sortie rate; no aircraft is granted by research."),
+    component!("air_engine_interceptor_efficient","Managed interceptor engine","air_engine",4,0.0065,0.0000016,0.0,0.0,0.0,0.0,Some("air_fighter_integration"),None,"Raises defensive sortie output by 15% at greater purchase and upkeep cost. Must be installed in a new revision or paid refit."),
+    component!("air_wing_interceptor","Maneuvering fighter wing","air_wing",3,0.0020,0.0000004,0.0,0.0,0.0,0.0,Some("air_fighter_integration"),None,"Fighter-only wing and controls for interception. No ground-attack or strategic-lift role."),
+    component!("air_radar_interceptor","Air-search interception radar","air_radar",3,0.0024,0.00000045,0.0,0.0,0.0,0.0,Some("air_fighter_integration"),None,"Locates hostile aircraft during a paid Defend skies sortie. Aircraft radar is separate from ground air defense."),
+    component!("air_radar_interceptor_tracking","Tracking interception radar","air_radar",4,0.0038,0.0000006,0.0,0.0,0.0,0.0,Some("air_fighter_integration"),None,"Improves bounded interception effectiveness with additional installation room, purchase cost and upkeep."),
+    component!("air_avionics_interceptor","Interception avionics","air_avionics",2,0.0016,0.0000003,0.0,0.0,0.0,0.0,Some("air_fighter_integration"),None,"Coordinates the fighter's radar and short-range missile interface. Does not certify bombs."),
+    component!("air_avionics_interceptor_digital","Digital interception avionics","air_avionics",3,0.0025,0.0000004,0.0,0.0,0.0,0.0,Some("air_fighter_integration"),None,"Improves bounded interception effectiveness at additional installation, purchase and support cost."),
+    component!("air_hardpoints_interceptor","Two-missile fighter installation","air_hardpoints",2,0.0007,0.00000015,0.0,0.0,0.0,0.0,Some("air_fighter_integration"),None,"Carries two compatible air-to-air missiles per modeled sortie. The installation includes no missiles."),
+    component!("air_payload_short_range","Short-range air-to-air interface","air_payload",2,0.0012,0.0000002,0.0,0.0,0.0,0.0,Some("air_fighter_integration"),None,"Certifies the exact short-range air-to-air family. Finite finished missiles must be manufactured, paid for and delivered separately."),
+];
 pub const AIR_COMPONENTS: &[ComponentDef] = AVIATION_COMPONENTS;
 
 pub fn aviation_default_spec(platform: &str) -> DesignSpec {
+    if is_fighter_platform(platform) {
+        return DesignSpec { platform: platform.into(), components: [
+            ("air_engine", "air_engine_interceptor"), ("air_wing", "air_wing_interceptor"),
+            ("air_radar", "air_radar_interceptor"), ("air_avionics", "air_avionics_interceptor"),
+            ("air_countermeasures", "air_countermeasures_basic"),
+            ("air_hardpoints", "air_hardpoints_interceptor"), ("air_payload", "air_payload_short_range"),
+            ("air_fuel", "air_fuel_standard"),
+        ].into_iter().map(|(k,v)| (k.into(),v.into())).collect() };
+    }
     let strike = platform == "air_tactical_strike";
     DesignSpec {
         platform: platform.into(),
@@ -109,6 +140,10 @@ pub fn aviation_default_spec(platform: &str) -> DesignSpec {
 }
 
 pub fn aviation_component_compatible(platform: &str, c: &ComponentDef) -> bool {
+    if is_fighter_platform(platform) {
+        return FIGHTER_COMPONENTS.iter().any(|x| x.id == c.id)
+            || matches!(c.id, "air_countermeasures_basic" | "air_countermeasures_ecm" | "air_fuel_standard" | "air_fuel_extended");
+    }
     is_aviation_platform(platform)
         && AVIATION_COMPONENTS.iter().any(|x| x.id == c.id)
         && (platform != "air_light_attack"
@@ -144,6 +179,19 @@ pub fn compile_aviation_profile(spec: &DesignSpec) -> Option<AviationProfile> {
         return None;
     }
     let get = |slot: &str| spec.components.get(slot).map(String::as_str).unwrap_or("");
+    if is_fighter_platform(&spec.platform) {
+        let mut sorties = 14.0;
+        if get("air_engine") == "air_engine_interceptor_efficient" { sorties *= 1.15; }
+        if get("air_fuel") == "air_fuel_extended" { sorties *= 1.10; }
+        let mut factor: f64 = 1.0;
+        if get("air_radar") == "air_radar_interceptor_tracking" { factor += 0.07; }
+        if get("air_avionics") == "air_avionics_interceptor_digital" { factor += 0.05; }
+        if get("air_countermeasures") == "air_countermeasures_ecm" { factor += 0.04; }
+        factor *= sorties / 14.0;
+        return Some(AviationProfile { strike_factor: 0.0, intercept_factor: factor.clamp(0.75,1.25),
+            sorties_per_aircraft_month: sorties, stores_per_sortie: 2.0,
+            store_family: "air_missile_short_range".into() });
+    }
     let strike = spec.platform == "air_tactical_strike";
     let mut sorties: f64 = if strike { 10.0 } else { 12.0 };
     sorties *= match get("air_engine") {
@@ -182,6 +230,7 @@ pub fn compile_aviation_profile(spec: &DesignSpec) -> Option<AviationProfile> {
     factor *= sorties / if strike { 10.0 } else { 12.0 };
     Some(AviationProfile {
         strike_factor: factor.clamp(0.75, 1.25),
+        intercept_factor: 0.0,
         sorties_per_aircraft_month: sorties.clamp(6.0, 20.0),
         stores_per_sortie: if get("air_hardpoints") == "air_hardpoints_heavy" {
             4.0
@@ -211,15 +260,16 @@ fn compile_aviation_model(spec: &DesignSpec) -> Option<CompiledProfile> {
         })
         .collect::<Option<_>>()?;
     let strike = spec.platform == "air_tactical_strike";
+    let fighter = is_fighter_platform(&spec.platform);
     let used = selected.iter().map(|c| c.load).sum::<u32>();
     let cost = p.cost_bn + selected.iter().map(|c| c.cost_bn).sum::<f64>();
     let mut recipe = [0.0; 12];
-    recipe[crate::resources::Commodity::Iron.idx()] = if strike { 12.0 } else { 6.0 };
-    recipe[crate::resources::Commodity::Coal.idx()] = if strike { 0.020 } else { 0.010 };
+    recipe[crate::resources::Commodity::Iron.idx()] = if strike { 12.0 } else if fighter { 9.0 } else { 6.0 };
+    recipe[crate::resources::Commodity::Coal.idx()] = if strike { 0.020 } else if fighter { 0.018 } else { 0.010 };
     recipe[crate::resources::Commodity::Copper.idx()] =
         0.60 + selected.iter().filter(|c| c.research.is_some()).count() as f64 * 0.20;
     Some(CompiledProfile {
-        rules_version: 4,
+        rules_version: spec_version(spec),
         unit_cost_bn: cost,
         fabrication_cost_bn: cost,
         development_cost_bn: cost * 24.0,
@@ -228,13 +278,13 @@ fn compile_aviation_model(spec: &DesignSpec) -> Option<CompiledProfile> {
         tooling_days: 45,
         production_days: 40 + used * 2,
         service_months: 360,
-        maintenance_bn_day: 0.0000010 + selected.iter().map(|c| c.upkeep_bn_day).sum::<f64>(),
+        maintenance_bn_day: (if fighter { 0.0000018 } else { 0.0000010 }) + selected.iter().map(|c| c.upkeep_bn_day).sum::<f64>(),
         land: 1.0,
         protection: 1.0,
         mobility: 1.0,
         recon: 1.0,
         land_factor: 1.0,
-        reference_weight_bn: if strike { 0.025 } else { 0.012 },
+        reference_weight_bn: if strike { 0.025 } else if fighter { 0.035 } else { 0.012 },
         recipe,
         component_costs: selected
             .iter()
@@ -607,3 +657,7 @@ mod aviation_tests {
         .is_err());
     }
 }
+
+#[cfg(test)]
+#[path = "equipment_fighter_tests.rs"]
+mod fighter_tests;

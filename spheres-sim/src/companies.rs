@@ -2442,6 +2442,12 @@ mod tests {
         let template = supplier_fixture();
         for platform in equipment::PLATFORMS {
             let mut w = template.clone();
+            // This all-family profile fixture discloses completed component
+            // knowledge. The focused fighter lifecycle earns it separately.
+            if equipment::is_fighter_platform(platform.id) {
+                w.nation_mut(HOME).equipment.get_or_insert_with(Default::default).learned.extend(
+                    ["air_propulsion_integration", "air_mission_systems", "air_fighter_integration"].map(str::to_owned));
+            }
             let company = w.companies.firms[0].id;
             let spec = equipment::default_spec(platform.id);
             let expected = equipment::design_preview(&w, HOME, &spec).profile.unwrap();

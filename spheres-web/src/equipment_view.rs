@@ -40,7 +40,7 @@ fn intent(label:&str,command:Value,inputs:Vec<Value>)->Value {
     json!({"label":label,"command":command,"inputs":inputs,"requires_preview":true,"enabled":true})
 }
 fn profile_metrics(p:&eq::CompiledProfile)->Vec<Value> {
-if let Some(a)=&p.aviation {return vec![metric("Supported strike effectiveness",format!("{:.3}×",a.strike_factor)),metric("Supported sorties per aircraft / month",a.sorties_per_aircraft_month),metric("Stores per sortie",a.stores_per_sortie),metric("Compatible mission stores",eq::ammo_def(&a.store_family).map_or(a.store_family.as_str(),|d|d.name)),metric("Installation load",format!("{} / {}",p.installation_used,p.installation_capacity)),metric("Operational role","Tactical air raids · compatible stores and theatre access required")];}
+if let Some(a)=&p.aviation {return vec![metric(if a.intercept_factor>0.0{"Supported interception effectiveness"}else{"Supported strike effectiveness"},format!("{:.3}×",if a.intercept_factor>0.0{a.intercept_factor}else{a.strike_factor})),metric("Supported sorties per aircraft / month",a.sorties_per_aircraft_month),metric("Stores per sortie",a.stores_per_sortie),metric("Compatible mission stores",eq::ammo_def(&a.store_family).map_or(a.store_family.as_str(),|d|d.name)),metric("Installation load",format!("{} / {}",p.installation_used,p.installation_capacity)),metric("Operational role",if a.intercept_factor>0.0{"Defensive interception · compatible missiles and a defended province required; no ground attack"}else{"Tactical air raids · compatible stores and theatre access required"})];}
 let mut rows=vec![
     metric("Land contribution",format!("{:.3}×",p.land_factor)),
     metric("Firepower rating",p.land),metric("Protection rating",p.protection),
@@ -76,7 +76,7 @@ pub fn view(w:&WorldState,me:NationId,session:&str)->Value {
     let supply_plans=eq::supply_plan(w,me);
     let supply=equipment_national_supply(w,me,&supply_plans);
     let platforms:Vec<_>=eq::PLATFORMS.iter().map(|p|json!({"id":p.id,"name":p.name,"description":p.detail,
-        "role":eq::platform_role(p.id),"family":if eq::is_aviation_platform(p.id){"aviation"}else if p.id.starts_with("tank_"){"tanks"}else{p.id},"family_name":if eq::is_aviation_platform(p.id){"Tactical aviation"}else if p.id.starts_with("tank_"){"Tanks"}else{p.name},"default_spec":eq::default_spec(p.id),
+        "role":eq::platform_role(p.id),"family":if eq::is_aviation_platform(p.id){"aviation"}else if p.id.starts_with("tank_"){"tanks"}else{p.id},"family_name":if eq::is_fighter_platform(p.id){"Fighter aviation"}else if eq::is_aviation_platform(p.id){"Tactical aviation"}else if p.id.starts_with("tank_"){"Tanks"}else{p.name},"default_spec":eq::default_spec(p.id),
         "slots":eq::platform_slots(p.id).iter().map(|s|json!({"id":s,"name":eq::slot_name(s),"required":true,
             "components":eq::all_components().filter(|c|c.slot==*s && eq::component_compatible(p.id,c)).map(|c|c.id).collect::<Vec<_>>()})).collect::<Vec<_>>()})).collect();
     let components:Vec<_>=eq::all_components().map(|c|{
@@ -197,7 +197,7 @@ pub fn preview(w:&WorldState,me:NationId,session:&str,v:&Value)->Result<Value,St
     let mut metrics=p.profile.as_ref().map(profile_metrics).unwrap_or_default();
     if !eq::is_aviation_platform(&spec.platform){if let Some(def)=eq::ammunition_family(&spec).and_then(eq::ammo_def){metrics.push(metric("Compatible ammunition",def.name));}}
     if let Some(old)=v.get("source_revision").and_then(Value::as_str).and_then(|id|eq::profile(w.nation(me),id)){if let Some(new)=&p.profile{
-        if let (Some(a),Some(b))=(&old.aviation,&new.aviation){metrics.push(metric("Change from original supported strike effectiveness",format!("{:+.3}×",b.strike_factor-a.strike_factor)));}
+        if let (Some(a),Some(b))=(&old.aviation,&new.aviation){if a.intercept_factor>0.0||b.intercept_factor>0.0{metrics.push(metric("Change from original supported interception effectiveness",format!("{:+.3}×",b.intercept_factor-a.intercept_factor)));}if a.strike_factor>0.0||b.strike_factor>0.0{metrics.push(metric("Change from original supported strike effectiveness",format!("{:+.3}×",b.strike_factor-a.strike_factor)));}}
         else if old.aviation.is_none()&&new.aviation.is_none(){metrics.push(metric("Change from original land contribution",format!("{:+.3}×",new.land_factor-old.land_factor)));}
         metrics.push(metric("Fabrication cost change",format!("{:+.3}m per vehicle",(new.fabrication_cost_bn-old.fabrication_cost_bn)*1000.0)));
     }}
@@ -205,7 +205,7 @@ pub fn preview(w:&WorldState,me:NationId,session:&str,v:&Value)->Result<Value,St
     let guidance=design_guidance(w,me,&spec,p.profile.as_ref());
     Ok(json!({"session_id":session,"nation":me,"valid":p.valid,"blockers":p.blockers,"metrics":metrics,"costs":p.profile.as_ref().map(|profile|if companies::supported_platform(&spec.platform){company_design_costs(profile)}else{profile_costs(profile)}).unwrap_or_default(),
         "timing":p.profile.as_ref().map(|p|vec![json!({"label":"Development minimum","value":format!("{} days",p.development_days)}),json!({"label":"Per-vehicle production minimum","value":format!("{} days after {} tooling days",p.production_days,p.tooling_days)})]).unwrap_or_default(),
-        "comparison":comparison,"guidance":guidance,"requirements":p.notes,"actions":actions,"detail":if eq::is_aviation_platform(&spec.platform){"Research unlocks components. Paid development certifies this exact aircraft. Only delivered, supported aircraft with compatible mission stores and theatre access contribute to tactical air raids. Figures are game assumptions."}else{"Research unlocks components. Paid development certifies this exact revision. Only delivered vehicles affect the country's land forces."}}))
+        "comparison":comparison,"guidance":guidance,"requirements":p.notes,"actions":actions,"detail":if eq::is_fighter_platform(&spec.platform){"Research unlocks fighter components. Paid development certifies this exact aircraft. Delivered fighters need a geographic base, funded upkeep and compatible missiles before a reviewed Defend skies patrol. Fighters provide interception, not ground attack. Figures are game assumptions."}else if eq::is_aviation_platform(&spec.platform){"Research unlocks components. Paid development certifies this exact aircraft. Only delivered, supported aircraft with compatible mission stores and theatre access contribute to tactical air raids. Figures are game assumptions."}else{"Research unlocks components. Paid development certifies this exact revision. Only delivered vehicles affect the country's land forces."}}))
 }
 
 #[cfg(test)]
@@ -289,7 +289,11 @@ mod tests {
     }
     #[test]
     fn detailed_catalogue_prices_every_vehicle_type_with_its_independent_slots() {
-        let g=fixture();let before=spheres_sim::save(&g.world);let board=view(&g.world,NationId::USA,&g.session_id);
+        let mut g=fixture();
+        // Catalog price fixture: explicitly authorize the new researched family.
+        g.world.nation_mut(NationId::USA).equipment.get_or_insert_with(Default::default).learned
+            .extend(["air_propulsion_integration", "air_mission_systems", "air_fighter_integration"].map(str::to_string));
+        let before=spheres_sim::save(&g.world);let board=view(&g.world,NationId::USA,&g.session_id);
         for p in board["platforms"].as_array().unwrap(){assert_eq!(p["slots"].as_array().unwrap().len(),eq::platform_slots(p["id"].as_str().unwrap()).len());}
         for preset in board["presets"].as_array().unwrap(){
             assert_eq!(preset["components"].as_object().unwrap().len(),eq::platform_slots(preset["platform"].as_str().unwrap()).len());

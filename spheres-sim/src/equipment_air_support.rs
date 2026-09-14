@@ -561,10 +561,7 @@ pub fn validate_air_support(n: &Nation) -> Result<(), String> {
             || !purchase.cost_bn.is_finite()
             || purchase.cost_bn <= 0.0
             || purchase.imported != (purchase.seller != n.id)
-            || !matches!(
-                purchase.family.as_str(),
-                "air_bomb_unguided" | "air_bomb_guided"
-            )
+            || !is_aviation_store(&purchase.family)
         {
             return Err(invalid());
         }
@@ -578,7 +575,7 @@ pub fn validate_air_support(n: &Nation) -> Result<(), String> {
     for row in &r.families {
         if !families.insert(&row.family)
             || row.aircraft == 0
-            || !matches!(row.family.as_str(), "air_bomb_unguided" | "air_bomb_guided")
+            || !is_aviation_store(&row.family)
             || row.target_stores > MAX_AMMO_RESERVE_TARGET
             || !row.stock.is_finite()
             || row.stock < 0.0

@@ -14,11 +14,13 @@ under `component_compatible`, selected one slot at a time against that platform'
 own `default_spec`. Paired weapon/mount/payload validity is a separate gate in the
 simulation and is deliberately not applied here: changing more than one slot would
 make it impossible to say which component caused the change in the mesh.
-The sweep includes 2 tactical aircraft and all 18 aircraft components.
-Aircraft currently use inspection geometry at every requested detail setting;
-an aircraft LOD1 comparison measures the same inspection geometry, not a separate
-authored low-detail aircraft model. The historical baseline below covers ground
-equipment only; it predates the aircraft catalogue.
+The sweep includes 2 attack-aircraft platforms and one fighter,
+with 18 attack-aircraft components and 9 fighter-only components.
+The fighter also accepts the four shared countermeasure and fuel installations
+specified by the native compatibility rule. Fighter installations are measured
+on the fighter; they are never substituted into a bomber. Aircraft LOD1 uses
+the generator's separate lower-detail geometry recipe. The historical baseline
+below covers ground equipment only; it predates the aircraft catalogue.
 
 For each pair the tool builds both meshes and compares the position and colour
 buffers, the per-part vertex ranges keyed by slot and ordinal, the model bounds,
@@ -43,22 +45,22 @@ argued with rather than taken on trust — nothing currently falls below it:
 
 | slot | component | platform | verdict | Δ tris | outline m² | LOD1 | carried by | change |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `air_avionics` | `air_avionics_interceptor_digital` | `air_fighter` | distinct | +28 | 0.070 | yes | air_avionics / digital interception cockpit and datalink | 1 resized |
 | `suspension` | `suspension_hydro` | `ground_apc` | distinct | +336 | 0.084 | yes | suspension / port hydropneumatic struts | 2 resized |
 | `sensors` | `optics_thermal` | `ground_recon` | distinct | +104 | 0.086 | yes | sensors / thermal observation fittings | 1 resized |
 | `sensors` | `optics_thermal` | `ground_apc` | distinct | +104 | 0.103 | yes | sensors / thermal observation fittings | 1 resized |
 | `communications` | `ground_comms_secure` | `ground_recon` | distinct | +148 | 0.115 | yes | communications / secure radio aerial installation | 1 resized |
 | `suspension` | `suspension_hydro` | `ground_recon` | distinct | +336 | 0.121 | yes | suspension / port hydropneumatic struts | 2 resized |
-| `communications` | `ground_comms_secure` | `ground_apc` | distinct | +148 | 0.152 | yes | communications / secure radio aerial installation | 1 resized |
 
 ## Coverage
 
 | scope | distinct | weak | absent | total |
 | --- | --- | --- | --- | --- |
-| platform/component pairs | 186 | 0 | 0 | 186 |
-| components, at their weakest platform | 53 | 0 | 0 | 53 |
+| platform/component pairs | 191 | 0 | 0 | 191 |
+| components, at their weakest platform | 56 | 0 | 0 | 56 |
 
-30 further components are the default of every hull that fields
-them and so are never measured against a sibling: `aps_none`, `fcs_basic`, `optics_day`, `suspension_torsion`, `tracks_standard`, `transmission_manual`, `turret_casemate`, `ground_armor_light`, `ground_troops_standard`, `ground_ammo_ball`, `ground_mg_127`, `ground_station_mg`, `ground_wheels_standard`, `ground_recon_observer`, `ground_ammo_he`, `ground_howitzer_122`, `ground_loader_manual`, `ground_turret_howitzer`, `ground_ammo_aa`, `ground_aa_gun`, `ground_radar_search`, `ground_turret_aa`, `air_avionics_analog`, `air_countermeasures_basic`, `air_fuel_standard`, `air_payload_unguided`, `air_radar_basic`, `air_engine_twin`, `air_hardpoints_heavy`, `air_wing_swept`.
+36 further components are the default of every hull that fields
+them and so are never measured against a sibling: `aps_none`, `fcs_basic`, `optics_day`, `suspension_torsion`, `tracks_standard`, `transmission_manual`, `turret_casemate`, `ground_armor_light`, `ground_troops_standard`, `ground_ammo_ball`, `ground_mg_127`, `ground_station_mg`, `ground_wheels_standard`, `ground_recon_observer`, `ground_ammo_he`, `ground_howitzer_122`, `ground_loader_manual`, `ground_turret_howitzer`, `ground_ammo_aa`, `ground_aa_gun`, `ground_radar_search`, `ground_turret_aa`, `air_avionics_analog`, `air_countermeasures_basic`, `air_fuel_standard`, `air_payload_unguided`, `air_radar_basic`, `air_engine_twin`, `air_hardpoints_heavy`, `air_wing_swept`, `air_avionics_interceptor`, `air_engine_interceptor`, `air_hardpoints_interceptor`, `air_payload_short_range`, `air_radar_interceptor`, `air_wing_interceptor`.
 Calling those distinct would be a guess, so they are counted separately — but they
 are not unexercised: each one is the geometry every measured pair on its own hull
 was compared against, so a row above that reads distinct says as much about the
@@ -96,16 +98,21 @@ Nothing. Every component the simulation offers changes the silhouette of every p
 | `active_protection` | `aps_soft` | `ground_air_defense` | distinct | +240 | 0.078 | yes | active_protection / soft-kill perimeter system | +1 part |
 | `air_avionics` | `air_avionics_digital` | `air_light_attack` | distinct | +1000 | 0.523 | yes | air_avionics / digital mission cockpit and targeting pod | 1 resized |
 | `air_avionics` | `air_avionics_digital` | `air_tactical_strike` | distinct | +56 | 0.260 | yes | air_avionics / digital mission cockpit and targeting pod | 1 resized |
+| `air_avionics` | `air_avionics_interceptor_digital` | `air_fighter` | distinct | +28 | 0.070 | yes | air_avionics / digital interception cockpit and datalink | 1 resized |
 | `air_countermeasures` | `air_countermeasures_ecm` | `air_light_attack` | distinct | +2680 | 0.783 | yes | air_countermeasures / electronic countermeasure fairings and dispensers | 1 resized |
 | `air_countermeasures` | `air_countermeasures_ecm` | `air_tactical_strike` | distinct | +2680 | 0.811 | yes | air_countermeasures / electronic countermeasure fairings and dispensers | 1 resized |
+| `air_countermeasures` | `air_countermeasures_ecm` | `air_fighter` | distinct | +2680 | 0.946 | yes | air_countermeasures / electronic countermeasure fairings and dispensers | 1 resized |
 | `air_engine` | `air_engine_economical` | `air_tactical_strike` | distinct | -11000 | 4.646 | yes | air_engine / economical turbine nacelle | -1 part, 1 resized |
 | `air_engine` | `air_engine_efficient` | `air_light_attack` | distinct | +24 | 0.684 | yes | air_engine / efficient turbofan nacelle | 1 resized |
 | `air_engine` | `air_engine_efficient` | `air_tactical_strike` | distinct | -10976 | 4.089 | yes | air_engine / efficient turbofan nacelle | -1 part, 1 resized |
+| `air_engine` | `air_engine_interceptor_efficient` | `air_fighter` | distinct | +24 | 0.249 | yes | air_engine / managed interceptor engine nacelle | 1 resized |
 | `air_fuel` | `air_fuel_extended` | `air_light_attack` | distinct | +4216 | 0.977 | yes | air_fuel / extended fuel tanks and refueling fitting | 1 resized |
 | `air_fuel` | `air_fuel_extended` | `air_tactical_strike` | distinct | +4240 | 1.461 | yes | air_fuel / extended fuel tanks and refueling fitting | 1 resized |
+| `air_fuel` | `air_fuel_extended` | `air_fighter` | distinct | +4216 | 1.580 | yes | air_fuel / extended fuel tanks and refueling fitting | 1 resized |
 | `air_hardpoints` | `air_hardpoints_light` | `air_tactical_strike` | distinct | -3496 | 0.694 | yes | air_hardpoints / two-store attack external mounts | 2 resized |
 | `air_payload` | `air_payload_guided` | `air_light_attack` | distinct | +224 | 0.174 | yes | air_payload / precision-guided external bombs | 1 resized |
 | `air_payload` | `air_payload_guided` | `air_tactical_strike` | distinct | +448 | 0.183 | yes | air_payload / precision-guided external bombs | 1 resized |
+| `air_radar` | `air_radar_interceptor_tracking` | `air_fighter` | distinct | 0 | 0.391 | yes | air_radar / tracking interception radome | 1 reshaped, extent 0.25 m |
 | `air_radar` | `air_radar_mapping` | `air_light_attack` | distinct | +1052 | 0.567 | yes | air_radar / terrain-mapping radome and sensor fairing | 1 resized, extent 0.25 m |
 | `air_radar` | `air_radar_mapping` | `air_tactical_strike` | distinct | +1052 | 0.946 | yes | air_radar / terrain-mapping radome and sensor fairing | 1 resized, extent 0.25 m |
 | `air_wing` | `air_wing_stable` | `air_light_attack` | distinct | +24 | 7.482 | yes | air_wing / port high-stability wing | 2 resized, extent 0.75 m |

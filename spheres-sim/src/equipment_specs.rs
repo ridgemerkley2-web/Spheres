@@ -9,9 +9,9 @@ pub fn slot_name(slot: &str) -> &str {
         "sensors" => "Observation optics", "fire_control" => "Fire control", "communications" => "Communications",
         "wheels" => "Wheeled running gear", "troop_compartment" => "Troop compartment",
         "recon_package" => "Scout equipment", "artillery_loader" => "Artillery loading", "radar" => "Air-defense radar",
-        "air_engine" => "Aircraft engines", "air_wing" => "Wing and flight controls", "air_radar" => "Attack radar",
-        "air_avionics" => "Attack avionics", "air_countermeasures" => "Mission protection", "air_hardpoints" => "Store installations",
-        "air_payload" => "Certified strike loadout", "air_fuel" => "Endurance installation", _ => slot,
+        "air_engine" => "Aircraft engines", "air_wing" => "Wing and flight controls", "air_radar" => "Aircraft radar",
+        "air_avionics" => "Mission avionics", "air_countermeasures" => "Mission protection", "air_hardpoints" => "Store installations",
+        "air_payload" => "Certified stores interface", "air_fuel" => "Endurance installation", _ => slot,
     }
 }
 pub const SPEC_COMPONENTS: &[ComponentDef] = &[
@@ -49,11 +49,11 @@ pub const SPEC_COMPONENTS: &[ComponentDef] = &[
     component!("fcs_digital","Digital ballistic fire control","fire_control",2,0.00033,0.00000005,0.12,0.0,0.0,0.04,Some("tank_fire_control_1990"),None,"Vehicle electronics integration unlocks digital gun control."),
 ];
 
-pub fn all_components() -> impl Iterator<Item = &'static ComponentDef> { COMPONENTS.iter().chain(SPEC_COMPONENTS.iter()).chain(GROUND_COMPONENTS.iter()).chain(AVIATION_COMPONENTS.iter()) }
+pub fn all_components() -> impl Iterator<Item = &'static ComponentDef> { COMPONENTS.iter().chain(SPEC_COMPONENTS.iter()).chain(GROUND_COMPONENTS.iter()).chain(AVIATION_COMPONENTS.iter()).chain(FIGHTER_COMPONENTS.iter()) }
 pub fn detailed_spec(spec: &DesignSpec) -> bool {
     !matches!(spec.platform.as_str(), "tank_standard" | "tank_heavy") || spec.components.iter().any(|(slot,id)| !SLOTS.contains(&slot.as_str()) || SPEC_COMPONENTS.iter().chain(GROUND_COMPONENTS.iter()).any(|c|c.id == id))
 }
-pub fn spec_version(spec: &DesignSpec) -> u32 { if is_aviation_platform(&spec.platform) { 4 } else if is_ground_platform(&spec.platform) { 3 } else if detailed_spec(spec) { 2 } else { 1 } }
+pub fn spec_version(spec: &DesignSpec) -> u32 { if is_fighter_platform(&spec.platform) { 5 } else if is_aviation_platform(&spec.platform) { 4 } else if is_ground_platform(&spec.platform) { 3 } else if detailed_spec(spec) { 2 } else { 1 } }
 pub fn slots_for(spec: &DesignSpec) -> &'static [&'static str] { if is_aviation_platform(&spec.platform) || is_ground_platform(&spec.platform) { platform_slots(&spec.platform) } else if detailed_spec(spec) { &DESIGN_SLOTS } else { &SLOTS } }
 pub fn design_component(c: &ComponentDef) -> bool {
     SPEC_COMPONENTS.iter().any(|s| s.id == c.id) || matches!(c.id,"protection_standard"|"protection_heavy"|"comms_radio"|"comms_data")

@@ -234,6 +234,7 @@ pub fn range_km(spec: &DesignSpec) -> f64 {
     let radius = match spec.platform.as_str() {
         "air_light_attack" => 700.0,
         "air_tactical_strike" => 1400.0,
+        "air_fighter" => 900.0,
         _ => return 0.0,
     };
     radius

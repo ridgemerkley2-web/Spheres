@@ -436,7 +436,7 @@
       "id": "S16",
       "phase": "military",
       "title": "Add fighters and defensive aviation",
-      "status": "planned",
+      "status": "in_progress",
       "depends": [
         "S15",
         "S09"
@@ -922,12 +922,12 @@
   "last_completed_session": "S15",
   "next_session": "S16",
   "execution": {
-    "authorized_through": "S15",
-    "stop_boundary": "S15",
-    "status": "stopped",
-    "previous_stop": "S11",
-    "instruction": "Continue through S15",
-    "instruction_date": "2026-09-13",
+    "authorized_through": "S16",
+    "stop_boundary": "S16",
+    "status": "in_progress",
+    "previous_stop": "S15",
+    "instruction": "continue",
+    "instruction_date": "2026-09-14",
     "next_session_requires_instruction": true
   },
   "gate_decisions": {

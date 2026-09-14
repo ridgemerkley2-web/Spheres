@@ -13695,8 +13695,8 @@ function renderFlightMapCard() {
     const occupied=Number.isFinite(row.occupied)?row.occupied:row.occupied_aircraft;
     if(Number.isFinite(capacity))line(`${Number.isFinite(occupied)?`${occupied} / `:""}${capacity} aircraft spaces${Number.isFinite(occupied)?" used or reserved by arrivals":""}.`);
     const radius=Number.isFinite(row.rangeKm)?row.rangeKm:row.range_km;
-    if(Number.isFinite(radius)&&radius>0)line(`${Math.round(radius).toLocaleString()} km mission radius · installed aircraft configuration.`);
-    if(row.target)line(`Target: ${typeof row.target==="string"?row.target:row.target.name||row.target.district||"selected campaign target"}. The line shows geographic reach; launch eligibility follows the native review.`);
+    if(Number.isFinite(radius)&&radius>0)line(`${Math.round(radius).toLocaleString()} km ${row.missionKind==="defend_skies"?"patrol":"mission"} radius · installed aircraft configuration.`);
+    if(row.target){const area=typeof row.target==="string"?row.target:row.target.name||row.target.district||"selected campaign province";line(row.missionKind==="defend_skies"?`Defense area: ${area}. The line shows patrol reach. Support army and Strike target missions may be intercepted here; this patrol does not attack ground forces.`:`Target: ${area}. The line shows geographic reach; launch eligibility follows the native review.`);}
     if(row.blocker||row.reason)line(String(row.blocker||row.reason),"flight-map-problem");
     else if(capacity===0)line("Complete funded base construction before assigning aircraft.","flight-map-problem");
     if(row.transit?.arrival_day!=null)line(`Transfer arrival day ${row.transit.arrival_day}. Aircraft in transit cannot fly missions.`);
@@ -13719,7 +13719,7 @@ function flightMapRadiusPoints(point,radiusKm) {
 function drawFlightMapOverlay(ctx,view,globe) {
   if(!flightMapCurrent())return;
   const row=FLIGHT_MAP.row,point=flightMapGeo(row);if(!point)return;
-  const r=view.ratio,blocked=!!(row.blocker||row.reason),colour=blocked?"#ffc078":"#75e1ed";
+  const r=view.ratio,blocked=!!(row.blocker||row.reason),defensive=row.missionKind==="defend_skies",colour=blocked?"#ffc078":defensive?"#a0bdff":"#75e1ed";
   ctx.save();ctx.lineJoin="round";ctx.lineCap="round";
   const path=(points,dash,width,tint)=>{
     ctx.beginPath();let pen=false;
@@ -13744,7 +13744,7 @@ function drawFlightMapOverlay(ctx,view,globe) {
   };
   marker(point,row.name||row.base||row.district||"Airbase",blocked?"!":"A");
   if(transitTo)marker(transitTo,"Transfer destination","→");
-  if(target)marker(target,typeof row.target==="string"?row.target:row.target.name||row.target.district||"Target","×");
+  if(target){const label=typeof row.target==="string"?row.target:row.target.name||row.target.district||"Selected province";marker(target,defensive?`Defend · ${label}`:label,defensive?"D":"×");}
   ctx.restore();
 }
 function drawMapOverlay(ctx, view, globe) {

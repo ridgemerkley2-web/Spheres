@@ -198,6 +198,12 @@ fn develop_model(
     budget: f64,
     target: u32,
 ) -> u32 {
+    // Authored seller-only research for the added S16 platform. The buying
+    // country still receives only the paid finished model, with no research grant.
+    if platform == "air_fighter" {
+        w.nation_mut(HOME).equipment.get_or_insert_with(Default::default).learned
+            .extend(["air_propulsion_integration", "air_mission_systems", "air_fighter_integration"].map(str::to_string));
+    }
     let spec = equipment::default_spec(platform);
     let quote = companies::development_quote(w, HOME, company, name, &spec, budget, target);
     assert!(quote.valid, "{:?}", quote.reason);
@@ -1221,7 +1227,7 @@ fn establishment_preserves_existing_owned_vehicles_paid_deliveries_and_public_co
 #[test]
 fn every_implemented_platform_uses_paid_company_stock_and_exact_owned_deliveries_without_ammunition(
 ) {
-    assert_eq!(equipment::PLATFORMS.len(), 11);
+    assert_eq!(equipment::PLATFORMS.len(), 12);
     for platform in equipment::PLATFORMS {
         let (mut w, district) = fixture();
         let company = establish(&mut w, &district, 1.0);

@@ -87,7 +87,8 @@ fn profile_rows(p:&eq::CompiledProfile)->Vec<(&'static str,&'static str,f64,&'st
         ("reconnaissance","Reconnaissance support",g.reconnaissance,"rating","higher"),("air_defense","Air defense",g.air_defense,"rating","higher")]);}
     if let Some(a)=&p.aviation {
         rows.retain(|r|!matches!(r.0,"land_factor"|"firepower"|"protection"|"mobility"|"observation"));
-        rows.extend([("air_strike","Supported strike effectiveness",a.strike_factor,"×","higher"),("sorties","Supported sorties / aircraft / month",a.sorties_per_aircraft_month,"sorties","higher"),("stores_per_sortie","Mission stores per sortie",a.stores_per_sortie,"stores","neutral")]);
+        if a.intercept_factor>0.0 {rows.push(("air_interception","Supported interception effectiveness",a.intercept_factor,"×","higher"));}else{rows.push(("air_strike","Supported strike effectiveness",a.strike_factor,"×","higher"));}
+        rows.extend([("sorties","Supported sorties / aircraft / month",a.sorties_per_aircraft_month,"sorties","higher"),("stores_per_sortie","Mission stores per sortie",a.stores_per_sortie,"stores","neutral")]);
     }
     rows
 }
@@ -134,7 +135,7 @@ fn modernization_board(w:&WorldState,me:NationId)->Vec<Value> {
     for h in held.iter().take(8) {
         let id=h.design_id.as_ref().unwrap();let Some(source)=state.revisions.get(id) else{continue;};
         let base=eq::editable_spec(&source.spec);
-        let primary=|p:&eq::CompiledProfile|->f64 {if let Some(a)=&p.aviation{return a.strike_factor;}match (base.platform.as_str(),&p.ground_roles) {
+        let primary=|p:&eq::CompiledProfile|->f64 {if let Some(a)=&p.aviation{return if eq::is_fighter_platform(&base.platform){a.intercept_factor}else{a.strike_factor};}match (base.platform.as_str(),&p.ground_roles) {
             ("ground_artillery",Some(g))=>g.fire_support,("ground_air_defense",Some(g))=>g.air_defense,("ground_recon",Some(g))=>g.reconnaissance,
             ("ground_apc",Some(g))=>g.protected_mobility,("ground_ifv",Some(g))=>(g.fire_support+g.protected_mobility)*0.5,_=>p.land_factor,
         }};

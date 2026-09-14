@@ -168,7 +168,7 @@ fn company_preview(w: &WorldState, me: NationId, session: &str, command: &Value,
             if let Some(profile) = eq::design_preview(w,me,spec).profile {
                 metrics.extend(profile_metrics(&profile));
                 if profile.aviation.is_some() {
-                    requirements.push("The aircraft contract includes no bombs. Manufacture compatible mission stores separately; delivered aircraft also need maintenance and theatre basing access before tactical air raids.".into());
+                    requirements.push(if eq::is_fighter_platform(&spec.platform) { "The fighter contract includes no missiles. Buy compatible air-to-air stores separately; delivered fighters also need funded maintenance, a completed base and a Defend skies order." } else { "The aircraft contract includes no bombs. Manufacture compatible mission stores separately; delivered aircraft also need maintenance and theatre basing access before tactical air raids." }.into());
                 } else if let Some(def)=eq::ammunition_family(spec).and_then(eq::ammo_def) {
                     metrics.push(metric("Compatible ammunition",def.name));
                 }
@@ -191,7 +191,7 @@ fn company_preview(w: &WorldState, me: NationId, session: &str, command: &Value,
                     metrics.extend(profile_metrics(&model.profile));
                     if model.profile.aviation.is_some() {
                         metrics.push(metric("Mission stores included",0));
-                        requirements.push("This purchase includes no bombs. Acquire the exact compatible mission-store family separately. Delivery alone grants no ready sorties: maintenance, stores and theatre basing access are required.".into());
+                        requirements.push(if eq::is_fighter_platform(&model.spec.platform) { "This purchase includes no missiles. Acquire compatible air-to-air stores separately. Delivered fighters need funded maintenance, squadron assignment and a completed accessible base before Defend skies." } else { "This purchase includes no bombs. Acquire the exact compatible mission-store family separately. Delivery alone grants no ready sorties: maintenance, stores and theatre basing access are required." }.into());
                     } else if let Some(def)=eq::ammunition_family(&model.spec).and_then(eq::ammo_def) {
                         metrics.push(metric("Compatible ammunition",def.name));
                     }
@@ -804,7 +804,11 @@ mod company_view_tests {
     }
     #[test]
     fn every_current_platform_commissions_its_exact_model_through_a_company() {
-        let (mut g,site)=fixture();let c=reviewed(&g,establish_command(&site));confirm(&mut g,&c);
+        let (mut g,site)=fixture();
+        // Authored component knowledge for this all-family command contract test.
+        g.world.nation_mut(ME).equipment.get_or_insert_with(Default::default).learned
+            .extend(["air_propulsion_integration", "air_mission_systems", "air_fighter_integration"].map(str::to_string));
+        let c=reviewed(&g,establish_command(&site));confirm(&mut g,&c);
         let held_before=serde_json::to_value(&g.world.nation(ME).arsenal).unwrap();
         let mut counts=(0,0);
         for platform in eq::PLATFORMS {
@@ -834,7 +838,7 @@ mod company_view_tests {
                 counts.1+=1;assert_eq!(row["family"],"aircraft");assert_eq!(row["unit_label"],"aircraft");
                 assert_eq!(action["command"]["stock_target"],2);
                 assert!(quote["metrics"].as_array().unwrap().iter().any(|m|m["label"]=="Compatible mission stores"));
-                assert!(quote["requirements"].as_array().unwrap().iter().any(|r|r.as_str().unwrap().contains("includes no bombs")));
+                assert!(quote["requirements"].as_array().unwrap().iter().any(|r|r.as_str().unwrap().contains(if eq::is_fighter_platform(platform.id) { "includes no missiles" } else { "includes no bombs" })));
                 assert!(row["actions"].as_array().unwrap().iter().any(|a|a["navigate"]["tab"]=="ammunition"));
                 assert!(aviation_board(&g.world,ME)["actions"].as_array().unwrap().iter().any(|a|a["navigate"]["tab"]=="companies"));
             } else {counts.0+=1;assert_eq!(row["family"],"ground");}
@@ -843,7 +847,7 @@ mod company_view_tests {
             let cancelled=json!({"kind":"company_cancel","company":g.world.companies.firms[0].id,"product":product_id});
             confirm(&mut g,&cancelled);
         }
-        assert_eq!(counts,(9,2));
+        assert_eq!(counts,(9,3));
     }
 
     fn foreign_stock_fixture()->(super::super::Game,u32,u32) {

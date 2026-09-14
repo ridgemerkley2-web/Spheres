@@ -34,6 +34,13 @@ fn flight_mission_order(order: am::MissionCommand) -> Value {
     json!({"kind":"air_mission","order":order})
 }
 fn flight_mission_actions(w: &WorldState, me: NationId, squadron: u32) -> Vec<Value> {
+    let fighter = w
+        .nation(me)
+        .aviation
+        .as_ref()
+        .and_then(|a| a.squadrons.iter().find(|s| s.id == squadron))
+        .and_then(|s| w.nation(me).equipment.as_ref()?.revisions.get(&s.revision))
+        .is_some_and(|r| eq::is_fighter_platform(&r.spec.platform));
     let conflicts: Vec<_> = w
         .conflicts
         .iter()
@@ -49,9 +56,11 @@ fn flight_mission_actions(w: &WorldState, me: NationId, squadron: u32) -> Vec<Va
                 .front
                 .get(district)
                 .map_or(if *base_a { 1.0 } else { -1.0 }, |v| *v as f64);
-            if (side && control >= spheres_sim::front::HELD_BAND)
-                || (!side && control <= -spheres_sim::front::HELD_BAND)
-            {
+            let friendly_held = (side && control >= spheres_sim::front::HELD_BAND)
+                || (!side && control <= -spheres_sim::front::HELD_BAND);
+            let enemy_held = (side && control <= -spheres_sim::front::HELD_BAND)
+                || (!side && control >= spheres_sim::front::HELD_BAND);
+            if if fighter { enemy_held } else { friendly_held } {
                 continue;
             }
             if ab::district_location(district).is_none() {
@@ -65,7 +74,12 @@ fn flight_mission_actions(w: &WorldState, me: NationId, squadron: u32) -> Vec<Va
     else {
         return vec![];
     };
-    [am::MissionKind::SupportArmy, am::MissionKind::StrikeTarget]
+    let kinds = if fighter {
+        vec![am::MissionKind::DefendSkies]
+    } else {
+        vec![am::MissionKind::SupportArmy, am::MissionKind::StrikeTarget]
+    };
+    kinds
         .into_iter()
         .map(|kind| {
             intent(
@@ -86,7 +100,11 @@ fn flight_mission_actions(w: &WorldState, me: NationId, squadron: u32) -> Vec<Va
                     ),
                     flight_select(
                         "target",
-                        "Enemy-held or contested province",
+                        if fighter {
+                            "Defense area · friendly-held or contested province"
+                        } else {
+                            "Enemy-held or contested province"
+                        },
                         first_target["value"].clone(),
                         vec!["order", "target"],
                         targets.clone(),
@@ -116,7 +134,11 @@ fn flight_missions_board(w: &WorldState, me: NationId) -> Value {
         let mut metrics = vec![
             metric("Squadron", squadron),
             metric(
-                "Target",
+                if o.kind == am::MissionKind::DefendSkies {
+                    "Defense area"
+                } else {
+                    "Target"
+                },
                 spheres_sim::districts::name_of(&o.target).unwrap_or(&o.target),
             ),
             metric("Conflict", o.conflict),
@@ -139,9 +161,12 @@ fn flight_missions_board(w: &WorldState, me: NationId) -> Value {
                 metric("Settled sorties", r.sorties),
                 metric("Compatible stores used", ammo_quantity(r.stores_used)),
                 metric("Aircraft lost", r.aircraft_lost),
-                metric("Applied campaign power", r.applied_power),
                 metric(
-                    "Target contact",
+                    if o.kind == am::MissionKind::DefendSkies {
+                        "Patrol contact"
+                    } else {
+                        "Target contact"
+                    },
                     if r.contacted {
                         "Recorded"
                     } else {
@@ -149,8 +174,34 @@ fn flight_missions_board(w: &WorldState, me: NationId) -> Value {
                     },
                 ),
             ]);
+            if o.kind == am::MissionKind::DefendSkies {
+                metrics.push(metric("Ground attack", "None · defensive patrol"));
+            } else {
+                metrics.push(metric("Applied campaign power", r.applied_power));
+            }
+            if let Some(d) = &r.defense {
+                metrics.extend([
+                    metric("Opposing missions encountered", d.opposing_missions),
+                    metric(
+                        if o.kind == am::MissionKind::DefendSkies {
+                            "Hostile strike power prevented"
+                        } else {
+                            "Own strike power prevented"
+                        },
+                        d.prevented_power,
+                    ),
+                    metric(
+                        "Expected own losses · fighter combat",
+                        d.air_combat_expected_loss,
+                    ),
+                    metric(
+                        "Expected own losses · ground air defense",
+                        d.ground_defense_expected_loss,
+                    ),
+                ]);
+            }
         }
-        let row = json!({"id":o.id,"name":format!("{} · {}",o.kind.name(),spheres_sim::districts::name_of(&o.target).unwrap_or(&o.target)),"status":match o.status{am::MissionStatus::Queued=>"Queued",am::MissionStatus::Flown=>"Flown",am::MissionStatus::Blocked=>"Held before launch",am::MissionStatus::Cancelled=>"Cancelled"},"detail":o.report.as_ref().map(|r|r.summary.clone()).unwrap_or_else(||"Squadron reserved until launch or cancellation. Eligibility and shared stores are checked again on the launch day.".into()),"metrics":metrics,"receipt_label":o.report.as_ref().map(|r|super::settled_day_json(r.day)["label"].clone()),"actions":actions});
+        let row = json!({"id":o.id,"name":format!("{} · {}",o.kind.name(),spheres_sim::districts::name_of(&o.target).unwrap_or(&o.target)),"status":match o.status{am::MissionStatus::Queued=>"Queued",am::MissionStatus::Flown=>"Flown",am::MissionStatus::Blocked=>"Held before launch",am::MissionStatus::Cancelled=>"Cancelled"},"detail":o.report.as_ref().map(|r|r.summary.clone()).unwrap_or_else(||"Squadron reserved until launch or cancellation. Eligibility and shared stores are checked again on the launch day.".into()),"metrics":metrics,"requirements":if o.report.as_ref().is_some_and(|r|r.defense.is_some()){vec!["Fighter combat and ground air defense are separate estimates of this squadron's own losses. Aircraft lost is the single settled whole-aircraft total; the estimates are not enemy kills."]}else{vec![]},"receipt_label":o.report.as_ref().map(|r|super::settled_day_json(r.day)["label"].clone()),"actions":actions});
         if o.status == am::MissionStatus::Queued {
             orders.push(row);
         } else if results.len() < 30 {
@@ -162,7 +213,7 @@ fn flight_missions_board(w: &WorldState, me: NationId) -> Value {
         .iter()
         .filter(|c| c.posture_of(me).is_some_and(|p| p.rung >= 6))
         .count();
-    json!({"overview":{"title":"Campaign missions","status":format!("{} queued orders",orders.len()),"detail":"Choose Support army or Strike target on a squadron. The review checks enemy or contested geography, actual range, finite compatible stores and shared campaign allocation. Orders launch on the next simulation day; the latest 30 dated results appear below.","metrics":[metric("Conflicts with air authority",eligible),metric("Queued missions",orders.len())],"warnings":if eligible==0{vec!["Authorize at least Air raid in an active conflict before ordering a strike. Support army also needs a ground operation and army contact."]}else{vec![]}},"orders":orders,"results":results})
+    json!({"overview":{"title":"Campaign missions","status":format!("{} queued orders",orders.len()),"detail":"Attack squadrons can Support army or Strike target. Fighter squadrons can Defend skies over a friendly-held or contested province. Reviews check actual range, compatible stores and shared campaign allocation. Orders launch on the next simulation day; the latest 30 dated results appear below.","metrics":[metric("Conflicts with air authority",eligible),metric("Queued missions",orders.len())],"warnings":if eligible==0{vec!["Authorize at least Air raid in an active conflict before ordering a patrol or strike. Support army also needs a ground operation and army contact."]}else{vec![]}},"orders":orders,"results":results})
 }
 fn flight_budget(path: Vec<&str>, amount: f64) -> Value {
     let mut input = flight_input(
@@ -239,8 +290,24 @@ fn flight_support_board(w: &WorldState, me: NationId) -> Value {
         "detail":format!("Target {} stores for {} owned aircraft; {} stores committed to public work. {}",f.target_stores,f.aircraft,f.public_committed,f.reason)})).collect();
     let receipt = saved.and_then(|p| p.receipt.as_ref());
     let mut metrics = vec![
-        metric(if status.pending.is_some(){"Reviewed cap for next day"}else{"Daily combined cap"}, service_money(status.daily_budget_bn)),
-        metric("Active combined cap today", service_money(status.active.as_ref().filter(|p|p.automatic).map_or(0.0,|p|p.daily_budget_bn))),
+        metric(
+            if status.pending.is_some() {
+                "Reviewed cap for next day"
+            } else {
+                "Daily combined cap"
+            },
+            service_money(status.daily_budget_bn),
+        ),
+        metric(
+            "Active combined cap today",
+            service_money(
+                status
+                    .active
+                    .as_ref()
+                    .filter(|p| p.automatic)
+                    .map_or(0.0, |p| p.daily_budget_bn),
+            ),
+        ),
         metric(
             "Whole-fleet upkeep required",
             service_money(status.maintenance_required_bn),
@@ -579,6 +646,7 @@ fn flight_preview(
                     target,
                 } => {
                     let q = am::quote(w, me, *squadron, *conflict, *kind, target);
+                    let defensive = *kind == am::MissionKind::DefendSkies;
                     let sq = n
                         .aviation
                         .as_ref()
@@ -590,7 +658,12 @@ fn flight_preview(
                         if let Some(base) = squadron.base.as_deref().and_then(|b| ab::base(w, b)) {
                             let mut map = flight_map_action(w, me, base, Some(squadron));
                             let location = ab::district_location(target);
-                            map["label"] = json!("Review target and range on map");
+                            map["label"] = json!(if defensive {
+                                "Review defense area and patrol range on map"
+                            } else {
+                                "Review target and range on map"
+                            });
+                            map["navigate"]["missionKind"] = json!(kind);
                             map["navigate"]["target"] = json!({"district":target,"name":spheres_sim::districts::name_of(target).unwrap_or(target),"lon":location.map(|p|p.lon),"lat":location.map(|p|p.lat)});
                             map["navigate"]["blocker"] = json!(q.reason);
                             navigation.push(map);
@@ -604,18 +677,30 @@ fn flight_preview(
                                 .unwrap_or_else(|| format!("Squadron {squadron}")),
                         ),
                         metric(
-                            "Target province",
+                            if defensive {
+                                "Defense area"
+                            } else {
+                                "Target province"
+                            },
                             spheres_sim::districts::name_of(target).unwrap_or(target),
                         ),
                         metric("Aircraft assigned", q.aircraft),
                         metric(
-                            "Installed mission radius",
+                            if defensive {
+                                "Installed patrol radius"
+                            } else {
+                                "Installed mission radius"
+                            },
                             radius
                                 .map(|r| format!("{r:.0} km"))
                                 .unwrap_or_else(|| "Unavailable".into()),
                         ),
                         metric(
-                            "Target distance",
+                            if defensive {
+                                "Defense area distance"
+                            } else {
+                                "Target distance"
+                            },
                             if q.distance_km > 0.0 || q.valid {
                                 format!("{:.0} km", q.distance_km)
                             } else {
@@ -645,6 +730,13 @@ fn flight_preview(
                         ]);
                     }
                     timing.push(json!({"label":"Planned launch","value":super::settled_day_json(q.launch_day)["label"].clone()}));
+                    if defensive {
+                        metrics.push(metric(
+                            "Mission role",
+                            "Fighter interception · no ground attack",
+                        ));
+                        requirements.push("Defends this province against Support army and Strike target missions. One next-day patrol can use stores and require funded service even if no hostile flight arrives. Legacy abstract air raids are outside this patrol. Fighter interception and ground air defense are reported separately; neither figure claims enemy aircraft kills.".into());
+                    }
                     requirements.push(q.detail);
                 }
                 am::MissionCommand::Cancel { mission } => {
@@ -656,7 +748,11 @@ fn flight_preview(
                         metrics.extend([
                             metric("Mission cancelled", o.kind.name()),
                             metric(
-                                "Target province",
+                                if o.kind == am::MissionKind::DefendSkies {
+                                    "Defense area"
+                                } else {
+                                    "Target province"
+                                },
                                 spheres_sim::districts::name_of(&o.target).unwrap_or(&o.target),
                             ),
                             metric("Stores consumed by cancellation", 0),
@@ -722,7 +818,7 @@ fn flight_preview(
 mod flight_view_tests {
     use super::*;
     const ME: NationId = NationId::France;
-    fn fixture() -> super::super::Game {
+    pub(super) fn fixture() -> super::super::Game {
         let mut g = ammunition_view_tests::fixture();
         let spec = eq::default_spec("air_light_attack");
         let p = eq::design_preview(&g.world, ME, &spec);
@@ -940,6 +1036,7 @@ mod flight_view_tests {
                     aircraft_lost: 1,
                     applied_power: 0.125,
                     contacted: true,
+                    defense: None,
                 }),
             }],
             ..Default::default()
@@ -959,6 +1056,315 @@ mod flight_view_tests {
             .unwrap()
             .iter()
             .any(|m| m["label"] == "Settled sorties" && m["value"] == 0.375));
+        assert_eq!(spheres_sim::save(&g.world), before);
+    }
+}
+
+#[cfg(test)]
+mod flight_defense_view_tests {
+    use super::*;
+    const ME: NationId = NationId::France;
+
+    fn fighter_fixture() -> super::super::Game {
+        let mut g = flight_view_tests::fixture();
+        g.world
+            .nation_mut(ME)
+            .equipment
+            .as_mut()
+            .unwrap()
+            .learned
+            .extend(
+                [
+                    "air_propulsion_integration",
+                    "air_mission_systems",
+                    "air_fighter_integration",
+                ]
+                .map(str::to_string),
+            );
+        let spec = eq::default_spec("air_fighter");
+        let preview = eq::design_preview(&g.world, ME, &spec);
+        assert!(preview.valid, "{:?}", preview.blockers);
+        let day = spheres_sim::clock::absolute_day(&g.world);
+        let n = g.world.nation_mut(ME);
+        n.equipment.as_mut().unwrap().revisions.insert(
+            "fighter-demo".into(),
+            eq::DesignRevision {
+                id: "fighter-demo".into(),
+                name: "Defensive <fighter>".into(),
+                specification_key: eq::specification_key(&spec),
+                spec,
+                profile: preview.profile.unwrap(),
+                created_day: day,
+                certified_day: Some(day),
+            },
+        );
+        spheres_sim::arsenal::deliver_design(n, "fighter-demo", 4, 0.0).unwrap();
+        g
+    }
+    fn conflict(g: &mut super::super::Game) -> (u32, String, String) {
+        g.world.conflicts.clear();
+        let id = spheres_sim::commitment::open_conflict(
+            &mut g.world,
+            ME,
+            NationId::Italy,
+            spheres_sim::theatre::TheatreId::WesternEurope,
+        )
+        .unwrap();
+        for p in &mut g.world.conflict_mut(id).unwrap().posture {
+            p.rung = 6;
+        }
+        let c = g.world.conflict(id).unwrap();
+        let side = c.side_of(ME).unwrap();
+        let set = spheres_sim::front::contested_set(&g.world, c);
+        let district = |friendly: bool| {
+            set.k
+                .iter()
+                .find(|(d, (a, _))| (*a == side) == friendly && ab::district_location(d).is_some())
+                .unwrap()
+                .0
+                .clone()
+        };
+        (id, district(true), district(false))
+    }
+    fn form(g: &mut super::super::Game, revision: &str) -> u32 {
+        av::apply(
+            &mut g.world,
+            ME,
+            &av::SquadronCommand::Create {
+                name: revision.into(),
+                revision: revision.into(),
+                quantity: 2,
+            },
+        )
+        .unwrap();
+        g.world
+            .nation(ME)
+            .aviation
+            .as_ref()
+            .unwrap()
+            .squadrons
+            .last()
+            .unwrap()
+            .id
+    }
+    #[test]
+    fn s16_fighters_offer_only_defense_and_distinguish_friendly_contested_and_enemy_areas() {
+        let mut g = fighter_fixture();
+        let (id, friendly, enemy) = conflict(&mut g);
+        let fighter = form(&mut g, "fighter-demo");
+        let attack = form(&mut g, "flight-demo");
+        let before = spheres_sim::save(&g.world);
+        let defense = flight_mission_actions(&g.world, ME, fighter);
+        assert_eq!(defense.len(), 1);
+        assert_eq!(defense[0]["command"]["order"]["kind"], "defend_skies");
+        assert!(defense[0]["inputs"][1]["label"]
+            .as_str()
+            .unwrap()
+            .contains("friendly-held or contested"));
+        let choices = defense[0]["inputs"][1]["options"].as_array().unwrap();
+        assert!(choices.iter().any(|o| o["value"] == friendly));
+        assert!(!choices.iter().any(|o| o["value"] == enemy));
+        let attacks = flight_mission_actions(&g.world, ME, attack);
+        assert_eq!(attacks.len(), 2);
+        assert!(attacks
+            .iter()
+            .all(|a| a["command"]["order"]["kind"] != "defend_skies"));
+        assert!(attacks[0]["inputs"][1]["options"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .any(|o| o["value"] == enemy));
+        assert_eq!(spheres_sim::save(&g.world), before);
+        g.world
+            .conflict_mut(id)
+            .unwrap()
+            .front
+            .insert(enemy.clone(), 0.0);
+        assert!(
+            flight_mission_actions(&g.world, ME, fighter)[0]["inputs"][1]["options"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .any(|o| o["value"] == enemy)
+        );
+    }
+    #[test]
+    fn s16_defense_review_is_pure_and_maps_a_patrol_area_with_no_ground_attack_claim() {
+        let mut g = fighter_fixture();
+        let (id, friendly, _) = conflict(&mut g);
+        let fighter = form(&mut g, "fighter-demo");
+        g.world.airbases = Some(ab::AirbaseState {
+            bases: vec![ab::Airbase {
+                id: friendly.clone(),
+                district: friendly.clone(),
+                name: "Defense base".into(),
+                sponsor: ME,
+                capacity_level: 1,
+                support_level: 0,
+                protection_level: 0,
+                project: None,
+                history: vec![],
+            }],
+            ..Default::default()
+        });
+        g.world.nation_mut(ME).aviation.as_mut().unwrap().squadrons[0].base =
+            Some(friendly.clone());
+        let command = flight_mission_order(am::MissionCommand::Queue {
+            squadron: fighter,
+            conflict: id,
+            kind: am::MissionKind::DefendSkies,
+            target: friendly.clone(),
+        });
+        let before = spheres_sim::save(&g.world);
+        let q = preview(&g.world, ME, &g.session_id, &json!({"command":command})).unwrap();
+        assert_eq!(q["actions"][0]["command"], command);
+        assert!(q["metrics"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .any(|m| m["label"] == "Defense area"
+                && m["value"] == spheres_sim::districts::name_of(&friendly).unwrap()));
+        assert!(q["requirements"].as_array().unwrap().iter().any(|r| r
+            .as_str()
+            .unwrap()
+            .contains("even if no hostile flight arrives")));
+        let map = q["actions"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|a| a["navigate"]["action"] == "flight_map")
+            .unwrap();
+        assert_eq!(map["navigate"]["missionKind"], "defend_skies");
+        assert_eq!(map["navigate"]["target"]["district"], friendly);
+        assert_eq!(map["navigate"]["rangeKm"], 900.0);
+        assert_eq!(spheres_sim::save(&g.world), before);
+    }
+    #[test]
+    fn s16_reports_separate_own_expected_interception_and_ground_defense_losses_from_actual_total()
+    {
+        let mut g = fighter_fixture();
+        let (id, friendly, _) = conflict(&mut g);
+        let day = spheres_sim::clock::absolute_day(&g.world);
+        let defense = am::AirDefenseEffect {
+            opposing_missions: 2,
+            prevented_power: 1.25,
+            air_combat_expected_loss: 0.125,
+            ground_defense_expected_loss: 0.25,
+        };
+        let orders = [am::MissionKind::DefendSkies, am::MissionKind::StrikeTarget]
+            .into_iter()
+            .enumerate()
+            .map(|(i, kind)| am::MissionOrder {
+                id: i as u32 + 1,
+                nation: ME,
+                squadron: i as u32 + 1,
+                conflict: id,
+                kind,
+                target: friendly.clone(),
+                issued_day: day - 1,
+                launch_day: day,
+                status: am::MissionStatus::Flown,
+                report: Some(am::MissionReport {
+                    day,
+                    summary: "Native loss settlement".into(),
+                    aircraft: 4,
+                    sorties: 1.0,
+                    family: if kind == am::MissionKind::DefendSkies {
+                        "air_missile_short_range"
+                    } else {
+                        "air_bomb_unguided"
+                    }
+                    .into(),
+                    stores_used: 2.0,
+                    aircraft_lost: 1,
+                    applied_power: if kind == am::MissionKind::DefendSkies {
+                        0.0
+                    } else {
+                        3.0
+                    },
+                    contacted: true,
+                    defense: Some(defense.clone()),
+                }),
+            })
+            .collect();
+        g.world.air_missions = Some(am::AirMissionsState {
+            next_id: 3,
+            orders,
+            ..Default::default()
+        });
+        let before = spheres_sim::save(&g.world);
+        let board = flight_missions_board(&g.world, ME);
+        for row in board["results"].as_array().unwrap() {
+            let metrics = row["metrics"].as_array().unwrap();
+            assert!(metrics.iter().any(
+                |m| m["label"] == "Expected own losses · fighter combat" && m["value"] == 0.125
+            ));
+            assert!(metrics
+                .iter()
+                .any(|m| m["label"] == "Expected own losses · ground air defense"
+                    && m["value"] == 0.25));
+            assert_eq!(
+                metrics
+                    .iter()
+                    .filter(|m| m["label"] == "Aircraft lost" && m["value"] == 1)
+                    .count(),
+                1
+            );
+            assert!(row["requirements"][0]
+                .as_str()
+                .unwrap()
+                .contains("not enemy kills"));
+        }
+        assert!(board["results"][0]["metrics"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .any(|m| m["label"] == "Own strike power prevented"));
+        assert!(board["results"][1]["metrics"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .any(|m| m["label"] == "Hostile strike power prevented"));
+        assert_eq!(spheres_sim::save(&g.world), before);
+    }
+    #[test]
+    fn s16_fighter_design_library_guidance_and_comparison_use_interception() {
+        let g = fighter_fixture();
+        let r = &g.world.nation(ME).equipment.as_ref().unwrap().revisions["fighter-demo"];
+        let before = spheres_sim::save(&g.world);
+        let metrics = profile_metrics(&r.profile);
+        assert!(metrics
+            .iter()
+            .any(|m| m["label"] == "Supported interception effectiveness"));
+        assert!(!metrics
+            .iter()
+            .any(|m| m["label"] == "Supported strike effectiveness"));
+        assert_eq!(
+            guidance_primary(&r.spec.platform, &r.profile),
+            r.profile.aviation.as_ref().unwrap().intercept_factor
+        );
+        assert!(profile_rows(&r.profile)
+            .iter()
+            .any(|m| m.0 == "air_interception"));
+        let board = view(&g.world, ME, &g.session_id);
+        assert!(board["platforms"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .any(|p| p["id"] == "air_fighter"));
+        assert!(board["research"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .any(|p| p["id"] == "air_fighter_integration"));
+        assert!(aviation_board(&g.world, ME)["roles"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .any(|r| r["detail"]
+                .as_str()
+                .unwrap()
+                .contains("supported interception effectiveness")));
         assert_eq!(spheres_sim::save(&g.world), before);
     }
 }

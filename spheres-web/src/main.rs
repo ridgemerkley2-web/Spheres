@@ -63,6 +63,8 @@ mod s11_fixture_tests;
 #[cfg(test)]
 mod s15_fixture_tests;
 #[cfg(test)]
+mod s16_fixture_tests;
+#[cfg(test)]
 mod performance;
 #[cfg(test)]
 mod s08_route_pool_tests;

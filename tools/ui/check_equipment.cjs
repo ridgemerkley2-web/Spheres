@@ -1346,3 +1346,21 @@ test('s15 refused mission review still opens its native target geometry without 
   c.mount.querySelector('[data-equipment-action="flight.squadrons.0.actions.0"]').onclick();await tick();
   assert.equal(await c.equipmentConfirm(0),false);assert.equal(await c.equipmentConfirm(1),true);assert.deepEqual(maps,[navigation]);assert.equal(c.calls.length,0);
 });
+
+
+test('s16 defense province edits requote the native patrol and preserve role-aware map navigation',async()=>{
+  const c=fixture(),maps=[],command={kind:'air_mission',order:{action:'queue',squadron:2,conflict:7,kind:'defend_skies',target:'FR-A'}};
+  const form={label:'Defend skies',enabled:true,requires_preview:true,command,inputs:[{key:'target',path:['order','target'],label:'Defense area · friendly-held or contested province',type:'select',value:'FR-A',options:[{value:'FR-A',label:'Friendly province'},{value:'FR-B',label:'Contested province'}]}]};
+  const data=flightSnapshot({squadrons:[{id:2,name:'Fighter wing',actions:[form]}]});loaded(c,data);c.equipmentSelectTab('flight');c.window.focusFlightMap=row=>maps.push(plain(row));
+  c.api=async(route,payload)=>route.startsWith('/api/equipment?')?data:quote({detail:'Defensive interception; no ground attack.',metrics:[{label:'Installed patrol radius',value:'900 km'}],actions:[{label:'Confirm patrol',command:plain(payload.command),enabled:true},{label:'Review defense area and patrol range on map',enabled:true,navigate:{action:'flight_map',tab:'flight',missionKind:'defend_skies',base:'FR-A',district:'FR-A',lon:2,lat:48,rangeKm:900,target:{district:payload.command.order.target,name:'Defense <area>',lon:3,lat:49}}}]});
+  c.mount.querySelector('[data-equipment-action="flight.squadrons.0.actions.0"]').onclick();await tick();
+  const select=c.mount.querySelector('[data-equipment-order-input="target"]');select.value='FR-B';select.onchange();assert.equal(await c.equipmentConfirm(0),false);await tick();
+  assert.equal(c.eq.review.command.order.target,'FR-B');assert.equal(c.eq.review.command.order.kind,'defend_skies');assert.equal(c.eq.review.command.target,undefined);assert.equal(c.calls.length,0);
+  assert.equal(await c.equipmentConfirm(1),true);assert.equal(maps[0].missionKind,'defend_skies');assert.equal(maps[0].target.district,'FR-B');assert.equal(c.calls.length,0);
+  assert.equal(await c.equipmentConfirm(0),true);await tick();assert.deepEqual(c.calls,[{kind:'air_mission',order:{action:'queue',squadron:2,conflict:7,kind:'defend_skies',target:'FR-B'}}]);
+});
+
+test('s16 interception report preserves distinct native estimates and one actual aircraft loss total',()=>{
+  const c=fixture();loaded(c,flightSnapshot({missions:{overview:{title:'Campaign missions'},orders:[],results:[{id:3,name:'Defend skies · Friendly <area>',status:'Flown',receipt_label:'12 Feb 1990',metrics:[{label:'Aircraft lost',value:1},{label:'Hostile strike power prevented',value:2.5},{label:'Expected own losses · fighter combat',value:.125},{label:'Expected own losses · ground air defense',value:.25}],requirements:['Expected own losses are not enemy kills.'],actions:[]}]}}));c.equipmentSelectTab('flight');
+  const html=c.mount.innerHTML;assert.match(html,/Defend skies · Friendly &lt;area&gt;/);assert.match(html,/Hostile strike power prevented/);assert.match(html,/Expected own losses · fighter combat/);assert.match(html,/Expected own losses · ground air defense/);assert.equal(html.split('<dt>Aircraft lost</dt>').length-1,1);assert.equal(c.calls.length,0);assert.equal(c.requests.length,0);
+});

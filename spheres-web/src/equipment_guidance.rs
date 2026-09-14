@@ -2,7 +2,7 @@
 // from native design_preview. Search priorities describe suggestions, not an
 // exhaustive optimum, a production order, or an affordable supplier offer.
 fn guidance_primary(platform: &str, p: &eq::CompiledProfile) -> f64 {
-    if let Some(a) = &p.aviation { return a.strike_factor; }
+    if let Some(a) = &p.aviation { return if eq::is_fighter_platform(platform) {a.intercept_factor} else {a.strike_factor}; }
     match (platform, &p.ground_roles) {
         ("ground_artillery", Some(g)) => g.fire_support,
         ("ground_air_defense", Some(g)) => g.air_defense,
@@ -22,7 +22,7 @@ fn guidance_groups(platform: &str) -> Vec<&'static [&'static str]> {
         "ground_recon" => vec![&["turret", "armament", "ammunition"]],
         "ground_air_defense" => vec![&["armament", "ammunition", "radar", "fire_control"]],
         "ground_artillery" => vec![&["ammunition", "fire_control"]],
-        "air_light_attack" | "air_tactical_strike" => vec![&["air_payload", "air_avionics"]],
+        "air_light_attack" | "air_tactical_strike" | "air_fighter" => vec![&["air_payload", "air_avionics"]],
         _ => vec![],
     }
 }
@@ -136,7 +136,7 @@ fn design_guidance(w: &WorldState, me: NationId, current: &eq::DesignSpec, profi
             "reason":if advanced{"Prioritizes this platform's supported role rating, then its secondary design ratings, using known components. Additional capability can cost more to develop, acquire and support."}else{"Prioritizes lower company fabrication cost, then lower maintenance, using known components. Lower costs can mean weaker mission ratings; this is not an affordability claim."},
             "specification_key":eq::specification_key(&s),"spec":s,"metrics":profile_metrics(&p),"costs":guidance_costs(w,&p),"conditions":conditions,"blockers":[]})
     }).collect();
-    json!({"title":"Choose a design direction","detail":"Two deterministic suggestions from a bounded search of known components and compatible packages on this platform. Compare their actual ratings and tradeoffs; neither is a guaranteed best design. Applying one only edits the draft.",
+    json!({"title":"Choose a design direction","detail":if recommendations.is_empty(){"No complete configuration can be built from currently known parts on this platform. Review its required component research; research and later paid development remain separate."}else{"Two deterministic suggestions from a bounded search of known components and compatible packages on this platform. Compare their actual ratings and tradeoffs; neither is a guaranteed best design. Applying one only edits the draft."},
         "platform":current.platform,"recommendations":recommendations,"costs":profile.map(|p|guidance_costs(w,p)).unwrap_or_default(),"conditions":conditions})
 }
 
@@ -220,7 +220,7 @@ mod guidance_tests {
     #[test]
     fn s09_all_platform_recommendations_are_known_legal_deterministic_and_pure() {
         let mut g=game();
-        assert_eq!(eq::PLATFORMS.len(),11);
+        assert_eq!(eq::PLATFORMS.len(),12);
         for researched in [false,true] {
             if researched {all_research(&mut g.world);} else {
                 g.world.nation_mut(ME).tech.known.clear();
@@ -233,6 +233,11 @@ mod guidance_tests {
                 let first=design_guidance(&g.world,ME,&base,Some(&profile));
                 assert_eq!(first,design_guidance(&g.world,ME,&base,Some(&profile)),"{} deterministic",platform.id);
                 let recommendations=first["recommendations"].as_array().unwrap();
+                if eq::is_fighter_platform(platform.id)&&!researched {
+                    assert!(recommendations.is_empty(),"Unresearched fighter parts cannot be recommended as buildable");
+                    assert!(first["detail"].as_str().unwrap().contains("required component research"));
+                    continue;
+                }
                 assert_eq!(recommendations.len(),2,"{} has two current directions",platform.id);
                 for r in recommendations {
                     let s: eq::DesignSpec=serde_json::from_value(r["spec"].clone()).unwrap();

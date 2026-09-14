@@ -3,7 +3,7 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),crypto=require('node:crypto');
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
 const {build}=require('../../spheres-web/ui/equipment-mesh.js');
-const platforms=['tank_standard','tank_heavy','tank_light','tank_destroyer','ground_ifv','ground_apc','ground_recon','ground_artillery','ground_air_defense','air_light_attack','air_tactical_strike'];
+const platforms=['tank_standard','tank_heavy','tank_light','tank_destroyer','ground_ifv','ground_apc','ground_recon','ground_artillery','ground_air_defense','air_light_attack','air_tactical_strike','air_fighter'];
 const meshes=new Map(platforms.map(platform=>[platform,build({platform})]));
 const hash=m=>crypto.createHash('sha256').update(Buffer.from(m.positions.buffer)).update(Buffer.from(m.normals.buffer)).update(Buffer.from(m.colors.buffer)).digest('hex');
 const shape=m=>m.parts.map(p=>[p.name,p.slot,p.label]);

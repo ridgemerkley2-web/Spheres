@@ -265,7 +265,19 @@ pub const AMMUNITION_CATALOG: &[AmmoDef] = &[
         recipe: ammunition_recipe(0.18, 0.006, 0.00004),
         rounds_per_vehicle_month: 0.0,
     },
+    AmmoDef {
+        id: "air_missile_short_range",
+        name: "Short-range air-to-air missile",
+        unit: "missiles",
+        fabrication_bn: 0.000060,
+        rounds_per_day: 4.0,
+        recipe: ammunition_recipe(0.09, 0.008, 0.00003),
+        rounds_per_vehicle_month: 0.0,
+    },
 ];
+pub fn is_aviation_store(family: &str) -> bool {
+    matches!(family, "air_bomb_unguided" | "air_bomb_guided" | "air_missile_short_range")
+}
 pub fn ammo_catalog() -> &'static [AmmoDef] {
     AMMUNITION_CATALOG
 }
@@ -276,6 +288,9 @@ pub fn ammunition_def(id: &str) -> Option<&'static AmmoDef> {
     ammo_def(id)
 }
 pub fn ammunition_family(spec: &DesignSpec) -> Option<&'static str> {
+    if is_fighter_platform(&spec.platform) {
+        return (spec.components.get("air_payload").map(String::as_str) == Some("air_payload_short_range")).then_some("air_missile_short_range");
+    }
     if matches!(
         spec.platform.as_str(),
         "air_light_attack" | "air_tactical_strike"
@@ -977,7 +992,7 @@ pub fn validate_ammunition(n: &Nation) -> Result<(), String> {
             }
             if !ground_active
                 && *v > 0.0
-                && !matches!(family.as_str(), "air_bomb_unguided" | "air_bomb_guided")
+                && !is_aviation_store(family)
             {
                 return Err(fail());
             }

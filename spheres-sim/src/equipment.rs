@@ -1,4 +1,4 @@
-//! Custom ground and tactical-strike design lifecycles. Ratings and prices are
+//! Custom ground, tactical-strike and fighter design lifecycles. Ratings and prices are
 //! explicit GAME assumptions, not specifications of historical vehicles.
 //! Component knowledge consumes existing Aerospace effort. Equipment itself
 //! always remains in `Nation::arsenal`, never in this project ledger.
@@ -11,7 +11,7 @@ use crate::{
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet};
 
-pub const VERSION: u32 = 8;
+pub const VERSION: u32 = 9;
 pub const MAX_REVISIONS: usize = 128;
 pub const MAX_PROJECTS: usize = 128;
 pub const MAX_BATCH: u32 = 1000;
@@ -77,6 +77,9 @@ pub const PLATFORMS: &[PlatformDef] = &[
     PlatformDef { id:"air_tactical_strike", name:"Tactical strike aircraft", capacity:21,
         cost_bn:0.0100, mobility:1.0, protection:1.0,
         detail:"Larger strike airframe with optional twin engines and four-store installations. Provides tactical air strikes; no interception, strategic lift or ground combat capability." },
+    PlatformDef { id:"air_fighter", name:"Defensive fighter", capacity:21,
+        cost_bn:0.0140, mobility:1.0, protection:1.0,
+        detail:"Researched fighter for Defend skies. Uses a completed accessible airbase, funded upkeep and finite short-range air-to-air missiles. The modeled 900 km patrol radius includes return flight; this family has no bombing or ground role." },
 ];
 
 #[derive(Clone, Debug, Serialize)]
@@ -171,6 +174,7 @@ ResearchDef { id:"ground_battlefield_network", name:"Networked ground command", 
 ResearchDef { id:"air_propulsion_integration", name:"Aircraft propulsion and flight-control integration", points:40.0, earliest_year:1990, prerequisite:"core_cmos_submicron", detail:"Unlocks managed aircraft engines and stabilized attack wings. Installed components change sustained sortie output; research grants no aircraft or national modifier." },
 ResearchDef { id:"air_mission_systems", name:"Tactical aircraft mission systems", points:42.0, earliest_year:1990, prerequisite:"core_cmos_submicron", detail:"Unlocks ground-mapping radar, digital attack avionics and integrated countermeasures. Effects require a certified aircraft revision and supplied strike mission." },
 ResearchDef { id:"air_guided_strike", name:"Guided air-to-ground stores integration", points:48.0, earliest_year:1990, prerequisite:"core_cmos_submicron", detail:"Builds on aircraft mission systems to certify guided-bomb interfaces. Bombs remain finite manufactured consumables; no starting stores are granted." },
+ResearchDef { id:"air_fighter_integration", name:"Fighter and air-to-air weapons integration", points:60.0, earliest_year:1990, prerequisite:"core_cmos_submicron", detail:"Combines aircraft propulsion and mission systems to unlock fighter engines, maneuvering wings, interception radar, combat avionics and short-range missile interfaces. Development, delivered fighters and manufactured missiles are separate paid work; knowledge grants no aircraft, ammunition or national modifier." },
 ];
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
@@ -515,7 +519,9 @@ pub fn design_preview(w: &WorldState, nation: NationId, spec: &DesignSpec) -> De
         "Fabrication payments exclude separately acquired raw inputs. Research and drafts create no equipment or force bonus.".into()]}
 }
 
-pub(crate) fn actor_refusal(w: &WorldState, id: NationId) -> Option<String> {
+/// World eligibility for executing an already-authorized saved operation.
+/// Command admission separately checks the current directing government.
+pub(crate) fn operational_refusal(w: &WorldState, id: NationId) -> Option<String> {
     if !clock::is_daily(w) {
         return Some("Equipment design requires daily play.".into());
     }
@@ -525,10 +531,13 @@ pub(crate) fn actor_refusal(w: &WorldState, id: NationId) -> Option<String> {
     if !w.nation_opt(id).is_some_and(|n| n.alive) {
         return Some("This government is not active.".into());
     }
-    if !crate::economic_ai::may_direct(w, id) {
-        return Some("You cannot direct this government's equipment programme.".into());
-    }
     validate_ground_operations_receipt_on(w, w.nation(id)).err()
+}
+pub(crate) fn actor_refusal(w: &WorldState, id: NationId) -> Option<String> {
+    operational_refusal(w, id).or_else(|| {
+        (!crate::economic_ai::may_direct(w, id))
+            .then(|| "You cannot direct this government's equipment programme.".into())
+    })
 }
 pub(crate) fn name_refusal(name: &str) -> Option<String> {
     (name.trim().is_empty() || name.chars().count() > 80 || name.chars().any(char::is_control))
@@ -1602,6 +1611,7 @@ pub fn validate_state(n: &Nation) -> Result<(), String> {
             || (s.version == 1 && detailed_spec(&r.spec))
             || (s.version < 3 && is_ground_platform(&r.spec.platform))
             || (s.version < 8 && is_aviation_platform(&r.spec.platform))
+            || (s.version < 9 && is_fighter_platform(&r.spec.platform))
             || !PLATFORMS.iter().any(|p| p.id == r.spec.platform)
             || !configuration_refusals(&r.spec).is_empty()
             || r.spec.components.len() != slots_for(&r.spec).len()

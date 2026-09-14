@@ -79,9 +79,22 @@
     air_payload:["air_payload_unguided","air_payload_guided"],
     air_fuel:["air_fuel_standard","air_fuel_extended"]
   };
+  // S16 reuses the aircraft construction primitives with a distinct fighter
+  // silhouette and missile interface. Older aircraft never accept these parts.
+  const FIGHTER_CHOICES = {
+    air_engine:["air_engine_interceptor","air_engine_interceptor_efficient"],
+    air_wing:["air_wing_interceptor"],
+    air_radar:["air_radar_interceptor","air_radar_interceptor_tracking"],
+    air_avionics:["air_avionics_interceptor","air_avionics_interceptor_digital"],
+    air_countermeasures:AIR_CHOICES.air_countermeasures,
+    air_hardpoints:["air_hardpoints_interceptor"],
+    air_payload:["air_payload_short_range"],
+    air_fuel:AIR_CHOICES.air_fuel
+  };
   const AIR_DEFAULTS = {
     air_light_attack:{air_engine:"air_engine_economical",air_wing:"air_wing_straight",air_hardpoints:"air_hardpoints_light"},
-    air_tactical_strike:{air_engine:"air_engine_twin",air_wing:"air_wing_swept",air_hardpoints:"air_hardpoints_heavy"}
+    air_tactical_strike:{air_engine:"air_engine_twin",air_wing:"air_wing_swept",air_hardpoints:"air_hardpoints_heavy"},
+    air_fighter:{air_engine:"air_engine_interceptor",air_wing:"air_wing_interceptor",air_radar:"air_radar_interceptor",air_avionics:"air_avionics_interceptor",air_hardpoints:"air_hardpoints_interceptor",air_payload:"air_payload_short_range"}
   };
   const add = (a, b) => [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
   const sub = (a, b) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
@@ -545,7 +558,7 @@
     if (Object.hasOwn(AIR_DEFAULTS,input.platform)) {
       const defaults={air_radar:"air_radar_basic",air_avionics:"air_avionics_analog",air_countermeasures:"air_countermeasures_basic",air_payload:"air_payload_unguided",air_fuel:"air_fuel_standard",...AIR_DEFAULTS[input.platform]};
       const restricted=input.platform==='air_light_attack'?['air_engine_twin','air_wing_swept','air_hardpoints_heavy']:[];
-      for(const [slot,choices] of Object.entries(AIR_CHOICES))components[slot]=choices.includes(input.components?.[slot])&&!restricted.includes(input.components[slot])?input.components[slot]:defaults[slot];
+      for(const [slot,choices] of Object.entries(input.platform==='air_fighter'?FIGHTER_CHOICES:AIR_CHOICES))components[slot]=choices.includes(input.components?.[slot])&&!restricted.includes(input.components[slot])?input.components[slot]:defaults[slot];
       return {platform:input.platform,components};
     }
     if (Object.hasOwn(GROUND_DEFAULTS,input.platform)) {
@@ -564,16 +577,16 @@
   // Parked, original aircraft concepts. All selectable fittings have the same
   // eight semantic slots as the simulation; dimensions are visual art only.
   function buildAircraft(spec,detail) {
-    const s=spec.components,b=createBuilder(detail),strike=spec.platform==='air_tactical_strike';
+    const s=spec.components,b=createBuilder(detail),strike=spec.platform==='air_tactical_strike',fighter=spec.platform==='air_fighter';
     // Spend inspection geometry on curved airframe/duct sections and wing
     // profiles. Catalogue and map builds sample the same authored surfaces.
     const level=detail.level,radial=[160,32,8][level],steps=[16,3,1][level];
     const wingSections=[40,5,2][level],wingChord=[80,16,4][level];
-    const c=strike?{paint:[.48,.52,.54],upper:[.55,.58,.59],edge:[.39,.43,.45],dark:[.20,.24,.26],steel:[.25,.27,.28],black:PALETTE.black,glass:[.40,.53,.56],rubber:PALETTE.rubber}:{paint:[.37,.41,.36],upper:[.45,.49,.42],edge:[.53,.56,.48],dark:[.19,.23,.21],steel:PALETTE.steel,black:PALETTE.black,glass:[.09,.22,.28],rubber:PALETTE.rubber};
+    const c=strike||fighter?{paint:[.48,.52,.54],upper:[.55,.58,.59],edge:[.39,.43,.45],dark:[.20,.24,.26],steel:[.25,.27,.28],black:PALETTE.black,glass:[.40,.53,.56],rubber:PALETTE.rubber}:{paint:[.37,.41,.36],upper:[.45,.49,.42],edge:[.53,.56,.48],dark:[.19,.23,.21],steel:PALETTE.steel,black:PALETTE.black,glass:[.09,.22,.28],rubber:PALETTE.rubber};
     const surfaces=[];
-    const length=strike?16.8:11.8,y=strike?2.10:1.72,w=strike?.77:.58,rear=-length*.49,front=length*.51;
-    const swept=s.air_wing==='air_wing_swept',stable=s.air_wing==='air_wing_stable',span=(strike?5.85:5.15)+(stable?.75:0),wingZ=strike?.15:-.1;
-    const twin=s.air_engine==='air_engine_twin',efficient=s.air_engine==='air_engine_efficient',mapping=s.air_radar==='air_radar_mapping',digital=s.air_avionics==='air_avionics_digital',ecm=s.air_countermeasures==='air_countermeasures_ecm',heavy=s.air_hardpoints==='air_hardpoints_heavy',guided=s.air_payload==='air_payload_guided',extended=s.air_fuel==='air_fuel_extended';
+    const length=strike?16.8:fighter?14.8:11.8,y=strike?2.10:fighter?1.88:1.72,w=strike?.77:fighter?.66:.58,rear=-length*.49,front=length*.51;
+    const swept=s.air_wing==='air_wing_swept'||fighter,stable=s.air_wing==='air_wing_stable',span=(strike?5.85:fighter?4.70:5.15)+(stable?.75:0),wingZ=strike?.15:fighter?-.35:-.1;
+    const twin=s.air_engine==='air_engine_twin',efficient=s.air_engine==='air_engine_efficient'||s.air_engine==='air_engine_interceptor_efficient',mapping=s.air_radar==='air_radar_mapping'||s.air_radar==='air_radar_interceptor_tracking',digital=s.air_avionics==='air_avionics_digital'||s.air_avionics==='air_avionics_interceptor_digital',ecm=s.air_countermeasures==='air_countermeasures_ecm',heavy=s.air_hardpoints==='air_hardpoints_heavy',guided=s.air_payload==='air_payload_guided',extended=s.air_fuel==='air_fuel_extended';
     const ring=(z,rx,ry,cy=y,cx=0,n=radial)=>Array.from({length:n},(_,i)=>[cx+rx*Math.cos(TAU*i/n),cy+ry*Math.sin(TAU*i/n),z]);
     const roundedSections=input=>{
       const points=input.map(p=>[p[0],p[1],p[2],p[3]??y,p[4]??0]);
@@ -676,13 +689,13 @@
         for(const angle of [Math.PI*.30,Math.PI*.70])for(let j=0;j<n;j++)b.rod(skin(-5.35+6.20*j/n,angle),skin(-5.35+6.20*(j+1)/n,angle),.006,seam,6);
       }
     },'air_wing');
-    b.part(`air_radar / ${mapping?'terrain-mapping radome and sensor fairing':'basic ranging radome'}`,()=>{
+    b.part(`air_radar / ${fighter?(mapping?'tracking interception radome':'air-search interception radome'):mapping?'terrain-mapping radome and sensor fairing':'basic ranging radome'}`,()=>{
       const offset=mapping?.25:0;
       body([[front-length*.10,w*.43,w*.47],[front-length*.055,w*.27,w*.30],[front+offset,.016,.022]],mapping?c.dark:shade(c.paint,.85));
       b.rod([0,y,front+offset],[0,y,front+offset+.62],.018,c.steel,12);
-      if(mapping){body([[front-1.65,.17,.12,y-.43],[front-1.14,.20,.16,y-.40],[front-.85,.04,.05,y-.36]],c.dark);b.cylinder([0,y-.5,front-1.05],[0,y-.52,front-.96],.10,PALETTE.lens,24);}
+      if(mapping&&!fighter){body([[front-1.65,.17,.12,y-.43],[front-1.14,.20,.16,y-.40],[front-.85,.04,.05,y-.36]],c.dark);b.cylinder([0,y-.5,front-1.05],[0,y-.52,front-.96],.10,PALETTE.lens,24);}
     },'air_radar');
-    b.part(`air_avionics / ${digital?'digital mission cockpit and targeting pod':'analog cockpit and radio aerials'}`,()=>{
+    b.part(`air_avionics / ${fighter?(digital?'digital interception cockpit and datalink':'interception cockpit and radio aerials'):digital?'digital mission cockpit and targeting pod':'analog cockpit and radio aerials'}`,()=>{
       if(strike){
         // The upper fuselage has a genuine opening. An open-bottom glazing shell
         // sits above the coaming and two seats instead of enclosing a solid tube.
@@ -827,11 +840,12 @@
       const z=front-length*.29;
       if(strike)plate([[0,y+.46,-.32],[0,y+.73,-.64],[0,y+.46,-.88]],.025,c.dark,true);
       else plate([[0,y+w*.8,rear+length*.46],[0,y+w*.8+.47,rear+length*.43],[0,y+w*.8,rear+length*.40]],.035,c.dark,true);
-      if(digital){body([[.35,.21,.2,y-.73],[1.55,.21,.20,y-.73],[1.87,.11,.14,y-.73]],c.dark,.58);b.cylinder([.58,y-.73,1.86],[.58,y-.73,1.89],.105,PALETTE.lens,28);b.box([0,strike?skin(1.55,Math.PI/2)[1]+.025:y+w*.96,strike?1.55:z-1.3],[.25,.13,.5],c.edge);}
+      if(digital&&fighter){beveled(b,[0,y+w*1.03,z-1.3],[.42,.24,.78],c.edge,.055);for(const side of [-1,1])b.rod([side*.25,y+w*.96,z-1.0],[side*.32,y+w*.96+.29,z-1.29],.013,c.steel,10);}
+      else if(digital){body([[.35,.21,.2,y-.73],[1.55,.21,.20,y-.73],[1.87,.11,.14,y-.73]],c.dark,.58);b.cylinder([.58,y-.73,1.86],[.58,y-.73,1.89],.105,PALETTE.lens,28);b.box([0,strike?skin(1.55,Math.PI/2)[1]+.025:y+w*.96,strike?1.55:z-1.3],[.25,.13,.5],c.edge);}
       else for(const side of [-1,1])b.rod([side*.22,strike?y+.47:y+w*.85,strike?1.30:z-1.1],[side*.28,strike?y+.70:y+w*.85+.35,strike?.95:z-1.55],.012,c.steel);
     },'air_avionics');
     for(const side of [-1,1]) {
-      const lead=wingZ+(swept?(strike?-1.85:-1.20):stable?.1:.55),trail=lead-(swept?(strike?1.40:1.05):1.45);
+      const lead=wingZ+(swept?(strike?-1.85:fighter?-1.85:-1.20):stable?.1:.55),trail=lead-(swept?(strike?1.40:fighter?1.20:1.05):1.45);
       b.part(`air_wing / ${side<0?'port':'starboard'} ${swept?'swept':stable?'high-stability':'straight'} wing`,()=>{
         const root=side*w*.76,tip=side*span,dihedral=stable?.32:.12;
         airfoil([[root,y,wingZ+1.7],[tip,y+dihedral,lead],[tip,y+dihedral,trail],[root,y,wingZ-1.95]],strike?.12:.145,c.paint);
@@ -867,14 +881,14 @@
     }
     b.part('air_wing / vertical stabilizers and rudders',()=>{
       for(const side of strike?[-1,1]:[0]){
-        const x=side*(strike?.96:.62),tz=rear+1.3,h=strike?2.0:1.65;
+        const x=side*(strike?.96:.62),tz=rear+1.3,h=strike?2.0:fighter?1.85:1.65;
         plate([[x,y+.16,tz+1.75],[x+side*.4,y+h,tz+.55],[x+side*.5,y+h,tz-.22],[x,y+.16,tz-.57]],.12,c.paint,true);
         b.rod([x+side*.44,y+h-.11,tz-.10],[x+side*.02,y+.3,tz-.44],.018,c.dark,8);
       }
     },'air_wing');
-    const engineXs=twin?(strike?[-.84,.84]:[-.73,.73]):[0],engineRadius=twin?.54:efficient?.52:.43;
+    const engineXs=twin?(strike?[-.84,.84]:[-.73,.73]):[0],engineRadius=twin?.54:fighter?(efficient?.59:.56):efficient?.52:.43;
     engineXs.forEach((x,index)=>{
-      b.part(`air_engine / ${twin?(index?'starboard':'port')+' twin turbofan':efficient?'efficient turbofan':'economical turbine'} nacelle`,()=>{
+      b.part(`air_engine / ${fighter?(efficient?'managed interceptor engine':'interceptor engine'):twin?(index?'starboard':'port')+' twin turbofan':efficient?'efficient turbofan':'economical turbine'} nacelle`,()=>{
         const ey=y-(strike?.37:.15),housingFront=wingZ+.03,exhaust=rear+.03;
         // The engine casing ends behind the duct throat. Extending a capped
         // casing to the lip would put a solid painted disc across the intake.
@@ -1030,10 +1044,25 @@
     },'air_wing');
     const stations=[];
     for(const side of [-1,1])for(let i=0;i<(heavy?2:1);i++)stations.push({x:side*(1.65+i*.92),z:wingZ+(swept?-.35-i*.25:.15),i,side});
-    b.part(`air_hardpoints / ${heavy?'four-store strike':'two-store attack'} external mounts`,()=>{
+    b.part(`air_hardpoints / ${fighter?'two-missile fighter':heavy?'four-store strike':'two-store attack'} external mounts`,()=>{
       for(const {x,z} of stations){plate([[x,y-.04,z+.45],[x,y-.46,z+.22],[x,y-.46,z-.50],[x,y-.04,z-.66]],.115,c.upper,true);b.box([x,y-.45,z-.08],[.24,.11,.66],c.steel);for(const dz of [-.3,.22])b.rod([x-.12,y-.51,z+dz],[x+.12,y-.51,z+dz],.026,c.edge,10);}
     },'air_hardpoints');
-    b.part(`air_payload / ${guided?'precision-guided external bombs':'unguided external bombs'}`,()=>{
+    b.part(`air_payload / ${fighter?'short-range air-to-air missile interfaces':guided?'precision-guided external bombs':'unguided external bombs'}`,()=>{
+      if(fighter){
+        for(const {x,z} of stations){
+          const sy=y-.71,sz=z+.18,r=.095;
+          body([[sz-1.25,.06,.06,sy],[sz-1.10,r,r,sy],[sz+.69,r,r,sy],[sz+1.03,.049,.049,sy],[sz+1.12,.024,.024,sy]],c.upper,x);
+          b.cylinder([x,sy,sz+1.10],[x,sy,sz+1.14],.026,PALETTE.lens,20);
+          b.tube([x,sy,sz-1.26],[x,sy,sz-1.13],.064,.044,c.steel,24);
+          for(const axis of [0,1])for(const sign of [-1,1]){
+            const reach=axis?[0,sign*.25,0]:[sign*.25,0,0],tail=[x,sy,sz-.87],canard=[x,sy,sz+.54];
+            plate([add(tail,[0,0,-.28]),add(add(tail,reach),[0,0,-.31]),add(add(tail,reach),[0,0,-.02]),add(tail,[0,0,.23])],.018,c.edge,axis===1);
+            const short=mul(reach,.55);
+            plate([add(canard,[0,0,-.12]),add(add(canard,short),[0,0,-.20]),add(add(canard,short),[0,0,.01]),add(canard,[0,0,.13])],.014,c.steel,axis===1);
+          }
+        }
+        return;
+      }
       for(const {x,z} of stations){
         const sy=y-.79,sz=z+.16,r=guided?.15:.18;
         body([[sz-.92,.055,.055,sy],[sz-.67,r,r,sy],[sz+.35,r,r,sy],[sz+.70,r*.45,r*.45,sy],[sz+.78,.018,.018,sy]],guided?c.dark:c.paint,x);
@@ -1066,9 +1095,9 @@
         if(ecm){body([[rear+1.0,.075,.075,y+.47],[rear+1.26,.15,.15,y+.47],[rear+2.0,.15,.15,y+.47],[rear+2.30,.035,.035,y+.47]],c.dark,side*(w+.20));b.cylinder([side*(w+.20),y+.47,rear+2.28],[side*(w+.20),y+.47,rear+2.32],.035,PALETTE.lens,16);}
       }
     },'air_countermeasures');
-    const mesh=b.finish(`Visual interpretation of an original ${strike?'twin-seat tactical strike':'light attack'} aircraft. Component-driven parked game model; performance and procurement values belong to the simulation.`);
+    const mesh=b.finish(`Visual interpretation of an original ${fighter?'single-seat defensive fighter':strike?'twin-seat tactical strike':'light attack'} aircraft. Component-driven parked game model; performance and procurement values belong to the simulation.${fighter?' Missile shapes illustrate the installed interface; available stores remain in the ammunition ledger.':''}`);
     mesh.specification={platform:spec.platform,components:{...s}};
-    if(strike){mesh.assetKind='aircraft';mesh.surfaces=surfaces;}
+    if(strike||fighter){mesh.assetKind='aircraft';mesh.surfaces=surfaces;}
     return mesh;
   }
 

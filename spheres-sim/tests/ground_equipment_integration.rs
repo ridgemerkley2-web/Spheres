@@ -25,7 +25,12 @@ fn conflict(w:&WorldState,id:u32,enemy:N)->Conflict {
 
 #[test]
 fn every_family_has_a_complete_compatible_starter_and_rejects_foreign_mission_hardware() {
-    let mut w=world(); let original=spheres_sim::save(&w);
+    let mut w=world();
+    // This catalog/compatibility fixture explicitly endows the fighter's
+    // prerequisite research; actual paid research is qualified separately.
+    w.nation_mut(N::USA).equipment.get_or_insert_with(Default::default).learned
+        .extend(["air_propulsion_integration", "air_mission_systems", "air_fighter_integration"].map(str::to_string));
+    let original=spheres_sim::save(&w);
     for platform in eq::PLATFORMS {
         let spec=eq::default_spec(platform.id);
         assert!(eq::design_preview(&w,N::USA,&spec).valid,"{}",platform.id);

@@ -176,7 +176,7 @@ pub(crate) fn plan_ammunition(
             crate::arsenal::combat_value(n, h) / revision.profile.reference_weight_bn;
         let air_defense = revision.spec.platform == "ground_air_defense";
         let exposure: f64 = if let Some(aviation) = &revision.profile.aviation {
-            let share = if n.aviation.is_some() {0.0} else {deployments
+            let share = if n.aviation.is_some() || aviation.strike_factor <= 0.0 {0.0} else {deployments
                 .iter()
                 .filter(|d| !d.ground)
                 .map(|d| d.aircraft_share * d.intensity)
@@ -442,6 +442,9 @@ fn aviation_ammunition_effects(
                 let Some(aviation) = &p.aviation else {
                     continue;
                 };
+                // Fighters require an explicit Defend skies mission; they
+                // cannot become an implicit strike before squadrons exist.
+                if aviation.strike_factor <= 0.0 { continue; }
                 let supported = crate::arsenal::combat_value(n, h);
                 let available =
                     supported * ammunition_family_coverage(overview, &aviation.store_family);

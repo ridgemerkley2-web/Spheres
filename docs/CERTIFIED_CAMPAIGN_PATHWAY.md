@@ -1,6 +1,6 @@
 # Spheres — pathway to a certified campaign
 
-**Approved pathway · 10 September 2026 · S01–S15 complete; S16–S30 planned.**
+**Approved pathway · 10 September 2026 · S01–S15 complete; S16 in progress; S17–S30 planned.**
 
 S10 closes its qualified gameplay scope under the explicit amendment below.
 C01 and worldwide character work remain incomplete; CP1 is not earned.
@@ -654,7 +654,7 @@ The [S11 work record](campaign-certification/S11/README.md) records the qualifie
 
 #### S16 — Add fighters and defensive aviation
 
-**Status:** Planned · **Requires:** S15, S09
+**Status:** In progress · **Requires:** S15, S09
 
 **Completion marker:** G3: Defend skies works with a researched, company-supplied fighter platform.
 
@@ -1010,3 +1010,5 @@ separate from the still-required C06/S23 historical-content gates.
 ## Authorized execution boundary
 
 S04 and S05 are complete on the recorded runtime and evidence. G1 decision: **earned**. The pinned integrated build passes both native/Node platforms, original-save and transaction qualification, actual desktop/narrow browser journeys, map review and both predefined performance confirmations. This earns the bounded unified-playset gate locally; full campaign and release certification remain later work. Execution stopped after S05 as requested. On 11 September 2026, “Next” authorized S06. S06 is complete on its recorded runtime and evidence. On 11 September 2026, “Next” authorized S07. S07 is complete on its recorded runtime and evidence. A subsequent “Next” authorized S08, which completed on 12 September 2026 on its recorded runtime and evidence; execution stopped before S09. On 12 September 2026, “next” authorized S09. S09 is complete on its recorded runtime and evidence; execution stopped before S10. The subsequent Continue authorized S10. S10.a through S10.h completed as bounded increments while S10 and C01 were still open. The later instruction “Continue. Finish S10” and the recorded scope amendment authorized closure of S10's qualified gameplay scope. S10 is complete and G2 is earned on the final report's exact evidence. C01 remains incomplete, and C06/S23 content requirements still block CP1 certification. The subsequent “Next” authorized S11. S11 is complete on its exact recorded build and authored France journey. The later instruction “Continue through S15” authorized S12–S15. They are complete on the recorded runtime and authored France flight journey. Execution stopped after S15; S16 and later sessions require a new instruction. G3 and CP1 remain unearned. No later campaign, content or release certificate is awarded.
+
+On 14 September 2026, “continue” authorized S16. Fighter research, supplier delivery and Defend skies are in development; S17 remains outside this instruction. G3 has not yet been earned.
