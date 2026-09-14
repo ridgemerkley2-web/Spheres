@@ -1047,6 +1047,8 @@ pub fn validate(w: &WorldState) -> Result<(), String> {
                 * service_fraction(w, p.nation, &p.revision)
                 * mission_factor(a, p.kind);
             if !q.valid
+                || p.service_days
+                    != if airbases::base(w, &p.base).unwrap().support_level >= 1 { 1 } else { 2 }
                 || (p.required - q.stores_required).abs() > EPS
                 || (p.sorties - q.sorties).abs() > EPS
                 || (p.power - expected_power).abs() > EPS * expected_power.max(1.0)

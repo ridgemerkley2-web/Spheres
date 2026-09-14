@@ -319,6 +319,9 @@ impl Snapshot {
                             let Some(design) = h.design_id.as_deref() else { continue; };
                             let Some(profile) = crate::equipment::profile(n, design) else { continue; };
                             let Some(aviation) = &profile.aviation else { continue; };
+                            // Fighters never join an implicit legacy raid. Their
+                            // losses belong only to an explicit Defend skies plan.
+                            if aviation.strike_factor <= 0.0 { continue; }
                             let reference = arsenal::available_design_units(h) as f64 * profile.reference_weight_bn;
                             let launched = if deployment.aircraft_share > 0.0 && deployment.intensity > 0.0 && reference > 0.0 {
                                 arsenal::combat_value(n, h) / reference

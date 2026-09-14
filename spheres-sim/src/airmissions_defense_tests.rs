@@ -482,34 +482,25 @@ fn s16_multiple_interceptors_and_ground_defense_cannot_write_off_one_target_twic
     assert_eq!(crate::save(&w), crate::save(&resumed));
 }
 
-fn second_front(w: &mut WorldState) -> (String, String) {
-    // Authored diplomatic starting state: these native host grants permit
-    // operations in both regions without bypassing mission access or range.
-    for (host, seeker, theatre) in [
-        (
-            NationId::Brazil,
-            ATTACKER,
-            crate::theatre::TheatreId::LatinAmerica,
-        ),
-        (
-            NationId::Canada,
-            SECOND,
-            crate::theatre::TheatreId::NorthAmerica,
-        ),
-    ] {
-        w.access.push(crate::theatre::Access {
-            host,
-            seeker,
-            theatre,
-            since_year: w.year,
-            since_month: w.month,
-        });
-        assert!(crate::theatre::has_access(w, seeker, theatre));
-    }
+fn second_front(w: &mut WorldState) -> (String, String, String) {
     w.conflicts.push(ammo::conflict(w, SECOND_CID, SECOND));
-    let snapshot = operations::Snapshot::new(w);
-    let _ = campaign::prepare(w, &snapshot);
+    let theatre = w.conflict(SECOND_CID).unwrap().theatre;
+    assert_eq!(theatre, crate::theatre::TheatreId::LatinAmerica);
+    // Authored diplomatic starting state: native Brazilian permission lets
+    // the USA operate in Mexico's theatre. Mexico already operates at home.
+    w.access.push(crate::theatre::Access {
+        host: NationId::Brazil,
+        seeker: ATTACKER,
+        theatre,
+        since_year: w.year,
+        since_month: w.month,
+    });
+    for nation in [ATTACKER, SECOND] {
+        assert!(crate::theatre::has_access(w, nation, theatre));
+    }
     let contested = front::contested_set(w, w.conflict(SECOND_CID).unwrap());
+    let radius = airbases::range_km(&equipment::default_spec("air_light_attack"))
+        .min(airbases::range_km(&equipment::default_spec("air_fighter")));
     let mut choices = vec![];
     for (target, (side_a, _)) in &contested.k {
         if *side_a {
@@ -518,9 +509,9 @@ fn second_front(w: &mut WorldState) -> (String, String) {
         let Some(t) = airbases::district_location(target) else {
             continue;
         };
-        // The second theatre has real timed army transfers rather than a
-        // second migration grant. These Strike/Defend orders need geographic
-        // bases and airborne opposition, not an already arrived army sector.
+        // A USA border base is outside this expeditionary conflict's target
+        // set. Both sides will instead fly over one actual contested Mexican
+        // contact, with Mexico's airfield in a separate controlled province.
         for home in crate::districts::adj_of(target)
             .iter()
             .filter(|d| w.districts.get(*d) == Some(&ATTACKER))
@@ -528,25 +519,64 @@ fn second_front(w: &mut WorldState) -> (String, String) {
             let Some(b) = airbases::district_location(home) else {
                 continue;
             };
-            choices.push((airbases::distance_km(b, t), home.clone(), target.clone()));
+            let outbound = airbases::distance_km(b, t);
+            if outbound > radius || airbases::site_access_refusal(w, ATTACKER, home).is_some() {
+                continue;
+            }
+            for rear in contested.k.keys().filter(|d| *d != target) {
+                if w.districts.get(rear) != Some(&SECOND)
+                    || airbases::site_access_refusal(w, SECOND, rear).is_some()
+                {
+                    continue;
+                }
+                let Some(r) = airbases::district_location(rear) else {
+                    continue;
+                };
+                let incoming = airbases::distance_km(r, t);
+                if incoming <= radius {
+                    choices.push((
+                        outbound.max(incoming),
+                        home.clone(),
+                        rear.clone(),
+                        target.clone(),
+                    ));
+                }
+            }
         }
     }
     choices.sort_by(|a, b| {
         a.0.total_cmp(&b.0)
             .then_with(|| a.1.cmp(&b.1))
             .then_with(|| a.2.cmp(&b.2))
+            .then_with(|| a.3.cmp(&b.3))
     });
-    let (_, home, target) = choices
+    let (_, home, rear, target) = choices
         .into_iter()
         .next()
-        .expect("Native US/Mexico frontier contact");
-    (home, target)
+        .expect("Native Mexican contact within both controlled airfields' aircraft radius");
+    // Authored contested starting front; ownership and both rear airfields
+    // remain unchanged. The native front owns the aggregate control value.
+    let conflict = w.conflict_mut(SECOND_CID).unwrap();
+    conflict.front.insert(target.clone(), 0.0);
+    front::sync(conflict, &contested);
+    let snapshot = operations::Snapshot::new(w);
+    let _ = campaign::prepare(w, &snapshot);
+    for nation in [ATTACKER, SECOND] {
+        for kind in [MissionKind::StrikeTarget, MissionKind::DefendSkies] {
+            assert!(
+                target_reason(w, nation, w.conflict(SECOND_CID).unwrap(), kind, &target).is_none()
+            );
+        }
+    }
+    assert!(airbases::site_access_refusal(w, ATTACKER, &home).is_none());
+    assert!(airbases::site_access_refusal(w, SECOND, &rear).is_none());
+    (home, rear, target)
 }
 
 #[test]
 fn s16_both_sides_and_two_conflicts_share_one_finite_national_store_plan() {
     let (mut w, north, canada) = fixture();
-    let (south, mexico) = second_front(&mut w);
+    let (south, mexico, south_contact) = second_front(&mut w);
     accounts(&mut w, SECOND);
     base(&mut w, ATTACKER, &south);
     base(&mut w, SECOND, &mexico);
@@ -581,7 +611,7 @@ fn s16_both_sides_and_two_conflicts_share_one_finite_national_store_plan() {
             2,
             SECOND_CID,
             MissionKind::StrikeTarget,
-            mexico.as_str(),
+            south_contact.as_str(),
         ),
         (DEFENDER, 1, CID, MissionKind::DefendSkies, canada.as_str()),
         (
@@ -589,7 +619,7 @@ fn s16_both_sides_and_two_conflicts_share_one_finite_national_store_plan() {
             mexico_guard,
             SECOND_CID,
             MissionKind::DefendSkies,
-            mexico.as_str(),
+            south_contact.as_str(),
         ),
         (
             DEFENDER,
@@ -603,7 +633,7 @@ fn s16_both_sides_and_two_conflicts_share_one_finite_national_store_plan() {
             mexico_attack,
             SECOND_CID,
             MissionKind::StrikeTarget,
-            south.as_str(),
+            south_contact.as_str(),
         ),
         (
             ATTACKER,
@@ -617,7 +647,7 @@ fn s16_both_sides_and_two_conflicts_share_one_finite_national_store_plan() {
             south_guard,
             SECOND_CID,
             MissionKind::DefendSkies,
-            south.as_str(),
+            south_contact.as_str(),
         ),
     ] {
         queue(&mut w, id, sq, cid, kind, target);
@@ -759,6 +789,11 @@ fn s16_saved_defense_effects_cannot_invent_contacts_suppression_or_losses() {
     prepare(&mut w);
     let saved = crate::save(&w);
     let mut resumed = crate::load(&saved).unwrap();
+    let mut shortened_service = w.clone();
+    let plan = &mut shortened_service.air_missions.as_mut().unwrap().plans[0];
+    plan.service_days = if plan.service_days == 1 { 2 } else { 1 };
+    assert!(validate(&shortened_service).is_err());
+    assert!(crate::load(&crate::save(&shortened_service)).is_err());
     let mut forged = w.clone();
     forged.air_missions.as_mut().unwrap().plans[0].defense = Some(AirDefenseEffect {
         opposing_missions: 1,
