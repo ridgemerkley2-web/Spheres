@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_da_leadership_20260412",
+  "source_url": "https://www-origin.da.org.za/2026/04/da-announces-leadership-election-results",
+  "accessed_date": "2026-09-14",
+  "source_response_bytes": 133458,
+  "source_response_sha256": "cde7fdf5d3b1a47b69843408b5271faf96451c94a1f5fb301a392ded4186e393",
+  "provenance_note": "Derived factual extract, not a copy of the original response. The downloaded response was read locally and its exact bytes hashed. Original response bodies and PDF review renders are not checked into this repository. Dynamic navigation, related news, contacts and featured-person panels are excluded from claims.",
+  "rights_note": "Factual observations paraphrased with attribution. No photographs, party logos or long article text copied; no open license or portrait reuse permission asserted.",
+  "rows": [
+    {
+      "claim_id": "za_da_leader_elected_20260412",
+      "observation_id": "za_iec_n2024_027",
+      "role_id": "za_da_federal_leader",
+      "holder_name": "Geordin Hill-Lewis",
+      "role_title": "Federal Leader",
+      "attested_on": "2026-04-12"
+    },
+    {
+      "claim_id": "za_da_federal_chair_elected_20260412",
+      "observation_id": "za_iec_n2024_027",
+      "role_id": "za_da_federal_chair",
+      "holder_name": "Solly Msimanga",
+      "role_title": "Federal Chairperson",
+      "attested_on": "2026-04-12"
+    },
+    {
+      "claim_id": "za_da_council_chair_elected_20260412",
+      "observation_id": "za_iec_n2024_027",
+      "role_id": "za_da_council_chair",
+      "holder_name": "Ashor Sarupen",
+      "role_title": "Chairperson of the Federal Council",
+      "attested_on": "2026-04-12"
+    }
+  ],
+  "bounded_scope": "Three explicitly distinct elected offices only. Deputy and finance roles are not included in this bounded pass. The article is dated before the cutoff; dynamic related-news links dated after the cutoff are excluded."
+}

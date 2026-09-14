@@ -1,6 +1,6 @@
 # Source-backed discovery intake
 
-This is additional research for S10.b through S10.g, separate from the C01
+This is additional research for S10.b through S10.h, separate from the C01
 recount of the playable catalogue. These packets record discoveries and
 explicit gaps; they do not change game parties, leader eligibility or artwork.
 The historical cutoff stays **7 September 2026**. Research access dates can be
@@ -10,6 +10,13 @@ The generated [research index](../research-index.json) adds a separate set of
 numbered discovery batches, each containing at most ten exact identities. All
 country censuses and the C01/G2 prerequisites remain open. An empty game mapping
 means **unreconciled**, not proof that an organization is absent from the game.
+
+The [political research atlas](../../../../tools/ui/leadership-research-review.html)
+provides country selection, text search and organization, institution and office
+filters. Expand an observation to review its dated claims, source provenance and
+open questions. All 160 identities remain selectable; the 151 without a new
+packet show missing research explicitly. This reference neither loads a campaign
+nor grants a character an office.
 
 ## France: official financial reporting identities
 
@@ -125,10 +132,66 @@ leadership registry was not used to backdate officeholders. Access on
 mappings, leadership roles, lifecycle boundaries and portrait eligibility stay
 unknown; Brazil's four discovery batches remain open.
 
-Together the six packets contain 774 organization observations and 18
-institution observations, supported by 1,465 claims across 48 cited sources.
-The index assigns them to 83 research batches. None establishes an exhaustive
-country roster or supplies a new finished character.
+[USSR](ussr.json) adds one CPSU observation and three separate state institutions:
+the USSR Presidency, Congress of People's Deputies and Supreme Soviet. Three
+sources support eight claims. The 14 March 1990 law creates the Presidency and
+changes Article 6; its enactment and Gorbachev's Supreme Soviet chair signature
+do not establish his presidential election or oath. A 20 March diplomatic letter
+provides a separate presidential observation. Japan's contemporary diplomatic
+report provides July party-office observations with month precision; it is not
+an original CPSU election protocol. Its Ivashkov spelling remains unresolved.
+
+The law's Russian transcription was checked against four GARF JPG facsimiles
+(pages 1, 3, 13 and 14), including the signed date block. Downloaded law-page,
+facsimile and letter response hashes are separate from the factual extracts.
+The Japanese page was read through web retrieval, while its direct download
+returned 403; no raw byte count or response hash is invented. All personal term
+boundaries remain unknown. The Presidency has a sourced creation date and an
+unknown end; other lifespans and the 1991 transitions remain unresolved. No USSR
+institution or party is automatically mapped to Russia or an RSFSR counterpart.
+
+[Russia](russia.json) adds 14 federal ballot-list observations from CEC resolution
+42/337-8 of 16 August 2021 and five separately classified Duma factions recorded
+on 12 October 2021. Two sources support 24 claims. The five dated faction leaders
+are parliamentary-role observations, not party leadership or executive-office
+terms. Reported faction memberships are retained without forcing a chamber total
+or converting them into election results. Ballot labels and faction names are
+not merged into game identities merely because they match.
+
+CEC bulletin pages 1, 144 and 145 were downloaded and visually reviewed. The
+resolution date is known; the bulletin's exact publication day is not. The
+historical Duma article body was read through search retrieval after direct
+fetches timed out; dynamic linked biographies were excluded. The CEC original's
+checksum and the checked-in extract's checksum are distinct; the unavailable
+Duma raw response has no asserted checksum. These observations do not certify a
+2026 roster, full party history or continuity from the USSR.
+
+[South Africa](south-africa.json) adds the 52 party rows in the IEC's dated 2024
+National Ballot results report and separate seat allocations for those same
+labels. These are 52 organization observations, not 104 parties. The seat report
+has six additional independent-candidate rows outside this organization intake;
+National Ballot vote shares alone do not define the overall seat formula. A
+complete extraction of this bounded results table is not a complete country
+party register. Names containing Alliance, Congress or Movement do not establish
+coalition composition or organizational form.
+
+Five sources support 109 claims and one separate Presidency institution. DA
+statements provide distinct Federal Leader, Federal Chairperson and Federal
+Council Chairperson observations; the 2023 acknowledgment and April 2026 election
+results do not establish uninterrupted terms. Parliament's 14 June 2024 election
+of Cyril Ramaphosa as President-elect is separate from inauguration and party
+leadership. Original PDF pages and official article bodies were reviewed;
+downloaded response hashes remain distinct from the five checked-in factual
+extracts. No source artwork, game mapping, complete term or portrait eligibility
+is added. Access on 14 September 2026 leaves the historical cutoff unchanged.
+
+Together the nine packets contain 841 organization observations and 27
+institution observations, supported by 1,606 claims across 58 cited sources.
+The index assigns them to 92 open research batches. All nine certification
+identity IDs now have partial discovery packets: the eight campaign cases
+include a USSR → Russia transition with two separate jurisdictions. None
+establishes an exhaustive country roster or supplies a new finished character;
+151 other country identities still have no new discovery packet.
 
 Each source needs a public URL, publisher, access date and individually identified
 claims. Each organization or institution cites the exact relevant claims and
@@ -154,6 +217,10 @@ python -X utf8 -m unittest discover -s tools/avatars -p "test_japan_research_s10
 python -X utf8 -m unittest discover -s tools/avatars -p "test_india_research_s10e.py"
 python -X utf8 -m unittest discover -s tools/avatars -p "test_brazil_research_s10f.py"
 python -X utf8 -m unittest discover -s tools/avatars -p "test_tonga_research_s10g.py"
+python -X utf8 -m unittest discover -s tools/avatars -p "test_ussr_research_s10h.py"
+python -X utf8 -m unittest discover -s tools/avatars -p "test_russia_research_s10h.py"
+python -X utf8 -m unittest discover -s tools/avatars -p "test_south_africa_research_s10h.py"
+node --test tools/ui/check_leadership_research_review.cjs
 ```
 
 Use the importer without `--check` only to reproduce France's packet from the

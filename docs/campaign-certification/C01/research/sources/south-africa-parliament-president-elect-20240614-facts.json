@@ -1,0 +1,28 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_parliament_president_elect_20240614",
+  "source_url": "https://www.parliament.gov.za/press-releases/national-assembly-elects-cyril-ramaphosa-president-elect",
+  "accessed_date": "2026-09-14",
+  "source_response_bytes": 60188,
+  "source_response_sha256": "7dc4b29b68f5b8b66ea85e407f761c2f0f8268dcf8a374c82b91db225de115a5",
+  "provenance_note": "Derived factual extract, not a copy of the original response. The downloaded response was read locally and its exact bytes hashed. Original response bodies and PDF review renders are not checked into this repository. Dynamic navigation, related news, contacts and featured-person panels are excluded from claims.",
+  "rights_note": "Factual observations paraphrased with attribution. No photographs, party logos or long article text copied; no open license or portrait reuse permission asserted.",
+  "rows": [
+    {
+      "claim_id": "za_ramaphosa_president_elect_20240614",
+      "observation_id": "za_presidency",
+      "role_id": "za_president_election",
+      "holder_name": "Cyril Ramaphosa",
+      "role_title": "President of the Republic of South Africa",
+      "attested_on": "2024-06-14",
+      "event_kind": "election_as_president_elect",
+      "votes": 283,
+      "other_candidate": {
+        "name": "Julius Malema",
+        "votes": 44
+      },
+      "assumption_of_office_date": null
+    }
+  ],
+  "bounded_scope": "The legislature's report of its own election. No inference that an executive office and ANC leadership are the same role; featured members and dynamic ancillary panels excluded."
+}

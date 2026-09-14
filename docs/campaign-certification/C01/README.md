@@ -42,9 +42,27 @@ separate events, without inferred leadership terms or game eligibility.
 Downloaded response hashes and checked-in factual-extract hashes are distinct;
 the relevant court and appointment PDF pages were visually reviewed.
 
-The discovery index now totals six country packets, 774 organization and 18
-institution observations, 48 sources, 1,465 claims and 83 work batches. No
-exhaustive country census is closed; the research cutoff remains unchanged.
+S10.h adds three bounded packets. [USSR](research/ussr.json) separates one CPSU
+observation from the Presidency, Congress and Supreme Soviet; the Presidency's
+14 March 1990 creation is not a personal appointment. [Russia](research/russia.json)
+records 14 federal ballot-list observations from August 2021 and five separate
+Duma factions with dated parliamentary leaders. [South Africa](research/south-africa.json)
+records 52 party labels in the 2024 National Ballot results, separately sourced
+seat allocations, distinct DA offices and a presidential election observation.
+None establishes continuous leadership, game mappings or a successor-state
+identity match. Original responses remain outside the checked-in factual
+extracts; unavailable response hashes are explicitly unknown.
+
+The [political research atlas](../../../tools/ui/leadership-research-review.html)
+makes the register searchable by country, organization, office and person, with
+source claims and unresolved questions beside each observation. It is a research
+reference and does not load or change a campaign.
+
+The discovery index now totals nine country packets, 841 organization and 27
+institution observations, 58 sources, 1,606 claims and 92 open work batches.
+All nine certification identity IDs have partial packets; 151 other identities
+still have none. No exhaustive country census is closed; the research cutoff
+remains unchanged.
 
 **Partial inventory recorded; C01 remains incomplete.** This is a reproducible
 prerequisite audit for S10, originally recorded at
@@ -93,8 +111,10 @@ were unchanged. The seven census tests and reproducibility check still pass.
 ## Certified cases first
 
 The approved pathway's eight cases use nine identity IDs because USSR → Russia
-is a transition case. Every row below still needs an exhaustive organization
-census, role/collective-seat review and explicit uncertainty register.
+is a transition case. S10.h brings partial discovery packets to all nine IDs,
+while keeping USSR and Russia as separate research jurisdictions. Every row
+below still needs an exhaustive organization census, role/collective-seat review
+and explicit uncertainty register.
 
 | Case / identity | Game party rows | Registered components | Partial party histories | Known terms | Fictional templates |
 | --- | ---: | ---: | ---: | ---: | ---: |
@@ -185,6 +205,11 @@ From the repository root:
 python tools/avatars/campaign_census.py
 python tools/avatars/campaign_census.py --check
 python -m unittest discover -s tools/avatars -p test_campaign_census.py -v
+python -X utf8 tools/avatars/campaign_research.py --check
+python -X utf8 -m unittest discover -s tools/avatars -p test_ussr_research_s10h.py -v
+python -X utf8 -m unittest discover -s tools/avatars -p test_russia_research_s10h.py -v
+python -X utf8 -m unittest discover -s tools/avatars -p test_south_africa_research_s10h.py -v
+node --test tools/ui/check_leadership_research_review.cjs
 ```
 
 The generator reads local catalogues, preserves cited source URLs without

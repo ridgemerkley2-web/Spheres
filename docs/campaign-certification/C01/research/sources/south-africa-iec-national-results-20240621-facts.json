@@ -1,0 +1,544 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_iec_national_results_20240621",
+  "source_url": "https://results.elections.org.za/home/NPEPublicReports/1334/National%20Ballot/Results%20Report/National.pdf",
+  "accessed_date": "2026-09-14",
+  "source_response_bytes": 48695,
+  "source_response_sha256": "2931930f27426b05362460e3293c29237d2975055d464ed7858a194dfdec12a0",
+  "provenance_note": "Derived factual extract, not a copy of the original response. The downloaded response was read locally and its exact bytes hashed. Original response bodies and PDF review renders are not checked into this repository. Dynamic navigation, related news, contacts and featured-person panels are excluded from claims.",
+  "rights_note": "Factual observations paraphrased with attribution. No photographs, party logos or long article text copied; no open license or portrait reuse permission asserted.",
+  "rows": [
+    {
+      "name": "#HOPE4SA",
+      "source_abbreviation": "#HOPE4SA",
+      "pdf_page": 1,
+      "row_on_page": 1,
+      "national_ballot_votes": 27216,
+      "national_ballot_valid_vote_percent": "0.17",
+      "observation_id": "za_iec_n2024_001",
+      "claim_id": "za_n2024_ballot_001"
+    },
+    {
+      "name": "ABANTU BATHO CONGRESS",
+      "source_abbreviation": "ABC",
+      "pdf_page": 1,
+      "row_on_page": 2,
+      "national_ballot_votes": 5531,
+      "national_ballot_valid_vote_percent": "0.03",
+      "observation_id": "za_iec_n2024_002",
+      "claim_id": "za_n2024_ballot_002"
+    },
+    {
+      "name": "ABLE LEADERSHIP",
+      "source_abbreviation": "AL",
+      "pdf_page": 1,
+      "row_on_page": 3,
+      "national_ballot_votes": 3867,
+      "national_ballot_valid_vote_percent": "0.02",
+      "observation_id": "za_iec_n2024_003",
+      "claim_id": "za_n2024_ballot_003"
+    },
+    {
+      "name": "ACTION ALLIANCE DEVELOPMENT PARTY",
+      "source_abbreviation": "AADP",
+      "pdf_page": 1,
+      "row_on_page": 4,
+      "national_ballot_votes": 7802,
+      "national_ballot_valid_vote_percent": "0.05",
+      "observation_id": "za_iec_n2024_004",
+      "claim_id": "za_n2024_ballot_004"
+    },
+    {
+      "name": "ACTIONSA",
+      "source_abbreviation": "ACTIONSA",
+      "pdf_page": 1,
+      "row_on_page": 5,
+      "national_ballot_votes": 192329,
+      "national_ballot_valid_vote_percent": "1.20",
+      "observation_id": "za_iec_n2024_005",
+      "claim_id": "za_n2024_ballot_005"
+    },
+    {
+      "name": "AFRICA AFRICANS RECLAIM",
+      "source_abbreviation": "AAR",
+      "pdf_page": 1,
+      "row_on_page": 6,
+      "national_ballot_votes": 3370,
+      "national_ballot_valid_vote_percent": "0.02",
+      "observation_id": "za_iec_n2024_006",
+      "claim_id": "za_n2024_ballot_006"
+    },
+    {
+      "name": "AFRICA RESTORATION ALLIANCE",
+      "source_abbreviation": "ARA",
+      "pdf_page": 1,
+      "row_on_page": 7,
+      "national_ballot_votes": 11107,
+      "national_ballot_valid_vote_percent": "0.07",
+      "observation_id": "za_iec_n2024_007",
+      "claim_id": "za_n2024_ballot_007"
+    },
+    {
+      "name": "AFRICAN CHRISTIAN DEMOCRATIC PARTY",
+      "source_abbreviation": "ACDP",
+      "pdf_page": 1,
+      "row_on_page": 8,
+      "national_ballot_votes": 96571,
+      "national_ballot_valid_vote_percent": "0.60",
+      "observation_id": "za_iec_n2024_008",
+      "claim_id": "za_n2024_ballot_008"
+    },
+    {
+      "name": "AFRICAN CONGRESS FOR TRANSFORMATION",
+      "source_abbreviation": "ACT",
+      "pdf_page": 1,
+      "row_on_page": 9,
+      "national_ballot_votes": 18354,
+      "national_ballot_valid_vote_percent": "0.11",
+      "observation_id": "za_iec_n2024_009",
+      "claim_id": "za_n2024_ballot_009"
+    },
+    {
+      "name": "AFRICAN CONTENT MOVEMENT",
+      "source_abbreviation": "ACM",
+      "pdf_page": 1,
+      "row_on_page": 10,
+      "national_ballot_votes": 5107,
+      "national_ballot_valid_vote_percent": "0.03",
+      "observation_id": "za_iec_n2024_010",
+      "claim_id": "za_n2024_ballot_010"
+    },
+    {
+      "name": "AFRICAN HEART CONGRESS",
+      "source_abbreviation": "AHC",
+      "pdf_page": 1,
+      "row_on_page": 11,
+      "national_ballot_votes": 16307,
+      "national_ballot_valid_vote_percent": "0.10",
+      "observation_id": "za_iec_n2024_011",
+      "claim_id": "za_n2024_ballot_011"
+    },
+    {
+      "name": "AFRICAN INDEPENDENT CONGRESS",
+      "source_abbreviation": "AIC",
+      "pdf_page": 1,
+      "row_on_page": 12,
+      "national_ballot_votes": 19899,
+      "national_ballot_valid_vote_percent": "0.12",
+      "observation_id": "za_iec_n2024_012",
+      "claim_id": "za_n2024_ballot_012"
+    },
+    {
+      "name": "AFRICAN MOVEMENT CONGRESS",
+      "source_abbreviation": "NO_ABBR",
+      "pdf_page": 1,
+      "row_on_page": 13,
+      "national_ballot_votes": 2141,
+      "national_ballot_valid_vote_percent": "0.01",
+      "observation_id": "za_iec_n2024_013",
+      "claim_id": "za_n2024_ballot_013"
+    },
+    {
+      "name": "AFRICAN NATIONAL CONGRESS",
+      "source_abbreviation": "ANC",
+      "pdf_page": 1,
+      "row_on_page": 14,
+      "national_ballot_votes": 6459284,
+      "national_ballot_valid_vote_percent": "40.18",
+      "observation_id": "za_iec_n2024_014",
+      "claim_id": "za_n2024_ballot_014"
+    },
+    {
+      "name": "AFRICAN PEOPLE'S CONVENTION",
+      "source_abbreviation": "APC",
+      "pdf_page": 1,
+      "row_on_page": 15,
+      "national_ballot_votes": 13195,
+      "national_ballot_valid_vote_percent": "0.08",
+      "observation_id": "za_iec_n2024_015",
+      "claim_id": "za_n2024_ballot_015"
+    },
+    {
+      "name": "AFRICAN PEOPLE'S MOVEMENT",
+      "source_abbreviation": "APEMO",
+      "pdf_page": 1,
+      "row_on_page": 16,
+      "national_ballot_votes": 4601,
+      "national_ballot_valid_vote_percent": "0.03",
+      "observation_id": "za_iec_n2024_016",
+      "claim_id": "za_n2024_ballot_016"
+    },
+    {
+      "name": "AFRICAN TRANSFORMATION MOVEMENT",
+      "source_abbreviation": "ATM",
+      "pdf_page": 1,
+      "row_on_page": 17,
+      "national_ballot_votes": 63554,
+      "national_ballot_valid_vote_percent": "0.40",
+      "observation_id": "za_iec_n2024_017",
+      "claim_id": "za_n2024_ballot_017"
+    },
+    {
+      "name": "AL JAMA-AH",
+      "source_abbreviation": "ALJAMA",
+      "pdf_page": 1,
+      "row_on_page": 18,
+      "national_ballot_votes": 39068,
+      "national_ballot_valid_vote_percent": "0.24",
+      "observation_id": "za_iec_n2024_018",
+      "claim_id": "za_n2024_ballot_018"
+    },
+    {
+      "name": "ALL CITIZENS PARTY",
+      "source_abbreviation": "ACP",
+      "pdf_page": 1,
+      "row_on_page": 19,
+      "national_ballot_votes": 3691,
+      "national_ballot_valid_vote_percent": "0.02",
+      "observation_id": "za_iec_n2024_019",
+      "claim_id": "za_n2024_ballot_019"
+    },
+    {
+      "name": "ALLIANCE OF CITIZENS FOR CHANGE",
+      "source_abbreviation": "A.C.C.",
+      "pdf_page": 1,
+      "row_on_page": 20,
+      "national_ballot_votes": 9333,
+      "national_ballot_valid_vote_percent": "0.06",
+      "observation_id": "za_iec_n2024_020",
+      "claim_id": "za_n2024_ballot_020"
+    },
+    {
+      "name": "ALLIED MOVEMENT FOR CHANGE",
+      "source_abbreviation": "AM4C",
+      "pdf_page": 1,
+      "row_on_page": 21,
+      "national_ballot_votes": 22057,
+      "national_ballot_valid_vote_percent": "0.14",
+      "observation_id": "za_iec_n2024_021",
+      "claim_id": "za_n2024_ballot_021"
+    },
+    {
+      "name": "AZANIAN PEOPLE'S ORGANISATION",
+      "source_abbreviation": "AZAPO",
+      "pdf_page": 1,
+      "row_on_page": 22,
+      "national_ballot_votes": 19048,
+      "national_ballot_valid_vote_percent": "0.12",
+      "observation_id": "za_iec_n2024_022",
+      "claim_id": "za_n2024_ballot_022"
+    },
+    {
+      "name": "BUILD ONE SOUTH AFRICA WITH MMUSI MAIMANE",
+      "source_abbreviation": "BOSA",
+      "pdf_page": 1,
+      "row_on_page": 23,
+      "national_ballot_votes": 65919,
+      "national_ballot_valid_vote_percent": "0.41",
+      "observation_id": "za_iec_n2024_023",
+      "claim_id": "za_n2024_ballot_023"
+    },
+    {
+      "name": "CITIZANS",
+      "source_abbreviation": "CITIZANS",
+      "pdf_page": 1,
+      "row_on_page": 24,
+      "national_ballot_votes": 2992,
+      "national_ballot_valid_vote_percent": "0.02",
+      "observation_id": "za_iec_n2024_024",
+      "claim_id": "za_n2024_ballot_024"
+    },
+    {
+      "name": "CONGRESS  OF THE PEOPLE",
+      "source_abbreviation": "COPE",
+      "pdf_page": 1,
+      "row_on_page": 25,
+      "national_ballot_votes": 14173,
+      "national_ballot_valid_vote_percent": "0.09",
+      "observation_id": "za_iec_n2024_025",
+      "claim_id": "za_n2024_ballot_025"
+    },
+    {
+      "name": "CONSERVATIVES IN ACTION",
+      "source_abbreviation": "CIASA",
+      "pdf_page": 1,
+      "row_on_page": 26,
+      "national_ballot_votes": 7424,
+      "national_ballot_valid_vote_percent": "0.05",
+      "observation_id": "za_iec_n2024_026",
+      "claim_id": "za_n2024_ballot_026"
+    },
+    {
+      "name": "DEMOCRATIC ALLIANCE",
+      "source_abbreviation": "DA",
+      "pdf_page": 1,
+      "row_on_page": 27,
+      "national_ballot_votes": 3506855,
+      "national_ballot_valid_vote_percent": "21.81",
+      "observation_id": "za_iec_n2024_027",
+      "claim_id": "za_n2024_ballot_027"
+    },
+    {
+      "name": "DEMOCRATIC LIBERAL CONGRESS",
+      "source_abbreviation": "DLC",
+      "pdf_page": 1,
+      "row_on_page": 28,
+      "national_ballot_votes": 10904,
+      "national_ballot_valid_vote_percent": "0.07",
+      "observation_id": "za_iec_n2024_028",
+      "claim_id": "za_n2024_ballot_028"
+    },
+    {
+      "name": "ECONOMIC FREEDOM FIGHTERS",
+      "source_abbreviation": "EFF",
+      "pdf_page": 1,
+      "row_on_page": 29,
+      "national_ballot_votes": 1529914,
+      "national_ballot_valid_vote_percent": "9.52",
+      "observation_id": "za_iec_n2024_029",
+      "claim_id": "za_n2024_ballot_029"
+    },
+    {
+      "name": "ECONOMIC LIBERATORS FORUM SOUTH AFRICA",
+      "source_abbreviation": "ELF-SA",
+      "pdf_page": 1,
+      "row_on_page": 30,
+      "national_ballot_votes": 5406,
+      "national_ballot_valid_vote_percent": "0.03",
+      "observation_id": "za_iec_n2024_030",
+      "claim_id": "za_n2024_ballot_030"
+    },
+    {
+      "name": "FORUM 4 SERVICE DELIVERY",
+      "source_abbreviation": "F4SD",
+      "pdf_page": 1,
+      "row_on_page": 31,
+      "national_ballot_votes": 10927,
+      "national_ballot_valid_vote_percent": "0.07",
+      "observation_id": "za_iec_n2024_031",
+      "claim_id": "za_n2024_ballot_031"
+    },
+    {
+      "name": "FREE DEMOCRATS",
+      "source_abbreviation": "FREE DEMS",
+      "pdf_page": 1,
+      "row_on_page": 32,
+      "national_ballot_votes": 1972,
+      "national_ballot_valid_vote_percent": "0.01",
+      "observation_id": "za_iec_n2024_032",
+      "claim_id": "za_n2024_ballot_032"
+    },
+    {
+      "name": "GOOD",
+      "source_abbreviation": "GOOD",
+      "pdf_page": 1,
+      "row_on_page": 33,
+      "national_ballot_votes": 29500,
+      "national_ballot_valid_vote_percent": "0.18",
+      "observation_id": "za_iec_n2024_033",
+      "claim_id": "za_n2024_ballot_033"
+    },
+    {
+      "name": "INKATHA FREEDOM PARTY",
+      "source_abbreviation": "IFP",
+      "pdf_page": 1,
+      "row_on_page": 34,
+      "national_ballot_votes": 618208,
+      "national_ballot_valid_vote_percent": "3.85",
+      "observation_id": "za_iec_n2024_034",
+      "claim_id": "za_n2024_ballot_034"
+    },
+    {
+      "name": "NATIONAL COLOURED CONGRESS",
+      "source_abbreviation": "CCC",
+      "pdf_page": 1,
+      "row_on_page": 35,
+      "national_ballot_votes": 37423,
+      "national_ballot_valid_vote_percent": "0.23",
+      "observation_id": "za_iec_n2024_035",
+      "claim_id": "za_n2024_ballot_035"
+    },
+    {
+      "name": "NATIONAL FREEDOM PARTY",
+      "source_abbreviation": "NFP",
+      "pdf_page": 1,
+      "row_on_page": 36,
+      "national_ballot_votes": 19397,
+      "national_ballot_valid_vote_percent": "0.12",
+      "observation_id": "za_iec_n2024_036",
+      "claim_id": "za_n2024_ballot_036"
+    },
+    {
+      "name": "NORTHERN CAPE COMMUNITIES MOVEMENT",
+      "source_abbreviation": "NCCM",
+      "pdf_page": 1,
+      "row_on_page": 37,
+      "national_ballot_votes": 6629,
+      "national_ballot_valid_vote_percent": "0.04",
+      "observation_id": "za_iec_n2024_037",
+      "claim_id": "za_n2024_ballot_037"
+    },
+    {
+      "name": "ORGANIC HUMANITY MOVEMENT",
+      "source_abbreviation": "OHM",
+      "pdf_page": 2,
+      "row_on_page": 1,
+      "national_ballot_votes": 5240,
+      "national_ballot_valid_vote_percent": "0.03",
+      "observation_id": "za_iec_n2024_038",
+      "claim_id": "za_n2024_ballot_038"
+    },
+    {
+      "name": "PAN AFRICANIST CONGRESS OF AZANIA",
+      "source_abbreviation": "PAC",
+      "pdf_page": 2,
+      "row_on_page": 2,
+      "national_ballot_votes": 36710,
+      "national_ballot_valid_vote_percent": "0.23",
+      "observation_id": "za_iec_n2024_039",
+      "claim_id": "za_n2024_ballot_039"
+    },
+    {
+      "name": "PATRIOTIC ALLIANCE",
+      "source_abbreviation": "PA",
+      "pdf_page": 2,
+      "row_on_page": 3,
+      "national_ballot_votes": 330416,
+      "national_ballot_valid_vote_percent": "2.06",
+      "observation_id": "za_iec_n2024_040",
+      "claim_id": "za_n2024_ballot_040"
+    },
+    {
+      "name": "PEOPLE'S MOVEMENT FOR CHANGE",
+      "source_abbreviation": "PMC",
+      "pdf_page": 2,
+      "row_on_page": 4,
+      "national_ballot_votes": 5539,
+      "national_ballot_valid_vote_percent": "0.03",
+      "observation_id": "za_iec_n2024_041",
+      "claim_id": "za_n2024_ballot_041"
+    },
+    {
+      "name": "REFERENDUM PARTY",
+      "source_abbreviation": "RP",
+      "pdf_page": 2,
+      "row_on_page": 5,
+      "national_ballot_votes": 3834,
+      "national_ballot_valid_vote_percent": "0.02",
+      "observation_id": "za_iec_n2024_042",
+      "claim_id": "za_n2024_ballot_042"
+    },
+    {
+      "name": "RISE MZANSI",
+      "source_abbreviation": "RISE",
+      "pdf_page": 2,
+      "row_on_page": 6,
+      "national_ballot_votes": 67970,
+      "national_ballot_valid_vote_percent": "0.42",
+      "observation_id": "za_iec_n2024_043",
+      "claim_id": "za_n2024_ballot_043"
+    },
+    {
+      "name": "SIZWE UMMAH NATION",
+      "source_abbreviation": "SUN",
+      "pdf_page": 2,
+      "row_on_page": 7,
+      "national_ballot_votes": 5016,
+      "national_ballot_valid_vote_percent": "0.03",
+      "observation_id": "za_iec_n2024_044",
+      "claim_id": "za_n2024_ballot_044"
+    },
+    {
+      "name": "SOUTH AFRICAN RAINBOW ALLIANCE",
+      "source_abbreviation": "SARA",
+      "pdf_page": 2,
+      "row_on_page": 8,
+      "national_ballot_votes": 4796,
+      "national_ballot_valid_vote_percent": "0.03",
+      "observation_id": "za_iec_n2024_045",
+      "claim_id": "za_n2024_ballot_045"
+    },
+    {
+      "name": "SOUTH AFRICAN ROYAL KINGDOMS ORGANIZATION",
+      "source_abbreviation": "SARKO",
+      "pdf_page": 2,
+      "row_on_page": 9,
+      "national_ballot_votes": 6686,
+      "national_ballot_valid_vote_percent": "0.04",
+      "observation_id": "za_iec_n2024_046",
+      "claim_id": "za_n2024_ballot_046"
+    },
+    {
+      "name": "UMKHONTO WESIZWE",
+      "source_abbreviation": "M.K.",
+      "pdf_page": 2,
+      "row_on_page": 10,
+      "national_ballot_votes": 2344291,
+      "national_ballot_valid_vote_percent": "14.58",
+      "observation_id": "za_iec_n2024_047",
+      "claim_id": "za_n2024_ballot_047"
+    },
+    {
+      "name": "UNITED AFRICANS TRANSFORMATION",
+      "source_abbreviation": "UAT",
+      "pdf_page": 2,
+      "row_on_page": 11,
+      "national_ballot_votes": 35678,
+      "national_ballot_valid_vote_percent": "0.22",
+      "observation_id": "za_iec_n2024_048",
+      "claim_id": "za_n2024_ballot_048"
+    },
+    {
+      "name": "UNITED DEMOCRATIC MOVEMENT",
+      "source_abbreviation": "UDM",
+      "pdf_page": 2,
+      "row_on_page": 12,
+      "national_ballot_votes": 78444,
+      "national_ballot_valid_vote_percent": "0.49",
+      "observation_id": "za_iec_n2024_049",
+      "claim_id": "za_n2024_ballot_049"
+    },
+    {
+      "name": "UNITED INDEPENDENT MOVEMENT",
+      "source_abbreviation": "UIM",
+      "pdf_page": 2,
+      "row_on_page": 13,
+      "national_ballot_votes": 20004,
+      "national_ballot_valid_vote_percent": "0.12",
+      "observation_id": "za_iec_n2024_050",
+      "claim_id": "za_n2024_ballot_050"
+    },
+    {
+      "name": "VRYHEIDSFRONT PLUS",
+      "source_abbreviation": "VF PLUS",
+      "pdf_page": 2,
+      "row_on_page": 14,
+      "national_ballot_votes": 219052,
+      "national_ballot_valid_vote_percent": "1.36",
+      "observation_id": "za_iec_n2024_051",
+      "claim_id": "za_n2024_ballot_051"
+    },
+    {
+      "name": "XILUVA",
+      "source_abbreviation": "XILUVA",
+      "pdf_page": 2,
+      "row_on_page": 15,
+      "national_ballot_votes": 2591,
+      "national_ballot_valid_vote_percent": "0.02",
+      "observation_id": "za_iec_n2024_052",
+      "claim_id": "za_n2024_ballot_052"
+    }
+  ],
+  "report_as_at": "2024-06-21T13:51:28",
+  "report_timestamp_note": "Transcribed from the report header in its displayed local time; not asserted as original publication or election day.",
+  "reviewed_pdf_pages": [
+    1,
+    2
+  ],
+  "bounded_scope": "Every one of the 52 organization rows on this National Ballot report, including zero-seat parties. The nine province columns and Out of Country belong to this National Ballot; regional and provincial ballots are different universes.",
+  "totals": {
+    "national_ballot_valid_votes": 16077342,
+    "party_rows": 52
+  },
+  "normalization_note": "Visual line wraps in names and abbreviations joined; source spelling and internal spaces retained, including CITIZANS, CONGRESS  OF THE PEOPLE and NO_ABBR. Row numbers are derived locators, not IEC legal identifiers."
+}

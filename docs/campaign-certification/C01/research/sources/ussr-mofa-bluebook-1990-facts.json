@@ -1,0 +1,42 @@
+{
+  "format": "spheres-primary-source-factual-extract/v1",
+  "source_url": "https://www.mofa.go.jp/policy/other/bluebook/1990/1990-3-4.htm",
+  "source_title": "Diplomatic Bluebook 1990, Section 4: Soviet Union",
+  "accessed_date": "2026-09-13",
+  "source_response_url": null,
+  "source_response_bytes": null,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "provenance_note": "The official page was read through web retrieval. The separate HTTP download failed with 403; no raw source-response byte count or hash is claimed.",
+  "claims": [
+    {
+      "id": "su_mofa_gorbachev_general_secretary_199007",
+      "text": "Japan's 1990 diplomatic account reports Gorbachev's election as General Secretary at the July 1990 CPSU congress while separately calling him President.",
+      "locator": "1. Internal Politics, (1) Progress in Political Reform, July congress paragraphs",
+      "period": {
+        "from": "1990-07-01",
+        "through": "1990-07-31"
+      },
+      "precision": "month",
+      "uncertainty": "Month-level contemporaneous diplomatic observation; original CPSU election protocol and exact election day were not inspected."
+    },
+    {
+      "id": "su_mofa_deputy_general_secretary_199007",
+      "text": "The account reports a new Deputy General Secretary office supporting the General Secretary and supervising the Secretariat, with Vladimir Ivashkov elected.",
+      "locator": "1. Internal Politics, (1) Progress in Political Reform, last paragraph",
+      "period": {
+        "from": "1990-07-01",
+        "through": "1990-07-31"
+      },
+      "precision": "month",
+      "uncertainty": "The source spells the name Ivashkov; reconciliation with original-language identity and election records is pending. This is not a succession entitlement or a continuous deputy term."
+    }
+  ],
+  "scope_note": "A primary record of Japan's contemporary diplomatic reporting, not an original Soviet party register or election instrument. Retain its month precision and the reported Ivashkov spelling. No independent use is made of its shorthand for constitutional powers, its labels for new groups, or its republic-level office descriptions. The edition year is not a known website publication day.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "HTML text review only; no PDF, portrait or image inspection claimed."
+  },
+  "rights_note": "Factual paraphrases only; no source artwork or portrait copied. No portrait permission or likeness approval is established. The law repository labels its official facsimile public domain; no such license is inferred for unrelated content."
+}

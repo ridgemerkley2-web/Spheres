@@ -1,0 +1,173 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://duma.gov.ru/news/52404/",
+  "accessed_date": "2026-09-13",
+  "published_date": "2021-10-12",
+  "access_method": "official_dated_article_text_via_search_index",
+  "source_response_bytes": null,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "provenance_note": "The search tool returned the dated official Duma article text, including its full relevant body. Direct HTTPS article, print variant and transcript fetches timed out. No original HTTP response was acquired, and no original-response checksum is invented. The checked-in extract checksum identifies this derived file only.",
+  "rights_note": "Attributed factual observations only. No photographs, logos, signatures or expressive article text are republished. No open license, portrait reuse permission or likeness approval is asserted.",
+  "reported_faction_count": 5,
+  "rows": [
+    {
+      "membership_paragraph_order": 1,
+      "faction_label": "Единая Россия",
+      "members": 324,
+      "holder_name_in_article_body": "Владимир Васильев",
+      "holder_paragraph_order": 1,
+      "observation_id": "ru_duma_faction_20211012_er",
+      "membership_claim_id": "ru_duma_faction_20211012_er_membership",
+      "holder_claim_id": "ru_duma_faction_20211012_er_leader"
+    },
+    {
+      "membership_paragraph_order": 2,
+      "faction_label": "КПРФ",
+      "members": 57,
+      "holder_name_in_article_body": "Геннадий Зюганов",
+      "holder_paragraph_order": 2,
+      "observation_id": "ru_duma_faction_20211012_kprf",
+      "membership_claim_id": "ru_duma_faction_20211012_kprf_membership",
+      "holder_claim_id": "ru_duma_faction_20211012_kprf_leader"
+    },
+    {
+      "membership_paragraph_order": 3,
+      "faction_label": "Справедливая Россия — За правду",
+      "members": 28,
+      "holder_name_in_article_body": "Сергей Миронов",
+      "holder_paragraph_order": 4,
+      "observation_id": "ru_duma_faction_20211012_srzp",
+      "membership_claim_id": "ru_duma_faction_20211012_srzp_membership",
+      "holder_claim_id": "ru_duma_faction_20211012_srzp_leader"
+    },
+    {
+      "membership_paragraph_order": 4,
+      "faction_label": "ЛДПР",
+      "members": 23,
+      "holder_name_in_article_body": "Владимир Жириновский",
+      "holder_paragraph_order": 3,
+      "observation_id": "ru_duma_faction_20211012_ldpr",
+      "membership_claim_id": "ru_duma_faction_20211012_ldpr_membership",
+      "holder_claim_id": "ru_duma_faction_20211012_ldpr_leader"
+    },
+    {
+      "membership_paragraph_order": 5,
+      "faction_label": "Новые люди",
+      "members": 15,
+      "holder_name_in_article_body": "Алексей Нечаев",
+      "holder_paragraph_order": 5,
+      "observation_id": "ru_duma_faction_20211012_nl",
+      "membership_claim_id": "ru_duma_faction_20211012_nl_membership",
+      "holder_claim_id": "ru_duma_faction_20211012_nl_leader"
+    }
+  ],
+  "claims": [
+    {
+      "id": "ru_duma_faction_20211012_er_membership",
+      "text": "The Duma reports the registered Единая Россия faction with 324 members.",
+      "attested_on": "2021-10-12",
+      "locator": {
+        "section": "Body, faction membership paragraph",
+        "item_order": 1
+      },
+      "uncertainty": "A parliamentary-faction membership observation on the report date, not the party election-seat total or a national party register."
+    },
+    {
+      "id": "ru_duma_faction_20211012_er_leader",
+      "text": "The same report identifies Владимир Васильев as head of the Единая Россия faction.",
+      "attested_on": "2021-10-12",
+      "locator": {
+        "section": "Body, faction leadership paragraphs",
+        "person_order": 1
+      },
+      "uncertainty": "Parliamentary leadership attested in the dated article. The article does not establish a full term or give the exact prior organizational-election day; no party chair or national executive office is inferred."
+    },
+    {
+      "id": "ru_duma_faction_20211012_kprf_membership",
+      "text": "The Duma reports the registered КПРФ faction with 57 members.",
+      "attested_on": "2021-10-12",
+      "locator": {
+        "section": "Body, faction membership paragraph",
+        "item_order": 2
+      },
+      "uncertainty": "A parliamentary-faction membership observation on the report date, not the party election-seat total or a national party register."
+    },
+    {
+      "id": "ru_duma_faction_20211012_kprf_leader",
+      "text": "The same report identifies Геннадий Зюганов as head of the КПРФ faction.",
+      "attested_on": "2021-10-12",
+      "locator": {
+        "section": "Body, faction leadership paragraphs",
+        "person_order": 2
+      },
+      "uncertainty": "Parliamentary leadership attested in the dated article. The article does not establish a full term or give the exact prior organizational-election day; no party chair or national executive office is inferred."
+    },
+    {
+      "id": "ru_duma_faction_20211012_srzp_membership",
+      "text": "The Duma reports the registered Справедливая Россия — За правду faction with 28 members.",
+      "attested_on": "2021-10-12",
+      "locator": {
+        "section": "Body, faction membership paragraph",
+        "item_order": 3
+      },
+      "uncertainty": "A parliamentary-faction membership observation on the report date, not the party election-seat total or a national party register."
+    },
+    {
+      "id": "ru_duma_faction_20211012_srzp_leader",
+      "text": "The same report identifies Сергей Миронов as head of the Справедливая Россия — За правду faction.",
+      "attested_on": "2021-10-12",
+      "locator": {
+        "section": "Body, faction leadership paragraphs",
+        "person_order": 4
+      },
+      "uncertainty": "Parliamentary leadership attested in the dated article. The article does not establish a full term or give the exact prior organizational-election day; no party chair or national executive office is inferred."
+    },
+    {
+      "id": "ru_duma_faction_20211012_ldpr_membership",
+      "text": "The Duma reports the registered ЛДПР faction with 23 members.",
+      "attested_on": "2021-10-12",
+      "locator": {
+        "section": "Body, faction membership paragraph",
+        "item_order": 4
+      },
+      "uncertainty": "A parliamentary-faction membership observation on the report date, not the party election-seat total or a national party register."
+    },
+    {
+      "id": "ru_duma_faction_20211012_ldpr_leader",
+      "text": "The same report identifies Владимир Жириновский as head of the ЛДПР faction.",
+      "attested_on": "2021-10-12",
+      "locator": {
+        "section": "Body, faction leadership paragraphs",
+        "person_order": 3
+      },
+      "uncertainty": "Parliamentary leadership attested in the dated article. The article does not establish a full term or give the exact prior organizational-election day; no party chair or national executive office is inferred."
+    },
+    {
+      "id": "ru_duma_faction_20211012_nl_membership",
+      "text": "The Duma reports the registered Новые люди faction with 15 members.",
+      "attested_on": "2021-10-12",
+      "locator": {
+        "section": "Body, faction membership paragraph",
+        "item_order": 5
+      },
+      "uncertainty": "A parliamentary-faction membership observation on the report date, not the party election-seat total or a national party register."
+    },
+    {
+      "id": "ru_duma_faction_20211012_nl_leader",
+      "text": "The same report identifies Алексей Нечаев as head of the Новые люди faction.",
+      "attested_on": "2021-10-12",
+      "locator": {
+        "section": "Body, faction leadership paragraphs",
+        "person_order": 5
+      },
+      "uncertainty": "Parliamentary leadership attested in the dated article. The article does not establish a full term or give the exact prior organizational-election day; no party chair or national executive office is inferred."
+    }
+  ],
+  "scope_note": "The article is dated 12 October 2021 at 11:10. Only its historical body was used, excluding dynamic linked-deputy hover biographies and current navigation. All five faction names, reported membership counts and named leaders are observations on that date. This does not assert that the five parties exhausted Russian political organizations.",
+  "source_scope_limitations": [
+    "Direct original response still requires verification.",
+    "Faction membership totals are not interchangeable with election seat totals or the chamber capacity.",
+    "No general party chair, national executive, complete leadership interval or USSR/Russia continuity claim."
+  ]
+}

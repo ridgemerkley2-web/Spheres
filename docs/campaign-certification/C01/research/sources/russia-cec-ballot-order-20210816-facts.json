@@ -1,0 +1,115 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://www.rcoit.ru/upload/iblock/615/t84njnvke81zxt62xo1z2nsje9ld1yun/vestnik_16_2021.pdf",
+  "accessed_date": "2026-09-13",
+  "published_date": null,
+  "document_date": "2021-08-16",
+  "access_method": "downloaded_original_pdf_text_and_relevant_pages_visually_read",
+  "source_response_bytes": 3838526,
+  "source_response_sha256": "b6f39b95e37f16586826ac7fe1a4c06ff552ad00ed55d2ad94a538ba852fa5e3",
+  "source_response_checked_in": false,
+  "provenance_note": "The 312-page original PDF response was downloaded and hashed before extraction. Only this factual extract is checked in; it is not the original response or a pre-cutoff archived snapshot. Its own checksum is separate.",
+  "rights_note": "Attributed factual observations only. No photographs, logos, signatures or expressive article text are republished. No open license, portrait reuse permission or likeness approval is asserted.",
+  "document": {
+    "issue": "16 (428) 2021",
+    "resolution": "42/337-8",
+    "resolution_date": "2021-08-16",
+    "named_election_date": "2021-09-19"
+  },
+  "label_transcription": "Exact printed party labels, including case, Ё in item 2, Е in item 12 and nested quotation marks. Visual reading removes PDF text-extraction kerning spaces within words; the terminal sentence period in item 14 is not part of the stored name.",
+  "rows": [
+    {
+      "ballot_position": 1,
+      "party_label": "Политическая партия «КОММУНИСТИЧЕСКАЯ ПАРТИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ»",
+      "claim_id": "ru_cec_ballot_20210816_01",
+      "observation_id": "ru_duma_ballot_list_2021_01"
+    },
+    {
+      "ballot_position": 2,
+      "party_label": "Политическая партия «Российская экологическая партия «ЗЕЛЁНЫЕ»",
+      "claim_id": "ru_cec_ballot_20210816_02",
+      "observation_id": "ru_duma_ballot_list_2021_02"
+    },
+    {
+      "ballot_position": 3,
+      "party_label": "Политическая партия ЛДПР – Либерально-демократическая партия России",
+      "claim_id": "ru_cec_ballot_20210816_03",
+      "observation_id": "ru_duma_ballot_list_2021_03"
+    },
+    {
+      "ballot_position": 4,
+      "party_label": "Политическая партия «НОВЫЕ ЛЮДИ»",
+      "claim_id": "ru_cec_ballot_20210816_04",
+      "observation_id": "ru_duma_ballot_list_2021_04"
+    },
+    {
+      "ballot_position": 5,
+      "party_label": "Всероссийская политическая партия «ЕДИНАЯ РОССИЯ»",
+      "claim_id": "ru_cec_ballot_20210816_05",
+      "observation_id": "ru_duma_ballot_list_2021_05"
+    },
+    {
+      "ballot_position": 6,
+      "party_label": "Партия СПРАВЕДЛИВАЯ РОССИЯ – ЗА ПРАВДУ",
+      "claim_id": "ru_cec_ballot_20210816_06",
+      "observation_id": "ru_duma_ballot_list_2021_06"
+    },
+    {
+      "ballot_position": 7,
+      "party_label": "Политическая партия «Российская объединенная демократическая партия «ЯБЛОКО»",
+      "claim_id": "ru_cec_ballot_20210816_07",
+      "observation_id": "ru_duma_ballot_list_2021_07"
+    },
+    {
+      "ballot_position": 8,
+      "party_label": "Всероссийская политическая партия «ПАРТИЯ РОСТА»",
+      "claim_id": "ru_cec_ballot_20210816_08",
+      "observation_id": "ru_duma_ballot_list_2021_08"
+    },
+    {
+      "ballot_position": 9,
+      "party_label": "Политическая партия РОССИЙСКАЯ ПАРТИЯ СВОБОДЫ И СПРАВЕДЛИВОСТИ",
+      "claim_id": "ru_cec_ballot_20210816_09",
+      "observation_id": "ru_duma_ballot_list_2021_09"
+    },
+    {
+      "ballot_position": 10,
+      "party_label": "Политическая партия КОММУНИСТИЧЕСКАЯ ПАРТИЯ КОММУНИСТЫ РОССИИ",
+      "claim_id": "ru_cec_ballot_20210816_10",
+      "observation_id": "ru_duma_ballot_list_2021_10"
+    },
+    {
+      "ballot_position": 11,
+      "party_label": "Политическая партия «Гражданская Платформа»",
+      "claim_id": "ru_cec_ballot_20210816_11",
+      "observation_id": "ru_duma_ballot_list_2021_11"
+    },
+    {
+      "ballot_position": 12,
+      "party_label": "Политическая партия ЗЕЛЕНАЯ АЛЬТЕРНАТИВА",
+      "claim_id": "ru_cec_ballot_20210816_12",
+      "observation_id": "ru_duma_ballot_list_2021_12"
+    },
+    {
+      "ballot_position": 13,
+      "party_label": "ВСЕРОССИЙСКАЯ ПОЛИТИЧЕСКАЯ ПАРТИЯ «РОДИНА»",
+      "claim_id": "ru_cec_ballot_20210816_13",
+      "observation_id": "ru_duma_ballot_list_2021_13"
+    },
+    {
+      "ballot_position": 14,
+      "party_label": "ПАРТИЯ ПЕНСИОНЕРОВ",
+      "claim_id": "ru_cec_ballot_20210816_14",
+      "observation_id": "ru_duma_ballot_list_2021_14"
+    }
+  ],
+  "scope_note": "The complete fourteen-item appendix is a bounded federal ballot-order list. Organizations not on this ballot, denied lists, regional groups and historical parties are outside it. It is not a census of all Russian parties.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      144,
+      145
+    ],
+    "method": "Poppler PNGs of the actual downloaded PDF were visually inspected: publisher/issue and source attribution on page 1, resolution/date on page 144, all fourteen numbered names on page 145."
+  }
+}

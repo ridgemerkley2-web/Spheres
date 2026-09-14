@@ -5,13 +5,13 @@
   "g2_prerequisite_satisfied": false,
   "runtime_roster_modified": false,
   "counts": {
-    "country_packets": 6,
-    "countries_without_new_discovery_packet": 154,
-    "organization_observations": 774,
-    "institution_observations": 18,
-    "sources": 48,
-    "source_claims": 1465,
-    "discovery_batches": 83,
+    "country_packets": 9,
+    "countries_without_new_discovery_packet": 151,
+    "organization_observations": 841,
+    "institution_observations": 27,
+    "sources": 58,
+    "source_claims": 1606,
+    "discovery_batches": 92,
     "exhaustive_country_censuses": 0
   },
   "interpretation": "Source-backed discovery observations are not verified game parties, complete office histories or permission to create portraits. Reporting years do not establish organization lifespans. Unknown representation is not absence.",
@@ -281,6 +281,53 @@
       }
     },
     {
+      "nation": "Russia",
+      "packet": "docs/campaign-certification/C01/research/russia.json",
+      "organization_observations": 14,
+      "institution_observations": 5,
+      "role_observations": 5,
+      "source_claims": 24,
+      "mapping_pending": 19,
+      "country_census_complete": false,
+      "unrepresented_organization_count": null,
+      "coverage": {
+        "status": "partial_primary_source_inventory",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "exhaustive_organization_register_reviewed": false,
+        "unrepresented_organization_total": null,
+        "art_completion_claim": false,
+        "bounded_registers": [
+          {
+            "source": "ru_cec_ballot_order_20210816",
+            "kind": "federal_election_ballot_order",
+            "attested_on": "2021-08-16",
+            "records": 14,
+            "excluded": "Rejected or withdrawn lists, parties outside the federal ballot, regional organizations and other years are outside this resolution appendix."
+          },
+          {
+            "source": "ru_duma_factions_20211012",
+            "kind": "registered_lower_house_factions",
+            "attested_on": "2021-10-12",
+            "records": 5,
+            "excluded": "Factions are parliamentary institutions, not five additional political parties or a census of all Russian parties."
+          }
+        ],
+        "unresolved": [
+          "Fourteen ballot-list observations and five distinct faction institutions do not establish all Russian political organizations from 1990 through the fixed cutoff.",
+          "The official CEC bulletin pages 1, 144 and 145 were downloaded and visually reviewed. The resolution date is 16 August 2021; the exact bulletin publication day is not established.",
+          "The historical Duma body was retrieved via search index because direct official-host fetches timed out. Original response verification remains open; current hover biographies were not used.",
+          "Five parliamentary leader observations are not party-leader histories. Complete terms, national-executive offices, biographical identities and any portrait permission remain unresolved.",
+          "The five faction memberships are reported as 324, 57, 28, 23 and 15. They are preserved without forcing a chamber-capacity total or treating them as party election results.",
+          "All game-party mappings and faction constituent links remain empty. Shared names do not create an automatic legal identity match.",
+          "Russia and USSR organizations, predecessor states, renames, mergers, dissolutions and regional party histories require separate sourced reconciliation; no continuity is assumed.",
+          "This packet does not establish a September 2026 current roster, complete country census, succession eligibility or artwork completion. No post-cutoff facts or fictional successors are populated."
+        ]
+      }
+    },
+    {
       "nation": "SaudiArabia",
       "packet": "docs/campaign-certification/C01/research/saudi-arabia.json",
       "organization_observations": 6,
@@ -311,6 +358,52 @@
       }
     },
     {
+      "nation": "SouthAfrica",
+      "packet": "docs/campaign-certification/C01/research/south-africa.json",
+      "organization_observations": 52,
+      "institution_observations": 1,
+      "role_observations": 4,
+      "source_claims": 109,
+      "mapping_pending": 53,
+      "country_census_complete": false,
+      "unrepresented_organization_count": null,
+      "coverage": {
+        "status": "partial_primary_source_inventory",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "exhaustive_organization_register_reviewed": false,
+        "unrepresented_organization_total": null,
+        "art_completion_claim": false,
+        "bounded_registers": [
+          {
+            "source": "za_iec_national_results_20240621",
+            "scope": "All party rows in the dated 2024 National Ballot results report",
+            "records": 52,
+            "attested_on": "2024-06-21",
+            "complete_within_stated_source_scope": true
+          },
+          {
+            "source": "za_iec_national_seats_20240606",
+            "scope": "Seat allocations for the same 52 named party rows only; six independent-candidate rows remain outside organization intake",
+            "records": 52,
+            "attested_on": "2024-06-06",
+            "complete_within_stated_source_scope": true,
+            "source_rows": 58,
+            "excluded_independent_rows": 6
+          }
+        ],
+        "unresolved": [
+          "A closed 2024 National Ballot result universe is not the full national, regional, provincial, local, deregistered, historical or non-contesting party universe from 1990 through the cutoff.",
+          "Review earlier and later official registers, excluded electoral universes, independent representation and all organizational continuity before claiming a country census.",
+          "Reconcile every party with game identities and separately source leadership terms, roles, biographies and portrait permission. No game roster or character eligibility is changed.",
+          "Names containing Alliance, Congress or Movement are retained exactly as electoral reporting names. Organizational form, coalition membership, caucus identity and underlying component parties remain unresolved.",
+          "DA offices have dated observations only; their relationships and continuity require further evidence. Presidency election does not establish party leadership or inauguration."
+        ]
+      }
+    },
+    {
       "nation": "Tonga",
       "packet": "docs/campaign-certification/C01/research/tonga.json",
       "organization_observations": 4,
@@ -337,6 +430,34 @@
           "The last verified observations are not automatic extensions to the 7 September 2026 cutoff; unknown gaps remain unknown.",
           "No future candidate, fictional successor, portrait likeness or avatar completion is certified by this research packet. Fiction begins only after the preserved historical cutoff under the separate policy.",
           "The added 2021 People's Party and Leader observations close only a missing sourced observation. No country census or discovery batch is complete; the 2019 national appointment supplies no party office or campaign eligibility."
+        ]
+      }
+    },
+    {
+      "nation": "USSR",
+      "packet": "docs/campaign-certification/C01/research/ussr.json",
+      "organization_observations": 1,
+      "institution_observations": 3,
+      "role_observations": 5,
+      "source_claims": 8,
+      "mapping_pending": 4,
+      "country_census_complete": false,
+      "unrepresented_organization_count": null,
+      "coverage": {
+        "status": "partial_primary_source_inventory",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "exhaustive_organization_register_reviewed": false,
+        "unrepresented_organization_total": null,
+        "art_completion_claim": false,
+        "unresolved": [
+          "This is a bounded 1990 source inventory: one party and three state institutions, not an exhaustive USSR party, faction, opposition, republic or coalition census.",
+          "The packet does not establish absence of other organizations. Discover original party registers, congresses, candidate organizations and opposition movements with separate union/republic jurisdiction.",
+          "Exact party election dates, acting roles, original spelling and full leadership intervals remain unresolved; contemporary Japanese diplomatic reporting is not an original CPSU election protocol.",
+          "1991 office changes, emergency claims, resignations, suspensions and dissolution require their own source review. No legal or organizational continuity through 2026 is inferred.",
+          "The USSR packet remains separate from Russia. Existing game party mappings, historical avatar eligibility, likeness approval and post-cutoff fictional succession are not changed."
         ]
       }
     }
@@ -2234,6 +2355,53 @@
       "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
     },
     {
+      "id": "C01-Russia-DISC-B001",
+      "nation": "Russia",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-Russia-ORG-001",
+        "C01-Russia-ROLE-001"
+      ],
+      "members": [
+        "ru_duma_ballot_list_2021_01",
+        "ru_duma_ballot_list_2021_02",
+        "ru_duma_ballot_list_2021_03",
+        "ru_duma_ballot_list_2021_04",
+        "ru_duma_ballot_list_2021_05",
+        "ru_duma_ballot_list_2021_06",
+        "ru_duma_ballot_list_2021_07",
+        "ru_duma_ballot_list_2021_08",
+        "ru_duma_ballot_list_2021_09",
+        "ru_duma_ballot_list_2021_10"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-Russia-DISC-B002",
+      "nation": "Russia",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-Russia-ORG-001",
+        "C01-Russia-ROLE-001"
+      ],
+      "members": [
+        "ru_duma_ballot_list_2021_11",
+        "ru_duma_ballot_list_2021_12",
+        "ru_duma_ballot_list_2021_13",
+        "ru_duma_ballot_list_2021_14",
+        "ru_duma_faction_20211012_er",
+        "ru_duma_faction_20211012_kprf",
+        "ru_duma_faction_20211012_srzp",
+        "ru_duma_faction_20211012_ldpr",
+        "ru_duma_faction_20211012_nl"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
       "id": "C01-SaudiArabia-DISC-B001",
       "nation": "SaudiArabia",
       "status": "open",
@@ -2274,6 +2442,143 @@
       "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
     },
     {
+      "id": "C01-SouthAfrica-DISC-B001",
+      "nation": "SouthAfrica",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-SouthAfrica-ORG-001",
+        "C01-SouthAfrica-ROLE-001"
+      ],
+      "members": [
+        "za_iec_n2024_001",
+        "za_iec_n2024_002",
+        "za_iec_n2024_003",
+        "za_iec_n2024_004",
+        "za_iec_n2024_005",
+        "za_iec_n2024_006",
+        "za_iec_n2024_007",
+        "za_iec_n2024_008",
+        "za_iec_n2024_009",
+        "za_iec_n2024_010"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-SouthAfrica-DISC-B002",
+      "nation": "SouthAfrica",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-SouthAfrica-ORG-001",
+        "C01-SouthAfrica-ROLE-001"
+      ],
+      "members": [
+        "za_iec_n2024_011",
+        "za_iec_n2024_012",
+        "za_iec_n2024_013",
+        "za_iec_n2024_014",
+        "za_iec_n2024_015",
+        "za_iec_n2024_016",
+        "za_iec_n2024_017",
+        "za_iec_n2024_018",
+        "za_iec_n2024_019",
+        "za_iec_n2024_020"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-SouthAfrica-DISC-B003",
+      "nation": "SouthAfrica",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-SouthAfrica-ORG-001",
+        "C01-SouthAfrica-ROLE-001"
+      ],
+      "members": [
+        "za_iec_n2024_021",
+        "za_iec_n2024_022",
+        "za_iec_n2024_023",
+        "za_iec_n2024_024",
+        "za_iec_n2024_025",
+        "za_iec_n2024_026",
+        "za_iec_n2024_027",
+        "za_iec_n2024_028",
+        "za_iec_n2024_029",
+        "za_iec_n2024_030"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-SouthAfrica-DISC-B004",
+      "nation": "SouthAfrica",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-SouthAfrica-ORG-001",
+        "C01-SouthAfrica-ROLE-001"
+      ],
+      "members": [
+        "za_iec_n2024_031",
+        "za_iec_n2024_032",
+        "za_iec_n2024_033",
+        "za_iec_n2024_034",
+        "za_iec_n2024_035",
+        "za_iec_n2024_036",
+        "za_iec_n2024_037",
+        "za_iec_n2024_038",
+        "za_iec_n2024_039",
+        "za_iec_n2024_040"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-SouthAfrica-DISC-B005",
+      "nation": "SouthAfrica",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-SouthAfrica-ORG-001",
+        "C01-SouthAfrica-ROLE-001"
+      ],
+      "members": [
+        "za_iec_n2024_041",
+        "za_iec_n2024_042",
+        "za_iec_n2024_043",
+        "za_iec_n2024_044",
+        "za_iec_n2024_045",
+        "za_iec_n2024_046",
+        "za_iec_n2024_047",
+        "za_iec_n2024_048",
+        "za_iec_n2024_049",
+        "za_iec_n2024_050"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-SouthAfrica-DISC-B006",
+      "nation": "SouthAfrica",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-SouthAfrica-ORG-001",
+        "C01-SouthAfrica-ROLE-001"
+      ],
+      "members": [
+        "za_iec_n2024_051",
+        "za_iec_n2024_052",
+        "za_presidency"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
       "id": "C01-Tonga-DISC-B001",
       "nation": "Tonga",
       "status": "open",
@@ -2292,6 +2597,24 @@
         "to_cabinet",
         "to_privy_council",
         "to_legislative_assembly"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-USSR-DISC-B001",
+      "nation": "USSR",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-USSR-ORG-001",
+        "C01-USSR-ROLE-001"
+      ],
+      "members": [
+        "su_cpsu",
+        "su_presidency",
+        "su_congress_peoples_deputies",
+        "su_supreme_soviet"
       ],
       "maximum_reviewed_records": 10,
       "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
@@ -2319,14 +2642,29 @@
       "sha256": "2aaa46d504ee151f5d92ee25849f7773db9c49ce7597f6ac87f5921b753ed573"
     },
     {
+      "path": "docs/campaign-certification/C01/research/russia.json",
+      "bytes": 56106,
+      "sha256": "3ff8b214e21092420135927b0913e2a51b15baa08687444834d204cbb0fe12a1"
+    },
+    {
       "path": "docs/campaign-certification/C01/research/saudi-arabia.json",
       "bytes": 32202,
       "sha256": "8c432b519fd01641e23de609fcfc6c98d893ab177be1038faf7b0d9cb0f45490"
     },
     {
+      "path": "docs/campaign-certification/C01/research/south-africa.json",
+      "bytes": 210415,
+      "sha256": "ce1d742da90c1765fdacb5627a6808bc88d86dbee62599d50e605f567b92c609"
+    },
+    {
       "path": "docs/campaign-certification/C01/research/tonga.json",
       "bytes": 42497,
       "sha256": "47ed35a711420136fdee343666231d4c84c48005db758402c67b8c88ba8b20ad"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/ussr.json",
+      "bytes": 19923,
+      "sha256": "7130e97ff0fbfa8224e787b167835395cea2127fa3e567ae75e6604a752c3f57"
     },
     {
       "path": "tools/avatars/campaign_research.py",

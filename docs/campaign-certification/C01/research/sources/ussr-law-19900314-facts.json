@@ -1,0 +1,93 @@
+{
+  "format": "spheres-primary-source-factual-extract/v1",
+  "source_url": "https://www.1000dokumente.de/index.php?title=Einrichtung_des_Amtes_des_Pr%C3%A4sidenten_der_UdSSR_sowie_%C3%84nderungen_und_Erg%C3%A4nzungen_der_Verfassung_(Grundgesetz)_der_UdSSR&oldid=9231",
+  "source_title": "USSR Law No. 1360-I, 14 March 1990: creation of the Presidency and constitutional amendments",
+  "accessed_date": "2026-09-13",
+  "source_response_url": "https://www.1000dokumente.de/index.php?title=Einrichtung_des_Amtes_des_Pr%C3%A4sidenten_der_UdSSR_sowie_%C3%84nderungen_und_Erg%C3%A4nzungen_der_Verfassung_(Grundgesetz)_der_UdSSR&oldid=9231",
+  "source_response_bytes": 166710,
+  "source_response_sha256": "710afdf4fd5df03e3098c69d783f0fdd1528f42b858e36420d531a05ce1c054e",
+  "source_response_checked_in": false,
+  "provenance_note": "Only this derived factual extract is checked in. Original response hashes refer to separately downloaded bytes, not this extract.",
+  "claims": [
+    {
+      "id": "su_presidency_created_19900314",
+      "text": "The law creates the USSR Presidency; new Article 127 identifies the President as head of the Soviet state.",
+      "locator": "Section I; Section II.3, Article 127; facsimile pages 1 and 3",
+      "attested_on": "1990-03-14"
+    },
+    {
+      "id": "su_article6_replacement_19900314",
+      "text": "The law removes the preamble's leading-party sentence and replaces Article 6 with participation by the CPSU, other parties, organizations and movements.",
+      "locator": "Section II.1-2, Article 6; facsimile page 1",
+      "attested_on": "1990-03-14",
+      "uncertainty": "Replacement of wording is not dissolution of the CPSU or proof that every political organization was registered."
+    },
+    {
+      "id": "su_first_president_congress_rule_19900314",
+      "text": "The first President is elected by the USSR Congress for five years and enters office upon taking the oath; this differs from the new general popular-election rule.",
+      "locator": "Section III.1-2; Article 127.1; facsimile pages 3 and 14",
+      "attested_on": "1990-03-14",
+      "uncertainty": "A statutory selection rule, not evidence of who was elected or when an oath was taken."
+    },
+    {
+      "id": "su_gorbachev_chair_signature_19900314",
+      "text": "The dated signature block identifies M. Gorbachev as Chairman of the USSR Supreme Soviet.",
+      "locator": "Signature and date block; facsimile page 14",
+      "attested_on": "1990-03-14",
+      "uncertainty": "One signed office observation; neither a complete chairmanship nor a presidential appointment."
+    },
+    {
+      "id": "su_law_commencement_19900314",
+      "text": "Section IV makes the law effective upon adoption. The instrument is dated 14 March 1990 and numbered 1360-I.",
+      "locator": "Section IV and instrument number/date; facsimile page 14",
+      "attested_on": "1990-03-14",
+      "uncertainty": "No later constitutional version or office lifespan is certified by this enactment."
+    }
+  ],
+  "scope_note": "Claims use the reproduced primary Russian law, not the separate 2011/2024 scholarly introduction or its political interpretations. The repository cites GARF F. R-9654, Op. 1, D. 121, leaves 22-35 and the 1990 third extraordinary Congress stenographic report, volume 3, pages 192-207. Only facsimile pages 1, 3, 13 and 14 were visually reviewed. The 14 March law date must not become Gorbachev's presidential oath date.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [
+      1,
+      3,
+      13,
+      14
+    ],
+    "method": "Inspected the original-size local JPG facsimiles using view_image."
+  },
+  "rights_note": "Factual paraphrases only; no source artwork or portrait copied. No portrait permission or likeness approval is established. The law repository labels its official facsimile public domain; no such license is inferred for unrelated content.",
+  "reviewed_facsimile_responses": [
+    {
+      "page": 1,
+      "url": "https://www.1000dokumente.de/images/f/f4/0019_pra_01.jpg",
+      "response_url": "https://www.1000dokumente.de/images/f/f4/0019_pra_01.jpg",
+      "bytes": 244950,
+      "sha256": "b5c08097346dac38f2885f44f803ee1fdd0698ed4c531fab753537c50de481a7",
+      "content_type": "image/jpeg"
+    },
+    {
+      "page": 3,
+      "url": "https://www.1000dokumente.de/images/d/da/0019_pra_03.jpg",
+      "response_url": "https://www.1000dokumente.de/images/d/da/0019_pra_03.jpg",
+      "bytes": 252193,
+      "sha256": "9a7d4433d3026e86bd12118a9a1ca656eaf7719a231e8d24e64ff9cfcc7696ca",
+      "content_type": "image/jpeg"
+    },
+    {
+      "page": 13,
+      "url": "https://www.1000dokumente.de/images/6/64/0019_pra_13.jpg",
+      "response_url": "https://www.1000dokumente.de/images/6/64/0019_pra_13.jpg",
+      "bytes": 241045,
+      "sha256": "ee932801e41ad100af484969592bc9d1af50ca807ce76c18131d043e9321e2ca",
+      "content_type": "image/jpeg"
+    },
+    {
+      "page": 14,
+      "url": "https://www.1000dokumente.de/images/2/2b/0019_pra_14.jpg",
+      "response_url": "https://www.1000dokumente.de/images/2/2b/0019_pra_14.jpg",
+      "bytes": 234388,
+      "sha256": "5b447f110f00e2d57684815cdcb691714738ecb7e7aa78c61cdb8f82376ed752",
+      "content_type": "image/jpeg"
+    }
+  ]
+}

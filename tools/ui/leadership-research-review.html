@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Spheres · Political research atlas</title>
+  <link rel="stylesheet" href="leadership-research-review.css">
+</head>
+<body>
+  <header class="atlas-header">
+    <p class="eyebrow">Spheres / Character atelier</p>
+    <h1>The people. The parties.<br>The record behind them.</h1>
+    <p class="lede">Explore the political organizations and offices behind the character roster. Follow each observation to its source and see what still needs research.</p>
+    <nav aria-label="Character review"><a href="leadership-government-review.html">Government cards</a><a href="leadership-art-progress.html">Cartoon cast &amp; production</a><a href="../../docs/campaign-certification/C01/README.md">Coverage and work plan</a></nav>
+    <p class="disclosure">Research reference · No campaign is loaded or changed.</p>
+  </header>
+  <main>
+    <p id="atlas-status" role="status">Loading the research register…</p>
+    <div id="atlas-controls" class="controls">
+      <label>Country<select id="atlas-country" disabled aria-controls="atlas-country-content"><option>Loading countries…</option></select></label>
+      <label>Find an organization, office or person<input id="atlas-search" type="search" placeholder="Search this country…" disabled></label>
+      <label>Show<select id="atlas-kind" disabled><option value="all">All observations</option><option value="organizations">Organizations</option><option value="institutions">Institutions</option><option value="roles">With recorded offices</option></select></label>
+    </div>
+    <section id="atlas-country-content" aria-label="Country research" aria-busy="true">
+      <div id="atlas-summary"></div>
+      <div id="atlas-gaps"></div>
+      <p id="atlas-results" role="status"></p>
+      <div id="atlas-entries"></div>
+      <button id="atlas-more" type="button" hidden>Show 25 more observations</button>
+    </section>
+  </main>
+  <footer>
+    <p>Historical research: 1 January 1990–7 September 2026. Later successors belong to a separate fictional cast. A source observation is not a complete leadership term, a finished avatar or a campaign appointment.</p>
+    <a href="../../docs/campaign-certification/C01/research-index.json">Research register and provenance</a>
+  </footer>
+  <script src="leadership-research-review.js"></script>
+</body>
+</html>
