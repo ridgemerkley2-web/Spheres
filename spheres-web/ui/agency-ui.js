@@ -1,6 +1,6 @@
 "use strict";
 // All conditions, outcomes and progress are supplied by the simulation.
-const AGENCY = { state: null, world: null, busy: false, review: null, action: null, notice: "" };
+const AGENCY = { state: null, world: null, busy: false, review: null, action: null, notice: "", diplomacyTarget: "" };
 const AGENCY_REVIEW_KINDS = new Set(["respond_diplomacy", "set_diplomatic_policy", "break_currency_peg", "resume_automatic_bank", "sanction", "lift", "improve", "choose_campaign_aim", "continue_sandbox"]);
 function agencyEscape(value) {
   return String(value ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -155,12 +155,33 @@ function agencyCallContext(context) {
   const esc = agencyEscape, conflict = context.conflict;
   return `<section id="agencyCallContext" aria-label="Call to arms context"><h4>What you are being asked to join</h4><p>${esc(context.status_label)}</p><dl class="agency-facts">${agencyFact("Requesting country",context.requester_name)}${agencyFact("Request type",context.guaranteed === true ? "Defense pact request" : context.guaranteed === false ? "Voluntary support request" : null)}${agencyFact("Requested commitment",context.requested_rung == null ? null : `${context.requested_rung} · ${context.requested_rung_name}`,"rung")}${conflict ? `${agencyFact("Theatre",conflict.theatre,"theatre")}${agencyFact("Started",conflict.started,"since")}${agencyCoalition("Defending coalition",conflict.defenders)}${agencyCoalition("Opposing coalition",conflict.opponents)}` : ""}</dl>${context.blocked ? `<p class="agency-refusal">${esc(context.blocked)}</p>` : ""}<p class="agency-fine-print">${esc(context.note)}</p></section>`;
 }
+function agencySanctions(board) {
+  const esc = agencyEscape;
+  if (!board || board.nation !== S?.player) return '<section id="agencySanctions"><h3>Sanctions & relations</h3><p class="agency-empty">Sanction details are not available in this campaign view.</p></section>';
+  const targets = Array.isArray(board.targets) ? board.targets : [];
+  const selected = targets.find(t => t.id === AGENCY.diplomacyTarget);
+  const action = (kind, target, label) => `<button type="button" data-agency-sanction-action="${kind}" data-agency-sanction-target="${esc(target)}">${label}</button>`;
+  const group = (direction, title, empty) => {
+    const rows = board[direction];
+    return `<div data-agency-sanction-direction="${direction}"><h4 class="agency-group-title">${title}</h4>${!Array.isArray(rows) ? '<p class="agency-empty">Details not available.</p>' : !rows.length ? `<p class="agency-empty">${empty}</p>` : `<div class="agency-commitment-grid">${rows.map(row => {
+      const outgoing = direction === "outgoing", partner = outgoing ? row.target : row.imposer;
+      return `<article class="agency-commitment" data-agency-sanction-partner="${esc(partner)}"><h4>${esc(outgoing ? row.target_name : row.imposer_name)}</h4><dl class="agency-facts">${agencyFact("Imposed by",row.imposer_name,"sanction-imposer")}${agencyFact("Against",row.target_name,"sanction-target")}</dl>${row.imposer_alive === false || row.target_alive === false ? '<p class="agency-fine-print">A country in this saved restriction is no longer active.</p>' : ""}${outgoing && row.can_review_lift === true && targets.some(t => t.id === row.target && t.sanctioned_by_player === true) ? action("lift",row.target,"Review lifting sanctions") : ""}</article>`;
+    }).join("")}</div>`}</div>`;
+  };
+  return `<section id="agencySanctions" aria-labelledby="agencySanctionsTitle"><p class="agency-kicker">Diplomacy desk${board.date_label ? " · " + esc(board.date_label) : ""}</p><h3 id="agencySanctionsTitle">Sanctions & relations</h3><p>${esc(board.note)}</p>${board.growth_drag ? `<div class="agency-upkeep"><strong>Sanctions affecting your economy</strong><p data-agency-sanction-drag>${esc(board.growth_drag.label)}</p><p class="agency-fine-print">${esc(board.growth_drag.note)}</p></div>` : ""}${group("outgoing","Sanctions you impose","You impose no saved sanctions.")}${group("incoming","Sanctions against you","No saved sanctions against your country.")}<div class="agency-diplomacy-target"><label for="agencyDiplomacyTarget">Choose a country to review a diplomatic decision</label><select id="agencyDiplomacyTarget"><option value="">Choose a country…</option>${targets.map(t => `<option value="${esc(t.id)}" ${selected === t ? "selected" : ""}>${esc(t.name)}</option>`).join("")}</select>${selected ? `<p data-agency-diplomacy-target-name>Your government → ${esc(selected.name)}</p><div class="agency-actions">${selected.sanctioned_by_player === true ? action("lift",selected.id,"Review lifting sanctions") : selected.sanctioned_by_player === false ? action("sanction",selected.id,"Review imposing sanctions") : ""}${action("improve",selected.id,"Review improving relations")}</div>` : ""}<p class="agency-fine-print">Review the political cost, trade restrictions and relationship effects before confirming. Only the country imposing a sanction can lift it.</p></div></section>`;
+}
+function agencyBilateralContext(context) {
+  if (!context) return "";
+  const esc = agencyEscape, flag = value => value === true ? "Active" : value === false ? "None" : "Not available";
+  const state = (snapshot, key, title) => `<article class="agency-bilateral-state" data-agency-bilateral-state="${key}"><h4>${title}</h4>${snapshot ? `<dl class="agency-facts">${agencyFact("Relations",snapshot.relation_label,"bilateral-relations")}${agencyFact("Your sanctions against them",flag(snapshot.your_sanctions),"bilateral-outgoing")}${agencyFact("Their sanctions against you",flag(snapshot.their_sanctions),"bilateral-incoming")}${agencyFact("Trade restrictions",snapshot.restriction_label,"bilateral-restrictions")}${agencyFact("Saved trade agreement",snapshot.trade_treaty?.status_label,"bilateral-treaty")}${agencyFact("Outbound freight route",snapshot.freight?.outbound?.label,"bilateral-outbound")}${agencyFact("Inbound freight route",snapshot.freight?.inbound?.label,"bilateral-inbound")}${agencyFact("Sanctions growth drag on them",snapshot.target_growth_drag?.label,"bilateral-drag")}${agencyCoalition("Other governments sanctioning them",snapshot.other_sanctioners)}</dl>${snapshot.freight?.note ? `<p class="agency-fine-print">${esc(snapshot.freight.note)}</p>` : ""}${snapshot.target_growth_drag?.note ? `<p class="agency-fine-print">${esc(snapshot.target_growth_drag.note)}</p>` : ""}` : '<p class="agency-empty">No after-state: this decision cannot currently be confirmed.</p>'}</article>`;
+  return `<section id="agencyBilateralContext" aria-label="Bilateral trade and relationship context"><h4>${esc(context.actor_name)} → ${esc(context.target_name)}</h4><p>${esc(context.note)}</p><div class="agency-bilateral-grid">${state(context.before,"before","Now")}${state(context.after,"after","After this decision")}</div></section>`;
+}
 function renderAgencyReview(body) {
   const review = AGENCY.review;
   if (!agencyReviewCurrent(review)) return;
   const q = review.data, esc = agencyEscape, section = document.createElement("section");
   section.id = "agencyReview"; section.setAttribute("aria-labelledby", "agencyReviewTitle");
-  section.innerHTML = `<p class="agency-kicker">Review before committing${q?.date_label ? " · " + esc(q.date_label) : ""}</p><h3 id="agencyReviewTitle" tabindex="-1">${esc(q?.title || "Review decision")}</h3>${review.loading ? '<p role="status">Checking current conditions and effects…</p>' : ""}${review.error ? `<p class="agency-refusal" role="alert">${esc(review.error)}</p><button type="button" data-agency-review-retry>Review again</button>` : ""}${q ? `${q.description ? `<p>${esc(q.description)}</p>` : ""}${q.reason ? `<p class="agency-refusal" role="status">${esc(q.reason)}</p>` : ""}${agencyCallContext(q.call_context)}${agencyChangeCards(q.changes)}${q.warnings?.length ? `<ul>${q.warnings.map(w => `<li>${esc(w)}</li>`).join("")}</ul>` : ""}` : ""}<div class="agency-actions"><button type="button" class="agency-confirm" data-agency-confirm ${!AGENCY.busy && agencyReviewValid(review) ? "" : "disabled"}>Confirm decision</button><button type="button" data-agency-review-cancel>Keep considering</button></div>`;
+  section.innerHTML = `<p class="agency-kicker">Review before committing${q?.date_label ? " · " + esc(q.date_label) : ""}</p><h3 id="agencyReviewTitle" tabindex="-1">${esc(q?.title || "Review decision")}</h3>${review.loading ? '<p role="status">Checking current conditions and effects…</p>' : ""}${review.error ? `<p class="agency-refusal" role="alert">${esc(review.error)}</p><button type="button" data-agency-review-retry>Review again</button>` : ""}${q ? `${q.description ? `<p>${esc(q.description)}</p>` : ""}${q.reason ? `<p class="agency-refusal" role="status">${esc(q.reason)}</p>` : ""}${agencyCallContext(q.call_context)}${agencyBilateralContext(q.bilateral_context)}${agencyChangeCards(q.changes)}${q.warnings?.length ? `<ul>${q.warnings.map(w => `<li>${esc(w)}</li>`).join("")}</ul>` : ""}` : ""}<div class="agency-actions"><button type="button" class="agency-confirm" data-agency-confirm ${!AGENCY.busy && agencyReviewValid(review) ? "" : "disabled"}>Confirm decision</button><button type="button" data-agency-review-cancel>Keep considering</button></div>`;
   body.prepend(section);
   section.querySelector("[data-agency-confirm]").onclick = () => agencyConfirm(review);
   section.querySelector("[data-agency-review-cancel]").onclick = () => {
@@ -171,6 +192,7 @@ function renderAgencyReview(body) {
 }
 function renderAgency(state) {
   if (AGENCY.world !== state) {
+    if (AGENCY.world?.session_id !== state?.session_id || AGENCY.world?.player !== state?.player) AGENCY.diplomacyTarget = "";
     if (AGENCY.review) AGENCY.notice = "The campaign changed. Review this decision again before confirming.";
     AGENCY.review = null; AGENCY.world = state;
   }
@@ -191,10 +213,27 @@ function renderAgency(state) {
     : "Reply window closed";
   body.innerHTML = `<section id="agencyInbox" aria-labelledby="agencyInboxTitle"><h3 id="agencyInboxTitle">Diplomatic inbox <span>${offers.length} pending</span></h3>${offers.length ? `<p class="agency-inbox-summary">Nearest deadline: <strong>${esc(offers[0].expires)}</strong> · ${remaining(offers[0])}</p><p>Review the effects, then confirm your reply. Opening a review sends no decision.</p>` : ""}<p>${esc(a.expiry_rule)}</p>${offers.length ? offers.map(o => `<article class="agency-offer" tabindex="-1" data-agency-offer="${esc(o.id)}"><h4>${esc(o.from_name)} · ${esc(o.title)}</h4><p class="agency-deadline">Reply before <time>${esc(o.expires)}</time> · ${remaining(o)}</p><p>${esc(o.consequence)}</p>${o.accept_blocked ? `<p class="agency-refusal">${esc(o.accept_blocked)}</p>` : ""}<div class="agency-actions"><button type="button" data-agency-accept="${esc(o.id)}" ${o.accept_blocked ? "disabled" : ""}>Review acceptance</button><button type="button" data-agency-decline="${esc(o.id)}">Review decline</button></div></article>`).join("") : '<p class="agency-empty">No requests awaiting your answer.</p>'}</section>
     ${agencyCommitments(a.commitments)}
+    ${agencySanctions(a.sanctions)}
     <section><h3>Standing diplomatic policy</h3><p>Apply automatically to future requests. Existing requests keep their own reply deadline.</p><form id="agencyPolicy">${[["defense_pacts","Defense pacts"],["trade_treaties","Trade treaties"],["calls_to_arms","Calls to arms"]].map(([key,label]) => `<label>${label}<select name="${key}">${[["review","Ask me"],["accept","Accept when legal"],["decline","Decline"]].map(([value,text]) => `<option value="${value}" ${a.policy[key]===value ? "selected" : ""}>${text}</option>`).join("")}</select></label>`).join("")}<button type="submit">Save standing policy</button></form></section>
     <section><h3>Monetary commitment</h3>${a.monetary.kind === "pegged" ? `<p>Your currency is pegged. The policy rate is held at ${(a.monetary.rate*100).toFixed(2)}%. Exit the peg before changing rates.</p><p>Exit cost: ${a.break_peg_pc} political capital, −5 stability, +2 percentage points of inflation. The automatic central bank then resumes.</p><button type="button" id="agencyBreakPeg">Exit currency peg · ${a.break_peg_pc} PC</button>` : `<p>Floating currency · ${a.automatic_bank ? "automatic central bank" : "manual policy rate"}.</p>${a.automatic_bank ? "" : '<button type="button" id="agencyResumeBank">Resume automatic central bank · free</button>'}`}</section>
     <section><h3>Recent decisions</h3>${a.history.length ? `<ul>${a.history.slice().reverse().map(h=>`<li>${h.date_label ? `<time>${esc(h.date_label)}</time> · ` : ""}${h.from_name ? esc(h.from_name) + " · " : ""}${h.title ? esc(h.title) + " · " : ""}Request #${esc(h.offer.id)}: ${esc(h.outcome)}</li>`).join("")}</ul>` : '<p class="agency-empty">Your responses will be recorded here and retained in your save.</p>'}</section>`;
   renderCampaignAims(state?.campaign_aims, body);
+  const targetSelect = body.querySelector("#agencyDiplomacyTarget");
+  if (targetSelect) targetSelect.onchange = () => {
+    if (agencyActionBlocked() || S !== state) return;
+    AGENCY.diplomacyTarget = a.sanctions?.targets?.some(t => t.id === targetSelect.value) ? targetSelect.value : "";
+    AGENCY.review = null; AGENCY.notice = ""; renderAgency(S);
+    document.getElementById("agencyDiplomacyTarget")?.focus({preventScroll:true});
+  };
+  body.querySelectorAll("[data-agency-sanction-action]").forEach(button => button.onclick = () => {
+    if (agencyActionBlocked() || S !== state || a.sanctions?.nation !== S?.player) return;
+    const target = a.sanctions.targets?.find(t => t.id === button.dataset.agencySanctionTarget);
+    const kind = button.dataset.agencySanctionAction;
+    if (!target || target.id === S.player || !["sanction","lift","improve"].includes(kind)) return;
+    if ((kind === "sanction" && target.sanctioned_by_player !== false) || (kind === "lift" && target.sanctioned_by_player !== true)) return;
+    AGENCY.diplomacyTarget = target.id;
+    return agencyReview({kind,target:target.id});
+  });
   body.querySelectorAll("[data-agency-commitment-reply]").forEach(b => b.onclick = () => {
     if (agencyActionBlocked()) return;
     const id = Number(b.dataset.agencyCommitmentReply);

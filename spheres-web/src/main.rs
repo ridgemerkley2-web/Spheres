@@ -44,10 +44,13 @@ mod companies_view;
 mod transport;
 mod decision_review;
 mod diplomatic_commitments;
+mod diplomatic_sanctions;
 #[cfg(test)]
 mod s10e_commitment_fixture_tests;
 #[cfg(test)]
 mod s10f_succession_fixture_tests;
+#[cfg(test)]
+mod s10g_sanctions_fixture_tests;
 #[cfg(test)]
 mod s10_government_tests;
 #[cfg(test)]

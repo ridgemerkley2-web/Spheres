@@ -1,0 +1,35 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://pmo.gov.to/wp-content/uploads/2019/12/Media_Release_08_10_2019__22The-Appointment-of-Hon.-Dr.-Pohiva-Tu%E2%80%99i%E2%80%99onetoa-as-the-New-Prime-Minister-of-Tonga-1.pdf",
+  "accessed_date": "2026-09-13",
+  "published_date": "2019-10-08",
+  "access_method": "downloaded_original_pdf_text_and_relevant_page_visually_read",
+  "source_response_bytes": 181073,
+  "source_response_sha256": "4c33fc2a358ac9f2427b70e4f2ad4bd00ead8a5d7907be11e75327eca5e4a1d6",
+  "source_response_checked_in": false,
+  "provenance_note": "Original response bytes were downloaded during this review and hashed before extraction. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_tuionetoa_assembly_recommendation_20190927",
+      "text": "The PMO dates the Assembly's recommendation of Pohiva Tu'i'onetoa to 27 September 2019 and reports a 15-8 secret-ballot result among 23 elected members.",
+      "attested_on": "2019-09-27",
+      "locator": "PDF page 1, first and second body paragraphs",
+      "uncertainty": "An Assembly selection observation; it is not the royal appointment or a party-leadership election."
+    },
+    {
+      "id": "to_tuionetoa_royal_appointment_20191008",
+      "text": "The PMO states that King Tupou VI officially appointed Pohiva Tu'i'onetoa Prime Minister on 8 October 2019.",
+      "attested_on": "2019-10-08",
+      "locator": "PDF page 1, first body paragraph",
+      "uncertainty": "Exact appointment event only; no complete term, resignation date, caretaker interval or party office is inferred."
+    }
+  ],
+  "scope_note": "The release is dated 8 October 2019; the December directory in its URL is not the appointment date. The separate September Assembly selection is not backdated as the start of the national appointment.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "PMO page 1 rendered with Poppler and visually reviewed; the Assembly selection and royal appointment dates are distinct."
+  }
+}

@@ -51,6 +51,67 @@ const command={kind:'respond_diplomacy',offer:4,accept:true};
 function quote(cmd=command,extra={}){return {session_id:'campaign-one',nation:'France',valid:true,reason:null,title:'Accept Japan’s proposal',date_label:'1 Jan 1990',description:'A reviewed diplomatic commitment.',changes:[{label:'Political capital',before:'40.0',after:'30.0',detail:'Native immediate cost.'}],warnings:['Future requests retain their own deadlines.'],command:copy(cmd),review_token:'native-token',...extra};}
 const deferred=()=>{let resolve,reject;const promise=new Promise((a,b)=>{resolve=a;reject=b;});return {promise,resolve,reject};};
 
+function sanctions(){return {nation:'France',nation_name:'France',date_label:'1 Jan 1990',note:'Saved directed sanctions. <Native note>',
+  targets:[{id:'Japan',name:'<Japan>',sanctioned_by_player:true},{id:'Brazil',name:'Brazil',sanctioned_by_player:false}],
+  incoming:[{imposer:'Japan',imposer_name:'<Japan>',target:'France',target_name:'France',imposer_alive:true,target_alive:true,can_review_lift:false}],
+  outgoing:[{imposer:'France',imposer_name:'France',target:'Japan',target_name:'<Japan>',imposer_alive:true,target_alive:true,can_review_lift:true}],
+  growth_drag:{label:'0.125 pp/year',note:'At current conditions.'}};}
+function bilateral(){const current={relation_label:'-20.0',your_sanctions:true,their_sanctions:true,restriction_label:'Trade remains blocked by their sanctions.',trade_treaty:{status_label:'Saved agreement awaits settlement'},freight:{outbound:{label:'Blocked outbound'},inbound:{label:'Blocked inbound'}},target_growth_drag:{label:'0.123 pp/year'},other_sanctioners:[{id:'India',name:'<India>',alive:true}]};return {actor:'France',actor_name:'France',target:'Japan',target_name:'<Japan>',before:current,after:{...current,your_sanctions:false},note:'<No guarantee of trade>'};}
+
+test('sanctions desk keeps incoming and outgoing authority distinct and escapes native facts',()=>{
+  const f=fixture();f.state.agency.sanctions=sanctions();const before=copy(f.state);f.c.openAgency();const html=f.node('agencyBody').innerHTML;
+  assert.match(html,/Sanctions you impose/);assert.match(html,/Sanctions against you/);assert.match(html,/0.125 pp\/year/);assert.match(html,/&lt;Native note&gt;|&lt;Japan&gt;/);
+  assert.doesNotMatch(html,/<Japan>|<Native note>/);assert.deepEqual(f.state,before);assert.equal(f.requests.length,0);
+  const incoming=html.split('data-agency-sanction-direction="incoming"')[1].split('class="agency-diplomacy-target"')[0];
+  assert.doesNotMatch(incoming,/data-agency-sanction-action/,'The player cannot lift another government’s sanction');
+  assert.equal(f.node('agencyBody').querySelectorAll('[data-agency-sanction-action="lift"]').length,1);
+});
+
+test('missing or foreign sanctions are not shown as an empty player desk',()=>{
+  const f=fixture();f.c.openAgency();assert.match(f.html(),/Sanction details are not available/);assert.doesNotMatch(f.html(),/You impose no saved sanctions/);
+  f.state.agency.sanctions={...sanctions(),nation:'Japan'};f.c.renderAgency(f.state);assert.equal(f.node('agencyDiplomacyTarget'),null);
+  f.state.agency.sanctions={...sanctions(),targets:[],incoming:[],outgoing:[]};f.c.renderAgency(f.state);
+  assert.match(f.html(),/You impose no saved sanctions/);assert.match(f.html(),/No saved sanctions against your country/);assert.equal(f.requests.length,0);
+});
+
+test('country selection is pure and review buttons send the exact player-to-target command',async()=>{
+  const f=fixture();f.state.agency.sanctions=sanctions();f.api((route,payload)=>{assert.equal(route,'/api/decisions/preview');return quote(payload.command);});f.c.openAgency();
+  const before=copy(f.state),select=f.node('agencyDiplomacyTarget');select.value='Brazil';select.onchange();assert.equal(f.requests.length,0);assert.deepEqual(f.state,before);
+  assert.match(f.node('agencyBody').innerHTML,/<option value="Brazil" selected>/);assert.equal(f.document.activeElement,f.node('agencyDiplomacyTarget'));
+  await f.node('agencyBody').querySelector('[data-agency-sanction-action="sanction"]').onclick();assert.deepEqual(f.requests[0].payload.command,{kind:'sanction',target:'Brazil'});
+  f.node('agencyReview').querySelector('[data-agency-review-cancel]').onclick();await f.node('agencyBody').querySelector('[data-agency-sanction-action="improve"]').onclick();
+  assert.deepEqual(f.requests[1].payload.command,{kind:'improve',target:'Brazil'});assert.equal(f.requests.filter(r=>r.route==='/api/command').length,0);
+});
+
+test('current campaign keeps target selection after a lift; replaced sessions discard it',async()=>{
+  const f=fixture();f.state.agency.sanctions=sanctions();f.c.openAgency();let select=f.node('agencyDiplomacyTarget');select.value='Japan';select.onchange();
+  const next=copy(f.state);next.agency.sanctions.outgoing=[];next.agency.sanctions.targets[0].sanctioned_by_player=false;f.c.S=next;f.c.renderAgency(next);
+  assert.match(f.node('agencyBody').innerHTML,/<option value="Japan" selected>/);assert.equal(f.node('agencyBody').querySelectorAll('[data-agency-sanction-action="lift"]').length,0);
+  const old=f.node('agencyBody').querySelector('[data-agency-sanction-action="sanction"]');assert(old);
+  f.c.S={...next,session_id:'replacement'};f.c.renderAgency(f.c.S);assert.doesNotMatch(f.node('agencyBody').innerHTML,/<option value="Japan" selected>/);await old.onclick();assert.equal(f.requests.length,0);
+});
+
+test('sanctions actions reject unknown directions, missing targets and pending receipts',async()=>{
+  const f=fixture();f.state.agency.sanctions=sanctions();f.c.openAgency();const button=f.node('agencyBody').querySelector('[data-agency-sanction-action="lift"]');
+  for(const [kind,target] of [['lift','Brazil'],['sanction','Japan'],['lift','France'],['improve','missing'],['war','Japan']]){button.dataset.agencySanctionAction=kind;button.dataset.agencySanctionTarget=target;await button.onclick();}
+  assert.equal(f.requests.length,0);button.dataset.agencySanctionAction='lift';button.dataset.agencySanctionTarget='Japan';
+  f.c.COMMAND_CHANNEL={busy:false,pending:{request_seq:12}};f.c.renderAgency(f.state);await button.onclick();assert.equal(f.requests.length,0);assert.equal(f.node('agencyDiplomacyTarget').disabled,true);
+});
+
+test('bilateral review shows persistent restrictions and exact route/treaty facts before and after',async()=>{
+  const f=fixture(),cmd={kind:'lift',target:'Japan'};f.api(()=>quote(cmd,{bilateral_context:bilateral()}));await f.c.agencyReview(cmd);const html=f.node('agencyReview').innerHTML;
+  assert.equal((html.match(/Trade remains blocked by their sanctions\./g)||[]).length,2);
+  for(const value of ['Blocked outbound','Blocked inbound','Saved agreement awaits settlement','0.123 pp/year','Your sanctions against them','Their sanctions against you'])assert(html.includes(value),value);
+  assert.match(html,/&lt;Japan&gt;/);assert.match(html,/&lt;India&gt;/);assert.match(html,/&lt;No guarantee of trade&gt;/);assert.doesNotMatch(html,/<India>|<Japan>/);
+  assert.equal(f.requests.length,1);assert.equal(f.adoptions.length,0);
+});
+
+test('refused diplomacy retains current context without inventing a successful after-state',async()=>{
+  const f=fixture(),cmd={kind:'improve',target:'Japan'},context={...bilateral(),after:null};f.api(()=>quote(cmd,{valid:false,review_token:null,reason:'Not enough political capital.',changes:[],bilateral_context:context}));await f.c.agencyReview(cmd);
+  assert.match(f.html(),/Trade remains blocked/);assert.match(f.html(),/No after-state/);assert.match(f.html(),/Not enough political capital/);
+  assert.equal(f.node('agencyReview').querySelector('[data-agency-confirm]').disabled,true);await f.c.agencyConfirm(f.review());assert.equal(f.requests.length,1);
+});
+
 function commitments(){return {
   note:'Saved commitments only.',upkeep:{next_step_label:'$8.200m per day at today’s conditions',annual_label:'$3.000bn',note:'Native estimate; no payment.'},
   defense_pacts:[{partner:'Kuwait',partner_name:'<Kuwait>',since:'1990-01',status_label:'Saved defense pact',upkeep:{next_step_label:'$4.100m per day at today’s conditions'},warnings:['<Native warning>'],pending_offer_ids:[4]}],

@@ -7,10 +7,10 @@
   "counts": {
     "country_packets": 6,
     "countries_without_new_discovery_packet": 154,
-    "organization_observations": 773,
+    "organization_observations": 774,
     "institution_observations": 18,
-    "sources": 45,
-    "source_claims": 1460,
+    "sources": 48,
+    "source_claims": 1465,
     "discovery_batches": 83,
     "exhaustive_country_censuses": 0
   },
@@ -313,11 +313,11 @@
     {
       "nation": "Tonga",
       "packet": "docs/campaign-certification/C01/research/tonga.json",
-      "organization_observations": 3,
+      "organization_observations": 4,
       "institution_observations": 5,
-      "role_observations": 11,
-      "source_claims": 23,
-      "mapping_pending": 8,
+      "role_observations": 12,
+      "source_claims": 28,
+      "mapping_pending": 9,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
       "coverage": {
@@ -331,11 +331,12 @@
         "art_completion_claim": false,
         "unresolved": [
           "No exhaustive primary list of every political organization active, minor, historical or dissolved during 1990–2026 has been established.",
-          "These three provisional organization identities and five institutions are research entries only; all represented_party_ids remain empty because the current Tonga game catalog has no party rows.",
-          "The ambiguous additional 'Democratic party' label in IPU 2010 remains an unresolved identity, not a counted fourth party.",
+          "These four provisional organization identities and five institutions are research entries only; all represented_party_ids remain empty because the current Tonga game catalog has no party rows.",
+          "The ambiguous additional 'Democratic party' label in IPU 2010 remains unresolved and uncounted; the independently observed People's Party is not an identification of that label.",
           "Full leader/chair/parliamentary-role intervals, constitutional effective dates and 1990 opening office holders still require source-by-source verification.",
           "The last verified observations are not automatic extensions to the 7 September 2026 cutoff; unknown gaps remain unknown.",
-          "No future candidate, fictional successor, portrait likeness or avatar completion is certified by this research packet. Fiction begins only after the preserved historical cutoff under the separate policy."
+          "No future candidate, fictional successor, portrait likeness or avatar completion is certified by this research packet. Fiction begins only after the preserved historical cutoff under the separate policy.",
+          "The added 2021 People's Party and Leader observations close only a missing sourced observation. No country census or discovery batch is complete; the 2019 national appointment supplies no party office or campaign eligibility."
         ]
       }
     }
@@ -2285,6 +2286,7 @@
         "to_fihrdm",
         "to_pdp",
         "to_dpfi",
+        "to_peoples_party",
         "to_crown",
         "to_prime_minister",
         "to_cabinet",
@@ -2323,8 +2325,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/tonga.json",
-      "bytes": 31475,
-      "sha256": "26af19745bae9564fc1e81cfc139937aa8fba59066e3ad6bf915ace90fa92ed2"
+      "bytes": 42497,
+      "sha256": "47ed35a711420136fdee343666231d4c84c48005db758402c67b8c88ba8b20ad"
     },
     {
       "path": "tools/avatars/campaign_research.py",

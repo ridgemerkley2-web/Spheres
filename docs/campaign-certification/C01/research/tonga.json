@@ -319,6 +319,98 @@
         }
       ],
       "published_date": "2026-08-03"
+    },
+    {
+      "id": "to_court_peoples_party_20220809",
+      "title": "Rev Dr Pohiva Tu'i'onetoa v Taniela Kelekolio Kiu, AC 8 of 2022: Judgment of the Court",
+      "url": "https://ago.gov.to/cms/judgements/court-of-appeal/category/205-ac-2022.html?download=2457%3Arev-dr-pohiva-tuionetoa-v-taniela-kelekolio-kiu-ac-8-22-toca-9-aug-2022-blanchard-j-white-j-eastcourt-j-de-jersey-j-judgement",
+      "publisher": "Court of Appeal of Tonga; published by Tonga's Attorney General's Office",
+      "accessed_date": "2026-09-13",
+      "published_date": "2022-08-09",
+      "source_type": "primary_court_record",
+      "access_method": "downloaded_original_pdf_text_and_relevant_pages_visually_read",
+      "claims": [
+        {
+          "id": "to_peoples_party_niutao_20211001",
+          "text": "The court's event narrative describes Pohiva Tu'i'onetoa displaying a People's Party banner bearing his image, with party pamphlets distributed at the Niutao event on 1 October 2021.",
+          "attested_on": "2021-10-01",
+          "locator": "PDF page 9, paragraph 20; event date on page 15, paragraph 42",
+          "uncertainty": "An event observation, not registration, a founding date, a complete membership list or a leadership appointment."
+        },
+        {
+          "id": "to_tuionetoa_prior_party_speech_20211001",
+          "text": "The court records Tu'i'onetoa describing his departure from an opposition party and a new People's Party direction during that speech. The prior-party label is printed PATOA in paragraph 21 and PTOA in paragraph 32.",
+          "attested_on": "2021-10-01",
+          "locator": "PDF page 9, paragraph 21; page 12, paragraph 32; page 15, paragraph 42",
+          "uncertainty": "The speech supplies no exact departure or foundation date. The inconsistent prior-party labels remain unreconciled; no legal split, merger or successor relationship is created."
+        }
+      ],
+      "scope_note": "Party observations only. Paragraph 44 allows the appeal and sets aside the challenged declarations and costs order. This intake imports no allegation, conviction, penalty or office exclusion. Judgment date is distinct from the 2021 event.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-court-ac8-20220809-facts.json",
+        "bytes": 2815,
+        "sha256": "b2a8ebb81eb5e587c324f45500c7fcf6c7e94270f9e9cd628f631b0096fc3e49",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_idcpc_dialogue_20210528",
+      "title": "Pacific Island Countries-China Political Leadership Dialogue",
+      "url": "https://www.idcpc.org.cn/english2023/bzhd/202105/t20210531_160418.html",
+      "publisher": "International Department of the Communist Party of China Central Committee",
+      "accessed_date": "2026-09-13",
+      "published_date": "2021-05-28",
+      "source_type": "primary_event_organizer_account",
+      "access_method": "downloaded_original_html_and_official_article_text_read",
+      "claims": [
+        {
+          "id": "to_peoples_party_leader_20210528",
+          "text": "The dialogue organizer identifies participant Pohiva Tu'i'onetoa as Leader of Tonga People's Party and Prime Minister of Tonga at its 28 May 2021 video event.",
+          "attested_on": "2021-05-28",
+          "locator": "Article dated 2021.05.28, opening participant paragraph",
+          "uncertainty": "The organizer reports a title at this event. It does not supply a party appointment instrument, chairmanship, leadership start or end, or an uninterrupted term."
+        }
+      ],
+      "scope_note": "Firsthand event-host account, not an independent party register or Tonga appointment authority. Only the Tonga participant observation is included. Page path migration does not change the displayed event date.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-idcpc-dialogue-20210528-facts.json",
+        "bytes": 1922,
+        "sha256": "ffa3d561be514b81805dd64c3d87130904e165dabf3c7bd20f41831d60d18cda",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pm_appointment_20191008",
+      "title": "The Appointment of Hon. Dr. Pohiva Tu'i'onetoa as the New Prime Minister of Tonga",
+      "url": "https://pmo.gov.to/wp-content/uploads/2019/12/Media_Release_08_10_2019__22The-Appointment-of-Hon.-Dr.-Pohiva-Tu%E2%80%99i%E2%80%99onetoa-as-the-New-Prime-Minister-of-Tonga-1.pdf",
+      "publisher": "Prime Minister's Office, Government of Tonga",
+      "accessed_date": "2026-09-13",
+      "published_date": "2019-10-08",
+      "source_type": "primary_government_appointment_announcement",
+      "access_method": "downloaded_original_pdf_text_and_relevant_page_visually_read",
+      "claims": [
+        {
+          "id": "to_tuionetoa_assembly_recommendation_20190927",
+          "text": "The PMO dates the Assembly's recommendation of Pohiva Tu'i'onetoa to 27 September 2019 and reports a 15-8 secret-ballot result among 23 elected members.",
+          "attested_on": "2019-09-27",
+          "locator": "PDF page 1, first and second body paragraphs",
+          "uncertainty": "An Assembly selection observation; it is not the royal appointment or a party-leadership election."
+        },
+        {
+          "id": "to_tuionetoa_royal_appointment_20191008",
+          "text": "The PMO states that King Tupou VI officially appointed Pohiva Tu'i'onetoa Prime Minister on 8 October 2019.",
+          "attested_on": "2019-10-08",
+          "locator": "PDF page 1, first body paragraph",
+          "uncertainty": "Exact appointment event only; no complete term, resignation date, caretaker interval or party office is inferred."
+        }
+      ],
+      "scope_note": "The release is dated 8 October 2019; the December directory in its URL is not the appointment date. The separate September Assembly selection is not backdated as the start of the national appointment.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-appointment-20191008-facts.json",
+        "bytes": 2389,
+        "sha256": "454108973d3f4abc9a9e48bcec2a41d61f8ba0df2f8cbca8768810e52e8c0f12",
+        "kind": "derived_factual_extract"
+      }
     }
   ],
   "organizations": [
@@ -456,6 +548,97 @@
           "Research later leadership, factions, minor components and any splits independently."
         ]
       }
+    },
+    {
+      "id": "to_peoples_party",
+      "name": "Tonga People's Party",
+      "kind": "political_party_observed_in_event_and_court_records",
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "documented_at_specific_observations",
+        "from": null,
+        "until": null,
+        "precision": "unknown",
+        "note": "May and October 2021 attestations do not establish a founding date or continuous existence between observations or through the historical cutoff."
+      },
+      "roles": [
+        {
+          "id": "to_peoples_party_leader",
+          "title": "Leader",
+          "kind": "party_leader",
+          "sources": [
+            "to_idcpc_dialogue_20210528"
+          ],
+          "claim_ids": [
+            "to_peoples_party_leader_20210528"
+          ],
+          "holder_claims": [
+            {
+              "name": "Pohiva Tu'i'onetoa",
+              "attested_on": "2021-05-28",
+              "from": null,
+              "until": null,
+              "sources": [
+                "to_idcpc_dialogue_20210528"
+              ],
+              "claim_ids": [
+                "to_peoples_party_leader_20210528"
+              ],
+              "uncertainty": "Event-host title observation only; party appointment instrument and full leadership interval are unknown."
+            }
+          ]
+        }
+      ],
+      "sources": [
+        "to_idcpc_dialogue_20210528",
+        "to_court_peoples_party_20220809"
+      ],
+      "claim_ids": [
+        "to_peoples_party_leader_20210528",
+        "to_peoples_party_niutao_20211001",
+        "to_tuionetoa_prior_party_speech_20211001"
+      ],
+      "name_observations": [
+        {
+          "name": "Tonga People's Party",
+          "attested_on": "2021-05-28",
+          "sources": [
+            "to_idcpc_dialogue_20210528"
+          ],
+          "claim_ids": [
+            "to_peoples_party_leader_20210528"
+          ]
+        },
+        {
+          "name": "People's Party",
+          "attested_on": "2021-10-01",
+          "sources": [
+            "to_court_peoples_party_20220809"
+          ],
+          "claim_ids": [
+            "to_peoples_party_niutao_20211001"
+          ]
+        }
+      ],
+      "identity_reconciliation": {
+        "status": "provisional_observation_grouping",
+        "reconciled_organization_id": null,
+        "automatic_merge": false,
+        "note": "The two accounts connect their party label to Tu'i'onetoa; this is a provisional research grouping, not a legal identity determination. The People's Democratic Party remains a separate entry. PATOA/PTOA spelling is not automatically mapped to DPFI."
+      },
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Retrieve founding statutes, registration instruments, original-language names and dated amendments; no exact formation or registered status is established here.",
+          "Verify whether Leader, chair and parliamentary leader are distinct offices; research appointment rules, acting officers and all leadership boundaries and successors.",
+          "Reconcile the two observed names and PATOA/PTOA references with original party records; a reported departure does not establish a legal split or full membership list.",
+          "Establish continuation, inactivity, dissolution and minor components through the cutoff; the 2021 observations do not fill other years."
+        ]
+      }
     }
   ],
   "institutions": [
@@ -532,16 +715,32 @@
           "sources": [
             "to_constitution_2020",
             "to_pm_appointment_2025",
-            "to_pm_august_2026"
+            "to_pm_august_2026",
+            "to_pm_appointment_20191008"
           ],
           "claim_ids": [
             "to_constitution_pm_cabinet",
             "to_fakafanua_appointment",
-            "to_fakafanua_august"
+            "to_fakafanua_august",
+            "to_tuionetoa_assembly_recommendation_20190927",
+            "to_tuionetoa_royal_appointment_20191008"
           ],
           "holder_claims": [
             "to_fakafanua_appointment",
-            "to_fakafanua_august"
+            "to_fakafanua_august",
+            {
+              "name": "Pohiva Tu'i'onetoa",
+              "attested_on": "2019-10-08",
+              "from": null,
+              "until": null,
+              "sources": [
+                "to_pm_appointment_20191008"
+              ],
+              "claim_ids": [
+                "to_tuionetoa_royal_appointment_20191008"
+              ],
+              "uncertainty": "Royal appointment event only. The earlier Assembly recommendation is retained separately and is not a holder observation."
+            }
           ]
         }
       ],
@@ -551,7 +750,8 @@
         "to_reform_act_2010",
         "to_reform_procedure_2010",
         "to_pm_appointment_2025",
-        "to_pm_august_2026"
+        "to_pm_august_2026",
+        "to_pm_appointment_20191008"
       ],
       "claim_ids": [
         "to_constitution_pm_cabinet",
@@ -559,7 +759,9 @@
         "to_reform_structure",
         "to_reform_assent",
         "to_fakafanua_appointment",
-        "to_fakafanua_august"
+        "to_fakafanua_august",
+        "to_tuionetoa_assembly_recommendation_20190927",
+        "to_tuionetoa_royal_appointment_20191008"
       ],
       "coverage": {
         "status": "partial",
@@ -570,7 +772,8 @@
         "unresolved": [
           "Complete prime minister, caretaker, interim and acting terms from 1990 through cutoff.",
           "Keep Assembly nomination/election, royal appointment and actual effective date separate.",
-          "Pre-reform appointment rules cannot be replaced retrospectively by the post-2010 procedure."
+          "Pre-reform appointment rules cannot be replaced retrospectively by the post-2010 procedure.",
+          "The 2019 appointment observation does not supply the end of that premiership, caretaker service, temporary absences or any party leadership term."
         ]
       }
     },
@@ -791,11 +994,12 @@
     "art_completion_claim": false,
     "unresolved": [
       "No exhaustive primary list of every political organization active, minor, historical or dissolved during 1990–2026 has been established.",
-      "These three provisional organization identities and five institutions are research entries only; all represented_party_ids remain empty because the current Tonga game catalog has no party rows.",
-      "The ambiguous additional 'Democratic party' label in IPU 2010 remains an unresolved identity, not a counted fourth party.",
+      "These four provisional organization identities and five institutions are research entries only; all represented_party_ids remain empty because the current Tonga game catalog has no party rows.",
+      "The ambiguous additional 'Democratic party' label in IPU 2010 remains unresolved and uncounted; the independently observed People's Party is not an identification of that label.",
       "Full leader/chair/parliamentary-role intervals, constitutional effective dates and 1990 opening office holders still require source-by-source verification.",
       "The last verified observations are not automatic extensions to the 7 September 2026 cutoff; unknown gaps remain unknown.",
-      "No future candidate, fictional successor, portrait likeness or avatar completion is certified by this research packet. Fiction begins only after the preserved historical cutoff under the separate policy."
+      "No future candidate, fictional successor, portrait likeness or avatar completion is certified by this research packet. Fiction begins only after the preserved historical cutoff under the separate policy.",
+      "The added 2021 People's Party and Leader observations close only a missing sourced observation. No country census or discovery batch is complete; the 2019 national appointment supplies no party office or campaign eligibility."
     ]
   }
 }

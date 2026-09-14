@@ -1,0 +1,26 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://www.idcpc.org.cn/english2023/bzhd/202105/t20210531_160418.html",
+  "accessed_date": "2026-09-13",
+  "published_date": "2021-05-28",
+  "access_method": "downloaded_original_html_and_official_article_text_read",
+  "source_response_bytes": 53986,
+  "source_response_sha256": "969d688a9fbb6c80753e2526bd1d42dff5210b6c58aff222e0c982a730d7f470",
+  "source_response_checked_in": false,
+  "provenance_note": "Original response bytes were downloaded during this review and hashed before extraction. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_peoples_party_leader_20210528",
+      "text": "The dialogue organizer identifies participant Pohiva Tu'i'onetoa as Leader of Tonga People's Party and Prime Minister of Tonga at its 28 May 2021 video event.",
+      "attested_on": "2021-05-28",
+      "locator": "Article dated 2021.05.28, opening participant paragraph",
+      "uncertainty": "The organizer reports a title at this event. It does not supply a party appointment instrument, chairmanship, leadership start or end, or an uninterrupted term."
+    }
+  ],
+  "scope_note": "Firsthand event-host account, not an independent party register or Tonga appointment authority. Only the Tonga participant observation is included. Page path migration does not change the displayed event date.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Official article text and downloaded HTML participant paragraph read. No source photographs or portrait likeness reviewed."
+  }
+}

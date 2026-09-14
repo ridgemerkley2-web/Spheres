@@ -99,7 +99,7 @@ fn decisions(w: &WorldState, nation: NationId, command: &Value) -> Value {
         "resume_automatic_bank" => ("Resume automatic central bank", "Future policy rates are chosen by the existing central-bank rules.", &["kind"]),
         "sanction" => ("Impose sanctions", "Close sanctioned trade lanes and reduce relations. The target's growth drag follows the sanctioning economies' share of world output.", &["kind","target"]),
         "lift" => ("Lift sanctions", "Remove your sanctions. Other governments' sanctions and the existing relationship remain in place.", &["kind","target"]),
-        "improve" => ("Improve relations", "Spend political capital on an immediate diplomatic improvement, within the existing relationship limits.", &["kind","target"]),
+        "improve" => ("Improve relations", "Spend political capital on diplomacy. Review the actual relationship change below, including its existing limit.", &["kind","target"]),
         "choose_campaign_aim" => ("Choose campaign aim", "Freeze this aim's target from today's country conditions. Progress is measured as the campaign advances.", &["kind","aim"]),
         "continue_sandbox" => ("Continue in sandbox", "Set aside the active aim. Its record stays in the campaign and the world keeps running.", &["kind"]),
         _ => return invalid(command, "Choose a supported decision from the current page."),
@@ -140,6 +140,7 @@ fn decisions(w: &WorldState, nation: NationId, command: &Value) -> Value {
         refused["title"] = json!(title);
         refused["description"] = json!(description);
         refused["call_context"] = json!(call_context);
+        refused["bilateral_context"] = target.map(|target|crate::diplomatic_sanctions::context(w,None,nation,target)).unwrap_or(Value::Null);
         return refused;
     }
     let (before_n, after_n) = (w.nation(nation), after.nation(nation));
@@ -188,6 +189,16 @@ fn decisions(w: &WorldState, nation: NationId, command: &Value) -> Value {
             format!("{:.3} pp/year",spheres_sim::economy::growth_terms(n,n.state_invest_gdp,n.interest_rate,&spheres_sim::economy::Conditions::of(world,target)).sanctions*100.0)
         };
         change(&mut rows,&format!("{} sanctions growth drag",target.name()),drag(w),drag(&after),"Annualized growth drag from all sanctioners at today's output shares, including the target's diplomacy ministry. Future output and other decisions can change it.");
+        if kind == "improve" && w.relation(nation,target) == after.relation(nation,target) {
+            rows.push(json!({"label":format!("Relations with {}",target.name()),"before":format!("{:.1}",w.relation(nation,target)),"after":format!("{:.1}",after.relation(nation,target)),"detail":"The relationship is already at its limit. The political capital charge still applies."}));
+            warnings.push("Relations are already at their limit and will not increase. This decision still spends political capital; review the charge above before confirming.".into());
+        }
+        if kind == "sanction" && w.is_sanctioning(nation,target) {
+            warnings.push("Your government already sanctions this country. This repeat order adds no new sanction, relationship penalty or political capital charge.".into());
+        }
+        if kind == "lift" && !w.is_sanctioning(nation,target) {
+            warnings.push("Your government has no sanction on this country to remove. Other governments' sanctions remain in place; this order has no political capital charge.".into());
+        }
     }
     for headline in after.headlines.iter().skip(w.headlines.len()) {
         // The old peg narrative names nominal penalties even at a cap; the
@@ -197,13 +208,15 @@ fn decisions(w: &WorldState, nation: NationId, command: &Value) -> Value {
         }
     }
     if kind == "set_diplomatic_policy" && rows.is_empty() { warnings.push("These settings already match your standing policy.".into()); }
-    json!({"valid":true,"reason":null,"title":title,"command":command,"description":description,"changes":rows,"warnings":warnings,"call_context":call_context})
+    let bilateral_context=target.map(|target|crate::diplomatic_sanctions::context(w,Some(&after),nation,target));
+    json!({"valid":true,"reason":null,"title":title,"command":command,"description":description,"changes":rows,"warnings":warnings,"call_context":call_context,"bilateral_context":bilateral_context})
 }
 
 /// Add human-readable ledger dates without changing the native save schema.
 pub(crate) fn agency_view(w: &WorldState, nation: NationId) -> Value {
     let mut view = serde_json::to_value(agency::view(w, nation)).unwrap();
     view["commitments"] = crate::diplomatic_commitments::view(w,nation);
+    view["sanctions"] = crate::diplomatic_sanctions::view(w,nation);
     for row in view["history"].as_array_mut().unwrap() {
         let day = row["resolved_day"].as_i64().unwrap() as i32;
         let (y,m,d) = clock::date_from_day(day);

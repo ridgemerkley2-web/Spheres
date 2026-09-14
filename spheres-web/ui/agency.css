@@ -65,3 +65,11 @@
 @media(max-width:600px) { .agency-commitment-grid { grid-template-columns:minmax(0,1fr); } .agency-commitment { padding:12px; } }
 @media(max-width:360px) { .agency-facts { grid-template-columns:minmax(0,1fr); } #agencyBody #agencyCallContext { padding:12px; } }
 @media(max-width:600px) { .agency-aim-grid { grid-template-columns:1fr; } }
+.agency-diplomacy-target { display:grid; gap:12px; margin-top:24px; padding-top:20px; border-top:1px solid #ded8e7; min-width:0; }
+.agency-diplomacy-target label { font-weight:650; line-height:1.5; }
+#agencyDiplomacyTarget { width:100%; min-width:0; }
+.agency-bilateral-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.agency-bilateral-state { min-width:0; padding:14px; border:1px solid #ded8e7; border-radius:10px; background:#faf8fc; }
+.agency-bilateral-state .agency-facts { grid-template-columns:minmax(0,1fr); }
+#agencyBody #agencyBilateralContext { padding:16px; margin:18px 0; background:#f2edf7; }
+@media(max-width:600px) { .agency-bilateral-grid { grid-template-columns:minmax(0,1fr); } #agencyBody #agencyBilateralContext { padding:12px; } .agency-bilateral-state { padding:10px; } }

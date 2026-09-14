@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://ago.gov.to/cms/judgements/court-of-appeal/category/205-ac-2022.html?download=2457%3Arev-dr-pohiva-tuionetoa-v-taniela-kelekolio-kiu-ac-8-22-toca-9-aug-2022-blanchard-j-white-j-eastcourt-j-de-jersey-j-judgement",
+  "accessed_date": "2026-09-13",
+  "published_date": "2022-08-09",
+  "access_method": "downloaded_original_pdf_text_and_relevant_pages_visually_read",
+  "source_response_bytes": 307617,
+  "source_response_sha256": "ff8af75772e2f6dd0f3eaaa0b300239bc2925a867dff8f9926142299dee90973",
+  "source_response_checked_in": false,
+  "provenance_note": "Original response bytes were downloaded during this review and hashed before extraction. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_peoples_party_niutao_20211001",
+      "text": "The court's event narrative describes Pohiva Tu'i'onetoa displaying a People's Party banner bearing his image, with party pamphlets distributed at the Niutao event on 1 October 2021.",
+      "attested_on": "2021-10-01",
+      "locator": "PDF page 9, paragraph 20; event date on page 15, paragraph 42",
+      "uncertainty": "An event observation, not registration, a founding date, a complete membership list or a leadership appointment."
+    },
+    {
+      "id": "to_tuionetoa_prior_party_speech_20211001",
+      "text": "The court records Tu'i'onetoa describing his departure from an opposition party and a new People's Party direction during that speech. The prior-party label is printed PATOA in paragraph 21 and PTOA in paragraph 32.",
+      "attested_on": "2021-10-01",
+      "locator": "PDF page 9, paragraph 21; page 12, paragraph 32; page 15, paragraph 42",
+      "uncertainty": "The speech supplies no exact departure or foundation date. The inconsistent prior-party labels remain unreconciled; no legal split, merger or successor relationship is created."
+    }
+  ],
+  "scope_note": "Party observations only. Paragraph 44 allows the appeal and sets aside the challenged declarations and costs order. This intake imports no allegation, conviction, penalty or office exclusion. Judgment date is distinct from the 2021 event.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      8,
+      9,
+      12,
+      15
+    ],
+    "method": "Court pages 1, 8, 9, 12 and 15 rendered with Poppler and visually reviewed, including the handwritten judgment day, party-label discrepancy, event date and allowed appeal."
+  }
+}
