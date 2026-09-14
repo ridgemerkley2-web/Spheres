@@ -337,7 +337,7 @@
       "id": "S12",
       "phase": "military",
       "title": "Create real squadrons from owned aircraft",
-      "status": "in_progress",
+      "status": "complete",
       "depends": [
         "S11",
         "S08"
@@ -347,13 +347,21 @@
         "Buy and receive aircraft, assign them, change squadron size and reload with the same exact holdings.",
         "Aircraft cannot occupy two squadrons or serve while reserved for incompatible work.",
         "Resolve legacy fractional holdings explicitly; rounding creates no aircraft, free capability or lost property."
-      ]
+      ],
+      "evidence": "../campaign-certification/S12/README.md",
+      "completed_date": "2026-09-14",
+      "closure": {
+        "evidence": "docs/campaign-certification/S15/manifest.json",
+        "candidate_revision": "4c4129abeeec4e9e2987f121e875f5efc54b4c7f",
+        "driver_revision": "1653638fc050b4b4796875ffdeb7fbff9e7b6d7e",
+        "completed_utc": "2026-09-14T05:04:03.364Z"
+      }
     },
     {
       "id": "S13",
       "phase": "military",
       "title": "Connect airbases, access and range",
-      "status": "in_progress",
+      "status": "complete",
       "depends": [
         "S12",
         "S07"
@@ -363,13 +371,21 @@
         "Financially funded base improvements change the stated capacity only when completed.",
         "Rebasing takes visible time and respects access; transit aircraft cannot simultaneously fly a mission.",
         "Mission geography, unavailable access and insufficient capacity have actionable explanations on the map."
-      ]
+      ],
+      "evidence": "../campaign-certification/S13/README.md",
+      "completed_date": "2026-09-14",
+      "closure": {
+        "evidence": "docs/campaign-certification/S15/manifest.json",
+        "candidate_revision": "4c4129abeeec4e9e2987f121e875f5efc54b4c7f",
+        "driver_revision": "1653638fc050b4b4796875ffdeb7fbff9e7b6d7e",
+        "completed_utc": "2026-09-14T05:04:03.364Z"
+      }
     },
     {
       "id": "S14",
       "phase": "military",
       "title": "Fund automatic routine air-force support",
-      "status": "in_progress",
+      "status": "complete",
       "depends": [
         "S12",
         "S13",
@@ -381,13 +397,21 @@
         "Fund routine support once and let the game perform allowed maintenance/supply within that cap.",
         "No unapproved equipment purchase, invented ammunition, new spending authority or duplicate delivery is created.",
         "Shortages and repairs explain readiness changes; aircraft in transit/refit/repair are excluded from available sorties."
-      ]
+      ],
+      "evidence": "../campaign-certification/S14/README.md",
+      "completed_date": "2026-09-14",
+      "closure": {
+        "evidence": "docs/campaign-certification/S15/manifest.json",
+        "candidate_revision": "4c4129abeeec4e9e2987f121e875f5efc54b4c7f",
+        "driver_revision": "1653638fc050b4b4796875ffdeb7fbff9e7b6d7e",
+        "completed_utc": "2026-09-14T05:04:03.364Z"
+      }
     },
     {
       "id": "S15",
       "phase": "military",
       "title": "Connect tactical missions to campaign results",
-      "status": "in_progress",
+      "status": "complete",
       "depends": [
         "S11",
         "S13",
@@ -398,7 +422,15 @@
         "Use eligible targets, range, shared allocation, actual compatible stores and the integrated resolver.",
         "Settle ammunition, aircraft loss and target effects once, including simultaneous missions and interrupted responses.",
         "Invalid or unsupported launches are refused with a useful reason; save/resume during orders produces equivalent outcomes."
-      ]
+      ],
+      "evidence": "../campaign-certification/S15/README.md",
+      "completed_date": "2026-09-14",
+      "closure": {
+        "evidence": "docs/campaign-certification/S15/manifest.json",
+        "candidate_revision": "4c4129abeeec4e9e2987f121e875f5efc54b4c7f",
+        "driver_revision": "1653638fc050b4b4796875ffdeb7fbff9e7b6d7e",
+        "completed_utc": "2026-09-14T05:04:03.364Z"
+      }
     },
     {
       "id": "S16",
@@ -887,16 +919,16 @@
       }
     ]
   },
-  "last_completed_session": "S11",
-  "next_session": "S12",
+  "last_completed_session": "S15",
+  "next_session": "S16",
   "execution": {
     "authorized_through": "S15",
     "stop_boundary": "S15",
-    "status": "in_progress",
+    "status": "stopped",
     "previous_stop": "S11",
     "instruction": "Continue through S15",
     "instruction_date": "2026-09-13",
-    "next_session_requires_instruction": false
+    "next_session_requires_instruction": true
   },
   "gate_decisions": {
     "G1": {

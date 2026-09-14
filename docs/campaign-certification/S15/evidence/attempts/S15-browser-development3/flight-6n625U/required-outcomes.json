@@ -1,0 +1,69 @@
+{
+  "paid_aircraft_delivery": {
+    "buyer": "France",
+    "company": 1,
+    "cost_basis_bn": 0.03682524,
+    "delivered_day": 785,
+    "district": "FRA_auvergne-rh-ne-alpes",
+    "due_day": 785,
+    "id": 587,
+    "product": 265,
+    "purchased_day": 778,
+    "quantity": 2,
+    "reason": "Received into the exact-revision Arsenal; ordinary maintenance and ammunition rules now apply.",
+    "revision_id": "France-design-2",
+    "settled_day": 778,
+    "status": "delivered",
+    "total_price_bn": 0.042349026,
+    "unit_price_bn": 0.021174513
+  },
+  "foreign_base": "GBR_south-east",
+  "flown_missions": [
+    {
+      "conflict": 1,
+      "id": 2,
+      "issued_day": 813,
+      "kind": "support_army",
+      "launch_day": 814,
+      "nation": "France",
+      "report": {
+        "aircraft": 4,
+        "aircraft_lost": 0,
+        "applied_power": 8.44102934746141,
+        "contacted": true,
+        "day": 814,
+        "family": "air_bomb_unguided",
+        "sorties": 1.4445522420371497,
+        "stores_used": 2.8891044840742994,
+        "summary": "Support army at ITA_liguria: 1.44 sortie equivalents, 2.89 air_bomb_unguided stores, 0 aircraft lost. Applied to the campaign contact; ground battle results remain in Operations. Survivors need 1 funded service day(s)."
+      },
+      "squadron": 1,
+      "status": "flown",
+      "target": "ITA_liguria"
+    },
+    {
+      "conflict": 1,
+      "id": 3,
+      "issued_day": 813,
+      "kind": "strike_target",
+      "launch_day": 814,
+      "nation": "France",
+      "report": {
+        "aircraft": 2,
+        "aircraft_lost": 0,
+        "applied_power": 9.213808514461734,
+        "contacted": true,
+        "day": 814,
+        "family": "air_bomb_unguided",
+        "sorties": 0.5474178796831206,
+        "stores_used": 2.1896715187324824,
+        "summary": "Strike target at ITA_liguria: 0.55 sortie equivalents, 2.19 air_bomb_unguided stores, 0 aircraft lost. Applied to the campaign contact; ground battle results remain in Operations. Survivors need 1 funded service day(s)."
+      },
+      "squadron": 2,
+      "status": "flown",
+      "target": "ITA_liguria"
+    }
+  ],
+  "cancelled_mission": 1,
+  "days_advanced": 39
+}

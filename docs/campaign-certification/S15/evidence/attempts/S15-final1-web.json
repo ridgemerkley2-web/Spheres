@@ -1,0 +1,34 @@
+{
+  "revision": "4c4129abeeec4e9e2987f121e875f5efc54b4c7f",
+  "lane": "web",
+  "clean_before": true,
+  "command": [
+    "cargo",
+    "test",
+    "--locked",
+    "--release",
+    "-p",
+    "spheres-web",
+    "--no-fail-fast"
+  ],
+  "runner_sha256": "51efdf0099513cb7dd222d14173c9806ac4af8d15d9d780e8057ccf3e53ff06d",
+  "started_utc": "2026-09-14T04:40:43.087253+00:00",
+  "exit_code": 0,
+  "finished_utc": "2026-09-14T04:45:29.313837+00:00",
+  "revision_after": "4c4129abeeec4e9e2987f121e875f5efc54b4c7f",
+  "clean_after": true,
+  "log_sha256": "0849c7fc3c680464b03c8ecaeeedbf572ea34671d386db4b22ceb038f645afd2",
+  "totals": {
+    "passed": 393,
+    "failed": 0,
+    "ignored": 18,
+    "completed_targets": 2
+  },
+  "test_binaries": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+      "sha256": "852b153b0ce6770e6117dee71a78a01a649e16b5754b6619d93cf16a32474a93"
+    }
+  ],
+  "passed": true
+}

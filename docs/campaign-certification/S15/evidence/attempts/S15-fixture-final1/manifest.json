@@ -1,0 +1,604 @@
+{
+  "authored_preconditions": [
+    "Native ready manufacturer fixture: 10 IFVs, $100bn treasury, no debt, 1000 political capital, one million units of tracked raw inventories and bounded opening departmental authority; existing IFV development was paid before export.",
+    "Three arms-plant slots and two certified light-attack revisions with six delivered aircraft each are authored starting conditions. Aircraft under the supplier revision are not granted.",
+    "A reviewed $100m additional company capital transfer funded two distinct tactical-strike supplier aircraft and 200 compatible unguided stores, actually company-developed/manufactured through ordinary setup contracts and daily work; inventory targets then set to zero. No initial national aircraft stores are authored.",
+    "France–Italy ground conflict at Hold posture, operational migration, zero French tactical reserve, UK host basing consent and national $10m/day construction limit are explicit pre-export conditions. All campaign adoption uses normal migration APIs.",
+    "Model assumption: an existing host basing agreement permits financially sponsored airfield construction and improvements while that exact host controls the province and access remains open. The sponsoring government pays within its existing construction budget. Land ownership, the host's money and diplomatic authority do not change."
+  ],
+  "before_file": "before.json",
+  "commands": {
+    "cancel_queued": {
+      "kind": "air_mission",
+      "order": {
+        "action": "cancel",
+        "mission": 1
+      }
+    },
+    "change_revision": {
+      "kind": "air_squadron",
+      "order": {
+        "ChangeRevision": {
+          "revision": "s15-extended",
+          "squadron": 1
+        }
+      }
+    },
+    "form_first": {
+      "kind": "air_squadron",
+      "order": {
+        "Create": {
+          "name": "S15 Alpine wing",
+          "quantity": 6,
+          "revision": "s15-light"
+        }
+      }
+    },
+    "form_purchased": {
+      "kind": "air_squadron",
+      "order": {
+        "Create": {
+          "name": "S15 Purchased wing",
+          "quantity": 2,
+          "revision": "France-design-2"
+        }
+      }
+    },
+    "foundation_home": {
+      "kind": "air_base",
+      "order": {
+        "action": "establish",
+        "daily_budget_mn": 2.0,
+        "district": "FRA_auvergne-rh-ne-alpes",
+        "name": "S15 Alpine base"
+      }
+    },
+    "foundation_host": {
+      "kind": "air_base",
+      "order": {
+        "action": "establish",
+        "daily_budget_mn": 2.0,
+        "district": "GBR_south-east",
+        "name": "S15 Consenting host base"
+      }
+    },
+    "fund_routine_support": {
+      "automatic": true,
+      "daily_budget_mn": 100.0,
+      "kind": "equipment_air_support",
+      "target_days": 30
+    },
+    "improve_protection": {
+      "kind": "air_base",
+      "order": {
+        "action": "upgrade",
+        "base": "FRA_auvergne-rh-ne-alpes",
+        "daily_budget_mn": 2.0,
+        "track": "protection"
+      }
+    },
+    "improve_support": {
+      "kind": "air_base",
+      "order": {
+        "action": "upgrade",
+        "base": "FRA_auvergne-rh-ne-alpes",
+        "daily_budget_mn": 2.0,
+        "track": "support"
+      }
+    },
+    "move_to_host": {
+      "kind": "air_base",
+      "order": {
+        "action": "rebase",
+        "base": "GBR_south-east",
+        "squadron": 1
+      }
+    },
+    "purchase_aircraft": {
+      "company": 1,
+      "kind": "company_purchase",
+      "product": 265,
+      "quantity": 2
+    },
+    "queue_cancel_example": {
+      "kind": "air_mission",
+      "order": {
+        "action": "queue",
+        "conflict": 1,
+        "kind": "strike_target",
+        "squadron": 1,
+        "target": "ITA_liguria"
+      }
+    },
+    "resize_first": {
+      "kind": "air_squadron",
+      "order": {
+        "Resize": {
+          "quantity": 4,
+          "squadron": 1
+        }
+      }
+    },
+    "return_home": {
+      "kind": "air_base",
+      "order": {
+        "action": "rebase",
+        "base": "FRA_auvergne-rh-ne-alpes",
+        "squadron": 1
+      }
+    },
+    "stage_first": {
+      "kind": "air_base",
+      "order": {
+        "action": "rebase",
+        "base": "FRA_auvergne-rh-ne-alpes",
+        "squadron": 1
+      }
+    },
+    "stage_purchased": {
+      "kind": "air_base",
+      "order": {
+        "action": "rebase",
+        "base": "FRA_auvergne-rh-ne-alpes",
+        "squadron": 2
+      }
+    },
+    "strike_target": {
+      "kind": "air_mission",
+      "order": {
+        "action": "queue",
+        "conflict": 1,
+        "kind": "strike_target",
+        "squadron": 2,
+        "target": "ITA_liguria"
+      }
+    },
+    "support_army": {
+      "kind": "air_mission",
+      "order": {
+        "action": "queue",
+        "conflict": 1,
+        "kind": "support_army",
+        "squadron": 1,
+        "target": "ITA_liguria"
+      }
+    }
+  },
+  "compiled_revision": "4c4129abeeec",
+  "days_advanced": 39,
+  "expected_stages": {
+    "bases_completed": "expected-bases_completed.json",
+    "cancelled_mission": "expected-cancelled_mission.json",
+    "completed_improvements": "expected-completed_improvements.json",
+    "foreign_transit": "expected-foreign_transit.json",
+    "funded_foundations": "expected-funded_foundations.json",
+    "funded_recovery": "expected-funded_recovery.json",
+    "initial_transit": "expected-initial_transit.json",
+    "missions_flown": "expected-missions_flown.json",
+    "missions_queued": "expected-missions_queued.json",
+    "purchased_and_assigned": "expected-purchased_and_assigned.json",
+    "returned_ready": "expected-returned_ready.json"
+  },
+  "fixture": "s15-authored-flight-operations",
+  "native_confirmations": [
+    {
+      "command": {
+        "company": 1,
+        "kind": "company_purchase",
+        "product": 265,
+        "quantity": 2,
+        "quote": "company-v1-ad6c7c69b2ee8a0e"
+      },
+      "id": "purchase_aircraft"
+    },
+    {
+      "command": {
+        "automatic": true,
+        "daily_budget_mn": 100.0,
+        "kind": "equipment_air_support",
+        "target_days": 30
+      },
+      "id": "fund_routine_support"
+    },
+    {
+      "command": {
+        "kind": "air_squadron",
+        "order": {
+          "Create": {
+            "name": "S15 Alpine wing",
+            "quantity": 6,
+            "revision": "s15-light"
+          }
+        }
+      },
+      "id": "form_first"
+    },
+    {
+      "command": {
+        "kind": "air_squadron",
+        "order": {
+          "Resize": {
+            "quantity": 4,
+            "squadron": 1
+          }
+        }
+      },
+      "id": "resize_first"
+    },
+    {
+      "command": {
+        "kind": "air_squadron",
+        "order": {
+          "ChangeRevision": {
+            "revision": "s15-extended",
+            "squadron": 1
+          }
+        }
+      },
+      "id": "change_revision"
+    },
+    {
+      "command": {
+        "kind": "air_base",
+        "order": {
+          "action": "establish",
+          "daily_budget_mn": 2.0,
+          "district": "FRA_auvergne-rh-ne-alpes",
+          "name": "S15 Alpine base"
+        }
+      },
+      "id": "foundation_home"
+    },
+    {
+      "command": {
+        "kind": "air_base",
+        "order": {
+          "action": "establish",
+          "daily_budget_mn": 2.0,
+          "district": "GBR_south-east",
+          "name": "S15 Consenting host base"
+        }
+      },
+      "id": "foundation_host"
+    },
+    {
+      "command": {
+        "kind": "air_squadron",
+        "order": {
+          "Create": {
+            "name": "S15 Purchased wing",
+            "quantity": 2,
+            "revision": "France-design-2"
+          }
+        }
+      },
+      "id": "form_purchased"
+    },
+    {
+      "command": {
+        "kind": "air_base",
+        "order": {
+          "action": "rebase",
+          "base": "FRA_auvergne-rh-ne-alpes",
+          "squadron": 1
+        }
+      },
+      "id": "stage_first"
+    },
+    {
+      "command": {
+        "kind": "air_base",
+        "order": {
+          "action": "rebase",
+          "base": "FRA_auvergne-rh-ne-alpes",
+          "squadron": 2
+        }
+      },
+      "id": "stage_purchased"
+    },
+    {
+      "command": {
+        "kind": "air_base",
+        "order": {
+          "action": "rebase",
+          "base": "GBR_south-east",
+          "squadron": 1
+        }
+      },
+      "id": "move_to_host"
+    },
+    {
+      "command": {
+        "kind": "air_base",
+        "order": {
+          "action": "rebase",
+          "base": "FRA_auvergne-rh-ne-alpes",
+          "squadron": 1
+        }
+      },
+      "id": "return_home"
+    },
+    {
+      "command": {
+        "kind": "air_base",
+        "order": {
+          "action": "upgrade",
+          "base": "FRA_auvergne-rh-ne-alpes",
+          "daily_budget_mn": 2.0,
+          "track": "support"
+        }
+      },
+      "id": "improve_support"
+    },
+    {
+      "command": {
+        "kind": "air_base",
+        "order": {
+          "action": "upgrade",
+          "base": "FRA_auvergne-rh-ne-alpes",
+          "daily_budget_mn": 2.0,
+          "track": "protection"
+        }
+      },
+      "id": "improve_protection"
+    },
+    {
+      "command": {
+        "kind": "air_mission",
+        "order": {
+          "action": "queue",
+          "conflict": 1,
+          "kind": "strike_target",
+          "squadron": 1,
+          "target": "ITA_liguria"
+        }
+      },
+      "id": "queue_cancel_example"
+    },
+    {
+      "command": {
+        "kind": "air_mission",
+        "order": {
+          "action": "cancel",
+          "mission": 1
+        }
+      },
+      "id": "cancel_queued"
+    },
+    {
+      "command": {
+        "kind": "air_mission",
+        "order": {
+          "action": "queue",
+          "conflict": 1,
+          "kind": "support_army",
+          "squadron": 1,
+          "target": "ITA_liguria"
+        }
+      },
+      "id": "support_army"
+    },
+    {
+      "command": {
+        "kind": "air_mission",
+        "order": {
+          "action": "queue",
+          "conflict": 1,
+          "kind": "strike_target",
+          "squadron": 2,
+          "target": "ITA_liguria"
+        }
+      },
+      "id": "strike_target"
+    }
+  ],
+  "opening_day": 778,
+  "player": "France",
+  "preparation_days_after_manufacturer_ready": 516,
+  "required_outcomes": {
+    "aircraft_product": 265,
+    "aircraft_revision": "France-design-2",
+    "ammunition_product": 586,
+    "cancelled_mission": 1,
+    "company": 1,
+    "conflict": 1,
+    "first_squadron": 1,
+    "foreign_base": "GBR_south-east",
+    "home_base": "FRA_auvergne-rh-ne-alpes",
+    "purchased_squadron": 2,
+    "target": "ITA_liguria"
+  },
+  "scope": "Authored France aircraft, supplier and military scenario. Ordinary reviewed browser controls and full daily continuation after import; not an unassisted or historically exhaustive campaign.",
+  "steps": [
+    {
+      "command": "purchase_aircraft"
+    },
+    {
+      "command": "fund_routine_support"
+    },
+    {
+      "command": "form_first"
+    },
+    {
+      "checkpoint": "purchased_and_assigned"
+    },
+    {
+      "command": "resize_first"
+    },
+    {
+      "command": "change_revision"
+    },
+    {
+      "command": "foundation_home"
+    },
+    {
+      "command": "foundation_host"
+    },
+    {
+      "checkpoint": "funded_foundations"
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "checkpoint": "bases_completed"
+    },
+    {
+      "command": "form_purchased"
+    },
+    {
+      "command": "stage_first"
+    },
+    {
+      "command": "stage_purchased"
+    },
+    {
+      "checkpoint": "initial_transit"
+    },
+    {
+      "days": 2
+    },
+    {
+      "command": "move_to_host"
+    },
+    {
+      "checkpoint": "foreign_transit"
+    },
+    {
+      "days": 2
+    },
+    {
+      "command": "return_home"
+    },
+    {
+      "days": 2
+    },
+    {
+      "checkpoint": "returned_ready"
+    },
+    {
+      "command": "improve_support"
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "command": "improve_protection"
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "checkpoint": "completed_improvements"
+    },
+    {
+      "command": "queue_cancel_example"
+    },
+    {
+      "command": "cancel_queued"
+    },
+    {
+      "checkpoint": "cancelled_mission"
+    },
+    {
+      "command": "support_army"
+    },
+    {
+      "command": "strike_target"
+    },
+    {
+      "checkpoint": "missions_queued"
+    },
+    {
+      "days": 2
+    },
+    {
+      "checkpoint": "missions_flown"
+    },
+    {
+      "days": 2
+    },
+    {
+      "checkpoint": "funded_recovery"
+    }
+  ],
+  "version": 1
+}

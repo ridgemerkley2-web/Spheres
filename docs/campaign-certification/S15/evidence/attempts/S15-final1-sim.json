@@ -1,0 +1,35 @@
+{
+  "revision": "4c4129abeeec4e9e2987f121e875f5efc54b4c7f",
+  "lane": "sim",
+  "clean_before": true,
+  "command": [
+    "cargo",
+    "test",
+    "--locked",
+    "--release",
+    "-p",
+    "spheres-sim",
+    "--lib",
+    "--no-fail-fast"
+  ],
+  "runner_sha256": "51efdf0099513cb7dd222d14173c9806ac4af8d15d9d780e8057ccf3e53ff06d",
+  "started_utc": "2026-09-14T04:47:13.325918+00:00",
+  "exit_code": 0,
+  "finished_utc": "2026-09-14T04:54:54.143194+00:00",
+  "revision_after": "4c4129abeeec4e9e2987f121e875f5efc54b4c7f",
+  "clean_after": true,
+  "log_sha256": "8b7c6435531e71219db07907a5c5846141fe748b47d1bbc8fe1563f0183dd477",
+  "totals": {
+    "passed": 861,
+    "failed": 0,
+    "ignored": 26,
+    "completed_targets": 1
+  },
+  "test_binaries": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_sim-de8a2e7790f15db6.exe",
+      "sha256": "69297a952663b40dc143fe3e39ed5ea2c7093e22ce8adfb6737f39ed0bf02683"
+    }
+  ],
+  "passed": true
+}

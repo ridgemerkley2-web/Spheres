@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "input": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S15-browser-final2-browser\\flight-R3cqji\\server\\captures\\s15-audit-purchased_and_assigned.json",
+    "bytes": 11399486,
+    "sha256": "67088ce3c228a155b4709c5a6f0b2fc44a6fc95eb0477bc47c32b0c61206f5bf"
+  },
+  "requested": {
+    "buyer": "France",
+    "revision": null,
+    "seller": null,
+    "company": null,
+    "product": null
+  },
+  "buyer": {
+    "id": "France",
+    "tech_sha256": "92e48363954cd665583c86bb80118ba38f0d530080bd932d679d787947b330d6",
+    "learned_sha256": "50edc262344620ebd2c9cabf9297150b2175819f0e9ac19b0bb104e61072cba3",
+    "revision_ids": [
+      "France-design-1",
+      "France-design-2",
+      "ammo-demo",
+      "s15-extended",
+      "s15-light"
+    ],
+    "held_by_revision": {
+      "ammo-demo": 10,
+      "s15-light": 6,
+      "s15-extended": 6
+    },
+    "held_units": 0,
+    "buyer_revision": null,
+    "maintenance_plan": {
+      "daily_limit_bn": 0.0001,
+      "from_day": 1,
+      "receipt": null
+    },
+    "program_budget": {
+      "day": 778,
+      "settled_day": 777,
+      "spent_today_bn": [
+        [
+          0.03904885057471265,
+          0.03904885057471265,
+          0.03904885057471265,
+          0.03904885057471265,
+          0.039048850574712635
+        ],
+        [
+          0.02811517241379311,
+          0.02811517241379311,
+          0.02811517241379311,
+          0.02811517241379311,
+          0.028115172413793105
+        ],
+        [
+          0.031239080459770117,
+          0.031239080459770117,
+          0.031239080459770117,
+          0.031239080459770117,
+          0.031239080459770127
+        ],
+        [
+          0.04373471264367817,
+          0.04373471264367817,
+          0.04373471264367817,
+          0.04373471264367817,
+          0.043734712643678175
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0.015254597701149432
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0.004160344827586206,
+          0.004160344827586206,
+          0.004160344827586206,
+          0.004160344827586208
+        ],
+        [
+          0.026275862068965518,
+          0.026275862068965518,
+          0,
+          0.042349026,
+          0
+        ],
+        [
+          0.010933678160919542,
+          0.010933678160919542,
+          0.010933678160919542,
+          0.010933678160919542,
+          0.010933678160919544
+        ],
+        [
+          0.003123908045977012,
+          0.003123908045977012,
+          0.003123908045977012,
+          0.003123908045977012,
+          0.003123908045977012
+        ]
+      ],
+      "prepaid_used_today_bn": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    }
+  },
+  "supplier": null,
+  "imports": {
+    "ids": [],
+    "matching": []
+  },
+  "canonical": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S15-browser-final2-browser\\flight-R3cqji\\archive-audit\\003-s15-audit-purchased_and_assigned.canonical",
+    "bytes": 10856040,
+    "sha256": "1702c2266ccffdac8be732730b81b8d89f12b955d13549e0471af401acda70e2",
+    "format": "s08-typed-canonical-world-v1-js-f64",
+    "ignored_paths": []
+  }
+}

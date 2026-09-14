@@ -1,0 +1,33 @@
+{
+  "runtime_revision": "4c4129abeeec4e9e2987f121e875f5efc54b4c7f",
+  "driver_revision": "1653638fc050b4b4796875ffdeb7fbff9e7b6d7e",
+  "changed_paths": [
+    "tools/ui/ci-flight-operations.cjs"
+  ],
+  "clean_before": true,
+  "runtime_paths": [
+    "spheres-sim",
+    "spheres-web",
+    "Cargo.toml",
+    "Cargo.lock"
+  ],
+  "runtime_diff": [],
+  "driver_sha256": "388e55ff2d55851e1001789c40b47b7a06eb2cd89ed9c0b0ec21e05585fa1e46",
+  "runner_sha256": "a2b44f68b6574a0c709d71d3dc9510ee2f1e99b6e891e8e2101bd2622a9ec262",
+  "binary_sha256": "54e0b16efee71983f625cf28846b872377f0d8868ceb712a7418effa8576ece6",
+  "started_utc": "2026-09-14T05:02:47.817618+00:00",
+  "command": [
+    "node",
+    "tools/ui/ci-flight-operations.cjs"
+  ],
+  "exit_code": 0,
+  "finished_utc": "2026-09-14T05:04:03.611693+00:00",
+  "head_after": "1653638fc050b4b4796875ffdeb7fbff9e7b6d7e",
+  "clean_after": true,
+  "log_sha256": "4e1723fe531d8b65a47ebbf06078a5cc0d269856b8754dafecc34b7d46af3c2d",
+  "passed": true,
+  "result": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S15-browser-final2-browser\\flight-R3cqji\\result.json",
+    "sha256": "169d7993287fb4b85b3af960b28726a7c373ee30b661ab5704a9f80cdfedce05"
+  }
+}

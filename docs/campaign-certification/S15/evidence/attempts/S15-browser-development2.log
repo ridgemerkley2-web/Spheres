@@ -1,0 +1,55 @@
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+... Skipped lines
+
+  {
+    actions: [
+      {
+        enabled: true,
+        label: 'Development funding',
+...
+              label: 'Delivered aircraft',
++             value: 0
+-             value: -0
+            },
+            {
+              label: 'Assigned to squadrons',
+              value: 0
+            },
+...
+              label: 'Purchased / produced deliveries pending',
++             value: 0
+-             value: -0
+            },
+            {
+              label: 'Mission radius',
+              value: '1400 km'
+            }
+...
+              label: 'Purchased / produced deliveries pending',
++             value: 0
+-             value: -0
+            },
+            {
+              label: 'Mission radius',
+              value: '945 km'
+            }
+...
+              label: 'Purchased / produced deliveries pending',
++             value: 0
+-             value: -0
+            },
+            {
+              label: 'Mission radius',
+              value: '700 km'
+            }
+
+    at review (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\dev-ci-flight-operations.cjs:64:69)
+    at async main (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\dev-ci-flight-operations.cjs:108:105) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [Object],
+  expected: [Object],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}

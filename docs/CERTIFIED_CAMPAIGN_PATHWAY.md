@@ -1,6 +1,6 @@
 # Spheres — pathway to a certified campaign
 
-**Approved pathway · 10 September 2026 · S01–S11 complete; S12–S30 planned.**
+**Approved pathway · 10 September 2026 · S01–S15 complete; S16–S30 planned.**
 
 S10 closes its qualified gameplay scope under the explicit amendment below.
 C01 and worldwide character work remain incomplete; CP1 is not earned.
@@ -63,7 +63,7 @@ deliverables as finished.
 | Marker | Meaning |
 | --- | --- |
 | `S00` | Complete: user approved beginning S01 on 10 September 2026. |
-| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S11 are complete; S12–S30 remain planned. |
+| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S15 are complete; S16–S30 remain planned. |
 | `C01`–`C07` | Character-production workstreams, with uniquely numbered country batches below. |
 | `E01`–`E06` | Retained expansion work after the first certified release. |
 | `G0`–`G5` | Evidence gates joining groups of sessions. |
@@ -586,7 +586,7 @@ stopped after S10.h.
 
 **Status:** Complete · **Requires:** S05, S09
 
-The [S11 work record](campaign-certification/S11/README.md) records the qualified build and complete evidence. S12 remains planned.
+The [S11 work record](campaign-certification/S11/README.md) records the qualified ground build and evidence. Subsequent flight work is qualified in the [S12–S15 record](campaign-certification/S15/README.md).
 
 **Completion marker:** Procured ground equipment produces understandable capability and losses in the integrated operations model.
 
@@ -598,49 +598,57 @@ The [S11 work record](campaign-certification/S11/README.md) records the qualifie
 
 #### S12 — Create real squadrons from owned aircraft
 
-**Status:** Planned · **Requires:** S11, S08
+**Status:** Complete · **Requires:** S11, S08
 
 **Completion marker:** Saved squadrons refer to actual national aircraft, with simple establishment and revision choices.
 
-- [ ] Buy and receive aircraft, assign them, change squadron size and reload with the same exact holdings.
-- [ ] Aircraft cannot occupy two squadrons or serve while reserved for incompatible work.
-- [ ] Resolve legacy fractional holdings explicitly; rounding creates no aircraft, free capability or lost property.
+- [x] Buy and receive aircraft, assign them, change squadron size and reload with the same exact holdings.
+- [x] Aircraft cannot occupy two squadrons or serve while reserved for incompatible work.
+- [x] Resolve legacy fractional holdings explicitly; rounding creates no aircraft, free capability or lost property.
+
+**Evidence:** [Combined S12–S15 flight qualification](campaign-certification/S15/README.md).
 
 <a id="s13"></a>
 
 #### S13 — Connect airbases, access and range
 
-**Status:** Planned · **Requires:** S12, S07
+**Status:** Complete · **Requires:** S12, S07
 
 **Completion marker:** Geographic bases, visible rebasing and three clear improvements: Capacity, Support and Protection.
 
-- [ ] Financially funded base improvements change the stated capacity only when completed.
-- [ ] Rebasing takes visible time and respects access; transit aircraft cannot simultaneously fly a mission.
-- [ ] Mission geography, unavailable access and insufficient capacity have actionable explanations on the map.
+- [x] Financially funded base improvements change the stated capacity only when completed.
+- [x] Rebasing takes visible time and respects access; transit aircraft cannot simultaneously fly a mission.
+- [x] Mission geography, unavailable access and insufficient capacity have actionable explanations on the map.
+
+**Evidence:** [Combined S12–S15 flight qualification](campaign-certification/S15/README.md).
 
 <a id="s14"></a>
 
 #### S14 — Fund automatic routine air-force support
 
-**Status:** Planned · **Requires:** S12, S13, S06, S08
+**Status:** Complete · **Requires:** S12, S13, S06, S08
 
 **Completion marker:** One readiness view backed by maintenance, compatible stores and an explicitly bounded support policy.
 
-- [ ] Fund routine support once and let the game perform allowed maintenance/supply within that cap.
-- [ ] No unapproved equipment purchase, invented ammunition, new spending authority or duplicate delivery is created.
-- [ ] Shortages and repairs explain readiness changes; aircraft in transit/refit/repair are excluded from available sorties.
+- [x] Fund routine support once and let the game perform allowed maintenance/supply within that cap.
+- [x] No unapproved equipment purchase, invented ammunition, new spending authority or duplicate delivery is created.
+- [x] Shortages and repairs explain readiness changes; aircraft in transit/refit/repair are excluded from available sorties.
+
+**Evidence:** [Combined S12–S15 flight qualification](campaign-certification/S15/README.md).
 
 <a id="s15"></a>
 
 #### S15 — Connect tactical missions to campaign results
 
-**Status:** Planned · **Requires:** S11, S13, S14
+**Status:** Complete · **Requires:** S11, S13, S14
 
 **Completion marker:** Support army and Strike target create reviewed campaign orders and dated results.
 
-- [ ] Use eligible targets, range, shared allocation, actual compatible stores and the integrated resolver.
-- [ ] Settle ammunition, aircraft loss and target effects once, including simultaneous missions and interrupted responses.
-- [ ] Invalid or unsupported launches are refused with a useful reason; save/resume during orders produces equivalent outcomes.
+- [x] Use eligible targets, range, shared allocation, actual compatible stores and the integrated resolver.
+- [x] Settle ammunition, aircraft loss and target effects once, including simultaneous missions and interrupted responses.
+- [x] Invalid or unsupported launches are refused with a useful reason; save/resume during orders produces equivalent outcomes.
+
+**Evidence:** [Combined S12–S15 flight qualification](campaign-certification/S15/README.md).
 
 <a id="s16"></a>
 
@@ -1001,4 +1009,4 @@ separate from the still-required C06/S23 historical-content gates.
 
 ## Authorized execution boundary
 
-S04 and S05 are complete on the recorded runtime and evidence. G1 decision: **earned**. The pinned integrated build passes both native/Node platforms, original-save and transaction qualification, actual desktop/narrow browser journeys, map review and both predefined performance confirmations. This earns the bounded unified-playset gate locally; full campaign and release certification remain later work. Execution stopped after S05 as requested. On 11 September 2026, “Next” authorized S06. S06 is complete on its recorded runtime and evidence. On 11 September 2026, “Next” authorized S07. S07 is complete on its recorded runtime and evidence. A subsequent “Next” authorized S08, which completed on 12 September 2026 on its recorded runtime and evidence; execution stopped before S09. On 12 September 2026, “next” authorized S09. S09 is complete on its recorded runtime and evidence; execution stopped before S10. The subsequent Continue authorized S10. S10.a through S10.h completed as bounded increments while S10 and C01 were still open. The later instruction “Continue. Finish S10” and the recorded scope amendment authorized closure of S10's qualified gameplay scope. S10 is complete and G2 is earned on the final report's exact evidence. C01 remains incomplete, and C06/S23 content requirements still block CP1 certification. The subsequent “Next” authorized S11. S11 is complete on its exact recorded build and authored France journey. Execution stopped after S11; S12 and later sessions require a new instruction. No later campaign, content or release certificate is awarded.
+S04 and S05 are complete on the recorded runtime and evidence. G1 decision: **earned**. The pinned integrated build passes both native/Node platforms, original-save and transaction qualification, actual desktop/narrow browser journeys, map review and both predefined performance confirmations. This earns the bounded unified-playset gate locally; full campaign and release certification remain later work. Execution stopped after S05 as requested. On 11 September 2026, “Next” authorized S06. S06 is complete on its recorded runtime and evidence. On 11 September 2026, “Next” authorized S07. S07 is complete on its recorded runtime and evidence. A subsequent “Next” authorized S08, which completed on 12 September 2026 on its recorded runtime and evidence; execution stopped before S09. On 12 September 2026, “next” authorized S09. S09 is complete on its recorded runtime and evidence; execution stopped before S10. The subsequent Continue authorized S10. S10.a through S10.h completed as bounded increments while S10 and C01 were still open. The later instruction “Continue. Finish S10” and the recorded scope amendment authorized closure of S10's qualified gameplay scope. S10 is complete and G2 is earned on the final report's exact evidence. C01 remains incomplete, and C06/S23 content requirements still block CP1 certification. The subsequent “Next” authorized S11. S11 is complete on its exact recorded build and authored France journey. The later instruction “Continue through S15” authorized S12–S15. They are complete on the recorded runtime and authored France flight journey. Execution stopped after S15; S16 and later sessions require a new instruction. G3 and CP1 remain unearned. No later campaign, content or release certificate is awarded.

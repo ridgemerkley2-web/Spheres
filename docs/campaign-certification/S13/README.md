@@ -1,6 +1,6 @@
 # S13 — Geographic airbases, access and range
 
-Status: implemented; qualification in progress with S12–S15.
+Status: **complete** on runtime `4c4129abeeec4e9e2987f121e875f5efc54b4c7f`, qualified with S12–S15. See the [combined acceptance manifest](../S15/manifest.json).
 
 Air command builds geographic airbases using the existing national financial construction envelope. Foundation capacity remains zero until the complete contract has been funded and finished. Existing construction competes for the same daily pool. The game charges no construction materials or second treasury account.
 

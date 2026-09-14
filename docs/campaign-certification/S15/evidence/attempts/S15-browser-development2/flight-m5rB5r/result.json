@@ -1,0 +1,3002 @@
+{
+  "passed": false,
+  "url": "http://127.0.0.1:56230",
+  "run": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S15-browser-development2\\flight-m5rB5r\\server",
+  "started_utc": "2026-09-14T04:49:10.815Z",
+  "fixture": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S15-fixture-final1\\before.json",
+    "sha256": "1e958b72a56fc5024b2bedc172d777e95d5dd680c326847baca3a2f1b5190c6c",
+    "manifest_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S15-fixture-final1\\manifest.json",
+    "manifest_sha256": "744c8e15091907f3770579d212f5bb74f14398e2d83c8303920ad4cf33724474",
+    "scope": "Authored France aircraft, supplier and military scenario. Ordinary reviewed browser controls and full daily continuation after import; not an unassisted or historically exhaustive campaign."
+  },
+  "source": {
+    "revision": "4c4129abeeec4e9e2987f121e875f5efc54b4c7f",
+    "driver_sha256": "9e9dcbce5f86d23ac6299ed6e048ff7356793faf357e54dbb542fca666a5446c"
+  },
+  "commands": [],
+  "advances": [],
+  "screenshots": [],
+  "errors": [],
+  "stages": [
+    {
+      "id": "loaded",
+      "date": "18 Feb 1992",
+      "archive": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S15-browser-development2\\flight-m5rB5r\\server\\captures\\s15-audit-loaded.json",
+        "bytes": 11398673,
+        "sha256": "dd1a3b6b89d43b05a630301c641c3e49b84c227c7c70f5af8843eee5db27afee"
+      },
+      "flight": {
+        "calendar": {
+          "year": 1992,
+          "month": 2,
+          "day": 18
+        },
+        "as_of_day": 778,
+        "holdings": [
+          {
+            "age": 0,
+            "design_id": "ammo-demo",
+            "kit": "arm_gen3",
+            "units": 10
+          },
+          {
+            "age": 0,
+            "design_id": "s15-light",
+            "kit": "air_gen3",
+            "units": 6
+          },
+          {
+            "age": 0,
+            "design_id": "s15-extended",
+            "kit": "air_gen3",
+            "units": 6
+          }
+        ],
+        "aviation": null,
+        "airbases": null,
+        "missions": null,
+        "ammunition": null,
+        "support": null,
+        "construction": {
+          "accrued_today_bn": [
+            [
+              0.03904885057471265,
+              0.03904885057471265,
+              0.03904885057471265,
+              0.03904885057471265,
+              0.039048850574712635
+            ],
+            [
+              0.02811517241379311,
+              0.02811517241379311,
+              0.02811517241379311,
+              0.02811517241379311,
+              0.028115172413793105
+            ],
+            [
+              0.031239080459770117,
+              0.031239080459770117,
+              0.031239080459770117,
+              0.031239080459770117,
+              0.031239080459770127
+            ],
+            [
+              0.04373471264367817,
+              0.04373471264367817,
+              0.04373471264367817,
+              0.04373471264367817,
+              0.043734712643678175
+            ],
+            [
+              0.015254597701149427,
+              0.015254597701149427,
+              0.015254597701149427,
+              0.015254597701149427,
+              0.015254597701149432
+            ],
+            [
+              0.008320689655172412,
+              0.008320689655172412,
+              0.008320689655172412,
+              0.008320689655172412,
+              0.008320689655172415
+            ],
+            [
+              0.004160344827586206,
+              0.004160344827586206,
+              0.004160344827586206,
+              0.004160344827586206,
+              0.004160344827586208
+            ],
+            [
+              0.026275862068965518,
+              0.026275862068965518,
+              0.026275862068965518,
+              0.026275862068965518,
+              0.02627586206896551
+            ],
+            [
+              0.010933678160919542,
+              0.010933678160919542,
+              0.010933678160919542,
+              0.010933678160919542,
+              0.010933678160919544
+            ],
+            [
+              0.003123908045977012,
+              0.003123908045977012,
+              0.003123908045977012,
+              0.003123908045977012,
+              0.003123908045977012
+            ]
+          ],
+          "authority_year": 1992,
+          "available_bn": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0.7169660919540234,
+              0.7169660919540234,
+              0.7169660919540234,
+              0.7169660919540234,
+              0
+            ],
+            [
+              0.3910724137931035,
+              0.3910724137931035,
+              0.3910724137931035,
+              0.3910724137931035,
+              0.3910724137931035
+            ],
+            [
+              0.19553620689655174,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1.2349655172413796,
+              1.2349655172413796,
+              1.2349655172413798
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "basis_gdp": 1270,
+          "construction_daily_budget_bn": 0.01,
+          "construction_spent_today_bn": 0,
+          "construction_spent_ytd_bn": 0,
+          "day": 778,
+          "departments": [
+            [
+              2000,
+              2000,
+              2000,
+              2000,
+              2000
+            ],
+            [
+              2000,
+              2000,
+              2000,
+              2000,
+              2000
+            ],
+            [
+              2000,
+              2000,
+              2000,
+              2000,
+              2000
+            ],
+            [
+              2000,
+              2000,
+              2000,
+              2000,
+              2000
+            ],
+            [
+              2000,
+              2000,
+              2000,
+              2000,
+              2000
+            ],
+            [
+              2000,
+              2000,
+              2000,
+              2000,
+              2000
+            ],
+            [
+              2000,
+              2000,
+              2000,
+              2000,
+              2000
+            ],
+            [
+              2000,
+              2000,
+              2000,
+              2000,
+              2000
+            ],
+            [
+              2000,
+              2000,
+              2000,
+              2000,
+              2000
+            ],
+            [
+              2000,
+              2000,
+              2000,
+              2000,
+              2000
+            ]
+          ],
+          "expired_authority_bn": 124.9476587096772,
+          "fiscal_staged": false,
+          "fiscal_year": 1992,
+          "fraction": 0.0028735632183908046,
+          "interest_today_bn": 0,
+          "noncapital_spent_today_bn": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "prepaid_bn": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "prepaid_used_today_bn": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "realized_investment_share": 0.008740000000000001,
+          "reference_departments": [
+            [
+              2000,
+              2000,
+              2000,
+              2000,
+              2000
+            ],
+            [
+              2000,
+              2000,
+              2000,
+              2000,
+              2000
+            ],
+            [
+              2000,
+              2000,
+              2000,
+              2000,
+              2000
+            ],
+            [
+              2000,
+              2000,
+              2000,
+              2000,
+              2000
+            ],
+            [
+              2000,
+              2000,
+              2000,
+              2000,
+              2000
+            ],
+            [
+              2000,
+              2000,
+              2000,
+              2000,
+              2000
+            ],
+            [
+              2000,
+              2000,
+              2000,
+              2000,
+              2000
+            ],
+            [
+              2000,
+              2000,
+              2000,
+              2000,
+              2000
+            ],
+            [
+              2000,
+              2000,
+              2000,
+              2000,
+              2000
+            ],
+            [
+              2000,
+              2000,
+              2000,
+              2000,
+              2000
+            ]
+          ],
+          "revenue_today_bn": 0,
+          "settled_day": 777,
+          "settled_spending_annual_bn": 301.16780000000006,
+          "spent_today_bn": [
+            [
+              0.03904885057471265,
+              0.03904885057471265,
+              0.03904885057471265,
+              0.03904885057471265,
+              0.039048850574712635
+            ],
+            [
+              0.02811517241379311,
+              0.02811517241379311,
+              0.02811517241379311,
+              0.02811517241379311,
+              0.028115172413793105
+            ],
+            [
+              0.031239080459770117,
+              0.031239080459770117,
+              0.031239080459770117,
+              0.031239080459770117,
+              0.031239080459770127
+            ],
+            [
+              0.04373471264367817,
+              0.04373471264367817,
+              0.04373471264367817,
+              0.04373471264367817,
+              0.043734712643678175
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0.015254597701149432
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0.004160344827586206,
+              0.004160344827586206,
+              0.004160344827586206,
+              0.004160344827586208
+            ],
+            [
+              0.026275862068965518,
+              0.026275862068965518,
+              0,
+              0,
+              0
+            ],
+            [
+              0.010933678160919542,
+              0.010933678160919542,
+              0.010933678160919542,
+              0.010933678160919542,
+              0.010933678160919544
+            ],
+            [
+              0.003123908045977012,
+              0.003123908045977012,
+              0.003123908045977012,
+              0.003123908045977012,
+              0.003123908045977012
+            ]
+          ],
+          "spent_ytd_bn": [
+            [
+              1.835295977011494,
+              1.835295977011494,
+              1.835295977011494,
+              1.835295977011494,
+              1.835295977011494
+            ],
+            [
+              1.3214131034482766,
+              1.3214131034482766,
+              1.3214131034482766,
+              1.3214131034482766,
+              1.3214131034482768
+            ],
+            [
+              1.4682367816091964,
+              1.4682367816091964,
+              1.4682367816091964,
+              1.4682367816091964,
+              1.4682367816091964
+            ],
+            [
+              2.0555314942528744,
+              2.0555314942528744,
+              2.0555314942528744,
+              2.0555314942528744,
+              2.0555314942528744
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0.7169660919540233
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0.19553620689655174,
+              0.19553620689655174,
+              0.19553620689655174,
+              0.19553620689655174
+            ],
+            [
+              1.2349655172413796,
+              1.2349655172413796,
+              0,
+              0,
+              0
+            ],
+            [
+              0.5138828735632186,
+              0.5138828735632186,
+              0.5138828735632186,
+              0.5138828735632186,
+              0.5138828735632186
+            ],
+            [
+              0.14682367816091946,
+              0.14682367816091946,
+              0.14682367816091946,
+              0.14682367816091946,
+              0.14682367816091957
+            ]
+          ]
+        },
+        "firms": [
+          {
+            "ammunition_products": [
+              {
+                "fabrication_expense_bn": 0.0007999999999999999,
+                "family": "air_bomb_unguided",
+                "id": 586,
+                "last_work_day": 777,
+                "materials_expense_bn": 0.00003620799999999999,
+                "produced_units": 200,
+                "reason": "Paid ammunition is finished company-owned stock. It enters no national ammunition book until a reviewed purchase settles and arrives.",
+                "resources_used": [
+                  0,
+                  0.008,
+                  0,
+                  0.19999999999999998,
+                  0,
+                  0,
+                  36,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "sold_units": 0,
+                "source_revision": "France-design-2",
+                "started_day": 773,
+                "status": "in_stock",
+                "stock": 200,
+                "stock_cost_bn": 0.000836208,
+                "stock_target": 0
+              }
+            ],
+            "capital_received_bn": 0.125,
+            "cash_bn": 0.013738551999999925,
+            "development_expense_bn": 0.50898,
+            "development_revenue_bn": 0.50898,
+            "district": "FRA_auvergne-rh-ne-alpes",
+            "established_day": 0,
+            "fabrication_expense_bn": 0.03759999999999996,
+            "id": 1,
+            "last_tick_day": 777,
+            "materials_expense_bn": 0.000061448,
+            "name": "Interface Refit Works",
+            "nation": "France",
+            "ownership": "state",
+            "products": [
+              {
+                "cancelled_day": null,
+                "certified_day": 261,
+                "daily_budget_bn": 0.01,
+                "design_nation": "France",
+                "development_spent_bn": 0.06738000000000001,
+                "development_work_days": 260,
+                "id": 3,
+                "produced_units": 0,
+                "reason": "The finite stock target is met. No public purchase is implied.",
+                "revision_id": "France-design-1",
+                "sold_units": 0,
+                "started_day": 1,
+                "status": "idle",
+                "stock": 0,
+                "stock_cost_bn": 0,
+                "stock_target": 0,
+                "tooling_spent_bn": 0,
+                "tooling_work_days": 0,
+                "unit_inputs": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "unit_material_cost_bn": 0,
+                "unit_spent_bn": 0,
+                "unit_work_days": 0
+              },
+              {
+                "cancelled_day": null,
+                "certified_day": 583,
+                "daily_budget_bn": 0.01,
+                "design_nation": "France",
+                "development_spent_bn": 0.4416,
+                "development_work_days": 320,
+                "id": 265,
+                "produced_units": 2,
+                "reason": "The finite stock target is met. No public purchase is implied.",
+                "revision_id": "France-design-2",
+                "sold_units": 0,
+                "started_day": 263,
+                "status": "in_stock",
+                "stock": 2,
+                "stock_cost_bn": 0.03682524,
+                "stock_target": 0,
+                "tooling_spent_bn": 0.0736,
+                "tooling_work_days": 45,
+                "unit_inputs": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "unit_material_cost_bn": 0,
+                "unit_spent_bn": 0,
+                "unit_work_days": 0
+              }
+            ],
+            "receivables": [],
+            "sales_revenue_bn": 0,
+            "tooling_expense_bn": 0.0736,
+            "transactions": [
+              {
+                "amount_bn": 0.00138,
+                "day": 527,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 528,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 529,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 530,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 531,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 532,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 533,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 534,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 535,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 536,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 537,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 538,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 539,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 540,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 541,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 542,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 543,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 544,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 545,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 546,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 547,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 548,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 549,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 550,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 551,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 552,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 553,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 554,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 555,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 556,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 557,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 558,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 559,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 560,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 561,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 562,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 563,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 564,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 565,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 566,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 567,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 568,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 569,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 570,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 571,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 572,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 573,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 574,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 575,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 576,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 577,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 578,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 579,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 580,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 581,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00138,
+                "day": 582,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0013800000000014911,
+                "day": 583,
+                "kind": "development",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 584,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 585,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 586,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 587,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 588,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 589,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 590,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 591,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 592,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 593,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 594,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 595,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 596,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 597,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 598,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 599,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 600,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 601,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 602,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 603,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 604,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 605,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 606,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 607,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 608,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 609,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 610,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 611,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 612,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 613,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 614,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 615,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 616,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 617,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 618,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 619,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 620,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 621,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 622,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 623,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 624,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 625,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 626,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555555,
+                "day": 627,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.0016355555555555151,
+                "day": 628,
+                "kind": "tooling",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.000012620000000000001,
+                "day": 629,
+                "kind": "materials",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 629,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 630,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 631,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 632,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 633,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 634,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 635,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 636,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 637,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 638,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 639,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 640,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 641,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 642,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 643,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 644,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 645,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 646,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 647,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 648,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 649,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 650,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 651,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 652,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 653,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 654,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 655,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 656,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 657,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 658,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 659,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 660,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 661,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 662,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 663,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 664,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 665,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 666,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 667,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 668,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 669,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 670,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 671,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 672,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 673,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 674,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 675,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 676,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 677,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 678,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 679,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 680,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 681,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 682,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 683,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 684,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 685,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 686,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 687,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 688,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 689,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 690,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 691,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 692,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 693,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 694,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 695,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 696,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 697,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 698,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 699,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555556095,
+                "day": 700,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.000012620000000000001,
+                "day": 701,
+                "kind": "materials",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 701,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 702,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 703,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 704,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 705,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 706,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 707,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 708,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 709,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 710,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 711,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 712,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 713,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 714,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 715,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 716,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 717,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 718,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 719,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 720,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 721,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 722,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 723,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 724,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 725,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 726,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 727,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 728,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 729,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 730,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 731,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 732,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 733,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 734,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 735,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 736,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 737,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 738,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 739,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 740,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 741,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 742,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 743,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 744,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 745,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 746,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 747,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 748,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 749,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 750,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 751,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 752,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 753,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 754,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 755,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 756,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 757,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 758,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 759,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 760,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 761,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 762,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 763,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 764,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 765,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 766,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 767,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 768,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 769,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 770,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555555553,
+                "day": 771,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.00025555555555556095,
+                "day": 772,
+                "kind": "fabrication",
+                "product": 265,
+                "quantity": 0
+              },
+              {
+                "amount_bn": 0.000010862399999999998,
+                "day": 774,
+                "kind": "ammo_materials",
+                "product": 586,
+                "quantity": 60
+              },
+              {
+                "amount_bn": 0.00023999999999999998,
+                "day": 774,
+                "kind": "ammo_fabrication",
+                "product": 586,
+                "quantity": 60
+              },
+              {
+                "amount_bn": 0.000010862399999999998,
+                "day": 775,
+                "kind": "ammo_materials",
+                "product": 586,
+                "quantity": 60
+              },
+              {
+                "amount_bn": 0.00023999999999999998,
+                "day": 775,
+                "kind": "ammo_fabrication",
+                "product": 586,
+                "quantity": 60
+              },
+              {
+                "amount_bn": 0.000010862399999999998,
+                "day": 776,
+                "kind": "ammo_materials",
+                "product": 586,
+                "quantity": 60
+              },
+              {
+                "amount_bn": 0.00023999999999999998,
+                "day": 776,
+                "kind": "ammo_fabrication",
+                "product": 586,
+                "quantity": 60
+              },
+              {
+                "amount_bn": 0.0000036207999999999993,
+                "day": 777,
+                "kind": "ammo_materials",
+                "product": 586,
+                "quantity": 20
+              },
+              {
+                "amount_bn": 0.00007999999999999999,
+                "day": 777,
+                "kind": "ammo_fabrication",
+                "product": 586,
+                "quantity": 20
+              }
+            ]
+          }
+        ],
+        "deliveries": [],
+        "ammunition_deliveries": [],
+        "envelope": {
+          "sha256": "cbd78a7d6761d86259d7a3c2d0604971dd6be295a6f0f1672613d215e7d03739",
+          "bytes": 13525,
+          "saved_unix": 1789361356,
+          "history_points": 1,
+          "dispatches": 0
+        }
+      }
+    }
+  ],
+  "world_comparisons": [
+    {
+      "message": "Ordinary Load preserves authored native world and history",
+      "left": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S15-browser-development2\\flight-m5rB5r\\server\\captures\\s15-audit-loaded.json",
+        "bytes": 11398673,
+        "sha256": "dd1a3b6b89d43b05a630301c641c3e49b84c227c7c70f5af8843eee5db27afee"
+      },
+      "right": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S15-fixture-final1\\before.json",
+        "bytes": 11398673,
+        "sha256": "1e958b72a56fc5024b2bedc172d777e95d5dd680c326847baca3a2f1b5190c6c"
+      },
+      "sha256": "48993828bdfc3d946078c9f3746a953af35a28e12e00e1b1913233a9c1b8bfec",
+      "ignored_paths": []
+    }
+  ],
+  "envelope_comparisons": [
+    {
+      "message": "Ordinary Load preserves authored native world and history",
+      "left": {
+        "sha256": "cbd78a7d6761d86259d7a3c2d0604971dd6be295a6f0f1672613d215e7d03739",
+        "bytes": 13525,
+        "saved_unix": 1789361356,
+        "history_points": 1,
+        "dispatches": 0
+      },
+      "right": {
+        "sha256": "cbd78a7d6761d86259d7a3c2d0604971dd6be295a6f0f1672613d215e7d03739",
+        "bytes": 13525,
+        "saved_unix": 1789361140,
+        "history_points": 1,
+        "dispatches": 0
+      },
+      "rule": "Only separately validated saved_unix may differ; native world and historical fields remain exact."
+    }
+  ],
+  "browser_version": "152.0.7977.83",
+  "build": {
+    "revision": "4c4129abeeec4e9e2987f121e875f5efc54b4c7f",
+    "build": {
+      "branch": "codex/campaign-certification",
+      "built_at_unix_seconds": 1789360843,
+      "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+      "distribution": "Local offline game server; source and attribution accompany the release",
+      "revision": "4c4129abeeec",
+      "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S15-browser-development2\\flight-m5rB5r\\server",
+      "version": "0.6.0"
+    },
+    "binary_sha256": "54e0b16efee71983f625cf28846b872377f0d8868ceb712a7418effa8576ece6",
+    "assets": {
+      "index.html": {
+        "served_sha256": "e7aff53141aefd4f43b9c9d47222dc3ca2efa1ec72c5471673a2d62693ab8130",
+        "served_bytes": 1155830,
+        "checkout_sha256": "e7aff53141aefd4f43b9c9d47222dc3ca2efa1ec72c5471673a2d62693ab8130",
+        "checkout_bytes": 1155830,
+        "committed_sha256": "192740fbe6cdb279198d76f9f5d03f2a61920ed8d10fcd7d640f8d2cb160eff8",
+        "committed_bytes": 1136972,
+        "canonical_checkout_sha256": "192740fbe6cdb279198d76f9f5d03f2a61920ed8d10fcd7d640f8d2cb160eff8",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 18858
+        }
+      },
+      "campaign-transport.js": {
+        "served_sha256": "6d25271e94ae436d3f700c81a773d8c624731a809541c966a609046ec6861582",
+        "served_bytes": 4775,
+        "checkout_sha256": "6d25271e94ae436d3f700c81a773d8c624731a809541c966a609046ec6861582",
+        "checkout_bytes": 4775,
+        "committed_sha256": "1cbd2407c8822070e860f84e8378976aa1e2624aca7dd234eed8c723ac8acd2c",
+        "committed_bytes": 4693,
+        "canonical_checkout_sha256": "1cbd2407c8822070e860f84e8378976aa1e2624aca7dd234eed8c723ac8acd2c",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 82
+        }
+      },
+      "campaign-ui.js": {
+        "served_sha256": "20641a249ff5b59589736dd9f36f3cdd7b7ab53df29d107d4cf3feccecbf49ba",
+        "served_bytes": 13683,
+        "checkout_sha256": "20641a249ff5b59589736dd9f36f3cdd7b7ab53df29d107d4cf3feccecbf49ba",
+        "checkout_bytes": 13683,
+        "committed_sha256": "9aa62da51602a3d612312e157d37726cc6d2ed73efd17a7e5f2634386b1be312",
+        "committed_bytes": 13473,
+        "canonical_checkout_sha256": "9aa62da51602a3d612312e157d37726cc6d2ed73efd17a7e5f2634386b1be312",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 210
+        }
+      },
+      "fiscal-recovery-ui.js": {
+        "served_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "served_bytes": 11098,
+        "checkout_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "checkout_bytes": 11098,
+        "committed_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "committed_bytes": 11098,
+        "canonical_checkout_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 0
+        }
+      },
+      "cash-flow-ui.js": {
+        "served_sha256": "f08262a2afc1b0ea565f7d4af790b82b2ce35f8c182d80b50d4e0f476bd029bd",
+        "served_bytes": 30198,
+        "checkout_sha256": "f08262a2afc1b0ea565f7d4af790b82b2ce35f8c182d80b50d4e0f476bd029bd",
+        "checkout_bytes": 30198,
+        "committed_sha256": "023fee351e029edacd074d5b7056819bd3c81b387dbe13e6a32a541840091107",
+        "committed_bytes": 29951,
+        "canonical_checkout_sha256": "023fee351e029edacd074d5b7056819bd3c81b387dbe13e6a32a541840091107",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 247
+        }
+      },
+      "companies-ui.js": {
+        "served_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+        "served_bytes": 32920,
+        "checkout_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+        "checkout_bytes": 32920,
+        "committed_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+        "committed_bytes": 32920,
+        "canonical_checkout_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 0
+        }
+      },
+      "companies.css": {
+        "served_sha256": "a37da57692adf251e2e173ef0c9266a88dfb3cd1d3e4cde5b5d522e2f89c9c92",
+        "served_bytes": 13908,
+        "checkout_sha256": "a37da57692adf251e2e173ef0c9266a88dfb3cd1d3e4cde5b5d522e2f89c9c92",
+        "checkout_bytes": 13908,
+        "committed_sha256": "958e3d1de86a4c21c5033d06898c478f016d293261b639feff9e77cfa9876724",
+        "committed_bytes": 13798,
+        "canonical_checkout_sha256": "958e3d1de86a4c21c5033d06898c478f016d293261b639feff9e77cfa9876724",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 110
+        }
+      },
+      "government-ui.js": {
+        "served_sha256": "3437b8a00a56fcc85853d427d72df87386d159503e7e62e309e9faa598908899",
+        "served_bytes": 52239,
+        "checkout_sha256": "3437b8a00a56fcc85853d427d72df87386d159503e7e62e309e9faa598908899",
+        "checkout_bytes": 52239,
+        "committed_sha256": "3437b8a00a56fcc85853d427d72df87386d159503e7e62e309e9faa598908899",
+        "committed_bytes": 52239,
+        "canonical_checkout_sha256": "3437b8a00a56fcc85853d427d72df87386d159503e7e62e309e9faa598908899",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 0
+        }
+      },
+      "government-ui.css": {
+        "served_sha256": "3966a543093205da2201394a14b074edc37fbaf909102920cceecc193947eb79",
+        "served_bytes": 36730,
+        "checkout_sha256": "3966a543093205da2201394a14b074edc37fbaf909102920cceecc193947eb79",
+        "checkout_bytes": 36730,
+        "committed_sha256": "99ee93b190631cdad51cd79dfac6ee5817768bf744e18b1f9a0b8ffc9b46c6d7",
+        "committed_bytes": 36403,
+        "canonical_checkout_sha256": "99ee93b190631cdad51cd79dfac6ee5817768bf744e18b1f9a0b8ffc9b46c6d7",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 327
+        }
+      },
+      "campaign-operations-ui.js": {
+        "served_sha256": "0bd615caba1b8bc0b8e72010a931f7365fb8ac40a5e0eb39d6343f5cfbbe5677",
+        "served_bytes": 21133,
+        "checkout_sha256": "0bd615caba1b8bc0b8e72010a931f7365fb8ac40a5e0eb39d6343f5cfbbe5677",
+        "checkout_bytes": 21133,
+        "committed_sha256": "5746a6ced8e301d1151fdb1fef32a83a20631d8ae024850d9f47ab02e4279b7b",
+        "committed_bytes": 20913,
+        "canonical_checkout_sha256": "5746a6ced8e301d1151fdb1fef32a83a20631d8ae024850d9f47ab02e4279b7b",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 220
+        }
+      },
+      "campaign-operations-ui.css": {
+        "served_sha256": "2178749f5fddb0c18965ff235767917efdefee8e399190d9c6e7669f2ecf0ce7",
+        "served_bytes": 8447,
+        "checkout_sha256": "2178749f5fddb0c18965ff235767917efdefee8e399190d9c6e7669f2ecf0ce7",
+        "checkout_bytes": 8447,
+        "committed_sha256": "8d5d927c4a6ca6c86715c1a04c46a5577b19342841b12604e92d95e948a0bc64",
+        "committed_bytes": 8367,
+        "canonical_checkout_sha256": "8d5d927c4a6ca6c86715c1a04c46a5577b19342841b12604e92d95e948a0bc64",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 80
+        }
+      },
+      "map-controls.js": {
+        "served_sha256": "ce7553d9b43a38b00581e67ef66aa23e5f03a8b4abde9c85171f28f3e6bb4e9e",
+        "served_bytes": 10651,
+        "checkout_sha256": "ce7553d9b43a38b00581e67ef66aa23e5f03a8b4abde9c85171f28f3e6bb4e9e",
+        "checkout_bytes": 10651,
+        "committed_sha256": "79b99912a9406b43f22d786ea7063d47fc05d738e432e9749561eb1fdff03fd7",
+        "committed_bytes": 10442,
+        "canonical_checkout_sha256": "79b99912a9406b43f22d786ea7063d47fc05d738e432e9749561eb1fdff03fd7",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 209
+        }
+      },
+      "map-controls.css": {
+        "served_sha256": "07d2f965f3cb90a04095ac7ec3679307548549d4ea9612d299d2a8b75e35527a",
+        "served_bytes": 9732,
+        "checkout_sha256": "07d2f965f3cb90a04095ac7ec3679307548549d4ea9612d299d2a8b75e35527a",
+        "checkout_bytes": 9732,
+        "committed_sha256": "5a2f2c2414679f65f8bebbf8e342553c2829e45d9cb506fc7dafd596597a04e6",
+        "committed_bytes": 9631,
+        "canonical_checkout_sha256": "5a2f2c2414679f65f8bebbf8e342553c2829e45d9cb506fc7dafd596597a04e6",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 101
+        }
+      },
+      "guidance-ui.js": {
+        "served_sha256": "5de0ff7d6e2c9aa7db0027c70517171f5ad4076f75a0c8f019a19f31e02c9e23",
+        "served_bytes": 21247,
+        "checkout_sha256": "5de0ff7d6e2c9aa7db0027c70517171f5ad4076f75a0c8f019a19f31e02c9e23",
+        "checkout_bytes": 21247,
+        "committed_sha256": "39eb68189c78ea74ee89b4bc92ac6153326accfe0d2300ea401ee696bddc38ea",
+        "committed_bytes": 21072,
+        "canonical_checkout_sha256": "39eb68189c78ea74ee89b4bc92ac6153326accfe0d2300ea401ee696bddc38ea",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 175
+        }
+      },
+      "guidance-ui.css": {
+        "served_sha256": "169531e25171ef1448b38b0832050712392c94e74f8bb0f96e8727f77d3a5b2f",
+        "served_bytes": 7496,
+        "checkout_sha256": "169531e25171ef1448b38b0832050712392c94e74f8bb0f96e8727f77d3a5b2f",
+        "checkout_bytes": 7496,
+        "committed_sha256": "4f959346eae6c81209da51b76717fd1d4b04a6bcfe0f0ae84032adc465e288ad",
+        "committed_bytes": 7490,
+        "canonical_checkout_sha256": "4f959346eae6c81209da51b76717fd1d4b04a6bcfe0f0ae84032adc465e288ad",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 6
+        }
+      },
+      "globe3d.js": {
+        "served_sha256": "ee467b58a57a07193e4e39368f13e0d18103ed6289769544187b66c410c682d9",
+        "served_bytes": 36245,
+        "checkout_sha256": "ee467b58a57a07193e4e39368f13e0d18103ed6289769544187b66c410c682d9",
+        "checkout_bytes": 36245,
+        "committed_sha256": "9c634e8320a66702ce78de192573af03f80c625c562376d79cd0125d2a559403",
+        "committed_bytes": 35548,
+        "canonical_checkout_sha256": "9c634e8320a66702ce78de192573af03f80c625c562376d79cd0125d2a559403",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 697
+        }
+      },
+      "city-layer.js": {
+        "served_sha256": "5f76629170c97184fb1c61257ea66234cdf4ce7bb112e509ae3326676501ca58",
+        "served_bytes": 12449,
+        "checkout_sha256": "5f76629170c97184fb1c61257ea66234cdf4ce7bb112e509ae3326676501ca58",
+        "checkout_bytes": 12449,
+        "committed_sha256": "d4afb63a0cc695cd11bb7c31fa5decd7f4e762ab65091a57e4d83ffaa948c3fc",
+        "committed_bytes": 12222,
+        "canonical_checkout_sha256": "d4afb63a0cc695cd11bb7c31fa5decd7f4e762ab65091a57e4d83ffaa948c3fc",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 227
+        }
+      },
+      "city-mesh.js": {
+        "served_sha256": "99c5b116cc4b94857fcad97eb502a694988de56d4ae2cff3262c012198c1f6e7",
+        "served_bytes": 87641,
+        "checkout_sha256": "99c5b116cc4b94857fcad97eb502a694988de56d4ae2cff3262c012198c1f6e7",
+        "checkout_bytes": 87641,
+        "committed_sha256": "59593662fa4f31bd80c99b7e7349f6db18514c428724350b6e81b3adc87d5e26",
+        "committed_bytes": 86075,
+        "canonical_checkout_sha256": "59593662fa4f31bd80c99b7e7349f6db18514c428724350b6e81b3adc87d5e26",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 1566
+        }
+      },
+      "water-detail.js": {
+        "served_sha256": "fb60fabc2dfa9edc47f466d3daf4f8cfde589e91086d28a59765ce26a7abc99a",
+        "served_bytes": 11962,
+        "checkout_sha256": "fb60fabc2dfa9edc47f466d3daf4f8cfde589e91086d28a59765ce26a7abc99a",
+        "checkout_bytes": 11962,
+        "committed_sha256": "0b1bc8e9a4b5116c4c9564f69214ff12b5f5b181c4cf47567acc7e81569361f0",
+        "committed_bytes": 11729,
+        "canonical_checkout_sha256": "0b1bc8e9a4b5116c4c9564f69214ff12b5f5b181c4cf47567acc7e81569361f0",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 233
+        }
+      },
+      "equipment-mesh.js": {
+        "served_sha256": "0a312b09000429d644f369812d1be5a1fab3b545aa3e7301721a19d319f6f361",
+        "served_bytes": 178146,
+        "checkout_sha256": "0a312b09000429d644f369812d1be5a1fab3b545aa3e7301721a19d319f6f361",
+        "checkout_bytes": 178146,
+        "committed_sha256": "74400279143ac848f2b1f51eca03f9350a5020b27eec31fe0e5809eb6bf3b547",
+        "committed_bytes": 175650,
+        "canonical_checkout_sha256": "74400279143ac848f2b1f51eca03f9350a5020b27eec31fe0e5809eb6bf3b547",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 2496
+        }
+      },
+      "equipment-ui.js": {
+        "served_sha256": "1cf336d8a684b66cfbff71c9a00b0dfdac18b797e9d33525196e09435f72971a",
+        "served_bytes": 130008,
+        "checkout_sha256": "1cf336d8a684b66cfbff71c9a00b0dfdac18b797e9d33525196e09435f72971a",
+        "checkout_bytes": 130008,
+        "committed_sha256": "1cf336d8a684b66cfbff71c9a00b0dfdac18b797e9d33525196e09435f72971a",
+        "committed_bytes": 130008,
+        "canonical_checkout_sha256": "1cf336d8a684b66cfbff71c9a00b0dfdac18b797e9d33525196e09435f72971a",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 0
+        }
+      },
+      "equipment-ui.css": {
+        "served_sha256": "cb3efe6b42f6c40639384219e6eac40cb1ac9c8804eb273f94be7f2b64206a67",
+        "served_bytes": 36916,
+        "checkout_sha256": "cb3efe6b42f6c40639384219e6eac40cb1ac9c8804eb273f94be7f2b64206a67",
+        "checkout_bytes": 36916,
+        "committed_sha256": "ca8931a3821837aeb68418af2e144de22cd300b44f0591b14ee0cb15a8377d30",
+        "committed_bytes": 36570,
+        "canonical_checkout_sha256": "ca8931a3821837aeb68418af2e144de22cd300b44f0591b14ee0cb15a8377d30",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 346
+        }
+      }
+    }
+  },
+  "failed_stage": "purchase_aircraft",
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n... Skipped lines\n\n  {\n    actions: [\n      {\n        enabled: true,\n        label: 'Development funding',\n...\n              label: 'Delivered aircraft',\n+             value: 0\n-             value: -0\n            },\n            {\n              label: 'Assigned to squadrons',\n              value: 0\n            },\n...\n              label: 'Purchased / produced deliveries pending',\n+             value: 0\n-             value: -0\n            },\n            {\n              label: 'Mission radius',\n              value: '1400 km'\n            }\n...\n              label: 'Purchased / produced deliveries pending',\n+             value: 0\n-             value: -0\n            },\n            {\n              label: 'Mission radius',\n              value: '945 km'\n            }\n...\n              label: 'Purchased / produced deliveries pending',\n+             value: 0\n-             value: -0\n            },\n            {\n              label: 'Mission radius',\n              value: '700 km'\n            }\n\n    at review (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\dev-ci-flight-operations.cjs:64:69)\n    at async main (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\dev-ci-flight-operations.cjs:108:105)"
+}

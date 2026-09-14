@@ -1,0 +1,197 @@
+{
+  "format": "spheres-s15-linux/v1",
+  "revision": "4c4129abeeec4e9e2987f121e875f5efc54b4c7f",
+  "started_utc": "2026-09-14T04:47:27.389365+00:00",
+  "status": "passed",
+  "scope": "Full native simulation library, web and Node suites, plus eleven ground/shared-force/supply/refit integration targets on Linux. No external old-save, elapsed campaign, exhaustive historical-content or gate-completion claim.",
+  "runner_sha256": "155e27cb39dd750e3fd4d287c8a7076c7e946714c36b2518d996468df8bccd3d",
+  "derived_from": {
+    "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/run-s10-final-linux.py",
+    "sha256": "a27a4149a6e70f656118236ff97a4613e429279ae628a65134b585989f1209da"
+  },
+  "source_verification": "Windows git.exe on the same complete NTFS checkout; test and compile processes use the existing Linux toolchain and target directory.",
+  "environment": {
+    "GIT_DIR": "/mnt/c/Users/ridge/Spheres/.git/worktrees/integration",
+    "GIT_WORK_TREE": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+    "GIT_OPTIONAL_LOCKS": "0",
+    "CARGO_BUILD_JOBS": "4",
+    "GIT_CONFIG_COUNT": "1",
+    "GIT_CONFIG_KEY_0": "core.autocrlf",
+    "GIT_CONFIG_VALUE_0": "true",
+    "CARGO_HOME": "/home/ridge/.cache/spheres-s05-tools/cargo",
+    "RUSTUP_HOME": "/home/ridge/.cache/spheres-s05-tools/rustup",
+    "CARGO_TARGET_DIR": "/home/ridge/.cache/spheres-s05-target",
+    "CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER": "/home/ridge/.cache/spheres-s05-tools/bin/cc",
+    "CC": "/home/ridge/.cache/spheres-s05-tools/bin/cc",
+    "TMPDIR": "/home/ridge/.cache/spheres-s05-runs/tmp"
+  },
+  "checks": [
+    {
+      "name": "web",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--release",
+        "-p",
+        "spheres-web",
+        "--no-fail-fast"
+      ],
+      "started_utc": "2026-09-14T04:47:28.394636+00:00",
+      "finished_utc": "2026-09-14T04:53:32.915297+00:00",
+      "elapsed_seconds": 364.520753682,
+      "exit_code": 0,
+      "log": "web.log",
+      "log_sha256": "639ecff7f2327e90dacc2c6727a01ded4986c3d0c9685d932161537bc0ad29e4",
+      "totals": {
+        "passed": 393,
+        "failed": 0,
+        "ignored": 18,
+        "completed_targets": 2
+      },
+      "source_before": {
+        "head": "4c4129abeeec4e9e2987f121e875f5efc54b4c7f",
+        "status": ""
+      },
+      "source_after": {
+        "head": "4c4129abeeec4e9e2987f121e875f5efc54b4c7f",
+        "status": ""
+      },
+      "passed": true,
+      "test_binary": {
+        "path": "/home/ridge/.cache/spheres-s05-target/release/deps/spheres_web-20279169217b1e37",
+        "bytes": 348494920,
+        "sha256": "87cd4c6eabde23693bcf208179809f9ff2c3ee094427ad640e057d78742bc1ed"
+      }
+    },
+    {
+      "name": "sim",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--release",
+        "-p",
+        "spheres-sim",
+        "--lib",
+        "--no-fail-fast"
+      ],
+      "started_utc": "2026-09-14T04:53:33.426753+00:00",
+      "finished_utc": "2026-09-14T04:58:58.260414+00:00",
+      "elapsed_seconds": 324.83366264899996,
+      "exit_code": 0,
+      "log": "sim.log",
+      "log_sha256": "d2ed4c5b6bde591215aee6013a54e658e086fa5d9bed062c46a27f994645e739",
+      "totals": {
+        "passed": 861,
+        "failed": 0,
+        "ignored": 26,
+        "completed_targets": 1
+      },
+      "source_before": {
+        "head": "4c4129abeeec4e9e2987f121e875f5efc54b4c7f",
+        "status": ""
+      },
+      "source_after": {
+        "head": "4c4129abeeec4e9e2987f121e875f5efc54b4c7f",
+        "status": ""
+      },
+      "passed": true
+    },
+    {
+      "name": "integration",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--release",
+        "-p",
+        "spheres-sim",
+        "--test",
+        "ground_equipment_integration",
+        "--test",
+        "military_operations",
+        "--test",
+        "campaign_operations",
+        "--test",
+        "equipment_integration",
+        "--test",
+        "company_refits",
+        "--test",
+        "equipment_supply_automation",
+        "--test",
+        "company_ammunition",
+        "--test",
+        "ammunition_reserves",
+        "--test",
+        "aviation_ammunition",
+        "--test",
+        "campaign_movement_audit",
+        "--test",
+        "campaign_peace_audit",
+        "--no-fail-fast"
+      ],
+      "started_utc": "2026-09-14T04:58:58.568025+00:00",
+      "finished_utc": "2026-09-14T04:59:28.039298+00:00",
+      "elapsed_seconds": 29.4712711950001,
+      "exit_code": 0,
+      "log": "integration.log",
+      "log_sha256": "711edaeaea09df52cb59923a037c7252d04d45d8ef587e61b0f974c932e15722",
+      "totals": {
+        "passed": 83,
+        "failed": 0,
+        "ignored": 2,
+        "completed_targets": 11
+      },
+      "source_before": {
+        "head": "4c4129abeeec4e9e2987f121e875f5efc54b4c7f",
+        "status": ""
+      },
+      "source_after": {
+        "head": "4c4129abeeec4e9e2987f121e875f5efc54b4c7f",
+        "status": ""
+      },
+      "passed": true
+    },
+    {
+      "name": "node",
+      "command": [
+        "node",
+        "tools/ui/run-unit.cjs"
+      ],
+      "started_utc": "2026-09-14T04:59:28.336969+00:00",
+      "finished_utc": "2026-09-14T05:01:59.560412+00:00",
+      "elapsed_seconds": 151.22344130800002,
+      "exit_code": 0,
+      "log": "node.log",
+      "log_sha256": "62da25851fa97b98d205442313856415048e23d326037daadd8b7e222af4ae4a",
+      "totals": {
+        "tests": 1588,
+        "passed": 1587,
+        "failed": 0,
+        "skipped": 1
+      },
+      "source_before": {
+        "head": "4c4129abeeec4e9e2987f121e875f5efc54b4c7f",
+        "status": ""
+      },
+      "source_after": {
+        "head": "4c4129abeeec4e9e2987f121e875f5efc54b4c7f",
+        "status": ""
+      },
+      "passed": true
+    }
+  ],
+  "source_before": {
+    "head": "4c4129abeeec4e9e2987f121e875f5efc54b4c7f",
+    "status": ""
+  },
+  "toolchain_sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801",
+  "source_after": {
+    "head": "4c4129abeeec4e9e2987f121e875f5efc54b4c7f",
+    "status": ""
+  },
+  "runner_sha256_after": "155e27cb39dd750e3fd4d287c8a7076c7e946714c36b2518d996468df8bccd3d",
+  "passed": true,
+  "finished_utc": "2026-09-14T05:01:59.842361+00:00"
+}

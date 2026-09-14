@@ -1,0 +1,20 @@
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+    Finished `release` profile [optimized] target(s) in 2m 26s
+     Running unittests src\lib.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_sim-de8a2e7790f15db6.exe)
+
+running 12 tests
+test airmissions::tests::s15_closed_shared_store_settlement_cannot_fund_another_launch ... ok
+test airmissions::tests::s15_support_requires_ground_contact_and_aircraft_use_the_exact_store_family ... ok
+test airmissions::tests::s15_access_lost_before_launch_blocks_without_ammunition_or_aircraft_loss ... ok
+test airmissions::tests::s15_enrolled_aircraft_do_not_run_a_second_implicit_campaign_air_raid ... ok
+test airmissions::tests::s15_reviews_reserve_real_squadrons_and_refuse_busy_or_unavailable_flights ... ok
+test airmissions::tests::s15_shared_family_coverage_cannot_be_forged_to_reuse_the_same_stores ... ok
+test airmissions::tests::s15_prepared_plan_save_and_resume_consumes_one_shared_ammunition_receipt ... ok
+test airmissions::tests::s15_whole_aircraft_loss_debits_only_the_flight_and_preserves_other_claims ... ok
+test airmissions::tests::s15_frozen_launch_cannot_be_cancelled_reassigned_or_replayed_after_resume ... ok
+test airmissions::tests::s15_malformed_flown_reports_cannot_invent_stores_sorties_or_another_loadout ... ok
+test airmissions::tests::s15_malformed_prepared_plan_references_families_and_shared_claims_are_rejected ... ok
+test airmissions::tests::s15_two_missions_share_finite_stores_and_replay_the_same_campaign_result ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 875 filtered out; finished in 0.23s
+
