@@ -1,10 +1,32 @@
 # S10 — Government, succession and diplomacy
 
-Status: **S10.a through S10.g complete; S10 and C01 remain in progress**.
+Status: **S10.a through S10.h complete; S10 and C01 remain in progress**.
 The [S10.b report](b/README.md) records source-backed country discoveries,
 Linux qualification and all eight ordinary government browser journeys.
 Parent source: `872442d7411d9986321248b41ccadf79e2851d1c`.
-Latest user instruction: Next. Work is limited to S10; S11 is not started.
+Latest user instruction: Continue. Work is limited to S10; S11 is not started.
+
+## S10.h — Political research atlas and certified-country discovery
+
+The [S10.h report](h/README.md) adds a searchable country-by-country research
+atlas linked from the Government character review and cartoon production pages.
+It shows source claims, separate offices, date uncertainty and unresolved work,
+with verified packet bytes, safe country switching and keyboard navigation.
+This is a read-only reference; the game runtime and character grants are unchanged.
+
+South Africa adds 52 ballot observations and a separate Presidency institution;
+Russia adds 14 ballot lists and five separate parliamentary factions; USSR adds
+the CPSU and three distinct state institutions. All nine certification identity
+IDs now have partial discovery packets. The index records 841 organization
+observations, 27 institutions, 58 sources, 1,606 claims and 92 open batches.
+No exhaustive country census or continuous leadership chain is completed.
+
+102 content tests, five reproduction checks and 1,565 Windows interface tests
+pass. The read-only browser checks all nine packets, 1440/390/320px layouts,
+keyboard use and explicitly authored integrity/race refusals. Four final
+screenshots were manually reviewed. No new campaign, Linux or performance
+qualification is claimed. S10 and C01 remain open, G2 is unearned, S11 remains
+planned, and execution stopped after S10.h.
 
 ## S10.g — Clear sanctions and relationship decisions
 

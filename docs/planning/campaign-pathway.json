@@ -285,6 +285,12 @@
           "status": "complete",
           "title": "Clear sanctions and relationship decisions",
           "evidence": "docs/campaign-certification/S10/g/manifest.json"
+        },
+        {
+          "id": "S10.h",
+          "status": "complete",
+          "title": "Political research atlas and certified-country discovery",
+          "evidence": "docs/campaign-certification/S10/h/manifest.json"
         }
       ],
       "remaining": [
@@ -832,10 +838,10 @@
   "next_session": "S10",
   "execution": {
     "authorized_through": "S10",
-    "stop_boundary": "S10.g",
+    "stop_boundary": "S10.h",
     "status": "stopped",
-    "previous_stop": "S10.f",
-    "instruction": "Next",
+    "previous_stop": "S10.g",
+    "instruction": "Continue",
     "instruction_date": "2026-09-13",
     "next_session_requires_instruction": true
   },
@@ -850,8 +856,8 @@
     "G2": {
       "status": "not_earned",
       "date": "2026-09-14",
-      "evidence": "docs/campaign-certification/S10/g/manifest.json",
-      "reason": "S10.g is a bounded sanctions and relationship-review increment with an authored zero-day browser fixture and a separate native open-route preview timing. S10 and C01 remain in progress; it does not certify the national-economy gate or a campaign through 2035."
+      "evidence": "docs/campaign-certification/S10/h/manifest.json",
+      "reason": "S10.h supplies a read-only research atlas and partial discovery packets for all nine certification identities. C01 exhaustive organization and role coverage remains open; the unchanged runtime has no new campaign qualification."
     }
   }
 }

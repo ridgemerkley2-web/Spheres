@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "source_revision": "233b13201f1d489b2a073c6bb4b6730f0ebabcdc",
+  "method": "Root inspected four actual final qualification PNG files using view_image.",
+  "findings": [
+    "Country controls and inventory counts are readable at desktop and narrow widths.",
+    "The research-card keyboard focus outline is visible inside the card.",
+    "Expanded roles, source access methods and uncertainty notes remain readable at320px.",
+    "Normal viewport scroll cropping is present; the browser driver separately checks responsive horizontal bounds."
+  ],
+  "screenshots": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10h-qualified\\browser\\atlas-keyboard-focus.png",
+      "sha256": "2e18b9cbc20dd42b777de5d0d63879f17fd84ddbf6b594e53fccc456e4a35c97"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10h-qualified\\browser\\atlas-1440.png",
+      "sha256": "ddd36d3d4297545b5cbeb1338470f83b6099f01334ca2f6649c008d90ce8ba2f"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10h-qualified\\browser\\atlas-390.png",
+      "sha256": "d837853cfddfac5c01f81de5ef849541c436fef55f6e5263bea9572b4255c765"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10h-qualified\\browser\\atlas-role-320.png",
+      "sha256": "301fac20f8c78e5f538293fae9605a8df6e2ab8159d11f42f477a7c15470048e"
+    }
+  ],
+  "scope": "Manual sample of four final screenshots; automated layout checks cover1440,390,320px. No game or campaign visual changes claimed."
+}

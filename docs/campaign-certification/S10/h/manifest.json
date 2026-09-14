@@ -1,0 +1,60 @@
+{
+  "format": "spheres-s10h-increment/v1",
+  "status": "increment_complete_parent_open",
+  "created_utc": "2026-09-14T01:06:17.569408+00:00",
+  "source_revision": "233b13201f1d489b2a073c6bb4b6730f0ebabcdc",
+  "game_runtime_revision": "0f4616477671bc01936fcc9f2877ae172b13e348",
+  "game_runtime_changed": false,
+  "historical_roles_or_gameplay_grants_changed": false,
+  "s10_complete": false,
+  "c01_complete": false,
+  "g2_earned": false,
+  "s11_started": false,
+  "qualification": {
+    "content_tests": 102,
+    "content_and_reproduction_commands": 9,
+    "windows_interface": {
+      "tests": 1566,
+      "pass": 1565,
+      "fail": 0,
+      "skipped": 1
+    },
+    "browser_country_packets": 9,
+    "browser_widths": [
+      1440,
+      390,
+      320
+    ],
+    "browser_read_only": true,
+    "keyboard_verified": true,
+    "authored_error_cases": [
+      {
+        "kind": "tampered_packet_bytes",
+        "rejected": true,
+        "old_data_absent": true
+      },
+      {
+        "kind": "superseded_country_request",
+        "latest_country": "Japan",
+        "old_data_absent": true
+      }
+    ],
+    "new_campaign_or_linux_or_performance_claim": false
+  },
+  "research_counts": {
+    "country_packets": 9,
+    "countries_without_new_discovery_packet": 151,
+    "organization_observations": 841,
+    "institution_observations": 27,
+    "sources": 58,
+    "source_claims": 1606,
+    "discovery_batches": 92,
+    "exhaustive_country_censuses": 0
+  },
+  "review_url": "http://127.0.0.1:7854/tools/ui/leadership-research-review.html?country=SouthAfrica",
+  "evidence": {
+    "files": 30,
+    "stored_bytes": 806131,
+    "inventory_sha256": "6a5e0f80efd634eb5d53c912e5888b574d2aca8925f1e18998e90e97afb6a1ce"
+  }
+}
