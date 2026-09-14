@@ -52,12 +52,18 @@ async function load(page,slot){
 function nativeFacts(file){
   // A bounded read-only projection supplements the complete canonical world.
   // It also checks every non-world envelope field for save/load comparisons.
-  const code=`import hashlib,json,sys
+  const code=`import datetime,hashlib,json,sys
 with open(sys.argv[1],encoding='utf-8-sig') as f: d=json.load(f)
 required=json.loads(sys.argv[2])
-w=d.get('world',d)
+w=d; wrappers=[]
+while isinstance(w,dict) and isinstance(w.get('world'),dict):
+ wrappers.append({k:v for k,v in w.items() if k!='world'});w=w['world']
+assert isinstance(w,dict) and isinstance(w.get('nations'),list), 'Native world must contain nations'
+# Native clock uses this Gregorian epoch; WorldState omits day on the first.
+calendar={'year':w['year'],'month':w['month'],'day':w.get('day',1)};assert all(isinstance(v,int) for v in calendar.values())
+as_of_day=(datetime.date(calendar['year'],calendar['month'],max(1,calendar['day']))-datetime.date(1990,1,1)).days
 n=next(n for n in w['nations'] if n['id']=='France'); e=n.get('equipment') or {}
-out={'holdings':n['arsenal']['held'],'receipt':e.get('ground_operations_receipt'),'ammunition':e.get('ammunition'),'maintenance_plan':e.get('maintenance_plan'),'maintenance_fraction':e.get('maintenance_fraction'),'envelope':None}
+out={'calendar':calendar,'as_of_day':as_of_day,'holdings':n['arsenal']['held'],'receipt':e.get('ground_operations_receipt'),'ammunition':e.get('ammunition'),'maintenance_plan':e.get('maintenance_plan'),'maintenance_fraction':e.get('maintenance_fraction'),'envelope':None}
 companies=w.get('companies') or {}; firms=[c for c in companies.get('firms',[]) if c['id']==required['company']];assert len(firms)==1;firm=firms[0]
 def exact(rows,key):
  matches=[r for r in rows if r['id']==key];assert len(matches)<=1;return matches[0] if matches else None
@@ -66,8 +72,9 @@ if 'world' in d:
  assert set(d)=={'format','version','world','history','log','history_epoch','saved_date','player','saved_unix'}
  assert d['format']=='spheres-campaign' and d['version']==1
  assert isinstance(d['saved_unix'],int) and d['saved_unix']>=0
- wall=d.pop('saved_unix');d.pop('world');b=json.dumps(d,sort_keys=True,separators=(',',':'),ensure_ascii=False,allow_nan=False).encode('utf-8')
- out['envelope']={'sha256':hashlib.sha256(b).hexdigest(),'bytes':len(b),'saved_unix':wall,'history_points':len(d['history']),'dispatches':len(d['log'])}
+ wall=wrappers[0].pop('saved_unix')
+ b=json.dumps(wrappers,sort_keys=True,separators=(',',':'),ensure_ascii=False,allow_nan=False).encode('utf-8')
+ out['envelope']={'sha256':hashlib.sha256(b).hexdigest(),'bytes':len(b),'saved_unix':wall,'history_points':len(d['history']),'dispatches':len(d['log']),'wrapper_count':len(wrappers)}
 text=json.dumps(out,ensure_ascii=True,allow_nan=False);assert len(text)<4*1024*1024;print(text)`;
   const r=cp.spawnSync(process.env.SPHERES_AUDIT_PYTHON||'python',['-c',code,file,JSON.stringify(requiredOutcomes)],{windowsHide:true,encoding:'utf8',timeout:120000,maxBuffer:4*1024*1024+65536});
   if(r.error)throw r.error;assert.equal(r.status,0,'Native ground projection failed: '+r.stderr);return JSON.parse(r.stdout);
@@ -89,6 +96,7 @@ async function details(locator){if(await locator.getAttribute('open')===null)awa
 async function metric(locator,label,expected){const value=await locator.locator('dl > div').filter({has:locator.page().locator('dt').filter({hasText:new RegExp('^'+label.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'$')})}).locator('dd').textContent();assert.equal(value.trim(),expected,label);}
 function verifyGround(native,archive){
   const panel=native.operations.ground_fleet,facts=archive.ground;assert(panel&&Array.isArray(panel.models));
+  assert.deepEqual(facts.calendar,{year:native.year,month:native.month,day:native.day},'Published calendar must match the complete native save');assert(Number.isInteger(facts.as_of_day));
   for(const model of panel.models){const h=facts.holdings.filter(h=>h.design_id===model.revision);assert.equal(h.length,1);near(model.delivered,h[0].units,'Native owned count');assert.equal(model.reserved,h[0].refit_reserved||0);near(model.available+model.reserved,model.delivered,'Available plus reservations conserves physical stock');assert(model.supported_fraction>=0&&model.supported_fraction<=1);}
   if(panel.last_report){
     assert(facts.receipt);assert.equal(panel.last_report.day,facts.receipt.day);assert.deepEqual(panel.last_report.conflicts,facts.receipt.conflicts);
@@ -198,7 +206,7 @@ async function main(){
   const shot=async(name,selector)=>{if(selector)await page.locator(selector).scrollIntoViewIfNeeded();await page.screenshot({path:path.join(out,name+'.png')});e.screenshots.push(name+'.png');};
   const inspectStage=async(id,previous)=>{const native=await state(page,url),saved=await capture(page,url,run,id),reading=verifyGround(native,saved),file=manifest.expected_stages?.[id];
     if(file){const expected=inspect(regular(withinPath(fixtureDir,path.resolve(fixtureDir,file))));compare(saved,expected,'Exact native fixture stage '+id,e,false);}
-    write(id+'-state.json',native);write(id+'-ground.json',reading);e.stages.push({id,date:native.date,as_of_day:native.as_of_day,archive:saved.input,ground:reading,expected_stage:file||null});return {native,saved};};
+    write(id+'-state.json',native);write(id+'-ground.json',reading);e.stages.push({id,date:native.date,as_of_day:saved.ground.as_of_day,archive:saved.input,ground:reading,expected_stage:file||null});return {native,saved};};
   try{
     const until=Date.now()+20000;for(;;){if(launchError)throw launchError;assert.equal(server.exitCode,null);try{const r=await fetch(url+'/api/build',{headers:{Connection:'close'},signal:AbortSignal.timeout(2000)});await r.arrayBuffer();if(r.ok)break;}catch(error){if(Date.now()>=until)throw error;}assert(Date.now()<until);await new Promise(r=>setTimeout(r,100));}
     browser=await chromium.launch({headless:true,...(process.env.SPHERES_BROWSER_CHANNEL?{channel:process.env.SPHERES_BROWSER_CHANNEL}:{})});e.browser_version=browser.version();page=await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'});page.setDefaultTimeout(30000);
@@ -247,7 +255,7 @@ async function main(){
     assert.notEqual(loaded.native.session_id,current.native.session_id);assert.equal(continued.native.date,current.native.date);assert.deepEqual(continued.native.operations,current.native.operations);
     await operations(page);await groundReading(page,continued.native,'#warsCard .military-operations');await shot('ground-continued','#warsCard .military-ground-fleet');
     assert.deepEqual(e.errors,[]);assert.equal(audit.fileHash(binary),binaryHash);assert.equal(audit.fileHash(fixtureFile),e.fixture.sha256);assert.equal(audit.fileHash(fixtureManifest),e.fixture.manifest_sha256);assert.equal(git(['rev-parse','HEAD']).toString().trim(),revision);assert.equal(git(['status','--porcelain']).toString().trim(),'');
-    e.saved_slot=SAVED;e.final_state={player:continued.native.player,date:continued.native.date,as_of_day:continued.native.as_of_day};e.elapsed_days=(continued.native.as_of_day-current.native.as_of_day)+(current.native.as_of_day-e.stages[0].as_of_day);e.passed=true;e.finished_utc=new Date().toISOString();write('result.json',e);console.log(JSON.stringify({passed:true,result:path.join(out,'result.json')}));
+    e.saved_slot=SAVED;e.final_state={player:continued.native.player,date:continued.native.date,as_of_day:continued.saved.ground.as_of_day};e.elapsed_days=continued.saved.ground.as_of_day-e.stages[0].as_of_day;e.passed=true;e.finished_utc=new Date().toISOString();write('result.json',e);console.log(JSON.stringify({passed:true,result:path.join(out,'result.json')}));
   }catch(error){e.failed_stage=stage;e.failure=String(error.stack||error);write('result.json',e);if(page)try{await page.screenshot({path:path.join(out,'failure.png')});fs.writeFileSync(path.join(out,'failure.html'),await page.content());}catch{}throw error;}
   finally{if(browser)await browser.close();server.kill();log.end();}
 }
