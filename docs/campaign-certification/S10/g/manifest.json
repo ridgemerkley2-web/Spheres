@@ -1,0 +1,242 @@
+{
+  "format": "spheres-s10g-increment/v1",
+  "status": "increment_complete_parent_open",
+  "created_utc": "2026-09-14T00:43:26.811381+00:00",
+  "runtime_revision": "0f4616477671bc01936fcc9f2877ae172b13e348",
+  "logic_revision": "0f4616477671bc01936fcc9f2877ae172b13e348",
+  "driver_revision": "0f4616477671bc01936fcc9f2877ae172b13e348",
+  "final_delta": [],
+  "binary_sha256": "dc0b66412cbe8b25553c9e91435df419fdf7e33d9e56baa40f1e888476a46a72",
+  "c01_complete": false,
+  "s10_complete": false,
+  "g2_earned": false,
+  "s11_started": false,
+  "historical_role_or_gameplay_authorization_changed": false,
+  "browser_elapsed_days": 0,
+  "authored_browser_elapsed_days": 0,
+  "ordinary_browser_elapsed_days": 0,
+  "qualification": {
+    "windows_web": {
+      "passed": 387,
+      "failed": 0,
+      "ignored": 16,
+      "completed_targets": 2
+    },
+    "windows_node": {
+      "tests": 1556,
+      "pass": 1555,
+      "fail": 0,
+      "skipped": 1
+    },
+    "windows_agency": {
+      "passed": 12,
+      "failed": 0,
+      "ignored": 0,
+      "completed_targets": 2
+    },
+    "linux_checks": [
+      {
+        "name": "web",
+        "totals": {
+          "passed": 387,
+          "failed": 0,
+          "ignored": 16,
+          "completed_targets": 2
+        }
+      },
+      {
+        "name": "agency",
+        "totals": {
+          "passed": 12,
+          "failed": 0,
+          "ignored": 0,
+          "completed_targets": 2
+        }
+      }
+    ],
+    "content_tests": 66,
+    "content_test_groups": {
+      "tonga-tests": 9,
+      "brazil-tests": 9,
+      "india-tests": 8,
+      "japan-tests": 8,
+      "census-tests": 16,
+      "france-tests": 10,
+      "portrait-tests": 6
+    },
+    "content_commands": 12,
+    "authored_browser": {
+      "inspections": 13,
+      "exact_comparisons": 9,
+      "ignored_paths": []
+    },
+    "ordinary_browser": {
+      "inspections": 8,
+      "exact_comparisons": 5,
+      "ignored_paths": []
+    },
+    "authored_cases": 1,
+    "authored_commands": 3,
+    "authored_previews": 4,
+    "authored_command_kinds": [
+      "lift",
+      "sanction",
+      "improve"
+    ],
+    "authored_envelope_comparisons": 9,
+    "authored_native_fixture_sha256": {
+      "before.json": "86b9f8ae206793f48d5dfbba0819d811cf46467345d36ff8e669e2a6068cb8c9",
+      "expected-after-lift.json": "1a94a0ed770b7456ead04fd3883230954286800e3526243fa217335f06475a3c",
+      "expected-after-sanction.json": "febcdc838fe23b2cf2fe2b42810a22b823a5076685283868b68ccf56b8469e05",
+      "expected-after-improve.json": "2e61a38582c22f675f5a69371cb28944da60f26fa37bd92e36b607b262291b77",
+      "manifest": "0858ad1b69b750f8da442f4249d78715120ae6dd76939896846c18283c72a509"
+    },
+    "authored_scope": "Disposable authored France sanctions fixture, reviewed diplomatic commands and save continuity. Not historical sanctions, organic diplomacy or campaign-duration evidence.",
+    "ordinary_scope": "Fresh France through ordinary controls, real same-campaign second tab; no state grants or substituted responses",
+    "new_long_campaign_claim": false,
+    "new_performance_claim": true,
+    "performance_measurements": [
+      {
+        "authored_preconditions": [],
+        "benchmark_world_unchanged": true,
+        "command": {
+          "kind": "improve",
+          "target": "USA"
+        },
+        "date": "29 Oct 1995",
+        "days_advanced": 0,
+        "log_history_unchanged": true,
+        "max_limit_ms": 750,
+        "max_ms": 274.7794,
+        "nation": "Tonga",
+        "nation_name": "Tonga",
+        "p95_limit_ms": 300,
+        "p95_ms": 244.9886,
+        "passed": true,
+        "route_facts": {
+          "after": {
+            "enabled": true,
+            "inbound": {
+              "available": true,
+              "label": "A freight route is available under current conditions."
+            },
+            "note": "A route check does not book cargo or guarantee a sale, stock, capacity or delivery. Contracts, route access and future conditions still apply.",
+            "outbound": {
+              "available": true,
+              "label": "A freight route is available under current conditions."
+            }
+          },
+          "before": {
+            "enabled": true,
+            "inbound": {
+              "available": true,
+              "label": "A freight route is available under current conditions."
+            },
+            "note": "A route check does not book cargo or guarantee a sale, stock, capacity or delivery. Contracts, route access and future conditions still apply.",
+            "outbound": {
+              "available": true,
+              "label": "A freight route is available under current conditions."
+            }
+          }
+        },
+        "samples": 21,
+        "samples_ms": [
+          234.8326,
+          221.7581,
+          225.2603,
+          232.5513,
+          243.1303,
+          238.6224,
+          219.96370000000002,
+          220.3614,
+          226.1544,
+          226.1929,
+          227.84470000000002,
+          233.0661,
+          244.9886,
+          220.0602,
+          225.54479999999998,
+          235.0194,
+          227.4797,
+          274.7794,
+          242.23739999999998,
+          225.0442,
+          220.95860000000002
+        ],
+        "scope": "Native diplomatic preview generation including a cloned command, four native route checks and the complete-world review token. Excludes HTTP, browser and target discovery. No decision is applied and no campaign time advances.",
+        "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\export\\2127-purchased.campaign.json",
+        "source_file_unchanged": true,
+        "target": "USA",
+        "target_name": "United States",
+        "warmups": 3
+      }
+    ],
+    "performance_source_reference": {
+      "checkpoint": "S08",
+      "inventory_path": "docs/campaign-certification/S08/evidence/inventory.json",
+      "inventory_sha256": "ec4a98ff697c0ba9195dff42bffa5c440decd9c0be8a31ad1ee877acdc5fef77",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\export\\2127-purchased.campaign.json",
+      "source_sha256": "73a8ed5bd81502bf37d77f374c23f18ed96644a0032ba295317b25a0d01133f9",
+      "source_bytes": 134238603,
+      "compressed_object": {
+        "kind": "campaign",
+        "encoding": "ordered-zip-members",
+        "original_sha256": "73a8ed5bd81502bf37d77f374c23f18ed96644a0032ba295317b25a0d01133f9",
+        "original_bytes": 134238603,
+        "parts": [
+          {
+            "file": "campaign-archives/73a8ed5bd81502bf37d77f374c23f18ed96644a0032ba295317b25a0d01133f9/part-0001.zip",
+            "member": "bytes-0001",
+            "source_offset": 0,
+            "source_bytes": 67108864,
+            "source_sha256": "53181296f2666c334c3696ed56ad6001c2ab50688c4b71726bc5faf12cb9ee49",
+            "stored_bytes": 9288301,
+            "stored_sha256": "176e4e204e106daf9e188a3cc73f254adf4d1482476e5fd2b1ff9a13c47b3b4a"
+          },
+          {
+            "file": "campaign-archives/73a8ed5bd81502bf37d77f374c23f18ed96644a0032ba295317b25a0d01133f9/part-0002.zip",
+            "member": "bytes-0002",
+            "source_offset": 67108864,
+            "source_bytes": 67108864,
+            "source_sha256": "03188b666923644cfb34d3396a5f1f1367d9ae03ad028784684437113bcb1f29",
+            "stored_bytes": 15783332,
+            "stored_sha256": "035fec190fabf7b7d7073614c938c57b3ead3be61c145f9497a26687396f8ac6"
+          },
+          {
+            "file": "campaign-archives/73a8ed5bd81502bf37d77f374c23f18ed96644a0032ba295317b25a0d01133f9/part-0003.zip",
+            "member": "bytes-0003",
+            "source_offset": 134217728,
+            "source_bytes": 20875,
+            "source_sha256": "c0aa1b7ac557989be8924fe649ed70e7f637ff444eafc744de1775a9dec7d4cb",
+            "stored_bytes": 2102,
+            "stored_sha256": "9d9d257fc7d819f06e5d8feb6a0321bae68071dad0ab2a659225b52af4746537"
+          }
+        ],
+        "reconstruction_verified": true
+      },
+      "reconstruction_verified": true
+    },
+    "not_refreshed": [
+      "Full Linux Node",
+      "Eight-country startup matrix",
+      "External old-save fixture matrix",
+      "Long campaign and Russia activation"
+    ]
+  },
+  "research_counts": {
+    "country_packets": 6,
+    "countries_without_new_discovery_packet": 154,
+    "organization_observations": 774,
+    "institution_observations": 18,
+    "sources": 48,
+    "source_claims": 1465,
+    "discovery_batches": 83,
+    "exhaustive_country_censuses": 0
+  },
+  "review_url": "http://127.0.0.1:7853",
+  "evidence": {
+    "inventory_sha256": "80c8b392e05f5c55c59a2cddd4ae4e2bcf7520921b910a684541bcc7b964b49d",
+    "logical_files": 156,
+    "stored_bytes": 98259482
+  }
+}

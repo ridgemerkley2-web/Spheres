@@ -33,8 +33,17 @@ with no new leader, term, game mapping or avatar. Checked-in factual extracts
 are hashed; original HTTP responses and an archived registry snapshot were not
 obtained, so no original-response checksum or registry-as-of claim is made.
 
-The discovery index now totals six country packets, 773 organization and 18
-institution observations, 45 sources, 1,460 claims and 83 work batches. No
+S10.g extends the [Tonga packet](research/tonga.json) with three sources and
+five claims. It adds the People's Party as a fourth provisional organization
+and one event-host observation of Pohiva Tu'i'onetoa as Leader on 28 May 2021.
+The court's PATOA/PTOA spelling discrepancy remains unreconciled. The PMO's
+27 September 2019 Assembly selection and 8 October royal appointment remain
+separate events, without inferred leadership terms or game eligibility.
+Downloaded response hashes and checked-in factual-extract hashes are distinct;
+the relevant court and appointment PDF pages were visually reviewed.
+
+The discovery index now totals six country packets, 774 organization and 18
+institution observations, 48 sources, 1,465 claims and 83 work batches. No
 exhaustive country census is closed; the research cutoff remains unchanged.
 
 **Partial inventory recorded; C01 remains incomplete.** This is a reproducible

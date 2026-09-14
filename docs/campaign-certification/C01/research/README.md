@@ -1,6 +1,6 @@
 # Source-backed discovery intake
 
-This is additional research for S10.b through S10.f, separate from the C01
+This is additional research for S10.b through S10.g, separate from the C01
 recount of the playable catalogue. These packets record discoveries and
 explicit gaps; they do not change game parties, leader eligibility or artwork.
 The historical cutoff stays **7 September 2026**. Research access dates can be
@@ -44,8 +44,25 @@ reporting status and provenance; the game's economy does not consume these accou
 
 ## Maintaining a packet
 
-[Tonga](tonga.json) adds three provisional political-organization identities and
-five institutions from parliamentary, constitutional and government records.
+[Tonga](tonga.json) now contains four provisional political-organization
+identities and five institutions. S10.g adds three primary sources and five
+claims: the [dialogue organizer's account](https://www.idcpc.org.cn/english2023/bzhd/202105/t20210531_160418.html)
+identifies Pohiva Tu'i'onetoa as Leader of Tonga People's Party on 28 May 2021;
+the Court of Appeal describes People's Party campaigning at a 1 October 2021
+event. The court's PATOA/PTOA spellings remain explicit and unreconciled. These
+observations establish neither a party's founding date nor a continuous
+leadership term, and do not merge it with the People's Democratic Party.
+
+The PMO appointment release separately records the Assembly's recommendation
+on 27 September 2019 and the King's appointment on 8 October. Neither is a
+party-leadership election. Court PDF pages 1, 8, 9, 12 and 15 and PMO PDF page 1
+were rendered and visually reviewed. Three derived factual extracts retain
+hashes and byte counts of the actual downloaded responses; original bodies
+are not checked in. The extracts have their own checked-in checksums. No source
+artwork is reused. Access on 13 September 2026 leaves the fixed historical
+cutoff unchanged; party histories, game mappings and Tonga's discovery batch
+remain open.
+
 [Saudi Arabia](saudi-arabia.json) adds six differently classified organizations
 and six institutions. The Saudi organizations include a self-declared party, a
 historical opposition group and human-rights associations; these are distinct
@@ -108,8 +125,8 @@ leadership registry was not used to backdate officeholders. Access on
 mappings, leadership roles, lifecycle boundaries and portrait eligibility stay
 unknown; Brazil's four discovery batches remain open.
 
-Together the six packets contain 773 organization observations and 18
-institution observations, supported by 1,460 claims across 45 cited sources.
+Together the six packets contain 774 organization observations and 18
+institution observations, supported by 1,465 claims across 48 cited sources.
 The index assigns them to 83 research batches. None establishes an exhaustive
 country roster or supplies a new finished character.
 
@@ -136,6 +153,7 @@ python -X utf8 -m unittest discover -s tools/avatars -p "test_import_cnccfp_cens
 python -X utf8 -m unittest discover -s tools/avatars -p "test_japan_research_s10d.py"
 python -X utf8 -m unittest discover -s tools/avatars -p "test_india_research_s10e.py"
 python -X utf8 -m unittest discover -s tools/avatars -p "test_brazil_research_s10f.py"
+python -X utf8 -m unittest discover -s tools/avatars -p "test_tonga_research_s10g.py"
 ```
 
 Use the importer without `--check` only to reproduce France's packet from the

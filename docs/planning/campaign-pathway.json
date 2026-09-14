@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "date": "2026-09-13",
+  "date": "2026-09-14",
   "status": "in_progress",
   "baseline": "5f7f355502f17bd6bd8f0383a2d14f0024fa7884",
   "target": "CP1: Spheres Certified Campaign, 1990-01-01 through 2035-12-31",
@@ -279,6 +279,12 @@
           "status": "complete",
           "title": "Campaign succession restrictions and independent historical references",
           "evidence": "docs/campaign-certification/S10/f/manifest.json"
+        },
+        {
+          "id": "S10.g",
+          "status": "complete",
+          "title": "Clear sanctions and relationship decisions",
+          "evidence": "docs/campaign-certification/S10/g/manifest.json"
         }
       ],
       "remaining": [
@@ -826,9 +832,9 @@
   "next_session": "S10",
   "execution": {
     "authorized_through": "S10",
-    "stop_boundary": "S10.f",
+    "stop_boundary": "S10.g",
     "status": "stopped",
-    "previous_stop": "S10.e",
+    "previous_stop": "S10.f",
     "instruction": "Next",
     "instruction_date": "2026-09-13",
     "next_session_requires_instruction": true
@@ -843,9 +849,9 @@
     },
     "G2": {
       "status": "not_earned",
-      "date": "2026-09-13",
-      "evidence": "docs/campaign-certification/S10/f/manifest.json",
-      "reason": "S10.f is a bounded succession-status and historical-reference increment with two authored zero-day browser fixtures. S10 and C01 remain in progress; it does not certify the national-economy gate or a campaign through 2035."
+      "date": "2026-09-14",
+      "evidence": "docs/campaign-certification/S10/g/manifest.json",
+      "reason": "S10.g is a bounded sanctions and relationship-review increment with an authored zero-day browser fixture and a separate native open-route preview timing. S10 and C01 remain in progress; it does not certify the national-economy gate or a campaign through 2035."
     }
   }
 }

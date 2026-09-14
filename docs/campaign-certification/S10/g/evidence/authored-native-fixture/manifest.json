@@ -1,0 +1,6046 @@
+{
+  "authored_preconditions": [
+    "Integrated fresh France, seed 13; zero days advanced",
+    "Starting defense pacts, trade agreements, sanctions and conflicts cleared",
+    "France political capital set to 100 and France-Japan relations set to 20",
+    "France sanctions Japan; Japan sanctions France; India sanctions Japan; Brazil sanctions France",
+    "A France-Japan trade agreement with saved depth 0.425 is authored before any reviewed command"
+  ],
+  "before": {
+    "agency": {
+      "automatic_bank": true,
+      "break_peg_pc": 12.0,
+      "commitments": {
+        "conflicts": [],
+        "defense_pacts": [],
+        "note": "These are the campaign's saved commitments. Opening this overview neither signs nor cancels an agreement. Calls to arms still follow their own deadline and standing response policy.",
+        "trade_agreements": [
+          {
+            "dependency": 0.3026077097505669,
+            "depth": 0.425,
+            "partner": "Japan",
+            "partner_dependency": 0.12239229024943311,
+            "partner_name": "Japan",
+            "status": "awaiting_collapse",
+            "status_label": "Awaiting possible removal",
+            "warnings": [
+              "Sanctions or opposing conflict participation currently block this agreement. Native settlement can remove it before integration grows.",
+              "Overall dependency also includes supply contracts and delivered goods; it is not solely caused by this treaty."
+            ]
+          }
+        ],
+        "upkeep": {
+          "annual_bn": 0.0,
+          "annual_label": "$0",
+          "annual_share": 0.0,
+          "cadence": "daily",
+          "count": 0,
+          "next_step_bn": 0.0,
+          "next_step_label": "$0 per day at today's conditions",
+          "note": "Estimate at today's GDP and current simulation cadence, per signatory. Future GDP, diplomacy and the settlement order can change the bill. This view makes no payment."
+        }
+      },
+      "expiry_rule": "New requests follow the visible standing policy. Review is the default. Reply before the stated date: the reply window closes when that date begins. A still-applicable unanswered request expires as a decline; changed circumstances can close it instead. Existing requests are not automatically answered by a policy change.",
+      "history": [],
+      "monetary": {
+        "kind": "floating"
+      },
+      "offers": [],
+      "policy": {
+        "calls_to_arms": "review",
+        "defense_pacts": "review",
+        "trade_treaties": "review"
+      },
+      "sanctions": {
+        "date_label": "1 Jan 1990",
+        "growth_drag": {
+          "annual_pp": 0.3005223718231589,
+          "label": "0.301 pp/year",
+          "note": "Annualized growth drag from all sanctioning economies at today's output shares, including the affected country's diplomacy ministry. This is one growth term, not a forecast of total growth or a payment."
+        },
+        "incoming": [
+          {
+            "can_review_lift": false,
+            "imposer": "Japan",
+            "imposer_alive": true,
+            "imposer_name": "Japan",
+            "target": "France",
+            "target_alive": true,
+            "target_name": "France"
+          },
+          {
+            "can_review_lift": false,
+            "imposer": "Brazil",
+            "imposer_alive": true,
+            "imposer_name": "Brazil",
+            "target": "France",
+            "target_alive": true,
+            "target_name": "France"
+          }
+        ],
+        "nation": "France",
+        "nation_name": "France",
+        "note": "Each government controls its own sanctions. You can review lifting your restrictions; other governments decide their own policy. The date reflects current campaign conditions.",
+        "outgoing": [
+          {
+            "can_review_lift": true,
+            "imposer": "France",
+            "imposer_alive": true,
+            "imposer_name": "France",
+            "target": "Japan",
+            "target_alive": true,
+            "target_name": "Japan"
+          }
+        ],
+        "targets": [
+          {
+            "id": "Afghanistan",
+            "name": "Afghanistan",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Albania",
+            "name": "Albania",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Algeria",
+            "name": "Algeria",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Angola",
+            "name": "Angola",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Argentina",
+            "name": "Argentina",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Australia",
+            "name": "Australia",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Austria",
+            "name": "Austria",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Bahamas",
+            "name": "Bahamas",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Bahrain",
+            "name": "Bahrain",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Bangladesh",
+            "name": "Bangladesh",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Belgium",
+            "name": "Belgium",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Belize",
+            "name": "Belize",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Bhutan",
+            "name": "Bhutan",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Bolivia",
+            "name": "Bolivia",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Botswana",
+            "name": "Botswana",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Brazil",
+            "name": "Brazil",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Brunei",
+            "name": "Brunei",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Bulgaria",
+            "name": "Bulgaria",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Cambodia",
+            "name": "Cambodia",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Cameroon",
+            "name": "Cameroon",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Canada",
+            "name": "Canada",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "CapeVerde",
+            "name": "Cape Verde",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "CentralAfricanRepublic",
+            "name": "Central African Republic",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Chad",
+            "name": "Chad",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Chile",
+            "name": "Chile",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "China",
+            "name": "China",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Colombia",
+            "name": "Colombia",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Comoros",
+            "name": "Comoros",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Congo",
+            "name": "Congo-Brazzaville",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "CostaRica",
+            "name": "Costa Rica",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Cuba",
+            "name": "Cuba",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Cyprus",
+            "name": "Cyprus",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Czechoslovakia",
+            "name": "Czechoslovakia",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Denmark",
+            "name": "Denmark",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "DominicanRepublic",
+            "name": "Dominican Republic",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Ecuador",
+            "name": "Ecuador",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Egypt",
+            "name": "Egypt",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "ElSalvador",
+            "name": "El Salvador",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "EquatorialGuinea",
+            "name": "Equatorial Guinea",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Ethiopia",
+            "name": "Ethiopia",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Fiji",
+            "name": "Fiji",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Finland",
+            "name": "Finland",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Gabon",
+            "name": "Gabon",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Germany",
+            "name": "Germany",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Ghana",
+            "name": "Ghana",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Greece",
+            "name": "Greece",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Guatemala",
+            "name": "Guatemala",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Guyana",
+            "name": "Guyana",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Haiti",
+            "name": "Haiti",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Honduras",
+            "name": "Honduras",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Hungary",
+            "name": "Hungary",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Iceland",
+            "name": "Iceland",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "India",
+            "name": "India",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Indonesia",
+            "name": "Indonesia",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Iran",
+            "name": "Iran",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Iraq",
+            "name": "Iraq",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Ireland",
+            "name": "Ireland",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Israel",
+            "name": "Israel",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Italy",
+            "name": "Italy",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Jamaica",
+            "name": "Jamaica",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Japan",
+            "name": "Japan",
+            "sanctioned_by_player": true
+          },
+          {
+            "id": "Jordan",
+            "name": "Jordan",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Kenya",
+            "name": "Kenya",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Kuwait",
+            "name": "Kuwait",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Laos",
+            "name": "Laos",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Lebanon",
+            "name": "Lebanon",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Lesotho",
+            "name": "Lesotho",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Libya",
+            "name": "Libya",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Luxembourg",
+            "name": "Luxembourg",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Madagascar",
+            "name": "Madagascar",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Malawi",
+            "name": "Malawi",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Malaysia",
+            "name": "Malaysia",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Maldives",
+            "name": "Maldives",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Malta",
+            "name": "Malta",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Mauritius",
+            "name": "Mauritius",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Mexico",
+            "name": "Mexico",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Mongolia",
+            "name": "Mongolia",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Morocco",
+            "name": "Morocco",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Mozambique",
+            "name": "Mozambique",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Myanmar",
+            "name": "Myanmar",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Nepal",
+            "name": "Nepal",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Netherlands",
+            "name": "Netherlands",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "NewZealand",
+            "name": "New Zealand",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Nicaragua",
+            "name": "Nicaragua",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Nigeria",
+            "name": "Nigeria",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "NorthKorea",
+            "name": "North Korea",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Norway",
+            "name": "Norway",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Oman",
+            "name": "Oman",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Pakistan",
+            "name": "Pakistan",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Panama",
+            "name": "Panama",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "PapuaNewGuinea",
+            "name": "Papua New Guinea",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Paraguay",
+            "name": "Paraguay",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Peru",
+            "name": "Peru",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Philippines",
+            "name": "Philippines",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Poland",
+            "name": "Poland",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Portugal",
+            "name": "Portugal",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Qatar",
+            "name": "Qatar",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Romania",
+            "name": "Romania",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "SaoTome",
+            "name": "Sao Tome and Principe",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "SaudiArabia",
+            "name": "Saudi Arabia",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Senegal",
+            "name": "Senegal",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Seychelles",
+            "name": "Seychelles",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Singapore",
+            "name": "Singapore",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "SolomonIslands",
+            "name": "Solomon Islands",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "SouthAfrica",
+            "name": "South Africa",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "SouthKorea",
+            "name": "South Korea",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "USSR",
+            "name": "Soviet Union",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Spain",
+            "name": "Spain",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "SriLanka",
+            "name": "Sri Lanka",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Sudan",
+            "name": "Sudan",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Suriname",
+            "name": "Suriname",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Swaziland",
+            "name": "Swaziland",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Sweden",
+            "name": "Sweden",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Switzerland",
+            "name": "Switzerland",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Syria",
+            "name": "Syria",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Taiwan",
+            "name": "Taiwan",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Tanzania",
+            "name": "Tanzania",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Thailand",
+            "name": "Thailand",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Tonga",
+            "name": "Tonga",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "TrinidadTobago",
+            "name": "Trinidad and Tobago",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Tunisia",
+            "name": "Tunisia",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Turkey",
+            "name": "Turkey",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Uganda",
+            "name": "Uganda",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "UAE",
+            "name": "United Arab Emirates",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "UK",
+            "name": "United Kingdom",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "USA",
+            "name": "United States",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Uruguay",
+            "name": "Uruguay",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Vanuatu",
+            "name": "Vanuatu",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Venezuela",
+            "name": "Venezuela",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Vietnam",
+            "name": "Vietnam",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Samoa",
+            "name": "Western Samoa",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Yemen",
+            "name": "Yemen",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Yugoslavia",
+            "name": "Yugoslavia",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Zaire",
+            "name": "Zaire",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Zambia",
+            "name": "Zambia",
+            "sanctioned_by_player": false
+          },
+          {
+            "id": "Zimbabwe",
+            "name": "Zimbabwe",
+            "sanctioned_by_player": false
+          }
+        ]
+      }
+    },
+    "date": "1 Jan 1990",
+    "dispatch_count": 0,
+    "log": [],
+    "political_capital": 100.0,
+    "relation": 20.0,
+    "sanctions": [
+      [
+        "France",
+        "Japan"
+      ],
+      [
+        "Japan",
+        "France"
+      ],
+      [
+        "India",
+        "Japan"
+      ],
+      [
+        "Brazil",
+        "France"
+      ]
+    ],
+    "trade_depth": 0.425
+  },
+  "before_file": "before.json",
+  "compiled_revision": "0f4616477671",
+  "date": "1 Jan 1990",
+  "days_advanced": 0,
+  "fixture": "s10g-authored-native-sanctions-desk",
+  "native_actions": [
+    "Preview then independently execute lift, sanction and improve for France toward Japan",
+    "Apply each once through protected immediate native transport and compare every world field with native execution",
+    "Save/decode every resulting state, preserving complete world, dated log and campaign history"
+  ],
+  "player": "France",
+  "scope": "Disposable authored France sanctions fixture, reviewed diplomatic commands and save continuity. Not historical sanctions, organic diplomacy or campaign-duration evidence.",
+  "steps": [
+    {
+      "after": {
+        "agency": {
+          "automatic_bank": true,
+          "break_peg_pc": 12.0,
+          "commitments": {
+            "conflicts": [],
+            "defense_pacts": [],
+            "note": "These are the campaign's saved commitments. Opening this overview neither signs nor cancels an agreement. Calls to arms still follow their own deadline and standing response policy.",
+            "trade_agreements": [
+              {
+                "dependency": 0.3026077097505669,
+                "depth": 0.425,
+                "partner": "Japan",
+                "partner_dependency": 0.12239229024943311,
+                "partner_name": "Japan",
+                "status": "awaiting_collapse",
+                "status_label": "Awaiting possible removal",
+                "warnings": [
+                  "Sanctions or opposing conflict participation currently block this agreement. Native settlement can remove it before integration grows.",
+                  "Overall dependency also includes supply contracts and delivered goods; it is not solely caused by this treaty."
+                ]
+              }
+            ],
+            "upkeep": {
+              "annual_bn": 0.0,
+              "annual_label": "$0",
+              "annual_share": 0.0,
+              "cadence": "daily",
+              "count": 0,
+              "next_step_bn": 0.0,
+              "next_step_label": "$0 per day at today's conditions",
+              "note": "Estimate at today's GDP and current simulation cadence, per signatory. Future GDP, diplomacy and the settlement order can change the bill. This view makes no payment."
+            }
+          },
+          "expiry_rule": "New requests follow the visible standing policy. Review is the default. Reply before the stated date: the reply window closes when that date begins. A still-applicable unanswered request expires as a decline; changed circumstances can close it instead. Existing requests are not automatically answered by a policy change.",
+          "history": [],
+          "monetary": {
+            "kind": "floating"
+          },
+          "offers": [],
+          "policy": {
+            "calls_to_arms": "review",
+            "defense_pacts": "review",
+            "trade_treaties": "review"
+          },
+          "sanctions": {
+            "date_label": "1 Jan 1990",
+            "growth_drag": {
+              "annual_pp": 0.3005223718231589,
+              "label": "0.301 pp/year",
+              "note": "Annualized growth drag from all sanctioning economies at today's output shares, including the affected country's diplomacy ministry. This is one growth term, not a forecast of total growth or a payment."
+            },
+            "incoming": [
+              {
+                "can_review_lift": false,
+                "imposer": "Japan",
+                "imposer_alive": true,
+                "imposer_name": "Japan",
+                "target": "France",
+                "target_alive": true,
+                "target_name": "France"
+              },
+              {
+                "can_review_lift": false,
+                "imposer": "Brazil",
+                "imposer_alive": true,
+                "imposer_name": "Brazil",
+                "target": "France",
+                "target_alive": true,
+                "target_name": "France"
+              }
+            ],
+            "nation": "France",
+            "nation_name": "France",
+            "note": "Each government controls its own sanctions. You can review lifting your restrictions; other governments decide their own policy. The date reflects current campaign conditions.",
+            "outgoing": [],
+            "targets": [
+              {
+                "id": "Afghanistan",
+                "name": "Afghanistan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Albania",
+                "name": "Albania",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Algeria",
+                "name": "Algeria",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Angola",
+                "name": "Angola",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Argentina",
+                "name": "Argentina",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Australia",
+                "name": "Australia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Austria",
+                "name": "Austria",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bahamas",
+                "name": "Bahamas",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bahrain",
+                "name": "Bahrain",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bangladesh",
+                "name": "Bangladesh",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Belgium",
+                "name": "Belgium",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Belize",
+                "name": "Belize",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bhutan",
+                "name": "Bhutan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bolivia",
+                "name": "Bolivia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Botswana",
+                "name": "Botswana",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Brazil",
+                "name": "Brazil",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Brunei",
+                "name": "Brunei",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bulgaria",
+                "name": "Bulgaria",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Cambodia",
+                "name": "Cambodia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Cameroon",
+                "name": "Cameroon",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Canada",
+                "name": "Canada",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "CapeVerde",
+                "name": "Cape Verde",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "CentralAfricanRepublic",
+                "name": "Central African Republic",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Chad",
+                "name": "Chad",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Chile",
+                "name": "Chile",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "China",
+                "name": "China",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Colombia",
+                "name": "Colombia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Comoros",
+                "name": "Comoros",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Congo",
+                "name": "Congo-Brazzaville",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "CostaRica",
+                "name": "Costa Rica",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Cuba",
+                "name": "Cuba",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Cyprus",
+                "name": "Cyprus",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Czechoslovakia",
+                "name": "Czechoslovakia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Denmark",
+                "name": "Denmark",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "DominicanRepublic",
+                "name": "Dominican Republic",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Ecuador",
+                "name": "Ecuador",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Egypt",
+                "name": "Egypt",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "ElSalvador",
+                "name": "El Salvador",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "EquatorialGuinea",
+                "name": "Equatorial Guinea",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Ethiopia",
+                "name": "Ethiopia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Fiji",
+                "name": "Fiji",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Finland",
+                "name": "Finland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Gabon",
+                "name": "Gabon",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Germany",
+                "name": "Germany",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Ghana",
+                "name": "Ghana",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Greece",
+                "name": "Greece",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Guatemala",
+                "name": "Guatemala",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Guyana",
+                "name": "Guyana",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Haiti",
+                "name": "Haiti",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Honduras",
+                "name": "Honduras",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Hungary",
+                "name": "Hungary",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Iceland",
+                "name": "Iceland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "India",
+                "name": "India",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Indonesia",
+                "name": "Indonesia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Iran",
+                "name": "Iran",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Iraq",
+                "name": "Iraq",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Ireland",
+                "name": "Ireland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Israel",
+                "name": "Israel",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Italy",
+                "name": "Italy",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Jamaica",
+                "name": "Jamaica",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Japan",
+                "name": "Japan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Jordan",
+                "name": "Jordan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Kenya",
+                "name": "Kenya",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Kuwait",
+                "name": "Kuwait",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Laos",
+                "name": "Laos",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Lebanon",
+                "name": "Lebanon",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Lesotho",
+                "name": "Lesotho",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Libya",
+                "name": "Libya",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Luxembourg",
+                "name": "Luxembourg",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Madagascar",
+                "name": "Madagascar",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Malawi",
+                "name": "Malawi",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Malaysia",
+                "name": "Malaysia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Maldives",
+                "name": "Maldives",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Malta",
+                "name": "Malta",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Mauritius",
+                "name": "Mauritius",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Mexico",
+                "name": "Mexico",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Mongolia",
+                "name": "Mongolia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Morocco",
+                "name": "Morocco",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Mozambique",
+                "name": "Mozambique",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Myanmar",
+                "name": "Myanmar",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Nepal",
+                "name": "Nepal",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Netherlands",
+                "name": "Netherlands",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "NewZealand",
+                "name": "New Zealand",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Nicaragua",
+                "name": "Nicaragua",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Nigeria",
+                "name": "Nigeria",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "NorthKorea",
+                "name": "North Korea",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Norway",
+                "name": "Norway",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Oman",
+                "name": "Oman",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Pakistan",
+                "name": "Pakistan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Panama",
+                "name": "Panama",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "PapuaNewGuinea",
+                "name": "Papua New Guinea",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Paraguay",
+                "name": "Paraguay",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Peru",
+                "name": "Peru",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Philippines",
+                "name": "Philippines",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Poland",
+                "name": "Poland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Portugal",
+                "name": "Portugal",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Qatar",
+                "name": "Qatar",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Romania",
+                "name": "Romania",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SaoTome",
+                "name": "Sao Tome and Principe",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SaudiArabia",
+                "name": "Saudi Arabia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Senegal",
+                "name": "Senegal",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Seychelles",
+                "name": "Seychelles",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Singapore",
+                "name": "Singapore",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SolomonIslands",
+                "name": "Solomon Islands",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SouthAfrica",
+                "name": "South Africa",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SouthKorea",
+                "name": "South Korea",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "USSR",
+                "name": "Soviet Union",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Spain",
+                "name": "Spain",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SriLanka",
+                "name": "Sri Lanka",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Sudan",
+                "name": "Sudan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Suriname",
+                "name": "Suriname",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Swaziland",
+                "name": "Swaziland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Sweden",
+                "name": "Sweden",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Switzerland",
+                "name": "Switzerland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Syria",
+                "name": "Syria",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Taiwan",
+                "name": "Taiwan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Tanzania",
+                "name": "Tanzania",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Thailand",
+                "name": "Thailand",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Tonga",
+                "name": "Tonga",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "TrinidadTobago",
+                "name": "Trinidad and Tobago",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Tunisia",
+                "name": "Tunisia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Turkey",
+                "name": "Turkey",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Uganda",
+                "name": "Uganda",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "UAE",
+                "name": "United Arab Emirates",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "UK",
+                "name": "United Kingdom",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "USA",
+                "name": "United States",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Uruguay",
+                "name": "Uruguay",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Vanuatu",
+                "name": "Vanuatu",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Venezuela",
+                "name": "Venezuela",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Vietnam",
+                "name": "Vietnam",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Samoa",
+                "name": "Western Samoa",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Yemen",
+                "name": "Yemen",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Yugoslavia",
+                "name": "Yugoslavia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Zaire",
+                "name": "Zaire",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Zambia",
+                "name": "Zambia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Zimbabwe",
+                "name": "Zimbabwe",
+                "sanctioned_by_player": false
+              }
+            ]
+          }
+        },
+        "date": "1 Jan 1990",
+        "dispatch_count": 1,
+        "log": [
+          {
+            "cat": "diplomacy",
+            "date": "1 Jan 1990",
+            "t": 0,
+            "tags": [
+              "Japan",
+              "France"
+            ],
+            "text": "France confirms: lift sanctions on Japan."
+          }
+        ],
+        "political_capital": 97.0,
+        "relation": 20.0,
+        "sanctions": [
+          [
+            "Japan",
+            "France"
+          ],
+          [
+            "India",
+            "Japan"
+          ],
+          [
+            "Brazil",
+            "France"
+          ]
+        ],
+        "trade_depth": 0.425
+      },
+      "before": {
+        "agency": {
+          "automatic_bank": true,
+          "break_peg_pc": 12.0,
+          "commitments": {
+            "conflicts": [],
+            "defense_pacts": [],
+            "note": "These are the campaign's saved commitments. Opening this overview neither signs nor cancels an agreement. Calls to arms still follow their own deadline and standing response policy.",
+            "trade_agreements": [
+              {
+                "dependency": 0.3026077097505669,
+                "depth": 0.425,
+                "partner": "Japan",
+                "partner_dependency": 0.12239229024943311,
+                "partner_name": "Japan",
+                "status": "awaiting_collapse",
+                "status_label": "Awaiting possible removal",
+                "warnings": [
+                  "Sanctions or opposing conflict participation currently block this agreement. Native settlement can remove it before integration grows.",
+                  "Overall dependency also includes supply contracts and delivered goods; it is not solely caused by this treaty."
+                ]
+              }
+            ],
+            "upkeep": {
+              "annual_bn": 0.0,
+              "annual_label": "$0",
+              "annual_share": 0.0,
+              "cadence": "daily",
+              "count": 0,
+              "next_step_bn": 0.0,
+              "next_step_label": "$0 per day at today's conditions",
+              "note": "Estimate at today's GDP and current simulation cadence, per signatory. Future GDP, diplomacy and the settlement order can change the bill. This view makes no payment."
+            }
+          },
+          "expiry_rule": "New requests follow the visible standing policy. Review is the default. Reply before the stated date: the reply window closes when that date begins. A still-applicable unanswered request expires as a decline; changed circumstances can close it instead. Existing requests are not automatically answered by a policy change.",
+          "history": [],
+          "monetary": {
+            "kind": "floating"
+          },
+          "offers": [],
+          "policy": {
+            "calls_to_arms": "review",
+            "defense_pacts": "review",
+            "trade_treaties": "review"
+          },
+          "sanctions": {
+            "date_label": "1 Jan 1990",
+            "growth_drag": {
+              "annual_pp": 0.3005223718231589,
+              "label": "0.301 pp/year",
+              "note": "Annualized growth drag from all sanctioning economies at today's output shares, including the affected country's diplomacy ministry. This is one growth term, not a forecast of total growth or a payment."
+            },
+            "incoming": [
+              {
+                "can_review_lift": false,
+                "imposer": "Japan",
+                "imposer_alive": true,
+                "imposer_name": "Japan",
+                "target": "France",
+                "target_alive": true,
+                "target_name": "France"
+              },
+              {
+                "can_review_lift": false,
+                "imposer": "Brazil",
+                "imposer_alive": true,
+                "imposer_name": "Brazil",
+                "target": "France",
+                "target_alive": true,
+                "target_name": "France"
+              }
+            ],
+            "nation": "France",
+            "nation_name": "France",
+            "note": "Each government controls its own sanctions. You can review lifting your restrictions; other governments decide their own policy. The date reflects current campaign conditions.",
+            "outgoing": [
+              {
+                "can_review_lift": true,
+                "imposer": "France",
+                "imposer_alive": true,
+                "imposer_name": "France",
+                "target": "Japan",
+                "target_alive": true,
+                "target_name": "Japan"
+              }
+            ],
+            "targets": [
+              {
+                "id": "Afghanistan",
+                "name": "Afghanistan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Albania",
+                "name": "Albania",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Algeria",
+                "name": "Algeria",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Angola",
+                "name": "Angola",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Argentina",
+                "name": "Argentina",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Australia",
+                "name": "Australia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Austria",
+                "name": "Austria",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bahamas",
+                "name": "Bahamas",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bahrain",
+                "name": "Bahrain",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bangladesh",
+                "name": "Bangladesh",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Belgium",
+                "name": "Belgium",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Belize",
+                "name": "Belize",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bhutan",
+                "name": "Bhutan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bolivia",
+                "name": "Bolivia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Botswana",
+                "name": "Botswana",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Brazil",
+                "name": "Brazil",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Brunei",
+                "name": "Brunei",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bulgaria",
+                "name": "Bulgaria",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Cambodia",
+                "name": "Cambodia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Cameroon",
+                "name": "Cameroon",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Canada",
+                "name": "Canada",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "CapeVerde",
+                "name": "Cape Verde",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "CentralAfricanRepublic",
+                "name": "Central African Republic",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Chad",
+                "name": "Chad",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Chile",
+                "name": "Chile",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "China",
+                "name": "China",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Colombia",
+                "name": "Colombia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Comoros",
+                "name": "Comoros",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Congo",
+                "name": "Congo-Brazzaville",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "CostaRica",
+                "name": "Costa Rica",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Cuba",
+                "name": "Cuba",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Cyprus",
+                "name": "Cyprus",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Czechoslovakia",
+                "name": "Czechoslovakia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Denmark",
+                "name": "Denmark",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "DominicanRepublic",
+                "name": "Dominican Republic",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Ecuador",
+                "name": "Ecuador",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Egypt",
+                "name": "Egypt",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "ElSalvador",
+                "name": "El Salvador",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "EquatorialGuinea",
+                "name": "Equatorial Guinea",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Ethiopia",
+                "name": "Ethiopia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Fiji",
+                "name": "Fiji",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Finland",
+                "name": "Finland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Gabon",
+                "name": "Gabon",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Germany",
+                "name": "Germany",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Ghana",
+                "name": "Ghana",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Greece",
+                "name": "Greece",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Guatemala",
+                "name": "Guatemala",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Guyana",
+                "name": "Guyana",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Haiti",
+                "name": "Haiti",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Honduras",
+                "name": "Honduras",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Hungary",
+                "name": "Hungary",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Iceland",
+                "name": "Iceland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "India",
+                "name": "India",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Indonesia",
+                "name": "Indonesia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Iran",
+                "name": "Iran",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Iraq",
+                "name": "Iraq",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Ireland",
+                "name": "Ireland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Israel",
+                "name": "Israel",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Italy",
+                "name": "Italy",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Jamaica",
+                "name": "Jamaica",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Japan",
+                "name": "Japan",
+                "sanctioned_by_player": true
+              },
+              {
+                "id": "Jordan",
+                "name": "Jordan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Kenya",
+                "name": "Kenya",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Kuwait",
+                "name": "Kuwait",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Laos",
+                "name": "Laos",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Lebanon",
+                "name": "Lebanon",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Lesotho",
+                "name": "Lesotho",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Libya",
+                "name": "Libya",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Luxembourg",
+                "name": "Luxembourg",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Madagascar",
+                "name": "Madagascar",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Malawi",
+                "name": "Malawi",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Malaysia",
+                "name": "Malaysia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Maldives",
+                "name": "Maldives",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Malta",
+                "name": "Malta",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Mauritius",
+                "name": "Mauritius",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Mexico",
+                "name": "Mexico",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Mongolia",
+                "name": "Mongolia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Morocco",
+                "name": "Morocco",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Mozambique",
+                "name": "Mozambique",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Myanmar",
+                "name": "Myanmar",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Nepal",
+                "name": "Nepal",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Netherlands",
+                "name": "Netherlands",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "NewZealand",
+                "name": "New Zealand",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Nicaragua",
+                "name": "Nicaragua",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Nigeria",
+                "name": "Nigeria",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "NorthKorea",
+                "name": "North Korea",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Norway",
+                "name": "Norway",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Oman",
+                "name": "Oman",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Pakistan",
+                "name": "Pakistan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Panama",
+                "name": "Panama",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "PapuaNewGuinea",
+                "name": "Papua New Guinea",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Paraguay",
+                "name": "Paraguay",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Peru",
+                "name": "Peru",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Philippines",
+                "name": "Philippines",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Poland",
+                "name": "Poland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Portugal",
+                "name": "Portugal",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Qatar",
+                "name": "Qatar",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Romania",
+                "name": "Romania",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SaoTome",
+                "name": "Sao Tome and Principe",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SaudiArabia",
+                "name": "Saudi Arabia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Senegal",
+                "name": "Senegal",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Seychelles",
+                "name": "Seychelles",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Singapore",
+                "name": "Singapore",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SolomonIslands",
+                "name": "Solomon Islands",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SouthAfrica",
+                "name": "South Africa",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SouthKorea",
+                "name": "South Korea",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "USSR",
+                "name": "Soviet Union",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Spain",
+                "name": "Spain",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SriLanka",
+                "name": "Sri Lanka",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Sudan",
+                "name": "Sudan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Suriname",
+                "name": "Suriname",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Swaziland",
+                "name": "Swaziland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Sweden",
+                "name": "Sweden",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Switzerland",
+                "name": "Switzerland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Syria",
+                "name": "Syria",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Taiwan",
+                "name": "Taiwan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Tanzania",
+                "name": "Tanzania",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Thailand",
+                "name": "Thailand",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Tonga",
+                "name": "Tonga",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "TrinidadTobago",
+                "name": "Trinidad and Tobago",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Tunisia",
+                "name": "Tunisia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Turkey",
+                "name": "Turkey",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Uganda",
+                "name": "Uganda",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "UAE",
+                "name": "United Arab Emirates",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "UK",
+                "name": "United Kingdom",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "USA",
+                "name": "United States",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Uruguay",
+                "name": "Uruguay",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Vanuatu",
+                "name": "Vanuatu",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Venezuela",
+                "name": "Venezuela",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Vietnam",
+                "name": "Vietnam",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Samoa",
+                "name": "Western Samoa",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Yemen",
+                "name": "Yemen",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Yugoslavia",
+                "name": "Yugoslavia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Zaire",
+                "name": "Zaire",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Zambia",
+                "name": "Zambia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Zimbabwe",
+                "name": "Zimbabwe",
+                "sanctioned_by_player": false
+              }
+            ]
+          }
+        },
+        "date": "1 Jan 1990",
+        "dispatch_count": 0,
+        "log": [],
+        "political_capital": 100.0,
+        "relation": 20.0,
+        "sanctions": [
+          [
+            "France",
+            "Japan"
+          ],
+          [
+            "Japan",
+            "France"
+          ],
+          [
+            "India",
+            "Japan"
+          ],
+          [
+            "Brazil",
+            "France"
+          ]
+        ],
+        "trade_depth": 0.425
+      },
+      "command": {
+        "kind": "lift",
+        "target": "Japan"
+      },
+      "days_advanced": 0,
+      "expected_file": "expected-after-lift.json",
+      "kind": "lift",
+      "quote": {
+        "bilateral_context": {
+          "actor": "France",
+          "actor_name": "France",
+          "after": {
+            "freight": {
+              "enabled": true,
+              "inbound": {
+                "available": false,
+                "label": "Bilateral sanctions closed the route."
+              },
+              "note": "A route check does not book cargo or guarantee a sale, stock, capacity or delivery. Contracts, route access and future conditions still apply.",
+              "outbound": {
+                "available": false,
+                "label": "Bilateral sanctions closed the route."
+              }
+            },
+            "opposing_conflict": false,
+            "other_sanctioners": [
+              {
+                "alive": true,
+                "id": "India",
+                "name": "India"
+              }
+            ],
+            "relation": 20.0,
+            "relation_label": "20.0",
+            "restriction_label": "Bilateral restrictions remain: Japan sanctions France.",
+            "target_growth_drag": {
+              "annual_pp": 0.02728146354139315,
+              "label": "0.027 pp/year",
+              "note": "Annualized growth drag from all sanctioning economies at today's output shares, including the affected country's diplomacy ministry. This is one growth term, not a forecast of total growth or a payment."
+            },
+            "their_sanctions": true,
+            "trade_treaty": {
+              "depth": 0.425,
+              "saved": true,
+              "status_label": "Saved trade agreement; restrictions can remove it at the next settlement."
+            },
+            "your_sanctions": false
+          },
+          "before": {
+            "freight": {
+              "enabled": true,
+              "inbound": {
+                "available": false,
+                "label": "Bilateral sanctions closed the route."
+              },
+              "note": "A route check does not book cargo or guarantee a sale, stock, capacity or delivery. Contracts, route access and future conditions still apply.",
+              "outbound": {
+                "available": false,
+                "label": "Bilateral sanctions closed the route."
+              }
+            },
+            "opposing_conflict": false,
+            "other_sanctioners": [
+              {
+                "alive": true,
+                "id": "India",
+                "name": "India"
+              }
+            ],
+            "relation": 20.0,
+            "relation_label": "20.0",
+            "restriction_label": "Bilateral restrictions remain: France sanctions Japan; Japan sanctions France.",
+            "target_growth_drag": {
+              "annual_pp": 0.1355547719712972,
+              "label": "0.136 pp/year",
+              "note": "Annualized growth drag from all sanctioning economies at today's output shares, including the affected country's diplomacy ministry. This is one growth term, not a forecast of total growth or a payment."
+            },
+            "their_sanctions": true,
+            "trade_treaty": {
+              "depth": 0.425,
+              "saved": true,
+              "status_label": "Saved trade agreement; restrictions can remove it at the next settlement."
+            },
+            "your_sanctions": true
+          },
+          "note": "These are current conditions and, when the decision is legal, its immediate result. Lifting your sanction leaves reverse and third-party sanctions in place. Improving relations does not lift sanctions, end a conflict or restore a removed treaty. Future settlement and diplomacy can change these conditions.",
+          "target": "Japan",
+          "target_name": "Japan"
+        },
+        "call_context": null,
+        "changes": [
+          {
+            "after": "97.0",
+            "before": "100.0",
+            "detail": "Immediate cost after the native limits.",
+            "label": "Political capital"
+          },
+          {
+            "after": "None",
+            "before": "Active",
+            "detail": "Your sanction status, independent of other countries.",
+            "label": "Sanctions on Japan"
+          },
+          {
+            "after": "0.027 pp/year",
+            "before": "0.136 pp/year",
+            "detail": "Annualized growth drag from all sanctioners at today's output shares, including the target's diplomacy ministry. Future output and other decisions can change it.",
+            "label": "Japan sanctions growth drag"
+          }
+        ],
+        "command": {
+          "kind": "lift",
+          "target": "Japan"
+        },
+        "date_label": "1 Jan 1990",
+        "description": "Remove your sanctions. Other governments' sanctions and the existing relationship remain in place.",
+        "nation": "France",
+        "reason": null,
+        "review_token": "decision-v1-8e384bfe53bccf46",
+        "session_id": "40388-1789346138650839500-1",
+        "title": "Lift sanctions: Japan",
+        "valid": true,
+        "warnings": []
+      }
+    },
+    {
+      "after": {
+        "agency": {
+          "automatic_bank": true,
+          "break_peg_pc": 12.0,
+          "commitments": {
+            "conflicts": [],
+            "defense_pacts": [],
+            "note": "These are the campaign's saved commitments. Opening this overview neither signs nor cancels an agreement. Calls to arms still follow their own deadline and standing response policy.",
+            "trade_agreements": [
+              {
+                "dependency": 0.3026077097505669,
+                "depth": 0.425,
+                "partner": "Japan",
+                "partner_dependency": 0.12239229024943311,
+                "partner_name": "Japan",
+                "status": "awaiting_collapse",
+                "status_label": "Awaiting possible removal",
+                "warnings": [
+                  "Sanctions or opposing conflict participation currently block this agreement. Native settlement can remove it before integration grows.",
+                  "Overall dependency also includes supply contracts and delivered goods; it is not solely caused by this treaty."
+                ]
+              }
+            ],
+            "upkeep": {
+              "annual_bn": 0.0,
+              "annual_label": "$0",
+              "annual_share": 0.0,
+              "cadence": "daily",
+              "count": 0,
+              "next_step_bn": 0.0,
+              "next_step_label": "$0 per day at today's conditions",
+              "note": "Estimate at today's GDP and current simulation cadence, per signatory. Future GDP, diplomacy and the settlement order can change the bill. This view makes no payment."
+            }
+          },
+          "expiry_rule": "New requests follow the visible standing policy. Review is the default. Reply before the stated date: the reply window closes when that date begins. A still-applicable unanswered request expires as a decline; changed circumstances can close it instead. Existing requests are not automatically answered by a policy change.",
+          "history": [],
+          "monetary": {
+            "kind": "floating"
+          },
+          "offers": [],
+          "policy": {
+            "calls_to_arms": "review",
+            "defense_pacts": "review",
+            "trade_treaties": "review"
+          },
+          "sanctions": {
+            "date_label": "1 Jan 1990",
+            "growth_drag": {
+              "annual_pp": 0.3005223718231589,
+              "label": "0.301 pp/year",
+              "note": "Annualized growth drag from all sanctioning economies at today's output shares, including the affected country's diplomacy ministry. This is one growth term, not a forecast of total growth or a payment."
+            },
+            "incoming": [
+              {
+                "can_review_lift": false,
+                "imposer": "Japan",
+                "imposer_alive": true,
+                "imposer_name": "Japan",
+                "target": "France",
+                "target_alive": true,
+                "target_name": "France"
+              },
+              {
+                "can_review_lift": false,
+                "imposer": "Brazil",
+                "imposer_alive": true,
+                "imposer_name": "Brazil",
+                "target": "France",
+                "target_alive": true,
+                "target_name": "France"
+              }
+            ],
+            "nation": "France",
+            "nation_name": "France",
+            "note": "Each government controls its own sanctions. You can review lifting your restrictions; other governments decide their own policy. The date reflects current campaign conditions.",
+            "outgoing": [
+              {
+                "can_review_lift": true,
+                "imposer": "France",
+                "imposer_alive": true,
+                "imposer_name": "France",
+                "target": "Japan",
+                "target_alive": true,
+                "target_name": "Japan"
+              }
+            ],
+            "targets": [
+              {
+                "id": "Afghanistan",
+                "name": "Afghanistan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Albania",
+                "name": "Albania",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Algeria",
+                "name": "Algeria",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Angola",
+                "name": "Angola",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Argentina",
+                "name": "Argentina",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Australia",
+                "name": "Australia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Austria",
+                "name": "Austria",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bahamas",
+                "name": "Bahamas",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bahrain",
+                "name": "Bahrain",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bangladesh",
+                "name": "Bangladesh",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Belgium",
+                "name": "Belgium",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Belize",
+                "name": "Belize",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bhutan",
+                "name": "Bhutan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bolivia",
+                "name": "Bolivia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Botswana",
+                "name": "Botswana",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Brazil",
+                "name": "Brazil",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Brunei",
+                "name": "Brunei",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bulgaria",
+                "name": "Bulgaria",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Cambodia",
+                "name": "Cambodia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Cameroon",
+                "name": "Cameroon",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Canada",
+                "name": "Canada",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "CapeVerde",
+                "name": "Cape Verde",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "CentralAfricanRepublic",
+                "name": "Central African Republic",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Chad",
+                "name": "Chad",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Chile",
+                "name": "Chile",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "China",
+                "name": "China",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Colombia",
+                "name": "Colombia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Comoros",
+                "name": "Comoros",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Congo",
+                "name": "Congo-Brazzaville",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "CostaRica",
+                "name": "Costa Rica",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Cuba",
+                "name": "Cuba",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Cyprus",
+                "name": "Cyprus",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Czechoslovakia",
+                "name": "Czechoslovakia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Denmark",
+                "name": "Denmark",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "DominicanRepublic",
+                "name": "Dominican Republic",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Ecuador",
+                "name": "Ecuador",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Egypt",
+                "name": "Egypt",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "ElSalvador",
+                "name": "El Salvador",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "EquatorialGuinea",
+                "name": "Equatorial Guinea",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Ethiopia",
+                "name": "Ethiopia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Fiji",
+                "name": "Fiji",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Finland",
+                "name": "Finland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Gabon",
+                "name": "Gabon",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Germany",
+                "name": "Germany",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Ghana",
+                "name": "Ghana",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Greece",
+                "name": "Greece",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Guatemala",
+                "name": "Guatemala",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Guyana",
+                "name": "Guyana",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Haiti",
+                "name": "Haiti",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Honduras",
+                "name": "Honduras",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Hungary",
+                "name": "Hungary",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Iceland",
+                "name": "Iceland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "India",
+                "name": "India",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Indonesia",
+                "name": "Indonesia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Iran",
+                "name": "Iran",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Iraq",
+                "name": "Iraq",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Ireland",
+                "name": "Ireland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Israel",
+                "name": "Israel",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Italy",
+                "name": "Italy",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Jamaica",
+                "name": "Jamaica",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Japan",
+                "name": "Japan",
+                "sanctioned_by_player": true
+              },
+              {
+                "id": "Jordan",
+                "name": "Jordan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Kenya",
+                "name": "Kenya",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Kuwait",
+                "name": "Kuwait",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Laos",
+                "name": "Laos",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Lebanon",
+                "name": "Lebanon",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Lesotho",
+                "name": "Lesotho",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Libya",
+                "name": "Libya",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Luxembourg",
+                "name": "Luxembourg",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Madagascar",
+                "name": "Madagascar",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Malawi",
+                "name": "Malawi",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Malaysia",
+                "name": "Malaysia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Maldives",
+                "name": "Maldives",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Malta",
+                "name": "Malta",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Mauritius",
+                "name": "Mauritius",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Mexico",
+                "name": "Mexico",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Mongolia",
+                "name": "Mongolia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Morocco",
+                "name": "Morocco",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Mozambique",
+                "name": "Mozambique",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Myanmar",
+                "name": "Myanmar",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Nepal",
+                "name": "Nepal",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Netherlands",
+                "name": "Netherlands",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "NewZealand",
+                "name": "New Zealand",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Nicaragua",
+                "name": "Nicaragua",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Nigeria",
+                "name": "Nigeria",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "NorthKorea",
+                "name": "North Korea",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Norway",
+                "name": "Norway",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Oman",
+                "name": "Oman",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Pakistan",
+                "name": "Pakistan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Panama",
+                "name": "Panama",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "PapuaNewGuinea",
+                "name": "Papua New Guinea",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Paraguay",
+                "name": "Paraguay",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Peru",
+                "name": "Peru",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Philippines",
+                "name": "Philippines",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Poland",
+                "name": "Poland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Portugal",
+                "name": "Portugal",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Qatar",
+                "name": "Qatar",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Romania",
+                "name": "Romania",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SaoTome",
+                "name": "Sao Tome and Principe",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SaudiArabia",
+                "name": "Saudi Arabia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Senegal",
+                "name": "Senegal",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Seychelles",
+                "name": "Seychelles",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Singapore",
+                "name": "Singapore",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SolomonIslands",
+                "name": "Solomon Islands",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SouthAfrica",
+                "name": "South Africa",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SouthKorea",
+                "name": "South Korea",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "USSR",
+                "name": "Soviet Union",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Spain",
+                "name": "Spain",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SriLanka",
+                "name": "Sri Lanka",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Sudan",
+                "name": "Sudan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Suriname",
+                "name": "Suriname",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Swaziland",
+                "name": "Swaziland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Sweden",
+                "name": "Sweden",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Switzerland",
+                "name": "Switzerland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Syria",
+                "name": "Syria",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Taiwan",
+                "name": "Taiwan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Tanzania",
+                "name": "Tanzania",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Thailand",
+                "name": "Thailand",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Tonga",
+                "name": "Tonga",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "TrinidadTobago",
+                "name": "Trinidad and Tobago",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Tunisia",
+                "name": "Tunisia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Turkey",
+                "name": "Turkey",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Uganda",
+                "name": "Uganda",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "UAE",
+                "name": "United Arab Emirates",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "UK",
+                "name": "United Kingdom",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "USA",
+                "name": "United States",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Uruguay",
+                "name": "Uruguay",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Vanuatu",
+                "name": "Vanuatu",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Venezuela",
+                "name": "Venezuela",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Vietnam",
+                "name": "Vietnam",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Samoa",
+                "name": "Western Samoa",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Yemen",
+                "name": "Yemen",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Yugoslavia",
+                "name": "Yugoslavia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Zaire",
+                "name": "Zaire",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Zambia",
+                "name": "Zambia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Zimbabwe",
+                "name": "Zimbabwe",
+                "sanctioned_by_player": false
+              }
+            ]
+          }
+        },
+        "date": "1 Jan 1990",
+        "dispatch_count": 2,
+        "log": [
+          {
+            "cat": "diplomacy",
+            "date": "1 Jan 1990",
+            "t": 0,
+            "tags": [
+              "Japan",
+              "France"
+            ],
+            "text": "France imposes sanctions on Japan."
+          },
+          {
+            "cat": "diplomacy",
+            "date": "1 Jan 1990",
+            "t": 0,
+            "tags": [
+              "Japan",
+              "France"
+            ],
+            "text": "France confirms: lift sanctions on Japan."
+          }
+        ],
+        "political_capital": 91.0,
+        "relation": 5.0,
+        "sanctions": [
+          [
+            "Japan",
+            "France"
+          ],
+          [
+            "India",
+            "Japan"
+          ],
+          [
+            "Brazil",
+            "France"
+          ],
+          [
+            "France",
+            "Japan"
+          ]
+        ],
+        "trade_depth": 0.425
+      },
+      "before": {
+        "agency": {
+          "automatic_bank": true,
+          "break_peg_pc": 12.0,
+          "commitments": {
+            "conflicts": [],
+            "defense_pacts": [],
+            "note": "These are the campaign's saved commitments. Opening this overview neither signs nor cancels an agreement. Calls to arms still follow their own deadline and standing response policy.",
+            "trade_agreements": [
+              {
+                "dependency": 0.3026077097505669,
+                "depth": 0.425,
+                "partner": "Japan",
+                "partner_dependency": 0.12239229024943311,
+                "partner_name": "Japan",
+                "status": "awaiting_collapse",
+                "status_label": "Awaiting possible removal",
+                "warnings": [
+                  "Sanctions or opposing conflict participation currently block this agreement. Native settlement can remove it before integration grows.",
+                  "Overall dependency also includes supply contracts and delivered goods; it is not solely caused by this treaty."
+                ]
+              }
+            ],
+            "upkeep": {
+              "annual_bn": 0.0,
+              "annual_label": "$0",
+              "annual_share": 0.0,
+              "cadence": "daily",
+              "count": 0,
+              "next_step_bn": 0.0,
+              "next_step_label": "$0 per day at today's conditions",
+              "note": "Estimate at today's GDP and current simulation cadence, per signatory. Future GDP, diplomacy and the settlement order can change the bill. This view makes no payment."
+            }
+          },
+          "expiry_rule": "New requests follow the visible standing policy. Review is the default. Reply before the stated date: the reply window closes when that date begins. A still-applicable unanswered request expires as a decline; changed circumstances can close it instead. Existing requests are not automatically answered by a policy change.",
+          "history": [],
+          "monetary": {
+            "kind": "floating"
+          },
+          "offers": [],
+          "policy": {
+            "calls_to_arms": "review",
+            "defense_pacts": "review",
+            "trade_treaties": "review"
+          },
+          "sanctions": {
+            "date_label": "1 Jan 1990",
+            "growth_drag": {
+              "annual_pp": 0.3005223718231589,
+              "label": "0.301 pp/year",
+              "note": "Annualized growth drag from all sanctioning economies at today's output shares, including the affected country's diplomacy ministry. This is one growth term, not a forecast of total growth or a payment."
+            },
+            "incoming": [
+              {
+                "can_review_lift": false,
+                "imposer": "Japan",
+                "imposer_alive": true,
+                "imposer_name": "Japan",
+                "target": "France",
+                "target_alive": true,
+                "target_name": "France"
+              },
+              {
+                "can_review_lift": false,
+                "imposer": "Brazil",
+                "imposer_alive": true,
+                "imposer_name": "Brazil",
+                "target": "France",
+                "target_alive": true,
+                "target_name": "France"
+              }
+            ],
+            "nation": "France",
+            "nation_name": "France",
+            "note": "Each government controls its own sanctions. You can review lifting your restrictions; other governments decide their own policy. The date reflects current campaign conditions.",
+            "outgoing": [],
+            "targets": [
+              {
+                "id": "Afghanistan",
+                "name": "Afghanistan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Albania",
+                "name": "Albania",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Algeria",
+                "name": "Algeria",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Angola",
+                "name": "Angola",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Argentina",
+                "name": "Argentina",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Australia",
+                "name": "Australia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Austria",
+                "name": "Austria",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bahamas",
+                "name": "Bahamas",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bahrain",
+                "name": "Bahrain",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bangladesh",
+                "name": "Bangladesh",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Belgium",
+                "name": "Belgium",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Belize",
+                "name": "Belize",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bhutan",
+                "name": "Bhutan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bolivia",
+                "name": "Bolivia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Botswana",
+                "name": "Botswana",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Brazil",
+                "name": "Brazil",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Brunei",
+                "name": "Brunei",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bulgaria",
+                "name": "Bulgaria",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Cambodia",
+                "name": "Cambodia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Cameroon",
+                "name": "Cameroon",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Canada",
+                "name": "Canada",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "CapeVerde",
+                "name": "Cape Verde",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "CentralAfricanRepublic",
+                "name": "Central African Republic",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Chad",
+                "name": "Chad",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Chile",
+                "name": "Chile",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "China",
+                "name": "China",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Colombia",
+                "name": "Colombia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Comoros",
+                "name": "Comoros",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Congo",
+                "name": "Congo-Brazzaville",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "CostaRica",
+                "name": "Costa Rica",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Cuba",
+                "name": "Cuba",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Cyprus",
+                "name": "Cyprus",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Czechoslovakia",
+                "name": "Czechoslovakia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Denmark",
+                "name": "Denmark",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "DominicanRepublic",
+                "name": "Dominican Republic",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Ecuador",
+                "name": "Ecuador",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Egypt",
+                "name": "Egypt",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "ElSalvador",
+                "name": "El Salvador",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "EquatorialGuinea",
+                "name": "Equatorial Guinea",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Ethiopia",
+                "name": "Ethiopia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Fiji",
+                "name": "Fiji",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Finland",
+                "name": "Finland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Gabon",
+                "name": "Gabon",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Germany",
+                "name": "Germany",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Ghana",
+                "name": "Ghana",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Greece",
+                "name": "Greece",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Guatemala",
+                "name": "Guatemala",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Guyana",
+                "name": "Guyana",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Haiti",
+                "name": "Haiti",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Honduras",
+                "name": "Honduras",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Hungary",
+                "name": "Hungary",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Iceland",
+                "name": "Iceland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "India",
+                "name": "India",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Indonesia",
+                "name": "Indonesia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Iran",
+                "name": "Iran",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Iraq",
+                "name": "Iraq",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Ireland",
+                "name": "Ireland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Israel",
+                "name": "Israel",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Italy",
+                "name": "Italy",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Jamaica",
+                "name": "Jamaica",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Japan",
+                "name": "Japan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Jordan",
+                "name": "Jordan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Kenya",
+                "name": "Kenya",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Kuwait",
+                "name": "Kuwait",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Laos",
+                "name": "Laos",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Lebanon",
+                "name": "Lebanon",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Lesotho",
+                "name": "Lesotho",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Libya",
+                "name": "Libya",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Luxembourg",
+                "name": "Luxembourg",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Madagascar",
+                "name": "Madagascar",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Malawi",
+                "name": "Malawi",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Malaysia",
+                "name": "Malaysia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Maldives",
+                "name": "Maldives",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Malta",
+                "name": "Malta",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Mauritius",
+                "name": "Mauritius",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Mexico",
+                "name": "Mexico",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Mongolia",
+                "name": "Mongolia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Morocco",
+                "name": "Morocco",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Mozambique",
+                "name": "Mozambique",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Myanmar",
+                "name": "Myanmar",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Nepal",
+                "name": "Nepal",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Netherlands",
+                "name": "Netherlands",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "NewZealand",
+                "name": "New Zealand",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Nicaragua",
+                "name": "Nicaragua",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Nigeria",
+                "name": "Nigeria",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "NorthKorea",
+                "name": "North Korea",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Norway",
+                "name": "Norway",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Oman",
+                "name": "Oman",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Pakistan",
+                "name": "Pakistan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Panama",
+                "name": "Panama",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "PapuaNewGuinea",
+                "name": "Papua New Guinea",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Paraguay",
+                "name": "Paraguay",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Peru",
+                "name": "Peru",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Philippines",
+                "name": "Philippines",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Poland",
+                "name": "Poland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Portugal",
+                "name": "Portugal",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Qatar",
+                "name": "Qatar",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Romania",
+                "name": "Romania",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SaoTome",
+                "name": "Sao Tome and Principe",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SaudiArabia",
+                "name": "Saudi Arabia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Senegal",
+                "name": "Senegal",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Seychelles",
+                "name": "Seychelles",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Singapore",
+                "name": "Singapore",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SolomonIslands",
+                "name": "Solomon Islands",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SouthAfrica",
+                "name": "South Africa",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SouthKorea",
+                "name": "South Korea",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "USSR",
+                "name": "Soviet Union",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Spain",
+                "name": "Spain",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SriLanka",
+                "name": "Sri Lanka",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Sudan",
+                "name": "Sudan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Suriname",
+                "name": "Suriname",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Swaziland",
+                "name": "Swaziland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Sweden",
+                "name": "Sweden",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Switzerland",
+                "name": "Switzerland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Syria",
+                "name": "Syria",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Taiwan",
+                "name": "Taiwan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Tanzania",
+                "name": "Tanzania",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Thailand",
+                "name": "Thailand",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Tonga",
+                "name": "Tonga",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "TrinidadTobago",
+                "name": "Trinidad and Tobago",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Tunisia",
+                "name": "Tunisia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Turkey",
+                "name": "Turkey",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Uganda",
+                "name": "Uganda",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "UAE",
+                "name": "United Arab Emirates",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "UK",
+                "name": "United Kingdom",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "USA",
+                "name": "United States",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Uruguay",
+                "name": "Uruguay",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Vanuatu",
+                "name": "Vanuatu",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Venezuela",
+                "name": "Venezuela",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Vietnam",
+                "name": "Vietnam",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Samoa",
+                "name": "Western Samoa",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Yemen",
+                "name": "Yemen",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Yugoslavia",
+                "name": "Yugoslavia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Zaire",
+                "name": "Zaire",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Zambia",
+                "name": "Zambia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Zimbabwe",
+                "name": "Zimbabwe",
+                "sanctioned_by_player": false
+              }
+            ]
+          }
+        },
+        "date": "1 Jan 1990",
+        "dispatch_count": 1,
+        "log": [
+          {
+            "cat": "diplomacy",
+            "date": "1 Jan 1990",
+            "t": 0,
+            "tags": [
+              "Japan",
+              "France"
+            ],
+            "text": "France confirms: lift sanctions on Japan."
+          }
+        ],
+        "political_capital": 97.0,
+        "relation": 20.0,
+        "sanctions": [
+          [
+            "Japan",
+            "France"
+          ],
+          [
+            "India",
+            "Japan"
+          ],
+          [
+            "Brazil",
+            "France"
+          ]
+        ],
+        "trade_depth": 0.425
+      },
+      "command": {
+        "kind": "sanction",
+        "target": "Japan"
+      },
+      "days_advanced": 0,
+      "expected_file": "expected-after-sanction.json",
+      "kind": "sanction",
+      "quote": {
+        "bilateral_context": {
+          "actor": "France",
+          "actor_name": "France",
+          "after": {
+            "freight": {
+              "enabled": true,
+              "inbound": {
+                "available": false,
+                "label": "Bilateral sanctions closed the route."
+              },
+              "note": "A route check does not book cargo or guarantee a sale, stock, capacity or delivery. Contracts, route access and future conditions still apply.",
+              "outbound": {
+                "available": false,
+                "label": "Bilateral sanctions closed the route."
+              }
+            },
+            "opposing_conflict": false,
+            "other_sanctioners": [
+              {
+                "alive": true,
+                "id": "India",
+                "name": "India"
+              }
+            ],
+            "relation": 5.0,
+            "relation_label": "5.0",
+            "restriction_label": "Bilateral restrictions remain: France sanctions Japan; Japan sanctions France.",
+            "target_growth_drag": {
+              "annual_pp": 0.1355547719712972,
+              "label": "0.136 pp/year",
+              "note": "Annualized growth drag from all sanctioning economies at today's output shares, including the affected country's diplomacy ministry. This is one growth term, not a forecast of total growth or a payment."
+            },
+            "their_sanctions": true,
+            "trade_treaty": {
+              "depth": 0.425,
+              "saved": true,
+              "status_label": "Saved trade agreement; restrictions can remove it at the next settlement."
+            },
+            "your_sanctions": true
+          },
+          "before": {
+            "freight": {
+              "enabled": true,
+              "inbound": {
+                "available": false,
+                "label": "Bilateral sanctions closed the route."
+              },
+              "note": "A route check does not book cargo or guarantee a sale, stock, capacity or delivery. Contracts, route access and future conditions still apply.",
+              "outbound": {
+                "available": false,
+                "label": "Bilateral sanctions closed the route."
+              }
+            },
+            "opposing_conflict": false,
+            "other_sanctioners": [
+              {
+                "alive": true,
+                "id": "India",
+                "name": "India"
+              }
+            ],
+            "relation": 20.0,
+            "relation_label": "20.0",
+            "restriction_label": "Bilateral restrictions remain: Japan sanctions France.",
+            "target_growth_drag": {
+              "annual_pp": 0.02728146354139315,
+              "label": "0.027 pp/year",
+              "note": "Annualized growth drag from all sanctioning economies at today's output shares, including the affected country's diplomacy ministry. This is one growth term, not a forecast of total growth or a payment."
+            },
+            "their_sanctions": true,
+            "trade_treaty": {
+              "depth": 0.425,
+              "saved": true,
+              "status_label": "Saved trade agreement; restrictions can remove it at the next settlement."
+            },
+            "your_sanctions": false
+          },
+          "note": "These are current conditions and, when the decision is legal, its immediate result. Lifting your sanction leaves reverse and third-party sanctions in place. Improving relations does not lift sanctions, end a conflict or restore a removed treaty. Future settlement and diplomacy can change these conditions.",
+          "target": "Japan",
+          "target_name": "Japan"
+        },
+        "call_context": null,
+        "changes": [
+          {
+            "after": "91.0",
+            "before": "97.0",
+            "detail": "Immediate cost after the native limits.",
+            "label": "Political capital"
+          },
+          {
+            "after": "5.0",
+            "before": "20.0",
+            "detail": "Immediate relationship change.",
+            "label": "Relations with Japan"
+          },
+          {
+            "after": "Active",
+            "before": "None",
+            "detail": "Your sanction status, independent of other countries.",
+            "label": "Sanctions on Japan"
+          },
+          {
+            "after": "0.136 pp/year",
+            "before": "0.027 pp/year",
+            "detail": "Annualized growth drag from all sanctioners at today's output shares, including the target's diplomacy ministry. Future output and other decisions can change it.",
+            "label": "Japan sanctions growth drag"
+          },
+          {
+            "after": "France imposes sanctions on Japan.",
+            "before": "Pending",
+            "detail": "1 Jan 1990",
+            "label": "Dated result"
+          }
+        ],
+        "command": {
+          "kind": "sanction",
+          "target": "Japan"
+        },
+        "date_label": "1 Jan 1990",
+        "description": "Close sanctioned trade lanes and reduce relations. The target's growth drag follows the sanctioning economies' share of world output.",
+        "nation": "France",
+        "reason": null,
+        "review_token": "decision-v1-14442a8fa1369a1e",
+        "session_id": "40388-1789346138650839500-1",
+        "title": "Impose sanctions: Japan",
+        "valid": true,
+        "warnings": []
+      }
+    },
+    {
+      "after": {
+        "agency": {
+          "automatic_bank": true,
+          "break_peg_pc": 12.0,
+          "commitments": {
+            "conflicts": [],
+            "defense_pacts": [],
+            "note": "These are the campaign's saved commitments. Opening this overview neither signs nor cancels an agreement. Calls to arms still follow their own deadline and standing response policy.",
+            "trade_agreements": [
+              {
+                "dependency": 0.3026077097505669,
+                "depth": 0.425,
+                "partner": "Japan",
+                "partner_dependency": 0.12239229024943311,
+                "partner_name": "Japan",
+                "status": "awaiting_collapse",
+                "status_label": "Awaiting possible removal",
+                "warnings": [
+                  "Sanctions or opposing conflict participation currently block this agreement. Native settlement can remove it before integration grows.",
+                  "Overall dependency also includes supply contracts and delivered goods; it is not solely caused by this treaty."
+                ]
+              }
+            ],
+            "upkeep": {
+              "annual_bn": 0.0,
+              "annual_label": "$0",
+              "annual_share": 0.0,
+              "cadence": "daily",
+              "count": 0,
+              "next_step_bn": 0.0,
+              "next_step_label": "$0 per day at today's conditions",
+              "note": "Estimate at today's GDP and current simulation cadence, per signatory. Future GDP, diplomacy and the settlement order can change the bill. This view makes no payment."
+            }
+          },
+          "expiry_rule": "New requests follow the visible standing policy. Review is the default. Reply before the stated date: the reply window closes when that date begins. A still-applicable unanswered request expires as a decline; changed circumstances can close it instead. Existing requests are not automatically answered by a policy change.",
+          "history": [],
+          "monetary": {
+            "kind": "floating"
+          },
+          "offers": [],
+          "policy": {
+            "calls_to_arms": "review",
+            "defense_pacts": "review",
+            "trade_treaties": "review"
+          },
+          "sanctions": {
+            "date_label": "1 Jan 1990",
+            "growth_drag": {
+              "annual_pp": 0.3005223718231589,
+              "label": "0.301 pp/year",
+              "note": "Annualized growth drag from all sanctioning economies at today's output shares, including the affected country's diplomacy ministry. This is one growth term, not a forecast of total growth or a payment."
+            },
+            "incoming": [
+              {
+                "can_review_lift": false,
+                "imposer": "Japan",
+                "imposer_alive": true,
+                "imposer_name": "Japan",
+                "target": "France",
+                "target_alive": true,
+                "target_name": "France"
+              },
+              {
+                "can_review_lift": false,
+                "imposer": "Brazil",
+                "imposer_alive": true,
+                "imposer_name": "Brazil",
+                "target": "France",
+                "target_alive": true,
+                "target_name": "France"
+              }
+            ],
+            "nation": "France",
+            "nation_name": "France",
+            "note": "Each government controls its own sanctions. You can review lifting your restrictions; other governments decide their own policy. The date reflects current campaign conditions.",
+            "outgoing": [
+              {
+                "can_review_lift": true,
+                "imposer": "France",
+                "imposer_alive": true,
+                "imposer_name": "France",
+                "target": "Japan",
+                "target_alive": true,
+                "target_name": "Japan"
+              }
+            ],
+            "targets": [
+              {
+                "id": "Afghanistan",
+                "name": "Afghanistan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Albania",
+                "name": "Albania",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Algeria",
+                "name": "Algeria",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Angola",
+                "name": "Angola",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Argentina",
+                "name": "Argentina",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Australia",
+                "name": "Australia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Austria",
+                "name": "Austria",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bahamas",
+                "name": "Bahamas",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bahrain",
+                "name": "Bahrain",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bangladesh",
+                "name": "Bangladesh",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Belgium",
+                "name": "Belgium",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Belize",
+                "name": "Belize",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bhutan",
+                "name": "Bhutan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bolivia",
+                "name": "Bolivia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Botswana",
+                "name": "Botswana",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Brazil",
+                "name": "Brazil",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Brunei",
+                "name": "Brunei",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bulgaria",
+                "name": "Bulgaria",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Cambodia",
+                "name": "Cambodia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Cameroon",
+                "name": "Cameroon",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Canada",
+                "name": "Canada",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "CapeVerde",
+                "name": "Cape Verde",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "CentralAfricanRepublic",
+                "name": "Central African Republic",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Chad",
+                "name": "Chad",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Chile",
+                "name": "Chile",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "China",
+                "name": "China",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Colombia",
+                "name": "Colombia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Comoros",
+                "name": "Comoros",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Congo",
+                "name": "Congo-Brazzaville",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "CostaRica",
+                "name": "Costa Rica",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Cuba",
+                "name": "Cuba",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Cyprus",
+                "name": "Cyprus",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Czechoslovakia",
+                "name": "Czechoslovakia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Denmark",
+                "name": "Denmark",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "DominicanRepublic",
+                "name": "Dominican Republic",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Ecuador",
+                "name": "Ecuador",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Egypt",
+                "name": "Egypt",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "ElSalvador",
+                "name": "El Salvador",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "EquatorialGuinea",
+                "name": "Equatorial Guinea",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Ethiopia",
+                "name": "Ethiopia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Fiji",
+                "name": "Fiji",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Finland",
+                "name": "Finland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Gabon",
+                "name": "Gabon",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Germany",
+                "name": "Germany",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Ghana",
+                "name": "Ghana",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Greece",
+                "name": "Greece",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Guatemala",
+                "name": "Guatemala",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Guyana",
+                "name": "Guyana",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Haiti",
+                "name": "Haiti",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Honduras",
+                "name": "Honduras",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Hungary",
+                "name": "Hungary",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Iceland",
+                "name": "Iceland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "India",
+                "name": "India",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Indonesia",
+                "name": "Indonesia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Iran",
+                "name": "Iran",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Iraq",
+                "name": "Iraq",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Ireland",
+                "name": "Ireland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Israel",
+                "name": "Israel",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Italy",
+                "name": "Italy",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Jamaica",
+                "name": "Jamaica",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Japan",
+                "name": "Japan",
+                "sanctioned_by_player": true
+              },
+              {
+                "id": "Jordan",
+                "name": "Jordan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Kenya",
+                "name": "Kenya",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Kuwait",
+                "name": "Kuwait",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Laos",
+                "name": "Laos",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Lebanon",
+                "name": "Lebanon",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Lesotho",
+                "name": "Lesotho",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Libya",
+                "name": "Libya",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Luxembourg",
+                "name": "Luxembourg",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Madagascar",
+                "name": "Madagascar",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Malawi",
+                "name": "Malawi",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Malaysia",
+                "name": "Malaysia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Maldives",
+                "name": "Maldives",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Malta",
+                "name": "Malta",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Mauritius",
+                "name": "Mauritius",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Mexico",
+                "name": "Mexico",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Mongolia",
+                "name": "Mongolia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Morocco",
+                "name": "Morocco",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Mozambique",
+                "name": "Mozambique",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Myanmar",
+                "name": "Myanmar",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Nepal",
+                "name": "Nepal",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Netherlands",
+                "name": "Netherlands",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "NewZealand",
+                "name": "New Zealand",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Nicaragua",
+                "name": "Nicaragua",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Nigeria",
+                "name": "Nigeria",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "NorthKorea",
+                "name": "North Korea",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Norway",
+                "name": "Norway",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Oman",
+                "name": "Oman",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Pakistan",
+                "name": "Pakistan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Panama",
+                "name": "Panama",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "PapuaNewGuinea",
+                "name": "Papua New Guinea",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Paraguay",
+                "name": "Paraguay",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Peru",
+                "name": "Peru",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Philippines",
+                "name": "Philippines",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Poland",
+                "name": "Poland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Portugal",
+                "name": "Portugal",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Qatar",
+                "name": "Qatar",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Romania",
+                "name": "Romania",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SaoTome",
+                "name": "Sao Tome and Principe",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SaudiArabia",
+                "name": "Saudi Arabia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Senegal",
+                "name": "Senegal",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Seychelles",
+                "name": "Seychelles",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Singapore",
+                "name": "Singapore",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SolomonIslands",
+                "name": "Solomon Islands",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SouthAfrica",
+                "name": "South Africa",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SouthKorea",
+                "name": "South Korea",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "USSR",
+                "name": "Soviet Union",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Spain",
+                "name": "Spain",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SriLanka",
+                "name": "Sri Lanka",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Sudan",
+                "name": "Sudan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Suriname",
+                "name": "Suriname",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Swaziland",
+                "name": "Swaziland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Sweden",
+                "name": "Sweden",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Switzerland",
+                "name": "Switzerland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Syria",
+                "name": "Syria",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Taiwan",
+                "name": "Taiwan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Tanzania",
+                "name": "Tanzania",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Thailand",
+                "name": "Thailand",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Tonga",
+                "name": "Tonga",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "TrinidadTobago",
+                "name": "Trinidad and Tobago",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Tunisia",
+                "name": "Tunisia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Turkey",
+                "name": "Turkey",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Uganda",
+                "name": "Uganda",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "UAE",
+                "name": "United Arab Emirates",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "UK",
+                "name": "United Kingdom",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "USA",
+                "name": "United States",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Uruguay",
+                "name": "Uruguay",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Vanuatu",
+                "name": "Vanuatu",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Venezuela",
+                "name": "Venezuela",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Vietnam",
+                "name": "Vietnam",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Samoa",
+                "name": "Western Samoa",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Yemen",
+                "name": "Yemen",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Yugoslavia",
+                "name": "Yugoslavia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Zaire",
+                "name": "Zaire",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Zambia",
+                "name": "Zambia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Zimbabwe",
+                "name": "Zimbabwe",
+                "sanctioned_by_player": false
+              }
+            ]
+          }
+        },
+        "date": "1 Jan 1990",
+        "dispatch_count": 3,
+        "log": [
+          {
+            "cat": "diplomacy",
+            "date": "1 Jan 1990",
+            "t": 0,
+            "tags": [
+              "Japan",
+              "France"
+            ],
+            "text": "France extends a diplomatic hand to Japan."
+          },
+          {
+            "cat": "diplomacy",
+            "date": "1 Jan 1990",
+            "t": 0,
+            "tags": [
+              "Japan",
+              "France"
+            ],
+            "text": "France imposes sanctions on Japan."
+          },
+          {
+            "cat": "diplomacy",
+            "date": "1 Jan 1990",
+            "t": 0,
+            "tags": [
+              "Japan",
+              "France"
+            ],
+            "text": "France confirms: lift sanctions on Japan."
+          }
+        ],
+        "political_capital": 89.0,
+        "relation": 11.0,
+        "sanctions": [
+          [
+            "Japan",
+            "France"
+          ],
+          [
+            "India",
+            "Japan"
+          ],
+          [
+            "Brazil",
+            "France"
+          ],
+          [
+            "France",
+            "Japan"
+          ]
+        ],
+        "trade_depth": 0.425
+      },
+      "before": {
+        "agency": {
+          "automatic_bank": true,
+          "break_peg_pc": 12.0,
+          "commitments": {
+            "conflicts": [],
+            "defense_pacts": [],
+            "note": "These are the campaign's saved commitments. Opening this overview neither signs nor cancels an agreement. Calls to arms still follow their own deadline and standing response policy.",
+            "trade_agreements": [
+              {
+                "dependency": 0.3026077097505669,
+                "depth": 0.425,
+                "partner": "Japan",
+                "partner_dependency": 0.12239229024943311,
+                "partner_name": "Japan",
+                "status": "awaiting_collapse",
+                "status_label": "Awaiting possible removal",
+                "warnings": [
+                  "Sanctions or opposing conflict participation currently block this agreement. Native settlement can remove it before integration grows.",
+                  "Overall dependency also includes supply contracts and delivered goods; it is not solely caused by this treaty."
+                ]
+              }
+            ],
+            "upkeep": {
+              "annual_bn": 0.0,
+              "annual_label": "$0",
+              "annual_share": 0.0,
+              "cadence": "daily",
+              "count": 0,
+              "next_step_bn": 0.0,
+              "next_step_label": "$0 per day at today's conditions",
+              "note": "Estimate at today's GDP and current simulation cadence, per signatory. Future GDP, diplomacy and the settlement order can change the bill. This view makes no payment."
+            }
+          },
+          "expiry_rule": "New requests follow the visible standing policy. Review is the default. Reply before the stated date: the reply window closes when that date begins. A still-applicable unanswered request expires as a decline; changed circumstances can close it instead. Existing requests are not automatically answered by a policy change.",
+          "history": [],
+          "monetary": {
+            "kind": "floating"
+          },
+          "offers": [],
+          "policy": {
+            "calls_to_arms": "review",
+            "defense_pacts": "review",
+            "trade_treaties": "review"
+          },
+          "sanctions": {
+            "date_label": "1 Jan 1990",
+            "growth_drag": {
+              "annual_pp": 0.3005223718231589,
+              "label": "0.301 pp/year",
+              "note": "Annualized growth drag from all sanctioning economies at today's output shares, including the affected country's diplomacy ministry. This is one growth term, not a forecast of total growth or a payment."
+            },
+            "incoming": [
+              {
+                "can_review_lift": false,
+                "imposer": "Japan",
+                "imposer_alive": true,
+                "imposer_name": "Japan",
+                "target": "France",
+                "target_alive": true,
+                "target_name": "France"
+              },
+              {
+                "can_review_lift": false,
+                "imposer": "Brazil",
+                "imposer_alive": true,
+                "imposer_name": "Brazil",
+                "target": "France",
+                "target_alive": true,
+                "target_name": "France"
+              }
+            ],
+            "nation": "France",
+            "nation_name": "France",
+            "note": "Each government controls its own sanctions. You can review lifting your restrictions; other governments decide their own policy. The date reflects current campaign conditions.",
+            "outgoing": [
+              {
+                "can_review_lift": true,
+                "imposer": "France",
+                "imposer_alive": true,
+                "imposer_name": "France",
+                "target": "Japan",
+                "target_alive": true,
+                "target_name": "Japan"
+              }
+            ],
+            "targets": [
+              {
+                "id": "Afghanistan",
+                "name": "Afghanistan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Albania",
+                "name": "Albania",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Algeria",
+                "name": "Algeria",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Angola",
+                "name": "Angola",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Argentina",
+                "name": "Argentina",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Australia",
+                "name": "Australia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Austria",
+                "name": "Austria",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bahamas",
+                "name": "Bahamas",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bahrain",
+                "name": "Bahrain",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bangladesh",
+                "name": "Bangladesh",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Belgium",
+                "name": "Belgium",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Belize",
+                "name": "Belize",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bhutan",
+                "name": "Bhutan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bolivia",
+                "name": "Bolivia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Botswana",
+                "name": "Botswana",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Brazil",
+                "name": "Brazil",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Brunei",
+                "name": "Brunei",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Bulgaria",
+                "name": "Bulgaria",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Cambodia",
+                "name": "Cambodia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Cameroon",
+                "name": "Cameroon",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Canada",
+                "name": "Canada",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "CapeVerde",
+                "name": "Cape Verde",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "CentralAfricanRepublic",
+                "name": "Central African Republic",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Chad",
+                "name": "Chad",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Chile",
+                "name": "Chile",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "China",
+                "name": "China",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Colombia",
+                "name": "Colombia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Comoros",
+                "name": "Comoros",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Congo",
+                "name": "Congo-Brazzaville",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "CostaRica",
+                "name": "Costa Rica",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Cuba",
+                "name": "Cuba",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Cyprus",
+                "name": "Cyprus",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Czechoslovakia",
+                "name": "Czechoslovakia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Denmark",
+                "name": "Denmark",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "DominicanRepublic",
+                "name": "Dominican Republic",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Ecuador",
+                "name": "Ecuador",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Egypt",
+                "name": "Egypt",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "ElSalvador",
+                "name": "El Salvador",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "EquatorialGuinea",
+                "name": "Equatorial Guinea",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Ethiopia",
+                "name": "Ethiopia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Fiji",
+                "name": "Fiji",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Finland",
+                "name": "Finland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Gabon",
+                "name": "Gabon",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Germany",
+                "name": "Germany",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Ghana",
+                "name": "Ghana",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Greece",
+                "name": "Greece",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Guatemala",
+                "name": "Guatemala",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Guyana",
+                "name": "Guyana",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Haiti",
+                "name": "Haiti",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Honduras",
+                "name": "Honduras",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Hungary",
+                "name": "Hungary",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Iceland",
+                "name": "Iceland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "India",
+                "name": "India",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Indonesia",
+                "name": "Indonesia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Iran",
+                "name": "Iran",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Iraq",
+                "name": "Iraq",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Ireland",
+                "name": "Ireland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Israel",
+                "name": "Israel",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Italy",
+                "name": "Italy",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Jamaica",
+                "name": "Jamaica",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Japan",
+                "name": "Japan",
+                "sanctioned_by_player": true
+              },
+              {
+                "id": "Jordan",
+                "name": "Jordan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Kenya",
+                "name": "Kenya",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Kuwait",
+                "name": "Kuwait",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Laos",
+                "name": "Laos",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Lebanon",
+                "name": "Lebanon",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Lesotho",
+                "name": "Lesotho",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Libya",
+                "name": "Libya",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Luxembourg",
+                "name": "Luxembourg",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Madagascar",
+                "name": "Madagascar",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Malawi",
+                "name": "Malawi",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Malaysia",
+                "name": "Malaysia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Maldives",
+                "name": "Maldives",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Malta",
+                "name": "Malta",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Mauritius",
+                "name": "Mauritius",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Mexico",
+                "name": "Mexico",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Mongolia",
+                "name": "Mongolia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Morocco",
+                "name": "Morocco",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Mozambique",
+                "name": "Mozambique",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Myanmar",
+                "name": "Myanmar",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Nepal",
+                "name": "Nepal",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Netherlands",
+                "name": "Netherlands",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "NewZealand",
+                "name": "New Zealand",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Nicaragua",
+                "name": "Nicaragua",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Nigeria",
+                "name": "Nigeria",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "NorthKorea",
+                "name": "North Korea",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Norway",
+                "name": "Norway",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Oman",
+                "name": "Oman",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Pakistan",
+                "name": "Pakistan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Panama",
+                "name": "Panama",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "PapuaNewGuinea",
+                "name": "Papua New Guinea",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Paraguay",
+                "name": "Paraguay",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Peru",
+                "name": "Peru",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Philippines",
+                "name": "Philippines",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Poland",
+                "name": "Poland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Portugal",
+                "name": "Portugal",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Qatar",
+                "name": "Qatar",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Romania",
+                "name": "Romania",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SaoTome",
+                "name": "Sao Tome and Principe",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SaudiArabia",
+                "name": "Saudi Arabia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Senegal",
+                "name": "Senegal",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Seychelles",
+                "name": "Seychelles",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Singapore",
+                "name": "Singapore",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SolomonIslands",
+                "name": "Solomon Islands",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SouthAfrica",
+                "name": "South Africa",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SouthKorea",
+                "name": "South Korea",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "USSR",
+                "name": "Soviet Union",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Spain",
+                "name": "Spain",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "SriLanka",
+                "name": "Sri Lanka",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Sudan",
+                "name": "Sudan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Suriname",
+                "name": "Suriname",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Swaziland",
+                "name": "Swaziland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Sweden",
+                "name": "Sweden",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Switzerland",
+                "name": "Switzerland",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Syria",
+                "name": "Syria",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Taiwan",
+                "name": "Taiwan",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Tanzania",
+                "name": "Tanzania",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Thailand",
+                "name": "Thailand",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Tonga",
+                "name": "Tonga",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "TrinidadTobago",
+                "name": "Trinidad and Tobago",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Tunisia",
+                "name": "Tunisia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Turkey",
+                "name": "Turkey",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Uganda",
+                "name": "Uganda",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "UAE",
+                "name": "United Arab Emirates",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "UK",
+                "name": "United Kingdom",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "USA",
+                "name": "United States",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Uruguay",
+                "name": "Uruguay",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Vanuatu",
+                "name": "Vanuatu",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Venezuela",
+                "name": "Venezuela",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Vietnam",
+                "name": "Vietnam",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Samoa",
+                "name": "Western Samoa",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Yemen",
+                "name": "Yemen",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Yugoslavia",
+                "name": "Yugoslavia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Zaire",
+                "name": "Zaire",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Zambia",
+                "name": "Zambia",
+                "sanctioned_by_player": false
+              },
+              {
+                "id": "Zimbabwe",
+                "name": "Zimbabwe",
+                "sanctioned_by_player": false
+              }
+            ]
+          }
+        },
+        "date": "1 Jan 1990",
+        "dispatch_count": 2,
+        "log": [
+          {
+            "cat": "diplomacy",
+            "date": "1 Jan 1990",
+            "t": 0,
+            "tags": [
+              "Japan",
+              "France"
+            ],
+            "text": "France imposes sanctions on Japan."
+          },
+          {
+            "cat": "diplomacy",
+            "date": "1 Jan 1990",
+            "t": 0,
+            "tags": [
+              "Japan",
+              "France"
+            ],
+            "text": "France confirms: lift sanctions on Japan."
+          }
+        ],
+        "political_capital": 91.0,
+        "relation": 5.0,
+        "sanctions": [
+          [
+            "Japan",
+            "France"
+          ],
+          [
+            "India",
+            "Japan"
+          ],
+          [
+            "Brazil",
+            "France"
+          ],
+          [
+            "France",
+            "Japan"
+          ]
+        ],
+        "trade_depth": 0.425
+      },
+      "command": {
+        "kind": "improve",
+        "target": "Japan"
+      },
+      "days_advanced": 0,
+      "expected_file": "expected-after-improve.json",
+      "kind": "improve",
+      "quote": {
+        "bilateral_context": {
+          "actor": "France",
+          "actor_name": "France",
+          "after": {
+            "freight": {
+              "enabled": true,
+              "inbound": {
+                "available": false,
+                "label": "Bilateral sanctions closed the route."
+              },
+              "note": "A route check does not book cargo or guarantee a sale, stock, capacity or delivery. Contracts, route access and future conditions still apply.",
+              "outbound": {
+                "available": false,
+                "label": "Bilateral sanctions closed the route."
+              }
+            },
+            "opposing_conflict": false,
+            "other_sanctioners": [
+              {
+                "alive": true,
+                "id": "India",
+                "name": "India"
+              }
+            ],
+            "relation": 11.0,
+            "relation_label": "11.0",
+            "restriction_label": "Bilateral restrictions remain: France sanctions Japan; Japan sanctions France.",
+            "target_growth_drag": {
+              "annual_pp": 0.1355547719712972,
+              "label": "0.136 pp/year",
+              "note": "Annualized growth drag from all sanctioning economies at today's output shares, including the affected country's diplomacy ministry. This is one growth term, not a forecast of total growth or a payment."
+            },
+            "their_sanctions": true,
+            "trade_treaty": {
+              "depth": 0.425,
+              "saved": true,
+              "status_label": "Saved trade agreement; restrictions can remove it at the next settlement."
+            },
+            "your_sanctions": true
+          },
+          "before": {
+            "freight": {
+              "enabled": true,
+              "inbound": {
+                "available": false,
+                "label": "Bilateral sanctions closed the route."
+              },
+              "note": "A route check does not book cargo or guarantee a sale, stock, capacity or delivery. Contracts, route access and future conditions still apply.",
+              "outbound": {
+                "available": false,
+                "label": "Bilateral sanctions closed the route."
+              }
+            },
+            "opposing_conflict": false,
+            "other_sanctioners": [
+              {
+                "alive": true,
+                "id": "India",
+                "name": "India"
+              }
+            ],
+            "relation": 5.0,
+            "relation_label": "5.0",
+            "restriction_label": "Bilateral restrictions remain: France sanctions Japan; Japan sanctions France.",
+            "target_growth_drag": {
+              "annual_pp": 0.1355547719712972,
+              "label": "0.136 pp/year",
+              "note": "Annualized growth drag from all sanctioning economies at today's output shares, including the affected country's diplomacy ministry. This is one growth term, not a forecast of total growth or a payment."
+            },
+            "their_sanctions": true,
+            "trade_treaty": {
+              "depth": 0.425,
+              "saved": true,
+              "status_label": "Saved trade agreement; restrictions can remove it at the next settlement."
+            },
+            "your_sanctions": true
+          },
+          "note": "These are current conditions and, when the decision is legal, its immediate result. Lifting your sanction leaves reverse and third-party sanctions in place. Improving relations does not lift sanctions, end a conflict or restore a removed treaty. Future settlement and diplomacy can change these conditions.",
+          "target": "Japan",
+          "target_name": "Japan"
+        },
+        "call_context": null,
+        "changes": [
+          {
+            "after": "89.0",
+            "before": "91.0",
+            "detail": "Immediate cost after the native limits.",
+            "label": "Political capital"
+          },
+          {
+            "after": "11.0",
+            "before": "5.0",
+            "detail": "Immediate relationship change.",
+            "label": "Relations with Japan"
+          },
+          {
+            "after": "France extends a diplomatic hand to Japan.",
+            "before": "Pending",
+            "detail": "1 Jan 1990",
+            "label": "Dated result"
+          }
+        ],
+        "command": {
+          "kind": "improve",
+          "target": "Japan"
+        },
+        "date_label": "1 Jan 1990",
+        "description": "Spend political capital on diplomacy. Review the actual relationship change below, including its existing limit.",
+        "nation": "France",
+        "reason": null,
+        "review_token": "decision-v1-a69dd39b3af0655b",
+        "session_id": "40388-1789346138650839500-1",
+        "title": "Improve relations: Japan",
+        "valid": true,
+        "warnings": []
+      }
+    }
+  ],
+  "version": 1
+}

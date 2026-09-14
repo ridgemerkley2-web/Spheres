@@ -1,0 +1,32 @@
+warning: unused import: `path::PathBuf`
+ --> spheres-web\vendor\tiny_http\src\connection.rs:7:5
+  |
+7 |     path::PathBuf,
+  |     ^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `SequentialWriter`
+ --> spheres-web\vendor\tiny_http\src\util\mod.rs:7:28
+  |
+7 | pub use self::sequential::{SequentialWriter, SequentialWriterBuilder};
+  |                            ^^^^^^^^^^^^^^^^
+
+warning: trait `MustBeShareDummy` is never used
+   --> spheres-web\vendor\tiny_http\src\lib.rs:164:7
+    |
+164 | trait MustBeShareDummy: Sync + Send {}
+    |       ^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `tiny_http` (lib) generated 3 warnings (run `cargo fix --lib -p tiny_http` to apply 2 suggestions)
+    Finished `release` profile [optimized] target(s) in 0.11s
+     Running unittests src\main.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_web-55caf82b2dcec446.exe)
+
+running 1 test
+S10G_SANCTIONS_PERF {"authored_preconditions":[],"benchmark_world_unchanged":true,"command":{"kind":"improve","target":"USA"},"date":"29 Oct 1995","days_advanced":0,"log_history_unchanged":true,"max_limit_ms":750,"max_ms":274.7794,"nation":"Tonga","nation_name":"Tonga","p95_limit_ms":300,"p95_ms":244.9886,"passed":true,"route_facts":{"after":{"enabled":true,"inbound":{"available":true,"label":"A freight route is available under current conditions."},"note":"A route check does not book cargo or guarantee a sale, stock, capacity or delivery. Contracts, route access and future conditions still apply.","outbound":{"available":true,"label":"A freight route is available under current conditions."}},"before":{"enabled":true,"inbound":{"available":true,"label":"A freight route is available under current conditions."},"note":"A route check does not book cargo or guarantee a sale, stock, capacity or delivery. Contracts, route access and future conditions still apply.","outbound":{"available":true,"label":"A freight route is available under current conditions."}}},"samples":21,"samples_ms":[234.8326,221.7581,225.2603,232.5513,243.1303,238.6224,219.96370000000002,220.3614,226.1544,226.1929,227.84470000000002,233.0661,244.9886,220.0602,225.54479999999998,235.0194,227.4797,274.7794,242.23739999999998,225.0442,220.95860000000002],"scope":"Native diplomatic preview generation including a cloned command, four native route checks and the complete-world review token. Excludes HTTP, browser and target discovery. No decision is applied and no campaign time advances.","source":"C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\export\\2127-purchased.campaign.json","source_file_unchanged":true,"target":"USA","target_name":"United States","warmups":3}
+test diplomatic_sanctions::tests::s10g_mature_open_route_preview_latency ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 401 filtered out; finished in 11.11s
+

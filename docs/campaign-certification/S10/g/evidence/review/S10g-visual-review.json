@@ -1,0 +1,57 @@
+{
+  "passed": true,
+  "runtime_revision": "0f4616477671bc01936fcc9f2877ae172b13e348",
+  "driver_revision": "0f4616477671bc01936fcc9f2877ae172b13e348",
+  "method": "Root inspected these ten actual local PNG screenshots with view_image after clean-pin browser qualification.",
+  "findings": [
+    "The existing diplomacy artwork and ordinary Government artwork remain visible.",
+    "The lift review shows outgoing sanctions removed while reverse sanctions stay active.",
+    "At narrow widths, the comparison cards stack and labels, restrictions and numeric effects remain readable.",
+    "The sanction review displays political capital 97 to 91 and relations 20 to 5; the improve review displays political capital 91 to 89 and relations 5 to 11.",
+    "Foreign Japan Government is marked view-only, with disabled review controls and explanatory text.",
+    "No blocking visual issue was found in the inspected samples. Normal viewport scroll cropping is present; the automated driver separately scrolls and hit-tests the relevant text and controls."
+  ],
+  "screenshots": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\sanctions-desk-1440.png",
+      "sha256": "01965dbcd4535d9439759668079f980fbb76bbedd1af75b26417ac7846ac4eca"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\sanctions-desk-320.png",
+      "sha256": "7259899099810fe9493bbbbccd9cc69791d2c122606b8bc1f4ead8f74e81a74c"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\lift-context-1440.png",
+      "sha256": "d62ce94a60b1d1a5ee61243af25a5a0f7953ec038b84facc7c5f61c9c7d1ef98"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\lift-context-320.png",
+      "sha256": "dbf017006a6ebda69dc94d57e543bcdc0a420618b9c7f42ef2b3a73f8d26df3b"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\lift-desk-320.png",
+      "sha256": "81c5336b962b77313446f4e0d759deb676970884328a43a5255ad00b9626688f"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\sanction-review-effects-320.png",
+      "sha256": "6a41b6d257b076fb0f44022d1e657e25613fa17b8a8d38a2ed31b42a70f8318d"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\improve-review-effects-390.png",
+      "sha256": "3bf77ef09a905ba9770ae7270953b98925d88f7e1fbb093ea195c214970d2f4a"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\foreign-government-read-only-1440.png",
+      "sha256": "8d8c7cca128417d6be4ce15e63146c3b6a37dbebce1764d7fb46b546084ecfbb"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\government-continued-narrow-320.png",
+      "sha256": "d65640a493d8aaefcae63fa8deb65723e991434dc3b9983dd4e3ebc19514935c"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\government-fresh-review-320.png",
+      "sha256": "c5f0b710bbef53694b2ece1523b371cb191c15e50688718fb3d446ea05906b85"
+    }
+  ],
+  "scope": "Manual sample of ten actual screenshots, supplemented by the complete automated browser visibility, clipping and hit-test checks. This is not a claim that each screenshot contains every control at once."
+}

@@ -1,0 +1,69 @@
+{
+  "format": "spheres-s10g-linux/v1",
+  "revision": "0f4616477671bc01936fcc9f2877ae172b13e348",
+  "started_utc": "2026-09-14T00:32:46.484945+00:00",
+  "scope": "Full native web suite and focused native agency/succession integration suites on Linux. No new Linux Node, external old-save or long-campaign qualification is claimed.",
+  "runner_sha256": "80e96bfd3ea4f154ee9f4c3d58bc8fef75307c34b893cda2f11240b57d2ae837",
+  "source_before": {
+    "head": "0f4616477671bc01936fcc9f2877ae172b13e348",
+    "status": ""
+  },
+  "checks": [
+    {
+      "name": "web",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--release",
+        "-p",
+        "spheres-web",
+        "--no-fail-fast"
+      ],
+      "exit_code": 0,
+      "log": "web.log",
+      "log_sha256": "25ced6ee91de6a37e65aa2b6548c0617f126c280fb3963aeaf38b69d7b38d6a7",
+      "totals": {
+        "passed": 387,
+        "failed": 0,
+        "ignored": 16,
+        "completed_targets": 2
+      },
+      "source_after": {
+        "head": "0f4616477671bc01936fcc9f2877ae172b13e348",
+        "status": ""
+      }
+    },
+    {
+      "name": "agency",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--release",
+        "-p",
+        "spheres-sim",
+        "--test",
+        "agency",
+        "--test",
+        "s02_succession",
+        "--no-fail-fast"
+      ],
+      "exit_code": 0,
+      "log": "agency.log",
+      "log_sha256": "e5b82040b0e3c6048d18278bbcceb8555022ad491643487d49d2bbd588865daf",
+      "totals": {
+        "passed": 12,
+        "failed": 0,
+        "ignored": 0,
+        "completed_targets": 2
+      },
+      "source_after": {
+        "head": "0f4616477671bc01936fcc9f2877ae172b13e348",
+        "status": ""
+      }
+    }
+  ],
+  "passed": true,
+  "finished_utc": "2026-09-14T00:37:26.387023+00:00"
+}

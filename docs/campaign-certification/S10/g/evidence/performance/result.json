@@ -1,0 +1,118 @@
+{
+  "revision": "0f4616477671bc01936fcc9f2877ae172b13e348",
+  "clean_before": true,
+  "command": [
+    "cargo",
+    "test",
+    "--locked",
+    "--release",
+    "-p",
+    "spheres-web",
+    "--bin",
+    "spheres-web",
+    "diplomatic_sanctions::tests::s10g_mature_open_route_preview_latency",
+    "--",
+    "--ignored",
+    "--nocapture"
+  ],
+  "runner_sha256": "b5ad2d62d7027c614c34301006982eea26a05ecd536a9898a1950321e886300d",
+  "started_utc": "2026-09-14T00:42:20.744389+00:00",
+  "source": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\export\\2127-purchased.campaign.json",
+    "bytes": 134238603,
+    "sha256_before": "73a8ed5bd81502bf37d77f374c23f18ed96644a0032ba295317b25a0d01133f9",
+    "sha256_after": "73a8ed5bd81502bf37d77f374c23f18ed96644a0032ba295317b25a0d01133f9"
+  },
+  "exit_code": 0,
+  "finished_utc": "2026-09-14T00:42:32.134383+00:00",
+  "revision_after": "0f4616477671bc01936fcc9f2877ae172b13e348",
+  "clean_after": true,
+  "log_sha256": "9b09f396e3ad6441233c76b2cbcacb64e0b41533dd91ca0820ca74232a29434f",
+  "totals": {
+    "passed": 1,
+    "failed": 0,
+    "ignored": 0,
+    "completed_targets": 1
+  },
+  "test_binary": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+    "sha256": "68cba5889b2ae000c49eaadfef4a6bd4135ffa21ec2cb01d7d891e3b69b49b03"
+  },
+  "measurements": [
+    {
+      "authored_preconditions": [],
+      "benchmark_world_unchanged": true,
+      "command": {
+        "kind": "improve",
+        "target": "USA"
+      },
+      "date": "29 Oct 1995",
+      "days_advanced": 0,
+      "log_history_unchanged": true,
+      "max_limit_ms": 750,
+      "max_ms": 274.7794,
+      "nation": "Tonga",
+      "nation_name": "Tonga",
+      "p95_limit_ms": 300,
+      "p95_ms": 244.9886,
+      "passed": true,
+      "route_facts": {
+        "after": {
+          "enabled": true,
+          "inbound": {
+            "available": true,
+            "label": "A freight route is available under current conditions."
+          },
+          "note": "A route check does not book cargo or guarantee a sale, stock, capacity or delivery. Contracts, route access and future conditions still apply.",
+          "outbound": {
+            "available": true,
+            "label": "A freight route is available under current conditions."
+          }
+        },
+        "before": {
+          "enabled": true,
+          "inbound": {
+            "available": true,
+            "label": "A freight route is available under current conditions."
+          },
+          "note": "A route check does not book cargo or guarantee a sale, stock, capacity or delivery. Contracts, route access and future conditions still apply.",
+          "outbound": {
+            "available": true,
+            "label": "A freight route is available under current conditions."
+          }
+        }
+      },
+      "samples": 21,
+      "samples_ms": [
+        234.8326,
+        221.7581,
+        225.2603,
+        232.5513,
+        243.1303,
+        238.6224,
+        219.96370000000002,
+        220.3614,
+        226.1544,
+        226.1929,
+        227.84470000000002,
+        233.0661,
+        244.9886,
+        220.0602,
+        225.54479999999998,
+        235.0194,
+        227.4797,
+        274.7794,
+        242.23739999999998,
+        225.0442,
+        220.95860000000002
+      ],
+      "scope": "Native diplomatic preview generation including a cloned command, four native route checks and the complete-world review token. Excludes HTTP, browser and target discovery. No decision is applied and no campaign time advances.",
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\export\\2127-purchased.campaign.json",
+      "source_file_unchanged": true,
+      "target": "USA",
+      "target_name": "United States",
+      "warmups": 3
+    }
+  ],
+  "passed": true
+}

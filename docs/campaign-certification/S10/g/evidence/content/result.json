@@ -1,0 +1,201 @@
+{
+  "revision": "0f4616477671bc01936fcc9f2877ae172b13e348",
+  "started_utc": "2026-09-14T00:32:26.731883+00:00",
+  "runner_sha256": "1c05a33613fbf368b5b0b36866baf8fda3c3edb27fda571339735d6e3b8f06cd",
+  "checks": [
+    {
+      "name": "tonga-tests",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_tonga_research_s10g.py"
+      ],
+      "exit_code": 0,
+      "log": "tonga-tests.log",
+      "log_sha256": "2e34b71a181f63a956f7cbc3e009ca68e495755061e7fab4572ed5a386aee184"
+    },
+    {
+      "name": "brazil-tests",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_brazil_research_s10f.py"
+      ],
+      "exit_code": 0,
+      "log": "brazil-tests.log",
+      "log_sha256": "8c17c072694c6a5d0e4798c19b9daf12038dfa96b00a35d19853d004fa554b92"
+    },
+    {
+      "name": "india-tests",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_india_research_s10e.py"
+      ],
+      "exit_code": 0,
+      "log": "india-tests.log",
+      "log_sha256": "48463421eddb119a95f2e43d59e5bacf550e6c6f075c2d69c2b40d1a433f1574"
+    },
+    {
+      "name": "japan-tests",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_japan_research_s10d.py"
+      ],
+      "exit_code": 0,
+      "log": "japan-tests.log",
+      "log_sha256": "b55936a892c266c6808d604082131c592112a7a6431fb76c5627507d1fcf262c"
+    },
+    {
+      "name": "census-tests",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_campaign*.py"
+      ],
+      "exit_code": 0,
+      "log": "census-tests.log",
+      "log_sha256": "46b9e0d2357b51fd860c32935379c60fe2bcc7b7df65f998cf9c01bf94eeb253"
+    },
+    {
+      "name": "france-tests",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_import_cnccfp_census.py"
+      ],
+      "exit_code": 0,
+      "log": "france-tests.log",
+      "log_sha256": "ecb4c7b9657164682f217e71fc921aa24f832525661d549f4c1d321aa2d6a6d5"
+    },
+    {
+      "name": "portrait-tests",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_tupou_portrait_s10c.py"
+      ],
+      "exit_code": 0,
+      "log": "portrait-tests.log",
+      "log_sha256": "eef970f62ed5d7dbf766cd0b2fa6e39da0b712cfda61c87fd8fdacf14e86c487"
+    },
+    {
+      "name": "production",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/avatars/leadership_production.py",
+        "check"
+      ],
+      "exit_code": 0,
+      "log": "production.log",
+      "log_sha256": "ede01baeaf00d1291e7980acaf67ee41fdc7281b8c9eb0b633122423d2ccea17"
+    },
+    {
+      "name": "build_person_avatar_assets",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/avatars/build_person_avatar_assets.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log": "build_person_avatar_assets.log",
+      "log_sha256": "fe83b07963d5578e258e3145936198c50445a1a9eec113db8d92b924377e770a"
+    },
+    {
+      "name": "campaign_census",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_census.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log": "campaign_census.log",
+      "log_sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+    },
+    {
+      "name": "import_cnccfp_census",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/avatars/import_cnccfp_census.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log": "import_cnccfp_census.log",
+      "log_sha256": "1a0ac4c1a826bf68586e8ddaf1da41f965497fb88d1025cbd839ef9caf2f010e"
+    },
+    {
+      "name": "campaign_research",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log": "campaign_research.log",
+      "log_sha256": "3a04a77193facd845d76559a50f64923f61bcb8004146c9c714aa77ed75dd18b"
+    }
+  ],
+  "clean_after": true,
+  "revision_after": "0f4616477671bc01936fcc9f2877ae172b13e348",
+  "passed": true
+}

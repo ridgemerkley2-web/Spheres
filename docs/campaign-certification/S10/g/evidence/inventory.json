@@ -1,0 +1,2974 @@
+{
+  "created_utc": "2026-09-14T00:43:26.800537+00:00",
+  "selection_sha256": "e2bbc2c5fccd7f96f8fb025c865d9c7954dd4aa229d418464917335c214bb9a3",
+  "selection": [
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-g-web.json",
+      "name": "windows/S10-g-web.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-g-web.log",
+      "name": "windows/S10-g-web.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-g-node.json",
+      "name": "windows/S10-g-node.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-g-node.log",
+      "name": "windows/S10-g-node.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-g-agency.json",
+      "name": "windows/S10-g-agency.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-g-agency.log",
+      "name": "windows/S10-g-agency.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-g-binary.json",
+      "name": "windows/S10-g-binary.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-g-binary.log",
+      "name": "windows/S10-g-binary.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-g-browser.json",
+      "name": "windows/S10-g-browser.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-g-browser.log",
+      "name": "windows/S10-g-browser.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-linux-final\\agency.log",
+      "name": "linux/agency.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-linux-final\\result.json",
+      "name": "linux/result.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-linux-final\\web.log",
+      "name": "linux/web.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-content-final\\brazil-tests.log",
+      "name": "content/brazil-tests.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-content-final\\build_person_avatar_assets.log",
+      "name": "content/build_person_avatar_assets.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-content-final\\campaign_census.log",
+      "name": "content/campaign_census.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-content-final\\campaign_research.log",
+      "name": "content/campaign_research.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-content-final\\census-tests.log",
+      "name": "content/census-tests.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-content-final\\france-tests.log",
+      "name": "content/france-tests.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-content-final\\import_cnccfp_census.log",
+      "name": "content/import_cnccfp_census.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-content-final\\india-tests.log",
+      "name": "content/india-tests.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-content-final\\japan-tests.log",
+      "name": "content/japan-tests.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-content-final\\portrait-tests.log",
+      "name": "content/portrait-tests.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-content-final\\production.log",
+      "name": "content/production.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-content-final\\result.json",
+      "name": "content/result.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-content-final\\tonga-tests.log",
+      "name": "content/tonga-tests.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-fixture-1\\before.json",
+      "name": "authored-native-fixture/before.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-fixture-1\\expected-after-improve.json",
+      "name": "authored-native-fixture/expected-after-improve.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-fixture-1\\expected-after-lift.json",
+      "name": "authored-native-fixture/expected-after-lift.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-fixture-1\\expected-after-sanction.json",
+      "name": "authored-native-fixture/expected-after-sanction.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-fixture-1\\manifest.json",
+      "name": "authored-native-fixture/manifest.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\001-before.canonical",
+      "name": "authored-browser/browser/authored-france-S8PO5J/archive-audit/001-before.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\001-before.json",
+      "name": "authored-browser/browser/authored-france-S8PO5J/archive-audit/001-before.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\002-expected-after-lift.canonical",
+      "name": "authored-browser/browser/authored-france-S8PO5J/archive-audit/002-expected-after-lift.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\002-expected-after-lift.json",
+      "name": "authored-browser/browser/authored-france-S8PO5J/archive-audit/002-expected-after-lift.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\003-expected-after-sanction.canonical",
+      "name": "authored-browser/browser/authored-france-S8PO5J/archive-audit/003-expected-after-sanction.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\003-expected-after-sanction.json",
+      "name": "authored-browser/browser/authored-france-S8PO5J/archive-audit/003-expected-after-sanction.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\004-expected-after-improve.canonical",
+      "name": "authored-browser/browser/authored-france-S8PO5J/archive-audit/004-expected-after-improve.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\004-expected-after-improve.json",
+      "name": "authored-browser/browser/authored-france-S8PO5J/archive-audit/004-expected-after-improve.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\005-s10g-audit-loaded.canonical",
+      "name": "authored-browser/browser/authored-france-S8PO5J/archive-audit/005-s10g-audit-loaded.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\005-s10g-audit-loaded.json",
+      "name": "authored-browser/browser/authored-france-S8PO5J/archive-audit/005-s10g-audit-loaded.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\006-s10g-audit-cancelled.canonical",
+      "name": "authored-browser/browser/authored-france-S8PO5J/archive-audit/006-s10g-audit-cancelled.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\006-s10g-audit-cancelled.json",
+      "name": "authored-browser/browser/authored-france-S8PO5J/archive-audit/006-s10g-audit-cancelled.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\007-s10g-audit-lift.canonical",
+      "name": "authored-browser/browser/authored-france-S8PO5J/archive-audit/007-s10g-audit-lift.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\007-s10g-audit-lift.json",
+      "name": "authored-browser/browser/authored-france-S8PO5J/archive-audit/007-s10g-audit-lift.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\008-s10g-audit-sanction.canonical",
+      "name": "authored-browser/browser/authored-france-S8PO5J/archive-audit/008-s10g-audit-sanction.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\008-s10g-audit-sanction.json",
+      "name": "authored-browser/browser/authored-france-S8PO5J/archive-audit/008-s10g-audit-sanction.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\009-s10g-audit-improve.canonical",
+      "name": "authored-browser/browser/authored-france-S8PO5J/archive-audit/009-s10g-audit-improve.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\009-s10g-audit-improve.json",
+      "name": "authored-browser/browser/authored-france-S8PO5J/archive-audit/009-s10g-audit-improve.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\010-s10g-audit-foreign.canonical",
+      "name": "authored-browser/browser/authored-france-S8PO5J/archive-audit/010-s10g-audit-foreign.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\010-s10g-audit-foreign.json",
+      "name": "authored-browser/browser/authored-france-S8PO5J/archive-audit/010-s10g-audit-foreign.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\011-s10g-audit-load-cancelled.canonical",
+      "name": "authored-browser/browser/authored-france-S8PO5J/archive-audit/011-s10g-audit-load-cancelled.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\011-s10g-audit-load-cancelled.json",
+      "name": "authored-browser/browser/authored-france-S8PO5J/archive-audit/011-s10g-audit-load-cancelled.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\012-s10g-audit-reloaded.canonical",
+      "name": "authored-browser/browser/authored-france-S8PO5J/archive-audit/012-s10g-audit-reloaded.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\012-s10g-audit-reloaded.json",
+      "name": "authored-browser/browser/authored-france-S8PO5J/archive-audit/012-s10g-audit-reloaded.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\013-s10g-audit-continued.canonical",
+      "name": "authored-browser/browser/authored-france-S8PO5J/archive-audit/013-s10g-audit-continued.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\013-s10g-audit-continued.json",
+      "name": "authored-browser/browser/authored-france-S8PO5J/archive-audit/013-s10g-audit-continued.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\continued-sanctions-320.png",
+      "name": "authored-browser/browser/authored-france-S8PO5J/continued-sanctions-320.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\foreign-government-read-only-1440.png",
+      "name": "authored-browser/browser/authored-france-S8PO5J/foreign-government-read-only-1440.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\improve-desk-320.png",
+      "name": "authored-browser/browser/authored-france-S8PO5J/improve-desk-320.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\improve-recorded-390.png",
+      "name": "authored-browser/browser/authored-france-S8PO5J/improve-recorded-390.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\improve-review-effects-320.png",
+      "name": "authored-browser/browser/authored-france-S8PO5J/improve-review-effects-320.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\improve-review-effects-390.png",
+      "name": "authored-browser/browser/authored-france-S8PO5J/improve-review-effects-390.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\lift-context-1440.png",
+      "name": "authored-browser/browser/authored-france-S8PO5J/lift-context-1440.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\lift-context-320.png",
+      "name": "authored-browser/browser/authored-france-S8PO5J/lift-context-320.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\lift-context-390.png",
+      "name": "authored-browser/browser/authored-france-S8PO5J/lift-context-390.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\lift-desk-320.png",
+      "name": "authored-browser/browser/authored-france-S8PO5J/lift-desk-320.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\lift-effects-320.png",
+      "name": "authored-browser/browser/authored-france-S8PO5J/lift-effects-320.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\lift-effects-390.png",
+      "name": "authored-browser/browser/authored-france-S8PO5J/lift-effects-390.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\lift-recorded-390.png",
+      "name": "authored-browser/browser/authored-france-S8PO5J/lift-recorded-390.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\lift-review-effects-320.png",
+      "name": "authored-browser/browser/authored-france-S8PO5J/lift-review-effects-320.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\lift-review-effects-390.png",
+      "name": "authored-browser/browser/authored-france-S8PO5J/lift-review-effects-390.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\progress.jsonl",
+      "name": "authored-browser/browser/authored-france-S8PO5J/progress.jsonl"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\result.json",
+      "name": "authored-browser/browser/authored-france-S8PO5J/result.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\sanction-desk-320.png",
+      "name": "authored-browser/browser/authored-france-S8PO5J/sanction-desk-320.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\sanction-recorded-390.png",
+      "name": "authored-browser/browser/authored-france-S8PO5J/sanction-recorded-390.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\sanction-review-effects-320.png",
+      "name": "authored-browser/browser/authored-france-S8PO5J/sanction-review-effects-320.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\sanction-review-effects-390.png",
+      "name": "authored-browser/browser/authored-france-S8PO5J/sanction-review-effects-390.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\sanctions-desk-1440.png",
+      "name": "authored-browser/browser/authored-france-S8PO5J/sanctions-desk-1440.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\sanctions-desk-320.png",
+      "name": "authored-browser/browser/authored-france-S8PO5J/sanctions-desk-320.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\sanctions-desk-390.png",
+      "name": "authored-browser/browser/authored-france-S8PO5J/sanctions-desk-390.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\server\\captures\\s10g-audit-cancelled.json",
+      "name": "authored-browser/browser/authored-france-S8PO5J/server/captures/s10g-audit-cancelled.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\server\\captures\\s10g-audit-continued.json",
+      "name": "authored-browser/browser/authored-france-S8PO5J/server/captures/s10g-audit-continued.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\server\\captures\\s10g-audit-foreign.json",
+      "name": "authored-browser/browser/authored-france-S8PO5J/server/captures/s10g-audit-foreign.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\server\\captures\\s10g-audit-improve.json",
+      "name": "authored-browser/browser/authored-france-S8PO5J/server/captures/s10g-audit-improve.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\server\\captures\\s10g-audit-lift.json",
+      "name": "authored-browser/browser/authored-france-S8PO5J/server/captures/s10g-audit-lift.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\server\\captures\\s10g-audit-load-cancelled.json",
+      "name": "authored-browser/browser/authored-france-S8PO5J/server/captures/s10g-audit-load-cancelled.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\server\\captures\\s10g-audit-loaded.json",
+      "name": "authored-browser/browser/authored-france-S8PO5J/server/captures/s10g-audit-loaded.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\server\\captures\\s10g-audit-reloaded.json",
+      "name": "authored-browser/browser/authored-france-S8PO5J/server/captures/s10g-audit-reloaded.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\server\\captures\\s10g-audit-sanction.json",
+      "name": "authored-browser/browser/authored-france-S8PO5J/server/captures/s10g-audit-sanction.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\server\\saves\\s10g-authored-sanctions.json",
+      "name": "authored-browser/browser/authored-france-S8PO5J/server/saves/s10g-authored-sanctions.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\server\\saves\\s10g-reviewed-sanctions.json",
+      "name": "authored-browser/browser/authored-france-S8PO5J/server/saves/s10g-reviewed-sanctions.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\server.log",
+      "name": "authored-browser/browser/authored-france-S8PO5J/server.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser.log",
+      "name": "authored-browser/browser.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\export.log",
+      "name": "authored-browser/export.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\result.json",
+      "name": "authored-browser/result.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\001-s10-before-review.canonical",
+      "name": "ordinary-browser/france-tzly2h/archive-audit/001-s10-before-review.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\001-s10-before-review.json",
+      "name": "ordinary-browser/france-tzly2h/archive-audit/001-s10-before-review.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\002-s10-after-cancel.canonical",
+      "name": "ordinary-browser/france-tzly2h/archive-audit/002-s10-after-cancel.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\002-s10-after-cancel.json",
+      "name": "ordinary-browser/france-tzly2h/archive-audit/002-s10-after-cancel.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\003-s10-after-second-tab.canonical",
+      "name": "ordinary-browser/france-tzly2h/archive-audit/003-s10-after-second-tab.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\003-s10-after-second-tab.json",
+      "name": "ordinary-browser/france-tzly2h/archive-audit/003-s10-after-second-tab.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\004-s10-after-stale.canonical",
+      "name": "ordinary-browser/france-tzly2h/archive-audit/004-s10-after-stale.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\004-s10-after-stale.json",
+      "name": "ordinary-browser/france-tzly2h/archive-audit/004-s10-after-stale.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\005-s10-after-government.canonical",
+      "name": "ordinary-browser/france-tzly2h/archive-audit/005-s10-after-government.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\005-s10-after-government.json",
+      "name": "ordinary-browser/france-tzly2h/archive-audit/005-s10-after-government.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\006-s10-after-load-cancel.canonical",
+      "name": "ordinary-browser/france-tzly2h/archive-audit/006-s10-after-load-cancel.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\006-s10-after-load-cancel.json",
+      "name": "ordinary-browser/france-tzly2h/archive-audit/006-s10-after-load-cancel.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\007-s10-after-load.canonical",
+      "name": "ordinary-browser/france-tzly2h/archive-audit/007-s10-after-load.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\007-s10-after-load.json",
+      "name": "ordinary-browser/france-tzly2h/archive-audit/007-s10-after-load.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\008-s10-after-continue.canonical",
+      "name": "ordinary-browser/france-tzly2h/archive-audit/008-s10-after-continue.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\008-s10-after-continue.json",
+      "name": "ordinary-browser/france-tzly2h/archive-audit/008-s10-after-continue.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\chrome-netlog.json",
+      "name": "ordinary-browser/france-tzly2h/chrome-netlog.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\government-continued-narrow-320.png",
+      "name": "ordinary-browser/france-tzly2h/government-continued-narrow-320.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\government-continued-narrow.png",
+      "name": "ordinary-browser/france-tzly2h/government-continued-narrow.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\government-fresh-review-320.png",
+      "name": "ordinary-browser/france-tzly2h/government-fresh-review-320.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\government-fresh-review-390.png",
+      "name": "ordinary-browser/france-tzly2h/government-fresh-review-390.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\government-fresh-review.png",
+      "name": "ordinary-browser/france-tzly2h/government-fresh-review.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\government-result-desktop.png",
+      "name": "ordinary-browser/france-tzly2h/government-result-desktop.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\government-result-narrow-320.png",
+      "name": "ordinary-browser/france-tzly2h/government-result-narrow-320.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\government-result-narrow-390.png",
+      "name": "ordinary-browser/france-tzly2h/government-result-narrow-390.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\government-review-before-second-tab.png",
+      "name": "ordinary-browser/france-tzly2h/government-review-before-second-tab.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\government-stale-review-refused.png",
+      "name": "ordinary-browser/france-tzly2h/government-stale-review-refused.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\policy-review-desktop.png",
+      "name": "ordinary-browser/france-tzly2h/policy-review-desktop.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\policy-review-narrow-320.png",
+      "name": "ordinary-browser/france-tzly2h/policy-review-narrow-320.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\policy-review-narrow.png",
+      "name": "ordinary-browser/france-tzly2h/policy-review-narrow.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\progress.jsonl",
+      "name": "ordinary-browser/france-tzly2h/progress.jsonl"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\result.json",
+      "name": "ordinary-browser/france-tzly2h/result.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\second-tab-policy-recorded.png",
+      "name": "ordinary-browser/france-tzly2h/second-tab-policy-recorded.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\server\\audit-captures\\s10-after-cancel-lI07Du\\s10-after-cancel.json",
+      "name": "ordinary-browser/france-tzly2h/server/audit-captures/s10-after-cancel-lI07Du/s10-after-cancel.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\server\\audit-captures\\s10-after-continue-bkzETh\\s10-after-continue.json",
+      "name": "ordinary-browser/france-tzly2h/server/audit-captures/s10-after-continue-bkzETh/s10-after-continue.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\server\\audit-captures\\s10-after-government-nUeAzk\\s10-after-government.json",
+      "name": "ordinary-browser/france-tzly2h/server/audit-captures/s10-after-government-nUeAzk/s10-after-government.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\server\\audit-captures\\s10-after-load-4HbNUH\\s10-after-load.json",
+      "name": "ordinary-browser/france-tzly2h/server/audit-captures/s10-after-load-4HbNUH/s10-after-load.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\server\\audit-captures\\s10-after-load-cancel-7J8YhZ\\s10-after-load-cancel.json",
+      "name": "ordinary-browser/france-tzly2h/server/audit-captures/s10-after-load-cancel-7J8YhZ/s10-after-load-cancel.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\server\\audit-captures\\s10-after-second-tab-5BpKkD\\s10-after-second-tab.json",
+      "name": "ordinary-browser/france-tzly2h/server/audit-captures/s10-after-second-tab-5BpKkD/s10-after-second-tab.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\server\\audit-captures\\s10-after-stale-P170Og\\s10-after-stale.json",
+      "name": "ordinary-browser/france-tzly2h/server/audit-captures/s10-after-stale-P170Og/s10-after-stale.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\server\\audit-captures\\s10-before-review-VFOFGj\\s10-before-review.json",
+      "name": "ordinary-browser/france-tzly2h/server/audit-captures/s10-before-review-VFOFGj/s10-before-review.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\server\\saves\\s10-government-decisions.json",
+      "name": "ordinary-browser/france-tzly2h/server/saves/s10-government-decisions.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\server.log",
+      "name": "ordinary-browser/france-tzly2h/server.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-preservation-before.json",
+      "name": "review/S10g-preservation-before.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-preservation-final.json",
+      "name": "review/S10g-preservation-final.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-visual-review.json",
+      "name": "review/S10g-visual-review.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\S10g-review-launch.json",
+      "name": "review/launch.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S10g-20260913-173757\\native-verification\\copied-save.canonical",
+      "name": "review/native-verification/copied-save.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S10g-20260913-173757\\native-verification\\copied-save.json",
+      "name": "review/native-verification/copied-save.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s10g-check.py",
+      "name": "runners/run-s10g-check.py"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s10g-linux.py",
+      "name": "runners/run-s10g-linux.py"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s10g-content.py",
+      "name": "runners/run-s10g-content.py"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s10g-sanctions.py",
+      "name": "runners/run-s10g-sanctions.py"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\launch-s10g-review.py",
+      "name": "runners/launch-s10g-review.py"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\verify-s08-preservation.py",
+      "name": "runners/verify-s08-preservation.py"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\collect-s09-evidence.py",
+      "name": "runners/collect-s09-evidence.py"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\publish-s10g.py",
+      "name": "runners/publish-s10g.py"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\verify-s10g-publication.py",
+      "name": "runners/verify-s10g-publication.py"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-g-performance.json",
+      "name": "performance/result.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-g-performance.log",
+      "name": "performance/native.log"
+    }
+  ],
+  "files": [
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-g-web.json",
+      "logical_path": "windows/S10-g-web.json",
+      "bytes": 1041,
+      "sha256": "c3eac162aef23612026741a4dfbba85cea829c639e5814e86bd116693225e0af",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "windows/S10-g-web.json",
+          "bytes": 1041,
+          "sha256": "c3eac162aef23612026741a4dfbba85cea829c639e5814e86bd116693225e0af"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-g-web.log",
+      "logical_path": "windows/S10-g-web.log",
+      "bytes": 39668,
+      "sha256": "13ae28e81cca8dbac022b4f61e6c696631af277f0af409d7408220fdbedb1ba8",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "windows/S10-g-web.log",
+          "bytes": 39668,
+          "sha256": "13ae28e81cca8dbac022b4f61e6c696631af277f0af409d7408220fdbedb1ba8"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-g-node.json",
+      "logical_path": "windows/S10-g-node.json",
+      "bytes": 656,
+      "sha256": "e984d2b960686546ef98485eb21cc563137812c0cba9dbba58ae76eab97f1903",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "windows/S10-g-node.json",
+          "bytes": 656,
+          "sha256": "e984d2b960686546ef98485eb21cc563137812c0cba9dbba58ae76eab97f1903"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-g-node.log",
+      "logical_path": "windows/S10-g-node.log",
+      "bytes": 154709,
+      "sha256": "c90684d618346a8218b91a39f662f390a59c38f4f1e6778809d3c19edd6ba990",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "windows/S10-g-node.log",
+          "bytes": 154709,
+          "sha256": "c90684d618346a8218b91a39f662f390a59c38f4f1e6778809d3c19edd6ba990"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-g-agency.json",
+      "logical_path": "windows/S10-g-agency.json",
+      "bytes": 808,
+      "sha256": "62d9536f72243cf28096769084e4882f9f405727ff9e5d3c22d0ea2b87edfc57",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "windows/S10-g-agency.json",
+          "bytes": 808,
+          "sha256": "62d9536f72243cf28096769084e4882f9f405727ff9e5d3c22d0ea2b87edfc57"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-g-agency.log",
+      "logical_path": "windows/S10-g-agency.log",
+      "bytes": 1618,
+      "sha256": "b4de81272e62735b520af4503dd5a7fe2eaf4f4943249bf8013fa2dda71cbbb2",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "windows/S10-g-agency.log",
+          "bytes": 1618,
+          "sha256": "b4de81272e62735b520af4503dd5a7fe2eaf4f4943249bf8013fa2dda71cbbb2"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-g-binary.json",
+      "logical_path": "windows/S10-g-binary.json",
+      "bytes": 884,
+      "sha256": "0508cc5e6d5b526014914c22ea0223c4c4802c7ed6b0f10c501bf3531eb2ecb5",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "windows/S10-g-binary.json",
+          "bytes": 884,
+          "sha256": "0508cc5e6d5b526014914c22ea0223c4c4802c7ed6b0f10c501bf3531eb2ecb5"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-g-binary.log",
+      "logical_path": "windows/S10-g-binary.log",
+      "bytes": 887,
+      "sha256": "de8c1355bf17a672a00fbcd12e18c676c2bfbce50185eaa9dbd99f820f396dad",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "windows/S10-g-binary.log",
+          "bytes": 887,
+          "sha256": "de8c1355bf17a672a00fbcd12e18c676c2bfbce50185eaa9dbd99f820f396dad"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-g-browser.json",
+      "logical_path": "windows/S10-g-browser.json",
+      "bytes": 943,
+      "sha256": "0627151db67316dd51edcbf1840c79dd5477d60d649119dec48790429a6e246c",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "windows/S10-g-browser.json",
+          "bytes": 943,
+          "sha256": "0627151db67316dd51edcbf1840c79dd5477d60d649119dec48790429a6e246c"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-g-browser.log",
+      "logical_path": "windows/S10-g-browser.log",
+      "bytes": 194,
+      "sha256": "5fab7b3de8042ad71f32eb2fd185ea532146cc4afad659aa84e0843aa210a931",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "windows/S10-g-browser.log",
+          "bytes": 194,
+          "sha256": "5fab7b3de8042ad71f32eb2fd185ea532146cc4afad659aa84e0843aa210a931"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-linux-final\\agency.log",
+      "logical_path": "linux/agency.log",
+      "bytes": 1452,
+      "sha256": "e5b82040b0e3c6048d18278bbcceb8555022ad491643487d49d2bbd588865daf",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "linux/agency.log",
+          "bytes": 1452,
+          "sha256": "e5b82040b0e3c6048d18278bbcceb8555022ad491643487d49d2bbd588865daf"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-linux-final\\result.json",
+      "logical_path": "linux/result.json",
+      "bytes": 1833,
+      "sha256": "597b6db045c7f5f6a4c6a405e2d53d793e378fce9d45da68d5355daf1be03491",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "linux/result.json",
+          "bytes": 1833,
+          "sha256": "597b6db045c7f5f6a4c6a405e2d53d793e378fce9d45da68d5355daf1be03491"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-linux-final\\web.log",
+      "logical_path": "linux/web.log",
+      "bytes": 39274,
+      "sha256": "25ced6ee91de6a37e65aa2b6548c0617f126c280fb3963aeaf38b69d7b38d6a7",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "linux/web.log",
+          "bytes": 39274,
+          "sha256": "25ced6ee91de6a37e65aa2b6548c0617f126c280fb3963aeaf38b69d7b38d6a7"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-content-final\\brazil-tests.log",
+      "logical_path": "content/brazil-tests.log",
+      "bytes": 112,
+      "sha256": "8c17c072694c6a5d0e4798c19b9daf12038dfa96b00a35d19853d004fa554b92",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "content/brazil-tests.log",
+          "bytes": 112,
+          "sha256": "8c17c072694c6a5d0e4798c19b9daf12038dfa96b00a35d19853d004fa554b92"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-content-final\\build_person_avatar_assets.log",
+      "logical_path": "content/build_person_avatar_assets.log",
+      "bytes": 49,
+      "sha256": "fe83b07963d5578e258e3145936198c50445a1a9eec113db8d92b924377e770a",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "content/build_person_avatar_assets.log",
+          "bytes": 49,
+          "sha256": "fe83b07963d5578e258e3145936198c50445a1a9eec113db8d92b924377e770a"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-content-final\\campaign_census.log",
+      "logical_path": "content/campaign_census.log",
+      "bytes": 1462,
+      "sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "content/campaign_census.log",
+          "bytes": 1462,
+          "sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-content-final\\campaign_research.log",
+      "logical_path": "content/campaign_research.log",
+      "bytes": 249,
+      "sha256": "3a04a77193facd845d76559a50f64923f61bcb8004146c9c714aa77ed75dd18b",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "content/campaign_research.log",
+          "bytes": 249,
+          "sha256": "3a04a77193facd845d76559a50f64923f61bcb8004146c9c714aa77ed75dd18b"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-content-final\\census-tests.log",
+      "logical_path": "content/census-tests.log",
+      "bytes": 120,
+      "sha256": "46b9e0d2357b51fd860c32935379c60fe2bcc7b7df65f998cf9c01bf94eeb253",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "content/census-tests.log",
+          "bytes": 120,
+          "sha256": "46b9e0d2357b51fd860c32935379c60fe2bcc7b7df65f998cf9c01bf94eeb253"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-content-final\\france-tests.log",
+      "logical_path": "content/france-tests.log",
+      "bytes": 114,
+      "sha256": "ecb4c7b9657164682f217e71fc921aa24f832525661d549f4c1d321aa2d6a6d5",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "content/france-tests.log",
+          "bytes": 114,
+          "sha256": "ecb4c7b9657164682f217e71fc921aa24f832525661d549f4c1d321aa2d6a6d5"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-content-final\\import_cnccfp_census.log",
+      "logical_path": "content/import_cnccfp_census.log",
+      "bytes": 149,
+      "sha256": "1a0ac4c1a826bf68586e8ddaf1da41f965497fb88d1025cbd839ef9caf2f010e",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "content/import_cnccfp_census.log",
+          "bytes": 149,
+          "sha256": "1a0ac4c1a826bf68586e8ddaf1da41f965497fb88d1025cbd839ef9caf2f010e"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-content-final\\india-tests.log",
+      "logical_path": "content/india-tests.log",
+      "bytes": 111,
+      "sha256": "48463421eddb119a95f2e43d59e5bacf550e6c6f075c2d69c2b40d1a433f1574",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "content/india-tests.log",
+          "bytes": 111,
+          "sha256": "48463421eddb119a95f2e43d59e5bacf550e6c6f075c2d69c2b40d1a433f1574"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-content-final\\japan-tests.log",
+      "logical_path": "content/japan-tests.log",
+      "bytes": 111,
+      "sha256": "b55936a892c266c6808d604082131c592112a7a6431fb76c5627507d1fcf262c",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "content/japan-tests.log",
+          "bytes": 111,
+          "sha256": "b55936a892c266c6808d604082131c592112a7a6431fb76c5627507d1fcf262c"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-content-final\\portrait-tests.log",
+      "logical_path": "content/portrait-tests.log",
+      "bytes": 109,
+      "sha256": "eef970f62ed5d7dbf766cd0b2fa6e39da0b712cfda61c87fd8fdacf14e86c487",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "content/portrait-tests.log",
+          "bytes": 109,
+          "sha256": "eef970f62ed5d7dbf766cd0b2fa6e39da0b712cfda61c87fd8fdacf14e86c487"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-content-final\\production.log",
+      "logical_path": "content/production.log",
+      "bytes": 796,
+      "sha256": "ede01baeaf00d1291e7980acaf67ee41fdc7281b8c9eb0b633122423d2ccea17",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "content/production.log",
+          "bytes": 796,
+          "sha256": "ede01baeaf00d1291e7980acaf67ee41fdc7281b8c9eb0b633122423d2ccea17"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-content-final\\result.json",
+      "logical_path": "content/result.json",
+      "bytes": 5050,
+      "sha256": "19b18eaf55130a05f72a550c39168b7f71fa14dee7846144c7ed990efc0bbc69",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "content/result.json",
+          "bytes": 5050,
+          "sha256": "19b18eaf55130a05f72a550c39168b7f71fa14dee7846144c7ed990efc0bbc69"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-content-final\\tonga-tests.log",
+      "logical_path": "content/tonga-tests.log",
+      "bytes": 112,
+      "sha256": "2e34b71a181f63a956f7cbc3e009ca68e495755061e7fab4572ed5a386aee184",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "content/tonga-tests.log",
+          "bytes": 112,
+          "sha256": "2e34b71a181f63a956f7cbc3e009ca68e495755061e7fab4572ed5a386aee184"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-fixture-1\\before.json",
+      "logical_path": "authored-native-fixture/before.json",
+      "bytes": 13148891,
+      "sha256": "86b9f8ae206793f48d5dfbba0819d811cf46467345d36ff8e669e2a6068cb8c9",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-native-fixture/before.json.gz",
+          "bytes": 2088177,
+          "sha256": "4d9517a1d0af7b86946063c4b8105238e0fec25330637dcd5a8be8c7b18968f0"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-fixture-1\\expected-after-improve.json",
+      "logical_path": "authored-native-fixture/expected-after-improve.json",
+      "bytes": 13149333,
+      "sha256": "2e61a38582c22f675f5a69371cb28944da60f26fa37bd92e36b607b262291b77",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-native-fixture/expected-after-improve.json.gz",
+          "bytes": 2088347,
+          "sha256": "e5a43daca38c0c36eea90f8a646acd926ac9996510470fceefcb7de5d8d9e2f4"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-fixture-1\\expected-after-lift.json",
+      "logical_path": "authored-native-fixture/expected-after-lift.json",
+      "bytes": 13148993,
+      "sha256": "1a94a0ed770b7456ead04fd3883230954286800e3526243fa217335f06475a3c",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-native-fixture/expected-after-lift.json.gz",
+          "bytes": 2088240,
+          "sha256": "2bb437de7c6b851655db0a12d9ce7b57e150f6373c1263f5e55efa99df118b7d"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-fixture-1\\expected-after-sanction.json",
+      "logical_path": "authored-native-fixture/expected-after-sanction.json",
+      "bytes": 13149163,
+      "sha256": "febcdc838fe23b2cf2fe2b42810a22b823a5076685283868b68ccf56b8469e05",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-native-fixture/expected-after-sanction.json.gz",
+          "bytes": 2088296,
+          "sha256": "cb23587cb4d339247cfb9dd43049e8ac97e175b987ca805c9b5adc821675c19e"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-fixture-1\\manifest.json",
+      "logical_path": "authored-native-fixture/manifest.json",
+      "bytes": 188321,
+      "sha256": "0858ad1b69b750f8da442f4249d78715120ae6dd76939896846c18283c72a509",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-native-fixture/manifest.json",
+          "bytes": 188321,
+          "sha256": "0858ad1b69b750f8da442f4249d78715120ae6dd76939896846c18283c72a509"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\001-before.canonical",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/archive-audit/001-before.canonical",
+      "bytes": 12116485,
+      "sha256": "77c4904696d23fd2a245e5207fadbc990ea53fa99025c2752651c85c926c4839",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/archive-audit/001-before.canonical.gz",
+          "bytes": 1869030,
+          "sha256": "a820882b365acf14c415d9735c98605acba668bffa876c8ddf16b0f9a5a6e95c"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\001-before.json",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/archive-audit/001-before.json",
+      "bytes": 1313,
+      "sha256": "5297920df32cb8085f812837361eb357238f59ce8032052e14639c8d41c6468c",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/archive-audit/001-before.json",
+          "bytes": 1313,
+          "sha256": "5297920df32cb8085f812837361eb357238f59ce8032052e14639c8d41c6468c"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\002-expected-after-lift.canonical",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/archive-audit/002-expected-after-lift.canonical",
+      "bytes": 12116447,
+      "sha256": "ff0ad9cd34d08b94c9566cbe710aacdf3408570d1a7b37a7b155aa55e58a7acf",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/archive-audit/002-expected-after-lift.canonical.gz",
+          "bytes": 1869017,
+          "sha256": "fde7e3b4b3ce8bf8f270fc64da5f3745b888dd6614ec3da13de02ed2b7d88e43"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\002-expected-after-lift.json",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/archive-audit/002-expected-after-lift.json",
+      "bytes": 1339,
+      "sha256": "5634fdddaf0b37b2a680fd33854c811b0a53815a9e147383939e15e52a3601fa",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/archive-audit/002-expected-after-lift.json",
+          "bytes": 1339,
+          "sha256": "5634fdddaf0b37b2a680fd33854c811b0a53815a9e147383939e15e52a3601fa"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\003-expected-after-sanction.canonical",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/archive-audit/003-expected-after-sanction.canonical",
+      "bytes": 12116528,
+      "sha256": "f6872b82b4bdb4be8ff49935b68e7def6c651847b1ccd92e864c4bfc31518e88",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/archive-audit/003-expected-after-sanction.canonical.gz",
+          "bytes": 1869041,
+          "sha256": "fbdb895caf86206bb1f224d5fa4bbe55e60a91a2f3fadb56d8bcbd7502295ca4"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\003-expected-after-sanction.json",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/archive-audit/003-expected-after-sanction.json",
+      "bytes": 1347,
+      "sha256": "b936e7f3976df4111d3f98415d9d1e65500cf320e47aa572f6c2dff716fd4d81",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/archive-audit/003-expected-after-sanction.json",
+          "bytes": 1347,
+          "sha256": "b936e7f3976df4111d3f98415d9d1e65500cf320e47aa572f6c2dff716fd4d81"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\004-expected-after-improve.canonical",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/archive-audit/004-expected-after-improve.canonical",
+      "bytes": 12116579,
+      "sha256": "7b7637d08dd5fc9b1247a9ce32be14091161b9cb06ca04c42eb10f7a8cb068f9",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/archive-audit/004-expected-after-improve.canonical.gz",
+          "bytes": 1869059,
+          "sha256": "9ba370e4166f52eadd855940fae6a04c76691c73f8950b0546ac0ca94e914267"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\004-expected-after-improve.json",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/archive-audit/004-expected-after-improve.json",
+      "bytes": 1345,
+      "sha256": "b200a8d2ad83f1b1620fbbfd67c27ccbb91c2b2d0ead834236d1ff260e49a53b",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/archive-audit/004-expected-after-improve.json",
+          "bytes": 1345,
+          "sha256": "b200a8d2ad83f1b1620fbbfd67c27ccbb91c2b2d0ead834236d1ff260e49a53b"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\005-s10g-audit-loaded.canonical",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/archive-audit/005-s10g-audit-loaded.canonical",
+      "bytes": 12116485,
+      "sha256": "77c4904696d23fd2a245e5207fadbc990ea53fa99025c2752651c85c926c4839",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/archive-audit/005-s10g-audit-loaded.canonical.gz",
+          "bytes": 1869030,
+          "sha256": "a820882b365acf14c415d9735c98605acba668bffa876c8ddf16b0f9a5a6e95c"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\005-s10g-audit-loaded.json",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/archive-audit/005-s10g-audit-loaded.json",
+      "bytes": 1382,
+      "sha256": "6aab0f51dc4ae7d87a854c8bba603c591d0cec2c0743fadf6b9808294c309e72",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/archive-audit/005-s10g-audit-loaded.json",
+          "bytes": 1382,
+          "sha256": "6aab0f51dc4ae7d87a854c8bba603c591d0cec2c0743fadf6b9808294c309e72"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\006-s10g-audit-cancelled.canonical",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/archive-audit/006-s10g-audit-cancelled.canonical",
+      "bytes": 12116485,
+      "sha256": "77c4904696d23fd2a245e5207fadbc990ea53fa99025c2752651c85c926c4839",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/archive-audit/006-s10g-audit-cancelled.canonical.gz",
+          "bytes": 1869030,
+          "sha256": "a820882b365acf14c415d9735c98605acba668bffa876c8ddf16b0f9a5a6e95c"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\006-s10g-audit-cancelled.json",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/archive-audit/006-s10g-audit-cancelled.json",
+      "bytes": 1388,
+      "sha256": "d09bb277f00edca5b27b236aee9e53b752f501810b7bab69b352f0073f235661",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/archive-audit/006-s10g-audit-cancelled.json",
+          "bytes": 1388,
+          "sha256": "d09bb277f00edca5b27b236aee9e53b752f501810b7bab69b352f0073f235661"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\007-s10g-audit-lift.canonical",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/archive-audit/007-s10g-audit-lift.canonical",
+      "bytes": 12116447,
+      "sha256": "ff0ad9cd34d08b94c9566cbe710aacdf3408570d1a7b37a7b155aa55e58a7acf",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/archive-audit/007-s10g-audit-lift.canonical.gz",
+          "bytes": 1869017,
+          "sha256": "fde7e3b4b3ce8bf8f270fc64da5f3745b888dd6614ec3da13de02ed2b7d88e43"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\007-s10g-audit-lift.json",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/archive-audit/007-s10g-audit-lift.json",
+      "bytes": 1378,
+      "sha256": "68ced6f13e634de3e82231eb87c869020e2983c6ea55c6f15f651b900bf7a835",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/archive-audit/007-s10g-audit-lift.json",
+          "bytes": 1378,
+          "sha256": "68ced6f13e634de3e82231eb87c869020e2983c6ea55c6f15f651b900bf7a835"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\008-s10g-audit-sanction.canonical",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/archive-audit/008-s10g-audit-sanction.canonical",
+      "bytes": 12116528,
+      "sha256": "f6872b82b4bdb4be8ff49935b68e7def6c651847b1ccd92e864c4bfc31518e88",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/archive-audit/008-s10g-audit-sanction.canonical.gz",
+          "bytes": 1869041,
+          "sha256": "fbdb895caf86206bb1f224d5fa4bbe55e60a91a2f3fadb56d8bcbd7502295ca4"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\008-s10g-audit-sanction.json",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/archive-audit/008-s10g-audit-sanction.json",
+      "bytes": 1386,
+      "sha256": "2ed8b1b2011baa5c720aff747386154c702ddaecebb38649d2bbabca517eda39",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/archive-audit/008-s10g-audit-sanction.json",
+          "bytes": 1386,
+          "sha256": "2ed8b1b2011baa5c720aff747386154c702ddaecebb38649d2bbabca517eda39"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\009-s10g-audit-improve.canonical",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/archive-audit/009-s10g-audit-improve.canonical",
+      "bytes": 12116579,
+      "sha256": "7b7637d08dd5fc9b1247a9ce32be14091161b9cb06ca04c42eb10f7a8cb068f9",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/archive-audit/009-s10g-audit-improve.canonical.gz",
+          "bytes": 1869059,
+          "sha256": "9ba370e4166f52eadd855940fae6a04c76691c73f8950b0546ac0ca94e914267"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\009-s10g-audit-improve.json",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/archive-audit/009-s10g-audit-improve.json",
+      "bytes": 1384,
+      "sha256": "f449fae41b249838c6edac371110fbe986854aa013adf7c0c5a478f1045c2fe7",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/archive-audit/009-s10g-audit-improve.json",
+          "bytes": 1384,
+          "sha256": "f449fae41b249838c6edac371110fbe986854aa013adf7c0c5a478f1045c2fe7"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\010-s10g-audit-foreign.canonical",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/archive-audit/010-s10g-audit-foreign.canonical",
+      "bytes": 12116579,
+      "sha256": "7b7637d08dd5fc9b1247a9ce32be14091161b9cb06ca04c42eb10f7a8cb068f9",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/archive-audit/010-s10g-audit-foreign.canonical.gz",
+          "bytes": 1869059,
+          "sha256": "9ba370e4166f52eadd855940fae6a04c76691c73f8950b0546ac0ca94e914267"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\010-s10g-audit-foreign.json",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/archive-audit/010-s10g-audit-foreign.json",
+      "bytes": 1384,
+      "sha256": "93007141e76914d78fd869f9fce68581ba65a5e534b3da5e4ce5903085569248",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/archive-audit/010-s10g-audit-foreign.json",
+          "bytes": 1384,
+          "sha256": "93007141e76914d78fd869f9fce68581ba65a5e534b3da5e4ce5903085569248"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\011-s10g-audit-load-cancelled.canonical",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/archive-audit/011-s10g-audit-load-cancelled.canonical",
+      "bytes": 12116579,
+      "sha256": "7b7637d08dd5fc9b1247a9ce32be14091161b9cb06ca04c42eb10f7a8cb068f9",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/archive-audit/011-s10g-audit-load-cancelled.canonical.gz",
+          "bytes": 1869059,
+          "sha256": "9ba370e4166f52eadd855940fae6a04c76691c73f8950b0546ac0ca94e914267"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\011-s10g-audit-load-cancelled.json",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/archive-audit/011-s10g-audit-load-cancelled.json",
+      "bytes": 1398,
+      "sha256": "da3258b07ba70d14efd3d49b2f22e37d83b7d164423198afeff387f6f48058ee",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/archive-audit/011-s10g-audit-load-cancelled.json",
+          "bytes": 1398,
+          "sha256": "da3258b07ba70d14efd3d49b2f22e37d83b7d164423198afeff387f6f48058ee"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\012-s10g-audit-reloaded.canonical",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/archive-audit/012-s10g-audit-reloaded.canonical",
+      "bytes": 12116579,
+      "sha256": "7b7637d08dd5fc9b1247a9ce32be14091161b9cb06ca04c42eb10f7a8cb068f9",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/archive-audit/012-s10g-audit-reloaded.canonical.gz",
+          "bytes": 1869059,
+          "sha256": "9ba370e4166f52eadd855940fae6a04c76691c73f8950b0546ac0ca94e914267"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\012-s10g-audit-reloaded.json",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/archive-audit/012-s10g-audit-reloaded.json",
+      "bytes": 1386,
+      "sha256": "4c6f4203e92c30bb0546f11830ad82f986608bfc5c09a9a0d25085c53bc09bbb",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/archive-audit/012-s10g-audit-reloaded.json",
+          "bytes": 1386,
+          "sha256": "4c6f4203e92c30bb0546f11830ad82f986608bfc5c09a9a0d25085c53bc09bbb"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\013-s10g-audit-continued.canonical",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/archive-audit/013-s10g-audit-continued.canonical",
+      "bytes": 12116579,
+      "sha256": "7b7637d08dd5fc9b1247a9ce32be14091161b9cb06ca04c42eb10f7a8cb068f9",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/archive-audit/013-s10g-audit-continued.canonical.gz",
+          "bytes": 1869059,
+          "sha256": "9ba370e4166f52eadd855940fae6a04c76691c73f8950b0546ac0ca94e914267"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\archive-audit\\013-s10g-audit-continued.json",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/archive-audit/013-s10g-audit-continued.json",
+      "bytes": 1388,
+      "sha256": "a9f27863edee38dd49594ffce9896f7f9c1e243465b40330ecc095511e1ce4f7",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/archive-audit/013-s10g-audit-continued.json",
+          "bytes": 1388,
+          "sha256": "a9f27863edee38dd49594ffce9896f7f9c1e243465b40330ecc095511e1ce4f7"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\continued-sanctions-320.png",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/continued-sanctions-320.png",
+      "bytes": 92459,
+      "sha256": "266643f15c28f33795162062cb1e041f7681a9f93c696537141c725e19a0843e",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/continued-sanctions-320.png",
+          "bytes": 92459,
+          "sha256": "266643f15c28f33795162062cb1e041f7681a9f93c696537141c725e19a0843e"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\foreign-government-read-only-1440.png",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/foreign-government-read-only-1440.png",
+      "bytes": 345623,
+      "sha256": "8d8c7cca128417d6be4ce15e63146c3b6a37dbebce1764d7fb46b546084ecfbb",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/foreign-government-read-only-1440.png",
+          "bytes": 345623,
+          "sha256": "8d8c7cca128417d6be4ce15e63146c3b6a37dbebce1764d7fb46b546084ecfbb"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\improve-desk-320.png",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/improve-desk-320.png",
+      "bytes": 91880,
+      "sha256": "81c5336b962b77313446f4e0d759deb676970884328a43a5255ad00b9626688f",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/improve-desk-320.png",
+          "bytes": 91880,
+          "sha256": "81c5336b962b77313446f4e0d759deb676970884328a43a5255ad00b9626688f"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\improve-recorded-390.png",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/improve-recorded-390.png",
+      "bytes": 84727,
+      "sha256": "70f01d2e22cced0b4a807163c9d751163b8f6895ba58c25f1979cb709892f6f4",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/improve-recorded-390.png",
+          "bytes": 84727,
+          "sha256": "70f01d2e22cced0b4a807163c9d751163b8f6895ba58c25f1979cb709892f6f4"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\improve-review-effects-320.png",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/improve-review-effects-320.png",
+      "bytes": 68444,
+      "sha256": "d98d4c40b5f1c5dc98b7724da76c5ae9997fcfd3962a080bd0e0aeef99edb76b",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/improve-review-effects-320.png",
+          "bytes": 68444,
+          "sha256": "d98d4c40b5f1c5dc98b7724da76c5ae9997fcfd3962a080bd0e0aeef99edb76b"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\improve-review-effects-390.png",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/improve-review-effects-390.png",
+      "bytes": 74889,
+      "sha256": "3bf77ef09a905ba9770ae7270953b98925d88f7e1fbb093ea195c214970d2f4a",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/improve-review-effects-390.png",
+          "bytes": 74889,
+          "sha256": "3bf77ef09a905ba9770ae7270953b98925d88f7e1fbb093ea195c214970d2f4a"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\lift-context-1440.png",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/lift-context-1440.png",
+      "bytes": 432608,
+      "sha256": "d62ce94a60b1d1a5ee61243af25a5a0f7953ec038b84facc7c5f61c9c7d1ef98",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/lift-context-1440.png",
+          "bytes": 432608,
+          "sha256": "d62ce94a60b1d1a5ee61243af25a5a0f7953ec038b84facc7c5f61c9c7d1ef98"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\lift-context-320.png",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/lift-context-320.png",
+      "bytes": 128548,
+      "sha256": "dbf017006a6ebda69dc94d57e543bcdc0a420618b9c7f42ef2b3a73f8d26df3b",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/lift-context-320.png",
+          "bytes": 128548,
+          "sha256": "dbf017006a6ebda69dc94d57e543bcdc0a420618b9c7f42ef2b3a73f8d26df3b"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\lift-context-390.png",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/lift-context-390.png",
+      "bytes": 153168,
+      "sha256": "8e1b6c4cb9e1fb3d98180cfe01b20c7345ccd5d14c8617b05e1733ecb7bbf2e0",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/lift-context-390.png",
+          "bytes": 153168,
+          "sha256": "8e1b6c4cb9e1fb3d98180cfe01b20c7345ccd5d14c8617b05e1733ecb7bbf2e0"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\lift-desk-320.png",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/lift-desk-320.png",
+      "bytes": 91880,
+      "sha256": "81c5336b962b77313446f4e0d759deb676970884328a43a5255ad00b9626688f",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/lift-desk-320.png",
+          "bytes": 91880,
+          "sha256": "81c5336b962b77313446f4e0d759deb676970884328a43a5255ad00b9626688f"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\lift-effects-320.png",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/lift-effects-320.png",
+      "bytes": 69427,
+      "sha256": "971d7821bd28a854aa344933107b64351d941c34c0561a799de07f006096a3b5",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/lift-effects-320.png",
+          "bytes": 69427,
+          "sha256": "971d7821bd28a854aa344933107b64351d941c34c0561a799de07f006096a3b5"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\lift-effects-390.png",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/lift-effects-390.png",
+      "bytes": 74937,
+      "sha256": "dd8ab030bf9157b7f397902594350129de05ee100f0c43a9468e2d2d5b50b75c",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/lift-effects-390.png",
+          "bytes": 74937,
+          "sha256": "dd8ab030bf9157b7f397902594350129de05ee100f0c43a9468e2d2d5b50b75c"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\lift-recorded-390.png",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/lift-recorded-390.png",
+      "bytes": 93226,
+      "sha256": "1b61227c4da0b61348a03d67eb2063b0e7489955191f72ae316da396246e2f88",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/lift-recorded-390.png",
+          "bytes": 93226,
+          "sha256": "1b61227c4da0b61348a03d67eb2063b0e7489955191f72ae316da396246e2f88"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\lift-review-effects-320.png",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/lift-review-effects-320.png",
+      "bytes": 69427,
+      "sha256": "971d7821bd28a854aa344933107b64351d941c34c0561a799de07f006096a3b5",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/lift-review-effects-320.png",
+          "bytes": 69427,
+          "sha256": "971d7821bd28a854aa344933107b64351d941c34c0561a799de07f006096a3b5"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\lift-review-effects-390.png",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/lift-review-effects-390.png",
+      "bytes": 74937,
+      "sha256": "dd8ab030bf9157b7f397902594350129de05ee100f0c43a9468e2d2d5b50b75c",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/lift-review-effects-390.png",
+          "bytes": 74937,
+          "sha256": "dd8ab030bf9157b7f397902594350129de05ee100f0c43a9468e2d2d5b50b75c"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\progress.jsonl",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/progress.jsonl",
+      "bytes": 19025,
+      "sha256": "8d0636fcffd3c078511dc6d9a557942ff0a7356dfee16ddb0addf3c864ffca45",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/progress.jsonl",
+          "bytes": 19025,
+          "sha256": "8d0636fcffd3c078511dc6d9a557942ff0a7356dfee16ddb0addf3c864ffca45"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\result.json",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/result.json",
+      "bytes": 668035,
+      "sha256": "a6c3334fe15ebd554537936a20572003736427d9dba23f95f7a7b34880895c92",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/result.json",
+          "bytes": 668035,
+          "sha256": "a6c3334fe15ebd554537936a20572003736427d9dba23f95f7a7b34880895c92"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\sanction-desk-320.png",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/sanction-desk-320.png",
+      "bytes": 91880,
+      "sha256": "81c5336b962b77313446f4e0d759deb676970884328a43a5255ad00b9626688f",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/sanction-desk-320.png",
+          "bytes": 91880,
+          "sha256": "81c5336b962b77313446f4e0d759deb676970884328a43a5255ad00b9626688f"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\sanction-recorded-390.png",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/sanction-recorded-390.png",
+      "bytes": 98104,
+      "sha256": "6e2f32e7445f74b3b1a78faad2848b6258d678780c3d3812c5d311c0ab8a48c4",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/sanction-recorded-390.png",
+          "bytes": 98104,
+          "sha256": "6e2f32e7445f74b3b1a78faad2848b6258d678780c3d3812c5d311c0ab8a48c4"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\sanction-review-effects-320.png",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/sanction-review-effects-320.png",
+      "bytes": 68561,
+      "sha256": "6a41b6d257b076fb0f44022d1e657e25613fa17b8a8d38a2ed31b42a70f8318d",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/sanction-review-effects-320.png",
+          "bytes": 68561,
+          "sha256": "6a41b6d257b076fb0f44022d1e657e25613fa17b8a8d38a2ed31b42a70f8318d"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\sanction-review-effects-390.png",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/sanction-review-effects-390.png",
+      "bytes": 75232,
+      "sha256": "dd6cbcc07b6af6a657aa290cf98e7e6c41d20fbe1f454ab7faeb1cf94c89edc0",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/sanction-review-effects-390.png",
+          "bytes": 75232,
+          "sha256": "dd6cbcc07b6af6a657aa290cf98e7e6c41d20fbe1f454ab7faeb1cf94c89edc0"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\sanctions-desk-1440.png",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/sanctions-desk-1440.png",
+      "bytes": 233096,
+      "sha256": "01965dbcd4535d9439759668079f980fbb76bbedd1af75b26417ac7846ac4eca",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/sanctions-desk-1440.png",
+          "bytes": 233096,
+          "sha256": "01965dbcd4535d9439759668079f980fbb76bbedd1af75b26417ac7846ac4eca"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\sanctions-desk-320.png",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/sanctions-desk-320.png",
+      "bytes": 91926,
+      "sha256": "7259899099810fe9493bbbbccd9cc69791d2c122606b8bc1f4ead8f74e81a74c",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/sanctions-desk-320.png",
+          "bytes": 91926,
+          "sha256": "7259899099810fe9493bbbbccd9cc69791d2c122606b8bc1f4ead8f74e81a74c"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\sanctions-desk-390.png",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/sanctions-desk-390.png",
+      "bytes": 96406,
+      "sha256": "a7bfd5a26f9021e1ab878cc1306bbb4353cd817e4ab2e4b997bc28e4163d7b1f",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/sanctions-desk-390.png",
+          "bytes": 96406,
+          "sha256": "a7bfd5a26f9021e1ab878cc1306bbb4353cd817e4ab2e4b997bc28e4163d7b1f"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\server\\captures\\s10g-audit-cancelled.json",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/server/captures/s10g-audit-cancelled.json",
+      "bytes": 13148891,
+      "sha256": "c4abe81e24be367132c9df081341a1230cff02c5fc5a6c56ee6f7ab3c686c517",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/server/captures/s10g-audit-cancelled.json.gz",
+          "bytes": 2088177,
+          "sha256": "a933896a429abb0ba6d304821e2a9007ae6a2d5a2d43569bb5e77463cbd4f7bd"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\server\\captures\\s10g-audit-continued.json",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/server/captures/s10g-audit-continued.json",
+      "bytes": 13149333,
+      "sha256": "a6014fe4d51886307da32ad7d3dacf77139254e437859bbb2a5f3e786273b51a",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/server/captures/s10g-audit-continued.json.gz",
+          "bytes": 2088346,
+          "sha256": "cd785465c9a7ac336dbcbb422e9912bd6a7dc308269a6857876ccce01c36b638"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\server\\captures\\s10g-audit-foreign.json",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/server/captures/s10g-audit-foreign.json",
+      "bytes": 13149333,
+      "sha256": "b0a93881cb4a6ec270d43a470d4bae6183101bb44dd0db3fdd7b67cadc75afac",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/server/captures/s10g-audit-foreign.json.gz",
+          "bytes": 2088347,
+          "sha256": "9d7c70e75eb014bd7eee45d77f02170b00afd4b06c53afdbb31dc0c6ffccf538"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\server\\captures\\s10g-audit-improve.json",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/server/captures/s10g-audit-improve.json",
+      "bytes": 13149333,
+      "sha256": "d2444b253f18f686c530a94e4362162a67f4c6bb7676eacedcbaab0a9f3f042f",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/server/captures/s10g-audit-improve.json.gz",
+          "bytes": 2088347,
+          "sha256": "4d78acf58ed41a658465289b2286239d29e22b715f96e0b1a9dc0c2d6d0fbb5e"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\server\\captures\\s10g-audit-lift.json",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/server/captures/s10g-audit-lift.json",
+      "bytes": 13148993,
+      "sha256": "fa0df37cf7236f3b3ff43fc2ecd041073500f252252a050267d40519b7dba17e",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/server/captures/s10g-audit-lift.json.gz",
+          "bytes": 2088241,
+          "sha256": "3d526ab1460c0189454556962c79a44ddbcd3f5bf70db429fd759cc91929f43e"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\server\\captures\\s10g-audit-load-cancelled.json",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/server/captures/s10g-audit-load-cancelled.json",
+      "bytes": 13149333,
+      "sha256": "b5d8e4d2c2af245fc072059837d64119baa67888fa42172135809aaab752aa6b",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/server/captures/s10g-audit-load-cancelled.json.gz",
+          "bytes": 2088347,
+          "sha256": "0707eb350f849bbd87401e6b86790b54f222ce92ce3f9bfb596e84072ca21c7b"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\server\\captures\\s10g-audit-loaded.json",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/server/captures/s10g-audit-loaded.json",
+      "bytes": 13148891,
+      "sha256": "2c352314a370e390dbf57e3620eedba67555c9f53ec4f50edf38107aed49a122",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/server/captures/s10g-audit-loaded.json.gz",
+          "bytes": 2088177,
+          "sha256": "e98dd2498404487c5ce76f5d4219cd88ab99630409bfdb5d38d1e5c6d2779aa9"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\server\\captures\\s10g-audit-reloaded.json",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/server/captures/s10g-audit-reloaded.json",
+      "bytes": 13149333,
+      "sha256": "2240ddbefa44825339de059d9d20817e9df3112f445a1c289fc8c383b048e7d5",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/server/captures/s10g-audit-reloaded.json.gz",
+          "bytes": 2088346,
+          "sha256": "0769461fe2582a5b66f17877f9ec97923d54ea96a35396667a0f56fa729ebf96"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\server\\captures\\s10g-audit-sanction.json",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/server/captures/s10g-audit-sanction.json",
+      "bytes": 13149163,
+      "sha256": "1b1b92e28332583b15d854c5a41f7b4f24d75d1d1c90193a372954d5862db882",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/server/captures/s10g-audit-sanction.json.gz",
+          "bytes": 2088296,
+          "sha256": "5809943787a0d51ac150d94d1adcfcdae2c8eb1264f519b61d8d00bc0cc4ce59"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\server\\saves\\s10g-authored-sanctions.json",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/server/saves/s10g-authored-sanctions.json",
+      "bytes": 13148891,
+      "sha256": "86b9f8ae206793f48d5dfbba0819d811cf46467345d36ff8e669e2a6068cb8c9",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/server/saves/s10g-authored-sanctions.json.gz",
+          "bytes": 2088177,
+          "sha256": "4d9517a1d0af7b86946063c4b8105238e0fec25330637dcd5a8be8c7b18968f0"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\server\\saves\\s10g-reviewed-sanctions.json",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/server/saves/s10g-reviewed-sanctions.json",
+      "bytes": 13149333,
+      "sha256": "648d43d0761ba2a7939134f7b32d9de36353c97c810900240fac3bf363e4bb49",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/server/saves/s10g-reviewed-sanctions.json.gz",
+          "bytes": 2088347,
+          "sha256": "3a3d94e3f5713c2ba3833acc26bafc0de11ce56c24e3a7ba0a461751ae23977d"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser\\authored-france-S8PO5J\\server.log",
+      "logical_path": "authored-browser/browser/authored-france-S8PO5J/server.log",
+      "bytes": 78,
+      "sha256": "dccdb863e2977369110e0c0353fc4d4f84f806ff79ab64a9a8bd4c5cebde85ba",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-france-S8PO5J/server.log",
+          "bytes": 78,
+          "sha256": "dccdb863e2977369110e0c0353fc4d4f84f806ff79ab64a9a8bd4c5cebde85ba"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\browser.log",
+      "logical_path": "authored-browser/browser.log",
+      "bytes": 211,
+      "sha256": "e293f1466ead1e882bc31b99e832f58b05b5d37c102fb364cf669bf821f0109b",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser.log",
+          "bytes": 211,
+          "sha256": "e293f1466ead1e882bc31b99e832f58b05b5d37c102fb364cf669bf821f0109b"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\export.log",
+      "logical_path": "authored-browser/export.log",
+      "bytes": 365,
+      "sha256": "1780c5bbde731ed2837c7b9800e9b0ce53cd2bb199baf74158a8894c0f4faf0f",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/export.log",
+          "bytes": 365,
+          "sha256": "1780c5bbde731ed2837c7b9800e9b0ce53cd2bb199baf74158a8894c0f4faf0f"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-sanctions-final\\result.json",
+      "logical_path": "authored-browser/result.json",
+      "bytes": 1399,
+      "sha256": "779c980ceadffb5a87d5e906eee75c90bcd15454aa0e69da9cd4c23c8774727b",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/result.json",
+          "bytes": 1399,
+          "sha256": "779c980ceadffb5a87d5e906eee75c90bcd15454aa0e69da9cd4c23c8774727b"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\001-s10-before-review.canonical",
+      "logical_path": "ordinary-browser/france-tzly2h/archive-audit/001-s10-before-review.canonical",
+      "bytes": 12116205,
+      "sha256": "ac40ee9e516385acba7edc0895f2084d5034722f22ed955bbde0d23fa9bf4f5d",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/archive-audit/001-s10-before-review.canonical.gz",
+          "bytes": 1868964,
+          "sha256": "e3db86025103b54cf5b863d9e52af189383decfd2a762e8baa6f762700e607e0"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\001-s10-before-review.json",
+      "logical_path": "ordinary-browser/france-tzly2h/archive-audit/001-s10-before-review.json",
+      "bytes": 1380,
+      "sha256": "7b7fbe0b988a830a50c97d03edb325cdd7e25469576114d468b14d5c0610126f",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/archive-audit/001-s10-before-review.json",
+          "bytes": 1380,
+          "sha256": "7b7fbe0b988a830a50c97d03edb325cdd7e25469576114d468b14d5c0610126f"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\002-s10-after-cancel.canonical",
+      "logical_path": "ordinary-browser/france-tzly2h/archive-audit/002-s10-after-cancel.canonical",
+      "bytes": 12116205,
+      "sha256": "ac40ee9e516385acba7edc0895f2084d5034722f22ed955bbde0d23fa9bf4f5d",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/archive-audit/002-s10-after-cancel.canonical.gz",
+          "bytes": 1868964,
+          "sha256": "e3db86025103b54cf5b863d9e52af189383decfd2a762e8baa6f762700e607e0"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\002-s10-after-cancel.json",
+      "logical_path": "ordinary-browser/france-tzly2h/archive-audit/002-s10-after-cancel.json",
+      "bytes": 1377,
+      "sha256": "5194248afa3643fe02d599894fd8e12481d6a3169a881c8aeae3e0d7fd810e01",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/archive-audit/002-s10-after-cancel.json",
+          "bytes": 1377,
+          "sha256": "5194248afa3643fe02d599894fd8e12481d6a3169a881c8aeae3e0d7fd810e01"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\003-s10-after-second-tab.canonical",
+      "logical_path": "ordinary-browser/france-tzly2h/archive-audit/003-s10-after-second-tab.canonical",
+      "bytes": 12116604,
+      "sha256": "74593de494745c97cf32541e2de6c06640e49eb92035d6ee744f922d0ec276e1",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/archive-audit/003-s10-after-second-tab.canonical.gz",
+          "bytes": 1869079,
+          "sha256": "141c4fc28bc01af40f465b515bf58af9f987a8fd32187f1d6454e34cd59e016f"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\003-s10-after-second-tab.json",
+      "logical_path": "ordinary-browser/france-tzly2h/archive-audit/003-s10-after-second-tab.json",
+      "bytes": 1389,
+      "sha256": "011a86adc7e4d99595675ce8657141c9ab48853b896a76c1c403504fce0301b8",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/archive-audit/003-s10-after-second-tab.json",
+          "bytes": 1389,
+          "sha256": "011a86adc7e4d99595675ce8657141c9ab48853b896a76c1c403504fce0301b8"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\004-s10-after-stale.canonical",
+      "logical_path": "ordinary-browser/france-tzly2h/archive-audit/004-s10-after-stale.canonical",
+      "bytes": 12116604,
+      "sha256": "74593de494745c97cf32541e2de6c06640e49eb92035d6ee744f922d0ec276e1",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/archive-audit/004-s10-after-stale.canonical.gz",
+          "bytes": 1869079,
+          "sha256": "141c4fc28bc01af40f465b515bf58af9f987a8fd32187f1d6454e34cd59e016f"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\004-s10-after-stale.json",
+      "logical_path": "ordinary-browser/france-tzly2h/archive-audit/004-s10-after-stale.json",
+      "bytes": 1374,
+      "sha256": "59bfb9df698b1e5373b4a077f84c76ca0d293981d03707c5569c7d687471d8f1",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/archive-audit/004-s10-after-stale.json",
+          "bytes": 1374,
+          "sha256": "59bfb9df698b1e5373b4a077f84c76ca0d293981d03707c5569c7d687471d8f1"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\005-s10-after-government.canonical",
+      "logical_path": "ordinary-browser/france-tzly2h/archive-audit/005-s10-after-government.canonical",
+      "bytes": 12116685,
+      "sha256": "065a663fe4332b2c6705d4faab27f2c0c9133b879de9e2b2810c8f4ae8b60697",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/archive-audit/005-s10-after-government.canonical.gz",
+          "bytes": 1869091,
+          "sha256": "ba827fac81acfbb7c0457ebf7c81b8a391dc68ac3a58796a72602fa13b23e6bd"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\005-s10-after-government.json",
+      "logical_path": "ordinary-browser/france-tzly2h/archive-audit/005-s10-after-government.json",
+      "bytes": 1389,
+      "sha256": "a60ebd90fe84faa9c65400dcc16668faa5ef8a6c05a8a69aa0d6c9a48a4fda86",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/archive-audit/005-s10-after-government.json",
+          "bytes": 1389,
+          "sha256": "a60ebd90fe84faa9c65400dcc16668faa5ef8a6c05a8a69aa0d6c9a48a4fda86"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\006-s10-after-load-cancel.canonical",
+      "logical_path": "ordinary-browser/france-tzly2h/archive-audit/006-s10-after-load-cancel.canonical",
+      "bytes": 12116685,
+      "sha256": "065a663fe4332b2c6705d4faab27f2c0c9133b879de9e2b2810c8f4ae8b60697",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/archive-audit/006-s10-after-load-cancel.canonical.gz",
+          "bytes": 1869091,
+          "sha256": "ba827fac81acfbb7c0457ebf7c81b8a391dc68ac3a58796a72602fa13b23e6bd"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\006-s10-after-load-cancel.json",
+      "logical_path": "ordinary-browser/france-tzly2h/archive-audit/006-s10-after-load-cancel.json",
+      "bytes": 1392,
+      "sha256": "1bd64e7239779eae5d847951b17faecf7f333c48581cf9de38a2e1f69d64a94c",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/archive-audit/006-s10-after-load-cancel.json",
+          "bytes": 1392,
+          "sha256": "1bd64e7239779eae5d847951b17faecf7f333c48581cf9de38a2e1f69d64a94c"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\007-s10-after-load.canonical",
+      "logical_path": "ordinary-browser/france-tzly2h/archive-audit/007-s10-after-load.canonical",
+      "bytes": 12116685,
+      "sha256": "065a663fe4332b2c6705d4faab27f2c0c9133b879de9e2b2810c8f4ae8b60697",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/archive-audit/007-s10-after-load.canonical.gz",
+          "bytes": 1869091,
+          "sha256": "ba827fac81acfbb7c0457ebf7c81b8a391dc68ac3a58796a72602fa13b23e6bd"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\007-s10-after-load.json",
+      "logical_path": "ordinary-browser/france-tzly2h/archive-audit/007-s10-after-load.json",
+      "bytes": 1371,
+      "sha256": "3a5a83dbe8f7441d69eee594ec92851ddd530d391746c50c136e1e2b6df11fe8",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/archive-audit/007-s10-after-load.json",
+          "bytes": 1371,
+          "sha256": "3a5a83dbe8f7441d69eee594ec92851ddd530d391746c50c136e1e2b6df11fe8"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\008-s10-after-continue.canonical",
+      "logical_path": "ordinary-browser/france-tzly2h/archive-audit/008-s10-after-continue.canonical",
+      "bytes": 12116685,
+      "sha256": "065a663fe4332b2c6705d4faab27f2c0c9133b879de9e2b2810c8f4ae8b60697",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/archive-audit/008-s10-after-continue.canonical.gz",
+          "bytes": 1869091,
+          "sha256": "ba827fac81acfbb7c0457ebf7c81b8a391dc68ac3a58796a72602fa13b23e6bd"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\archive-audit\\008-s10-after-continue.json",
+      "logical_path": "ordinary-browser/france-tzly2h/archive-audit/008-s10-after-continue.json",
+      "bytes": 1383,
+      "sha256": "2c2ba6302ae213a42739b7a10459d7b84641b7af1fdecc043b4ce982860edd0f",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/archive-audit/008-s10-after-continue.json",
+          "bytes": 1383,
+          "sha256": "2c2ba6302ae213a42739b7a10459d7b84641b7af1fdecc043b4ce982860edd0f"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\chrome-netlog.json",
+      "logical_path": "ordinary-browser/france-tzly2h/chrome-netlog.json",
+      "bytes": 5769570,
+      "sha256": "b52b9b68f145926f577f405ebaf11a98a9a31857b78df6355c4e5cda9ebf1b30",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/chrome-netlog.json.gz",
+          "bytes": 414967,
+          "sha256": "62572b8c8a2f3574768208ce3a78d088f45b256c8fe4940f87105f757127ec62"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\government-continued-narrow-320.png",
+      "logical_path": "ordinary-browser/france-tzly2h/government-continued-narrow-320.png",
+      "bytes": 91870,
+      "sha256": "d65640a493d8aaefcae63fa8deb65723e991434dc3b9983dd4e3ebc19514935c",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/government-continued-narrow-320.png",
+          "bytes": 91870,
+          "sha256": "d65640a493d8aaefcae63fa8deb65723e991434dc3b9983dd4e3ebc19514935c"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\government-continued-narrow.png",
+      "logical_path": "ordinary-browser/france-tzly2h/government-continued-narrow.png",
+      "bytes": 103999,
+      "sha256": "37b3914fa6827d9cfb305d1a6094abe0b3773c41ba947ec5ab70c789fa8b4f74",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/government-continued-narrow.png",
+          "bytes": 103999,
+          "sha256": "37b3914fa6827d9cfb305d1a6094abe0b3773c41ba947ec5ab70c789fa8b4f74"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\government-fresh-review-320.png",
+      "logical_path": "ordinary-browser/france-tzly2h/government-fresh-review-320.png",
+      "bytes": 62938,
+      "sha256": "c5f0b710bbef53694b2ece1523b371cb191c15e50688718fb3d446ea05906b85",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/government-fresh-review-320.png",
+          "bytes": 62938,
+          "sha256": "c5f0b710bbef53694b2ece1523b371cb191c15e50688718fb3d446ea05906b85"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\government-fresh-review-390.png",
+      "logical_path": "ordinary-browser/france-tzly2h/government-fresh-review-390.png",
+      "bytes": 84242,
+      "sha256": "10f460271d3761cc9ed53d68c8772f82dd94499586640121061640879ff80e28",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/government-fresh-review-390.png",
+          "bytes": 84242,
+          "sha256": "10f460271d3761cc9ed53d68c8772f82dd94499586640121061640879ff80e28"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\government-fresh-review.png",
+      "logical_path": "ordinary-browser/france-tzly2h/government-fresh-review.png",
+      "bytes": 284676,
+      "sha256": "349da82f8240349f8a7abfb2823cd739a2fd615c51857c73cda77c1ba9e9af25",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/government-fresh-review.png",
+          "bytes": 284676,
+          "sha256": "349da82f8240349f8a7abfb2823cd739a2fd615c51857c73cda77c1ba9e9af25"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\government-result-desktop.png",
+      "logical_path": "ordinary-browser/france-tzly2h/government-result-desktop.png",
+      "bytes": 184158,
+      "sha256": "652a1c0fb221ce2a82e09d8bc83021d894b64b73ace109fbc62cc12b8f32c24c",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/government-result-desktop.png",
+          "bytes": 184158,
+          "sha256": "652a1c0fb221ce2a82e09d8bc83021d894b64b73ace109fbc62cc12b8f32c24c"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\government-result-narrow-320.png",
+      "logical_path": "ordinary-browser/france-tzly2h/government-result-narrow-320.png",
+      "bytes": 55173,
+      "sha256": "0cbc68107cb48770fb083311fed7ca6c523b62cec4785bfb19f190162ded8df8",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/government-result-narrow-320.png",
+          "bytes": 55173,
+          "sha256": "0cbc68107cb48770fb083311fed7ca6c523b62cec4785bfb19f190162ded8df8"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\government-result-narrow-390.png",
+      "logical_path": "ordinary-browser/france-tzly2h/government-result-narrow-390.png",
+      "bytes": 66072,
+      "sha256": "21e76f52df1e26dfb06d63f791a051d785136173ac50df37299694b3b40565aa",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/government-result-narrow-390.png",
+          "bytes": 66072,
+          "sha256": "21e76f52df1e26dfb06d63f791a051d785136173ac50df37299694b3b40565aa"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\government-review-before-second-tab.png",
+      "logical_path": "ordinary-browser/france-tzly2h/government-review-before-second-tab.png",
+      "bytes": 284676,
+      "sha256": "349da82f8240349f8a7abfb2823cd739a2fd615c51857c73cda77c1ba9e9af25",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/government-review-before-second-tab.png",
+          "bytes": 284676,
+          "sha256": "349da82f8240349f8a7abfb2823cd739a2fd615c51857c73cda77c1ba9e9af25"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\government-stale-review-refused.png",
+      "logical_path": "ordinary-browser/france-tzly2h/government-stale-review-refused.png",
+      "bytes": 185798,
+      "sha256": "3addb18ff54a2ba2e3534a7db59502b8989235a646267c053b8f0f7854920966",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/government-stale-review-refused.png",
+          "bytes": 185798,
+          "sha256": "3addb18ff54a2ba2e3534a7db59502b8989235a646267c053b8f0f7854920966"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\policy-review-desktop.png",
+      "logical_path": "ordinary-browser/france-tzly2h/policy-review-desktop.png",
+      "bytes": 442951,
+      "sha256": "a1a42a474b4cf81a1e34b49c188ddb568c33105d6950fb35826ee7f6113e0b83",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/policy-review-desktop.png",
+          "bytes": 442951,
+          "sha256": "a1a42a474b4cf81a1e34b49c188ddb568c33105d6950fb35826ee7f6113e0b83"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\policy-review-narrow-320.png",
+      "logical_path": "ordinary-browser/france-tzly2h/policy-review-narrow-320.png",
+      "bytes": 77681,
+      "sha256": "6975c6751a021f225dcba12cff3ed882a7b842d55dbe93e4702a971fcee777b2",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/policy-review-narrow-320.png",
+          "bytes": 77681,
+          "sha256": "6975c6751a021f225dcba12cff3ed882a7b842d55dbe93e4702a971fcee777b2"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\policy-review-narrow.png",
+      "logical_path": "ordinary-browser/france-tzly2h/policy-review-narrow.png",
+      "bytes": 93149,
+      "sha256": "44262b75299d0adca474a136cbbadf4ae7a7603abde7eb31d82d1fc69e622e6e",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/policy-review-narrow.png",
+          "bytes": 93149,
+          "sha256": "44262b75299d0adca474a136cbbadf4ae7a7603abde7eb31d82d1fc69e622e6e"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\progress.jsonl",
+      "logical_path": "ordinary-browser/france-tzly2h/progress.jsonl",
+      "bytes": 11675,
+      "sha256": "8fbb3b727d66edb3129e3f4bd9eaff7ad7b64a1bf4b8d83dad5e0a1bea96307b",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/progress.jsonl",
+          "bytes": 11675,
+          "sha256": "8fbb3b727d66edb3129e3f4bd9eaff7ad7b64a1bf4b8d83dad5e0a1bea96307b"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\result.json",
+      "logical_path": "ordinary-browser/france-tzly2h/result.json",
+      "bytes": 169451,
+      "sha256": "22c39bb442f0c5455410ea58df290b36b042d3d7ffaa1dcd3d0ef0fa8ceeeca8",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/result.json",
+          "bytes": 169451,
+          "sha256": "22c39bb442f0c5455410ea58df290b36b042d3d7ffaa1dcd3d0ef0fa8ceeeca8"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\second-tab-policy-recorded.png",
+      "logical_path": "ordinary-browser/france-tzly2h/second-tab-policy-recorded.png",
+      "bytes": 468742,
+      "sha256": "e03b7de20b7241bc529a33afe80ee3d436ded9efec3526bde67ecb80fb3cc869",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/second-tab-policy-recorded.png",
+          "bytes": 468742,
+          "sha256": "e03b7de20b7241bc529a33afe80ee3d436ded9efec3526bde67ecb80fb3cc869"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\server\\audit-captures\\s10-after-cancel-lI07Du\\s10-after-cancel.json",
+      "logical_path": "ordinary-browser/france-tzly2h/server/audit-captures/s10-after-cancel-lI07Du/s10-after-cancel.json",
+      "bytes": 13148768,
+      "sha256": "975ac1eb4610530d17a6309cbeb9957136ad85ea4615cbef4513b070b48f4430",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/server/audit-captures/s10-after-cancel-lI07Du/s10-after-cancel.json.gz",
+          "bytes": 2088148,
+          "sha256": "1b6a934826ca08bb88c0626ea12974963913072df042817b72555ba424c8a770"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\server\\audit-captures\\s10-after-continue-bkzETh\\s10-after-continue.json",
+      "logical_path": "ordinary-browser/france-tzly2h/server/audit-captures/s10-after-continue-bkzETh/s10-after-continue.json",
+      "bytes": 13149407,
+      "sha256": "733adbe21f5c469ffc6f7034bc39358d4fa32b6d4a2b25bb819de992bd063baf",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/server/audit-captures/s10-after-continue-bkzETh/s10-after-continue.json.gz",
+          "bytes": 2088505,
+          "sha256": "8f06e860289a86d94c1d010b82498e176aa98567f5dee8486a58568e5294be06"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\server\\audit-captures\\s10-after-government-nUeAzk\\s10-after-government.json",
+      "logical_path": "ordinary-browser/france-tzly2h/server/audit-captures/s10-after-government-nUeAzk/s10-after-government.json",
+      "bytes": 13149407,
+      "sha256": "1345d6b3137090e78e6a301ba5d154f9bee0f77dbe7610e948577c1a3db5b258",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/server/audit-captures/s10-after-government-nUeAzk/s10-after-government.json.gz",
+          "bytes": 2088505,
+          "sha256": "77105f705d97d05b2c3f3c733dc8f45b571679be1e601712928753353559394c"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\server\\audit-captures\\s10-after-load-4HbNUH\\s10-after-load.json",
+      "logical_path": "ordinary-browser/france-tzly2h/server/audit-captures/s10-after-load-4HbNUH/s10-after-load.json",
+      "bytes": 13149407,
+      "sha256": "1c4bc528dfe9db4750f099ec194bf2edd25a794624f36a4c7e08dc8550f1ec59",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/server/audit-captures/s10-after-load-4HbNUH/s10-after-load.json.gz",
+          "bytes": 2088505,
+          "sha256": "3ecd0dce5e1d9ce27bf545f7f57d0b4731cb49c525fa56ef62518280c3051606"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\server\\audit-captures\\s10-after-load-cancel-7J8YhZ\\s10-after-load-cancel.json",
+      "logical_path": "ordinary-browser/france-tzly2h/server/audit-captures/s10-after-load-cancel-7J8YhZ/s10-after-load-cancel.json",
+      "bytes": 13149407,
+      "sha256": "6e86fadaebbccb15047037f8fd301d4e20dcc5649e8b28fca97834fde8dbdedd",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/server/audit-captures/s10-after-load-cancel-7J8YhZ/s10-after-load-cancel.json.gz",
+          "bytes": 2088505,
+          "sha256": "d779cea285b4ec73e4846aea93bb2b0d5c65112990339caaec8e96d4ad7eac62"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\server\\audit-captures\\s10-after-second-tab-5BpKkD\\s10-after-second-tab.json",
+      "logical_path": "ordinary-browser/france-tzly2h/server/audit-captures/s10-after-second-tab-5BpKkD/s10-after-second-tab.json",
+      "bytes": 13149208,
+      "sha256": "1839ca94a4ceb58d440e8fa7a0a6a73efd64bd449de966e246bd87020f5f42bd",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/server/audit-captures/s10-after-second-tab-5BpKkD/s10-after-second-tab.json.gz",
+          "bytes": 2088427,
+          "sha256": "c297522d796aad1b5b2fb41517bbf638bb51f2c96ccebc30b07c4a255659bb3c"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\server\\audit-captures\\s10-after-stale-P170Og\\s10-after-stale.json",
+      "logical_path": "ordinary-browser/france-tzly2h/server/audit-captures/s10-after-stale-P170Og/s10-after-stale.json",
+      "bytes": 13149208,
+      "sha256": "9aba561d084f99f92c5d9cfe7a1c65190995b03a65b3881265cfeb88d1219199",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/server/audit-captures/s10-after-stale-P170Og/s10-after-stale.json.gz",
+          "bytes": 2088427,
+          "sha256": "5b4b9084e7e4db1a46d7ee8c3e2eaef6e34711170b9189a4396b499eff86448e"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\server\\audit-captures\\s10-before-review-VFOFGj\\s10-before-review.json",
+      "logical_path": "ordinary-browser/france-tzly2h/server/audit-captures/s10-before-review-VFOFGj/s10-before-review.json",
+      "bytes": 13148768,
+      "sha256": "d7541ad549f18eaea1c8338130d2ab4db648ca168999d061f61422b09e3e0668",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/server/audit-captures/s10-before-review-VFOFGj/s10-before-review.json.gz",
+          "bytes": 2088148,
+          "sha256": "0de3fb8d82de5ec3b2d75d274d62999092ead9eb832310493909d7c07f334395"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\server\\saves\\s10-government-decisions.json",
+      "logical_path": "ordinary-browser/france-tzly2h/server/saves/s10-government-decisions.json",
+      "bytes": 13149407,
+      "sha256": "9bdfd73db669fd3312dd0af1cbed6d5f2720f942e82156e2b033288fd497e039",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/server/saves/s10-government-decisions.json.gz",
+          "bytes": 2088505,
+          "sha256": "99ecc225f5f23527b04f60fb1c10abcf88992c256c7e6f269a6cd2b42ff38d8e"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-g-browser\\france-tzly2h\\server.log",
+      "logical_path": "ordinary-browser/france-tzly2h/server.log",
+      "bytes": 78,
+      "sha256": "0293ab75df3dafa7aa384b33f6533ef8e4bfd5311c25d3d9b1dbe0c6b695de25",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-tzly2h/server.log",
+          "bytes": 78,
+          "sha256": "0293ab75df3dafa7aa384b33f6533ef8e4bfd5311c25d3d9b1dbe0c6b695de25"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-preservation-before.json",
+      "logical_path": "review/S10g-preservation-before.json",
+      "bytes": 3137,
+      "sha256": "45935697bdd14c6b7b91e18cfc14d48a66dd64ae5b89c2b0fb44f081d3c7aba1",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "review/S10g-preservation-before.json",
+          "bytes": 3137,
+          "sha256": "45935697bdd14c6b7b91e18cfc14d48a66dd64ae5b89c2b0fb44f081d3c7aba1"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-preservation-final.json",
+      "logical_path": "review/S10g-preservation-final.json",
+      "bytes": 3137,
+      "sha256": "78ddec902c4ad68cd62b28f683879e5d1f68631e23cefac9b0b4420ecb83f5ff",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "review/S10g-preservation-final.json",
+          "bytes": 3137,
+          "sha256": "78ddec902c4ad68cd62b28f683879e5d1f68631e23cefac9b0b4420ecb83f5ff"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10g-visual-review.json",
+      "logical_path": "review/S10g-visual-review.json",
+      "bytes": 4389,
+      "sha256": "d611e90c9489ff97d5d6cd9da395228b8f9bc4fdb775c5e1a3ccb7b20b0b885c",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "review/S10g-visual-review.json",
+          "bytes": 4389,
+          "sha256": "d611e90c9489ff97d5d6cd9da395228b8f9bc4fdb775c5e1a3ccb7b20b0b885c"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\S10g-review-launch.json",
+      "logical_path": "review/launch.json",
+      "bytes": 2446,
+      "sha256": "2c17f8b78e08c12b82f04deceeb488bb0bf91065adbc239b396ef1fc291ae1f6",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "review/launch.json",
+          "bytes": 2446,
+          "sha256": "2c17f8b78e08c12b82f04deceeb488bb0bf91065adbc239b396ef1fc291ae1f6"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S10g-20260913-173757\\native-verification\\copied-save.canonical",
+      "logical_path": "review/native-verification/copied-save.canonical",
+      "bytes": 12116685,
+      "sha256": "065a663fe4332b2c6705d4faab27f2c0c9133b879de9e2b2810c8f4ae8b60697",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "review/native-verification/copied-save.canonical.gz",
+          "bytes": 1869091,
+          "sha256": "ba827fac81acfbb7c0457ebf7c81b8a391dc68ac3a58796a72602fa13b23e6bd"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S10g-20260913-173757\\native-verification\\copied-save.json",
+      "logical_path": "review/native-verification/copied-save.json",
+      "bytes": 1340,
+      "sha256": "9dc635155eb3c0027a5527597ff94cedfd306c74f2499e3402a4449acef66b94",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "review/native-verification/copied-save.json",
+          "bytes": 1340,
+          "sha256": "9dc635155eb3c0027a5527597ff94cedfd306c74f2499e3402a4449acef66b94"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s10g-check.py",
+      "logical_path": "runners/run-s10g-check.py",
+      "bytes": 4213,
+      "sha256": "b5ad2d62d7027c614c34301006982eea26a05ecd536a9898a1950321e886300d",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "runners/run-s10g-check.py",
+          "bytes": 4213,
+          "sha256": "b5ad2d62d7027c614c34301006982eea26a05ecd536a9898a1950321e886300d"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s10g-linux.py",
+      "logical_path": "runners/run-s10g-linux.py",
+      "bytes": 3041,
+      "sha256": "80e96bfd3ea4f154ee9f4c3d58bc8fef75307c34b893cda2f11240b57d2ae837",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "runners/run-s10g-linux.py",
+          "bytes": 3041,
+          "sha256": "80e96bfd3ea4f154ee9f4c3d58bc8fef75307c34b893cda2f11240b57d2ae837"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s10g-content.py",
+      "logical_path": "runners/run-s10g-content.py",
+      "bytes": 2479,
+      "sha256": "1c05a33613fbf368b5b0b36866baf8fda3c3edb27fda571339735d6e3b8f06cd",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "runners/run-s10g-content.py",
+          "bytes": 2479,
+          "sha256": "1c05a33613fbf368b5b0b36866baf8fda3c3edb27fda571339735d6e3b8f06cd"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s10g-sanctions.py",
+      "logical_path": "runners/run-s10g-sanctions.py",
+      "bytes": 2993,
+      "sha256": "830d5952f16f9aabd05ed1e669185de0ef4f1adf05c805c50fdee12a17920c17",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "runners/run-s10g-sanctions.py",
+          "bytes": 2993,
+          "sha256": "830d5952f16f9aabd05ed1e669185de0ef4f1adf05c805c50fdee12a17920c17"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\launch-s10g-review.py",
+      "logical_path": "runners/launch-s10g-review.py",
+      "bytes": 4153,
+      "sha256": "ff26193c718887f129897c41af9cb183329cdb0c015f7784bdc8fc2ab0059ae0",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "runners/launch-s10g-review.py",
+          "bytes": 4153,
+          "sha256": "ff26193c718887f129897c41af9cb183329cdb0c015f7784bdc8fc2ab0059ae0"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\verify-s08-preservation.py",
+      "logical_path": "runners/verify-s08-preservation.py",
+      "bytes": 1637,
+      "sha256": "4fc24e55dc7b773844067d52e09bffc88c42458e2adb7cbcdcbb337859afccbd",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "runners/verify-s08-preservation.py",
+          "bytes": 1637,
+          "sha256": "4fc24e55dc7b773844067d52e09bffc88c42458e2adb7cbcdcbb337859afccbd"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\collect-s09-evidence.py",
+      "logical_path": "runners/collect-s09-evidence.py",
+      "bytes": 4786,
+      "sha256": "3bb311491bfa40d3c964b7af42c4d00c294dedb98ee4503fd3763a3ee9b22a1a",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "runners/collect-s09-evidence.py",
+          "bytes": 4786,
+          "sha256": "3bb311491bfa40d3c964b7af42c4d00c294dedb98ee4503fd3763a3ee9b22a1a"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\publish-s10g.py",
+      "logical_path": "runners/publish-s10g.py",
+      "bytes": 25729,
+      "sha256": "6cd954fdba2ccd08d1fba90095ac3232719af96802cc82810a665d833e999ed1",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "runners/publish-s10g.py",
+          "bytes": 25729,
+          "sha256": "6cd954fdba2ccd08d1fba90095ac3232719af96802cc82810a665d833e999ed1"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\verify-s10g-publication.py",
+      "logical_path": "runners/verify-s10g-publication.py",
+      "bytes": 7128,
+      "sha256": "0a19cecbf13d045764eb3004b4e2f31faba42fc872aae2866d715998eec4241b",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "runners/verify-s10g-publication.py",
+          "bytes": 7128,
+          "sha256": "0a19cecbf13d045764eb3004b4e2f31faba42fc872aae2866d715998eec4241b"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-g-performance.json",
+      "logical_path": "performance/result.json",
+      "bytes": 4249,
+      "sha256": "35ab23fbb53594e31cedbf7ca2e90e6c40a1e58e1a4eac4893b575c7bd3714c5",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "performance/result.json",
+          "bytes": 4249,
+          "sha256": "35ab23fbb53594e31cedbf7ca2e90e6c40a1e58e1a4eac4893b575c7bd3714c5"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-g-performance.log",
+      "logical_path": "performance/native.log",
+      "bytes": 3142,
+      "sha256": "9b09f396e3ad6441233c76b2cbcacb64e0b41533dd91ca0820ca74232a29434f",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "performance/native.log",
+          "bytes": 3142,
+          "sha256": "9b09f396e3ad6441233c76b2cbcacb64e0b41533dd91ca0820ca74232a29434f"
+        }
+      ],
+      "reconstruction_verified": true
+    }
+  ],
+  "scope": "Complete selected S10.g native/interface/content logs, four authored sanctions oracles and ordinary France browser archives. Exact typed whole-world comparisons omit no native fields; independent envelope checks retain complete recorded history and separately validate volatile save timestamps. Both browser journeys advance zero days. Any explicitly selected development attempts are not qualification. Compiled binaries are pinned by SHA and not bundled.",
+  "stored_bytes": 98259482
+}

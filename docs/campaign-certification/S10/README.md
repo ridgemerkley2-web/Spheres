@@ -1,10 +1,33 @@
 # S10 — Government, succession and diplomacy
 
-Status: **S10.a through S10.f complete; S10 and C01 remain in progress**.
+Status: **S10.a through S10.g complete; S10 and C01 remain in progress**.
 The [S10.b report](b/README.md) records source-backed country discoveries,
 Linux qualification and all eight ordinary government browser journeys.
 Parent source: `872442d7411d9986321248b41ccadf79e2851d1c`.
 Latest user instruction: Next. Work is limited to S10; S11 is not started.
+
+## S10.g — Clear sanctions and relationship decisions
+
+The [S10.g report](g/README.md) adds a diplomacy desk to the Decisions room.
+It distinguishes sanctions imposed by the player's government from sanctions
+against it, with country selection and reviewed actions. Only the imposing
+government can lift its own restriction. Reviews show the actual before/after
+relationship, reverse and third-party sanctions, current freight checks and
+saved trade agreements. Lifting one sanction does not promise open trade while
+other restrictions remain. Treaty removal is explained as a later settlement
+consequence, and improving a capped relationship clearly retains its full
+political-capital cost without promising a relationship increase.
+
+The disclosed authored France fixture tests lift, sanction and improve orders,
+review cancellation and ordinary Save/Load/Continue against independently
+retained native worlds. Its sanctions and treaty are deliberate test conditions,
+not historical opening claims. Refused reviews retain the country context
+without inventing an after-state. Existing campaign and review guards remain
+in force; no simulation rule or save schema changes.
+
+The published manifest records 387 passing Windows native web tests, 1,555 passing interface tests and 12 passing agency/succession integration tests. Linux records 387 passing native web tests and 12 passing agency/succession integration tests. Content checks pass 66 tests. The authored browser journey contains 13 native inspections and 9 exact comparisons with no ignored paths, plus 9 native envelope comparisons. It confirms three reviewed commands: lift, sanction and improve relations. Both browser journeys advance zero campaign days. The separate native open-route preview benchmark records 244.99 ms p95 and 274.78 ms maximum across 21 measured samples after three warmups, within the 300/750 ms limits. Its report preserves the actual countries, route conditions and any disclosed private political-capital floor. This timing excludes HTTP and browser rendering and does not qualify a long campaign.
+
+Tonga's bounded research adds one organization observation and a dated party-leader observation, kept separate from a prime-minister appointment. Neither establishes a continuous leadership term or gameplay eligibility. The matching discovery index contains 6 country packets, 774 organization observations, 18 institution observations, 48 sources, 1,465 source claims and 83 discovery batches. There are 0 completed exhaustive country censuses. These observations do not establish distinct-party totals, complete leadership histories or new gameplay candidates. S10 and C01 remain in progress, G2 is unearned, and S11 remains planned. Execution stopped after S10.g.
 
 ## S10.f — Campaign succession restrictions and independent historical references
 
