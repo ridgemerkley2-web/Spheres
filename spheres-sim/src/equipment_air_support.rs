@@ -520,11 +520,12 @@ pub fn validate_air_support(n: &Nation) -> Result<(), String> {
         return Ok(());
     };
     let invalid = || "Invalid routine aircraft-support policy or dated receipt.".to_string();
-    let day = n.program_budget.as_ref().and_then(|p| p.day);
+    // The fiscal date owns receipts. It can still be yesterday when the
+    // calendar has advanced and the player reviews tomorrow's permission.
+    let fiscal_day = n.program_budget.as_ref().and_then(|p| p.day);
     if n.program_budget.is_none()
         || p.automatic && s.maintenance_plan.is_none()
         || air_support_values_refusal(p.daily_budget_bn * 1000.0, p.target_days).is_some()
-        || day.is_some_and(|d| p.from_day > d.saturating_add(1))
     {
         return Err(invalid());
     }
@@ -541,7 +542,7 @@ pub fn validate_air_support(n: &Nation) -> Result<(), String> {
         return Ok(());
     };
     if r.day < r.authorized_from_day
-        || day.is_none_or(|d| r.day > d)
+        || fiscal_day.is_none_or(|d| r.day > d)
         || [r.daily_budget_bn, r.maintenance_paid_bn, r.stores_paid_bn]
             .iter()
             .any(|v| !v.is_finite() || *v < 0.0)
@@ -600,14 +601,18 @@ pub fn validate_air_support(n: &Nation) -> Result<(), String> {
 /// Policy receipts only refer to transactions owned by the ordinary supplier
 /// books. A malformed save cannot substitute an unrelated delivery or payment.
 pub fn validate_air_support_world(w: &WorldState) -> Result<(), String> {
+    let day = clock::absolute_day(w);
     for n in &w.nations {
         validate_air_support(n)?;
-        let Some(receipt) = n
-            .equipment
-            .as_ref()
-            .and_then(|s| s.air_support.as_ref())
-            .and_then(|p| p.receipt.as_ref())
-        else {
+        let Some(policy) = n.equipment.as_ref().and_then(|s| s.air_support.as_ref()) else {
+            continue;
+        };
+        // Policy edits are prospective from the world calendar, independently
+        // of whether today's fiscal accounts have opened yet.
+        if policy.from_day > day.saturating_add(1) {
+            return Err("Invalid routine aircraft-support policy start date.".into());
+        }
+        let Some(receipt) = &policy.receipt else {
             continue;
         };
         for p in &receipt.purchases {
