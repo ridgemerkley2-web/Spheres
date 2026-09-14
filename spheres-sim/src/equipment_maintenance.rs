@@ -51,7 +51,7 @@ fn settle_fleet_maintenance(w:&mut WorldState,id:NationId) {
     let Some(budget)=n.program_budget.as_ref().filter(|p|p.day==Some(day)&&p.settled_day!=Some(day))else{return;};
     let custom=fleet_maintenance_requirement(n)+0.0;let legacy=legacy_maintenance_requirement(n);
     let authority=budget.available_bn[crate::world::BUDGET_DEFENSE][2]+budget.prepaid_bn[crate::world::BUDGET_DEFENSE][2];
-    let limit=plan.daily_limit_bn;
+    let limit=air_support_maintenance_limit(n,day).unwrap_or(plan.daily_limit_bn);
     let paid=(custom+legacy).min(authority.max(0.0)).min(limit);
     if crate::programs::spend_operating(w,id,crate::world::BUDGET_DEFENSE,2,paid).is_err(){return;}
     let fraction=if custom+legacy>0.0{(paid/(custom+legacy)).clamp(0.0,1.0)}else{1.0};

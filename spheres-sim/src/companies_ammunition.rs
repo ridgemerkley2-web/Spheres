@@ -148,7 +148,7 @@ pub fn ammo_purchase_funding(w: &WorldState, n: NationId) -> (f64, f64) {
             } else {
                 (equipment::fleet_maintenance_requirement(w.nation(n))
                     + equipment::legacy_maintenance_requirement(w.nation(n)))
-                .min(p.daily_limit_bn)
+                .min(equipment::air_support_maintenance_limit(w.nation(n), day).unwrap_or(p.daily_limit_bn))
                 .min(available)
                 .max(0.0)
             }

@@ -205,9 +205,9 @@ pub fn refit_quote(
             .iter()
             .find(|h| h.design_id.as_deref() == Some(source))
     });
-    let available = holding.map_or(0, crate::arsenal::available_design_units);
+    let available = holding.map_or(0, |h| crate::arsenal::available_design_units(h).saturating_sub(crate::aviation::assigned_units(w.nation(n), source)));
     let reserved = holding.map_or(0, |h| h.refit_reserved);
-    reason=reason.or_else(||(available<quantity).then(||"There are not enough delivered, unreserved source units. Pending deliveries and other refit reservations are unavailable.".into()));
+    reason=reason.or_else(||(available<quantity).then(||"There are not enough delivered, unreserved source units. Pending deliveries, squadron assignments and other refit reservations are unavailable.".into()));
     let (target, labor, days, recipe) = match c
         .ok_or_else(|| "This domestic company is missing.".to_string())
         .and_then(|c| service_terms(w, n, c, source, product))

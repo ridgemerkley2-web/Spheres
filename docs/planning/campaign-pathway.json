@@ -337,7 +337,7 @@
       "id": "S12",
       "phase": "military",
       "title": "Create real squadrons from owned aircraft",
-      "status": "planned",
+      "status": "in_progress",
       "depends": [
         "S11",
         "S08"
@@ -353,7 +353,7 @@
       "id": "S13",
       "phase": "military",
       "title": "Connect airbases, access and range",
-      "status": "planned",
+      "status": "in_progress",
       "depends": [
         "S12",
         "S07"
@@ -369,7 +369,7 @@
       "id": "S14",
       "phase": "military",
       "title": "Fund automatic routine air-force support",
-      "status": "planned",
+      "status": "in_progress",
       "depends": [
         "S12",
         "S13",
@@ -387,7 +387,7 @@
       "id": "S15",
       "phase": "military",
       "title": "Connect tactical missions to campaign results",
-      "status": "planned",
+      "status": "in_progress",
       "depends": [
         "S11",
         "S13",
@@ -890,13 +890,13 @@
   "last_completed_session": "S11",
   "next_session": "S12",
   "execution": {
-    "authorized_through": "S11",
-    "stop_boundary": "S11",
-    "status": "stopped",
-    "previous_stop": "S10 gameplay closure",
-    "instruction": "Next",
+    "authorized_through": "S15",
+    "stop_boundary": "S15",
+    "status": "in_progress",
+    "previous_stop": "S11",
+    "instruction": "Continue through S15",
     "instruction_date": "2026-09-13",
-    "next_session_requires_instruction": true
+    "next_session_requires_instruction": false
   },
   "gate_decisions": {
     "G1": {

@@ -671,6 +671,7 @@ enum Ending {
 
 fn resolve_conflicts(w: &mut WorldState) {
     crate::campaign::ai_orders(w);
+    crate::airmissions::prepare(w);
     let dt = crate::clock::month_fraction(w);
     let mut continuing: Vec<Conflict> = vec![];
     let mut ended: Vec<(Conflict, Ending)> = vec![];
@@ -1069,6 +1070,7 @@ fn resolve_conflicts(w: &mut WorldState) {
         continuing.push(c);
     }
     if let Some(s) = operations { s.settle(w); }
+    crate::airmissions::settle(w);
     w.conflicts = continuing;
 
     for (c, e) in ended {

@@ -270,7 +270,9 @@ function provinceRenderFixture() {
   // province drawer through a full parent replacement.
   c.MapControls={html:()=>'',bind(){}};
   c.GL={ready:true,reason:''};
-  for(const name of ['globeBoot','applyCam','glShimmerKick','camWork','invalidateProgramPreview','renderMapCity','constructionInvalidatePreview'])c[name]=()=>{};
+  // Overlay rendering is outside this province-state fixture; the flight
+  // browser journey exercises the actual overlay and shared map navigation.
+  for(const name of ['globeBoot','applyCam','glShimmerKick','camWork','invalidateProgramPreview','renderMapCity','renderFlightMapCard','constructionInvalidatePreview'])c[name]=()=>{};
   c.globeReadout=()=>'';c.rglyph=()=>'';c.resHue=()=>'';
   c.nationOfDistrict=id=>id==='US-CA'?'USA':'France';
   c.nationById=id=>({id,name:id});c.escText=c.economyText;c.logisticsEscAttr=c.economyText;c.provinceDepositHtml=()=>'';

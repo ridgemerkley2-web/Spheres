@@ -176,11 +176,11 @@ pub(crate) fn plan_ammunition(
             crate::arsenal::combat_value(n, h) / revision.profile.reference_weight_bn;
         let air_defense = revision.spec.platform == "ground_air_defense";
         let exposure: f64 = if let Some(aviation) = &revision.profile.aviation {
-            let share = deployments
+            let share = if n.aviation.is_some() {0.0} else {deployments
                 .iter()
                 .filter(|d| !d.ground)
                 .map(|d| d.aircraft_share * d.intensity)
-                .sum::<f64>();
+                .sum::<f64>()};
             supported / vehicles
                 * aviation.sorties_per_aircraft_month
                 * aviation.stores_per_sortie
@@ -214,6 +214,10 @@ pub(crate) fn plan_ammunition(
             def.rounds_per_vehicle_month
         };
         row.required += vehicles * rate * exposure * clock::month_fraction(w);
+    }
+    for (family, required) in crate::airmissions::requirements(w,id) {
+        let row=families.entry(family.clone()).or_insert(AmmoFamilyUse{family:family.clone(),vehicles:0.0,stock:stores.and_then(|s|s.stocks.get(&family)).copied().unwrap_or(0.0),required:0.0,used:0.0,coverage:1.0});
+        row.required+=required;
     }
     if let Some(stores) = stores {
         for (family, stock) in &stores.stocks {
@@ -430,7 +434,7 @@ fn aviation_ammunition_effects(
     if !deployment.ground {
         let mut covered = 0.0;
         let mut strike = 0.0;
-        if deployment.aircraft_share > 0.0 && deployment.intensity > 0.0 {
+        if n.aviation.is_none() && deployment.aircraft_share > 0.0 && deployment.intensity > 0.0 {
             for h in &n.arsenal.held {
                 let Some(p) = h.design_id.as_deref().and_then(|id| profile(n, id)) else {
                     continue;

@@ -40,6 +40,9 @@ pub mod industry_planning;
 pub mod industrial_modules;
 pub mod logistics;
 pub mod operations;
+pub mod aviation;
+pub mod airbases;
+pub mod airmissions;
 pub mod control;
 pub mod clock;
 pub mod manufacturing;
@@ -75,6 +78,7 @@ pub enum EquipmentOrder {
     Refit { source: String, target: String, district: String, quantity: u32, daily_budget_bn: f64 },
     Retire { revision: String, quantity: u32 },
     Maintenance { daily_budget_bn: f64 },
+    AirSupport { daily_budget_mn:f64, target_days:u32, automatic:bool },
     Supply { horizon_days:u32, spending_cap_bn:f64 },
     SupplyPolicy { horizon_days:u32, spending_cap_bn:f64, cash_floor_bn:f64, review_interval_days:u32, automatic:bool },
     SupplyPolicyClear,
@@ -106,6 +110,9 @@ pub enum Command {
     UnassignSectorContractor { nation: NationId, target: sector_contractors::CompanyTarget, quote: String },
     Company { nation: NationId, order: companies::CompanyOrder },
     Equipment { nation: NationId, order: EquipmentOrder },
+    AirSquadron { nation:NationId, order:aviation::SquadronCommand },
+    AirBase { nation:NationId, order:airbases::AirbaseCommand },
+    AirMission { nation:NationId, order:airmissions::MissionCommand },
     SetInterestRate { nation: NationId, rate: f64 },
     BreakCurrencyPeg { nation: NationId },
     ResumeAutomaticBank { nation: NationId },
@@ -430,6 +437,7 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
             (*nation, population::policy_quote(w, *nation, *policy).political_cost, REFUSABLE),
         Command::SetConstructionBudget { nation, .. } => (*nation, 0.0, REFUSABLE),
         Command::Company { nation, order } => (*nation, if matches!(order, companies::CompanyOrder::Establish { .. }) {8.0}else{0.0}, REFUSABLE),
+        Command::AirSquadron {nation,..} | Command::AirBase {nation,..} | Command::AirMission {nation,..} => (*nation,0.0,REFUSABLE),
         Command::Equipment { nation, order } => (*nation,
             if matches!(order, EquipmentOrder::Research { .. }) { 6.0 } else { 0.0 }, REFUSABLE),
         Command::SetAnnualBudget { nation, fiscal_year, allocations } => {
@@ -701,6 +709,9 @@ fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
         Command::Equipment { nation, order: EquipmentOrder::Research { component } }
             => equipment::research_refusal(w, *nation, component),
         Command::Equipment { nation, order } => apply_equipment_order(&mut w.clone(), *nation, order).err(),
+        Command::AirSquadron {nation,order} => aviation::refusal(w,*nation,order),
+        Command::AirBase {nation,order} => airbases::refusal(w,*nation,order),
+        Command::AirMission {nation,order} => airmissions::refusal(w,*nation,order),
         Command::SetInterestRate { nation, .. } if agency::pegged_rate(w,*nation).is_some() => Some("Exit the currency peg before changing its policy rate.".into()),
         Command::RespondDiplomacy { nation, offer, accept } => agency::response_error(w,*nation,*offer,*accept),
         Command::Sanction { imposer, target } => sovereignty::hostility_reason(w, *imposer, *target),
@@ -797,6 +808,7 @@ fn apply_equipment_order(w: &mut WorldState, nation: NationId, order: &Equipment
         Refit { source, target, district, quantity, daily_budget_bn } => equipment::start_refit(w, nation, source, target, district, *quantity, *daily_budget_bn).map(|_| ()),
         Retire { revision, quantity } => equipment::retire(w, nation, revision, *quantity),
         Maintenance { daily_budget_bn } => equipment::set_maintenance_plan(w,nation,*daily_budget_bn),
+        AirSupport {daily_budget_mn,target_days,automatic} => equipment::set_air_support(w,nation,*daily_budget_mn,*target_days,*automatic),
         Supply { horizon_days, spending_cap_bn } => equipment::replenish(w,nation,*horizon_days,*spending_cap_bn),
         SupplyPolicy { horizon_days, spending_cap_bn, cash_floor_bn, review_interval_days, automatic } => equipment::set_supply_policy(w,nation,*horizon_days,*spending_cap_bn,*cash_floor_bn,*review_interval_days,*automatic),
         SupplyPolicyClear => equipment::clear_supply_policy(w,nation),
@@ -1085,6 +1097,9 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
         }
         Command::Company { nation, order } => companies::apply(w, *nation, order)?,
         Command::Equipment { nation, order } => apply_equipment_order(w, *nation, order)?,
+        Command::AirSquadron {nation,order} => aviation::apply(w,*nation,order)?,
+        Command::AirBase {nation,order} => { airbases::apply(w,*nation,order)?; },
+        Command::AirMission {nation,order} => airmissions::apply(w,*nation,order)?,
         Command::SetResearchFocus { nation, domain, tech: want } => {
             let di = domain.index();
             let target = match want {
@@ -1448,6 +1463,7 @@ pub const SYSTEMS: &[(&str, fn(&mut WorldState))] = &[
     // runs with the other standing bills rather than beside the fighting.
     ("arsenal", arsenal::tick),
     ("equipment_support", equipment::settle_support),
+    ("air_support", equipment::tick_air_support),
     ("statecraft", statecraft::tick),
     ("stratagems", stratagems::tick),
     ("ai_stratagems", stratagems::ai_stratagems),
@@ -1581,6 +1597,8 @@ fn tick_day_impl(w: &mut WorldState, commands: &[Command],
     province_economy::begin_day(w);
     programs::begin_day(w);
     production::tick_day(w);
+    let airbase_events = airbases::tick_day(w);
+    w.headlines.extend(airbase_events);
 
     if clock::is_daily(w) {
         run_day_systems(w, &mut routes);
@@ -1738,6 +1756,10 @@ pub fn load(s: &str) -> Result<WorldState, String> {
         }
     }
     equipment::validate_ground_operations_receipts(&w)?;
+    aviation::validate(&w)?;
+    airbases::validate(&w)?;
+    airmissions::validate(&w)?;
+    equipment::validate_air_support_world(&w)?;
     companies::validate_state(&w)?;
     supplier_catalogue::validate(&w)?;
     // This one documented upgrade expands only the old empty Japanese

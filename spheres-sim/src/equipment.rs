@@ -140,6 +140,7 @@ include!("equipment_replenishment.rs");
 include!("equipment_ammunition_production.rs");
 include!("equipment_ammunition_operations.rs");
 include!("equipment_ammunition_reserves.rs");
+include!("equipment_air_support.rs");
 include!("equipment_supply_automation.rs");
 
 #[derive(Clone, Debug, Serialize)]
@@ -315,6 +316,8 @@ pub struct EquipmentState {
     pub company_refits: BTreeMap<u32, CompanyRefitClaim>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub ground_operations_receipt: Option<GroundOperationsReceipt>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub air_support: Option<AirSupportPolicy>,
 }
 impl Default for EquipmentState {
     fn default() -> Self {
@@ -344,6 +347,7 @@ impl Default for EquipmentState {
             supply_automation: None,
             company_refits: BTreeMap::new(),
             ground_operations_receipt: None,
+            air_support: None,
         }
     }
 }
@@ -1021,9 +1025,9 @@ pub fn refit_quote(
                 .iter()
                 .find(|h| h.design_id.as_deref() == Some(source))
         })
-        .map_or(0, crate::arsenal::available_design_units);
+        .map_or(0, |h| crate::arsenal::available_design_units(h).saturating_sub(crate::aviation::assigned_units(w.nation(id), source)));
     if reason.is_none() && available < quantity {
-        reason = Some("There are not enough unreserved source vehicles for this refit.".into());
+        reason = Some("There are not enough unassigned, unreserved source vehicles for this refit. Release aircraft from their squadron first.".into());
     }
     let terms = n
         .ok_or_else(|| "This government is missing.".into())
@@ -1542,6 +1546,7 @@ pub fn validate_state(n: &Nation) -> Result<(), String> {
     validate_ammunition_reserves(n)?;
     validate_supply_automation(n)?;
     validate_ground_operations_receipt(n)?;
+    validate_air_support(n)?;
     if s.revisions.len() > MAX_REVISIONS
         || s.projects.len() > MAX_PROJECTS
         || s.drafts.len() > MAX_REVISIONS

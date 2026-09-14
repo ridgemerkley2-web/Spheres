@@ -1518,6 +1518,12 @@ fn contact_result(
                 * (1.0 - interdiction);
         }
     }
+    // Support army augments existing ground pressure at this exact contact;
+    // aircraft alone never occupy territory or create a ground formation.
+    for (i,side) in [(0,true),(1,false)] {
+        let support=crate::airmissions::fire(w,c,d,side).1;
+        offensive[i] *= 1.0+(support/(mass[i]+war::FLOOR_MASS)).clamp(0.0,0.35);
+    }
     // Defence can stop aggregate advance. No uncapped sweep redistributes a
     // mountain's unspent movement into another province after this result.
     let resistance_a = power[1] * 0.8;
@@ -1563,6 +1569,12 @@ fn contact_result(
                 .clamp(0.0, 0.5);
             daily_rate += clock::blend(w, rate);
         }
+        // Tactical aircraft enter this one casualty resolver once per target.
+        // The shared launch plan already accounts for ammunition and upkeep.
+        let flight=crate::airmissions::fire(w,c,d,!victim.side).0;
+        let cover=tempo.min(1.0)*(1.0-0.55*th.urbanisation)/(1.0+victim.preparation*0.35);
+        let flight_rate=(war::KILL_RATE*flight*(1.0-victim.air_defense.clamp(0.0,0.7))*cover*war::RUNG_EXPOSURE[victim.rung.min(9) as usize]/(mass[i]+war::FLOOR_MASS)).clamp(0.0,0.5);
+        daily_rate += clock::blend(w,flight_rate);
         daily_rate = daily_rate.clamp(0.0, 0.05);
         result
             .losses
@@ -1588,7 +1600,8 @@ pub(crate) fn resolve(
 ) -> Resolution {
     let day = clock::absolute_day(w);
     let k = front::contested_set(w, c);
-    let combat = contacts(w, c, &snapshot.rows, opening, &k);
+    let mut combat = contacts(w, c, &snapshot.rows, opening, &k);
+    for target in crate::airmissions::targets(w,c.id) { combat.entry(target).or_default(); }
     let mut amounts: BTreeMap<NationId, f64> = BTreeMap::new();
     let mut raw_amounts: BTreeMap<NationId, f64> = BTreeMap::new();
     let mut sector_loss: BTreeMap<String, f64> = BTreeMap::new();
@@ -1598,6 +1611,8 @@ pub(crate) fn resolve(
     for (d, units) in &combat {
         let h = hold(&opening_conflict, &k, d);
         let result = contact_result(w, &opening_conflict, d, h, units);
+        let opposition:Vec<_>=units.iter().filter(|u|u.mass>EPS).map(|u|(u.nation,u.air_defense)).collect();
+        crate::airmissions::record_contact(w,&opening_conflict,d,&opposition);
         if result.movement.abs() > EPS {
             c.front
                 .insert(d.clone(), (h + result.movement).clamp(-1.0, 1.0) as f32);

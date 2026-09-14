@@ -1760,6 +1760,15 @@
      it MUST NOT take pointer events: it covers the sphere completely, so a
      single stray pointer-events on it would kill drag, zoom, hover and every
      click on the map at once. */
+  .flight-map-card { position:absolute; z-index:28; top:14px; right:14px; width:min(330px,calc(100% - 28px)); max-height:42%; overflow:auto; padding:14px; border:1px solid #659ba7; border-radius:9px; background:#0a141dec; box-shadow:0 12px 30px #0009; color:#ecf4f8; font:13px/1.45 Inter,system-ui,sans-serif; }
+  .flight-map-card h2 { margin:0 0 6px; font-size:16px; line-height:1.25; }
+  .flight-map-card p { margin:6px 0; overflow-wrap:anywhere; }
+  .flight-map-card .flight-map-stamp { color:#91c8d5; font-size:11px; }
+  .flight-map-card .flight-map-problem { color:#ffd395; }
+  .flight-map-card .flight-map-actions { display:flex; flex-wrap:wrap; gap:7px; margin-top:10px; }
+  .flight-map-card button { min-height:36px; padding:7px 10px; border:1px solid #617889; border-radius:5px; background:#122532; color:#f4f8fa; font-size:12px; cursor:pointer; }
+  .flight-map-card button:focus-visible { outline:2px solid #ffdc85; outline-offset:2px; }
+  @media(max-width:640px) { .flight-map-card { top:auto; bottom:12px; left:8px; right:8px; width:auto; max-height:40%; padding:11px; } }
   .globe-stage { position: relative; width: 100%; height: calc(100vh - 190px);
                  min-height: 320px; }
   #glmap { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0;
@@ -5693,13 +5702,15 @@ function equipmentExternalPending() {
 }
 async function equipmentCommand(command) {
   if (!S?.player || equipmentExternalPending()) throw new Error("Wait for the current order or turn to finish before confirming equipment work.");
-  if (!command || !["equipment_save","equipment_research","equipment_develop","equipment_produce","equipment_refit","equipment_retire","equipment_maintenance","equipment_supply","equipment_target","equipment_pause","equipment_cancel","equipment_funding","equipment_ammo_order","equipment_ammo_activate","equipment_ammo_funding","equipment_ammo_pause","equipment_ammo_cancel","equipment_ammo_reserve","equipment_ammo_reserve_clear","equipment_supply_policy","equipment_supply_policy_clear","company_establish","company_capitalize","company_develop","company_purchase","company_funding","company_inventory","company_cancel","company_ammo_supply","company_ammo_inventory","company_ammo_purchase","company_refit","company_refit_cancel","company_enable_imports","company_import_purchase","company_import_cancel"].includes(command.kind)) throw new Error("This is not a reviewed equipment order.");
+  if (!command || !["air_squadron","air_base","air_mission","equipment_air_support","equipment_save","equipment_research","equipment_develop","equipment_produce","equipment_refit","equipment_retire","equipment_maintenance","equipment_supply","equipment_target","equipment_pause","equipment_cancel","equipment_funding","equipment_ammo_order","equipment_ammo_activate","equipment_ammo_funding","equipment_ammo_pause","equipment_ammo_cancel","equipment_ammo_reserve","equipment_ammo_reserve_clear","equipment_supply_policy","equipment_supply_policy_clear","company_establish","company_capitalize","company_develop","company_purchase","company_funding","company_inventory","company_cancel","company_ammo_supply","company_ammo_inventory","company_ammo_purchase","company_refit","company_refit_cancel","company_enable_imports","company_import_purchase","company_import_cancel"].includes(command.kind)) throw new Error("This is not a reviewed equipment order.");
   const session=S.session_id;
   const response=await api("/api/command", {commands:[command]});
   if (session!==S?.session_id) throw new Error("The campaign changed. Review the equipment in the current campaign.");
   if (response.command_pending) throw new Error("The order is awaiting confirmation. Use the pending order controls before sending another.");
   if (response.errors?.length) throw new Error(response.errors.join(" "));
   await adopt(response,false);
+  const flightMessages={air_squadron:"Squadron order recorded. Review assigned aircraft and readiness in Air command.",air_base:"Airbase order recorded. Review financed work, capacity and transit in Air command.",air_mission:"Mission order recorded. Review the queued launch or cancellation in Air command.",equipment_air_support:"Routine support policy saved for the next simulation day. Review its combined upkeep and store cap in Air command."};
+  if(flightMessages[command.kind]) { equipmentSelectTab("flight"); return {message:flightMessages[command.kind]}; }
   const importMessages={company_enable_imports:"Supplier imports enabled. Companies fund their own construction, development and stock; no equipment was purchased.",company_import_purchase:"Import purchase accepted. Review its paid ownership and delivery status in Companies & Procurement; component research is unchanged.",company_import_cancel:"Import cancellation recorded. Review the contract status and its refund receipt before spending any returned funds."};
   if(importMessages[command.kind]) { equipmentSelectTab("companies"); return {message:importMessages[command.kind]}; }
   const companyRefitMessages={company_refit:"Refit contract accepted. Review held funds, equipment withdrawn from service and manufacturer progress in In service.",company_refit_cancel:"Unstarted refit cancellation recorded. Review released vehicles, any unit already in work and the refund status in In service."};
@@ -5723,7 +5734,7 @@ async function equipmentCommand(command) {
 async function equipmentNavigate(action) {
   if (!action || !S?.player || equipmentExternalPending()) return false;
   if (action.action==="equipment") {
-    if (!["research","designer","library","companies","development","production","ammunition","service"].includes(action.tab)) return false;
+    if (!["research","designer","library","companies","development","production","ammunition","service","flight"].includes(action.tab)) return false;
     if (Number.isSafeInteger(action.company) && action.company >= 0) EQUIP.companyFirm=action.company;
     equipmentSelectTab(action.tab); return true;
   }
@@ -13636,11 +13647,111 @@ const escText = (t) => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;");
    of Pacific nations. globe3d.js's projectGeo returns null past the horizon,
    which is the whole of the rule.                                            */
 
+/* Air Force geography is a read-only snapshot of native basing and mission
+   reviews. A changed campaign invalidates it; this overlay issues no orders. */
+const FLIGHT_MAP = { row:null, state:null };
+function flightMapGeo(row) {
+  if (typeof row === "string") row = {district:row};
+  if (!row || typeof row !== "object") return null;
+  const location = row.location || row;
+  if (Number.isFinite(location.lon) && Number.isFinite(location.lat) && Math.abs(location.lon)<=180 && Math.abs(location.lat)<=90)
+    return [location.lon,location.lat];
+  const district = row.district || row.base || row.id, info = typeof district==="string" && DINDEX[district];
+  return info && window.Globe3D ? Globe3D.unproject(info.cx,info.cy) : null;
+}
+function flightMapCurrent() { return !!FLIGHT_MAP.row && FLIGHT_MAP.state===S; }
+window.focusFlightMap = function(row) {
+  const point = flightMapGeo(row);
+  if (!point || !S?.player) { banner("This airfield has no mapped location. Choose a mapped base in Air Force."); return false; }
+  FLIGHT_MAP.row = JSON.parse(JSON.stringify(row)); FLIGHT_MAP.state = S;
+  if (typeof closeEquipmentDrawer==="function") closeEquipmentDrawer();
+  if (typeof closeProvince==="function") closeProvince();
+  ui.selectedCity=null;
+  showTab("map");
+  renderMapCity(); renderFlightMapCard();
+  const target = flightMapGeo(row.target), middle = target ? slerpGeo(point,target,.5) : point;
+  const projected = Globe3D.project(middle[0],middle[1]);
+  const radius = Number.isFinite(row.rangeKm) ? row.rangeKm : Number.isFinite(row.range_km) ? row.range_km : 0;
+  const distance = target ? Math.acos(clamp(Math.sin(point[1]*Math.PI/180)*Math.sin(target[1]*Math.PI/180)+Math.cos(point[1]*Math.PI/180)*Math.cos(target[1]*Math.PI/180)*Math.cos((point[0]-target[0])*Math.PI/180),-1,1))*6371 : 0;
+  const extent = Math.max(radius,distance*.65,250);
+  camTween(projected[0],projected[1],clamp(12000/extent,1.2,9));
+  GLOBE?.render();
+  document.getElementById("flightMapTitle")?.focus({preventScroll:true});
+  return true;
+};
+function renderFlightMapCard() {
+  document.getElementById("flightMapCard")?.remove();
+  const row=FLIGHT_MAP.row,stage=document.querySelector("#pane-map .globe-stage");
+  if (!row || !stage) return;
+  const current=flightMapCurrent(),card=document.createElement("aside");
+  card.id="flightMapCard";card.className="flight-map-card";card.setAttribute("aria-labelledby","flightMapTitle");
+  const title=document.createElement("h2");title.id="flightMapTitle";title.tabIndex=-1;title.textContent=row.name||row.base||row.district||"Air Force geography";
+  const stamp=document.createElement("p");stamp.className="flight-map-stamp";stamp.textContent=`Air Force · ${FLIGHT_MAP.state?.date||"current campaign reading"}`;
+  card.append(stamp,title);
+  const line=(text,className="")=>{const p=document.createElement("p");p.className=className;p.textContent=text;card.append(p);};
+  if (!current) line("The campaign reading changed. Open Air Force for current access, capacity and mission range.","flight-map-problem");
+  else {
+    const capacity=Number.isFinite(row.capacity)?row.capacity:row.capacity_aircraft;
+    const occupied=Number.isFinite(row.occupied)?row.occupied:row.occupied_aircraft;
+    if(Number.isFinite(capacity))line(`${Number.isFinite(occupied)?`${occupied} / `:""}${capacity} aircraft spaces${Number.isFinite(occupied)?" used or reserved by arrivals":""}.`);
+    const radius=Number.isFinite(row.rangeKm)?row.rangeKm:row.range_km;
+    if(Number.isFinite(radius)&&radius>0)line(`${Math.round(radius).toLocaleString()} km mission radius · installed aircraft configuration.`);
+    if(row.target)line(`Target: ${typeof row.target==="string"?row.target:row.target.name||row.target.district||"selected campaign target"}. The line shows geographic reach; launch eligibility follows the native review.`);
+    if(row.blocker||row.reason)line(String(row.blocker||row.reason),"flight-map-problem");
+    else if(capacity===0)line("Complete funded base construction before assigning aircraft.","flight-map-problem");
+    if(row.transit?.arrival_day!=null)line(`Transfer arrival day ${row.transit.arrival_day}. Aircraft in transit cannot fly missions.`);
+    line("Use Air Force to review a move, base improvement, support funding or mission.");
+  }
+  const actions=document.createElement("div");actions.className="flight-map-actions";
+  const back=document.createElement("button");back.type="button";back.textContent="Back to Air Force";back.onclick=()=>openEquipment({tab:row.tab||"flight"});
+  const close=document.createElement("button");close.type="button";close.textContent="Clear map view";close.onclick=()=>{FLIGHT_MAP.row=null;FLIGHT_MAP.state=null;renderFlightMapCard();GLOBE?.render();document.querySelector("#mapControls button")?.focus({preventScroll:true});};
+  actions.append(back,close);card.append(actions);stage.append(card);
+}
+function flightMapRadiusPoints(point,radiusKm) {
+  const lat=point[1]*Math.PI/180,lon=point[0]*Math.PI/180,angle=Math.min(Math.max(radiusKm,0),10000)/6371;
+  return Array.from({length:97},(_,i)=>{
+    const bearing=i*Math.PI*2/96;
+    const nextLat=Math.asin(clamp(Math.sin(lat)*Math.cos(angle)+Math.cos(lat)*Math.sin(angle)*Math.cos(bearing),-1,1));
+    const nextLon=lon+Math.atan2(Math.sin(bearing)*Math.sin(angle)*Math.cos(lat),Math.cos(angle)-Math.sin(lat)*Math.sin(nextLat));
+    return [((nextLon*180/Math.PI+540)%360)-180,nextLat*180/Math.PI];
+  });
+}
+function drawFlightMapOverlay(ctx,view,globe) {
+  if(!flightMapCurrent())return;
+  const row=FLIGHT_MAP.row,point=flightMapGeo(row);if(!point)return;
+  const r=view.ratio,blocked=!!(row.blocker||row.reason),colour=blocked?"#ffc078":"#75e1ed";
+  ctx.save();ctx.lineJoin="round";ctx.lineCap="round";
+  const path=(points,dash,width,tint)=>{
+    ctx.beginPath();let pen=false;
+    for(const g of points){const p=globe.projectGeo(g[0],g[1],view,1.015);if(!p){pen=false;continue;}if(pen)ctx.lineTo(p[0],p[1]);else ctx.moveTo(p[0],p[1]);pen=true;}
+    ctx.strokeStyle="#051018";ctx.lineWidth=(width+2)*r;ctx.setLineDash([]);ctx.stroke();
+    ctx.strokeStyle=tint;ctx.lineWidth=width*r;ctx.setLineDash(dash.map(n=>n*r));ctx.stroke();ctx.setLineDash([]);
+  };
+  const radius=Number.isFinite(row.rangeKm)?row.rangeKm:row.range_km;
+  if(Number.isFinite(radius)&&radius>0)path(flightMapRadiusPoints(point,radius),[7,5],1.8,colour);
+  const target=flightMapGeo(row.target);
+  if(target)path(Array.from({length:49},(_,i)=>slerpGeo(point,target,i/48)),blocked?[3,5]:[],2.2,colour);
+  const transitFrom=flightMapGeo(row.transit?.from_location||row.transit?.from),transitTo=flightMapGeo(row.transit?.to_location||row.transit?.to);
+  if(transitFrom&&transitTo)path(Array.from({length:49},(_,i)=>slerpGeo(transitFrom,transitTo,i/48)),[5,5],2,"#f4c66c");
+  const marker=(location,label,kind)=>{
+    const p=globe.projectGeo(location[0],location[1],view,1.02);if(!p)return;
+    ctx.beginPath();ctx.arc(p[0],p[1],9*r,0,Math.PI*2);ctx.fillStyle="#07111b";ctx.fill();ctx.strokeStyle=colour;ctx.lineWidth=2*r;ctx.stroke();
+    ctx.fillStyle=colour;ctx.font=`700 ${12*r}px Inter,system-ui,sans-serif`;ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText(kind,p[0],p[1]);
+    ctx.font=`700 ${11*r}px Inter,system-ui,sans-serif`;
+    const text=String(label||"").slice(0,64),width=Math.min(ctx.measureText(text).width+18*r,300*r),height=24*r;
+    ctx.fillStyle="#07111bed";roundedRect(ctx,p[0]-width/2,p[1]-39*r,width,height,5*r);ctx.fill();ctx.strokeStyle=colour;ctx.lineWidth=r;ctx.stroke();ctx.fillStyle="#f2f8fb";ctx.fillText(text,p[0],p[1]-27*r,width-12*r);
+    globe.labelBoxes?.push([p[0],p[1]-27*r,width,height]);
+  };
+  marker(point,row.name||row.base||row.district||"Airbase",blocked?"!":"A");
+  if(transitTo)marker(transitTo,"Transfer destination","→");
+  if(target)marker(target,typeof row.target==="string"?row.target:row.target.name||row.target.district||"Target","×");
+  ctx.restore();
+}
 function drawMapOverlay(ctx, view, globe) {
   const m = me();
   const r = view.ratio;
   const mapRect = GLCV.getBoundingClientRect();
-  for (const element of document.querySelectorAll('#mapControls, #mapCityCard, #provinceDossier[aria-hidden="false"]')) {
+  for (const element of document.querySelectorAll('#mapControls, #mapCityCard, #flightMapCard, #provinceDossier[aria-hidden="false"]')) {
     const box = element.getBoundingClientRect();
     if (box.width && box.height) globe.labelBoxes.push([
       (box.left-mapRect.left+box.width/2)*r, (box.top-mapRect.top+box.height/2)*r, box.width*r, box.height*r]);
@@ -13686,6 +13797,7 @@ function drawMapOverlay(ctx, view, globe) {
   // Active construction is marked at the exact served province centroid only
   // while its board is open, keeping the resting globe free of management ink.
   drawProductionOverlay(ctx, view, globe);
+  drawFlightMapOverlay(ctx, view, globe);
 
   // ---- nation labels ------------------------------------------------------
   // THE FLAT MAP COULD DRAW ALL OF THEM AND THIS CANNOT, and the reason is
@@ -14050,6 +14162,7 @@ function renderMap() {
   renderProvinceDossier();
 
   renderMapCity();
+  renderFlightMapCard();
 
   if (ui.mapMode === "resources" || ui.resOverlay) {
     if (RESOURCES_STATE === "cold") loadResources();

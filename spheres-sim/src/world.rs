@@ -314,6 +314,8 @@ pub struct Nation {
     /// Versioned component designs and paid development. Stock remains in Arsenal.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub equipment: Option<crate::equipment::EquipmentState>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub aviation: Option<crate::aviation::AviationState>,
     /// Frozen inherited public investment while province output accounts own
     /// explicit projects. Absent unless the browser's accounting is enabled.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -1096,6 +1098,10 @@ pub struct WorldState {
     pub campaign_aims: crate::campaign_aims::CampaignAims,
     #[serde(default, skip_serializing_if = "crate::campaign::CampaignState::is_empty")]
     pub campaign: crate::campaign::CampaignState,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub airbases: Option<crate::airbases::AirbaseState>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub air_missions: Option<crate::airmissions::AirMissionsState>,
     #[serde(default, skip_serializing_if = "crate::campaign_supply::SupplyState::is_empty")]
     pub campaign_supply: crate::campaign_supply::SupplyState,
     #[serde(default, skip_serializing_if = "crate::campaign_peace::PeaceState::is_empty")]

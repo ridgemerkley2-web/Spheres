@@ -820,6 +820,7 @@ impl NationRecord {
             annual_budget: None,
             program_budget: None,
             equipment: None,
+        aviation: None,
             province_investment_reference: None,
             debt_gdp: self.economy.debt_gdp,
             // THE BOOKS START CLOSED for every nation on the board, including
@@ -894,6 +895,8 @@ pub fn load_world(
         agency: Default::default(),
         campaign_aims: Default::default(),
         campaign: Default::default(),
+        airbases: None,
+        air_missions: None,
         campaign_supply: Default::default(),
         campaign_peace: Default::default(),
         governments: Default::default(),

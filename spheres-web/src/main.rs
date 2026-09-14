@@ -61,6 +61,8 @@ mod s10d_inbox_fixture_tests;
 #[cfg(test)]
 mod s11_fixture_tests;
 #[cfg(test)]
+mod s15_fixture_tests;
+#[cfg(test)]
 mod performance;
 #[cfg(test)]
 mod s08_route_pool_tests;
@@ -6727,7 +6729,10 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
             nation: me,
             order: equipment_view::parse_company_order(v)?,
         },
-        "equipment_research" | "equipment_save" | "equipment_develop" | "equipment_produce" | "equipment_refit" | "equipment_retire" | "equipment_maintenance" | "equipment_supply" | "equipment_supply_policy" | "equipment_supply_policy_clear" | "equipment_target" | "equipment_pause" | "equipment_funding" | "equipment_cancel" | "equipment_ammo_order" | "equipment_ammo_activate" | "equipment_ammo_funding" | "equipment_ammo_pause" | "equipment_ammo_cancel" | "equipment_ammo_reserve" | "equipment_ammo_reserve_clear" => {
+        "air_squadron" => Command::AirSquadron {nation:me,order:serde_json::from_value(v.get("order")?.clone()).ok()?},
+        "air_base" => Command::AirBase {nation:me,order:serde_json::from_value(v.get("order")?.clone()).ok()?},
+        "air_mission" => Command::AirMission {nation:me,order:serde_json::from_value(v.get("order")?.clone()).ok()?},
+        "equipment_air_support" | "equipment_research" | "equipment_save" | "equipment_develop" | "equipment_produce" | "equipment_refit" | "equipment_retire" | "equipment_maintenance" | "equipment_supply" | "equipment_supply_policy" | "equipment_supply_policy_clear" | "equipment_target" | "equipment_pause" | "equipment_funding" | "equipment_cancel" | "equipment_ammo_order" | "equipment_ammo_activate" | "equipment_ammo_funding" | "equipment_ammo_pause" | "equipment_ammo_cancel" | "equipment_ammo_reserve" | "equipment_ammo_reserve_clear" => {
             use spheres_sim::EquipmentOrder as E;
             let string=|key:&str|v.get(key)?.as_str().map(str::to_string);
             let budget=||v.get("daily_budget_mn")?.as_f64().filter(|n|n.is_finite()).map(|n|n/1000.0);
@@ -6742,6 +6747,7 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
                 "equipment_refit"=>E::Refit{source:string("source")?,target:string("target")?,district:string("district")?,quantity:quantity()?,daily_budget_bn:budget()?},
                 "equipment_retire"=>E::Retire{revision:string("revision")?,quantity:quantity()?},
                 "equipment_maintenance"=>E::Maintenance{daily_budget_bn:budget()?},
+                "equipment_air_support"=>E::AirSupport{daily_budget_mn:v.get("daily_budget_mn")?.as_f64().filter(|v|v.is_finite())?,target_days:v.get("target_days")?.as_u64()?.try_into().ok()?,automatic:v.get("automatic")?.as_bool()?},
                 "equipment_supply"=>E::Supply{horizon_days:v.get("horizon_days")?.as_u64()?.try_into().ok()?,spending_cap_bn:v.get("spending_cap_mn")?.as_f64().filter(|n|n.is_finite())?/1000.0},
                 "equipment_supply_policy"=>E::SupplyPolicy{horizon_days:v.get("horizon_days")?.as_u64()?.try_into().ok()?,spending_cap_bn:v.get("spending_cap_mn")?.as_f64().filter(|n|n.is_finite())?/1000.0,cash_floor_bn:v.get("cash_floor_mn")?.as_f64().filter(|n|n.is_finite())?/1000.0,review_interval_days:v.get("review_interval_days")?.as_u64()?.try_into().ok()?,automatic:v.get("automatic")?.as_bool()?},
                 "equipment_supply_policy_clear"=>E::SupplyPolicyClear,

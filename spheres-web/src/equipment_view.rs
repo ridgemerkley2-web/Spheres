@@ -10,6 +10,7 @@ include!("equipment_targets_view.rs");
 include!("equipment_replenishment_view.rs");
 include!("equipment_supply_automation_view.rs");
 include!("equipment_aviation_view.rs");
+include!("equipment_flight_view.rs");
 include!("equipment_ammunition_view.rs");
 include!("equipment_ammunition_reserves_view.rs");
 include!("company_view.rs");
@@ -28,7 +29,7 @@ fn checked(w:&WorldState,me:NationId,label:&str,command:Value)->Value {
             // These two command families have complete native world-refusal
             // checks. refusal_of also applies the same political-price gate,
             // so there is no need to copy the world and dispatch again.
-            Command::Equipment {..}|Command::Company {..} =>
+            Command::Equipment {..}|Command::Company {..}|Command::AirSquadron {..}|Command::AirBase {..}|Command::AirMission {..} =>
                 spheres_sim::refusal_of(w,&c).map_or(Ok(()),Err),
             _ => spheres_sim::apply_command(&mut w.clone(),&c),
         }).err();
@@ -149,7 +150,7 @@ pub fn view(w:&WorldState,me:NationId,session:&str)->Value {
     let ammunition=ammunition_board_with_market(w,me,ammo_market);
     let companies=company_board_from_reads(w,me,&company_raw,&supplier_market);
     json!({"session_id":session,"nation":me,"name":me.name(),"date":w.date_str(),"enabled":spheres_sim::clock::is_daily(w)&&w.rules.military_operations,"reason":"Equipment programmes require daily time and military operations.",
-        "platforms":platforms,"components":components,"presets":presets,"designs":designs,"development":development,"production":production,"lots":lots,"research":research,"comparison_options":comparison_options,"modernization":modernization,"supply":supply,"service":equipment_service_board(w,me),"maintenance":maintenance_board(w,me),"targets":targets_board(w,me),"replenishment":replenishment_board(w,me),"supply_automation":supply_automation_board(w,me),"ammunition":ammunition,"aviation":aviation_board(w,me),"companies":companies,
+        "platforms":platforms,"components":components,"presets":presets,"designs":designs,"development":development,"production":production,"lots":lots,"research":research,"comparison_options":comparison_options,"modernization":modernization,"supply":supply,"service":equipment_service_board(w,me),"maintenance":maintenance_board(w,me),"targets":targets_board(w,me),"replenishment":replenishment_board(w,me),"supply_automation":supply_automation_board(w,me),"ammunition":ammunition,"aviation":aviation_board(w,me),"flight":flight_board(w,me),"companies":companies,
         "funding":{"metrics":[metric("Development","Defense · Research & development"),metric("Production and refit","Defense · Procurement"),metric("Service support","Defense · Maintenance; see the service plan"),metric("Unused development funds",format!("${:.3}m",spheres_sim::programs::available_bn(w,me,BUDGET_DEFENSE,4)*1000.0)),metric("Unused procurement funds",format!("${:.3}m",spheres_sim::programs::available_bn(w,me,BUDGET_DEFENSE,3)*1000.0))]},
         "actions":[nav("Development funding",json!({"action":"budget","ministry":"defense","department":4})),nav("Procurement funding",json!({"action":"budget","ministry":"defense","department":3})),nav("Build an arms plant",json!({"action":"construction","kind":"arms_plant"})),nav("Review raw inputs",json!({"action":"resources"}))]})
 }
@@ -159,6 +160,7 @@ pub fn preview(w:&WorldState,me:NationId,session:&str,v:&Value)->Result<Value,St
     if let Some(command)=v.get("command") {
         let parsed=super::parse_command(w,command,me).ok_or("The equipment order is malformed.")?;
         if let Command::Company {ref order,..}=parsed {return Ok(company_preview(w,me,session,command,order));}
+        if matches!(&parsed,Command::AirSquadron{..}|Command::AirBase{..}|Command::AirMission{..}|Command::Equipment{order:EquipmentOrder::AirSupport{..},..}) {return Ok(flight_preview(w,me,session,command,&parsed));}
         let Command::Equipment {ref order,..}=parsed else{return Err("This preview accepts equipment and company orders only.".into());};
         if matches!(order,EquipmentOrder::SupplyPolicy{..}|EquipmentOrder::SupplyPolicyClear) {return Ok(supply_automation_preview(w,me,session,command,order));}
         if matches!(order,EquipmentOrder::AmmoReserve{..}|EquipmentOrder::AmmoReserveClear{..}) {return Ok(ammunition_reserve_preview(w,me,session,command,order));}

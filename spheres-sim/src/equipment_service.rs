@@ -59,10 +59,10 @@ pub fn retirement_quote(
     });
     let held_units = h.map_or(0, |h| h.units as u32);
     let reserved_units = h.map_or(0, |h| h.refit_reserved);
-    let available_units = h.map_or(0, crate::arsenal::available_design_units);
+    let available_units = h.map_or(0, |h| crate::arsenal::available_design_units(h).saturating_sub(crate::aviation::assigned_units(w.nation(id), revision)));
     if reason.is_none() && available_units < quantity {
         reason = Some(
-            "There are not enough delivered, unreserved vehicles to retire. Pending deliveries and vehicles reserved for refit cannot be retired.".into(),
+            "There are not enough delivered, unreserved vehicles to retire. Pending deliveries, squadron assignments and vehicles reserved for refit cannot be retired.".into(),
         );
     }
     let before = n.map_or(0.0, fleet_maintenance_requirement);

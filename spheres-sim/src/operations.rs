@@ -162,6 +162,13 @@ fn allocate_base(w: &WorldState, id: NationId, extra: Option<&Conflict>) -> Vec<
     rows
 }
 
+/// Read only conserved national share, before any ammunition/mission effects.
+pub fn nominal_share(w:&WorldState,id:NationId,conflict:u32)->f64 {
+    let strength=w.nation_opt(id).map_or(0.0,|n|n.mil_strength.max(0.0));
+    if strength<=0.0{return 0.0;}
+    allocate_base(w,id,None).iter().find(|r|r.conflict==conflict).map_or(0.0,|r|(r.deployed/strength).clamp(0.0,1.0))
+}
+
 // Build aircraft allocations independently of opposing air exposure. Their
 // national compatible-store plan can then establish actual launched raids
 // without recursively asking another nation's full ammunition allocation.
@@ -183,7 +190,7 @@ fn ammo_deployments_base(w: &WorldState, id: NationId, rows: &[Deployment], extr
         }
         crate::equipment::AmmoDeployment {
             ground: row.rung != 6,
-            aircraft_share: if row.rung == 6 && strength > 0.0 && conflict.is_some_and(|c|
+            aircraft_share: if w.nation(id).aviation.is_none() && row.rung == 6 && strength > 0.0 && conflict.is_some_and(|c|
                 theatre::has_access(w,id,c.theatre) && crate::campaign::custom_strike_ordered(w,c,id)) {
                 (row.deployed / strength).clamp(0.0,1.0)
             } else { 0.0 },
@@ -194,6 +201,7 @@ fn ammo_deployments_base(w: &WorldState, id: NationId, rows: &[Deployment], extr
 }
 
 fn launched_enemy_air(w: &WorldState, id: NationId, conflict: u32, extra: Option<&Conflict>) -> f64 {
+    if w.nation(id).aviation.is_some() { return crate::airmissions::exposure(w,id,conflict); }
     let rows = allocate_base(w, id, extra);
     let campaign = crate::campaign::enabled(w);
     let Some(index) = rows.iter().position(|r| r.conflict == conflict &&
@@ -304,7 +312,7 @@ impl Snapshot {
             if crate::equipment::physical_ammunition_required(n, crate::clock::absolute_day(w)) {
                 let deployments = ammo_deployments(w, n.id, &rows, None);
                 let plan = crate::equipment::plan_ammunition(w, n.id, &deployments);
-                if crate::equipment::has_aviation_holdings(n) {
+                if n.aviation.is_none() && crate::equipment::has_aviation_holdings(n) {
                     for (row, deployment) in rows.iter().zip(&deployments) {
                         let mut exposure = BTreeMap::new();
                         for h in &n.arsenal.held {
@@ -395,12 +403,13 @@ impl Snapshot {
                     .and_then(|s| s.revisions.get(*design)).is_some_and(|r| r.profile.aviation.is_some())) {
                     // This first aircraft slice models launched strike sorties,
                     // not aircraft destroyed on airfields during a land battle.
-                    arsenal::apply_holding_loss(h, aircraft_material.get(design).copied().unwrap_or(0.0));
+                    if n.aviation.is_none() { arsenal::apply_holding_loss(h, aircraft_material.get(design).copied().unwrap_or(0.0)); }
                     continue;
                 }
                 if let Some(d) = arsenal::DECK.get(h.kit as usize) { arsenal::apply_holding_loss(h, material[class_index(d.class)]); }
             }
             crate::equipment::settle_ground_operations_receipt(n, day, ground_conflicts, ground_opening);
+            crate::aviation::reconcile(n);
         }
     }
 }

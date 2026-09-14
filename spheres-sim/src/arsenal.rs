@@ -536,9 +536,10 @@ pub fn available_design_units(h: &Holding) -> u32 {
 
 pub fn reserve_refit(n: &mut Nation, source_id: &str, units: u32) -> Result<f64, String> {
     if units == 0 { return Err("Choose at least one vehicle to refit.".into()); }
+    let assigned = crate::aviation::assigned_units(n, source_id);
     let h = n.arsenal.held.iter_mut().find(|h| h.design_id.as_deref() == Some(source_id))
         .ok_or("No fielded vehicles use this design.")?;
-    if available_design_units(h) < units { return Err("Not enough unreserved vehicles for this refit.".into()); }
+    if available_design_units(h).saturating_sub(assigned) < units { return Err("Not enough unreserved vehicles for this refit. Release assigned aircraft from their squadron first.".into()); }
     h.refit_reserved = h.refit_reserved.checked_add(units).ok_or("Too many reserved vehicles.")?;
     Ok(h.age)
 }

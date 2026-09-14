@@ -1245,3 +1245,104 @@ test('s09 current-design costs have a separate escaped heading and guidance uses
   const c=fixture();s09Guidance(c);c.eq.draft.name='<Current model>';const html=c.equipmentGuidanceHtml();
   assert(html.includes('<h3>Current design · &lt;Current model&gt;</h3>'));assert(html.indexOf('eq-guidance-current')>html.indexOf('data-equipment-recommendation="advanced"'));assert(css.includes("url('/art/pages/military-research-v1.webp')"));assert(!css.includes("url('/page-art/"));
 });
+
+function flightSnapshot(extra={}){
+  return snapshot({flight:{overview:{title:'Air command',detail:'Owned aircraft and reviewed campaign orders.',metrics:[],actions:[]},
+    squadrons:[],aircraft:[],bases:[],base_actions:[],support:{title:'Routine support',actions:[]},
+    legacy:{title:'Inherited air formations',detail:'Exact 0.375 formation equivalents remain property.'},missions:null,...extra}});
+}
+
+test('s12-s15 air shell sends all reviewed kinds through protected receipts and returns to flight',async()=>{
+  const c=shellFixture();loaded(c,flightSnapshot());c.room.hidden=false;c.eq.draft.name='Unfinished aircraft';
+  const commands=[
+    {kind:'air_squadron',order:{Create:{name:'First',revision:'air-1',quantity:2}}},
+    {kind:'air_base',order:{action:'rebase',base:'FR-A',squadron:1}},
+    {kind:'air_mission',order:{action:'queue',squadron:1,conflict:7,kind:'strike_target',target:'FR-B'}},
+    {kind:'equipment_air_support',daily_budget_mn:.2,target_days:14,automatic:true},
+  ];
+  vm.runInContext(shellSource('api'),c);
+  let sequence=0,adopted=0;
+  c.COMMAND_CHANNEL=require(path.join(base,'spheres-web/ui/campaign-transport.js')).create({
+    request:body=>c.api('/api/command',body,true),session:()=>c.S.session_id,
+    identity:()=>({client_id:'air-shell',request_seq:++sequence}),
+  });
+  c.fetch=async(route,options)=>{c.requests.push([route,plain(options)]);return {ok:true,text:async()=>JSON.stringify({session_id:'one',player:'USA',errors:[]})};};
+  c.banner=message=>assert.fail(message);
+  c.adopt=async(state,history)=>{assert.equal(history,false);adopted++;c.S=state;};
+  for(const [index,command] of commands.entries()){
+    c.eq.tab='designer';const result=await c.equipmentCommand(command),[route,options]=c.requests[index];
+    assert.equal(route,'/api/command');assert.equal(options.method,'POST');
+    assert.deepEqual(JSON.parse(options.body),{commands:[command],session_id:'one',client_id:'air-shell',request_seq:index+1});
+    assert.equal(c.eq.tab,'flight');assert.match(result.message,/Air command/);assert.equal(c.COMMAND_CHANNEL.pending,null);
+  }
+  assert.equal(adopted,4);assert.equal(c.eq.draft.name,'Unfinished aircraft');
+  c.eq.tab='designer';assert.equal(await c.equipmentNavigate({action:'equipment',tab:'flight'}),true);
+  assert.equal(c.eq.tab,'flight');assert.equal(c.room.hidden,false);
+  await assert.rejects(c.equipmentCommand({kind:'air_unknown'}),/reviewed equipment order/);
+  assert.equal(await c.equipmentNavigate({action:'equipment',tab:'unknown'}),false);
+  assert.equal(c.eq.tab,'flight');assert.equal(c.requests.length,4);assert.equal(sequence,4);
+});
+
+test('s12 nested squadron fields requote the exact native order and confirm only current input',async()=>{
+  const c=fixture(),form={label:'Form squadron',enabled:true,requires_preview:true,
+    command:{kind:'air_squadron',order:{Create:{name:'First',revision:'air-1',quantity:1}}},
+    inputs:[{key:'quantity',path:['order','Create','quantity'],label:'Aircraft to assign',type:'number',value:2,min:1,max:6,step:1},
+      {key:'name',path:['order','Create','name'],label:'Squadron name',type:'text',value:'First',maxlength:80}]};
+  const data=flightSnapshot({aircraft:[{id:'air-1',name:'Owned Lark',actions:[form]}]});loaded(c,data);c.equipmentSelectTab('flight');
+  c.api=async(route,payload)=>{c.requests.push(plain([route,payload]));return route.startsWith('/api/equipment?')?data:quote({actions:[{label:'Confirm squadron order',command:plain(payload.command),enabled:true}]});};
+  c.mount.querySelector('[data-equipment-action="flight.aircraft.0.actions.0"]').onclick();await tick();
+  assert.equal(c.eq.review.command.order.Create.quantity,2);assert.equal(c.eq.review.command.quantity,undefined);
+  assert.equal(c.mount.querySelector('[data-equipment-order-input="quantity"]').value,'2');
+  const quantity=c.mount.querySelector('[data-equipment-order-input="quantity"]');quantity.value='5';quantity.oninput();
+  assert.equal(await c.equipmentConfirm(0),false,'old quote cannot authorize edited aircraft claims');await tick();
+  const name=c.mount.querySelector('[data-equipment-order-input="name"]');name.value='Second <wing>';name.oninput();await tick();
+  const expected={kind:'air_squadron',order:{Create:{name:'Second <wing>',revision:'air-1',quantity:5}}};
+  assert.deepEqual(plain(c.eq.review.command),expected);assert.equal(c.calls.length,0);
+  await c.equipmentConfirm(0);await tick();assert.deepEqual(c.calls,[expected]);
+  assert(c.requests.filter(row=>row[0]==='/api/equipment-preview'&&row[1]?.command).every(row=>row[1].command.quantity===undefined));
+});
+
+test('s12 nested order paths reject prototype keys and captured air controls reject stale state',()=>{
+  const c=fixture(),command={kind:'air_base',order:{action:'rebase',base:'FR-A',squadron:1}};
+  for(const path of [['__proto__','polluted'],['order','constructor','polluted'],['order','prototype'],['missing','base']]){
+    assert.equal(c.equipmentSetOrderValue(command,{key:'base',path},true),false);
+  }
+  assert.equal({}.polluted,undefined);assert.deepEqual(command,{kind:'air_base',order:{action:'rebase',base:'FR-A',squadron:1}});
+  assert.equal(c.equipmentSetOrderValue(command,{key:'base',path:['order','base']},'FR-B'),true);assert.equal(command.order.base,'FR-B');
+  const action={label:'Move to base',enabled:true,requires_preview:true,command,inputs:[]};
+  const data=flightSnapshot({squadrons:[{id:1,name:'First',actions:[action]}]});loaded(c,data);c.equipmentSelectTab('flight');
+  const captured=c.mount.querySelector('[data-equipment-action="flight.squadrons.0.actions.0"]');
+  c.S={session_id:'two',player:'Japan'};captured.onclick();assert.equal(c.eq.review,null);assert.equal(c.requests.length,0);assert.equal(c.calls.length,0);
+});
+
+test('s13 air command map links preserve native range and capacity and require a current reading',()=>{
+  const c=fixture(),maps=[],navigation={action:'flight_map',tab:'flight',base:'FR-A',district:'FR-A',name:'Base <one>',lon:2.1,lat:48.2,rangeKm:700,capacity:12,occupied:3,blocker:'Access <needed>'};
+  c.window.focusFlightMap=row=>maps.push(plain(row));
+  const data=flightSnapshot({bases:[{id:'FR-A',name:'Base <one>',blockers:['Access <needed>'],actions:[{label:'Show airbase on map',enabled:true,navigate:navigation}]}],
+    missions:{overview:{title:'Campaign missions',detail:'One next-day order.'},orders:[],results:[{id:4,name:'Strike <target>',status:'Flown',receipt_label:'12 Feb 1990',metrics:[{label:'Aircraft lost',value:1},{label:'Compatible stores used',value:'0.375'}],actions:[]}]}});
+  loaded(c,data);c.equipmentSelectTab('flight');assert.match(c.mount.innerHTML,/Air command/);assert.match(c.mount.innerHTML,/Inherited air formations/);assert.match(c.mount.innerHTML,/Strike &lt;target&gt;/);assert.match(c.mount.innerHTML,/Recorded · 12 Feb 1990/);
+  const captured=c.mount.querySelector('[data-equipment-action="flight.bases.0.actions.0"]');captured.onclick();assert.deepEqual(maps,[navigation]);assert.equal(c.calls.length,0);assert.equal(c.requests.length,0);
+  c.eq.stale=true;captured.onclick();assert.equal(maps.length,1);
+});
+
+test('s14 routine support retains typed boolean permission through the shared review form',async()=>{
+  const c=fixture(),form={label:'Review routine support',enabled:true,requires_preview:true,
+    command:{kind:'equipment_air_support',daily_budget_mn:.2,target_days:14,automatic:true},
+    inputs:[{key:'automatic',label:'Automatic purchases',type:'select',value:true,options:[{value:true,label:'On'},{value:false,label:'Off'}]}]};
+  const data=flightSnapshot({support:{title:'Routine support',actions:[form]}});loaded(c,data);c.equipmentSelectTab('flight');
+  c.api=async(route,payload)=>route.startsWith('/api/equipment?')?data:quote({actions:[{label:'Confirm support',command:plain(payload.command),enabled:true}]});
+  c.mount.querySelector('[data-equipment-action="flight.support.actions.0"]').onclick();await tick();
+  const select=c.mount.querySelector('[data-equipment-order-input="automatic"]');select.value='false';select.onchange();await tick();
+  assert.equal(c.eq.review.command.automatic,false);assert.equal(typeof c.eq.review.command.automatic,'boolean');assert.equal(c.calls.length,0);
+  await c.equipmentConfirm(0);await tick();assert.deepEqual(c.calls,[{kind:'equipment_air_support',daily_budget_mn:.2,target_days:14,automatic:false}]);
+});
+
+test('s15 refused mission review still opens its native target geometry without launching',async()=>{
+  const c=fixture(),maps=[],command={kind:'air_mission',order:{action:'queue',squadron:1,conflict:7,kind:'strike_target',target:'FR-B'}},
+    navigation={action:'flight_map',tab:'flight',base:'FR-A',district:'FR-A',lon:2,lat:48,rangeKm:700,blocker:'Target out of range',target:{district:'FR-B',name:'Target',lon:20,lat:50}};
+  c.window.focusFlightMap=row=>maps.push(plain(row));
+  loaded(c,flightSnapshot({squadrons:[{id:1,name:'First',actions:[{label:'Strike target',enabled:true,requires_preview:true,command,inputs:[]}]}]}));c.equipmentSelectTab('flight');
+  c.api=async()=>quote({valid:false,blockers:['Target out of range'],actions:[{label:'Confirm mission',command,enabled:false},{label:'Review target and range on map',navigate:navigation,enabled:true}]});
+  c.mount.querySelector('[data-equipment-action="flight.squadrons.0.actions.0"]').onclick();await tick();
+  assert.equal(await c.equipmentConfirm(0),false);assert.equal(await c.equipmentConfirm(1),true);assert.deepEqual(maps,[navigation]);assert.equal(c.calls.length,0);
+});

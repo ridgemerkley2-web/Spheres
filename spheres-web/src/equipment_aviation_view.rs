@@ -4,6 +4,14 @@ fn aviation_board(w:&WorldState,me:NationId)->Value {
     let Some(state)=n.equipment.as_ref() else {return Value::Null;};
     let models:Vec<_>=state.revisions.values().filter(|r|r.profile.aviation.is_some()).collect();
     if models.is_empty(){return Value::Null;}
+    if let Some(air)=&n.aviation {
+        let assigned:u64=air.squadrons.iter().map(|q|q.assigned as u64).sum();
+        let ready:u64=air.squadrons.iter().filter(|q|spheres_sim::airbases::squadron_blocker(w,me,q).is_none()).map(|q|q.assigned as u64).sum();
+        let warnings:Vec<_>=air.squadrons.iter().filter_map(|q|spheres_sim::airbases::squadron_blocker(w,me,q).map(|reason|format!("{}: {reason}",q.name))).collect();
+        return json!({"title":"Squadron readiness","status":format!("{ready} aircraft prepared for mission review"),"detail":"Manage assigned aircraft, geographic bases, routine support and reviewed campaign missions in Air command. Maintenance, compatible stores, range and target access are checked before launch.",
+            "metrics":[metric("Squadrons",air.squadrons.len()),metric("Assigned aircraft",assigned),metric("Unassigned aircraft",models.iter().map(|r|spheres_sim::aviation::unassigned_units(n,&r.id) as u64).sum::<u64>())],
+            "warnings":warnings,"actions":[nav("Open Air command",json!({"action":"equipment","tab":"flight"}))]});
+    }
     let mut held=0.0;let mut available=0u64;let mut supported_total=0.0;let mut rows=vec![];
     let usage=eq::ammunition_overview(w,me);
     for r in &models {
