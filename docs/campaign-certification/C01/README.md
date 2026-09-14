@@ -1,5 +1,12 @@
 # C01 — worldwide party and institution census
 
+**Current scope · 2026-09-14: C01 remains incomplete.** The explicitly approved
+[S10 gameplay scope amendment](../S10/final/README.md) separates S10/G2
+gameplay closure from this census. Character work continues through C01–C07;
+C06 and S23 still require the certified country casts and historical/future
+coverage before CP1 qualification. No census, identity, term or portrait
+requirement is waived. Earlier increment descriptions below are historical.
+
 S10.b added a separate [source-backed discovery intake](research/README.md) and
 [bounded research index](research-index.json). S10.c extends France's financial
 discovery register to 635 identities and refreshes the artwork inventory after
@@ -64,8 +71,8 @@ All nine certification identity IDs have partial packets; 151 other identities
 still have none. No exhaustive country census is closed; the research cutoff
 remains unchanged.
 
-**Partial inventory recorded; C01 remains incomplete.** This is a reproducible
-prerequisite audit for S10, originally recorded at
+**Partial inventory recorded; C01 remains incomplete.** This reproducible
+audit was originally an S10 prerequisite under the earlier scope, recorded at
 `872442d7411d9986321248b41ccadf79e2851d1c` and refreshed in S10.c with the new
 portrait manifest. It does not mark S10 or G2 complete. Leadership records,
 gameplay eligibility and campaign saves remain unchanged by this inventory.
@@ -194,8 +201,10 @@ further numbered orders; nothing should overwrite a reviewed historical batch.
 C01 establishes the inventory and work assignments. Subsequent character
 sessions finish historical chains, fictional editorial review and artwork.
 Finishing all 704 known art jobs is neither required to perform this census
-nor sufficient to establish worldwide coverage. S10/G2 retain their unchanged
-C01 prerequisite while this census is open.
+nor sufficient to establish worldwide coverage. The original S10/G2 C01
+prerequisite is superseded by the explicit gameplay scope amendment above.
+C01 remains required for the character workstream; C06 and S23 retain the
+certified-country coverage requirements before CP1 qualification.
 
 ## Reproduce and check
 

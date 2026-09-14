@@ -1,10 +1,10 @@
 # S10 — Final government, succession and diplomacy gameplay qualification
 
-**Gameplay qualification passed; S10 and G2 remain open pending the scope decision.** C01 is incomplete and S11 is planned.
+**S10 gameplay complete; G2 earned.** C01 remains incomplete and S11 is planned.
 
 [Open the current review build](http://127.0.0.1:7855).
 
-The approved roadmap still lists C01 as an S10 prerequisite. These passed gameplay checks do not remove that dependency or award G2. The user’s decision on separating gameplay closure from content certification is still pending; no answer is inferred from elapsed time.
+The recorded user answer explicitly separates S10 government/diplomacy gameplay closure from the C01 worldwide census. C01–C07 continue the historical and cartoon work. C06 and S23 still require the eight certified country casts before CP1 qualification. No missing identity, historical interval or portrait is waived.
 
 ## What is qualified
 

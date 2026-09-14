@@ -1,11 +1,9 @@
 # Spheres — pathway to a certified campaign
 
-**Approved pathway · 10 September 2026 · S01–S09 complete; S10 in progress.**
+**Approved pathway · 10 September 2026 · S01–S10 complete; S11–S30 planned.**
 
-S10’s [final gameplay qualification](campaign-certification/S10/final/README.md)
-passes all three gameplay clauses. C01 remains an approved prerequisite and is
-incomplete; the explicit scope amendment is awaiting an answer. S10 and G2
-remain open. Full campaign certification is still later work.
+S10 closes its qualified gameplay scope under the explicit amendment below.
+C01 and worldwide character work remain incomplete; CP1 is not earned.
 
 Source baseline: `5f7f355502f17bd6bd8f0383a2d14f0024fa7884`,
 `codex/resume-spheres`. This plan follows the
@@ -65,7 +63,7 @@ deliverables as finished.
 | Marker | Meaning |
 | --- | --- |
 | `S00` | Complete: user approved beginning S01 on 10 September 2026. |
-| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S09 are complete; S10 is in progress; S11–S30 remain planned. |
+| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S10 are complete; S11–S30 remain planned. |
 | `C01`–`C07` | Character-production workstreams, with uniquely numbered country batches below. |
 | `E01`–`E06` | Retained expansion work after the first certified release. |
 | `G0`–`G5` | Evidence gates joining groups of sessions. |
@@ -132,7 +130,7 @@ boundaries.
 | [S07](#s07) · Finish construction, jobs and operating outcomes | Build → staff → operate → understand the province/national effect through one connected flow. | S06 |
 | [S08](#s08) · Complete supplier choice and reviewed imports | A useful domestic/foreign supplier market, including a viable path for countries without an arms industry. | S05, S07 |
 | [S09](#s09) · Make research and design benefits readable | Research choices show which legal model choices unlock and why the player might want them. | S05, S03 |
-| [S10](#s10) · Qualify government, succession and diplomacy | G2: governable nations with trustworthy political decisions, leaders and diplomatic consequences. | S05, C01 |
+| [S10](#s10) · Qualify government, succession and diplomacy | G2: qualified government and diplomatic gameplay with explicit historical coverage gaps. | S05 |
 | [S11](#s11) · Finish the ground equipment-to-operation loop | Procured ground equipment produces understandable capability and losses in the integrated operations model. | S05, S09 |
 | [S12](#s12) · Create real squadrons from owned aircraft | Saved squadrons refer to actual national aircraft, with simple establishment and revision choices. | S11, S08 |
 | [S13](#s13) · Connect airbases, access and range | Geographic bases, visible rebasing and three clear improvements: Capacity, Support and Protection. | S12, S07 |
@@ -173,7 +171,7 @@ boundaries.
 | --- | --- | --- |
 | G0 | S00 | Scope approved for implementation. |
 | G1 | S01–S05 | One integrated playset with preserved ownership and compatible saves. |
-| G2 | G1 + S06–S10 | Complete national finance/construction/supplier/research/government paths. |
+| G2 | G1 + S06–S10 | Qualified national finance/construction/supplier/research/government paths; historical content remains required by C06/S23 before CP1. |
 | G3 | G2 + S11–S16 | Ground and three supported air missions use real campaign forces and results. |
 | G4 | G3 + S17–S21 | AI and player-facing guidance complete the supported campaign journey. |
 | G5 | G4 + S22–S27, including C06 | Required content, smoke, long-run, human and performance cells pass on a frozen candidate. |
@@ -335,6 +333,20 @@ S01 establishes source, ownership, test and hardware baselines in the
 keep their existing markers. There is no calendar completion promise, and this
 approval does not itself earn G1 or any campaign certificate.
 
+## S10 scope amendment · 2026-09-14
+
+The user answered “Yes” to: “May I close S10’s gameplay milestone and keep worldwide leadership research in C01–C07?”
+The exact question, answer and record-capture time are retained in the [S10 final manifest](campaign-certification/S10/final/manifest.json).
+This removes C01 as a prerequisite for closing S10's government, succession
+and diplomacy gameplay. The S10 acceptance checks remain unchanged.
+
+C01–C07 retain the organization census, historical leadership, fictional
+successor and cartoon work. C06 and S23 still require the eight certified
+country casts and their sourced historical/future coverage before later
+campaign qualification. S24, S25, G5, CP1 and WC1 requirements are unchanged.
+No missing identity, historical interval or portrait is waived or counted
+as complete. G2 is a gameplay gate and does not certify that content.
+
 ## Detailed session cards
 
 ### Review the scope
@@ -483,9 +495,19 @@ Evidence and recommendation funding limits: [S09 qualification](campaign-certifi
 
 #### S10 — Qualify government, succession and diplomacy
 
-**Status:** In progress · **Requires:** S05, C01
+**Status:** Complete · **Requires:** S05
 
-**Completion marker:** G2: governable nations with trustworthy political decisions, leaders and diplomatic consequences.
+**Completion marker:** G2: qualified government and diplomatic gameplay with explicit historical coverage gaps.
+
+The [final gameplay qualification](campaign-certification/S10/final/README.md)
+records the exact candidate, scope amendment and checks supporting G2.
+C01 remains open and feeds the required C06/S23 content gates. Execution
+stops after S10; S11 is planned.
+
+##### Historical increment records
+
+The following S10.a–h notes retain the scope and open/closed decisions
+at each original checkpoint. They do not override the final status above.
 
 **S10.a complete:** campaign-bound government and diplomatic reviews, native
 government/succession cases, Windows checks and a real two-tab France journey.
@@ -549,9 +571,11 @@ role grants or artwork changed. Exhaustive country censuses remain open; S10
 and C01 are in progress, G2 is unearned and S11 remains planned. Execution
 stopped after S10.h.
 
-- [ ] Test parliamentary, presidential, authoritarian and monarchical/institutional cases through review, confirmation and dated result.
-- [ ] Preserve saved incumbents; historical browsing and future candidate eligibility do not replace an officeholder automatically.
-- [ ] Validate offers, deadlines, standing policies, sanctions, party/executive roles, unaffordable/stale reviews and foreign inspection.
+##### Final gameplay acceptance
+
+- [x] Test parliamentary, presidential, authoritarian and monarchical/institutional cases through review, confirmation and dated result.
+- [x] Preserve saved incumbents; historical browsing and future candidate eligibility do not replace an officeholder automatically.
+- [x] Validate offers, deadlines, standing policies, sanctions, party/executive roles, unaffordable/stale reviews and foreign inspection.
 
 
 ### 3 · A military you can use
@@ -817,7 +841,8 @@ stopped after S10.h.
 The [current-source census](campaign-certification/C01/README.md) records 160
 country identities, 624 simulation party rows and 970 numbered work orders.
 Unrepresented real organizations remain unknown; this partial inventory does
-not close C01 or the S10/G2 dependency.
+not close C01. Under the explicit S10 scope amendment, gameplay closure is
+separate from the still-required C06/S23 historical-content gates.
 
 **Completion marker:** A country/party/component inventory, frozen research cutoff and uniquely numbered historical/future work orders.
 
@@ -974,4 +999,4 @@ not close C01 or the S10/G2 dependency.
 
 ## Authorized execution boundary
 
-S04 and S05 are complete on the recorded runtime and evidence. G1 decision: **earned**. The pinned integrated build passes both native/Node platforms, original-save and transaction qualification, actual desktop/narrow browser journeys, map review and both predefined performance confirmations. This earns the bounded unified-playset gate locally; full campaign and release certification remain later work. Execution stopped after S05 as requested. On 11 September 2026, “Next” authorized S06. S06 is complete on its recorded runtime and evidence. On 11 September 2026, “Next” authorized S07. S07 is complete on its recorded runtime and evidence. A subsequent “Next” authorized S08, which completed on 12 September 2026 on its recorded runtime and evidence; execution stopped before S09. On 12 September 2026, “next” authorized S09. S09 is complete on its recorded runtime and evidence; execution stopped before S10. The subsequent Continue authorized S10. S10.a through S10.h are complete as bounded increments; S10 and C01 remain incomplete. Execution stopped after S10.h; S11 and later sessions require a new instruction. No later campaign, content or release certificate is awarded.
+S04 and S05 are complete on the recorded runtime and evidence. G1 decision: **earned**. The pinned integrated build passes both native/Node platforms, original-save and transaction qualification, actual desktop/narrow browser journeys, map review and both predefined performance confirmations. This earns the bounded unified-playset gate locally; full campaign and release certification remain later work. Execution stopped after S05 as requested. On 11 September 2026, “Next” authorized S06. S06 is complete on its recorded runtime and evidence. On 11 September 2026, “Next” authorized S07. S07 is complete on its recorded runtime and evidence. A subsequent “Next” authorized S08, which completed on 12 September 2026 on its recorded runtime and evidence; execution stopped before S09. On 12 September 2026, “next” authorized S09. S09 is complete on its recorded runtime and evidence; execution stopped before S10. The subsequent Continue authorized S10. S10.a through S10.h completed as bounded increments while S10 and C01 were still open. The later instruction “Continue. Finish S10” and the recorded scope amendment authorized closure of S10's qualified gameplay scope. S10 is complete and G2 is earned on the final report's exact evidence. C01 remains incomplete, and C06/S23 content requirements still block CP1 certification. Execution stopped after S10; S11 and later sessions require a new instruction. No later campaign, content or release certificate is awarded.
