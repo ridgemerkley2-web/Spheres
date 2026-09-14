@@ -1,0 +1,187 @@
+{
+  "format": "spheres-s10-final-content-ui/v1",
+  "source_revision": "bcdf72bcbe8947966359deb95f715cb526a68def",
+  "source_clean_before": true,
+  "started_utc": "2026-09-14T01:21:37.877053+00:00",
+  "runner_sha256": "b18a3cc785c580d5e7773e687d63ce298eecf8dabced7c897a811617082aff5c",
+  "game_runtime_unchanged": true,
+  "previous_publication": "d80abb8fb43957b77b5ab08023c2e66eb5fdda0e",
+  "game_runtime_revision": "0f4616477671bc01936fcc9f2877ae172b13e348",
+  "scope": "Windows content/interface and static browser research qualification. No campaign, Linux or new performance qualification claimed.",
+  "checks": [
+    {
+      "name": "research-tests",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_*research*.py"
+      ],
+      "exit_code": 0,
+      "log": "research-tests.log",
+      "log_sha256": "2189f753600a09c828e60bc9e91b249efa1c0e2c1fff3865bc347606e620b507",
+      "tests": 79,
+      "reported_ok": true
+    },
+    {
+      "name": "census-tests",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_campaign_census.py"
+      ],
+      "exit_code": 0,
+      "log": "census-tests.log",
+      "log_sha256": "c8749be9dcea177cf19977846226abd2486c459312cbb197b63f73c4daf68f58",
+      "tests": 7,
+      "reported_ok": true
+    },
+    {
+      "name": "france-tests",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_import_cnccfp_census.py"
+      ],
+      "exit_code": 0,
+      "log": "france-tests.log",
+      "log_sha256": "1fa4b60226266b022e36ee822d8ec2111090075ecb8b763bc7e438ef51d69a8b",
+      "tests": 10,
+      "reported_ok": true
+    },
+    {
+      "name": "portrait-tests",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_tupou_portrait_s10c.py"
+      ],
+      "exit_code": 0,
+      "log": "portrait-tests.log",
+      "log_sha256": "f9da074357c7bfd0c9ea98644db74701bbc0dc89aa78ad7b201296c135d661d8",
+      "tests": 6,
+      "reported_ok": true
+    },
+    {
+      "name": "production",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/avatars/leadership_production.py",
+        "check"
+      ],
+      "exit_code": 0,
+      "log": "production.log",
+      "log_sha256": "ede01baeaf00d1291e7980acaf67ee41fdc7281b8c9eb0b633122423d2ccea17"
+    },
+    {
+      "name": "art-assets",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/avatars/build_person_avatar_assets.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log": "art-assets.log",
+      "log_sha256": "fe83b07963d5578e258e3145936198c50445a1a9eec113db8d92b924377e770a"
+    },
+    {
+      "name": "census",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_census.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log": "census.log",
+      "log_sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+    },
+    {
+      "name": "france-importer",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/avatars/import_cnccfp_census.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log": "france-importer.log",
+      "log_sha256": "1a0ac4c1a826bf68586e8ddaf1da41f965497fb88d1025cbd839ef9caf2f010e"
+    },
+    {
+      "name": "research-index",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log": "research-index.log",
+      "log_sha256": "c18f3bda98eb6e08389ee99cd7f03bb5692b3d071a65099c97ea767e2af2e4f1"
+    },
+    {
+      "name": "interface",
+      "command": [
+        "node",
+        "tools/ui/run-unit.cjs"
+      ],
+      "exit_code": 0,
+      "log": "interface.log",
+      "log_sha256": "9593100749e8b779cda0020fb3d596307de2d688a0f46563e9239451c42a1310",
+      "totals": {
+        "tests": 1566,
+        "pass": 1565,
+        "fail": 0,
+        "skipped": 1
+      }
+    },
+    {
+      "name": "browser",
+      "command": [
+        "node",
+        "tools/ui/ci-leadership-research-browser.cjs"
+      ],
+      "exit_code": 0,
+      "log": "browser.log",
+      "log_sha256": "9694e86622b75e4eed5bd4d23728d1d62107ba9d093215301b9bae32e1f70d33"
+    }
+  ],
+  "source_revision_after": "bcdf72bcbe8947966359deb95f715cb526a68def",
+  "source_clean_after": true,
+  "passed": true
+}

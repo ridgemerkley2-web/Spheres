@@ -2,6 +2,11 @@
 
 **Approved pathway · 10 September 2026 · S01–S09 complete; S10 in progress.**
 
+S10’s [final gameplay qualification](campaign-certification/S10/final/README.md)
+passes all three gameplay clauses. C01 remains an approved prerequisite and is
+incomplete; the explicit scope amendment is awaiting an answer. S10 and G2
+remain open. Full campaign certification is still later work.
+
 Source baseline: `5f7f355502f17bd6bd8f0383a2d14f0024fa7884`,
 `codex/resume-spheres`. This plan follows the
 [full game review](GAME_REVIEW_2026_09_10.md). The structured session register is

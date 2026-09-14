@@ -1,0 +1,34 @@
+{
+  "format": "spheres-s10-final-visual-review/v1",
+  "candidate_revision": "bcdf72bcbe8947966359deb95f715cb526a68def",
+  "reviewed_utc": "2026-09-14T01:31:13.497568+00:00",
+  "passed": true,
+  "scope": "Root visually inspected these five retained screenshots using view_image. This supplements automated eight-country interactions/layout checks; it does not claim manual inspection of every screenshot or a new long campaign.",
+  "images": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-final-browser\\france-IxwIwf\\government-fresh-review.png",
+      "sha256": "349da82f8240349f8a7abfb2823cd739a2fd615c51857c73cda77c1ba9e9af25",
+      "observation": "France desktop decision preview: readable before/after cards and costs."
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-final-browser\\france-IxwIwf\\government-result-narrow-320.png",
+      "sha256": "0cbc68107cb48770fb083311fed7ca6c523b62cec4785bfb19f190162ded8df8",
+      "observation": "France320 result: completion notice and following decision remain legible without horizontal clipping."
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-matrix\\matrix-AV6gfq\\japan-Q4PWYB\\leadership-desktop.png",
+      "sha256": "914f3f9b76f8e052d6c42b7448cad903bd3223362860b9440158263ca83150b0",
+      "observation": "Japan desktop leadership: campaign/reference separation, partial-research indicators and party rows visible."
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-matrix\\matrix-AV6gfq\\tonga-NhVmvH\\overview-desktop.png",
+      "sha256": "138308be368cb0b884feaa7df54f933bb4bc7a22f53cd548e442668e4ee4064c",
+      "observation": "Tonga desktop: institutional government, current king, art and summary metrics visible."
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-matrix\\matrix-AV6gfq\\ussr-I1RzUm\\review-narrow-320.png",
+      "sha256": "f7bad5232e7abc23e4021929bb95b01e344897365bb8d40ac008e798d695b444",
+      "observation": "USSR320 preview: financial/political costs and stacked debt effects fit viewport. Screenshot is scrolled below heading, not a full-page heading review."
+    }
+  ]
+}

@@ -1,0 +1,1844 @@
+{
+  "format": "spheres-s10-final-acceptance-source-audit/v1",
+  "created_utc": "2026-09-14T01:30:21.995375+00:00",
+  "source_revision": "bcdf72bcbe8947966359deb95f715cb526a68def",
+  "source_clean": true,
+  "runner": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\record-s10-final-acceptance-audit.py",
+    "bytes": 15335,
+    "sha256": "836587c71b2dc8d4860fab2e4922337e9ad745ce92922e04beffe398ccd8ff6c"
+  },
+  "status": "passed",
+  "passed": true,
+  "scope": "Independent acceptance and committed-source audit. New final-run receipts are distinguished from retained prior runs. No tests are run by this script; prior proof bytes are only read and hashed.",
+  "gate_decision": "not_awarded_by_this_receipt",
+  "s10_complete": false,
+  "g2_earned": false,
+  "c01_complete": false,
+  "s11_started": false,
+  "new_performance_claim": false,
+  "new_long_campaign_claim": false,
+  "new_historical_coverage_claim": false,
+  "c01_dependency": "At this checked source the approved pathway lists C01. Exhaustive censuses and leadership histories remain open. Gameplay acceptance evidence cannot silently waive this dependency; root must separately record any explicit scope decision.",
+  "acceptance_clauses": [
+    {
+      "number": 1,
+      "text": "Test parliamentary, presidential, authoritarian and monarchical/institutional cases through review, confirmation and dated result.",
+      "status": "passed",
+      "required_current_checks": [
+        "windows_web",
+        "windows_matrix",
+        "linux"
+      ],
+      "retained_evidence": [],
+      "decisive_oracles": [
+        "tools/ui/ci-government-country-matrix.cjs: eight ordinary Jan-1990 starts; Japan/India parliamentary, France/Brazil presidential, SouthAfrica/USSR authoritarian, Tonga/SaudiArabia institutional; exact quoted costs/effects and dated results; zero elapsed days and no grants.",
+        "spheres-web/src/s10_government_tests.rs: four-role legal election/institution fixtures, exact native results, role permissions and reload."
+      ]
+    },
+    {
+      "number": 2,
+      "text": "Preserve saved incumbents; historical browsing and future candidate eligibility do not replace an officeholder automatically.",
+      "status": "passed",
+      "required_current_checks": [
+        "windows_web",
+        "windows_leadership",
+        "windows_matrix",
+        "linux"
+      ],
+      "retained_evidence": [
+        "S10.f"
+      ],
+      "decisive_oracles": [
+        "s10_historical_browsing_and_future_eligibility_never_replace_saved_incumbents; s10_actual_future_succession_respects_executive_review_and_recorded_monarchy_heir.",
+        "party_leadership library: same-date independent references, native death/exclusion dates, future cutoff, party/executive distinction and saved officeholders.",
+        "S10.f two authored browser worlds; viewing, reference switching and save continuity preserve exact world, log and history. No elapsed-campaign claim."
+      ]
+    },
+    {
+      "number": 3,
+      "text": "Validate offers, deadlines, standing policies, sanctions, party/executive roles, unaffordable/stale reviews and foreign inspection.",
+      "status": "passed",
+      "required_current_checks": [
+        "windows_web",
+        "windows_agency",
+        "windows_browser",
+        "windows_matrix",
+        "linux"
+      ],
+      "retained_evidence": [
+        "S10.d",
+        "S10.e",
+        "S10.f",
+        "S10.g"
+      ],
+      "decisive_oracles": [
+        "s10_decision_tests, decision_review S10.d tests, diplomatic_commitments and diplomatic_sanctions tests: protected token/receipt paths, exclusive deadlines, standing policies, native caps and persistent restrictions.",
+        "Ordinary France browser: actual second-tab change, stale refusal before mutation, fresh confirmation and exact Save/Load/Continue.",
+        "Eight-country matrix: foreign controls disabled and viewing/cancellation pure; retained authored D/E/G browser results keep their original source/elapsed-time scope."
+      ]
+    }
+  ],
+  "current_qualification": [
+    {
+      "id": "windows_web",
+      "status": "passed",
+      "receipts": [
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-web.json",
+          "bytes": 1041,
+          "sha256": "f989f38e6b97fbbc5521765c5614ed0e3a800dec2e6b60b8b6b4cbe05cb39656",
+          "log": {
+            "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-web.log",
+            "bytes": 39668,
+            "sha256": "8fb8e5b0957496623873ba281443111c97524ce583d326db3282fc7ad6976ab2"
+          },
+          "passed": true,
+          "totals": {
+            "passed": 387,
+            "failed": 0,
+            "ignored": 16,
+            "completed_targets": 2
+          },
+          "finished_utc": "2026-09-14T01:24:50.925281+00:00",
+          "same_clean_source": true,
+          "browser_results": []
+        }
+      ],
+      "scope": "Actual current-pin run receipts only. Similar historical filenames at other revisions are excluded."
+    },
+    {
+      "id": "windows_leadership",
+      "status": "passed",
+      "receipts": [
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-leadership.json",
+          "bytes": 781,
+          "sha256": "6acbc846a2639f3b085df9b6e57fbbd5d9c00ace9f90da8c38b1ccd1c3f21b30",
+          "log": {
+            "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-leadership.log",
+            "bytes": 6047,
+            "sha256": "f67b7163ccabc9c51319a0d3fc8f7033dfc80fb9f674e0ce519cf2b2dd212844"
+          },
+          "passed": true,
+          "totals": {
+            "passed": 49,
+            "failed": 0,
+            "ignored": 0,
+            "completed_targets": 1
+          },
+          "finished_utc": "2026-09-14T01:27:03.046271+00:00",
+          "same_clean_source": true,
+          "browser_results": []
+        }
+      ],
+      "scope": "Actual current-pin run receipts only. Similar historical filenames at other revisions are excluded."
+    },
+    {
+      "id": "windows_agency",
+      "status": "passed",
+      "receipts": [
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-agency.json",
+          "bytes": 808,
+          "sha256": "ba9c06fd2b3d3acff9b6386f0327767818f83adcc9e55d51f72e7f8d61780b0d",
+          "log": {
+            "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-agency.log",
+            "bytes": 1618,
+            "sha256": "029d1be1b019cb0f3ee05e503b19e9da1ea6c85fdd81747eee25cc1e0c056b8a"
+          },
+          "passed": true,
+          "totals": {
+            "passed": 12,
+            "failed": 0,
+            "ignored": 0,
+            "completed_targets": 2
+          },
+          "finished_utc": "2026-09-14T01:27:00.218348+00:00",
+          "same_clean_source": true,
+          "browser_results": []
+        }
+      ],
+      "scope": "Actual current-pin run receipts only. Similar historical filenames at other revisions are excluded."
+    },
+    {
+      "id": "windows_binary",
+      "status": "passed",
+      "receipts": [
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-binary.json",
+          "bytes": 884,
+          "sha256": "1ca3e10558ab8a1251c510e6f570940946926159fc3d178a55d0b8938dabe50e",
+          "log": {
+            "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-binary.log",
+            "bytes": 887,
+            "sha256": "b169b81226b786f485de5b91f1d921044b8fa715225033cf340ecc8aed763a03"
+          },
+          "passed": true,
+          "totals": null,
+          "finished_utc": "2026-09-14T01:27:04.094907+00:00",
+          "same_clean_source": true,
+          "browser_results": []
+        }
+      ],
+      "scope": "Actual current-pin run receipts only. Similar historical filenames at other revisions are excluded."
+    },
+    {
+      "id": "windows_matrix",
+      "status": "passed",
+      "receipts": [
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-matrix.json",
+          "bytes": 948,
+          "sha256": "e790e19fa2ba1ad1e44f91f2227bc7c7998e012d96c15cc8befd46209e656eb1",
+          "log": {
+            "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-matrix.log",
+            "bytes": 2912,
+            "sha256": "4bc598da30e9690adc0783cf2423d73c74cce806cc1e4d88fffd90832477891c"
+          },
+          "passed": true,
+          "totals": null,
+          "finished_utc": "2026-09-14T01:29:48.953232+00:00",
+          "same_clean_source": true,
+          "browser_results": [
+            {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-matrix\\matrix-AV6gfq\\france-RZNJE5\\result.json",
+              "bytes": 1042838,
+              "sha256": "91d231914d6e2012181dd29374d80528dc4f2adbeec1c27c9c59bd1c710b0bfa",
+              "passed": true,
+              "nation": "France",
+              "scope": "Fresh CP1 startup, no elapsed days, no grants, no response substitutions; not a long-run or G2 qualification",
+              "full_eight_country_matrix": null,
+              "final_state": {
+                "player": "France",
+                "date": "1 Jan 1990",
+                "political_capital": 44.88857268097011,
+                "leader": {
+                  "also": [
+                    {
+                      "name": "Michel Rocard",
+                      "office": "Prime Minister of France",
+                      "party": "fr_ps",
+                      "since": "1988-05-10"
+                    }
+                  ],
+                  "name": "Francois Mitterrand",
+                  "native": "Fran\u00e7ois Maurice Adrien Marie Mitterrand",
+                  "office": "President of the Republic",
+                  "party": "fr_ps",
+                  "party_name": "Socialist Party",
+                  "since": "1981-05-21"
+                }
+              },
+              "checks": [
+                "Own overview and parliamentary or institutional structure match native records",
+                "Historical browsing changes the reference reading while retaining the campaign incumbent",
+                "Foreign actions remain view-only; actual served refusal text and disabled controls agree",
+                "All viewing and review/cancellation preserve every native world field and issue no command",
+                "One reviewed confirmation matches exact native political/financial costs, every quoted effect and a dated result; incumbent retained",
+                "Ordinary named Save/Load/Continue retains the complete native campaign, costs and incumbent"
+              ]
+            },
+            {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-matrix\\matrix-AV6gfq\\japan-Q4PWYB\\result.json",
+              "bytes": 659412,
+              "sha256": "dae78071d1857e44ce5379f182287e97a099397efd50bff29a98445974b34f74",
+              "passed": true,
+              "nation": "Japan",
+              "scope": "Fresh CP1 startup, no elapsed days, no grants, no response substitutions; not a long-run or G2 qualification",
+              "full_eight_country_matrix": null,
+              "final_state": {
+                "player": "Japan",
+                "date": "1 Jan 1990",
+                "political_capital": 47.53000405071067,
+                "leader": {
+                  "also": [],
+                  "name": "Toshiki Kaifu",
+                  "native": "\u6d77\u90e8\u4fca\u6a39",
+                  "office": "Prime Minister",
+                  "party": "jp_ldp",
+                  "party_name": "Liberal Democratic Party",
+                  "since": "1989-08-10"
+                }
+              },
+              "checks": [
+                "Own overview and parliamentary or institutional structure match native records",
+                "Historical browsing changes the reference reading while retaining the campaign incumbent",
+                "Foreign actions remain view-only; actual served refusal text and disabled controls agree",
+                "All viewing and review/cancellation preserve every native world field and issue no command",
+                "One reviewed confirmation matches exact native political/financial costs, every quoted effect and a dated result; incumbent retained",
+                "Ordinary named Save/Load/Continue retains the complete native campaign, costs and incumbent"
+              ]
+            },
+            {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-matrix\\matrix-AV6gfq\\india-2Y2wZx\\result.json",
+              "bytes": 458046,
+              "sha256": "194636817c3593c778b0d54fb5eb1d326e0b52940f160d50e39933beddae494e",
+              "passed": true,
+              "nation": "India",
+              "scope": "Fresh CP1 startup, no elapsed days, no grants, no response substitutions; not a long-run or G2 qualification",
+              "full_eight_country_matrix": null,
+              "final_state": {
+                "player": "India",
+                "date": "1 Jan 1990",
+                "political_capital": 33.78765212413527,
+                "leader": {
+                  "also": [
+                    {
+                      "name": "R. Venkataraman",
+                      "office": "President of India",
+                      "party": "in_inc",
+                      "since": "1987-07-25"
+                    }
+                  ],
+                  "name": "V. P. Singh",
+                  "native": "Vishwanath Pratap Singh",
+                  "office": "Prime Minister of India",
+                  "party": "in_jd",
+                  "party_name": "Janata Dal",
+                  "since": "1989-12-02"
+                }
+              },
+              "checks": [
+                "Own overview and parliamentary or institutional structure match native records",
+                "Historical browsing changes the reference reading while retaining the campaign incumbent",
+                "Foreign actions remain view-only; actual served refusal text and disabled controls agree",
+                "All viewing and review/cancellation preserve every native world field and issue no command",
+                "One reviewed confirmation matches exact native political/financial costs, every quoted effect and a dated result; incumbent retained",
+                "Ordinary named Save/Load/Continue retains the complete native campaign, costs and incumbent"
+              ]
+            },
+            {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-matrix\\matrix-AV6gfq\\brazil-eHGbHN\\result.json",
+              "bytes": 534201,
+              "sha256": "ecd9590f0d3c4b846b7a19e7bcb37de311c394aa7919f4a7eacd2c54d98bd0cd",
+              "passed": true,
+              "nation": "Brazil",
+              "scope": "Fresh CP1 startup, no elapsed days, no grants, no response substitutions; not a long-run or G2 qualification",
+              "full_eight_country_matrix": null,
+              "final_state": {
+                "player": "Brazil",
+                "date": "1 Jan 1990",
+                "political_capital": 3.741372680970102,
+                "leader": {
+                  "also": [
+                    {
+                      "name": "Fernando Collor de Mello",
+                      "office": "President-elect (inaugurated 15 Mar 1990)",
+                      "party": "br_prn",
+                      "since": "1989-12-17"
+                    }
+                  ],
+                  "must_leave_by": "1990-03-15",
+                  "name": "Jose Sarney",
+                  "native": "Jos\u00e9 Sarney",
+                  "office": "President of the Republic",
+                  "party": "br_pmdb",
+                  "party_name": "Brazilian Democratic Movement Party",
+                  "since": "1985-03-15"
+                }
+              },
+              "checks": [
+                "Own overview and parliamentary or institutional structure match native records",
+                "Historical browsing changes the reference reading while retaining the campaign incumbent",
+                "Foreign actions remain view-only; actual served refusal text and disabled controls agree",
+                "All viewing and review/cancellation preserve every native world field and issue no command",
+                "One reviewed confirmation matches exact native political/financial costs, every quoted effect and a dated result; incumbent retained",
+                "Ordinary named Save/Load/Continue retains the complete native campaign, costs and incumbent"
+              ]
+            },
+            {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-matrix\\matrix-AV6gfq\\southafrica-iTkgaN\\result.json",
+              "bytes": 589240,
+              "sha256": "fb7750bbab8571884784e7df34b7c0797ecd0b098a7ecdbd03a1d5e06a82e45b",
+              "passed": true,
+              "nation": "SouthAfrica",
+              "scope": "Fresh CP1 startup, no elapsed days, no grants, no response substitutions; not a long-run or G2 qualification",
+              "full_eight_country_matrix": null,
+              "final_state": {
+                "player": "SouthAfrica",
+                "date": "1 Jan 1990",
+                "political_capital": 23.8504,
+                "leader": {
+                  "also": [],
+                  "name": "F. W. de Klerk",
+                  "native": "Frederik Willem de Klerk",
+                  "office": "State President",
+                  "party": "za_np",
+                  "party_name": "National Party",
+                  "since": "1989-08-15"
+                }
+              },
+              "checks": [
+                "Own overview and parliamentary or institutional structure match native records",
+                "Historical browsing changes the reference reading while retaining the campaign incumbent",
+                "Foreign actions remain view-only; actual served refusal text and disabled controls agree",
+                "All viewing and review/cancellation preserve every native world field and issue no command",
+                "One reviewed confirmation matches exact native political/financial costs, every quoted effect and a dated result; incumbent retained",
+                "Ordinary named Save/Load/Continue retains the complete native campaign, costs and incumbent"
+              ]
+            },
+            {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-matrix\\matrix-AV6gfq\\tonga-NhVmvH\\result.json",
+              "bytes": 169728,
+              "sha256": "2410606b9aa5cf099216289b9f0c4bf5c8b1417b334c1e5342b175e5870e20ba",
+              "passed": true,
+              "nation": "Tonga",
+              "scope": "Fresh CP1 startup, no elapsed days, no grants, no response substitutions; not a long-run or G2 qualification",
+              "full_eight_country_matrix": null,
+              "final_state": {
+                "player": "Tonga",
+                "date": "1 Jan 1990",
+                "political_capital": 37.3312,
+                "leader": {
+                  "also": [
+                    {
+                      "name": "Prince Fatafehi Tu'ipelehake",
+                      "office": "Prime Minister",
+                      "party": null,
+                      "since": "1965-12-16"
+                    }
+                  ],
+                  "heir": {
+                    "name": "Crown Prince Tupouto'a (Siaosi Taufa'ahau Manumataongo)",
+                    "office": "Crown Prince",
+                    "since": "1966-05-04"
+                  },
+                  "name": "Taufa'ahau Tupou IV",
+                  "native": "T\u0101ufa\u02bb\u0101hau Tupou IV",
+                  "office": "King",
+                  "pillar": "Party",
+                  "pillar_name": "the thirty-three hereditary nobles",
+                  "since": "1965-12-16"
+                }
+              },
+              "checks": [
+                "Own overview and parliamentary or institutional structure match native records",
+                "Historical browsing changes the reference reading while retaining the campaign incumbent",
+                "Foreign actions remain view-only; actual served refusal text and disabled controls agree",
+                "All viewing and review/cancellation preserve every native world field and issue no command",
+                "One reviewed confirmation matches exact native political/financial costs, every quoted effect and a dated result; incumbent retained",
+                "Ordinary named Save/Load/Continue retains the complete native campaign, costs and incumbent"
+              ]
+            },
+            {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-matrix\\matrix-AV6gfq\\saudiarabia-Fbmh0C\\result.json",
+              "bytes": 166964,
+              "sha256": "f6c36181ac973b06dd9da7c3ee3d3e64461599135a4404f15fbab705517d90f9",
+              "passed": true,
+              "nation": "SaudiArabia",
+              "scope": "Fresh CP1 startup, no elapsed days, no grants, no response substitutions; not a long-run or G2 qualification",
+              "full_eight_country_matrix": null,
+              "final_state": {
+                "player": "SaudiArabia",
+                "date": "1 Jan 1990",
+                "political_capital": 41.62,
+                "leader": {
+                  "also": [],
+                  "heir": {
+                    "name": "Abdullah bin Abdulaziz Al Saud",
+                    "office": "Crown Prince and First Deputy Prime Minister",
+                    "since": "1982-06-13"
+                  },
+                  "name": "Fahd bin Abdulaziz Al Saud",
+                  "native": "Fahd bin Abd al-Aziz Al Saud",
+                  "office": "King and Prime Minister",
+                  "pillar": "Party",
+                  "pillar_name": "the Al Saud family council",
+                  "since": "1982-06-13"
+                }
+              },
+              "checks": [
+                "Own overview and parliamentary or institutional structure match native records",
+                "Historical browsing changes the reference reading while retaining the campaign incumbent",
+                "Foreign actions remain view-only; actual served refusal text and disabled controls agree",
+                "All viewing and review/cancellation preserve every native world field and issue no command",
+                "One reviewed confirmation matches exact native political/financial costs, every quoted effect and a dated result; incumbent retained",
+                "Ordinary named Save/Load/Continue retains the complete native campaign, costs and incumbent"
+              ]
+            },
+            {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-matrix\\matrix-AV6gfq\\ussr-I1RzUm\\result.json",
+              "bytes": 286760,
+              "sha256": "8e8dd773d913ea95db19c451013fbf544acab94926073149a91c889ea68263bc",
+              "passed": true,
+              "nation": "USSR",
+              "scope": "Fresh CP1 startup, no elapsed days, no grants, no response substitutions; not a long-run or G2 qualification",
+              "full_eight_country_matrix": null,
+              "final_state": {
+                "player": "USSR",
+                "date": "1 Jan 1990",
+                "political_capital": 31.330000000000005,
+                "leader": {
+                  "also": [
+                    {
+                      "name": "Nikolai Ryzhkov",
+                      "office": "Chairman of the Council of Ministers",
+                      "party": "su_cpsu",
+                      "since": "1985-09-27"
+                    }
+                  ],
+                  "name": "Mikhail Gorbachev",
+                  "native": "Mikhail Sergeyevich Gorbachyov",
+                  "office": "General Secretary of the CPSU Central Committee and Chairman of the Supreme Soviet",
+                  "party": "su_cpsu",
+                  "party_name": "Communist Party of the Soviet Union",
+                  "since": "1985-03-11"
+                }
+              },
+              "checks": [
+                "Own overview and parliamentary or institutional structure match native records",
+                "Historical browsing changes the reference reading while retaining the campaign incumbent",
+                "Foreign actions remain view-only; actual served refusal text and disabled controls agree",
+                "All viewing and review/cancellation preserve every native world field and issue no command",
+                "One reviewed confirmation matches exact native political/financial costs, every quoted effect and a dated result; incumbent retained",
+                "Ordinary named Save/Load/Continue retains the complete native campaign, costs and incumbent"
+              ]
+            },
+            {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-matrix\\matrix-AV6gfq\\result.json",
+              "bytes": 4056,
+              "sha256": "1bc3c27555c70e5d1244f2280aa29c6c7aea6fa7a16b747a24c5c03db154cd7e",
+              "passed": true,
+              "nation": null,
+              "scope": "S10.b ordinary Jan-1990 startup matrix; zero elapsed days; not G2, a long-run campaign or a Russia birth test",
+              "full_eight_country_matrix": true,
+              "final_state": null,
+              "checks": null
+            }
+          ]
+        }
+      ],
+      "scope": "Actual current-pin run receipts only. Similar historical filenames at other revisions are excluded."
+    },
+    {
+      "id": "windows_browser",
+      "status": "passed",
+      "receipts": [
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-browser.json",
+          "bytes": 943,
+          "sha256": "c264cb537decdf0775108d44a0dd9b557f513cfd9602a1c44eba55a2329c4547",
+          "log": {
+            "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-browser.log",
+            "bytes": 198,
+            "sha256": "daceb6769b2b03b4281c14501db09f9d15ec6778c27f2e3ce1dc22af74a34d33"
+          },
+          "passed": true,
+          "totals": null,
+          "finished_utc": "2026-09-14T01:28:16.355354+00:00",
+          "same_clean_source": true,
+          "browser_results": [
+            {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-final-browser\\france-IxwIwf\\result.json",
+              "bytes": 169459,
+              "sha256": "56961852789ca485a266bf13081cf6f17731f20fbe312fd96b35799631dfca2c",
+              "passed": true,
+              "nation": null,
+              "scope": null,
+              "full_eight_country_matrix": null,
+              "final_state": {
+                "player": "France",
+                "date": "1 Jan 1990",
+                "policy": {
+                  "calls_to_arms": "review",
+                  "defense_pacts": "review",
+                  "trade_treaties": "decline"
+                },
+                "leader": {
+                  "also": [
+                    {
+                      "name": "Michel Rocard",
+                      "office": "Prime Minister of France",
+                      "party": "fr_ps",
+                      "since": "1988-05-10"
+                    }
+                  ],
+                  "name": "Francois Mitterrand",
+                  "native": "Fran\u00e7ois Maurice Adrien Marie Mitterrand",
+                  "office": "President of the Republic",
+                  "party": "fr_ps",
+                  "party_name": "Socialist Party",
+                  "since": "1981-05-21"
+                },
+                "political_capital": 44.88857268097011
+              },
+              "checks": [
+                "Desktop/narrow policy review and cancellation are whole-campaign pure",
+                "A genuine second-tab policy change invalidates the held government review; refusal has no native effect and refreshes current figures",
+                "A fresh government review applies once with the exact reviewed political cost and a dated native result",
+                "Named-save cancellation, actual Load and Continue preserve the exact native campaign, policy and recorded officeholder"
+              ]
+            }
+          ]
+        }
+      ],
+      "scope": "Actual current-pin run receipts only. Similar historical filenames at other revisions are excluded."
+    },
+    {
+      "id": "linux",
+      "status": "passed",
+      "expected_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-linux\\result.json",
+      "receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-linux\\result.json",
+        "bytes": 5922,
+        "sha256": "5ab1948b198e91db458d92b93f867f15595fd8057138dea9542d0888cfad5bed"
+      },
+      "record_status": "passed",
+      "checks": [
+        {
+          "name": "web",
+          "command": [
+            "cargo",
+            "test",
+            "--locked",
+            "--release",
+            "-p",
+            "spheres-web",
+            "--no-fail-fast"
+          ],
+          "started_utc": "2026-09-14T01:22:19.451418+00:00",
+          "finished_utc": "2026-09-14T01:26:35.491396+00:00",
+          "elapsed_seconds": 256.039226036,
+          "exit_code": 0,
+          "log": "web.log",
+          "log_sha256": "4bb9149ecb1f64be5ab8fd041cdc613b7c002174b8fdb3494d829f112e2339d4",
+          "totals": {
+            "passed": 387,
+            "failed": 0,
+            "ignored": 16,
+            "completed_targets": 2
+          },
+          "source_before": {
+            "head": "bcdf72bcbe8947966359deb95f715cb526a68def",
+            "status": ""
+          },
+          "source_after": {
+            "head": "bcdf72bcbe8947966359deb95f715cb526a68def",
+            "status": ""
+          },
+          "passed": true,
+          "test_binary": {
+            "path": "/home/ridge/.cache/spheres-s05-target/release/deps/spheres_web-20279169217b1e37",
+            "bytes": 347004000,
+            "sha256": "0913b3930817d6c1e29e647ebe9d475a9a03340aaf0c8987af1e789fa5c78ad8"
+          }
+        },
+        {
+          "name": "agency",
+          "command": [
+            "cargo",
+            "test",
+            "--locked",
+            "--release",
+            "-p",
+            "spheres-sim",
+            "--test",
+            "agency",
+            "--test",
+            "s02_succession",
+            "--no-fail-fast"
+          ],
+          "started_utc": "2026-09-14T01:26:36.008037+00:00",
+          "finished_utc": "2026-09-14T01:26:38.262557+00:00",
+          "elapsed_seconds": 2.254520237999998,
+          "exit_code": 0,
+          "log": "agency.log",
+          "log_sha256": "59236ce4c5b8538600048b9a502e553bfa915040372b6aad47224ce96fb6e622",
+          "totals": {
+            "passed": 12,
+            "failed": 0,
+            "ignored": 0,
+            "completed_targets": 2
+          },
+          "source_before": {
+            "head": "bcdf72bcbe8947966359deb95f715cb526a68def",
+            "status": ""
+          },
+          "source_after": {
+            "head": "bcdf72bcbe8947966359deb95f715cb526a68def",
+            "status": ""
+          },
+          "passed": true
+        },
+        {
+          "name": "leadership",
+          "command": [
+            "cargo",
+            "test",
+            "--locked",
+            "--release",
+            "-p",
+            "spheres-sim",
+            "--lib",
+            "party_leadership::",
+            "--no-fail-fast"
+          ],
+          "started_utc": "2026-09-14T01:26:38.529744+00:00",
+          "finished_utc": "2026-09-14T01:26:39.573628+00:00",
+          "elapsed_seconds": 1.0438821970000163,
+          "exit_code": 0,
+          "log": "leadership.log",
+          "log_sha256": "0532eb2a6069a3d71f0582e71bf793367b24abad0e45676caed55ecfcfeca7e0",
+          "totals": {
+            "passed": 49,
+            "failed": 0,
+            "ignored": 0,
+            "completed_targets": 1
+          },
+          "source_before": {
+            "head": "bcdf72bcbe8947966359deb95f715cb526a68def",
+            "status": ""
+          },
+          "source_after": {
+            "head": "bcdf72bcbe8947966359deb95f715cb526a68def",
+            "status": ""
+          },
+          "passed": true
+        },
+        {
+          "name": "node",
+          "command": [
+            "node",
+            "tools/ui/run-unit.cjs"
+          ],
+          "started_utc": "2026-09-14T01:26:39.866465+00:00",
+          "finished_utc": "2026-09-14T01:29:24.693095+00:00",
+          "elapsed_seconds": 164.82665982400005,
+          "exit_code": 0,
+          "log": "node.log",
+          "log_sha256": "89f5661be5791dc0dff6d7973bc52217b1eaaf3e4dae57964b6fe65a3b1c0468",
+          "totals": {
+            "tests": 1566,
+            "passed": 1565,
+            "failed": 0,
+            "skipped": 1
+          },
+          "source_before": {
+            "head": "bcdf72bcbe8947966359deb95f715cb526a68def",
+            "status": ""
+          },
+          "source_after": {
+            "head": "bcdf72bcbe8947966359deb95f715cb526a68def",
+            "status": ""
+          },
+          "passed": true
+        }
+      ],
+      "logs": [
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-linux\\web.log",
+          "bytes": 39274,
+          "sha256": "4bb9149ecb1f64be5ab8fd041cdc613b7c002174b8fdb3494d829f112e2339d4"
+        },
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-linux\\agency.log",
+          "bytes": 1452,
+          "sha256": "59236ce4c5b8538600048b9a502e553bfa915040372b6aad47224ce96fb6e622"
+        },
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-linux\\leadership.log",
+          "bytes": 5964,
+          "sha256": "0532eb2a6069a3d71f0582e71bf793367b24abad0e45676caed55ecfcfeca7e0"
+        },
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-linux\\node.log",
+          "bytes": 369619,
+          "sha256": "89f5661be5791dc0dff6d7973bc52217b1eaaf3e4dae57964b6fe65a3b1c0468"
+        }
+      ]
+    },
+    {
+      "id": "content_ui",
+      "status": "passed",
+      "expected_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-content-ui\\result.json",
+      "receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-content-ui\\result.json",
+        "bytes": 4811,
+        "sha256": "66621eb221ad2b6418a5122a8d9efdd1a5eb06eea4fac25cd95766fff35ef329"
+      },
+      "record_status": null,
+      "checks": [
+        {
+          "name": "research-tests",
+          "command": [
+            "python",
+            "-X",
+            "utf8",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/avatars",
+            "-p",
+            "test_*research*.py"
+          ],
+          "exit_code": 0,
+          "log": "research-tests.log",
+          "log_sha256": "2189f753600a09c828e60bc9e91b249efa1c0e2c1fff3865bc347606e620b507",
+          "tests": 79,
+          "reported_ok": true
+        },
+        {
+          "name": "census-tests",
+          "command": [
+            "python",
+            "-X",
+            "utf8",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/avatars",
+            "-p",
+            "test_campaign_census.py"
+          ],
+          "exit_code": 0,
+          "log": "census-tests.log",
+          "log_sha256": "c8749be9dcea177cf19977846226abd2486c459312cbb197b63f73c4daf68f58",
+          "tests": 7,
+          "reported_ok": true
+        },
+        {
+          "name": "france-tests",
+          "command": [
+            "python",
+            "-X",
+            "utf8",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/avatars",
+            "-p",
+            "test_import_cnccfp_census.py"
+          ],
+          "exit_code": 0,
+          "log": "france-tests.log",
+          "log_sha256": "1fa4b60226266b022e36ee822d8ec2111090075ecb8b763bc7e438ef51d69a8b",
+          "tests": 10,
+          "reported_ok": true
+        },
+        {
+          "name": "portrait-tests",
+          "command": [
+            "python",
+            "-X",
+            "utf8",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/avatars",
+            "-p",
+            "test_tupou_portrait_s10c.py"
+          ],
+          "exit_code": 0,
+          "log": "portrait-tests.log",
+          "log_sha256": "f9da074357c7bfd0c9ea98644db74701bbc0dc89aa78ad7b201296c135d661d8",
+          "tests": 6,
+          "reported_ok": true
+        },
+        {
+          "name": "production",
+          "command": [
+            "python",
+            "-X",
+            "utf8",
+            "tools/avatars/leadership_production.py",
+            "check"
+          ],
+          "exit_code": 0,
+          "log": "production.log",
+          "log_sha256": "ede01baeaf00d1291e7980acaf67ee41fdc7281b8c9eb0b633122423d2ccea17"
+        },
+        {
+          "name": "art-assets",
+          "command": [
+            "python",
+            "-X",
+            "utf8",
+            "tools/avatars/build_person_avatar_assets.py",
+            "--check"
+          ],
+          "exit_code": 0,
+          "log": "art-assets.log",
+          "log_sha256": "fe83b07963d5578e258e3145936198c50445a1a9eec113db8d92b924377e770a"
+        },
+        {
+          "name": "census",
+          "command": [
+            "python",
+            "-X",
+            "utf8",
+            "tools/avatars/campaign_census.py",
+            "--check"
+          ],
+          "exit_code": 0,
+          "log": "census.log",
+          "log_sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+        },
+        {
+          "name": "france-importer",
+          "command": [
+            "python",
+            "-X",
+            "utf8",
+            "tools/avatars/import_cnccfp_census.py",
+            "--check"
+          ],
+          "exit_code": 0,
+          "log": "france-importer.log",
+          "log_sha256": "1a0ac4c1a826bf68586e8ddaf1da41f965497fb88d1025cbd839ef9caf2f010e"
+        },
+        {
+          "name": "research-index",
+          "command": [
+            "python",
+            "-X",
+            "utf8",
+            "tools/avatars/campaign_research.py",
+            "--check"
+          ],
+          "exit_code": 0,
+          "log": "research-index.log",
+          "log_sha256": "c18f3bda98eb6e08389ee99cd7f03bb5692b3d071a65099c97ea767e2af2e4f1"
+        },
+        {
+          "name": "interface",
+          "command": [
+            "node",
+            "tools/ui/run-unit.cjs"
+          ],
+          "exit_code": 0,
+          "log": "interface.log",
+          "log_sha256": "9593100749e8b779cda0020fb3d596307de2d688a0f46563e9239451c42a1310",
+          "totals": {
+            "tests": 1566,
+            "pass": 1565,
+            "fail": 0,
+            "skipped": 1
+          }
+        },
+        {
+          "name": "browser",
+          "command": [
+            "node",
+            "tools/ui/ci-leadership-research-browser.cjs"
+          ],
+          "exit_code": 0,
+          "log": "browser.log",
+          "log_sha256": "9694e86622b75e4eed5bd4d23728d1d62107ba9d093215301b9bae32e1f70d33"
+        }
+      ],
+      "logs": [
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-content-ui\\research-tests.log",
+          "bytes": 183,
+          "sha256": "2189f753600a09c828e60bc9e91b249efa1c0e2c1fff3865bc347606e620b507"
+        },
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-content-ui\\census-tests.log",
+          "bytes": 110,
+          "sha256": "c8749be9dcea177cf19977846226abd2486c459312cbb197b63f73c4daf68f58"
+        },
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-content-ui\\france-tests.log",
+          "bytes": 114,
+          "sha256": "1fa4b60226266b022e36ee822d8ec2111090075ecb8b763bc7e438ef51d69a8b"
+        },
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-content-ui\\portrait-tests.log",
+          "bytes": 109,
+          "sha256": "f9da074357c7bfd0c9ea98644db74701bbc0dc89aa78ad7b201296c135d661d8"
+        },
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-content-ui\\production.log",
+          "bytes": 796,
+          "sha256": "ede01baeaf00d1291e7980acaf67ee41fdc7281b8c9eb0b633122423d2ccea17"
+        },
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-content-ui\\art-assets.log",
+          "bytes": 49,
+          "sha256": "fe83b07963d5578e258e3145936198c50445a1a9eec113db8d92b924377e770a"
+        },
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-content-ui\\census.log",
+          "bytes": 1462,
+          "sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+        },
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-content-ui\\france-importer.log",
+          "bytes": 149,
+          "sha256": "1a0ac4c1a826bf68586e8ddaf1da41f965497fb88d1025cbd839ef9caf2f010e"
+        },
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-content-ui\\research-index.log",
+          "bytes": 249,
+          "sha256": "c18f3bda98eb6e08389ee99cd7f03bb5692b3d071a65099c97ea767e2af2e4f1"
+        },
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-content-ui\\interface.log",
+          "bytes": 155583,
+          "sha256": "9593100749e8b779cda0020fb3d596307de2d688a0f46563e9239451c42a1310"
+        },
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-content-ui\\browser.log",
+          "bytes": 188,
+          "sha256": "9694e86622b75e4eed5bd4d23728d1d62107ba9d093215301b9bae32e1f70d33"
+        }
+      ]
+    }
+  ],
+  "retained_authored_evidence": [
+    {
+      "increment": "S10.d",
+      "runtime_revision": "6ab4d2fccd1128cff14ecb7470aac82b9105e291",
+      "driver_revision": "6ab4d2fccd1128cff14ecb7470aac82b9105e291",
+      "new_execution": false,
+      "scope": "Retained authored inbox integration evidence. Only the listed native agency/fixture and driver scopes are equal; later shared decision code, statecraft and agency presentation changed. Prior screenshots are historical, not current-source visual qualification.",
+      "report": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S10\\d\\README.md",
+        "bytes": 5349,
+        "sha256": "703569ae657c78d119080ab1b0d680e3a6f945a0f67a1a56700690b5b4040d3b"
+      },
+      "manifest": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S10\\d\\manifest.json",
+        "bytes": 2484,
+        "sha256": "2d7d9c45c37e80331f54273c0362d220e92b5354267e143002191637f22ee55f"
+      },
+      "inventory": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S10\\d\\evidence\\inventory.json",
+        "bytes": 127545,
+        "sha256": "5fedfe52f6853fda0ab0437a068906d402006b94a01189f1b8666d9c07a854aa"
+      },
+      "authored_results": [
+        {
+          "logical_path": "authored-browser/browser/authored-france-1S83XX/result.json",
+          "sha256": "8066f05ba07368b7dd1a8c2e258f2d8a4a88ac22919825558449b8770421383c",
+          "bytes": 118498,
+          "encoding": "raw",
+          "storage": [
+            {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S10\\d\\evidence\\authored-browser\\browser\\authored-france-1S83XX\\result.json",
+              "bytes": 118498,
+              "sha256": "8066f05ba07368b7dd1a8c2e258f2d8a4a88ac22919825558449b8770421383c"
+            }
+          ],
+          "reconstruction_verified": true,
+          "passed": true
+        },
+        {
+          "logical_path": "authored-browser/result.json",
+          "sha256": "8d6046883bce6dd3a8af7787a67fa2a2e437c26572278e2bfd45b17f25406f4c",
+          "bytes": 1404,
+          "encoding": "raw",
+          "storage": [
+            {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S10\\d\\evidence\\authored-browser\\result.json",
+              "bytes": 1404,
+              "sha256": "8d6046883bce6dd3a8af7787a67fa2a2e437c26572278e2bfd45b17f25406f4c"
+            }
+          ],
+          "reconstruction_verified": true,
+          "passed": true
+        }
+      ],
+      "comparisons": [
+        {
+          "label": "complete_game_runtime",
+          "prior_revision": "6ab4d2fccd1128cff14ecb7470aac82b9105e291",
+          "current_revision": "bcdf72bcbe8947966359deb95f715cb526a68def",
+          "pathspecs": [
+            "Cargo.toml",
+            "Cargo.lock",
+            "spheres-sim",
+            "spheres-web"
+          ],
+          "git_arguments": [
+            "diff",
+            "--no-ext-diff",
+            "--no-textconv",
+            "--binary",
+            "6ab4d2fccd1128cff14ecb7470aac82b9105e291",
+            "bcdf72bcbe8947966359deb95f715cb526a68def",
+            "--",
+            "Cargo.toml",
+            "Cargo.lock",
+            "spheres-sim",
+            "spheres-web"
+          ],
+          "git_diff_bytes": 148449,
+          "git_diff_sha256": "773910c28a1c65f4be7aefc9df5857cc9ca0f62724c3273ed354c17027c56601",
+          "matches": false,
+          "changed_paths": [
+            "spheres-sim/src/party_executive_eligibility_tests.rs",
+            "spheres-sim/src/party_leadership.rs",
+            "spheres-sim/src/statecraft.rs",
+            "spheres-web/src/decision_review.rs",
+            "spheres-web/src/diplomatic_commitments.rs",
+            "spheres-web/src/diplomatic_sanctions.rs",
+            "spheres-web/src/main.rs",
+            "spheres-web/src/s10e_commitment_fixture_tests.rs",
+            "spheres-web/src/s10f_succession_fixture_tests.rs",
+            "spheres-web/src/s10g_sanctions_fixture_tests.rs",
+            "spheres-web/ui/agency-ui.js",
+            "spheres-web/ui/agency.css",
+            "spheres-web/ui/government-ui.css",
+            "spheres-web/ui/government-ui.js"
+          ],
+          "prior_ls_tree_sha256": "098e4180cc5a0be77531d6cd051b61779d98d2b5576311e01060b2fe4a08aab1",
+          "current_ls_tree_sha256": "941411cf42348b201d8cdcbca263fedf79a1a00d2aa2d67627b16cc99f357f6a",
+          "prior_tree_entries": 1886,
+          "current_tree_entries": 1891,
+          "comparison": "Committed Git blob bytes, without checkout newline conversion or textconv. Empty binary diff and identical tree listing are required for matches."
+        },
+        {
+          "label": "scoped_feature_source",
+          "prior_revision": "6ab4d2fccd1128cff14ecb7470aac82b9105e291",
+          "current_revision": "bcdf72bcbe8947966359deb95f715cb526a68def",
+          "pathspecs": [
+            "spheres-sim/src/agency.rs",
+            "spheres-web/src/s10d_inbox_fixture_tests.rs"
+          ],
+          "git_arguments": [
+            "diff",
+            "--no-ext-diff",
+            "--no-textconv",
+            "--binary",
+            "6ab4d2fccd1128cff14ecb7470aac82b9105e291",
+            "bcdf72bcbe8947966359deb95f715cb526a68def",
+            "--",
+            "spheres-sim/src/agency.rs",
+            "spheres-web/src/s10d_inbox_fixture_tests.rs"
+          ],
+          "git_diff_bytes": 0,
+          "git_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "matches": true,
+          "changed_paths": [],
+          "prior_ls_tree_sha256": "f1557bcc1be3e5ad8dcdfa44f488360726fb1b7d832f9b2ef3e20ebb904780a9",
+          "current_ls_tree_sha256": "f1557bcc1be3e5ad8dcdfa44f488360726fb1b7d832f9b2ef3e20ebb904780a9",
+          "prior_tree_entries": 2,
+          "current_tree_entries": 2,
+          "comparison": "Committed Git blob bytes, without checkout newline conversion or textconv. Empty binary diff and identical tree listing are required for matches."
+        },
+        {
+          "label": "authored_driver_direct_relative_require_graph",
+          "prior_revision": "6ab4d2fccd1128cff14ecb7470aac82b9105e291",
+          "current_revision": "bcdf72bcbe8947966359deb95f715cb526a68def",
+          "pathspecs": [
+            "tools/ui/ci-diplomatic-inbox.cjs",
+            "tools/ui/ci-integrated.cjs",
+            "tools/ui/government-review-assertions.cjs",
+            "tools/ui/supplier-archive-audit.cjs"
+          ],
+          "git_arguments": [
+            "diff",
+            "--no-ext-diff",
+            "--no-textconv",
+            "--binary",
+            "6ab4d2fccd1128cff14ecb7470aac82b9105e291",
+            "bcdf72bcbe8947966359deb95f715cb526a68def",
+            "--",
+            "tools/ui/ci-diplomatic-inbox.cjs",
+            "tools/ui/ci-integrated.cjs",
+            "tools/ui/government-review-assertions.cjs",
+            "tools/ui/supplier-archive-audit.cjs"
+          ],
+          "git_diff_bytes": 0,
+          "git_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "matches": true,
+          "changed_paths": [],
+          "prior_ls_tree_sha256": "a647bb5b26bd197a5a67596be950869ac9342155d8e07213fa67300a2abf91f3",
+          "current_ls_tree_sha256": "a647bb5b26bd197a5a67596be950869ac9342155d8e07213fa67300a2abf91f3",
+          "prior_tree_entries": 4,
+          "current_tree_entries": 4,
+          "comparison": "Committed Git blob bytes, without checkout newline conversion or textconv. Empty binary diff and identical tree listing are required for matches."
+        }
+      ],
+      "original_qualification": {
+        "authored_browser": {
+          "inspections": 8,
+          "exact_comparisons": 6,
+          "ignored_paths": []
+        },
+        "authored_offers": 3
+      },
+      "elapsed_days": 0
+    },
+    {
+      "increment": "S10.e",
+      "runtime_revision": "99b0b9d4a46a98a2c0cf7886583fe13e568dda64",
+      "driver_revision": "99b0b9d4a46a98a2c0cf7886583fe13e568dda64",
+      "new_execution": false,
+      "scope": "Retained authored commitments and one-day integration evidence. Listed commitment/agency/statecraft scopes are equal; later leadership and shared decision presentation changed. Prior browser evidence is not a new rerun or whole-runtime equality claim.",
+      "report": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S10\\e\\README.md",
+        "bytes": 4768,
+        "sha256": "e93bfcd943ea0c1ae633b8b3fbf392174dcc376b86663908f6cfb58c11a9dcce"
+      },
+      "manifest": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S10\\e\\manifest.json",
+        "bytes": 3393,
+        "sha256": "94a7412012ce4f8de7f87fefef2eddba2c13f9b9599e5633c28363e16b8cf1d2"
+      },
+      "inventory": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S10\\e\\evidence\\inventory.json",
+        "bytes": 141516,
+        "sha256": "fa122849a57d0b0a8e31e05620f8a37ee330b3ef91a9f450bab5433f1f3bdfb1"
+      },
+      "authored_results": [
+        {
+          "logical_path": "authored-browser/browser/authored-france-uX6CGN/result.json",
+          "sha256": "98bbd1463f28a56a9a4a06874ec1d86185d1dab1100656563436a223c2b4b702",
+          "bytes": 227706,
+          "encoding": "raw",
+          "storage": [
+            {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S10\\e\\evidence\\authored-browser\\browser\\authored-france-uX6CGN\\result.json",
+              "bytes": 227706,
+              "sha256": "98bbd1463f28a56a9a4a06874ec1d86185d1dab1100656563436a223c2b4b702"
+            }
+          ],
+          "reconstruction_verified": true,
+          "passed": true
+        },
+        {
+          "logical_path": "authored-browser/result.json",
+          "sha256": "817bb40295609c1ba9b8aef777e2cea4523c41c4d7621fa6424b925c97fefdb8",
+          "bytes": 1420,
+          "encoding": "raw",
+          "storage": [
+            {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S10\\e\\evidence\\authored-browser\\result.json",
+              "bytes": 1420,
+              "sha256": "817bb40295609c1ba9b8aef777e2cea4523c41c4d7621fa6424b925c97fefdb8"
+            }
+          ],
+          "reconstruction_verified": true,
+          "passed": true
+        }
+      ],
+      "comparisons": [
+        {
+          "label": "complete_game_runtime",
+          "prior_revision": "99b0b9d4a46a98a2c0cf7886583fe13e568dda64",
+          "current_revision": "bcdf72bcbe8947966359deb95f715cb526a68def",
+          "pathspecs": [
+            "Cargo.toml",
+            "Cargo.lock",
+            "spheres-sim",
+            "spheres-web"
+          ],
+          "git_arguments": [
+            "diff",
+            "--no-ext-diff",
+            "--no-textconv",
+            "--binary",
+            "99b0b9d4a46a98a2c0cf7886583fe13e568dda64",
+            "bcdf72bcbe8947966359deb95f715cb526a68def",
+            "--",
+            "Cargo.toml",
+            "Cargo.lock",
+            "spheres-sim",
+            "spheres-web"
+          ],
+          "git_diff_bytes": 104537,
+          "git_diff_sha256": "f3083fe42b2130243cc6b86dc86450c7fd3af93a0120d50cf3b3637b91793eb4",
+          "matches": false,
+          "changed_paths": [
+            "spheres-sim/src/party_executive_eligibility_tests.rs",
+            "spheres-sim/src/party_leadership.rs",
+            "spheres-web/src/decision_review.rs",
+            "spheres-web/src/diplomatic_sanctions.rs",
+            "spheres-web/src/main.rs",
+            "spheres-web/src/s10f_succession_fixture_tests.rs",
+            "spheres-web/src/s10g_sanctions_fixture_tests.rs",
+            "spheres-web/ui/agency-ui.js",
+            "spheres-web/ui/agency.css",
+            "spheres-web/ui/government-ui.css",
+            "spheres-web/ui/government-ui.js"
+          ],
+          "prior_ls_tree_sha256": "b31cad6a53ab1aeb5bf519a067ac065e73f0d5360f98e00cb294337600d13c48",
+          "current_ls_tree_sha256": "941411cf42348b201d8cdcbca263fedf79a1a00d2aa2d67627b16cc99f357f6a",
+          "prior_tree_entries": 1888,
+          "current_tree_entries": 1891,
+          "comparison": "Committed Git blob bytes, without checkout newline conversion or textconv. Empty binary diff and identical tree listing are required for matches."
+        },
+        {
+          "label": "scoped_feature_source",
+          "prior_revision": "99b0b9d4a46a98a2c0cf7886583fe13e568dda64",
+          "current_revision": "bcdf72bcbe8947966359deb95f715cb526a68def",
+          "pathspecs": [
+            "spheres-sim/src/agency.rs",
+            "spheres-sim/src/statecraft.rs",
+            "spheres-web/src/diplomatic_commitments.rs",
+            "spheres-web/src/s10e_commitment_fixture_tests.rs"
+          ],
+          "git_arguments": [
+            "diff",
+            "--no-ext-diff",
+            "--no-textconv",
+            "--binary",
+            "99b0b9d4a46a98a2c0cf7886583fe13e568dda64",
+            "bcdf72bcbe8947966359deb95f715cb526a68def",
+            "--",
+            "spheres-sim/src/agency.rs",
+            "spheres-sim/src/statecraft.rs",
+            "spheres-web/src/diplomatic_commitments.rs",
+            "spheres-web/src/s10e_commitment_fixture_tests.rs"
+          ],
+          "git_diff_bytes": 0,
+          "git_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "matches": true,
+          "changed_paths": [],
+          "prior_ls_tree_sha256": "bf1f22cf7b4fb3d73fce2fc9bee1d3d1185384996893675cf0c4342a82f91a70",
+          "current_ls_tree_sha256": "bf1f22cf7b4fb3d73fce2fc9bee1d3d1185384996893675cf0c4342a82f91a70",
+          "prior_tree_entries": 4,
+          "current_tree_entries": 4,
+          "comparison": "Committed Git blob bytes, without checkout newline conversion or textconv. Empty binary diff and identical tree listing are required for matches."
+        },
+        {
+          "label": "authored_driver_direct_relative_require_graph",
+          "prior_revision": "99b0b9d4a46a98a2c0cf7886583fe13e568dda64",
+          "current_revision": "bcdf72bcbe8947966359deb95f715cb526a68def",
+          "pathspecs": [
+            "tools/ui/ci-diplomatic-commitments.cjs",
+            "tools/ui/ci-integrated.cjs",
+            "tools/ui/government-review-assertions.cjs",
+            "tools/ui/supplier-archive-audit.cjs"
+          ],
+          "git_arguments": [
+            "diff",
+            "--no-ext-diff",
+            "--no-textconv",
+            "--binary",
+            "99b0b9d4a46a98a2c0cf7886583fe13e568dda64",
+            "bcdf72bcbe8947966359deb95f715cb526a68def",
+            "--",
+            "tools/ui/ci-diplomatic-commitments.cjs",
+            "tools/ui/ci-integrated.cjs",
+            "tools/ui/government-review-assertions.cjs",
+            "tools/ui/supplier-archive-audit.cjs"
+          ],
+          "git_diff_bytes": 0,
+          "git_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "matches": true,
+          "changed_paths": [],
+          "prior_ls_tree_sha256": "49729915a4f7bcce8dc052ad447f9b4e55bb50a33fdc3e5a78daa5937037dc58",
+          "current_ls_tree_sha256": "49729915a4f7bcce8dc052ad447f9b4e55bb50a33fdc3e5a78daa5937037dc58",
+          "prior_tree_entries": 4,
+          "current_tree_entries": 4,
+          "comparison": "Committed Git blob bytes, without checkout newline conversion or textconv. Empty binary diff and identical tree listing are required for matches."
+        }
+      ],
+      "original_qualification": {
+        "authored_browser": {
+          "inspections": 10,
+          "exact_comparisons": 7,
+          "ignored_paths": []
+        },
+        "authored_offers": 2,
+        "authored_native_fixture_sha256": {
+          "manifest": "ff67a3c0b1cdd9b1f7f65c833479cd5143435c9bd4ca31b873ccda79e49ab4a5",
+          "before": "e2a00a4f0d8a79946ac8561baad5d918d4876f2c0d363d51537ae3d73da3223e",
+          "expected_after": "20bda18a9e72eaea49b8c8369eb6a134ca24cb697c937b71ceaa29efbb06b899",
+          "expected_day": "3cabbb055f5e2958aeabab887a5af2a185b62a4d8f73dfabd38fdce798eb90fa"
+        },
+        "authored_scope": "Disposable authored commitments, reply and one-day continuation fixture. Not historical treaties, organically generated offers, a full war or campaign-certification duration evidence."
+      },
+      "elapsed_days": 1
+    },
+    {
+      "increment": "S10.f",
+      "runtime_revision": "7d85b9f76a3e787b257613442fb0a3370e90f4c2",
+      "driver_revision": "4a128727bf0917df9bc3f97a3c2c45fa360be0c1",
+      "new_execution": false,
+      "scope": "Same-source reuse of the listed succession model, government presentation and fixture paths. The later sanctions module changed shared server/agency paths, so this is scoped reuse, not an assertion that the complete F runtime equals current source.",
+      "report": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S10\\f\\README.md",
+        "bytes": 4622,
+        "sha256": "bba38bda0ab027452a2ac45e31045366857c30e88fdcd06c1db37b2cd6ba4cee"
+      },
+      "manifest": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S10\\f\\manifest.json",
+        "bytes": 3971,
+        "sha256": "ecf56ad15812ef664d793943491987b6691fbe70e9c7de57164b8a8c4fa141b2"
+      },
+      "inventory": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S10\\f\\evidence\\inventory.json",
+        "bytes": 157929,
+        "sha256": "d7c4c9dad23247306f6cc5ee3452cefea78d7351d56d17cb6243f8c731a255a3"
+      },
+      "authored_results": [
+        {
+          "logical_path": "authored-browser/browser/authored-uk-wv77jk/result.json",
+          "sha256": "613becbbd381a602bc8251f3716692be893fe0072532ca294fabe2b0d0716078",
+          "bytes": 1318839,
+          "encoding": "gzip",
+          "storage": [
+            {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S10\\f\\evidence\\authored-browser\\browser\\authored-uk-wv77jk\\result.json.gz",
+              "bytes": 81851,
+              "sha256": "500f613a464f7097b355ffbeed61aff1bfaa13a4f465467328336486e09cef3c"
+            }
+          ],
+          "reconstruction_verified": true,
+          "passed": true
+        },
+        {
+          "logical_path": "authored-browser/result.json",
+          "sha256": "0fa3bc5e6ddde00aa743146181bb32e6f500240f326498b5631072239ce66532",
+          "bytes": 830,
+          "encoding": "raw",
+          "storage": [
+            {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S10\\f\\evidence\\authored-browser\\result.json",
+              "bytes": 830,
+              "sha256": "0fa3bc5e6ddde00aa743146181bb32e6f500240f326498b5631072239ce66532"
+            }
+          ],
+          "reconstruction_verified": true,
+          "passed": true
+        }
+      ],
+      "comparisons": [
+        {
+          "label": "complete_game_runtime",
+          "prior_revision": "7d85b9f76a3e787b257613442fb0a3370e90f4c2",
+          "current_revision": "bcdf72bcbe8947966359deb95f715cb526a68def",
+          "pathspecs": [
+            "Cargo.toml",
+            "Cargo.lock",
+            "spheres-sim",
+            "spheres-web"
+          ],
+          "git_arguments": [
+            "diff",
+            "--no-ext-diff",
+            "--no-textconv",
+            "--binary",
+            "7d85b9f76a3e787b257613442fb0a3370e90f4c2",
+            "bcdf72bcbe8947966359deb95f715cb526a68def",
+            "--",
+            "Cargo.toml",
+            "Cargo.lock",
+            "spheres-sim",
+            "spheres-web"
+          ],
+          "git_diff_bytes": 51444,
+          "git_diff_sha256": "8191c50f40de3967edcd09122a9788d21295356089a309862feb368970eea2f3",
+          "matches": false,
+          "changed_paths": [
+            "spheres-web/src/decision_review.rs",
+            "spheres-web/src/diplomatic_sanctions.rs",
+            "spheres-web/src/main.rs",
+            "spheres-web/src/s10g_sanctions_fixture_tests.rs",
+            "spheres-web/ui/agency-ui.js",
+            "spheres-web/ui/agency.css"
+          ],
+          "prior_ls_tree_sha256": "9bb98b43f67db11bc5297a636561abc29b1d6c390b1222e20ecf65e5f540e435",
+          "current_ls_tree_sha256": "941411cf42348b201d8cdcbca263fedf79a1a00d2aa2d67627b16cc99f357f6a",
+          "prior_tree_entries": 1889,
+          "current_tree_entries": 1891,
+          "comparison": "Committed Git blob bytes, without checkout newline conversion or textconv. Empty binary diff and identical tree listing are required for matches."
+        },
+        {
+          "label": "scoped_feature_source",
+          "prior_revision": "7d85b9f76a3e787b257613442fb0a3370e90f4c2",
+          "current_revision": "bcdf72bcbe8947966359deb95f715cb526a68def",
+          "pathspecs": [
+            "spheres-sim",
+            "spheres-web/src/government_view.rs",
+            "spheres-web/src/person_portraits.rs",
+            "spheres-web/src/s10_government_tests.rs",
+            "spheres-web/src/s10f_succession_fixture_tests.rs",
+            "spheres-web/ui/index.html",
+            "spheres-web/ui/government-ui.js",
+            "spheres-web/ui/government-ui.css"
+          ],
+          "git_arguments": [
+            "diff",
+            "--no-ext-diff",
+            "--no-textconv",
+            "--binary",
+            "7d85b9f76a3e787b257613442fb0a3370e90f4c2",
+            "bcdf72bcbe8947966359deb95f715cb526a68def",
+            "--",
+            "spheres-sim",
+            "spheres-web/src/government_view.rs",
+            "spheres-web/src/person_portraits.rs",
+            "spheres-web/src/s10_government_tests.rs",
+            "spheres-web/src/s10f_succession_fixture_tests.rs",
+            "spheres-web/ui/index.html",
+            "spheres-web/ui/government-ui.js",
+            "spheres-web/ui/government-ui.css"
+          ],
+          "git_diff_bytes": 0,
+          "git_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "matches": true,
+          "changed_paths": [],
+          "prior_ls_tree_sha256": "414c35a1c0622f6d3c2a66bd56abfa07de52723af78a91bc792fd31a655bc2c1",
+          "current_ls_tree_sha256": "414c35a1c0622f6d3c2a66bd56abfa07de52723af78a91bc792fd31a655bc2c1",
+          "prior_tree_entries": 325,
+          "current_tree_entries": 325,
+          "comparison": "Committed Git blob bytes, without checkout newline conversion or textconv. Empty binary diff and identical tree listing are required for matches."
+        },
+        {
+          "label": "authored_driver_direct_relative_require_graph",
+          "prior_revision": "4a128727bf0917df9bc3f97a3c2c45fa360be0c1",
+          "current_revision": "bcdf72bcbe8947966359deb95f715cb526a68def",
+          "pathspecs": [
+            "tools/ui/ci-integrated.cjs",
+            "tools/ui/ci-succession-context.cjs",
+            "tools/ui/supplier-archive-audit.cjs"
+          ],
+          "git_arguments": [
+            "diff",
+            "--no-ext-diff",
+            "--no-textconv",
+            "--binary",
+            "4a128727bf0917df9bc3f97a3c2c45fa360be0c1",
+            "bcdf72bcbe8947966359deb95f715cb526a68def",
+            "--",
+            "tools/ui/ci-integrated.cjs",
+            "tools/ui/ci-succession-context.cjs",
+            "tools/ui/supplier-archive-audit.cjs"
+          ],
+          "git_diff_bytes": 0,
+          "git_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "matches": true,
+          "changed_paths": [],
+          "prior_ls_tree_sha256": "e1487856ea2f1b02a1939bcaea74fe0617832b71588d9ccc23988845011a502f",
+          "current_ls_tree_sha256": "e1487856ea2f1b02a1939bcaea74fe0617832b71588d9ccc23988845011a502f",
+          "prior_tree_entries": 3,
+          "current_tree_entries": 3,
+          "comparison": "Committed Git blob bytes, without checkout newline conversion or textconv. Empty binary diff and identical tree listing are required for matches."
+        }
+      ],
+      "original_qualification": {
+        "authored_browser": {
+          "inspections": 12,
+          "exact_comparisons": 10,
+          "ignored_paths": []
+        },
+        "authored_cases": 2,
+        "authored_case_names": [
+          "uk-1990-same-day-death",
+          "uk-2027-term-limit"
+        ],
+        "authored_commands": 0,
+        "authored_previews": 0,
+        "authored_native_fixture_sha256": {
+          "manifest": "97c48a1aba09b6af0524a88fd0215283636dc080ed8f33ef4c5ea8cea010e94e",
+          "uk-1990-same-day-death": "20ff7725efd244c079e791d95c307db7682348119ceb20602b70ed62dc74b9ef",
+          "uk-2027-term-limit": "6f89373bcc7163c7b605be07bfb48f702e1f0a18375e1217538aa779f228874d"
+        },
+        "authored_scope": "Two explicitly authored UK succession presentation fixtures. Ordinary Load, read-only leadership browsing, cancelled Load, Save/Load and Continue must preserve the complete native world. No UI appointments, no browser clock advance, no historical event claim and no campaign-duration certification."
+      },
+      "elapsed_days": 0
+    },
+    {
+      "increment": "S10.g",
+      "runtime_revision": "0f4616477671bc01936fcc9f2877ae172b13e348",
+      "driver_revision": "0f4616477671bc01936fcc9f2877ae172b13e348",
+      "new_execution": false,
+      "scope": "Same-source reuse of the complete game runtime and listed browser driver dependencies for authored sanctions confirmation/save continuity. The old execution remains a retained passing run, not a newly executed browser or performance test.",
+      "report": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S10\\g\\README.md",
+        "bytes": 6499,
+        "sha256": "a24ef1cd63a44f4475061fac31f64309c1923766d7fe559e3c13f2ece78fe970"
+      },
+      "manifest": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S10\\g\\manifest.json",
+        "bytes": 8897,
+        "sha256": "996c9ee262b4a6cf9442fab528ef81df5c11e5459173b56f0d11a7e160cfae20"
+      },
+      "inventory": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S10\\g\\evidence\\inventory.json",
+        "bytes": 159366,
+        "sha256": "80c8b392e05f5c55c59a2cddd4ae4e2bcf7520921b910a684541bcc7b964b49d"
+      },
+      "authored_results": [
+        {
+          "logical_path": "authored-browser/browser/authored-france-S8PO5J/result.json",
+          "sha256": "a6c3334fe15ebd554537936a20572003736427d9dba23f95f7a7b34880895c92",
+          "bytes": 668035,
+          "encoding": "raw",
+          "storage": [
+            {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S10\\g\\evidence\\authored-browser\\browser\\authored-france-S8PO5J\\result.json",
+              "bytes": 668035,
+              "sha256": "a6c3334fe15ebd554537936a20572003736427d9dba23f95f7a7b34880895c92"
+            }
+          ],
+          "reconstruction_verified": true,
+          "passed": true
+        },
+        {
+          "logical_path": "authored-browser/result.json",
+          "sha256": "779c980ceadffb5a87d5e906eee75c90bcd15454aa0e69da9cd4c23c8774727b",
+          "bytes": 1399,
+          "encoding": "raw",
+          "storage": [
+            {
+              "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S10\\g\\evidence\\authored-browser\\result.json",
+              "bytes": 1399,
+              "sha256": "779c980ceadffb5a87d5e906eee75c90bcd15454aa0e69da9cd4c23c8774727b"
+            }
+          ],
+          "reconstruction_verified": true,
+          "passed": true
+        }
+      ],
+      "comparisons": [
+        {
+          "label": "complete_game_runtime",
+          "prior_revision": "0f4616477671bc01936fcc9f2877ae172b13e348",
+          "current_revision": "bcdf72bcbe8947966359deb95f715cb526a68def",
+          "pathspecs": [
+            "Cargo.toml",
+            "Cargo.lock",
+            "spheres-sim",
+            "spheres-web"
+          ],
+          "git_arguments": [
+            "diff",
+            "--no-ext-diff",
+            "--no-textconv",
+            "--binary",
+            "0f4616477671bc01936fcc9f2877ae172b13e348",
+            "bcdf72bcbe8947966359deb95f715cb526a68def",
+            "--",
+            "Cargo.toml",
+            "Cargo.lock",
+            "spheres-sim",
+            "spheres-web"
+          ],
+          "git_diff_bytes": 0,
+          "git_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "matches": true,
+          "changed_paths": [],
+          "prior_ls_tree_sha256": "941411cf42348b201d8cdcbca263fedf79a1a00d2aa2d67627b16cc99f357f6a",
+          "current_ls_tree_sha256": "941411cf42348b201d8cdcbca263fedf79a1a00d2aa2d67627b16cc99f357f6a",
+          "prior_tree_entries": 1891,
+          "current_tree_entries": 1891,
+          "comparison": "Committed Git blob bytes, without checkout newline conversion or textconv. Empty binary diff and identical tree listing are required for matches."
+        },
+        {
+          "label": "scoped_feature_source",
+          "prior_revision": "0f4616477671bc01936fcc9f2877ae172b13e348",
+          "current_revision": "bcdf72bcbe8947966359deb95f715cb526a68def",
+          "pathspecs": [
+            "Cargo.toml",
+            "Cargo.lock",
+            "spheres-sim",
+            "spheres-web"
+          ],
+          "git_arguments": [
+            "diff",
+            "--no-ext-diff",
+            "--no-textconv",
+            "--binary",
+            "0f4616477671bc01936fcc9f2877ae172b13e348",
+            "bcdf72bcbe8947966359deb95f715cb526a68def",
+            "--",
+            "Cargo.toml",
+            "Cargo.lock",
+            "spheres-sim",
+            "spheres-web"
+          ],
+          "git_diff_bytes": 0,
+          "git_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "matches": true,
+          "changed_paths": [],
+          "prior_ls_tree_sha256": "941411cf42348b201d8cdcbca263fedf79a1a00d2aa2d67627b16cc99f357f6a",
+          "current_ls_tree_sha256": "941411cf42348b201d8cdcbca263fedf79a1a00d2aa2d67627b16cc99f357f6a",
+          "prior_tree_entries": 1891,
+          "current_tree_entries": 1891,
+          "comparison": "Committed Git blob bytes, without checkout newline conversion or textconv. Empty binary diff and identical tree listing are required for matches."
+        },
+        {
+          "label": "authored_driver_direct_relative_require_graph",
+          "prior_revision": "0f4616477671bc01936fcc9f2877ae172b13e348",
+          "current_revision": "bcdf72bcbe8947966359deb95f715cb526a68def",
+          "pathspecs": [
+            "tools/ui/ci-integrated.cjs",
+            "tools/ui/ci-sanctions-desk.cjs",
+            "tools/ui/government-review-assertions.cjs",
+            "tools/ui/supplier-archive-audit.cjs"
+          ],
+          "git_arguments": [
+            "diff",
+            "--no-ext-diff",
+            "--no-textconv",
+            "--binary",
+            "0f4616477671bc01936fcc9f2877ae172b13e348",
+            "bcdf72bcbe8947966359deb95f715cb526a68def",
+            "--",
+            "tools/ui/ci-integrated.cjs",
+            "tools/ui/ci-sanctions-desk.cjs",
+            "tools/ui/government-review-assertions.cjs",
+            "tools/ui/supplier-archive-audit.cjs"
+          ],
+          "git_diff_bytes": 0,
+          "git_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "matches": true,
+          "changed_paths": [],
+          "prior_ls_tree_sha256": "612ae47d1567e92806cfde62e0b7ae1157245884b07ed9ce7a13ff12a5a7c243",
+          "current_ls_tree_sha256": "612ae47d1567e92806cfde62e0b7ae1157245884b07ed9ce7a13ff12a5a7c243",
+          "prior_tree_entries": 4,
+          "current_tree_entries": 4,
+          "comparison": "Committed Git blob bytes, without checkout newline conversion or textconv. Empty binary diff and identical tree listing are required for matches."
+        }
+      ],
+      "original_qualification": {
+        "authored_browser": {
+          "inspections": 13,
+          "exact_comparisons": 9,
+          "ignored_paths": []
+        },
+        "authored_cases": 1,
+        "authored_commands": 3,
+        "authored_previews": 4,
+        "authored_command_kinds": [
+          "lift",
+          "sanction",
+          "improve"
+        ],
+        "authored_envelope_comparisons": 9,
+        "authored_native_fixture_sha256": {
+          "before.json": "86b9f8ae206793f48d5dfbba0819d811cf46467345d36ff8e669e2a6068cb8c9",
+          "expected-after-lift.json": "1a94a0ed770b7456ead04fd3883230954286800e3526243fa217335f06475a3c",
+          "expected-after-sanction.json": "febcdc838fe23b2cf2fe2b42810a22b823a5076685283868b68ccf56b8469e05",
+          "expected-after-improve.json": "2e61a38582c22f675f5a69371cb28944da60f26fa37bd92e36b607b262291b77",
+          "manifest": "0858ad1b69b750f8da442f4249d78715120ae6dd76939896846c18283c72a509"
+        },
+        "authored_scope": "Disposable authored France sanctions fixture, reviewed diplomatic commands and save continuity. Not historical sanctions, organic diplomacy or campaign-duration evidence.",
+        "performance_measurements": [
+          {
+            "authored_preconditions": [],
+            "benchmark_world_unchanged": true,
+            "command": {
+              "kind": "improve",
+              "target": "USA"
+            },
+            "date": "29 Oct 1995",
+            "days_advanced": 0,
+            "log_history_unchanged": true,
+            "max_limit_ms": 750,
+            "max_ms": 274.7794,
+            "nation": "Tonga",
+            "nation_name": "Tonga",
+            "p95_limit_ms": 300,
+            "p95_ms": 244.9886,
+            "passed": true,
+            "route_facts": {
+              "after": {
+                "enabled": true,
+                "inbound": {
+                  "available": true,
+                  "label": "A freight route is available under current conditions."
+                },
+                "note": "A route check does not book cargo or guarantee a sale, stock, capacity or delivery. Contracts, route access and future conditions still apply.",
+                "outbound": {
+                  "available": true,
+                  "label": "A freight route is available under current conditions."
+                }
+              },
+              "before": {
+                "enabled": true,
+                "inbound": {
+                  "available": true,
+                  "label": "A freight route is available under current conditions."
+                },
+                "note": "A route check does not book cargo or guarantee a sale, stock, capacity or delivery. Contracts, route access and future conditions still apply.",
+                "outbound": {
+                  "available": true,
+                  "label": "A freight route is available under current conditions."
+                }
+              }
+            },
+            "samples": 21,
+            "samples_ms": [
+              234.8326,
+              221.7581,
+              225.2603,
+              232.5513,
+              243.1303,
+              238.6224,
+              219.96370000000002,
+              220.3614,
+              226.1544,
+              226.1929,
+              227.84470000000002,
+              233.0661,
+              244.9886,
+              220.0602,
+              225.54479999999998,
+              235.0194,
+              227.4797,
+              274.7794,
+              242.23739999999998,
+              225.0442,
+              220.95860000000002
+            ],
+            "scope": "Native diplomatic preview generation including a cloned command, four native route checks and the complete-world review token. Excludes HTTP, browser and target discovery. No decision is applied and no campaign time advances.",
+            "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\export\\2127-purchased.campaign.json",
+            "source_file_unchanged": true,
+            "target": "USA",
+            "target_name": "United States",
+            "warmups": 3
+          }
+        ],
+        "performance_source_reference": {
+          "checkpoint": "S08",
+          "inventory_path": "docs/campaign-certification/S08/evidence/inventory.json",
+          "inventory_sha256": "ec4a98ff697c0ba9195dff42bffa5c440decd9c0be8a31ad1ee877acdc5fef77",
+          "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\export\\2127-purchased.campaign.json",
+          "source_sha256": "73a8ed5bd81502bf37d77f374c23f18ed96644a0032ba295317b25a0d01133f9",
+          "source_bytes": 134238603,
+          "compressed_object": {
+            "kind": "campaign",
+            "encoding": "ordered-zip-members",
+            "original_sha256": "73a8ed5bd81502bf37d77f374c23f18ed96644a0032ba295317b25a0d01133f9",
+            "original_bytes": 134238603,
+            "parts": [
+              {
+                "file": "campaign-archives/73a8ed5bd81502bf37d77f374c23f18ed96644a0032ba295317b25a0d01133f9/part-0001.zip",
+                "member": "bytes-0001",
+                "source_offset": 0,
+                "source_bytes": 67108864,
+                "source_sha256": "53181296f2666c334c3696ed56ad6001c2ab50688c4b71726bc5faf12cb9ee49",
+                "stored_bytes": 9288301,
+                "stored_sha256": "176e4e204e106daf9e188a3cc73f254adf4d1482476e5fd2b1ff9a13c47b3b4a"
+              },
+              {
+                "file": "campaign-archives/73a8ed5bd81502bf37d77f374c23f18ed96644a0032ba295317b25a0d01133f9/part-0002.zip",
+                "member": "bytes-0002",
+                "source_offset": 67108864,
+                "source_bytes": 67108864,
+                "source_sha256": "03188b666923644cfb34d3396a5f1f1367d9ae03ad028784684437113bcb1f29",
+                "stored_bytes": 15783332,
+                "stored_sha256": "035fec190fabf7b7d7073614c938c57b3ead3be61c145f9497a26687396f8ac6"
+              },
+              {
+                "file": "campaign-archives/73a8ed5bd81502bf37d77f374c23f18ed96644a0032ba295317b25a0d01133f9/part-0003.zip",
+                "member": "bytes-0003",
+                "source_offset": 134217728,
+                "source_bytes": 20875,
+                "source_sha256": "c0aa1b7ac557989be8924fe649ed70e7f637ff444eafc744de1775a9dec7d4cb",
+                "stored_bytes": 2102,
+                "stored_sha256": "9d9d257fc7d819f06e5d8feb6a0321bae68071dad0ab2a659225b52af4746537"
+              }
+            ],
+            "reconstruction_verified": true
+          },
+          "reconstruction_verified": true
+        }
+      },
+      "elapsed_days": 0
+    }
+  ],
+  "narrative": "All three written gameplay clauses have concrete native and browser oracles. The final eight-country and France two-tab runs refresh gameplay acceptance on the final clean pin. D/E source differences prevent wholesale current-UI reuse; their results retain their historical source scope. F permits narrower exact succession-source reuse. G permits exact whole-game-runtime reuse. This receipt adds no campaign days, historical coverage, art, Russia activation, long-run certification or release gate."
+}

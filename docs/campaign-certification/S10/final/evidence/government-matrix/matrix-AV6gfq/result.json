@@ -1,0 +1,85 @@
+{
+  "passed": true,
+  "scope": "S10.b ordinary Jan-1990 startup matrix; zero elapsed days; not G2, a long-run campaign or a Russia birth test",
+  "runtime_revision": "bcdf72bcbe8947966359deb95f715cb526a68def",
+  "binary_sha256": "01139a2921f3357eefa4242530a1c52fc0a0d090d4fcaf76317c50e3189ccbdf",
+  "test_source": {
+    "revision": "bcdf72bcbe8947966359deb95f715cb526a68def",
+    "driver_sha256": "5c365cb696b82b6f5c60645b1d3b56dc624a490de70a05f695ba52f2e2e6339f",
+    "review_assertions_sha256": "96c3626ebc461f3ab8a1a6327a1c889915293b616a1d758451ca28f6f4c8a31a",
+    "runtime_source_equal": true
+  },
+  "requested_nations": [
+    "France",
+    "Japan",
+    "India",
+    "Brazil",
+    "SouthAfrica",
+    "Tonga",
+    "SaudiArabia",
+    "USSR"
+  ],
+  "full_matrix_requested": true,
+  "full_eight_country_matrix": true,
+  "started_utc": "2026-09-14T01:27:45.657Z",
+  "cases": [
+    {
+      "nation": "France",
+      "passed": true,
+      "result": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-matrix\\matrix-AV6gfq\\france-RZNJE5\\result.json",
+      "result_sha256": "91d231914d6e2012181dd29374d80528dc4f2adbeec1c27c9c59bd1c710b0bfa",
+      "duration_ms": 19034.0751
+    },
+    {
+      "nation": "Japan",
+      "passed": true,
+      "result": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-matrix\\matrix-AV6gfq\\japan-Q4PWYB\\result.json",
+      "result_sha256": "dae78071d1857e44ce5379f182287e97a099397efd50bff29a98445974b34f74",
+      "duration_ms": 16846.086099999997
+    },
+    {
+      "nation": "India",
+      "passed": true,
+      "result": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-matrix\\matrix-AV6gfq\\india-2Y2wZx\\result.json",
+      "result_sha256": "194636817c3593c778b0d54fb5eb1d326e0b52940f160d50e39933beddae494e",
+      "duration_ms": 17020.1288
+    },
+    {
+      "nation": "Brazil",
+      "passed": true,
+      "result": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-matrix\\matrix-AV6gfq\\brazil-eHGbHN\\result.json",
+      "result_sha256": "ecd9590f0d3c4b846b7a19e7bcb37de311c394aa7919f4a7eacd2c54d98bd0cd",
+      "duration_ms": 15409.944799999997
+    },
+    {
+      "nation": "SouthAfrica",
+      "passed": true,
+      "result": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-matrix\\matrix-AV6gfq\\southafrica-iTkgaN\\result.json",
+      "result_sha256": "fb7750bbab8571884784e7df34b7c0797ecd0b098a7ecdbd03a1d5e06a82e45b",
+      "duration_ms": 14830.832800000004
+    },
+    {
+      "nation": "Tonga",
+      "passed": true,
+      "result": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-matrix\\matrix-AV6gfq\\tonga-NhVmvH\\result.json",
+      "result_sha256": "2410606b9aa5cf099216289b9f0c4bf5c8b1417b334c1e5342b175e5870e20ba",
+      "duration_ms": 13185.708899999998
+    },
+    {
+      "nation": "SaudiArabia",
+      "passed": true,
+      "result": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-matrix\\matrix-AV6gfq\\saudiarabia-Fbmh0C\\result.json",
+      "result_sha256": "f6c36181ac973b06dd9da7c3ee3d3e64461599135a4404f15fbab705517d90f9",
+      "duration_ms": 11983.069600000003
+    },
+    {
+      "nation": "USSR",
+      "passed": true,
+      "result": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-matrix\\matrix-AV6gfq\\ussr-I1RzUm\\result.json",
+      "result_sha256": "8e8dd773d913ea95db19c451013fbf544acab94926073149a91c889ea68263bc",
+      "duration_ms": 13693.7356
+    }
+  ],
+  "browser_version": "152.0.7977.83",
+  "finished_utc": "2026-09-14T01:29:48.916Z"
+}

@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "input": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-matrix\\matrix-AV6gfq\\brazil-eHGbHN\\server\\audit-captures\\s10b-before-views-5kZ1ie\\s10b-before-views.json",
+    "bytes": 13148768,
+    "sha256": "632b5930dc5da5a529492ae120790df27e6b3f1f53d33113e6187b8dfe427cf3"
+  },
+  "requested": {
+    "buyer": "Brazil",
+    "revision": null,
+    "seller": null,
+    "company": null,
+    "product": null
+  },
+  "buyer": {
+    "id": "Brazil",
+    "tech_sha256": "71f36968da01c68c3f31a69cb487c3a10f0c866073a70c089b002c846bff16b8",
+    "learned_sha256": "50edc262344620ebd2c9cabf9297150b2175819f0e9ac19b0bb104e61072cba3",
+    "revision_ids": [],
+    "held_by_revision": {},
+    "held_units": 0,
+    "buyer_revision": null,
+    "maintenance_plan": null,
+    "program_budget": null
+  },
+  "supplier": null,
+  "imports": {
+    "ids": [],
+    "matching": []
+  },
+  "canonical": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-matrix\\matrix-AV6gfq\\brazil-eHGbHN\\archive-audit\\013-s10b-before-views.canonical",
+    "bytes": 12116205,
+    "sha256": "c3c3a0913ffe531419b49c8f5ecf9d72b239e6fd5915f1c3b0c1dac0e89fe911",
+    "format": "s08-typed-canonical-world-v1-js-f64",
+    "ignored_paths": []
+  }
+}

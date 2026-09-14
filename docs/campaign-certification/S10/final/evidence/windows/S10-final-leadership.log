@@ -1,0 +1,56 @@
+    Finished `release` profile [optimized] target(s) in 0.15s
+     Running unittests src\lib.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_sim-de8a2e7790f15db6.exe)
+
+running 49 tests
+test party_leadership::future::tests::future_windows_are_exact_and_do_not_extend_historical_references ... ok
+test party_leadership::executive_eligibility_tests::executive_policy_rejects_implicit_presidencies_and_unsourced_or_mismatched_grants ... ok
+test party_leadership::leadership_seats_tests::paired_policy_has_exact_qualified_fiction_without_new_components_or_identity_fields ... ok
+test party_leadership::future::tests::future_profiles_cover_all_game_parties_without_claiming_future_history ... ok
+test party_leadership::future::tests::ldp_pilot_research_is_scoped_and_editorial_details_do_not_change_saved_identities ... ok
+test party_leadership::executive_eligibility_tests::all_reviewed_country_batches_require_explicit_future_executive_review ... ok
+test party_leadership::leadership_seats_tests::a_historical_co_holder_is_retained_without_inferred_gender_or_rewritten_identity ... ok
+test party_leadership::leadership_seats_tests::date_advancement_preserves_historical_trio_single_chair_and_all_existing_metadata ... ok
+test party_leadership::tests::actual_death_excludes_person_and_binds_eligible_replacement_without_rng ... ok
+test party_leadership::leadership_seats_tests::single_leader_future_parties_and_executive_exclusions_keep_their_existing_semantics ... ok
+test party_leadership::tests::canadian_ndp_reference_retains_mclaughlin_through_the_researched_handover ... ok
+test party_leadership::executive_eligibility_tests::a_separate_reviewed_candidate_can_win_without_replacing_the_party_chair ... ok
+test party_leadership::future::tests::organization_continuation_disclosure_preserves_counterfactual_candidates_and_campaign ... ok
+test party_leadership::executive_eligibility_tests::parliamentary_continuity_is_exact_and_new_terms_default_to_party_only ... ok
+test party_leadership::tests::eligibility_honors_person_party_component_and_membership_dates ... ok
+test party_leadership::tests::collective_and_components_never_invent_one_executive ... ok
+test party_leadership::tests::default_off_is_sparse_and_reference_reads_do_not_change_world ... ok
+test party_leadership::tests::erased_original_identity_and_rewritten_executive_dates_are_rejected ... ok
+test party_leadership::executive_eligibility_tests::france_and_germany_expand_only_exact_empty_legacy_slots_without_any_other_changes ... ok
+test party_leadership::tests::future_coalition_components_remain_collective ... ok
+test party_leadership::tests::exact_gregorian_dates_and_conservative_partial_bounds ... ok
+test party_leadership::executive_eligibility_tests::future_party_templates_need_a_distinct_presidential_grant_without_identity_changes ... ok
+test party_leadership::leadership_seats_tests::qualification_exhaustion_and_date_bounds_leave_vacancies_without_reusing_people ... ok
+test party_leadership::tests::future_cutoff_never_replaces_incumbents_without_a_succession_event ... ok
+test party_leadership::tests::forged_fictional_dates_affiliations_and_initial_assignments_are_rejected ... ok
+test party_leadership::tests::leader_card_keeps_original_role_and_unmapped_identity_distinctions ... ok
+test party_leadership::tests::one_person_leading_multiple_components_is_one_executive_identity ... ok
+test party_leadership::tests::incumbent_survives_reference_expiry_without_votes_cash_or_rng_changes ... ok
+test party_leadership::tests::monthly_succession_and_reference_uncertainty_are_explicit ... ok
+test party_leadership::tests::future_previews_are_read_only_and_dissolved_reference_parties_stay_distinct ... ok
+test party_leadership::tests::published_catalogue_has_every_authored_party_and_explicit_gaps ... ok
+test party_leadership::leadership_seats_tests::actual_death_replaces_only_the_vacant_co_seat_and_retains_individual_dates ... ok
+test party_leadership::leadership_seats_tests::empty_future_pair_fills_only_on_an_event_and_survives_save_reload ... ok
+test party_leadership::tests::s10f_fictional_campaign_death_has_a_saved_date_but_does_not_rewrite_references ... ok
+test party_leadership::tests::s10f_restrictions_are_country_scoped_and_disabled_rules_never_authorize_appointments ... ok
+test party_leadership::tests::term_limit_excludes_office_holder_but_preserves_party_leadership ... ok
+test party_leadership::tests::s10f_term_limit_status_keeps_party_office_and_reports_exact_saved_exclusion ... ok
+test party_leadership::tests::s10f_same_date_history_ignores_campaign_deaths_and_never_returns_campaign_bindings ... ok
+test party_leadership::tests::saved_identity_requires_original_source_affiliation_and_chronology ... ok
+test party_leadership::executive_eligibility_tests::staged_us_chairs_and_french_party_officers_render_without_becoming_presidents ... ok
+test party_leadership::tests::fictional_successor_save_replay_death_and_term_limits_keep_stable_identities ... ok
+test party_leadership::tests::roster_rejects_duplicates_unlinked_people_and_unsourced_claims ... ok
+test party_leadership::tests::real_government_hook_and_named_successor_mortality_replay ... ok
+test party_leadership::tests::legacy_japanese_empty_slots_upgrade_without_changing_campaign_state ... ok
+test party_leadership::executive_eligibility_tests::european_component_upgrade_rejects_populated_future_and_mixed_or_changed_schemas_atomically ... ok
+test party_leadership::tests::japanese_future_vacancies_use_one_surviving_organization_without_replacing_incumbents ... ok
+test party_leadership::tests::campaign_envelope_roundtrip_and_downgrade_are_fail_closed ... ok
+test party_leadership::tests::s10f_candidate_boundaries_preserve_saved_holders_and_use_native_availability ... ok
+test party_leadership::tests::japanese_component_upgrade_rejects_populated_and_mixed_maps_atomically ... ok
+
+test result: ok. 49 passed; 0 failed; 0 ignored; 0 measured; 777 filtered out; finished in 0.74s
+

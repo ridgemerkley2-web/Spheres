@@ -296,7 +296,13 @@
       "remaining": [
         "Complete C01 all-organization censuses, dated leadership histories and jurisdiction reconciliation; the new observations are partial.",
         "Reconcile sourced country leadership and succession coverage with S10 acceptance before claiming G2."
-      ]
+      ],
+      "gameplay_qualification": {
+        "status": "passed_scope_pending",
+        "candidate_revision": "bcdf72bcbe8947966359deb95f715cb526a68def",
+        "evidence": "docs/campaign-certification/S10/final/manifest.json",
+        "remaining_closure": "C01 remains an approved prerequisite. The separate content-scope question has no recorded answer."
+      }
     },
     {
       "id": "S11",
@@ -838,10 +844,10 @@
   "next_session": "S10",
   "execution": {
     "authorized_through": "S10",
-    "stop_boundary": "S10.h",
+    "stop_boundary": "S10 gameplay qualification",
     "status": "stopped",
-    "previous_stop": "S10.g",
-    "instruction": "Continue",
+    "previous_stop": "S10.h",
+    "instruction": "Continue. Finish S10",
     "instruction_date": "2026-09-13",
     "next_session_requires_instruction": true
   },
@@ -856,8 +862,8 @@
     "G2": {
       "status": "not_earned",
       "date": "2026-09-14",
-      "evidence": "docs/campaign-certification/S10/h/manifest.json",
-      "reason": "S10.h supplies a read-only research atlas and partial discovery packets for all nine certification identities. C01 exhaustive organization and role coverage remains open; the unchanged runtime has no new campaign qualification."
+      "evidence": "docs/campaign-certification/S10/final/manifest.json",
+      "reason": "All three S10 gameplay acceptance clauses passed final qualification. C01 remains incomplete and an approved S10 prerequisite; no answer to the explicit scope amendment has been received. G2 remains unearned."
     }
   }
 }

@@ -1,10 +1,22 @@
 # S10 — Government, succession and diplomacy
 
-Status: **S10.a through S10.h complete; S10 and C01 remain in progress**.
-The [S10.b report](b/README.md) records source-backed country discoveries,
-Linux qualification and all eight ordinary government browser journeys.
-Parent source: `872442d7411d9986321248b41ccadf79e2851d1c`.
-Latest user instruction: Continue. Work is limited to S10; S11 is not started.
+Status: **Gameplay acceptance passed; S10 closure awaits its C01 dependency decision**.
+
+The [final qualification report](final/README.md) records a clean final candidate,
+all eight ordinary country journeys and a separate France two-tab/save journey.
+Windows and Linux each pass 387 web, 12 agency/succession, 49 leadership and
+1,565 interface tests; the recorded ignored/skipped cases remain disclosed.
+102 content tests and five reproduction checks pass. Browser journeys advance
+zero campaign days. Five current screenshots were manually reviewed.
+
+C01's worldwide census and leadership histories remain incomplete. The approved
+S10 dependency is unchanged while the explicit gameplay/content scope question
+awaits an answer. S10 and C01 remain open, G2 is unearned, and S11 is not started.
+Latest instruction: “Continue. Finish S10”.
+
+## Historical increment records
+
+The following records preserve the state and claims of their own increments.
 
 ## S10.h — Political research atlas and certified-country discovery
 

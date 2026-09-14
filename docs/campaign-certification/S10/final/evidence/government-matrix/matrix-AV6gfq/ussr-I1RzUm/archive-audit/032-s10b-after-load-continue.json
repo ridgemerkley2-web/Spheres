@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "input": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-matrix\\matrix-AV6gfq\\ussr-I1RzUm\\server\\audit-captures\\s10b-after-load-continue-bn48cF\\s10b-after-load-continue.json",
+    "bytes": 13149367,
+    "sha256": "eaa9c212e28100a49f70c53267442da314640f96947265ab07eeb226065d5238"
+  },
+  "requested": {
+    "buyer": "USSR",
+    "revision": null,
+    "seller": null,
+    "company": null,
+    "product": null
+  },
+  "buyer": {
+    "id": "USSR",
+    "tech_sha256": "0029bbe0c4f814bbf2d59e896ddad4276a83e19eb7c81ad91bbe44d7a3a1971a",
+    "learned_sha256": "50edc262344620ebd2c9cabf9297150b2175819f0e9ac19b0bb104e61072cba3",
+    "revision_ids": [],
+    "held_by_revision": {},
+    "held_units": 0,
+    "buyer_revision": null,
+    "maintenance_plan": null,
+    "program_budget": null
+  },
+  "supplier": null,
+  "imports": {
+    "ids": [],
+    "matching": []
+  },
+  "canonical": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-final-matrix\\matrix-AV6gfq\\ussr-I1RzUm\\archive-audit\\032-s10b-after-load-continue.canonical",
+    "bytes": 12116871,
+    "sha256": "cb748ff2168fbd2f9354a19cc840f9478f367dda345446586e66a401e9bf77bc",
+    "format": "s08-typed-canonical-world-v1-js-f64",
+    "ignored_paths": []
+  }
+}
