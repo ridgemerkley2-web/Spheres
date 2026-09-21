@@ -6,12 +6,17 @@ Govern through budgets, production, trade, diplomacy and military commitments.
 The browser advances by **calendar day**, with pause, five speeds and one-day steps.
 The command-line historical runner retains its separate monthly calibration mode.
 
-**Playset review, 10 September 2026:** the latest task branch adds cartoon
-leadership, guidance, detailed armored vehicles and a detailed aircraft workshop.
-The new flight-command screen is still a campaign-independent prototype.
-`master` contains separate population, industry, warfare and fiscal work awaiting
-integration with this branch. See the [full game review](docs/GAME_REVIEW_2026_09_10.md)
-for implemented systems, remaining gaps and the recommended development order.
+**Active build: `codex/campaign-certification` · 21 September 2026.**
+S01–S17 are complete; S18 is in development. Economy, government, companies and
+ground/air operations are integrated on this branch. Full campaign certification
+and worldwide character coverage remain unfinished.
+
+- [Campaign roadmap and session markers](docs/CERTIFIED_CAMPAIGN_PATHWAY.md)
+- [Codex / Claude assignments and handoff packets](docs/AI_WORKSTREAMS.md)
+- [Machine-readable session status](docs/planning/campaign-pathway.json)
+
+Ask each assistant to read the workboard from this branch before starting.
+The [10 September review](docs/GAME_REVIEW_2026_09_10.md) remains a historical baseline.
 
 ## Play
 

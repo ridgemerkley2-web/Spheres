@@ -484,7 +484,7 @@
       "id": "S18",
       "phase": "experience",
       "title": "Replace flight-demo data and finish playable aircraft art",
-      "status": "planned",
+      "status": "in_progress",
       "depends": [
         "S16",
         "S14"
@@ -937,11 +937,11 @@
   "last_completed_session": "S17",
   "next_session": "S18",
   "execution": {
-    "authorized_through": "S17",
-    "stop_boundary": "S17",
-    "status": "stopped",
-    "previous_stop": "S16",
-    "instruction": "next'",
+    "authorized_through": "S18",
+    "stop_boundary": "S18",
+    "status": "in_progress",
+    "previous_stop": "S17",
+    "instruction": "next",
     "instruction_date": "2026-09-21",
     "next_session_requires_instruction": true
   },

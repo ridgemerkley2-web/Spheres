@@ -1,6 +1,10 @@
 # Spheres — pathway to a certified campaign
 
-**Approved pathway · 10 September 2026 · S01–S17 complete; S18–S30 planned.**
+**Approved pathway · 10 September 2026 · S01–S17 complete; S18 in progress; S19–S30 planned.**
+
+Work allocation: [Codex / Claude workboard](AI_WORKSTREAMS.md), with separate
+handoff packets, file boundaries and owner-filtered status queries. Active
+integration branch: `codex/campaign-certification`.
 
 S10 closes its qualified gameplay scope under the explicit amendment below.
 C01 and worldwide character work remain incomplete; CP1 is not earned.

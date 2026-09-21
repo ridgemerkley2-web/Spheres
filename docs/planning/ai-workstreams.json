@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "updated": "2026-09-21",
+  "integration_branch": "codex/campaign-certification",
+  "status_source": "docs/planning/campaign-pathway.json",
+  "workstreams": [
+    {"id":"foundation","owner":"Codex","sessions":["S00","S01","S02","S03","S04","S05","S06","S07","S08","S09","S10","S11","S12","S13","S14","S15","S16","S17"],"next":"Retained evidence; only reopen for a specific reproduced defect."},
+    {"id":"player-journey","owner":"Codex","sessions":["S18","S20","S21"],"next":"Finish S18, then integrate Claude S19 before shared-shell changes for S20."},
+    {"id":"guidance","owner":"Claude","sessions":["S19"],"handoff":"docs/planning/ai-handoffs/CLAUDE-S19-01.md","next":"CLAUDE-S19-01; implementation waits for S18."},
+    {"id":"characters","owner":"Claude","sessions":["C01","C02","C03","C04","C05","C06","C07","S23"],"handoff":"docs/planning/ai-handoffs/CLAUDE-C01-01.md","next":"CLAUDE-C01-01, one bounded research packet; C01 is partially researched and still incomplete."},
+    {"id":"qualification","owner":"Codex","sessions":["S22","S24","S25","S27","S28","S29","S30"],"next":"Wait for each canonical dependency and qualify the exact integrated source."},
+    {"id":"human-playtests","owner":"Human","sessions":["S26"],"next":"Real independent human sessions after S24; Codex prepares the build and Claude can review findings."},
+    {"id":"military-expansion","owner":"Codex","sessions":["E01","E02","E03","E04","E06"],"next":"Parked after CP1; respect the canonical dependency order."},
+    {"id":"company-expansion","owner":"Claude","sessions":["E05"],"next":"Parked after CP1; research important-company identities and era-appropriate catalogs."}
+  ],
+  "coordination_dependencies": {"S20":["S19"]},
+  "coordination_note":"S19 and S20 touch the same campaign shell. This scheduling dependency avoids concurrent edits and does not weaken any canonical acceptance criterion."
+}
