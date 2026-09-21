@@ -3,6 +3,18 @@ use crate::{init, production, resources, world::GameRules};
 const HOME: NationId = NationId::France;
 const SMALL: NationId = NationId::Malta;
 
+#[test]
+fn planned_aircraft_families_all_have_native_designs_and_company_support() {
+    for id in AIR {
+        assert!(
+            eq::PLATFORMS.iter().any(|p| p.id == id),
+            "Unknown staff platform: {id}"
+        );
+        assert!(eq::is_aviation_platform(id) && co::supported_platform(id));
+        assert_eq!(eq::default_spec(id).platform, id);
+    }
+}
+
 // Explicit test endowments: one completed plant, cash, research-independent raw
 // inputs and opening appropriation. Models, company cash settlement, stock,
 // procurement and delivery below are earned through their ordinary owners.

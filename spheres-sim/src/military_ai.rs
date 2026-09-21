@@ -11,7 +11,7 @@ use std::collections::BTreeMap;
 
 pub const REVIEW_DAYS: i32 = 30;
 pub const NOTE: &str = "Staff review acquisition, research, support and basing every 30 days; combat orders are reviewed daily. Countries buy finished stock, wait for delivery and pay ordinary upkeep and ammunition costs. No difficulty multiplier, free equipment, free research, instant transfers or privileged access is applied. Small economies use smaller fleet targets. Existing supplier programmes remain separate paid owners. Player countries are never directed by this staff.";
-const AIR: [&str; 3] = ["air_light_attack", "air_fighter", "air_tactical_bomber"];
+const AIR: [&str; 3] = ["air_light_attack", "air_fighter", "air_tactical_strike"];
 const RESERVE_ORDERS: usize = 256;
 
 #[derive(Clone, Debug, Default, Serialize, Deserialize, PartialEq)]

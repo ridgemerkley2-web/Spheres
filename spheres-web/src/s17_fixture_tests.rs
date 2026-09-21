@@ -66,6 +66,10 @@ fn s17_export_disposable_staff_fixture() {
         assert_eq!(g.history, resumed.history);
         assert_eq!(g.log, resumed.log);
         assert!(!g.world.military_ai.plans.contains_key(&NationId::France));
+        put(
+            &out.join(format!("{name}.json")),
+            &storage::encode(&g).unwrap(),
+        );
         if enabled {
             assert!(
                 g.world
@@ -77,7 +81,8 @@ fn s17_export_disposable_staff_fixture() {
                     .skip(initial_orders)
                     .any(|o| o.nation == NationId::Italy
                         && o.report.as_ref().is_some_and(|r| r.stores_used > 0.0)),
-                "Actual AI-launched Italian mission must consume paid stores"
+                "Actual AI-launched Italian mission must consume paid stores: {:?}",
+                g.world.military_ai.plans.get(&NationId::Italy)
             );
         } else {
             assert_eq!(
@@ -85,10 +90,6 @@ fn s17_export_disposable_staff_fixture() {
                 "Pause stops new staff reviews without cancelling owned obligations"
             );
         }
-        put(
-            &out.join(format!("{name}.json")),
-            &storage::encode(&g).unwrap(),
-        );
     }
     let manifest = json!({"revision":env!("SPHERES_REVISION"),"input":input,"player":"France","initial_orders":initial_orders,"days":6,
         "scope":"Authored S16 forces and supplies retained; economic competition explicitly enabled in setup. Only reviewed military staff controls and six ordinary daily advances follow. No new aircraft, cash, research, ammunition or base grants. Includes exact save/resume comparisons and actual autonomous Italian combat with finite stores.",
