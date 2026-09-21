@@ -1,0 +1,23 @@
+{
+  "revision": "eacf90e3e083d951cbd942957f573b7135953cea",
+  "lane": "browser",
+  "clean_before": true,
+  "command": [
+    "node",
+    "tools/ui/ci-air-defense.cjs"
+  ],
+  "runner_sha256": "0300567396cb489cad2d148c1441c238018ccc1a1729cc7cd2196e8c46fbb9d6",
+  "started_utc": "2026-09-21T21:39:50.988862+00:00",
+  "fixture": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-fixture-final3",
+  "binary_sha256_before": "e0c70296f292777e5fb9ebb98c0c4eeb95cba7f7f9d4e10ecb10d81c987219fa",
+  "exit_code": 1,
+  "finished_utc": "2026-09-21T21:40:47.947749+00:00",
+  "revision_after": "eacf90e3e083d951cbd942957f573b7135953cea",
+  "clean_after": true,
+  "log_sha256": "2a787724c826edaf82900494a9dfccd74508f369dc093356acb2473450c67387",
+  "binary": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\spheres-web.exe",
+    "sha256": "e0c70296f292777e5fb9ebb98c0c4eeb95cba7f7f9d4e10ecb10d81c987219fa"
+  },
+  "passed": false
+}

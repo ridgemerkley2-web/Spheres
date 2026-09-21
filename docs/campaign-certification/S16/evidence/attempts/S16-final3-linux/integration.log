@@ -1,0 +1,202 @@
+   Compiling spheres-sim v0.5.0 (/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration/spheres-sim)
+    Finished `release` profile [optimized] target(s) in 22.31s
+     Running tests/ammunition_reserves.rs (/home/ridge/.cache/spheres-s05-target/release/deps/ammunition_reserves-fdbbf7ed84a3b8d1)
+
+running 5 tests
+test repeated_support_settlement_cannot_create_a_second_batch_or_spend_on_its_start_date ... ok
+test paused_manual_commitments_prevent_auto_stacking_and_cancellation_frees_only_the_remainder ... ok
+test manual_targets_spend_nothing_and_automatic_authority_starts_on_a_later_date ... ok
+test policy_edits_disable_and_clear_preserve_existing_manual_and_automatic_batch_contracts ... ok
+test save_resume_preserves_automatic_review_dates_batches_and_funding_exactly ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.09s
+
+     Running tests/aviation_ammunition.rs (/home/ridge/.cache/spheres-s05-target/release/deps/aviation_ammunition-5b42a57f8fc1fd0f)
+
+running 5 tests
+test inaccessible_grounded_in_transit_and_refitting_aircraft_cannot_fly ... ok
+test aviation_does_not_activate_ground_stores_or_supply_ground_firing ... ok
+test aircraft_require_exact_paid_stores_and_partial_coverage_gates_strike_once ... ok
+test only_actually_launched_custom_raids_create_defender_air_defense_demand ... ok
+test air_only_consumption_is_conserved_across_conflicts_and_saved_continuations ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+     Running tests/campaign_movement_audit.rs (/home/ridge/.cache/spheres-s05-target/release/deps/campaign_movement_audit-d6a01aab7defff33)
+
+running 1 test
+test a_due_withdrawal_reaches_friendly_fallback_after_leaving_contested_origin ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+     Running tests/campaign_operations.rs (/home/ridge/.cache/spheres-s05-target/release/deps/campaign_operations-e15e0966f99e1a00)
+
+running 8 tests
+test invalid_orders_are_atomic_and_default_legacy_saves_stay_unenrolled ... ok
+test forecasts_are_pure_and_read_saved_observations_not_exact_enemy_inventories ... ok
+test enrollment_only_migrates_existing_wars_even_after_day_zero_save ... ok
+test empty_campaign_activation_does_not_teleport_the_first_new_deployment ... ok
+test unsupported_missions_buy_no_capability_and_standoff_cannot_occupy_ground ... ok
+test continuous_breakthrough_exhausts_more_cohesion_than_holding_and_orders_do_not_refresh_it ... ok
+test migration_and_two_wars_conserve_national_force_through_losses_and_transfers ... ok
+test changed_focus_moves_existing_cohorts_on_saved_dates_without_resetting_fatigue ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.37s
+
+     Running tests/campaign_peace_audit.rs (/home/ridge/.cache/spheres-s05-target/release/deps/campaign_peace_audit-8413fe817c436380)
+
+running 4 tests
+test debt_free_closed_books_recipient_keeps_every_reparation_dollar ... ok
+test occupation_belongs_to_its_actual_front_not_first_matching_war ... ok
+test changing_coalition_sides_requires_fresh_consent_even_with_same_nations ... ok
+test changing_the_principal_requires_fresh_terms_even_with_unchanged_coalitions ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running tests/companies_integration.rs (/home/ridge/.cache/spheres-s05-target/release/deps/companies_integration-264ad434cea8ad35)
+
+running 27 tests
+test export_company_platform_qa_stages ... ignored, Writes synthetic ground and aircraft QA saves only when SPHERES_COMPANY_QA_DIR is explicitly set
+test export_company_qa_stages ... ignored, Writes synthetic browser QA stage saves only when SPHERES_COMPANY_QA_DIR is explicitly set
+test development_tooling_and_finite_stock_are_distinct_paid_stages_without_public_equipment ... ok
+test company_work_cannot_create_missing_inputs_or_use_unsettled_sales_cash ... ok
+test capitalization_waits_for_one_fiscal_posting_and_prepaid_money_is_not_charged_twice ... ok
+test company_enrollment_preserves_opening_raw_stock_and_accrues_procurement_for_reviewed_purchases ... ok
+test company_rights_share_the_existing_factory_and_preserve_paid_public_work ... ok
+test insufficient_purchase_authority_refuses_without_mutating_stock_receipts_or_the_funding_day ... ok
+test cash_limited_company_waits_then_real_capitalization_funds_resumable_work_in_progress ... ok
+test changing_market_prices_after_input_purchase_cannot_reprice_work_or_vehicle_performance ... ok
+test a_saved_fiscal_close_settles_its_company_receipt_before_new_year_authority_rolls_over ... ok
+test finite_stock_sale_is_atomic_stale_safe_and_fields_only_after_settled_delivery ... ok
+test development_pause_partial_funding_cancellation_and_reload_retain_paid_work_exactly ... ok
+test inactive_company_readers_and_ticks_preserve_legacy_world_bytes ... ok
+test establishment_preserves_existing_owned_vehicles_paid_deliveries_and_public_contracts ... ok
+test earlier_paid_public_aircraft_and_company_ground_work_use_separate_real_slots ... ok
+test mixed_ground_and_aircraft_work_share_one_company_slot_and_do_not_reserve_unsold_units_for_fleet_targets ... ok
+test occupation_stops_work_and_holds_paid_transit_without_transferring_cash_or_designs ... ok
+test malformed_save_cannot_mint_uncertified_stock_or_duplicate_a_paid_delivery ... ok
+test company_save_envelope_cannot_be_downgraded_or_silently_drop_corporate_property ... ok
+test extending_an_existing_tank_company_preserves_its_old_save_and_promotes_only_new_platforms ... ok
+test pending_invoices_require_one_real_fiscal_payment_and_one_unsettled_purchase ... ok
+test saved_purchase_dates_cannot_skip_transit_or_claim_future_payment ... ok
+test every_implemented_platform_uses_paid_company_stock_and_exact_owned_deliveries_without_ammunition ... ok
+test s03_company_adoption_preserves_unsettled_prior_year_capital ... ok
+test s02_connected_economy_preserves_supplier_stock_receivables_and_party_identities ... ok
+test s03_both_supplier_generations_keep_certification_stock_invoices_and_party_identity ... ok
+
+test result: ok. 25 passed; 0 failed; 2 ignored; 0 measured; 0 filtered out; finished in 1.30s
+
+     Running tests/company_ammunition.rs (/home/ridge/.cache/spheres-s05-target/release/deps/company_ammunition-15ca3cda163bfa72)
+
+running 14 tests
+test export_company_ammunition_qa_stages ... ignored, Writes isolated synthetic browser stages only when SPHERES_COMPANY_AMMO_QA_DIR is explicitly set
+test market_changes_affect_only_later_purchased_inputs_and_the_weighted_available_shelf_price ... ok
+test company_liquidity_and_complete_inputs_bound_whole_rounds_without_public_fabrication_bills ... ok
+test purchase_quantities_and_replayed_reviews_cannot_overdraw_stock_or_charge_twice ... ok
+test in_transit_ammunition_pauses_outside_government_control_and_arrives_once_without_changing_activation ... ok
+test ammunition_purchases_protect_fleet_upkeep_and_settle_fresh_or_prepaid_authority_once ... ok
+test one_contractor_shares_one_daily_work_packet_across_vehicle_development_and_ammunition_families ... ok
+test delivered_company_air_stores_feed_existing_sorties_and_remain_conserved_after_consumption_and_reload ... ok
+test converted_reserves_keep_targets_and_prior_paid_batches_but_net_company_transit_and_stop_duplicate_public_orders ... ok
+test saves_reject_fabricated_rounds_unmatched_supplier_receipts_and_duplicate_purchase_invoices ... ok
+test old_company_save_versions_remain_exact_until_explicit_ammunition_supply ... ok
+test all_twenty_three_families_require_company_inputs_and_cash_then_one_paid_delivery ... ok
+test s05_paid_company_air_stores_survive_pending_save_then_feed_operational_strike ... ok
+test s03_ammunition_property_keeps_pending_and_consumed_supplier_provenance ... ok
+
+test result: ok. 13 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 1.27s
+
+     Running tests/company_refits.rs (/home/ridge/.cache/spheres-s05-target/release/deps/company_refits-7aa765fddb8d7a0b)
+
+running 16 tests
+test export_company_refit_qa_stages ... ignored, exports explicitly synthetic browser fixtures only when SPHERES_COMPANY_REFIT_QA_DIR is set
+test the_same_factory_cannot_refit_make_ammunition_and_restock_vehicles_in_one_work_packet ... ok
+test reviewed_booking_reserves_real_units_without_new_stock_or_immediate_public_payment ... ok
+test prior_year_service_refund_returns_cash_without_recreating_expired_or_current_authority ... ok
+test company_refit_reservations_net_source_and_target_goals_exactly_once ... ok
+test scarce_inputs_pause_atomically_and_market_changes_cannot_reprice_the_active_unit_or_fixed_fee ... ok
+test invalid_and_replayed_bookings_cannot_overreserve_or_charge_a_second_time ... ok
+test public_escrow_cannot_start_work_until_private_capital_exists_and_partial_cancel_keeps_labor_reserved ... ok
+test paid_public_refits_and_supplier_claims_share_source_units_without_releasing_each_others_reservations ... ok
+test occupation_pauses_real_work_and_cancellation_releases_only_untouched_government_property ... ok
+test s06_actual_refit_escrow_and_refund_explain_cash_once_without_restoring_authority ... ok
+test service_advance_is_locked_until_return_and_fresh_or_prepaid_refund_posts_once ... ok
+test old_supplier_books_remain_byte_exact_until_service_booking_and_native_claims_cannot_be_forged ... ok
+test s03_combined_save_preserves_partial_cancel_refit_escrow_and_exact_reserved_sources ... ok
+test s05_partial_refit_and_paid_building_continue_once_across_all_capability_adoption ... ok
+test every_supported_platform_returns_the_exact_revision_preserving_current_age_and_no_ammunition ... ok
+
+test result: ok. 15 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 4.70s
+
+     Running tests/equipment_integration.rs (/home/ridge/.cache/spheres-s05-target/release/deps/equipment_integration-e4a4b39e38d8c738)
+
+running 12 tests
+test legacy_inventory_serialization_and_fractional_loss_remain_exact ... ok
+test custom_production_and_legacy_manufacturing_share_one_site_capacity ... ok
+test zero_maintenance_funding_removes_custom_readiness_without_an_extra_charge ... ok
+test custom_delivery_waits_and_never_merges_into_the_legacy_base_kit ... ok
+test refits_reserve_once_preserve_current_age_and_exclude_battlefield_losses ... ok
+test custom_price_changes_book_value_but_not_combat_and_components_only_change_land ... ok
+test upkeep_allocates_existing_service_spending_and_reduces_legacy_refill ... ok
+test development_switches_only_on_next_funding_day_and_pays_only_delivered_work ... ok
+test custom_and_legacy_procurement_share_residual_prepaid_authority_once ... ok
+test fractional_custom_attrition_carries_until_one_whole_vehicle_is_lost ... ok
+test extreme_activation_split_cannot_multiply_force_beyond_the_legacy_maximum ... ok
+test mapped_hardware_discovery_does_not_upgrade_unmodified_custom_stock ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running tests/equipment_supply_automation.rs (/home/ridge/.cache/spheres-s05-target/release/deps/equipment_supply_automation-3cd9be3034d2405e)
+
+running 6 tests
+test an_unbuilt_fleet_target_is_not_a_material_purchase_contract ... ok
+test prospective_purchase_uses_only_cash_above_the_floor_after_fiscal_settlement ... ok
+test paid_late_cargo_reduces_need_and_policy_edit_or_clear_keeps_its_history ... ok
+test absent_and_disabled_policies_keep_the_daily_economy_identical ... ok
+test cash_blocked_reviews_wait_the_interval_and_overdue_reviews_do_not_catch_up ... ok
+test weekly_reviews_and_save_resume_preserve_one_cap_per_due_date ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.18s
+
+     Running tests/ground_equipment_integration.rs (/home/ridge/.cache/spheres-s05-target/release/deps/ground_equipment_integration-cf5adda89806f529)
+
+running 5 tests
+test every_family_has_a_complete_compatible_starter_and_rejects_foreign_mission_hardware ... ok
+test specialists_need_fielded_supported_inventory_and_cannot_create_strategic_lift ... ok
+test component_research_follows_branches_and_never_retrofits_frozen_stock ... ok
+test specialist_stock_and_shared_deployments_continue_identically_after_reload ... ok
+test old_tank_versions_keep_their_serialized_profiles_when_the_library_is_upgraded ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+     Running tests/military_operations.rs (/home/ridge/.cache/spheres-s05-target/release/deps/military_operations-3ab69a0996a93c52)
+
+running 9 tests
+test controller_handles_contested_recaptured_and_conflicting_fronts ... ok
+test simultaneous_home_conflicts_cannot_duplicate_the_national_army ... ok
+test occupation_stops_an_arms_line_and_recapture_resumes_without_transfer ... ok
+test equal_equipment_value_cannot_substitute_ships_for_land_capability ... ok
+test battlefield_material_losses_consume_inventory_but_not_pending_orders ... ok
+test all_theatres_use_one_opening_force_and_equipment_snapshot ... ok
+test a_zero_deployment_ally_loses_no_force_or_equipment_in_either_cadence ... ok
+test an_overseas_ceiling_is_shared_and_player_allocation_releases_reserves ... ok
+test daily_batched_and_saved_schedules_replay_identically ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.12s
+
+     Running tests/s08_supplier_lifecycle.rs (/home/ridge/.cache/spheres-s05-target/release/deps/s08_supplier_lifecycle-221bf73188f82705)
+
+running 10 tests
+test s08_import_enrollment_reviews_all_supplier_rules_and_refuses_atomically ... ok
+test s08_missing_or_reidentified_supplier_retains_paid_import_before_any_buyer_mutation ... ok
+test s08_import_sanctions_access_loss_and_stale_reviews_preserve_owned_stock_and_resume_once ... ok
+test s08_catalogue_only_adoption_is_versioned_without_assets_and_downgrades_are_refused ... ok
+test s08_imported_rounds_and_guided_air_stores_keep_one_paid_receipt_without_research_grants ... ok
+test s08_serialized_import_origin_route_and_escrow_corruption_is_rejected ... ok
+test s08_import_cancellation_before_and_after_settlement_returns_exact_property_and_refund_once ... ok
+test s08_all_paid_supplier_platforms_import_exact_models_without_factory_research_or_duplicate_payment ... ok
+test s08_market_affordability_matches_review_at_sub_ulp_funding_boundaries ... ok
+test s08_new_physical_supplier_preserves_preproduction_expenses_through_each_saved_phase ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.78s
+

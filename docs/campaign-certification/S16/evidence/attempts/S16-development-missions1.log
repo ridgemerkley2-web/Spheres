@@ -1,0 +1,46 @@
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+warning: unused import: `arsenal`
+ --> spheres-sim\src\equipment_fighter_tests.rs:6:13
+  |
+6 | use crate::{arsenal, aviation, companies as firms, programs, resources, Command, EquipmentOrder};
+  |             ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: `spheres-sim` (lib test) generated 1 warning (run `cargo fix --lib -p spheres-sim --tests` to apply 1 suggestion)
+    Finished `release` profile [optimized] target(s) in 1m 37s
+     Running unittests src\lib.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_sim-de8a2e7790f15db6.exe)
+
+running 19 tests
+test airmissions::defense_tests::s16_defensive_patrol_has_no_ground_attack_or_hostile_ground_defense_exposure ... ok
+test airmissions::tests::s15_enrolled_aircraft_do_not_run_a_second_implicit_campaign_air_raid ... ok
+test airmissions::tests::s15_access_lost_before_launch_blocks_without_ammunition_or_aircraft_loss ... ok
+test airmissions::tests::s15_closed_shared_store_settlement_cannot_fund_another_launch ... ok
+test airmissions::defense_tests::s16_defend_skies_requires_fighter_friendly_geography_and_real_readiness ... ok
+test airmissions::defense_tests::s16_fighter_and_ground_air_defense_have_distinct_paid_contributions ... ok
+test airmissions::tests::s15_reviews_reserve_real_squadrons_and_refuse_busy_or_unavailable_flights ... ok
+test airmissions::tests::s15_shared_family_coverage_cannot_be_forged_to_reuse_the_same_stores ... ok
+test airmissions::tests::s15_support_requires_ground_contact_and_aircraft_use_the_exact_store_family ... ok
+test airmissions::tests::s15_prepared_plan_save_and_resume_consumes_one_shared_ammunition_receipt ... ok
+
+thread 'airmissions::defense_tests::s16_both_sides_and_two_conflicts_share_one_finite_national_store_plan' (35056) panicked at spheres-sim\src\airmissions_defense_tests.rs:522:10:
+Native US/Mexico frontier contact
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test airmissions::defense_tests::s16_both_sides_and_two_conflicts_share_one_finite_national_store_plan ... FAILED
+test airmissions::defense_tests::s16_multiple_interceptors_and_ground_defense_cannot_write_off_one_target_twice ... ok
+test airmissions::tests::s15_frozen_launch_cannot_be_cancelled_reassigned_or_replayed_after_resume ... ok
+test airmissions::tests::s15_whole_aircraft_loss_debits_only_the_flight_and_preserves_other_claims ... ok
+test airmissions::tests::s15_malformed_flown_reports_cannot_invent_stores_sorties_or_another_loadout ... ok
+test airmissions::defense_tests::s16_paid_interception_changes_the_real_hostile_strike_and_depleted_defense_loses_it ... ok
+test airmissions::defense_tests::s16_saved_defense_effects_cannot_invent_contacts_suppression_or_losses ... ok
+test airmissions::tests::s15_malformed_prepared_plan_references_families_and_shared_claims_are_rejected ... ok
+test airmissions::tests::s15_two_missions_share_finite_stores_and_replay_the_same_campaign_result ... ok
+
+failures:
+
+failures:
+    airmissions::defense_tests::s16_both_sides_and_two_conflicts_share_one_finite_national_store_plan
+
+test result: FAILED. 18 passed; 1 failed; 0 ignored; 0 measured; 879 filtered out; finished in 0.21s
+
+error: test failed, to rerun pass `-p spheres-sim --lib`

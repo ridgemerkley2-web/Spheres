@@ -1,0 +1,22 @@
+{
+  "candidate": "789b01d8a5401c995f1b17fc9424838063c84d71",
+  "recorded_utc": "2026-09-14T11:55:49.494441+00:00",
+  "event": "intentional_qualification_stop",
+  "reason": "The source-pinned S16 fixture exposed valid next-day support edits rejected against the prior fiscal day. Stop obsolete qualification before applying the correction and new regression.",
+  "completed_qualifying_lanes_on_this_candidate": [
+    "Windows web:397 pass/19 ignored",
+    "Windows Node:1592 pass/1 skipped",
+    "Linux web:397 pass/19 ignored"
+  ],
+  "failed_lane": "S16-final1-fixture: invalid routine aircraft-support policy after normal support edit",
+  "interrupted_lane": "S16-final1-linux/sim.log",
+  "termination": {
+    "identified_parent_cargo_pid": 1230,
+    "identified_test_pid": 1351,
+    "test_path": "/home/ridge/.cache/spheres-s05-target/release/deps/spheres_sim-f55e6e622fc3c171",
+    "signal": "SIGTERM",
+    "test_totals_complete": false
+  },
+  "source_changed_during_checks": false,
+  "gate_earned": false
+}

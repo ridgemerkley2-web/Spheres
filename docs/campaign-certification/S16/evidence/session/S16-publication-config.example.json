@@ -1,0 +1,19 @@
+{
+  "candidate_revision": "REPLACE_WITH_40_HEX_FINAL_RUNTIME_REVISION",
+  "proof_label": "final3",
+  "linux_runner": "run-s16-linux-final3.py",
+  "review_stage": "continued",
+  "visual_review": {
+    "passed": false,
+    "widths": [1440, 390],
+    "screenshots": [
+      "supplier-fighter-inspection-1440.png",
+      "defense_flown-1440.png",
+      "defend_against_strike-review-390.png",
+      "defense-area-map-390.png",
+      "depleted-defense-review-390.png"
+    ],
+    "notes": "REPLACE after inspecting these exact captures from the final passing browser run."
+  },
+  "extra_evidence": []
+}

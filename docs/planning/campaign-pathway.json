@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "date": "2026-09-14",
+  "date": "2026-09-21",
   "status": "in_progress",
   "baseline": "5f7f355502f17bd6bd8f0383a2d14f0024fa7884",
   "target": "CP1: Spheres Certified Campaign, 1990-01-01 through 2035-12-31",
@@ -33,7 +33,7 @@
     {
       "id": "military",
       "name": "3 · A military you can use",
-      "gate": "G3 · Complete military loop"
+      "gate": "G3 · Complete military loop ✓"
     },
     {
       "id": "experience",
@@ -436,7 +436,7 @@
       "id": "S16",
       "phase": "military",
       "title": "Add fighters and defensive aviation",
-      "status": "in_progress",
+      "status": "complete",
       "depends": [
         "S15",
         "S09"
@@ -446,7 +446,15 @@
         "The fighter has legal component research, development, purchase, delivery, upkeep and stores.",
         "Interception changes a hostile strike's result; fighter and ground-air-defense contributions remain distinct and coordinated.",
         "A target aircraft cannot be destroyed twice, and depleted defense visibly loses effectiveness."
-      ]
+      ],
+      "evidence": "../campaign-certification/S16/README.md",
+      "completed_date": "2026-09-21",
+      "closure": {
+        "evidence": "docs/campaign-certification/S16/manifest.json",
+        "candidate_revision": "eacf90e3e083d951cbd942957f573b7135953cea",
+        "driver_revision": "dd00f3568b13395f77415b7737df8d6a3b3a83a2",
+        "completed_utc": "2026-09-21T21:43:16.809Z"
+      }
     },
     {
       "id": "S17",
@@ -919,12 +927,12 @@
       }
     ]
   },
-  "last_completed_session": "S15",
-  "next_session": "S16",
+  "last_completed_session": "S16",
+  "next_session": "S17",
   "execution": {
     "authorized_through": "S16",
     "stop_boundary": "S16",
-    "status": "in_progress",
+    "status": "stopped",
     "previous_stop": "S15",
     "instruction": "continue",
     "instruction_date": "2026-09-14",
@@ -945,6 +953,13 @@
       "evidence": "docs/campaign-certification/S10/final/manifest.json",
       "reason": "Earned for the qualified finance, construction, supplier, research, government and diplomacy paths under the explicitly approved S10 scope amendment. Historical coverage remains incomplete and is required through C01–C06 and S23 before CP1 certification. Earlier and current qualification retain their exact source, build and scenario scopes.",
       "scope_amendment": "S10-G2-CONTENT-SEPARATION"
+    },
+    "G3": {
+      "status": "earned",
+      "date": "2026-09-21",
+      "candidate": "eacf90e3e083d951cbd942957f573b7135953cea",
+      "evidence": "docs/campaign-certification/S16/manifest.json",
+      "reason": "Ground and the three supported air missions use real campaign forces and results. G3 combines the exact inherited G2 and S11–S15 records with the pinned S16 fighter lifecycle, coordinated interception and depleted-defense regressions, plus the authored France browser comparison. Explicit opposing orders are authored; S17 AI, later content/campaign/performance qualification and CP1 remain open."
     }
   }
 }

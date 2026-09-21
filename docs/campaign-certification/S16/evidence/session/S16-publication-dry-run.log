@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\publish-s16-closure.py", line 730, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\publish-s16-closure.py", line 712, in main
+    manifest=qualify(read(args.config),args.config.resolve());outputs=render(manifest)
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\publish-s16-closure.py", line 560, in qualify
+    inherited,preservation=prior_and_preservation(cfg,kept)
+                           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\publish-s16-closure.py", line 436, in prior_and_preservation
+    need(len(p['files'])==len(b['files']) and len(p['worktrees'])==len(b['worktrees'])
+                                                                       ~^^^^^^^^^^^^^
+KeyError: 'worktrees'

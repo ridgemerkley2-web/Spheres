@@ -1,0 +1,23 @@
+{
+  "revision": "789b01d8a5401c995f1b17fc9424838063c84d71",
+  "lane": "node",
+  "clean_before": true,
+  "command": [
+    "node",
+    "tools/ui/run-unit.cjs"
+  ],
+  "runner_sha256": "0300567396cb489cad2d148c1441c238018ccc1a1729cc7cd2196e8c46fbb9d6",
+  "started_utc": "2026-09-14T11:47:51.959613+00:00",
+  "exit_code": 0,
+  "finished_utc": "2026-09-14T11:49:56.415509+00:00",
+  "revision_after": "789b01d8a5401c995f1b17fc9424838063c84d71",
+  "clean_after": true,
+  "log_sha256": "b6abe7397fe1c6edf470b6ca5e83d4ea936451c754f146538ed38e8c6cf136d8",
+  "totals": {
+    "tests": 1593,
+    "pass": 1592,
+    "fail": 0,
+    "skipped": 1
+  },
+  "passed": true
+}

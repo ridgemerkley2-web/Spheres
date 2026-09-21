@@ -1,0 +1,38 @@
+{
+  "revision": "789b01d8a5401c995f1b17fc9424838063c84d71",
+  "lane": "fixture",
+  "clean_before": true,
+  "command": [
+    "cargo",
+    "test",
+    "--locked",
+    "--release",
+    "-p",
+    "spheres-web",
+    "s16_export_disposable_air_defense_fixture",
+    "--",
+    "--ignored",
+    "--nocapture"
+  ],
+  "runner_sha256": "0300567396cb489cad2d148c1441c238018ccc1a1729cc7cd2196e8c46fbb9d6",
+  "started_utc": "2026-09-14T11:50:53.713924+00:00",
+  "fixture": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-fixture-final1",
+  "exit_code": 101,
+  "finished_utc": "2026-09-14T11:51:06.878029+00:00",
+  "revision_after": "789b01d8a5401c995f1b17fc9424838063c84d71",
+  "clean_after": true,
+  "log_sha256": "6976b8aed58d449bd95b6c37d2082d1e6377a7f8c1e20125b78e722f1fd02c70",
+  "totals": {
+    "passed": 0,
+    "failed": 1,
+    "ignored": 0,
+    "completed_targets": 1
+  },
+  "test_binaries": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+      "sha256": "64453656af3df3ba62befa9e9eee3fbbabf6c46083621fe69d86b07bdd1301f8"
+    }
+  ],
+  "passed": false
+}

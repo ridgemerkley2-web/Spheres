@@ -1,0 +1,33 @@
+{
+  "runtime_revision": "eacf90e3e083d951cbd942957f573b7135953cea",
+  "driver_revision": "dd00f3568b13395f77415b7737df8d6a3b3a83a2",
+  "changed_paths": [
+    "tools/ui/ci-air-defense.cjs"
+  ],
+  "clean_before": true,
+  "runtime_paths": [
+    "spheres-sim",
+    "spheres-web",
+    "Cargo.toml",
+    "Cargo.lock"
+  ],
+  "runtime_diff": [],
+  "driver_sha256": "aed2090de8b3ce5b9605c931cfab943ac506a48fdf240ae63e683893d10c7b66",
+  "runner_sha256": "9ce08690b3e0cba53213dc464e5c1f6ea696e1ce88bfee9d78a8f3fe2d431768",
+  "binary_sha256": "e0c70296f292777e5fb9ebb98c0c4eeb95cba7f7f9d4e10ecb10d81c987219fa",
+  "started_utc": "2026-09-21T21:42:03.675201+00:00",
+  "command": [
+    "node",
+    "tools/ui/ci-air-defense.cjs"
+  ],
+  "exit_code": 0,
+  "finished_utc": "2026-09-21T21:43:17.031028+00:00",
+  "head_after": "dd00f3568b13395f77415b7737df8d6a3b3a83a2",
+  "clean_after": true,
+  "log_sha256": "24a08b3589dbf5c0a12c85d643d8c9db7bdc7d419022709edf25244850b59502",
+  "passed": true,
+  "result": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-browser-final4-browser\\air-defense-GzL6Rh\\result.json",
+    "sha256": "27cf62afcbea3845893995204a1fc2baba4348168a90dd6c13623d7e07e44518"
+  }
+}

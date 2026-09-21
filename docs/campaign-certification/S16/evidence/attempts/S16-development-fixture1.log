@@ -1,0 +1,15 @@
+
+running 1 test
+
+thread 's16_fixture_tests::s16_export_disposable_air_defense_fixture' (42780) panicked at spheres-web\src\s16_fixture_tests.rs:397:10:
+called `Option::unwrap()` on a `None` value
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test s16_fixture_tests::s16_export_disposable_air_defense_fixture ... FAILED
+
+failures:
+
+failures:
+    s16_fixture_tests::s16_export_disposable_air_defense_fixture
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 414 filtered out; finished in 0.06s
+

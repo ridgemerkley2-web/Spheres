@@ -1,0 +1,1691 @@
+{
+  "format": "spheres-s16-closure/v1",
+  "sessions": [
+    "S16"
+  ],
+  "status": "complete",
+  "g3_earned": true,
+  "cp1_earned": false,
+  "s17_started": false,
+  "candidate_revision": "eacf90e3e083d951cbd942957f573b7135953cea",
+  "driver_revision": "dd00f3568b13395f77415b7737df8d6a3b3a83a2",
+  "completed_utc": "2026-09-21T21:43:16.809Z",
+  "completed_date": "2026-09-21",
+  "scope": "Bounded authored France fighter lifecycle and three saved air-defense scenarios, with explicit Italian opposing orders. G3 joins this S16 proof to the exact inherited G2 and S11–S15 evidence; it does not certify an unassisted campaign or S17 AI.",
+  "gate": {
+    "id": "G3",
+    "status": "earned",
+    "criterion": "G2 + S11–S16: Ground and three supported air missions use real campaign forces and results.",
+    "inherited": {
+      "G2": {
+        "manifest": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S10\\final\\manifest.json",
+          "bytes": 50500,
+          "sha256": "2de1b7542f7e9c4a06ee2c7f4a1682babdc8be9cbaae3a612d5efbe58a1e9ff0",
+          "logical_path": "source/docs/campaign-certification/S10/final/manifest.json",
+          "storage": [
+            {
+              "file": "source/docs/campaign-certification/S10/final/manifest.json",
+              "bytes": 50500,
+              "sha256": "2de1b7542f7e9c4a06ee2c7f4a1682babdc8be9cbaae3a612d5efbe58a1e9ff0"
+            }
+          ]
+        },
+        "candidate_revision": "bcdf72bcbe8947966359deb95f715cb526a68def",
+        "driver_revision": null,
+        "scope": "Selected complete final S10 Windows/Linux/content/interface logs and proof records; all eight-country and ordinary France browser output files, original campaign captures, named saves and canonical worlds; scoped references to retained S10.d–g evidence; preservation and optional fixed review launch records. Large files are compressed with exact reconstruction. Compiled binaries are identified by SHA-256 and source revision, not repackaged. No new elapsed campaign, Russia activation, complete historical content or performance claim."
+      },
+      "S11": {
+        "manifest": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S11\\manifest.json",
+          "bytes": 199368,
+          "sha256": "d58c2e64a60dc21c09f093cbb5cc4a80c30b0e57daf57149e81f51feb9a419a9",
+          "logical_path": "source/docs/campaign-certification/S11/manifest.json",
+          "storage": [
+            {
+              "file": "source/docs/campaign-certification/S11/manifest.json",
+              "bytes": 199368,
+              "sha256": "d58c2e64a60dc21c09f093cbb5cc4a80c30b0e57daf57149e81f51feb9a419a9"
+            }
+          ]
+        },
+        "candidate_revision": "d9afd1604219e160cc9deaa4b3999df7db5cde57",
+        "driver_revision": null,
+        "scope": "Explicit authored France military and supplier scenario; ordinary reviewed controls and full daily continuation after import. Not historical equipment holdings, an unassisted campaign or final campaign certification."
+      },
+      "S12-S15": {
+        "manifest": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S15\\manifest.json",
+          "bytes": 54037,
+          "sha256": "69dcbffe778c7a71ab8fe9a444c6d26d30cbde7226cb317f111a964689f2be31",
+          "logical_path": "source/docs/campaign-certification/S15/manifest.json",
+          "storage": [
+            {
+              "file": "source/docs/campaign-certification/S15/manifest.json",
+              "bytes": 54037,
+              "sha256": "69dcbffe778c7a71ab8fe9a444c6d26d30cbde7226cb317f111a964689f2be31"
+            }
+          ]
+        },
+        "candidate_revision": "4c4129abeeec4e9e2987f121e875f5efc54b4c7f",
+        "driver_revision": "1653638fc050b4b4796875ffdeb7fbff9e7b6d7e",
+        "scope": "Authored France aircraft, supplier and military scenario. Ordinary reviewed browser controls and full daily continuation after import; not an unassisted or historically exhaustive campaign."
+      }
+    },
+    "s16_acceptance_tests": {
+      "sim": [
+        "s16_fighter_research_is_prerequisite_gated_dated_and_grants_no_property",
+        "s16_fighter_profile_has_only_interception_and_rejects_bomber_hardware",
+        "s16_fighter_v8_air_profiles_remain_sparse_and_frozen_claims_are_checked",
+        "s16_company_fighter_and_missiles_complete_paid_delivery_upkeep_and_assignment",
+        "s16_defend_skies_requires_fighter_friendly_geography_and_real_readiness",
+        "s16_paid_interception_changes_the_real_hostile_strike_and_depleted_defense_loses_it",
+        "s16_fighter_and_ground_air_defense_have_distinct_paid_contributions",
+        "s16_multiple_interceptors_and_ground_defense_cannot_write_off_one_target_twice",
+        "s16_both_sides_and_two_conflicts_share_one_finite_national_store_plan",
+        "s16_defensive_patrol_has_no_ground_attack_or_hostile_ground_defense_exposure",
+        "s16_saved_defense_effects_cannot_invent_contacts_suppression_or_losses",
+        "air_support_opening_day_edits_use_calendar_time_and_preserve_fiscal_receipts",
+        "s16_legacy_raid_losses_preserve_parked_fighters_and_their_loss_carry"
+      ],
+      "web": [
+        "s16_fighters_offer_only_defense_and_distinguish_friendly_contested_and_enemy_areas",
+        "s16_defense_review_is_pure_and_maps_a_patrol_area_with_no_ground_attack_claim",
+        "s16_reports_separate_own_expected_interception_and_ground_defense_losses_from_actual_total",
+        "s16_fighter_design_library_guidance_and_comparison_use_interception"
+      ]
+    }
+  },
+  "qualification": {
+    "passed": true,
+    "windows": {
+      "web": {
+        "passed": 397,
+        "failed": 0,
+        "ignored": 19,
+        "completed_targets": 2
+      },
+      "sim": {
+        "passed": 874,
+        "failed": 0,
+        "ignored": 26,
+        "completed_targets": 1
+      },
+      "integration": {
+        "passed": 118,
+        "failed": 0,
+        "ignored": 4,
+        "completed_targets": 13
+      },
+      "node": {
+        "tests": 1593,
+        "pass": 1592,
+        "fail": 0,
+        "skipped": 1
+      },
+      "binary": {
+        "passed": true
+      },
+      "fixture": {
+        "passed": 1,
+        "failed": 0,
+        "ignored": 0,
+        "completed_targets": 2
+      }
+    },
+    "linux": {
+      "web": {
+        "passed": 397,
+        "failed": 0,
+        "ignored": 19,
+        "completed_targets": 2
+      },
+      "sim": {
+        "passed": 874,
+        "failed": 0,
+        "ignored": 26,
+        "completed_targets": 1
+      },
+      "integration": {
+        "passed": 118,
+        "failed": 0,
+        "ignored": 4,
+        "completed_targets": 13
+      },
+      "node": {
+        "tests": 1593,
+        "passed": 1592,
+        "failed": 0,
+        "skipped": 1
+      }
+    },
+    "native_ignored_tests": {
+      "web": [
+        [
+          "decision_review::tests::mature_review_latency",
+          ", Requires an explicitly named, read-only mature campaign archive"
+        ],
+        [
+          "diplomatic_sanctions::tests::s10g_mature_open_route_preview_latency",
+          ", Requires an explicitly named, read-only mature campaign archive"
+        ],
+        [
+          "equipment_view::company_view_tests::s08_fresh_tonga_paid_supplier_market_export",
+          ", Requires an empty SPHERES_S08_SUPPLIER_EXPORT directory; advances up to 3000 real fresh-campaign days"
+        ],
+        [
+          "performance::campaign_lifetime_profile",
+          ", 30-year actual daily worlds; run alone for meaningful timing"
+        ],
+        [
+          "performance::s08_daily_subsystem_diagnosis",
+          ", explicit saved-campaign subsystem diagnosis; not a performance acceptance run"
+        ],
+        [
+          "performance::s08_read_model_diagnosis",
+          ", read-only component diagnosis on an explicit saved campaign; not an acceptance run"
+        ],
+        [
+          "performance::s08_supplier_import_profile",
+          ", requires the genuine earned-stock S08 campaign and an uncontended run"
+        ],
+        [
+          "s05_active_fixture_tests::original_active_company_stages_preserve_property_across_load_and_explicit_adoption",
+          ", requires original pinned active exporter files and provenance in SPHERES_S05_ACTIVE_FIXTURES"
+        ],
+        [
+          "s05_master_migration_tests::actual_pinned_master_archive_preserves_property_history_and_next_day",
+          ", Requires SPHERES_S05_MASTER_ARCHIVE pointing to the unchanged archive generated by the recorded pinned-master executable"
+        ],
+        [
+          "s05_save_matrix_tests::standalone_party_v1_preserves_real_supplier_books_for_equipment_versions_2_through_5",
+          ", Requires the unchanged original 28-file export manifest in SPHERES_S05_ACTIVE_FIXTURES"
+        ],
+        [
+          "s10d_inbox_fixture_tests::s10d_export_disposable_diplomatic_inbox_fixture",
+          ", Exports authored native inbox archives only to a NEW SPHERES_S10D_INBOX_FIXTURE_DIR"
+        ],
+        [
+          "s10e_commitment_fixture_tests::s10e_export_disposable_diplomatic_commitment_fixture",
+          ", Exports authored native commitment archives only to a NEW SPHERES_S10E_COMMITMENT_FIXTURE_DIR"
+        ],
+        [
+          "s10f_succession_fixture_tests::s10f_export_disposable_succession_fixtures",
+          ", Exports authored succession archives only to a NEW SPHERES_S10F_SUCCESSION_FIXTURE_DIR"
+        ],
+        [
+          "s10g_sanctions_fixture_tests::s10g_export_disposable_sanctions_fixture",
+          ", Exports only to a NEW SPHERES_S10G_SANCTIONS_FIXTURE_DIR"
+        ],
+        [
+          "s11_fixture_tests::s11_export_disposable_ground_operations_fixture",
+          ", Exports only to a NEW absolute SPHERES_S11_FIXTURE_DIR"
+        ],
+        [
+          "s15_fixture_tests::s15_export_disposable_flight_operations_fixture",
+          ", Exports only to a NEW absolute SPHERES_S15_FIXTURE_DIR"
+        ],
+        [
+          "s16_fixture_tests::s16_export_disposable_air_defense_fixture",
+          ", Exports only to a NEW absolute SPHERES_S16_FIXTURE_DIR"
+        ],
+        [
+          "tests::browser_growth_model_gap",
+          ""
+        ],
+        [
+          "tests::classify_corpus",
+          ""
+        ]
+      ],
+      "sim": [
+        [
+          "blocs::tests::the_1990_census_meets_the_design_brief",
+          ", RED BY DESIGN and filed as BUGS.md P-6: the transcribed rows disagree with three bars of the brief (Communist 17 vs 11-13; Islamist adds Algeria; Libya Non-Aligned); Ridge rules on the rows or the bars"
+        ],
+        [
+          "dyads::diag::appetite_table",
+          ""
+        ],
+        [
+          "dyads::diag::calibration_dashboard",
+          ""
+        ],
+        [
+          "dyads::diag::war_census",
+          ""
+        ],
+        [
+          "exact::tests::dump_pins",
+          ""
+        ],
+        [
+          "logistics::tests::materials_segment_capacity_profile",
+          ", observer-only Materials freight-capacity microprofile"
+        ],
+        [
+          "logistics::tests::military_routing_daily_market_profile",
+          ", bounded observer of the actual daily world; no timing threshold"
+        ],
+        [
+          "resources::tests::spot_route_profile_for_real_day_32",
+          ""
+        ],
+        [
+          "resources::tests::the_buy_pass_ask_census",
+          ", instrument; run with --ignored --nocapture"
+        ],
+        [
+          "tech::diag::roster_decomposition",
+          ""
+        ],
+        [
+          "tech::tests::authoring_gap_overpayment",
+          ""
+        ],
+        [
+          "tests::anomaly_sweep",
+          ""
+        ],
+        [
+          "tests::burned_flag_provenance",
+          ""
+        ],
+        [
+          "tests::century_run_profile",
+          ", timing instrument; run with --ignored --nocapture"
+        ],
+        [
+          "tests::china_trouble_readout",
+          ""
+        ],
+        [
+          "tests::conquest_funnel",
+          ""
+        ],
+        [
+          "tests::conquest_seed_scan",
+          ""
+        ],
+        [
+          "tests::conquest_size_rule_scan",
+          ""
+        ],
+        [
+          "tests::convergence_channel_readout",
+          ""
+        ],
+        [
+          "tests::gulf_war_incidence_scan",
+          ""
+        ],
+        [
+          "tests::instrument_spread",
+          ""
+        ],
+        [
+          "tests::resource_war_census",
+          ", census; 200 seeds x 480 months x 7 arms, about twenty minutes in release"
+        ],
+        [
+          "tests::resource_war_census_one",
+          ", census, count one; 200 seeds x 480 months x 7 arms, one thread per arm"
+        ],
+        [
+          "tests::roster_scale_readout",
+          ""
+        ],
+        [
+          "tests::sanction_weight_readout",
+          ""
+        ],
+        [
+          "tests::war_census",
+          ""
+        ]
+      ],
+      "integration": [
+        [
+          "export_company_platform_qa_stages",
+          ", Writes synthetic ground and aircraft QA saves only when SPHERES_COMPANY_QA_DIR is explicitly set"
+        ],
+        [
+          "export_company_qa_stages",
+          ", Writes synthetic browser QA stage saves only when SPHERES_COMPANY_QA_DIR is explicitly set"
+        ],
+        [
+          "export_company_ammunition_qa_stages",
+          ", Writes isolated synthetic browser stages only when SPHERES_COMPANY_AMMO_QA_DIR is explicitly set"
+        ],
+        [
+          "export_company_refit_qa_stages",
+          ", exports explicitly synthetic browser fixtures only when SPHERES_COMPANY_REFIT_QA_DIR is set"
+        ]
+      ]
+    },
+    "browser": {
+      "passed": true,
+      "runtime_revision": "eacf90e3e083d951cbd942957f573b7135953cea",
+      "driver_revision": "dd00f3568b13395f77415b7737df8d6a3b3a83a2",
+      "driver_only_change": true,
+      "runtime_diff": []
+    },
+    "direct_regressions": {
+      "sim": [
+        "s16_fighter_research_is_prerequisite_gated_dated_and_grants_no_property",
+        "s16_fighter_profile_has_only_interception_and_rejects_bomber_hardware",
+        "s16_fighter_v8_air_profiles_remain_sparse_and_frozen_claims_are_checked",
+        "s16_company_fighter_and_missiles_complete_paid_delivery_upkeep_and_assignment",
+        "s16_defend_skies_requires_fighter_friendly_geography_and_real_readiness",
+        "s16_paid_interception_changes_the_real_hostile_strike_and_depleted_defense_loses_it",
+        "s16_fighter_and_ground_air_defense_have_distinct_paid_contributions",
+        "s16_multiple_interceptors_and_ground_defense_cannot_write_off_one_target_twice",
+        "s16_both_sides_and_two_conflicts_share_one_finite_national_store_plan",
+        "s16_defensive_patrol_has_no_ground_attack_or_hostile_ground_defense_exposure",
+        "s16_saved_defense_effects_cannot_invent_contacts_suppression_or_losses",
+        "air_support_opening_day_edits_use_calendar_time_and_preserve_fiscal_receipts",
+        "s16_legacy_raid_losses_preserve_parked_fighters_and_their_loss_carry"
+      ],
+      "web": [
+        "s16_fighters_offer_only_defense_and_distinguish_friendly_contested_and_enemy_areas",
+        "s16_defense_review_is_pure_and_maps_a_patrol_area_with_no_ground_attack_claim",
+        "s16_reports_separate_own_expected_interception_and_ground_defense_losses_from_actual_total",
+        "s16_fighter_design_library_guidance_and_comparison_use_interception"
+      ]
+    },
+    "ignored_world_paths": [],
+    "history_timestamp_exception": "saved_unix only, retained and validated separately",
+    "days_advanced_across_scenarios": 23,
+    "ordinary_commands": 9,
+    "native_checkpoints": 7,
+    "authored_imports": 2,
+    "final_funded_restorations": 1,
+    "refusal_checks": 1,
+    "browser_capture_stages": 11,
+    "world_comparisons": 13,
+    "envelope_comparisons": 8,
+    "opening_date": "21 Sep 1992",
+    "final_date": "12 Oct 1992",
+    "prevented_hostile_power": 0.004163398149756217
+  },
+  "build": {
+    "revision": "eacf90e3e083d951cbd942957f573b7135953cea",
+    "build": {
+      "branch": "codex/campaign-certification",
+      "built_at_unix_seconds": 1789387960,
+      "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+      "distribution": "Local offline game server; source and attribution accompany the release",
+      "revision": "eacf90e3e083",
+      "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-browser-final4-browser\\air-defense-GzL6Rh\\server",
+      "version": "0.6.0"
+    },
+    "binary_sha256": "e0c70296f292777e5fb9ebb98c0c4eeb95cba7f7f9d4e10ecb10d81c987219fa",
+    "assets": {
+      "index.html": {
+        "served_sha256": "14fe148abf11b6475dd67336d58e91ddcd106fcec5ddcbc31a22af4662449050",
+        "served_bytes": 1156231,
+        "checkout_sha256": "14fe148abf11b6475dd67336d58e91ddcd106fcec5ddcbc31a22af4662449050",
+        "checkout_bytes": 1156231,
+        "committed_sha256": "f96255511309e853e5e46b54ecf4c2acb6af0cd138ffd5c5bc37976601037a96",
+        "committed_bytes": 1137373,
+        "canonical_checkout_sha256": "f96255511309e853e5e46b54ecf4c2acb6af0cd138ffd5c5bc37976601037a96",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 18858
+        }
+      },
+      "campaign-transport.js": {
+        "served_sha256": "6d25271e94ae436d3f700c81a773d8c624731a809541c966a609046ec6861582",
+        "served_bytes": 4775,
+        "checkout_sha256": "6d25271e94ae436d3f700c81a773d8c624731a809541c966a609046ec6861582",
+        "checkout_bytes": 4775,
+        "committed_sha256": "1cbd2407c8822070e860f84e8378976aa1e2624aca7dd234eed8c723ac8acd2c",
+        "committed_bytes": 4693,
+        "canonical_checkout_sha256": "1cbd2407c8822070e860f84e8378976aa1e2624aca7dd234eed8c723ac8acd2c",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 82
+        }
+      },
+      "campaign-ui.js": {
+        "served_sha256": "20641a249ff5b59589736dd9f36f3cdd7b7ab53df29d107d4cf3feccecbf49ba",
+        "served_bytes": 13683,
+        "checkout_sha256": "20641a249ff5b59589736dd9f36f3cdd7b7ab53df29d107d4cf3feccecbf49ba",
+        "checkout_bytes": 13683,
+        "committed_sha256": "9aa62da51602a3d612312e157d37726cc6d2ed73efd17a7e5f2634386b1be312",
+        "committed_bytes": 13473,
+        "canonical_checkout_sha256": "9aa62da51602a3d612312e157d37726cc6d2ed73efd17a7e5f2634386b1be312",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 210
+        }
+      },
+      "fiscal-recovery-ui.js": {
+        "served_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "served_bytes": 11098,
+        "checkout_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "checkout_bytes": 11098,
+        "committed_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "committed_bytes": 11098,
+        "canonical_checkout_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 0
+        }
+      },
+      "cash-flow-ui.js": {
+        "served_sha256": "f08262a2afc1b0ea565f7d4af790b82b2ce35f8c182d80b50d4e0f476bd029bd",
+        "served_bytes": 30198,
+        "checkout_sha256": "f08262a2afc1b0ea565f7d4af790b82b2ce35f8c182d80b50d4e0f476bd029bd",
+        "checkout_bytes": 30198,
+        "committed_sha256": "023fee351e029edacd074d5b7056819bd3c81b387dbe13e6a32a541840091107",
+        "committed_bytes": 29951,
+        "canonical_checkout_sha256": "023fee351e029edacd074d5b7056819bd3c81b387dbe13e6a32a541840091107",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 247
+        }
+      },
+      "companies-ui.js": {
+        "served_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+        "served_bytes": 32920,
+        "checkout_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+        "checkout_bytes": 32920,
+        "committed_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+        "committed_bytes": 32920,
+        "canonical_checkout_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 0
+        }
+      },
+      "companies.css": {
+        "served_sha256": "a37da57692adf251e2e173ef0c9266a88dfb3cd1d3e4cde5b5d522e2f89c9c92",
+        "served_bytes": 13908,
+        "checkout_sha256": "a37da57692adf251e2e173ef0c9266a88dfb3cd1d3e4cde5b5d522e2f89c9c92",
+        "checkout_bytes": 13908,
+        "committed_sha256": "958e3d1de86a4c21c5033d06898c478f016d293261b639feff9e77cfa9876724",
+        "committed_bytes": 13798,
+        "canonical_checkout_sha256": "958e3d1de86a4c21c5033d06898c478f016d293261b639feff9e77cfa9876724",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 110
+        }
+      },
+      "government-ui.js": {
+        "served_sha256": "3437b8a00a56fcc85853d427d72df87386d159503e7e62e309e9faa598908899",
+        "served_bytes": 52239,
+        "checkout_sha256": "3437b8a00a56fcc85853d427d72df87386d159503e7e62e309e9faa598908899",
+        "checkout_bytes": 52239,
+        "committed_sha256": "3437b8a00a56fcc85853d427d72df87386d159503e7e62e309e9faa598908899",
+        "committed_bytes": 52239,
+        "canonical_checkout_sha256": "3437b8a00a56fcc85853d427d72df87386d159503e7e62e309e9faa598908899",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 0
+        }
+      },
+      "government-ui.css": {
+        "served_sha256": "3966a543093205da2201394a14b074edc37fbaf909102920cceecc193947eb79",
+        "served_bytes": 36730,
+        "checkout_sha256": "3966a543093205da2201394a14b074edc37fbaf909102920cceecc193947eb79",
+        "checkout_bytes": 36730,
+        "committed_sha256": "99ee93b190631cdad51cd79dfac6ee5817768bf744e18b1f9a0b8ffc9b46c6d7",
+        "committed_bytes": 36403,
+        "canonical_checkout_sha256": "99ee93b190631cdad51cd79dfac6ee5817768bf744e18b1f9a0b8ffc9b46c6d7",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 327
+        }
+      },
+      "campaign-operations-ui.js": {
+        "served_sha256": "0bd615caba1b8bc0b8e72010a931f7365fb8ac40a5e0eb39d6343f5cfbbe5677",
+        "served_bytes": 21133,
+        "checkout_sha256": "0bd615caba1b8bc0b8e72010a931f7365fb8ac40a5e0eb39d6343f5cfbbe5677",
+        "checkout_bytes": 21133,
+        "committed_sha256": "5746a6ced8e301d1151fdb1fef32a83a20631d8ae024850d9f47ab02e4279b7b",
+        "committed_bytes": 20913,
+        "canonical_checkout_sha256": "5746a6ced8e301d1151fdb1fef32a83a20631d8ae024850d9f47ab02e4279b7b",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 220
+        }
+      },
+      "campaign-operations-ui.css": {
+        "served_sha256": "2178749f5fddb0c18965ff235767917efdefee8e399190d9c6e7669f2ecf0ce7",
+        "served_bytes": 8447,
+        "checkout_sha256": "2178749f5fddb0c18965ff235767917efdefee8e399190d9c6e7669f2ecf0ce7",
+        "checkout_bytes": 8447,
+        "committed_sha256": "8d5d927c4a6ca6c86715c1a04c46a5577b19342841b12604e92d95e948a0bc64",
+        "committed_bytes": 8367,
+        "canonical_checkout_sha256": "8d5d927c4a6ca6c86715c1a04c46a5577b19342841b12604e92d95e948a0bc64",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 80
+        }
+      },
+      "map-controls.js": {
+        "served_sha256": "ce7553d9b43a38b00581e67ef66aa23e5f03a8b4abde9c85171f28f3e6bb4e9e",
+        "served_bytes": 10651,
+        "checkout_sha256": "ce7553d9b43a38b00581e67ef66aa23e5f03a8b4abde9c85171f28f3e6bb4e9e",
+        "checkout_bytes": 10651,
+        "committed_sha256": "79b99912a9406b43f22d786ea7063d47fc05d738e432e9749561eb1fdff03fd7",
+        "committed_bytes": 10442,
+        "canonical_checkout_sha256": "79b99912a9406b43f22d786ea7063d47fc05d738e432e9749561eb1fdff03fd7",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 209
+        }
+      },
+      "map-controls.css": {
+        "served_sha256": "07d2f965f3cb90a04095ac7ec3679307548549d4ea9612d299d2a8b75e35527a",
+        "served_bytes": 9732,
+        "checkout_sha256": "07d2f965f3cb90a04095ac7ec3679307548549d4ea9612d299d2a8b75e35527a",
+        "checkout_bytes": 9732,
+        "committed_sha256": "5a2f2c2414679f65f8bebbf8e342553c2829e45d9cb506fc7dafd596597a04e6",
+        "committed_bytes": 9631,
+        "canonical_checkout_sha256": "5a2f2c2414679f65f8bebbf8e342553c2829e45d9cb506fc7dafd596597a04e6",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 101
+        }
+      },
+      "guidance-ui.js": {
+        "served_sha256": "5de0ff7d6e2c9aa7db0027c70517171f5ad4076f75a0c8f019a19f31e02c9e23",
+        "served_bytes": 21247,
+        "checkout_sha256": "5de0ff7d6e2c9aa7db0027c70517171f5ad4076f75a0c8f019a19f31e02c9e23",
+        "checkout_bytes": 21247,
+        "committed_sha256": "39eb68189c78ea74ee89b4bc92ac6153326accfe0d2300ea401ee696bddc38ea",
+        "committed_bytes": 21072,
+        "canonical_checkout_sha256": "39eb68189c78ea74ee89b4bc92ac6153326accfe0d2300ea401ee696bddc38ea",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 175
+        }
+      },
+      "guidance-ui.css": {
+        "served_sha256": "169531e25171ef1448b38b0832050712392c94e74f8bb0f96e8727f77d3a5b2f",
+        "served_bytes": 7496,
+        "checkout_sha256": "169531e25171ef1448b38b0832050712392c94e74f8bb0f96e8727f77d3a5b2f",
+        "checkout_bytes": 7496,
+        "committed_sha256": "4f959346eae6c81209da51b76717fd1d4b04a6bcfe0f0ae84032adc465e288ad",
+        "committed_bytes": 7490,
+        "canonical_checkout_sha256": "4f959346eae6c81209da51b76717fd1d4b04a6bcfe0f0ae84032adc465e288ad",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 6
+        }
+      },
+      "globe3d.js": {
+        "served_sha256": "ee467b58a57a07193e4e39368f13e0d18103ed6289769544187b66c410c682d9",
+        "served_bytes": 36245,
+        "checkout_sha256": "ee467b58a57a07193e4e39368f13e0d18103ed6289769544187b66c410c682d9",
+        "checkout_bytes": 36245,
+        "committed_sha256": "9c634e8320a66702ce78de192573af03f80c625c562376d79cd0125d2a559403",
+        "committed_bytes": 35548,
+        "canonical_checkout_sha256": "9c634e8320a66702ce78de192573af03f80c625c562376d79cd0125d2a559403",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 697
+        }
+      },
+      "city-layer.js": {
+        "served_sha256": "5f76629170c97184fb1c61257ea66234cdf4ce7bb112e509ae3326676501ca58",
+        "served_bytes": 12449,
+        "checkout_sha256": "5f76629170c97184fb1c61257ea66234cdf4ce7bb112e509ae3326676501ca58",
+        "checkout_bytes": 12449,
+        "committed_sha256": "d4afb63a0cc695cd11bb7c31fa5decd7f4e762ab65091a57e4d83ffaa948c3fc",
+        "committed_bytes": 12222,
+        "canonical_checkout_sha256": "d4afb63a0cc695cd11bb7c31fa5decd7f4e762ab65091a57e4d83ffaa948c3fc",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 227
+        }
+      },
+      "city-mesh.js": {
+        "served_sha256": "99c5b116cc4b94857fcad97eb502a694988de56d4ae2cff3262c012198c1f6e7",
+        "served_bytes": 87641,
+        "checkout_sha256": "99c5b116cc4b94857fcad97eb502a694988de56d4ae2cff3262c012198c1f6e7",
+        "checkout_bytes": 87641,
+        "committed_sha256": "59593662fa4f31bd80c99b7e7349f6db18514c428724350b6e81b3adc87d5e26",
+        "committed_bytes": 86075,
+        "canonical_checkout_sha256": "59593662fa4f31bd80c99b7e7349f6db18514c428724350b6e81b3adc87d5e26",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 1566
+        }
+      },
+      "water-detail.js": {
+        "served_sha256": "fb60fabc2dfa9edc47f466d3daf4f8cfde589e91086d28a59765ce26a7abc99a",
+        "served_bytes": 11962,
+        "checkout_sha256": "fb60fabc2dfa9edc47f466d3daf4f8cfde589e91086d28a59765ce26a7abc99a",
+        "checkout_bytes": 11962,
+        "committed_sha256": "0b1bc8e9a4b5116c4c9564f69214ff12b5f5b181c4cf47567acc7e81569361f0",
+        "committed_bytes": 11729,
+        "canonical_checkout_sha256": "0b1bc8e9a4b5116c4c9564f69214ff12b5f5b181c4cf47567acc7e81569361f0",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 233
+        }
+      },
+      "equipment-mesh.js": {
+        "served_sha256": "e637cd945853caf4c8543acd1ff751c1b576405b4755b5d3b2b79ad9d2af65f4",
+        "served_bytes": 181031,
+        "checkout_sha256": "e637cd945853caf4c8543acd1ff751c1b576405b4755b5d3b2b79ad9d2af65f4",
+        "checkout_bytes": 181031,
+        "committed_sha256": "8ffca03c200fb6ddd62247f5d68457345d652251278a9cd717182c7ebeca1445",
+        "committed_bytes": 178559,
+        "canonical_checkout_sha256": "8ffca03c200fb6ddd62247f5d68457345d652251278a9cd717182c7ebeca1445",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 2472
+        }
+      },
+      "equipment-ui.js": {
+        "served_sha256": "1cf336d8a684b66cfbff71c9a00b0dfdac18b797e9d33525196e09435f72971a",
+        "served_bytes": 130008,
+        "checkout_sha256": "1cf336d8a684b66cfbff71c9a00b0dfdac18b797e9d33525196e09435f72971a",
+        "checkout_bytes": 130008,
+        "committed_sha256": "1cf336d8a684b66cfbff71c9a00b0dfdac18b797e9d33525196e09435f72971a",
+        "committed_bytes": 130008,
+        "canonical_checkout_sha256": "1cf336d8a684b66cfbff71c9a00b0dfdac18b797e9d33525196e09435f72971a",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 0
+        }
+      },
+      "equipment-ui.css": {
+        "served_sha256": "cb3efe6b42f6c40639384219e6eac40cb1ac9c8804eb273f94be7f2b64206a67",
+        "served_bytes": 36916,
+        "checkout_sha256": "cb3efe6b42f6c40639384219e6eac40cb1ac9c8804eb273f94be7f2b64206a67",
+        "checkout_bytes": 36916,
+        "committed_sha256": "ca8931a3821837aeb68418af2e144de22cd300b44f0591b14ee0cb15a8377d30",
+        "committed_bytes": 36570,
+        "canonical_checkout_sha256": "ca8931a3821837aeb68418af2e144de22cd300b44f0591b14ee0cb15a8377d30",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 346
+        }
+      }
+    }
+  },
+  "scenario": {
+    "country": "France",
+    "scope": "Three bounded authored France–Italy scenarios. Ordinary player procurement, review, patrol and daily continuation; explicit opposing orders are authored imports. This is not AI opposition or campaign certification beyond G3.",
+    "authored_preconditions": [
+      "Native ready manufacturer fixture: 10 IFVs, $100bn treasury, no debt, 1000 political capital, abundant tracked opening raw inventories and bounded departmental authority. Three arms-plant slots are authored.",
+      "France starts with the three researched fighter integrations. Reviewed company capital transfers of $200m for fighters and $100m for missile stock fund actual fighter development, four manufactured fighters and 200 compatible missiles through normal setup contracts and daily work. National fighters and missiles are purchased after import.",
+      "Completed France and Italy airfields with Capacity 1 and Support 1, France–Italy Hold conflict and ordinary operational enrollment are explicit starting conditions.",
+      "Italian opposition has four authored certified light-attack aircraft, a load-valid balanced 200-bomb completed starting batch and $1000bn treasury with normal $1bn/day maintenance authority. It has no autonomous explicit mission orders.",
+      "The second imported scenario adds one Italian Strike target through native commands to the recovered first scenario. The third clones that same starting world and transfers remaining French missile stocks to the consumed ledger. Store replenishment was disabled normally before both imports. The same hostile strike then provides the unopposed baseline."
+    ],
+    "opening_date": "21 Sep 1992",
+    "final_date": "12 Oct 1992",
+    "final_restored_checkpoint": "defense_flown",
+    "review_stage": "continued",
+    "final_save_slot": "s16-air-defense"
+  },
+  "outcomes": {
+    "paid_fighter_delivery": {
+      "buyer": "France",
+      "company": 1,
+      "cost_basis_bn": 0.10824327199999999,
+      "delivered_day": 1001,
+      "district": "FRA_auvergne-rh-ne-alpes",
+      "due_day": 1001,
+      "id": 598,
+      "product": 265,
+      "purchased_day": 994,
+      "quantity": 4,
+      "reason": "Received into the exact-revision Arsenal; ordinary maintenance and ammunition rules now apply.",
+      "revision_id": "France-design-2",
+      "settled_day": 994,
+      "status": "delivered",
+      "total_price_bn": 0.12447976279999998,
+      "unit_price_bn": 0.031119940699999994
+    },
+    "quiet_patrol": {
+      "aircraft": 4,
+      "aircraft_lost": 0,
+      "applied_power": 0,
+      "contacted": false,
+      "day": 1010,
+      "defense": {
+        "air_combat_expected_loss": 0,
+        "ground_defense_expected_loss": 0,
+        "opposing_missions": 0,
+        "prevented_power": 0
+      },
+      "family": "air_missile_short_range",
+      "sorties": 1.5345806046941846,
+      "stores_used": 3.069161209388369,
+      "summary": "Defend skies at FRA_auvergne-rh-ne-alpes: 1.53 sortie equivalents, 3.07 air_missile_short_range stores, 0 aircraft lost. Patrol completed without hostile aircraft in this area. No ground attack was made. Survivors need 1 funded service day(s)."
+    },
+    "funded_defense": {
+      "aircraft": 4,
+      "aircraft_lost": 0,
+      "applied_power": 0.004163398149756217,
+      "contacted": true,
+      "day": 1014,
+      "defense": {
+        "air_combat_expected_loss": 1.828903087001873e-05,
+        "ground_defense_expected_loss": 0,
+        "opposing_missions": 1,
+        "prevented_power": 0.004163398149756217
+      },
+      "family": "air_missile_short_range",
+      "sorties": 1.5342228754769336,
+      "stores_used": 3.068445750953867,
+      "summary": "Defend skies at FRA_auvergne-rh-ne-alpes: 1.53 sortie equivalents, 3.07 air_missile_short_range stores, 0 aircraft lost. Intercepted hostile aircraft; the prevented strike power is recorded below. Survivors need 1 funded service day(s)."
+    },
+    "hostile_with_defense": {
+      "aircraft": 4,
+      "aircraft_lost": 0,
+      "applied_power": 0.0007354472921887361,
+      "contacted": true,
+      "day": 1014,
+      "defense": {
+        "air_combat_expected_loss": 0.10485767021822717,
+        "ground_defense_expected_loss": 0.002769935732711644,
+        "opposing_missions": 1,
+        "prevented_power": 0.004163398149756217
+      },
+      "family": "air_bomb_unguided",
+      "sorties": 1.0281695811221083,
+      "stores_used": 2.0563391622442166,
+      "summary": "Strike target at FRA_auvergne-rh-ne-alpes: 1.03 sortie equivalents, 2.06 air_bomb_unguided stores, 0 aircraft lost. Resolved against the campaign contact and defending fighters; ground battle results remain in Operations. Survivors need 1 funded service day(s)."
+    },
+    "unopposed_hostile_baseline": {
+      "aircraft": 4,
+      "aircraft_lost": 0,
+      "applied_power": 0.0048988454419449535,
+      "contacted": true,
+      "day": 1014,
+      "family": "air_bomb_unguided",
+      "sorties": 1.0281695811221083,
+      "stores_used": 2.0563391622442166,
+      "summary": "Strike target at FRA_auvergne-rh-ne-alpes: 1.03 sortie equivalents, 2.06 air_bomb_unguided stores, 0 aircraft lost. Applied to the campaign contact; ground battle results remain in Operations. Survivors need 1 funded service day(s)."
+    },
+    "prevented_hostile_power": 0.004163398149756217,
+    "cancelled_mission": 1,
+    "refusal_checks": [
+      {
+        "id": "depleted_defense",
+        "valid": false,
+        "blockers": [
+          "No compatible air_missile_short_range stores are delivered. Fund support or buy a compatible company shipment before launch."
+        ],
+        "intended_command": {
+          "kind": "air_mission",
+          "order": {
+            "action": "queue",
+            "conflict": 1,
+            "kind": "defend_skies",
+            "squadron": 1,
+            "target": "FRA_auvergne-rh-ne-alpes"
+          }
+        },
+        "native_reason": "No compatible air_missile_short_range stores are delivered. Fund support or buy a compatible company shipment before launch."
+      }
+    ],
+    "days_advanced": 23,
+    "final_restored_checkpoint": "defense_flown",
+    "final_save_slot": "s16-air-defense"
+  },
+  "observed_reports_by_scenario": {
+    "defended": {
+      "own_aircraft_lost": 0,
+      "stores_used": 3.068445750953867,
+      "applied_power": 0.004163398149756217,
+      "defense": {
+        "air_combat_expected_loss": 1.828903087001873e-05,
+        "ground_defense_expected_loss": 0.0,
+        "opposing_missions": 1,
+        "prevented_power": 0.004163398149756217
+      }
+    },
+    "hostile_with_defense": {
+      "own_aircraft_lost": 0,
+      "stores_used": 2.0563391622442166,
+      "applied_power": 0.0007354472921887361,
+      "defense": {
+        "air_combat_expected_loss": 0.10485767021822717,
+        "ground_defense_expected_loss": 0.002769935732711644,
+        "opposing_missions": 1,
+        "prevented_power": 0.004163398149756217
+      }
+    },
+    "quiet": {
+      "own_aircraft_lost": 0,
+      "stores_used": 3.069161209388369,
+      "applied_power": -0.0,
+      "defense": {
+        "air_combat_expected_loss": 0.0,
+        "ground_defense_expected_loss": 0.0,
+        "opposing_missions": 0,
+        "prevented_power": -0.0
+      }
+    },
+    "unopposed_hostile_baseline": {
+      "own_aircraft_lost": 0,
+      "stores_used": 2.0563391622442166,
+      "applied_power": 0.0048988454419449535,
+      "defense": null
+    }
+  },
+  "review": {
+    "url": "http://127.0.0.1:7858",
+    "stage": "continued",
+    "launch": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\S16-review-launch.json",
+      "bytes": 6810,
+      "sha256": "1e176c30415a905f3ca5e08fd79fabf4b16ded09475932ce9a08a9ce309369b2",
+      "logical_path": "session/S16-review-launch.json",
+      "storage": [
+        {
+          "file": "session/S16-review-launch.json",
+          "bytes": 6810,
+          "sha256": "1e176c30415a905f3ca5e08fd79fabf4b16ded09475932ce9a08a9ce309369b2"
+        }
+      ]
+    },
+    "native_verification": {
+      "canonical_sha256": "31bba6623aaf2e867467384f656f33e9ce42444efe449e20b46e300844f781ff",
+      "bytes": 14961642,
+      "ignored_paths": [],
+      "exact_bytes_match_final_browser": true,
+      "worker_sha256": "361b86a8c12623a553ad2f7e54dd0ccded74fa9cf03b51f4d0a3bfdf93530165"
+    }
+  },
+  "visual_review": {
+    "passed": true,
+    "widths": [
+      1440,
+      390
+    ],
+    "screenshots": [
+      "supplier-fighter-inspection-1440.png",
+      "quiet_patrol-review-390.png",
+      "quiet_flown-390.png",
+      "defense_flown-1440.png",
+      "defend_against_strike-review-390.png",
+      "defense-area-map-390.png",
+      "depleted-defense-review-390.png"
+    ],
+    "notes": "Codex inspected these exact final-run captures directly. The supplier fighter renders as an aircraft, and the purchase, patrol, dated loss report, and shortage review remain readable at the inspected widths. Mobile cards use vertical scrolling; the map card was scrolled to expose its working Back to Air Force control. Remaining presentation polish includes raw native province/store identifiers in report prose, negative-zero display on quiet-patrol prevented power, and crowded labels around the map marker. This is bounded functional/readability review, not finished S18 artwork or independent human testing."
+  },
+  "preservation": {
+    "record": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-preservation-final.json",
+      "bytes": 3137,
+      "sha256": "6f59e26a64bfddf471b4aed20b41d82076f793f64f89a0ed081617381b5e9368",
+      "logical_path": "attempts/S16-preservation-final.json",
+      "storage": [
+        {
+          "file": "attempts/S16-preservation-final.json",
+          "bytes": 3137,
+          "sha256": "6f59e26a64bfddf471b4aed20b41d82076f793f64f89a0ed081617381b5e9368"
+        }
+      ]
+    },
+    "baseline": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-preservation-before.json",
+      "bytes": 2497,
+      "sha256": "8c422b1b6a32e14b736b08d91c76bff25ede634608a247b86852ee0ba41a2175",
+      "logical_path": "attempts/S08-preservation-before.json",
+      "storage": [
+        {
+          "file": "attempts/S08-preservation-before.json",
+          "bytes": 2497,
+          "sha256": "8c422b1b6a32e14b736b08d91c76bff25ede634608a247b86852ee0ba41a2175"
+        }
+      ]
+    },
+    "worktree_baseline": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-preservation-before.json",
+      "bytes": 3137,
+      "sha256": "e3b756b016fd4e8a2026460d58017ec35c35ca5b42e57fa1d97a85f4cf749bd3",
+      "logical_path": "attempts/S16-preservation-before.json",
+      "storage": [
+        {
+          "file": "attempts/S16-preservation-before.json",
+          "bytes": 3137,
+          "sha256": "e3b756b016fd4e8a2026460d58017ec35c35ca5b42e57fa1d97a85f4cf749bd3"
+        }
+      ]
+    },
+    "files": 8,
+    "worktree_heads": 2
+  },
+  "source_files": {
+    "tools/ui/ci-air-defense.cjs": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-air-defense.cjs",
+      "bytes": 29930,
+      "sha256": "aed2090de8b3ce5b9605c931cfab943ac506a48fdf240ae63e683893d10c7b66",
+      "logical_path": "source/tools/ui/ci-air-defense.cjs",
+      "storage": [
+        {
+          "file": "source/tools/ui/ci-air-defense.cjs",
+          "bytes": 29930,
+          "sha256": "aed2090de8b3ce5b9605c931cfab943ac506a48fdf240ae63e683893d10c7b66"
+        }
+      ]
+    },
+    "spheres-sim/src/equipment.rs": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\src\\equipment.rs",
+      "bytes": 114955,
+      "sha256": "d16c3390ceaaf1aa84b90cb85f7471e28e2acd57605a29537bd47f7dd7cb03a0",
+      "logical_path": "source/spheres-sim/src/equipment.rs",
+      "storage": [
+        {
+          "file": "source/spheres-sim/src/equipment.rs",
+          "bytes": 114955,
+          "sha256": "d16c3390ceaaf1aa84b90cb85f7471e28e2acd57605a29537bd47f7dd7cb03a0"
+        }
+      ]
+    },
+    "spheres-sim/src/equipment_aviation.rs": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\src\\equipment_aviation.rs",
+      "bytes": 31209,
+      "sha256": "94cdab5900548c65fd71e65ef45aebb80a46aa2b868580bb435b760606aed960",
+      "logical_path": "source/spheres-sim/src/equipment_aviation.rs",
+      "storage": [
+        {
+          "file": "source/spheres-sim/src/equipment_aviation.rs",
+          "bytes": 31209,
+          "sha256": "94cdab5900548c65fd71e65ef45aebb80a46aa2b868580bb435b760606aed960"
+        }
+      ]
+    },
+    "spheres-sim/src/equipment_air_support.rs": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\src\\equipment_air_support.rs",
+      "bytes": 26158,
+      "sha256": "f6e2935dc64bf67dd87b033eaeb113c1a1f4b967ba9bac7c2f00dd7fe61d8503",
+      "logical_path": "source/spheres-sim/src/equipment_air_support.rs",
+      "storage": [
+        {
+          "file": "source/spheres-sim/src/equipment_air_support.rs",
+          "bytes": 26158,
+          "sha256": "f6e2935dc64bf67dd87b033eaeb113c1a1f4b967ba9bac7c2f00dd7fe61d8503"
+        }
+      ]
+    },
+    "spheres-sim/src/equipment_air_support_tests.rs": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\src\\equipment_air_support_tests.rs",
+      "bytes": 23108,
+      "sha256": "d38579a2106128adc9438a157853bc97a187825233d833658dae9f2643cb7b88",
+      "logical_path": "source/spheres-sim/src/equipment_air_support_tests.rs",
+      "storage": [
+        {
+          "file": "source/spheres-sim/src/equipment_air_support_tests.rs",
+          "bytes": 23108,
+          "sha256": "d38579a2106128adc9438a157853bc97a187825233d833658dae9f2643cb7b88"
+        }
+      ]
+    },
+    "spheres-sim/src/operations.rs": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\src\\operations.rs",
+      "bytes": 23478,
+      "sha256": "fa362629e797dab3cd22a6a1a9223b7aeccb6b502ff3a45a8929ffae5348d589",
+      "logical_path": "source/spheres-sim/src/operations.rs",
+      "storage": [
+        {
+          "file": "source/spheres-sim/src/operations.rs",
+          "bytes": 23478,
+          "sha256": "fa362629e797dab3cd22a6a1a9223b7aeccb6b502ff3a45a8929ffae5348d589"
+        }
+      ]
+    },
+    "spheres-sim/src/operations_aviation_loss_tests.rs": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\src\\operations_aviation_loss_tests.rs",
+      "bytes": 12325,
+      "sha256": "5a884bc59e418963496c06db0fbbe16722d0314140b471d96008a4abebdfdfa6",
+      "logical_path": "source/spheres-sim/src/operations_aviation_loss_tests.rs",
+      "storage": [
+        {
+          "file": "source/spheres-sim/src/operations_aviation_loss_tests.rs",
+          "bytes": 12325,
+          "sha256": "5a884bc59e418963496c06db0fbbe16722d0314140b471d96008a4abebdfdfa6"
+        }
+      ]
+    },
+    "spheres-sim/src/equipment_fighter_tests.rs": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\src\\equipment_fighter_tests.rs",
+      "bytes": 15891,
+      "sha256": "7ecdc0e9ae6f9539a77602100301e2a3fcd0e57e9fb753272ded6ad5870ae1a6",
+      "logical_path": "source/spheres-sim/src/equipment_fighter_tests.rs",
+      "storage": [
+        {
+          "file": "source/spheres-sim/src/equipment_fighter_tests.rs",
+          "bytes": 15891,
+          "sha256": "7ecdc0e9ae6f9539a77602100301e2a3fcd0e57e9fb753272ded6ad5870ae1a6"
+        }
+      ]
+    },
+    "spheres-sim/src/airmissions.rs": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\src\\airmissions.rs",
+      "bytes": 42392,
+      "sha256": "252e93aca60e139c909172b3619fc885cee7b7da53eb841812795d500c698724",
+      "logical_path": "source/spheres-sim/src/airmissions.rs",
+      "storage": [
+        {
+          "file": "source/spheres-sim/src/airmissions.rs",
+          "bytes": 42392,
+          "sha256": "252e93aca60e139c909172b3619fc885cee7b7da53eb841812795d500c698724"
+        }
+      ]
+    },
+    "spheres-sim/src/airmissions_defense_tests.rs": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\src\\airmissions_defense_tests.rs",
+      "bytes": 27564,
+      "sha256": "64779fe0acb626ae61defcf5c4011b8ef9a0798f64c7f080ea0294dfde00b3b8",
+      "logical_path": "source/spheres-sim/src/airmissions_defense_tests.rs",
+      "storage": [
+        {
+          "file": "source/spheres-sim/src/airmissions_defense_tests.rs",
+          "bytes": 27564,
+          "sha256": "64779fe0acb626ae61defcf5c4011b8ef9a0798f64c7f080ea0294dfde00b3b8"
+        }
+      ]
+    },
+    "spheres-web/src/s16_fixture_tests.rs": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-web\\src\\s16_fixture_tests.rs",
+      "bytes": 23519,
+      "sha256": "b7c65b76777722e605f9d7aae26dc4d99dc194c0c68124d1babc7ea81082e7e9",
+      "logical_path": "source/spheres-web/src/s16_fixture_tests.rs",
+      "storage": [
+        {
+          "file": "source/spheres-web/src/s16_fixture_tests.rs",
+          "bytes": 23519,
+          "sha256": "b7c65b76777722e605f9d7aae26dc4d99dc194c0c68124d1babc7ea81082e7e9"
+        }
+      ]
+    },
+    "spheres-web/src/equipment_flight_view.rs": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-web\\src\\equipment_flight_view.rs",
+      "bytes": 65594,
+      "sha256": "e091058c6ab4891a3fe9eb45566d01a542b797a2c5cb9eb1224c06d2a2ffea34",
+      "logical_path": "source/spheres-web/src/equipment_flight_view.rs",
+      "storage": [
+        {
+          "file": "source/spheres-web/src/equipment_flight_view.rs",
+          "bytes": 65594,
+          "sha256": "e091058c6ab4891a3fe9eb45566d01a542b797a2c5cb9eb1224c06d2a2ffea34"
+        }
+      ]
+    },
+    "tools/ui/archive-worker.py": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\archive-worker.py",
+      "bytes": 15513,
+      "sha256": "361b86a8c12623a553ad2f7e54dd0ccded74fa9cf03b51f4d0a3bfdf93530165",
+      "logical_path": "source/tools/ui/archive-worker.py",
+      "storage": [
+        {
+          "file": "source/tools/ui/archive-worker.py",
+          "bytes": 15513,
+          "sha256": "361b86a8c12623a553ad2f7e54dd0ccded74fa9cf03b51f4d0a3bfdf93530165"
+        }
+      ]
+    }
+  },
+  "proofs": {
+    "windows_web": {
+      "proof": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-final3-web.json",
+        "bytes": 1079,
+        "sha256": "c8156c24508d6d2a3373f977e4f3a2d9365d6cdd6e45b2d1bcf5310d296a4bf7",
+        "logical_path": "attempts/S16-final3-web.json",
+        "storage": [
+          {
+            "file": "attempts/S16-final3-web.json",
+            "bytes": 1079,
+            "sha256": "c8156c24508d6d2a3373f977e4f3a2d9365d6cdd6e45b2d1bcf5310d296a4bf7"
+          }
+        ]
+      },
+      "log": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-final3-web.log",
+        "bytes": 41697,
+        "sha256": "9ec74718347dd856b57294d0bbde4029b7bb9fc78084661bf43b9e64a2e0942d",
+        "logical_path": "attempts/S16-final3-web.log",
+        "storage": [
+          {
+            "file": "attempts/S16-final3-web.log",
+            "bytes": 41697,
+            "sha256": "9ec74718347dd856b57294d0bbde4029b7bb9fc78084661bf43b9e64a2e0942d"
+          }
+        ]
+      }
+    },
+    "windows_sim": {
+      "proof": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-final3-sim.json",
+        "bytes": 1093,
+        "sha256": "3e24895a0984098a3c7eb23c8161298ad7f7e0a6900c9aa0eba0642e3a1ada2d",
+        "logical_path": "attempts/S16-final3-sim.json",
+        "storage": [
+          {
+            "file": "attempts/S16-final3-sim.json",
+            "bytes": 1093,
+            "sha256": "3e24895a0984098a3c7eb23c8161298ad7f7e0a6900c9aa0eba0642e3a1ada2d"
+          }
+        ]
+      },
+      "log": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-final3-sim.log",
+        "bytes": 84669,
+        "sha256": "5e6693d1e0648e0bcd6ed9ae63ffadb61be4a046e0c75d8898bbb3f05bd915d1",
+        "logical_path": "attempts/S16-final3-sim.log",
+        "storage": [
+          {
+            "file": "attempts/S16-final3-sim.log",
+            "bytes": 84669,
+            "sha256": "5e6693d1e0648e0bcd6ed9ae63ffadb61be4a046e0c75d8898bbb3f05bd915d1"
+          }
+        ]
+      }
+    },
+    "windows_integration": {
+      "proof": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-final3-integration.json",
+        "bytes": 1374,
+        "sha256": "53c0b318ab478db3001736cccca69b707e34fe45254d787cf6ff70b47bda6ed8",
+        "logical_path": "attempts/S16-final3-integration.json",
+        "storage": [
+          {
+            "file": "attempts/S16-final3-integration.json",
+            "bytes": 1374,
+            "sha256": "53c0b318ab478db3001736cccca69b707e34fe45254d787cf6ff70b47bda6ed8"
+          }
+        ]
+      },
+      "log": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-final3-integration.log",
+        "bytes": 15729,
+        "sha256": "dc3e3d6323f869f3b98d70db6c4695cd577774af7e15a28b89eda7e6a5346b9c",
+        "logical_path": "attempts/S16-final3-integration.log",
+        "storage": [
+          {
+            "file": "attempts/S16-final3-integration.log",
+            "bytes": 15729,
+            "sha256": "dc3e3d6323f869f3b98d70db6c4695cd577774af7e15a28b89eda7e6a5346b9c"
+          }
+        ]
+      }
+    },
+    "windows_node": {
+      "proof": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-final3-node.json",
+        "bytes": 675,
+        "sha256": "45011e1e339ce86b4e3233ea616d7be25ec05b9c66a919dc62fc000bf33a4378",
+        "logical_path": "attempts/S16-final3-node.json",
+        "storage": [
+          {
+            "file": "attempts/S16-final3-node.json",
+            "bytes": 675,
+            "sha256": "45011e1e339ce86b4e3233ea616d7be25ec05b9c66a919dc62fc000bf33a4378"
+          }
+        ]
+      },
+      "log": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-final3-node.log",
+        "bytes": 158561,
+        "sha256": "b80dd20c9076ec0f3dda349be9222bd80624496e27af061b4c8931ebb055ee41",
+        "logical_path": "attempts/S16-final3-node.log",
+        "storage": [
+          {
+            "file": "attempts/S16-final3-node.log",
+            "bytes": 158561,
+            "sha256": "b80dd20c9076ec0f3dda349be9222bd80624496e27af061b4c8931ebb055ee41"
+          }
+        ]
+      }
+    },
+    "windows_binary": {
+      "proof": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-final3-binary.json",
+        "bytes": 905,
+        "sha256": "d5e091633a56fdcb29ffab0b86d048f566b04d0c8c23e9d8bc553d51547bbdf9",
+        "logical_path": "attempts/S16-final3-binary.json",
+        "storage": [
+          {
+            "file": "attempts/S16-final3-binary.json",
+            "bytes": 905,
+            "sha256": "d5e091633a56fdcb29ffab0b86d048f566b04d0c8c23e9d8bc553d51547bbdf9"
+          }
+        ]
+      },
+      "log": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-final3-binary.log",
+        "bytes": 887,
+        "sha256": "9a984a79e86ffc2d495852561bda2125eacb5d2255655956f4625cefca5906a8",
+        "logical_path": "attempts/S16-final3-binary.log",
+        "storage": [
+          {
+            "file": "attempts/S16-final3-binary.log",
+            "bytes": 887,
+            "sha256": "9a984a79e86ffc2d495852561bda2125eacb5d2255655956f4625cefca5906a8"
+          }
+        ]
+      }
+    },
+    "windows_fixture": {
+      "proof": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-final3-fixture.json",
+        "bytes": 1309,
+        "sha256": "c7fc6c729dde01ae91034b863fb28c660d8e372be40d3398b27a22fbceb3224c",
+        "logical_path": "attempts/S16-final3-fixture.json",
+        "storage": [
+          {
+            "file": "attempts/S16-final3-fixture.json",
+            "bytes": 1309,
+            "sha256": "c7fc6c729dde01ae91034b863fb28c660d8e372be40d3398b27a22fbceb3224c"
+          }
+        ]
+      },
+      "log": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-final3-fixture.log",
+        "bytes": 2783,
+        "sha256": "3952d4476b63274a589a9712ce4ec7f622b00334de46f5e12afab54ff613bf29",
+        "logical_path": "attempts/S16-final3-fixture.log",
+        "storage": [
+          {
+            "file": "attempts/S16-final3-fixture.log",
+            "bytes": 2783,
+            "sha256": "3952d4476b63274a589a9712ce4ec7f622b00334de46f5e12afab54ff613bf29"
+          }
+        ]
+      }
+    },
+    "windows_runner": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s16-check.py",
+      "bytes": 4361,
+      "sha256": "0300567396cb489cad2d148c1441c238018ccc1a1729cc7cd2196e8c46fbb9d6",
+      "logical_path": "session/run-s16-check.py",
+      "storage": [
+        {
+          "file": "session/run-s16-check.py",
+          "bytes": 4361,
+          "sha256": "0300567396cb489cad2d148c1441c238018ccc1a1729cc7cd2196e8c46fbb9d6"
+        }
+      ]
+    },
+    "linux_web": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-final3-linux\\web.log",
+      "bytes": 41466,
+      "sha256": "1a529d10f519a5ca57bfc4ee351d1856b17bd2721fc19267b6203394938d9c60",
+      "logical_path": "attempts/S16-final3-linux/web.log",
+      "storage": [
+        {
+          "file": "attempts/S16-final3-linux/web.log",
+          "bytes": 41466,
+          "sha256": "1a529d10f519a5ca57bfc4ee351d1856b17bd2721fc19267b6203394938d9c60"
+        }
+      ]
+    },
+    "linux_sim": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-final3-linux\\sim.log",
+      "bytes": 84747,
+      "sha256": "5a5ef9389bc9ac83a097fb9cc63af7dc0c42470e84682b78954baffe1e4496e1",
+      "logical_path": "attempts/S16-final3-linux/sim.log",
+      "storage": [
+        {
+          "file": "attempts/S16-final3-linux/sim.log",
+          "bytes": 84747,
+          "sha256": "5a5ef9389bc9ac83a097fb9cc63af7dc0c42470e84682b78954baffe1e4496e1"
+        }
+      ]
+    },
+    "linux_integration": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-final3-linux\\integration.log",
+      "bytes": 14654,
+      "sha256": "0466b8cef8ac99d2deac99468009efe57f8490aac8844536e73a3c27cbe357ef",
+      "logical_path": "attempts/S16-final3-linux/integration.log",
+      "storage": [
+        {
+          "file": "attempts/S16-final3-linux/integration.log",
+          "bytes": 14654,
+          "sha256": "0466b8cef8ac99d2deac99468009efe57f8490aac8844536e73a3c27cbe357ef"
+        }
+      ]
+    },
+    "linux_node": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-final3-linux\\node.log",
+      "bytes": 376254,
+      "sha256": "287eb61e935deb2d82fe5a6e16b52de065c7ddfeafa45b9c49be1c653d3f2c46",
+      "logical_path": "attempts/S16-final3-linux/node.log",
+      "storage": [
+        {
+          "file": "attempts/S16-final3-linux/node.log",
+          "bytes": 376254,
+          "sha256": "287eb61e935deb2d82fe5a6e16b52de065c7ddfeafa45b9c49be1c653d3f2c46"
+        }
+      ]
+    },
+    "linux_result": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-final3-linux\\result.json",
+      "bytes": 6487,
+      "sha256": "6673b1460130d5e9fe2a337dd55d9f02fe5b9f9d11c3780049771787551cf1d6",
+      "logical_path": "attempts/S16-final3-linux/result.json",
+      "storage": [
+        {
+          "file": "attempts/S16-final3-linux/result.json",
+          "bytes": 6487,
+          "sha256": "6673b1460130d5e9fe2a337dd55d9f02fe5b9f9d11c3780049771787551cf1d6"
+        }
+      ]
+    },
+    "linux_runner": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s16-linux-final3.py",
+      "bytes": 7582,
+      "sha256": "214a01ee51711b0b37eb6516544fe95cad558ec056257d605c98600f830b99ad",
+      "logical_path": "session/run-s16-linux-final3.py",
+      "storage": [
+        {
+          "file": "session/run-s16-linux-final3.py",
+          "bytes": 7582,
+          "sha256": "214a01ee51711b0b37eb6516544fe95cad558ec056257d605c98600f830b99ad"
+        }
+      ]
+    },
+    "linux_toolchain": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-final3-linux\\toolchain.json",
+      "bytes": 1181,
+      "sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801",
+      "logical_path": "attempts/S16-final3-linux/toolchain.json",
+      "storage": [
+        {
+          "file": "attempts/S16-final3-linux/toolchain.json",
+          "bytes": 1181,
+          "sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801"
+        }
+      ]
+    },
+    "browser_proof": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-final4-browser.json",
+      "bytes": 1301,
+      "sha256": "531e39be0c4f72c0ea4d63ed9f26830c90bdc61e38437ca0e3cc6e1188c26fa0",
+      "logical_path": "attempts/S16-final4-browser.json",
+      "storage": [
+        {
+          "file": "attempts/S16-final4-browser.json",
+          "bytes": 1301,
+          "sha256": "531e39be0c4f72c0ea4d63ed9f26830c90bdc61e38437ca0e3cc6e1188c26fa0"
+        }
+      ]
+    },
+    "browser_log": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-final4-browser.log",
+      "bytes": 204,
+      "sha256": "24a08b3589dbf5c0a12c85d643d8c9db7bdc7d419022709edf25244850b59502",
+      "logical_path": "attempts/S16-final4-browser.log",
+      "storage": [
+        {
+          "file": "attempts/S16-final4-browser.log",
+          "bytes": 204,
+          "sha256": "24a08b3589dbf5c0a12c85d643d8c9db7bdc7d419022709edf25244850b59502"
+        }
+      ]
+    },
+    "browser_result": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-browser-final4-browser\\air-defense-GzL6Rh\\result.json",
+      "bytes": 961039,
+      "sha256": "27cf62afcbea3845893995204a1fc2baba4348168a90dd6c13623d7e07e44518",
+      "logical_path": "attempts/S16-browser-final4-browser/air-defense-GzL6Rh/result.json",
+      "storage": [
+        {
+          "file": "attempts/S16-browser-final4-browser/air-defense-GzL6Rh/result.json",
+          "bytes": 961039,
+          "sha256": "27cf62afcbea3845893995204a1fc2baba4348168a90dd6c13623d7e07e44518"
+        }
+      ]
+    },
+    "browser_driver": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-air-defense.cjs",
+      "bytes": 29930,
+      "sha256": "aed2090de8b3ce5b9605c931cfab943ac506a48fdf240ae63e683893d10c7b66",
+      "logical_path": "source/tools/ui/ci-air-defense.cjs",
+      "storage": [
+        {
+          "file": "source/tools/ui/ci-air-defense.cjs",
+          "bytes": 29930,
+          "sha256": "aed2090de8b3ce5b9605c931cfab943ac506a48fdf240ae63e683893d10c7b66"
+        }
+      ]
+    },
+    "browser_runner": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s16-browser-final.py",
+      "bytes": 3047,
+      "sha256": "9ce08690b3e0cba53213dc464e5c1f6ea696e1ce88bfee9d78a8f3fe2d431768",
+      "logical_path": "session/run-s16-browser-final.py",
+      "storage": [
+        {
+          "file": "session/run-s16-browser-final.py",
+          "bytes": 3047,
+          "sha256": "9ce08690b3e0cba53213dc464e5c1f6ea696e1ce88bfee9d78a8f3fe2d431768"
+        }
+      ]
+    },
+    "fixture_manifest": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-fixture-final3\\manifest.json",
+      "bytes": 11492,
+      "sha256": "5102cc47db7fee69a252a67efc0c855616657678371f0201fe55bf23ac56a9ea",
+      "logical_path": "attempts/S16-fixture-final3/manifest.json",
+      "storage": [
+        {
+          "file": "attempts/S16-fixture-final3/manifest.json",
+          "bytes": 11492,
+          "sha256": "5102cc47db7fee69a252a67efc0c855616657678371f0201fe55bf23ac56a9ea"
+        }
+      ]
+    },
+    "review_launch": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\S16-review-launch.json",
+      "bytes": 6810,
+      "sha256": "1e176c30415a905f3ca5e08fd79fabf4b16ded09475932ce9a08a9ce309369b2",
+      "logical_path": "session/S16-review-launch.json",
+      "storage": [
+        {
+          "file": "session/S16-review-launch.json",
+          "bytes": 6810,
+          "sha256": "1e176c30415a905f3ca5e08fd79fabf4b16ded09475932ce9a08a9ce309369b2"
+        }
+      ]
+    },
+    "review_save": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S16-20260921-144401\\saves\\s16-air-defense.json",
+      "bytes": 15660874,
+      "sha256": "91da0f7a8ddf4cdea95d8a7a6b417e871c01f6399119774dc2da93efd8888af6",
+      "logical_path": "session/review-S16-20260921-144401/saves/s16-air-defense.json",
+      "storage": [
+        {
+          "file": "session/review-S16-20260921-144401/saves/s16-air-defense.json.gz",
+          "bytes": 3064022,
+          "sha256": "8f3bd50a15e8af44a9ccd6e233c155c5ecd154c598250843730431d2c169e387"
+        }
+      ]
+    },
+    "review_source_save": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-browser-final4-browser\\air-defense-GzL6Rh\\server\\saves\\s16-air-defense.json",
+      "bytes": 15660874,
+      "sha256": "91da0f7a8ddf4cdea95d8a7a6b417e871c01f6399119774dc2da93efd8888af6",
+      "logical_path": "attempts/S16-browser-final4-browser/air-defense-GzL6Rh/server/saves/s16-air-defense.json",
+      "storage": [
+        {
+          "file": "attempts/S16-browser-final4-browser/air-defense-GzL6Rh/server/saves/s16-air-defense.json.gz",
+          "bytes": 3064022,
+          "sha256": "8f3bd50a15e8af44a9ccd6e233c155c5ecd154c598250843730431d2c169e387"
+        }
+      ]
+    },
+    "review_audit": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S16-20260921-144401\\native-verification\\copied-save.json",
+      "bytes": 4599,
+      "sha256": "18e8e51e1ff601833c42aa2f2e02b0969aaa8eb260683343ae7530d12a93f872",
+      "logical_path": "session/review-S16-20260921-144401/native-verification/copied-save.json",
+      "storage": [
+        {
+          "file": "session/review-S16-20260921-144401/native-verification/copied-save.json",
+          "bytes": 4599,
+          "sha256": "18e8e51e1ff601833c42aa2f2e02b0969aaa8eb260683343ae7530d12a93f872"
+        }
+      ]
+    },
+    "review_canonical": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S16-20260921-144401\\native-verification\\copied-save.canonical",
+      "bytes": 14961642,
+      "sha256": "31bba6623aaf2e867467384f656f33e9ce42444efe449e20b46e300844f781ff",
+      "logical_path": "session/review-S16-20260921-144401/native-verification/copied-save.canonical",
+      "storage": [
+        {
+          "file": "session/review-S16-20260921-144401/native-verification/copied-save.canonical.gz",
+          "bytes": 2573358,
+          "sha256": "159ddff9fe1b3b6ca49c19f5299c303e8cc3b814170a66b4ddd05a9dbd5d4908"
+        }
+      ]
+    },
+    "archive_worker": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\archive-worker.py",
+      "bytes": 15513,
+      "sha256": "361b86a8c12623a553ad2f7e54dd0ccded74fa9cf03b51f4d0a3bfdf93530165",
+      "logical_path": "source/tools/ui/archive-worker.py",
+      "storage": [
+        {
+          "file": "source/tools/ui/archive-worker.py",
+          "bytes": 15513,
+          "sha256": "361b86a8c12623a553ad2f7e54dd0ccded74fa9cf03b51f4d0a3bfdf93530165"
+        }
+      ]
+    },
+    "inventory": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S16\\evidence\\inventory.json",
+      "bytes": 313013,
+      "sha256": "540239e6bafc8122e91ffb8ee630533b0d658fa3c60d9eb48df04fc5e60869c9"
+    },
+    "selection": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\S16-evidence-selection.json",
+      "bytes": 86637,
+      "sha256": "b81232a802338752d536ba0ce3e01948175e17b1140b4f4a6195e1824597b481",
+      "logical_path": "session/S16-evidence-selection.json",
+      "storage": [
+        {
+          "file": "session/S16-evidence-selection.json",
+          "bytes": 86637,
+          "sha256": "b81232a802338752d536ba0ce3e01948175e17b1140b4f4a6195e1824597b481"
+        }
+      ]
+    },
+    "publication_config": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\S16-publication-config.json",
+      "bytes": 1656,
+      "sha256": "fa60953c6fd0a97905b7d06c984bc8742bd10027b6447fa4ec5ef57e736f4740",
+      "logical_path": "session/S16-publication-config.json",
+      "storage": [
+        {
+          "file": "session/S16-publication-config.json",
+          "bytes": 1656,
+          "sha256": "fa60953c6fd0a97905b7d06c984bc8742bd10027b6447fa4ec5ef57e736f4740"
+        }
+      ]
+    },
+    "publisher": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\publish-s16-closure.py",
+      "bytes": 59256,
+      "sha256": "dd69bf3fbab47e0a76d1626d4782a8222b83bfba5f06d5efb565b7ee10eacccd",
+      "logical_path": "session/publish-s16-closure.py",
+      "storage": [
+        {
+          "file": "session/publish-s16-closure.py",
+          "bytes": 59256,
+          "sha256": "dd69bf3fbab47e0a76d1626d4782a8222b83bfba5f06d5efb565b7ee10eacccd"
+        }
+      ]
+    },
+    "collector": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\collect-s16-evidence.py",
+      "bytes": 5555,
+      "sha256": "be8aec93ff19f83ca1047e4dbd0473d132816cb47c3a67ff23cea948547e316c",
+      "logical_path": "session/collect-s16-evidence.py",
+      "storage": [
+        {
+          "file": "session/collect-s16-evidence.py",
+          "bytes": 5555,
+          "sha256": "be8aec93ff19f83ca1047e4dbd0473d132816cb47c3a67ff23cea948547e316c"
+        }
+      ]
+    }
+  },
+  "extra_evidence": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s16-windows-final3.py",
+      "bytes": 600,
+      "sha256": "df718a90fbd9979eca0a7e172ad9d9d01b2f74987f8c9b302187bc1bc5e1f511",
+      "logical_path": "session/run-s16-windows-final3.py",
+      "storage": [
+        {
+          "file": "session/run-s16-windows-final3.py",
+          "bytes": 600,
+          "sha256": "df718a90fbd9979eca0a7e172ad9d9d01b2f74987f8c9b302187bc1bc5e1f511"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-final1-disposition.json",
+      "bytes": 1033,
+      "sha256": "63132e49d0da0d3dea103332b8c85279e26ff02c008f34cca46b7a8711129a65",
+      "logical_path": "attempts/S16-final1-disposition.json",
+      "storage": [
+        {
+          "file": "attempts/S16-final1-disposition.json",
+          "bytes": 1033,
+          "sha256": "63132e49d0da0d3dea103332b8c85279e26ff02c008f34cca46b7a8711129a65"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-final2-disposition.json",
+      "bytes": 615,
+      "sha256": "e760954ce6f42fc5fd1b8f0613c358d9a4cd077a7ff1109ec03cbfcc9d620113",
+      "logical_path": "attempts/S16-final2-disposition.json",
+      "storage": [
+        {
+          "file": "attempts/S16-final2-disposition.json",
+          "bytes": 615,
+          "sha256": "e760954ce6f42fc5fd1b8f0613c358d9a4cd077a7ff1109ec03cbfcc9d620113"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-final3-candidate-push.log",
+      "bytes": 136,
+      "sha256": "92347667a64b95a192fe6dc0944ead27e459c1f0b5bcfea369f0d4273affcf12",
+      "logical_path": "attempts/S16-final3-candidate-push.log",
+      "storage": [
+        {
+          "file": "attempts/S16-final3-candidate-push.log",
+          "bytes": 136,
+          "sha256": "92347667a64b95a192fe6dc0944ead27e459c1f0b5bcfea369f0d4273affcf12"
+        }
+      ]
+    }
+  ],
+  "retention": {
+    "files": 297,
+    "stored_bytes": 272244252,
+    "all_reconstructions_verified": true,
+    "inventory_sha256": "540239e6bafc8122e91ffb8ee630533b0d658fa3c60d9eb48df04fc5e60869c9",
+    "scope": "Selected complete S16 test logs, proof records, browser outputs including failures, raw campaign snapshots and review launch. Compiled binaries are identified by SHA-256 in proofs and reproducible from the recorded source; they are not repackaged here."
+  },
+  "limits": [
+    "The opening manufacturer capital/resources, researched fighter integrations, bases, conflict and opposing aircraft/stores are authored preconditions, not historical opening allocations.",
+    "Research, component legality, paid development, production, delivery, upkeep and automatic stores have direct native regressions; the browser starts after the manufacturer and legal fighter integrations are ready.",
+    "Interception covers explicit supported Support army and Strike target orders. The hostile browser order is authored; autonomous opponent choices remain S17 work.",
+    "Three authored saved branches share history. Their alternative hostile results and casualty counts must not be summed into one uninterrupted campaign total.",
+    "Browser comparisons cover the named native checkpoints and funded-result restore/Save/Load/Continue, not every intermediate day or an injected lost network response.",
+    "Coordinated ground-air defense, multiple fighters, two countries/conflicts, finite shared stores and forged saved effects have separate native regressions; the browser claims only its recorded contacts and losses.",
+    "Desktop 1440px and mobile 390px were inspected. No 320px result, independent human playtest, finished S18 aircraft-art gate or new performance certificate is claimed.",
+    "G3 inherits exact earlier gate/session evidence with its original source and authored scope. It does not re-run every prior browser journey on this runtime.",
+    "Preservation covers only the baseline named files and worktree HEADs, whose observed counts are recorded in this manifest.",
+    "S17 and later sessions remain planned. Historical/content coverage, long-run campaigns, release qualification and CP1 remain open."
+  ]
+}

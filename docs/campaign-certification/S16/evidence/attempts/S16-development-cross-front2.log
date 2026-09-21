@@ -1,0 +1,15 @@
+
+running 1 test
+
+thread 'airmissions::defense_tests::s16_both_sides_and_two_conflicts_share_one_finite_national_store_plan' (46156) panicked at spheres-sim\src\airmissions_defense_tests.rs:125:5:
+USA StrikeTarget: Some("No operational access to Latin America. Request basing access in Diplomacy or choose an accessible target.")
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test airmissions::defense_tests::s16_both_sides_and_two_conflicts_share_one_finite_national_store_plan ... FAILED
+
+failures:
+
+failures:
+    airmissions::defense_tests::s16_both_sides_and_two_conflicts_share_one_finite_national_store_plan
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 897 filtered out; finished in 0.07s
+

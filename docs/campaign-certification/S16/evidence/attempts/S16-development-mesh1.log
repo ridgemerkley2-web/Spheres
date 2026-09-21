@@ -1,0 +1,7 @@
+FIGHTER_TRIANGLES=198272,10848,1308
+PASS fighter inspection/card/map keep all eight native slots and valid geometry
+PASS fighter payload is two separated slender air-to-air missiles
+PASS every researched fighter fitting is retained and changes visible geometry
+PASS fighter resolver refuses bombs and ground parts without mutating the requested spec
+PASS all inherited S15 family buffers and metadata remain byte-identical
+5 S16 fighter mesh checks passed.

@@ -1,0 +1,148 @@
+{
+  "url": "http://127.0.0.1:7858",
+  "pid": 240,
+  "directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S16-20260921-144401",
+  "runtime_revision": "eacf90e3e083d951cbd942957f573b7135953cea",
+  "executable_sha256": "e0c70296f292777e5fb9ebb98c0c4eeb95cba7f7f9d4e10ecb10d81c987219fa",
+  "player": "France",
+  "date": "12 Oct 1992",
+  "build": {
+    "branch": "codex/campaign-certification",
+    "built_at_unix_seconds": 1789387960,
+    "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+    "distribution": "Local offline game server; source and attribution accompany the release",
+    "revision": "eacf90e3e083",
+    "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S16-20260921-144401",
+    "version": "0.6.0"
+  },
+  "save_copy": {
+    "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-browser-final4-browser\\air-defense-GzL6Rh\\server\\saves\\s16-air-defense.json",
+    "copy": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S16-20260921-144401\\saves\\s16-air-defense.json",
+    "sha256": "91da0f7a8ddf4cdea95d8a7a6b417e871c01f6399119774dc2da93efd8888af6"
+  },
+  "native_verification": {
+    "canonical_sha256": "31bba6623aaf2e867467384f656f33e9ce42444efe449e20b46e300844f781ff",
+    "bytes": 14961642,
+    "ignored_paths": [],
+    "exact_bytes_match_final_browser": true,
+    "worker_sha256": "361b86a8c12623a553ad2f7e54dd0ccded74fa9cf03b51f4d0a3bfdf93530165"
+  },
+  "evidence": [
+    {
+      "path": "evidence\\S16-final3-binary.json",
+      "sha256": "d5e091633a56fdcb29ffab0b86d048f566b04d0c8c23e9d8bc553d51547bbdf9"
+    },
+    {
+      "path": "evidence\\S16-browser-final4-browser\\air-defense-GzL6Rh\\result.json",
+      "sha256": "27cf62afcbea3845893995204a1fc2baba4348168a90dd6c13623d7e07e44518"
+    }
+  ],
+  "required_outcomes": {
+    "paid_fighter_delivery": {
+      "buyer": "France",
+      "company": 1,
+      "cost_basis_bn": 0.10824327199999999,
+      "delivered_day": 1001,
+      "district": "FRA_auvergne-rh-ne-alpes",
+      "due_day": 1001,
+      "id": 598,
+      "product": 265,
+      "purchased_day": 994,
+      "quantity": 4,
+      "reason": "Received into the exact-revision Arsenal; ordinary maintenance and ammunition rules now apply.",
+      "revision_id": "France-design-2",
+      "settled_day": 994,
+      "status": "delivered",
+      "total_price_bn": 0.12447976279999998,
+      "unit_price_bn": 0.031119940699999994
+    },
+    "quiet_patrol": {
+      "aircraft": 4,
+      "aircraft_lost": 0,
+      "applied_power": 0,
+      "contacted": false,
+      "day": 1010,
+      "defense": {
+        "air_combat_expected_loss": 0,
+        "ground_defense_expected_loss": 0,
+        "opposing_missions": 0,
+        "prevented_power": 0
+      },
+      "family": "air_missile_short_range",
+      "sorties": 1.5345806046941846,
+      "stores_used": 3.069161209388369,
+      "summary": "Defend skies at FRA_auvergne-rh-ne-alpes: 1.53 sortie equivalents, 3.07 air_missile_short_range stores, 0 aircraft lost. Patrol completed without hostile aircraft in this area. No ground attack was made. Survivors need 1 funded service day(s)."
+    },
+    "funded_defense": {
+      "aircraft": 4,
+      "aircraft_lost": 0,
+      "applied_power": 0.004163398149756217,
+      "contacted": true,
+      "day": 1014,
+      "defense": {
+        "air_combat_expected_loss": 1.828903087001873e-05,
+        "ground_defense_expected_loss": 0,
+        "opposing_missions": 1,
+        "prevented_power": 0.004163398149756217
+      },
+      "family": "air_missile_short_range",
+      "sorties": 1.5342228754769336,
+      "stores_used": 3.068445750953867,
+      "summary": "Defend skies at FRA_auvergne-rh-ne-alpes: 1.53 sortie equivalents, 3.07 air_missile_short_range stores, 0 aircraft lost. Intercepted hostile aircraft; the prevented strike power is recorded below. Survivors need 1 funded service day(s)."
+    },
+    "hostile_with_defense": {
+      "aircraft": 4,
+      "aircraft_lost": 0,
+      "applied_power": 0.0007354472921887361,
+      "contacted": true,
+      "day": 1014,
+      "defense": {
+        "air_combat_expected_loss": 0.10485767021822717,
+        "ground_defense_expected_loss": 0.002769935732711644,
+        "opposing_missions": 1,
+        "prevented_power": 0.004163398149756217
+      },
+      "family": "air_bomb_unguided",
+      "sorties": 1.0281695811221083,
+      "stores_used": 2.0563391622442166,
+      "summary": "Strike target at FRA_auvergne-rh-ne-alpes: 1.03 sortie equivalents, 2.06 air_bomb_unguided stores, 0 aircraft lost. Resolved against the campaign contact and defending fighters; ground battle results remain in Operations. Survivors need 1 funded service day(s)."
+    },
+    "unopposed_hostile_baseline": {
+      "aircraft": 4,
+      "aircraft_lost": 0,
+      "applied_power": 0.0048988454419449535,
+      "contacted": true,
+      "day": 1014,
+      "family": "air_bomb_unguided",
+      "sorties": 1.0281695811221083,
+      "stores_used": 2.0563391622442166,
+      "summary": "Strike target at FRA_auvergne-rh-ne-alpes: 1.03 sortie equivalents, 2.06 air_bomb_unguided stores, 0 aircraft lost. Applied to the campaign contact; ground battle results remain in Operations. Survivors need 1 funded service day(s)."
+    },
+    "prevented_hostile_power": 0.004163398149756217,
+    "cancelled_mission": 1,
+    "refusal_checks": [
+      {
+        "id": "depleted_defense",
+        "valid": false,
+        "blockers": [
+          "No compatible air_missile_short_range stores are delivered. Fund support or buy a compatible company shipment before launch."
+        ],
+        "intended_command": {
+          "kind": "air_mission",
+          "order": {
+            "action": "queue",
+            "conflict": 1,
+            "kind": "defend_skies",
+            "squadron": 1,
+            "target": "FRA_auvergne-rh-ne-alpes"
+          }
+        },
+        "native_reason": "No compatible air_missile_short_range stores are delivered. Fund support or buy a compatible company shipment before launch."
+      }
+    ],
+    "days_advanced": 23,
+    "final_restored_checkpoint": "defense_flown",
+    "final_save_slot": "s16-air-defense"
+  },
+  "scope": "Separate copy of the disclosed authored S16 France scenario. Existing review servers and original campaigns are preserved. This is a test campaign with manufactured preconditions, not a historical or unassisted campaign."
+}

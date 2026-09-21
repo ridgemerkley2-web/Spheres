@@ -1,0 +1,152 @@
+diff --git a/spheres-sim/src/equipment_air_support.rs b/spheres-sim/src/equipment_air_support.rs
+index a60ebdf..c01858a 100644
+--- a/spheres-sim/src/equipment_air_support.rs
++++ b/spheres-sim/src/equipment_air_support.rs
+@@ -520,11 +520,12 @@ pub fn validate_air_support(n: &Nation) -> Result<(), String> {
+         return Ok(());
+     };
+     let invalid = || "Invalid routine aircraft-support policy or dated receipt.".to_string();
+-    let day = n.program_budget.as_ref().and_then(|p| p.day);
++    // The fiscal date owns receipts. It can still be yesterday when the
++    // calendar has advanced and the player reviews tomorrow's permission.
++    let fiscal_day = n.program_budget.as_ref().and_then(|p| p.day);
+     if n.program_budget.is_none()
+         || p.automatic && s.maintenance_plan.is_none()
+         || air_support_values_refusal(p.daily_budget_bn * 1000.0, p.target_days).is_some()
+-        || day.is_some_and(|d| p.from_day > d.saturating_add(1))
+     {
+         return Err(invalid());
+     }
+@@ -541,7 +542,7 @@ pub fn validate_air_support(n: &Nation) -> Result<(), String> {
+         return Ok(());
+     };
+     if r.day < r.authorized_from_day
+-        || day.is_none_or(|d| r.day > d)
++        || fiscal_day.is_none_or(|d| r.day > d)
+         || [r.daily_budget_bn, r.maintenance_paid_bn, r.stores_paid_bn]
+             .iter()
+             .any(|v| !v.is_finite() || *v < 0.0)
+@@ -600,14 +601,18 @@ pub fn validate_air_support(n: &Nation) -> Result<(), String> {
+ /// Policy receipts only refer to transactions owned by the ordinary supplier
+ /// books. A malformed save cannot substitute an unrelated delivery or payment.
+ pub fn validate_air_support_world(w: &WorldState) -> Result<(), String> {
++    let day = clock::absolute_day(w);
+     for n in &w.nations {
+         validate_air_support(n)?;
+-        let Some(receipt) = n
+-            .equipment
+-            .as_ref()
+-            .and_then(|s| s.air_support.as_ref())
+-            .and_then(|p| p.receipt.as_ref())
+-        else {
++        let Some(policy) = n.equipment.as_ref().and_then(|s| s.air_support.as_ref()) else {
++            continue;
++        };
++        // Policy edits are prospective from the world calendar, independently
++        // of whether today's fiscal accounts have opened yet.
++        if policy.from_day > day.saturating_add(1) {
++            return Err("Invalid routine aircraft-support policy start date.".into());
++        }
++        let Some(receipt) = &policy.receipt else {
+             continue;
+         };
+         for p in &receipt.purchases {
+diff --git a/spheres-sim/src/equipment_air_support_tests.rs b/spheres-sim/src/equipment_air_support_tests.rs
+index 64ae72d..1aa8f4b 100644
+--- a/spheres-sim/src/equipment_air_support_tests.rs
++++ b/spheres-sim/src/equipment_air_support_tests.rs
+@@ -262,6 +262,94 @@ mod air_support_tests {
+         assert_eq!(receipt(&w).day, day + 1);
+     }
+ 
++    #[test]
++    fn air_support_opening_day_edits_use_calendar_time_and_preserve_fiscal_receipts() {
++        let mut w = fixture(true);
++        set_air_support(&mut w, ID, 100.0, 30, true).unwrap();
++        // Exercise the complete production day, which settles its fiscal
++        // accounts before advancing the calendar to the next opening day.
++        crate::tick_day(&mut w, &[]);
++        crate::tick_day(&mut w, &[]);
++        let opening_day = clock::absolute_day(&w);
++        let fiscal = w.nation(ID).program_budget.clone();
++        assert_eq!(fiscal.as_ref().unwrap().day, Some(opening_day - 1));
++        assert_eq!(fiscal.as_ref().unwrap().settled_day, Some(opening_day - 1));
++        let booked = receipt(&w).clone();
++        assert_eq!(booked.day, opening_day - 1);
++        assert!(booked.maintenance_paid_bn > 0.0);
++        assert!(!booked.purchases.is_empty());
++        let companies = w.companies.clone();
++
++        set_air_support(&mut w, ID, 75.0, 90, false).unwrap();
++        assert_eq!(policy(&w).from_day, opening_day + 1);
++        assert_eq!(*receipt(&w), booked);
++        assert_eq!(w.nation(ID).program_budget, fiscal);
++        assert_eq!(w.companies, companies);
++        assert!(air_support_status(&w, ID).active.unwrap().automatic);
++        assert!(!air_support_status(&w, ID).pending.unwrap().automatic);
++        validate_state(w.nation(ID)).unwrap();
++        validate_air_support_world(&w).unwrap();
++        let saved = crate::save(&w);
++        let mut loaded = crate::load(&saved).unwrap();
++        assert_eq!(crate::save(&loaded), saved);
++        assert_eq!(*receipt(&loaded), booked);
++
++        let mut future = w.clone();
++        state_mut(future.nation_mut(ID))
++            .air_support
++            .as_mut()
++            .unwrap()
++            .from_day = opening_day + 2;
++        assert!(validate_air_support_world(&future).is_err());
++        assert!(crate::load(&crate::save(&future)).is_err());
++        let mut future_receipt = w.clone();
++        state_mut(future_receipt.nation_mut(ID))
++            .air_support
++            .as_mut()
++            .unwrap()
++            .receipt
++            .as_mut()
++            .unwrap()
++            .day = opening_day;
++        assert!(validate_air_support(future_receipt.nation(ID)).is_err());
++        assert!(crate::load(&crate::save(&future_receipt)).is_err());
++        let mut unordered = w.clone();
++        state_mut(unordered.nation_mut(ID))
++            .air_support
++            .as_mut()
++            .unwrap()
++            .previous
++            .as_mut()
++            .unwrap()
++            .from_day = opening_day + 1;
++        assert!(validate_air_support(unordered.nation(ID)).is_err());
++        assert!(crate::load(&crate::save(&unordered)).is_err());
++
++        // The opening day's old permission is still honored. The disabled
++        // setting starts tomorrow, preserving the last dated paid receipt.
++        assert_eq!(
++            crate::tick_day(&mut w, &[]),
++            crate::tick_day(&mut loaded, &[])
++        );
++        assert_eq!(receipt(&w).day, opening_day);
++        assert_eq!(crate::save(&w), crate::save(&loaded));
++        let last_paid = receipt(&w).clone();
++        assert_eq!(
++            crate::tick_day(&mut w, &[]),
++            crate::tick_day(&mut loaded, &[])
++        );
++        assert_eq!(*receipt(&w), last_paid);
++        assert_eq!(
++            air_support_maintenance_limit(w.nation(ID), opening_day + 1),
++            None
++        );
++        assert_eq!(crate::save(&w), crate::save(&loaded));
++        assert_eq!(
++            crate::save(&crate::load(&crate::save(&w)).unwrap()),
++            crate::save(&w)
++        );
++    }
++
+     #[test]
+     fn air_support_has_no_supplier_creation_or_import_enrollment_fallback() {
+         let mut w = fixture(false);

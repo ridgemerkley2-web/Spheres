@@ -1,0 +1,33 @@
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+    Finished `release` profile [optimized] target(s) in 1m 34s
+     Running unittests src\lib.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_sim-de8a2e7790f15db6.exe)
+
+running 12 tests
+test equipment::fighter_tests::s16_fighter_profile_has_only_interception_and_rejects_bomber_hardware ... ok
+test operations::aviation_loss_tests::s16_legacy_raid_losses_preserve_parked_fighters_and_their_loss_carry ... ok
+test equipment::fighter_tests::s16_fighter_research_is_prerequisite_gated_dated_and_grants_no_property ... ok
+test airmissions::defense_tests::s16_defensive_patrol_has_no_ground_attack_or_hostile_ground_defense_exposure ... ok
+test airmissions::defense_tests::s16_fighter_and_ground_air_defense_have_distinct_paid_contributions ... ok
+test airmissions::defense_tests::s16_defend_skies_requires_fighter_friendly_geography_and_real_readiness ... ok
+test equipment::fighter_tests::s16_company_fighter_and_missiles_complete_paid_delivery_upkeep_and_assignment ... ok
+test equipment::fighter_tests::s16_fighter_v8_air_profiles_remain_sparse_and_frozen_claims_are_checked ... ok
+test airmissions::defense_tests::s16_both_sides_and_two_conflicts_share_one_finite_national_store_plan ... FAILED
+test airmissions::defense_tests::s16_multiple_interceptors_and_ground_defense_cannot_write_off_one_target_twice ... ok
+test airmissions::defense_tests::s16_paid_interception_changes_the_real_hostile_strike_and_depleted_defense_loses_it ... ok
+test airmissions::defense_tests::s16_saved_defense_effects_cannot_invent_contacts_suppression_or_losses ... ok
+
+failures:
+
+---- airmissions::defense_tests::s16_both_sides_and_two_conflicts_share_one_finite_national_store_plan stdout ----
+
+thread 'airmissions::defense_tests::s16_both_sides_and_two_conflicts_share_one_finite_national_store_plan' (44444) panicked at spheres-sim\src\airmissions_defense_tests.rs:125:5:
+Mexico StrikeTarget: Some("Choose a province in this conflict's contested theatre.")
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    airmissions::defense_tests::s16_both_sides_and_two_conflicts_share_one_finite_national_store_plan
+
+test result: FAILED. 11 passed; 1 failed; 0 ignored; 0 measured; 888 filtered out; finished in 0.15s
+
+error: test failed, to rerun pass `-p spheres-sim --lib`

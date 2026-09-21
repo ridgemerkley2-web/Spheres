@@ -1,0 +1,28 @@
+   Compiling spheres-sim v0.5.0 (/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration/spheres-sim)
+   Compiling spheres-web v0.6.0 (/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration/spheres-web)
+warning: unused import: `SequentialWriter`
+ --> spheres-web/vendor/tiny_http/src/util/mod.rs:7:28
+  |
+7 | ...::{Seque...riter, S...
+  |       ^^^^^...^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: trait `MustBeShareDummy` is never used
+   --> spheres-web/vendor/tiny_http/src/lib.rs:164:7
+    |
+164 | trait MustB...Dummy: S...
+    |       ^^^^^...^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `tiny_http` (lib) generated 2 warnings (run `cargo fix --lib -p tiny_http` to apply 1 suggestion)
+error: could not compile `spheres-sim` (lib)
+
+Caused by:
+  process didn't exit successfully: `/home/ridge/.cache/spheres-s05-tools/rustup/toolchains/1.98.0-x86_64-unknown-linux-gnu/bin/rustc --crate-name spheres_sim --edition=2021 spheres-sim/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C opt-level=3 -C embed-bitcode=no --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values())' -C metadata=923211872c88b800 -C extra-filename=-0634816c81803d3f --out-dir /home/ridge/.cache/spheres-s05-target/release/deps -C linker=/home/ridge/.cache/spheres-s05-tools/bin/cc -C strip=debuginfo -L dependency=/home/ridge/.cache/spheres-s05-target/release/deps --extern serde=/home/ridge/.cache/spheres-s05-target/release/deps/libserde-3e5ebf1f22b7b861.rmeta --extern serde_json=/home/ridge/.cache/spheres-s05-target/release/deps/libserde_json-9e4dd3735af26173.rmeta` (signal: 15, SIGTERM: termination signal)
+warning: build failed, waiting for other jobs to finish...
+error: failed to run custom build command for `spheres-web v0.6.0 (/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration/spheres-web)`
+
+Caused by:
+  process didn't exit successfully: `/home/ridge/.cache/spheres-s05-target/release/build/spheres-web-0405f9e79ee4eedb/build-script-build` (signal: 15, SIGTERM: termination signal)

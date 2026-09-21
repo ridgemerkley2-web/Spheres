@@ -1,0 +1,107 @@
+{
+  "paid_fighter_delivery": {
+    "buyer": "France",
+    "company": 1,
+    "cost_basis_bn": 0.10824327199999999,
+    "delivered_day": 1001,
+    "district": "FRA_auvergne-rh-ne-alpes",
+    "due_day": 1001,
+    "id": 598,
+    "product": 265,
+    "purchased_day": 994,
+    "quantity": 4,
+    "reason": "Received into the exact-revision Arsenal; ordinary maintenance and ammunition rules now apply.",
+    "revision_id": "France-design-2",
+    "settled_day": 994,
+    "status": "delivered",
+    "total_price_bn": 0.12447976279999998,
+    "unit_price_bn": 0.031119940699999994
+  },
+  "quiet_patrol": {
+    "aircraft": 4,
+    "aircraft_lost": 0,
+    "applied_power": 0,
+    "contacted": false,
+    "day": 1010,
+    "defense": {
+      "air_combat_expected_loss": 0,
+      "ground_defense_expected_loss": 0,
+      "opposing_missions": 0,
+      "prevented_power": 0
+    },
+    "family": "air_missile_short_range",
+    "sorties": 1.5345806046941846,
+    "stores_used": 3.069161209388369,
+    "summary": "Defend skies at FRA_auvergne-rh-ne-alpes: 1.53 sortie equivalents, 3.07 air_missile_short_range stores, 0 aircraft lost. Patrol completed without hostile aircraft in this area. No ground attack was made. Survivors need 1 funded service day(s)."
+  },
+  "funded_defense": {
+    "aircraft": 4,
+    "aircraft_lost": 0,
+    "applied_power": 0.004163398149756217,
+    "contacted": true,
+    "day": 1014,
+    "defense": {
+      "air_combat_expected_loss": 0.00001828903087001873,
+      "ground_defense_expected_loss": 0,
+      "opposing_missions": 1,
+      "prevented_power": 0.004163398149756217
+    },
+    "family": "air_missile_short_range",
+    "sorties": 1.5342228754769336,
+    "stores_used": 3.068445750953867,
+    "summary": "Defend skies at FRA_auvergne-rh-ne-alpes: 1.53 sortie equivalents, 3.07 air_missile_short_range stores, 0 aircraft lost. Intercepted hostile aircraft; the prevented strike power is recorded below. Survivors need 1 funded service day(s)."
+  },
+  "hostile_with_defense": {
+    "aircraft": 4,
+    "aircraft_lost": 0,
+    "applied_power": 0.0007354472921887361,
+    "contacted": true,
+    "day": 1014,
+    "defense": {
+      "air_combat_expected_loss": 0.10485767021822717,
+      "ground_defense_expected_loss": 0.002769935732711644,
+      "opposing_missions": 1,
+      "prevented_power": 0.004163398149756217
+    },
+    "family": "air_bomb_unguided",
+    "sorties": 1.0281695811221083,
+    "stores_used": 2.0563391622442166,
+    "summary": "Strike target at FRA_auvergne-rh-ne-alpes: 1.03 sortie equivalents, 2.06 air_bomb_unguided stores, 0 aircraft lost. Resolved against the campaign contact and defending fighters; ground battle results remain in Operations. Survivors need 1 funded service day(s)."
+  },
+  "unopposed_hostile_baseline": {
+    "aircraft": 4,
+    "aircraft_lost": 0,
+    "applied_power": 0.0048988454419449535,
+    "contacted": true,
+    "day": 1014,
+    "family": "air_bomb_unguided",
+    "sorties": 1.0281695811221083,
+    "stores_used": 2.0563391622442166,
+    "summary": "Strike target at FRA_auvergne-rh-ne-alpes: 1.03 sortie equivalents, 2.06 air_bomb_unguided stores, 0 aircraft lost. Applied to the campaign contact; ground battle results remain in Operations. Survivors need 1 funded service day(s)."
+  },
+  "prevented_hostile_power": 0.004163398149756217,
+  "cancelled_mission": 1,
+  "refusal_checks": [
+    {
+      "id": "depleted_defense",
+      "valid": false,
+      "blockers": [
+        "No compatible air_missile_short_range stores are delivered. Fund support or buy a compatible company shipment before launch."
+      ],
+      "intended_command": {
+        "kind": "air_mission",
+        "order": {
+          "action": "queue",
+          "conflict": 1,
+          "kind": "defend_skies",
+          "squadron": 1,
+          "target": "FRA_auvergne-rh-ne-alpes"
+        }
+      },
+      "native_reason": "No compatible air_missile_short_range stores are delivered. Fund support or buy a compatible company shipment before launch."
+    }
+  ],
+  "days_advanced": 23,
+  "final_restored_checkpoint": "defense_flown",
+  "final_save_slot": "s16-air-defense"
+}

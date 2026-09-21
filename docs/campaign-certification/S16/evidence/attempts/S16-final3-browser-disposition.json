@@ -1,0 +1,6 @@
+{
+  "recorded_utc": "2026-09-21T21:44:11.454468+00:00",
+  "qualifying": false,
+  "runtime_revision": "eacf90e3e083d951cbd942957f573b7135953cea",
+  "reason": "Initial browser driver mistook the object-valued command attached to a refusal step for a named command step. It completed the funded interception checkpoints before stopping. Driver-only follow-up distinguishes named command strings and waits for transient banners before capture. Final4 passed against the unchanged final3 runtime; no native qualification was replaced."
+}

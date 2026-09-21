@@ -1,0 +1,195 @@
+{
+  "version": 1,
+  "input": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-fixture-final3\\before.json",
+    "bytes": 11404811,
+    "sha256": "d80c442be7954fafb68a2d0e5f39d599c74c737994b5874fb570e2a3a1fdbdc2"
+  },
+  "requested": {
+    "buyer": "France",
+    "revision": null,
+    "seller": null,
+    "company": null,
+    "product": null
+  },
+  "buyer": {
+    "id": "France",
+    "tech_sha256": "92e48363954cd665583c86bb80118ba38f0d530080bd932d679d787947b330d6",
+    "learned_sha256": "c216de6a024e56501afcdea29d807c12296af134ecfd4ee5096c875b5921ea55",
+    "revision_ids": [
+      "France-design-1",
+      "France-design-2",
+      "ammo-demo"
+    ],
+    "held_by_revision": {
+      "ammo-demo": 10
+    },
+    "held_units": 0,
+    "buyer_revision": null,
+    "maintenance_plan": {
+      "daily_limit_bn": 0.0001,
+      "from_day": 1,
+      "receipt": null
+    },
+    "program_budget": {
+      "day": 994,
+      "settled_day": 993,
+      "spent_today_bn": [
+        [
+          0.03774722222222223,
+          0.03774722222222223,
+          0.03774722222222223,
+          0.03774722222222223,
+          0.03774722222222221
+        ],
+        [
+          0.027178000000000008,
+          0.027178000000000008,
+          0.027178000000000008,
+          0.027178000000000008,
+          0.027178000000000008
+        ],
+        [
+          0.03019777777777778,
+          0.03019777777777778,
+          0.03019777777777778,
+          0.03019777777777778,
+          0.030197777777777796
+        ],
+        [
+          0.0422768888888889,
+          0.0422768888888889,
+          0.0422768888888889,
+          0.0422768888888889,
+          0.04227688888888889
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0.014746111111111106
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0.0040216666666666664,
+          0.0040216666666666664,
+          0.0040216666666666664,
+          0.0040216666666666664
+        ],
+        [
+          0.0254,
+          0.0254,
+          0,
+          0,
+          0
+        ],
+        [
+          0.010569222222222225,
+          0.010569222222222225,
+          0.010569222222222225,
+          0.010569222222222225,
+          0.010569222222222223
+        ],
+        [
+          0.0030197777777777783,
+          0.0030197777777777783,
+          0.0030197777777777783,
+          0.0030197777777777783,
+          0.003019777777777779
+        ]
+      ],
+      "prepaid_used_today_bn": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    }
+  },
+  "supplier": null,
+  "imports": {
+    "ids": [],
+    "matching": []
+  },
+  "canonical": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S16-browser-final4-browser\\air-defense-GzL6Rh\\archive-audit\\002-before.canonical",
+    "bytes": 10862532,
+    "sha256": "726819282368c17af7df7e002ae564c4d723bba6c974ad65d958a4f0f3f48008",
+    "format": "s08-typed-canonical-world-v1-js-f64",
+    "ignored_paths": []
+  }
+}

@@ -1,0 +1,414 @@
+{
+  "authored_preconditions": [
+    "Native ready manufacturer fixture: 10 IFVs, $100bn treasury, no debt, 1000 political capital, abundant tracked opening raw inventories and bounded departmental authority. Three arms-plant slots are authored.",
+    "France starts with the three researched fighter integrations. Reviewed company capital transfers of $200m for fighters and $100m for missile stock fund actual fighter development, four manufactured fighters and 200 compatible missiles through normal setup contracts and daily work. National fighters and missiles are purchased after import.",
+    "Completed France and Italy airfields with Capacity 1 and Support 1, France–Italy Hold conflict and ordinary operational enrollment are explicit starting conditions.",
+    "Italian opposition has four authored certified light-attack aircraft, a load-valid balanced 200-bomb completed starting batch and $1000bn treasury with normal $1bn/day maintenance authority. It has no autonomous explicit mission orders.",
+    "The second imported scenario adds one Italian Strike target through native commands to the recovered first scenario. The third clones that same starting world and transfers remaining French missile stocks to the consumed ledger. Store replenishment was disabled normally before both imports. The same hostile strike then provides the unopposed baseline."
+  ],
+  "before_file": "before.json",
+  "commands": {
+    "cancel_patrol": {
+      "kind": "air_mission",
+      "order": {
+        "action": "cancel",
+        "mission": 1
+      }
+    },
+    "defend_against_strike": {
+      "kind": "air_mission",
+      "order": {
+        "action": "queue",
+        "conflict": 1,
+        "kind": "defend_skies",
+        "squadron": 1,
+        "target": "FRA_auvergne-rh-ne-alpes"
+      }
+    },
+    "form_fighter_squadron": {
+      "kind": "air_squadron",
+      "order": {
+        "Create": {
+          "name": "S16 Alpine defense",
+          "quantity": 4,
+          "revision": "France-design-2"
+        }
+      }
+    },
+    "fund_routine_support": {
+      "automatic": true,
+      "daily_budget_mn": 100.0,
+      "kind": "equipment_air_support",
+      "target_days": 30
+    },
+    "hold_store_replenishment": {
+      "automatic": false,
+      "daily_budget_mn": 100.0,
+      "kind": "equipment_air_support",
+      "target_days": 30
+    },
+    "purchase_fighters": {
+      "company": 1,
+      "kind": "company_purchase",
+      "product": 265,
+      "quantity": 4
+    },
+    "queue_cancel_example": {
+      "kind": "air_mission",
+      "order": {
+        "action": "queue",
+        "conflict": 1,
+        "kind": "defend_skies",
+        "squadron": 1,
+        "target": "FRA_auvergne-rh-ne-alpes"
+      }
+    },
+    "quiet_patrol": {
+      "kind": "air_mission",
+      "order": {
+        "action": "queue",
+        "conflict": 1,
+        "kind": "defend_skies",
+        "squadron": 1,
+        "target": "FRA_auvergne-rh-ne-alpes"
+      }
+    },
+    "stage_fighters": {
+      "kind": "air_base",
+      "order": {
+        "action": "rebase",
+        "base": "FRA_auvergne-rh-ne-alpes",
+        "squadron": 1
+      }
+    }
+  },
+  "comparison": {
+    "defended": {
+      "aircraft": 4,
+      "aircraft_lost": 0,
+      "applied_power": 0.004163398149756217,
+      "contacted": true,
+      "day": 1014,
+      "defense": {
+        "air_combat_expected_loss": 0.00001828903087001873,
+        "ground_defense_expected_loss": 0.0,
+        "opposing_missions": 1,
+        "prevented_power": 0.004163398149756217
+      },
+      "family": "air_missile_short_range",
+      "sorties": 1.5342228754769336,
+      "stores_used": 3.068445750953867,
+      "summary": "Defend skies at FRA_auvergne-rh-ne-alpes: 1.53 sortie equivalents, 3.07 air_missile_short_range stores, 0 aircraft lost. Intercepted hostile aircraft; the prevented strike power is recorded below. Survivors need 1 funded service day(s)."
+    },
+    "hostile_with_defense": {
+      "aircraft": 4,
+      "aircraft_lost": 0,
+      "applied_power": 0.0007354472921887361,
+      "contacted": true,
+      "day": 1014,
+      "defense": {
+        "air_combat_expected_loss": 0.10485767021822717,
+        "ground_defense_expected_loss": 0.002769935732711644,
+        "opposing_missions": 1,
+        "prevented_power": 0.004163398149756217
+      },
+      "family": "air_bomb_unguided",
+      "sorties": 1.0281695811221083,
+      "stores_used": 2.0563391622442166,
+      "summary": "Strike target at FRA_auvergne-rh-ne-alpes: 1.03 sortie equivalents, 2.06 air_bomb_unguided stores, 0 aircraft lost. Resolved against the campaign contact and defending fighters; ground battle results remain in Operations. Survivors need 1 funded service day(s)."
+    },
+    "quiet": {
+      "aircraft": 4,
+      "aircraft_lost": 0,
+      "applied_power": -0.0,
+      "contacted": false,
+      "day": 1010,
+      "defense": {
+        "air_combat_expected_loss": 0.0,
+        "ground_defense_expected_loss": 0.0,
+        "opposing_missions": 0,
+        "prevented_power": -0.0
+      },
+      "family": "air_missile_short_range",
+      "sorties": 1.5345806046941846,
+      "stores_used": 3.069161209388369,
+      "summary": "Defend skies at FRA_auvergne-rh-ne-alpes: 1.53 sortie equivalents, 3.07 air_missile_short_range stores, 0 aircraft lost. Patrol completed without hostile aircraft in this area. No ground attack was made. Survivors need 1 funded service day(s)."
+    },
+    "unopposed_hostile_baseline": {
+      "aircraft": 4,
+      "aircraft_lost": 0,
+      "applied_power": 0.0048988454419449535,
+      "contacted": true,
+      "day": 1014,
+      "family": "air_bomb_unguided",
+      "sorties": 1.0281695811221083,
+      "stores_used": 2.0563391622442166,
+      "summary": "Strike target at FRA_auvergne-rh-ne-alpes: 1.03 sortie equivalents, 2.06 air_bomb_unguided stores, 0 aircraft lost. Applied to the campaign contact; ground battle results remain in Operations. Survivors need 1 funded service day(s)."
+    }
+  },
+  "compiled_revision": "eacf90e3e083",
+  "days_advanced": 23,
+  "expected_stages": {
+    "defense_flown": "expected-defense_flown.json",
+    "defense_queued": "expected-defense_queued.json",
+    "delivery_transit": "expected-delivery_transit.json",
+    "depleted_before": "expected-depleted_before.json",
+    "depleted_flown": "expected-depleted_flown.json",
+    "intercept_before": "expected-intercept_before.json",
+    "quiet_flown": "expected-quiet_flown.json"
+  },
+  "fixture": "s16-authored-air-defense",
+  "native_confirmations": [
+    {
+      "command": {
+        "company": 1,
+        "kind": "company_purchase",
+        "product": 265,
+        "quantity": 4,
+        "quote": "company-v1-fc6ce7a17f6c4d8d"
+      },
+      "id": "purchase_fighters"
+    },
+    {
+      "command": {
+        "automatic": true,
+        "daily_budget_mn": 100.0,
+        "kind": "equipment_air_support",
+        "target_days": 30
+      },
+      "id": "fund_routine_support"
+    },
+    {
+      "command": {
+        "kind": "air_squadron",
+        "order": {
+          "Create": {
+            "name": "S16 Alpine defense",
+            "quantity": 4,
+            "revision": "France-design-2"
+          }
+        }
+      },
+      "id": "form_fighter_squadron"
+    },
+    {
+      "command": {
+        "kind": "air_base",
+        "order": {
+          "action": "rebase",
+          "base": "FRA_auvergne-rh-ne-alpes",
+          "squadron": 1
+        }
+      },
+      "id": "stage_fighters"
+    },
+    {
+      "command": {
+        "kind": "air_mission",
+        "order": {
+          "action": "queue",
+          "conflict": 1,
+          "kind": "defend_skies",
+          "squadron": 1,
+          "target": "FRA_auvergne-rh-ne-alpes"
+        }
+      },
+      "id": "queue_cancel_example"
+    },
+    {
+      "command": {
+        "kind": "air_mission",
+        "order": {
+          "action": "cancel",
+          "mission": 1
+        }
+      },
+      "id": "cancel_patrol"
+    },
+    {
+      "command": {
+        "kind": "air_mission",
+        "order": {
+          "action": "queue",
+          "conflict": 1,
+          "kind": "defend_skies",
+          "squadron": 1,
+          "target": "FRA_auvergne-rh-ne-alpes"
+        }
+      },
+      "id": "quiet_patrol"
+    },
+    {
+      "command": {
+        "automatic": false,
+        "daily_budget_mn": 100.0,
+        "kind": "equipment_air_support",
+        "target_days": 30
+      },
+      "id": "hold_store_replenishment"
+    },
+    {
+      "command": {
+        "kind": "air_mission",
+        "order": {
+          "action": "queue",
+          "conflict": 1,
+          "kind": "defend_skies",
+          "squadron": 1,
+          "target": "FRA_auvergne-rh-ne-alpes"
+        }
+      },
+      "id": "defend_against_strike"
+    }
+  ],
+  "opening_day": 994,
+  "player": "France",
+  "preparation_days_after_manufacturer_ready": 732,
+  "required_outcomes": {
+    "aircraft_product": 265,
+    "aircraft_revision": "France-design-2",
+    "ammunition_product": 597,
+    "cancelled_mission": 1,
+    "company": 1,
+    "conflict": 1,
+    "defense_mission": 4,
+    "enemy_base": "ITA_valle-d-aosta",
+    "home_base": "FRA_auvergne-rh-ne-alpes",
+    "hostile_mission": 3,
+    "opposing_squadron": 1,
+    "quiet_mission": 2,
+    "squadron": 1,
+    "target": "FRA_auvergne-rh-ne-alpes"
+  },
+  "scope": "Three bounded authored France–Italy scenarios. Ordinary player procurement, review, patrol and daily continuation; explicit opposing orders are authored imports. This is not AI opposition or campaign certification beyond G3.",
+  "steps": [
+    {
+      "command": "purchase_fighters"
+    },
+    {
+      "command": "fund_routine_support"
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "command": "form_fighter_squadron"
+    },
+    {
+      "command": "stage_fighters"
+    },
+    {
+      "checkpoint": "delivery_transit"
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "days": 1
+    },
+    {
+      "command": "queue_cancel_example"
+    },
+    {
+      "command": "cancel_patrol"
+    },
+    {
+      "command": "quiet_patrol"
+    },
+    {
+      "days": 2
+    },
+    {
+      "checkpoint": "quiet_flown"
+    },
+    {
+      "command": "hold_store_replenishment"
+    },
+    {
+      "days": 2
+    },
+    {
+      "file": "intercept_before.json",
+      "load": "intercept_before"
+    },
+    {
+      "checkpoint": "intercept_before"
+    },
+    {
+      "command": "defend_against_strike"
+    },
+    {
+      "checkpoint": "defense_queued"
+    },
+    {
+      "days": 2
+    },
+    {
+      "checkpoint": "defense_flown"
+    },
+    {
+      "file": "depleted_before.json",
+      "load": "depleted_before"
+    },
+    {
+      "checkpoint": "depleted_before"
+    },
+    {
+      "command": {
+        "kind": "air_mission",
+        "order": {
+          "action": "queue",
+          "conflict": 1,
+          "kind": "defend_skies",
+          "squadron": 1,
+          "target": "FRA_auvergne-rh-ne-alpes"
+        }
+      },
+      "reason": "No compatible air_missile_short_range stores are delivered. Fund support or buy a compatible company shipment before launch.",
+      "refusal": "depleted_defense"
+    },
+    {
+      "days": 2
+    },
+    {
+      "checkpoint": "depleted_flown"
+    }
+  ],
+  "version": 1
+}

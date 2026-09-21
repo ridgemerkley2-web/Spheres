@@ -1,0 +1,7 @@
+{
+  "revision": "14f78746a0b7826a35e22563c383ab28c0fe9ad6",
+  "recorded_utc": "2026-09-14T12:03:52.085323+00:00",
+  "qualifying": false,
+  "reason": "Native Windows and Linux compilation intentionally stopped before tests completed after read-only audit identified parked fighters being exposed to legacy raid losses. Source remained clean throughout both stopped runners. Node lane retained separately; all lanes will be rerun on the corrected final candidate.",
+  "runtime_issue": "Snapshot::new legacy aircraft exposure included non-strike fighter profiles despite zero legacy missile demand and fire."
+}

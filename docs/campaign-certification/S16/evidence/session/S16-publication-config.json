@@ -1,0 +1,33 @@
+{
+  "candidate_revision": "eacf90e3e083d951cbd942957f573b7135953cea",
+  "proof_label": "final3",
+  "linux_runner": "run-s16-linux-final3.py",
+  "review_stage": "continued",
+  "visual_review": {
+    "passed": true,
+    "widths": [
+      1440,
+      390
+    ],
+    "screenshots": [
+      "supplier-fighter-inspection-1440.png",
+      "quiet_patrol-review-390.png",
+      "quiet_flown-390.png",
+      "defense_flown-1440.png",
+      "defend_against_strike-review-390.png",
+      "defense-area-map-390.png",
+      "depleted-defense-review-390.png"
+    ],
+    "notes": "Codex inspected these exact final-run captures directly. The supplier fighter renders as an aircraft, and the purchase, patrol, dated loss report, and shortage review remain readable at the inspected widths. Mobile cards use vertical scrolling; the map card was scrolled to expose its working Back to Air Force control. Remaining presentation polish includes raw native province/store identifiers in report prose, negative-zero display on quiet-patrol prevented power, and crowded labels around the map marker. This is bounded functional/readability review, not finished S18 artwork or independent human testing."
+  },
+  "extra_evidence": [
+    "run-s16-windows-final3.py",
+    "evidence/S16-final1-disposition.json",
+    "evidence/S16-final2-disposition.json",
+    "evidence/S16-final3-candidate-push.log"
+  ],
+  "browser_proof": "evidence/S16-final4-browser.json",
+  "browser_log": "evidence/S16-final4-browser.log",
+  "browser_runner": "run-s16-browser-final.py",
+  "browser_result": "evidence/S16-browser-final4-browser/air-defense-GzL6Rh/result.json"
+}
