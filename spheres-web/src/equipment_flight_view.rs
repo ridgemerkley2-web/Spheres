@@ -349,7 +349,7 @@ fn flight_staff_board(w: &WorldState) -> Value {
 fn flight_staff_countries(w:&WorldState)->Vec<Value> {
     w.military_ai.plans.iter().map(|(id,p)|json!({"title":id.name(),"name":id.name(),
         "status":if w.player==Some(*id) {"Player controlled"} else if !w.nation(*id).alive {"Inactive government"} else if w.military_ai.enabled && spheres_sim::economic_ai::enabled(w) {"Staff decisions"} else {"Planning paused"},
-        "detail":p.operations,"metrics":[metric("Strategic review",p.last_review_day.map(|d|super::settled_day_json(d)["label"].clone())),metric("Completed reviews",p.reviews),metric("Procurement",&p.procurement),metric("Development",&p.development),metric("Support",&p.support),metric("Basing",&p.basing),metric("Last review purchase/capital commitments",service_money(p.committed_bn)),metric("Last review spending ceiling",service_money(p.purchase_limit_bn))],"actions":[]})).collect()
+        "detail":p.operations,"metrics":[metric("Strategic review",p.last_review_day.map(|d|super::settled_day_json(d)["label"].clone())),metric("Completed reviews",p.reviews),metric("Procurement",&p.procurement),metric("Development",&p.development),metric("Support",&p.support),metric("Basing",&p.basing),metric("Last review purchase/capital commitments",company_money(p.committed_bn)),metric("Last review spending ceiling",company_money(p.purchase_limit_bn))],"actions":[]})).collect()
 }
 fn flight_board(w: &WorldState, me: NationId) -> Value {
     let n = w.nation(me);
