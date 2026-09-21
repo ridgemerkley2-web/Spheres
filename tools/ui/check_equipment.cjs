@@ -1364,3 +1364,19 @@ test('s16 interception report preserves distinct native estimates and one actual
   const c=fixture();loaded(c,flightSnapshot({missions:{overview:{title:'Campaign missions'},orders:[],results:[{id:3,name:'Defend skies · Friendly <area>',status:'Flown',receipt_label:'12 Feb 1990',metrics:[{label:'Aircraft lost',value:1},{label:'Hostile strike power prevented',value:2.5},{label:'Expected own losses · fighter combat',value:.125},{label:'Expected own losses · ground air defense',value:.25}],requirements:['Expected own losses are not enemy kills.'],actions:[]}]}}));c.equipmentSelectTab('flight');
   const html=c.mount.innerHTML;assert.match(html,/Defend skies · Friendly &lt;area&gt;/);assert.match(html,/Hostile strike power prevented/);assert.match(html,/Expected own losses · fighter combat/);assert.match(html,/Expected own losses · ground air defense/);assert.equal(html.split('<dt>Aircraft lost</dt>').length-1,1);assert.equal(c.calls.length,0);assert.equal(c.requests.length,0);
 });
+
+
+test('s17 military staff setting uses a pure review and protected command receipt',async()=>{
+  const c=shellFixture(),command={kind:'military_ai',enabled:true};
+  loaded(c,flightSnapshot({staff:{title:'Other countries’ military staff',detail:'No free equipment.',actions:[{label:'Review enabling military staff',enabled:true,requires_preview:true,command,inputs:[]}]},staff_countries:[{name:'Country <script>',status:'Waiting',metrics:[{label:'Procurement',value:'Stock <unavailable>'}],actions:[]}]}));
+  c.room.hidden=false;c.equipmentSelectTab('flight');assert.match(c.mount.innerHTML,/Country &lt;script&gt;/);assert.match(c.mount.innerHTML,/Stock &lt;unavailable&gt;/);assert.doesNotMatch(c.mount.innerHTML,/<script>/);assert.equal(c.requests.length,0);
+  c.api=async(route,payload)=>quote({actions:[{label:'Confirm military staff setting',command:plain(payload.command),enabled:true}]});
+  c.mount.querySelector('[data-equipment-action="flight.staff.actions.0"]').onclick();await tick();
+  assert.equal(c.eq.review.command.enabled,true);assert.equal(c.requests.length,0);
+  vm.runInContext(shellSource('api'),c);let seq=0;
+  c.COMMAND_CHANNEL=require(path.join(base,'spheres-web/ui/campaign-transport.js')).create({request:body=>c.api('/api/command',body,true),session:()=>c.S.session_id,identity:()=>({client_id:'staff',request_seq:++seq})});
+  c.fetch=async(route,options)=>{c.requests.push([route,plain(options)]);return {ok:true,text:async()=>JSON.stringify({session_id:'one',player:'USA',errors:[]})};};
+  c.adopt=async(state)=>{c.S=state;};c.banner=message=>assert.fail(message);
+  const result=await c.equipmentCommand(command);assert.match(result.message,/Air command/);assert.equal(c.eq.tab,'flight');
+  assert.deepEqual(JSON.parse(c.requests[0][1].body),{commands:[command],session_id:'one',client_id:'staff',request_seq:1});
+});

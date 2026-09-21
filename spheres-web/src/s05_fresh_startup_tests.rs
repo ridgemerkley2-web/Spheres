@@ -45,7 +45,7 @@ fn startup_unrelated(w: &WorldState) -> serde_json::Value {
     let object = value.as_object_mut().unwrap();
     // These are the only newly adopted owned books. Each is checked below for
     // grants or receipts; all remaining fields must match the S02 starting world.
-    for key in ["sector_contractors", "supplier_operations", "supplier_catalogue", "campaign"] { object.remove(key); }
+    for key in ["sector_contractors", "supplier_operations", "supplier_catalogue", "military_ai", "campaign"] { object.remove(key); }
     object.get_mut("rules").unwrap().as_object_mut().unwrap().remove("operational_warfare");
     let mut resources = w.resources.clone();
     resources.market = None;
@@ -85,6 +85,7 @@ fn assert_no_startup_settlement(w: &WorldState) {
     assert_eq!(w.supplier_catalogue, spheres_sim::supplier_catalogue::Catalogue {
         enabled: true, plans: Default::default(),
     }, "fresh supplier adoption is only permission metadata; no managed company or scheduled order exists yet");
+    assert!(w.military_ai.enabled && w.military_ai.plans.is_empty(), "staff enrollment cannot issue any order during startup");
     assert_eq!(w.companies.last_tick_day, None);
     assert!(w.supplier_operations.contracts.is_empty() && w.supplier_operations.receipts.is_empty());
     assert!(w.supplier_operations.grandfathered_units.is_empty()
@@ -193,6 +194,7 @@ fn legacy_load_keeps_company_and_operational_upgrades_opt_in() {
     assert!(loaded.world.companies.is_empty() && loaded.world.sector_contractors.is_empty()
         && loaded.world.supplier_operations.is_empty());
     assert!(loaded.world.supplier_catalogue.is_empty());
+    assert!(loaded.world.military_ai.is_empty());
     assert!(loaded.world.campaign.is_empty() && loaded.world.campaign_supply.is_empty()
         && loaded.world.campaign_peace.is_empty());
     let before = save(&loaded.world);

@@ -671,7 +671,7 @@ The [S11 work record](campaign-certification/S11/README.md) records the qualifie
 
 #### S17 — Make AI countries use the same rules
 
-**Status:** Planned · **Requires:** S08, S10, S16
+**Status:** In progress · **Requires:** S08, S10, S16
 
 **Completion marker:** Opponents and suppliers participate in affordable development, procurement, support and operations.
 

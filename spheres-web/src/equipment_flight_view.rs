@@ -339,6 +339,18 @@ fn flight_support_board(w: &WorldState, me: NationId) -> Value {
         "metrics":metrics,"roles_title":"Compatible stores","roles":roles,"warnings":[status.reason],"actions":[action,nav("Review Defense maintenance allocation",json!({"action":"budget","ministry":"defense","department":2}))]})
 }
 
+fn flight_staff_board(w: &WorldState) -> Value {
+    let enabled=w.military_ai.enabled;
+    json!({"title":"Other countries’ military staff", "status":if !enabled {"Paused"} else if !spheres_sim::economic_ai::enabled(w) {"Waiting for economic competition"} else {"Active"},
+        "detail":spheres_sim::military_ai::NOTE,
+        "metrics":[metric("Countries with recorded decisions",w.military_ai.plans.len()),metric("Acquisition and basing reviews","Every 30 days"),metric("Combat decisions","Daily · up to one strike and one defense order per country")],
+        "actions":[intent(if enabled {"Review pause of military staff"} else {"Review enabling military staff"},json!({"kind":"military_ai","enabled":!enabled}),vec![])]})
+}
+fn flight_staff_countries(w:&WorldState)->Vec<Value> {
+    w.military_ai.plans.iter().map(|(id,p)|json!({"title":id.name(),"name":id.name(),
+        "status":if w.player==Some(*id) {"Player controlled"} else if !w.nation(*id).alive {"Inactive government"} else if w.military_ai.enabled && spheres_sim::economic_ai::enabled(w) {"Staff decisions"} else {"Planning paused"},
+        "detail":p.operations,"metrics":[metric("Strategic review",p.last_review_day.map(|d|super::settled_day_json(d)["label"].clone())),metric("Completed reviews",p.reviews),metric("Procurement",&p.procurement),metric("Development",&p.development),metric("Support",&p.support),metric("Basing",&p.basing),metric("Last review purchase/capital commitments",service_money(p.committed_bn)),metric("Last review spending ceiling",service_money(p.purchase_limit_bn))],"actions":[]})).collect()
+}
 fn flight_board(w: &WorldState, me: NationId) -> Value {
     let n = w.nation(me);
     let today = spheres_sim::clock::absolute_day(w);
@@ -451,7 +463,7 @@ fn flight_board(w: &WorldState, me: NationId) -> Value {
         .sum();
     json!({"overview":{"title":"Air command","status":format!("{ready} aircraft ready for mission review"),"detail":"Buy and receive aircraft, form a squadron, move it to a completed base, then fund upkeep and compatible stores. Readiness also depends on mission range and target access.",
         "metrics":[metric("Squadrons",squadrons.len()),metric("Assigned aircraft",total_assigned),metric("Unassigned aircraft",models.iter().map(|r|av::unassigned_units(n,&r.id) as u64).sum::<u64>()),metric("Dated reading",super::settled_day_json(today)["label"].clone())],"actions":[nav("Buy aircraft",json!({"action":"equipment","tab":"companies"})),nav("Prepare mission stores",json!({"action":"equipment","tab":"ammunition"}))]},
-        "aircraft":aircraft,"squadrons":squadrons,"bases":bases,"base_actions":base_actions,"support":flight_support_board(w,me),"legacy":{"title":"Inherited air formations","detail":av::LEGACY_AIRCRAFT_NOTE,"roles_title":"Exact retained holdings","roles":legacy},"missions":flight_missions_board(w,me)})
+        "aircraft":aircraft,"squadrons":squadrons,"bases":bases,"base_actions":base_actions,"support":flight_support_board(w,me),"legacy":{"title":"Inherited air formations","detail":av::LEGACY_AIRCRAFT_NOTE,"roles_title":"Exact retained holdings","roles":legacy},"missions":flight_missions_board(w,me),"staff":flight_staff_board(w),"staff_countries":flight_staff_countries(w)})
 }
 
 fn flight_preview(
@@ -468,6 +480,13 @@ fn flight_preview(
     let mut requirements = vec![];
     let mut navigation = vec![];
     let (label, detail) = match parsed {
+        Command::MilitaryAi {enabled,..} => {
+            metrics.push(metric("Autonomous military staff",if *enabled {"Enabled"} else {"Paused"}));
+            timing.push(json!({"label":"Effective","value":"Next simulation day; strategic reviews retain their 30-day cadence"}));
+            requirements.push(spheres_sim::military_ai::NOTE.into());
+            requirements.push("Pausing stops new staff decisions. Already contracted development, deliveries, standing support and queued missions retain their ordinary obligations. Independent supplier and civilian AI retain their existing policies. Economic competition must also be enabled for staff to act.".into());
+            ("Confirm military staff setting","This changes other countries’ military planning. Your government remains under your control. Enabling grants no money, research, equipment or airfields.")
+        },
         Command::AirSquadron { order, .. } => {
             match order {
                 av::SquadronCommand::Create {
@@ -818,6 +837,25 @@ fn flight_preview(
 mod flight_view_tests {
     use super::*;
     const ME: NationId = NationId::France;
+    #[test]
+    fn s17_staff_review_is_pure_player_bound_and_grants_no_assets() {
+        let mut g=fixture();
+        spheres_sim::operational_warfare::enable(&mut g.world).unwrap();
+        let command=json!({"kind":"military_ai","enabled":true,"nation":"USA"});
+        let before=spheres_sim::save(&g.world);
+        let q=preview(&g.world,ME,&g.session_id,&json!({"command":command})).unwrap();
+        assert_eq!(q["valid"],true,"{q}");
+        assert!(q["requirements"][1].as_str().unwrap().contains("Already contracted"));
+        let _=flight_staff_board(&g.world);let _=flight_staff_countries(&g.world);
+        assert_eq!(spheres_sim::save(&g.world),before);
+        let parsed=super::super::parse_command(&g.world,&command,ME).unwrap();
+        assert_eq!(parsed,Command::MilitaryAi {nation:ME,enabled:true});
+        spheres_sim::apply_command(&mut g.world,&parsed).unwrap();
+        assert!(g.world.military_ai.enabled && g.world.military_ai.plans.is_empty());
+        g.world.military_ai=Default::default();
+        assert_eq!(spheres_sim::save(&g.world),before,"Confirmation only changes staff permission");
+        assert!(super::super::parse_command(&g.world,&json!({"kind":"military_ai","enabled":"true"}),ME).is_none());
+    }
     pub(super) fn fixture() -> super::super::Game {
         let mut g = ammunition_view_tests::fixture();
         let spec = eq::default_spec("air_light_attack");

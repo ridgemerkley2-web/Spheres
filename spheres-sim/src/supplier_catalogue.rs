@@ -14,6 +14,10 @@ const ROSTER: [(&str, &str, u32); 7] = [
     ("Japan", "air_light_attack", 1),
 ];
 
+pub(crate) fn stock_target(n:NationId,platform:&str)->Option<u32> {
+    ROSTER.iter().find(|(code,p,_)|NationId::parse(code)==Some(n) && *p==platform).map(|(_,_,target)|*target)
+}
+
 #[derive(Clone, Debug, Default, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 pub struct Catalogue {

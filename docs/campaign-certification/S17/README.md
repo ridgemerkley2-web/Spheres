@@ -1,0 +1,24 @@
+# S17 — Military staff using ordinary campaign rules
+
+Status: implementation and qualification in progress. Authorized by “next'” on 21 September 2026. S18 is outside this session. G4 and CP1 remain open.
+
+New campaigns enable military staff. Older saves retain their prior behavior until the player reviews and confirms **Other countries’ military staff** in **Air Command**. The save capability advances to equipment version 7 only while staff state exists; incompatible older envelopes are refused. Reading the screen or loading a legacy save issues no orders.
+
+## Policy and boundaries
+
+- Every 30 days, each living non-player government reviews purchases, support, company development and basing. Stable country slots spread reviews across the month. Repeated calls on the same date cannot repeat a review; dates and decisions survive saves.
+- A review may commit at most 25% of remaining equipment procurement authority, further limited by actual cash after incurred bills and a reserve of 30 days of fleet upkeep or 0.001% of GDP, whichever is larger. Ground-store purchases also stay within 25% of Maintenance & supply authority left after protected upkeep. Procurement and supplier capitalization share the review ceiling.
+- Countries with GDP below $100bn target one aircraft per supported role and four custom ground vehicles. Larger economies target four aircraft per role and sixteen ground vehicles. These are arcade policy assumptions, not historical fleet counts. Owned units, refits and pending domestic/import deliveries count toward the target. Incoming upkeep is included in affordability checks.
+- Purchases use ordinary finite domestic/import offers, quoted prices, departmental obligations, settlement and transport. No research, manufacturing rights, factory, vehicle or ammunition is granted to an importer.
+- Only firms already established by the autonomous supplier catalogue may receive staff development programmes. Other domestic firms retain their management. Staff add baseline light-attack aircraft, researched fighters and tactical bombers, retain an unfinished research selection, and fund ordinary development, tooling, stock and compatible ammunition. Monthly rotations use ordinary company stock-target controls so older vehicle buffers do not permanently starve ammunition or later products; already paid work remains in its native queue. Original supplier construction and civilian economic AI remain separate policies.
+- The existing support owner pays the whole fleet first and may buy finite aircraft stores under the ordinary Maintenance & supply cap. Ground vehicles adopt finite ammunition and buy compatible rounds; already commissioned batches and inbound deliveries count toward their ammunition target.
+- Staff form squadrons from delivered aircraft and make at most one basing change/project decision per strategic review. Transfers, host consent, construction payments, capacity and service remain native requirements. Existing valid bases change only for a material proximity improvement, lost access or insufficient capacity.
+- Daily tactical review can order one supported attack and one defense per country. Support army requires a real army contact; Strike target is the fallback. Fighter staff prioritize actual queued hostile attacks in the same conflict and then eligible defense areas. This is an explicit arcade information assumption: staff can observe queued mission areas, but never future combat rolls. Staff do not declare or escalate wars. Every launch rechecks access, range, upkeep, service, commitment and finite stores.
+- Country processing rotates daily for tactical scarcity; attack decisions precede defensive decisions on both sides. There are no AI-specific economic, research, damage or delivery bonuses and no difficulty multiplier in this planner.
+- Pausing staff stops new staff decisions. Existing contracts, standing support, in-flight deliveries and queued missions remain obligations. Independent civilian and supplier AI retain their own rules. Economic competition must also be enabled for military staff to act; player governments are always excluded.
+
+## Deliberate limits
+
+This is the supported ground and three-role air loop. It does not add new aircraft families, naval AI, war declarations, historical national procurement doctrines, automatic redesign cycles or omniscient future combat predictions. Tactical decisions retain the shared mission ledger: at 7,936 entries automatic orders pause with a visible explanation, preserving 256 entries for player orders. Longer-run ledger handling and campaign balance remain part of later campaign/save/performance qualification. This session does not certify a 1990–2035 campaign or award G4/CP1.
+
+Qualification results, exact source revision and browser comparisons will be recorded after the final checks.

@@ -1240,6 +1240,8 @@ pub struct WorldState {
     pub commerce: Option<crate::commerce::Commerce>,
     #[serde(default, skip_serializing_if = "crate::economic_ai::EconomicAi::is_empty")]
     pub economic_ai: crate::economic_ai::EconomicAi,
+    #[serde(default, skip_serializing_if = "crate::military_ai::MilitaryAi::is_empty")]
+    pub military_ai: crate::military_ai::MilitaryAi,
 
     /// Where each roster id sits in `nations`, or `u16::MAX` for a state that
     /// has not been born. Derived and never serialized: a save that carried it

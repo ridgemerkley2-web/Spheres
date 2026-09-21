@@ -65,6 +65,8 @@ mod s15_fixture_tests;
 #[cfg(test)]
 mod s16_fixture_tests;
 #[cfg(test)]
+mod s17_fixture_tests;
+#[cfg(test)]
 mod performance;
 #[cfg(test)]
 mod s08_route_pool_tests;
@@ -6733,6 +6735,7 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
         },
         "air_squadron" => Command::AirSquadron {nation:me,order:serde_json::from_value(v.get("order")?.clone()).ok()?},
         "air_base" => Command::AirBase {nation:me,order:serde_json::from_value(v.get("order")?.clone()).ok()?},
+        "military_ai" => Command::MilitaryAi {nation:me,enabled:v.get("enabled")?.as_bool()?},
         "air_mission" => Command::AirMission {nation:me,order:serde_json::from_value(v.get("order")?.clone()).ok()?},
         "equipment_air_support" | "equipment_research" | "equipment_save" | "equipment_develop" | "equipment_produce" | "equipment_refit" | "equipment_retire" | "equipment_maintenance" | "equipment_supply" | "equipment_supply_policy" | "equipment_supply_policy_clear" | "equipment_target" | "equipment_pause" | "equipment_funding" | "equipment_cancel" | "equipment_ammo_order" | "equipment_ammo_activate" | "equipment_ammo_funding" | "equipment_ammo_pause" | "equipment_ammo_cancel" | "equipment_ammo_reserve" | "equipment_ammo_reserve_clear" => {
             use spheres_sim::EquipmentOrder as E;
@@ -7141,6 +7144,7 @@ fn fresh_play_rules(g: &mut Game) -> Result<(), String> {
     // creates neither an arms plant nor finished export stock.
     spheres_sim::supplier_catalogue::enable(&mut g.world)?;
     spheres_sim::operational_warfare::enable(&mut g.world)?;
+    spheres_sim::military_ai::enable(&mut g.world)?;
     Ok(())
 }
 

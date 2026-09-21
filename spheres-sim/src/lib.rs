@@ -23,6 +23,7 @@ pub mod dyads;
 pub mod economy;
 pub mod equipment;
 pub mod economic_ai;
+pub mod military_ai;
 pub mod front;
 pub mod fiscal_preview;
 pub mod government;
@@ -113,6 +114,7 @@ pub enum Command {
     AirSquadron { nation:NationId, order:aviation::SquadronCommand },
     AirBase { nation:NationId, order:airbases::AirbaseCommand },
     AirMission { nation:NationId, order:airmissions::MissionCommand },
+    MilitaryAi { nation:NationId, enabled:bool },
     SetInterestRate { nation: NationId, rate: f64 },
     BreakCurrencyPeg { nation: NationId },
     ResumeAutomaticBank { nation: NationId },
@@ -437,7 +439,7 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
             (*nation, population::policy_quote(w, *nation, *policy).political_cost, REFUSABLE),
         Command::SetConstructionBudget { nation, .. } => (*nation, 0.0, REFUSABLE),
         Command::Company { nation, order } => (*nation, if matches!(order, companies::CompanyOrder::Establish { .. }) {8.0}else{0.0}, REFUSABLE),
-        Command::AirSquadron {nation,..} | Command::AirBase {nation,..} | Command::AirMission {nation,..} => (*nation,0.0,REFUSABLE),
+        Command::AirSquadron {nation,..} | Command::AirBase {nation,..} | Command::AirMission {nation,..} | Command::MilitaryAi {nation,..} => (*nation,0.0,REFUSABLE),
         Command::Equipment { nation, order } => (*nation,
             if matches!(order, EquipmentOrder::Research { .. }) { 6.0 } else { 0.0 }, REFUSABLE),
         Command::SetAnnualBudget { nation, fiscal_year, allocations } => {
@@ -712,6 +714,7 @@ fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
         Command::AirSquadron {nation,order} => aviation::refusal(w,*nation,order),
         Command::AirBase {nation,order} => airbases::refusal(w,*nation,order),
         Command::AirMission {nation,order} => airmissions::refusal(w,*nation,order),
+        Command::MilitaryAi {nation,enabled} => military_ai::refusal(w,*nation,*enabled),
         Command::SetInterestRate { nation, .. } if agency::pegged_rate(w,*nation).is_some() => Some("Exit the currency peg before changing its policy rate.".into()),
         Command::RespondDiplomacy { nation, offer, accept } => agency::response_error(w,*nation,*offer,*accept),
         Command::Sanction { imposer, target } => sovereignty::hostility_reason(w, *imposer, *target),
@@ -1100,6 +1103,7 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
         Command::AirSquadron {nation,order} => aviation::apply(w,*nation,order)?,
         Command::AirBase {nation,order} => { airbases::apply(w,*nation,order)?; },
         Command::AirMission {nation,order} => airmissions::apply(w,*nation,order)?,
+        Command::MilitaryAi {nation,enabled} => military_ai::configure(w,*nation,*enabled)?,
         Command::SetResearchFocus { nation, domain, tech: want } => {
             let di = domain.index();
             let target = match want {
@@ -1475,6 +1479,7 @@ pub const SYSTEMS: &[(&str, fn(&mut WorldState))] = &[
     ("politics", politics::tick),
     ("agency", agency::tick),
     ("economic_ai", economic_ai::tick),
+    ("military_ai", military_ai::tick),
     ("fiscal_recovery_ai", fiscal_recovery_ai::tick),
     ("sovereignty", sovereignty::tick),
     // The campaign director reads the settled month. It grants no bonus and
@@ -1652,6 +1657,7 @@ pub fn state_hash(w: &WorldState) -> u64 {
 }
 
 fn equipment_save_version(w: &WorldState) -> u32 {
+    if !w.military_ai.is_empty() { return 7; }
     if !w.supplier_catalogue.is_empty() { return 6; }
     if !w.companies.is_empty() {
         match w.companies.version {
@@ -1762,6 +1768,7 @@ pub fn load(s: &str) -> Result<WorldState, String> {
     equipment::validate_air_support_world(&w)?;
     companies::validate_state(&w)?;
     supplier_catalogue::validate(&w)?;
+    military_ai::validate(&w)?;
     // This one documented upgrade expands only the old empty Japanese
     // organization slots. It never fills a research gap or changes a person;
     // populated or mixed obsolete bindings still fail closed.

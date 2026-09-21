@@ -148,7 +148,7 @@ fn squadron(w: &WorldState, id: NationId, key: u32) -> Option<&aviation::Squadro
         .iter()
         .find(|s| s.id == key)
 }
-fn target_reason(
+pub(crate) fn target_reason(
     w: &WorldState,
     id: NationId,
     c: &Conflict,

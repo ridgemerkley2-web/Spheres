@@ -460,7 +460,7 @@
       "id": "S17",
       "phase": "experience",
       "title": "Make AI countries use the same rules",
-      "status": "planned",
+      "status": "in_progress",
       "depends": [
         "S08",
         "S10",
@@ -930,13 +930,13 @@
   "last_completed_session": "S16",
   "next_session": "S17",
   "execution": {
-    "authorized_through": "S16",
-    "stop_boundary": "S16",
-    "status": "stopped",
-    "previous_stop": "S15",
-    "instruction": "continue",
-    "instruction_date": "2026-09-14",
-    "next_session_requires_instruction": true
+    "authorized_through": "S17",
+    "stop_boundary": "S17",
+    "status": "running",
+    "previous_stop": "S16",
+    "instruction": "next'",
+    "instruction_date": "2026-09-21",
+    "next_session_requires_instruction": false
   },
   "gate_decisions": {
     "G1": {

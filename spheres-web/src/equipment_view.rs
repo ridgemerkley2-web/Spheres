@@ -29,7 +29,7 @@ fn checked(w:&WorldState,me:NationId,label:&str,command:Value)->Value {
             // These two command families have complete native world-refusal
             // checks. refusal_of also applies the same political-price gate,
             // so there is no need to copy the world and dispatch again.
-            Command::Equipment {..}|Command::Company {..}|Command::AirSquadron {..}|Command::AirBase {..}|Command::AirMission {..} =>
+            Command::Equipment {..}|Command::Company {..}|Command::AirSquadron {..}|Command::AirBase {..}|Command::AirMission {..}|Command::MilitaryAi {..} =>
                 spheres_sim::refusal_of(w,&c).map_or(Ok(()),Err),
             _ => spheres_sim::apply_command(&mut w.clone(),&c),
         }).err();
@@ -160,7 +160,7 @@ pub fn preview(w:&WorldState,me:NationId,session:&str,v:&Value)->Result<Value,St
     if let Some(command)=v.get("command") {
         let parsed=super::parse_command(w,command,me).ok_or("The equipment order is malformed.")?;
         if let Command::Company {ref order,..}=parsed {return Ok(company_preview(w,me,session,command,order));}
-        if matches!(&parsed,Command::AirSquadron{..}|Command::AirBase{..}|Command::AirMission{..}|Command::Equipment{order:EquipmentOrder::AirSupport{..},..}) {return Ok(flight_preview(w,me,session,command,&parsed));}
+        if matches!(&parsed,Command::AirSquadron{..}|Command::AirBase{..}|Command::AirMission{..}|Command::MilitaryAi{..}|Command::Equipment{order:EquipmentOrder::AirSupport{..},..}) {return Ok(flight_preview(w,me,session,command,&parsed));}
         let Command::Equipment {ref order,..}=parsed else{return Err("This preview accepts equipment and company orders only.".into());};
         if matches!(order,EquipmentOrder::SupplyPolicy{..}|EquipmentOrder::SupplyPolicyClear) {return Ok(supply_automation_preview(w,me,session,command,order));}
         if matches!(order,EquipmentOrder::AmmoReserve{..}|EquipmentOrder::AmmoReserveClear{..}) {return Ok(ammunition_reserve_preview(w,me,session,command,order));}

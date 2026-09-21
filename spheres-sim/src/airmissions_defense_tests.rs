@@ -11,6 +11,66 @@ const FIGHTER: &str = "s16-authored-fighter";
 const BOMBS: &str = "air_bomb_unguided";
 const MISSILES: &str = "air_missile_short_range";
 
+#[test]
+fn s17_staff_orders_real_attack_and_defense_once_and_respects_readiness() {
+    let (mut w,_,_)=fixture();
+    w.rules.economic_competition=true;
+    w.rules.production_system=true;
+    w.rules.manufacturing_system=true;
+    w.rules.resource_market=true;
+    w.player=Some(SECOND);
+    crate::military_ai::enable(&mut w).unwrap();
+    // Isolate tactical review from monthly portfolio changes in this authored
+    // S16 readiness fixture. No aircraft or stores are seeded by military AI.
+    let today=clock::absolute_day(&w);
+    for id in [ATTACKER,DEFENDER] {
+        w.military_ai.plans.insert(id,crate::military_ai::Plan {last_review_day:Some(today),..Default::default()});
+    }
+    let before_attack=holding(&w,ATTACKER,BOMBER).units;
+    let before_defense=holding(&w,DEFENDER,FIGHTER).units;
+    crate::military_ai::tick(&mut w);
+    let orders=&w.air_missions.as_ref().unwrap().orders;
+    let attack=orders.iter().find(|o|o.nation==ATTACKER).unwrap().clone();
+    let defense=orders.iter().find(|o|o.nation==DEFENDER).unwrap().clone();
+    assert_ne!(attack.kind,MissionKind::DefendSkies);
+    assert_eq!(defense.kind,MissionKind::DefendSkies);
+    assert_eq!(attack.target,defense.target);
+    assert_eq!(orders.len(),2);
+    let saved=crate::save(&w);crate::military_ai::tick(&mut w);assert_eq!(crate::save(&w),saved);
+    let mut loaded=crate::load(&saved).unwrap();
+    day(&mut w);day(&mut loaded);assert_eq!(crate::save(&w),crate::save(&loaded));
+    assert!(report(&w,defense.id).stores_used>0.0);
+    assert!(report(&w,defense.id).defense.as_ref().unwrap().opposing_missions>0);
+    assert!(holding(&w,ATTACKER,BOMBER).units<=before_attack);
+    assert!(holding(&w,DEFENDER,FIGHTER).units<=before_defense);
+
+    remaining(&mut w,DEFENDER,MISSILES,0.0);
+    remaining(&mut w,ATTACKER,BOMBS,0.0);
+    for id in [ATTACKER,DEFENDER] {
+        for sq in &mut w.nation_mut(id).aviation.as_mut().unwrap().squadrons {sq.service_days_left=0;}
+    }
+    let count=w.air_missions.as_ref().unwrap().orders.len();
+    crate::military_ai::tick(&mut w);
+    assert_eq!(w.air_missions.as_ref().unwrap().orders.len(),count,"No infinite-ammunition fallback");
+    assert!(w.military_ai.plans[&DEFENDER].operations.contains("stores") || w.military_ai.plans[&DEFENDER].operations.contains("ammunition"),"{}",w.military_ai.plans[&DEFENDER].operations);
+}
+
+#[test]
+fn s17_staff_cannot_launch_from_an_unavailable_base_or_transit() {
+    let (mut w,home,_)=fixture();
+    w.rules.economic_competition=true;w.rules.production_system=true;
+    w.rules.manufacturing_system=true;w.rules.resource_market=true;w.player=Some(SECOND);
+    crate::military_ai::enable(&mut w).unwrap();
+    let today=clock::absolute_day(&w);
+    for id in [ATTACKER,DEFENDER] {
+        w.military_ai.plans.insert(id,crate::military_ai::Plan {last_review_day:Some(today),..Default::default()});
+    }
+    w.districts.insert(home,SECOND);
+    crate::military_ai::tick(&mut w);
+    assert!(w.air_missions.as_ref().is_none_or(|s|!s.orders.iter().any(|o|o.nation==ATTACKER)));
+    assert!(!w.military_ai.plans[&ATTACKER].operations.is_empty());
+}
+
 fn near(a: f64, b: f64) {
     assert!(
         (a - b).abs() <= 1e-9 * (1.0 + a.abs().max(b.abs())),
