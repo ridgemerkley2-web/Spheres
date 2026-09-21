@@ -315,6 +315,78 @@ fn review_cadence_and_save_resume_are_deterministic() {
 }
 
 #[test]
+fn maintenance_reallocation_pays_political_cost_and_only_changes_future_funding() {
+    let mut w = init::world_1990(GameRules {
+        daily_simulation: true,
+        production_system: true,
+        ..Default::default()
+    });
+    w.nation_mut(HOME).political_capital = 1000.0;
+    programs::set_construction_budget(&mut w, HOME, 0.002).unwrap();
+    let allocations = w.nation(HOME).budget_for(w.year).allocations;
+    let mut departments = programs::default_departments();
+    departments[DEF] = [2000, 2000, 100, 3900, 2000];
+    let fiscal_year = w.year;
+    crate::apply_command(
+        &mut w,
+        &Command::SetProgramBudget {
+            nation: HOME,
+            fiscal_year,
+            allocations,
+            departments,
+        },
+    )
+    .unwrap();
+    programs::begin_day(&mut w);
+    assert!(upkeep(&w, HOME) > support_authority(&w, HOME));
+    let before = w.clone();
+    let old = before.nation(HOME).program_budget.as_ref().unwrap();
+    let mut blocked = before.clone();
+    blocked.nation_mut(HOME).political_capital = 8.0;
+    let original = crate::save(&blocked);
+    assert!(rebalance_support(&mut blocked, HOME)
+        .unwrap_err()
+        .contains("political capital"));
+    assert_eq!(crate::save(&blocked), original);
+    assert!(rebalance_support(&mut w, HOME).unwrap());
+    let nat = w.nation(HOME);
+    let plan = nat.program_budget.as_ref().unwrap();
+    assert_eq!(nat.budget_for(w.year).allocations, allocations);
+    assert_eq!(nat.treasury_bn, before.nation(HOME).treasury_bn);
+    assert_eq!(nat.debt_bn, before.nation(HOME).debt_bn);
+    assert_eq!(plan.available_bn, old.available_bn);
+    assert_eq!(plan.spent_today_bn, old.spent_today_bn);
+    assert_eq!(plan.prepaid_bn, old.prepaid_bn);
+    assert_eq!(plan.departments[DEF].iter().sum::<u16>(), 10000);
+    assert_eq!(&plan.departments[DEF][..2], &departments[DEF][..2]);
+    assert!(
+        plan.departments[DEF][2] <= 5000
+            && plan.departments[DEF][3] >= 500
+            && plan.departments[DEF][4] >= 500
+    );
+    let command = Command::SetProgramBudget {
+        nation: HOME,
+        fiscal_year,
+        allocations,
+        departments: plan.departments,
+    };
+    let cost = crate::command_price(&before, &command).unwrap().1;
+    assert!(cost > 0.0);
+    assert_eq!(
+        nat.political_capital,
+        before.nation(HOME).political_capital - cost
+    );
+    let mut baseline = before;
+    clock::advance_date(&mut w);
+    clock::advance_date(&mut baseline);
+    programs::begin_day(&mut w);
+    programs::begin_day(&mut baseline);
+    assert!(
+        programs::available_bn(&w, HOME, DEF, 2) > programs::available_bn(&baseline, HOME, DEF, 2)
+    );
+}
+
+#[test]
 fn managed_supplier_identity_is_required() {
     let (mut w, _, cid) = fixture();
     w.supplier_catalogue.plans.remove(&HOME);

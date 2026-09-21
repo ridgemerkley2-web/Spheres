@@ -215,7 +215,51 @@ fn committed_units(w: &WorldState, n: NationId, class: &str) -> u32 {
     }
     total
 }
+fn rebalance_support(w: &mut WorldState, n: NationId) -> Result<bool, String> {
+    let need = (upkeep(w, n) + pending_upkeep(w, n)) * 1.05;
+    if support_authority(w, n) + 1e-10 >= need {
+        return Ok(false);
+    }
+    let nat = w.nation(n);
+    let Some(plan) = &nat.program_budget else {
+        return Ok(false);
+    };
+    let allocations = nat.budget_for(w.year).allocations;
+    let annual = nat.gdp.max(0.0) * allocations[DEF];
+    if annual <= 0.0 {
+        return Ok(false);
+    }
+    let mut departments = plan.departments;
+    // Protect personnel and operations, retain a research/procurement floor,
+    // and never raise the ministry's total allocation or today's cash authority.
+    let desired = (need * 365.0 / annual * 10000.0).ceil().min(5000.0) as u16;
+    let mut missing = desired.saturating_sub(departments[DEF][2]);
+    for source in [3, 4] {
+        let moved = missing.min(departments[DEF][source].saturating_sub(500));
+        departments[DEF][source] -= moved;
+        departments[DEF][2] += moved;
+        missing -= moved;
+    }
+    if departments == plan.departments {
+        return Ok(false);
+    }
+    let command = Command::SetProgramBudget {
+        nation: n,
+        fiscal_year: w.year,
+        allocations,
+        departments,
+    };
+    if let Some((_, cost, _)) = crate::command_price(w, &command) {
+        if cost > 0.0 && nat.political_capital < cost + 8.0 {
+            return Err(format!("Maintenance needs a Defense reallocation; saving political capital for its {:.1} cost plus 8 reserve. Current support remains limited by paid upkeep.", cost));
+        }
+    }
+    crate::apply_command(w, &command)?;
+    Ok(true)
+}
+
 fn support(w: &mut WorldState, n: NationId) -> Result<String, String> {
+    let rebalanced = rebalance_support(w, n)?;
     let cap = support_authority(w, n).min(1000.0);
     let current = w
         .nation(n)
@@ -254,10 +298,15 @@ fn support(w: &mut WorldState, n: NationId) -> Result<String, String> {
     {
         equipment(w, n, EquipmentOrder::AmmoActivate)?;
     }
-    Ok(if cap + 1e-10 < upkeep(w, n) {
+    let result: String = if cap + 1e-10 < upkeep(w, n) {
         "Existing Maintenance & supply allocation cannot cover the whole fleet; new acquisitions wait. Readiness remains limited by actual payment.".into()
     } else {
         "Ordinary next-day support cap: fleet upkeep first, then eligible finished aircraft stores for 30 days. Purchases await stock, access and delivery.".into()
+    };
+    Ok(if rebalanced {
+        format!("Shifted future Defense funding toward maintenance; total spending and today's authority are unchanged. {result}")
+    } else {
+        result
     })
 }
 
@@ -1085,10 +1134,17 @@ pub fn tick(w: &mut WorldState) {
         .enumerate()
         .filter_map(|(slot, n)| {
             let prior = w.military_ai.plans.get(n).and_then(|p| p.last_review_day);
-            (directed(w, *n)
-                && prior.is_none_or(|d| today.saturating_sub(d) >= REVIEW_DAYS)
-                && today.rem_euclid(REVIEW_DAYS) == slot as i32 % REVIEW_DAYS)
-                .then_some(*n)
+            let scheduled = match prior {
+                Some(day) => today.saturating_sub(day) >= REVIEW_DAYS,
+                None => {
+                    w.nation(*n)
+                        .aviation
+                        .as_ref()
+                        .is_some_and(|s| s.squadrons.iter().any(|s| s.assigned > 0))
+                        || today.rem_euclid(REVIEW_DAYS) == slot as i32 % REVIEW_DAYS
+                }
+            };
+            (directed(w, *n) && scheduled).then_some(*n)
         })
         .collect();
     for n in due {
