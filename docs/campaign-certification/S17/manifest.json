@@ -1,0 +1,2047 @@
+{
+  "format": "spheres-s17-closure/v1",
+  "status": "complete",
+  "session": "S17",
+  "candidate_revision": "aebbf0c13623535c7e975518e934909e8e401b12",
+  "completed_utc": "2026-09-21T23:25:17.284589+00:00",
+  "g4_earned": false,
+  "cp1_earned": false,
+  "s18_started": false,
+  "scope": "Ordinary-rule autonomous procurement, company development, support, basing and supported air operations. Isolated major/small and domestic/imported acquisition tests plus a six-day authored S16 France/Italy continuation, exact native/browser save comparisons, reviewed enable/pause and desktop/narrow visual checks. No unassisted 1990-2035, historical-content, performance, human-usability or release-certification claim.",
+  "qualification": {
+    "windows": {
+      "fixture": {
+        "revision": "aebbf0c13623535c7e975518e934909e8e401b12",
+        "lane": "fixture",
+        "clean_before": true,
+        "command": [
+          "cargo",
+          "test",
+          "--locked",
+          "--release",
+          "-p",
+          "spheres-web",
+          "s17_export_disposable_staff_fixture",
+          "--",
+          "--ignored",
+          "--nocapture"
+        ],
+        "runner_sha256": "d547ff78622b2aafa660de022b8bce503f1aa6802bab998a89140f3cd748faed",
+        "started_utc": "2026-09-21T23:21:05.829274+00:00",
+        "fixture": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S17-fixture-final6",
+        "exit_code": 0,
+        "finished_utc": "2026-09-21T23:22:20.541842+00:00",
+        "revision_after": "aebbf0c13623535c7e975518e934909e8e401b12",
+        "clean_after": true,
+        "log_sha256": "2cb93190ce4efeb2ee0136f53ec0ca75eda2b651a3b43071172a2e3e17ddae33",
+        "totals": {
+          "passed": 1,
+          "failed": 0,
+          "ignored": 0,
+          "completed_targets": 2
+        },
+        "test_binaries": [
+          {
+            "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+            "sha256": "29620b9bf65a8a0c7c97c93ca77259947b421a295976b9a427a3862e74221aa3"
+          }
+        ],
+        "passed": true
+      },
+      "binary": {
+        "revision": "aebbf0c13623535c7e975518e934909e8e401b12",
+        "lane": "binary",
+        "clean_before": true,
+        "command": [
+          "cargo",
+          "build",
+          "--locked",
+          "--release",
+          "-p",
+          "spheres-web"
+        ],
+        "runner_sha256": "d547ff78622b2aafa660de022b8bce503f1aa6802bab998a89140f3cd748faed",
+        "started_utc": "2026-09-21T23:22:20.912776+00:00",
+        "exit_code": 0,
+        "finished_utc": "2026-09-21T23:22:21.039738+00:00",
+        "revision_after": "aebbf0c13623535c7e975518e934909e8e401b12",
+        "clean_after": true,
+        "log_sha256": "df0e7ec342f8669fa8c243d18f5c4854e4d372c5619c70e36a92115b038c0d41",
+        "binary": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\spheres-web.exe",
+          "sha256": "2641e1014258a9579f19feb36de6ec002a2a24e7b0c39254acd6556a19cc07ec"
+        },
+        "passed": true
+      },
+      "web": {
+        "revision": "aebbf0c13623535c7e975518e934909e8e401b12",
+        "lane": "web",
+        "clean_before": true,
+        "command": [
+          "cargo",
+          "test",
+          "--locked",
+          "--release",
+          "-p",
+          "spheres-web",
+          "--no-fail-fast"
+        ],
+        "runner_sha256": "d547ff78622b2aafa660de022b8bce503f1aa6802bab998a89140f3cd748faed",
+        "started_utc": "2026-09-21T23:22:57.321651+00:00",
+        "exit_code": 0,
+        "finished_utc": "2026-09-21T23:23:16.277019+00:00",
+        "revision_after": "aebbf0c13623535c7e975518e934909e8e401b12",
+        "clean_after": true,
+        "log_sha256": "f6a85c6b9ac4de3d5f100ebdf285b6d9bc2d552feb0803af9ba2ecfadd1fea44",
+        "totals": {
+          "passed": 398,
+          "failed": 0,
+          "ignored": 20,
+          "completed_targets": 2
+        },
+        "test_binaries": [
+          {
+            "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+            "sha256": "29620b9bf65a8a0c7c97c93ca77259947b421a295976b9a427a3862e74221aa3"
+          }
+        ],
+        "passed": true
+      },
+      "sim": {
+        "revision": "8b31913e7db3dab499ae7a3dce1a753ae8654bdb",
+        "lane": "sim",
+        "clean_before": true,
+        "command": [
+          "cargo",
+          "test",
+          "--locked",
+          "--release",
+          "-p",
+          "spheres-sim",
+          "--lib",
+          "--no-fail-fast"
+        ],
+        "runner_sha256": "d547ff78622b2aafa660de022b8bce503f1aa6802bab998a89140f3cd748faed",
+        "started_utc": "2026-09-21T23:05:34.297661+00:00",
+        "exit_code": 0,
+        "finished_utc": "2026-09-21T23:10:23.202736+00:00",
+        "revision_after": "8b31913e7db3dab499ae7a3dce1a753ae8654bdb",
+        "clean_after": true,
+        "log_sha256": "41a270bcf66b57ece08a80e9d6c003367404cceaab41bc61da3196ff60890821",
+        "totals": {
+          "passed": 886,
+          "failed": 0,
+          "ignored": 26,
+          "completed_targets": 1
+        },
+        "test_binaries": [
+          {
+            "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_sim-de8a2e7790f15db6.exe",
+            "sha256": "caeab68bec7ae16d354b0849f2a0e91d6ef0a23ebe414ed6e3d1de9aff011b6b"
+          }
+        ],
+        "passed": true
+      },
+      "integration": {
+        "revision": "8b31913e7db3dab499ae7a3dce1a753ae8654bdb",
+        "lane": "integration",
+        "clean_before": true,
+        "command": [
+          "cargo",
+          "test",
+          "--locked",
+          "--release",
+          "-p",
+          "spheres-sim",
+          "--test",
+          "ground_equipment_integration",
+          "--test",
+          "military_operations",
+          "--test",
+          "campaign_operations",
+          "--test",
+          "equipment_integration",
+          "--test",
+          "company_refits",
+          "--test",
+          "equipment_supply_automation",
+          "--test",
+          "company_ammunition",
+          "--test",
+          "ammunition_reserves",
+          "--test",
+          "aviation_ammunition",
+          "--test",
+          "campaign_movement_audit",
+          "--test",
+          "campaign_peace_audit",
+          "--test",
+          "companies_integration",
+          "--test",
+          "s08_supplier_lifecycle",
+          "--no-fail-fast"
+        ],
+        "runner_sha256": "d547ff78622b2aafa660de022b8bce503f1aa6802bab998a89140f3cd748faed",
+        "started_utc": "2026-09-21T23:10:23.431038+00:00",
+        "exit_code": 0,
+        "finished_utc": "2026-09-21T23:11:17.450654+00:00",
+        "revision_after": "8b31913e7db3dab499ae7a3dce1a753ae8654bdb",
+        "clean_after": true,
+        "log_sha256": "ac79cb3ab0461d69aaec158731dbce564b6274dfaf048432c73b913268b1f460",
+        "totals": {
+          "passed": 118,
+          "failed": 0,
+          "ignored": 4,
+          "completed_targets": 13
+        },
+        "test_binaries": [],
+        "passed": true
+      },
+      "node": {
+        "revision": "1b7007a8b7b4ca4b960b403b76868cd134dabdd6",
+        "lane": "node",
+        "clean_before": true,
+        "command": [
+          "node",
+          "tools/ui/run-unit.cjs"
+        ],
+        "runner_sha256": "d547ff78622b2aafa660de022b8bce503f1aa6802bab998a89140f3cd748faed",
+        "started_utc": "2026-09-21T23:17:02.715118+00:00",
+        "exit_code": 0,
+        "finished_utc": "2026-09-21T23:18:44.706228+00:00",
+        "revision_after": "1b7007a8b7b4ca4b960b403b76868cd134dabdd6",
+        "clean_after": true,
+        "log_sha256": "e512982b6ba8041088196860679e4f8f07422e80cad8b71d104972b7caff684b",
+        "totals": {
+          "tests": 1594,
+          "pass": 1593,
+          "fail": 0,
+          "skipped": 1
+        },
+        "passed": true
+      },
+      "browser": {
+        "revision": "aebbf0c13623535c7e975518e934909e8e401b12",
+        "lane": "browser",
+        "clean_before": true,
+        "command": [
+          "node",
+          "tools/ui/ci-military-staff.cjs"
+        ],
+        "runner_sha256": "d547ff78622b2aafa660de022b8bce503f1aa6802bab998a89140f3cd748faed",
+        "started_utc": "2026-09-21T23:22:21.406338+00:00",
+        "fixture": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S17-fixture-final6",
+        "binary_sha256_before": "2641e1014258a9579f19feb36de6ec002a2a24e7b0c39254acd6556a19cc07ec",
+        "exit_code": 0,
+        "finished_utc": "2026-09-21T23:22:56.947665+00:00",
+        "revision_after": "aebbf0c13623535c7e975518e934909e8e401b12",
+        "clean_after": true,
+        "log_sha256": "8ab47ead1105b047f2dcd36fad890630c9e8d102ed15b27c3031428c7b551515",
+        "binary": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\spheres-web.exe",
+          "sha256": "2641e1014258a9579f19feb36de6ec002a2a24e7b0c39254acd6556a19cc07ec"
+        },
+        "passed": true
+      }
+    },
+    "linux": {
+      "format": "spheres-s17-linux/v1",
+      "revision": "aebbf0c13623535c7e975518e934909e8e401b12",
+      "started_utc": "2026-09-21T23:21:07.709720+00:00",
+      "status": "passed",
+      "scope": "Final native web suite on Linux; unchanged Node interface code retains final5 qualification. Unchanged simulation and thirteen integration targets retain final4 qualification, with an exact source comparison in the closure manifest. No external old-save, elapsed campaign, historical-content or gate-completion claim.",
+      "runner_sha256": "e1abc2b0981c2933d29bc62985e439eed1a05c0a6a55f43bcddf791513b87598",
+      "derived_from": {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/run-s10-final-linux.py",
+        "sha256": "a27a4149a6e70f656118236ff97a4613e429279ae628a65134b585989f1209da"
+      },
+      "source_verification": "Windows git.exe on the same complete NTFS checkout; test and compile processes use the existing Linux toolchain and target directory.",
+      "environment": {
+        "GIT_DIR": "/mnt/c/Users/ridge/Spheres/.git/worktrees/integration",
+        "GIT_WORK_TREE": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+        "GIT_OPTIONAL_LOCKS": "0",
+        "CARGO_BUILD_JOBS": "4",
+        "GIT_CONFIG_COUNT": "1",
+        "GIT_CONFIG_KEY_0": "core.autocrlf",
+        "GIT_CONFIG_VALUE_0": "true",
+        "CARGO_HOME": "/home/ridge/.cache/spheres-s05-tools/cargo",
+        "RUSTUP_HOME": "/home/ridge/.cache/spheres-s05-tools/rustup",
+        "CARGO_TARGET_DIR": "/home/ridge/.cache/spheres-s05-target",
+        "CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER": "/home/ridge/.cache/spheres-s05-tools/bin/cc",
+        "CC": "/home/ridge/.cache/spheres-s05-tools/bin/cc",
+        "TMPDIR": "/home/ridge/.cache/spheres-s05-runs/tmp"
+      },
+      "checks": [
+        {
+          "name": "web",
+          "command": [
+            "cargo",
+            "test",
+            "--locked",
+            "--release",
+            "-p",
+            "spheres-web",
+            "--no-fail-fast"
+          ],
+          "started_utc": "2026-09-21T23:21:08.459530+00:00",
+          "finished_utc": "2026-09-21T23:24:32.879572+00:00",
+          "elapsed_seconds": 204.42005606099997,
+          "exit_code": 0,
+          "log": "web.log",
+          "log_sha256": "fd2338a1958998b7f3f916d3a33ca36669a3363686fa1a8f50b40b9de7277557",
+          "totals": {
+            "passed": 398,
+            "failed": 0,
+            "ignored": 20,
+            "completed_targets": 2
+          },
+          "source_before": {
+            "head": "aebbf0c13623535c7e975518e934909e8e401b12",
+            "status": ""
+          },
+          "source_after": {
+            "head": "aebbf0c13623535c7e975518e934909e8e401b12",
+            "status": ""
+          },
+          "passed": true,
+          "test_binary": {
+            "path": "/home/ridge/.cache/spheres-s05-target/release/deps/spheres_web-20279169217b1e37",
+            "bytes": 349201272,
+            "sha256": "32f9b6934fe7f38476bd67ff811ceec13e7f73650c90f018e6d5c99da01616e5"
+          }
+        }
+      ],
+      "source_before": {
+        "head": "aebbf0c13623535c7e975518e934909e8e401b12",
+        "status": ""
+      },
+      "toolchain_sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801",
+      "source_after": {
+        "head": "aebbf0c13623535c7e975518e934909e8e401b12",
+        "status": ""
+      },
+      "runner_sha256_after": "e1abc2b0981c2933d29bc62985e439eed1a05c0a6a55f43bcddf791513b87598",
+      "passed": true,
+      "finished_utc": "2026-09-21T23:24:33.261646+00:00"
+    },
+    "linux_node": {
+      "format": "spheres-s17-linux/v1",
+      "revision": "1b7007a8b7b4ca4b960b403b76868cd134dabdd6",
+      "started_utc": "2026-09-21T23:14:54.064827+00:00",
+      "status": "passed",
+      "scope": "Final interface native web and Node suites on Linux. Unchanged simulation and thirteen integration targets retain final4 qualification, with an exact source comparison in the closure manifest. No external old-save, elapsed campaign, historical-content or gate-completion claim.",
+      "runner_sha256": "ebc36519586faa6fb584f22dc3176f664fa1f2292cbccfa2eec06c939dad07ae",
+      "derived_from": {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/run-s10-final-linux.py",
+        "sha256": "a27a4149a6e70f656118236ff97a4613e429279ae628a65134b585989f1209da"
+      },
+      "source_verification": "Windows git.exe on the same complete NTFS checkout; test and compile processes use the existing Linux toolchain and target directory.",
+      "environment": {
+        "GIT_DIR": "/mnt/c/Users/ridge/Spheres/.git/worktrees/integration",
+        "GIT_WORK_TREE": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+        "GIT_OPTIONAL_LOCKS": "0",
+        "CARGO_BUILD_JOBS": "4",
+        "GIT_CONFIG_COUNT": "1",
+        "GIT_CONFIG_KEY_0": "core.autocrlf",
+        "GIT_CONFIG_VALUE_0": "true",
+        "CARGO_HOME": "/home/ridge/.cache/spheres-s05-tools/cargo",
+        "RUSTUP_HOME": "/home/ridge/.cache/spheres-s05-tools/rustup",
+        "CARGO_TARGET_DIR": "/home/ridge/.cache/spheres-s05-target",
+        "CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER": "/home/ridge/.cache/spheres-s05-tools/bin/cc",
+        "CC": "/home/ridge/.cache/spheres-s05-tools/bin/cc",
+        "TMPDIR": "/home/ridge/.cache/spheres-s05-runs/tmp"
+      },
+      "checks": [
+        {
+          "name": "web",
+          "command": [
+            "cargo",
+            "test",
+            "--locked",
+            "--release",
+            "-p",
+            "spheres-web",
+            "--no-fail-fast"
+          ],
+          "started_utc": "2026-09-21T23:14:54.819094+00:00",
+          "finished_utc": "2026-09-21T23:18:50.909793+00:00",
+          "elapsed_seconds": 236.09073117999992,
+          "exit_code": 0,
+          "log": "web.log",
+          "log_sha256": "bd1c3fd00eabfa792515f5725fe54312d8619fe66271fa969081ee491ff84d02",
+          "totals": {
+            "passed": 398,
+            "failed": 0,
+            "ignored": 20,
+            "completed_targets": 2
+          },
+          "source_before": {
+            "head": "1b7007a8b7b4ca4b960b403b76868cd134dabdd6",
+            "status": ""
+          },
+          "source_after": {
+            "head": "1b7007a8b7b4ca4b960b403b76868cd134dabdd6",
+            "status": ""
+          },
+          "passed": true,
+          "test_binary": {
+            "path": "/home/ridge/.cache/spheres-s05-target/release/deps/spheres_web-20279169217b1e37",
+            "bytes": 349203360,
+            "sha256": "13cbc87ba4a325cb12fc1556215ec0ba630b5ceaeba0e0e5d381872cec816bb1"
+          }
+        },
+        {
+          "name": "node",
+          "command": [
+            "node",
+            "tools/ui/run-unit.cjs"
+          ],
+          "started_utc": "2026-09-21T23:18:51.291296+00:00",
+          "finished_utc": "2026-09-21T23:20:36.029651+00:00",
+          "elapsed_seconds": 104.73834916100009,
+          "exit_code": 0,
+          "log": "node.log",
+          "log_sha256": "24fcaa564f3b3289ea9d6818a9de888bace57ffae49e25e2cd7e5ed7b898ede9",
+          "totals": {
+            "tests": 1594,
+            "passed": 1593,
+            "failed": 0,
+            "skipped": 1
+          },
+          "source_before": {
+            "head": "1b7007a8b7b4ca4b960b403b76868cd134dabdd6",
+            "status": ""
+          },
+          "source_after": {
+            "head": "1b7007a8b7b4ca4b960b403b76868cd134dabdd6",
+            "status": ""
+          },
+          "passed": true
+        }
+      ],
+      "source_before": {
+        "head": "1b7007a8b7b4ca4b960b403b76868cd134dabdd6",
+        "status": ""
+      },
+      "toolchain_sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801",
+      "source_after": {
+        "head": "1b7007a8b7b4ca4b960b403b76868cd134dabdd6",
+        "status": ""
+      },
+      "runner_sha256_after": "ebc36519586faa6fb584f22dc3176f664fa1f2292cbccfa2eec06c939dad07ae",
+      "passed": true,
+      "finished_utc": "2026-09-21T23:20:36.232535+00:00"
+    },
+    "linux_simulation": {
+      "format": "spheres-s17-linux/v1",
+      "revision": "8b31913e7db3dab499ae7a3dce1a753ae8654bdb",
+      "started_utc": "2026-09-21T23:03:25.028891+00:00",
+      "status": "passed",
+      "scope": "Full native simulation library, web and Node suites, plus thirteen ground/shared-force/supply/refit integration targets on Linux. No external old-save, elapsed campaign, exhaustive historical-content or gate-completion claim.",
+      "runner_sha256": "610bf6d30262cbfa980fc681a71f3aea92e8b854eecd1d0b94d759da5d8eb8ed",
+      "derived_from": {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/run-s10-final-linux.py",
+        "sha256": "a27a4149a6e70f656118236ff97a4613e429279ae628a65134b585989f1209da"
+      },
+      "source_verification": "Windows git.exe on the same complete NTFS checkout; test and compile processes use the existing Linux toolchain and target directory.",
+      "environment": {
+        "GIT_DIR": "/mnt/c/Users/ridge/Spheres/.git/worktrees/integration",
+        "GIT_WORK_TREE": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+        "GIT_OPTIONAL_LOCKS": "0",
+        "CARGO_BUILD_JOBS": "4",
+        "GIT_CONFIG_COUNT": "1",
+        "GIT_CONFIG_KEY_0": "core.autocrlf",
+        "GIT_CONFIG_VALUE_0": "true",
+        "CARGO_HOME": "/home/ridge/.cache/spheres-s05-tools/cargo",
+        "RUSTUP_HOME": "/home/ridge/.cache/spheres-s05-tools/rustup",
+        "CARGO_TARGET_DIR": "/home/ridge/.cache/spheres-s05-target",
+        "CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER": "/home/ridge/.cache/spheres-s05-tools/bin/cc",
+        "CC": "/home/ridge/.cache/spheres-s05-tools/bin/cc",
+        "TMPDIR": "/home/ridge/.cache/spheres-s05-runs/tmp"
+      },
+      "checks": [
+        {
+          "name": "web",
+          "command": [
+            "cargo",
+            "test",
+            "--locked",
+            "--release",
+            "-p",
+            "spheres-web",
+            "--no-fail-fast"
+          ],
+          "started_utc": "2026-09-21T23:03:25.796733+00:00",
+          "finished_utc": "2026-09-21T23:06:57.127657+00:00",
+          "elapsed_seconds": 211.330919835,
+          "exit_code": 0,
+          "log": "web.log",
+          "log_sha256": "d123e980571a80af7f2675afd03956bafe4a3f572d2009b6094a01e0d88d57f2",
+          "totals": {
+            "passed": 398,
+            "failed": 0,
+            "ignored": 20,
+            "completed_targets": 2
+          },
+          "source_before": {
+            "head": "8b31913e7db3dab499ae7a3dce1a753ae8654bdb",
+            "status": ""
+          },
+          "source_after": {
+            "head": "8b31913e7db3dab499ae7a3dce1a753ae8654bdb",
+            "status": ""
+          },
+          "passed": true,
+          "test_binary": {
+            "path": "/home/ridge/.cache/spheres-s05-target/release/deps/spheres_web-20279169217b1e37",
+            "bytes": 349203048,
+            "sha256": "6f54f2dcce12e505a1f9e60be31073f5a3a430febe0f0aa468d9e6db2c5f7f92"
+          }
+        },
+        {
+          "name": "sim",
+          "command": [
+            "cargo",
+            "test",
+            "--locked",
+            "--release",
+            "-p",
+            "spheres-sim",
+            "--lib",
+            "--no-fail-fast"
+          ],
+          "started_utc": "2026-09-21T23:06:57.518242+00:00",
+          "finished_utc": "2026-09-21T23:11:12.782259+00:00",
+          "elapsed_seconds": 255.26401456899998,
+          "exit_code": 0,
+          "log": "sim.log",
+          "log_sha256": "e7b828a515d1b01092e9d2f81ab13b3f0208de190ebb56c0414821b2bc540d4b",
+          "totals": {
+            "passed": 886,
+            "failed": 0,
+            "ignored": 26,
+            "completed_targets": 1
+          },
+          "source_before": {
+            "head": "8b31913e7db3dab499ae7a3dce1a753ae8654bdb",
+            "status": ""
+          },
+          "source_after": {
+            "head": "8b31913e7db3dab499ae7a3dce1a753ae8654bdb",
+            "status": ""
+          },
+          "passed": true
+        },
+        {
+          "name": "integration",
+          "command": [
+            "cargo",
+            "test",
+            "--locked",
+            "--release",
+            "-p",
+            "spheres-sim",
+            "--test",
+            "ground_equipment_integration",
+            "--test",
+            "military_operations",
+            "--test",
+            "campaign_operations",
+            "--test",
+            "equipment_integration",
+            "--test",
+            "company_refits",
+            "--test",
+            "equipment_supply_automation",
+            "--test",
+            "company_ammunition",
+            "--test",
+            "ammunition_reserves",
+            "--test",
+            "aviation_ammunition",
+            "--test",
+            "campaign_movement_audit",
+            "--test",
+            "campaign_peace_audit",
+            "--test",
+            "companies_integration",
+            "--test",
+            "s08_supplier_lifecycle",
+            "--no-fail-fast"
+          ],
+          "started_utc": "2026-09-21T23:11:13.019304+00:00",
+          "finished_utc": "2026-09-21T23:12:08.494642+00:00",
+          "elapsed_seconds": 55.475341877999995,
+          "exit_code": 0,
+          "log": "integration.log",
+          "log_sha256": "f77071c59e730db3db9510a43ddd7c6e6d1feeb0671e350d1a303289635ba8c9",
+          "totals": {
+            "passed": 118,
+            "failed": 0,
+            "ignored": 4,
+            "completed_targets": 13
+          },
+          "source_before": {
+            "head": "8b31913e7db3dab499ae7a3dce1a753ae8654bdb",
+            "status": ""
+          },
+          "source_after": {
+            "head": "8b31913e7db3dab499ae7a3dce1a753ae8654bdb",
+            "status": ""
+          },
+          "passed": true
+        },
+        {
+          "name": "node",
+          "command": [
+            "node",
+            "tools/ui/run-unit.cjs"
+          ],
+          "started_utc": "2026-09-21T23:12:08.746237+00:00",
+          "finished_utc": "2026-09-21T23:14:10.285297+00:00",
+          "elapsed_seconds": 121.53905245700003,
+          "exit_code": 0,
+          "log": "node.log",
+          "log_sha256": "e2f0755ec56222e6c8899fcafb9f855e74b50350e87e9ad8fd9d424536acc5d8",
+          "totals": {
+            "tests": 1594,
+            "passed": 1593,
+            "failed": 0,
+            "skipped": 1
+          },
+          "source_before": {
+            "head": "8b31913e7db3dab499ae7a3dce1a753ae8654bdb",
+            "status": ""
+          },
+          "source_after": {
+            "head": "8b31913e7db3dab499ae7a3dce1a753ae8654bdb",
+            "status": ""
+          },
+          "passed": true
+        }
+      ],
+      "source_before": {
+        "head": "8b31913e7db3dab499ae7a3dce1a753ae8654bdb",
+        "status": ""
+      },
+      "toolchain_sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801",
+      "source_after": {
+        "head": "8b31913e7db3dab499ae7a3dce1a753ae8654bdb",
+        "status": ""
+      },
+      "runner_sha256_after": "610bf6d30262cbfa980fc681a71f3aea92e8b854eecd1d0b94d759da5d8eb8ed",
+      "passed": true,
+      "finished_utc": "2026-09-21T23:14:10.502862+00:00"
+    },
+    "source_continuity": {
+      "simulation_revision": "8b31913e7db3dab499ae7a3dce1a753ae8654bdb",
+      "node_revision": "1b7007a8b7b4ca4b960b403b76868cd134dabdd6",
+      "interface_revision": "aebbf0c13623535c7e975518e934909e8e401b12",
+      "changed_paths": [
+        "spheres-web/src/equipment_flight_view.rs",
+        "spheres-web/ui/equipment-ui.css",
+        "tools/ui/ci-military-staff.cjs"
+      ],
+      "node_changed_paths": [
+        "spheres-web/src/equipment_flight_view.rs"
+      ],
+      "scope": "Only report CSS, screenshot positioning and two pure currency-format calls differ from the simulation candidate. Simulation/integration retain final4 qualification; unchanged JavaScript/CSS retain final5 Node qualification. Final native web, fixture, binary and browser checks qualify the displayed build."
+    },
+    "browser": {
+      "passed": true,
+      "ordinary_commands": 2,
+      "ordinary_days": 6,
+      "world_comparisons": 9,
+      "envelope_comparisons": 9,
+      "errors": [],
+      "binary_sha256": "2641e1014258a9579f19feb36de6ec002a2a24e7b0c39254acd6556a19cc07ec"
+    },
+    "visual_review": {
+      "revision": "aebbf0c13623535c7e975518e934909e8e401b12",
+      "passed": true,
+      "reviewed_utc": "2026-09-21T23:23:54.992761+00:00",
+      "reviewer": "Codex direct inspection of these six final-run screenshots",
+      "scope": "Desktop 1440px enable/pause reviews and staff reports; 390px active/paused country reports. Long reports use vertical scrolling; no horizontal overflow. Review totals have currency units without per-day labels. No independent human usability or finished S18 art claim.",
+      "images": [
+        {
+          "path": "evidence\\S17-browser-final6-browser\\staff-L3lzO3\\active-review.png",
+          "sha256": "bd3f46f4fe8ec8ac037e3d9a361aab20c3a7f9087f8993d0d1c21daf334a3598"
+        },
+        {
+          "path": "evidence\\S17-browser-final6-browser\\staff-L3lzO3\\active-staff-desktop.png",
+          "sha256": "5299d59019c34ce9d0672d1e4c52700467d00c8dfc53c30d22e362c7254b1aed"
+        },
+        {
+          "path": "evidence\\S17-browser-final6-browser\\staff-L3lzO3\\active-staff-narrow.png",
+          "sha256": "d3bb45126df3ec7841533081bdd6cf5645a982eb9b8d060a40e3bd2ab81ed3d0"
+        },
+        {
+          "path": "evidence\\S17-browser-final6-browser\\staff-L3lzO3\\paused-review.png",
+          "sha256": "380aa547623ce9bbaf39f30a808150a1eef5d54d15ea4ae9c0a19b721057cf31"
+        },
+        {
+          "path": "evidence\\S17-browser-final6-browser\\staff-L3lzO3\\paused-staff-desktop.png",
+          "sha256": "aafbe12b94639f59febcf28594b79ace17514c6cc375f766f802331d81e7bfc7"
+        },
+        {
+          "path": "evidence\\S17-browser-final6-browser\\staff-L3lzO3\\paused-staff-narrow.png",
+          "sha256": "28ba2e049e5deea94619b25d94199a4a67156f254691200028b9f470917af0d3"
+        }
+      ]
+    },
+    "preservation": {
+      "captured_utc": "2026-09-21T23:10:47.990907+00:00",
+      "baseline_sha256": "8c422b1b6a32e14b736b08d91c76bff25ede634608a247b86852ee0ba41a2175",
+      "files": [
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\pre-claude-ebddf7a-campaign.json",
+          "bytes": 4099603,
+          "sha256": "9d373109fc4b1d4e838b73a3e24624679e872360f3f5b52225e8c3f928bb2bac",
+          "unchanged": true
+        },
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\pre-company-ammunition-campaign.json",
+          "bytes": 4099603,
+          "sha256": "d104aec43643a9b40b39d2284384fa32a983c434f597a753a227ba44379e7d14",
+          "unchanged": true
+        },
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\pre-company-refits-campaign.json",
+          "bytes": 4099603,
+          "sha256": "671b7170a4fd811900052a37fa1d6d620dddc3fd6e27a539c575513243ae38b0",
+          "unchanged": true
+        },
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\pre-government-room-20260907-campaign.json",
+          "bytes": 4099603,
+          "sha256": "b34dbabfd8f4f5b7ebce6532021b10b9e9a71991f09076e4e08090a52e198690",
+          "unchanged": true
+        },
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\save.json",
+          "bytes": 4099603,
+          "sha256": "bdd0587be567a505356cccd3d2cc9ef413e325ccab632043d2e9049302354a1d",
+          "unchanged": true
+        },
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\save.json.bak",
+          "bytes": 4099603,
+          "sha256": "b34dbabfd8f4f5b7ebce6532021b10b9e9a71991f09076e4e08090a52e198690",
+          "unchanged": true
+        },
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\saves\\auto-2.json",
+          "bytes": 3723656,
+          "sha256": "850a092eaa2c11cca02910574e48bbe9f3fbfab69742f39fee52f743e870beea",
+          "unchanged": true
+        },
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\saves\\auto-3.json",
+          "bytes": 4439498,
+          "sha256": "d9bb968255066b86d84559b924af04052a2ed8dfcea7587c305015362fe6b1fd",
+          "unchanged": true
+        }
+      ],
+      "worktrees": [
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres",
+          "head": "038fe0b1a3edb1772586ec0b5a7451629b7297c4",
+          "expected": "038fe0b1a3edb1772586ec0b5a7451629b7297c4",
+          "unchanged": true
+        },
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\master-baseline",
+          "head": "485c223f60d5ff6e46f6ae17164bf1ee3a8764d9",
+          "expected": "485c223f60d5ff6e46f6ae17164bf1ee3a8764d9",
+          "unchanged": true
+        }
+      ],
+      "passed": true
+    }
+  },
+  "autonomous_italian_missions": [
+    {
+      "conflict": 1,
+      "id": 5,
+      "issued_day": 1016,
+      "kind": "support_army",
+      "launch_day": 1017,
+      "nation": "Italy",
+      "report": {
+        "aircraft": 4,
+        "aircraft_lost": 0,
+        "applied_power": 0.006260812305018889,
+        "contacted": true,
+        "day": 1017,
+        "family": "air_bomb_unguided",
+        "sorties": 1.3142637299109725,
+        "stores_used": 2.628527459821945,
+        "summary": "Support army at FRA_auvergne-rh-ne-alpes: 1.31 sortie equivalents, 2.63 air_bomb_unguided stores, 0 aircraft lost. Applied to the campaign contact; ground battle results remain in Operations. Survivors need 1 funded service day(s)."
+      },
+      "squadron": 1,
+      "status": "flown",
+      "target": "FRA_auvergne-rh-ne-alpes"
+    },
+    {
+      "conflict": 1,
+      "id": 6,
+      "issued_day": 1018,
+      "kind": "support_army",
+      "launch_day": 1019,
+      "nation": "Italy",
+      "report": {
+        "aircraft": 4,
+        "aircraft_lost": 0,
+        "applied_power": 0.006259864813843035,
+        "contacted": true,
+        "day": 1019,
+        "family": "air_bomb_unguided",
+        "sorties": 1.3141104173892935,
+        "stores_used": 2.628220834778587,
+        "summary": "Support army at FRA_auvergne-rh-ne-alpes: 1.31 sortie equivalents, 2.63 air_bomb_unguided stores, 0 aircraft lost. Applied to the campaign contact; ground battle results remain in Operations. Survivors need 1 funded service day(s)."
+      },
+      "squadron": 1,
+      "status": "flown",
+      "target": "FRA_auvergne-rh-ne-alpes"
+    }
+  ],
+  "italian_staff_report": {
+    "basing": "Squadrons retain their bases. Transfers, service and access are checked again for every mission.",
+    "committed_bn": 0.0,
+    "development": "Acquire eligible domestic or imported stock; no staff-managed supplier firm exists.",
+    "last_operations_day": 1018,
+    "last_review_day": 1015,
+    "operations": "Support army ordered at Auvergne-Rh\u00f4ne-Alpes for the next day. Launch rechecks paid readiness, access, range and finite stores.",
+    "procurement": "No finished eligible company stock is available. Development and tooling cannot be bypassed.",
+    "purchase_limit_bn": 0.0,
+    "reviews": 1,
+    "support": "Shifted future Defense funding toward maintenance; total spending and today's authority are unchanged. Ordinary next-day support cap: fleet upkeep first, then eligible finished aircraft stores for 30 days. Purchases await stock, access and delivery. No custom ground ammunition requirement."
+  },
+  "review": {
+    "url": "http://127.0.0.1:7859",
+    "runtime_revision": "aebbf0c13623535c7e975518e934909e8e401b12",
+    "executable_sha256": "2641e1014258a9579f19feb36de6ec002a2a24e7b0c39254acd6556a19cc07ec",
+    "save_copy": {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S17-fixture-final6\\active.json",
+      "copy": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S17-20260921-162355\\saves\\s17-military-staff.json",
+      "sha256": "e24a9466b3d4c33d7099af512f307deee543b3e7ce5b2b7d05d99768e5e06a24"
+    },
+    "native_verification": {
+      "canonical_sha256": "306d1d0f8cb392e4e902139e0ffc55d210319e365e7fcf47a6ffe1417517bfed",
+      "bytes": 20025556,
+      "ignored_paths": [],
+      "matches_native_and_browser_active_checkpoint": true,
+      "worker_sha256": "361b86a8c12623a553ad2f7e54dd0ccded74fa9cf03b51f4d0a3bfdf93530165"
+    }
+  },
+  "inherited_s16": {
+    "path": "docs/campaign-certification/S16/manifest.json",
+    "sha256": "4b9ed2df35dd0a87dad488584a89f269a4b266010545e2893a223fca98088970"
+  },
+  "prior_attempts": "Final1 and final2 fixtures failed on unfunded Italian servicing; final1 Linux was intentionally cancelled before completion and is nonqualifying even if its partial record says running. Third candidate fixes ordinary within-Defense funding and initial review timing but its new budget test lacked proper enrollment and its browser request recorder failed. Final4 passes automated qualification but visual inspection identified oversized country-report text and misplaced narrow screenshots. Final5 corrects those; final6 fixes only two currency-format calls so review totals are not labeled per day. Exact unchanged simulation/integration and Node proofs are inherited as recorded. Earlier logs are retained as failed or superseded context only.",
+  "retention": {
+    "files": 133,
+    "source_bytes": 286296824,
+    "stored_bytes": 53369170,
+    "excluded": "Compiled binaries and duplicate canonical world files; binary hashes/source pins and exact raw campaign archives plus audit metadata are retained. Original failed fixture raw archives remain outside the repository; their failure logs/proofs are retained.",
+    "files_inventory": [
+      {
+        "source": "evidence/S17-final1-fixture.json",
+        "bytes": 1306,
+        "sha256": "20cc038b967888f7efb78975f087990ba9f6b068f6c64528e19f9735b881d085",
+        "stored": "evidence/evidence/S17-final1-fixture.json",
+        "encoding": "identity",
+        "stored_bytes": 1306,
+        "stored_sha256": "20cc038b967888f7efb78975f087990ba9f6b068f6c64528e19f9735b881d085"
+      },
+      {
+        "source": "evidence/S17-final2-fixture.json",
+        "bytes": 1306,
+        "sha256": "149a6ff9fd19b60a77133b597275c2263409efba62fe89eb7f6d8f38128794f5",
+        "stored": "evidence/evidence/S17-final2-fixture.json",
+        "encoding": "identity",
+        "stored_bytes": 1306,
+        "stored_sha256": "149a6ff9fd19b60a77133b597275c2263409efba62fe89eb7f6d8f38128794f5"
+      },
+      {
+        "source": "evidence/S17-final3-binary.json",
+        "bytes": 905,
+        "sha256": "ce6d9405e9ce25590a274d095d01e864f1018361a9c4d7d3c44a2cc60b2e3ffc",
+        "stored": "evidence/evidence/S17-final3-binary.json",
+        "encoding": "identity",
+        "stored_bytes": 905,
+        "stored_sha256": "ce6d9405e9ce25590a274d095d01e864f1018361a9c4d7d3c44a2cc60b2e3ffc"
+      },
+      {
+        "source": "evidence/S17-final3-browser.json",
+        "bytes": 1113,
+        "sha256": "c95dc98fb95acb5b7ec24365ad5f4adcfc602f39be15ff71eb21ef7ea7fd4c56",
+        "stored": "evidence/evidence/S17-final3-browser.json",
+        "encoding": "identity",
+        "stored_bytes": 1113,
+        "stored_sha256": "c95dc98fb95acb5b7ec24365ad5f4adcfc602f39be15ff71eb21ef7ea7fd4c56"
+      },
+      {
+        "source": "evidence/S17-final3-fixture.json",
+        "bytes": 1303,
+        "sha256": "1fcbb19d6195fa418db549c91c3f62accab746d1c953f148cf62da97dd585623",
+        "stored": "evidence/evidence/S17-final3-fixture.json",
+        "encoding": "identity",
+        "stored_bytes": 1303,
+        "stored_sha256": "1fcbb19d6195fa418db549c91c3f62accab746d1c953f148cf62da97dd585623"
+      },
+      {
+        "source": "evidence/S17-final3-sim.json",
+        "bytes": 1096,
+        "sha256": "0b48cf31eb1f184a377aeb98b069d6f7d15871b48be0a204b73d804f37d197a2",
+        "stored": "evidence/evidence/S17-final3-sim.json",
+        "encoding": "identity",
+        "stored_bytes": 1096,
+        "stored_sha256": "0b48cf31eb1f184a377aeb98b069d6f7d15871b48be0a204b73d804f37d197a2"
+      },
+      {
+        "source": "evidence/S17-final3-web.json",
+        "bytes": 1079,
+        "sha256": "f83e8584d18588d413569ff341bb67cbe793b881d4873ca3f3e6beec18d5626a",
+        "stored": "evidence/evidence/S17-final3-web.json",
+        "encoding": "identity",
+        "stored_bytes": 1079,
+        "stored_sha256": "f83e8584d18588d413569ff341bb67cbe793b881d4873ca3f3e6beec18d5626a"
+      },
+      {
+        "source": "evidence/S17-final4-binary.json",
+        "bytes": 905,
+        "sha256": "30a8ca4f298ab37a1cc43176a3fba32ff3b8d3caba4d5489e426a8d5b680c1ad",
+        "stored": "evidence/evidence/S17-final4-binary.json",
+        "encoding": "identity",
+        "stored_bytes": 905,
+        "stored_sha256": "30a8ca4f298ab37a1cc43176a3fba32ff3b8d3caba4d5489e426a8d5b680c1ad"
+      },
+      {
+        "source": "evidence/S17-final4-browser.json",
+        "bytes": 1112,
+        "sha256": "f17f1f7871629864e538a42c93ac1f7fee7790bdbf10c41a0a3030658ea7f4ff",
+        "stored": "evidence/evidence/S17-final4-browser.json",
+        "encoding": "identity",
+        "stored_bytes": 1112,
+        "stored_sha256": "f17f1f7871629864e538a42c93ac1f7fee7790bdbf10c41a0a3030658ea7f4ff"
+      },
+      {
+        "source": "evidence/S17-final4-fixture.json",
+        "bytes": 1303,
+        "sha256": "6ab0f8e2184831ca07f6a9c08abf93c007132906450fa35ad62769865086ab2c",
+        "stored": "evidence/evidence/S17-final4-fixture.json",
+        "encoding": "identity",
+        "stored_bytes": 1303,
+        "stored_sha256": "6ab0f8e2184831ca07f6a9c08abf93c007132906450fa35ad62769865086ab2c"
+      },
+      {
+        "source": "evidence/S17-final4-integration.json",
+        "bytes": 1374,
+        "sha256": "6b8835b957f1b55bf102e58f1a785bc915b3dbdd26776f174ceeac8c23eaa82a",
+        "stored": "evidence/evidence/S17-final4-integration.json",
+        "encoding": "identity",
+        "stored_bytes": 1374,
+        "stored_sha256": "6b8835b957f1b55bf102e58f1a785bc915b3dbdd26776f174ceeac8c23eaa82a"
+      },
+      {
+        "source": "evidence/S17-final4-node.json",
+        "bytes": 675,
+        "sha256": "ee8a1851bf58d93c6be711b8650436058ba4f22812d868281efeb1849f0d9a3c",
+        "stored": "evidence/evidence/S17-final4-node.json",
+        "encoding": "identity",
+        "stored_bytes": 675,
+        "stored_sha256": "ee8a1851bf58d93c6be711b8650436058ba4f22812d868281efeb1849f0d9a3c"
+      },
+      {
+        "source": "evidence/S17-final4-sim.json",
+        "bytes": 1093,
+        "sha256": "09bb578d19dd897de2e8a5f161f56e33b4b00be61de63c2a841d2b8a7053d32b",
+        "stored": "evidence/evidence/S17-final4-sim.json",
+        "encoding": "identity",
+        "stored_bytes": 1093,
+        "stored_sha256": "09bb578d19dd897de2e8a5f161f56e33b4b00be61de63c2a841d2b8a7053d32b"
+      },
+      {
+        "source": "evidence/S17-final4-web.json",
+        "bytes": 1079,
+        "sha256": "2d97652011ec7c6b3c0982a6b30ef47818c5b562973c7c72077e00ba7ea7ca04",
+        "stored": "evidence/evidence/S17-final4-web.json",
+        "encoding": "identity",
+        "stored_bytes": 1079,
+        "stored_sha256": "2d97652011ec7c6b3c0982a6b30ef47818c5b562973c7c72077e00ba7ea7ca04"
+      },
+      {
+        "source": "evidence/S17-final5-binary.json",
+        "bytes": 905,
+        "sha256": "0059210a4c27bac7b8219a3e189515bf9c3792733d4c2fdffce830011a01d4a3",
+        "stored": "evidence/evidence/S17-final5-binary.json",
+        "encoding": "identity",
+        "stored_bytes": 905,
+        "stored_sha256": "0059210a4c27bac7b8219a3e189515bf9c3792733d4c2fdffce830011a01d4a3"
+      },
+      {
+        "source": "evidence/S17-final5-browser.json",
+        "bytes": 1112,
+        "sha256": "619544d8e0046e5610c66b6746dd7f5c8837d9efd4cb2d74e15c12b8c48ed34b",
+        "stored": "evidence/evidence/S17-final5-browser.json",
+        "encoding": "identity",
+        "stored_bytes": 1112,
+        "stored_sha256": "619544d8e0046e5610c66b6746dd7f5c8837d9efd4cb2d74e15c12b8c48ed34b"
+      },
+      {
+        "source": "evidence/S17-final5-fixture.json",
+        "bytes": 1303,
+        "sha256": "8125bc43f9932b3534cbeb67723e9129c2570ae8d93807a573edea34c93f5436",
+        "stored": "evidence/evidence/S17-final5-fixture.json",
+        "encoding": "identity",
+        "stored_bytes": 1303,
+        "stored_sha256": "8125bc43f9932b3534cbeb67723e9129c2570ae8d93807a573edea34c93f5436"
+      },
+      {
+        "source": "evidence/S17-final5-node.json",
+        "bytes": 675,
+        "sha256": "b379c2fc1892af5138c94273ab8662fa0fb06579c3cc4f8b925270847b9b6e88",
+        "stored": "evidence/evidence/S17-final5-node.json",
+        "encoding": "identity",
+        "stored_bytes": 675,
+        "stored_sha256": "b379c2fc1892af5138c94273ab8662fa0fb06579c3cc4f8b925270847b9b6e88"
+      },
+      {
+        "source": "evidence/S17-final5-web.json",
+        "bytes": 1079,
+        "sha256": "807a4bf66814d6573564dad79da6279ecb37479c44ca021244b5d3eebfef225e",
+        "stored": "evidence/evidence/S17-final5-web.json",
+        "encoding": "identity",
+        "stored_bytes": 1079,
+        "stored_sha256": "807a4bf66814d6573564dad79da6279ecb37479c44ca021244b5d3eebfef225e"
+      },
+      {
+        "source": "evidence/S17-final6-binary.json",
+        "bytes": 905,
+        "sha256": "3ef80f3438aca27345c0998243ce4af743c57e93375b207c3d4a5d66419a0430",
+        "stored": "evidence/evidence/S17-final6-binary.json",
+        "encoding": "identity",
+        "stored_bytes": 905,
+        "stored_sha256": "3ef80f3438aca27345c0998243ce4af743c57e93375b207c3d4a5d66419a0430"
+      },
+      {
+        "source": "evidence/S17-final6-browser.json",
+        "bytes": 1112,
+        "sha256": "a9de84e4f6d7636f26de0a13aea500d0217a63488075e8c5092efc96d7dd56fe",
+        "stored": "evidence/evidence/S17-final6-browser.json",
+        "encoding": "identity",
+        "stored_bytes": 1112,
+        "stored_sha256": "a9de84e4f6d7636f26de0a13aea500d0217a63488075e8c5092efc96d7dd56fe"
+      },
+      {
+        "source": "evidence/S17-final6-fixture.json",
+        "bytes": 1303,
+        "sha256": "e374603f02a595741bd5f47d127f0b2e5684a986a18e08a6a2a24616b78d8dad",
+        "stored": "evidence/evidence/S17-final6-fixture.json",
+        "encoding": "identity",
+        "stored_bytes": 1303,
+        "stored_sha256": "e374603f02a595741bd5f47d127f0b2e5684a986a18e08a6a2a24616b78d8dad"
+      },
+      {
+        "source": "evidence/S17-final6-web.json",
+        "bytes": 1079,
+        "sha256": "25915afc4494024dd8b758d2b8a245f79f620c5f4d0423d8ef61fa8d98c526da",
+        "stored": "evidence/evidence/S17-final6-web.json",
+        "encoding": "identity",
+        "stored_bytes": 1079,
+        "stored_sha256": "25915afc4494024dd8b758d2b8a245f79f620c5f4d0423d8ef61fa8d98c526da"
+      },
+      {
+        "source": "evidence/S17-preservation-before.json",
+        "bytes": 3137,
+        "sha256": "a21a62119b1319cfe34559181c6a2d21446c7d043be2c430acf111b841923e47",
+        "stored": "evidence/evidence/S17-preservation-before.json",
+        "encoding": "identity",
+        "stored_bytes": 3137,
+        "stored_sha256": "a21a62119b1319cfe34559181c6a2d21446c7d043be2c430acf111b841923e47"
+      },
+      {
+        "source": "evidence/S17-preservation-final.json",
+        "bytes": 3137,
+        "sha256": "30cafaefd31a90ee45de7c3763aa9d23bbc25fa5aa8e846baf58d35ab3c3a5a7",
+        "stored": "evidence/evidence/S17-preservation-final.json",
+        "encoding": "identity",
+        "stored_bytes": 3137,
+        "stored_sha256": "30cafaefd31a90ee45de7c3763aa9d23bbc25fa5aa8e846baf58d35ab3c3a5a7"
+      },
+      {
+        "source": "evidence/S17-s16-review-preservation.json",
+        "bytes": 365,
+        "sha256": "e95cffd48a5c9d62137de567e901011119206d9a12d1f08215790beda06d5ad4",
+        "stored": "evidence/evidence/S17-s16-review-preservation.json",
+        "encoding": "identity",
+        "stored_bytes": 365,
+        "stored_sha256": "e95cffd48a5c9d62137de567e901011119206d9a12d1f08215790beda06d5ad4"
+      },
+      {
+        "source": "evidence/S17-visual-preflight-final4.json",
+        "bytes": 443,
+        "sha256": "f762996f41c3a80d5a4c47162d55ab05650f09f3636f78edfcd5e81517bf69cd",
+        "stored": "evidence/evidence/S17-visual-preflight-final4.json",
+        "encoding": "identity",
+        "stored_bytes": 443,
+        "stored_sha256": "f762996f41c3a80d5a4c47162d55ab05650f09f3636f78edfcd5e81517bf69cd"
+      },
+      {
+        "source": "evidence/S17-visual-preflight-final5.json",
+        "bytes": 415,
+        "sha256": "af0266f4592e3083a9277ab90e183855236d8bca904a1bccc135791e4e5eb4a9",
+        "stored": "evidence/evidence/S17-visual-preflight-final5.json",
+        "encoding": "identity",
+        "stored_bytes": 415,
+        "stored_sha256": "af0266f4592e3083a9277ab90e183855236d8bca904a1bccc135791e4e5eb4a9"
+      },
+      {
+        "source": "evidence/S17-visual-review.json",
+        "bytes": 1667,
+        "sha256": "d770f8d4ba3a846d651863c286dbd1a370ea63d3fb4e9b7fdafeac7eb3e90486",
+        "stored": "evidence/evidence/S17-visual-review.json",
+        "encoding": "identity",
+        "stored_bytes": 1667,
+        "stored_sha256": "d770f8d4ba3a846d651863c286dbd1a370ea63d3fb4e9b7fdafeac7eb3e90486"
+      },
+      {
+        "source": "evidence/S17-final1-fixture.log",
+        "bytes": 2522,
+        "sha256": "40b701dedbd4a7f088fd6c2ef68f5fae5ae0382696f22b80d357bf9bc1408de8",
+        "stored": "evidence/evidence/S17-final1-fixture.log",
+        "encoding": "identity",
+        "stored_bytes": 2522,
+        "stored_sha256": "40b701dedbd4a7f088fd6c2ef68f5fae5ae0382696f22b80d357bf9bc1408de8"
+      },
+      {
+        "source": "evidence/S17-final2-fixture.log",
+        "bytes": 2788,
+        "sha256": "1e3f7d704a34762ab71afb5112e7f2bea35a3ed93b611e7f8abd63fbc74d86cc",
+        "stored": "evidence/evidence/S17-final2-fixture.log",
+        "encoding": "identity",
+        "stored_bytes": 2788,
+        "stored_sha256": "1e3f7d704a34762ab71afb5112e7f2bea35a3ed93b611e7f8abd63fbc74d86cc"
+      },
+      {
+        "source": "evidence/S17-final3-binary.log",
+        "bytes": 887,
+        "sha256": "9a984a79e86ffc2d495852561bda2125eacb5d2255655956f4625cefca5906a8",
+        "stored": "evidence/evidence/S17-final3-binary.log",
+        "encoding": "identity",
+        "stored_bytes": 887,
+        "stored_sha256": "9a984a79e86ffc2d495852561bda2125eacb5d2255655956f4625cefca5906a8"
+      },
+      {
+        "source": "evidence/S17-final3-browser.log",
+        "bytes": 2474,
+        "sha256": "e01b82b1714b337f7dd73bd9c110237e4ab624e449f960648bf8d6e2a607460f",
+        "stored": "evidence/evidence/S17-final3-browser.log",
+        "encoding": "identity",
+        "stored_bytes": 2474,
+        "stored_sha256": "e01b82b1714b337f7dd73bd9c110237e4ab624e449f960648bf8d6e2a607460f"
+      },
+      {
+        "source": "evidence/S17-final3-fixture.log",
+        "bytes": 2557,
+        "sha256": "f4654cb0ebed8b602c561c298c16aa99c9489cbd85d3b20970c1e7db1057ed0e",
+        "stored": "evidence/evidence/S17-final3-fixture.log",
+        "encoding": "identity",
+        "stored_bytes": 2557,
+        "stored_sha256": "f4654cb0ebed8b602c561c298c16aa99c9489cbd85d3b20970c1e7db1057ed0e"
+      },
+      {
+        "source": "evidence/S17-final3-sim.log",
+        "bytes": 86785,
+        "sha256": "faa9610215955d40852493b0ce1b35f19755a427d4177139038ead1859d516e9",
+        "stored": "evidence/evidence/S17-final3-sim.log",
+        "encoding": "identity",
+        "stored_bytes": 86785,
+        "stored_sha256": "faa9610215955d40852493b0ce1b35f19755a427d4177139038ead1859d516e9"
+      },
+      {
+        "source": "evidence/S17-final3-web.log",
+        "bytes": 41953,
+        "sha256": "cf635ee8a83d21361a99c9ef2c6fbe816ddad734dc0e0d3741900247e73e53ea",
+        "stored": "evidence/evidence/S17-final3-web.log",
+        "encoding": "identity",
+        "stored_bytes": 41953,
+        "stored_sha256": "cf635ee8a83d21361a99c9ef2c6fbe816ddad734dc0e0d3741900247e73e53ea"
+      },
+      {
+        "source": "evidence/S17-final4-binary.log",
+        "bytes": 887,
+        "sha256": "9a984a79e86ffc2d495852561bda2125eacb5d2255655956f4625cefca5906a8",
+        "stored": "evidence/evidence/S17-final4-binary.log",
+        "encoding": "identity",
+        "stored_bytes": 887,
+        "stored_sha256": "9a984a79e86ffc2d495852561bda2125eacb5d2255655956f4625cefca5906a8"
+      },
+      {
+        "source": "evidence/S17-final4-browser.log",
+        "bytes": 198,
+        "sha256": "1778a028423bd4474ced02a754392f9c754f22d8a72dd1b8fabc03b61f2b12ca",
+        "stored": "evidence/evidence/S17-final4-browser.log",
+        "encoding": "identity",
+        "stored_bytes": 198,
+        "stored_sha256": "1778a028423bd4474ced02a754392f9c754f22d8a72dd1b8fabc03b61f2b12ca"
+      },
+      {
+        "source": "evidence/S17-final4-fixture.log",
+        "bytes": 2401,
+        "sha256": "caba62e7afe148c5420fda8d1713b9d4cac2ae3eef4f0eaead6d061129bda16b",
+        "stored": "evidence/evidence/S17-final4-fixture.log",
+        "encoding": "identity",
+        "stored_bytes": 2401,
+        "stored_sha256": "caba62e7afe148c5420fda8d1713b9d4cac2ae3eef4f0eaead6d061129bda16b"
+      },
+      {
+        "source": "evidence/S17-final4-integration.log",
+        "bytes": 15729,
+        "sha256": "ac79cb3ab0461d69aaec158731dbce564b6274dfaf048432c73b913268b1f460",
+        "stored": "evidence/evidence/S17-final4-integration.log",
+        "encoding": "identity",
+        "stored_bytes": 15729,
+        "stored_sha256": "ac79cb3ab0461d69aaec158731dbce564b6274dfaf048432c73b913268b1f460"
+      },
+      {
+        "source": "evidence/S17-final4-node.log",
+        "bytes": 158656,
+        "sha256": "293ee35677c1e08cc0565b73f5172390779345ee03d5991b2b44fc058ae37d04",
+        "stored": "evidence/evidence/S17-final4-node.log",
+        "encoding": "identity",
+        "stored_bytes": 158656,
+        "stored_sha256": "293ee35677c1e08cc0565b73f5172390779345ee03d5991b2b44fc058ae37d04"
+      },
+      {
+        "source": "evidence/S17-final4-sim.log",
+        "bytes": 86000,
+        "sha256": "41a270bcf66b57ece08a80e9d6c003367404cceaab41bc61da3196ff60890821",
+        "stored": "evidence/evidence/S17-final4-sim.log",
+        "encoding": "identity",
+        "stored_bytes": 86000,
+        "stored_sha256": "41a270bcf66b57ece08a80e9d6c003367404cceaab41bc61da3196ff60890821"
+      },
+      {
+        "source": "evidence/S17-final4-web.log",
+        "bytes": 41953,
+        "sha256": "3ec57bfca858485c55ea1f1b24b6ca364649b862e10800b6b3159713d33fa159",
+        "stored": "evidence/evidence/S17-final4-web.log",
+        "encoding": "identity",
+        "stored_bytes": 41953,
+        "stored_sha256": "3ec57bfca858485c55ea1f1b24b6ca364649b862e10800b6b3159713d33fa159"
+      },
+      {
+        "source": "evidence/S17-final5-binary.log",
+        "bytes": 887,
+        "sha256": "9a984a79e86ffc2d495852561bda2125eacb5d2255655956f4625cefca5906a8",
+        "stored": "evidence/evidence/S17-final5-binary.log",
+        "encoding": "identity",
+        "stored_bytes": 887,
+        "stored_sha256": "9a984a79e86ffc2d495852561bda2125eacb5d2255655956f4625cefca5906a8"
+      },
+      {
+        "source": "evidence/S17-final5-browser.log",
+        "bytes": 198,
+        "sha256": "8db6a66e293f148f1386bdf9fa7fd6905fd402b1e0eab87863de31c33f8441f0",
+        "stored": "evidence/evidence/S17-final5-browser.log",
+        "encoding": "identity",
+        "stored_bytes": 198,
+        "stored_sha256": "8db6a66e293f148f1386bdf9fa7fd6905fd402b1e0eab87863de31c33f8441f0"
+      },
+      {
+        "source": "evidence/S17-final5-fixture.log",
+        "bytes": 2401,
+        "sha256": "420603d3887dfa82ea0379d44174e49fe9a43273e86ba11e3f335b8aeecedc78",
+        "stored": "evidence/evidence/S17-final5-fixture.log",
+        "encoding": "identity",
+        "stored_bytes": 2401,
+        "stored_sha256": "420603d3887dfa82ea0379d44174e49fe9a43273e86ba11e3f335b8aeecedc78"
+      },
+      {
+        "source": "evidence/S17-final5-node.log",
+        "bytes": 158568,
+        "sha256": "e512982b6ba8041088196860679e4f8f07422e80cad8b71d104972b7caff684b",
+        "stored": "evidence/evidence/S17-final5-node.log",
+        "encoding": "identity",
+        "stored_bytes": 158568,
+        "stored_sha256": "e512982b6ba8041088196860679e4f8f07422e80cad8b71d104972b7caff684b"
+      },
+      {
+        "source": "evidence/S17-final5-web.log",
+        "bytes": 41953,
+        "sha256": "a5a20cbe3e0e249bb83f5ba4b61119e26904c903ee786419d4d059fdc7628797",
+        "stored": "evidence/evidence/S17-final5-web.log",
+        "encoding": "identity",
+        "stored_bytes": 41953,
+        "stored_sha256": "a5a20cbe3e0e249bb83f5ba4b61119e26904c903ee786419d4d059fdc7628797"
+      },
+      {
+        "source": "evidence/S17-final6-binary.log",
+        "bytes": 887,
+        "sha256": "df0e7ec342f8669fa8c243d18f5c4854e4d372c5619c70e36a92115b038c0d41",
+        "stored": "evidence/evidence/S17-final6-binary.log",
+        "encoding": "identity",
+        "stored_bytes": 887,
+        "stored_sha256": "df0e7ec342f8669fa8c243d18f5c4854e4d372c5619c70e36a92115b038c0d41"
+      },
+      {
+        "source": "evidence/S17-final6-browser.log",
+        "bytes": 198,
+        "sha256": "8ab47ead1105b047f2dcd36fad890630c9e8d102ed15b27c3031428c7b551515",
+        "stored": "evidence/evidence/S17-final6-browser.log",
+        "encoding": "identity",
+        "stored_bytes": 198,
+        "stored_sha256": "8ab47ead1105b047f2dcd36fad890630c9e8d102ed15b27c3031428c7b551515"
+      },
+      {
+        "source": "evidence/S17-final6-fixture.log",
+        "bytes": 2401,
+        "sha256": "2cb93190ce4efeb2ee0136f53ec0ca75eda2b651a3b43071172a2e3e17ddae33",
+        "stored": "evidence/evidence/S17-final6-fixture.log",
+        "encoding": "identity",
+        "stored_bytes": 2401,
+        "stored_sha256": "2cb93190ce4efeb2ee0136f53ec0ca75eda2b651a3b43071172a2e3e17ddae33"
+      },
+      {
+        "source": "evidence/S17-final6-web.log",
+        "bytes": 41953,
+        "sha256": "f6a85c6b9ac4de3d5f100ebdf285b6d9bc2d552feb0803af9ba2ecfadd1fea44",
+        "stored": "evidence/evidence/S17-final6-web.log",
+        "encoding": "identity",
+        "stored_bytes": 41953,
+        "stored_sha256": "f6a85c6b9ac4de3d5f100ebdf285b6d9bc2d552feb0803af9ba2ecfadd1fea44"
+      },
+      {
+        "source": "evidence/S17-final6-linux/result.json",
+        "bytes": 3385,
+        "sha256": "35191f8574d6619ccd739181cca0566071f29f93b506f3d0202df0fb73a60e69",
+        "stored": "evidence/evidence/S17-final6-linux/result.json",
+        "encoding": "identity",
+        "stored_bytes": 3385,
+        "stored_sha256": "35191f8574d6619ccd739181cca0566071f29f93b506f3d0202df0fb73a60e69"
+      },
+      {
+        "source": "evidence/S17-final6-linux/toolchain.json",
+        "bytes": 1181,
+        "sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801",
+        "stored": "evidence/evidence/S17-final6-linux/toolchain.json",
+        "encoding": "identity",
+        "stored_bytes": 1181,
+        "stored_sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801"
+      },
+      {
+        "source": "evidence/S17-final6-linux/web.log",
+        "bytes": 41562,
+        "sha256": "fd2338a1958998b7f3f916d3a33ca36669a3363686fa1a8f50b40b9de7277557",
+        "stored": "evidence/evidence/S17-final6-linux/web.log",
+        "encoding": "identity",
+        "stored_bytes": 41562,
+        "stored_sha256": "fd2338a1958998b7f3f916d3a33ca36669a3363686fa1a8f50b40b9de7277557"
+      },
+      {
+        "source": "evidence/S17-final5-linux/node.log",
+        "bytes": 376469,
+        "sha256": "24fcaa564f3b3289ea9d6818a9de888bace57ffae49e25e2cd7e5ed7b898ede9",
+        "stored": "evidence/evidence/S17-final5-linux/node.log",
+        "encoding": "identity",
+        "stored_bytes": 376469,
+        "stored_sha256": "24fcaa564f3b3289ea9d6818a9de888bace57ffae49e25e2cd7e5ed7b898ede9"
+      },
+      {
+        "source": "evidence/S17-final5-linux/result.json",
+        "bytes": 4117,
+        "sha256": "9709271a56c663dc2671f9becb6218a8021d193676ea06f76e76be2117b9bfaf",
+        "stored": "evidence/evidence/S17-final5-linux/result.json",
+        "encoding": "identity",
+        "stored_bytes": 4117,
+        "stored_sha256": "9709271a56c663dc2671f9becb6218a8021d193676ea06f76e76be2117b9bfaf"
+      },
+      {
+        "source": "evidence/S17-final5-linux/toolchain.json",
+        "bytes": 1181,
+        "sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801",
+        "stored": "evidence/evidence/S17-final5-linux/toolchain.json",
+        "encoding": "identity",
+        "stored_bytes": 1181,
+        "stored_sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801"
+      },
+      {
+        "source": "evidence/S17-final5-linux/web.log",
+        "bytes": 41562,
+        "sha256": "bd1c3fd00eabfa792515f5725fe54312d8619fe66271fa969081ee491ff84d02",
+        "stored": "evidence/evidence/S17-final5-linux/web.log",
+        "encoding": "identity",
+        "stored_bytes": 41562,
+        "stored_sha256": "bd1c3fd00eabfa792515f5725fe54312d8619fe66271fa969081ee491ff84d02"
+      },
+      {
+        "source": "evidence/S17-final4-linux/integration.log",
+        "bytes": 14654,
+        "sha256": "f77071c59e730db3db9510a43ddd7c6e6d1feeb0671e350d1a303289635ba8c9",
+        "stored": "evidence/evidence/S17-final4-linux/integration.log",
+        "encoding": "identity",
+        "stored_bytes": 14654,
+        "stored_sha256": "f77071c59e730db3db9510a43ddd7c6e6d1feeb0671e350d1a303289635ba8c9"
+      },
+      {
+        "source": "evidence/S17-final4-linux/node.log",
+        "bytes": 376620,
+        "sha256": "e2f0755ec56222e6c8899fcafb9f855e74b50350e87e9ad8fd9d424536acc5d8",
+        "stored": "evidence/evidence/S17-final4-linux/node.log",
+        "encoding": "identity",
+        "stored_bytes": 376620,
+        "stored_sha256": "e2f0755ec56222e6c8899fcafb9f855e74b50350e87e9ad8fd9d424536acc5d8"
+      },
+      {
+        "source": "evidence/S17-final4-linux/result.json",
+        "bytes": 6487,
+        "sha256": "e96d313ea6eb2b0e5de7e2b9c04472cc959e4d5c369c6d950ac7ac50d09aeba5",
+        "stored": "evidence/evidence/S17-final4-linux/result.json",
+        "encoding": "identity",
+        "stored_bytes": 6487,
+        "stored_sha256": "e96d313ea6eb2b0e5de7e2b9c04472cc959e4d5c369c6d950ac7ac50d09aeba5"
+      },
+      {
+        "source": "evidence/S17-final4-linux/sim.log",
+        "bytes": 85921,
+        "sha256": "e7b828a515d1b01092e9d2f81ab13b3f0208de190ebb56c0414821b2bc540d4b",
+        "stored": "evidence/evidence/S17-final4-linux/sim.log",
+        "encoding": "identity",
+        "stored_bytes": 85921,
+        "stored_sha256": "e7b828a515d1b01092e9d2f81ab13b3f0208de190ebb56c0414821b2bc540d4b"
+      },
+      {
+        "source": "evidence/S17-final4-linux/toolchain.json",
+        "bytes": 1181,
+        "sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801",
+        "stored": "evidence/evidence/S17-final4-linux/toolchain.json",
+        "encoding": "identity",
+        "stored_bytes": 1181,
+        "stored_sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801"
+      },
+      {
+        "source": "evidence/S17-final4-linux/web.log",
+        "bytes": 41562,
+        "sha256": "d123e980571a80af7f2675afd03956bafe4a3f572d2009b6094a01e0d88d57f2",
+        "stored": "evidence/evidence/S17-final4-linux/web.log",
+        "encoding": "identity",
+        "stored_bytes": 41562,
+        "stored_sha256": "d123e980571a80af7f2675afd03956bafe4a3f572d2009b6094a01e0d88d57f2"
+      },
+      {
+        "source": "evidence/S17-final3-linux/result.json",
+        "bytes": 4176,
+        "sha256": "e776b40144dceee58a2902d0914c6e1dd4246bee48277b73ec29c2457aa225ba",
+        "stored": "evidence/evidence/S17-final3-linux/result.json",
+        "encoding": "identity",
+        "stored_bytes": 4176,
+        "stored_sha256": "e776b40144dceee58a2902d0914c6e1dd4246bee48277b73ec29c2457aa225ba"
+      },
+      {
+        "source": "evidence/S17-final3-linux/sim.log",
+        "bytes": 86635,
+        "sha256": "5348a315279b844c5bd4c8f0549a76b9c349d6604c5253884835b630e192737c",
+        "stored": "evidence/evidence/S17-final3-linux/sim.log",
+        "encoding": "identity",
+        "stored_bytes": 86635,
+        "stored_sha256": "5348a315279b844c5bd4c8f0549a76b9c349d6604c5253884835b630e192737c"
+      },
+      {
+        "source": "evidence/S17-final3-linux/toolchain.json",
+        "bytes": 1181,
+        "sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801",
+        "stored": "evidence/evidence/S17-final3-linux/toolchain.json",
+        "encoding": "identity",
+        "stored_bytes": 1181,
+        "stored_sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801"
+      },
+      {
+        "source": "evidence/S17-final3-linux/web.log",
+        "bytes": 41722,
+        "sha256": "4456f039c4a5f16596ea37cfbf604fca45b8547d81415ee2d43efca5dd324164",
+        "stored": "evidence/evidence/S17-final3-linux/web.log",
+        "encoding": "identity",
+        "stored_bytes": 41722,
+        "stored_sha256": "4456f039c4a5f16596ea37cfbf604fca45b8547d81415ee2d43efca5dd324164"
+      },
+      {
+        "source": "evidence/S17-final1-linux/result.json",
+        "bytes": 1918,
+        "sha256": "36df8b0e85e7ae7d8591f79e9862eb99dfcbd50a98cfd996459169ffd258f302",
+        "stored": "evidence/evidence/S17-final1-linux/result.json",
+        "encoding": "identity",
+        "stored_bytes": 1918,
+        "stored_sha256": "36df8b0e85e7ae7d8591f79e9862eb99dfcbd50a98cfd996459169ffd258f302"
+      },
+      {
+        "source": "evidence/S17-final1-linux/toolchain.json",
+        "bytes": 1181,
+        "sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801",
+        "stored": "evidence/evidence/S17-final1-linux/toolchain.json",
+        "encoding": "identity",
+        "stored_bytes": 1181,
+        "stored_sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801"
+      },
+      {
+        "source": "evidence/S17-final1-linux/web.log",
+        "bytes": 913,
+        "sha256": "8dfe6204fabc229aaeea90e9b8c87e17267dd57c14e60f3af30f7d0bdc3917e7",
+        "stored": "evidence/evidence/S17-final1-linux/web.log",
+        "encoding": "identity",
+        "stored_bytes": 913,
+        "stored_sha256": "8dfe6204fabc229aaeea90e9b8c87e17267dd57c14e60f3af30f7d0bdc3917e7"
+      },
+      {
+        "source": "evidence/S17-fixture-final6/active-confirmed.json",
+        "bytes": 15660944,
+        "sha256": "4a79f3c34334f12253ce9e41abec28084c9ddf15c6f4ce0c07df172f12720ffa",
+        "stored": "evidence/evidence/S17-fixture-final6/active-confirmed.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3013507,
+        "stored_sha256": "a9505975b74fb9a31ce723a19fc354c1cb3735b76ef57e685081c6e8c0ab2f9b"
+      },
+      {
+        "source": "evidence/S17-fixture-final6/active.json",
+        "bytes": 20064363,
+        "sha256": "e24a9466b3d4c33d7099af512f307deee543b3e7ce5b2b7d05d99768e5e06a24",
+        "stored": "evidence/evidence/S17-fixture-final6/active.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3290656,
+        "stored_sha256": "6961a20ba83429af04fffbd9f3fda1b65c23804aed1d0cf569c1d0e3defca3da"
+      },
+      {
+        "source": "evidence/S17-fixture-final6/before.json",
+        "bytes": 15660902,
+        "sha256": "e0bbf658759222332d8f608bdfe6b31a87b707e9414a1e3386aa418a57ae15f8",
+        "stored": "evidence/evidence/S17-fixture-final6/before.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3013488,
+        "stored_sha256": "365ac982e518a0374d1af9571edde1171de6269523b2fcd9840d3a05b751f998"
+      },
+      {
+        "source": "evidence/S17-fixture-final6/manifest.json",
+        "bytes": 20582,
+        "sha256": "d6fe152d4168572e73e2caf6aea8201f3248bd08723969dce19c4bfc616efc97",
+        "stored": "evidence/evidence/S17-fixture-final6/manifest.json",
+        "encoding": "identity",
+        "stored_bytes": 20582,
+        "stored_sha256": "d6fe152d4168572e73e2caf6aea8201f3248bd08723969dce19c4bfc616efc97"
+      },
+      {
+        "source": "evidence/S17-fixture-final6/paused-confirmed.json",
+        "bytes": 20064364,
+        "sha256": "4083b08de6459b2cc907db48cea1057fe9af19c6c4d6b579c694f73fcf8df92b",
+        "stored": "evidence/evidence/S17-fixture-final6/paused-confirmed.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3290663,
+        "stored_sha256": "9bbcc20308d4727ebd458da09d905703fc9854bb94a1e992e71a9d968b141098"
+      },
+      {
+        "source": "evidence/S17-fixture-final6/paused.json",
+        "bytes": 20523966,
+        "sha256": "fdcf27415ef8548c7b32f0dd9b97b024b7a89ca1829b8447452ecfafe8314f10",
+        "stored": "evidence/evidence/S17-fixture-final6/paused.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3359564,
+        "stored_sha256": "8e834f6708fcd2fd985a57f0f41702c6dc5a717d79df3b7c4e1bfa6f281e3c95"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/active-review.png",
+        "bytes": 823432,
+        "sha256": "bd3f46f4fe8ec8ac037e3d9a361aab20c3a7f9087f8993d0d1c21daf334a3598",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/active-review.png",
+        "encoding": "identity",
+        "stored_bytes": 823432,
+        "stored_sha256": "bd3f46f4fe8ec8ac037e3d9a361aab20c3a7f9087f8993d0d1c21daf334a3598"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/active-staff-desktop.png",
+        "bytes": 405630,
+        "sha256": "5299d59019c34ce9d0672d1e4c52700467d00c8dfc53c30d22e362c7254b1aed",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/active-staff-desktop.png",
+        "encoding": "identity",
+        "stored_bytes": 405630,
+        "stored_sha256": "5299d59019c34ce9d0672d1e4c52700467d00c8dfc53c30d22e362c7254b1aed"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/active-staff-narrow.png",
+        "bytes": 138516,
+        "sha256": "d3bb45126df3ec7841533081bdd6cf5645a982eb9b8d060a40e3bd2ab81ed3d0",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/active-staff-narrow.png",
+        "encoding": "identity",
+        "stored_bytes": 138516,
+        "stored_sha256": "d3bb45126df3ec7841533081bdd6cf5645a982eb9b8d060a40e3bd2ab81ed3d0"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/001-s17-audit-loaded.json",
+        "bytes": 4329,
+        "sha256": "c75c38f417c2ca92f8342c9028e20212a46a17d7c97c1acaebf55f51fe7d4192",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/001-s17-audit-loaded.json",
+        "encoding": "identity",
+        "stored_bytes": 4329,
+        "stored_sha256": "c75c38f417c2ca92f8342c9028e20212a46a17d7c97c1acaebf55f51fe7d4192"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/002-before.json",
+        "bytes": 4269,
+        "sha256": "b5f49374d24ff19f1f6317238a7cbaaf93b782ef00f59efe9a9673fb087e9977",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/002-before.json",
+        "encoding": "identity",
+        "stored_bytes": 4269,
+        "stored_sha256": "b5f49374d24ff19f1f6317238a7cbaaf93b782ef00f59efe9a9673fb087e9977"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/003-s17-audit-active-pure-review.json",
+        "bytes": 4353,
+        "sha256": "a54132ff52c1b9a65b2e055e7b814ec6c2d15ff1c572ba0b61b109d2596c331a",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/003-s17-audit-active-pure-review.json",
+        "encoding": "identity",
+        "stored_bytes": 4353,
+        "stored_sha256": "a54132ff52c1b9a65b2e055e7b814ec6c2d15ff1c572ba0b61b109d2596c331a"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/004-before.json",
+        "bytes": 4269,
+        "sha256": "d631c4d3fe8a3b4fc1e41353be77df13a92b298228e08465e7a030f4a2edbbdf",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/004-before.json",
+        "encoding": "identity",
+        "stored_bytes": 4269,
+        "stored_sha256": "d631c4d3fe8a3b4fc1e41353be77df13a92b298228e08465e7a030f4a2edbbdf"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/005-s17-audit-active-confirmed.json",
+        "bytes": 4349,
+        "sha256": "3fd14868e2f7ffd6cce48127f73636f12fc16614bc8c3f0a1603b56df48cb9b3",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/005-s17-audit-active-confirmed.json",
+        "encoding": "identity",
+        "stored_bytes": 4349,
+        "stored_sha256": "3fd14868e2f7ffd6cce48127f73636f12fc16614bc8c3f0a1603b56df48cb9b3"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/006-active-confirmed.json",
+        "bytes": 4289,
+        "sha256": "8ad2df942446edc89914bc96cd5aa654561549cc342c3fc00da3afa21be3c4fd",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/006-active-confirmed.json",
+        "encoding": "identity",
+        "stored_bytes": 4289,
+        "stored_sha256": "8ad2df942446edc89914bc96cd5aa654561549cc342c3fc00da3afa21be3c4fd"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/007-s17-audit-active.json",
+        "bytes": 4338,
+        "sha256": "473c38d85bd9c64ef49b7add1aadac93546604dd37c739acfb866ab6c36bfc1f",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/007-s17-audit-active.json",
+        "encoding": "identity",
+        "stored_bytes": 4338,
+        "stored_sha256": "473c38d85bd9c64ef49b7add1aadac93546604dd37c739acfb866ab6c36bfc1f"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/008-active.json",
+        "bytes": 4278,
+        "sha256": "63dbb03635858d873dbafcef6df5b49f98ce5ceb7e8553d708ff8a910b53d7ee",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/008-active.json",
+        "encoding": "identity",
+        "stored_bytes": 4278,
+        "stored_sha256": "63dbb03635858d873dbafcef6df5b49f98ce5ceb7e8553d708ff8a910b53d7ee"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/009-s17-audit-paused-pure-review.json",
+        "bytes": 4362,
+        "sha256": "13ec8626d8235f787e0c250223ee5a24515927a508b133fe80cc15b554185a4c",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/009-s17-audit-paused-pure-review.json",
+        "encoding": "identity",
+        "stored_bytes": 4362,
+        "stored_sha256": "13ec8626d8235f787e0c250223ee5a24515927a508b133fe80cc15b554185a4c"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/010-active.json",
+        "bytes": 4278,
+        "sha256": "3375bd20682c1d9ae1fb3b338d49951cae4bbba156145616ee6e89813d066bd9",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/010-active.json",
+        "encoding": "identity",
+        "stored_bytes": 4278,
+        "stored_sha256": "3375bd20682c1d9ae1fb3b338d49951cae4bbba156145616ee6e89813d066bd9"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/011-s17-audit-paused-confirmed.json",
+        "bytes": 4358,
+        "sha256": "375cfa94eb2c5db8d9955f4742a25d80bd9c9c0912f45639bd956ee2aff3450f",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/011-s17-audit-paused-confirmed.json",
+        "encoding": "identity",
+        "stored_bytes": 4358,
+        "stored_sha256": "375cfa94eb2c5db8d9955f4742a25d80bd9c9c0912f45639bd956ee2aff3450f"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/012-paused-confirmed.json",
+        "bytes": 4298,
+        "sha256": "34fb861a0a355040d94ee0f4ee58923171bc4c11cff21f1d5dcafe28118e55f2",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/012-paused-confirmed.json",
+        "encoding": "identity",
+        "stored_bytes": 4298,
+        "stored_sha256": "34fb861a0a355040d94ee0f4ee58923171bc4c11cff21f1d5dcafe28118e55f2"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/013-s17-audit-paused.json",
+        "bytes": 4325,
+        "sha256": "1e48dc6cfedf18579fa729a2f0992eb9adbf68db796ddda3078ad2998057b90d",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/013-s17-audit-paused.json",
+        "encoding": "identity",
+        "stored_bytes": 4325,
+        "stored_sha256": "1e48dc6cfedf18579fa729a2f0992eb9adbf68db796ddda3078ad2998057b90d"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/014-paused.json",
+        "bytes": 4265,
+        "sha256": "043472ccb0c9c4558d68487468d480c355be3289911cd9519c88c68d677fad54",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/014-paused.json",
+        "encoding": "identity",
+        "stored_bytes": 4265,
+        "stored_sha256": "043472ccb0c9c4558d68487468d480c355be3289911cd9519c88c68d677fad54"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/015-s17-audit-reloaded.json",
+        "bytes": 4329,
+        "sha256": "16b464222946fe435b74855e3fc7baaf5c4c70da2d70c4bb844f32cf45743ddc",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/015-s17-audit-reloaded.json",
+        "encoding": "identity",
+        "stored_bytes": 4329,
+        "stored_sha256": "16b464222946fe435b74855e3fc7baaf5c4c70da2d70c4bb844f32cf45743ddc"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/016-paused.json",
+        "bytes": 4265,
+        "sha256": "4f083c3a8e2243f50d05cdbe43f8ea76a8104325d46a2be234e5fbc9c7f5ff53",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/016-paused.json",
+        "encoding": "identity",
+        "stored_bytes": 4265,
+        "stored_sha256": "4f083c3a8e2243f50d05cdbe43f8ea76a8104325d46a2be234e5fbc9c7f5ff53"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/017-s17-audit-continued.json",
+        "bytes": 4331,
+        "sha256": "9b503612a8640b89d1c1e9f80e576cd7b7ce1148740b09a28e875bb8f135052d",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/017-s17-audit-continued.json",
+        "encoding": "identity",
+        "stored_bytes": 4331,
+        "stored_sha256": "9b503612a8640b89d1c1e9f80e576cd7b7ce1148740b09a28e875bb8f135052d"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/018-paused.json",
+        "bytes": 4265,
+        "sha256": "699ec411f40864759eb56622a4422aa249ed227f32f74469625acbcc9f41f9a4",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/archive-audit/018-paused.json",
+        "encoding": "identity",
+        "stored_bytes": 4265,
+        "stored_sha256": "699ec411f40864759eb56622a4422aa249ed227f32f74469625acbcc9f41f9a4"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/paused-review.png",
+        "bytes": 818060,
+        "sha256": "380aa547623ce9bbaf39f30a808150a1eef5d54d15ea4ae9c0a19b721057cf31",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/paused-review.png",
+        "encoding": "identity",
+        "stored_bytes": 818060,
+        "stored_sha256": "380aa547623ce9bbaf39f30a808150a1eef5d54d15ea4ae9c0a19b721057cf31"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/paused-staff-desktop.png",
+        "bytes": 405745,
+        "sha256": "aafbe12b94639f59febcf28594b79ace17514c6cc375f766f802331d81e7bfc7",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/paused-staff-desktop.png",
+        "encoding": "identity",
+        "stored_bytes": 405745,
+        "stored_sha256": "aafbe12b94639f59febcf28594b79ace17514c6cc375f766f802331d81e7bfc7"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/paused-staff-narrow.png",
+        "bytes": 138544,
+        "sha256": "28ba2e049e5deea94619b25d94199a4a67156f254691200028b9f470917af0d3",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/paused-staff-narrow.png",
+        "encoding": "identity",
+        "stored_bytes": 138544,
+        "stored_sha256": "28ba2e049e5deea94619b25d94199a4a67156f254691200028b9f470917af0d3"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/result.json",
+        "bytes": 32213,
+        "sha256": "3493ea4124e4c6ca23aee769b7839c07ed2333bd49d7b027fc171d4081c2739c",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/result.json",
+        "encoding": "identity",
+        "stored_bytes": 32213,
+        "stored_sha256": "3493ea4124e4c6ca23aee769b7839c07ed2333bd49d7b027fc171d4081c2739c"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/server/captures/s17-audit-active-confirmed.json",
+        "bytes": 15660944,
+        "sha256": "4b07cad1ce1ad6eb703ef164bc966bd4f102842eeb4be7d64153b5fa0c018aa1",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/server/captures/s17-audit-active-confirmed.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3013506,
+        "stored_sha256": "96c592f8c7e9f4316d8c9d7eb1cb316dff078d66befd6a967aa4c7b98a32d5bf"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/server/captures/s17-audit-active-pure-review.json",
+        "bytes": 15660902,
+        "sha256": "65ca6d35c99937e9dda0d37413afce2d0ea7b71551dba95c463c2fb563803b12",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/server/captures/s17-audit-active-pure-review.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3013488,
+        "stored_sha256": "79275bb5d3d3a3c5199c4973853a31a8233f5707df4b9b539c4a010aee25e461"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/server/captures/s17-audit-active.json",
+        "bytes": 20064363,
+        "sha256": "a79549cb252078342f2f85f66b949d870fffcda301b0709da90261b2f30327b1",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/server/captures/s17-audit-active.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3290656,
+        "stored_sha256": "9363ecf51d85a8f7df0c085d74f3165ad309ed52fb43de32bd10aa74aec9d0ea"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/server/captures/s17-audit-continued.json",
+        "bytes": 20523966,
+        "sha256": "1db3e98fc68ce72894ca5b31315b60ef40ad209d857214edc18275f143d7f1fe",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/server/captures/s17-audit-continued.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3359564,
+        "stored_sha256": "8e445904ea6ab35d17f2dc54e7a1e84c513784d94fb1758195b41543e9f696bc"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/server/captures/s17-audit-loaded.json",
+        "bytes": 15660902,
+        "sha256": "78c7add6e1c42326c2418a91339e53bd65f2ecd2fd7ab8358f28795333e48f9f",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/server/captures/s17-audit-loaded.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3013485,
+        "stored_sha256": "63bfcb193135f59db3398204451b4c0d4325a2ab6779fdfa030840464729726f"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/server/captures/s17-audit-paused-confirmed.json",
+        "bytes": 20064364,
+        "sha256": "bd9f65110ee1e6b4e1e926f1c5c803ea274b67d391ed7529c7e4a63d7df85b5f",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/server/captures/s17-audit-paused-confirmed.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3290662,
+        "stored_sha256": "a4359bfe44a9c393ba18ad176f3002f9a87b8a64c3a426147b2aa29074434328"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/server/captures/s17-audit-paused-pure-review.json",
+        "bytes": 20064363,
+        "sha256": "760d4fb2a5cb78350c13e8ed2999d1fefe98e33a355b4b37329edba967cfdb3a",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/server/captures/s17-audit-paused-pure-review.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3290656,
+        "stored_sha256": "06fb86fa80bad316cef07cab85e75c4ab854ed8d224ea10a1f29108d61a5127b"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/server/captures/s17-audit-paused.json",
+        "bytes": 20523966,
+        "sha256": "02f17ed8b0082822b626aac3b3ca7d7347f6e7bb6e8761c4e34716c2a8718134",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/server/captures/s17-audit-paused.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3359564,
+        "stored_sha256": "5f36b3021f8279e5cf1ff1719293a9ff7334fc4643fab8bee11aaa024bc28625"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/server/captures/s17-audit-reloaded.json",
+        "bytes": 20523966,
+        "sha256": "134d1c4c7df2a39aee2acc22aafdcd7474cb6044adab5a3c5e1c7b7b45e94318",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/server/captures/s17-audit-reloaded.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3359564,
+        "stored_sha256": "7922e261ad1397dd7fab1088ff42f4ae28ea3815608fee24d5b0f3e457fec7ec"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/server/saves/s17-military-staff.json",
+        "bytes": 20523966,
+        "sha256": "d16b9584c2741ce1cc31ebd98c8284761c2eaf5127922ed7847c406edece329d",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/server/saves/s17-military-staff.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3359564,
+        "stored_sha256": "78c05220960f170d7150da55a13bc03841f7c217912864381d40b20d818cc47b"
+      },
+      {
+        "source": "evidence/S17-browser-final6-browser/staff-L3lzO3/server.log",
+        "bytes": 78,
+        "sha256": "d2c01761b72db0b968fd619b870f7dbac4f8c3ac7baf5a3568e752a85ceec87b",
+        "stored": "evidence/evidence/S17-browser-final6-browser/staff-L3lzO3/server.log",
+        "encoding": "identity",
+        "stored_bytes": 78,
+        "stored_sha256": "d2c01761b72db0b968fd619b870f7dbac4f8c3ac7baf5a3568e752a85ceec87b"
+      },
+      {
+        "source": "run-s17-check.py",
+        "bytes": 4555,
+        "sha256": "d547ff78622b2aafa660de022b8bce503f1aa6802bab998a89140f3cd748faed",
+        "stored": "evidence/run-s17-check.py",
+        "encoding": "identity",
+        "stored_bytes": 4555,
+        "stored_sha256": "d547ff78622b2aafa660de022b8bce503f1aa6802bab998a89140f3cd748faed"
+      },
+      {
+        "source": "run-s17-windows-final4.py",
+        "bytes": 546,
+        "sha256": "a3c88740056926d5ea5db3b994b9df08ff2d250341df8ead5ee06ef12db09fa5",
+        "stored": "evidence/run-s17-windows-final4.py",
+        "encoding": "identity",
+        "stored_bytes": 546,
+        "stored_sha256": "a3c88740056926d5ea5db3b994b9df08ff2d250341df8ead5ee06ef12db09fa5"
+      },
+      {
+        "source": "run-s17-linux-final4.py",
+        "bytes": 7586,
+        "sha256": "610bf6d30262cbfa980fc681a71f3aea92e8b854eecd1d0b94d759da5d8eb8ed",
+        "stored": "evidence/run-s17-linux-final4.py",
+        "encoding": "identity",
+        "stored_bytes": 7586,
+        "stored_sha256": "610bf6d30262cbfa980fc681a71f3aea92e8b854eecd1d0b94d759da5d8eb8ed"
+      },
+      {
+        "source": "run-s17-windows-final5.py",
+        "bytes": 528,
+        "sha256": "442a59b3427b402fa2053991a843d7a0b0f79630bdc0e03ef5745fbde39dcc97",
+        "stored": "evidence/run-s17-windows-final5.py",
+        "encoding": "identity",
+        "stored_bytes": 528,
+        "stored_sha256": "442a59b3427b402fa2053991a843d7a0b0f79630bdc0e03ef5745fbde39dcc97"
+      },
+      {
+        "source": "run-s17-linux-final5.py",
+        "bytes": 6971,
+        "sha256": "ebc36519586faa6fb584f22dc3176f664fa1f2292cbccfa2eec06c939dad07ae",
+        "stored": "evidence/run-s17-linux-final5.py",
+        "encoding": "identity",
+        "stored_bytes": 6971,
+        "stored_sha256": "ebc36519586faa6fb584f22dc3176f664fa1f2292cbccfa2eec06c939dad07ae"
+      },
+      {
+        "source": "run-s17-windows-final6.py",
+        "bytes": 523,
+        "sha256": "7c291699a63540927156f7d36aa07635e659433c899ae0237e648c9f43c74449",
+        "stored": "evidence/run-s17-windows-final6.py",
+        "encoding": "identity",
+        "stored_bytes": 523,
+        "stored_sha256": "7c291699a63540927156f7d36aa07635e659433c899ae0237e648c9f43c74449"
+      },
+      {
+        "source": "run-s17-linux-final6.py",
+        "bytes": 6959,
+        "sha256": "e1abc2b0981c2933d29bc62985e439eed1a05c0a6a55f43bcddf791513b87598",
+        "stored": "evidence/run-s17-linux-final6.py",
+        "encoding": "identity",
+        "stored_bytes": 6959,
+        "stored_sha256": "e1abc2b0981c2933d29bc62985e439eed1a05c0a6a55f43bcddf791513b87598"
+      },
+      {
+        "source": "launch-s17-review.py",
+        "bytes": 4413,
+        "sha256": "65555db270fa45aa21e6e2750ce3dea9b5a6acf27f997e8ac36a8af5778dbc0a",
+        "stored": "evidence/launch-s17-review.py",
+        "encoding": "identity",
+        "stored_bytes": 4413,
+        "stored_sha256": "65555db270fa45aa21e6e2750ce3dea9b5a6acf27f997e8ac36a8af5778dbc0a"
+      },
+      {
+        "source": "collect-s17-evidence.py",
+        "bytes": 9399,
+        "sha256": "b3062d900641255d9dc92a51134f8bc2241044ffa6fede9145739e1e66c6fc62",
+        "stored": "evidence/collect-s17-evidence.py",
+        "encoding": "identity",
+        "stored_bytes": 9399,
+        "stored_sha256": "b3062d900641255d9dc92a51134f8bc2241044ffa6fede9145739e1e66c6fc62"
+      },
+      {
+        "source": "finish-s17-docs.py",
+        "bytes": 7286,
+        "sha256": "2b46112e020334dc3491ea2f9fcee66c275ed766fcac54d734d4bb9d1721be54",
+        "stored": "evidence/finish-s17-docs.py",
+        "encoding": "identity",
+        "stored_bytes": 7286,
+        "stored_sha256": "2b46112e020334dc3491ea2f9fcee66c275ed766fcac54d734d4bb9d1721be54"
+      },
+      {
+        "source": "verify-s08-preservation.py",
+        "bytes": 1637,
+        "sha256": "4fc24e55dc7b773844067d52e09bffc88c42458e2adb7cbcdcbb337859afccbd",
+        "stored": "evidence/verify-s08-preservation.py",
+        "encoding": "identity",
+        "stored_bytes": 1637,
+        "stored_sha256": "4fc24e55dc7b773844067d52e09bffc88c42458e2adb7cbcdcbb337859afccbd"
+      },
+      {
+        "source": "S17-review-launch.json",
+        "bytes": 3777,
+        "sha256": "ecae24e6674ad79b11ed5870d5686252c80deaa3d958360e40d772e694d50a32",
+        "stored": "evidence/S17-review-launch.json",
+        "encoding": "identity",
+        "stored_bytes": 3777,
+        "stored_sha256": "ecae24e6674ad79b11ed5870d5686252c80deaa3d958360e40d772e694d50a32"
+      },
+      {
+        "source": "S17-equipment-node-preflight.log",
+        "bytes": 18597,
+        "sha256": "3ea4d0a2e399e325f0f881c88f0d28745a5585a65b520ab56a8d43ad33822bff",
+        "stored": "evidence/S17-equipment-node-preflight.log",
+        "encoding": "identity",
+        "stored_bytes": 18597,
+        "stored_sha256": "3ea4d0a2e399e325f0f881c88f0d28745a5585a65b520ab56a8d43ad33822bff"
+      },
+      {
+        "source": "S17-maintenance-preflight-final4.log",
+        "bytes": 1211,
+        "sha256": "103a80add8a1b67f5ffedd70639a6d6766807e4983d9dde53a1652377e8ac6eb",
+        "stored": "evidence/S17-maintenance-preflight-final4.log",
+        "encoding": "identity",
+        "stored_bytes": 1211,
+        "stored_sha256": "103a80add8a1b67f5ffedd70639a6d6766807e4983d9dde53a1652377e8ac6eb"
+      },
+      {
+        "source": "S17-node-preflight.log",
+        "bytes": 160291,
+        "sha256": "5a33a0ee84defee80c1ca14e63d7f14d40f6f7ed6166f3fd8aaf5659cffa23aa",
+        "stored": "evidence/S17-node-preflight.log",
+        "encoding": "identity",
+        "stored_bytes": 160291,
+        "stored_sha256": "5a33a0ee84defee80c1ca14e63d7f14d40f6f7ed6166f3fd8aaf5659cffa23aa"
+      },
+      {
+        "source": "S17-sim-preflight.log",
+        "bytes": 87409,
+        "sha256": "a34849d7572ef0cc6208ed275fb35709a50447e1d90a8c225e18d0fb6a82ae03",
+        "stored": "evidence/S17-sim-preflight.log",
+        "encoding": "identity",
+        "stored_bytes": 87409,
+        "stored_sha256": "a34849d7572ef0cc6208ed275fb35709a50447e1d90a8c225e18d0fb6a82ae03"
+      },
+      {
+        "source": "S17-staff-preflight2.log",
+        "bytes": 1785,
+        "sha256": "a31d8aec1c1a73900196743ad3409e1c2ef814355f5f5e4c9b083a7cf6c4cfac",
+        "stored": "evidence/S17-staff-preflight2.log",
+        "encoding": "identity",
+        "stored_bytes": 1785,
+        "stored_sha256": "a31d8aec1c1a73900196743ad3409e1c2ef814355f5f5e4c9b083a7cf6c4cfac"
+      },
+      {
+        "source": "S17-staff-preflight3.log",
+        "bytes": 1817,
+        "sha256": "04204d031df05b09159fa76dd310078c8e78d5b2bac74b8a61790077f12925f4",
+        "stored": "evidence/S17-staff-preflight3.log",
+        "encoding": "identity",
+        "stored_bytes": 1817,
+        "stored_sha256": "04204d031df05b09159fa76dd310078c8e78d5b2bac74b8a61790077f12925f4"
+      },
+      {
+        "source": "S17-staff-preflight4.log",
+        "bytes": 1813,
+        "sha256": "9c73b29a5a8198a675549848c67ca5f8393a0dbe25f2b059e69c303b3d534b99",
+        "stored": "evidence/S17-staff-preflight4.log",
+        "encoding": "identity",
+        "stored_bytes": 1813,
+        "stored_sha256": "9c73b29a5a8198a675549848c67ca5f8393a0dbe25f2b059e69c303b3d534b99"
+      }
+    ]
+  }
+}

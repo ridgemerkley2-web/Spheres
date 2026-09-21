@@ -1,0 +1,108 @@
+{
+  "format": "spheres-s17-linux/v1",
+  "revision": "1b7007a8b7b4ca4b960b403b76868cd134dabdd6",
+  "started_utc": "2026-09-21T23:14:54.064827+00:00",
+  "status": "passed",
+  "scope": "Final interface native web and Node suites on Linux. Unchanged simulation and thirteen integration targets retain final4 qualification, with an exact source comparison in the closure manifest. No external old-save, elapsed campaign, historical-content or gate-completion claim.",
+  "runner_sha256": "ebc36519586faa6fb584f22dc3176f664fa1f2292cbccfa2eec06c939dad07ae",
+  "derived_from": {
+    "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/run-s10-final-linux.py",
+    "sha256": "a27a4149a6e70f656118236ff97a4613e429279ae628a65134b585989f1209da"
+  },
+  "source_verification": "Windows git.exe on the same complete NTFS checkout; test and compile processes use the existing Linux toolchain and target directory.",
+  "environment": {
+    "GIT_DIR": "/mnt/c/Users/ridge/Spheres/.git/worktrees/integration",
+    "GIT_WORK_TREE": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+    "GIT_OPTIONAL_LOCKS": "0",
+    "CARGO_BUILD_JOBS": "4",
+    "GIT_CONFIG_COUNT": "1",
+    "GIT_CONFIG_KEY_0": "core.autocrlf",
+    "GIT_CONFIG_VALUE_0": "true",
+    "CARGO_HOME": "/home/ridge/.cache/spheres-s05-tools/cargo",
+    "RUSTUP_HOME": "/home/ridge/.cache/spheres-s05-tools/rustup",
+    "CARGO_TARGET_DIR": "/home/ridge/.cache/spheres-s05-target",
+    "CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER": "/home/ridge/.cache/spheres-s05-tools/bin/cc",
+    "CC": "/home/ridge/.cache/spheres-s05-tools/bin/cc",
+    "TMPDIR": "/home/ridge/.cache/spheres-s05-runs/tmp"
+  },
+  "checks": [
+    {
+      "name": "web",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--release",
+        "-p",
+        "spheres-web",
+        "--no-fail-fast"
+      ],
+      "started_utc": "2026-09-21T23:14:54.819094+00:00",
+      "finished_utc": "2026-09-21T23:18:50.909793+00:00",
+      "elapsed_seconds": 236.09073117999992,
+      "exit_code": 0,
+      "log": "web.log",
+      "log_sha256": "bd1c3fd00eabfa792515f5725fe54312d8619fe66271fa969081ee491ff84d02",
+      "totals": {
+        "passed": 398,
+        "failed": 0,
+        "ignored": 20,
+        "completed_targets": 2
+      },
+      "source_before": {
+        "head": "1b7007a8b7b4ca4b960b403b76868cd134dabdd6",
+        "status": ""
+      },
+      "source_after": {
+        "head": "1b7007a8b7b4ca4b960b403b76868cd134dabdd6",
+        "status": ""
+      },
+      "passed": true,
+      "test_binary": {
+        "path": "/home/ridge/.cache/spheres-s05-target/release/deps/spheres_web-20279169217b1e37",
+        "bytes": 349203360,
+        "sha256": "13cbc87ba4a325cb12fc1556215ec0ba630b5ceaeba0e0e5d381872cec816bb1"
+      }
+    },
+    {
+      "name": "node",
+      "command": [
+        "node",
+        "tools/ui/run-unit.cjs"
+      ],
+      "started_utc": "2026-09-21T23:18:51.291296+00:00",
+      "finished_utc": "2026-09-21T23:20:36.029651+00:00",
+      "elapsed_seconds": 104.73834916100009,
+      "exit_code": 0,
+      "log": "node.log",
+      "log_sha256": "24fcaa564f3b3289ea9d6818a9de888bace57ffae49e25e2cd7e5ed7b898ede9",
+      "totals": {
+        "tests": 1594,
+        "passed": 1593,
+        "failed": 0,
+        "skipped": 1
+      },
+      "source_before": {
+        "head": "1b7007a8b7b4ca4b960b403b76868cd134dabdd6",
+        "status": ""
+      },
+      "source_after": {
+        "head": "1b7007a8b7b4ca4b960b403b76868cd134dabdd6",
+        "status": ""
+      },
+      "passed": true
+    }
+  ],
+  "source_before": {
+    "head": "1b7007a8b7b4ca4b960b403b76868cd134dabdd6",
+    "status": ""
+  },
+  "toolchain_sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801",
+  "source_after": {
+    "head": "1b7007a8b7b4ca4b960b403b76868cd134dabdd6",
+    "status": ""
+  },
+  "runner_sha256_after": "ebc36519586faa6fb584f22dc3176f664fa1f2292cbccfa2eec06c939dad07ae",
+  "passed": true,
+  "finished_utc": "2026-09-21T23:20:36.232535+00:00"
+}

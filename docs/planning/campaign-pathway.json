@@ -460,7 +460,7 @@
       "id": "S17",
       "phase": "experience",
       "title": "Make AI countries use the same rules",
-      "status": "in_progress",
+      "status": "complete",
       "depends": [
         "S08",
         "S10",
@@ -471,7 +471,14 @@
         "AI buys real stock, pays real support and respects development, delivery, basing, access and ammunition.",
         "Bound reassessment and budgets so countries do not redesign or rebase every day.",
         "Test major, small-country, domestic and imported acquisition paths; document any difficulty modifiers rather than hiding economic privileges."
-      ]
+      ],
+      "evidence": "../campaign-certification/S17/README.md",
+      "completed_date": "2026-09-21",
+      "closure": {
+        "evidence": "docs/campaign-certification/S17/manifest.json",
+        "candidate_revision": "aebbf0c13623535c7e975518e934909e8e401b12",
+        "completed_utc": "2026-09-21T23:25:17.284589+00:00"
+      }
     },
     {
       "id": "S18",
@@ -927,16 +934,16 @@
       }
     ]
   },
-  "last_completed_session": "S16",
-  "next_session": "S17",
+  "last_completed_session": "S17",
+  "next_session": "S18",
   "execution": {
     "authorized_through": "S17",
     "stop_boundary": "S17",
-    "status": "running",
+    "status": "stopped",
     "previous_stop": "S16",
     "instruction": "next'",
     "instruction_date": "2026-09-21",
-    "next_session_requires_instruction": false
+    "next_session_requires_instruction": true
   },
   "gate_decisions": {
     "G1": {

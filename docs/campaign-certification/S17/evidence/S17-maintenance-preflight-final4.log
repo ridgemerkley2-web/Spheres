@@ -1,0 +1,20 @@
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+    Finished `release` profile [optimized] target(s) in 1m 36s
+     Running unittests src\lib.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_sim-de8a2e7790f15db6.exe)
+
+running 1 test
+
+thread 'military_ai::tests::maintenance_reallocation_pays_political_cost_and_only_changes_future_funding' (15124) panicked at spheres-sim\src\military_ai_tests.rs:386:5:
+assertion failed: programs::available_bn(&w, HOME, DEF, 2) >
+    programs::available_bn(&baseline, HOME, DEF, 2)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test military_ai::tests::maintenance_reallocation_pays_political_cost_and_only_changes_future_funding ... FAILED
+
+failures:
+
+failures:
+    military_ai::tests::maintenance_reallocation_pays_political_cost_and_only_changes_future_funding
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 911 filtered out; finished in 0.02s
+
+error: test failed, to rerun pass `-p spheres-sim --lib`

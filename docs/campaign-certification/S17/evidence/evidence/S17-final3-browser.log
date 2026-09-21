@@ -1,0 +1,17 @@
+C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\ci-military-staff.cjs:7
+const hash=b=>crypto.createHash('sha256').update(b).digest('hex'),route=(r,p)=>new URL(r.url()).pathname===p&&r.request().method()==='POST';
+                                                                                                                ^
+
+TypeError: r.request is not a function
+    at route (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\ci-military-staff.cjs:7:113)
+    at Page.<anonymous> (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\ci-military-staff.cjs:88:87)
+    at Page._callHandler (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\node_modules\playwright-core\lib\client\eventEmitter.js:66:29)
+    at Page.emit (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\node_modules\playwright-core\lib\client\eventEmitter.js:56:12)
+    at BrowserContext._onRequest (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\node_modules\playwright-core\lib\client\browserContext.js:176:12)
+    at Proxy.<anonymous> (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\node_modules\playwright-core\lib\client\browserContext.js:129:61)
+    at Proxy._callHandler (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\node_modules\playwright-core\lib\client\eventEmitter.js:66:29)
+    at Proxy.emit (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\node_modules\playwright-core\lib\client\eventEmitter.js:56:12)
+    at Connection.dispatch (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\node_modules\playwright-core\lib\client\connection.js:176:21)
+    at Immediate.<anonymous> (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\node_modules\playwright-core\lib\inProcessFactory.js:46:85)
+
+Node.js v24.12.0

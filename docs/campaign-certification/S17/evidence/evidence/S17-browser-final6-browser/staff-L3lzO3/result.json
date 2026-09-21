@@ -1,0 +1,689 @@
+{
+  "passed": true,
+  "revision": "aebbf0c13623535c7e975518e934909e8e401b12",
+  "binary_sha256": "2641e1014258a9579f19feb36de6ec002a2a24e7b0c39254acd6556a19cc07ec",
+  "run": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S17-browser-final6-browser\\staff-L3lzO3\\server",
+  "url": "http://127.0.0.1:59661",
+  "fixture": "Authored S16 forces and supplies retained; economic competition explicitly enabled in setup. Only reviewed military staff controls and six ordinary daily advances follow. No new aircraft, cash, research, ammunition or base grants. Includes exact save/resume comparisons and actual autonomous Italian combat with finite stores.",
+  "commands": [
+    {
+      "commands": [
+        {
+          "enabled": true,
+          "kind": "military_ai"
+        }
+      ],
+      "session_id": "11140-1790032944628659800-1",
+      "client_id": "36777ebc-cdf3-407c-905b-0cc7479352f7",
+      "request_seq": 1
+    },
+    {
+      "commands": [
+        {
+          "enabled": false,
+          "kind": "military_ai"
+        }
+      ],
+      "session_id": "11140-1790032944628659800-1",
+      "client_id": "36777ebc-cdf3-407c-905b-0cc7479352f7",
+      "request_seq": 6
+    }
+  ],
+  "advances": [
+    {
+      "days": 1,
+      "commands": [],
+      "session_id": "11140-1790032944628659800-1",
+      "client_id": "36777ebc-cdf3-407c-905b-0cc7479352f7",
+      "request_seq": 2
+    },
+    {
+      "days": 1,
+      "commands": [],
+      "session_id": "11140-1790032944628659800-1",
+      "client_id": "36777ebc-cdf3-407c-905b-0cc7479352f7",
+      "request_seq": 3
+    },
+    {
+      "days": 1,
+      "commands": [],
+      "session_id": "11140-1790032944628659800-1",
+      "client_id": "36777ebc-cdf3-407c-905b-0cc7479352f7",
+      "request_seq": 4
+    },
+    {
+      "days": 1,
+      "commands": [],
+      "session_id": "11140-1790032944628659800-1",
+      "client_id": "36777ebc-cdf3-407c-905b-0cc7479352f7",
+      "request_seq": 5
+    },
+    {
+      "days": 1,
+      "commands": [],
+      "session_id": "11140-1790032944628659800-1",
+      "client_id": "36777ebc-cdf3-407c-905b-0cc7479352f7",
+      "request_seq": 7
+    },
+    {
+      "days": 1,
+      "commands": [],
+      "session_id": "11140-1790032944628659800-1",
+      "client_id": "36777ebc-cdf3-407c-905b-0cc7479352f7",
+      "request_seq": 8
+    }
+  ],
+  "world_comparisons": [
+    {
+      "message": "loaded",
+      "left": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S17-browser-final6-browser\\staff-L3lzO3\\server\\captures\\s17-audit-loaded.json",
+        "bytes": 15660902,
+        "sha256": "78c7add6e1c42326c2418a91339e53bd65f2ecd2fd7ab8358f28795333e48f9f"
+      },
+      "right": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S17-fixture-final6\\before.json",
+        "bytes": 15660902,
+        "sha256": "e0bbf658759222332d8f608bdfe6b31a87b707e9414a1e3386aa418a57ae15f8"
+      },
+      "sha256": "a1060f41c4520d5b6e585a6d15d9b3698457e9385dc6c856b3c1d48c1899a64a",
+      "ignored_paths": []
+    },
+    {
+      "message": "active-pure-review",
+      "left": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S17-browser-final6-browser\\staff-L3lzO3\\server\\captures\\s17-audit-active-pure-review.json",
+        "bytes": 15660902,
+        "sha256": "65ca6d35c99937e9dda0d37413afce2d0ea7b71551dba95c463c2fb563803b12"
+      },
+      "right": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S17-fixture-final6\\before.json",
+        "bytes": 15660902,
+        "sha256": "e0bbf658759222332d8f608bdfe6b31a87b707e9414a1e3386aa418a57ae15f8"
+      },
+      "sha256": "a1060f41c4520d5b6e585a6d15d9b3698457e9385dc6c856b3c1d48c1899a64a",
+      "ignored_paths": []
+    },
+    {
+      "message": "active-confirmed",
+      "left": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S17-browser-final6-browser\\staff-L3lzO3\\server\\captures\\s17-audit-active-confirmed.json",
+        "bytes": 15660944,
+        "sha256": "4b07cad1ce1ad6eb703ef164bc966bd4f102842eeb4be7d64153b5fa0c018aa1"
+      },
+      "right": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S17-fixture-final6\\active-confirmed.json",
+        "bytes": 15660944,
+        "sha256": "4a79f3c34334f12253ce9e41abec28084c9ddf15c6f4ce0c07df172f12720ffa"
+      },
+      "sha256": "5485a15ca3446e86ef46fe96c2fa07a58c96e69584fc66ac99fb1b14013feec0",
+      "ignored_paths": []
+    },
+    {
+      "message": "active",
+      "left": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S17-browser-final6-browser\\staff-L3lzO3\\server\\captures\\s17-audit-active.json",
+        "bytes": 20064363,
+        "sha256": "a79549cb252078342f2f85f66b949d870fffcda301b0709da90261b2f30327b1"
+      },
+      "right": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S17-fixture-final6\\active.json",
+        "bytes": 20064363,
+        "sha256": "e24a9466b3d4c33d7099af512f307deee543b3e7ce5b2b7d05d99768e5e06a24"
+      },
+      "sha256": "306d1d0f8cb392e4e902139e0ffc55d210319e365e7fcf47a6ffe1417517bfed",
+      "ignored_paths": []
+    },
+    {
+      "message": "paused-pure-review",
+      "left": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S17-browser-final6-browser\\staff-L3lzO3\\server\\captures\\s17-audit-paused-pure-review.json",
+        "bytes": 20064363,
+        "sha256": "760d4fb2a5cb78350c13e8ed2999d1fefe98e33a355b4b37329edba967cfdb3a"
+      },
+      "right": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S17-fixture-final6\\active.json",
+        "bytes": 20064363,
+        "sha256": "e24a9466b3d4c33d7099af512f307deee543b3e7ce5b2b7d05d99768e5e06a24"
+      },
+      "sha256": "306d1d0f8cb392e4e902139e0ffc55d210319e365e7fcf47a6ffe1417517bfed",
+      "ignored_paths": []
+    },
+    {
+      "message": "paused-confirmed",
+      "left": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S17-browser-final6-browser\\staff-L3lzO3\\server\\captures\\s17-audit-paused-confirmed.json",
+        "bytes": 20064364,
+        "sha256": "bd9f65110ee1e6b4e1e926f1c5c803ea274b67d391ed7529c7e4a63d7df85b5f"
+      },
+      "right": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S17-fixture-final6\\paused-confirmed.json",
+        "bytes": 20064364,
+        "sha256": "4083b08de6459b2cc907db48cea1057fe9af19c6c4d6b579c694f73fcf8df92b"
+      },
+      "sha256": "df6485441871d972e07e2e6a5f89d3116a1e8fbf7273348c427dc1582e8f1c70",
+      "ignored_paths": []
+    },
+    {
+      "message": "paused",
+      "left": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S17-browser-final6-browser\\staff-L3lzO3\\server\\captures\\s17-audit-paused.json",
+        "bytes": 20523966,
+        "sha256": "02f17ed8b0082822b626aac3b3ca7d7347f6e7bb6e8761c4e34716c2a8718134"
+      },
+      "right": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S17-fixture-final6\\paused.json",
+        "bytes": 20523966,
+        "sha256": "fdcf27415ef8548c7b32f0dd9b97b024b7a89ca1829b8447452ecfafe8314f10"
+      },
+      "sha256": "a29e85ec742dfd357a15fe9ea7e609dd7dd0e49fdd0b30ce6affb12593025b71",
+      "ignored_paths": []
+    },
+    {
+      "message": "reloaded",
+      "left": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S17-browser-final6-browser\\staff-L3lzO3\\server\\captures\\s17-audit-reloaded.json",
+        "bytes": 20523966,
+        "sha256": "134d1c4c7df2a39aee2acc22aafdcd7474cb6044adab5a3c5e1c7b7b45e94318"
+      },
+      "right": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S17-fixture-final6\\paused.json",
+        "bytes": 20523966,
+        "sha256": "fdcf27415ef8548c7b32f0dd9b97b024b7a89ca1829b8447452ecfafe8314f10"
+      },
+      "sha256": "a29e85ec742dfd357a15fe9ea7e609dd7dd0e49fdd0b30ce6affb12593025b71",
+      "ignored_paths": []
+    },
+    {
+      "message": "continued",
+      "left": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S17-browser-final6-browser\\staff-L3lzO3\\server\\captures\\s17-audit-continued.json",
+        "bytes": 20523966,
+        "sha256": "1db3e98fc68ce72894ca5b31315b60ef40ad209d857214edc18275f143d7f1fe"
+      },
+      "right": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S17-fixture-final6\\paused.json",
+        "bytes": 20523966,
+        "sha256": "fdcf27415ef8548c7b32f0dd9b97b024b7a89ca1829b8447452ecfafe8314f10"
+      },
+      "sha256": "a29e85ec742dfd357a15fe9ea7e609dd7dd0e49fdd0b30ce6affb12593025b71",
+      "ignored_paths": []
+    }
+  ],
+  "envelope_comparisons": [
+    {
+      "message": "loaded",
+      "left": {
+        "sha256": "5f0987b4b4a6976607952e81573dce181bd4b00f9eae909dbc9e2a29b2ab1244",
+        "bytes": 552339,
+        "saved_unix": 1790032945,
+        "history_points": 22,
+        "dispatches": 70
+      },
+      "right": {
+        "sha256": "5f0987b4b4a6976607952e81573dce181bd4b00f9eae909dbc9e2a29b2ab1244",
+        "bytes": 552339,
+        "saved_unix": 1790032937,
+        "history_points": 22,
+        "dispatches": 70
+      },
+      "rule": "Only separately validated saved_unix may differ; native world and historical fields remain exact."
+    },
+    {
+      "message": "active-pure-review",
+      "left": {
+        "sha256": "5f0987b4b4a6976607952e81573dce181bd4b00f9eae909dbc9e2a29b2ab1244",
+        "bytes": 552339,
+        "saved_unix": 1790032950,
+        "history_points": 22,
+        "dispatches": 70
+      },
+      "right": {
+        "sha256": "5f0987b4b4a6976607952e81573dce181bd4b00f9eae909dbc9e2a29b2ab1244",
+        "bytes": 552339,
+        "saved_unix": 1790032937,
+        "history_points": 22,
+        "dispatches": 70
+      },
+      "rule": "Only separately validated saved_unix may differ; native world and historical fields remain exact."
+    },
+    {
+      "message": "active-confirmed",
+      "left": {
+        "sha256": "0b4a52009dc36940926a801fa9a97ddc5e2e4ac8087ce56b78517bf901e92edd",
+        "bytes": 552339,
+        "saved_unix": 1790032952,
+        "history_points": 22,
+        "dispatches": 70
+      },
+      "right": {
+        "sha256": "0b4a52009dc36940926a801fa9a97ddc5e2e4ac8087ce56b78517bf901e92edd",
+        "bytes": 552339,
+        "saved_unix": 1790032937,
+        "history_points": 22,
+        "dispatches": 70
+      },
+      "rule": "Only separately validated saved_unix may differ; native world and historical fields remain exact."
+    },
+    {
+      "message": "active",
+      "left": {
+        "sha256": "a972218aaea92d41dc3844def729cceca02e8093e6e50a69f0ea10d7d7df2b25",
+        "bytes": 652701,
+        "saved_unix": 1790032955,
+        "history_points": 26,
+        "dispatches": 70
+      },
+      "right": {
+        "sha256": "a972218aaea92d41dc3844def729cceca02e8093e6e50a69f0ea10d7d7df2b25",
+        "bytes": 652701,
+        "saved_unix": 1790032938,
+        "history_points": 26,
+        "dispatches": 70
+      },
+      "rule": "Only separately validated saved_unix may differ; native world and historical fields remain exact."
+    },
+    {
+      "message": "paused-pure-review",
+      "left": {
+        "sha256": "a972218aaea92d41dc3844def729cceca02e8093e6e50a69f0ea10d7d7df2b25",
+        "bytes": 652701,
+        "saved_unix": 1790032959,
+        "history_points": 26,
+        "dispatches": 70
+      },
+      "right": {
+        "sha256": "a972218aaea92d41dc3844def729cceca02e8093e6e50a69f0ea10d7d7df2b25",
+        "bytes": 652701,
+        "saved_unix": 1790032938,
+        "history_points": 26,
+        "dispatches": 70
+      },
+      "rule": "Only separately validated saved_unix may differ; native world and historical fields remain exact."
+    },
+    {
+      "message": "paused-confirmed",
+      "left": {
+        "sha256": "a972218aaea92d41dc3844def729cceca02e8093e6e50a69f0ea10d7d7df2b25",
+        "bytes": 652701,
+        "saved_unix": 1790032962,
+        "history_points": 26,
+        "dispatches": 70
+      },
+      "right": {
+        "sha256": "a972218aaea92d41dc3844def729cceca02e8093e6e50a69f0ea10d7d7df2b25",
+        "bytes": 652701,
+        "saved_unix": 1790032939,
+        "history_points": 26,
+        "dispatches": 70
+      },
+      "rule": "Only separately validated saved_unix may differ; native world and historical fields remain exact."
+    },
+    {
+      "message": "paused",
+      "left": {
+        "sha256": "e4fabfb51dba45e461deab21d5552d092e44531ad877cd4a285a8c3f959dda1a",
+        "bytes": 702995,
+        "saved_unix": 1790032965,
+        "history_points": 28,
+        "dispatches": 71
+      },
+      "right": {
+        "sha256": "e4fabfb51dba45e461deab21d5552d092e44531ad877cd4a285a8c3f959dda1a",
+        "bytes": 702995,
+        "saved_unix": 1790032940,
+        "history_points": 28,
+        "dispatches": 71
+      },
+      "rule": "Only separately validated saved_unix may differ; native world and historical fields remain exact."
+    },
+    {
+      "message": "reloaded",
+      "left": {
+        "sha256": "e4fabfb51dba45e461deab21d5552d092e44531ad877cd4a285a8c3f959dda1a",
+        "bytes": 702995,
+        "saved_unix": 1790032970,
+        "history_points": 28,
+        "dispatches": 71
+      },
+      "right": {
+        "sha256": "e4fabfb51dba45e461deab21d5552d092e44531ad877cd4a285a8c3f959dda1a",
+        "bytes": 702995,
+        "saved_unix": 1790032940,
+        "history_points": 28,
+        "dispatches": 71
+      },
+      "rule": "Only separately validated saved_unix may differ; native world and historical fields remain exact."
+    },
+    {
+      "message": "continued",
+      "left": {
+        "sha256": "e4fabfb51dba45e461deab21d5552d092e44531ad877cd4a285a8c3f959dda1a",
+        "bytes": 702995,
+        "saved_unix": 1790032973,
+        "history_points": 28,
+        "dispatches": 71
+      },
+      "right": {
+        "sha256": "e4fabfb51dba45e461deab21d5552d092e44531ad877cd4a285a8c3f959dda1a",
+        "bytes": 702995,
+        "saved_unix": 1790032940,
+        "history_points": 28,
+        "dispatches": 71
+      },
+      "rule": "Only separately validated saved_unix may differ; native world and historical fields remain exact."
+    }
+  ],
+  "screenshots": [
+    "active-review.png",
+    "active-staff-desktop.png",
+    "active-staff-narrow.png",
+    "paused-review.png",
+    "paused-staff-desktop.png",
+    "paused-staff-narrow.png"
+  ],
+  "errors": [],
+  "started_utc": "2026-09-21T23:22:22.584Z",
+  "build": {
+    "revision": "aebbf0c13623535c7e975518e934909e8e401b12",
+    "build": {
+      "branch": "codex/campaign-certification",
+      "built_at_unix_seconds": 1790032866,
+      "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+      "distribution": "Local offline game server; source and attribution accompany the release",
+      "revision": "aebbf0c13623",
+      "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S17-browser-final6-browser\\staff-L3lzO3\\server",
+      "version": "0.6.0"
+    },
+    "binary_sha256": "2641e1014258a9579f19feb36de6ec002a2a24e7b0c39254acd6556a19cc07ec",
+    "assets": {
+      "index.html": {
+        "served_sha256": "75e9e70e4cb625bc1879679883857b419a8bb992ecbf98d21eb30b5567a405b1",
+        "served_bytes": 1156341,
+        "checkout_sha256": "75e9e70e4cb625bc1879679883857b419a8bb992ecbf98d21eb30b5567a405b1",
+        "checkout_bytes": 1156341,
+        "committed_sha256": "ec11e57a0fe46175f6bbd8fdcff08db4f026f0beb717b25fc555f4ca8341620f",
+        "committed_bytes": 1137483,
+        "canonical_checkout_sha256": "ec11e57a0fe46175f6bbd8fdcff08db4f026f0beb717b25fc555f4ca8341620f",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 18858
+        }
+      },
+      "campaign-transport.js": {
+        "served_sha256": "6d25271e94ae436d3f700c81a773d8c624731a809541c966a609046ec6861582",
+        "served_bytes": 4775,
+        "checkout_sha256": "6d25271e94ae436d3f700c81a773d8c624731a809541c966a609046ec6861582",
+        "checkout_bytes": 4775,
+        "committed_sha256": "1cbd2407c8822070e860f84e8378976aa1e2624aca7dd234eed8c723ac8acd2c",
+        "committed_bytes": 4693,
+        "canonical_checkout_sha256": "1cbd2407c8822070e860f84e8378976aa1e2624aca7dd234eed8c723ac8acd2c",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 82
+        }
+      },
+      "campaign-ui.js": {
+        "served_sha256": "20641a249ff5b59589736dd9f36f3cdd7b7ab53df29d107d4cf3feccecbf49ba",
+        "served_bytes": 13683,
+        "checkout_sha256": "20641a249ff5b59589736dd9f36f3cdd7b7ab53df29d107d4cf3feccecbf49ba",
+        "checkout_bytes": 13683,
+        "committed_sha256": "9aa62da51602a3d612312e157d37726cc6d2ed73efd17a7e5f2634386b1be312",
+        "committed_bytes": 13473,
+        "canonical_checkout_sha256": "9aa62da51602a3d612312e157d37726cc6d2ed73efd17a7e5f2634386b1be312",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 210
+        }
+      },
+      "fiscal-recovery-ui.js": {
+        "served_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "served_bytes": 11098,
+        "checkout_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "checkout_bytes": 11098,
+        "committed_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "committed_bytes": 11098,
+        "canonical_checkout_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 0
+        }
+      },
+      "cash-flow-ui.js": {
+        "served_sha256": "f08262a2afc1b0ea565f7d4af790b82b2ce35f8c182d80b50d4e0f476bd029bd",
+        "served_bytes": 30198,
+        "checkout_sha256": "f08262a2afc1b0ea565f7d4af790b82b2ce35f8c182d80b50d4e0f476bd029bd",
+        "checkout_bytes": 30198,
+        "committed_sha256": "023fee351e029edacd074d5b7056819bd3c81b387dbe13e6a32a541840091107",
+        "committed_bytes": 29951,
+        "canonical_checkout_sha256": "023fee351e029edacd074d5b7056819bd3c81b387dbe13e6a32a541840091107",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 247
+        }
+      },
+      "companies-ui.js": {
+        "served_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+        "served_bytes": 32920,
+        "checkout_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+        "checkout_bytes": 32920,
+        "committed_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+        "committed_bytes": 32920,
+        "canonical_checkout_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 0
+        }
+      },
+      "companies.css": {
+        "served_sha256": "a37da57692adf251e2e173ef0c9266a88dfb3cd1d3e4cde5b5d522e2f89c9c92",
+        "served_bytes": 13908,
+        "checkout_sha256": "a37da57692adf251e2e173ef0c9266a88dfb3cd1d3e4cde5b5d522e2f89c9c92",
+        "checkout_bytes": 13908,
+        "committed_sha256": "958e3d1de86a4c21c5033d06898c478f016d293261b639feff9e77cfa9876724",
+        "committed_bytes": 13798,
+        "canonical_checkout_sha256": "958e3d1de86a4c21c5033d06898c478f016d293261b639feff9e77cfa9876724",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 110
+        }
+      },
+      "government-ui.js": {
+        "served_sha256": "3437b8a00a56fcc85853d427d72df87386d159503e7e62e309e9faa598908899",
+        "served_bytes": 52239,
+        "checkout_sha256": "3437b8a00a56fcc85853d427d72df87386d159503e7e62e309e9faa598908899",
+        "checkout_bytes": 52239,
+        "committed_sha256": "3437b8a00a56fcc85853d427d72df87386d159503e7e62e309e9faa598908899",
+        "committed_bytes": 52239,
+        "canonical_checkout_sha256": "3437b8a00a56fcc85853d427d72df87386d159503e7e62e309e9faa598908899",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 0
+        }
+      },
+      "government-ui.css": {
+        "served_sha256": "3966a543093205da2201394a14b074edc37fbaf909102920cceecc193947eb79",
+        "served_bytes": 36730,
+        "checkout_sha256": "3966a543093205da2201394a14b074edc37fbaf909102920cceecc193947eb79",
+        "checkout_bytes": 36730,
+        "committed_sha256": "99ee93b190631cdad51cd79dfac6ee5817768bf744e18b1f9a0b8ffc9b46c6d7",
+        "committed_bytes": 36403,
+        "canonical_checkout_sha256": "99ee93b190631cdad51cd79dfac6ee5817768bf744e18b1f9a0b8ffc9b46c6d7",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 327
+        }
+      },
+      "campaign-operations-ui.js": {
+        "served_sha256": "0bd615caba1b8bc0b8e72010a931f7365fb8ac40a5e0eb39d6343f5cfbbe5677",
+        "served_bytes": 21133,
+        "checkout_sha256": "0bd615caba1b8bc0b8e72010a931f7365fb8ac40a5e0eb39d6343f5cfbbe5677",
+        "checkout_bytes": 21133,
+        "committed_sha256": "5746a6ced8e301d1151fdb1fef32a83a20631d8ae024850d9f47ab02e4279b7b",
+        "committed_bytes": 20913,
+        "canonical_checkout_sha256": "5746a6ced8e301d1151fdb1fef32a83a20631d8ae024850d9f47ab02e4279b7b",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 220
+        }
+      },
+      "campaign-operations-ui.css": {
+        "served_sha256": "2178749f5fddb0c18965ff235767917efdefee8e399190d9c6e7669f2ecf0ce7",
+        "served_bytes": 8447,
+        "checkout_sha256": "2178749f5fddb0c18965ff235767917efdefee8e399190d9c6e7669f2ecf0ce7",
+        "checkout_bytes": 8447,
+        "committed_sha256": "8d5d927c4a6ca6c86715c1a04c46a5577b19342841b12604e92d95e948a0bc64",
+        "committed_bytes": 8367,
+        "canonical_checkout_sha256": "8d5d927c4a6ca6c86715c1a04c46a5577b19342841b12604e92d95e948a0bc64",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 80
+        }
+      },
+      "map-controls.js": {
+        "served_sha256": "ce7553d9b43a38b00581e67ef66aa23e5f03a8b4abde9c85171f28f3e6bb4e9e",
+        "served_bytes": 10651,
+        "checkout_sha256": "ce7553d9b43a38b00581e67ef66aa23e5f03a8b4abde9c85171f28f3e6bb4e9e",
+        "checkout_bytes": 10651,
+        "committed_sha256": "79b99912a9406b43f22d786ea7063d47fc05d738e432e9749561eb1fdff03fd7",
+        "committed_bytes": 10442,
+        "canonical_checkout_sha256": "79b99912a9406b43f22d786ea7063d47fc05d738e432e9749561eb1fdff03fd7",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 209
+        }
+      },
+      "map-controls.css": {
+        "served_sha256": "07d2f965f3cb90a04095ac7ec3679307548549d4ea9612d299d2a8b75e35527a",
+        "served_bytes": 9732,
+        "checkout_sha256": "07d2f965f3cb90a04095ac7ec3679307548549d4ea9612d299d2a8b75e35527a",
+        "checkout_bytes": 9732,
+        "committed_sha256": "5a2f2c2414679f65f8bebbf8e342553c2829e45d9cb506fc7dafd596597a04e6",
+        "committed_bytes": 9631,
+        "canonical_checkout_sha256": "5a2f2c2414679f65f8bebbf8e342553c2829e45d9cb506fc7dafd596597a04e6",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 101
+        }
+      },
+      "guidance-ui.js": {
+        "served_sha256": "5de0ff7d6e2c9aa7db0027c70517171f5ad4076f75a0c8f019a19f31e02c9e23",
+        "served_bytes": 21247,
+        "checkout_sha256": "5de0ff7d6e2c9aa7db0027c70517171f5ad4076f75a0c8f019a19f31e02c9e23",
+        "checkout_bytes": 21247,
+        "committed_sha256": "39eb68189c78ea74ee89b4bc92ac6153326accfe0d2300ea401ee696bddc38ea",
+        "committed_bytes": 21072,
+        "canonical_checkout_sha256": "39eb68189c78ea74ee89b4bc92ac6153326accfe0d2300ea401ee696bddc38ea",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 175
+        }
+      },
+      "guidance-ui.css": {
+        "served_sha256": "169531e25171ef1448b38b0832050712392c94e74f8bb0f96e8727f77d3a5b2f",
+        "served_bytes": 7496,
+        "checkout_sha256": "169531e25171ef1448b38b0832050712392c94e74f8bb0f96e8727f77d3a5b2f",
+        "checkout_bytes": 7496,
+        "committed_sha256": "4f959346eae6c81209da51b76717fd1d4b04a6bcfe0f0ae84032adc465e288ad",
+        "committed_bytes": 7490,
+        "canonical_checkout_sha256": "4f959346eae6c81209da51b76717fd1d4b04a6bcfe0f0ae84032adc465e288ad",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 6
+        }
+      },
+      "globe3d.js": {
+        "served_sha256": "ee467b58a57a07193e4e39368f13e0d18103ed6289769544187b66c410c682d9",
+        "served_bytes": 36245,
+        "checkout_sha256": "ee467b58a57a07193e4e39368f13e0d18103ed6289769544187b66c410c682d9",
+        "checkout_bytes": 36245,
+        "committed_sha256": "9c634e8320a66702ce78de192573af03f80c625c562376d79cd0125d2a559403",
+        "committed_bytes": 35548,
+        "canonical_checkout_sha256": "9c634e8320a66702ce78de192573af03f80c625c562376d79cd0125d2a559403",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 697
+        }
+      },
+      "city-layer.js": {
+        "served_sha256": "5f76629170c97184fb1c61257ea66234cdf4ce7bb112e509ae3326676501ca58",
+        "served_bytes": 12449,
+        "checkout_sha256": "5f76629170c97184fb1c61257ea66234cdf4ce7bb112e509ae3326676501ca58",
+        "checkout_bytes": 12449,
+        "committed_sha256": "d4afb63a0cc695cd11bb7c31fa5decd7f4e762ab65091a57e4d83ffaa948c3fc",
+        "committed_bytes": 12222,
+        "canonical_checkout_sha256": "d4afb63a0cc695cd11bb7c31fa5decd7f4e762ab65091a57e4d83ffaa948c3fc",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 227
+        }
+      },
+      "city-mesh.js": {
+        "served_sha256": "99c5b116cc4b94857fcad97eb502a694988de56d4ae2cff3262c012198c1f6e7",
+        "served_bytes": 87641,
+        "checkout_sha256": "99c5b116cc4b94857fcad97eb502a694988de56d4ae2cff3262c012198c1f6e7",
+        "checkout_bytes": 87641,
+        "committed_sha256": "59593662fa4f31bd80c99b7e7349f6db18514c428724350b6e81b3adc87d5e26",
+        "committed_bytes": 86075,
+        "canonical_checkout_sha256": "59593662fa4f31bd80c99b7e7349f6db18514c428724350b6e81b3adc87d5e26",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 1566
+        }
+      },
+      "water-detail.js": {
+        "served_sha256": "fb60fabc2dfa9edc47f466d3daf4f8cfde589e91086d28a59765ce26a7abc99a",
+        "served_bytes": 11962,
+        "checkout_sha256": "fb60fabc2dfa9edc47f466d3daf4f8cfde589e91086d28a59765ce26a7abc99a",
+        "checkout_bytes": 11962,
+        "committed_sha256": "0b1bc8e9a4b5116c4c9564f69214ff12b5f5b181c4cf47567acc7e81569361f0",
+        "committed_bytes": 11729,
+        "canonical_checkout_sha256": "0b1bc8e9a4b5116c4c9564f69214ff12b5f5b181c4cf47567acc7e81569361f0",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 233
+        }
+      },
+      "equipment-mesh.js": {
+        "served_sha256": "e637cd945853caf4c8543acd1ff751c1b576405b4755b5d3b2b79ad9d2af65f4",
+        "served_bytes": 181031,
+        "checkout_sha256": "e637cd945853caf4c8543acd1ff751c1b576405b4755b5d3b2b79ad9d2af65f4",
+        "checkout_bytes": 181031,
+        "committed_sha256": "8ffca03c200fb6ddd62247f5d68457345d652251278a9cd717182c7ebeca1445",
+        "committed_bytes": 178559,
+        "canonical_checkout_sha256": "8ffca03c200fb6ddd62247f5d68457345d652251278a9cd717182c7ebeca1445",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 2472
+        }
+      },
+      "equipment-ui.js": {
+        "served_sha256": "bbac418d29cbebca553f7e962c25b88550787214436fe49c96c2a07e9eb53c72",
+        "served_bytes": 131054,
+        "checkout_sha256": "bbac418d29cbebca553f7e962c25b88550787214436fe49c96c2a07e9eb53c72",
+        "checkout_bytes": 131054,
+        "committed_sha256": "58f4075a49f75b95af100cb27e5c24cfd1caa22f08a4be9712990d29de1af160",
+        "committed_bytes": 130434,
+        "canonical_checkout_sha256": "58f4075a49f75b95af100cb27e5c24cfd1caa22f08a4be9712990d29de1af160",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 620
+        }
+      },
+      "equipment-ui.css": {
+        "served_sha256": "000672c7b01374eb2f053c8eba9850df3ef8c87d00df8ced93213775ee85c33f",
+        "served_bytes": 37515,
+        "checkout_sha256": "000672c7b01374eb2f053c8eba9850df3ef8c87d00df8ced93213775ee85c33f",
+        "checkout_bytes": 37515,
+        "committed_sha256": "8f6224d21b1bc8da06f9d06e504fa884c5cac475f18413e6a228b4f960bc2394",
+        "committed_bytes": 37170,
+        "canonical_checkout_sha256": "8f6224d21b1bc8da06f9d06e504fa884c5cac475f18413e6a228b4f960bc2394",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 345
+        }
+      }
+    }
+  },
+  "finished_utc": "2026-09-21T23:22:56.806Z"
+}

@@ -1,0 +1,23 @@
+{
+  "revision": "1b7007a8b7b4ca4b960b403b76868cd134dabdd6",
+  "lane": "browser",
+  "clean_before": true,
+  "command": [
+    "node",
+    "tools/ui/ci-military-staff.cjs"
+  ],
+  "runner_sha256": "d547ff78622b2aafa660de022b8bce503f1aa6802bab998a89140f3cd748faed",
+  "started_utc": "2026-09-21T23:16:07.401906+00:00",
+  "fixture": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S17-fixture-final5",
+  "binary_sha256_before": "46e5a51fff482928dd3fca6a62e3123367d5147091b2f98946ae47892e68176d",
+  "exit_code": 0,
+  "finished_utc": "2026-09-21T23:16:43.098900+00:00",
+  "revision_after": "1b7007a8b7b4ca4b960b403b76868cd134dabdd6",
+  "clean_after": true,
+  "log_sha256": "8db6a66e293f148f1386bdf9fa7fd6905fd402b1e0eab87863de31c33f8441f0",
+  "binary": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\spheres-web.exe",
+    "sha256": "46e5a51fff482928dd3fca6a62e3123367d5147091b2f98946ae47892e68176d"
+  },
+  "passed": true
+}

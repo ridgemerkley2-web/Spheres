@@ -1,0 +1,26 @@
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+    Finished `release` profile [optimized] target(s) in 1m 31s
+     Running unittests src\lib.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_sim-de8a2e7790f15db6.exe)
+
+running 8 tests
+test military_ai::tests::managed_supplier_identity_is_required ... ok
+test military_ai::tests::supplier_ammunition_and_fighter_research_are_paid_and_not_switched_daily ... ok
+
+thread 'military_ai::tests::ground_staff_uses_finite_ammunition_and_counts_inbound_rounds' (4920) panicked at spheres-sim\src\military_ai_tests.rs:406:5:
+Ground stores wait for compatible finished stock; depleted vehicles receive no substitute rounds.
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test military_ai::tests::ground_staff_uses_finite_ammunition_and_counts_inbound_rounds ... FAILED
+test military_ai::tests::domestic_staff_develops_pays_buys_delivers_and_counts_pending_aircraft ... ok
+test military_ai::tests::cash_upkeep_access_and_player_control_block_staff_without_inventory_grants ... ok
+test military_ai::tests::small_country_imports_one_aircraft_without_research_or_factory_grants ... ok
+test military_ai::tests::sparse_legacy_setting_and_read_model_are_pure_and_versioned ... ok
+test military_ai::tests::review_cadence_and_save_resume_are_deterministic ... ok
+
+failures:
+
+failures:
+    military_ai::tests::ground_staff_uses_finite_ammunition_and_counts_inbound_rounds
+
+test result: FAILED. 7 passed; 1 failed; 0 ignored; 0 measured; 902 filtered out; finished in 1.09s
+
+error: test failed, to rerun pass `-p spheres-sim --lib`

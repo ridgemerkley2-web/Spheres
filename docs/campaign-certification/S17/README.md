@@ -1,6 +1,6 @@
 # S17 — Military staff using ordinary campaign rules
 
-Status: implementation and qualification in progress. Authorized by “next'” on 21 September 2026. S18 is outside this session. G4 and CP1 remain open.
+Status: **complete** on runtime `aebbf0c13623535c7e975518e934909e8e401b12`. Authorized by “next'” on 21 September 2026. Execution stops after S17; S18 is next. G4 and CP1 remain open.
 
 New campaigns enable military staff. Older saves retain their prior behavior until the player reviews and confirms **Other countries’ military staff** in **Air Command**. The save capability advances to equipment version 7 only while staff state exists; incompatible older envelopes are refused. Reading the screen or loading a legacy save issues no orders.
 
@@ -21,4 +21,23 @@ New campaigns enable military staff. Older saves retain their prior behavior unt
 
 This is the supported ground and three-role air loop. It does not add new aircraft families, naval AI, war declarations, historical national procurement doctrines, automatic redesign cycles or omniscient future combat predictions. Tactical decisions retain the shared mission ledger: at 7,936 entries automatic orders pause with a visible explanation, preserving 256 entries for player orders. Longer-run ledger handling and campaign balance remain part of later campaign/save/performance qualification. This session does not certify a 1990–2035 campaign or award G4/CP1.
 
-Qualification results, exact source revision and browser comparisons will be recorded after the final checks.
+## Qualification
+
+Both **Windows and Linux** passed the same complete selected suites on the recorded clean sources. Simulation/integration qualify `8b31913e7db3dab499ae7a3dce1a753ae8654bdb`. Node qualifies `1b7007a8b7b4ca4b960b403b76868cd134dabdd6`, with identical JavaScript/CSS at the final runtime. Only report CSS, browser screenshot positioning and two pure currency-format calls differ from the simulation candidate. Native web, fixture and browser checks qualify the final runtime above. The manifest records and verifies these exact source comparisons:
+
+| Suite (each platform) | Passed | Ignored / skipped |
+|---|---:|---:|
+| Native web | 398 | 20 |
+| Native simulation | 886 | 26 |
+| 13 integration targets | 118 | 4 |
+| Node interface | 1593 | 1 |
+
+The separate native fixture export also passed. Ignored and skipped cases are counted separately and are not passes. Direct native coverage includes France's paid supplier development, tooling, finite production, purchase and delivery; a one-aircraft Malta import without research or factory grants; ground ammunition purchasing and delivery; bounded research and stock rotation; political cost and future-only maintenance reallocations; cash, upkeep and access refusals; and deterministic saved review cadence. Authored opposing forces also exercise coordinated real attack/defense and finite stores.
+
+The browser used **two ordinary reviewed settings commands and six one-day advances**, with **9 full native-world comparisons** and **9 historical-envelope comparisons**. No world fields were ignored; only the separately validated save timestamp may differ in an envelope. Enable, pause, Save, Load and Continue passed with no browser errors. Desktop 1440px and narrow 390px captures were inspected directly; country reports and controls remain readable using vertical scrolling. This is functional visual review, not independent human usability certification or S18 aircraft art approval.
+
+The scenario retains the disclosed S16 France/Italy forces, bases, ammunition and finances and explicitly enables economic competition before the user-reviewed staff setting. Staff move Italy's future Defense funding toward maintenance, wait for paid service, then autonomously order Support army missions against actual campaign contacts. The first new mission consumes approximately **2.63 finished bomb stores**. A previously queued second mission completes after pausing; saved staff decisions remain unchanged. No new aircraft, money, research, ammunition or usable base capacity is granted by enabling staff. This bounded six-day scenario does not claim an unassisted campaign or historically exhaustive opening forces.
+
+The [manifest](manifest.json) retains exact source/binary hashes, reports, complete qualifying logs, failed-attempt context, screenshots, runners and raw native/browser campaign checkpoints. Its file inventory records original and stored SHA-256 hashes; `.gz` entries decompress to the exact original bytes. Duplicate canonical worlds and compiled binaries are identified rather than repackaged. The baseline's eight protected files and two worktree HEADs remain unchanged.
+
+[Open the separate S17 review campaign](http://127.0.0.1:7859). Its saved **active** checkpoint matches the native/browser comparison; the existing S16 review remains available separately. **Next: S18 — campaign flight screens and finished inspection aircraft.** G4, later campaign/content/performance qualification and CP1 remain open.
