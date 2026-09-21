@@ -4,7 +4,7 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process'),net=require('node:net'),crypto=require('node:crypto');
 const {chromium}=require('playwright'),integrated=require('./ci-integrated.cjs'),audit=require('./supplier-archive-audit.cjs');
 const root=path.resolve(__dirname,'../..'),q=x=>JSON.stringify(String(x)),copy=x=>JSON.parse(JSON.stringify(x));
-const hash=b=>crypto.createHash('sha256').update(b).digest('hex'),route=(r,p)=>new URL(r.url()).pathname===p&&r.request().method()==='POST';
+const hash=b=>crypto.createHash('sha256').update(b).digest('hex'),route=(r,p)=>new URL(r.url()).pathname===p&&(typeof r.request==='function'?r.request():r).method()==='POST';
 const SLOT='s17-staff-input',SAVED='s17-military-staff';
 function regular(file){assert(fs.lstatSync(file).isFile()&&!fs.lstatSync(file).isSymbolicLink());assert.equal(fs.realpathSync(file),file);return file;}
 function withinPath(parent,child){const relative=path.relative(parent,child);assert(relative&&!relative.startsWith('..'+path.sep)&&relative!=='..'&&!path.isAbsolute(relative),'Path escaped its declared directory');return child;}

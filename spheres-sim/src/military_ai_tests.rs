@@ -319,8 +319,11 @@ fn maintenance_reallocation_pays_political_cost_and_only_changes_future_funding(
     let mut w = init::world_1990(GameRules {
         daily_simulation: true,
         production_system: true,
+        military_operations: true,
+        economic_competition: true,
         ..Default::default()
     });
+    w.player = Some(NationId::USA);
     w.nation_mut(HOME).political_capital = 1000.0;
     programs::set_construction_budget(&mut w, HOME, 0.002).unwrap();
     let allocations = w.nation(HOME).budget_for(w.year).allocations;
@@ -337,6 +340,8 @@ fn maintenance_reallocation_pays_political_cost_and_only_changes_future_funding(
         },
     )
     .unwrap();
+    eq::set_maintenance_plan(&mut w, HOME, 1.0).unwrap();
+    clock::advance_date(&mut w);
     programs::begin_day(&mut w);
     assert!(upkeep(&w, HOME) > support_authority(&w, HOME));
     let before = w.clone();
