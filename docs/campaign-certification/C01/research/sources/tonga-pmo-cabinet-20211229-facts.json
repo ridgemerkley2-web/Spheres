@@ -1,0 +1,68 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://pmo.gov.to/prime-minister-hon-siaosi-ofakivahafolau-sovaleni-announces-new-cabinet-ministers/",
+  "accessed_date": "2026-09-21",
+  "published_date": "2021-12-29",
+  "access_method": "browser_fetched_page_and_downloaded_original_release_images_visually_read",
+  "source_response_url": "https://pmo.gov.to/wp-content/uploads/2021/12/primeminister-2021.jpg",
+  "source_response_bytes": 277933,
+  "source_response_sha256": "246495c5920258a9a211b31866f58eaf37b4efcf2b2f24ce77b9fb00cfdabde5",
+  "source_response_checked_in": false,
+  "release_image_responses": [
+    {
+      "image": 1,
+      "url": "https://pmo.gov.to/wp-content/uploads/2021/12/primeminister-2021.jpg",
+      "bytes": 277933,
+      "sha256": "246495c5920258a9a211b31866f58eaf37b4efcf2b2f24ce77b9fb00cfdabde5",
+      "content_type": "image/jpeg",
+      "pixels": [
+        1275,
+        1650
+      ]
+    },
+    {
+      "image": 2,
+      "url": "https://pmo.gov.to/wp-content/uploads/2021/12/primeminister-2021-1-1.jpg",
+      "bytes": 297845,
+      "sha256": "e4c96820254d201b0dfb4218550da87c5bd1758f64500dea0bf332490af860fc",
+      "content_type": "image/jpeg",
+      "pixels": [
+        1275,
+        1650
+      ]
+    }
+  ],
+  "page_response": {
+    "bytes": 77161,
+    "sha256": null,
+    "method": "browser_fetch",
+    "note": "WordPress page carrying the release image(s). A direct non-browser request returned HTTP 403, so the page was read in a browser; its HTML hash is not asserted as reproducible."
+  },
+  "provenance_note": "The release is published as JPEG image(s) embedded in a WordPress page. The image bytes were downloaded directly (HTTP 200) and hashed before extraction; they are the original response identity recorded here. The page HTML was read in a browser because a direct non-browser request returned HTTP 403; its byte count is recorded and its hash is not asserted as reproducible. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet. The release spans two page images: the top-level response identity is image 1, and both images are listed in release_image_responses.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_sovaleni_cabinet_effective_20211228",
+      "text": "The PMO's release dated 29 December 2021 states that King Tupou VI, on the Prime Minister's recommendations, appointed the new Ministers of Government with effect from 28 December 2021. Its numbered list of twelve Cabinet members gives (1) Hon. Siaosi 'Ofakivahafolau Sovaleni as Prime Minister and Minister for Education and Training, for Police, Fire Services and Emergency Services, and for His Majesty's Armed Forces, and (2) Hon. Poasi Mataele Tei as Deputy Prime Minister, Minister for MEIDECC and Minister for Public Enterprises.",
+      "attested_on": "2021-12-28",
+      "locator": "Release image 1 (page 1): first paragraph and list items 1-2; the list ends at item 12 on image 2",
+      "uncertainty": "The stated effective date of the ministerial appointments, not the date letters were presented or oaths taken. It is not read as a second start date for the premiership, which the 28 December releases give as 27 December. Items 3-12 are not imported as holder observations, and the list is not asserted to remain unchanged."
+    },
+    {
+      "id": "to_sovaleni_cabinet_letters_oath_20211229",
+      "text": "The same release states that the Prime Minister presented the letters of appointment to all of the Cabinet Ministers, including the Governor of Ha'apai, 'today, Wednesday 29th December, 2021', that the first Cabinet meeting was convened that day, and that all of the Cabinet Ministers took their Ministerial oath.",
+      "attested_on": "2021-12-29",
+      "locator": "Release image 2 (page 2): the three paragraphs after list item 12",
+      "uncertainty": "The oath sentence follows two sentences dated 'today' and carries no date of its own; it is read as part of the 29 December report. Letter presentation and oath are separate from the 28 December effective date. Ministers' letters of appointment are not the Royal Warrant appointing the Prime Minister."
+    }
+  ],
+  "scope_note": "Published on the PMO page as two JPEG page images (primeminister-2021.jpg and primeminister-2021-1-1.jpg). The group photograph on image 2 is not used for identification, likeness or portrait work. The Governor of Ha'apai is mentioned, not named, and is not imported. A direct non-browser request for the page returned HTTP 403; the page HTML hash is not asserted.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "Both 1275x1650 release images were viewed at full size: the 29 December release date, the 28 December effective date, list items 1-12, and the 29 December letters, first Cabinet meeting and oath paragraphs. The group photograph and coat of arms were not used."
+  }
+}

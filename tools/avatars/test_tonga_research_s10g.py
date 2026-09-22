@@ -33,7 +33,8 @@ class TongaDiscoveryTests(unittest.TestCase):
     def test_new_observation_does_not_close_country_or_relabel_other_parties(self):
         ids = self.validate()
         # CLAUDE-C01-01 added three sources and seven claims; test_tonga_reconciliation_c01 owns them.
-        self.assertEqual((len(ids['entries']), len(ids['sources']), len(ids['claims'])), (9, 19, 35))
+        # CLAUDE-C01-02 added seven sources and nine claims; test_tonga_transition_c01_02 owns them.
+        self.assertEqual((len(ids['entries']), len(ids['sources']), len(ids['claims'])), (9, 26, 44))
         self.assertEqual({e['id'] for e in self.packet['organizations']},
                          {'to_fihrdm', 'to_pdp', 'to_dpfi', 'to_peoples_party'})
         self.assertEqual(len(self.packet['institutions']), 5)
@@ -80,7 +81,11 @@ class TongaDiscoveryTests(unittest.TestCase):
         self.assertEqual(appointment['attested_on'], '2019-10-08')
         self.assertIn('15-8', recommendation['text'])
         role, = self.entries['to_prime_minister']['roles']
-        new_holder, = [h for h in role['holder_claims'] if isinstance(h, dict)]
+        # CLAUDE-C01-02 added exactly one later holder (Sovaleni, from 2021-12-27); the 2019 one stays first.
+        dict_holders = [h for h in role['holder_claims'] if isinstance(h, dict)]
+        self.assertEqual([h['name'] for h in dict_holders],
+                         ["Pohiva Tu'i'onetoa", "Siaosi 'Ofakivahafolau Sovaleni"])
+        new_holder = dict_holders[0]
         self.assertEqual(new_holder['attested_on'], '2019-10-08')
         self.assertEqual(new_holder['claim_ids'], [appointment['id']])
         self.assertIsNone(new_holder['from'])
