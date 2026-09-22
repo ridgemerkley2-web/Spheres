@@ -16,23 +16,24 @@ handoff plan, not a claim that Claude has started work or permission to run ever
 |---|---|---|---|
 | Flight and player journey | Codex | S18, S20, S21 | S18 complete. Navigation follows the S19 handoff; campaign goals remain planned. |
 | Tutorial and advisors | Claude | S19 | Dependency-ready after S18; claim the S19 handoff when instructed. Recognize real outcomes, keep advice optional. |
-| Historical characters and cartoons | Claude | C01–C07, S23 | First Tonga packet submitted; Codex review pending. Continue bounded packets after review. |
+| Historical characters and cartoons | Claude | C01–C07, S23 | First Tonga packet integrated and checked. CLAUDE-C01-02 is the next bounded research packet. |
 | Integration, performance and qualification | Codex | S22, S24, S25, S27–S30 | Integrate reviewed work and run exact-build checks. Neither a content batch nor a unit-test pass earns CP1. |
 | Independent human playtests | User / human testers | S26 | Codex prepares reproducible builds and tasks; Claude may review observations. AI testing cannot substitute for human sessions. |
 | Later aircraft/naval expansion | Codex | E01–E04, E06 | Parked until CP1; preserve the current three supported mission families. |
 | Later company identity/history | Claude | E05 | Parked until CP1. No changes to the current supplier economy during research. |
 | Completed foundation | Codex / retained evidence | S00–S17 | Reference only. Reopen only for a specific reproduced defect; retain the original qualification records. |
 
-## Historical research: `CLAUDE-C01-01` submitted
+## Historical research: `CLAUDE-C01-01` integrated
 
 Claude submitted the [first Tonga packet](https://github.com/ridgemerkley2-web/Spheres/tree/claude/c01-tonga-01)
 at `426f0ddb17a93c3d8b9a809c0129b441b29d3fe6`, based on `3d422da`.
-Its [handoff](planning/ai-handoffs/CLAUDE-C01-01.md) is **awaiting Codex review**;
-research changes are not yet integrated or independently accepted. Do not repeat
-that packet or claim C01 complete. Research can proceed separately from gameplay
-but must not turn uncertain observations into installed leaders or finished avatars.
+Its [handoff](planning/ai-handoffs/CLAUDE-C01-01.md) is **accepted and integrated**,
+qualified at `fdb6d2c` with [source review and validation evidence](campaign-certification/C01/integrations/CLAUDE-C01-01/README.md).
+Do not repeat that packet or claim C01 complete. The next optional research packet
+is [CLAUDE-C01-02](planning/ai-handoffs/CLAUDE-C01-02.md), limited to the 2021 Tonga
+appointment transition. Research remains separate from installed leaders and avatars.
 
-After that packet, request/review the next bounded C01 batch rather than attempting
+Claim one bounded C01 batch rather than attempting
 the entire world at once. C02 batches contain at most ten leadership chains/people;
 C03 art batches contain six to eight physically reviewed cartoons. Real people extend
 through the frozen, researched present-day cutoff; later candidates are explicitly

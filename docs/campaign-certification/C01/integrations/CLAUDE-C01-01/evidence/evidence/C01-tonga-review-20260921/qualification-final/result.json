@@ -1,0 +1,103 @@
+{
+  "source_revision": "fdb6d2c79209f3c441b8886a44f8e205c608452a",
+  "started_utc": "2026-09-22T01:22:56.769311+00:00",
+  "clean_before": true,
+  "runner_sha256": "2f0db151a68edf354107136d67650ba0c686b8f3008e27228b2866f3897c6d30",
+  "scope": "Tonga research intake and standalone read-only atlas. No campaign runtime changes.",
+  "checks": [
+    {
+      "name": "index",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log": "index.log",
+      "sha256": "4b32491b562fd561370fda3fd65263fb77747a04f3730dc66c2f89e94b6779d8",
+      "passed": true
+    },
+    {
+      "name": "tonga",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_tonga_*.py"
+      ],
+      "exit_code": 0,
+      "log": "tonga.log",
+      "sha256": "2fe6f3a9bb762f79d25014eb57d1e847c223da5795cdc86141ee85915e2dd1a2",
+      "passed": true
+    },
+    {
+      "name": "campaign",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_campaign*.py"
+      ],
+      "exit_code": 0,
+      "log": "campaign.log",
+      "sha256": "8e777f24da802427399b0ce51e7325ed94f4c6257b6a93a3bed0ad410034b690",
+      "passed": true
+    },
+    {
+      "name": "atlas-unit",
+      "command": [
+        "node",
+        "--test",
+        "tools/ui/check_leadership_research_review.cjs"
+      ],
+      "exit_code": 0,
+      "log": "atlas-unit.log",
+      "sha256": "ea917860be7c50bacf85c84d229f2bfbc64337ab3a07d70e7190992966226340",
+      "passed": true
+    },
+    {
+      "name": "atlas-browser",
+      "command": [
+        "node",
+        "tools/ui/ci-leadership-research-browser.cjs"
+      ],
+      "exit_code": 0,
+      "log": "atlas-browser.log",
+      "sha256": "d19b846ebf934f8e1db9fd70201592fa3d8104721927e2276dbd53783c8d746d",
+      "passed": true
+    },
+    {
+      "name": "workboard",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-X",
+        "utf8",
+        "tools/planning/workboard.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log": "workboard.log",
+      "sha256": "6cc71a3c645534f8525319dc992aaa9aafa512dab30b47fc6c1c7a998c1f30b6",
+      "passed": true
+    }
+  ],
+  "finished_utc": "2026-09-22T01:23:00.952015+00:00",
+  "revision_after": "fdb6d2c79209f3c441b8886a44f8e205c608452a",
+  "clean_after": true,
+  "passed": true,
+  "runtime_and_roadmap_unchanged_since": "939e8f9b3467ffc1666fea19fd4670257ea1e612"
+}
