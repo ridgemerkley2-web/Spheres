@@ -197,6 +197,8 @@ class TongaDpfiTests(unittest.TestCase):
                     self.assertIn((entry['name'], entry['from']), stated)
         ends = [(e['name'], e['until']) for _, e, _ in self.holder_ids() if isinstance(e, dict) and e['until']]
         self.assertEqual(sorted(ends), sorted(stated_ends))
+        starts = [(e['name'], e['from']) for _, e, _ in self.holder_ids() if isinstance(e, dict) and e['from']]
+        self.assertEqual(sorted(starts), sorted(stated))
 
     def test_holders_are_exactly_as_intended(self):
         leader = self.roles['to_dpfi_leader']
