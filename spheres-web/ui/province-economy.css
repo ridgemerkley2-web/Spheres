@@ -55,6 +55,17 @@
 .pe-provinces button:disabled { opacity:.65; cursor:default; }
 .pe-provinces strong { color:var(--arc-mint); text-align:right; white-space:nowrap; }
 .pe-provinces small { display:block; font:11px/1.5 var(--arc-font); color:var(--arc-muted); }
+.pe-activity {padding:16px;margin:16px 0;border:1px solid var(--arc-edge);border-radius:12px;background:#16343cd9;}
+.pe-activity h3 {margin:5px 0 12px;}
+.pe-activity-counts {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:12px 0;}
+.pe-activity-counts dt {font-size:11px;color:var(--arc-muted);overflow-wrap:anywhere;}
+.pe-activity-counts dd {font-size:24px;font-weight:700;margin:5px 0;color:var(--arc-mint);}
+.pe-activity-problems {padding:0;list-style:none;}
+.pe-activity-problems li {padding:10px 0;border-top:1px solid var(--arc-edge);overflow-wrap:anywhere;}
+.pe-activity-problems strong {color:var(--arc-gold,#e1c592);}
+.pe-activity p {font-size:12px;line-height:1.5;}
+.pe-activity button {width:100%;min-height:44px;padding:10px;color:var(--arc-text);border:1px solid var(--arc-edge);border-radius:8px;background:#29434d;cursor:pointer;}
+.pe-activity button:focus-visible {outline:3px solid var(--arc-mint);outline-offset:3px;}
 .pe-province .pe-hero { padding:20px; display:block; }
 .pe-province .pe-hero h3 { font-size:25px; max-width:230px; }
 .pe-province .pe-total { font-size:38px; }

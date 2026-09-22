@@ -1,0 +1,15 @@
+✔ restart drops pending input callbacks from the prior sample (1.9044ms)
+✔ input spanning a visibility transition is excluded even after returning (0.4796ms)
+✔ hidden periods and a campaign switch cannot contaminate frame timings (1.0884ms)
+✔ records keep a bounded tail, count discarded observations and export copies (0.6378ms)
+✔ disabled, synthetic and dialog inputs create no samples (0.4975ms)
+✔ render measurement preserves values and thrown errors without recording after stop (0.6858ms)
+✔ native build identity is read without commands and unavailable identity stays explicit (3.4779ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 51.7259

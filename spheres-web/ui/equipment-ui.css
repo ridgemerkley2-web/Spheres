@@ -98,6 +98,17 @@
 @media(max-width:850px) { .eq-company-intro { grid-template-columns:1fr; padding:23px; gap:25px; } .eq-company-model { display:block; } .eq-company-model .eq-model-canvas { height:300px; } }
 @media(max-width:480px) { .eq-company-flow { gap:18px 12px; } .eq-company-flow b { font-size:21px; } .eq-company-flow small { font-size:11px; } .eq-company-intro { padding:20px; } .eq-company-model .eq-model-canvas { height:230px; } .eq-company-milestones>div { grid-template-columns:1fr; gap:4px; } .eq-company-milestones dd { text-align:left; } }
 .eq-tabs { display:flex; gap:7px; overflow:auto; margin-bottom:25px; padding:0 0 3px; }
+.eq-room-tools {display:flex;align-items:end;gap:12px;margin-bottom:16px;}
+.eq-section-picker {display:none;flex:1;min-width:0;color:var(--eq-muted);font-size:12px;}
+.eq-section-picker select {margin-top:5px;}
+[data-equipment-content] {scroll-margin-top:16px;outline-offset:5px;}
+@media(max-width:700px) {
+  .eq-room-tools {display:grid;grid-template-columns:minmax(0,1fr);gap:9px;}
+  .eq-section-picker {display:block;}
+  .eq-room-tools button {width:100%;min-height:44px;}
+  .eq-tabs {display:none;}
+  .eq-process {display:none;}
+}
 .eq-tabs button { flex:0 0 auto; background:transparent; border-color:transparent; color:#aebfc8; min-width:108px; }
 .eq-tabs button[aria-selected=true] { background:#33484c; color:#f1efd7; border-color:#b6c9b84d; }
 .eq-message { padding:14px 17px; margin:14px 0; border:1px solid #bac7b643; border-radius:10px; background:#2b403a70; }

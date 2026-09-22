@@ -1,0 +1,62 @@
+{
+  "scope": "Province UI development review using native France ledger and direct province-inspector entry; two current UI assets substituted, no campaign commands. Not a full map navigation qualification.",
+  "passed": true,
+  "assets": {
+    "province-economy-ui.js": "bc6a54891adcbecc7fd59c9786dd7f3eff633d74cfb7e373e123994fdc9ad720",
+    "province-economy.css": "ebcf99317b177e0aa64688f3e6d7f4631202b9f829c71e9d2c7849563b2c15c5"
+  },
+  "commands": [],
+  "pageErrors": [],
+  "views": [
+    {
+      "width": 1440,
+      "counts": [
+        1,
+        0,
+        1
+      ],
+      "project_receipts_open": true,
+      "keyboard_focus": true
+    },
+    {
+      "width": 390,
+      "counts": [
+        1,
+        0,
+        1
+      ],
+      "project_receipts_open": true,
+      "keyboard_focus": true
+    }
+  ],
+  "reading": {
+    "id": "FRA_le-de-france",
+    "date": [
+      1990,
+      1,
+      3
+    ],
+    "projects": [
+      {
+        "annual_gdp_bn": 0,
+        "annualization_days": 365,
+        "classification": "incremental_value_added",
+        "counted": true,
+        "daily_value_added_bn": 0,
+        "district": "FRA_le-de-france",
+        "gross_output_daily_bn": 0,
+        "id": "construction:1",
+        "intermediate_inputs_daily_bn": 0,
+        "kind": "starter_industry",
+        "name": "Starter Industry construction",
+        "output_quantity_daily": 0,
+        "output_unit": "",
+        "payments_daily_bn": 0,
+        "reason": "PAUSED: today's construction budget is exhausted; completed work is preserved.",
+        "sector": "construction",
+        "status": "paused",
+        "valuation_basis": "Constant 1990 dollars; modeled project accounting, not sales or profit."
+      }
+    ]
+  }
+}

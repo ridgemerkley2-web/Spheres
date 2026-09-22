@@ -68,6 +68,25 @@ function reading(overrides={}) {
     province_count:1,unallocated_gdp_bn:0,provinces:[{id:'US-CA',name:'California',total_gdp_bn:101}],...overrides};
 }
 
+test('province activity distinguishes paid construction, producing records and reported obstacles without altering receipts',()=>{
+  const c=fixture(),data=reading({projects:[
+    {id:'construction:1',sector:'construction',status:'paused',name:'Workshop',reason:'Funding is paused',gross_output_daily_bn:0},
+    {id:'construction:2',sector:'construction',status:'building',gross_output_daily_bn:2},
+    {id:'industry:1',status:'slowed',output_quantity_daily:2,reason:'Input shortage'},
+    {id:'order:1',classification:'pending_order',gross_output_daily_bn:99},
+    {id:'industry:2',status:'operating',output_quantity_daily:0,gross_output_daily_bn:0},null
+  ]}),before=JSON.stringify(data),summary=JSON.parse(JSON.stringify(c.provinceActivity(data)));
+  assert.equal(summary.construction,2);assert.equal(summary.producing,1);assert.equal(summary.attention.length,2);assert.equal(summary.total,5);
+  const html=c.provinceEconomyHtml({economy:data});assert.match(html,/Funding is paused/);assert.match(html,/Input shortage/);assert.match(html,/Review project records/);assert.equal(JSON.stringify(data),before);
+});
+
+test('province activity keeps missing data unknown, empty records explicit and hostile explanations escaped',()=>{
+  const c=fixture();assert.equal(c.provinceActivity({}),null);assert.match(c.provinceActivityHtml({}),/unavailable/);
+  assert.match(c.provinceActivityHtml({projects:[]}),/inherited economy still contributes/);
+  const html=c.provinceActivityHtml({projects:[{status:'blocked',name:'<img src=x>',reason:'<script>attack</script>'}]});
+  assert.doesNotMatch(html,/<img|<script/);assert.match(html,/&lt;script&gt;/);
+});
+
 test('Materials GDP bridge displays the served decomposition without adding observed output twice',()=>{
   const c=fixture(),materials={background_annual_bn:10.1234,observed_annual_bn:3.5678,
     already_included_annual_bn:3.4321,additional_annual_bn:.1357,unobserved_annual_bn:6.6913,total_annual_bn:10.2591};

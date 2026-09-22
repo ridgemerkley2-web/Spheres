@@ -1,0 +1,57 @@
+{
+  "scope": "UI development review against native S19 preview, with current equipment JS/CSS responses substituted. Not an exact packaged build qualification.",
+  "passed": true,
+  "assets": {
+    "equipment-ui.js": "6129cb5a822ba7957dc4f35f59eb03980961bdea163d67d817f38885b3eb4801",
+    "equipment-ui.css": "257656cd55cefcd1e6f07c6b97814bcf536f31bdc2beec92f6c79d053d236097"
+  },
+  "commands": [],
+  "pageErrors": [],
+  "views": [
+    {
+      "section": "flight",
+      "focused": true,
+      "content_y": 271.578125
+    },
+    {
+      "section": "companies",
+      "focused": true,
+      "content_y": 16.25
+    },
+    {
+      "section": "designer",
+      "focused": true,
+      "content_y": 15.703125
+    },
+    {
+      "section": "research",
+      "focused": true,
+      "content_y": 16.1875
+    },
+    {
+      "section": "library",
+      "focused": true,
+      "content_y": 219.1875
+    },
+    {
+      "section": "development",
+      "focused": true,
+      "content_y": 259.25
+    },
+    {
+      "section": "production",
+      "focused": true,
+      "content_y": 16.25
+    },
+    {
+      "section": "ammunition",
+      "focused": true,
+      "content_y": 16.1875
+    },
+    {
+      "section": "service",
+      "focused": true,
+      "content_y": 16.25
+    }
+  ]
+}
