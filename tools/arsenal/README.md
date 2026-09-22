@@ -102,19 +102,17 @@ The OBJ output is **derived and not checked in**. Regenerating is a second. If
 one of these is ever replaced by something hand-modelled, the exported OBJ is
 the thing for the new mesh to match — same axes, same metres, same origin.
 
-## Arcade flight command preview
+## Aircraft art workshop and campaign flight pages
 
-Open `flight-command.html` on the existing static workshop server. Command,
-Aircraft, Bases and Reports demonstrate the approved arcade interaction design.
-The fictional squadron can preview support/strike orders; incompatible roles and
-distant regions explain why they are blocked. These orders never reach a campaign.
+The campaign’s Equipment → Air command contains Command, Aircraft, Bases and Reports.
+All counts, holdings, dated outcomes, support and construction orders come from the native campaign.
+Aircraft inspection uses its frozen owned revision, without replacing a local designer draft.
 
-The Aircraft bench uses the same component-driven meshes as the equipment designer,
-with eight specifications, assembly picking, orbit controls and GLB downloads.
-The two base inspection aircraft have 197,632 and 210,336 triangles. Catalogue
-meshes have 10,752 and 13,044; map meshes have 1,272 and 1,620. Loaded variants
-are tested separately. Remaining aircraft families and live fleet integration
-follow `MILITARY_FLIGHT_LAYER_PLAN.md`.
+`flight-command.html` is now a separate art-only workshop. Its former fictional fleet,
+regions and preview mission assignments were removed. It shares the three CP1 aircraft
+meshes with the campaign: light attack, fighter and tactical strike. All eight component
+slots are selectable. Cockpit, engine and intake close-ups, LODs and portable GLB exports
+are available for each. Geometry and visual evidence are recorded in S18.
 
 ## Adding a kit
 

@@ -99,10 +99,13 @@
       for(let i=part.first*3;i<(part.first+part.count)*3;i++){const v=mesh.positions[i];if(!Number.isFinite(v))return null;min[i%3]=Math.min(min[i%3],v);max[i%3]=Math.max(max[i%3],v);}
     }
     if(parts[0].slot==='air_engine'&&(region==='rear'||region==='front')){
-      const depth=Math.min(1.6,(max[2]-min[2])*.22),edge=region==='rear'?min[2]+depth:max[2]-depth;
+      const depth=Math.min(region==='front'?.80:1.6,(max[2]-min[2])*.22),edge=region==='rear'?min[2]+depth:max[2]-depth;
+      // A single engine can own two side ducts. Focus one physical mouth;
+      // centering their combined bounds would put the nose in front of the fan.
+      const positiveMouth=region==='front'&&min[0]<0&&max[0]>0;
       min.fill(Infinity);max.fill(-Infinity);
       for(const part of ranges)for(let i=part.first*3;i<(part.first+part.count)*3;i+=3){
-        const z=mesh.positions[i+2];if(region==='rear'?z>edge:z<edge)continue;
+        const z=mesh.positions[i+2];if((region==='rear'?z>edge:z<edge)||(positiveMouth&&mesh.positions[i]<0))continue;
         for(let axis=0;axis<3;axis++){min[axis]=Math.min(min[axis],mesh.positions[i+axis]);max[axis]=Math.max(max[axis],mesh.positions[i+axis]);}
       }
     }
@@ -418,7 +421,7 @@ gl_FragColor=vec4(pow(max(lit,vec3(0.)),vec3(1./2.2)),1.);}`;}
       if(region!=='rear'&&region!=='front')return null;const target=focusTarget(value,region);if(!target)return null;
       const overview=focus||{overviewZoom:zoomFactor,overviewYaw:yaw,overviewPitch:pitch,overviewView:viewName};
       stopRotation();focus={value,region,bounds:target.bounds,overviewZoom:overview.overviewZoom,overviewYaw:overview.overviewYaw,overviewPitch:overview.overviewPitch,overviewView:overview.overviewView};
-      [yaw,pitch]=target.part.slot==='air_engine'?[region==='front'?(target.bounds.min[0]+target.bounds.max[0]<0?-.2:.2):Math.PI,.12]:target.part.slot==='air_avionics'?[2.85,.9]:VIEWS.hero;zoomFactor=1;viewName='';
+      [yaw,pitch]=target.part.slot==='air_engine'?[region==='front'?(target.bounds.min[0]+target.bounds.max[0]<0?-.2:.2):Math.PI,region==='front'?-.12:.12]:target.part.slot==='air_avionics'?[2.85,.9]:VIEWS.hero;zoomFactor=1;viewName='';
       selectPart(target.part.name,true);setControls();schedule();
       say(`${target.part.slot==='air_avionics'?'Cockpit':target.part.slot==='air_engine'?(region==='front'?'Intakes':'Engines'):target.part.label||target.part.name} close-up. Drag to orbit; choose a normal view or Reset to see the whole aircraft.`);
       return target.part;

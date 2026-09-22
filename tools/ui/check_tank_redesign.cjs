@@ -26,11 +26,11 @@ const nonTankReviewed={
   "ground_air_defense/0": "48f8fb87e23fff8d3eeac21715797c1046ce637fb0f00a271c130b0a46e36846",
   "ground_air_defense/1": "36c715bf0fcb113a2eebb6f393706aeda342db8b93e24eec3b531a9b17bdf774",
   "ground_air_defense/2": "d897cdd61f676e5b10ddc35f2838ee5ea7c43e71d05fede729d856f708f1bb4e",
-  "air_light_attack/0": "28a1b5c57f200275d2ebb6ef5f497e1d605084225bc2ab875daf5092806c8a95",
-  "air_light_attack/1": "621d2f7f9de5965f7b3dcfe5fe0e5627b75f797d387902e4b9b301b452cdf6c9",
-  "air_light_attack/2": "a8360e68b8fda267b6ab625f2d720ec3044f1f1621b5976ad896041b12c818c1",
-  "air_tactical_strike/0": "d5131474281d9237b339033989459829b486a127e972cbaf15c55a911f720bc3",
-  "air_tactical_strike/1": "3654f2e71b8166c4e84f54d12806c46293b0b1bf8366ee4252c5593de637832d",
+  "air_light_attack/0": "8bb05850c444fa4b756be1a29f67bc5bc312344e82cb50dc00e80d3329bf647c",
+  "air_light_attack/1": "84e395f825e5cf85c34bbe5ffd6ca38a36cd8585b6a34f8f6aaa247aaa566398",
+  "air_light_attack/2": "68954013e765a03adb8ac5ac8c7b88f2a0b9214be7ba927c084eb4e3deb5a8bc",
+  "air_tactical_strike/0": "fd08832fcb6200c14d6dd97249c40be25fbbca210e23ed47f09e330cdba136ce",
+  "air_tactical_strike/1": "cb699d9cbc37f0ce50fb89c025e15fdfa25d56a5d7c986ed045332bf83358155",
   "air_tactical_strike/2": "d8e2c8637fc0b95c610d917f50cf04d31a60fa6ec1010d61732df82cf1a73db5"
 };
 

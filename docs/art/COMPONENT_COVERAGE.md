@@ -45,10 +45,10 @@ argued with rather than taken on trust — nothing currently falls below it:
 
 | slot | component | platform | verdict | Δ tris | outline m² | LOD1 | carried by | change |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `air_avionics` | `air_avionics_interceptor_digital` | `air_fighter` | distinct | +28 | 0.070 | yes | air_avionics / digital interception cockpit and datalink | 1 resized |
 | `suspension` | `suspension_hydro` | `ground_apc` | distinct | +336 | 0.084 | yes | suspension / port hydropneumatic struts | 2 resized |
 | `sensors` | `optics_thermal` | `ground_recon` | distinct | +104 | 0.086 | yes | sensors / thermal observation fittings | 1 resized |
 | `sensors` | `optics_thermal` | `ground_apc` | distinct | +104 | 0.103 | yes | sensors / thermal observation fittings | 1 resized |
+| `air_avionics` | `air_avionics_interceptor_digital` | `air_fighter` | distinct | -444 | 0.109 | yes | air_avionics / digital interception cockpit and datalink | 1 resized |
 | `communications` | `ground_comms_secure` | `ground_recon` | distinct | +148 | 0.115 | yes | communications / secure radio aerial installation | 1 resized |
 | `suspension` | `suspension_hydro` | `ground_recon` | distinct | +336 | 0.121 | yes | suspension / port hydropneumatic struts | 2 resized |
 
@@ -96,17 +96,17 @@ Nothing. Every component the simulation offers changes the silhouette of every p
 | `active_protection` | `aps_soft` | `ground_recon` | distinct | +240 | 0.178 | yes | active_protection / soft-kill perimeter system | +1 part |
 | `active_protection` | `aps_soft` | `ground_artillery` | distinct | +240 | 0.109 | yes | active_protection / soft-kill perimeter system | +1 part |
 | `active_protection` | `aps_soft` | `ground_air_defense` | distinct | +240 | 0.078 | yes | active_protection / soft-kill perimeter system | +1 part |
-| `air_avionics` | `air_avionics_digital` | `air_light_attack` | distinct | +1000 | 0.523 | yes | air_avionics / digital mission cockpit and targeting pod | 1 resized |
+| `air_avionics` | `air_avionics_digital` | `air_light_attack` | distinct | +528 | 0.476 | yes | air_avionics / digital mission cockpit and targeting pod | 1 resized |
 | `air_avionics` | `air_avionics_digital` | `air_tactical_strike` | distinct | +56 | 0.260 | yes | air_avionics / digital mission cockpit and targeting pod | 1 resized |
-| `air_avionics` | `air_avionics_interceptor_digital` | `air_fighter` | distinct | +28 | 0.070 | yes | air_avionics / digital interception cockpit and datalink | 1 resized |
-| `air_countermeasures` | `air_countermeasures_ecm` | `air_light_attack` | distinct | +2680 | 0.783 | yes | air_countermeasures / electronic countermeasure fairings and dispensers | 1 resized |
+| `air_avionics` | `air_avionics_interceptor_digital` | `air_fighter` | distinct | -444 | 0.109 | yes | air_avionics / digital interception cockpit and datalink | 1 resized |
+| `air_countermeasures` | `air_countermeasures_ecm` | `air_light_attack` | distinct | +2680 | 0.786 | yes | air_countermeasures / electronic countermeasure fairings and dispensers | 1 resized |
 | `air_countermeasures` | `air_countermeasures_ecm` | `air_tactical_strike` | distinct | +2680 | 0.811 | yes | air_countermeasures / electronic countermeasure fairings and dispensers | 1 resized |
-| `air_countermeasures` | `air_countermeasures_ecm` | `air_fighter` | distinct | +2680 | 0.946 | yes | air_countermeasures / electronic countermeasure fairings and dispensers | 1 resized |
+| `air_countermeasures` | `air_countermeasures_ecm` | `air_fighter` | distinct | +2680 | 0.936 | yes | air_countermeasures / electronic countermeasure fairings and dispensers | 1 resized |
 | `air_engine` | `air_engine_economical` | `air_tactical_strike` | distinct | -11000 | 4.646 | yes | air_engine / economical turbine nacelle | -1 part, 1 resized |
-| `air_engine` | `air_engine_efficient` | `air_light_attack` | distinct | +24 | 0.684 | yes | air_engine / efficient turbofan nacelle | 1 resized |
+| `air_engine` | `air_engine_efficient` | `air_light_attack` | distinct | +24 | 1.082 | yes | air_engine / efficient turbofan nacelle | 1 resized |
 | `air_engine` | `air_engine_efficient` | `air_tactical_strike` | distinct | -10976 | 4.089 | yes | air_engine / efficient turbofan nacelle | -1 part, 1 resized |
-| `air_engine` | `air_engine_interceptor_efficient` | `air_fighter` | distinct | +24 | 0.249 | yes | air_engine / managed interceptor engine nacelle | 1 resized |
-| `air_fuel` | `air_fuel_extended` | `air_light_attack` | distinct | +4216 | 0.977 | yes | air_fuel / extended fuel tanks and refueling fitting | 1 resized |
+| `air_engine` | `air_engine_interceptor_efficient` | `air_fighter` | distinct | +24 | 0.370 | yes | air_engine / managed interceptor engine nacelle | 1 resized |
+| `air_fuel` | `air_fuel_extended` | `air_light_attack` | distinct | +4216 | 0.957 | yes | air_fuel / extended fuel tanks and refueling fitting | 1 resized |
 | `air_fuel` | `air_fuel_extended` | `air_tactical_strike` | distinct | +4240 | 1.461 | yes | air_fuel / extended fuel tanks and refueling fitting | 1 resized |
 | `air_fuel` | `air_fuel_extended` | `air_fighter` | distinct | +4216 | 1.580 | yes | air_fuel / extended fuel tanks and refueling fitting | 1 resized |
 | `air_hardpoints` | `air_hardpoints_light` | `air_tactical_strike` | distinct | -3496 | 0.694 | yes | air_hardpoints / two-store attack external mounts | 2 resized |
@@ -115,7 +115,7 @@ Nothing. Every component the simulation offers changes the silhouette of every p
 | `air_radar` | `air_radar_interceptor_tracking` | `air_fighter` | distinct | 0 | 0.391 | yes | air_radar / tracking interception radome | 1 reshaped, extent 0.25 m |
 | `air_radar` | `air_radar_mapping` | `air_light_attack` | distinct | +1052 | 0.567 | yes | air_radar / terrain-mapping radome and sensor fairing | 1 resized, extent 0.25 m |
 | `air_radar` | `air_radar_mapping` | `air_tactical_strike` | distinct | +1052 | 0.946 | yes | air_radar / terrain-mapping radome and sensor fairing | 1 resized, extent 0.25 m |
-| `air_wing` | `air_wing_stable` | `air_light_attack` | distinct | +24 | 7.482 | yes | air_wing / port high-stability wing | 2 resized, extent 0.75 m |
+| `air_wing` | `air_wing_stable` | `air_light_attack` | distinct | +24 | 7.543 | yes | air_wing / port high-stability wing | 2 resized, extent 0.75 m |
 | `air_wing` | `air_wing_stable` | `air_tactical_strike` | distinct | +24 | 24.737 | yes | air_wing / port high-stability wing | 2 resized, extent 0.75 m |
 | `air_wing` | `air_wing_straight` | `air_tactical_strike` | distinct | 0 | 23.578 | yes | air_wing / port straight wing | 4 reshaped |
 | `ammunition` | `ammo_mixed` | `tank_destroyer` | distinct | +144 | 0.668 | yes | ammunition / mixed-purpose ready rack and blow-off panels | 1 resized |

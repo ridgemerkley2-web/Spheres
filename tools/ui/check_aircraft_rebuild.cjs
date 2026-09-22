@@ -42,6 +42,23 @@ function trace(mesh,origin,direction,accept=()=>true){
 // give a stable datum without reaching into private geometry-builder state.
 const datum=mesh=>mesh.bounds.max[1]-4.1;
 
+test('S18 single-seat families have visible seats through glass and recessed intake fans at both inspection LODs',()=>{
+  for(const platform of ['air_light_attack','air_fighter'])for(const lod of [0,1]){
+    const fighter=platform==='air_fighter',mesh=build({platform,lod}),y=fighter?1.88:1.72,w=fighter?.66:.58,length=fighter?14.8:11.8,seat=length*.22;
+    const fin=mesh.parts.find(p=>p.label==='vertical stabilizers and rudders'),shift=bounds(mesh,fin).max[1]-(y+(fighter?1.85:1.65));
+    for(const x of [-.07,0,.07]){
+      const hits=trace(mesh,[x,5,seat-.24],[0,-1,0]),glass=hits[0],inside=hits.find(h=>!h.glass);
+      assert(glass?.glass,`${platform} canopy should cover the seat`);assert.equal(inside?.part.slot,'air_avionics');
+      assert(inside.position[1]>y+.70+shift,'Headrest is visible above the open fuselage');assert(inside.distance>glass.distance+.04,'Seat clears the glazing');
+    }
+    const r=(fighter?.56:.43)*.65,mouth=w+r+.045,z=(fighter?-.35:-.1)+2.65;
+    for(const side of [-1,1]){
+      const hit=trace(mesh,[side*mouth,y-.15+shift,z+.01],[0,0,-1])[0];
+      assert.equal(hit?.part.slot,'air_engine',`${platform} inlet is visible`);assert(hit.distance>.45&&hit.distance<.85,`${platform} fan has real recess depth: ${hit.distance}`);
+    }
+  }
+});
+
 test('every tactical engine option has two physically open, recessed intake throats',()=>{
   for(const lod of [0,1])for(const [air_engine,mouthX] of [
     ['air_engine_twin',1.3457],['air_engine_economical',1.309625],['air_engine_efficient',1.3535]

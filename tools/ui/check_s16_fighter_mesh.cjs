@@ -111,10 +111,11 @@ check("fighter resolver refuses bombs and ground parts without mutating the requ
   assert.deepEqual(mesh.specification.components,defaults);
   assert.equal(digest(mesh),digest(build(spec)));assert.equal(JSON.stringify(raw),before);
 });
-check("all inherited S15 family buffers and metadata remain byte-identical",()=>{
+check("inherited ground assets retain S15 bytes and aircraft retain the reviewed S18 interiors",()=>{
   const baseline=JSON.parse(fs.readFileSync(baselinePath,"utf8"));
   assert.equal(baseline.source_revision,sourceRevision);
   assert.equal(baseline.rows.length,legacySpecs.length*3);
-  for(const row of baseline.rows)assert.equal(digest(build(row.spec)),row.sha256,`${row.spec.platform} LOD${row.spec.lod} inherited geometry`);
+  const aircraft=JSON.parse(fs.readFileSync(path.join(__dirname,'s18_aircraft_mesh_hashes.json'),'utf8'));
+  for(const row of baseline.rows){const expected=row.spec.platform.startsWith('air_')?aircraft.rows.find(r=>JSON.stringify(r.spec)===JSON.stringify(row.spec)):row;assert(expected,'Reviewed specification exists');assert.equal(digest(build(row.spec)),expected.sha256,`${row.spec.platform} LOD${row.spec.lod} reviewed geometry`);}
 });
 process.stdout.write(`${checks} S16 fighter mesh checks passed.\n`);

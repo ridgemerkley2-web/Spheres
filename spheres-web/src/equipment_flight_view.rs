@@ -371,7 +371,7 @@ fn flight_board(w: &WorldState, me: NationId) -> Value {
         let mut quantity=flight_number("quantity","Aircraft to assign",initial,vec!["order","Create","quantity"],free.max(1));quantity["min"]=json!(1);
         let mut establish=intent("Form squadron",flight_squadron_order(av::SquadronCommand::Create{name:name["value"].as_str().unwrap().into(),revision:r.id.clone(),quantity:initial}),vec![name,quantity]);
         if free==0 {establish["enabled"]=json!(false);establish["reason"]=json!("Receive unassigned aircraft of this revision first. Other squadrons and refit reservations are unavailable.");}
-        json!({"id":r.id,"name":r.name,"status":format!("{free} unassigned"),"detail":format!("Exact revision {}. Assigned aircraft remain in the national Arsenal.",r.id),
+        json!({"id":r.id,"name":r.name,"spec":r.spec,"status":format!("{free} unassigned"),"detail":format!("Exact revision {}. Assigned aircraft remain in the national Arsenal.",r.id),
             "metrics":[metric("Delivered aircraft",held),metric("Assigned to squadrons",av::assigned_units(n,&r.id)),metric("Reserved for refit",reserved),metric("Purchased / produced deliveries pending",incoming),metric("Mission radius",format!("{:.0} km",ab::range_km(&r.spec)))],
             "actions":[establish,production_action(w,me,r)]})
     }).collect();
@@ -883,6 +883,8 @@ mod flight_view_tests {
         let mut g = fixture();
         let before = spheres_sim::save(&g.world);
         let board = flight_board(&g.world, ME);
+        let owned = &g.world.nation(ME).equipment.as_ref().unwrap().revisions[board["aircraft"][0]["id"].as_str().unwrap()];
+        assert_eq!(board["aircraft"][0]["spec"], json!(owned.spec), "Inspection uses the exact frozen campaign specification");
         let action = &board["aircraft"][0]["actions"][0];
         assert_eq!(action["label"], "Form squadron");
         assert_eq!(

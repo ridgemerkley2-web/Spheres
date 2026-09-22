@@ -18,7 +18,7 @@ function fixture({noGraphics=false,lod=2}={}){
 function projected(matrix,p){const clip=[0,0,0,0];for(let r=0;r<4;r++)for(let k=0;k<4;k++)clip[r]+=matrix[k*4+r]*[...p,1][k];return clip.slice(0,3).map(v=>v/clip[3]);}
 
 test('aircraft close-up bounds use real cockpit glass and finite end zones of the actual engine meshes',()=>{
-  for(const platform of ['air_light_attack','air_tactical_strike'])for(const lod of [0,2]){
+  for(const platform of ['air_light_attack','air_fighter','air_tactical_strike'])for(const lod of [0,2]){
     const mesh=build({platform,lod}),cockpit=viewer.partBounds(mesh,'air_avionics'),engine=viewer.partBounds(mesh,'air_engine'),rear=viewer.partBounds(mesh,'air_engine','rear'),front=viewer.partBounds(mesh,'air_engine','front');
     assert(cockpit&&engine&&rear&&front);if(mesh.surfaces?.length)assert(cockpit.bounds.min[2]>0,'Authored cockpit glass excludes rear radio aerials');
     assert(rear.bounds.max[2]-rear.bounds.min[2]<=1.601);assert(front.bounds.max[2]-front.bounds.min[2]<=1.601);
@@ -55,7 +55,15 @@ test('ordinary views restore overview zoom, Reset fits the full model and focuse
 test('focus survives context restoration but resets safely when model geometry changes',()=>{
   const f=fixture();f.controller.focusPart('air_avionics');f.flush();const before=new Float32Array(f.camera().get('uVP'));f.lose();assert(f.buttons.every(b=>b.disabled));assert.equal(f.controller.focusPart('air_engine'),null);f.restore();f.flush();assert.deepEqual(f.camera().get('uVP'),before);assert(f.buttons.every(b=>!b.disabled));
   f.setMesh(build({platform:'air_light_attack',lod:2}));f.controller.update({platform:'air_light_attack',lod:2});f.flush();assert(f.buttons.every(b=>b.attrs['aria-pressed']==='false'));assert.equal(f.mesh().parts.find(p=>p.name===f.part.value).slot,'air_avionics');
-  assert.equal(f.buttons[0].disabled,false);assert.equal(f.buttons[1].disabled,false);assert.equal(f.buttons[2].disabled,true);assert.match(f.buttons[2].attrs.title,/tactical/);assert.equal(f.controller.focusPart('air_engine','front'),null,'The legacy light airframe has no modeled intake interior to inspect');
+  assert.equal(f.buttons[0].disabled,false);assert.equal(f.buttons[1].disabled,false);assert.equal(f.buttons[2].disabled,false,'The rebuilt light airframe has a modeled intake interior');
   assert.deepEqual(f.camera().get('uVP'),viewer.frame(f.mesh().bounds,1000/600,...viewer.views.hero).matrix);f.controller.dispose();assert.equal(f.gpu.size,0);
 });
 test('unavailable graphics keeps close-up controls disabled and avoids false ready messages',()=>{const f=fixture({noGraphics:true});assert(f.buttons.every(b=>b.disabled));assert.equal(f.controller.focusPart('air_avionics'),null);assert.match(f.status.textContent,/unavailable/);f.controller.dispose();assert.equal(f.controller.focusPart('air_engine'),null);});
+
+test('S18 intake camera reaches a real engine surface on both single-engine families without hiding the wing',()=>{
+  for(const platform of ['air_light_attack','air_fighter']){
+    const f=fixture({lod:1}),mesh=build({platform,lod:1});f.setMesh(mesh);f.controller.update({platform,lod:1});f.controller.focusPart('air_engine','front');f.flush();
+    const target=viewer.partBounds(mesh,'air_engine','front'),eye=f.camera().get('uEye'),center=target.bounds.min.map((v,i)=>(v+target.bounds.max[i])/2),direction=center.map((v,i)=>v-eye[i]),length=Math.hypot(...direction);
+    assert(target.bounds.min[0]>0,'Only the outboard positive mouth is framed');assert.equal(viewer.raycast(mesh,eye,direction.map(v=>v/length))?.part?.slot,'air_engine');assert.equal(f.controller.exportGlb().positions,mesh.positions);f.controller.dispose();
+  }
+});

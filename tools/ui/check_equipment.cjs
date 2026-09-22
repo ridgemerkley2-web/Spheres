@@ -1252,6 +1252,19 @@ function flightSnapshot(extra={}){
     legacy:{title:'Inherited air formations',detail:'Exact 0.375 formation equivalents remain property.'},missions:null,...extra}});
 }
 
+test('S18 flight pages separate live records, retain local drafts, and never invent assignments',()=>{
+  const c=fixture(),data=flightSnapshot({aircraft:[{id:'frozen-1',name:'Fighter <one>',spec:{platform:'air_fighter',components:{air_engine:'air_engine_interceptor'}},metrics:[{label:'Delivered aircraft',value:7}],actions:[]}],bases:[{id:'real-base',name:'Real province',actions:[]}]});
+  loaded(c,data);const draft=plain(c.eq.draft);c.equipmentSelectTab('flight');
+  assert.match(c.mount.innerHTML,/No squadrons formed/);assert.doesNotMatch(c.mount.innerHTML,/Falcon Squadron|Northfield|8 ready/);
+  for(const page of ['aircraft','bases','reports','command']){assert(c.equipmentFlightSelectPage(page));assert(c.mount.innerHTML.includes(`data-flight-page="${page}"`));}
+  c.equipmentFlightSelectPage('aircraft');const inspect=c.mount.querySelector('[data-equipment-flight-aircraft="frozen-1"]');inspect.onclick();
+  assert.equal(c.eq.flightAircraft,'frozen-1');assert.equal(c.equipmentFlightAircraft().spec.platform,'air_fighter');assert.match(c.mount.innerHTML,/Frozen specification/);assert.match(c.mount.innerHTML,/Fighter &lt;one&gt;/);
+  assert.deepEqual(plain(c.eq.draft),draft);assert.equal(c.calls.length,0);assert.equal(c.requests.length,0);
+  c.eq.stale=true;c.eq.flightAircraft=null;inspect.onclick();assert.equal(c.eq.flightAircraft,null,'Captured aircraft controls reject a stale campaign');
+  c.eq.busy=true;assert.equal(c.equipmentFlightSelectPage('bases'),false,'Pending reviewed work cannot be interrupted by page navigation');
+  c.eq.busy=false;c.S={session_id:'other',player:'Japan'};c.equipmentResetCampaign();assert.equal(c.eq.flightPage,'command');assert.equal(c.eq.flightAircraft,null);
+});
+
 test('s12-s15 air shell sends all reviewed kinds through protected receipts and returns to flight',async()=>{
   const c=shellFixture();loaded(c,flightSnapshot());c.room.hidden=false;c.eq.draft.name='Unfinished aircraft';
   const commands=[
@@ -1288,7 +1301,7 @@ test('s12 nested squadron fields requote the exact native order and confirm only
     command:{kind:'air_squadron',order:{Create:{name:'First',revision:'air-1',quantity:1}}},
     inputs:[{key:'quantity',path:['order','Create','quantity'],label:'Aircraft to assign',type:'number',value:2,min:1,max:6,step:1},
       {key:'name',path:['order','Create','name'],label:'Squadron name',type:'text',value:'First',maxlength:80}]};
-  const data=flightSnapshot({aircraft:[{id:'air-1',name:'Owned Lark',actions:[form]}]});loaded(c,data);c.equipmentSelectTab('flight');
+  const data=flightSnapshot({aircraft:[{id:'air-1',name:'Owned Lark',actions:[form]}]});loaded(c,data);c.equipmentSelectTab('flight');c.equipmentFlightSelectPage('aircraft');
   c.api=async(route,payload)=>{c.requests.push(plain([route,payload]));return route.startsWith('/api/equipment?')?data:quote({actions:[{label:'Confirm squadron order',command:plain(payload.command),enabled:true}]});};
   c.mount.querySelector('[data-equipment-action="flight.aircraft.0.actions.0"]').onclick();await tick();
   assert.equal(c.eq.review.command.order.Create.quantity,2);assert.equal(c.eq.review.command.quantity,undefined);
@@ -1320,7 +1333,7 @@ test('s13 air command map links preserve native range and capacity and require a
   c.window.focusFlightMap=row=>maps.push(plain(row));
   const data=flightSnapshot({bases:[{id:'FR-A',name:'Base <one>',blockers:['Access <needed>'],actions:[{label:'Show airbase on map',enabled:true,navigate:navigation}]}],
     missions:{overview:{title:'Campaign missions',detail:'One next-day order.'},orders:[],results:[{id:4,name:'Strike <target>',status:'Flown',receipt_label:'12 Feb 1990',metrics:[{label:'Aircraft lost',value:1},{label:'Compatible stores used',value:'0.375'}],actions:[]}]}});
-  loaded(c,data);c.equipmentSelectTab('flight');assert.match(c.mount.innerHTML,/Air command/);assert.match(c.mount.innerHTML,/Inherited air formations/);assert.match(c.mount.innerHTML,/Strike &lt;target&gt;/);assert.match(c.mount.innerHTML,/Recorded · 12 Feb 1990/);
+  loaded(c,data);c.equipmentSelectTab('flight');assert.match(c.mount.innerHTML,/Air command/);c.equipmentFlightSelectPage('aircraft');assert.match(c.mount.innerHTML,/Inherited air formations/);c.equipmentFlightSelectPage('reports');assert.match(c.mount.innerHTML,/Strike &lt;target&gt;/);assert.match(c.mount.innerHTML,/Recorded · 12 Feb 1990/);c.equipmentFlightSelectPage('bases');
   const captured=c.mount.querySelector('[data-equipment-action="flight.bases.0.actions.0"]');captured.onclick();assert.deepEqual(maps,[navigation]);assert.equal(c.calls.length,0);assert.equal(c.requests.length,0);
   c.eq.stale=true;captured.onclick();assert.equal(maps.length,1);
 });
@@ -1362,14 +1375,14 @@ test('s16 defense province edits requote the native patrol and preserve role-awa
 
 test('s16 interception report preserves distinct native estimates and one actual aircraft loss total',()=>{
   const c=fixture();loaded(c,flightSnapshot({missions:{overview:{title:'Campaign missions'},orders:[],results:[{id:3,name:'Defend skies · Friendly <area>',status:'Flown',receipt_label:'12 Feb 1990',metrics:[{label:'Aircraft lost',value:1},{label:'Hostile strike power prevented',value:2.5},{label:'Expected own losses · fighter combat',value:.125},{label:'Expected own losses · ground air defense',value:.25}],requirements:['Expected own losses are not enemy kills.'],actions:[]}]}}));c.equipmentSelectTab('flight');
-  const html=c.mount.innerHTML;assert.match(html,/Defend skies · Friendly &lt;area&gt;/);assert.match(html,/Hostile strike power prevented/);assert.match(html,/Expected own losses · fighter combat/);assert.match(html,/Expected own losses · ground air defense/);assert.equal(html.split('<dt>Aircraft lost</dt>').length-1,1);assert.equal(c.calls.length,0);assert.equal(c.requests.length,0);
+  c.equipmentFlightSelectPage('reports');const html=c.mount.innerHTML;assert.match(html,/Defend skies · Friendly &lt;area&gt;/);assert.match(html,/Hostile strike power prevented/);assert.match(html,/Expected own losses · fighter combat/);assert.match(html,/Expected own losses · ground air defense/);assert.equal(html.split('<dt>Aircraft lost</dt>').length-1,1);assert.equal(c.calls.length,0);assert.equal(c.requests.length,0);
 });
 
 
 test('s17 military staff setting uses a pure review and protected command receipt',async()=>{
   const c=shellFixture(),command={kind:'military_ai',enabled:true};
   loaded(c,flightSnapshot({staff:{title:'Other countries’ military staff',detail:'No free equipment.',actions:[{label:'Review enabling military staff',enabled:true,requires_preview:true,command,inputs:[]}]},staff_countries:[{name:'Country <script>',status:'Waiting',metrics:[{label:'Procurement',value:'Stock <unavailable>'}],actions:[]}]}));
-  c.room.hidden=false;c.equipmentSelectTab('flight');assert.match(c.mount.innerHTML,/Country &lt;script&gt;/);assert.match(c.mount.innerHTML,/Stock &lt;unavailable&gt;/);assert.doesNotMatch(c.mount.innerHTML,/<script>/);assert.equal(c.requests.length,0);
+  c.room.hidden=false;c.equipmentSelectTab('flight');c.equipmentFlightSelectPage('reports');assert.match(c.mount.innerHTML,/Country &lt;script&gt;/);assert.match(c.mount.innerHTML,/Stock &lt;unavailable&gt;/);assert.doesNotMatch(c.mount.innerHTML,/<script>/);assert.equal(c.requests.length,0);
   c.api=async(route,payload)=>quote({actions:[{label:'Confirm military staff setting',command:plain(payload.command),enabled:true}]});
   c.mount.querySelector('[data-equipment-action="flight.staff.actions.0"]').onclick();await tick();
   assert.equal(c.eq.review.command.enabled,true);assert.equal(c.requests.length,0);

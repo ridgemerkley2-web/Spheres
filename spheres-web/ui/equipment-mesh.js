@@ -585,6 +585,7 @@
     const c=strike||fighter?{paint:[.48,.52,.54],upper:[.55,.58,.59],edge:[.39,.43,.45],dark:[.20,.24,.26],steel:[.25,.27,.28],black:PALETTE.black,glass:[.40,.53,.56],rubber:PALETTE.rubber}:{paint:[.37,.41,.36],upper:[.45,.49,.42],edge:[.53,.56,.48],dark:[.19,.23,.21],steel:PALETTE.steel,black:PALETTE.black,glass:[.09,.22,.28],rubber:PALETTE.rubber};
     const surfaces=[];
     const length=strike?16.8:fighter?14.8:11.8,y=strike?2.10:fighter?1.88:1.72,w=strike?.77:fighter?.66:.58,rear=-length*.49,front=length*.51;
+    const seatZ=front-length*.29,cockpitA=strike?2.20:seatZ-.83,cockpitB=strike?5.55:seatZ+1.10;
     const swept=s.air_wing==='air_wing_swept'||fighter,stable=s.air_wing==='air_wing_stable',span=(strike?5.85:fighter?4.70:5.15)+(stable?.75:0),wingZ=strike?.15:fighter?-.35:-.1;
     const twin=s.air_engine==='air_engine_twin',efficient=s.air_engine==='air_engine_efficient'||s.air_engine==='air_engine_interceptor_efficient',mapping=s.air_radar==='air_radar_mapping'||s.air_radar==='air_radar_interceptor_tracking',digital=s.air_avionics==='air_avionics_digital'||s.air_avionics==='air_avionics_interceptor_digital',ecm=s.air_countermeasures==='air_countermeasures_ecm',heavy=s.air_hardpoints==='air_hardpoints_heavy',guided=s.air_payload==='air_payload_guided',extended=s.air_fuel==='air_fuel_extended';
     const ring=(z,rx,ry,cy=y,cx=0,n=radial)=>Array.from({length:n},(_,i)=>[cx+rx*Math.cos(TAU*i/n),cy+ry*Math.sin(TAU*i/n),z]);
@@ -629,7 +630,7 @@
       for(let k=0;k<rings.length-1;k++)for(let i=0;i<radial;i++){
         if(options.upper&&i>=radial/2)continue;
         const zmid=(rows[k][0]+rows[k+1][0])/2;
-        if(options.cockpit&&zmid>2.20&&zmid<5.55&&Math.sin(TAU*(i+.5)/radial)>.38)continue;
+        if(options.cockpit&&zmid>cockpitA&&zmid<cockpitB&&Math.sin(TAU*(i+.5)/radial)>.38)continue;
         const j=(i+1)%radial,a=rings[k][i],d=rings[k][j],e=rings[k+1][j],f=rings[k+1][i];
         if(options.inward){
           b.turned(a,e,d,color,normals[k][i],normals[k+1][j],normals[k][j]);
@@ -669,7 +670,7 @@
     };
     const panel=(a,z,width,depth)=>b.box([a,y+w*.90,z],[width,.015,depth],c.dark);
     b.part('air_wing / airframe and wing roots',()=>{
-      body(strike?airframeRows:[[rear,.16,.19],[rear+length*.08,w*.56,w*.55],[rear+length*.20,w*.83,w*.83],[rear+length*.37,w,w*.90],[rear+length*.55,w,w*.95],[rear+length*.72,w*.81,w*.86],[front-length*.15,w*.56,w*.59],[front-length*.10,w*.43,w*.47]],c.paint,0,{rounded:true,cockpit:strike});
+      body(strike?airframeRows:[[rear+1.05,w*.56,w*.55],[rear+length*.20,w*.83,w*.83],[rear+length*.37,w,w*.90],[rear+length*.55,w,w*.95],[rear+length*.72,w*.81,w*.86],[front-length*.15,w*.56,w*.59],[front-length*.10,w*.43,w*.47]],c.paint,0,{rounded:true,cockpit:true,open:!strike});
       for(const side of [-1,1]) {
         body(strike?[[wingZ-3.65,.12,.055,y,side*.10],[wingZ-2.0,.69,.24,y],[wingZ-.10,.78,.28,y+.035],[wingZ+2.35,.57,.12,y+.12,side*.04],[wingZ+4.25,.045,.035,y+.17,-side*.20]]:[[wingZ-2.05,.055,.035,y],[wingZ-1.30,w*.68,.125,y],
           [wingZ-.10,w*.80,.21,y+.012],[wingZ+.85,w*.53,.14,y+.015],[wingZ+1.86,.055,.035,y]],c.paint,side*w*.90,{rounded:true});
@@ -696,10 +697,10 @@
       if(mapping&&!fighter){body([[front-1.65,.17,.12,y-.43],[front-1.14,.20,.16,y-.40],[front-.85,.04,.05,y-.36]],c.dark);b.cylinder([0,y-.5,front-1.05],[0,y-.52,front-.96],.10,PALETTE.lens,24);}
     },'air_radar');
     b.part(`air_avionics / ${fighter?(digital?'digital interception cockpit and datalink':'interception cockpit and radio aerials'):digital?'digital mission cockpit and targeting pod':'analog cockpit and radio aerials'}`,()=>{
-      if(strike){
+      {
         // The upper fuselage has a genuine opening. An open-bottom glazing shell
         // sits above the coaming and two seats instead of enclosing a solid tube.
-        const cy=y+.40,rows=[[2.06,.03,.025,cy],[2.40,.39,.38,cy],[3.15,.49,.61,cy],[4.65,.45,.59,cy],[5.35,.29,.35,cy],[5.66,.03,.025,cy]];
+        const cy=y+.40,rows=strike?[[2.06,.03,.025,cy],[2.40,.39,.38,cy],[3.15,.49,.61,cy],[4.65,.45,.59,cy],[5.35,.29,.35,cy],[5.66,.03,.025,cy]]:[[seatZ-.97,.03,.025,cy],[seatZ-.63,.39,.38,cy],[seatZ+.12,.49,.61,cy],[seatZ+.62,.45,.59,cy],[seatZ+1.02,.29,.35,cy],[seatZ+1.23,.03,.025,cy]];
         const upholstery=[.28,.29,.25],webbing=[.49,.46,.35],instrument=[.61,.71,.65];
         // Instrument graphics are physical inset faces on the panel. Their
         // straight strokes stay legible without inventing tiny rendered text.
@@ -712,14 +713,12 @@
           const along=normal(sub(q,a)),across=normal(cross([0,0,1],along)),out=normal(cross(across,along));
           b.box(mean([a,q]),[width,Math.hypot(...sub(q,a)),.007],webbing,[across,along,out]);
         };
-        b.box([0,cy-.27,3.86],[.79,.08,3.18],c.black);
+        b.box([0,cy-.27,strike?3.86:seatZ+.13],[.79,.08,strike?3.18:1.90],c.black);
         for(const side of [-1,1]){
-          b.box([side*.405,cy-.13,3.84],[.055,.28,2.86],c.dark);
-          b.rod([side*.28,cy,2.26],[side*.47,cy,3.15],.027,c.edge,12);
-          b.rod([side*.47,cy,3.15],[side*.43,cy,4.65],.027,c.edge,12);
-          b.rod([side*.43,cy,4.65],[side*.25,cy,5.40],.027,c.edge,12);
+          b.box([side*.405,cy-.13,strike?3.84:seatZ+.10],[.055,.28,strike?2.86:1.65],c.dark);
+          for(let k=1;k<rows.length-2;k++)b.rod([side*rows[k][1],cy,rows[k][0]],[side*rows[k+1][1],cy,rows[k+1][0]],.027,c.edge,12);
         }
-        for(const z of [3.03,4.43]){
+        for(const z of strike?[3.03,4.43]:[seatZ]){
           beveled(b,[0,cy-.10,z],[.46,.16,.51],[.17,.19,.17],.04);
           beveled(b,[0,cy+.10,z-.22],[.44,.46,.14],[.12,.14,.13],.04);
           b.box([0,cy+.385,z-.24],[.27,.14,.17],c.black);
@@ -809,13 +808,13 @@
         }
         // Canopy frames follow sampled cross-sections. Only the clear shell is
         // translucent, so brackets, seats and instruments keep physical depth.
-        for(const [z,rx,ry] of [[2.40,.39,.38],[3.70,.48,.61],[5.35,.29,.35]]){
+        for(const [z,rx,ry] of strike?[[2.40,.39,.38],[3.70,.48,.61],[5.35,.29,.35]]:[rows[1],rows[4]]){
           const n=[40,16,6][level];for(let k=0;k<n;k++){
             const a=Math.PI*k/n,q=Math.PI*(k+1)/n;
             b.rod([rx*Math.cos(a),cy+ry*Math.sin(a),z],[rx*Math.cos(q),cy+ry*Math.sin(q),z],.018,c.edge,10);
           }
         }
-        if(level===0)for(const side of [-1,1]){
+        if(level===0&&strike)for(const side of [-1,1]){
           for(const [a,q] of [[[side*.28,cy-.009,2.26],[side*.47,cy-.009,3.15]],[[side*.47,cy-.009,3.15],[side*.43,cy-.009,4.65]],[[side*.43,cy-.009,4.65],[side*.25,cy-.009,5.40]]])b.rod(a,q,.013,c.black,12);
           for(const [z,x] of [[2.67,.366],[3.31,.465],[4.18,.443],[4.94,.363]]){
             inspectionHinge(b,[side*x,cy-.010,z],[0,0,1],[side,0,0],.082,.010,c.steel);
@@ -824,18 +823,6 @@
         }
         const first=b.cursor();body(rows,c.glass,0,{rounded:true,upper:true,open:true});
         surfaces.push({first,count:b.cursor()-first,material:'glass',opacity:.24});
-      }else{
-      const z=front-length*.29,canopyLength=strike?2.95:2.35;
-      const rows=[[z-canopyLength*.52,w*.28,.12,y+w*.8],[z-canopyLength*.3,w*.53,.41,y+w*.91],[z+canopyLength*.19,w*.49,.49,y+w*.91],[z+canopyLength*.46,w*.22,.20,y+w*.87]];
-      body(rows,c.glass,0,{rounded:true});
-      for(const [rz,rx,ry,cy] of [rows[1],rows[2]])for(let i=0;i<16;i++){const t=TAU*i/32,t2=TAU*(i+1)/32;b.rod([rx*Math.cos(t),cy+ry*Math.sin(t),rz],[rx*Math.cos(t2),cy+ry*Math.sin(t2),rz],.027,c.edge,8);}
-      for(const side of [-1,1])b.rod([side*w*.49,y+w*.89,z-canopyLength*.3],[side*w*.22,y+w*.87,z+canopyLength*.46],.025,c.edge);
-      for(const side of [-1,1]){
-        b.rod([side*w*.28,rows[0][3],rows[0][0]],[side*w*.53,rows[1][3],rows[1][0]],.024,c.black,10);
-        b.rod([side*w*.53,rows[1][3],rows[1][0]],[side*w*.49,rows[2][3],rows[2][0]],.024,c.black,10);
-        inspectionHinge(b,[side*w*.51,y+w*.91,z-.23],[0,0,1],[side,0,0],.27,.027,c.edge);
-        inspectionLatch(b,[side*w*.33,y+w*.91,z+canopyLength*.32],[0,0,1],[side,0,0],.075,c.edge);
-      }
       }
       const z=front-length*.29;
       if(strike)plate([[0,y+.46,-.32],[0,y+.73,-.64],[0,y+.46,-.88]],.025,c.dark,true);
@@ -850,7 +837,7 @@
         const root=side*w*.76,tip=side*span,dihedral=stable?.32:.12;
         airfoil([[root,y,wingZ+1.7],[tip,y+dihedral,lead],[tip,y+dihedral,trail],[root,y,wingZ-1.95]],strike?.12:.145,c.paint);
         // Separate flaps, leading-edge strips, panel joins and navigation lenses.
-        if(strike){
+        {
           // Separate inboard flap and outboard aileron live aft of the skin,
           // with a genuine hinge gap and a short break between the controls.
           for(const [a,q] of [[.08,.53],[.55,.95]]){
@@ -858,9 +845,6 @@
             const u=point(a),v=point(q),depth=.22;
             plate([add(u,[0,0,-.025]),add(v,[0,0,-.025]),add(v,[0,-.015,-depth]),add(u,[0,-.015,-depth])],.035,c.upper);
           }
-        }else{
-          const outline=[[side*(w+.25),y-.04,wingZ-1.82],[side*(span-.23),y+dihedral-.04,trail+.10],[side*(span-.23),y+dihedral-.04,trail-.10],[side*(w+.25),y-.04,wingZ-2.02]];
-          plate(outline,.085,c.upper);
         }
         b.rod([root,y+.086,wingZ+1.65],[tip,y+dihedral+.086,lead-.02],.017,c.edge,8);
         for(let k=1;k<=3;k++){const f=k/4,xx=side*(w+(span-w)*f),zz=wingZ+1.7+(lead-wingZ-1.7)*f;b.rod([xx,y+dihedral*f+.083,zz-.18],[xx,y+dihedral*f+.083,zz-1.02],.011,c.dark,8);}
@@ -893,7 +877,7 @@
         // The engine casing ends behind the duct throat. Extending a capped
         // casing to the lip would put a solid painted disc across the intake.
         body([[exhaust,engineRadius*.87,engineRadius*.87,ey],[rear+1.1,engineRadius,engineRadius,ey],[rear+2.8,engineRadius*1.13,engineRadius*1.04,ey],
-          [housingFront-.60,engineRadius*.95,engineRadius,ey],[housingFront,engineRadius*.89,engineRadius*.89,ey]],c.paint,x,{open:strike&&level<2});
+          [housingFront-.60,engineRadius*.95,engineRadius,ey],[housingFront,engineRadius*.89,engineRadius*.89,ey]],c.paint,x,{open:level<2});
         // Closed swept vanes have actual front/back surfaces. Their curved
         // radial sections catch highlights through the inlet and nozzle.
         const fan=(cx,cz,r,direction,count)=>{
@@ -914,8 +898,8 @@
         // central circular mouth was hidden inside the fuselage; two exposed
         // intakes still belong to ONE engine part when a single engine is fitted.
         for(const side of twin?[Math.sign(x)]:[-1,1]){
-          const r=engineRadius*(strike?(twin?.70:.75):(twin?.66:.65)),mouthX=side*(strike?1.10+r*.65:w+r+.045),mouthZ=wingZ+(strike?1.45:.95);
-          body([[mouthZ-1.72,r*.51,r*.72,ey,x-mouthX],[mouthZ-.78,r*.89,r*.96,ey,-side*.115],
+          const r=engineRadius*(strike?(twin?.70:.75):(twin?.66:.65)),mouthX=side*(strike?1.10+r*.65:w+r+.045),mouthZ=wingZ+(strike?1.45:2.65);
+          body([[mouthZ-(strike?1.72:2.75),r*.51,r*.72,ey,x-mouthX],[mouthZ-.78,r*.89,r*.96,ey,-side*.115],
             [mouthZ-.14,r*1.02,r*1.02,ey,0],[mouthZ,r*1.03,r*1.03,ey,0]],c.paint,mouthX,{rounded:true,open:true,squared:strike});
           if(strike){
             const outside=Array.from({length:radial},(_,k)=>{const a=TAU*k/radial;return [mouthX+Math.sign(Math.cos(a))*Math.pow(Math.abs(Math.cos(a)),.65)*r*1.03,ey+Math.sign(Math.sin(a))*Math.pow(Math.abs(Math.sin(a)),.65)*r*1.03,mouthZ];});
@@ -929,7 +913,7 @@
           const hubX=mouthX-side*.030,fanZ=mouthZ-.675;
           if(strike)b.face(Array.from({length:radial},(_,k)=>{const a=TAU*k/radial;return [hubX+Math.sign(Math.cos(a))*Math.pow(Math.abs(Math.cos(a)),.65)*r*.735,ey+Math.sign(Math.sin(a))*Math.pow(Math.abs(Math.sin(a)),.65)*r*.735,fanZ-.016];}),c.black,[hubX,ey,fanZ-.10]);
           b.cylinder([hubX,ey,fanZ-.015],[hubX,ey,fanZ],r*.73,c.black,28);
-          if(strike&&level<2){
+          if(level<2){
             fan(hubX,fanZ,r,1,level===0?28:20);
             b.revolve([hubX,ey,fanZ+.013],[0,0,1],[{r:r*.18,h:0,s:1},{r:r*.18,h:.026,s:1},{r:r*.14,h:.079,s:1},{r:r*.065,h:.119,s:1},{r:0,h:.145}],c.edge,level===0?64:24);
             // Fan containment collar, seated behind the duct exit. Small
@@ -949,7 +933,7 @@
           b.cylinder([hubX,ey,fanZ],[hubX,ey,fanZ+.12],r*.15,c.edge,16,r*.04);
           }
         }
-        if(strike&&level<2){
+        if(level<2){
           const R=engineRadius,segments=level===0?96:32,metal=[.30,.29,.27],liner=[.16,.18,.19];
           // The outer collar converges to a thin outlet rim, then returns
           // inward along a deep liner. No flat casing cap crosses the cavity.
@@ -1097,7 +1081,7 @@
     },'air_countermeasures');
     const mesh=b.finish(`Visual interpretation of an original ${fighter?'single-seat defensive fighter':strike?'twin-seat tactical strike':'light attack'} aircraft. Component-driven parked game model; performance and procurement values belong to the simulation.${fighter?' Missile shapes illustrate the installed interface; available stores remain in the ammunition ledger.':''}`);
     mesh.specification={platform:spec.platform,components:{...s}};
-    if(strike||fighter){mesh.assetKind='aircraft';mesh.surfaces=surfaces;}
+    mesh.assetKind='aircraft';mesh.surfaces=surfaces;
     return mesh;
   }
 

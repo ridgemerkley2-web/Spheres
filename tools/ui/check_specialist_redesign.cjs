@@ -18,11 +18,11 @@ const approved={
   "tank_destroyer/0": "34344d8b40719b76d156b1207fe0e3c48cbc8ff28675d87e84faec153ba45b31",
   "tank_destroyer/1": "b274d23ccb22110a5d130207f2d0ad118553f2e3b4cff650d50e935dd35ea214",
   "tank_destroyer/2": "e6b413a7db639a76c42d7343f8fb45325c7b3717c4371389994cd010c3e1c2c7",
-  "air_light_attack/0": "016ff885af0df0f26423a145f7e563e9b89c76f0d76669a94472ae6ef115640f",
-  "air_light_attack/1": "d01d8eacc7c985466a51464de59ab042cec6e31fc55f825a2345e9f05fdb3247",
-  "air_light_attack/2": "75f8146553aec3af7f281807c2ff5af330bc7fd1609508544b2b7a3d4e54af29",
-  "air_tactical_strike/0": "6a0d2705d0f25a3743202afbcfcaa8f6a9acfa056fccfa50c3ea6786e3469647",
-  "air_tactical_strike/1": "be747373254707273eaa681c195bf5b1c74943c6f506cbd35b8acf84e2bab70b",
+  "air_light_attack/0": "626cb63c944adf487b6d3746c100aa7b7d8c3523531ac27eb6b3f54f59cd0801",
+  "air_light_attack/1": "d6701d02d852080cba870e1de5a706ec1b13c486081f6d780b6b22a47b951fae",
+  "air_light_attack/2": "c1902656dea412d725693a8c4b3b52118d42749c06482e15b20a2d42de905d88",
+  "air_tactical_strike/0": "9ff8123ae78043163cd78d154f054daad2f11c077138efabd37eaa2bff2c7569",
+  "air_tactical_strike/1": "1b2a941672cc8718516dc9a6e4cebaa01bbbc1ddb992890a50566826269ac9e5",
   "air_tactical_strike/2": "e7c1f139ffa95a696f4d14cd972c4ab0dc9acb2fe8b11d499b495f6c76657074"
 };
 function vertices(m,name,color){const p=m.parts.find(p=>typeof name==='string'?p.name===name:name(p));assert(p,String(name));const out=[];for(let i=p.first;i<p.first+p.count;i++)if(!color||color.every((v,k)=>Math.abs(m.colors[i*3+k]-v)<1e-6))out.push({p:Array.from(m.positions.subarray(i*3,i*3+3)),n:Array.from(m.normals.subarray(i*3,i*3+3)),material:m.materialClasses[i]});return out;}

@@ -351,6 +351,20 @@
 .eq-unlock-component {margin:10px 0;padding:10px;border:1px solid #adc0b82c;border-radius:7px;background:#081b242e;}.eq-unlock-component>summary {cursor:pointer;font-size:12px;line-height:1.5;color:#e0e6d5;}.eq-unlock-component>summary span {display:block;margin-top:3px;font-size:10px;color:#c5ba96;}.eq-unlock-component p,.eq-unlock-component li {font-size:11px;line-height:1.55;overflow-wrap:anywhere;}.eq-unlock-component .eq-metrics,.eq-unlock-component .eq-costs {grid-template-columns:1fr;gap:5px;}.eq-unlock-component label {display:grid;gap:7px;margin:12px 0;font-size:11px;color:#ccd8cb;}.eq-unlock-component select {min-width:0;width:100%;min-height:42px;}.eq-unlock-component>button {width:100%;min-height:42px;}
 @media(max-width:700px) {.eq-draft-status {align-items:stretch;flex-direction:column;gap:12px;padding:13px;}.eq-draft-status button {min-height:44px;}.eq-guidance-grid {grid-template-columns:1fr;}.eq-guidance-card {padding:14px;}.eq-replacement .eq-actions button {flex:1 1 180px;min-height:44px;}}
 @media(forced-colors:active) {.eq-draft-status,.eq-replacement,.eq-guidance,.eq-guidance-card,.eq-unlock-component {background:Canvas;color:CanvasText;border-color:CanvasText;}}
+.eq-flight-pages {display:flex;gap:8px;flex-wrap:wrap;margin:20px 0;padding:12px;background:#12202b;border:1px solid #637887;border-radius:10px;}
+.eq-flight-pages button {flex:1 1 110px;min-height:46px;font-size:15px;}
+.eq-flight-pages button[aria-pressed=true] {background:#d4bb85;color:#17212b;border-color:#eed8a8;}
+.eq-flight-page>section,.eq-flight-page>.eq-staff-details {margin-top:22px;}
+.eq-flight-page h2 {font-size:23px;}
+.eq-flight-page p {line-height:1.65;}
+.eq-flight-hangar {padding:20px;border:1px solid #6b8390;border-radius:12px;background:linear-gradient(145deg,#1c3039,#0a121a);}
+.eq-flight-hangar .eq-model-canvas {height:520px;}
+.eq-model-closeups {display:flex;gap:8px;flex-wrap:wrap;margin:10px 0;}
+.eq-model-closeups[hidden] {display:none;}
+.eq-model-closeups button {min-height:42px;}
+.eq-flight-page .eq-card-grid>div>button {margin:8px 0 16px;width:100%;min-height:44px;}
+@media(max-width:700px) {.eq-flight-hangar {padding:12px;}.eq-flight-hangar .eq-model-canvas {height:300px;}.eq-flight-pages button {flex-basis:40%;}}
+@media(forced-colors:active) {.eq-flight-pages button[aria-pressed=true] {outline:2px solid Highlight;}.eq-flight-hangar {background:Canvas;}}
 .eq-modernization-card {border-top:3px solid #b8c694;}
 .eq-recommendation-reason,.eq-recommendation-tradeoff {margin-top:15px;padding:13px;border-radius:7px;background:#c0d8af0c;border-left:2px solid #b4cba27a;}
 .eq-recommendation-tradeoff {background:#e2be800a;border-color:#d5ae7d78;}

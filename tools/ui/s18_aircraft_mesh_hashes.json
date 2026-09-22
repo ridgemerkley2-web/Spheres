@@ -1,0 +1,143 @@
+{
+  "scope": "S18 reviewed aircraft interiors, curved surfaces and explicit LODs. Original ground pins remain S15.",
+  "rows": [
+    {
+      "spec": {
+        "platform": "air_light_attack",
+        "lod": 0
+      },
+      "sha256": "54499f0a399a30e03921272e17f389f5e97ee04b534f298a1c5831e8317e1020"
+    },
+    {
+      "spec": {
+        "platform": "air_light_attack",
+        "lod": 1
+      },
+      "sha256": "08639761ef898b5a0dadb13bf8158d123314c9e7c156e1cb35770944509e2c6e"
+    },
+    {
+      "spec": {
+        "platform": "air_light_attack",
+        "lod": 2
+      },
+      "sha256": "bee836645fc98bb2397ba7f9d30f58ec885828a8b576729c694ea6ce941e5d4d"
+    },
+    {
+      "spec": {
+        "platform": "air_tactical_strike",
+        "lod": 0
+      },
+      "sha256": "ac34cecc3d203829b447e26eef3bd8320bbe7ea00d102e8aca4d2109a6eae4f6"
+    },
+    {
+      "spec": {
+        "platform": "air_tactical_strike",
+        "lod": 1
+      },
+      "sha256": "357711ec573f7c37be75c3f4ff83e374008a81897827382e19723825c184abd1"
+    },
+    {
+      "spec": {
+        "platform": "air_tactical_strike",
+        "lod": 2
+      },
+      "sha256": "1de7a48ae88a94fba83f1e6b6db0e5d4275aafb6f10328dc6e3c2c7c6c40429b"
+    },
+    {
+      "spec": {
+        "platform": "air_light_attack",
+        "components": {
+          "air_engine": "air_engine_efficient",
+          "air_wing": "air_wing_stable",
+          "air_radar": "air_radar_mapping",
+          "air_avionics": "air_avionics_digital",
+          "air_countermeasures": "air_countermeasures_ecm",
+          "air_payload": "air_payload_guided",
+          "air_fuel": "air_fuel_extended"
+        },
+        "lod": 0
+      },
+      "sha256": "b3b7eccbeb3295d8f514ae6d35cc955f3d83823220ea2a117cbd45e8ad44c836"
+    },
+    {
+      "spec": {
+        "platform": "air_light_attack",
+        "components": {
+          "air_engine": "air_engine_efficient",
+          "air_wing": "air_wing_stable",
+          "air_radar": "air_radar_mapping",
+          "air_avionics": "air_avionics_digital",
+          "air_countermeasures": "air_countermeasures_ecm",
+          "air_payload": "air_payload_guided",
+          "air_fuel": "air_fuel_extended"
+        },
+        "lod": 1
+      },
+      "sha256": "8039a1f6054d9ec52696e2d52360e91ddebf66f6250acf4b97f700acb53405b1"
+    },
+    {
+      "spec": {
+        "platform": "air_light_attack",
+        "components": {
+          "air_engine": "air_engine_efficient",
+          "air_wing": "air_wing_stable",
+          "air_radar": "air_radar_mapping",
+          "air_avionics": "air_avionics_digital",
+          "air_countermeasures": "air_countermeasures_ecm",
+          "air_payload": "air_payload_guided",
+          "air_fuel": "air_fuel_extended"
+        },
+        "lod": 2
+      },
+      "sha256": "68a540fbc7ba656abf5725b861e62f895d38d35cf032dde5951101e0f0ff98e7"
+    },
+    {
+      "spec": {
+        "platform": "air_tactical_strike",
+        "components": {
+          "air_engine": "air_engine_efficient",
+          "air_wing": "air_wing_stable",
+          "air_radar": "air_radar_mapping",
+          "air_avionics": "air_avionics_digital",
+          "air_countermeasures": "air_countermeasures_ecm",
+          "air_payload": "air_payload_guided",
+          "air_fuel": "air_fuel_extended"
+        },
+        "lod": 0
+      },
+      "sha256": "495f7e596776b35983ef115bb36372dc74f9809885f120f3d61cd96928c560da"
+    },
+    {
+      "spec": {
+        "platform": "air_tactical_strike",
+        "components": {
+          "air_engine": "air_engine_efficient",
+          "air_wing": "air_wing_stable",
+          "air_radar": "air_radar_mapping",
+          "air_avionics": "air_avionics_digital",
+          "air_countermeasures": "air_countermeasures_ecm",
+          "air_payload": "air_payload_guided",
+          "air_fuel": "air_fuel_extended"
+        },
+        "lod": 1
+      },
+      "sha256": "35c7678323d7603fbdaabd5d0ccc1d4d460c69ad1a08bc4fba12a2c87dcde367"
+    },
+    {
+      "spec": {
+        "platform": "air_tactical_strike",
+        "components": {
+          "air_engine": "air_engine_efficient",
+          "air_wing": "air_wing_stable",
+          "air_radar": "air_radar_mapping",
+          "air_avionics": "air_avionics_digital",
+          "air_countermeasures": "air_countermeasures_ecm",
+          "air_payload": "air_payload_guided",
+          "air_fuel": "air_fuel_extended"
+        },
+        "lod": 2
+      },
+      "sha256": "b9405932f0dbcc40262077fdf8e2aecbc2099f739851c88e4329eb56ef1fe5fd"
+    }
+  ]
+}

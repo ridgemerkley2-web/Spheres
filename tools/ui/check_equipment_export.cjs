@@ -172,9 +172,9 @@ test('an upgraded specialist exports its current mission components and semantic
   assert.equal(exported.specification.components.armament,'ground_aa_missiles');assert.equal(exported.specification.components.radar,'ground_radar_tracking');
 });
 
-test('both aircraft GLBs preserve generated geometry, eight specifications and semantic picking ranges',()=>{
+test('all three aircraft GLBs preserve generated geometry, eight specifications and semantic picking ranges',()=>{
   const {build}=require('../../spheres-web/ui/equipment-mesh.js');
-  for(const [id,platform] of [['light-attack','air_light_attack'],['tactical-strike','air_tactical_strike']]){
+  for(const [id,platform] of [['light-attack','air_light_attack'],['fighter','air_fighter'],['tactical-strike','air_tactical_strike']]){
     const mesh=build({platform}),bytes=fs.readFileSync(path.resolve(__dirname,`../../spheres-web/ui/equipment-models/spheres-air-${id}.glb`)),model=decode(bytes),extras=model.json.meshes[0].extras;
     // 100k+ inspection aircraft use 108 bytes per triangle plus GLB metadata.
     assert(bytes.byteLength>10800000&&bytes.byteLength<28000000);assert.deepEqual(extras.specification,mesh.specification);assert.deepEqual(extras.parts,mesh.parts);

@@ -1,7 +1,7 @@
 const {test}=require('node:test');
 const assert=require('node:assert/strict');
 const {build}=require('../../spheres-web/ui/equipment-mesh.js');
-const platforms=['air_light_attack','air_tactical_strike'];
+const platforms=['air_light_attack','air_fighter','air_tactical_strike'];
 const loaded={air_engine:'air_engine_efficient',air_wing:'air_wing_stable',air_radar:'air_radar_mapping',air_avionics:'air_avionics_digital',air_countermeasures:'air_countermeasures_ecm',air_payload:'air_payload_guided',air_fuel:'air_fuel_extended'};
 test('default and loaded aircraft meet the 100k inspection contract and bounded cheaper LODs',()=>{
   for(const platform of platforms)for(const components of [{},loaded]){
