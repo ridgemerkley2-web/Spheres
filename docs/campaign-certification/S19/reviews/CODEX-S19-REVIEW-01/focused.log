@@ -1,0 +1,700 @@
+TAP version 13
+# Subtest: empty, malformed and observer snapshots cannot masquerade as a healthy player
+ok 1 - empty, malformed and observer snapshots cannot masquerade as a healthy player
+  ---
+  duration_ms: 1.4791
+  type: 'test'
+  ...
+# Subtest: real annual renewal takes priority and null treasury does not become zero
+ok 2 - real annual renewal takes priority and null treasury does not become zero
+  ---
+  duration_ms: 0.2744
+  type: 'test'
+  ...
+# Subtest: disabled programmes do not read as a due renewal
+ok 3 - disabled programmes do not read as a due renewal
+  ---
+  duration_ms: 0.1935
+  type: 'test'
+  ...
+# Subtest: treasury accepts only actual finite numbers and invents no low-cash threshold
+ok 4 - treasury accepts only actual finite numbers and invents no low-cash threshold
+  ---
+  duration_ms: 0.3034
+  type: 'test'
+  ...
+# Subtest: a zero treasury is ordinary deficit play, not a treasury alarm
+ok 5 - a zero treasury is ordinary deficit play, not a treasury alarm
+  ---
+  duration_ms: 0.0866
+  type: 'test'
+  ...
+# Subtest: fiscal recovery distress opens money and recovery only for adjustment or crisis
+ok 6 - fiscal recovery distress opens money and recovery only for adjustment or crisis
+  ---
+  duration_ms: 0.7179
+  type: 'test'
+  ...
+# Subtest: construction requires a matching dated production snapshot and valid calendar
+ok 7 - construction requires a matching dated production snapshot and valid calendar
+  ---
+  duration_ms: 0.1694
+  type: 'test'
+  ...
+# Subtest: funding and blocked projects precede recommendations without inventing blocked causes
+ok 8 - funding and blocked projects precede recommendations without inventing blocked causes
+  ---
+  duration_ms: 0.1745
+  type: 'test'
+  ...
+# Subtest: only exact eligible suggestion evidence and province permissions permit a review
+ok 9 - only exact eligible suggestion evidence and province permissions permit a review
+  ---
+  duration_ms: 0.4049
+  type: 'test'
+  ...
+# Subtest: sized workshop uses the server exact-size preview and preserves server order
+ok 10 - sized workshop uses the server exact-size preview and preserves server order
+  ---
+  duration_ms: 0.2342
+  type: 'test'
+  ...
+# Subtest: bad funding numbers cannot support a new building recommendation
+ok 11 - bad funding numbers cannot support a new building recommendation
+  ---
+  duration_ms: 0.1181
+  type: 'test'
+  ...
+# Subtest: optional industry allocation zero is distinct from cash and blocks expansion advice
+ok 12 - optional industry allocation zero is distinct from cash and blocks expansion advice
+  ---
+  duration_ms: 0.1552
+  type: 'test'
+  ...
+# Subtest: building status is not a guarantee and completed facilities retain the industry destination
+ok 13 - building status is not a guarantee and completed facilities retain the industry destination
+  ---
+  duration_ms: 0.1127
+  type: 'test'
+  ...
+# Subtest: unavailable construction details can use only explicit state attention
+ok 14 - unavailable construction details can use only explicit state attention
+  ---
+  duration_ms: 0.092
+  type: 'test'
+  ...
+# Subtest: government warnings use open server routes, not stability thresholds or aggregate disabled routes
+ok 15 - government warnings use open server routes, not stability thresholds or aggregate disabled routes
+  ---
+  duration_ms: 0.114
+  type: 'test'
+  ...
+# Subtest: research options in the future are not presented as current projects
+ok 16 - research options in the future are not presented as current projects
+  ---
+  duration_ms: 0.1834
+  type: 'test'
+  ...
+# Subtest: a paid calendar wait is never a funding stall
+ok 17 - a paid calendar wait is never a funding stall
+  ---
+  duration_ms: 0.0911
+  type: 'test'
+  ...
+# Subtest: research funding stall requires unpaid effort and actual zero rate
+ok 18 - research funding stall requires unpaid effort and actual zero rate
+  ---
+  duration_ms: 0.109
+  type: 'test'
+  ...
+# Subtest: monthly acquisition allowance and priority are separate research reviews
+ok 19 - monthly acquisition allowance and priority are separate research reviews
+  ---
+  duration_ms: 0.0722
+  type: 'test'
+  ...
+# Subtest: disjoint enemy wars and foreign operations do not become player conflicts
+ok 20 - disjoint enemy wars and foreign operations do not become player conflicts
+  ---
+  duration_ms: 0.0999
+  type: 'test'
+  ...
+# Subtest: deployment advice requires an active player conflict and valid requested/deployed values
+ok 21 - deployment advice requires an active player conflict and valid requested/deployed values
+  ---
+  duration_ms: 0.0963
+  type: 'test'
+  ...
+# Subtest: incoming agency requests are distinct from possible action menus and are deadline checked
+ok 22 - incoming agency requests are distinct from possible action menus and are deadline checked
+  ---
+  duration_ms: 0.2494
+  type: 'test'
+  ...
+# Subtest: incoming resource offer requires counterpart, deadline and an actual political cost
+ok 23 - incoming resource offer requires counterpart, deadline and an actual political cost
+  ---
+  duration_ms: 0.1111
+  type: 'test'
+  ...
+# Subtest: advice is deterministic, immutable, bounded and attention is always first
+ok 24 - advice is deterministic, immutable, bounded and attention is always first
+  ---
+  duration_ms: 0.4583
+  type: 'test'
+  ...
+# Subtest: airbase route advice opens the Bases page of Air command
+ok 25 - airbase route advice opens the Bases page of Air command
+  ---
+  duration_ms: 2.3683
+  type: 'test'
+  ...
+# Subtest: browser UMD loads without DOM, timers, network, commands or global state
+ok 26 - browser UMD loads without DOM, timers, network, commands or global state
+  ---
+  duration_ms: 2.4382
+  type: 'test'
+  ...
+# Subtest: archived real API reading identifies renewal without disabled takeover alarms
+ok 27 - archived real API reading identifies renewal without disabled takeover alarms # SKIP
+  ---
+  duration_ms: 0.1553
+  type: 'test'
+  ...
+# Subtest: campaign mount uses its standard guidance navigation and suppresses the redundant floating launcher
+ok 28 - campaign mount uses its standard guidance navigation and suppresses the redundant floating launcher
+  ---
+  duration_ms: 2.1062
+  type: 'test'
+  ...
+# Subtest: every actual guidance route opens its existing review and preserves routing details without orders
+ok 29 - every actual guidance route opens its existing review and preserves routing details without orders
+  ---
+  duration_ms: 31.1332
+  type: 'test'
+  ...
+# Subtest: equipment tabs are validated against the real tab list and industry opens a named site only when complete
+ok 30 - equipment tabs are validated against the real tab list and industry opens a named site only when complete
+  ---
+  duration_ms: 35.9273
+  type: 'test'
+  ...
+# Subtest: an airbase route lands on the real Air command Bases page after the campaign reset
+ok 31 - an airbase route lands on the real Air command Bases page after the campaign reset
+  ---
+  duration_ms: 6.5318
+  type: 'test'
+  ...
+# Subtest: every new guidance destination is an actual global opener loaded by the page
+ok 32 - every new guidance destination is an actual global opener loaded by the page
+  ---
+  duration_ms: 15.2728
+  type: 'test'
+  ...
+# Subtest: api captures only successful native save and load responses for guidance receipts
+ok 33 - api captures only successful native save and load responses for guidance receipts
+  ---
+  duration_ms: 9.5718
+  type: 'test'
+  ...
+# Subtest: the page exposes the mounted guidance receipt handler after mounting
+ok 34 - the page exposes the mounted guidance receipt handler after mounting
+  ---
+  duration_ms: 1.1457
+  type: 'test'
+  ...
+# Subtest: unknown routes, pending work and absent campaigns return before closing or navigating anything
+ok 35 - unknown routes, pending work and absent campaigns return before closing or navigating anything
+  ---
+  duration_ms: 38.2761
+  type: 'test'
+  ...
+# Subtest: actual document keyboard listener keeps N, speed keys and Space inert behind open guidance
+ok 36 - actual document keyboard listener keeps N, speed keys and Space inert behind open guidance
+  ---
+  duration_ms: 1.16
+  type: 'test'
+  ...
+# Subtest: guidance scripts, styles and artwork are referenced and served, and every inline script parses
+ok 37 - guidance scripts, styles and artwork are referenced and served, and every inline script parses
+  ---
+  duration_ms: 18.8109
+  type: 'test'
+  ...
+# Subtest: a fresh campaign reads not yet on every step, with an obstacle and a review route
+ok 38 - a fresh campaign reads not yet on every step, with an obstacle and a review route
+  ---
+  duration_ms: 2.1766
+  type: 'test'
+  ...
+# Subtest: real native records are recognised as achieved with their dates
+ok 39 - real native records are recognised as achieved with their dates
+  ---
+  duration_ms: 2.4184
+  type: 'test'
+  ...
+# Subtest: reading progress, commands and previews never achieve a result
+ok 40 - reading progress, commands and previews never achieve a result
+  ---
+  duration_ms: 1.5216
+  type: 'test'
+  ...
+# Subtest: finances needs a dated yearly budget decision from this calendar year
+ok 41 - finances needs a dated yearly budget decision from this calendar year
+  ---
+  duration_ms: 3.6654
+  type: 'test'
+  ...
+# Subtest: construction needs dated paid work; completion and output are later milestones
+ok 42 - construction needs dated paid work; completion and output are later milestones
+  ---
+  duration_ms: 3.1397
+  type: 'test'
+  ...
+# Subtest: paid mine work funded from the construction budget counts as construction work
+ok 43 - paid mine work funded from the construction budget counts as construction work
+  ---
+  duration_ms: 2.5513
+  type: 'test'
+  ...
+# Subtest: research and design results need a dated saved design, revision, payment or completion
+ok 44 - research and design results need a dated saved design, revision, payment or completion
+  ---
+  duration_ms: 2.7218
+  type: 'test'
+  ...
+# Subtest: only a draft the native designer check accepts counts as a saved design
+ok 45 - only a draft the native designer check accepts counts as a saved design
+  ---
+  duration_ms: 1.0634
+  type: 'test'
+  ...
+# Subtest: completed component research survives the next research order clearing its date
+ok 46 - completed component research survives the next research order clearing its date
+  ---
+  duration_ms: 1.8603
+  type: 'test'
+  ...
+# Subtest: development payment survives the daily tick zeroing last_spent_bn
+ok 47 - development payment survives the daily tick zeroing last_spent_bn
+  ---
+  duration_ms: 1.3478
+  type: 'test'
+  ...
+# Subtest: procurement names the current obstacle and counts only a dated delivery
+ok 48 - procurement names the current obstacle and counts only a dated delivery
+  ---
+  duration_ms: 2.149
+  type: 'test'
+  ...
+# Subtest: a blocked delivery or import is never advertised as on its way
+ok 49 - a blocked delivery or import is never advertised as on its way
+  ---
+  duration_ms: 1.3806
+  type: 'test'
+  ...
+# Subtest: air force preparation follows the airbase route before squadrons and missions
+ok 50 - air force preparation follows the airbase route before squadrons and missions
+  ---
+  duration_ms: 1.553
+  type: 'test'
+  ...
+# Subtest: identity mismatch or an unreadable reading makes every step unknown
+ok 51 - identity mismatch or an unreadable reading makes every step unknown
+  ---
+  duration_ms: 1.5174
+  type: 'test'
+  ...
+# Subtest: a disabled or missing section is unknown, never not yet
+ok 52 - a disabled or missing section is unknown, never not yet
+  ---
+  duration_ms: 1.2627
+  type: 'test'
+  ...
+# Subtest: a loaded save re-derives results from native records and needs a matching load receipt
+ok 53 - a loaded save re-derives results from native records and needs a matching load receipt
+  ---
+  duration_ms: 1.0575
+  type: 'test'
+  ...
+# Subtest: receipts from another session, player or later date do not count
+ok 54 - receipts from another session, player or later date do not count
+  ---
+  duration_ms: 1.5663
+  type: 'test'
+  ...
+# Subtest: receipts are bounded to the newest twenty and read only own data properties
+ok 55 - receipts are bounded to the newest twenty and read only own data properties
+  ---
+  duration_ms: 0.8908
+  type: 'test'
+  ...
+# Subtest: hostile, huge, sparse and accessor inputs are bounded and never throw
+ok 56 - hostile, huge, sparse and accessor inputs are bounded and never throw
+  ---
+  duration_ms: 4.0588
+  type: 'test'
+  ...
+# Subtest: the route is deterministic, deeply frozen and retains no caller object
+ok 57 - the route is deterministic, deeply frozen and retains no caller object
+  ---
+  duration_ms: 1.188
+  type: 'test'
+  ...
+# Subtest: evaluate adds at most one route card, for the first unachieved step with an obstacle
+ok 58 - evaluate adds at most one route card, for the first unachieved step with an obstacle
+  ---
+  duration_ms: 1.1892
+  type: 'test'
+  ...
+# Subtest: the browser UMD build exposes recognize without DOM, clock or storage
+ok 59 - the browser UMD build exposes recognize without DOM, clock or storage
+  ---
+  duration_ms: 2.8406
+  type: 'test'
+  ...
+# Subtest: missing saved progress begins fresh and persists only the tutorial preference key
+ok 60 - missing saved progress begins fresh and persists only the tutorial preference key
+  ---
+  duration_ms: 1.6203
+  type: 'test'
+  ...
+# Subtest: corrupted and future-schema storage recover without restoring invented completions
+ok 61 - corrupted and future-schema storage recover without restoring invented completions
+  ---
+  duration_ms: 0.4787
+  type: 'test'
+  ...
+# Subtest: missing or denied storage uses memory and explicitly discloses visit-only progress
+ok 62 - missing or denied storage uses memory and explicitly discloses visit-only progress
+  ---
+  duration_ms: 0.9054
+  type: 'test'
+  ...
+# Subtest: failed preference writes retain the latest learning state in memory
+ok 63 - failed preference writes retain the latest learning state in memory
+  ---
+  duration_ms: 0.163
+  type: 'test'
+  ...
+# Subtest: fresh advice evaluates exactly the validated snapshot using the actual advisor model
+ok 64 - fresh advice evaluates exactly the validated snapshot using the actual advisor model
+  ---
+  duration_ms: 1.4491
+  type: 'test'
+  ...
+# Subtest: all four snapshot identity fields must match exactly before advice becomes ready
+ok 65 - all four snapshot identity fields must match exactly before advice becomes ready
+  ---
+  duration_ms: 0.5171
+  type: 'test'
+  ...
+# Subtest: replacing the state object while loading rejects even an otherwise matching old response
+ok 66 - replacing the state object while loading rejects even an otherwise matching old response
+  ---
+  duration_ms: 0.2377
+  type: 'test'
+  ...
+# Subtest: in-place session, player, turn or date mutation cannot keep ready advice actionable
+ok 67 - in-place session, player, turn or date mutation cannot keep ready advice actionable
+  ---
+  duration_ms: 0.7843
+  type: 'test'
+  ...
+# Subtest: a response matching a mutated request object cannot bypass the original request identity
+ok 68 - a response matching a mutated request object cannot bypass the original request identity
+  ---
+  duration_ms: 0.1814
+  type: 'test'
+  ...
+# Subtest: changed invalidates loading requests and late success or failure cannot replace stale state
+ok 69 - changed invalidates loading requests and late success or failure cannot replace stale state
+  ---
+  duration_ms: 0.3718
+  type: 'test'
+  ...
+# Subtest: cancel discards late refresh responses without repainting closed guidance
+ok 70 - cancel discards late refresh responses without repainting closed guidance
+  ---
+  duration_ms: 0.3269
+  type: 'test'
+  ...
+# Subtest: out-of-order refresh completion cannot replace the latest success or latest error
+ok 71 - out-of-order refresh completion cannot replace the latest success or latest error
+  ---
+  duration_ms: 0.4697
+  type: 'test'
+  ...
+# Subtest: a failed refresh is retryable and successful retry clears the old error
+ok 72 - a failed refresh is retryable and successful retry clears the old error
+  ---
+  duration_ms: 0.3313
+  type: 'test'
+  ...
+# Subtest: navigation requires a campaign and readiness for advice, but tutorial reading is independent
+ok 73 - navigation requires a campaign and readiness for advice, but tutorial reading is independent
+  ---
+  duration_ms: 0.26
+  type: 'test'
+  ...
+# Subtest: busy state blocks tutorial and advice navigation without calling the adapter
+ok 74 - busy state blocks tutorial and advice navigation without calling the adapter
+  ---
+  duration_ms: 0.3442
+  type: 'test'
+  ...
+# Subtest: tutorial navigation is explicit, read-only routing and never marks a lesson complete
+ok 75 - tutorial navigation is explicit, read-only routing and never marks a lesson complete
+  ---
+  duration_ms: 0.1581
+  type: 'test'
+  ...
+# Subtest: reading choices survive refresh, campaign switches, filters and view changes
+ok 76 - reading choices survive refresh, campaign switches, filters and view changes
+  ---
+  duration_ms: 0.3926
+  type: 'test'
+  ...
+# Subtest: hide and restore affect advice visibility only, and a new campaign clears hidden advice
+ok 77 - hide and restore affect advice visibility only, and a new campaign clears hidden advice
+  ---
+  duration_ms: 0.4396
+  type: 'test'
+  ...
+# Subtest: render distinguishes unavailable, loading, stale and empty ready briefings
+ok 78 - render distinguishes unavailable, loading, stale and empty ready briefings
+  ---
+  duration_ms: 0.2389
+  type: 'test'
+  ...
+# Subtest: render escapes untrusted advice, attributes, snapshot names and notices without routing injection
+ok 79 - render escapes untrusted advice, attributes, snapshot names and notices without routing injection
+  ---
+  duration_ms: 0.7623
+  type: 'test'
+  ...
+# Subtest: filters, invalid view input and glossary queries remain presentation choices
+ok 80 - filters, invalid view input and glossary queries remain presentation choices
+  ---
+  duration_ms: 0.2754
+  type: 'test'
+  ...
+# Subtest: rendered tutorial completion excludes skips and keeps skipped chapters replayable
+ok 81 - rendered tutorial completion excludes skips and keeps skipped chapters replayable
+  ---
+  duration_ms: 0.3015
+  type: 'test'
+  ...
+# Subtest: subscriptions unsubscribe cleanly without affecting model progress
+ok 82 - subscriptions unsubscribe cleanly without affecting model progress
+  ---
+  duration_ms: 0.2362
+  type: 'test'
+  ...
+# Subtest: mount opens a paused tutorial and routes only after an explicit lesson click
+ok 83 - mount opens a paused tutorial and routes only after an explicit lesson click
+  ---
+  duration_ms: 2.3064
+  type: 'test'
+  ...
+# Subtest: hosts can suppress the floating launcher without disabling guidance or tutorial return progress
+ok 84 - hosts can suppress the floating launcher without disabling guidance or tutorial return progress
+  ---
+  duration_ms: 3.2294
+  type: 'test'
+  ...
+# Subtest: refresh and hiding the focused last card retain enabled focus inside the guidance dialog
+ok 85 - refresh and hiding the focused last card retain enabled focus inside the guidance dialog
+  ---
+  duration_ms: 1.3422
+  type: 'test'
+  ...
+# Subtest: the route is recognized from the whole validated response with stored receipts
+ok 86 - the route is recognized from the whole validated response with stored receipts
+  ---
+  duration_ms: 1.4072
+  type: 'test'
+  ...
+# Subtest: outcomes for another nation or day are unknown without failing the advice reading
+ok 87 - outcomes for another nation or day are unknown without failing the advice reading
+  ---
+  duration_ms: 2.0316
+  type: 'test'
+  ...
+# Subtest: reading progress never changes the route and a skipped lesson keeps an achieved result
+ok 88 - reading progress never changes the route and a skipped lesson keeps an achieved result
+  ---
+  duration_ms: 0.9936
+  type: 'test'
+  ...
+# Subtest: changed keeps a labelled last-checked route only for the same session and player
+ok 89 - changed keeps a labelled last-checked route only for the same session and player
+  ---
+  duration_ms: 0.9829
+  type: 'test'
+  ...
+# Subtest: stale and out-of-order route readings are dropped before recognition
+ok 90 - stale and out-of-order route readings are dropped before recognition
+  ---
+  duration_ms: 0.3409
+  type: 'test'
+  ...
+# Subtest: a malformed, throwing or absent recognizer never becomes a campaign result
+ok 91 - a malformed, throwing or absent recognizer never becomes a campaign result
+  ---
+  duration_ms: 0.5083
+  type: 'test'
+  ...
+# Subtest: save and load receipts are validated exactly and stored under their own key
+ok 92 - save and load receipts are validated exactly and stored under their own key
+  ---
+  duration_ms: 0.7982
+  type: 'test'
+  ...
+# Subtest: receipts for a foreign session are ignored and recognition receives only validated copies
+ok 93 - receipts for a foreign session are ignored and recognition receives only validated copies
+  ---
+  duration_ms: 0.2597
+  type: 'test'
+  ...
+# Subtest: a receipt re-reads the route and cards only for the current verified reading
+ok 94 - a receipt re-reads the route and cards only for the current verified reading
+  ---
+  duration_ms: 0.2067
+  type: 'test'
+  ...
+# Subtest: stored receipts are parsed within bounds and malformed rows are dropped
+ok 95 - stored receipts are parsed within bounds and malformed rows are dropped
+  ---
+  duration_ms: 2.1829
+  type: 'test'
+  ...
+# Subtest: receipt storage failures keep receipts in memory and disclose visit-only storage
+ok 96 - receipt storage failures keep receipts in memory and disclose visit-only storage
+  ---
+  duration_ms: 0.4783
+  type: 'test'
+  ...
+# Subtest: receipts from another tab are merged before every write and every reading
+ok 97 - receipts from another tab are merged before every write and every reading
+  ---
+  duration_ms: 2.0824
+  type: 'test'
+  ...
+# Subtest: a storage event for the receipt key re-reads only the current verified reading
+ok 98 - a storage event for the receipt key re-reads only the current verified reading
+  ---
+  duration_ms: 2.1773
+  type: 'test'
+  ...
+# Subtest: an unreadable receipt store vouches for nothing, is never overwritten, and still counts this visit
+ok 99 - an unreadable receipt store vouches for nothing, is never overwritten, and still counts this visit
+  ---
+  duration_ms: 0.6035
+  type: 'test'
+  ...
+# Subtest: route panel escapes every served field and never renders an unknown status as progress
+ok 100 - route panel escapes every served field and never renders an unknown status as progress
+  ---
+  duration_ms: 0.5759
+  type: 'test'
+  ...
+# Subtest: route panel states separate no campaign, loading, stale and ready readings
+ok 101 - route panel states separate no campaign, loading, stale and ready readings
+  ---
+  duration_ms: 0.4431
+  type: 'test'
+  ...
+# Subtest: the lesson comes first and one plain line summarises campaign results beside lesson progress
+ok 102 - the lesson comes first and one plain line summarises campaign results beside lesson progress
+  ---
+  duration_ms: 0.3403
+  type: 'test'
+  ...
+# Subtest: opening the tutorial reads a live campaign, and route buttons follow only ready current advice
+ok 103 - opening the tutorial reads a live campaign, and route buttons follow only ready current advice
+  ---
+  duration_ms: 2.5741
+  type: 'test'
+  ...
+# Subtest: the illustrative review page shows its annual-budget card and a readable first-hour route
+ok 104 - the illustrative review page shows its annual-budget card and a readable first-hour route
+  ---
+  duration_ms: 16.7912
+  type: 'test'
+  ...
+# Subtest: ten frozen lessons describe real reading workflows and navigation only
+ok 105 - ten frozen lessons describe real reading workflows and navigation only
+  ---
+  duration_ms: 0.9753
+  type: 'test'
+  ...
+# Subtest: UMD browser export works without a DOM, localStorage or campaign services
+ok 106 - UMD browser export works without a DOM, localStorage or campaign services
+  ---
+  duration_ms: 1.701
+  type: 'test'
+  ...
+# Subtest: v1 progress saved before the air-force lesson stays valid and the new lesson starts unread
+ok 107 - v1 progress saved before the air-force lesson stays valid and the new lesson starts unread
+  ---
+  duration_ms: 0.4787
+  type: 'test'
+  ...
+# Subtest: corrupted values and future or missing schema versions recover to a fresh preference
+ok 108 - corrupted values and future or missing schema versions recover to a fresh preference
+  ---
+  duration_ms: 0.2542
+  type: 'test'
+  ...
+# Subtest: normalization deduplicates known IDs in lesson order and completion wins overlap
+ok 109 - normalization deduplicates known IDs in lesson order and completion wins overlap
+  ---
+  duration_ms: 0.1709
+  type: 'test'
+  ...
+# Subtest: prototype pollution, inherited fields and getters cannot supply progress or events
+ok 110 - prototype pollution, inherited fields and getters cannot supply progress or events
+  ---
+  duration_ms: 0.3396
+  type: 'test'
+  ...
+# Subtest: large sparse arrays recover within bounded work and do not accept inherited entries
+ok 111 - large sparse arrays recover within bounded work and do not accept inherited entries
+  ---
+  duration_ms: 0.1832
+  type: 'test'
+  ...
+# Subtest: start and selecting a lesson never complete it; unknown events and IDs are no-ops
+ok 112 - start and selecting a lesson never complete it; unknown events and IDs are no-ops
+  ---
+  duration_ms: 0.173
+  type: 'test'
+  ...
+# Subtest: completion and skipping are separate, navigate to unresolved lessons and wrap
+ok 113 - completion and skipping are separate, navigate to unresolved lessons and wrap
+  ---
+  duration_ms: 0.2236
+  type: 'test'
+  ...
+# Subtest: end of the reading list preserves skipped status and supports replay and restart
+ok 114 - end of the reading list preserves skipped status and supports replay and restart
+  ---
+  duration_ms: 0.3501
+  type: 'test'
+  ...
+# Subtest: normalization and every event are immutable and do not retain caller arrays
+ok 115 - normalization and every event are immutable and do not retain caller arrays
+  ---
+  duration_ms: 0.2643
+  type: 'test'
+  ...
+1..115
+# tests 115
+# suites 0
+# pass 114
+# fail 0
+# cancelled 0
+# skipped 1
+# todo 0
+# duration_ms 265.8123

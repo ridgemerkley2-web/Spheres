@@ -1,0 +1,29 @@
+{
+  "source_revision": "d35dae5c4b29658a739cad1ecf07b552a342cbe3",
+  "lane": "focused",
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "tools/ui/check_tutorial_model.cjs",
+    "tools/ui/check_advisor_model.cjs",
+    "tools/ui/check_guidance_outcomes.cjs",
+    "tools/ui/check_guidance_ui.cjs",
+    "tools/ui/check_guidance_host.cjs"
+  ],
+  "started_utc": "2026-09-22T03:12:43.859896+00:00",
+  "clean_before": true,
+  "runner_sha256": "23b7b94cc72129a576b51d5f312161ba0af0453a2fdbb0be2b98f2cfccfef78e",
+  "exit_code": 0,
+  "finished_utc": "2026-09-22T03:12:44.180339+00:00",
+  "clean_after": true,
+  "revision_after": "d35dae5c4b29658a739cad1ecf07b552a342cbe3",
+  "log_sha256": "9a3d74e70f55e30231cdd69c3488dca5d463b1e0f84d3ff0a0e476dc06abbc8d",
+  "counts": {
+    "tests": 115,
+    "pass": 114,
+    "fail": 0,
+    "skipped": 1
+  },
+  "passed": true
+}

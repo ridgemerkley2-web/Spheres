@@ -1,0 +1,31 @@
+{
+  "url": "http://127.0.0.1:7863",
+  "pid": 24152,
+  "directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S19-candidate-20260921-202356",
+  "runtime_revision": "d35dae5c4b29658a739cad1ecf07b552a342cbe3",
+  "executable_sha256": "02970ec69a2f4f5ccc03be8fe32bce28d6d47a9116b7cf2070e55cd7d6b22723",
+  "player": "France",
+  "date": "3 Jan 1990",
+  "build": {
+    "branch": "codex/s19-review-01",
+    "built_at_unix_seconds": 1790046766,
+    "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+    "distribution": "Local offline game server; source and attribution accompany the release",
+    "revision": "d35dae5c4b29",
+    "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S19-candidate-20260921-202356",
+    "version": "0.6.0"
+  },
+  "served_assets_sha256": {
+    "tutorial-model.js": "076cb3e6f01d0557ed5eb3ab089e668c9365cb89e276ffe4e6b05a4703c7c1f8",
+    "advisor-model.js": "7854cb2e65cf5c64860069b2fd4c6358b28239992ee47b98f3d8e079392bf9bc",
+    "guidance-ui.js": "058318a655200aacf3df4eb4c08953a2dbd4b2180b81d1a332c6996a8e3e4717",
+    "guidance-ui.css": "79ffeb5b89e779e89f150f8d9bf999a56bfe9c67309325ec81009cb5d814c911",
+    "equipment-model.js": "e2619f51afa85d25c4ebff086973d2e83a8c23bcda32168db328cfe777388899"
+  },
+  "save_copy": {
+    "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S19-review-01\\candidate-navigation\\server\\saves\\s19-route-review.json",
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S19-candidate-20260921-202356\\saves\\s19-preview.json",
+    "sha256": "55c81129e05e2db7294219c06db7ec6596e93ec21b476623035be433fe7e5bce"
+  },
+  "scope": "Isolated S19 in-progress candidate, not integrated or certified. Actual disposable construction campaign copied from browser review. Launcher load is not a browser save/resume receipt. Main playset and prior servers remain unchanged."
+}
