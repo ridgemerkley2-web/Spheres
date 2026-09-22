@@ -1,0 +1,25 @@
+START node
+{
+  "revision": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+  "lane": "node",
+  "clean_before": true,
+  "command": [
+    "node",
+    "tools/ui/run-unit.cjs"
+  ],
+  "runner_sha256": "bcffacfec20282df09bfccf61efd0813db9fe2560169004d1085feecfc065a8e",
+  "started_utc": "2026-09-22T00:03:39.509810+00:00",
+  "exit_code": 1,
+  "finished_utc": "2026-09-22T00:05:17.150090+00:00",
+  "revision_after": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+  "clean_after": true,
+  "log_sha256": "bfebfd01fb5d7377767eb53a9627c2a05e1687ecb6beff2c30b83bc0e024d2d9",
+  "totals": {
+    "tests": 1597,
+    "pass": 1595,
+    "fail": 1,
+    "skipped": 1
+  },
+  "passed": false
+}
+FINISH node 1

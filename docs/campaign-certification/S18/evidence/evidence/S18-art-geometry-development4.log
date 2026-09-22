@@ -1,0 +1,21 @@
+✔ aircraft close-up bounds use real cockpit glass and finite end zones of the actual engine meshes (524.6419ms)
+✔ cockpit falls back to real avionics bounds without glass; malformed and missing semantic ranges are unavailable (2.3445ms)
+✔ Cockpit, Engines and Intakes buttons point the camera at contained component detail, with selection synchronized (12.9939ms)
+✔ intake inspection looks into an outboard engine before hitting the fuselage, without hiding any mesh (615.2071ms)
+✔ ordinary views restore overview zoom, Reset fits the full model and focused picking uses the close-up camera (8.4454ms)
+✔ focus survives context restoration but resets safely when model geometry changes (9.9206ms)
+✔ unavailable graphics keeps close-up controls disabled and avoids false ready messages (2.2822ms)
+✔ S18 intake camera reaches a real engine surface on both single-engine families without hiding the wing (123.6821ms)
+✔ S18 single-seat families have visible seats through glass and recessed intake fans at both inspection LODs (346.1307ms)
+✔ every tactical engine option has two physically open, recessed intake throats (488.799ms)
+✔ both tactical seats remain visible through glass above a real cockpit cavity (259.3008ms)
+✔ all tactical wing choices have distinct flaps, ailerons and open hinge seams (31.7885ms)
+✔ tactical payloads clear wing undersides and both main wings retain mirrored geometry (23.4242ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1380.7601

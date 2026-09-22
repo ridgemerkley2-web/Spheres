@@ -1,0 +1,1762 @@
+{
+  "format": "spheres-s18-closure/v1",
+  "session": "S18",
+  "status": "complete",
+  "candidate_revision": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+  "test_revision": "1b7ac3eb6e872f065efbcb1c5e80f12180be898b",
+  "test_only_correction": {
+    "path": "tools/ui/check_equipment_realism.cjs",
+    "before": "z=strike?1.60:.85;",
+    "after": "z=strike?1.60:2.55;",
+    "exact_source_comparison_passed": true
+  },
+  "completed_utc": "2026-09-22T00:16:27.762819+00:00",
+  "g4_earned": false,
+  "cp1_earned": false,
+  "scope": "Native campaign Command/Aircraft/Bases/Reports, exact frozen aircraft inspection, three CP1 aircraft families with meaningful 100k+ inspection geometry, cheaper LODs and validated selectable/exported assemblies. Art-only workshop retires demonstration mission state. No new simulation rule, historical coverage, performance or full-campaign certification claim.",
+  "qualification": {
+    "windows": {
+      "assets": {
+        "revision": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+        "lane": "assets",
+        "clean_before": true,
+        "command": [
+          "node",
+          "tools/ui/build_equipment_models.cjs",
+          "--check"
+        ],
+        "runner_sha256": "bcffacfec20282df09bfccf61efd0813db9fe2560169004d1085feecfc065a8e",
+        "started_utc": "2026-09-22T00:07:56.842722+00:00",
+        "exit_code": 0,
+        "finished_utc": "2026-09-22T00:07:59.339709+00:00",
+        "revision_after": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+        "clean_after": true,
+        "log_sha256": "4aefcbc6225e87d7c8580d9d3dfe1eafec15b0a60ed23cff3f8eb936af3341ea",
+        "passed": true
+      },
+      "art": {
+        "revision": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+        "lane": "art",
+        "clean_before": true,
+        "command": [
+          "node",
+          "tools/ui/aircraft-workshop-browser.cjs"
+        ],
+        "runner_sha256": "bcffacfec20282df09bfccf61efd0813db9fe2560169004d1085feecfc065a8e",
+        "started_utc": "2026-09-22T00:07:59.830954+00:00",
+        "exit_code": 0,
+        "finished_utc": "2026-09-22T00:08:10.413550+00:00",
+        "revision_after": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+        "clean_after": true,
+        "log_sha256": "910ab4eaf0ce17697a155c2a7d6268e0082d826d75d9721210ff8c708890e53f",
+        "passed": true
+      },
+      "web": {
+        "revision": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+        "lane": "web",
+        "clean_before": true,
+        "command": [
+          "cargo",
+          "test",
+          "--locked",
+          "--release",
+          "-p",
+          "spheres-web",
+          "--no-fail-fast"
+        ],
+        "runner_sha256": "bcffacfec20282df09bfccf61efd0813db9fe2560169004d1085feecfc065a8e",
+        "started_utc": "2026-09-22T00:08:10.896917+00:00",
+        "exit_code": 0,
+        "finished_utc": "2026-09-22T00:10:10.203656+00:00",
+        "revision_after": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+        "clean_after": true,
+        "log_sha256": "6df7fa0f850ca8fa67a1b6c47a7bf53fdc15efb6def93279e05b9353f74b7675",
+        "totals": {
+          "passed": 398,
+          "failed": 0,
+          "ignored": 20,
+          "completed_targets": 2
+        },
+        "test_binaries": [
+          {
+            "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+            "sha256": "2ed044bc18eec93d7f039302e0b7c8feb2c6606b259b3a141d0f5918ba9b27c8"
+          }
+        ],
+        "passed": true
+      },
+      "fixture": {
+        "revision": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+        "lane": "fixture",
+        "clean_before": true,
+        "command": [
+          "cargo",
+          "test",
+          "--locked",
+          "--release",
+          "-p",
+          "spheres-web",
+          "s17_export_disposable_staff_fixture",
+          "--",
+          "--ignored",
+          "--nocapture"
+        ],
+        "runner_sha256": "bcffacfec20282df09bfccf61efd0813db9fe2560169004d1085feecfc065a8e",
+        "started_utc": "2026-09-22T00:10:10.581949+00:00",
+        "fixture": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-fixture-final1",
+        "exit_code": 0,
+        "finished_utc": "2026-09-22T00:10:15.032666+00:00",
+        "revision_after": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+        "clean_after": true,
+        "log_sha256": "d9ccb7c9f2f62babd32230aa592fd16f4077e7e9ee3dee15acb3589b2530f2c0",
+        "totals": {
+          "passed": 1,
+          "failed": 0,
+          "ignored": 0,
+          "completed_targets": 2
+        },
+        "test_binaries": [
+          {
+            "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+            "sha256": "2ed044bc18eec93d7f039302e0b7c8feb2c6606b259b3a141d0f5918ba9b27c8"
+          }
+        ],
+        "passed": true
+      },
+      "binary": {
+        "revision": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+        "lane": "binary",
+        "clean_before": true,
+        "command": [
+          "cargo",
+          "build",
+          "--locked",
+          "--release",
+          "-p",
+          "spheres-web"
+        ],
+        "runner_sha256": "bcffacfec20282df09bfccf61efd0813db9fe2560169004d1085feecfc065a8e",
+        "started_utc": "2026-09-22T00:10:15.409640+00:00",
+        "exit_code": 0,
+        "finished_utc": "2026-09-22T00:10:15.530104+00:00",
+        "revision_after": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+        "clean_after": true,
+        "log_sha256": "9a984a79e86ffc2d495852561bda2125eacb5d2255655956f4625cefca5906a8",
+        "binary": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\spheres-web.exe",
+          "sha256": "70707760679a6d5f7508043a2b326de423e56035c5c29bd2ada540fc0c8e86f8"
+        },
+        "passed": true
+      },
+      "browser": {
+        "revision": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+        "lane": "browser",
+        "clean_before": true,
+        "command": [
+          "node",
+          "tools/ui/ci-military-staff.cjs"
+        ],
+        "runner_sha256": "bcffacfec20282df09bfccf61efd0813db9fe2560169004d1085feecfc065a8e",
+        "started_utc": "2026-09-22T00:10:15.898330+00:00",
+        "fixture": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-fixture-final1",
+        "binary_sha256_before": "70707760679a6d5f7508043a2b326de423e56035c5c29bd2ada540fc0c8e86f8",
+        "exit_code": 0,
+        "finished_utc": "2026-09-22T00:10:52.833082+00:00",
+        "revision_after": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+        "clean_after": true,
+        "log_sha256": "7ece7514c146665ecac1f84f49c57acd88fe8bb4a907879f66f01e7bf4a1f341",
+        "binary": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\spheres-web.exe",
+          "sha256": "70707760679a6d5f7508043a2b326de423e56035c5c29bd2ada540fc0c8e86f8"
+        },
+        "passed": true
+      },
+      "node": {
+        "revision": "1b7ac3eb6e872f065efbcb1c5e80f12180be898b",
+        "lane": "node",
+        "clean_before": true,
+        "command": [
+          "node",
+          "tools/ui/run-unit.cjs"
+        ],
+        "runner_sha256": "bcffacfec20282df09bfccf61efd0813db9fe2560169004d1085feecfc065a8e",
+        "started_utc": "2026-09-22T00:12:31.632203+00:00",
+        "exit_code": 0,
+        "finished_utc": "2026-09-22T00:14:48.711109+00:00",
+        "revision_after": "1b7ac3eb6e872f065efbcb1c5e80f12180be898b",
+        "clean_after": true,
+        "log_sha256": "a91c38fe68c98a60a4c5a9123987d9c63644ff61f395f1fe8546b41953f97020",
+        "totals": {
+          "tests": 1597,
+          "pass": 1596,
+          "fail": 0,
+          "skipped": 1
+        },
+        "passed": true
+      }
+    },
+    "linux": {
+      "passed": true,
+      "checks": [
+        {
+          "name": "web",
+          "command": [
+            "cargo",
+            "test",
+            "--locked",
+            "--release",
+            "-p",
+            "spheres-web",
+            "--no-fail-fast"
+          ],
+          "started_utc": "2026-09-22T00:03:53.281847+00:00",
+          "finished_utc": "2026-09-22T00:07:53.721524+00:00",
+          "elapsed_seconds": 240.43967457899998,
+          "exit_code": 0,
+          "log": "web.log",
+          "log_sha256": "df5370fa7baa6d733de8428f8f459434f06747b47b41eec255ce9dfc429b548b",
+          "totals": {
+            "passed": 398,
+            "failed": 0,
+            "ignored": 20,
+            "completed_targets": 2
+          },
+          "source_before": {
+            "head": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+            "status": ""
+          },
+          "source_after": {
+            "head": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+            "status": ""
+          },
+          "passed": true,
+          "test_binary": {
+            "path": "/home/ridge/.cache/spheres-s05-target/release/deps/spheres_web-20279169217b1e37",
+            "bytes": 349273776,
+            "sha256": "b9edd5fa1a4d75fcfe8d8e84e6950c5c2d701e76c33e8f0c106722de61db372e"
+          }
+        },
+        {
+          "name": "node",
+          "command": [
+            "node",
+            "tools/ui/run-unit.cjs"
+          ],
+          "started_utc": "2026-09-22T00:12:56.147207+00:00",
+          "finished_utc": "2026-09-22T00:15:12.328859+00:00",
+          "elapsed_seconds": 136.181644216,
+          "exit_code": 0,
+          "log": "node.log",
+          "log_sha256": "52a92ee1c4e46530681e6def549d59ae3f1b14859465af0d39ed7d917f1787a4",
+          "totals": {
+            "tests": 1597,
+            "passed": 1596,
+            "failed": 0,
+            "skipped": 1
+          },
+          "source_before": {
+            "head": "1b7ac3eb6e872f065efbcb1c5e80f12180be898b",
+            "status": ""
+          },
+          "source_after": {
+            "head": "1b7ac3eb6e872f065efbcb1c5e80f12180be898b",
+            "status": ""
+          },
+          "passed": true
+        }
+      ],
+      "web_source": "evidence/S18-final1-linux/result.json",
+      "node_source": "evidence/S18-final2-linux/result.json",
+      "runtime_revision": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+      "test_revision": "1b7ac3eb6e872f065efbcb1c5e80f12180be898b",
+      "note": "The first Node run failed only because its single-seat inlet probe used the previous mouth position. Only that test coordinate changed; full Node was rerun on both platforms. Native web, assets and browser evidence remains pinned to the identical runtime code."
+    },
+    "browser": {
+      "passed": true,
+      "ordinary_commands": 2,
+      "ordinary_days": 6,
+      "world_comparisons": 10,
+      "envelope_comparisons": 10,
+      "errors": [],
+      "flight_pages": {
+        "pages": [
+          "command",
+          "aircraft",
+          "bases",
+          "reports"
+        ],
+        "screenshots": [
+          "flight-command-1440.png",
+          "flight-command-390.png",
+          "flight-aircraft-1440.png",
+          "flight-aircraft-390.png",
+          "flight-bases-1440.png",
+          "flight-bases-390.png",
+          "flight-reports-1440.png",
+          "flight-reports-390.png",
+          "owned-0.png"
+        ],
+        "inspections": [
+          {
+            "id": "France-design-2",
+            "name": "S16 Supplier fighter",
+            "spec": {
+              "components": {
+                "air_avionics": "air_avionics_interceptor",
+                "air_countermeasures": "air_countermeasures_basic",
+                "air_engine": "air_engine_interceptor",
+                "air_fuel": "air_fuel_standard",
+                "air_hardpoints": "air_hardpoints_interceptor",
+                "air_payload": "air_payload_short_range",
+                "air_radar": "air_radar_interceptor",
+                "air_wing": "air_wing_interceptor"
+              },
+              "platform": "air_fighter"
+            },
+            "triangles": 200446,
+            "glb_sha256": "4709dbac3be287b640acca6549a1f12fb3cc428ef628e055a4a73dff5de79e01"
+          }
+        ],
+        "draft_preserved": true
+      },
+      "binary_sha256": "70707760679a6d5f7508043a2b326de423e56035c5c29bd2ada540fc0c8e86f8"
+    },
+    "art": {
+      "passed": true,
+      "aircraft": [
+        {
+          "platform": "air_light_attack",
+          "triangles": 199326,
+          "lods": [
+            11474,
+            1252
+          ],
+          "glb_bytes": 21532560,
+          "glb_sha256": "7cce8ccf8e96e6482ef1a3aaa89380478101c06ffc13126718ba6819cc056d3a",
+          "selectable_slots": 8
+        },
+        {
+          "platform": "air_fighter",
+          "triangles": 200446,
+          "lods": [
+            11594,
+            1296
+          ],
+          "glb_bytes": 21653720,
+          "glb_sha256": "f5e563df6e782f1be504116dcce37e08051cafa12773587febfeee3e9b238503",
+          "selectable_slots": 8
+        },
+        {
+          "platform": "air_tactical_strike",
+          "triangles": 228640,
+          "lods": [
+            14904,
+            1696
+          ],
+          "glb_bytes": 24698620,
+          "glb_sha256": "99ac2cf42b0419a929e49b1036fa1262a987de12e80aea74d4dee9b8f828f449",
+          "selectable_slots": 8
+        }
+      ],
+      "screenshots": [
+        "air_light_attack-exterior.png",
+        "air_light_attack-cockpit.png",
+        "air_light_attack-engine.png",
+        "air_light_attack-intake.png",
+        "air_fighter-exterior.png",
+        "air_fighter-cockpit.png",
+        "air_fighter-engine.png",
+        "air_fighter-intake.png",
+        "air_tactical_strike-exterior.png",
+        "air_tactical_strike-cockpit.png",
+        "air_tactical_strike-engine.png",
+        "air_tactical_strike-intake.png",
+        "workshop-narrow.png"
+      ],
+      "errors": []
+    },
+    "visual_review": {
+      "passed": true,
+      "revision": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+      "reviewed_utc": "2026-09-22T00:16:17.4256424Z",
+      "reviewer": "Codex visual inspection through view_image",
+      "captures": [
+        {
+          "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-art-final\\inspection-5ysqoi\\air_fighter-cockpit.png",
+          "sha256": "664b212d26e1c292868b0cb14f7a1ecdee2d9f8b686139041eb86cfcb1a33895"
+        },
+        {
+          "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-art-final\\inspection-5ysqoi\\air_fighter-engine.png",
+          "sha256": "c60e3803929352a8266411026889847527d9960fb42ff86f3f212343a16a5ab3"
+        },
+        {
+          "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-art-final\\inspection-5ysqoi\\air_fighter-exterior.png",
+          "sha256": "c9f85d4e50766c5a34ec6402d6594598a6c3a6e534d4c1a7085f96f429a0ca99"
+        },
+        {
+          "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-art-final\\inspection-5ysqoi\\air_fighter-intake.png",
+          "sha256": "49d690cd72b587d58656ed46f83adb357399fb623871685179e2665f240774ba"
+        },
+        {
+          "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-art-final\\inspection-5ysqoi\\air_light_attack-cockpit.png",
+          "sha256": "18aa599e3ef932125e0bb7c7f91da81ef45a0378149765ad9fc3bc0683b804ed"
+        },
+        {
+          "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-art-final\\inspection-5ysqoi\\air_light_attack-engine.png",
+          "sha256": "218699c441d398eada2bee3cd13947f0333e45d40283dd80e592e06f0f83c505"
+        },
+        {
+          "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-art-final\\inspection-5ysqoi\\air_light_attack-exterior.png",
+          "sha256": "99adf53358a7fde2018d3c32baf18dbe94def2c277a11f0ef524a7a5476e45f7"
+        },
+        {
+          "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-art-final\\inspection-5ysqoi\\air_light_attack-intake.png",
+          "sha256": "d10199ab6fa1e51a38ff8e7c6c954ef949ada1b51e5c1a41419503468e8795f6"
+        },
+        {
+          "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-art-final\\inspection-5ysqoi\\air_tactical_strike-cockpit.png",
+          "sha256": "d1b818d8ba32b824c666401b6110795462ab700d47ebaa98a66466e7ada2f5e8"
+        },
+        {
+          "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-art-final\\inspection-5ysqoi\\air_tactical_strike-engine.png",
+          "sha256": "9e6fbb2a3a917e8cd6625ec71bbe34082e50cbbfa3b8f1f4db538050516b1ea1"
+        },
+        {
+          "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-art-final\\inspection-5ysqoi\\air_tactical_strike-exterior.png",
+          "sha256": "3ff589fe765a1723824777ac0402b7f879f5528d4abdb4131c30ae89d57d5774"
+        },
+        {
+          "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-art-final\\inspection-5ysqoi\\air_tactical_strike-intake.png",
+          "sha256": "74e4da698ba8aa8b821fe04dca0bfdb8a233e0d05dcd53dfd5de58f2aaed71e1"
+        },
+        {
+          "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-art-final\\inspection-5ysqoi\\workshop-narrow.png",
+          "sha256": "5d06dd05d94ab1e0df55ff7ad75a638b2d1148a73b528b0ccc916c7bc2b256c6"
+        },
+        {
+          "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-browser-final1-browser\\staff-pJ4yrj\\active-review.png",
+          "sha256": "5998daae18e7e60dd0af87b01d31606d7baac86a7c33fe5791c7868442430bfb"
+        },
+        {
+          "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-browser-final1-browser\\staff-pJ4yrj\\active-staff-desktop.png",
+          "sha256": "864eaa2800a51990d19b30c98ed57fbe44b791a342243184db2f3e0eaa8e5070"
+        },
+        {
+          "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-browser-final1-browser\\staff-pJ4yrj\\active-staff-narrow.png",
+          "sha256": "80930b221cef3ff05b3e5f1920202cdd14b5f61120bfeaddc64ecdd43a6e0fa1"
+        },
+        {
+          "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-browser-final1-browser\\staff-pJ4yrj\\flight-aircraft-1440.png",
+          "sha256": "5753ccff7f0b1c37ad351c3e2847e434a696291c2f61a27623184b81e94381ab"
+        },
+        {
+          "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-browser-final1-browser\\staff-pJ4yrj\\flight-aircraft-390.png",
+          "sha256": "c6dd547b7e17c02e939637d7442792a0a96f132a7fefcc9c3e39896f60ad33c9"
+        },
+        {
+          "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-browser-final1-browser\\staff-pJ4yrj\\flight-bases-1440.png",
+          "sha256": "f8444bd8fe6343cec46d0c684bc780f6bd87d410d6702ab3a441a57edd8e4703"
+        },
+        {
+          "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-browser-final1-browser\\staff-pJ4yrj\\flight-bases-390.png",
+          "sha256": "80fe014df48fa2864a7e4d4c3ccb73bec72a07fa95691e273b3551e582cd7219"
+        },
+        {
+          "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-browser-final1-browser\\staff-pJ4yrj\\flight-command-1440.png",
+          "sha256": "aec053f2670361a8dbe8c6b66f9701dd401bbfb9dcf6775e5e5360d10b81b77a"
+        },
+        {
+          "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-browser-final1-browser\\staff-pJ4yrj\\flight-command-390.png",
+          "sha256": "17e0eef8d68a63e80deb5d965ef508ac43498fbf4b8cab1d080249e56ef52e16"
+        },
+        {
+          "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-browser-final1-browser\\staff-pJ4yrj\\flight-reports-1440.png",
+          "sha256": "795d9e66b4c942e7025921a2eb24a8e6aa990d00d4e7f2c5618c72ca76f442b8"
+        },
+        {
+          "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-browser-final1-browser\\staff-pJ4yrj\\flight-reports-390.png",
+          "sha256": "1bc61cf37d02e696feac29be9f725d58f55f9fa20f84a8413919b7103a68d29f"
+        },
+        {
+          "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-browser-final1-browser\\staff-pJ4yrj\\owned-0.png",
+          "sha256": "e22faa86257cc5c463903686f57844ea58aa16a21dc4a05d39a1649035d6beab"
+        },
+        {
+          "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-browser-final1-browser\\staff-pJ4yrj\\paused-review.png",
+          "sha256": "0ee03a6f0ad4766372e8ebf6329f1bfeb2575456ce4fa6da701c72ddd473b6d7"
+        },
+        {
+          "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-browser-final1-browser\\staff-pJ4yrj\\paused-staff-desktop.png",
+          "sha256": "4965539f0fccc1919f19db69265ef348c0f6845136774c21ed19e61af6f95542"
+        },
+        {
+          "file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-browser-final1-browser\\staff-pJ4yrj\\paused-staff-narrow.png",
+          "sha256": "85fc82d395e76551fdcf144ef3167aa5ad7354d0db900d13f7e7a200b26a8c24"
+        }
+      ],
+      "observations": [
+        "All three exterior silhouettes, cockpit interiors, engine cores and inlet fans are visible. Inlet openings clear the nose and wing after the camera/duct correction.",
+        "All four campaign pages and staff review/report controls are legible at 1440px and 390px; columns and buttons wrap within the viewport.",
+        "Owned fighter inspection displays the frozen revision with working model/download controls; exact spec and save purity are separately machine-verified."
+      ],
+      "limitations": [
+        "Concept aircraft, not historic replicas or photorealistic assets.",
+        "Some inherited display values show signed zero and report prose retains raw province/store identifiers; record as S20 polish.",
+        "Transient restore toast overlays top-of-page text in immediate captures.",
+        "This inspection is not an independent human usability or hardware performance qualification."
+      ]
+    },
+    "preservation": {
+      "captured_utc": "2026-09-22T00:08:35.981917+00:00",
+      "baseline_sha256": "8c422b1b6a32e14b736b08d91c76bff25ede634608a247b86852ee0ba41a2175",
+      "files": [
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\pre-claude-ebddf7a-campaign.json",
+          "bytes": 4099603,
+          "sha256": "9d373109fc4b1d4e838b73a3e24624679e872360f3f5b52225e8c3f928bb2bac",
+          "unchanged": true
+        },
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\pre-company-ammunition-campaign.json",
+          "bytes": 4099603,
+          "sha256": "d104aec43643a9b40b39d2284384fa32a983c434f597a753a227ba44379e7d14",
+          "unchanged": true
+        },
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\pre-company-refits-campaign.json",
+          "bytes": 4099603,
+          "sha256": "671b7170a4fd811900052a37fa1d6d620dddc3fd6e27a539c575513243ae38b0",
+          "unchanged": true
+        },
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\pre-government-room-20260907-campaign.json",
+          "bytes": 4099603,
+          "sha256": "b34dbabfd8f4f5b7ebce6532021b10b9e9a71991f09076e4e08090a52e198690",
+          "unchanged": true
+        },
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\save.json",
+          "bytes": 4099603,
+          "sha256": "bdd0587be567a505356cccd3d2cc9ef413e325ccab632043d2e9049302354a1d",
+          "unchanged": true
+        },
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\save.json.bak",
+          "bytes": 4099603,
+          "sha256": "b34dbabfd8f4f5b7ebce6532021b10b9e9a71991f09076e4e08090a52e198690",
+          "unchanged": true
+        },
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\saves\\auto-2.json",
+          "bytes": 3723656,
+          "sha256": "850a092eaa2c11cca02910574e48bbe9f3fbfab69742f39fee52f743e870beea",
+          "unchanged": true
+        },
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\saves\\auto-3.json",
+          "bytes": 4439498,
+          "sha256": "d9bb968255066b86d84559b924af04052a2ed8dfcea7587c305015362fe6b1fd",
+          "unchanged": true
+        }
+      ],
+      "worktrees": [
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres",
+          "head": "038fe0b1a3edb1772586ec0b5a7451629b7297c4",
+          "expected": "038fe0b1a3edb1772586ec0b5a7451629b7297c4",
+          "unchanged": true
+        },
+        {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\master-baseline",
+          "head": "485c223f60d5ff6e46f6ae17164bf1ee3a8764d9",
+          "expected": "485c223f60d5ff6e46f6ae17164bf1ee3a8764d9",
+          "unchanged": true
+        }
+      ],
+      "passed": true
+    }
+  },
+  "source_continuity": {
+    "simulation_unchanged_since": "502f3d5fe680a5d92649d484e80ac2ac23535f64",
+    "checked_paths": [
+      "spheres-sim",
+      "Cargo.toml",
+      "Cargo.lock"
+    ],
+    "changed_native_paths": [
+      "spheres-web/src/equipment_flight_view.rs"
+    ],
+    "native_change": "Expose existing frozen spec in the read-only flight board and assert exact equality while retaining save-purity check. Full native web and six-day native/browser scenario rerun.",
+    "inherited_simulation_evidence": "docs/campaign-certification/S17/manifest.json",
+    "inherited_manifest_sha256": "7f97ad02ec682c7a36a954bbadb8751945853a7fb9ae48b232c521ecf7f65640"
+  },
+  "review": {
+    "url": "http://127.0.0.1:7860",
+    "pid": 11008,
+    "directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S18-20260921-171504",
+    "runtime_revision": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+    "executable_sha256": "70707760679a6d5f7508043a2b326de423e56035c5c29bd2ada540fc0c8e86f8",
+    "player": "France",
+    "date": "16 Oct 1992",
+    "build": {
+      "branch": "codex/campaign-certification",
+      "built_at_unix_seconds": 1790035693,
+      "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+      "distribution": "Local offline game server; source and attribution accompany the release",
+      "revision": "902b820c0bea",
+      "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S18-20260921-171504",
+      "version": "0.6.0"
+    },
+    "save_copy": {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-fixture-final1\\active.json",
+      "copy": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S18-20260921-171504\\saves\\s18-flight-pages.json",
+      "sha256": "1b12d0fe95b8df3858e1fa307b6dd4c1eb97a2806b19acddff3594ab72d059b3"
+    },
+    "native_verification": {
+      "canonical_sha256": "306d1d0f8cb392e4e902139e0ffc55d210319e365e7fcf47a6ffe1417517bfed",
+      "bytes": 20025556,
+      "ignored_paths": [],
+      "matches_native_and_browser_active_checkpoint": true,
+      "worker_sha256": "361b86a8c12623a553ad2f7e54dd0ccded74fa9cf03b51f4d0a3bfdf93530165"
+    },
+    "evidence": [
+      {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-final1-binary.json",
+        "sha256": "7f3da74a1a83d09b4a019311fc462880b6ba3b5d09c0ca21eb6920d21846ccc2"
+      },
+      {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-browser-final1-browser\\staff-pJ4yrj\\result.json",
+        "sha256": "d90027cf7dedbb2b51f1b54e27d7dda9ca7e3d4d9c16fa973ee678fb846f82f9"
+      }
+    ],
+    "staff": {
+      "actions": [
+        {
+          "command": {
+            "enabled": false,
+            "kind": "military_ai"
+          },
+          "enabled": true,
+          "inputs": [],
+          "label": "Review pause of military staff",
+          "requires_preview": true
+        }
+      ],
+      "detail": "Staff review acquisition, research, support and basing every 30 days; combat orders are reviewed daily. Countries buy finished stock, wait for delivery and pay ordinary upkeep and ammunition costs. No difficulty multiplier, free equipment, free research, instant transfers or privileged access is applied. Small economies use smaller fleet targets. Existing supplier programmes remain separate paid owners. Player countries are never directed by this staff.",
+      "metrics": [
+        {
+          "label": "Countries with recorded decisions",
+          "value": 17
+        },
+        {
+          "label": "Acquisition and basing reviews",
+          "value": "Every 30 days"
+        },
+        {
+          "label": "Combat decisions",
+          "value": "Daily \u00b7 up to one strike and one defense order per country"
+        }
+      ],
+      "status": "Active",
+      "title": "Other countries\u2019 military staff"
+    },
+    "scope": "Separate S18 flight-page review using the qualified authored France/Italy checkpoint with real holdings, bases and dated mission results. Inspection does not change campaign state. No historical or unassisted campaign claim. Original review servers and campaigns preserved."
+  },
+  "prior_attempts": "Development logs retain failures caused by intentionally superseded aircraft pins/assets and controls moving to dedicated flight pages. Art review also fixed occluded inlets and camera framing. Only final source-pinned passing records qualify this session.",
+  "retention": {
+    "files": 121,
+    "stored_bytes": 60655859,
+    "excluded": "Compiled binaries and duplicate canonical worlds. Exact raw native/browser saves and audit metadata are retained; large text archives use reconstructable gzip.",
+    "files_inventory": [
+      {
+        "source": "evidence/S18-final1-art.json",
+        "bytes": 597,
+        "sha256": "1eb8dc44a45a73dcf852dc0f4f0f8259b0b63917ae0226d3b29af1a779d850a8",
+        "stored": "evidence/evidence/S18-final1-art.json",
+        "encoding": "identity",
+        "stored_bytes": 597,
+        "stored_sha256": "1eb8dc44a45a73dcf852dc0f4f0f8259b0b63917ae0226d3b29af1a779d850a8"
+      },
+      {
+        "source": "evidence/S18-final1-assets.json",
+        "bytes": 613,
+        "sha256": "c640b1f23ee7f92c9421d6d3c5c6388811063e7126357b4faa064a9e52dd95d3",
+        "stored": "evidence/evidence/S18-final1-assets.json",
+        "encoding": "identity",
+        "stored_bytes": 613,
+        "stored_sha256": "c640b1f23ee7f92c9421d6d3c5c6388811063e7126357b4faa064a9e52dd95d3"
+      },
+      {
+        "source": "evidence/S18-final1-binary.json",
+        "bytes": 905,
+        "sha256": "7f3da74a1a83d09b4a019311fc462880b6ba3b5d09c0ca21eb6920d21846ccc2",
+        "stored": "evidence/evidence/S18-final1-binary.json",
+        "encoding": "identity",
+        "stored_bytes": 905,
+        "stored_sha256": "7f3da74a1a83d09b4a019311fc462880b6ba3b5d09c0ca21eb6920d21846ccc2"
+      },
+      {
+        "source": "evidence/S18-final1-browser.json",
+        "bytes": 1112,
+        "sha256": "ed5f3d37b0a4933ba6b610c58c91c0a15667a9869b3a006f729f9c9c4d3c645f",
+        "stored": "evidence/evidence/S18-final1-browser.json",
+        "encoding": "identity",
+        "stored_bytes": 1112,
+        "stored_sha256": "ed5f3d37b0a4933ba6b610c58c91c0a15667a9869b3a006f729f9c9c4d3c645f"
+      },
+      {
+        "source": "evidence/S18-final1-fixture.json",
+        "bytes": 1303,
+        "sha256": "191e28fdb500fbe93a5bc18323e1073196f9da79bd855ff6ec72399c106b5696",
+        "stored": "evidence/evidence/S18-final1-fixture.json",
+        "encoding": "identity",
+        "stored_bytes": 1303,
+        "stored_sha256": "191e28fdb500fbe93a5bc18323e1073196f9da79bd855ff6ec72399c106b5696"
+      },
+      {
+        "source": "evidence/S18-final1-node.json",
+        "bytes": 676,
+        "sha256": "fc21357549317a396e73dec5a9a7ac4d05e570789e99563b5b496ef2463d6a50",
+        "stored": "evidence/evidence/S18-final1-node.json",
+        "encoding": "identity",
+        "stored_bytes": 676,
+        "stored_sha256": "fc21357549317a396e73dec5a9a7ac4d05e570789e99563b5b496ef2463d6a50"
+      },
+      {
+        "source": "evidence/S18-final1-web.json",
+        "bytes": 1079,
+        "sha256": "bfdc036df91ed80f00cfe2918d16ef4722528dd18e92e4b5a91b4fab3e9415b6",
+        "stored": "evidence/evidence/S18-final1-web.json",
+        "encoding": "identity",
+        "stored_bytes": 1079,
+        "stored_sha256": "bfdc036df91ed80f00cfe2918d16ef4722528dd18e92e4b5a91b4fab3e9415b6"
+      },
+      {
+        "source": "evidence/S18-final2-node.json",
+        "bytes": 675,
+        "sha256": "7d6fc7690c40bce6ae2d983c986c2cdec5bd59e1838fd4d84e827e0b7195ee4e",
+        "stored": "evidence/evidence/S18-final2-node.json",
+        "encoding": "identity",
+        "stored_bytes": 675,
+        "stored_sha256": "7d6fc7690c40bce6ae2d983c986c2cdec5bd59e1838fd4d84e827e0b7195ee4e"
+      },
+      {
+        "source": "evidence/S18-preservation-final.json",
+        "bytes": 3137,
+        "sha256": "6eef7de832a0f72b06a2896cb3de3d7063637136b6765d9f6e86b3de70588fcc",
+        "stored": "evidence/evidence/S18-preservation-final.json",
+        "encoding": "identity",
+        "stored_bytes": 3137,
+        "stored_sha256": "6eef7de832a0f72b06a2896cb3de3d7063637136b6765d9f6e86b3de70588fcc"
+      },
+      {
+        "source": "evidence/S18-visual-review.json",
+        "bytes": 9446,
+        "sha256": "5890968dab78f05f0e279ef08dda036cc4d86cb687e0b0fee11992b61d69274b",
+        "stored": "evidence/evidence/S18-visual-review.json",
+        "encoding": "identity",
+        "stored_bytes": 9446,
+        "stored_sha256": "5890968dab78f05f0e279ef08dda036cc4d86cb687e0b0fee11992b61d69274b"
+      },
+      {
+        "source": "evidence/S18-art-browser-development1.log",
+        "bytes": 146,
+        "sha256": "d4677447171aea6458c623146e7efe6d4e7b052d2e3a90fc1e142405a4541378",
+        "stored": "evidence/evidence/S18-art-browser-development1.log",
+        "encoding": "identity",
+        "stored_bytes": 146,
+        "stored_sha256": "d4677447171aea6458c623146e7efe6d4e7b052d2e3a90fc1e142405a4541378"
+      },
+      {
+        "source": "evidence/S18-art-browser-development2.log",
+        "bytes": 146,
+        "sha256": "d1cc2c48f516e9c18b3c44d3dffd49a057452d9f19924ef400e1b58b481c0f95",
+        "stored": "evidence/evidence/S18-art-browser-development2.log",
+        "encoding": "identity",
+        "stored_bytes": 146,
+        "stored_sha256": "d1cc2c48f516e9c18b3c44d3dffd49a057452d9f19924ef400e1b58b481c0f95"
+      },
+      {
+        "source": "evidence/S18-art-browser-development3.log",
+        "bytes": 146,
+        "sha256": "c0baf60d0f19b3a790a8dd9989da5e7d469396fd0d5bd4df11da08bb5ea995bb",
+        "stored": "evidence/evidence/S18-art-browser-development3.log",
+        "encoding": "identity",
+        "stored_bytes": 146,
+        "stored_sha256": "c0baf60d0f19b3a790a8dd9989da5e7d469396fd0d5bd4df11da08bb5ea995bb"
+      },
+      {
+        "source": "evidence/S18-art-browser-development4.log",
+        "bytes": 146,
+        "sha256": "e5ac26783f7526c9411b906ad7f7b383ab9855307b80e8e9bb9e9ecb46edde24",
+        "stored": "evidence/evidence/S18-art-browser-development4.log",
+        "encoding": "identity",
+        "stored_bytes": 146,
+        "stored_sha256": "e5ac26783f7526c9411b906ad7f7b383ab9855307b80e8e9bb9e9ecb46edde24"
+      },
+      {
+        "source": "evidence/S18-art-browser-development5.log",
+        "bytes": 146,
+        "sha256": "c6f29cb89d5d8e6a335653af9a43a38de8514082a6c7a24e5cdd9c81ff7b3b20",
+        "stored": "evidence/evidence/S18-art-browser-development5.log",
+        "encoding": "identity",
+        "stored_bytes": 146,
+        "stored_sha256": "c6f29cb89d5d8e6a335653af9a43a38de8514082a6c7a24e5cdd9c81ff7b3b20"
+      },
+      {
+        "source": "evidence/S18-art-development1.log",
+        "bytes": 5398,
+        "sha256": "55cb5b77d25127eb3f616cfd8d8b166aac4cecea14fc7d7759ddc590ae9db1eb",
+        "stored": "evidence/evidence/S18-art-development1.log",
+        "encoding": "identity",
+        "stored_bytes": 5398,
+        "stored_sha256": "55cb5b77d25127eb3f616cfd8d8b166aac4cecea14fc7d7759ddc590ae9db1eb"
+      },
+      {
+        "source": "evidence/S18-art-geometry-development3.log",
+        "bytes": 1449,
+        "sha256": "a3a77c113864c66535f5c49c2bb8b6afdc53c1698b39d0ef285207c584a2b802",
+        "stored": "evidence/evidence/S18-art-geometry-development3.log",
+        "encoding": "identity",
+        "stored_bytes": 1449,
+        "stored_sha256": "a3a77c113864c66535f5c49c2bb8b6afdc53c1698b39d0ef285207c584a2b802"
+      },
+      {
+        "source": "evidence/S18-art-geometry-development4.log",
+        "bytes": 1572,
+        "sha256": "dff86b52b4fd47d60bcceeded79b7c47b5579d715a8afda806ec9f7cf68484e7",
+        "stored": "evidence/evidence/S18-art-geometry-development4.log",
+        "encoding": "identity",
+        "stored_bytes": 1572,
+        "stored_sha256": "dff86b52b4fd47d60bcceeded79b7c47b5579d715a8afda806ec9f7cf68484e7"
+      },
+      {
+        "source": "evidence/S18-assets-development.log",
+        "bytes": 348,
+        "sha256": "6acbc0d84296593bc98c06d8e56f24355d766b99245b65fe0ebfeff1e244aa73",
+        "stored": "evidence/evidence/S18-assets-development.log",
+        "encoding": "identity",
+        "stored_bytes": 348,
+        "stored_sha256": "6acbc0d84296593bc98c06d8e56f24355d766b99245b65fe0ebfeff1e244aa73"
+      },
+      {
+        "source": "evidence/S18-assets-development5.log",
+        "bytes": 348,
+        "sha256": "6acbc0d84296593bc98c06d8e56f24355d766b99245b65fe0ebfeff1e244aa73",
+        "stored": "evidence/evidence/S18-assets-development5.log",
+        "encoding": "identity",
+        "stored_bytes": 348,
+        "stored_sha256": "6acbc0d84296593bc98c06d8e56f24355d766b99245b65fe0ebfeff1e244aa73"
+      },
+      {
+        "source": "evidence/S18-components-development.log",
+        "bytes": 86,
+        "sha256": "109c55c1bfcb8be576c02e81d0a0441f2d57ba4e238c1b4ce5238050eb34a23c",
+        "stored": "evidence/evidence/S18-components-development.log",
+        "encoding": "identity",
+        "stored_bytes": 86,
+        "stored_sha256": "109c55c1bfcb8be576c02e81d0a0441f2d57ba4e238c1b4ce5238050eb34a23c"
+      },
+      {
+        "source": "evidence/S18-components-development5.log",
+        "bytes": 86,
+        "sha256": "109c55c1bfcb8be576c02e81d0a0441f2d57ba4e238c1b4ce5238050eb34a23c",
+        "stored": "evidence/evidence/S18-components-development5.log",
+        "encoding": "identity",
+        "stored_bytes": 86,
+        "stored_sha256": "109c55c1bfcb8be576c02e81d0a0441f2d57ba4e238c1b4ce5238050eb34a23c"
+      },
+      {
+        "source": "evidence/S18-final1-art.log",
+        "bytes": 151,
+        "sha256": "910ab4eaf0ce17697a155c2a7d6268e0082d826d75d9721210ff8c708890e53f",
+        "stored": "evidence/evidence/S18-final1-art.log",
+        "encoding": "identity",
+        "stored_bytes": 151,
+        "stored_sha256": "910ab4eaf0ce17697a155c2a7d6268e0082d826d75d9721210ff8c708890e53f"
+      },
+      {
+        "source": "evidence/S18-final1-assets.log",
+        "bytes": 335,
+        "sha256": "4aefcbc6225e87d7c8580d9d3dfe1eafec15b0a60ed23cff3f8eb936af3341ea",
+        "stored": "evidence/evidence/S18-final1-assets.log",
+        "encoding": "identity",
+        "stored_bytes": 335,
+        "stored_sha256": "4aefcbc6225e87d7c8580d9d3dfe1eafec15b0a60ed23cff3f8eb936af3341ea"
+      },
+      {
+        "source": "evidence/S18-final1-binary.log",
+        "bytes": 887,
+        "sha256": "9a984a79e86ffc2d495852561bda2125eacb5d2255655956f4625cefca5906a8",
+        "stored": "evidence/evidence/S18-final1-binary.log",
+        "encoding": "identity",
+        "stored_bytes": 887,
+        "stored_sha256": "9a984a79e86ffc2d495852561bda2125eacb5d2255655956f4625cefca5906a8"
+      },
+      {
+        "source": "evidence/S18-final1-browser.log",
+        "bytes": 198,
+        "sha256": "7ece7514c146665ecac1f84f49c57acd88fe8bb4a907879f66f01e7bf4a1f341",
+        "stored": "evidence/evidence/S18-final1-browser.log",
+        "encoding": "identity",
+        "stored_bytes": 198,
+        "stored_sha256": "7ece7514c146665ecac1f84f49c57acd88fe8bb4a907879f66f01e7bf4a1f341"
+      },
+      {
+        "source": "evidence/S18-final1-fixture.log",
+        "bytes": 2244,
+        "sha256": "d9ccb7c9f2f62babd32230aa592fd16f4077e7e9ee3dee15acb3589b2530f2c0",
+        "stored": "evidence/evidence/S18-final1-fixture.log",
+        "encoding": "identity",
+        "stored_bytes": 2244,
+        "stored_sha256": "d9ccb7c9f2f62babd32230aa592fd16f4077e7e9ee3dee15acb3589b2530f2c0"
+      },
+      {
+        "source": "evidence/S18-final1-node.log",
+        "bytes": 160052,
+        "sha256": "bfebfd01fb5d7377767eb53a9627c2a05e1687ecb6beff2c30b83bc0e024d2d9",
+        "stored": "evidence/evidence/S18-final1-node.log",
+        "encoding": "identity",
+        "stored_bytes": 160052,
+        "stored_sha256": "bfebfd01fb5d7377767eb53a9627c2a05e1687ecb6beff2c30b83bc0e024d2d9"
+      },
+      {
+        "source": "evidence/S18-final1-web.log",
+        "bytes": 42110,
+        "sha256": "6df7fa0f850ca8fa67a1b6c47a7bf53fdc15efb6def93279e05b9353f74b7675",
+        "stored": "evidence/evidence/S18-final1-web.log",
+        "encoding": "identity",
+        "stored_bytes": 42110,
+        "stored_sha256": "6df7fa0f850ca8fa67a1b6c47a7bf53fdc15efb6def93279e05b9353f74b7675"
+      },
+      {
+        "source": "evidence/S18-final2-node.log",
+        "bytes": 158992,
+        "sha256": "a91c38fe68c98a60a4c5a9123987d9c63644ff61f395f1fe8546b41953f97020",
+        "stored": "evidence/evidence/S18-final2-node.log",
+        "encoding": "identity",
+        "stored_bytes": 158992,
+        "stored_sha256": "a91c38fe68c98a60a4c5a9123987d9c63644ff61f395f1fe8546b41953f97020"
+      },
+      {
+        "source": "evidence/S18-linux-final1.log",
+        "bytes": 9519,
+        "sha256": "87f04f38f8674c362c02b438a8a4910bb83377fbee5f24f060305d232c37fad3",
+        "stored": "evidence/evidence/S18-linux-final1.log",
+        "encoding": "identity",
+        "stored_bytes": 9519,
+        "stored_sha256": "87f04f38f8674c362c02b438a8a4910bb83377fbee5f24f060305d232c37fad3"
+      },
+      {
+        "source": "evidence/S18-node-development1.log",
+        "bytes": 211546,
+        "sha256": "ed2daa8d007b885ec31493651159fa722c3dba9aea70a6087121ec8c5db756b8",
+        "stored": "evidence/evidence/S18-node-development1.log",
+        "encoding": "identity",
+        "stored_bytes": 211546,
+        "stored_sha256": "ed2daa8d007b885ec31493651159fa722c3dba9aea70a6087121ec8c5db756b8"
+      },
+      {
+        "source": "evidence/S18-targeted-development2.log",
+        "bytes": 19861,
+        "sha256": "f55fe627173bdf0c97e67265b07fd99ca8d850152057531b9736c660fbdd5803",
+        "stored": "evidence/evidence/S18-targeted-development2.log",
+        "encoding": "identity",
+        "stored_bytes": 19861,
+        "stored_sha256": "f55fe627173bdf0c97e67265b07fd99ca8d850152057531b9736c660fbdd5803"
+      },
+      {
+        "source": "evidence/S18-targeted-development6.log",
+        "bytes": 4830,
+        "sha256": "ccb5014d0c335a08f9ecec850fcbd5391adefce37181d989b149ab8486efe3b9",
+        "stored": "evidence/evidence/S18-targeted-development6.log",
+        "encoding": "identity",
+        "stored_bytes": 4830,
+        "stored_sha256": "ccb5014d0c335a08f9ecec850fcbd5391adefce37181d989b149ab8486efe3b9"
+      },
+      {
+        "source": "evidence/S18-windows-final1.log",
+        "bytes": 703,
+        "sha256": "bb7beb576a181004ad93d1b98ba0e4c278de564504c0742e501537285a54afd9",
+        "stored": "evidence/evidence/S18-windows-final1.log",
+        "encoding": "identity",
+        "stored_bytes": 703,
+        "stored_sha256": "bb7beb576a181004ad93d1b98ba0e4c278de564504c0742e501537285a54afd9"
+      },
+      {
+        "source": "evidence/S18-windows-runtime1.log",
+        "bytes": 5787,
+        "sha256": "a1e04e36332fb52bd3ff813ff96c96dd5e7937b067372172ad3877e8f1e50f0e",
+        "stored": "evidence/evidence/S18-windows-runtime1.log",
+        "encoding": "identity",
+        "stored_bytes": 5787,
+        "stored_sha256": "a1e04e36332fb52bd3ff813ff96c96dd5e7937b067372172ad3877e8f1e50f0e"
+      },
+      {
+        "source": "evidence/S18-final1-linux/node.log",
+        "bytes": 378390,
+        "sha256": "e0c8c9a54cc3de33459440ca0c2df99585025765120c556e26b381da237a307b",
+        "stored": "evidence/evidence/S18-final1-linux/node.log",
+        "encoding": "identity",
+        "stored_bytes": 378390,
+        "stored_sha256": "e0c8c9a54cc3de33459440ca0c2df99585025765120c556e26b381da237a307b"
+      },
+      {
+        "source": "evidence/S18-final1-linux/result.json",
+        "bytes": 4063,
+        "sha256": "26fa332eaa6b6b92145925ebaaad1535c963339335644c06db8a9b4eb7d0e1e4",
+        "stored": "evidence/evidence/S18-final1-linux/result.json",
+        "encoding": "identity",
+        "stored_bytes": 4063,
+        "stored_sha256": "26fa332eaa6b6b92145925ebaaad1535c963339335644c06db8a9b4eb7d0e1e4"
+      },
+      {
+        "source": "evidence/S18-final1-linux/toolchain.json",
+        "bytes": 1181,
+        "sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801",
+        "stored": "evidence/evidence/S18-final1-linux/toolchain.json",
+        "encoding": "identity",
+        "stored_bytes": 1181,
+        "stored_sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801"
+      },
+      {
+        "source": "evidence/S18-final1-linux/web.log",
+        "bytes": 41562,
+        "sha256": "df5370fa7baa6d733de8428f8f459434f06747b47b41eec255ce9dfc429b548b",
+        "stored": "evidence/evidence/S18-final1-linux/web.log",
+        "encoding": "identity",
+        "stored_bytes": 41562,
+        "stored_sha256": "df5370fa7baa6d733de8428f8f459434f06747b47b41eec255ce9dfc429b548b"
+      },
+      {
+        "source": "evidence/S18-final2-linux/node.log",
+        "bytes": 377539,
+        "sha256": "52a92ee1c4e46530681e6def549d59ae3f1b14859465af0d39ed7d917f1787a4",
+        "stored": "evidence/evidence/S18-final2-linux/node.log",
+        "encoding": "identity",
+        "stored_bytes": 377539,
+        "stored_sha256": "52a92ee1c4e46530681e6def549d59ae3f1b14859465af0d39ed7d917f1787a4"
+      },
+      {
+        "source": "evidence/S18-final2-linux/result.json",
+        "bytes": 3004,
+        "sha256": "318ea6474afe4c4c542dc0d4f828d25dc6383eb72ebfa5f4dd4f7500abea7392",
+        "stored": "evidence/evidence/S18-final2-linux/result.json",
+        "encoding": "identity",
+        "stored_bytes": 3004,
+        "stored_sha256": "318ea6474afe4c4c542dc0d4f828d25dc6383eb72ebfa5f4dd4f7500abea7392"
+      },
+      {
+        "source": "evidence/S18-final2-linux/toolchain.json",
+        "bytes": 1181,
+        "sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801",
+        "stored": "evidence/evidence/S18-final2-linux/toolchain.json",
+        "encoding": "identity",
+        "stored_bytes": 1181,
+        "stored_sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801"
+      },
+      {
+        "source": "evidence/S18-fixture-final1/active-confirmed.json",
+        "bytes": 15660944,
+        "sha256": "cc4d94fdf3552b451b48ce595814af5c3a614cc9809a88e30bf7597a4c0749f5",
+        "stored": "evidence/evidence/S18-fixture-final1/active-confirmed.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3013506,
+        "stored_sha256": "7d2e088a870189975ea3b8eaa85e7b5e465b9bdab631ca935bea06ed34503a19"
+      },
+      {
+        "source": "evidence/S18-fixture-final1/active.json",
+        "bytes": 20064363,
+        "sha256": "1b12d0fe95b8df3858e1fa307b6dd4c1eb97a2806b19acddff3594ab72d059b3",
+        "stored": "evidence/evidence/S18-fixture-final1/active.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3290655,
+        "stored_sha256": "a2b5154f7505945e9274e92010e34c9b097c79ec1bcf0bfb078073d114aa4e13"
+      },
+      {
+        "source": "evidence/S18-fixture-final1/before.json",
+        "bytes": 15660902,
+        "sha256": "588f9dbcb88d3fff9bb3a6b19ac1316ea98d20d5dc61515eaf52c566e3c34b6f",
+        "stored": "evidence/evidence/S18-fixture-final1/before.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3013487,
+        "stored_sha256": "2d60262c74643eceaac08d9412bbb8fa39b7dbf0c3c1088b1ba740f0cb135c6a"
+      },
+      {
+        "source": "evidence/S18-fixture-final1/manifest.json",
+        "bytes": 20582,
+        "sha256": "fd056a161303fc663c15720eac77d9747fb60961d5b476a80f1a316a438536e7",
+        "stored": "evidence/evidence/S18-fixture-final1/manifest.json",
+        "encoding": "identity",
+        "stored_bytes": 20582,
+        "stored_sha256": "fd056a161303fc663c15720eac77d9747fb60961d5b476a80f1a316a438536e7"
+      },
+      {
+        "source": "evidence/S18-fixture-final1/paused-confirmed.json",
+        "bytes": 20064364,
+        "sha256": "a220959267e9dd776da6d4c4f329517b19b47f57a4c64b983f8ddace4651c9a0",
+        "stored": "evidence/evidence/S18-fixture-final1/paused-confirmed.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3290661,
+        "stored_sha256": "42873a2131a4e03430d2451f6bbd537b0960237e05ca121e2c856ea7776d187d"
+      },
+      {
+        "source": "evidence/S18-fixture-final1/paused.json",
+        "bytes": 20523966,
+        "sha256": "4c49761645f06188db17e777d1148ba84774f334a176d90521026298f0afea42",
+        "stored": "evidence/evidence/S18-fixture-final1/paused.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3359564,
+        "stored_sha256": "9e539356c01ee4dc8791cab10dc76238c3cdeacc491288b2b814fd9358a6f1a8"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/active-review.png",
+        "bytes": 823431,
+        "sha256": "5998daae18e7e60dd0af87b01d31606d7baac86a7c33fe5791c7868442430bfb",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/active-review.png",
+        "encoding": "identity",
+        "stored_bytes": 823431,
+        "stored_sha256": "5998daae18e7e60dd0af87b01d31606d7baac86a7c33fe5791c7868442430bfb"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/active-staff-desktop.png",
+        "bytes": 415126,
+        "sha256": "864eaa2800a51990d19b30c98ed57fbe44b791a342243184db2f3e0eaa8e5070",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/active-staff-desktop.png",
+        "encoding": "identity",
+        "stored_bytes": 415126,
+        "stored_sha256": "864eaa2800a51990d19b30c98ed57fbe44b791a342243184db2f3e0eaa8e5070"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/active-staff-narrow.png",
+        "bytes": 141076,
+        "sha256": "80930b221cef3ff05b3e5f1920202cdd14b5f61120bfeaddc64ecdd43a6e0fa1",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/active-staff-narrow.png",
+        "encoding": "identity",
+        "stored_bytes": 141076,
+        "stored_sha256": "80930b221cef3ff05b3e5f1920202cdd14b5f61120bfeaddc64ecdd43a6e0fa1"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/001-s17-audit-loaded.json",
+        "bytes": 4329,
+        "sha256": "b1d65b1a47f2f698820f67c94855f36acfafc1171beeacbb760f777c5e6f67b8",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/001-s17-audit-loaded.json",
+        "encoding": "identity",
+        "stored_bytes": 4329,
+        "stored_sha256": "b1d65b1a47f2f698820f67c94855f36acfafc1171beeacbb760f777c5e6f67b8"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/002-before.json",
+        "bytes": 4269,
+        "sha256": "79fe21a6a174529926bea48884a51f090930120b40af86b23203c6655ed48aa1",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/002-before.json",
+        "encoding": "identity",
+        "stored_bytes": 4269,
+        "stored_sha256": "79fe21a6a174529926bea48884a51f090930120b40af86b23203c6655ed48aa1"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/003-s17-audit-flight-pages-preserve-campaign.json",
+        "bytes": 4377,
+        "sha256": "0b96ed161b5a937bd9610d593942d5f14df41a28ae16330fc9b5e08d29aa163f",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/003-s17-audit-flight-pages-preserve-campaign.json",
+        "encoding": "identity",
+        "stored_bytes": 4377,
+        "stored_sha256": "0b96ed161b5a937bd9610d593942d5f14df41a28ae16330fc9b5e08d29aa163f"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/004-before.json",
+        "bytes": 4269,
+        "sha256": "e88bb41398448a8d0fb7bf559c1e889231c6c1dd2043ab8e27d2d10a76d50011",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/004-before.json",
+        "encoding": "identity",
+        "stored_bytes": 4269,
+        "stored_sha256": "e88bb41398448a8d0fb7bf559c1e889231c6c1dd2043ab8e27d2d10a76d50011"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/005-s17-audit-active-pure-review.json",
+        "bytes": 4353,
+        "sha256": "ad33e7320838af3c8a489984b64f28b9a6ee01b6fcfcc616560320c78b7e3386",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/005-s17-audit-active-pure-review.json",
+        "encoding": "identity",
+        "stored_bytes": 4353,
+        "stored_sha256": "ad33e7320838af3c8a489984b64f28b9a6ee01b6fcfcc616560320c78b7e3386"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/006-before.json",
+        "bytes": 4269,
+        "sha256": "1fe8c2bc56ddd754aa2a76f54279ad0e8fe5633d7dbd9a56280aaf4116c8ad1c",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/006-before.json",
+        "encoding": "identity",
+        "stored_bytes": 4269,
+        "stored_sha256": "1fe8c2bc56ddd754aa2a76f54279ad0e8fe5633d7dbd9a56280aaf4116c8ad1c"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/007-s17-audit-active-confirmed.json",
+        "bytes": 4349,
+        "sha256": "6890647fdd2d95f397d63fc6d1e930f14e7acfe5687165a08ff1462d2262a686",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/007-s17-audit-active-confirmed.json",
+        "encoding": "identity",
+        "stored_bytes": 4349,
+        "stored_sha256": "6890647fdd2d95f397d63fc6d1e930f14e7acfe5687165a08ff1462d2262a686"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/008-active-confirmed.json",
+        "bytes": 4289,
+        "sha256": "39b076e105a9abff7f1b64527ac08394d14365e7986656260a94849487461186",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/008-active-confirmed.json",
+        "encoding": "identity",
+        "stored_bytes": 4289,
+        "stored_sha256": "39b076e105a9abff7f1b64527ac08394d14365e7986656260a94849487461186"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/009-s17-audit-active.json",
+        "bytes": 4338,
+        "sha256": "5b8cb84ed9c7d7078896a95c03b7e4f10a8474b304621066a5e844f002464e88",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/009-s17-audit-active.json",
+        "encoding": "identity",
+        "stored_bytes": 4338,
+        "stored_sha256": "5b8cb84ed9c7d7078896a95c03b7e4f10a8474b304621066a5e844f002464e88"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/010-active.json",
+        "bytes": 4278,
+        "sha256": "ad68e572fd85469d4b731b102538048c3529c43ec7aa36ec96c607bb41f3d9ac",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/010-active.json",
+        "encoding": "identity",
+        "stored_bytes": 4278,
+        "stored_sha256": "ad68e572fd85469d4b731b102538048c3529c43ec7aa36ec96c607bb41f3d9ac"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/011-s17-audit-paused-pure-review.json",
+        "bytes": 4362,
+        "sha256": "3a945225da1ad57450d9f007cdd5a1d6b2c28b71b52fa5a6a0afd98e52669251",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/011-s17-audit-paused-pure-review.json",
+        "encoding": "identity",
+        "stored_bytes": 4362,
+        "stored_sha256": "3a945225da1ad57450d9f007cdd5a1d6b2c28b71b52fa5a6a0afd98e52669251"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/012-active.json",
+        "bytes": 4278,
+        "sha256": "e22949c11196e1f6afd744f8905e3da7fa34fed67fbd8eca59f5762b286e10e3",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/012-active.json",
+        "encoding": "identity",
+        "stored_bytes": 4278,
+        "stored_sha256": "e22949c11196e1f6afd744f8905e3da7fa34fed67fbd8eca59f5762b286e10e3"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/013-s17-audit-paused-confirmed.json",
+        "bytes": 4358,
+        "sha256": "a5b8d9245fb6463d3fa740e3adc89388d74947fd19b996ff0b6f52a05237a96a",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/013-s17-audit-paused-confirmed.json",
+        "encoding": "identity",
+        "stored_bytes": 4358,
+        "stored_sha256": "a5b8d9245fb6463d3fa740e3adc89388d74947fd19b996ff0b6f52a05237a96a"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/014-paused-confirmed.json",
+        "bytes": 4298,
+        "sha256": "5e74cc4929cfbd80246d5f6a078c5c1f385dcaf1ebd6829d889eb759fe6abb44",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/014-paused-confirmed.json",
+        "encoding": "identity",
+        "stored_bytes": 4298,
+        "stored_sha256": "5e74cc4929cfbd80246d5f6a078c5c1f385dcaf1ebd6829d889eb759fe6abb44"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/015-s17-audit-paused.json",
+        "bytes": 4325,
+        "sha256": "49b0e939c20a632f81c52e51e0fe88a05960fa3feb9c1fe6dbf9b565464b3aed",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/015-s17-audit-paused.json",
+        "encoding": "identity",
+        "stored_bytes": 4325,
+        "stored_sha256": "49b0e939c20a632f81c52e51e0fe88a05960fa3feb9c1fe6dbf9b565464b3aed"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/016-paused.json",
+        "bytes": 4265,
+        "sha256": "56522e0445daa21cb79030834514200ae985324fde76db0fbfa316e0b4f9dafc",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/016-paused.json",
+        "encoding": "identity",
+        "stored_bytes": 4265,
+        "stored_sha256": "56522e0445daa21cb79030834514200ae985324fde76db0fbfa316e0b4f9dafc"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/017-s17-audit-reloaded.json",
+        "bytes": 4329,
+        "sha256": "b59c465a880229c78b771b3607ce17b9f88a91aeb4c078c79d111243d26b2f09",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/017-s17-audit-reloaded.json",
+        "encoding": "identity",
+        "stored_bytes": 4329,
+        "stored_sha256": "b59c465a880229c78b771b3607ce17b9f88a91aeb4c078c79d111243d26b2f09"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/018-paused.json",
+        "bytes": 4265,
+        "sha256": "2d3b255ad0e034bec140f4b7ca05d9972a7d10a7d1d3f558ad9aeb205cd6b009",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/018-paused.json",
+        "encoding": "identity",
+        "stored_bytes": 4265,
+        "stored_sha256": "2d3b255ad0e034bec140f4b7ca05d9972a7d10a7d1d3f558ad9aeb205cd6b009"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/019-s17-audit-continued.json",
+        "bytes": 4331,
+        "sha256": "767250d4c7ae790d479a4799f4136ad80775b066caa8e93567175ce38f8f62c5",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/019-s17-audit-continued.json",
+        "encoding": "identity",
+        "stored_bytes": 4331,
+        "stored_sha256": "767250d4c7ae790d479a4799f4136ad80775b066caa8e93567175ce38f8f62c5"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/020-paused.json",
+        "bytes": 4265,
+        "sha256": "a2ae2452c61e5e7538151ea6d8e208af3f7b3991f549fccd7fea310b80d6081b",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/archive-audit/020-paused.json",
+        "encoding": "identity",
+        "stored_bytes": 4265,
+        "stored_sha256": "a2ae2452c61e5e7538151ea6d8e208af3f7b3991f549fccd7fea310b80d6081b"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/flight-aircraft-1440.png",
+        "bytes": 545995,
+        "sha256": "5753ccff7f0b1c37ad351c3e2847e434a696291c2f61a27623184b81e94381ab",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/flight-aircraft-1440.png",
+        "encoding": "identity",
+        "stored_bytes": 545995,
+        "stored_sha256": "5753ccff7f0b1c37ad351c3e2847e434a696291c2f61a27623184b81e94381ab"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/flight-aircraft-390.png",
+        "bytes": 156462,
+        "sha256": "c6dd547b7e17c02e939637d7442792a0a96f132a7fefcc9c3e39896f60ad33c9",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/flight-aircraft-390.png",
+        "encoding": "identity",
+        "stored_bytes": 156462,
+        "stored_sha256": "c6dd547b7e17c02e939637d7442792a0a96f132a7fefcc9c3e39896f60ad33c9"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/flight-bases-1440.png",
+        "bytes": 581747,
+        "sha256": "f8444bd8fe6343cec46d0c684bc780f6bd87d410d6702ab3a441a57edd8e4703",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/flight-bases-1440.png",
+        "encoding": "identity",
+        "stored_bytes": 581747,
+        "stored_sha256": "f8444bd8fe6343cec46d0c684bc780f6bd87d410d6702ab3a441a57edd8e4703"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/flight-bases-390.png",
+        "bytes": 107401,
+        "sha256": "80fe014df48fa2864a7e4d4c3ccb73bec72a07fa95691e273b3551e582cd7219",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/flight-bases-390.png",
+        "encoding": "identity",
+        "stored_bytes": 107401,
+        "stored_sha256": "80fe014df48fa2864a7e4d4c3ccb73bec72a07fa95691e273b3551e582cd7219"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/flight-command-1440.png",
+        "bytes": 610047,
+        "sha256": "aec053f2670361a8dbe8c6b66f9701dd401bbfb9dcf6775e5e5360d10b81b77a",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/flight-command-1440.png",
+        "encoding": "identity",
+        "stored_bytes": 610047,
+        "stored_sha256": "aec053f2670361a8dbe8c6b66f9701dd401bbfb9dcf6775e5e5360d10b81b77a"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/flight-command-390.png",
+        "bytes": 126635,
+        "sha256": "17e0eef8d68a63e80deb5d965ef508ac43498fbf4b8cab1d080249e56ef52e16",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/flight-command-390.png",
+        "encoding": "identity",
+        "stored_bytes": 126635,
+        "stored_sha256": "17e0eef8d68a63e80deb5d965ef508ac43498fbf4b8cab1d080249e56ef52e16"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/flight-reports-1440.png",
+        "bytes": 377742,
+        "sha256": "795d9e66b4c942e7025921a2eb24a8e6aa990d00d4e7f2c5618c72ca76f442b8",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/flight-reports-1440.png",
+        "encoding": "identity",
+        "stored_bytes": 377742,
+        "stored_sha256": "795d9e66b4c942e7025921a2eb24a8e6aa990d00d4e7f2c5618c72ca76f442b8"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/flight-reports-390.png",
+        "bytes": 95094,
+        "sha256": "1bc61cf37d02e696feac29be9f725d58f55f9fa20f84a8413919b7103a68d29f",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/flight-reports-390.png",
+        "encoding": "identity",
+        "stored_bytes": 95094,
+        "stored_sha256": "1bc61cf37d02e696feac29be9f725d58f55f9fa20f84a8413919b7103a68d29f"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/owned-0.png",
+        "bytes": 180226,
+        "sha256": "e22faa86257cc5c463903686f57844ea58aa16a21dc4a05d39a1649035d6beab",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/owned-0.png",
+        "encoding": "identity",
+        "stored_bytes": 180226,
+        "stored_sha256": "e22faa86257cc5c463903686f57844ea58aa16a21dc4a05d39a1649035d6beab"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/paused-review.png",
+        "bytes": 818057,
+        "sha256": "0ee03a6f0ad4766372e8ebf6329f1bfeb2575456ce4fa6da701c72ddd473b6d7",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/paused-review.png",
+        "encoding": "identity",
+        "stored_bytes": 818057,
+        "stored_sha256": "0ee03a6f0ad4766372e8ebf6329f1bfeb2575456ce4fa6da701c72ddd473b6d7"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/paused-staff-desktop.png",
+        "bytes": 415269,
+        "sha256": "4965539f0fccc1919f19db69265ef348c0f6845136774c21ed19e61af6f95542",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/paused-staff-desktop.png",
+        "encoding": "identity",
+        "stored_bytes": 415269,
+        "stored_sha256": "4965539f0fccc1919f19db69265ef348c0f6845136774c21ed19e61af6f95542"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/paused-staff-narrow.png",
+        "bytes": 141111,
+        "sha256": "85fc82d395e76551fdcf144ef3167aa5ad7354d0db900d13f7e7a200b26a8c24",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/paused-staff-narrow.png",
+        "encoding": "identity",
+        "stored_bytes": 141111,
+        "stored_sha256": "85fc82d395e76551fdcf144ef3167aa5ad7354d0db900d13f7e7a200b26a8c24"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/result.json",
+        "bytes": 34915,
+        "sha256": "d90027cf7dedbb2b51f1b54e27d7dda9ca7e3d4d9c16fa973ee678fb846f82f9",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/result.json",
+        "encoding": "identity",
+        "stored_bytes": 34915,
+        "stored_sha256": "d90027cf7dedbb2b51f1b54e27d7dda9ca7e3d4d9c16fa973ee678fb846f82f9"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/server/captures/s17-audit-active-confirmed.json",
+        "bytes": 15660944,
+        "sha256": "ab472a8291c49f6be7eb591ea80bce8639681988ab5eba1919bac050f9564273",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/server/captures/s17-audit-active-confirmed.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3013506,
+        "stored_sha256": "cc894ff630bb398e1c20b2f06f8da2603001e12eff92d2d312c0a7688fff195b"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/server/captures/s17-audit-active-pure-review.json",
+        "bytes": 15660902,
+        "sha256": "5093fd2a6523e2bc24c4abd0dc4c0e559d4d1814d431c3b773f4493b293d11d8",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/server/captures/s17-audit-active-pure-review.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3013487,
+        "stored_sha256": "0ec68ed98523a07b565d8d0239e637b1a6862b84f7b6e2faeca2a5390d05408b"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/server/captures/s17-audit-active.json",
+        "bytes": 20064363,
+        "sha256": "bad76289b7d8e7dba1f8586fb2f81a8645306df7609b4f44aef54d8878d2f142",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/server/captures/s17-audit-active.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3290654,
+        "stored_sha256": "1a0e391d29c1c1392d8f1f6cf3a93d75541639033efc5b63a925300d44dd79d7"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/server/captures/s17-audit-continued.json",
+        "bytes": 20523966,
+        "sha256": "4fff730637c524c184e39a7dd2bfbdcf468707a0e028eee1829197b8a0725f29",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/server/captures/s17-audit-continued.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3359564,
+        "stored_sha256": "d911d21921872be45659365dc1a3b622a5ca10563c4ad04b30ce01472642041f"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/server/captures/s17-audit-flight-pages-preserve-campaign.json",
+        "bytes": 15660902,
+        "sha256": "af713d8ed71cce12e58608c9436b3ebdad9dbff65a3e84f525d873b1f78e8c16",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/server/captures/s17-audit-flight-pages-preserve-campaign.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3013487,
+        "stored_sha256": "24dbe4cad5c6c83362543c8a2ecd6bd3fd74051d4087fb3997c3cb5822dbcc42"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/server/captures/s17-audit-loaded.json",
+        "bytes": 15660902,
+        "sha256": "232f7d8030bb104d61be9492c5a326e89435bf1bcf2ad20aa6fa9c953874ee67",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/server/captures/s17-audit-loaded.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3013487,
+        "stored_sha256": "ddbce7545595bde448f3da170ac68a6dad98d0f2f4651f0fa51f5f1c616043a1"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/server/captures/s17-audit-paused-confirmed.json",
+        "bytes": 20064364,
+        "sha256": "535550c4dfbaa53685f279a794cae27eaa9edb08023c8704b11f4752e79b3c88",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/server/captures/s17-audit-paused-confirmed.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3290663,
+        "stored_sha256": "0ff6be77fd7ee99b558f17603139fe00293ad33df414d2ee6d835983afa9e608"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/server/captures/s17-audit-paused-pure-review.json",
+        "bytes": 20064363,
+        "sha256": "466b344a31f76347ecd67149dbebdfef05b862000f1e6b728ffdbb7db38d8b45",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/server/captures/s17-audit-paused-pure-review.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3290657,
+        "stored_sha256": "ab3f238d123a82af1e0b9ecc759cb3437c2eef9391b54578d7f05a2a426151fb"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/server/captures/s17-audit-paused.json",
+        "bytes": 20523966,
+        "sha256": "892cb959909cb1586b100d6ee67c8efdca22f86344752b0608d8f655072e87e3",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/server/captures/s17-audit-paused.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3359564,
+        "stored_sha256": "630b970524bd77a2910c0031260b65297173b5c7cb5b1a8120a14cfd90b63d44"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/server/captures/s17-audit-reloaded.json",
+        "bytes": 20523966,
+        "sha256": "1f11996de026c3afa168a294ca6261da1c9229780276af99d2eb6751c24de7f1",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/server/captures/s17-audit-reloaded.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3359564,
+        "stored_sha256": "e0fb079e7ab541c3821e7f0171e85aacebaa18143ab20d542a858d527d2135dd"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/server/saves/s17-military-staff.json",
+        "bytes": 20523966,
+        "sha256": "c582e5b9d9840647ced2435b058d0518f1742107b4d2b343871a9f4f95d61a89",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/server/saves/s17-military-staff.json.gz",
+        "encoding": "gzip",
+        "stored_bytes": 3359564,
+        "stored_sha256": "8d01d325395dde32a6f4a3319257de09bf01f3489aa2d88dcc9938089691b7a5"
+      },
+      {
+        "source": "evidence/S18-browser-final1-browser/staff-pJ4yrj/server.log",
+        "bytes": 78,
+        "sha256": "a890c32b7ec487fadc1b2b69d874a7e5566ec9b21230d5c8b6991ca4c4158359",
+        "stored": "evidence/evidence/S18-browser-final1-browser/staff-pJ4yrj/server.log",
+        "encoding": "identity",
+        "stored_bytes": 78,
+        "stored_sha256": "a890c32b7ec487fadc1b2b69d874a7e5566ec9b21230d5c8b6991ca4c4158359"
+      },
+      {
+        "source": "evidence/S18-art-final/inspection-5ysqoi/air_fighter-cockpit.png",
+        "bytes": 192815,
+        "sha256": "664b212d26e1c292868b0cb14f7a1ecdee2d9f8b686139041eb86cfcb1a33895",
+        "stored": "evidence/evidence/S18-art-final/inspection-5ysqoi/air_fighter-cockpit.png",
+        "encoding": "identity",
+        "stored_bytes": 192815,
+        "stored_sha256": "664b212d26e1c292868b0cb14f7a1ecdee2d9f8b686139041eb86cfcb1a33895"
+      },
+      {
+        "source": "evidence/S18-art-final/inspection-5ysqoi/air_fighter-engine.png",
+        "bytes": 158033,
+        "sha256": "c60e3803929352a8266411026889847527d9960fb42ff86f3f212343a16a5ab3",
+        "stored": "evidence/evidence/S18-art-final/inspection-5ysqoi/air_fighter-engine.png",
+        "encoding": "identity",
+        "stored_bytes": 158033,
+        "stored_sha256": "c60e3803929352a8266411026889847527d9960fb42ff86f3f212343a16a5ab3"
+      },
+      {
+        "source": "evidence/S18-art-final/inspection-5ysqoi/air_fighter-exterior.png",
+        "bytes": 137498,
+        "sha256": "c9f85d4e50766c5a34ec6402d6594598a6c3a6e534d4c1a7085f96f429a0ca99",
+        "stored": "evidence/evidence/S18-art-final/inspection-5ysqoi/air_fighter-exterior.png",
+        "encoding": "identity",
+        "stored_bytes": 137498,
+        "stored_sha256": "c9f85d4e50766c5a34ec6402d6594598a6c3a6e534d4c1a7085f96f429a0ca99"
+      },
+      {
+        "source": "evidence/S18-art-final/inspection-5ysqoi/air_fighter-intake.png",
+        "bytes": 168467,
+        "sha256": "49d690cd72b587d58656ed46f83adb357399fb623871685179e2665f240774ba",
+        "stored": "evidence/evidence/S18-art-final/inspection-5ysqoi/air_fighter-intake.png",
+        "encoding": "identity",
+        "stored_bytes": 168467,
+        "stored_sha256": "49d690cd72b587d58656ed46f83adb357399fb623871685179e2665f240774ba"
+      },
+      {
+        "source": "evidence/S18-art-final/inspection-5ysqoi/air_light_attack-cockpit.png",
+        "bytes": 211234,
+        "sha256": "18aa599e3ef932125e0bb7c7f91da81ef45a0378149765ad9fc3bc0683b804ed",
+        "stored": "evidence/evidence/S18-art-final/inspection-5ysqoi/air_light_attack-cockpit.png",
+        "encoding": "identity",
+        "stored_bytes": 211234,
+        "stored_sha256": "18aa599e3ef932125e0bb7c7f91da81ef45a0378149765ad9fc3bc0683b804ed"
+      },
+      {
+        "source": "evidence/S18-art-final/inspection-5ysqoi/air_light_attack-engine.png",
+        "bytes": 155946,
+        "sha256": "218699c441d398eada2bee3cd13947f0333e45d40283dd80e592e06f0f83c505",
+        "stored": "evidence/evidence/S18-art-final/inspection-5ysqoi/air_light_attack-engine.png",
+        "encoding": "identity",
+        "stored_bytes": 155946,
+        "stored_sha256": "218699c441d398eada2bee3cd13947f0333e45d40283dd80e592e06f0f83c505"
+      },
+      {
+        "source": "evidence/S18-art-final/inspection-5ysqoi/air_light_attack-exterior.png",
+        "bytes": 144153,
+        "sha256": "99adf53358a7fde2018d3c32baf18dbe94def2c277a11f0ef524a7a5476e45f7",
+        "stored": "evidence/evidence/S18-art-final/inspection-5ysqoi/air_light_attack-exterior.png",
+        "encoding": "identity",
+        "stored_bytes": 144153,
+        "stored_sha256": "99adf53358a7fde2018d3c32baf18dbe94def2c277a11f0ef524a7a5476e45f7"
+      },
+      {
+        "source": "evidence/S18-art-final/inspection-5ysqoi/air_light_attack-intake.png",
+        "bytes": 166824,
+        "sha256": "d10199ab6fa1e51a38ff8e7c6c954ef949ada1b51e5c1a41419503468e8795f6",
+        "stored": "evidence/evidence/S18-art-final/inspection-5ysqoi/air_light_attack-intake.png",
+        "encoding": "identity",
+        "stored_bytes": 166824,
+        "stored_sha256": "d10199ab6fa1e51a38ff8e7c6c954ef949ada1b51e5c1a41419503468e8795f6"
+      },
+      {
+        "source": "evidence/S18-art-final/inspection-5ysqoi/air_tactical_strike-cockpit.png",
+        "bytes": 196968,
+        "sha256": "d1b818d8ba32b824c666401b6110795462ab700d47ebaa98a66466e7ada2f5e8",
+        "stored": "evidence/evidence/S18-art-final/inspection-5ysqoi/air_tactical_strike-cockpit.png",
+        "encoding": "identity",
+        "stored_bytes": 196968,
+        "stored_sha256": "d1b818d8ba32b824c666401b6110795462ab700d47ebaa98a66466e7ada2f5e8"
+      },
+      {
+        "source": "evidence/S18-art-final/inspection-5ysqoi/air_tactical_strike-engine.png",
+        "bytes": 191511,
+        "sha256": "9e6fbb2a3a917e8cd6625ec71bbe34082e50cbbfa3b8f1f4db538050516b1ea1",
+        "stored": "evidence/evidence/S18-art-final/inspection-5ysqoi/air_tactical_strike-engine.png",
+        "encoding": "identity",
+        "stored_bytes": 191511,
+        "stored_sha256": "9e6fbb2a3a917e8cd6625ec71bbe34082e50cbbfa3b8f1f4db538050516b1ea1"
+      },
+      {
+        "source": "evidence/S18-art-final/inspection-5ysqoi/air_tactical_strike-exterior.png",
+        "bytes": 127748,
+        "sha256": "3ff589fe765a1723824777ac0402b7f879f5528d4abdb4131c30ae89d57d5774",
+        "stored": "evidence/evidence/S18-art-final/inspection-5ysqoi/air_tactical_strike-exterior.png",
+        "encoding": "identity",
+        "stored_bytes": 127748,
+        "stored_sha256": "3ff589fe765a1723824777ac0402b7f879f5528d4abdb4131c30ae89d57d5774"
+      },
+      {
+        "source": "evidence/S18-art-final/inspection-5ysqoi/air_tactical_strike-intake.png",
+        "bytes": 175844,
+        "sha256": "74e4da698ba8aa8b821fe04dca0bfdb8a233e0d05dcd53dfd5de58f2aaed71e1",
+        "stored": "evidence/evidence/S18-art-final/inspection-5ysqoi/air_tactical_strike-intake.png",
+        "encoding": "identity",
+        "stored_bytes": 175844,
+        "stored_sha256": "74e4da698ba8aa8b821fe04dca0bfdb8a233e0d05dcd53dfd5de58f2aaed71e1"
+      },
+      {
+        "source": "evidence/S18-art-final/inspection-5ysqoi/result.json",
+        "bytes": 1354,
+        "sha256": "0cf13f849d047f7b39224e4a1bf845e57e93ced34c015c17e16b71ca5aa8cb53",
+        "stored": "evidence/evidence/S18-art-final/inspection-5ysqoi/result.json",
+        "encoding": "identity",
+        "stored_bytes": 1354,
+        "stored_sha256": "0cf13f849d047f7b39224e4a1bf845e57e93ced34c015c17e16b71ca5aa8cb53"
+      },
+      {
+        "source": "evidence/S18-art-final/inspection-5ysqoi/workshop-narrow.png",
+        "bytes": 121548,
+        "sha256": "5d06dd05d94ab1e0df55ff7ad75a638b2d1148a73b528b0ccc916c7bc2b256c6",
+        "stored": "evidence/evidence/S18-art-final/inspection-5ysqoi/workshop-narrow.png",
+        "encoding": "identity",
+        "stored_bytes": 121548,
+        "stored_sha256": "5d06dd05d94ab1e0df55ff7ad75a638b2d1148a73b528b0ccc916c7bc2b256c6"
+      },
+      {
+        "source": "run-s18-check.py",
+        "bytes": 4745,
+        "sha256": "bcffacfec20282df09bfccf61efd0813db9fe2560169004d1085feecfc065a8e",
+        "stored": "evidence/run-s18-check.py",
+        "encoding": "identity",
+        "stored_bytes": 4745,
+        "stored_sha256": "bcffacfec20282df09bfccf61efd0813db9fe2560169004d1085feecfc065a8e"
+      },
+      {
+        "source": "run-s18-windows-final1.py",
+        "bytes": 499,
+        "sha256": "9dbd6b65741de792b320c3c67d1a401f8bd062b54a694e66c0e4e0fee8999c1e",
+        "stored": "evidence/run-s18-windows-final1.py",
+        "encoding": "identity",
+        "stored_bytes": 499,
+        "stored_sha256": "9dbd6b65741de792b320c3c67d1a401f8bd062b54a694e66c0e4e0fee8999c1e"
+      },
+      {
+        "source": "run-s18-windows-runtime1.py",
+        "bytes": 492,
+        "sha256": "a71ef6f2ea39fb69ac3b9649f56801b5b5c21e6cc89fbda7d7666c5f49e1cceb",
+        "stored": "evidence/run-s18-windows-runtime1.py",
+        "encoding": "identity",
+        "stored_bytes": 492,
+        "stored_sha256": "a71ef6f2ea39fb69ac3b9649f56801b5b5c21e6cc89fbda7d7666c5f49e1cceb"
+      },
+      {
+        "source": "run-s18-linux-final1.py",
+        "bytes": 6917,
+        "sha256": "03a5d5cb334b1bb426a2bc64601c66a9aa7d5a1ea40031c43be67fbabc230cb8",
+        "stored": "evidence/run-s18-linux-final1.py",
+        "encoding": "identity",
+        "stored_bytes": 6917,
+        "stored_sha256": "03a5d5cb334b1bb426a2bc64601c66a9aa7d5a1ea40031c43be67fbabc230cb8"
+      },
+      {
+        "source": "run-s18-linux-final2.py",
+        "bytes": 6877,
+        "sha256": "3dc7251cd2472ea6084982a66c36e59f021ce56cf705f3da72a8633c1ca46368",
+        "stored": "evidence/run-s18-linux-final2.py",
+        "encoding": "identity",
+        "stored_bytes": 6877,
+        "stored_sha256": "3dc7251cd2472ea6084982a66c36e59f021ce56cf705f3da72a8633c1ca46368"
+      },
+      {
+        "source": "launch-s18-review.py",
+        "bytes": 4504,
+        "sha256": "eee87968e34164be262a50f608b4119c2bc2dfc636f99ff4ffc251730c837461",
+        "stored": "evidence/launch-s18-review.py",
+        "encoding": "identity",
+        "stored_bytes": 4504,
+        "stored_sha256": "eee87968e34164be262a50f608b4119c2bc2dfc636f99ff4ffc251730c837461"
+      },
+      {
+        "source": "collect-s18-evidence.py",
+        "bytes": 7741,
+        "sha256": "861d72372854c22846c2466b8cb09a36b53e296c66ded9dce47e6dc155a6e529",
+        "stored": "evidence/collect-s18-evidence.py",
+        "encoding": "identity",
+        "stored_bytes": 7741,
+        "stored_sha256": "861d72372854c22846c2466b8cb09a36b53e296c66ded9dce47e6dc155a6e529"
+      },
+      {
+        "source": "finish-s18-docs.py",
+        "bytes": 5746,
+        "sha256": "4cde488cb89fc7a8a71636953ec86e63dec28519d92e9d27eda7b3d6dd11f355",
+        "stored": "evidence/finish-s18-docs.py",
+        "encoding": "identity",
+        "stored_bytes": 5746,
+        "stored_sha256": "4cde488cb89fc7a8a71636953ec86e63dec28519d92e9d27eda7b3d6dd11f355"
+      },
+      {
+        "source": "verify-s08-preservation.py",
+        "bytes": 1637,
+        "sha256": "4fc24e55dc7b773844067d52e09bffc88c42458e2adb7cbcdcbb337859afccbd",
+        "stored": "evidence/verify-s08-preservation.py",
+        "encoding": "identity",
+        "stored_bytes": 1637,
+        "stored_sha256": "4fc24e55dc7b773844067d52e09bffc88c42458e2adb7cbcdcbb337859afccbd"
+      },
+      {
+        "source": "S18-review-launch.json",
+        "bytes": 3803,
+        "sha256": "cfa9e11a794cae41b737fb19929c3795d90f8f08fe594e3165e1c6388b2f8dc7",
+        "stored": "evidence/S18-review-launch.json",
+        "encoding": "identity",
+        "stored_bytes": 3803,
+        "stored_sha256": "cfa9e11a794cae41b737fb19929c3795d90f8f08fe594e3165e1c6388b2f8dc7"
+      }
+    ]
+  }
+}

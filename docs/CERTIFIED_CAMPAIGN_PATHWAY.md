@@ -1,6 +1,6 @@
 # Spheres — pathway to a certified campaign
 
-**Approved pathway · 10 September 2026 · S01–S17 complete; S18 in progress; S19–S30 planned.**
+**Approved pathway · 10 September 2026 · S01–S18 complete; S19–S30 planned.**
 
 Work allocation: [Codex / Claude workboard](AI_WORKSTREAMS.md), with separate
 handoff packets, file boundaries and owner-filtered status queries. Active
@@ -67,7 +67,7 @@ deliverables as finished.
 | Marker | Meaning |
 | --- | --- |
 | `S00` | Complete: user approved beginning S01 on 10 September 2026. |
-| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S17 are complete; S18–S30 remain planned. |
+| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S18 are complete; S19–S30 remain planned. |
 | `C01`–`C07` | Character-production workstreams, with uniquely numbered country batches below. |
 | `E01`–`E06` | Retained expansion work after the first certified release. |
 | `G0`–`G5` | Evidence gates joining groups of sessions. |
@@ -689,13 +689,15 @@ The [S11 work record](campaign-certification/S11/README.md) records the qualifie
 
 #### S18 — Replace flight-demo data and finish playable aircraft art
 
-**Status:** Planned · **Requires:** S16, S14
+**Status:** Complete · **Requires:** S16, S14
 
 **Completion marker:** Command, Aircraft, Bases and Reports use campaign truth and the three CP1 aircraft families have finished inspection assets.
 
-- [ ] Remove fictional fleet counts and demonstration mission assignments from the campaign flow.
-- [ ] Each released configurable aircraft has a meaningful 100,000+ triangle inspection mesh, cheaper LODs, working component selection and validated export.
-- [ ] Cockpit, engine and exterior quality are reviewed visually; unsupported future missions do not appear as functional campaign actions.
+- [x] Remove fictional fleet counts and demonstration mission assignments from the campaign flow.
+- [x] Each released configurable aircraft has a meaningful 100,000+ triangle inspection mesh, cheaper LODs, working component selection and validated export.
+- [x] Cockpit, engine and exterior quality are reviewed visually; unsupported future missions do not appear as functional campaign actions.
+
+**Evidence:** [S18 native pages, aircraft art and exact browser qualification](campaign-certification/S18/README.md). S19 is assigned to Claude through the AI workboard. G4 and CP1 remain open.
 
 <a id="s19"></a>
 
@@ -1022,3 +1024,5 @@ S04 and S05 are complete on the recorded runtime and evidence. G1 decision: **ea
 On 14 September 2026, “continue” authorized S16. S16 is complete on the exact source and evidence in its [qualification record](campaign-certification/S16/README.md). **G3 is earned** for ground and the three supported air missions, combining the retained earlier qualification with the authored fighter/interception comparison and direct native regressions. Opposing orders in this journey are authored. Execution stopped after S16; S17 requires a new instruction. CP1 and later campaign, content, human-usability and performance requirements remain unearned.
 
 On 21 September 2026, “next'” authorized S17. S17 is complete on its [recorded runtime and evidence](campaign-certification/S17/README.md). Autonomous staff use ordinary paid acquisition, supplier development, support, basing and supported air commands. Execution stops after S17, with S18 awaiting a new instruction. G4 and CP1 remain open.
+
+The following “next” authorized S18. It is now complete on its [recorded runtime and evidence](campaign-certification/S18/README.md): campaign flight pages use native state and the three CP1 aircraft families have inspected/exportable assets. Execution stops after S18. The subsequent request to split the roadmap assigns S19 and bounded historical research to Claude through the [AI workboard](AI_WORKSTREAMS.md); neither packet is claimed automatically. G4 and CP1 remain open.

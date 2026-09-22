@@ -1,0 +1,18 @@
+{
+  "revision": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+  "lane": "assets",
+  "clean_before": true,
+  "command": [
+    "node",
+    "tools/ui/build_equipment_models.cjs",
+    "--check"
+  ],
+  "runner_sha256": "bcffacfec20282df09bfccf61efd0813db9fe2560169004d1085feecfc065a8e",
+  "started_utc": "2026-09-22T00:07:56.842722+00:00",
+  "exit_code": 0,
+  "finished_utc": "2026-09-22T00:07:59.339709+00:00",
+  "revision_after": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+  "clean_after": true,
+  "log_sha256": "4aefcbc6225e87d7c8580d9d3dfe1eafec15b0a60ed23cff3f8eb936af3341ea",
+  "passed": true
+}

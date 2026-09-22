@@ -1,0 +1,70 @@
+{
+  "format": "spheres-s18-linux/v1",
+  "revision": "1b7ac3eb6e872f065efbcb1c5e80f12180be898b",
+  "started_utc": "2026-09-22T00:12:55.169824+00:00",
+  "status": "passed",
+  "scope": "S18 corrected full Node suite on Linux; native web is qualified at the unchanged runtime source 902b820. No simulation code changes; S17 retains its separate full simulation/integration evidence. No external old-save, elapsed campaign, historical-content or gate-completion claim.",
+  "runner_sha256": "3dc7251cd2472ea6084982a66c36e59f021ce56cf705f3da72a8633c1ca46368",
+  "derived_from": {
+    "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/run-s10-final-linux.py",
+    "sha256": "a27a4149a6e70f656118236ff97a4613e429279ae628a65134b585989f1209da"
+  },
+  "source_verification": "Windows git.exe on the same complete NTFS checkout; test and compile processes use the existing Linux toolchain and target directory.",
+  "environment": {
+    "GIT_DIR": "/mnt/c/Users/ridge/Spheres/.git/worktrees/integration",
+    "GIT_WORK_TREE": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+    "GIT_OPTIONAL_LOCKS": "0",
+    "CARGO_BUILD_JOBS": "4",
+    "GIT_CONFIG_COUNT": "1",
+    "GIT_CONFIG_KEY_0": "core.autocrlf",
+    "GIT_CONFIG_VALUE_0": "true",
+    "CARGO_HOME": "/home/ridge/.cache/spheres-s05-tools/cargo",
+    "RUSTUP_HOME": "/home/ridge/.cache/spheres-s05-tools/rustup",
+    "CARGO_TARGET_DIR": "/home/ridge/.cache/spheres-s05-target",
+    "CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER": "/home/ridge/.cache/spheres-s05-tools/bin/cc",
+    "CC": "/home/ridge/.cache/spheres-s05-tools/bin/cc",
+    "TMPDIR": "/home/ridge/.cache/spheres-s05-runs/tmp"
+  },
+  "checks": [
+    {
+      "name": "node",
+      "command": [
+        "node",
+        "tools/ui/run-unit.cjs"
+      ],
+      "started_utc": "2026-09-22T00:12:56.147207+00:00",
+      "finished_utc": "2026-09-22T00:15:12.328859+00:00",
+      "elapsed_seconds": 136.181644216,
+      "exit_code": 0,
+      "log": "node.log",
+      "log_sha256": "52a92ee1c4e46530681e6def549d59ae3f1b14859465af0d39ed7d917f1787a4",
+      "totals": {
+        "tests": 1597,
+        "passed": 1596,
+        "failed": 0,
+        "skipped": 1
+      },
+      "source_before": {
+        "head": "1b7ac3eb6e872f065efbcb1c5e80f12180be898b",
+        "status": ""
+      },
+      "source_after": {
+        "head": "1b7ac3eb6e872f065efbcb1c5e80f12180be898b",
+        "status": ""
+      },
+      "passed": true
+    }
+  ],
+  "source_before": {
+    "head": "1b7ac3eb6e872f065efbcb1c5e80f12180be898b",
+    "status": ""
+  },
+  "toolchain_sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801",
+  "source_after": {
+    "head": "1b7ac3eb6e872f065efbcb1c5e80f12180be898b",
+    "status": ""
+  },
+  "runner_sha256_after": "3dc7251cd2472ea6084982a66c36e59f021ce56cf705f3da72a8633c1ca46368",
+  "passed": true,
+  "finished_utc": "2026-09-22T00:15:12.541401+00:00"
+}

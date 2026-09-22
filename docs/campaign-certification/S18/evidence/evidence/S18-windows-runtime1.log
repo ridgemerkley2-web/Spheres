@@ -1,0 +1,167 @@
+START assets
+{
+  "revision": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+  "lane": "assets",
+  "clean_before": true,
+  "command": [
+    "node",
+    "tools/ui/build_equipment_models.cjs",
+    "--check"
+  ],
+  "runner_sha256": "bcffacfec20282df09bfccf61efd0813db9fe2560169004d1085feecfc065a8e",
+  "started_utc": "2026-09-22T00:07:56.842722+00:00",
+  "exit_code": 0,
+  "finished_utc": "2026-09-22T00:07:59.339709+00:00",
+  "revision_after": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+  "clean_after": true,
+  "log_sha256": "4aefcbc6225e87d7c8580d9d3dfe1eafec15b0a60ed23cff3f8eb936af3341ea",
+  "passed": true
+}
+FINISH assets 0
+START art
+{
+  "revision": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+  "lane": "art",
+  "clean_before": true,
+  "command": [
+    "node",
+    "tools/ui/aircraft-workshop-browser.cjs"
+  ],
+  "runner_sha256": "bcffacfec20282df09bfccf61efd0813db9fe2560169004d1085feecfc065a8e",
+  "started_utc": "2026-09-22T00:07:59.830954+00:00",
+  "exit_code": 0,
+  "finished_utc": "2026-09-22T00:08:10.413550+00:00",
+  "revision_after": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+  "clean_after": true,
+  "log_sha256": "910ab4eaf0ce17697a155c2a7d6268e0082d826d75d9721210ff8c708890e53f",
+  "passed": true
+}
+FINISH art 0
+START web
+{
+  "revision": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+  "lane": "web",
+  "clean_before": true,
+  "command": [
+    "cargo",
+    "test",
+    "--locked",
+    "--release",
+    "-p",
+    "spheres-web",
+    "--no-fail-fast"
+  ],
+  "runner_sha256": "bcffacfec20282df09bfccf61efd0813db9fe2560169004d1085feecfc065a8e",
+  "started_utc": "2026-09-22T00:08:10.896917+00:00",
+  "exit_code": 0,
+  "finished_utc": "2026-09-22T00:10:10.203656+00:00",
+  "revision_after": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+  "clean_after": true,
+  "log_sha256": "6df7fa0f850ca8fa67a1b6c47a7bf53fdc15efb6def93279e05b9353f74b7675",
+  "totals": {
+    "passed": 398,
+    "failed": 0,
+    "ignored": 20,
+    "completed_targets": 2
+  },
+  "test_binaries": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+      "sha256": "2ed044bc18eec93d7f039302e0b7c8feb2c6606b259b3a141d0f5918ba9b27c8"
+    }
+  ],
+  "passed": true
+}
+FINISH web 0
+START fixture
+{
+  "revision": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+  "lane": "fixture",
+  "clean_before": true,
+  "command": [
+    "cargo",
+    "test",
+    "--locked",
+    "--release",
+    "-p",
+    "spheres-web",
+    "s17_export_disposable_staff_fixture",
+    "--",
+    "--ignored",
+    "--nocapture"
+  ],
+  "runner_sha256": "bcffacfec20282df09bfccf61efd0813db9fe2560169004d1085feecfc065a8e",
+  "started_utc": "2026-09-22T00:10:10.581949+00:00",
+  "fixture": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-fixture-final1",
+  "exit_code": 0,
+  "finished_utc": "2026-09-22T00:10:15.032666+00:00",
+  "revision_after": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+  "clean_after": true,
+  "log_sha256": "d9ccb7c9f2f62babd32230aa592fd16f4077e7e9ee3dee15acb3589b2530f2c0",
+  "totals": {
+    "passed": 1,
+    "failed": 0,
+    "ignored": 0,
+    "completed_targets": 2
+  },
+  "test_binaries": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+      "sha256": "2ed044bc18eec93d7f039302e0b7c8feb2c6606b259b3a141d0f5918ba9b27c8"
+    }
+  ],
+  "passed": true
+}
+FINISH fixture 0
+START binary
+{
+  "revision": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+  "lane": "binary",
+  "clean_before": true,
+  "command": [
+    "cargo",
+    "build",
+    "--locked",
+    "--release",
+    "-p",
+    "spheres-web"
+  ],
+  "runner_sha256": "bcffacfec20282df09bfccf61efd0813db9fe2560169004d1085feecfc065a8e",
+  "started_utc": "2026-09-22T00:10:15.409640+00:00",
+  "exit_code": 0,
+  "finished_utc": "2026-09-22T00:10:15.530104+00:00",
+  "revision_after": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+  "clean_after": true,
+  "log_sha256": "9a984a79e86ffc2d495852561bda2125eacb5d2255655956f4625cefca5906a8",
+  "binary": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\spheres-web.exe",
+    "sha256": "70707760679a6d5f7508043a2b326de423e56035c5c29bd2ada540fc0c8e86f8"
+  },
+  "passed": true
+}
+FINISH binary 0
+START browser
+{
+  "revision": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+  "lane": "browser",
+  "clean_before": true,
+  "command": [
+    "node",
+    "tools/ui/ci-military-staff.cjs"
+  ],
+  "runner_sha256": "bcffacfec20282df09bfccf61efd0813db9fe2560169004d1085feecfc065a8e",
+  "started_utc": "2026-09-22T00:10:15.898330+00:00",
+  "fixture": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-fixture-final1",
+  "binary_sha256_before": "70707760679a6d5f7508043a2b326de423e56035c5c29bd2ada540fc0c8e86f8",
+  "exit_code": 0,
+  "finished_utc": "2026-09-22T00:10:52.833082+00:00",
+  "revision_after": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+  "clean_after": true,
+  "log_sha256": "7ece7514c146665ecac1f84f49c57acd88fe8bb4a907879f66f01e7bf4a1f341",
+  "binary": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\spheres-web.exe",
+    "sha256": "70707760679a6d5f7508043a2b326de423e56035c5c29bd2ada540fc0c8e86f8"
+  },
+  "passed": true
+}
+FINISH browser 0

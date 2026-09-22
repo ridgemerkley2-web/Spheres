@@ -1,0 +1,17 @@
+{
+  "revision": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+  "lane": "art",
+  "clean_before": true,
+  "command": [
+    "node",
+    "tools/ui/aircraft-workshop-browser.cjs"
+  ],
+  "runner_sha256": "bcffacfec20282df09bfccf61efd0813db9fe2560169004d1085feecfc065a8e",
+  "started_utc": "2026-09-22T00:07:59.830954+00:00",
+  "exit_code": 0,
+  "finished_utc": "2026-09-22T00:08:10.413550+00:00",
+  "revision_after": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+  "clean_after": true,
+  "log_sha256": "910ab4eaf0ce17697a155c2a7d6268e0082d826d75d9721210ff8c708890e53f",
+  "passed": true
+}

@@ -1,0 +1,375 @@
+{
+  "days": 6,
+  "initial_orders": 4,
+  "input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S16-20260921-144401\\saves\\s16-air-defense.json",
+  "missions": {
+    "next_id": 7,
+    "orders": [
+      {
+        "conflict": 1,
+        "id": 1,
+        "issued_day": 1009,
+        "kind": "defend_skies",
+        "launch_day": 1010,
+        "nation": "France",
+        "report": {
+          "aircraft": 0,
+          "aircraft_lost": 0,
+          "applied_power": 0.0,
+          "contacted": false,
+          "day": 1009,
+          "family": "",
+          "sorties": 0.0,
+          "stores_used": 0.0,
+          "summary": "Cancelled before launch. No stores spent or aircraft lost."
+        },
+        "squadron": 1,
+        "status": "cancelled",
+        "target": "FRA_auvergne-rh-ne-alpes"
+      },
+      {
+        "conflict": 1,
+        "id": 2,
+        "issued_day": 1009,
+        "kind": "defend_skies",
+        "launch_day": 1010,
+        "nation": "France",
+        "report": {
+          "aircraft": 4,
+          "aircraft_lost": 0,
+          "applied_power": -0.0,
+          "contacted": false,
+          "day": 1010,
+          "defense": {
+            "air_combat_expected_loss": 0.0,
+            "ground_defense_expected_loss": 0.0,
+            "opposing_missions": 0,
+            "prevented_power": -0.0
+          },
+          "family": "air_missile_short_range",
+          "sorties": 1.5345806046941846,
+          "stores_used": 3.069161209388369,
+          "summary": "Defend skies at FRA_auvergne-rh-ne-alpes: 1.53 sortie equivalents, 3.07 air_missile_short_range stores, 0 aircraft lost. Patrol completed without hostile aircraft in this area. No ground attack was made. Survivors need 1 funded service day(s)."
+        },
+        "squadron": 1,
+        "status": "flown",
+        "target": "FRA_auvergne-rh-ne-alpes"
+      },
+      {
+        "conflict": 1,
+        "id": 3,
+        "issued_day": 1013,
+        "kind": "strike_target",
+        "launch_day": 1014,
+        "nation": "Italy",
+        "report": {
+          "aircraft": 4,
+          "aircraft_lost": 0,
+          "applied_power": 0.0007354472921887361,
+          "contacted": true,
+          "day": 1014,
+          "defense": {
+            "air_combat_expected_loss": 0.10485767021822717,
+            "ground_defense_expected_loss": 0.002769935732711644,
+            "opposing_missions": 1,
+            "prevented_power": 0.004163398149756217
+          },
+          "family": "air_bomb_unguided",
+          "sorties": 1.0281695811221083,
+          "stores_used": 2.0563391622442166,
+          "summary": "Strike target at FRA_auvergne-rh-ne-alpes: 1.03 sortie equivalents, 2.06 air_bomb_unguided stores, 0 aircraft lost. Resolved against the campaign contact and defending fighters; ground battle results remain in Operations. Survivors need 1 funded service day(s)."
+        },
+        "squadron": 1,
+        "status": "flown",
+        "target": "FRA_auvergne-rh-ne-alpes"
+      },
+      {
+        "conflict": 1,
+        "id": 4,
+        "issued_day": 1013,
+        "kind": "defend_skies",
+        "launch_day": 1014,
+        "nation": "France",
+        "report": {
+          "aircraft": 4,
+          "aircraft_lost": 0,
+          "applied_power": 0.004163398149756217,
+          "contacted": true,
+          "day": 1014,
+          "defense": {
+            "air_combat_expected_loss": 0.00001828903087001873,
+            "ground_defense_expected_loss": 0.0,
+            "opposing_missions": 1,
+            "prevented_power": 0.004163398149756217
+          },
+          "family": "air_missile_short_range",
+          "sorties": 1.5342228754769336,
+          "stores_used": 3.068445750953867,
+          "summary": "Defend skies at FRA_auvergne-rh-ne-alpes: 1.53 sortie equivalents, 3.07 air_missile_short_range stores, 0 aircraft lost. Intercepted hostile aircraft; the prevented strike power is recorded below. Survivors need 1 funded service day(s)."
+        },
+        "squadron": 1,
+        "status": "flown",
+        "target": "FRA_auvergne-rh-ne-alpes"
+      },
+      {
+        "conflict": 1,
+        "id": 5,
+        "issued_day": 1016,
+        "kind": "support_army",
+        "launch_day": 1017,
+        "nation": "Italy",
+        "report": {
+          "aircraft": 4,
+          "aircraft_lost": 0,
+          "applied_power": 0.006260812305018889,
+          "contacted": true,
+          "day": 1017,
+          "family": "air_bomb_unguided",
+          "sorties": 1.3142637299109725,
+          "stores_used": 2.628527459821945,
+          "summary": "Support army at FRA_auvergne-rh-ne-alpes: 1.31 sortie equivalents, 2.63 air_bomb_unguided stores, 0 aircraft lost. Applied to the campaign contact; ground battle results remain in Operations. Survivors need 1 funded service day(s)."
+        },
+        "squadron": 1,
+        "status": "flown",
+        "target": "FRA_auvergne-rh-ne-alpes"
+      },
+      {
+        "conflict": 1,
+        "id": 6,
+        "issued_day": 1018,
+        "kind": "support_army",
+        "launch_day": 1019,
+        "nation": "Italy",
+        "report": {
+          "aircraft": 4,
+          "aircraft_lost": 0,
+          "applied_power": 0.006259864813843035,
+          "contacted": true,
+          "day": 1019,
+          "family": "air_bomb_unguided",
+          "sorties": 1.3141104173892935,
+          "stores_used": 2.628220834778587,
+          "summary": "Support army at FRA_auvergne-rh-ne-alpes: 1.31 sortie equivalents, 2.63 air_bomb_unguided stores, 0 aircraft lost. Applied to the campaign contact; ground battle results remain in Operations. Survivors need 1 funded service day(s)."
+        },
+        "squadron": 1,
+        "status": "flown",
+        "target": "FRA_auvergne-rh-ne-alpes"
+      }
+    ],
+    "plans": [],
+    "prepared_day": 1020,
+    "settled_day": 1020
+  },
+  "player": "France",
+  "revision": "902b820c0bea",
+  "scope": "Authored S16 forces and supplies retained; economic competition explicitly enabled in setup. Only reviewed military staff controls and six ordinary daily advances follow. No new aircraft, cash, research, ammunition or base grants. Includes exact save/resume comparisons and actual autonomous Italian combat with finite stores.",
+  "staff": {
+    "enabled": false,
+    "plans": {
+      "Bahrain": {
+        "basing": "No delivered aircraft need an airfield; procurement must finish first.",
+        "committed_bn": 0.0,
+        "development": "Acquire eligible domestic or imported stock; no staff-managed supplier firm exists.",
+        "last_operations_day": null,
+        "last_review_day": 1018,
+        "operations": "",
+        "procurement": "No finished eligible company stock is available. Development and tooling cannot be bypassed.",
+        "purchase_limit_bn": 0.0,
+        "reviews": 1,
+        "support": "Shifted future Defense funding toward maintenance; total spending and today's authority are unchanged. Ordinary next-day support cap: fleet upkeep first, then eligible finished aircraft stores for 30 days. Purchases await stock, access and delivery. No custom ground ammunition requirement."
+      },
+      "Belgium": {
+        "basing": "No delivered aircraft need an airfield; procurement must finish first.",
+        "committed_bn": 0.0,
+        "development": "Acquire eligible domestic or imported stock; no staff-managed supplier firm exists.",
+        "last_operations_day": null,
+        "last_review_day": 1016,
+        "operations": "",
+        "procurement": "No finished eligible company stock is available. Development and tooling cannot be bypassed.",
+        "purchase_limit_bn": 0.0,
+        "reviews": 1,
+        "support": "Shifted future Defense funding toward maintenance; total spending and today's authority are unchanged. Ordinary next-day support cap: fleet upkeep first, then eligible finished aircraft stores for 30 days. Purchases await stock, access and delivery. No custom ground ammunition requirement."
+      },
+      "Cambodia": {
+        "basing": "No delivered aircraft need an airfield; procurement must finish first.",
+        "committed_bn": 0.0,
+        "development": "Acquire eligible domestic or imported stock; no staff-managed supplier firm exists.",
+        "last_operations_day": null,
+        "last_review_day": 1017,
+        "operations": "",
+        "procurement": "No finished eligible company stock is available. Development and tooling cannot be bypassed.",
+        "purchase_limit_bn": 0.0,
+        "reviews": 1,
+        "support": "Maintenance needs a Defense reallocation; saving political capital for its 4.8 cost plus 8 reserve. Current support remains limited by paid upkeep. No custom ground ammunition requirement."
+      },
+      "Fiji": {
+        "basing": "No delivered aircraft need an airfield; procurement must finish first.",
+        "committed_bn": 0.0,
+        "development": "Acquire eligible domestic or imported stock; no staff-managed supplier firm exists.",
+        "last_operations_day": null,
+        "last_review_day": 1015,
+        "operations": "",
+        "procurement": "No finished eligible company stock is available. Development and tooling cannot be bypassed.",
+        "purchase_limit_bn": 0.0,
+        "reviews": 1,
+        "support": "Shifted future Defense funding toward maintenance; total spending and today's authority are unchanged. Ordinary next-day support cap: fleet upkeep first, then eligible finished aircraft stores for 30 days. Purchases await stock, access and delivery. No custom ground ammunition requirement."
+      },
+      "Italy": {
+        "basing": "Squadrons retain their bases. Transfers, service and access are checked again for every mission.",
+        "committed_bn": 0.0,
+        "development": "Acquire eligible domestic or imported stock; no staff-managed supplier firm exists.",
+        "last_operations_day": 1018,
+        "last_review_day": 1015,
+        "operations": "Support army ordered at Auvergne-Rhône-Alpes for the next day. Launch rechecks paid readiness, access, range and finite stores.",
+        "procurement": "No finished eligible company stock is available. Development and tooling cannot be bypassed.",
+        "purchase_limit_bn": 0.0,
+        "reviews": 1,
+        "support": "Shifted future Defense funding toward maintenance; total spending and today's authority are unchanged. Ordinary next-day support cap: fleet upkeep first, then eligible finished aircraft stores for 30 days. Purchases await stock, access and delivery. No custom ground ammunition requirement."
+      },
+      "Laos": {
+        "basing": "No delivered aircraft need an airfield; procurement must finish first.",
+        "committed_bn": 0.0,
+        "development": "Acquire eligible domestic or imported stock; no staff-managed supplier firm exists.",
+        "last_operations_day": null,
+        "last_review_day": 1018,
+        "operations": "",
+        "procurement": "No finished eligible company stock is available. Development and tooling cannot be bypassed.",
+        "purchase_limit_bn": 0.0,
+        "reviews": 1,
+        "support": "Shifted future Defense funding toward maintenance; total spending and today's authority are unchanged. Ordinary next-day support cap: fleet upkeep first, then eligible finished aircraft stores for 30 days. Purchases await stock, access and delivery. No custom ground ammunition requirement."
+      },
+      "Netherlands": {
+        "basing": "No delivered aircraft need an airfield; procurement must finish first.",
+        "committed_bn": 0.0,
+        "development": "Acquire eligible domestic or imported stock; no staff-managed supplier firm exists.",
+        "last_operations_day": null,
+        "last_review_day": 1015,
+        "operations": "",
+        "procurement": "No finished eligible company stock is available. Development and tooling cannot be bypassed.",
+        "purchase_limit_bn": 0.0,
+        "reviews": 1,
+        "support": "Shifted future Defense funding toward maintenance; total spending and today's authority are unchanged. Ordinary next-day support cap: fleet upkeep first, then eligible finished aircraft stores for 30 days. Purchases await stock, access and delivery. No custom ground ammunition requirement."
+      },
+      "Oman": {
+        "basing": "No delivered aircraft need an airfield; procurement must finish first.",
+        "committed_bn": 0.0,
+        "development": "Acquire eligible domestic or imported stock; no staff-managed supplier firm exists.",
+        "last_operations_day": null,
+        "last_review_day": 1016,
+        "operations": "",
+        "procurement": "No finished eligible company stock is available. Development and tooling cannot be bypassed.",
+        "purchase_limit_bn": 0.0,
+        "reviews": 1,
+        "support": "Shifted future Defense funding toward maintenance; total spending and today's authority are unchanged. Ordinary next-day support cap: fleet upkeep first, then eligible finished aircraft stores for 30 days. Purchases await stock, access and delivery. No custom ground ammunition requirement."
+      },
+      "Philippines": {
+        "basing": "No delivered aircraft need an airfield; procurement must finish first.",
+        "committed_bn": 0.0,
+        "development": "Acquire eligible domestic or imported stock; no staff-managed supplier firm exists.",
+        "last_operations_day": null,
+        "last_review_day": 1016,
+        "operations": "",
+        "procurement": "No finished eligible company stock is available. Development and tooling cannot be bypassed.",
+        "purchase_limit_bn": 0.0,
+        "reviews": 1,
+        "support": "Shifted future Defense funding toward maintenance; total spending and today's authority are unchanged. Ordinary next-day support cap: fleet upkeep first, then eligible finished aircraft stores for 30 days. Purchases await stock, access and delivery. No custom ground ammunition requirement."
+      },
+      "Qatar": {
+        "basing": "No delivered aircraft need an airfield; procurement must finish first.",
+        "committed_bn": 0.0,
+        "development": "Acquire eligible domestic or imported stock; no staff-managed supplier firm exists.",
+        "last_operations_day": null,
+        "last_review_day": 1015,
+        "operations": "",
+        "procurement": "No finished eligible company stock is available. Development and tooling cannot be bypassed.",
+        "purchase_limit_bn": 0.0,
+        "reviews": 1,
+        "support": "Shifted future Defense funding toward maintenance; total spending and today's authority are unchanged. Ordinary next-day support cap: fleet upkeep first, then eligible finished aircraft stores for 30 days. Purchases await stock, access and delivery. No custom ground ammunition requirement."
+      },
+      "Samoa": {
+        "basing": "No delivered aircraft need an airfield; procurement must finish first.",
+        "committed_bn": 0.0,
+        "development": "Acquire eligible domestic or imported stock; no staff-managed supplier firm exists.",
+        "last_operations_day": null,
+        "last_review_day": 1018,
+        "operations": "",
+        "procurement": "No finished eligible company stock is available. Development and tooling cannot be bypassed.",
+        "purchase_limit_bn": 0.0,
+        "reviews": 1,
+        "support": "Ordinary next-day support cap: fleet upkeep first, then eligible finished aircraft stores for 30 days. Purchases await stock, access and delivery. No custom ground ammunition requirement."
+      },
+      "Singapore": {
+        "basing": "No delivered aircraft need an airfield; procurement must finish first.",
+        "committed_bn": 0.0,
+        "development": "Acquire eligible domestic or imported stock; no staff-managed supplier firm exists.",
+        "last_operations_day": null,
+        "last_review_day": 1015,
+        "operations": "",
+        "procurement": "No finished eligible company stock is available. Development and tooling cannot be bypassed.",
+        "purchase_limit_bn": 0.0,
+        "reviews": 1,
+        "support": "Shifted future Defense funding toward maintenance; total spending and today's authority are unchanged. Ordinary next-day support cap: fleet upkeep first, then eligible finished aircraft stores for 30 days. Purchases await stock, access and delivery. No custom ground ammunition requirement."
+      },
+      "SolomonIslands": {
+        "basing": "No delivered aircraft need an airfield; procurement must finish first.",
+        "committed_bn": 0.0,
+        "development": "Acquire eligible domestic or imported stock; no staff-managed supplier firm exists.",
+        "last_operations_day": null,
+        "last_review_day": 1016,
+        "operations": "",
+        "procurement": "No finished eligible company stock is available. Development and tooling cannot be bypassed.",
+        "purchase_limit_bn": 0.0,
+        "reviews": 1,
+        "support": "Shifted future Defense funding toward maintenance; total spending and today's authority are unchanged. Ordinary next-day support cap: fleet upkeep first, then eligible finished aircraft stores for 30 days. Purchases await stock, access and delivery. No custom ground ammunition requirement."
+      },
+      "Sweden": {
+        "basing": "No delivered aircraft need an airfield; procurement must finish first.",
+        "committed_bn": 0.0,
+        "development": "Acquire eligible domestic or imported stock; no staff-managed supplier firm exists.",
+        "last_operations_day": null,
+        "last_review_day": 1017,
+        "operations": "",
+        "procurement": "No finished eligible company stock is available. Development and tooling cannot be bypassed.",
+        "purchase_limit_bn": 0.0,
+        "reviews": 1,
+        "support": "Shifted future Defense funding toward maintenance; total spending and today's authority are unchanged. Ordinary next-day support cap: fleet upkeep first, then eligible finished aircraft stores for 30 days. Purchases await stock, access and delivery. No custom ground ammunition requirement."
+      },
+      "Switzerland": {
+        "basing": "No delivered aircraft need an airfield; procurement must finish first.",
+        "committed_bn": 0.0,
+        "development": "Acquire eligible domestic or imported stock; no staff-managed supplier firm exists.",
+        "last_operations_day": null,
+        "last_review_day": 1018,
+        "operations": "",
+        "procurement": "No finished eligible company stock is available. Development and tooling cannot be bypassed.",
+        "purchase_limit_bn": 0.0,
+        "reviews": 1,
+        "support": "Shifted future Defense funding toward maintenance; total spending and today's authority are unchanged. Ordinary next-day support cap: fleet upkeep first, then eligible finished aircraft stores for 30 days. Purchases await stock, access and delivery. No custom ground ammunition requirement."
+      },
+      "Vanuatu": {
+        "basing": "No delivered aircraft need an airfield; procurement must finish first.",
+        "committed_bn": 0.0,
+        "development": "Acquire eligible domestic or imported stock; no staff-managed supplier firm exists.",
+        "last_operations_day": null,
+        "last_review_day": 1017,
+        "operations": "",
+        "procurement": "No finished eligible company stock is available. Development and tooling cannot be bypassed.",
+        "purchase_limit_bn": 0.0,
+        "reviews": 1,
+        "support": "Shifted future Defense funding toward maintenance; total spending and today's authority are unchanged. Ordinary next-day support cap: fleet upkeep first, then eligible finished aircraft stores for 30 days. Purchases await stock, access and delivery. No custom ground ammunition requirement."
+      },
+      "Yemen": {
+        "basing": "No delivered aircraft need an airfield; procurement must finish first.",
+        "committed_bn": 0.0,
+        "development": "Acquire eligible domestic or imported stock; no staff-managed supplier firm exists.",
+        "last_operations_day": null,
+        "last_review_day": 1017,
+        "operations": "",
+        "procurement": "No finished eligible company stock is available. Development and tooling cannot be bypassed.",
+        "purchase_limit_bn": 0.0,
+        "reviews": 1,
+        "support": "Shifted future Defense funding toward maintenance; total spending and today's authority are unchanged. Ordinary next-day support cap: fleet upkeep first, then eligible finished aircraft stores for 30 days. Purchases await stock, access and delivery. No custom ground ammunition requirement."
+      }
+    }
+  }
+}

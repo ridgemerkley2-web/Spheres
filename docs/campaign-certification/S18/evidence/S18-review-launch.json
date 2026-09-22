@@ -1,0 +1,72 @@
+{
+  "url": "http://127.0.0.1:7860",
+  "pid": 11008,
+  "directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S18-20260921-171504",
+  "runtime_revision": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+  "executable_sha256": "70707760679a6d5f7508043a2b326de423e56035c5c29bd2ada540fc0c8e86f8",
+  "player": "France",
+  "date": "16 Oct 1992",
+  "build": {
+    "branch": "codex/campaign-certification",
+    "built_at_unix_seconds": 1790035693,
+    "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+    "distribution": "Local offline game server; source and attribution accompany the release",
+    "revision": "902b820c0bea",
+    "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S18-20260921-171504",
+    "version": "0.6.0"
+  },
+  "save_copy": {
+    "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-fixture-final1\\active.json",
+    "copy": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S18-20260921-171504\\saves\\s18-flight-pages.json",
+    "sha256": "1b12d0fe95b8df3858e1fa307b6dd4c1eb97a2806b19acddff3594ab72d059b3"
+  },
+  "native_verification": {
+    "canonical_sha256": "306d1d0f8cb392e4e902139e0ffc55d210319e365e7fcf47a6ffe1417517bfed",
+    "bytes": 20025556,
+    "ignored_paths": [],
+    "matches_native_and_browser_active_checkpoint": true,
+    "worker_sha256": "361b86a8c12623a553ad2f7e54dd0ccded74fa9cf03b51f4d0a3bfdf93530165"
+  },
+  "evidence": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-final1-binary.json",
+      "sha256": "7f3da74a1a83d09b4a019311fc462880b6ba3b5d09c0ca21eb6920d21846ccc2"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-browser-final1-browser\\staff-pJ4yrj\\result.json",
+      "sha256": "d90027cf7dedbb2b51f1b54e27d7dda9ca7e3d4d9c16fa973ee678fb846f82f9"
+    }
+  ],
+  "staff": {
+    "actions": [
+      {
+        "command": {
+          "enabled": false,
+          "kind": "military_ai"
+        },
+        "enabled": true,
+        "inputs": [],
+        "label": "Review pause of military staff",
+        "requires_preview": true
+      }
+    ],
+    "detail": "Staff review acquisition, research, support and basing every 30 days; combat orders are reviewed daily. Countries buy finished stock, wait for delivery and pay ordinary upkeep and ammunition costs. No difficulty multiplier, free equipment, free research, instant transfers or privileged access is applied. Small economies use smaller fleet targets. Existing supplier programmes remain separate paid owners. Player countries are never directed by this staff.",
+    "metrics": [
+      {
+        "label": "Countries with recorded decisions",
+        "value": 17
+      },
+      {
+        "label": "Acquisition and basing reviews",
+        "value": "Every 30 days"
+      },
+      {
+        "label": "Combat decisions",
+        "value": "Daily \u00b7 up to one strike and one defense order per country"
+      }
+    ],
+    "status": "Active",
+    "title": "Other countries\u2019 military staff"
+  },
+  "scope": "Separate S18 flight-page review using the qualified authored France/Italy checkpoint with real holdings, bases and dated mission results. Inspection does not change campaign state. No historical or unassisted campaign claim. Original review servers and campaigns preserved."
+}

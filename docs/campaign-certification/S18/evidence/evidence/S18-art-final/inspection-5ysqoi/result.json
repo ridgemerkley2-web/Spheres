@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "aircraft": [
+    {
+      "platform": "air_light_attack",
+      "triangles": 199326,
+      "lods": [
+        11474,
+        1252
+      ],
+      "glb_bytes": 21532560,
+      "glb_sha256": "7cce8ccf8e96e6482ef1a3aaa89380478101c06ffc13126718ba6819cc056d3a",
+      "selectable_slots": 8
+    },
+    {
+      "platform": "air_fighter",
+      "triangles": 200446,
+      "lods": [
+        11594,
+        1296
+      ],
+      "glb_bytes": 21653720,
+      "glb_sha256": "f5e563df6e782f1be504116dcce37e08051cafa12773587febfeee3e9b238503",
+      "selectable_slots": 8
+    },
+    {
+      "platform": "air_tactical_strike",
+      "triangles": 228640,
+      "lods": [
+        14904,
+        1696
+      ],
+      "glb_bytes": 24698620,
+      "glb_sha256": "99ac2cf42b0419a929e49b1036fa1262a987de12e80aea74d4dee9b8f828f449",
+      "selectable_slots": 8
+    }
+  ],
+  "screenshots": [
+    "air_light_attack-exterior.png",
+    "air_light_attack-cockpit.png",
+    "air_light_attack-engine.png",
+    "air_light_attack-intake.png",
+    "air_fighter-exterior.png",
+    "air_fighter-cockpit.png",
+    "air_fighter-engine.png",
+    "air_fighter-intake.png",
+    "air_tactical_strike-exterior.png",
+    "air_tactical_strike-cockpit.png",
+    "air_tactical_strike-engine.png",
+    "air_tactical_strike-intake.png",
+    "workshop-narrow.png"
+  ],
+  "errors": []
+}

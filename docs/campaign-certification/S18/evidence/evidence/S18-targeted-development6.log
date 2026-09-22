@@ -1,0 +1,57 @@
+✔ aircraft close-up bounds use real cockpit glass and finite end zones of the actual engine meshes (669.4627ms)
+✔ cockpit falls back to real avionics bounds without glass; malformed and missing semantic ranges are unavailable (2.6794ms)
+✔ Cockpit, Engines and Intakes buttons point the camera at contained component detail, with selection synchronized (10.4747ms)
+✔ intake inspection looks into an outboard engine before hitting the fuselage, without hiding any mesh (775.8144ms)
+✔ ordinary views restore overview zoom, Reset fits the full model and focused picking uses the close-up camera (11.6104ms)
+✔ focus survives context restoration but resets safely when model geometry changes (16.2934ms)
+✔ unavailable graphics keeps close-up controls disabled and avoids false ready messages (3.9086ms)
+✔ S18 intake camera reaches a real engine surface on both single-engine families without hiding the wing (186.1257ms)
+✔ S18 single-seat families have visible seats through glass and recessed intake fans at both inspection LODs (466.5907ms)
+✔ every tactical engine option has two physically open, recessed intake throats (672.5085ms)
+✔ both tactical seats remain visible through glass above a real cockpit cavity (407.0941ms)
+✔ all tactical wing choices have distinct flaps, ailerons and open hinge seams (47.6096ms)
+✔ tactical payloads clear wing undersides and both main wings retain mirrored geometry (30.019ms)
+✔ GLB contains aligned embedded geometry, matte material, and preserved colors (1.7555ms)
+✔ normalizes normals without changing the source mesh (0.7441ms)
+✔ derives accessor bounds from exported positions instead of stale display bounds (0.2261ms)
+✔ preserves Unicode names and deterministic export bytes (0.2662ms)
+✔ rejects non-finite positions rather than writing an invalid model (0.368ms)
+✔ rejects non-finite normals rather than writing an invalid model (0.0955ms)
+✔ rejects non-finite colors rather than writing an invalid model (0.0593ms)
+✔ rejects incomplete geometry, mismatched counts, and non-float attributes (0.1543ms)
+✔ rejects impossible colors, zero normals, and invalid semantic ranges (0.1905ms)
+✔ browser UMD API exports the same binary as the Node API (1.2878ms)
+✔ generated models for every vehicle type contain complete portable meshes and all twelve specifications (598.8135ms)
+✔ specialist GLB assets preserve complete geometry, all thirteen slots and pickable semantic parts (258.6458ms)
+✔ an upgraded specialist exports its current mission components and semantic slot labels (83.8531ms)
+✔ all three aircraft GLBs preserve generated geometry, eight specifications and semantic picking ranges (2221.9456ms)
+FIGHTER_TRIANGLES=200446,11594,1296
+PASS fighter inspection/card/map keep all eight native slots and valid geometry
+PASS fighter payload is two separated slender air-to-air missiles
+PASS every researched fighter fitting is retained and changes visible geometry
+PASS fighter resolver refuses bombs and ground parts without mutating the requested spec
+PASS inherited ground assets retain S15 bytes and aircraft retain the reviewed S18 interiors
+5 S16 fighter mesh checks passed.
+✔ tools\ui\check_s16_fighter_mesh.cjs (3144.5085ms)
+✔ approved tanks and aircraft retain exact geometry, colors and authored material classes (809.4542ms)
+✔ specialist primary hull proportions are long enough for their distinct vehicle roles at every LOD (244.6655ms)
+✔ IFV fighting compartment is a low continuous shell with converging cheeks (49.3108ms)
+✔ tracked specialists have distinct belt return gears beyond their paired road wheels (202.6056ms)
+✔ wheeled tire shoulder treads are rubber and open beads expose the actual painted wheel centers (250.6417ms)
+✔ specialist bow plates remain flat at every LOD without a coarse cylindrical bumper (166.3506ms)
+✔ air-defense guns sit in outboard cradles and radar panels are non-optical surfaces (83.7245ms)
+✔ every aircraft and specialist default matches its reviewed geometry and colors at every LOD (722.2296ms)
+✔ tank hulls have a long chassis envelope at all three LODs (297.3093ms)
+✔ rotating turrets form a broad continuous low body instead of a tall narrow stack (505.9639ms)
+✔ each main gun is a slender continuous barrel with a recessed compact mount (219.5497ms)
+✔ heavy cheek armor has a single wedge top and a sloped face instead of repeated staircase ledges (432.0387ms)
+✔ road wheels fill the track envelope and end gears share the belt return centers (37.3042ms)
+✔ tank material classes are explicit aligned deterministic metadata across selected configurations and LODs (394.8149ms)
+ℹ tests 42
+ℹ suites 0
+ℹ pass 42
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3251.7812

@@ -1,6 +1,6 @@
 # CLAUDE-S19-01 — outcome-aware first-hour guidance
 
-Owner: Claude. State: **waiting for S18 integration**. Parent: S19.
+Owner: Claude. State: **dependency-ready after S18; not yet claimed**. Parent: S19.
 Canonical dependencies: S06, S07, S10, S18. Reviewer/integrator: Codex.
 Branch / base commit / result commit: record when claimed / submitted.
 

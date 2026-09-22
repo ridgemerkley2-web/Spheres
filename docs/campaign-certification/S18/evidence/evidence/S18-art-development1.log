@@ -1,0 +1,83 @@
+✔ aircraft close-up bounds use real cockpit glass and finite end zones of the actual engine meshes (319.3188ms)
+✔ cockpit falls back to real avionics bounds without glass; malformed and missing semantic ranges are unavailable (1.7912ms)
+✔ Cockpit, Engines and Intakes buttons point the camera at contained component detail, with selection synchronized (9.5957ms)
+✔ intake inspection looks into an outboard engine before hitting the fuselage, without hiding any mesh (612.176ms)
+✔ ordinary views restore overview zoom, Reset fits the full model and focused picking uses the close-up camera (6.8431ms)
+✖ focus survives context restoration but resets safely when model geometry changes (8.6823ms)
+✔ unavailable graphics keeps close-up controls disabled and avoids false ready messages (3.0013ms)
+✔ default and loaded aircraft meet the 100k inspection contract and bounded cheaper LODs (765.8704ms)
+✔ aircraft LOD clamps malformed requests and never edits the design (214.1883ms)
+✔ all tactical exhaust choices reveal a deep interior beyond the old casing cap (501.0162ms)
+✔ both intakes contain separate solid swept fan blades instead of flat spokes (810.8407ms)
+✔ recessed exhaust turbines also retain solid vanes in both close detail levels (528.4908ms)
+✔ tactical nozzle petals taper toward the outlet rather than forming a straight drum (322.3723ms)
+✔ cockpit side controls sit visibly inside the glass with space above the consoles (212.9998ms)
+✖ light aircraft and tactical map meshes are unchanged by inspection detail work (93.1684ms)
+✔ all engine and cockpit combinations retain inspection and catalogue budgets (723.7683ms)
+✔ every tactical engine option has two physically open, recessed intake throats (502.2633ms)
+✔ both tactical seats remain visible through glass above a real cockpit cavity (237.5187ms)
+✔ all tactical wing choices have distinct flaps, ailerons and open hinge seams (31.7392ms)
+✔ tactical payloads clear wing undersides and both main wings retain mirrored geometry (22.5466ms)
+✔ opaque and glass ranges partition the mesh once and preserve selectable part ownership (1.4525ms)
+✔ invalid surfaces fail closed in both display and GLB export (1.6018ms)
+✔ aircraft GLB keeps global buffers and adds bounded glass accessors with portable alpha materials (0.5975ms)
+✔ nonaircraft export bytes and opaque ranges remain unchanged even with unrelated metadata (0.4461ms)
+✔ glass draws after opaque with blending and no depth writes, then restores all owned GL state (3.4549ms)
+✔ selection highlights opaque intersections and glass without drawing an opaque canopy overlay (0.8888ms)
+✔ canopy is excluded from both cached depth shadows and fallback projected shadows (2.0163ms)
+✔ restoration preserves glass, selection and exports; bad replacement never retains stale geometry (1.422ms)
+✔ unavailable WebGL retains downloadable transparent geometry and a clear fallback (0.7838ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 27
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3275.8756
+
+✖ failing tests:
+
+test at tools\ui\check_aircraft_closeup.cjs:55:1
+✖ focus survives context restoration but resets safely when model geometry changes (8.6823ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\check_aircraft_closeup.cjs:58:94)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tools\ui\check_aircraft_interior_detail.cjs:138:1
+✖ light aircraft and tactical map meshes are unchanged by inspection detail work (93.1684ms)
+  AssertionError [ERR_ASSERTION]: air_light_attack/default/0
+  + actual - expected
+  
+  + '2d5d02d292919de724129a33427602462785c7028c0975355a6ead4b1c1410dc'
+  - 'e6d5a29bd8786c6f7fb9692c49356ebaf2a025d47ea33e7eaab6383a42b4d791'
+  
+      at TestContext.<anonymous> (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\check_aircraft_interior_detail.cjs:141:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '2d5d02d292919de724129a33427602462785c7028c0975355a6ead4b1c1410dc',
+    expected: 'e6d5a29bd8786c6f7fb9692c49356ebaf2a025d47ea33e7eaab6383a42b4d791',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

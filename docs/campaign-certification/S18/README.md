@@ -1,7 +1,6 @@
 # S18 — live flight pages and CP1 aircraft inspection
 
-Status: implementation in qualification. S18 is not complete until the retained
-final evidence passes. The roadmap remains in progress.
+Status: **complete** on `902b820c0bea0ed9bcd32a6085fc63dad6d92715`. [Exact qualification and retained evidence](manifest.json). G4 and CP1 remain open.
 
 Air command now separates Command, Aircraft, Bases and Reports over the existing
 native flight read model and reviewed command channel. The Aircraft inspection
@@ -29,11 +28,33 @@ preservation. Browser checks exercise exterior/cockpit/engine/intake views, ever
 slot, lower LODs and actual GLB downloads. Prior ground-vehicle geometry pins remain
 unchanged; aircraft pins explicitly move to the reviewed S18 geometry.
 
-Planned qualification: full Windows/Linux web and Node checks, exact asset
-regeneration, the S17 native staff fixture with the new four-page browser route,
-and exact saved-world/history comparisons before and after read-only inspection,
-ordinary reviewed commands, day advances, save/load and Continue. No simulation
-rules change in S18; S17 simulation/integration evidence remains separately pinned.
+Qualification passed on Windows and Linux: **398 native web tests** (20 ignored) and **1596 Node tests** (1 skipped) per platform. Asset regeneration and the native fixture export also passed.
+
+Runtime/native/browser/art evidence is pinned to `902b820c0bea0ed9bcd32a6085fc63dad6d92715`. The final Node runs use
+`1b7ac3eb6e872f065efbcb1c5e80f12180be898b`; its only change corrects the existing inlet-depth test's
+sampling coordinate to the new duct position. The manifest verifies that exact
+one-line test-only difference. Failed initial runs remain in the evidence archive.
+
+The ordinary browser route checked all four campaign pages at 1440px and 390px,
+downloaded actual owned specifications, retained the local draft, then reviewed two
+staff commands and advanced six ordinary days. **Ten exact native-world and ten
+history-envelope comparisons** passed through inspection, commands, Save, Load and
+Continue, with zero browser errors. No world fields were ignored; only the separately
+validated save timestamp can differ in an envelope. Authored starting forces are
+disclosed; this is not an unassisted long-campaign or human-usability claim.
+
+Thirteen final art captures plus the live-page/campaign captures were inspected.
+The art browser exercised all three families, eight selectable slots, cockpit,
+engine and inlet cameras, LOD switching and real GLB downloads. Original saves and
+the two protected worktree heads are unchanged. No simulation code or dependency
+changes were made; S17 retains its separately pinned simulation/integration evidence.
+Follow-up polish for S20: normalize signed-zero display values and replace raw
+province/ammunition identifiers in inherited mission report prose with friendly names.
+The restore toast is transient and is visible in the immediately captured page shots.
+
+[Open the separately copied S18 review campaign](http://127.0.0.1:7860). The older S17
+review remains available. S19 is assigned to Claude in the shared workboard; its
+handoff is now dependency-ready. Codex's S20 shared-navigation work waits for that handoff.
 
 Original artwork is procedural game concept art, not a historic aircraft replica.
 The 100k+ target applies to inspection; map/detail performance qualification remains

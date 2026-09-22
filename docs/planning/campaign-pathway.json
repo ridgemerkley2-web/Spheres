@@ -484,7 +484,7 @@
       "id": "S18",
       "phase": "experience",
       "title": "Replace flight-demo data and finish playable aircraft art",
-      "status": "in_progress",
+      "status": "complete",
       "depends": [
         "S16",
         "S14"
@@ -494,7 +494,14 @@
         "Remove fictional fleet counts and demonstration mission assignments from the campaign flow.",
         "Each released configurable aircraft has a meaningful 100,000+ triangle inspection mesh, cheaper LODs, working component selection and validated export.",
         "Cockpit, engine and exterior quality are reviewed visually; unsupported future missions do not appear as functional campaign actions."
-      ]
+      ],
+      "completed_date": "2026-09-21",
+      "evidence": "../campaign-certification/S18/README.md",
+      "closure": {
+        "evidence": "docs/campaign-certification/S18/manifest.json",
+        "candidate_revision": "902b820c0bea0ed9bcd32a6085fc63dad6d92715",
+        "completed_utc": "2026-09-22T00:16:27.762819+00:00"
+      }
     },
     {
       "id": "S19",
@@ -934,12 +941,12 @@
       }
     ]
   },
-  "last_completed_session": "S17",
-  "next_session": "S18",
+  "last_completed_session": "S18",
+  "next_session": "S19",
   "execution": {
     "authorized_through": "S18",
     "stop_boundary": "S18",
-    "status": "in_progress",
+    "status": "stopped",
     "previous_stop": "S17",
     "instruction": "next",
     "instruction_date": "2026-09-21",

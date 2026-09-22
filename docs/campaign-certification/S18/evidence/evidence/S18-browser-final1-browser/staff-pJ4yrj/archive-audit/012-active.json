@@ -1,0 +1,204 @@
+{
+  "version": 1,
+  "input": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-fixture-final1\\active.json",
+    "bytes": 20064363,
+    "sha256": "1b12d0fe95b8df3858e1fa307b6dd4c1eb97a2806b19acddff3594ab72d059b3"
+  },
+  "requested": {
+    "buyer": "France",
+    "revision": null,
+    "seller": null,
+    "company": null,
+    "product": null
+  },
+  "buyer": {
+    "id": "France",
+    "tech_sha256": "27237a9bb289d42941336a76b4d579a6d79ff69c408225b3038f28d7e278eba7",
+    "learned_sha256": "c216de6a024e56501afcdea29d807c12296af134ecfd4ee5096c875b5921ea55",
+    "revision_ids": [
+      "France-design-1",
+      "France-design-2",
+      "ammo-demo"
+    ],
+    "held_by_revision": {
+      "ammo-demo": 10,
+      "France-design-2": 4
+    },
+    "held_units": 0,
+    "buyer_revision": null,
+    "maintenance_plan": {
+      "daily_limit_bn": 0.0001,
+      "from_day": 1,
+      "receipt": {
+        "authority_bn": 7.21763851828568,
+        "custom_paid_bn": 0.00002393,
+        "custom_required_bn": 0.00002393,
+        "daily_limit_bn": 0.0001,
+        "day": 1018,
+        "legacy_paid_bn": 0,
+        "legacy_required_bn": 0
+      }
+    },
+    "program_budget": {
+      "day": 1018,
+      "settled_day": 1018,
+      "spent_today_bn": [
+        [
+          0.03645640330876648,
+          0.03645640330876648,
+          0.03645640330876648,
+          0.03645640330876648,
+          0.03645640330876648
+        ],
+        [
+          0.02624861038231187,
+          0.02624861038231187,
+          0.02624861038231187,
+          0.02624861038231187,
+          0.026248610382311882
+        ],
+        [
+          0.029165122647013184,
+          0.029165122647013184,
+          0.029165122647013184,
+          0.029165122647013184,
+          0.029165122647013195
+        ],
+        [
+          0.040831171705818466,
+          0.040831171705818466,
+          0.040831171705818466,
+          0.040831171705818466,
+          0.040831171705818486
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0.014241847273891953
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0.0038841401656068953,
+          0.0038841401656068953,
+          0.0038841401656068953,
+          0.0038841401656068957
+        ],
+        [
+          0.024531411572254077,
+          0.024531411572254077,
+          0.00002393,
+          0,
+          0
+        ],
+        [
+          0.010207792926454616,
+          0.010207792926454616,
+          0.010207792926454616,
+          0.010207792926454616,
+          0.010207792926454622
+        ],
+        [
+          0.0029165122647013195,
+          0.0029165122647013195,
+          0.0029165122647013195,
+          0.0029165122647013195,
+          0.0029165122647013195
+        ]
+      ],
+      "prepaid_used_today_bn": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    }
+  },
+  "supplier": null,
+  "imports": {
+    "ids": [],
+    "matching": []
+  },
+  "canonical": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S18-browser-final1-browser\\staff-pJ4yrj\\archive-audit\\012-active.canonical",
+    "bytes": 20025556,
+    "sha256": "306d1d0f8cb392e4e902139e0ffc55d210319e365e7fcf47a6ffe1417517bfed",
+    "format": "s08-typed-canonical-world-v1-js-f64",
+    "ignored_paths": []
+  }
+}
