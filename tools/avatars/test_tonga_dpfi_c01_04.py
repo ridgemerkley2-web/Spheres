@@ -192,8 +192,12 @@ class TongaDpfiTests(unittest.TestCase):
         # Every holder observation keeps from/until null unless a source states them: the 2021 PMO effective dates and,
         # from CLAUDE-C01-07, the Crown boundaries stated by the death notices and the devolution proclamations.
         stated = {("Siaosi 'Ofakivahafolau Sovaleni", '2021-12-27'), ('Poasi Mataele Tei', '2021-12-28'),
-                  ('George Tupou V', '2006-09-11'), ('Tupou VI', '2012-03-18')}
-        stated_ends = {("Taufa'ahau Tupou IV", '2006-09-11'), ('George Tupou V', '2012-03-18')}
+                  ('George Tupou V', '2006-09-11'), ('Tupou VI', '2012-03-18'),
+                  # CLAUDE-C01-03: the 2025 Cabinet's stated effective date for the new Deputy Prime Minister.
+                  ('Taniela Likuohihifo Fusimalohi', '2025-01-28')}
+        stated_ends = {("Taufa'ahau Tupou IV", '2006-09-11'), ('George Tupou V', '2012-03-18'),
+                       # CLAUDE-C01-03: Sovaleni's resignation 'effective immediately' and its acceptance, 9 December 2024.
+                       ("Siaosi 'Ofakivahafolau Sovaleni", '2024-12-09')}
         for _, entry, _ in self.holder_ids():
             if isinstance(entry, dict):
                 if entry['until'] is not None:
