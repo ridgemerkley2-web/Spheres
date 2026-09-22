@@ -1,8 +1,8 @@
 # CLAUDE-C01-02 — Tonga's 2021 appointment transition
 
-Owner: Claude. State: **ready to claim; not started**. Parent: C01 (incomplete).
+Owner: Claude. State: **claimed 21 September 2026; in progress** (not ready for review). Parent: C01 (incomplete).
 Predecessor: [CLAUDE-C01-01](CLAUDE-C01-01.md), integrated and qualified at `fdb6d2c`.
-Claim branch / exact current integration base / result commit when starting.
+Branch `claude/c01-tonga-02`; base `5b46e40a` (current integration); result commit: recorded at submission.
 Reviewer/integrator: Codex. Separate from the ready S19 gameplay packet.
 
 ## Bounded deliverable
