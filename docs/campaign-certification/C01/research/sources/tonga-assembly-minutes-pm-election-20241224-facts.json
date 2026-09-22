@@ -1,0 +1,65 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://parliament.gov.to/en/parliament-business/hansards-debates/3-2024/132-miniti-fili-palemia-aho-24-o-tisema-2024",
+  "accessed_date": "2026-09-21",
+  "published_date": "2025-03-04",
+  "access_method": "downloaded_original_pdf_text_and_relevant_pages_visually_read",
+  "source_response_url": "https://parliament.gov.to/en/parliament-business/hansards-debates/3-2024/132-miniti-fili-palemia-aho-24-o-tisema-2024",
+  "source_response_request": "HTTP POST of the Phoca Download form (download=132) on the file page; response Content-Type application/pdf, Content-Disposition filename 'Miniti Fili Palemia 24122024.pdf'",
+  "source_response_bytes": 412540,
+  "source_response_sha256": "d798e1237d660f3cb4a5b207fa8ca17b6ccf18d8fee45065c9327dda85443347",
+  "source_response_checked_in": false,
+  "provenance_note": "Downloaded on 2026-09-21 and hashed before extraction; a second download the same day and the independent check's re-download returned identical bytes. source_response_url is the file page to which the download form is posted. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_pm_election_nominations_read_20241224",
+      "text": "The minutes of the special meeting of Elected Representatives on Tuesday 24 December 2024 record the Speaker describing it as a special meeting under the Schedule to clause 50(a), not an ordinary sitting, held because the office of Prime Minister became vacant on the resignation of the former Prime Minister, Hon. Hu'akavameiliku, on 9 December 2024. Two sealed nominations were opened: No. 1, dated 18 December 2024 and received on 20 December 2024 at 3:48pm, nominating 'Aisake Valu 'Eke (proposer 'Uhilamoelangi Fasi; seconders Taniela Liku'ohihifo Fusimālohi and Mo'ale Finau); No. 2, dated 23 December 2024 and received on 23 December 2024 at 12.00 noon, nominating Hon. Dr. Viliami Uasikē Lātū, Vava'u 16 (proposer Hon. Dr. Mo'ale 'Otunuku; seconders Hon. Sevenitini Toumoua and Hon. Vātau Mefi Hui). The Clerk confirmed both as complete.",
+      "attested_on": "2024-12-24",
+      "locator": "PDF pp.8-9 (Speaker's address); pp.11-13 ('Tohi Fika 1', 'Tohi Fika 2')",
+      "uncertainty": "Proposers and seconders are nomination roles, not party or coalition membership."
+    },
+    {
+      "id": "to_eke_assembly_selection_20241224",
+      "text": "The same minutes record that, in the 1500-1505 block after the secret ballot, the Speaker stated he had completed his duty of reporting the Assembly's election result to His Majesty the King and then announced the result of the secret ballot of Tuesday 24 December 2024: 24 votes in all, a majority being 13; Hon. 'Aisake Valu Eke 16, Hon. Viliami Uasikē Lātū 8; Eke, Tongatapu 5, elected with 16 votes. The result was read by the Clerk of the Assembly, Gloria Pōle'o, and confirmed by Sefita Tangi, Auditor General. The Speaker closed by adjourning to the new year and leaving to the Prime Minister-elect the remaining business of forming his Cabinet.",
+      "attested_on": "2024-12-24",
+      "locator": "PDF pp.52-53 ('Fakahā e ola 'o e Fili Fakapulipuli Fili Palēmia'); p.55",
+      "uncertainty": "This is the Assembly's selection of the Prime Minister Designate under clause 50A, not the royal appointment or a start of office. The report to the King precedes the announcement in the record; its exact time is not given."
+    },
+    {
+      "id": "to_acting_pm_addressed_20241224",
+      "text": "At the same meeting the Speaker's address, Lātū's candidate speech and Eke's candidate speech each include the Acting Prime Minister (''Eiki Palēmia Le'ole'o') in their salutations; Lātū's also greets the acting members of the Cabinet ('Hou'eiki Mēmipa Le'ole'o 'o e Kapineti') and Eke's the Cabinet ('Hou'eiki Kapinetí'). None of these salutations names the Acting Prime Minister.",
+      "attested_on": "2024-12-24",
+      "locator": "PDF p.9 (Me'a 'a e 'Eiki Seá); p.19 (Fakamalanga Vava'u 16, 1105-1110 block); p.13 (Fakamalanga Tongatapu 5)",
+      "uncertainty": "A form of address only; no name, instrument or start date. The Speaker's later call to the Acting Prime Minister is a separate claim (to_acting_pm_vaipulu_floor_20241224)."
+    },
+    {
+      "id": "to_acting_pm_vaipulu_floor_20241224",
+      "text": "In the 1320-1325 block of the same minutes the Speaker, with only Vava'u members left to speak, gives the floor with 'me'a mai Palēmia Le'ole'o' (the Acting Prime Minister has the floor); the speech that follows is headed 'Fakamalanga poupou Vava'u 15 kia Viliami Uasikē Lātū' (Vava'u 15's speech supporting Lātū) and carries the speaker label Samiu Vaipulu. The roll of Elected Representatives at the front of the minutes prints 'Samiu Kuita Vaipulu - Fakafofonga Kakai Vāhenga Fili Vava'u 15'.",
+      "attested_on": "2024-12-24",
+      "locator": "PDF p.47 (1320-1325 block); p.3 (roll of Elected Representatives)",
+      "uncertainty": "The Speaker's form of address in debate, not an appointing instrument. It identifies the member called on as Acting Prime Minister on 24 December 2024 but gives no start date, instrument or end, and 9 December is not inferred from it. Page 47 was read from the pypdfium2 text layer only; page 3 was rendered."
+    }
+  ],
+  "scope_note": "Tongan-language verbatim minutes (55-page PDF, created 3 February 2025) of the special meeting of Elected Representatives on 24 December 2024, downloaded through the Phoca Download button on the file page. The 4 March 2025 listing date is the upload date, not the meeting date. English renderings are this packet's reading, not an official translation.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      3,
+      7,
+      8,
+      9,
+      11,
+      12,
+      13,
+      52,
+      53,
+      55
+    ],
+    "facsimile_pages_one_based": [],
+    "text_layer_only_pages_one_based": [
+      19,
+      47
+    ],
+    "method": "Listed pages rendered with pypdfium2 and read (PDF page 2 is blank). Pages 19 and 47 were read from the pypdfium2 text layer only."
+  }
+}

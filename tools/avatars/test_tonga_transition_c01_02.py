@@ -149,11 +149,15 @@ class TongaTransitionTests(unittest.TestCase):
         self.assertEqual(self.claims['to_pm_two_nominations_20211214']['attested_on'], '2021-12-14')
         self.assertIn('no Assembly notice of the 15 December result', self.claims['to_pm_two_nominations_20211214']['uncertainty'])
 
-    def test_sovaleni_holder_starts_on_the_stated_effective_date_with_no_end(self):
+    def test_sovaleni_holder_starts_on_the_stated_effective_date_and_ends_only_on_a_stated_resignation(self):
         holder = self.holder('to_pm', SOVALENI)
-        self.assertEqual((holder['from'], holder['until'], holder['attested_on']), ('2021-12-27', None, None))
-        self.assertEqual(holder['claim_ids'], list(APPOINTMENT))
-        self.assertEqual(holder['sources'], ['to_pmo_sovaleni_appointment_20211228', 'to_pmo_sovaleni_appointment_to_20211228'])
+        # CLAUDE-C01-03 added the end from the resignation its sources state (9 December 2024); the start is
+        # unchanged and the end is cited by its own claims, never inferred from the successor's appointment.
+        self.assertEqual((holder['from'], holder['until'], holder['attested_on']), ('2021-12-27', '2024-12-09', None))
+        self.assertEqual(holder['claim_ids'], list(APPOINTMENT) + [
+            'to_sovaleni_resignation_statement_20241209', 'to_palace_acceptance_letter_20241209'])
+        self.assertEqual(holder['sources'], ['to_pmo_sovaleni_appointment_20211228', 'to_pmo_sovaleni_appointment_to_20211228',
+                                             'to_assembly_minutes_48_20241209'])
         self.assertNotIn('attested_period', holder)
         self.assertIn('TO-TR21-04', holder['uncertainty'])
         self.assertIn("Hu'akavameiliku", holder['note'])
@@ -216,7 +220,8 @@ class TongaTransitionTests(unittest.TestCase):
         self.assertEqual(titled, ['to_deputy_pm', 'to_pm'])
         holders = self.roles['to_pm']['holder_claims']
         self.assertEqual(sum(isinstance(h, str) for h in holders), 2)
-        self.assertEqual([h['name'] for h in holders if isinstance(h, dict)], ["Pohiva Tu'i'onetoa", SOVALENI])
+        # CLAUDE-C01-03 appended the 2025 appointment event; still one office and one head-of-government role.
+        self.assertEqual([h['name'] for h in holders if isinstance(h, dict)], ["Pohiva Tu'i'onetoa", SOVALENI, "'Aisake Valu Eke"])
 
     def test_secondary_warrant_account_is_a_lead_not_a_source(self):
         for source in self.packet['sources']:

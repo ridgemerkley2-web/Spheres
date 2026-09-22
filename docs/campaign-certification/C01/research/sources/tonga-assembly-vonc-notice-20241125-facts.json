@@ -1,0 +1,27 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://parliament.gov.to/en/media-centre/press-releases/office-of-the-lord-speaker-receives-notice-of-intention-to-move-a-motion-for-a-vote-of-no-confidence-in-the-prime-minister",
+  "accessed_date": "2026-09-21",
+  "published_date": "2024-11-25",
+  "access_method": "fetched_original_html_and_article_text_read",
+  "source_response_bytes": 57203,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "provenance_note": "Fetched by direct HTTPS request on 2026-09-22 UTC (2026-09-21 local), HTTP 200, 57,203 bytes. The independent check re-fetched it the same day with a cache-busting query and read the same article text and metadata; its byte count differed by a few bytes. Each response embeds a per-request form token and the page displays a live hit counter, so no response hash is asserted. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_vonc_notice_received_20241123",
+      "text": "The Assembly press release issued by the Chief Clerk on 25 November 2024 states that the Office of the Lord Speaker received on Saturday 23 November 2024 a Notice of Intention to Move a Motion for a Vote of No Confidence in the Prime Minister, Hon. Siaosi Sovaleni, submitted by Hon. Dr 'Aisake Eke (Tongatapu 5) together with the motion, signed in support by 10 Members including Eke, and that the Office was acting as required by clause 50B of the Constitution.",
+      "attested_on": "2024-11-23",
+      "locator": "Press release body, paragraphs 1-2; issue line",
+      "uncertainty": "Context only. The motion was never put to a vote: it was removed from the agenda after the resignation (to_speaker_vonc_withdrawn_procedure_20241209). The ten signatories are not named and are not a party or coalition observation."
+    }
+  ],
+  "scope_note": "Context for TO-TR24-01 only; the motion was never voted on. The printed issue line reads 25 November 2024 and the page shows only 'Last Updated 25 November 2024'. Joomla page: each response embeds a per-request form token and the page shows a live hit counter, so no response hash is asserted.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Press-release text, issue line and page metadata read; no images reviewed."
+  }
+}

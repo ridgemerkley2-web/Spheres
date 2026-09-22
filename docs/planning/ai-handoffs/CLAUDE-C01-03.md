@@ -1,7 +1,21 @@
 # CLAUDE-C01-03 — Tonga's next succession transition
 
-Owner: Claude. State: **claimed 21 September 2026; in progress** (not ready for review). Parent: C01 (incomplete).
-Claimed on branch `claude/c01-tonga-03`, base `04bc99a6` (current integration); result commit recorded at submission.
+Owner: Claude. State: **ready_for_review** (submitted 21 September 2026; not complete). Parent: C01 (incomplete).
+Branch `claude/c01-tonga-03`; base `04bc99a6` (current integration); claim `bc48be49`.
+Result commit: the head of `claude/c01-tonga-03` at submission (the separate index commit); to be recorded by the integrator.
+[Report](../../campaign-certification/C01/research/tonga-transition-2024-03.md): TO-TR24-01 (resignation and
+acceptance, 9 Dec 2024), 03 (Assembly selection, 24 Dec 2024), 04 (royal appointment, 22 Jan 2025) and 06
+(Cabinet effective 28 Jan 2025) accepted; TO-TR24-02 accepted as attestation (Samiu Kuita Vaipulu acting on
+24 Dec 2024 and 6 Jan 2025) with start, instrument and end unresolved; TO-TR24-05 partly resolved (posting date
+and 31 Jan oath recorded; warrant and any separate effective date unresolved). TO-TR21-04 and TO-TR21-05 unchanged.
+Touched paths: this record; `research/tonga.json` (17 sources, 27 claims; Sovaleni `to_pm` holder `until`
+2024-12-09 from the stated resignation; new holders on `to_pm` (Eke, event 2025-01-22) and `to_deputy_pm`
+(Vaipulu, event 2024-12-09; Fusimalohi from 2025-01-28)); 17 new
+`research/sources/tonga-{assembly,gazette,pmo,ipu}-*-facts.json` extracts; new
+`research/tonga-transition-2024-03.md`; `test_tonga_research_s10g.py` and `test_tonga_transition_c01_02.py`
+(pins updated to the new totals, holders and stated end; none loosened); new `test_tonga_transition_c01_03.py`.
+Separate commit: `research-index.json` only. Outside the boundary and left for the integrator:
+`tools/ui/ci-leadership-research-browser.cjs` expects the Sovaleni card to end "→ Not established".
 Predecessor: [CLAUDE-C01-02](CLAUDE-C01-02.md), accepted as bounded research.
 Start from the current `codex/campaign-certification`; record the actual base and
 claim commit before work. Suggested branch: `claude/c01-tonga-03`.

@@ -720,6 +720,520 @@
         "sha256": "3e6c0c5feefd4f88535e20af7c62c9a025b926ce579a22a56afa6be918709a51",
         "kind": "derived_factual_extract"
       }
+    },
+    {
+      "id": "to_assembly_vonc_notice_20241125",
+      "title": "Office of the Lord Speaker receives notice of intention to move a motion for a vote of no confidence in the Prime Minister",
+      "url": "https://parliament.gov.to/en/media-centre/press-releases/office-of-the-lord-speaker-receives-notice-of-intention-to-move-a-motion-for-a-vote-of-no-confidence-in-the-prime-minister",
+      "publisher": "Legislative Assembly of Tonga (issued by the Chief Clerk)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2024-11-25",
+      "source_type": "primary_legislature_press_release",
+      "access_method": "fetched_original_html_and_article_text_read",
+      "claims": [
+        {
+          "id": "to_vonc_notice_received_20241123",
+          "text": "The Assembly press release issued by the Chief Clerk on 25 November 2024 states that the Office of the Lord Speaker received on Saturday 23 November 2024 a Notice of Intention to Move a Motion for a Vote of No Confidence in the Prime Minister, Hon. Siaosi Sovaleni, submitted by Hon. Dr 'Aisake Eke (Tongatapu 5) together with the motion, signed in support by 10 Members including Eke, and that the Office was acting as required by clause 50B of the Constitution.",
+          "attested_on": "2024-11-23",
+          "locator": "Press release body, paragraphs 1-2; issue line",
+          "uncertainty": "Context only. The motion was never put to a vote: it was removed from the agenda after the resignation (to_speaker_vonc_withdrawn_procedure_20241209). The ten signatories are not named and are not a party or coalition observation."
+        }
+      ],
+      "scope_note": "Context for TO-TR24-01 only; the motion was never voted on. The printed issue line reads 25 November 2024 and the page shows only 'Last Updated 25 November 2024'. Joomla page: each response embeds a per-request form token and the page shows a live hit counter, so no response hash is asserted.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-vonc-notice-20241125-facts.json",
+        "bytes": 2697,
+        "sha256": "50240f643a03e203ab21042340206a060659013f98f98bd0975d664c038aef54",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_assembly_minutes_48_20241209",
+      "title": "Ko e Miniti 'o e Feme'a'aki 'a e Hou'eiki Mēmipa 'o e Fale Alea 'o Tonga, Fika 48, 'Aho Mōnite 9 Tīsema 2024 (Minutes No. 48, Monday 9 December 2024)",
+      "url": "https://parliament.gov.to/en/parliament-business/hansards-debates/3-2024/131-miniti-fika-48-aho-09-o-tisema-2024",
+      "publisher": "Legislative Assembly of Tonga",
+      "accessed_date": "2026-09-21",
+      "published_date": "2025-03-04",
+      "source_type": "primary_legislature_verbatim_minutes",
+      "access_method": "downloaded_original_pdf_text_and_relevant_pages_visually_read",
+      "claims": [
+        {
+          "id": "to_sovaleni_resignation_statement_20241209",
+          "text": "The minutes of sitting No. 48 (Monday 9 December 2024), whose agenda listed Motion No. 4A/2024 for a vote of no confidence in the Prime Minister and the Prime Minister's written reply, record Prime Minister Siaosi Sovaleni ('Eiki Palēmia) announcing in the House, under the heading 'Fakafisi 'Eiki Palēmia mei he lakanga Palēmia 'o Tonga', that he resigns as Prime Minister of Tonga 'Fakatatau ki he Konisitūtoné Kupu 50 (2)(c), effective immediately he 'ahó ni' (in accordance with clause 50(2)(c), effective immediately today), and taking leave of the Deputy Prime Minister and Cabinet.",
+          "attested_on": "2024-12-09",
+          "locator": "PDF p.3 (agenda items 4.1-4.2); PDF pp.40-41 (heading; time blocks 1150-1155 and 1155-1200)",
+          "uncertainty": "The clause is printed '50 (2)(c)'; the Speaker later cites clause 50(a)(2)(c). The printed form is kept and not corrected. The time of day is bracketed only by the transcript's five-minute blocks. The resignation letter itself, and the date on which it was written or signed, are not in the minutes. The Speaker relied on His Majesty's written reply, not on these words, for confirmation (to_speaker_vonc_withdrawn_procedure_20241209)."
+        },
+        {
+          "id": "to_palace_acceptance_letter_20241209",
+          "text": "The same minutes record the Table Clerk reading, in the 1400-1405 block after the House resumed, a letter from the Palace Office dated Monday 9 December 2024, signed by Sione U. Fifita, Secretary to His Majesty, and addressed to Speaker Lord Fakafanua: the Palace Office had received that day, Monday 9 December 2024, Hon. Hu'akavameiliku's letter to King Tupou VI resigning as Prime Minister of Tonga, and His Majesty had graciously accepted the resignation ('Kuo mokoi 'a e Finangalo 'a 'Ene 'Afió ki he fakafisi').",
+          "attested_on": "2024-12-09",
+          "locator": "PDF p.42: Speaker's adjournment to 2pm at the top of the page; 1400-1405 block, heading 'Tohi mei he 'Ofisi Palasi fekau'aki mo e Tohi Fakafisi Palēmia 'o Tonga'",
+          "uncertainty": "The Palace letter is known only as read into the minutes; the original and the resignation letter are not published. The minutes bracket the acceptance: the resignation was announced in the 1150-1200 block; the Speaker then said the matter was to be completed with His Majesty under the Constitution and adjourned the House to 2pm; at 1400-1405 he said the recess had been used to convey it to His Majesty ('Na'a tau ngāue'aki aipē 'a e taimi mālōlō ke fakahoko eni ki he 'Ene 'Afio') and that the Palace letter had then reached his Office. Acceptance therefore fell within that recess on 9 December; its clock time is not recorded."
+        },
+        {
+          "id": "to_speaker_vonc_withdrawn_procedure_20241209",
+          "text": "The Speaker then removed agenda items 4.1 and 4.2 (the no-confidence motion and the Prime Minister's reply), ruled that both documents be released as public records of the Assembly although not tabled, and stated that because the office of Prime Minister was vacant the Schedule under clause 50(A) applied: invitations within 10 days, counted from the next day; 14 days for nominations, expected to end on Monday 23 December; and a meeting within 3 days, to be held on 24 December, to which he adjourned the House. He also read clause 50(a)(2)(c) (a Prime Minister holds office until death, resignation or revocation of appointment) and stated that the resignation had been confirmed that day by His Majesty's written reply ('tohi tali mei he 'Ene 'Afió').",
+          "attested_on": "2024-12-09",
+          "locator": "PDF p.43 (end of the 1400-1405 block: items 4.1-4.2 removed and public-record ruling; 1405-1410 block: the Schedule); p.46 (1410-1415: clause 50(a)(2)(c) read; 1415-1420: confirmation by His Majesty's reply); p.50 (adjournment to 24 Tīsema)",
+          "uncertainty": "Procedural statements by the Speaker in debate. No vote on the motion took place; this is a clause 50A vacancy, not a clause 50B removal."
+        },
+        {
+          "id": "to_speaker_caretaker_ruling_20241209",
+          "text": "Answering Lord Tu'ivakanō's request that the King be asked for an interim Cabinet ('Kapineti fakataimi') during the 14-day period, the Speaker had section 18(2) of the Government Act read (the Deputy Prime Minister exercises the powers and performs the duties of the Prime Minister when the Prime Minister cannot act because of absence, illness or other reason) and ruled that on a resignation under clause 50(a) the existing Cabinet remains and, under the Government Act, the Deputy Prime Minister acts ('Le'ole'o leva 'a e 'Eiki Tokoni Palēmiá'); he found no constitutional power for the King to remove the Cabinet short of dissolving the Assembly, the Cabinet leaving office under the Constitution only when the Prime Minister is removed under clause 50(b).",
+          "attested_on": "2024-12-09",
+          "locator": "PDF pp.47-50 (headings 'Tokanga Nōpele Tongatapu 2 ke 'omai ha Kapineti Fakataimi ...'; 1420-1430 blocks)",
+          "uncertainty": "The Speaker's ruling in debate, not an instrument appointing an Acting Prime Minister. It names no person and dates no start. The Government Act was not retrieved; section 18(2) is taken only as read into the minutes. Ha'apai 13 cites an earlier precedent of a Prime Minister's death, which is not imported."
+        },
+        {
+          "id": "to_deputy_pm_vaipulu_listed_20241209",
+          "text": "The members' list printed at the front of the same minutes ('Hou'eiki Minisitā Kapineti') sets Hon. Samiu Vaipulu against ''Eiki Tokoni Palēmia, 'Eiki Minisitā Lao & Pilīsone' (Deputy Prime Minister; Justice and Prisons), Hon. Siaosi Sovaleni against ''Eiki Palēmia' with Education & Training and Police & Fire Services, and Hon. Tiofilusi Tiueti against Finance & National Planning and Revenue & Customs. The Lands and Internal Affairs portfolio lines are printed in red with no name.",
+          "attested_on": "2024-12-09",
+          "locator": "PDF p.2, rendered page",
+          "uncertainty": "A membership list attached to the minutes of 9 December; it gives no appointment date and precedes the resignation in the same sitting. pdftotext -layout output pairs Tiueti with the Deputy Prime Minister line; the pypdfium2 text layer and the rendered page pair Vaipulu with it, and the pairing here follows the rendered page. It says nothing about acting office."
+        }
+      ],
+      "scope_note": "Tongan-language verbatim minutes (50-page PDF, created 14 February 2025) of the sitting of 9 December 2024, downloaded through the Phoca Download button on the file page. The 4 March 2025 listing date is the upload date, not the sitting date. English renderings in the claims are this packet's reading, not an official translation. The no-confidence motion and the Prime Minister's reply are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-minutes-48-20241209-facts.json",
+        "bytes": 9225,
+        "sha256": "a09e0ba1f3a0a27add3058e0f047ef14227cfb2c528cde8028e69ef975ec3ac5",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_assembly_resignation_news_20241209",
+      "title": "King Tupou VI Accepts Resignation of Prime Minister Sovaleni Ahead of No Confidence Vote",
+      "url": "https://parliament.gov.to/en/media-centre/latest-news/king-tupou-vi-accepts-resignation-of-prime-minister-sovaleni-ahead-of-no-confidence-vote",
+      "publisher": "Legislative Assembly of Tonga",
+      "accessed_date": "2026-09-21",
+      "published_date": "2024-12-09",
+      "source_type": "primary_legislature_news_notice",
+      "access_method": "fetched_original_html_and_article_text_read",
+      "claims": [
+        {
+          "id": "to_assembly_news_resignation_accepted_20241209",
+          "text": "The Assembly news notice created 9 December 2024 reports that King Tupou VI officially accepted the resignation of Hon. Siaosi Sovaleni as Prime Minister, announced 'this morning' as Parliament prepared to debate the no-confidence motion filed by Hon. 'Aisake Eke; that Sovaleni told Parliament he would step down effective immediately while continuing to serve as an MP; that the nomination deadline was 23 December 2024; and that the Speaker announced Parliament would reconvene on 24 December 2024.",
+          "attested_on": "2024-12-09",
+          "locator": "Article body, paragraphs 1-2 and 5",
+          "uncertainty": "A news summary of the sitting. Its paraphrase of clause 50A refers to the Interim Speaker and the return of election writs, wording from the post-election procedure. It also says the 14-day nomination period 'starts today 9th of December', whereas the Speaker's ruling in the minutes counts from the next day; the minutes and the 10 December release govern. Only the dated facts are used."
+        }
+      ],
+      "scope_note": "Assembly news notice created 9 December 2024 at 17:58 (+13:00) and last updated the same day. The 'created' date is the page's publication metadata. Joomla page: each response embeds a per-request form token and the page shows a live hit counter, so no response hash is asserted.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-resignation-news-20241209-facts.json",
+        "bytes": 2857,
+        "sha256": "36578548953b7e9b458c29037f730483d13683524064e55e55141d39cd47f112",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_assembly_pm_nominations_open_20241210",
+      "title": "Nomination of candidates for Prime Minister now open",
+      "url": "https://parliament.gov.to/en/media-centre/press-releases/nomination-of-candidates-for-prime-minister-now-open",
+      "publisher": "Legislative Assembly of Tonga (Office of the Speaker)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2024-12-10",
+      "source_type": "primary_legislature_press_release",
+      "access_method": "fetched_original_html_and_article_text_read",
+      "claims": [
+        {
+          "id": "to_pm_nominations_invited_20241210",
+          "text": "The Office of the Speaker's release issued 10 December 2024 states that Speaker Lord Fakafanua issued invitations 'today' to all Elected Representatives to nominate an Elected Representative as candidate for Prime Minister Designate, following the vacancy in the Office of the Prime Minister due to the resignation of former Prime Minister Hon. Hu'akavameiliku (Siaosi 'Ofa ki Vahafolau Sovaleni) on Monday 9 December 2024; nominations close at 4.30pm on Monday 23 December 2024, and the meeting of all Elected Representatives to elect the Prime Minister Designate is to be held on Tuesday 24 December 2024.",
+          "attested_on": "2024-12-10",
+          "locator": "Press release body, paragraphs 1-3; issue line",
+          "uncertainty": "'Last Updated 16 January 2025' is page metadata, not the issue date. The name form 'Siaosi 'Ofa ki Vahafolau Sovaleni' is recorded as printed; it differs from the 2021 PMO form 'Ofakivahafolau and is not normalised."
+        }
+      ],
+      "scope_note": "Printed issue line 10 December 2024; the page metadata 'Last Updated 16 January 2025' is not the issue date. A Tongan-language counterpart ('Atā ke fai ha fokotu'u ...') was fetched (56,881 bytes) and not imported separately. Joomla page: each response embeds a per-request form token and the page shows a live hit counter, so no response hash is asserted.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-pm-nominations-open-20241210-facts.json",
+        "bytes": 2822,
+        "sha256": "9449eee88d7b234b682cf4acb5f1669c89d3b7057c70f253c7518bdb206a9f50",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_gazette_gse22_20241210",
+      "title": "Tonga Government Gazette Supplement Extraordinary No. 22, 10 December 2024 (Foreign Investment Act 2020, section 1(2): Proclamation)",
+      "url": "https://ago.gov.to/cms/images/LEGISLATION/GAZETTES/2024/2024-0047/GazetteSupplementExtraordinaryNo.222024.pdf",
+      "publisher": "Government of Tonga; published by the Attorney General's Office",
+      "accessed_date": "2026-09-21",
+      "published_date": "2024-12-10",
+      "source_type": "primary_government_gazette",
+      "access_method": "downloaded_original_pdf_text_read",
+      "claims": [
+        {
+          "id": "to_cabinet_proclamation_20241210",
+          "text": "Gazette Supplement Extraordinary No. 22 of 10 December 2024 prints a proclamation by which Cabinet, exercising section 1(2) of the Foreign Investment Act 2020 (Act 7 of 2020), brings that Act into force on 10 December 2024; it is made at Nuku'alofa that day and signed by Paula Pouvalu Ma'u, Chief Secretary and Secretary to Cabinet.",
+          "attested_on": "2024-12-10",
+          "locator": "English column (printed p.90) and Tongan column (printed p.91)",
+          "uncertainty": "Shows Cabinet exercising a statutory power the day after the resignation. It names no Prime Minister or Acting Prime Minister and is not a caretaker instrument. The Act's content is outside this packet."
+        }
+      ],
+      "scope_note": "Listed in the Attorney General's Office 'Gazettes by year' view for 2024 as item 2024-0047 ('GAZ_SE 22/24 10 December 2024 Proclamation'). That listing is selective (its numbering has gaps and it holds mostly legislation), so the absence of a notice from it is not evidence that no Gazette notice exists. The Tongan-labelled file (KaseteFakalahiMakeheFika222024x.pdf) returned identical bytes.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-gazette-gse22-20241210-facts.json",
+        "bytes": 2531,
+        "sha256": "068f0f7845bbe6d04d224a77ea25d7c10bb638bca1fa343a576a439fdd4dc8e4",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_assembly_first_nomination_20241220",
+      "title": "The Office of the Lord Speaker of the Legislative Assembly received the first nomination for Prime Minister Designate today",
+      "url": "https://parliament.gov.to/en/media-centre/press-releases/the-office-of-the-lord-speaker-of-the-legislative-assembly-received-the-first-nomination-for-prime-minister-designate-today",
+      "publisher": "Legislative Assembly of Tonga (Lord Speaker)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2024-12-20",
+      "source_type": "primary_legislature_press_release",
+      "access_method": "fetched_original_html_and_article_text_read",
+      "claims": [
+        {
+          "id": "to_pm_first_nomination_20241220",
+          "text": "The Lord Speaker's release issued 20 December 2024 states that the first written nomination for Prime Minister Designate was received 'this afternoon', that the candidate would be revealed at the meeting of Elected Representatives on Tuesday 24 December 2024, and that nominations remained open until 4.30pm on Monday 23 December 2024.",
+          "attested_on": "2024-12-20",
+          "locator": "Press release body; issue line",
+          "uncertainty": "Procedural record; names no candidate."
+        }
+      ],
+      "scope_note": "Printed issue line 20 December 2024; the page metadata 'Last Updated 16 January 2025' is not the issue date. Joomla page: each response embeds a per-request form token and the page shows a live hit counter, so no response hash is asserted.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-first-nomination-20241220-facts.json",
+        "bytes": 2307,
+        "sha256": "4ce3c28297eedd5f03363d9c0475a87a4dbb925435b46760c64cf9e301a2742c",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_assembly_two_nominations_20241223",
+      "title": "A total of two Prime Minister candidate nominations received by the Office of the Lord Speaker of Parliament",
+      "url": "https://parliament.gov.to/en/media-centre/press-releases/a-total-of-two-prime-minister-candidate-nominations-received-by-the-office-of-the-lord-speaker-of-parliament",
+      "publisher": "Legislative Assembly of Tonga (Lord Speaker)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2024-12-23",
+      "source_type": "primary_legislature_press_release",
+      "access_method": "fetched_original_html_and_article_text_read",
+      "claims": [
+        {
+          "id": "to_pm_two_nominations_20241223",
+          "text": "The Lord Speaker's release issued 23 December 2024 states that nominations closed at 4.30pm 'today' with two nominations received, the first on Friday 20 December and the second at noon 'today', and that the Elected Representatives would meet 'tomorrow', Tuesday 24 December 2024, at 10am to elect the Prime Minister from the two candidates.",
+          "attested_on": "2024-12-23",
+          "locator": "Press release body, paragraphs 1-2; issue line",
+          "uncertainty": "Procedural record; names no candidate."
+        }
+      ],
+      "scope_note": "Printed issue line 23 December 2024; the page metadata 'Last Updated 14 January 2025' is not the issue date. A Tongan-language counterpart was fetched (56,774 bytes) and not imported separately. Joomla page: each response embeds a per-request form token and the page shows a live hit counter, so no response hash is asserted.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-two-nominations-20241223-facts.json",
+        "bytes": 2399,
+        "sha256": "dffa18a4fce6479e04c932e5747afac45d946d8c22a1f3abb8f0155b3b082e98",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_assembly_minutes_pm_election_20241224",
+      "title": "Ko e Miniti 'o e Fili Palēmia Fili 'a e Hou'eiki Mēmipa 'o e Fale Alea 'o Tonga, Tūsite 24 Tīsema 2024 (Minutes of the election of the Prime Minister Designate)",
+      "url": "https://parliament.gov.to/en/parliament-business/hansards-debates/3-2024/132-miniti-fili-palemia-aho-24-o-tisema-2024",
+      "publisher": "Legislative Assembly of Tonga",
+      "accessed_date": "2026-09-21",
+      "published_date": "2025-03-04",
+      "source_type": "primary_legislature_verbatim_minutes",
+      "access_method": "downloaded_original_pdf_text_and_relevant_pages_visually_read",
+      "claims": [
+        {
+          "id": "to_pm_election_nominations_read_20241224",
+          "text": "The minutes of the special meeting of Elected Representatives on Tuesday 24 December 2024 record the Speaker describing it as a special meeting under the Schedule to clause 50(a), not an ordinary sitting, held because the office of Prime Minister became vacant on the resignation of the former Prime Minister, Hon. Hu'akavameiliku, on 9 December 2024. Two sealed nominations were opened: No. 1, dated 18 December 2024 and received on 20 December 2024 at 3:48pm, nominating 'Aisake Valu 'Eke (proposer 'Uhilamoelangi Fasi; seconders Taniela Liku'ohihifo Fusimālohi and Mo'ale Finau); No. 2, dated 23 December 2024 and received on 23 December 2024 at 12.00 noon, nominating Hon. Dr. Viliami Uasikē Lātū, Vava'u 16 (proposer Hon. Dr. Mo'ale 'Otunuku; seconders Hon. Sevenitini Toumoua and Hon. Vātau Mefi Hui). The Clerk confirmed both as complete.",
+          "attested_on": "2024-12-24",
+          "locator": "PDF pp.8-9 (Speaker's address); pp.11-13 ('Tohi Fika 1', 'Tohi Fika 2')",
+          "uncertainty": "Proposers and seconders are nomination roles, not party or coalition membership."
+        },
+        {
+          "id": "to_eke_assembly_selection_20241224",
+          "text": "The same minutes record that, in the 1500-1505 block after the secret ballot, the Speaker stated he had completed his duty of reporting the Assembly's election result to His Majesty the King and then announced the result of the secret ballot of Tuesday 24 December 2024: 24 votes in all, a majority being 13; Hon. 'Aisake Valu Eke 16, Hon. Viliami Uasikē Lātū 8; Eke, Tongatapu 5, elected with 16 votes. The result was read by the Clerk of the Assembly, Gloria Pōle'o, and confirmed by Sefita Tangi, Auditor General. The Speaker closed by adjourning to the new year and leaving to the Prime Minister-elect the remaining business of forming his Cabinet.",
+          "attested_on": "2024-12-24",
+          "locator": "PDF pp.52-53 ('Fakahā e ola 'o e Fili Fakapulipuli Fili Palēmia'); p.55",
+          "uncertainty": "This is the Assembly's selection of the Prime Minister Designate under clause 50A, not the royal appointment or a start of office. The report to the King precedes the announcement in the record; its exact time is not given."
+        },
+        {
+          "id": "to_acting_pm_addressed_20241224",
+          "text": "At the same meeting the Speaker's address, Lātū's candidate speech and Eke's candidate speech each include the Acting Prime Minister (''Eiki Palēmia Le'ole'o') in their salutations; Lātū's also greets the acting members of the Cabinet ('Hou'eiki Mēmipa Le'ole'o 'o e Kapineti') and Eke's the Cabinet ('Hou'eiki Kapinetí'). None of these salutations names the Acting Prime Minister.",
+          "attested_on": "2024-12-24",
+          "locator": "PDF p.9 (Me'a 'a e 'Eiki Seá); p.19 (Fakamalanga Vava'u 16, 1105-1110 block); p.13 (Fakamalanga Tongatapu 5)",
+          "uncertainty": "A form of address only; no name, instrument or start date. The Speaker's later call to the Acting Prime Minister is a separate claim (to_acting_pm_vaipulu_floor_20241224)."
+        },
+        {
+          "id": "to_acting_pm_vaipulu_floor_20241224",
+          "text": "In the 1320-1325 block of the same minutes the Speaker, with only Vava'u members left to speak, gives the floor with 'me'a mai Palēmia Le'ole'o' (the Acting Prime Minister has the floor); the speech that follows is headed 'Fakamalanga poupou Vava'u 15 kia Viliami Uasikē Lātū' (Vava'u 15's speech supporting Lātū) and carries the speaker label Samiu Vaipulu. The roll of Elected Representatives at the front of the minutes prints 'Samiu Kuita Vaipulu - Fakafofonga Kakai Vāhenga Fili Vava'u 15'.",
+          "attested_on": "2024-12-24",
+          "locator": "PDF p.47 (1320-1325 block); p.3 (roll of Elected Representatives)",
+          "uncertainty": "The Speaker's form of address in debate, not an appointing instrument. It identifies the member called on as Acting Prime Minister on 24 December 2024 but gives no start date, instrument or end, and 9 December is not inferred from it. Page 47 was read from the pypdfium2 text layer only; page 3 was rendered."
+        }
+      ],
+      "scope_note": "Tongan-language verbatim minutes (55-page PDF, created 3 February 2025) of the special meeting of Elected Representatives on 24 December 2024, downloaded through the Phoca Download button on the file page. The 4 March 2025 listing date is the upload date, not the meeting date. English renderings are this packet's reading, not an official translation.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-minutes-pm-election-20241224-facts.json",
+        "bytes": 6446,
+        "sha256": "99d8748a42949ba5594ce09bc90de49adfee60b243f48105cac08591ebc2e090",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_assembly_eke_elected_news_20241224",
+      "title": "Parliament elects Hon. Dr. 'Aisake Valu Eke as Tonga's New Prime Minister Designate",
+      "url": "https://parliament.gov.to/en/media-centre/latest-news/parliament-elects-hon-dr-aisake-valu-eke-as-tonga-s-new-prime-minister-designate",
+      "publisher": "Legislative Assembly of Tonga",
+      "accessed_date": "2026-09-21",
+      "published_date": "2024-12-24",
+      "source_type": "primary_legislature_news_notice",
+      "access_method": "fetched_original_html_and_article_text_read",
+      "claims": [
+        {
+          "id": "to_assembly_news_eke_elected_20241224",
+          "text": "The Assembly news notice created 24 December 2024 reports that the Legislative Assembly elected Hon. Dr. 'Aisake Valu Eke (Tongatapu 5) as Prime Minister Designate with 16 votes to 8 for Dr. Viliami Uasike Latu, following the resignation of former Prime Minister Hu'akavameiliku, who stepped down on 9 December; that the Speaker announced the result after it was presented to King Tupou VI; and that Parliament adjourned until further notice as the nation awaited formal confirmation of Eke's leadership.",
+          "attested_on": "2024-12-24",
+          "locator": "Article body, paragraphs 1-4 and 7",
+          "uncertainty": "Corroborates the minutes. 'Awaits the formal confirmation' confirms that no royal appointment had been made by then; it dates none."
+        }
+      ],
+      "scope_note": "Assembly news notice created 24 December 2024 at 20:47 (+13:00) and last updated 31 January 2025; its four gallery photographs were not used. The 'created' date is the page's publication metadata. Joomla page: each response embeds a per-request form token and the page shows a live hit counter, so no response hash is asserted.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-eke-elected-news-20241224-facts.json",
+        "bytes": 2644,
+        "sha256": "612fcd33a26bb284415ed22aa95ece76ef90673adbbaec7721c1de1be3bae8a4",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_caretaker_announcement_20250106",
+      "title": "Public Announcement: 'Current Status of His Majesty's Government' (Fanongonongo ki he Kakai: 'Tu'unga 'o e Pule'anga 'o 'Ene 'Afio'), 6 January 2025",
+      "url": "https://pmo.gov.to/14107-2/",
+      "publisher": "Government of Tonga, Prime Minister's Office",
+      "accessed_date": "2026-09-21",
+      "published_date": "2025-01-06",
+      "source_type": "primary_government_public_announcement",
+      "access_method": "release_images_downloaded_and_visually_read_post_page_read_from_wayback_capture",
+      "claims": [
+        {
+          "id": "to_caretaker_acting_pm_vaipulu_20250106",
+          "text": "The Government of Tonga Public Announcement dated 6 January 2025, 'Current Status of His Majesty's Government' (with the Tongan 'Tu'unga 'o e Pule'anga 'o 'Ene 'Afio' of the same date), states that Government resumed work that day, Monday 6 January 2025; that it is in 'caretaker mode' ('tauhi fakataimi') under the Acting Prime Minister ('Palēmia Le'ole'o'), Hon. Samiu Kuita Vaipulu, and the current Cabinet Ministers; that no new financial commitments or policies are to be made in the caretaker period; and that the caretaker Government continues until the appointment of Prime Minister Designate Hon. Dr. 'Aisake Valu Eke and of his new Cabinet Ministers is completed, after which the appointments of the current Cabinet Ministers will be revoked.",
+          "attested_on": "2025-01-06",
+          "locator": "Image 1 (English), date line and paragraphs 1-5 and 7; image 2 (Tongan), paragraphs 1-5",
+          "uncertainty": "Attests the arrangement on 6 January 2025. It does not say when Vaipulu began acting, under what instrument, or when the caretaker period ended; the revocation of the current ministers is a forecast, not a dated act. Its final paragraph says the Office of the Prime Minister will issue a Public Announcement in due course of the commencement of the New Government; no such announcement was identified."
+        }
+      ],
+      "scope_note": "The announcement is published only as two JPEG images (English 1.jpg, Tongan 2.jpg), still served live. The post page now returns HTTP 404, as does its REST endpoint; it was read from a Wayback Machine capture of the original page (26 January 2025), which embeds both images. The capture is an archive of the PMO page, not a PMO-served copy. The coat of arms is not used.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-caretaker-announcement-20250106-facts.json",
+        "bytes": 4780,
+        "sha256": "38593384fb20230084e4d267fb05edb93bce3016fbca0934773bca5cdd986b52",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_eke_appointment_20250122",
+      "title": "His Majesty King Tupou VI appoints Hon. Dr. 'Aisake Valu Eke as Prime Minister of Tonga",
+      "url": "https://pmo.gov.to/his-majesty-king-tupou-vi-appoints-hon-dr-aisake-valu-eke-as-prime-minister-of-tonga/",
+      "publisher": "Government of Tonga, Prime Minister's Office",
+      "accessed_date": "2026-09-21",
+      "published_date": "2025-01-22",
+      "source_type": "primary_government_appointment_announcement",
+      "access_method": "wayback_capture_of_original_html_read",
+      "claims": [
+        {
+          "id": "to_eke_royal_appointment_20250122",
+          "text": "The PMO release datelined 'Nuku'alofa, 22 January, 2025' states that King Tupou VI, 'today, Wednesday 22 January 2025, at the Royal Palace, Nuku'alofa', appointed Honourable Dr. 'Aisake Valu Eke 'as the Prime Minister Tonga' (as printed; the title reads 'Prime Minister of Tonga') in accordance with Clause 50A (1) of the Act of the Constitution of Tonga, and describes him as the 19th Prime Minister.",
+          "attested_on": "2025-01-22",
+          "locator": "Archived page, release paragraph 1",
+          "uncertainty": "An appointment event. The release gives no separate 'with effect from' date, no warrant signature or presentation, no time and no instrument number. The ordinal is recorded as printed and is not used to number a succession."
+        },
+        {
+          "id": "to_eke_assembly_designate_pmo_20250122",
+          "text": "The same release states that Eke was elected Prime Minister Designate at the Legislative Assembly of Tonga on 24 December 2024 and is the Member of Parliament for Tongatapu No. 5.",
+          "attested_on": "2024-12-24",
+          "locator": "Archived page, release paragraph 2",
+          "uncertainty": "Independent PMO corroboration of the Assembly selection; it is not the appointment. The release's biography (birth date, career, family) is not imported."
+        }
+      ],
+      "scope_note": "The live post returns HTTP 404 (a Wayback capture of 18 January 2026 also records a 404). The release text was read in two Wayback captures of the original page (23 January and 17 February 2025), which carry the same text. The release is datelined 22 January 2025; the post was published on the PMO site on 23 January 2025 local time: the 23 January capture (15:51 UTC) shows '12 hours ago', placing publication at about 03:20-04:20 UTC (16:20-17:20 local, UTC+13), and the WordPress media record of the post's portrait image is dated 2025-01-23T15:42:27 local (02:42:27 UTC). This posting date is a derived observation, not a claim. The page's photographs were not used.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-appointment-20250122-facts.json",
+        "bytes": 4851,
+        "sha256": "efd0a8ce8d0514e883d61550057fcb1ff57d4104994ababb82b870fb6d80e5ed",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_pif_joint_release_20250124",
+      "title": "Pacific Islands Forum Secretary General Meets New Prime Minister of Tonga (joint media release, 24 January 2025)",
+      "url": "https://pmo.gov.to/pacific-islands-forum-secretary-general-meets-new-prime-minister-of-tonga/",
+      "publisher": "Government of Tonga, Prime Minister's Office (joint media release with the Pacific Islands Forum Secretariat)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2025-01-24",
+      "source_type": "primary_government_media_release",
+      "access_method": "browser_fetched_original_html_and_release_text_read",
+      "claims": [
+        {
+          "id": "to_eke_pm_pif_release_20250124",
+          "text": "The PMO joint media release dated '(24th January, 2025)', posted the same day, calls Hon. Dr 'Aisake Valu Eke 'The Prime Minister of Tonga and Chair of the Pacific Islands Forum (PIF)' and quotes him as 'Forum Chair and Prime Minister'.",
+          "attested_on": "2025-01-24",
+          "locator": "Release date line and first paragraph; quotation attribution in paragraph 4; post date 2025-01-24T16:49:24 local (03:49:24 UTC)",
+          "uncertainty": "A dated office observation two days after the appointment release, from a page still live at access; it is not an appointment record or a start date. Its body dates the meeting '24 February 2025', a misprint in a release dated and posted on 24 January 2025; the meeting date is not imported."
+        }
+      ],
+      "scope_note": "Live PMO post 14141 (category 'Media Release'). Used only as a dated, still-live corroboration that Eke held the premiership two days after the appointment release, which survives only in archive captures; the forum business is not imported. A direct non-browser request returned HTTP 403, so the page was fetched in a browser.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-pif-joint-release-20250124-facts.json",
+        "bytes": 3040,
+        "sha256": "1892ac95ca5af678acc0fc51e6317d4d11c5c3acadfb6f7dd7dbbc4cf8536aee",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_eke_cabinet_20250128",
+      "title": "Prime Minister, Hon. Dr. 'Aisake Valu Eke announces new Cabinet Ministers (media release, 28 January 2025)",
+      "url": "https://pmo.gov.to/prime-minister-hon-dr-aisake-valu-eke-announces-new-cabinet-ministers/",
+      "publisher": "Government of Tonga, Prime Minister's Office",
+      "accessed_date": "2026-09-21",
+      "published_date": "2025-01-28",
+      "source_type": "primary_government_appointment_announcement",
+      "access_method": "browser_fetched_page_and_downloaded_original_release_pdf_visually_read",
+      "claims": [
+        {
+          "id": "to_eke_cabinet_effective_20250128",
+          "text": "The PMO media release dated 28 January 2025 states that King Tupou VI, on the recommendations of Prime Minister Hon. Dr. 'Aisake Valu Eke, appointed the new Ministers of Government 'with effect from today, Tuesday 28th January 2025'. Its numbered list has eleven members: 1, Eke (Prime Minister; Finance; Fisheries; Prisons); 2, Hon. Dr. Taniela Likuohihifo Fusimalohi (Deputy Prime Minister; Infrastructure; MEIDECC); 3, His Royal Highness the Crown Prince Tupouto'a 'Ulukalala (Foreign Affairs; His Majesty's Armed Forces); items 4-11 name the other ministers.",
+          "attested_on": "2025-01-28",
+          "locator": "PDF p.1, first paragraph and items 1-3; items 4-11 on pp.1-2",
+          "uncertainty": "The stated effective date of the ministerial appointments. Item 1 lists the premiership among Eke's portfolios; that is not a second start date for the premiership, which the 22 January release dates. Items 4-11 are not imported."
+        },
+        {
+          "id": "to_eke_cabinet_letters_planned_20250128",
+          "text": "The same release states that the Prime Minister 'will present' the letters of appointment to all Cabinet Ministers on Thursday 30 January 2025.",
+          "attested_on": "2025-01-28",
+          "locator": "PDF p.2, closing paragraph",
+          "uncertainty": "A forecast made on 28 January; no retrieved record confirms that the letters were presented on 30 January."
+        }
+      ],
+      "scope_note": "Two-page PDF release (created 28 January 2025, 14:29 +13:00) attached to the live PMO post; the page text matches the PDF. A second upload with the suffix '-1.pdf' is byte-identical. The post's group photograph and an attached image of a different (24 January) release were not used. Items 4-11 of the list are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-cabinet-20250128-facts.json",
+        "bytes": 4059,
+        "sha256": "20b5638db55809c00951d12361a826fe87d04c3925a8d12c24d45e1e54225ba1",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_assembly_oath_sitting_notice_20250129",
+      "title": "Parliament to sit of Friday, 31st January",
+      "url": "https://parliament.gov.to/en/media-centre/latest-news/parliament-to-sit-of-friday-31st-january",
+      "publisher": "Legislative Assembly of Tonga",
+      "accessed_date": "2026-09-21",
+      "published_date": "2025-01-29",
+      "source_type": "primary_legislature_news_notice",
+      "access_method": "fetched_original_html_and_article_text_read",
+      "claims": [
+        {
+          "id": "to_oath_sitting_notice_20250129",
+          "text": "The Assembly notice created 29 January 2025 states that the Legislative Assembly will convene on Friday 31 January 2025 at 11:00am, that Cabinet members appointed by His Majesty will take their oaths of office in Parliament at that sitting, and that selection of Standing Committee members is also on the agenda.",
+          "attested_on": "2025-01-29",
+          "locator": "Article body",
+          "uncertainty": "Notice of a forthcoming sitting."
+        }
+      ],
+      "scope_note": "Assembly news notice created 29 January 2025 at 08:05 (+13:00) and last updated 8 February 2025; the title is recorded as printed. The 'created' date is the page's publication metadata. Joomla page: each response embeds a per-request form token and the page shows a live hit counter, so no response hash is asserted.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-oath-sitting-notice-20250129-facts.json",
+        "bytes": 2264,
+        "sha256": "ce907d3379996f6adf81f6b82c79eb5e18da11d8929e888399fa9d032a4e6307",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_assembly_minutes_01_20250131",
+      "title": "Ko e Miniti 'o e Feme'a'aki 'a e Hou'eiki Mēmipa 'o e Fale Alea 'o Tonga, Fika 1, Falaite 31 Sānuali 2025 (Minutes No. 1, Friday 31 January 2025)",
+      "url": "https://parliament.gov.to/en/parliament-business/hansards-debates/2-2025/111-miniti-fika-01-aho-31-o-sanuali-2025",
+      "publisher": "Legislative Assembly of Tonga",
+      "accessed_date": "2026-09-21",
+      "published_date": "2025-02-06",
+      "source_type": "primary_legislature_verbatim_minutes",
+      "access_method": "downloaded_original_pdf_text_and_relevant_pages_visually_read",
+      "claims": [
+        {
+          "id": "to_eke_oath_20250131",
+          "text": "The minutes of sitting No. 1 of 2025 (Friday 31 January 2025, from 11:00am) record the Chief Clerk administering to the Prime Minister, 'Aisake Valu Eke, the oath 'i he 'ao 'o e Fale Alea 'o Tongá' under clause 83 of the Constitution, taken as 'Palēmia 'o Tonga ka ko e Minisitā Pa'anga, Minisitā ki he Toutaí, Minisitā ki he Pilīsoné' (Prime Minister, Minister of Finance, of Fisheries and of Prisons); he kissed the Bible and signed the oath, which Speaker Lord Fakafanua countersigned. Eke then introduced his Cabinet, and the ministers took the oath, among them Deputy Prime Minister Taniela Liku'ohihifo Fusimālohi and the Crown Prince. The members' list prints Eke as ''Eiki Palēmia' with Finance, Fisheries and Prisons, and Fusimālohi as ''Eiki Tokoni Palēmia' with Infrastructure and MEIDECC.",
+          "attested_on": "2025-01-31",
+          "locator": "PDF p.2 (members' list); pp.7-8 (Prime Minister's oath); p.9 (introduction of ministers); pp.17-18 (Deputy Prime Minister's oath)",
+          "uncertainty": "The oath before the Assembly is a separate event, not the start of office (appointment 22 January; ministers effective 28 January). The Tongan-versus-English oath dispute at the same sitting is not imported."
+        },
+        {
+          "id": "to_vaipulu_peoples_rep_listed_20250131",
+          "text": "The members' list printed with the same minutes prints 'Fakafofonga Kakai 15, Vava'u' against Samiu Vaipulu among the People's Representatives, not in the Cabinet list, where Taniela Liku'ohihifo Fusimālohi is ''Eiki Tokoni Palēmia'; in the transcript the Speaker calls on him as 'Vava'u 15'.",
+          "attested_on": "2025-01-31",
+          "locator": "PDF p.2 (members' list, rendered); p.23 ('Me'a mai 'e Vava'u 15')",
+          "uncertainty": "An upper bound only: by 31 January 2025 Vaipulu is listed outside the Cabinet. It gives no date on which his deputy premiership or acting service ended, and none is inferred from the 22 or 28 January appointments. Page 23 was read from the text layer only."
+        }
+      ],
+      "scope_note": "Tongan-language verbatim minutes (52-page PDF, created 6 February 2025) of the first sitting of 2025, downloaded through the Phoca Download button on the file page. The 6 February 2025 listing date is the upload date. English renderings are this packet's reading, not an official translation.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-minutes-01-20250131-facts.json",
+        "bytes": 4272,
+        "sha256": "746db9e1c86390bb566f6e085858751b0d4c0e116952a6b8b0ae62a0ebe6d4ca",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_assembly_oath_news_20250203",
+      "title": "Tonga Prime Minister and Cabinet Ministers Take Oath of Office in Parliament",
+      "url": "https://parliament.gov.to/en/media-centre/latest-news/tonga-prime-minister-and-cabinet-ministers-take-oath-of-office-in-parliament",
+      "publisher": "Legislative Assembly of Tonga",
+      "accessed_date": "2026-09-21",
+      "published_date": "2025-02-03",
+      "source_type": "primary_legislature_news_notice",
+      "access_method": "fetched_original_html_and_article_text_read",
+      "claims": [
+        {
+          "id": "to_assembly_news_oath_20250131",
+          "text": "The Assembly news notice created 3 February 2025 reports that Prime Minister Hon. 'Aisake Eke and his Cabinet Ministers took their oath of office in the Legislative Assembly on Friday 31 January, 'marking the official beginning of their term in Parliament'; that all Ministers, including the Crown Prince as Minister of Foreign Affairs and His Majesty's Armed Forces, took their oaths in Tongan; and that Hon. Paula Piveni Piukala's motion to take his oath in English was lost, 7 in favour and 13 against.",
+          "attested_on": "2025-01-31",
+          "locator": "Article body, paragraphs 1-5",
+          "uncertainty": "'Official beginning of their term in Parliament' is the notice's wording and is not read as the start of office."
+        }
+      ],
+      "scope_note": "Assembly news notice created 3 February 2025 at 17:12 (+13:00): the report date is not the 31 January oath date. Its 25 gallery photographs were not used. Joomla page: each response embeds a per-request form token and the page shows a live hit counter, so no response hash is asserted.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-oath-news-20250203-facts.json",
+        "bytes": 2567,
+        "sha256": "77855e0f405a7c62c5d12f372f16b1765fddec029463b8402ac072eeaef0b45b",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_ipu_2025",
+      "title": "Tonga Legislative Assembly November 2025 Election",
+      "url": "https://data.ipu.org/parliament/TO/TO-LC01/election/TO-LC01-E20251120/",
+      "publisher": "Inter-Parliamentary Union (IPU Parline)",
+      "accessed_date": "2026-09-21",
+      "source_type": "interparliamentary_election_record",
+      "access_method": "fetched_original_html_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_ipu_2025_transition",
+          "text": "IPU's page for the November 2025 election states that in December 2024 Prime Minister Siaosi Sovaleni resigned ahead of a vote of confidence, that former long-serving finance minister 'Aisake Eke succeeded him in January 2025, and that in the same month King Tupou VI appointed Crown Prince Tupouto'a 'Ulukalala Minister for Foreign Affairs and Minister for His Majesty's Armed Forces.",
+          "locator": "'About the election', Note 1",
+          "period": {
+            "from": "2024-12-01",
+            "through": "2025-01-31"
+          },
+          "uncertainty": "Secondary international database with month precision; corroboration only. 'Vote of confidence' is as printed; the Assembly records call it a motion of no confidence."
+        }
+      ],
+      "scope_note": "Live Parline page read after the cutoff for its dated December 2024 to January 2025 narrative only; the page shows no revision date, and its November 2025 election content is not imported. Two fetches returned the same byte count with different hashes (dynamic tokens), so no response hash is asserted.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-ipu-2025-election-facts.json",
+        "bytes": 2274,
+        "sha256": "3ab7489ecce6d941a427e888d88069a766200b1bf189ebd752f6039f9b834e96",
+        "kind": "derived_factual_extract"
+      }
     }
   ],
   "organizations": [
@@ -1210,7 +1724,22 @@
             "to_assembly_pm_meeting_20211213",
             "to_assembly_pm_nominations_20211214",
             "to_pmo_sovaleni_appointment_20211228",
-            "to_pmo_sovaleni_appointment_to_20211228"
+            "to_pmo_sovaleni_appointment_to_20211228",
+            "to_assembly_vonc_notice_20241125",
+            "to_assembly_minutes_48_20241209",
+            "to_assembly_resignation_news_20241209",
+            "to_assembly_pm_nominations_open_20241210",
+            "to_assembly_first_nomination_20241220",
+            "to_assembly_two_nominations_20241223",
+            "to_assembly_minutes_pm_election_20241224",
+            "to_assembly_eke_elected_news_20241224",
+            "to_pmo_caretaker_announcement_20250106",
+            "to_pmo_eke_appointment_20250122",
+            "to_pmo_pif_joint_release_20250124",
+            "to_assembly_oath_sitting_notice_20250129",
+            "to_assembly_minutes_01_20250131",
+            "to_assembly_oath_news_20250203",
+            "to_ipu_2025"
           ],
           "claim_ids": [
             "to_constitution_pm_cabinet",
@@ -1225,7 +1754,29 @@
             "to_pm_two_nominations_20211214",
             "to_sovaleni_assembly_election_pmo_20211215",
             "to_sovaleni_royal_appointment_en_20211227",
-            "to_sovaleni_royal_appointment_to_20211227"
+            "to_sovaleni_royal_appointment_to_20211227",
+            "to_vonc_notice_received_20241123",
+            "to_sovaleni_resignation_statement_20241209",
+            "to_palace_acceptance_letter_20241209",
+            "to_speaker_vonc_withdrawn_procedure_20241209",
+            "to_speaker_caretaker_ruling_20241209",
+            "to_assembly_news_resignation_accepted_20241209",
+            "to_pm_nominations_invited_20241210",
+            "to_pm_first_nomination_20241220",
+            "to_pm_two_nominations_20241223",
+            "to_pm_election_nominations_read_20241224",
+            "to_eke_assembly_selection_20241224",
+            "to_acting_pm_addressed_20241224",
+            "to_acting_pm_vaipulu_floor_20241224",
+            "to_assembly_news_eke_elected_20241224",
+            "to_caretaker_acting_pm_vaipulu_20250106",
+            "to_eke_royal_appointment_20250122",
+            "to_eke_assembly_designate_pmo_20250122",
+            "to_eke_pm_pif_release_20250124",
+            "to_oath_sitting_notice_20250129",
+            "to_eke_oath_20250131",
+            "to_assembly_news_oath_20250131",
+            "to_ipu_2025_transition"
           ],
           "holder_claims": [
             "to_fakafanua_appointment",
@@ -1247,17 +1798,34 @@
               "name": "Siaosi 'Ofakivahafolau Sovaleni",
               "attested_on": null,
               "from": "2021-12-27",
-              "until": null,
+              "until": "2024-12-09",
               "sources": [
                 "to_pmo_sovaleni_appointment_20211228",
-                "to_pmo_sovaleni_appointment_to_20211228"
+                "to_pmo_sovaleni_appointment_to_20211228",
+                "to_assembly_minutes_48_20241209"
               ],
               "claim_ids": [
                 "to_sovaleni_royal_appointment_en_20211227",
-                "to_sovaleni_royal_appointment_to_20211227"
+                "to_sovaleni_royal_appointment_to_20211227",
+                "to_sovaleni_resignation_statement_20241209",
+                "to_palace_acceptance_letter_20241209"
               ],
-              "note": "Royal appointment under Clause 50A with effect from 27 December 2021 (TO-TR21-03); both PMO releases are dated 28 December. The Tongan release prints the name form Hu'akavameiliku in parentheses.",
-              "uncertainty": "The start is the stated effective date. The warrant's signature and presentation dates are not recorded in these releases (TO-TR21-04). The 15 December Assembly selection is a separate claim, not the start of office. No end date or term is inferred."
+              "note": "Royal appointment under Clause 50A with effect from 27 December 2021 (TO-TR21-03); both PMO releases are dated 28 December. The Tongan release prints the name form Hu'akavameiliku in parentheses. His resignation of 9 December 2024 ends the observation (TO-TR24-01); the 2024 Assembly records print 'Siaosi 'Ofa ki Vahafolau Sovaleni' and the Palace letter 'Hon. Hu'akavameiliku'.",
+              "uncertainty": "The start is the stated effective date. The warrant's signature and presentation dates are not recorded in these releases (TO-TR21-04). The 15 December Assembly selection is a separate claim, not the start of office. The end is the resignation of 9 December 2024, stated in the House as effective immediately (1150-1200 transcript block) and accepted by the King the same day, during the recess before the Palace Office letter was read at 1400-1405; the date is exact to the day and the clock time of acceptance is not recorded. The end is attached to this holder as the resignation of the sitting Prime Minister, named Hu'akavameiliku in both the 2021 Tongan release and the Palace letter, not by matching spellings. No term length is inferred."
+            },
+            {
+              "name": "'Aisake Valu Eke",
+              "attested_on": "2025-01-22",
+              "from": null,
+              "until": null,
+              "sources": [
+                "to_pmo_eke_appointment_20250122"
+              ],
+              "claim_ids": [
+                "to_eke_royal_appointment_20250122"
+              ],
+              "note": "Royal appointment under Clause 50A(1) at the Royal Palace on Wednesday 22 January 2025 (TO-TR24-04), read from Wayback captures of the removed PMO release; the live PMO release of 24 January 2025 calls him Prime Minister.",
+              "uncertainty": "An appointment event, recorded like the 2019 Tu'i'onetoa observation: the release states no separate 'with effect from' date, and no warrant signature, presentation or instrument number is recorded (TO-TR24-05). The 24 December 2024 Assembly selection, the 28 January 2025 Cabinet list and the 31 January 2025 oath are separate claims, not the start of office. No end or term is inferred; Lord Fakafanua's 18 December 2025 appointment does not supply one."
             }
           ]
         }
@@ -1276,7 +1844,22 @@
         "to_assembly_pm_meeting_20211213",
         "to_assembly_pm_nominations_20211214",
         "to_pmo_sovaleni_appointment_20211228",
-        "to_pmo_sovaleni_appointment_to_20211228"
+        "to_pmo_sovaleni_appointment_to_20211228",
+        "to_assembly_vonc_notice_20241125",
+        "to_assembly_minutes_48_20241209",
+        "to_assembly_resignation_news_20241209",
+        "to_assembly_pm_nominations_open_20241210",
+        "to_assembly_first_nomination_20241220",
+        "to_assembly_two_nominations_20241223",
+        "to_assembly_minutes_pm_election_20241224",
+        "to_assembly_eke_elected_news_20241224",
+        "to_pmo_caretaker_announcement_20250106",
+        "to_pmo_eke_appointment_20250122",
+        "to_pmo_pif_joint_release_20250124",
+        "to_assembly_oath_sitting_notice_20250129",
+        "to_assembly_minutes_01_20250131",
+        "to_assembly_oath_news_20250203",
+        "to_ipu_2025"
       ],
       "claim_ids": [
         "to_constitution_pm_cabinet",
@@ -1294,7 +1877,29 @@
         "to_pm_two_nominations_20211214",
         "to_sovaleni_assembly_election_pmo_20211215",
         "to_sovaleni_royal_appointment_en_20211227",
-        "to_sovaleni_royal_appointment_to_20211227"
+        "to_sovaleni_royal_appointment_to_20211227",
+        "to_vonc_notice_received_20241123",
+        "to_sovaleni_resignation_statement_20241209",
+        "to_palace_acceptance_letter_20241209",
+        "to_speaker_vonc_withdrawn_procedure_20241209",
+        "to_speaker_caretaker_ruling_20241209",
+        "to_assembly_news_resignation_accepted_20241209",
+        "to_pm_nominations_invited_20241210",
+        "to_pm_first_nomination_20241220",
+        "to_pm_two_nominations_20241223",
+        "to_pm_election_nominations_read_20241224",
+        "to_eke_assembly_selection_20241224",
+        "to_acting_pm_addressed_20241224",
+        "to_acting_pm_vaipulu_floor_20241224",
+        "to_assembly_news_eke_elected_20241224",
+        "to_caretaker_acting_pm_vaipulu_20250106",
+        "to_eke_royal_appointment_20250122",
+        "to_eke_assembly_designate_pmo_20250122",
+        "to_eke_pm_pif_release_20250124",
+        "to_oath_sitting_notice_20250129",
+        "to_eke_oath_20250131",
+        "to_assembly_news_oath_20250131",
+        "to_ipu_2025_transition"
       ],
       "coverage": {
         "status": "partial",
@@ -1309,7 +1914,10 @@
           "The 2019 appointment observation does not supply the end of that premiership, caretaker service, temporary absences or any party leadership term.",
           "2021 transition (TO-REC-10; tonga-transition-2021-02.md): the Assembly procedure and 15 December selection, the royal appointment effective 27 December (PMO releases dated 28 December) and the Cabinet effective 28 December are separately sourced (TO-TR21-01 to TO-TR21-03, TO-TR21-06); none of these dates is merged into another.",
           "TO-TR21-04: the signature and presentation dates of the Royal Warrant appointing Siaosi Sovaleni are not recorded in any retrieved primary source; the 28 December release date is not a signature date. A secondary news account of a 28 December presentation is a search lead only.",
-          "TO-TR21-05: the end of Pohiva Tu'i'onetoa's premiership and any caretaker or interim boundary before 27 December 2021 are unsourced; no end date is inferred from Sovaleni's effective start. PMO site searches for 'Sovaleni' (result pages 1-2), 'caretaker' (no results), 'Tuionetoa' and 'Pohiva Tu' (no December 2021 record), plus the Assembly news archive, press releases and Hansard index, were checked; no online Government Gazette was located."
+          "TO-TR21-05: the end of Pohiva Tu'i'onetoa's premiership and any caretaker or interim boundary before 27 December 2021 are unsourced; no end date is inferred from Sovaleni's effective start. PMO site searches for 'Sovaleni' (result pages 1-2), 'caretaker' (no results), 'Tuionetoa' and 'Pohiva Tu' (no December 2021 record), plus the Assembly news archive, press releases and Hansard index, were checked; no online Government Gazette was located.",
+          "2024-2025 transition (tonga-transition-2024-03.md): Siaosi Sovaleni's resignation, announced 'effective immediately' and accepted by the King on 9 December 2024 (TO-TR24-01), the Assembly's selection of 'Aisake Valu Eke on 24 December 2024 by 16 votes to 8 (TO-TR24-03) and his royal appointment under Clause 50A(1) on 22 January 2025 (TO-TR24-04) are separately sourced; none of these dates is merged into another.",
+          "TO-TR24-02: Samiu Kuita Vaipulu is attested as Acting Prime Minister on 24 December 2024 (Assembly minutes) and on 6 January 2025 (PMO caretaker announcement) only. The start, instrument and end of the acting arrangement, the revocation of the caretaker ministers and the PMO's promised announcement of the new Government's commencement are unsourced; none is inferred from the 9 December ruling or from the 22 and 28 January 2025 appointments.",
+          "TO-TR24-05: no separate effective date, and no Royal Warrant signature, presentation or number, is recorded for Eke's appointment; the release survives only in archive captures and was posted on 23 January 2025 local time. The 31 January 2025 oath in the Assembly is a separate event. The Attorney General's Office gazette listing is selective, so no Gazette notice is ruled out."
         ]
       }
     },
@@ -1344,12 +1952,19 @@
           "kind": "institutional_office",
           "sources": [
             "to_cabinet_2026",
-            "to_pmo_cabinet_20211229"
+            "to_pmo_cabinet_20211229",
+            "to_assembly_minutes_48_20241209",
+            "to_pmo_eke_cabinet_20250128",
+            "to_assembly_minutes_01_20250131"
           ],
           "claim_ids": [
             "to_cabinet_appointment",
             "to_sovaleni_cabinet_effective_20211228",
-            "to_sovaleni_cabinet_letters_oath_20211229"
+            "to_sovaleni_cabinet_letters_oath_20211229",
+            "to_deputy_pm_vaipulu_listed_20241209",
+            "to_eke_cabinet_effective_20250128",
+            "to_eke_oath_20250131",
+            "to_vaipulu_peoples_rep_listed_20250131"
           ],
           "holder_claims": [
             "to_cabinet_appointment",
@@ -1366,6 +1981,34 @@
               ],
               "note": "Appointed Deputy Prime Minister, with MEIDECC and Public Enterprises, with effect from 28 December 2021 (TO-TR21-06).",
               "uncertainty": "The start is the stated effective date of the ministerial appointments. The letter of appointment was presented and the oath taken on 29 December, recorded as a separate claim. No end date or term is inferred."
+            },
+            {
+              "name": "Samiu Vaipulu",
+              "attested_on": "2024-12-09",
+              "from": null,
+              "until": null,
+              "sources": [
+                "to_assembly_minutes_48_20241209"
+              ],
+              "claim_ids": [
+                "to_deputy_pm_vaipulu_listed_20241209"
+              ],
+              "note": "Printed as 'Hon. Samiu Vaipulu', Deputy Prime Minister and Minister of Justice and Prisons, in the members' list of the minutes of 9 December 2024 (TO-TR24-02). The Assembly's 24 December 2024 roll and the PMO's 6 January 2025 announcement print 'Samiu Kuita Vaipulu'.",
+              "uncertainty": "A dated membership-list observation only; his appointment date and the end of his deputy premiership are unrecorded, and Poasi Mataele Tei's 2021 observation gains no end from it. By 31 January 2025 he is listed as the People's Representative for Vava'u 15, outside the Cabinet (to_vaipulu_peoples_rep_listed_20250131); that is an upper bound, not an end date. His acting premiership is recorded as claims on the Prime Minister's office, not as a holder observation."
+            },
+            {
+              "name": "Taniela Likuohihifo Fusimalohi",
+              "attested_on": null,
+              "from": "2025-01-28",
+              "until": null,
+              "sources": [
+                "to_pmo_eke_cabinet_20250128"
+              ],
+              "claim_ids": [
+                "to_eke_cabinet_effective_20250128"
+              ],
+              "note": "Appointed Deputy Prime Minister, with Infrastructure and MEIDECC, with effect from 28 January 2025 (TO-TR24-06). Name as printed in the PMO release; the Assembly minutes print 'Taniela Liku'ohihifo Fusimālohi'.",
+              "uncertainty": "The start is the stated effective date of the ministerial appointments. The letters of appointment were forecast for 30 January (unconfirmed) and the oath was taken in the Assembly on 31 January; both are separate claims. No end date or term is inferred."
             }
           ]
         }
@@ -1375,14 +2018,33 @@
         "to_constitution_older",
         "to_reform_act_2010",
         "to_cabinet_2026",
-        "to_pmo_cabinet_20211229"
+        "to_pmo_cabinet_20211229",
+        "to_assembly_minutes_48_20241209",
+        "to_gazette_gse22_20241210",
+        "to_assembly_minutes_pm_election_20241224",
+        "to_pmo_caretaker_announcement_20250106",
+        "to_pmo_eke_cabinet_20250128",
+        "to_assembly_oath_sitting_notice_20250129",
+        "to_assembly_minutes_01_20250131",
+        "to_assembly_oath_news_20250203"
       ],
       "claim_ids": [
         "to_constitution_pm_cabinet",
         "to_older_ministers",
         "to_cabinet_appointment",
         "to_sovaleni_cabinet_effective_20211228",
-        "to_sovaleni_cabinet_letters_oath_20211229"
+        "to_sovaleni_cabinet_letters_oath_20211229",
+        "to_speaker_caretaker_ruling_20241209",
+        "to_deputy_pm_vaipulu_listed_20241209",
+        "to_cabinet_proclamation_20241210",
+        "to_acting_pm_addressed_20241224",
+        "to_caretaker_acting_pm_vaipulu_20250106",
+        "to_eke_cabinet_effective_20250128",
+        "to_eke_cabinet_letters_planned_20250128",
+        "to_oath_sitting_notice_20250129",
+        "to_eke_oath_20250131",
+        "to_vaipulu_peoples_rep_listed_20250131",
+        "to_assembly_news_oath_20250131"
       ],
       "coverage": {
         "status": "partial",
@@ -1393,7 +2055,8 @@
         "unresolved": [
           "Build dated Cabinet and acting-minister membership; the December 2021 and January 2026 appointments are only two observations.",
           "Cabinet collective executive authority must not become a single party portrait or a claim that the King lacks reserved powers.",
-          "TO-TR21-06: the PMO's 29 December 2021 release lists twelve Cabinet members appointed with effect from 28 December 2021, with letters of appointment presented and oaths taken on 29 December. Only the Deputy Prime Minister is imported as a holder observation; the other 2021 portfolios, later changes and acting ministers remain to be researched."
+          "TO-TR21-06: the PMO's 29 December 2021 release lists twelve Cabinet members appointed with effect from 28 December 2021, with letters of appointment presented and oaths taken on 29 December. Only the Deputy Prime Minister is imported as a holder observation; the other 2021 portfolios, later changes and acting ministers remain to be researched.",
+          "TO-TR24-06: the PMO's 28 January 2025 release lists eleven Cabinet members appointed with effect from 28 January 2025; only the Deputy Prime Minister is imported as a holder observation. Letters of appointment were forecast for 30 January (unconfirmed) and oaths were taken in the Assembly on 31 January. The caretaker Cabinet continued the Sovaleni ministers (Speaker's ruling of 9 December 2024; PMO announcement of 6 January 2025); the revocation of their appointments and the end of Samiu Vaipulu's deputy premiership are unsourced, although he is outside the Cabinet list by 31 January 2025."
         ]
       }
     },
@@ -1558,7 +2221,8 @@
       "No future candidate, fictional successor, portrait likeness or avatar completion is certified by this research packet. Fiction begins only after the preserved historical cutoff under the separate policy.",
       "The added 2021 People's Party and Leader observations close only a missing sourced observation. No country census or discovery batch is complete; the 2019 national appointment supplies no party office or campaign eligibility.",
       "Reconciliation packet 01 (tonga-reconciliation-01.md) groups the PATOA/PTOA label with DPFI and adds People's Party names, incorporated-society testimony and a 2021 Assembly selection. It resolves no complete leadership term, lifespan or game mapping.",
-      "Transition packet 02 (tonga-transition-2021-02.md) adds the 2021 Assembly procedure notices, the royal appointment of Siaosi Sovaleni effective 27 December 2021 and the Cabinet effective 28 December 2021, with two holder observations. The warrant's signature and presentation and the end of the previous premiership remain unresolved; no complete leadership term is claimed."
+      "Transition packet 02 (tonga-transition-2021-02.md) adds the 2021 Assembly procedure notices, the royal appointment of Siaosi Sovaleni effective 27 December 2021 and the Cabinet effective 28 December 2021, with two holder observations. The warrant's signature and presentation and the end of the previous premiership remain unresolved; no complete leadership term is claimed.",
+      "Transition packet 03 (tonga-transition-2024-03.md) adds the 2024-2025 resignation, caretaker attestations, Assembly selection, royal appointment and first Eke Cabinet, with the end of the Sovaleni observation and three holder observations. The warrant, the boundaries of the acting premiership and the caretaker Cabinet's end remain unresolved; no complete leadership term is claimed."
     ]
   }
 }

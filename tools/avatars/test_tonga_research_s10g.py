@@ -34,7 +34,8 @@ class TongaDiscoveryTests(unittest.TestCase):
         ids = self.validate()
         # CLAUDE-C01-01 added three sources and seven claims; test_tonga_reconciliation_c01 owns them.
         # CLAUDE-C01-02 added seven sources and nine claims; test_tonga_transition_c01_02 owns them.
-        self.assertEqual((len(ids['entries']), len(ids['sources']), len(ids['claims'])), (9, 26, 44))
+        # CLAUDE-C01-03 added seventeen sources and 27 claims; test_tonga_transition_c01_03 owns them.
+        self.assertEqual((len(ids['entries']), len(ids['sources']), len(ids['claims'])), (9, 43, 71))
         self.assertEqual({e['id'] for e in self.packet['organizations']},
                          {'to_fihrdm', 'to_pdp', 'to_dpfi', 'to_peoples_party'})
         self.assertEqual(len(self.packet['institutions']), 5)
@@ -81,10 +82,11 @@ class TongaDiscoveryTests(unittest.TestCase):
         self.assertEqual(appointment['attested_on'], '2019-10-08')
         self.assertIn('15-8', recommendation['text'])
         role, = self.entries['to_prime_minister']['roles']
-        # CLAUDE-C01-02 added exactly one later holder (Sovaleni, from 2021-12-27); the 2019 one stays first.
+        # CLAUDE-C01-02 added exactly one later holder (Sovaleni, from 2021-12-27) and CLAUDE-C01-03 one more
+        # (Eke, appointment event on 2025-01-22); the 2019 one stays first.
         dict_holders = [h for h in role['holder_claims'] if isinstance(h, dict)]
         self.assertEqual([h['name'] for h in dict_holders],
-                         ["Pohiva Tu'i'onetoa", "Siaosi 'Ofakivahafolau Sovaleni"])
+                         ["Pohiva Tu'i'onetoa", "Siaosi 'Ofakivahafolau Sovaleni", "'Aisake Valu Eke"])
         new_holder = dict_holders[0]
         self.assertEqual(new_holder['attested_on'], '2019-10-08')
         self.assertEqual(new_holder['claim_ids'], [appointment['id']])
