@@ -930,3 +930,8 @@ test('the illustrative review page shows its annual-budget card and a readable f
     if (scenario !== 'empty') assert.deepEqual(route.steps.map(step => step.status), Array(6).fill('not_yet'), scenario);
   }
 });
+
+test('milestone dates never break across lines inside the route panel',()=>{
+  const css=require('node:fs').readFileSync(require('node:path').join(__dirname,'../../spheres-web/ui/guidance-ui.css'),'utf8');
+  assert.match(css,/\.guidance-milestones time\{white-space:nowrap\}/,'the route panel allows breaking anywhere, so its dates must opt out');
+});
