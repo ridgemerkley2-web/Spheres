@@ -69,14 +69,14 @@ does not fail. A budget with only a ceiling can only be `PASS` or `OVER`.
 
 ## Verdicts
 
-112 graded configurations: 70 PASS, 0 under the detail floor, 42 over the ceiling.
+112 graded configurations: 77 PASS, 0 under the detail floor, 35 over the ceiling.
 
 The geometry sweep covers nine ground platforms, all three CP1 aircraft,
 construction sites and town assets. These are the original roadmap ceilings;
 later high-detail requests have not silently replaced them. Reported overruns
 remain open design/performance decisions rather than being hidden by measurement repairs.
 
-42 measured configurations are over budget. `--check` exits 1 while any row here has content.
+35 measured configurations are over budget. `--check` exits 1 while any row here has content.
 
 | asset | configuration | measured | budget ceiling | over by |
 | --- | --- | --- | --- | --- |
@@ -95,8 +95,6 @@ remain open design/performance decisions rather than being hidden by measurement
 | `aviation.air_fighter.baseline.v1` | baseline LOD0 | 200,446 | 60,000 | 140,446 (234.1%) |
 | `aviation.air_light_attack.baseline.v1` | baseline LOD0 | 199,326 | 60,000 | 139,326 (232.2%) |
 | `aviation.air_tactical_strike.baseline.v1` | baseline LOD0 | 228,640 | 60,000 | 168,640 (281.1%) |
-| `aviation.air_tactical_strike.baseline.v1` | baseline LOD1 | 14,904 | 12,000 | 2,904 (24.2%) |
-| `aviation.air_tactical_strike.baseline.v1` | baseline LOD2 | 1,696 | 1,500 | 196 (13.1%) |
 | `site.infrastructure.v1` | near complete/L5/building | 30,756 | 12,000 | 18,756 (156.3%) |
 | `site.civilian_industry.v1` | near complete/L5/building | 39,302 | 12,000 | 27,302 (227.5%) |
 | `site.power_grid.v1` | near complete/L5/building | 38,552 | 12,000 | 26,552 (221.3%) |
@@ -113,15 +111,10 @@ remain open design/performance decisions rather than being hidden by measurement
 | `site.office_district.v1` | near complete/L5/building | 32,350 | 12,000 | 20,350 (169.6%) |
 | `site.shipyard.v1` | near complete/L5/building | 30,324 | 12,000 | 18,324 (152.7%) |
 | `site.advanced_industry.v1` | near complete/L5/building | 30,328 | 12,000 | 18,328 (152.7%) |
-| `town.temperate.mixed.v1` | close id 1997 | 199,331 | 150,000 | 49,331 (32.9%) |
-| `town.temperate.residential.v1` | close id 1994 | 214,044 | 150,000 | 64,044 (42.7%) |
-| `town.temperate.commercial.v1` | close id 1991 | 151,008 | 150,000 | 1,008 (0.7%) |
-| `town.temperate.civic.v1` | close id 1992 | 161,077 | 150,000 | 11,077 (7.4%) |
-| `town.kit.row_house` | close, maximum size | 21,222 | 12,000 | 9,222 (76.8%) |
-| `town.kit.mid_apartment` | close, maximum size | 14,540 | 12,000 | 2,540 (21.2%) |
-| `town.kit.high_apartment` | close, maximum size | 12,028 | 12,000 | 28 (0.2%) |
-| `town.kit.civic` | close, maximum size | 13,637 | 12,000 | 1,637 (13.6%) |
-| `town.kit.university` | close, maximum size | 24,252 | 12,000 | 12,252 (102.1%) |
+| `town.temperate.mixed.v1` | close id 1997 | 175,277 | 150,000 | 25,277 (16.9%) |
+| `town.temperate.residential.v1` | close id 1994 | 184,684 | 150,000 | 34,684 (23.1%) |
+| `town.kit.row_house` | close, maximum size | 17,904 | 12,000 | 5,904 (49.2%) |
+| `town.kit.university` | close, maximum size | 19,046 | 12,000 | 7,046 (58.7%) |
 
 Widening the roadmap budget to make this table empty is the one repair
 this harness exists to forbid. Either the mesh loses the triangles, or
@@ -206,8 +199,8 @@ authored LOD1 and LOD2 meshes. A baseline `tank_heavy` probe measures
 | air_light_attack | LOD1 | 11,474 | 4,000–12,000 | PASS | 1,239,192 | 1,273,614 |
 | air_light_attack | LOD2 | 1,252 | 300–1,500 | PASS | 135,216 | 138,972 |
 | air_tactical_strike | LOD0 | 228,640 | 25,000–60,000 | **OVER by 168,640 (281.1%)** | 24,693,120 | 25,379,040 |
-| air_tactical_strike | LOD1 | 14,904 | 4,000–12,000 | **OVER by 2,904 (24.2%)** | 1,609,632 | 1,654,344 |
-| air_tactical_strike | LOD2 | 1,696 | 300–1,500 | **OVER by 196 (13.1%)** | 183,168 | 188,256 |
+| air_tactical_strike | LOD1 | 10,936 | 4,000–12,000 | PASS | 1,181,088 | 1,213,896 |
+| air_tactical_strike | LOD2 | 1,392 | 300–1,500 | PASS | 150,336 | 154,512 |
 
 ## Construction sites
 
@@ -263,11 +256,11 @@ building.
 
 | asset | close min | close max | close verdict | map min | map max | worst close bytes | lots |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `town.temperate.mixed.v1` | 179,891 | 199,331 | **OVER by 49,331 (32.9%)** | 3,302 | 3,878 | 21,527,748 | 16 |
-| `town.temperate.residential.v1` | 180,703 | 214,044 | **OVER by 64,044 (42.7%)** | 3,250 | 4,098 | 23,116,752 | 20 |
-| `town.temperate.commercial.v1` | 117,432 | 151,008 | **OVER by 1,008 (0.7%)** | 3,012 | 3,680 | 16,308,864 | 18 |
-| `town.temperate.civic.v1` | 102,041 | 161,077 | **OVER by 11,077 (7.4%)** | 3,026 | 3,766 | 17,396,316 | 17 |
-| `town.temperate.industrial.v1` | 82,052 | 92,532 | PASS | 2,444 | 3,124 | 9,993,456 | 13 |
+| `town.temperate.mixed.v1` | 157,625 | 175,277 | **OVER by 25,277 (16.9%)** | 3,302 | 3,878 | 18,929,916 | 16 |
+| `town.temperate.residential.v1` | 158,227 | 184,684 | **OVER by 34,684 (23.1%)** | 3,250 | 4,098 | 19,945,872 | 20 |
+| `town.temperate.commercial.v1` | 100,742 | 129,734 | PASS | 3,012 | 3,680 | 14,011,272 | 18 |
+| `town.temperate.civic.v1` | 89,829 | 135,157 | PASS | 3,026 | 3,766 | 14,596,956 | 17 |
+| `town.temperate.industrial.v1` | 73,866 | 84,250 | PASS | 2,444 | 3,124 | 9,099,000 | 13 |
 
 The map LOD has no roadmap row of its own — section 4 budgets a scene assembly
 and a building, not a coarse scene — so the map column is recorded without a
@@ -288,21 +281,21 @@ same triangles twice.
 
 | kind | worst case | close tris | close verdict | map tris | map verdict |
 | --- | --- | --- | --- | --- | --- |
-| `house` | 11.8 x 20 m, 3 storeys | 7,527 | PASS | 152 | PASS |
-| `row_house` | 35.4 x 17 m, 3 storeys | 21,222 | **OVER by 9,222 (76.8%)** | 188 | PASS |
-| `low_apartment` | 22 x 21 m, 4 storeys | 10,844 | PASS | 164 | PASS |
-| `mid_apartment` | 27 x 24 m, 7 storeys | 14,540 | **OVER by 2,540 (21.2%)** | 172 | PASS |
-| `high_apartment` | 26 x 34 m, 16 storeys | 12,028 | **OVER by 28 (0.2%)** | 222 | PASS |
-| `office` | 32 x 24 m, 6 storeys | 7,828 | PASS | 172 | PASS |
-| `shop` | 16 x 18 m, 3 storeys | 6,970 | PASS | 152 | PASS |
-| `warehouse` | 32 x 30 m, 1 storey | 6,056 | PASS | 116 | PASS |
-| `civic` | 30 x 30 m, 3 storeys | 13,637 | **OVER by 1,637 (13.6%)** | 228 | PASS |
-| `school` | 44 x 34 m, 2 storeys | 7,354 | PASS | 230 | PASS |
-| `hospital` | 40 x 42 m, 6 storeys | 8,838 | PASS | 246 | PASS |
-| `university` | 42 x 40 m, 4 storeys | 24,252 | **OVER by 12,252 (102.1%)** | 308 | PASS |
+| `house` | 11.8 x 20 m, 3 storeys | 6,379 | PASS | 152 | PASS |
+| `row_house` | 35.4 x 17 m, 3 storeys | 17,904 | **OVER by 5,904 (49.2%)** | 188 | PASS |
+| `low_apartment` | 22 x 21 m, 4 storeys | 8,448 | PASS | 164 | PASS |
+| `mid_apartment` | 27 x 24 m, 7 storeys | 11,768 | PASS | 172 | PASS |
+| `high_apartment` | 26 x 34 m, 16 storeys | 9,500 | PASS | 222 | PASS |
+| `office` | 32 x 24 m, 6 storeys | 6,178 | PASS | 172 | PASS |
+| `shop` | 16 x 18 m, 3 storeys | 5,910 | PASS | 152 | PASS |
+| `warehouse` | 32 x 30 m, 1 storey | 5,706 | PASS | 116 | PASS |
+| `civic` | 30 x 30 m, 3 storeys | 10,445 | PASS | 228 | PASS |
+| `school` | 44 x 34 m, 2 storeys | 6,540 | PASS | 230 | PASS |
+| `hospital` | 40 x 42 m, 6 storeys | 6,858 | PASS | 246 | PASS |
+| `university` | 42 x 40 m, 4 storeys | 19,046 | **OVER by 7,046 (58.7%)** | 308 | PASS |
 | `stadium` | 178 x 140 m, 1 storey | 5,102 | PASS | 214 | PASS |
-| `park` | 46 x 30 m, 1 storey | 7,440 | PASS | 346 | PASS |
-| `utility` | 17 x 15 m, 1 storey | 5,020 | PASS | 200 | PASS |
+| `park` | 46 x 30 m, 1 storey | 6,920 | PASS | 346 | PASS |
+| `utility` | 17 x 15 m, 1 storey | 4,448 | PASS | 200 | PASS |
 
 Every kit piece stays inside the building row at the largest size its kind admits, at both LODs — including the props (`park`, `utility`, `stadium`), which section 4 gives no rule for classifying and which would want the tree/prop row rather than this one.
 
@@ -314,10 +307,10 @@ failure; this is where the next art pass will push something over.
 | asset | configuration | triangles | ceiling | of ceiling |
 | --- | --- | --- | --- | --- |
 | `ground.ground_ifv.baseline.v1` | baseline | 44,222 | 45,000 | 98.3% |
+| `town.kit.mid_apartment` | close, maximum size | 11,768 | 12,000 | 98.1% |
 | `aviation.air_fighter.baseline.v1` | baseline LOD1 | 11,594 | 12,000 | 96.6% |
 | `aviation.air_light_attack.baseline.v1` | baseline LOD1 | 11,474 | 12,000 | 95.6% |
 | `site.infrastructure.v1` | far complete/L5/building | 756 | 800 | 94.5% |
-| `ground.ground_air_defense.baseline.v1` | baseline | 41,178 | 45,000 | 91.5% |
 
 ## Hypothetical ground/site/town inventory, not live residency
 
@@ -329,8 +322,8 @@ added here. CPU backing bytes and per-attribute layouts are in P0_MEASUREMENTS.j
 | --- | --- | --- | --- |
 | Ground vehicles, heaviest specification | 9 | 496,720 | 53,645,760 |
 | Construction sites, worst case near | 16 | 548,518 | 59,239,944 |
-| Town blocks, worst case close | 5 | 817,992 | 88,343,136 |
-| **Measured set, close detail** | **30** | **1,863,230** | **201,228,840** (191.91 MiB) |
+| Town blocks, worst case close | 5 | 709,102 | 76,583,016 |
+| **Measured set, close detail** | **30** | **1,754,340** | **189,468,720** (180.69 MiB) |
 | Sites/towns coarse; ground vehicles retained at LOD0 for comparison | 30 | 525,552 | 56,759,616 (54.13 MiB) |
 
 The comparison row deliberately retains the measured vehicles at LOD0:
@@ -357,13 +350,13 @@ compression/headers, renderer, stylesheet and other page costs are not included.
 
 | file | bytes | |
 | --- | --- | --- |
-| `spheres-web/ui/equipment-mesh.js` | 177,487 | 173.3 KiB |
+| `spheres-web/ui/equipment-mesh.js` | 180,384 | 176.2 KiB |
 | `spheres-web/ui/site-mesh.js` | 304,159 | 297.0 KiB |
-| `spheres-web/ui/town-mesh.js` | 168,970 | 165.0 KiB |
-| **total** | **650,616** | **635.4 KiB** |
+| `spheres-web/ui/town-mesh.js` | 170,337 | 166.3 KiB |
+| **total** | **654,880** | **639.5 KiB** |
 
-650,616 bytes of source produce 1,863,230 triangles of
-geometry — 309x its own weight in vertex data. That ratio is not fixed
+654,880 bytes of source produce 1,754,340 triangles of
+geometry — 289x its own weight in vertex data. That ratio is not fixed
 at authoring time either: it grows with every extra seed, stage, level and
 district asked of the same source.
 
@@ -372,7 +365,7 @@ totalling 125,594,104 bytes (119.78 MiB). They are the
 portable deliverable roadmap section 4 asks for, not a runtime download — the game
 never fetches them — and they are the comparison that settles the argument:
 13 equipment exports (3 aircraft and 10 ground-vehicle configurations) as binary assets weigh
-193.0x the entire generator source
+191.8x the entire generator source
 that builds every vehicle, every site at every stage and every town block.
 
 ## Method

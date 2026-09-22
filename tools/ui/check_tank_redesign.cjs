@@ -9,7 +9,8 @@ function vertices(mesh,name,color){const p=mesh.parts.find(p=>p.name===name);ass
 function span(v,axis){const values=v.map(v=>v.p[axis]);return [Math.min(...values),Math.max(...values)];}
 // Specialist pins intentionally updated by the later specialist proportion pass;
 // aircraft pins updated for the approved 100k+ inspection/LOD pass. The dedicated specialist
-// test additionally freezes approved tank/air material sidecars.
+// test additionally freezes approved tank/air material sidecars. Only tactical
+// LOD1/2 pins change for the reviewed September 22 coarse-mesh optimization.
 const nonTankReviewed={
   "ground_ifv/0": "4e6ebec21677943fcbbda5eab877c430809ad10f55f1a475bfa95969a9967047",
   "ground_ifv/1": "35bae9a60e93112a15e554f7177fbecdd1e84024ec4580c98ed5970d18b61c11",
@@ -30,8 +31,8 @@ const nonTankReviewed={
   "air_light_attack/1": "84e395f825e5cf85c34bbe5ffd6ca38a36cd8585b6a34f8f6aaa247aaa566398",
   "air_light_attack/2": "68954013e765a03adb8ac5ac8c7b88f2a0b9214be7ba927c084eb4e3deb5a8bc",
   "air_tactical_strike/0": "fd08832fcb6200c14d6dd97249c40be25fbbca210e23ed47f09e330cdba136ce",
-  "air_tactical_strike/1": "cb699d9cbc37f0ce50fb89c025e15fdfa25d56a5d7c986ed045332bf83358155",
-  "air_tactical_strike/2": "d8e2c8637fc0b95c610d917f50cf04d31a60fa6ec1010d61732df82cf1a73db5"
+  "air_tactical_strike/1": "06187910840a65174d19fde5ec406e867b8fcf10e09f3c1ac3590b4584adcd1b",
+  "air_tactical_strike/2": "027b38b4a07ccdb6bc441f581e366af08343e88a8363770c67ff793f30b7d0fe"
 };
 
 test('every aircraft and specialist default matches its reviewed geometry and colors at every LOD',()=>{

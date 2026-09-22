@@ -25,3 +25,23 @@ test('aircraft LOD clamps malformed requests and never edits the design',()=>{
   build(spec);assert.equal(JSON.stringify(spec),before);
   assert.equal(build({...spec,lod:-5}).lod,0);assert.equal(build({...spec,lod:99}).lod,2);assert.equal(build({...spec,lod:'bad'}).lod,0);
 });
+
+test('tactical default and fully loaded designs meet the unchanged catalogue and map ceilings',()=>{
+  // Pre-optimization bounds protect the full wing span, radome, tail and
+  // nozzle silhouette while cheaper details use fewer surface samples.
+  const bounds={
+    default:[{min:[-5.859448726356644,0,-8.542],max:[5.859448726356644,4.074999999999999,9.188]},
+      {min:[-5.854956224390981,0,-8.232],max:[5.859448726356644,3.8395395575739943,8.568000000000001]}],
+    loaded:[{min:[-6.6274999999999995,0,-8.542],max:[6.6274999999999995,4.074999999999999,9.438]},
+      {min:[-6.6028790987816155,0,-8.232],max:[6.604293532306935,3.8395395575739943,8.818000000000001]}]
+  };
+  for(const [preset,components] of [['default',{}],['loaded',loaded],['loaded',{...loaded,air_engine:'air_engine_twin'}],['loaded',{...loaded,air_engine:'air_engine_twin',air_avionics:'air_avionics_analog'}]]){
+    for(const [lod,ceiling] of [[1,12000],[2,1500]]){
+      const mesh=build({platform:'air_tactical_strike',components,lod});
+      assert.equal(mesh.triangleCount,mesh.positions.length/9,'measure the actual emitted triangles');
+      assert(mesh.triangleCount<=ceiling,`${preset}/${components.air_engine||'default'}/LOD${lod}: ${mesh.triangleCount} > ${ceiling}`);
+      assert.deepEqual(mesh.bounds,bounds[preset][lod-1]);
+      assert.equal(new Set(mesh.parts.map(part=>part.slot)).size,8,'all design slots remain selectable');
+    }
+  }
+});

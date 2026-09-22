@@ -2274,40 +2274,40 @@
         "platform": "air_tactical_strike",
         "config": "baseline LOD1",
         "lod": 1,
-        "tris": 14904,
-        "bytes": 1609632,
+        "tris": 10936,
+        "bytes": 1181088,
         "accounting": {
-          "triangles": 14904,
-          "vertices": 44712,
+          "triangles": 10936,
+          "vertices": 32808,
           "attributes": {
             "positions": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 536544,
+              "bytes": 393696,
               "usage": "base vertex attribute"
             },
             "normals": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 536544,
+              "bytes": 393696,
               "usage": "base vertex attribute"
             },
             "colors": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 536544,
+              "bytes": 393696,
               "usage": "base vertex attribute"
             },
             "materialClasses": {
               "type": "Uint8Array",
               "components": 1,
-              "bytes": 44712,
+              "bytes": 32808,
               "usage": "CPU material classification; not uploaded directly"
             }
           },
-          "cpu_attribute_view_bytes": 1654344,
-          "cpu_backing_buffer_bytes": 1654344,
-          "base_attribute_upload_bytes": 1609632
+          "cpu_attribute_view_bytes": 1213896,
+          "cpu_backing_buffer_bytes": 1213896,
+          "base_attribute_upload_bytes": 1181088
         },
         "budget": {
           "row": "LOD1 catalogue preview",
@@ -2316,9 +2316,9 @@
           "max": 12000
         },
         "v": {
-          "state": "OVER",
-          "over": 2904,
-          "text": "**OVER by 2,904 (24.2%)**"
+          "state": "PASS",
+          "over": 0,
+          "text": "PASS"
         }
       },
       {
@@ -2326,40 +2326,40 @@
         "platform": "air_tactical_strike",
         "config": "baseline LOD2",
         "lod": 2,
-        "tris": 1696,
-        "bytes": 183168,
+        "tris": 1392,
+        "bytes": 150336,
         "accounting": {
-          "triangles": 1696,
-          "vertices": 5088,
+          "triangles": 1392,
+          "vertices": 4176,
           "attributes": {
             "positions": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 61056,
+              "bytes": 50112,
               "usage": "base vertex attribute"
             },
             "normals": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 61056,
+              "bytes": 50112,
               "usage": "base vertex attribute"
             },
             "colors": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 61056,
+              "bytes": 50112,
               "usage": "base vertex attribute"
             },
             "materialClasses": {
               "type": "Uint8Array",
               "components": 1,
-              "bytes": 5088,
+              "bytes": 4176,
               "usage": "CPU material classification; not uploaded directly"
             }
           },
-          "cpu_attribute_view_bytes": 188256,
-          "cpu_backing_buffer_bytes": 188256,
-          "base_attribute_upload_bytes": 183168
+          "cpu_attribute_view_bytes": 154512,
+          "cpu_backing_buffer_bytes": 154512,
+          "base_attribute_upload_bytes": 150336
         },
         "budget": {
           "row": "LOD2 map vehicle",
@@ -2368,9 +2368,9 @@
           "max": 1500
         },
         "v": {
-          "state": "OVER",
-          "over": 196,
-          "text": "**OVER by 196 (13.1%)**"
+          "state": "PASS",
+          "over": 0,
+          "text": "PASS"
         }
       }
     ],
@@ -4228,41 +4228,41 @@
         "district": "mixed",
         "close": {
           "lo": {
-            "tris": 179891,
+            "tris": 157625,
             "config": "id 1991",
             "lots": 17
           },
           "hi": {
-            "tris": 199331,
+            "tris": 175277,
             "config": "id 1997",
             "lots": 16,
-            "bytes": 21527748,
+            "bytes": 18929916,
             "accounting": {
-              "triangles": 199331,
-              "vertices": 597993,
+              "triangles": 175277,
+              "vertices": 525831,
               "attributes": {
                 "positions": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 7175916,
+                  "bytes": 6309972,
                   "usage": "base vertex attribute"
                 },
                 "normals": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 7175916,
+                  "bytes": 6309972,
                   "usage": "base vertex attribute"
                 },
                 "colors": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 7175916,
+                  "bytes": 6309972,
                   "usage": "base vertex attribute"
                 }
               },
-              "cpu_attribute_view_bytes": 21527748,
-              "cpu_backing_buffer_bytes": 21527748,
-              "base_attribute_upload_bytes": 21527748
+              "cpu_attribute_view_bytes": 18929916,
+              "cpu_backing_buffer_bytes": 18929916,
+              "base_attribute_upload_bytes": 18929916
             },
             "parts": 18
           },
@@ -4274,8 +4274,8 @@
           },
           "v": {
             "state": "OVER",
-            "over": 49331,
-            "text": "**OVER by 49,331 (32.9%)**"
+            "over": 25277,
+            "text": "**OVER by 25,277 (16.9%)**"
           }
         },
         "map": {
@@ -4335,41 +4335,41 @@
         "district": "residential",
         "close": {
           "lo": {
-            "tris": 180703,
+            "tris": 158227,
             "config": "id 1997",
             "lots": 18
           },
           "hi": {
-            "tris": 214044,
+            "tris": 184684,
             "config": "id 1994",
             "lots": 20,
-            "bytes": 23116752,
+            "bytes": 19945872,
             "accounting": {
-              "triangles": 214044,
-              "vertices": 642132,
+              "triangles": 184684,
+              "vertices": 554052,
               "attributes": {
                 "positions": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 7705584,
+                  "bytes": 6648624,
                   "usage": "base vertex attribute"
                 },
                 "normals": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 7705584,
+                  "bytes": 6648624,
                   "usage": "base vertex attribute"
                 },
                 "colors": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 7705584,
+                  "bytes": 6648624,
                   "usage": "base vertex attribute"
                 }
               },
-              "cpu_attribute_view_bytes": 23116752,
-              "cpu_backing_buffer_bytes": 23116752,
-              "base_attribute_upload_bytes": 23116752
+              "cpu_attribute_view_bytes": 19945872,
+              "cpu_backing_buffer_bytes": 19945872,
+              "base_attribute_upload_bytes": 19945872
             },
             "parts": 22
           },
@@ -4381,8 +4381,8 @@
           },
           "v": {
             "state": "OVER",
-            "over": 64044,
-            "text": "**OVER by 64,044 (42.7%)**"
+            "over": 34684,
+            "text": "**OVER by 34,684 (23.1%)**"
           }
         },
         "map": {
@@ -4442,41 +4442,41 @@
         "district": "commercial",
         "close": {
           "lo": {
-            "tris": 117432,
+            "tris": 100742,
             "config": "id 1995",
             "lots": 15
           },
           "hi": {
-            "tris": 151008,
+            "tris": 129734,
             "config": "id 1991",
             "lots": 18,
-            "bytes": 16308864,
+            "bytes": 14011272,
             "accounting": {
-              "triangles": 151008,
-              "vertices": 453024,
+              "triangles": 129734,
+              "vertices": 389202,
               "attributes": {
                 "positions": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 5436288,
+                  "bytes": 4670424,
                   "usage": "base vertex attribute"
                 },
                 "normals": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 5436288,
+                  "bytes": 4670424,
                   "usage": "base vertex attribute"
                 },
                 "colors": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 5436288,
+                  "bytes": 4670424,
                   "usage": "base vertex attribute"
                 }
               },
-              "cpu_attribute_view_bytes": 16308864,
-              "cpu_backing_buffer_bytes": 16308864,
-              "base_attribute_upload_bytes": 16308864
+              "cpu_attribute_view_bytes": 14011272,
+              "cpu_backing_buffer_bytes": 14011272,
+              "base_attribute_upload_bytes": 14011272
             },
             "parts": 20
           },
@@ -4487,9 +4487,9 @@
             "max": 150000
           },
           "v": {
-            "state": "OVER",
-            "over": 1008,
-            "text": "**OVER by 1,008 (0.7%)**"
+            "state": "PASS",
+            "over": 0,
+            "text": "PASS"
           }
         },
         "map": {
@@ -4549,41 +4549,41 @@
         "district": "civic",
         "close": {
           "lo": {
-            "tris": 102041,
+            "tris": 89829,
             "config": "id 1993",
             "lots": 11
           },
           "hi": {
-            "tris": 161077,
+            "tris": 135157,
             "config": "id 1992",
             "lots": 17,
-            "bytes": 17396316,
+            "bytes": 14596956,
             "accounting": {
-              "triangles": 161077,
-              "vertices": 483231,
+              "triangles": 135157,
+              "vertices": 405471,
               "attributes": {
                 "positions": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 5798772,
+                  "bytes": 4865652,
                   "usage": "base vertex attribute"
                 },
                 "normals": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 5798772,
+                  "bytes": 4865652,
                   "usage": "base vertex attribute"
                 },
                 "colors": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 5798772,
+                  "bytes": 4865652,
                   "usage": "base vertex attribute"
                 }
               },
-              "cpu_attribute_view_bytes": 17396316,
-              "cpu_backing_buffer_bytes": 17396316,
-              "base_attribute_upload_bytes": 17396316
+              "cpu_attribute_view_bytes": 14596956,
+              "cpu_backing_buffer_bytes": 14596956,
+              "base_attribute_upload_bytes": 14596956
             },
             "parts": 19
           },
@@ -4594,9 +4594,9 @@
             "max": 150000
           },
           "v": {
-            "state": "OVER",
-            "over": 11077,
-            "text": "**OVER by 11,077 (7.4%)**"
+            "state": "PASS",
+            "over": 0,
+            "text": "PASS"
           }
         },
         "map": {
@@ -4656,41 +4656,41 @@
         "district": "industrial",
         "close": {
           "lo": {
-            "tris": 82052,
+            "tris": 73866,
             "config": "id 1997",
             "lots": 11
           },
           "hi": {
-            "tris": 92532,
+            "tris": 84250,
             "config": "id 1996",
             "lots": 13,
-            "bytes": 9993456,
+            "bytes": 9099000,
             "accounting": {
-              "triangles": 92532,
-              "vertices": 277596,
+              "triangles": 84250,
+              "vertices": 252750,
               "attributes": {
                 "positions": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 3331152,
+                  "bytes": 3033000,
                   "usage": "base vertex attribute"
                 },
                 "normals": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 3331152,
+                  "bytes": 3033000,
                   "usage": "base vertex attribute"
                 },
                 "colors": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 3331152,
+                  "bytes": 3033000,
                   "usage": "base vertex attribute"
                 }
               },
-              "cpu_attribute_view_bytes": 9993456,
-              "cpu_backing_buffer_bytes": 9993456,
-              "base_attribute_upload_bytes": 9993456
+              "cpu_attribute_view_bytes": 9099000,
+              "cpu_backing_buffer_bytes": 9099000,
+              "base_attribute_upload_bytes": 9099000
             },
             "parts": 15
           },
@@ -4773,34 +4773,34 @@
         "depth": 20,
         "close": {
           "hi": {
-            "tris": 7527,
-            "bytes": 812916,
+            "tris": 6379,
+            "bytes": 688932,
             "accounting": {
-              "triangles": 7527,
-              "vertices": 22581,
+              "triangles": 6379,
+              "vertices": 19137,
               "attributes": {
                 "positions": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 270972,
+                  "bytes": 229644,
                   "usage": "base vertex attribute"
                 },
                 "normals": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 270972,
+                  "bytes": 229644,
                   "usage": "base vertex attribute"
                 },
                 "colors": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 270972,
+                  "bytes": 229644,
                   "usage": "base vertex attribute"
                 }
               },
-              "cpu_attribute_view_bytes": 812916,
-              "cpu_backing_buffer_bytes": 812916,
-              "base_attribute_upload_bytes": 812916
+              "cpu_attribute_view_bytes": 688932,
+              "cpu_backing_buffer_bytes": 688932,
+              "base_attribute_upload_bytes": 688932
             },
             "parts": 1
           },
@@ -4870,34 +4870,34 @@
         "depth": 17,
         "close": {
           "hi": {
-            "tris": 21222,
-            "bytes": 2291976,
+            "tris": 17904,
+            "bytes": 1933632,
             "accounting": {
-              "triangles": 21222,
-              "vertices": 63666,
+              "triangles": 17904,
+              "vertices": 53712,
               "attributes": {
                 "positions": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 763992,
+                  "bytes": 644544,
                   "usage": "base vertex attribute"
                 },
                 "normals": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 763992,
+                  "bytes": 644544,
                   "usage": "base vertex attribute"
                 },
                 "colors": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 763992,
+                  "bytes": 644544,
                   "usage": "base vertex attribute"
                 }
               },
-              "cpu_attribute_view_bytes": 2291976,
-              "cpu_backing_buffer_bytes": 2291976,
-              "base_attribute_upload_bytes": 2291976
+              "cpu_attribute_view_bytes": 1933632,
+              "cpu_backing_buffer_bytes": 1933632,
+              "base_attribute_upload_bytes": 1933632
             },
             "parts": 1
           },
@@ -4909,8 +4909,8 @@
           },
           "v": {
             "state": "OVER",
-            "over": 9222,
-            "text": "**OVER by 9,222 (76.8%)**"
+            "over": 5904,
+            "text": "**OVER by 5,904 (49.2%)**"
           }
         },
         "map": {
@@ -4967,34 +4967,34 @@
         "depth": 21,
         "close": {
           "hi": {
-            "tris": 10844,
-            "bytes": 1171152,
+            "tris": 8448,
+            "bytes": 912384,
             "accounting": {
-              "triangles": 10844,
-              "vertices": 32532,
+              "triangles": 8448,
+              "vertices": 25344,
               "attributes": {
                 "positions": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 390384,
+                  "bytes": 304128,
                   "usage": "base vertex attribute"
                 },
                 "normals": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 390384,
+                  "bytes": 304128,
                   "usage": "base vertex attribute"
                 },
                 "colors": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 390384,
+                  "bytes": 304128,
                   "usage": "base vertex attribute"
                 }
               },
-              "cpu_attribute_view_bytes": 1171152,
-              "cpu_backing_buffer_bytes": 1171152,
-              "base_attribute_upload_bytes": 1171152
+              "cpu_attribute_view_bytes": 912384,
+              "cpu_backing_buffer_bytes": 912384,
+              "base_attribute_upload_bytes": 912384
             },
             "parts": 1
           },
@@ -5064,34 +5064,34 @@
         "depth": 24,
         "close": {
           "hi": {
-            "tris": 14540,
-            "bytes": 1570320,
+            "tris": 11768,
+            "bytes": 1270944,
             "accounting": {
-              "triangles": 14540,
-              "vertices": 43620,
+              "triangles": 11768,
+              "vertices": 35304,
               "attributes": {
                 "positions": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 523440,
+                  "bytes": 423648,
                   "usage": "base vertex attribute"
                 },
                 "normals": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 523440,
+                  "bytes": 423648,
                   "usage": "base vertex attribute"
                 },
                 "colors": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 523440,
+                  "bytes": 423648,
                   "usage": "base vertex attribute"
                 }
               },
-              "cpu_attribute_view_bytes": 1570320,
-              "cpu_backing_buffer_bytes": 1570320,
-              "base_attribute_upload_bytes": 1570320
+              "cpu_attribute_view_bytes": 1270944,
+              "cpu_backing_buffer_bytes": 1270944,
+              "base_attribute_upload_bytes": 1270944
             },
             "parts": 1
           },
@@ -5102,9 +5102,9 @@
             "max": 12000
           },
           "v": {
-            "state": "OVER",
-            "over": 2540,
-            "text": "**OVER by 2,540 (21.2%)**"
+            "state": "PASS",
+            "over": 0,
+            "text": "PASS"
           }
         },
         "map": {
@@ -5161,34 +5161,34 @@
         "depth": 34,
         "close": {
           "hi": {
-            "tris": 12028,
-            "bytes": 1299024,
+            "tris": 9500,
+            "bytes": 1026000,
             "accounting": {
-              "triangles": 12028,
-              "vertices": 36084,
+              "triangles": 9500,
+              "vertices": 28500,
               "attributes": {
                 "positions": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 433008,
+                  "bytes": 342000,
                   "usage": "base vertex attribute"
                 },
                 "normals": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 433008,
+                  "bytes": 342000,
                   "usage": "base vertex attribute"
                 },
                 "colors": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 433008,
+                  "bytes": 342000,
                   "usage": "base vertex attribute"
                 }
               },
-              "cpu_attribute_view_bytes": 1299024,
-              "cpu_backing_buffer_bytes": 1299024,
-              "base_attribute_upload_bytes": 1299024
+              "cpu_attribute_view_bytes": 1026000,
+              "cpu_backing_buffer_bytes": 1026000,
+              "base_attribute_upload_bytes": 1026000
             },
             "parts": 1
           },
@@ -5199,9 +5199,9 @@
             "max": 12000
           },
           "v": {
-            "state": "OVER",
-            "over": 28,
-            "text": "**OVER by 28 (0.2%)**"
+            "state": "PASS",
+            "over": 0,
+            "text": "PASS"
           }
         },
         "map": {
@@ -5258,34 +5258,34 @@
         "depth": 24,
         "close": {
           "hi": {
-            "tris": 7828,
-            "bytes": 845424,
+            "tris": 6178,
+            "bytes": 667224,
             "accounting": {
-              "triangles": 7828,
-              "vertices": 23484,
+              "triangles": 6178,
+              "vertices": 18534,
               "attributes": {
                 "positions": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 281808,
+                  "bytes": 222408,
                   "usage": "base vertex attribute"
                 },
                 "normals": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 281808,
+                  "bytes": 222408,
                   "usage": "base vertex attribute"
                 },
                 "colors": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 281808,
+                  "bytes": 222408,
                   "usage": "base vertex attribute"
                 }
               },
-              "cpu_attribute_view_bytes": 845424,
-              "cpu_backing_buffer_bytes": 845424,
-              "base_attribute_upload_bytes": 845424
+              "cpu_attribute_view_bytes": 667224,
+              "cpu_backing_buffer_bytes": 667224,
+              "base_attribute_upload_bytes": 667224
             },
             "parts": 1
           },
@@ -5355,34 +5355,34 @@
         "depth": 18,
         "close": {
           "hi": {
-            "tris": 6970,
-            "bytes": 752760,
+            "tris": 5910,
+            "bytes": 638280,
             "accounting": {
-              "triangles": 6970,
-              "vertices": 20910,
+              "triangles": 5910,
+              "vertices": 17730,
               "attributes": {
                 "positions": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 250920,
+                  "bytes": 212760,
                   "usage": "base vertex attribute"
                 },
                 "normals": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 250920,
+                  "bytes": 212760,
                   "usage": "base vertex attribute"
                 },
                 "colors": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 250920,
+                  "bytes": 212760,
                   "usage": "base vertex attribute"
                 }
               },
-              "cpu_attribute_view_bytes": 752760,
-              "cpu_backing_buffer_bytes": 752760,
-              "base_attribute_upload_bytes": 752760
+              "cpu_attribute_view_bytes": 638280,
+              "cpu_backing_buffer_bytes": 638280,
+              "base_attribute_upload_bytes": 638280
             },
             "parts": 1
           },
@@ -5452,34 +5452,34 @@
         "depth": 30,
         "close": {
           "hi": {
-            "tris": 6056,
-            "bytes": 654048,
+            "tris": 5706,
+            "bytes": 616248,
             "accounting": {
-              "triangles": 6056,
-              "vertices": 18168,
+              "triangles": 5706,
+              "vertices": 17118,
               "attributes": {
                 "positions": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 218016,
+                  "bytes": 205416,
                   "usage": "base vertex attribute"
                 },
                 "normals": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 218016,
+                  "bytes": 205416,
                   "usage": "base vertex attribute"
                 },
                 "colors": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 218016,
+                  "bytes": 205416,
                   "usage": "base vertex attribute"
                 }
               },
-              "cpu_attribute_view_bytes": 654048,
-              "cpu_backing_buffer_bytes": 654048,
-              "base_attribute_upload_bytes": 654048
+              "cpu_attribute_view_bytes": 616248,
+              "cpu_backing_buffer_bytes": 616248,
+              "base_attribute_upload_bytes": 616248
             },
             "parts": 1
           },
@@ -5549,34 +5549,34 @@
         "depth": 30,
         "close": {
           "hi": {
-            "tris": 13637,
-            "bytes": 1472796,
+            "tris": 10445,
+            "bytes": 1128060,
             "accounting": {
-              "triangles": 13637,
-              "vertices": 40911,
+              "triangles": 10445,
+              "vertices": 31335,
               "attributes": {
                 "positions": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 490932,
+                  "bytes": 376020,
                   "usage": "base vertex attribute"
                 },
                 "normals": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 490932,
+                  "bytes": 376020,
                   "usage": "base vertex attribute"
                 },
                 "colors": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 490932,
+                  "bytes": 376020,
                   "usage": "base vertex attribute"
                 }
               },
-              "cpu_attribute_view_bytes": 1472796,
-              "cpu_backing_buffer_bytes": 1472796,
-              "base_attribute_upload_bytes": 1472796
+              "cpu_attribute_view_bytes": 1128060,
+              "cpu_backing_buffer_bytes": 1128060,
+              "base_attribute_upload_bytes": 1128060
             },
             "parts": 1
           },
@@ -5587,9 +5587,9 @@
             "max": 12000
           },
           "v": {
-            "state": "OVER",
-            "over": 1637,
-            "text": "**OVER by 1,637 (13.6%)**"
+            "state": "PASS",
+            "over": 0,
+            "text": "PASS"
           }
         },
         "map": {
@@ -5646,34 +5646,34 @@
         "depth": 34,
         "close": {
           "hi": {
-            "tris": 7354,
-            "bytes": 794232,
+            "tris": 6540,
+            "bytes": 706320,
             "accounting": {
-              "triangles": 7354,
-              "vertices": 22062,
+              "triangles": 6540,
+              "vertices": 19620,
               "attributes": {
                 "positions": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 264744,
+                  "bytes": 235440,
                   "usage": "base vertex attribute"
                 },
                 "normals": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 264744,
+                  "bytes": 235440,
                   "usage": "base vertex attribute"
                 },
                 "colors": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 264744,
+                  "bytes": 235440,
                   "usage": "base vertex attribute"
                 }
               },
-              "cpu_attribute_view_bytes": 794232,
-              "cpu_backing_buffer_bytes": 794232,
-              "base_attribute_upload_bytes": 794232
+              "cpu_attribute_view_bytes": 706320,
+              "cpu_backing_buffer_bytes": 706320,
+              "base_attribute_upload_bytes": 706320
             },
             "parts": 1
           },
@@ -5743,34 +5743,34 @@
         "depth": 42,
         "close": {
           "hi": {
-            "tris": 8838,
-            "bytes": 954504,
+            "tris": 6858,
+            "bytes": 740664,
             "accounting": {
-              "triangles": 8838,
-              "vertices": 26514,
+              "triangles": 6858,
+              "vertices": 20574,
               "attributes": {
                 "positions": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 318168,
+                  "bytes": 246888,
                   "usage": "base vertex attribute"
                 },
                 "normals": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 318168,
+                  "bytes": 246888,
                   "usage": "base vertex attribute"
                 },
                 "colors": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 318168,
+                  "bytes": 246888,
                   "usage": "base vertex attribute"
                 }
               },
-              "cpu_attribute_view_bytes": 954504,
-              "cpu_backing_buffer_bytes": 954504,
-              "base_attribute_upload_bytes": 954504
+              "cpu_attribute_view_bytes": 740664,
+              "cpu_backing_buffer_bytes": 740664,
+              "base_attribute_upload_bytes": 740664
             },
             "parts": 1
           },
@@ -5840,34 +5840,34 @@
         "depth": 40,
         "close": {
           "hi": {
-            "tris": 24252,
-            "bytes": 2619216,
+            "tris": 19046,
+            "bytes": 2056968,
             "accounting": {
-              "triangles": 24252,
-              "vertices": 72756,
+              "triangles": 19046,
+              "vertices": 57138,
               "attributes": {
                 "positions": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 873072,
+                  "bytes": 685656,
                   "usage": "base vertex attribute"
                 },
                 "normals": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 873072,
+                  "bytes": 685656,
                   "usage": "base vertex attribute"
                 },
                 "colors": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 873072,
+                  "bytes": 685656,
                   "usage": "base vertex attribute"
                 }
               },
-              "cpu_attribute_view_bytes": 2619216,
-              "cpu_backing_buffer_bytes": 2619216,
-              "base_attribute_upload_bytes": 2619216
+              "cpu_attribute_view_bytes": 2056968,
+              "cpu_backing_buffer_bytes": 2056968,
+              "base_attribute_upload_bytes": 2056968
             },
             "parts": 1
           },
@@ -5879,8 +5879,8 @@
           },
           "v": {
             "state": "OVER",
-            "over": 12252,
-            "text": "**OVER by 12,252 (102.1%)**"
+            "over": 7046,
+            "text": "**OVER by 7,046 (58.7%)**"
           }
         },
         "map": {
@@ -6034,34 +6034,34 @@
         "depth": 30,
         "close": {
           "hi": {
-            "tris": 7440,
-            "bytes": 803520,
+            "tris": 6920,
+            "bytes": 747360,
             "accounting": {
-              "triangles": 7440,
-              "vertices": 22320,
+              "triangles": 6920,
+              "vertices": 20760,
               "attributes": {
                 "positions": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 267840,
+                  "bytes": 249120,
                   "usage": "base vertex attribute"
                 },
                 "normals": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 267840,
+                  "bytes": 249120,
                   "usage": "base vertex attribute"
                 },
                 "colors": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 267840,
+                  "bytes": 249120,
                   "usage": "base vertex attribute"
                 }
               },
-              "cpu_attribute_view_bytes": 803520,
-              "cpu_backing_buffer_bytes": 803520,
-              "base_attribute_upload_bytes": 803520
+              "cpu_attribute_view_bytes": 747360,
+              "cpu_backing_buffer_bytes": 747360,
+              "base_attribute_upload_bytes": 747360
             },
             "parts": 1
           },
@@ -6131,34 +6131,34 @@
         "depth": 15,
         "close": {
           "hi": {
-            "tris": 5020,
-            "bytes": 542160,
+            "tris": 4448,
+            "bytes": 480384,
             "accounting": {
-              "triangles": 5020,
-              "vertices": 15060,
+              "triangles": 4448,
+              "vertices": 13344,
               "attributes": {
                 "positions": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 180720,
+                  "bytes": 160128,
                   "usage": "base vertex attribute"
                 },
                 "normals": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 180720,
+                  "bytes": 160128,
                   "usage": "base vertex attribute"
                 },
                 "colors": {
                   "type": "Float32Array",
                   "components": 3,
-                  "bytes": 180720,
+                  "bytes": 160128,
                   "usage": "base vertex attribute"
                 }
               },
-              "cpu_attribute_view_bytes": 542160,
-              "cpu_backing_buffer_bytes": 542160,
-              "base_attribute_upload_bytes": 542160
+              "cpu_attribute_view_bytes": 480384,
+              "cpu_backing_buffer_bytes": 480384,
+              "base_attribute_upload_bytes": 480384
             },
             "parts": 1
           },
@@ -6228,8 +6228,8 @@
     "files": [
       {
         "file": "spheres-web/ui/equipment-mesh.js",
-        "bytes": 177487,
-        "gzip": 53914
+        "bytes": 180384,
+        "gzip": 54814
       },
       {
         "file": "spheres-web/ui/site-mesh.js",
@@ -6238,8 +6238,8 @@
       },
       {
         "file": "spheres-web/ui/town-mesh.js",
-        "bytes": 168970,
-        "gzip": 48058
+        "bytes": 170337,
+        "gzip": 48517
       }
     ],
     "glb": [
@@ -6296,8 +6296,8 @@
         "bytes": 7495224
       }
     ],
-    "bytes": 650616,
-    "gzip": 184366,
+    "bytes": 654880,
+    "gzip": 185725,
     "glbBytes": 125594104
   },
   "graded": [
@@ -6906,30 +6906,30 @@
     {
       "asset": "aviation.air_tactical_strike.baseline.v1",
       "config": "baseline LOD1",
-      "tris": 14904,
+      "tris": 10936,
       "budget": {
         "row": "LOD1 catalogue preview",
         "cell": "4–12k",
         "min": 4000,
         "max": 12000
       },
-      "state": "OVER",
-      "over": 2904,
-      "text": "**OVER by 2,904 (24.2%)**"
+      "state": "PASS",
+      "over": 0,
+      "text": "PASS"
     },
     {
       "asset": "aviation.air_tactical_strike.baseline.v1",
       "config": "baseline LOD2",
-      "tris": 1696,
+      "tris": 1392,
       "budget": {
         "row": "LOD2 map vehicle",
         "cell": "300–1,500",
         "min": 300,
         "max": 1500
       },
-      "state": "OVER",
-      "over": 196,
-      "text": "**OVER by 196 (13.1%)**"
+      "state": "PASS",
+      "over": 0,
+      "text": "PASS"
     },
     {
       "asset": "site.infrastructure.v1",
@@ -7382,7 +7382,7 @@
     {
       "asset": "town.temperate.mixed.v1",
       "config": "close id 1997",
-      "tris": 199331,
+      "tris": 175277,
       "budget": {
         "row": "Scene assembly",
         "cell": "Target ≤150k visible triangles initially",
@@ -7390,13 +7390,13 @@
         "max": 150000
       },
       "state": "OVER",
-      "over": 49331,
-      "text": "**OVER by 49,331 (32.9%)**"
+      "over": 25277,
+      "text": "**OVER by 25,277 (16.9%)**"
     },
     {
       "asset": "town.temperate.residential.v1",
       "config": "close id 1994",
-      "tris": 214044,
+      "tris": 184684,
       "budget": {
         "row": "Scene assembly",
         "cell": "Target ≤150k visible triangles initially",
@@ -7404,41 +7404,41 @@
         "max": 150000
       },
       "state": "OVER",
-      "over": 64044,
-      "text": "**OVER by 64,044 (42.7%)**"
+      "over": 34684,
+      "text": "**OVER by 34,684 (23.1%)**"
     },
     {
       "asset": "town.temperate.commercial.v1",
       "config": "close id 1991",
-      "tris": 151008,
+      "tris": 129734,
       "budget": {
         "row": "Scene assembly",
         "cell": "Target ≤150k visible triangles initially",
         "min": null,
         "max": 150000
       },
-      "state": "OVER",
-      "over": 1008,
-      "text": "**OVER by 1,008 (0.7%)**"
+      "state": "PASS",
+      "over": 0,
+      "text": "PASS"
     },
     {
       "asset": "town.temperate.civic.v1",
       "config": "close id 1992",
-      "tris": 161077,
+      "tris": 135157,
       "budget": {
         "row": "Scene assembly",
         "cell": "Target ≤150k visible triangles initially",
         "min": null,
         "max": 150000
       },
-      "state": "OVER",
-      "over": 11077,
-      "text": "**OVER by 11,077 (7.4%)**"
+      "state": "PASS",
+      "over": 0,
+      "text": "PASS"
     },
     {
       "asset": "town.temperate.industrial.v1",
       "config": "close id 1996",
-      "tris": 92532,
+      "tris": 84250,
       "budget": {
         "row": "Scene assembly",
         "cell": "Target ≤150k visible triangles initially",
@@ -7452,7 +7452,7 @@
     {
       "asset": "town.kit.house",
       "config": "close, maximum size",
-      "tris": 7527,
+      "tris": 6379,
       "budget": {
         "row": "Building close view / map",
         "cell": "2–12k / 100–800",
@@ -7480,7 +7480,7 @@
     {
       "asset": "town.kit.row_house",
       "config": "close, maximum size",
-      "tris": 21222,
+      "tris": 17904,
       "budget": {
         "row": "Building close view / map",
         "cell": "2–12k / 100–800",
@@ -7488,8 +7488,8 @@
         "max": 12000
       },
       "state": "OVER",
-      "over": 9222,
-      "text": "**OVER by 9,222 (76.8%)**"
+      "over": 5904,
+      "text": "**OVER by 5,904 (49.2%)**"
     },
     {
       "asset": "town.kit.row_house",
@@ -7508,7 +7508,7 @@
     {
       "asset": "town.kit.low_apartment",
       "config": "close, maximum size",
-      "tris": 10844,
+      "tris": 8448,
       "budget": {
         "row": "Building close view / map",
         "cell": "2–12k / 100–800",
@@ -7536,16 +7536,16 @@
     {
       "asset": "town.kit.mid_apartment",
       "config": "close, maximum size",
-      "tris": 14540,
+      "tris": 11768,
       "budget": {
         "row": "Building close view / map",
         "cell": "2–12k / 100–800",
         "min": 2000,
         "max": 12000
       },
-      "state": "OVER",
-      "over": 2540,
-      "text": "**OVER by 2,540 (21.2%)**"
+      "state": "PASS",
+      "over": 0,
+      "text": "PASS"
     },
     {
       "asset": "town.kit.mid_apartment",
@@ -7564,16 +7564,16 @@
     {
       "asset": "town.kit.high_apartment",
       "config": "close, maximum size",
-      "tris": 12028,
+      "tris": 9500,
       "budget": {
         "row": "Building close view / map",
         "cell": "2–12k / 100–800",
         "min": 2000,
         "max": 12000
       },
-      "state": "OVER",
-      "over": 28,
-      "text": "**OVER by 28 (0.2%)**"
+      "state": "PASS",
+      "over": 0,
+      "text": "PASS"
     },
     {
       "asset": "town.kit.high_apartment",
@@ -7592,7 +7592,7 @@
     {
       "asset": "town.kit.office",
       "config": "close, maximum size",
-      "tris": 7828,
+      "tris": 6178,
       "budget": {
         "row": "Building close view / map",
         "cell": "2–12k / 100–800",
@@ -7620,7 +7620,7 @@
     {
       "asset": "town.kit.shop",
       "config": "close, maximum size",
-      "tris": 6970,
+      "tris": 5910,
       "budget": {
         "row": "Building close view / map",
         "cell": "2–12k / 100–800",
@@ -7648,7 +7648,7 @@
     {
       "asset": "town.kit.warehouse",
       "config": "close, maximum size",
-      "tris": 6056,
+      "tris": 5706,
       "budget": {
         "row": "Building close view / map",
         "cell": "2–12k / 100–800",
@@ -7676,16 +7676,16 @@
     {
       "asset": "town.kit.civic",
       "config": "close, maximum size",
-      "tris": 13637,
+      "tris": 10445,
       "budget": {
         "row": "Building close view / map",
         "cell": "2–12k / 100–800",
         "min": 2000,
         "max": 12000
       },
-      "state": "OVER",
-      "over": 1637,
-      "text": "**OVER by 1,637 (13.6%)**"
+      "state": "PASS",
+      "over": 0,
+      "text": "PASS"
     },
     {
       "asset": "town.kit.civic",
@@ -7704,7 +7704,7 @@
     {
       "asset": "town.kit.school",
       "config": "close, maximum size",
-      "tris": 7354,
+      "tris": 6540,
       "budget": {
         "row": "Building close view / map",
         "cell": "2–12k / 100–800",
@@ -7732,7 +7732,7 @@
     {
       "asset": "town.kit.hospital",
       "config": "close, maximum size",
-      "tris": 8838,
+      "tris": 6858,
       "budget": {
         "row": "Building close view / map",
         "cell": "2–12k / 100–800",
@@ -7760,7 +7760,7 @@
     {
       "asset": "town.kit.university",
       "config": "close, maximum size",
-      "tris": 24252,
+      "tris": 19046,
       "budget": {
         "row": "Building close view / map",
         "cell": "2–12k / 100–800",
@@ -7768,8 +7768,8 @@
         "max": 12000
       },
       "state": "OVER",
-      "over": 12252,
-      "text": "**OVER by 12,252 (102.1%)**"
+      "over": 7046,
+      "text": "**OVER by 7,046 (58.7%)**"
     },
     {
       "asset": "town.kit.university",
@@ -7816,7 +7816,7 @@
     {
       "asset": "town.kit.park",
       "config": "close, maximum size",
-      "tris": 7440,
+      "tris": 6920,
       "budget": {
         "row": "Building close view / map",
         "cell": "2–12k / 100–800",
@@ -7844,7 +7844,7 @@
     {
       "asset": "town.kit.utility",
       "config": "close, maximum size",
-      "tris": 5020,
+      "tris": 4448,
       "budget": {
         "row": "Building close view / map",
         "cell": "2–12k / 100–800",
@@ -8082,34 +8082,6 @@
       "text": "**OVER by 168,640 (281.1%)**"
     },
     {
-      "asset": "aviation.air_tactical_strike.baseline.v1",
-      "config": "baseline LOD1",
-      "tris": 14904,
-      "budget": {
-        "row": "LOD1 catalogue preview",
-        "cell": "4–12k",
-        "min": 4000,
-        "max": 12000
-      },
-      "state": "OVER",
-      "over": 2904,
-      "text": "**OVER by 2,904 (24.2%)**"
-    },
-    {
-      "asset": "aviation.air_tactical_strike.baseline.v1",
-      "config": "baseline LOD2",
-      "tris": 1696,
-      "budget": {
-        "row": "LOD2 map vehicle",
-        "cell": "300–1,500",
-        "min": 300,
-        "max": 1500
-      },
-      "state": "OVER",
-      "over": 196,
-      "text": "**OVER by 196 (13.1%)**"
-    },
-    {
       "asset": "site.infrastructure.v1",
       "config": "near complete/L5/building",
       "tris": 30756,
@@ -8336,7 +8308,7 @@
     {
       "asset": "town.temperate.mixed.v1",
       "config": "close id 1997",
-      "tris": 199331,
+      "tris": 175277,
       "budget": {
         "row": "Scene assembly",
         "cell": "Target ≤150k visible triangles initially",
@@ -8344,13 +8316,13 @@
         "max": 150000
       },
       "state": "OVER",
-      "over": 49331,
-      "text": "**OVER by 49,331 (32.9%)**"
+      "over": 25277,
+      "text": "**OVER by 25,277 (16.9%)**"
     },
     {
       "asset": "town.temperate.residential.v1",
       "config": "close id 1994",
-      "tris": 214044,
+      "tris": 184684,
       "budget": {
         "row": "Scene assembly",
         "cell": "Target ≤150k visible triangles initially",
@@ -8358,41 +8330,13 @@
         "max": 150000
       },
       "state": "OVER",
-      "over": 64044,
-      "text": "**OVER by 64,044 (42.7%)**"
-    },
-    {
-      "asset": "town.temperate.commercial.v1",
-      "config": "close id 1991",
-      "tris": 151008,
-      "budget": {
-        "row": "Scene assembly",
-        "cell": "Target ≤150k visible triangles initially",
-        "min": null,
-        "max": 150000
-      },
-      "state": "OVER",
-      "over": 1008,
-      "text": "**OVER by 1,008 (0.7%)**"
-    },
-    {
-      "asset": "town.temperate.civic.v1",
-      "config": "close id 1992",
-      "tris": 161077,
-      "budget": {
-        "row": "Scene assembly",
-        "cell": "Target ≤150k visible triangles initially",
-        "min": null,
-        "max": 150000
-      },
-      "state": "OVER",
-      "over": 11077,
-      "text": "**OVER by 11,077 (7.4%)**"
+      "over": 34684,
+      "text": "**OVER by 34,684 (23.1%)**"
     },
     {
       "asset": "town.kit.row_house",
       "config": "close, maximum size",
-      "tris": 21222,
+      "tris": 17904,
       "budget": {
         "row": "Building close view / map",
         "cell": "2–12k / 100–800",
@@ -8400,55 +8344,13 @@
         "max": 12000
       },
       "state": "OVER",
-      "over": 9222,
-      "text": "**OVER by 9,222 (76.8%)**"
-    },
-    {
-      "asset": "town.kit.mid_apartment",
-      "config": "close, maximum size",
-      "tris": 14540,
-      "budget": {
-        "row": "Building close view / map",
-        "cell": "2–12k / 100–800",
-        "min": 2000,
-        "max": 12000
-      },
-      "state": "OVER",
-      "over": 2540,
-      "text": "**OVER by 2,540 (21.2%)**"
-    },
-    {
-      "asset": "town.kit.high_apartment",
-      "config": "close, maximum size",
-      "tris": 12028,
-      "budget": {
-        "row": "Building close view / map",
-        "cell": "2–12k / 100–800",
-        "min": 2000,
-        "max": 12000
-      },
-      "state": "OVER",
-      "over": 28,
-      "text": "**OVER by 28 (0.2%)**"
-    },
-    {
-      "asset": "town.kit.civic",
-      "config": "close, maximum size",
-      "tris": 13637,
-      "budget": {
-        "row": "Building close view / map",
-        "cell": "2–12k / 100–800",
-        "min": 2000,
-        "max": 12000
-      },
-      "state": "OVER",
-      "over": 1637,
-      "text": "**OVER by 1,637 (13.6%)**"
+      "over": 5904,
+      "text": "**OVER by 5,904 (49.2%)**"
     },
     {
       "asset": "town.kit.university",
       "config": "close, maximum size",
-      "tris": 24252,
+      "tris": 19046,
       "budget": {
         "row": "Building close view / map",
         "cell": "2–12k / 100–800",
@@ -8456,8 +8358,8 @@
         "max": 12000
       },
       "state": "OVER",
-      "over": 12252,
-      "text": "**OVER by 12,252 (102.1%)**"
+      "over": 7046,
+      "text": "**OVER by 7,046 (58.7%)**"
     }
   ],
   "inventory": {
@@ -8475,15 +8377,15 @@
     },
     "blocks": {
       "n": 5,
-      "tris": 817992,
-      "bytes": 88343136,
-      "cpuBytes": 88343136
+      "tris": 709102,
+      "bytes": 76583016,
+      "cpuBytes": 76583016
     },
     "total": {
       "n": 30,
-      "tris": 1863230,
-      "bytes": 201228840,
-      "cpuBytes": 202719000
+      "tris": 1754340,
+      "bytes": 189468720,
+      "cpuBytes": 190958880
     },
     "map": {
       "n": 30,

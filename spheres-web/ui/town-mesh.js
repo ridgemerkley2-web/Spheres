@@ -242,10 +242,10 @@
   /// An axis-aligned box by extents, because almost every part of a building
   /// is positioned by a face it must sit flush against — a floor level, an
   /// eaves line, a wall plane — and extents say that directly.
-  Builder.prototype.box = function (x0, x1, y0, y1, z0, z1, slot, mat) {
+  Builder.prototype.box = function (x0, x1, y0, y1, z0, z1, slot, mat, coveredTop) {
     this.quad([x1, y0, z0], [x1, y1, z0], [x1, y1, z1], [x1, y0, z1], slot, mat);
     this.quad([x0, y0, z0], [x0, y0, z1], [x0, y1, z1], [x0, y1, z0], slot, mat);
-    this.quad([x0, y1, z0], [x0, y1, z1], [x1, y1, z1], [x1, y1, z0], slot, mat);
+    if (!coveredTop) this.quad([x0, y1, z0], [x0, y1, z1], [x1, y1, z1], [x1, y1, z0], slot, mat);
     this.quad([x0, y0, z0], [x1, y0, z0], [x1, y0, z1], [x0, y0, z1], slot, mat);
     this.quad([x0, y0, z1], [x1, y0, z1], [x1, y1, z1], [x0, y1, z1], slot, mat);
     this.quad([x0, y0, z0], [x0, y1, z0], [x1, y1, z0], [x1, y0, z0], slot, mat);
@@ -676,10 +676,22 @@
 
   // ------------------------------------------------------- window and door
   // Openings are where the triangles go, and that is the correct place for
-  // them: what makes a box read as a building is the rhythm of its holes. A
-  // sash window here costs about ninety triangles — surround, reveal, glass
-  // and glazing bars — which is why a two-storey house lands near two thousand
-  // and a fourteen-storey slab needs the cheaper ribbon below instead.
+  // them: what makes a box read as a building is the rhythm of its holes.
+  // The surround, reveal, glass and glazing bars retain their real depth.
+  // Faces sealed inside the reveal or behind the glass need no triangles.
+
+  /// A frame member mounted in a glazed opening. Its rear is sealed by the
+  /// opaque pane; ends touching the aperture are sealed by the reveal. Keep
+  /// every exposed face, including the sides that give a thin bar its depth.
+  /// The limits are the actual aperture, not a camera or distance heuristic.
+  function glazingBar(b, x0, x1, y0, y1, z0, z1, mat, left, right, bottom, top) {
+    if (x1 < right) b.quad([x1, y0, z0], [x1, y1, z0], [x1, y1, z1], [x1, y0, z1], SLOT.TRIM, mat);
+    if (x0 > left) b.quad([x0, y0, z0], [x0, y0, z1], [x0, y1, z1], [x0, y1, z0], SLOT.TRIM, mat);
+    if (y1 < top) b.quad([x0, y1, z0], [x0, y1, z1], [x1, y1, z1], [x1, y1, z0], SLOT.TRIM, mat);
+    if (y0 > bottom) b.quad([x0, y0, z0], [x1, y0, z0], [x1, y0, z1], [x0, y0, z1], SLOT.TRIM, mat);
+    b.quad([x0, y0, z1], [x1, y0, z1], [x1, y1, z1], [x0, y1, z1], SLOT.TRIM, mat);
+    return b;
+  }
 
   /// One opening on the +Z wall plane at z = zf, centred on cx. Authored only
   /// for +Z; the other three elevations get it by pushing a cardinal yaw, so
@@ -692,6 +704,8 @@
   /// triangles for the fronts come from.
   function sash(b, cx, y0, w, h, zf, cols, rows, dress) {
     const hw = w / 2, y1 = y0 + h, dep = 0.17, full = b.detail >= 2;
+    const bar = (x0, x1, lo, hi, z0, z1, mat) =>
+      glazingBar(b, x0, x1, lo, hi, z0, z1, mat, cx - hw, cx + hw, y0, y1);
     const shown = dress !== false;
     // A CILL IS A PROJECTING STONE, not a painted line. It oversails the jambs,
     // stands 100 mm proud of the brickwork and is chamfered on its outer
@@ -719,21 +733,24 @@
       // The frame itself, sitting in the reveal in front of the glass. Four
       // sections and a meeting rail: the window, rather than the hole.
       const fz0 = zf - dep + 0.005, fz1 = zf - dep + 0.075;
-      b.box(cx - hw, cx - hw + 0.07, y0, y1, fz0, fz1, SLOT.TRIM, 1.02);
-      b.box(cx + hw - 0.07, cx + hw, y0, y1, fz0, fz1, SLOT.TRIM, 1.02);
-      b.box(cx - hw, cx + hw, y0, y0 + 0.07, fz0, fz1, SLOT.TRIM, 1.06);
-      b.box(cx - hw, cx + hw, y1 - 0.07, y1, fz0, fz1, SLOT.TRIM, 1.06);
-      b.box(cx - hw, cx + hw, y0 + h * 0.5 - 0.05, y0 + h * 0.5 + 0.05, fz0, fz1 + 0.02, SLOT.TRIM, 1.08);
+      bar(cx - hw, cx - hw + 0.07, y0, y1, fz0, fz1, 1.02);
+      bar(cx + hw - 0.07, cx + hw, y0, y1, fz0, fz1, 1.02);
+      bar(cx - hw, cx + hw, y0, y0 + 0.07, fz0, fz1, 1.06);
+      bar(cx - hw, cx + hw, y1 - 0.07, y1, fz0, fz1, 1.06);
+      bar(cx - hw, cx + hw, y0 + h * 0.5 - 0.05, y0 + h * 0.5 + 0.05, fz0, fz1 + 0.02, 1.08);
     }
     if (!full) return b;
     const nc = Math.max(1, cols | 0), nr = Math.max(1, rows | 0);
     for (let i = 1; i < nc; i += 1) {
       const x = cx - hw + (w * i) / nc;
-      b.box(x - 0.026, x + 0.026, y0, y1, zf - dep, zf - dep + 0.05, SLOT.TRIM, 1.05);
+      bar(x - 0.026, x + 0.026, y0, y1, zf - dep, zf - dep + 0.05, 1.05);
     }
     for (let j = 1; j < nr; j += 1) {
       const y = y0 + (h * j) / nr;
-      b.box(cx - hw, cx + hw, y - 0.028, y + 0.028, zf - dep, zf - dep + 0.05, SLOT.TRIM, 1.05);
+      // The middle glazing bar is entirely behind the wider meeting rail.
+      // Its 5 mm rear lip is sealed by the pane; neither contributes a face.
+      if (Math.abs(y - (y0 + h * 0.5)) + 0.028 <= 0.05) continue;
+      bar(cx - hw, cx + hw, y - 0.028, y + 0.028, zf - dep, zf - dep + 0.05, 1.05);
     }
     return b;
   }
@@ -744,6 +761,8 @@
   /// one band covers a whole floor for the price of a couple of sashes.
   function ribbon(b, x0, x1, y0, h, zf, pitch) {
     const y1 = y0 + h, dep = 0.14;
+    const bar = (left, right, lo, hi, z1, mat) =>
+      glazingBar(b, left, right, lo, hi, zf - dep, z1, mat, x0, x1, y0, y1);
     if (b.detail >= 2) {
       b.bevelBox(x0 - 0.12, x1 + 0.12, y0 - 0.14, y0 + 0.01, zf - 0.02, zf + 0.1, SLOT.TRIM, 1.02, 0.02);
       b.bevelBox(x0 - 0.12, x1 + 0.12, y1 - 0.01, y1 + 0.15, zf - 0.02, zf + 0.06, SLOT.TRIM, 1.0, 0.02);
@@ -764,12 +783,12 @@
     const n = Math.max(1, Math.round((x1 - x0) / ((pitch || 1.8) * (b.detail >= 2 ? 1 : 2))));
     for (let i = 1; i < n; i += 1) {
       const x = x0 + ((x1 - x0) * i) / n;
-      b.box(x - 0.05, x + 0.05, y0, y1, zf - dep, zf - dep + 0.06, SLOT.TRIM, 1.05);
+      bar(x - 0.05, x + 0.05, y0, y1, zf - dep + 0.06, 1.05);
     }
     if (b.detail >= 2) {
       // A transom at the head of the opening light, which is what turns a
       // glazed slot into a window at close range.
-      b.box(x0, x1, y0 + h * 0.62 - 0.04, y0 + h * 0.62 + 0.04, zf - dep, zf - dep + 0.055, SLOT.TRIM, 1.06);
+      bar(x0, x1, y0 + h * 0.62 - 0.04, y0 + h * 0.62 + 0.04, zf - dep + 0.055, 1.06);
     }
     return b;
   }
@@ -1074,7 +1093,10 @@
     b.box(x0, x1, y + h * 0.42, y + h * 0.42 + 0.05, z - 0.025, z + 0.025, SLOT.METAL, 0.95);
     for (let i = 0; i <= n; i += 1) {
       const x = x0 + ((x1 - x0) * i) / n;
-      b.box(x - 0.018, x + 0.018, y, y + h, z - 0.018, z + 0.018, SLOT.METAL, 1.0);
+      // Interior baluster caps lie entirely inside the top rail's top face.
+      // Keep the end-post caps: their outer half extends beyond that rail.
+      b.box(x - 0.018, x + 0.018, y, y + h, z - 0.018, z + 0.018, SLOT.METAL, 1.0,
+        x - 0.018 >= x0 && x + 0.018 <= x1);
     }
     return b;
   }

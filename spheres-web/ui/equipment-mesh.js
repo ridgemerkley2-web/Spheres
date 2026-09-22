@@ -581,6 +581,9 @@
     // Spend inspection geometry on curved airframe/duct sections and wing
     // profiles. Catalogue and map builds sample the same authored surfaces.
     const level=detail.level,radial=[160,32,8][level],steps=[16,3,1][level];
+    // Small stores and sensor pods occupy only a few catalogue/map pixels.
+    // Keep their authored sections and fins, with fewer circumferential samples.
+    const fittingSamples=strike&&level>0?[160,12,4][level]:radial;
     const wingSections=[40,5,2][level],wingChord=[80,16,4][level];
     const c=strike||fighter?{paint:[.48,.52,.54],upper:[.55,.58,.59],edge:[.39,.43,.45],dark:[.20,.24,.26],steel:[.25,.27,.28],black:PALETTE.black,glass:[.40,.53,.56],rubber:PALETTE.rubber}:{paint:[.37,.41,.36],upper:[.45,.49,.42],edge:[.53,.56,.48],dark:[.19,.23,.21],steel:PALETTE.steel,black:PALETTE.black,glass:[.09,.22,.28],rubber:PALETTE.rubber};
     const surfaces=[];
@@ -610,28 +613,33 @@
     };
     const body=(input,color,cx=0,options={})=>{
       const rows=options.rounded?roundedSections(input):input;
+      const samples=options.samples||radial;
       const power=options.squared?.65:1;
       const curve=a=>Math.sign(a)*Math.pow(Math.abs(a),power);
-      const rings=rows.map(([z,rx,ry,cy,dx])=>options.squared?Array.from({length:radial},(_,i)=>[cx+(dx??0)+rx*curve(Math.cos(TAU*i/radial)),(cy??y)+ry*curve(Math.sin(TAU*i/radial)),z]):ring(z,rx,ry,cy??y,cx+(dx??0)));
+      const rings=rows.map(([z,rx,ry,cy,dx])=>options.squared?Array.from({length:samples},(_,i)=>[cx+(dx??0)+rx*curve(Math.cos(TAU*i/samples)),(cy??y)+ry*curve(Math.sin(TAU*i/samples)),z]):ring(z,rx,ry,cy??y,cx+(dx??0),samples));
       const center=mean(rings.flat());
-      if(!options.open){b.face(rings[0],shade(color,.84),center);b.face(rings[rings.length-1],shade(color,1.08),center);}
+      if(!options.open){
+        if(!options.occluded?.(rings[0]))b.face(rings[0],shade(color,.84),center);
+        if(!options.occluded?.(rings[rings.length-1]))b.face(rings[rings.length-1],shade(color,1.08),center);
+      }
       // Elliptical fuselage/canopy normals follow the actual ring radii and
       // taper. Shared normals remove the old longitudinal prism stripes without
       // subdividing a single triangle or rounding a wing's sharp trailing edge.
       const normals=rows.map((row,k)=>{
         const before=rows[Math.max(0,k-1)],after=rows[Math.min(rows.length-1,k+1)],dz=after[0]-before[0];
         const dx=(after[1]-before[1])/dz,dy=(after[2]-before[2])/dz,dc=((after[3]??y)-(before[3]??y))/dz,dcx=((after[4]??0)-(before[4]??0))/dz;
-        return Array.from({length:radial},(_,i)=>{
-          const angle=TAU*i/radial,co=Math.cos(angle),si=Math.sin(angle);
+        return Array.from({length:samples},(_,i)=>{
+          const angle=TAU*i/samples,co=Math.cos(angle),si=Math.sin(angle);
           if(options.squared){const nx=Math.sign(co)*Math.pow(Math.abs(co),2-power)/row[1],ny=Math.sign(si)*Math.pow(Math.abs(si),2-power)/row[2];return mul(normal([nx,ny,-nx*(dcx+dx*curve(co))-ny*(dc+dy*curve(si))]),options.inward?-1:1);}
           return mul(normal([row[2]*co,row[1]*si,-row[1]*si*(dc+dy*si)-row[2]*co*(dcx+dx*co)]),options.inward?-1:1);
         });
       });
-      for(let k=0;k<rings.length-1;k++)for(let i=0;i<radial;i++){
-        if(options.upper&&i>=radial/2)continue;
+      for(let k=0;k<rings.length-1;k++)for(let i=0;i<samples;i++){
+        if(options.upper&&i>=samples/2)continue;
         const zmid=(rows[k][0]+rows[k+1][0])/2;
-        if(options.cockpit&&zmid>cockpitA&&zmid<cockpitB&&Math.sin(TAU*(i+.5)/radial)>.38)continue;
-        const j=(i+1)%radial,a=rings[k][i],d=rings[k][j],e=rings[k+1][j],f=rings[k+1][i];
+        if(options.cockpit&&zmid>cockpitA&&zmid<cockpitB&&Math.sin(TAU*(i+.5)/samples)>.38)continue;
+        const j=(i+1)%samples,a=rings[k][i],d=rings[k][j],e=rings[k+1][j],f=rings[k+1][i];
+        if(options.occluded?.([a,d,e,f]))continue;
         if(options.inward){
           b.turned(a,e,d,color,normals[k][i],normals[k+1][j],normals[k][j]);
           b.turned(a,f,e,color,normals[k][i],normals[k+1][i],normals[k+1][j]);
@@ -664,6 +672,22 @@
     };
     const airframeRows=strike?[[rear,.17,.15],[rear+length*.08,.46,.27],[rear+length*.20,.94,.38],[rear+length*.37,1.04,.44],[rear+length*.55,.94,.49],[rear+length*.72,.63,.47],[front-length*.15,.47,.39],[front-length*.10,w*.43,w*.47]]:null;
     const skinRows=strike?roundedSections(airframeRows):null;
+    const cockpitSegments=strike?skinRows.slice(0,-1).map((p,k)=>[p[0],skinRows[k+1][0]]).filter(([a,z])=>(a+z)/2>cockpitA&&(a+z)/2<cockpitB):[];
+    const cockpitCut=strike?[cockpitSegments[0][0],cockpitSegments[cockpitSegments.length-1][1]]:[];
+    const cockpitFloor=Math.min(...Array.from({length:radial},(_,i)=>i).filter(i=>Math.sin(TAU*(i+.5)/radial)>.38).map(i=>Math.min(Math.sin(TAU*i/radial),Math.sin(TAU*(i+1)/radial))))-.01;
+    // An inscribed elliptical cylinder is inside every fuselage cross-section
+    // touched by a face. Only discard faces whose entire convex hull lies in
+    // that cylinder, below any cockpit opening. This retains exposed taper tips.
+    const buriedInAirframe=points=>{
+      const low=Math.min(...points.map(p=>p[2])),high=Math.max(...points.map(p=>p[2]));
+      if(low<skinRows[0][0]||high>skinRows[skinRows.length-1][0])return false;
+      const at=z=>{const k=Math.max(1,skinRows.findIndex(p=>p[0]>=z)),a=skinRows[k-1],q=skinRows[k],t=(z-a[0])/(q[0]-a[0]);return [z,a[1]+(q[1]-a[1])*t,a[2]+(q[2]-a[2])*t];};
+      const rows=[at(low),at(high),...skinRows.filter(p=>p[0]>low&&p[0]<high)];
+      const rx=Math.min(...rows.map(p=>p[1])),ry=Math.min(...rows.map(p=>p[2]));
+      const inset=Math.cos(Math.PI/radial)*.99;
+      return points.every(p=>(p[0]/rx)**2+((p[1]-y)/ry)**2<inset**2
+        &&(high<=cockpitCut[0]||low>=cockpitCut[1]||p[1]<y+ry*cockpitFloor));
+    };
     const skin=(z,angle,offset=.006)=>{
       const k=Math.max(1,skinRows.findIndex(p=>p[0]>=z)),a=skinRows[k-1],q=skinRows[k],t=Math.max(0,Math.min(1,(z-a[0])/(q[0]-a[0])));
       return [(a[1]+(q[1]-a[1])*t+offset)*Math.cos(angle),y+(a[2]+(q[2]-a[2])*t+offset)*Math.sin(angle),z];
@@ -672,8 +696,10 @@
     b.part('air_wing / airframe and wing roots',()=>{
       body(strike?airframeRows:[[rear+1.05,w*.56,w*.55],[rear+length*.20,w*.83,w*.83],[rear+length*.37,w,w*.90],[rear+length*.55,w,w*.95],[rear+length*.72,w*.81,w*.86],[front-length*.15,w*.56,w*.59],[front-length*.10,w*.43,w*.47]],c.paint,0,{rounded:true,cockpit:true,open:!strike});
       for(const side of [-1,1]) {
+        // Coarse fairings retain exposed taper tips and caps. Only faces
+        // fully enclosed by the solid fuselage may be omitted.
         body(strike?[[wingZ-3.65,.12,.055,y,side*.10],[wingZ-2.0,.69,.24,y],[wingZ-.10,.78,.28,y+.035],[wingZ+2.35,.57,.12,y+.12,side*.04],[wingZ+4.25,.045,.035,y+.17,-side*.20]]:[[wingZ-2.05,.055,.035,y],[wingZ-1.30,w*.68,.125,y],
-          [wingZ-.10,w*.80,.21,y+.012],[wingZ+.85,w*.53,.14,y+.015],[wingZ+1.86,.055,.035,y]],c.paint,side*w*.90,{rounded:true});
+          [wingZ-.10,w*.80,.21,y+.012],[wingZ+.85,w*.53,.14,y+.015],[wingZ+1.86,.055,.035,y]],c.paint,side*w*.90,{rounded:true,occluded:strike&&level>0?buriedInAirframe:null,samples:strike&&level>0?[160,16,4][level]:radial});
         if(!strike)for(let i=0;i<5;i++)b.box([side*w*.99,y-.02,rear+2.3+i*.18],[.017,.29,.045],c.dark);
         // Service bay doors lie on the nearly cylindrical waist, with their
         // hinges reaching the fuselage instead of detached decorative squares.
@@ -682,7 +708,7 @@
       if(strike&&level<2){
         // Thin access seams follow the new curved skin, including the dorsal
         // engine covers. Their subdued edges stay attached at every sample.
-        const n=level===0?24:8,seam=shade(c.paint,.80);
+        const n=level===0?24:6,seam=shade(c.paint,.80);
         for(const z of [-5.35,-2.45,.85,6.08])for(let j=0;j<n;j++){
           const a=.26+(Math.PI-.52)*j/n,q=.26+(Math.PI-.52)*(j+1)/n;
           b.rod(skin(z,a),skin(z,q),.006,seam,6);
@@ -694,7 +720,7 @@
       const offset=mapping?.25:0;
       body([[front-length*.10,w*.43,w*.47],[front-length*.055,w*.27,w*.30],[front+offset,.016,.022]],mapping?c.dark:shade(c.paint,.85));
       b.rod([0,y,front+offset],[0,y,front+offset+.62],.018,c.steel,12);
-      if(mapping&&!fighter){body([[front-1.65,.17,.12,y-.43],[front-1.14,.20,.16,y-.40],[front-.85,.04,.05,y-.36]],c.dark);b.cylinder([0,y-.5,front-1.05],[0,y-.52,front-.96],.10,PALETTE.lens,24);}
+      if(mapping&&!fighter){body([[front-1.65,.17,.12,y-.43],[front-1.14,.20,.16,y-.40],[front-.85,.04,.05,y-.36]],c.dark,0,{samples:fittingSamples});b.cylinder([0,y-.5,front-1.05],[0,y-.52,front-.96],.10,PALETTE.lens,24);}
     },'air_radar');
     b.part(`air_avionics / ${fighter?(digital?'digital interception cockpit and datalink':'interception cockpit and radio aerials'):digital?'digital mission cockpit and targeting pod':'analog cockpit and radio aerials'}`,()=>{
       {
@@ -828,7 +854,7 @@
       if(strike)plate([[0,y+.46,-.32],[0,y+.73,-.64],[0,y+.46,-.88]],.025,c.dark,true);
       else plate([[0,y+w*.8,rear+length*.46],[0,y+w*.8+.47,rear+length*.43],[0,y+w*.8,rear+length*.40]],.035,c.dark,true);
       if(digital&&fighter){beveled(b,[0,y+w*1.03,z-1.3],[.42,.24,.78],c.edge,.055);for(const side of [-1,1])b.rod([side*.25,y+w*.96,z-1.0],[side*.32,y+w*.96+.29,z-1.29],.013,c.steel,10);}
-      else if(digital){body([[.35,.21,.2,y-.73],[1.55,.21,.20,y-.73],[1.87,.11,.14,y-.73]],c.dark,.58);b.cylinder([.58,y-.73,1.86],[.58,y-.73,1.89],.105,PALETTE.lens,28);b.box([0,strike?skin(1.55,Math.PI/2)[1]+.025:y+w*.96,strike?1.55:z-1.3],[.25,.13,.5],c.edge);}
+      else if(digital){body([[.35,.21,.2,y-.73],[1.55,.21,.20,y-.73],[1.87,.11,.14,y-.73]],c.dark,.58,{samples:fittingSamples});b.cylinder([.58,y-.73,1.86],[.58,y-.73,1.89],.105,PALETTE.lens,28);b.box([0,strike?skin(1.55,Math.PI/2)[1]+.025:y+w*.96,strike?1.55:z-1.3],[.25,.13,.5],c.edge);}
       else for(const side of [-1,1])b.rod([side*.22,strike?y+.47:y+w*.85,strike?1.30:z-1.1],[side*.28,strike?y+.70:y+w*.85+.35,strike?.95:z-1.55],.012,c.steel);
     },'air_avionics');
     for(const side of [-1,1]) {
@@ -874,10 +900,11 @@
     engineXs.forEach((x,index)=>{
       b.part(`air_engine / ${fighter?(efficient?'managed interceptor engine':'interceptor engine'):twin?(index?'starboard':'port')+' twin turbofan':efficient?'efficient turbofan':'economical turbine'} nacelle`,()=>{
         const ey=y-(strike?.37:.15),housingFront=wingZ+.03,exhaust=rear+.03;
+        const ductSamples=strike&&level===1?16:radial;
         // The engine casing ends behind the duct throat. Extending a capped
         // casing to the lip would put a solid painted disc across the intake.
         body([[exhaust,engineRadius*.87,engineRadius*.87,ey],[rear+1.1,engineRadius,engineRadius,ey],[rear+2.8,engineRadius*1.13,engineRadius*1.04,ey],
-          [housingFront-.60,engineRadius*.95,engineRadius,ey],[housingFront,engineRadius*.89,engineRadius*.89,ey]],c.paint,x,{open:level<2});
+          [housingFront-.60,engineRadius*.95,engineRadius,ey],[housingFront,engineRadius*.89,engineRadius*.89,ey]],c.paint,x,{open:level<2||strike,samples:strike&&level===1?16:radial,occluded:strike&&level>0?buriedInAirframe:null});
         // Closed swept vanes have actual front/back surfaces. Their curved
         // radial sections catch highlights through the inlet and nozzle.
         const fan=(cx,cz,r,direction,count)=>{
@@ -897,21 +924,24 @@
         // Exposed side ducts feed the selected engine installation. A single
         // central circular mouth was hidden inside the fuselage; two exposed
         // intakes still belong to ONE engine part when a single engine is fitted.
+        // Coarse tactical ducts use their original control rings directly.
+        // Mouth, lip and liner share the same angular sampling, so they join
+        // without cracks; recessed fans and nozzles retain physical geometry.
         for(const side of twin?[Math.sign(x)]:[-1,1]){
           const r=engineRadius*(strike?(twin?.70:.75):(twin?.66:.65)),mouthX=side*(strike?1.10+r*.65:w+r+.045),mouthZ=wingZ+(strike?1.45:2.65);
           body([[mouthZ-(strike?1.72:2.75),r*.51,r*.72,ey,x-mouthX],[mouthZ-.78,r*.89,r*.96,ey,-side*.115],
-            [mouthZ-.14,r*1.02,r*1.02,ey,0],[mouthZ,r*1.03,r*1.03,ey,0]],c.paint,mouthX,{rounded:true,open:true,squared:strike});
+            [mouthZ-.14,r*1.02,r*1.02,ey,0],[mouthZ,r*1.03,r*1.03,ey,0]],c.paint,mouthX,{rounded:!strike||level===0,open:true,squared:strike,samples:ductSamples});
           if(strike){
-            const outside=Array.from({length:radial},(_,k)=>{const a=TAU*k/radial;return [mouthX+Math.sign(Math.cos(a))*Math.pow(Math.abs(Math.cos(a)),.65)*r*1.03,ey+Math.sign(Math.sin(a))*Math.pow(Math.abs(Math.sin(a)),.65)*r*1.03,mouthZ];});
+            const outside=Array.from({length:ductSamples},(_,k)=>{const a=TAU*k/ductSamples;return [mouthX+Math.sign(Math.cos(a))*Math.pow(Math.abs(Math.cos(a)),.65)*r*1.03,ey+Math.sign(Math.sin(a))*Math.pow(Math.abs(Math.sin(a)),.65)*r*1.03,mouthZ];});
             const inside=outside.map(p=>[mouthX+(p[0]-mouthX)*.84,ey+(p[1]-ey)*.84,mouthZ+.012]);
-            for(let k=0;k<radial;k++){const q=(k+1)%radial;b.face([outside[k],outside[q],inside[q],inside[k]],c.edge,[mouthX,ey,mouthZ-.15]);}
+            for(let k=0;k<ductSamples;k++){const q=(k+1)%ductSamples;b.face([outside[k],outside[q],inside[q],inside[k]],c.edge,[mouthX,ey,mouthZ-.15]);}
           }else b.revolve([mouthX,ey,mouthZ-.08],[0,0,1],[{r:r*1.03,h:0,s:1},{r:r*1.075,h:.055,s:1},
             {r:r*1.04,h:.10,s:1},{r:r*.88,h:.105},{r:r*.84,h:.06,s:1},{r:r*.84,h:0,s:1}],c.edge,32);
           body([[mouthZ-.66,r*.72,r*.72,ey,-side*.030],[mouthZ-.31,r*.79,r*.80,ey,-side*.008],
-            [mouthZ-.08,r*.84,r*.84,ey,0]],c.dark,mouthX,{rounded:true,open:true,inward:true,squared:strike});
-          if(strike)body([[mouthZ-.08,r*.84,r*.84,ey],[mouthZ+.012,r*.8652,r*.8652,ey]],c.dark,mouthX,{open:true,inward:true,squared:true});
+            [mouthZ-.08,r*.84,r*.84,ey,0]],c.dark,mouthX,{rounded:!strike||level===0,open:true,inward:true,squared:strike,samples:ductSamples});
+          if(strike)body([[mouthZ-.08,r*.84,r*.84,ey],[mouthZ+.012,r*.8652,r*.8652,ey]],c.dark,mouthX,{open:true,inward:true,squared:true,samples:ductSamples});
           const hubX=mouthX-side*.030,fanZ=mouthZ-.675;
-          if(strike)b.face(Array.from({length:radial},(_,k)=>{const a=TAU*k/radial;return [hubX+Math.sign(Math.cos(a))*Math.pow(Math.abs(Math.cos(a)),.65)*r*.735,ey+Math.sign(Math.sin(a))*Math.pow(Math.abs(Math.sin(a)),.65)*r*.735,fanZ-.016];}),c.black,[hubX,ey,fanZ-.10]);
+          if(strike)b.face(Array.from({length:ductSamples},(_,k)=>{const a=TAU*k/ductSamples;return [hubX+Math.sign(Math.cos(a))*Math.pow(Math.abs(Math.cos(a)),.65)*r*.735,ey+Math.sign(Math.sin(a))*Math.pow(Math.abs(Math.sin(a)),.65)*r*.735,fanZ-.016];}),c.black,[hubX,ey,fanZ-.10]);
           b.cylinder([hubX,ey,fanZ-.015],[hubX,ey,fanZ],r*.73,c.black,28);
           if(level<2){
             fan(hubX,fanZ,r,1,level===0?28:20);
@@ -1049,7 +1079,9 @@
       }
       for(const {x,z} of stations){
         const sy=y-.79,sz=z+.16,r=guided?.15:.18;
-        body([[sz-.92,.055,.055,sy],[sz-.67,r,r,sy],[sz+.35,r,r,sy],[sz+.70,r*.45,r*.45,sy],[sz+.78,.018,.018,sy]],guided?c.dark:c.paint,x);
+        // At map scale the tiny nose shoulder is a single taper; keep the
+        // cylindrical body, both tips and all separate control-fin geometry.
+        body([[sz-.92,.055,.055,sy],[sz-.67,r,r,sy],[sz+.35,r,r,sy],...(strike&&level===2?[]:[[sz+.70,r*.45,r*.45,sy]]),[sz+.78,.018,.018,sy]],guided?c.dark:c.paint,x,{samples:fittingSamples});
         for(const axis of [0,1])for(const sign of [-1,1]){
           const off=axis?[0,sign*.37,0]:[sign*.37,0,0],base=[x,sy,sz-.58];
           plate([add(base,[0,0,-.19]),add(add(base,off),[0,0,-.27]),add(add(base,off),[0,0,.10]),add(base,[0,0,.27])],.026,c.edge,axis===1);
@@ -1066,7 +1098,7 @@
       if(extended)for(const side of [-1,1]){
         const x=side*(strike?3.75:span-.55),z=wingZ-(strike?1.3:.10),fy=y+(strike?-.80:.10);
         if(strike)plate([[x,y-.01,z+.38],[x,fy+.29,z+.22],[x,fy+.29,z-.57],[x,y-.01,z-.68]],.10,c.upper,true);
-        body([[z-1.75,.035,.035,fy],[z-1.21,.25,.25,fy],[z+.63,.27,.27,fy],[z+1.38,.08,.08,fy],[z+1.47,.025,.025,fy]],c.upper,x);
+        body([[z-1.75,.035,.035,fy],[z-1.21,.25,.25,fy],[z+.63,.27,.27,fy],[z+1.38,.08,.08,fy],[z+1.47,.025,.025,fy]],c.upper,x,{samples:fittingSamples});
         for(const dz of [-.8,.3])b.tube([x,fy,z+dz-.018],[x,fy,z+dz+.018],.273,.261,c.edge,32);
       }
     },'air_fuel');
@@ -1076,7 +1108,7 @@
         b.box([side*(twin?1.10:.50),y+.10,rear+2.0],[.46,.12,.55],c.paint);
         b.box([dx,dy,rear+2.0],[.32,.24,.55],c.steel);
         for(let i=0;i<3;i++)for(let j=0;j<4;j++)b.box([dx+(i-1)*.075,dy+.126,rear+1.84+j*.10],[.045,.018,.065],c.black);
-        if(ecm){body([[rear+1.0,.075,.075,y+.47],[rear+1.26,.15,.15,y+.47],[rear+2.0,.15,.15,y+.47],[rear+2.30,.035,.035,y+.47]],c.dark,side*(w+.20));b.cylinder([side*(w+.20),y+.47,rear+2.28],[side*(w+.20),y+.47,rear+2.32],.035,PALETTE.lens,16);}
+        if(ecm){body([[rear+1.0,.075,.075,y+.47],[rear+1.26,.15,.15,y+.47],[rear+2.0,.15,.15,y+.47],[rear+2.30,.035,.035,y+.47]],c.dark,side*(w+.20),{samples:fittingSamples});b.cylinder([side*(w+.20),y+.47,rear+2.28],[side*(w+.20),y+.47,rear+2.32],.035,PALETTE.lens,16);}
       }
     },'air_countermeasures');
     const mesh=b.finish(`Visual interpretation of an original ${fighter?'single-seat defensive fighter':strike?'twin-seat tactical strike':'light attack'} aircraft. Component-driven parked game model; performance and procurement values belong to the simulation.${fighter?' Missile shapes illustrate the installed interface; available stores remain in the ammunition ledger.':''}`);

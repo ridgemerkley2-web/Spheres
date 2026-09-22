@@ -19,7 +19,7 @@ Runtime loader: runtime geometry is generated locally; no GLB asset fetch or bui
 | `ground.ground_artillery.baseline.v1` | `ground_artillery` | 45330 | 5182 | 1144 | 3.554 x 2.943 x 7.885 m |
 | `ground.ground_air_defense.baseline.v1` | `ground_air_defense` | 41178 | 5632 | 1112 | 3.254 x 3.35 x 6.56 m |
 | `aviation.air_light_attack.baseline.v1` | `air_light_attack` | 199326 | 11474 | 1252 | 10.44 x 3.352 x 12.73 m |
-| `aviation.air_tactical_strike.baseline.v1` | `air_tactical_strike` | 228640 | 14904 | 1696 | 11.84 x 4.082 x 17.73 m |
+| `aviation.air_tactical_strike.baseline.v1` | `air_tactical_strike` | 228640 | 10936 | 1392 | 11.84 x 4.082 x 17.73 m |
 | `aviation.air_fighter.baseline.v1` | `air_fighter` | 200446 | 11594 | 1296 | 9.54 x 3.712 x 15.73 m |
 | `site.infrastructure.v1` | `infrastructure` | 8846-23496 | 244-708 | — | 64 x 11.78 x 46 m |
 | `site.civilian_industry.v1` | `civilian_industry` | 8066-32042 | 180-546 | — | 66 x 14.19 x 46.16 m |
@@ -37,11 +37,11 @@ Runtime loader: runtime geometry is generated locally; no GLB asset fetch or bui
 | `site.office_district.v1` | `office_district` | 8066-25090 | 180-550 | — | 66 x 15.7 x 46 m |
 | `site.shipyard.v1` | `shipyard` | 8474-23064 | 188-594 | — | 72 x 21.6 x 50 m |
 | `site.advanced_industry.v1` | `advanced_industry` | 8202-23068 | 180-606 | — | 66 x 13.79 x 48 m |
-| `town.temperate.mixed.v1` | `visual_only` | 198462 | 3422 | — | 148 x 15.595 x 104 m |
-| `town.temperate.residential.v1` | `visual_only` | 212820 | 3330 | — | 148 x 15.155 x 104 m |
-| `town.temperate.commercial.v1` | `visual_only` | 132360 | 3012 | — | 148 x 23.68 x 104 m |
-| `town.temperate.civic.v1` | `visual_only` | 131586 | 3124 | — | 148 x 22.175 x 104 m |
-| `town.temperate.industrial.v1` | `visual_only` | 91276 | 2616 | — | 148 x 21.505 x 104 m |
+| `town.temperate.mixed.v1` | `visual_only` | 170472 | 3422 | — | 148 x 15.595 x 104 m |
+| `town.temperate.residential.v1` | `visual_only` | 183540 | 3330 | — | 148 x 15.155 x 104 m |
+| `town.temperate.commercial.v1` | `visual_only` | 111818 | 3012 | — | 148 x 23.68 x 104 m |
+| `town.temperate.civic.v1` | `visual_only` | 110624 | 3124 | — | 148 x 22.175 x 104 m |
+| `town.temperate.industrial.v1` | `visual_only` | 82142 | 2616 | — | 148 x 21.505 x 104 m |
 
 All 16 construction kinds have authored compositions; none is marked as placeholder massing.
 Placeholder status comes from each generator's metadata and is also retained in the JSON.

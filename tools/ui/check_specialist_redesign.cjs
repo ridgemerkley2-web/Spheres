@@ -5,6 +5,8 @@ const {build}=require(process.env.SPHERES_SPECIALIST_AUDIT_MESH||'../../spheres-
 const {raycast}=require('../../spheres-web/ui/equipment-model.js');
 const ground=['ground_ifv','ground_apc','ground_recon','ground_artillery','ground_air_defense'];
 const hash=m=>{const h=crypto.createHash('sha256');for(const key of ['positions','normals','colors','materialClasses'])h.update(Buffer.from(m[key].buffer));return h.digest('hex');};
+// Tactical LOD1/2 pins reflect the reviewed September 22 coarse optimization;
+// the tank, light-attack and tactical inspection sidecars remain unchanged.
 const approved={
   "tank_standard/0": "34344d8b40719b76d156b1207fe0e3c48cbc8ff28675d87e84faec153ba45b31",
   "tank_standard/1": "b274d23ccb22110a5d130207f2d0ad118553f2e3b4cff650d50e935dd35ea214",
@@ -22,8 +24,8 @@ const approved={
   "air_light_attack/1": "d6701d02d852080cba870e1de5a706ec1b13c486081f6d780b6b22a47b951fae",
   "air_light_attack/2": "c1902656dea412d725693a8c4b3b52118d42749c06482e15b20a2d42de905d88",
   "air_tactical_strike/0": "9ff8123ae78043163cd78d154f054daad2f11c077138efabd37eaa2bff2c7569",
-  "air_tactical_strike/1": "1b2a941672cc8718516dc9a6e4cebaa01bbbc1ddb992890a50566826269ac9e5",
-  "air_tactical_strike/2": "e7c1f139ffa95a696f4d14cd972c4ab0dc9acb2fe8b11d499b495f6c76657074"
+  "air_tactical_strike/1": "b5f018a05f291035da6bf020669eb6c96630d61e6958c26d7dcdacd37f063655",
+  "air_tactical_strike/2": "a7b1dbc4dbae7abe1786640c1bec7b5c81e27dff82954ab2420db710c739b17e"
 };
 function vertices(m,name,color){const p=m.parts.find(p=>typeof name==='string'?p.name===name:name(p));assert(p,String(name));const out=[];for(let i=p.first;i<p.first+p.count;i++)if(!color||color.every((v,k)=>Math.abs(m.colors[i*3+k]-v)<1e-6))out.push({p:Array.from(m.positions.subarray(i*3,i*3+3)),n:Array.from(m.normals.subarray(i*3,i*3+3)),material:m.materialClasses[i]});return out;}
 function span(v,k){const nums=v.map(v=>v.p[k]);return [Math.min(...nums),Math.max(...nums)];}

@@ -1613,8 +1613,8 @@
       "regenerate": "node tools/ui/build_equipment_models.cjs",
       "lod": {
         "LOD0": 228640,
-        "LOD1": 14904,
-        "LOD2": 1696
+        "LOD1": 10936,
+        "LOD2": 1392
       },
       "payloads": {
         "LOD0": {
@@ -1651,70 +1651,70 @@
           "base_attribute_upload_bytes": 24693120
         },
         "LOD1": {
-          "triangles": 14904,
-          "vertices": 44712,
+          "triangles": 10936,
+          "vertices": 32808,
           "attributes": {
             "positions": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 536544,
+              "bytes": 393696,
               "usage": "base vertex attribute"
             },
             "normals": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 536544,
+              "bytes": 393696,
               "usage": "base vertex attribute"
             },
             "colors": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 536544,
+              "bytes": 393696,
               "usage": "base vertex attribute"
             },
             "materialClasses": {
               "type": "Uint8Array",
               "components": 1,
-              "bytes": 44712,
+              "bytes": 32808,
               "usage": "CPU material classification; not uploaded directly"
             }
           },
-          "cpu_attribute_view_bytes": 1654344,
-          "cpu_backing_buffer_bytes": 1654344,
-          "base_attribute_upload_bytes": 1609632
+          "cpu_attribute_view_bytes": 1213896,
+          "cpu_backing_buffer_bytes": 1213896,
+          "base_attribute_upload_bytes": 1181088
         },
         "LOD2": {
-          "triangles": 1696,
-          "vertices": 5088,
+          "triangles": 1392,
+          "vertices": 4176,
           "attributes": {
             "positions": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 61056,
+              "bytes": 50112,
               "usage": "base vertex attribute"
             },
             "normals": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 61056,
+              "bytes": 50112,
               "usage": "base vertex attribute"
             },
             "colors": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 61056,
+              "bytes": 50112,
               "usage": "base vertex attribute"
             },
             "materialClasses": {
               "type": "Uint8Array",
               "components": 1,
-              "bytes": 5088,
+              "bytes": 4176,
               "usage": "CPU material classification; not uploaded directly"
             }
           },
-          "cpu_attribute_view_bytes": 188256,
-          "cpu_backing_buffer_bytes": 188256,
-          "base_attribute_upload_bytes": 183168
+          "cpu_attribute_view_bytes": 154512,
+          "cpu_backing_buffer_bytes": 154512,
+          "base_attribute_upload_bytes": 150336
         }
       },
       "parts": 17,
@@ -3272,7 +3272,7 @@
       "runtime": "spheres-web/ui/arsenal3d.js via the 'town' provider",
       "glb": null,
       "lod": {
-        "LOD0": 198462,
+        "LOD0": 170472,
         "LOD1": 3422
       },
       "parts": 18,
@@ -3316,7 +3316,7 @@
       "runtime": "spheres-web/ui/arsenal3d.js via the 'town' provider",
       "glb": null,
       "lod": {
-        "LOD0": 212820,
+        "LOD0": 183540,
         "LOD1": 3330
       },
       "parts": 17,
@@ -3360,7 +3360,7 @@
       "runtime": "spheres-web/ui/arsenal3d.js via the 'town' provider",
       "glb": null,
       "lod": {
-        "LOD0": 132360,
+        "LOD0": 111818,
         "LOD1": 3012
       },
       "parts": 16,
@@ -3404,7 +3404,7 @@
       "runtime": "spheres-web/ui/arsenal3d.js via the 'town' provider",
       "glb": null,
       "lod": {
-        "LOD0": 131586,
+        "LOD0": 110624,
         "LOD1": 3124
       },
       "parts": 15,
@@ -3448,7 +3448,7 @@
       "runtime": "spheres-web/ui/arsenal3d.js via the 'town' provider",
       "glb": null,
       "lod": {
-        "LOD0": 91276,
+        "LOD0": 82142,
         "LOD1": 2616
       },
       "parts": 14,

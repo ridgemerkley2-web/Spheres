@@ -21,6 +21,8 @@ jobs:
       # Independent of the native build: both suites must report even when
       # the other fails, and neither should delay the other's feedback.
       - run: node tools/ui/run-unit.cjs
+      - name: Verify detailed lake surface bindings
+        run: python -B tools/terrain/test_lake_surfaces.py
   native:
     strategy:
       fail-fast: false

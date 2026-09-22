@@ -133,10 +133,10 @@ def split_antimeridian(part):
     return out
 
 
-def project_part(part):
+def project_part(part, eps=DP_EPS):
     """lon/lat part -> projected, deduped (post-rounding), DP-simplified pts."""
     proj = [project(lon, lat) for lon, lat in part]
-    simp = dp_simplify(proj, DP_EPS)
+    simp = dp_simplify(proj, eps)
     out = []
     for x, y in simp:
         key = (fmt2(x), fmt2(y))
