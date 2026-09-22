@@ -1137,6 +1137,9 @@ fn dissolve_ussr(w: &mut WorldState) {
 
     w.headline("THE SOVIET UNION HAS DISSOLVED. Fifteen republics take up their own seats.".into());
     w.headline("Russia inherits the arsenal; Ukraine's warheads go back east under the Budapest assurances.".into());
+    // Government tick ran before these seats existed. Complete their leadership
+    // book now so a save on the dissolution date can be validated and resumed.
+    crate::party_leadership::ensure_all(w);
 }
 
 /// Yugoslavia comes apart into republics of unequal wealth and — the part that
@@ -1377,6 +1380,7 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
             .into(),
     );
     w.headline("The JNA's divisions, and its arsenal, remain in Belgrade's hands.".into());
+    crate::party_leadership::ensure_all(w);
 }
 
 // The powers that keep clients are a flag on the roster row now rather than an

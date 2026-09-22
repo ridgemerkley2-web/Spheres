@@ -187,13 +187,18 @@ mod tests {
                 "player":g.world.player,"date":g.world.date_str()}]})
     }
     fn dissolved(id: NationId) -> Game {
-        let mut g = daily(id);
+        let mut g = Game::new(1990, Some(id));
+        crate::fresh_play_rules(&mut g).unwrap();
         campaign_aims::choose(&mut g.world, id, campaign_aims::Aim::Prosperity).unwrap();
         g.world.nation_mut(id).stability = 0.;
         g.world.nation_mut(id).separatism = 1.;
-        spheres_sim::politics::tick(&mut g.world);
-        for h in g.world.headlines.clone() {g.record(h);}
-        assert!(!alive(&g)); g
+        g.advance_days(1, vec![]);
+        assert!(!alive(&g));
+        // This is the critical first-day checkpoint, before another government
+        // tick could hide incomplete newborn leadership records.
+        let restored=storage::decode(&storage::encode(&g).unwrap()).unwrap();
+        assert_eq!(save(&restored.world),save(&g.world));
+        g
     }
     #[test]
     fn s21_every_day_of_2035_settles_then_waits_for_explicit_sandbox() {
@@ -321,10 +326,7 @@ mod tests {
         std::fs::write(path.join("active.json"),storage::encode(&g).unwrap()).unwrap();
         g.world.year=2035;g.world.month=12;g.world.day=31;g.history.clear();g.snapshot();
         std::fs::write(path.join("endpoint.json"),storage::encode(&g).unwrap()).unwrap();
-        let mut successor=Game::new(1990,Some(NationId::USSR));crate::fresh_play_rules(&mut successor).unwrap();
-        successor.world.nation_mut(NationId::USSR).stability=0.;successor.world.nation_mut(NationId::USSR).separatism=1.;
-        spheres_sim::politics::tick(&mut successor.world);for h in successor.world.headlines.clone(){successor.record(h);}
-        successor.history.clear();successor.snapshot();
+        let successor=dissolved(NationId::USSR);
         std::fs::write(path.join("succession.json"),storage::encode(&successor).unwrap()).unwrap();
     }
 }
