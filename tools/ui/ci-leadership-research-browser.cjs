@@ -56,6 +56,18 @@ async function main(){
   }
   await page.locator('#atlas-country').selectOption('Tonga');await ready(page,'Tonga');
   await page.locator('#atlas-search').fill("Tu'i'onetoa");assert((await page.locator('.entry').count())>0);
+  const society=page.locator('.entry[data-research-id="to_peoples_party"]');await society.locator(':scope > summary').click();
+  assert.equal(await society.locator('.role').count(),3);
+  for(const name of ['President','Secretary']){
+    const role=society.locator('.role').filter({has:page.locator('h4',{hasText:name+' ('})});
+    assert.match(await role.textContent(),/Observed between 2022-04-19 and 2022-04-21; office term not established/);
+  }
+  assert.match(await society.textContent(),/Whether Leader and society President are one office is unresolved/);
+  proof.society_observations={separate_offices:3,observation_period:['2022-04-19','2022-04-21'],terms_not_inferred:true,uncertainty_visible:true};
+  for(const width of [1440,390,320]){
+    await page.setViewportSize({width,height:1000});await society.locator('.role').nth(1).scrollIntoViewIfNeeded();await layout(page);await shot(page,`tonga-society-${width}.png`);
+  }
+  await page.setViewportSize({width:1440,height:1000});
   await page.locator('#atlas-search').fill('No Such Observation 123');assert.equal(await page.locator('.entry').count(),0);assert.match(await page.locator('#atlas-entries').textContent(),/No observations match/);
   await page.locator('#atlas-country').selectOption('UK');await ready(page,'UK');assert.equal(await page.locator('.entry').count(),0);assert.match(await page.locator('#atlas-results').textContent(),/No discovery packet yet/);assert(await page.locator('#atlas-search').isDisabled());
   const ukRows=read('docs/campaign-certification/C01/countries.json').find(c=>c.id==='UK').party_rows;

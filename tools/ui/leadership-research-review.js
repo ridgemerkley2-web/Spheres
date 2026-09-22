@@ -64,6 +64,11 @@
   }
   function observationDate(holder){
     if(holder.attested_on)return 'Observed on '+dateText(holder.attested_on);
+    if(holder.attested_period){
+      const period=holder.attested_period,observed='Observed between '+dateText(period.from)+' and '+dateText(period.through);
+      const term=holder.from||holder.until?'reported office interval: '+dateText(holder.from)+' → '+dateText(holder.until):'office term not established';
+      return observed+'; '+term;
+    }
     if(holder.from||holder.until||holder.through)return 'Reported interval: '+dateText(holder.from)+' → '+dateText(holder.until||holder.through);
     return 'Exact office interval not established';
   }
@@ -147,7 +152,7 @@
         if(!entry.roles.length)body.append(para('No office-holder observation has been recorded in this packet. Party, parliamentary and national offices require separate research.'));
         for(const role of entry.roles){const box=make('div',undefined,'role');box.append(make('h4',role.title),para(role.kind.replaceAll('_',' ')));
           if(!(role.holder_claims||[]).length)box.append(para('Holder history is still needed.'));
-          for(const holder of role.holder_claims||[]){if(typeof holder==='string')box.append(para(entryBoard.claims.get(holder).text));else {box.append(para(holder.name+' · '+observationDate(holder)));if(holder.note)box.append(para(holder.note));}}
+          for(const holder of role.holder_claims||[]){if(typeof holder==='string')box.append(para(entryBoard.claims.get(holder).text));else {box.append(para(holder.name+' · '+observationDate(holder)));if(holder.note)box.append(para(holder.note));if(holder.uncertainty&&holder.uncertainty!==holder.note)box.append(para(holder.uncertainty));}}
           box.append(para('This sourced role is separate from any saved campaign appointment.'));body.append(box);
         }
         body.append(make('h3','Research still needed'),list(entry.coverage?.unresolved||['Complete source and date review.']),sourceDetails(entry,entryBoard));
