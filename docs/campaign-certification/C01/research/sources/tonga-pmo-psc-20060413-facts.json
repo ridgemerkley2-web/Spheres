@@ -1,0 +1,28 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://web.archive.org/web/20060501190232id_/http://www.pmo.gov.to:80/artman/publish/article_108.shtml",
+  "original_url": "http://www.pmo.gov.to/artman/publish/article_108.shtml",
+  "archive_capture_utc": "2006-05-01T19:02:32Z",
+  "accessed_date": "2026-09-22",
+  "published_date": "2006-04-13",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 12476,
+  "source_response_sha256": "50504b1b78df092d5e7c7aac097acd85006032303a04ea9c52982bcbce522eac",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original PMO page, captured at 2006-05-01T19:02:32Z; the capture is used in place of the live page. The researcher downloaded and hashed the capture bytes before extraction on 2026-09-22 (local); the independent check re-downloaded it the same day and matched the bytes and SHA-256, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_sevele_acting_then_pm_20060413",
+      "text": "The PMO release of 13 April 2006 refers to 'the beginning of his tenure as the countrys Acting Prime Minister, and now Prime Minister, the Hon. Dr. Fred Sevele' (apostrophe lost in the capture).",
+      "attested_on": "2006-04-13",
+      "locator": "Final paragraph",
+      "uncertainty": "Confirms the change from acting to substantive status by 13 April 2006. It gives no date for that change."
+    }
+  ],
+  "scope_note": "Archived PMO release of 13 April 2006 (raw Internet Archive capture of 1 May 2006). Used only for its final sentence on the Prime Minister's tenure; the Public Service content is not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  }
+}

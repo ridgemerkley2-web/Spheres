@@ -1,0 +1,28 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://web.archive.org/web/20180115225644id_/http://www.mic.gov.to:80/news-today/press-releases/7059-close-of-pm-nominations",
+  "original_url": "http://www.mic.gov.to/news-today/press-releases/7059-close-of-pm-nominations",
+  "archive_capture_utc": "2018-01-15T22:56:44Z",
+  "accessed_date": "2026-09-22",
+  "published_date": "2017-12-15",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 29425,
+  "source_response_sha256": "94a74a451c5628196bbc4eb707ae1716d934c9f89dff30d96e0c02633dbe2f85",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original government portal page, captured at 2018-01-15T22:56:44Z; the capture is used in place of the live page. The researcher downloaded and hashed the capture bytes before extraction on 2026-09-22 (local); the independent check re-downloaded it the same day and matched the bytes and SHA-256, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_pm_2017_nominations_closed_20171214",
+      "text": "The Legislative Assembly states that nominations for Prime Minister Designate closed at 4:30pm on Thursday 14th December 2017 with two received: the first on Tuesday 5th December 2017 from Hon. Pohiva Tu'i'onetoa, and the second on Thursday 14th December 2017 from Hon. Samiu Kuita Vaipulu.",
+      "attested_on": "2017-12-14",
+      "locator": "Body paragraphs 1-2",
+      "uncertainty": "The names are those of the members who lodged the nominations, not the candidates. The candidates were to be revealed at the meeting."
+    }
+  ],
+  "scope_note": "Legislative Assembly release on the government portal, dated 15 December 2017 (raw Internet Archive capture of 15 January 2018). Procedural; the names are those of the members who lodged nominations.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  }
+}

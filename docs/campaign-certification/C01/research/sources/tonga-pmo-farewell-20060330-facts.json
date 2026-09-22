@@ -1,0 +1,29 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://web.archive.org/web/20060426083239id_/http://www.pmo.gov.to:80/artman/publish/article_102.shtml",
+  "original_url": "http://www.pmo.gov.to/artman/publish/article_102.shtml",
+  "archive_capture_utc": "2006-04-26T08:32:39Z",
+  "article_timestamp": "Mar 30, 2006, 13:39",
+  "accessed_date": "2026-09-22",
+  "published_date": "2006-03-30",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 24857,
+  "source_response_sha256": "a0267a662e69eff6ee77244d29419e2cf6673ed2c211d20d75dc64b5541679a7",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original PMO page, captured at 2006-04-26T08:32:39Z; the capture is used in place of the live page. The researcher downloaded and hashed the capture bytes before extraction on 2026-09-22 (local); the independent check re-downloaded it the same day and matched the bytes and SHA-256, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_sevele_acting_pm_20060323",
+      "text": "The PMO item reproduces a 'SPEECH BY THE HON DR FRED V SEVELE THE ACTING PRIME MINISTER AT THE FAREWELL STATE DINNER' for the British High Commissioner, dated '7.00 pm ; 23rd Mar 2006'.",
+      "attested_on": "2006-03-23",
+      "locator": "Speech heading",
+      "uncertainty": "Shows that Sevele was still styled Acting Prime Minister on 23 March 2006. The item was posted on 30 March 2006, 13:39. A claim on the role, not a holder."
+    }
+  ],
+  "scope_note": "Archived PMO item posted 30 March 2006, 13:39 (raw Internet Archive capture of 26 April 2006). Used only for the speaker's styling in the speech heading dated 23 March 2006.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  }
+}

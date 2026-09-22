@@ -1,0 +1,28 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://web.archive.org/web/20150423093610id_/http://www.pmo.gov.to/former-pms/",
+  "original_url": "http://www.pmo.gov.to/former-pms/",
+  "archive_capture_utc": "2015-04-23T09:36:10Z",
+  "accessed_date": "2026-09-22",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 53745,
+  "source_response_sha256": "1f2f361acbe02029aa45a4dedee6bc0d4571358d17fd7e3e2ce21441b5c5d9f7",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original PMO page, captured at 2015-04-23T09:36:10Z; the capture is used in place of the live page. The researcher downloaded and hashed the capture bytes before extraction on 2026-09-22 (local); the independent check re-downloaded it the same day and matched the bytes and SHA-256, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_pmo_former_pms_2015_list",
+      "text": "The archived 2015 PMO list reads: 'Fatafehi Tu'ipelehake K.B.E. 1965-1991', 'Paloni Vaea 1991-1999', 'Pilinisi Lavaka Ata 'Ulukalala 2000-2006', 'Dr. Feleti Vaka'uta Sevele 2006-2010', ''Eiki Nopele Tu'ivakano 2010-2014', 'Hon. Akilisi Pohiva 2014- present'.",
+      "attested_on": "2015-04-23",
+      "locator": "Former PMs list, entries 11-16",
+      "uncertainty": "A retrospective list with year precision only. Its Vaea end year (1999) differs from the current PMO list and the 2011 MIC list (2000). attested_on is the capture date (23 April 2015), the date on which the list's 'present' is observed, not a date the PMO gives."
+    }
+  ],
+  "scope_note": "Archived PMO list of former Prime Ministers (raw Internet Archive capture of 23 April 2015). Year precision only; used for the 1990-2014 entries.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  }
+}

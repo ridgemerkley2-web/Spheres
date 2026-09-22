@@ -257,8 +257,14 @@ class TongaCrownTests(unittest.TestCase):
                 ids = [entry] if isinstance(entry, str) else entry['claim_ids']
                 self.assertFalse(set(ids) & set(REGENCY), role['id'])
                 if isinstance(entry, dict):
-                    for name in ('Pilolevu', 'Regent', "Tupouto'a", 'Lavaka'):
+                    # CLAUDE-C01-08: the one exception is Lavaka Ata's premiership on to_pm, an office he held as
+                    # Prime Minister and not a regency; it cites no regency claim (checked above).
+                    exempt = role['id'] == 'to_pm' and entry['name'] == "Prince 'Ulukalala Lavaka Ata"
+                    for name in ('Pilolevu', 'Regent', "Tupouto'a") + (() if exempt else ('Lavaka',)):
                         self.assertNotIn(name, entry['name'])
+        lavaka = [(role_id, h['from'], h['until']) for role_id, role in self.roles.items() for h in role['holder_claims']
+                  if isinstance(h, dict) and 'Lavaka' in h['name']]
+        self.assertEqual(lavaka, [('to_pm', '2000-01-03', '2006-02-11')])
         for cid in ('to_crown_prince_regent_tupouto_a_20060313', 'to_crown_princess_regent_speech_20060601',
                     'to_crown_princess_regent_opening_20060601_court'):
             self.assertIn('not a reign', self.claims[cid]['uncertainty'])

@@ -36,7 +36,8 @@ class TongaDiscoveryTests(unittest.TestCase):
         # CLAUDE-C01-02 added seven sources and nine claims; test_tonga_transition_c01_02 owns them.
         # CLAUDE-C01-04 added eleven sources and 22 claims; test_tonga_dpfi_c01_04 owns them.
         # CLAUDE-C01-07 added 27 sources and 44 claims (seven on reused sources); test_tonga_crown_c01_07 owns them.
-        self.assertEqual((len(ids['entries']), len(ids['sources']), len(ids['claims'])), (9, 64, 110))
+        # CLAUDE-C01-08 added 39 sources and 47 claims; test_tonga_pm_1990_2019_c01_08 owns them.
+        self.assertEqual((len(ids['entries']), len(ids['sources']), len(ids['claims'])), (9, 103, 157))
         self.assertEqual({e['id'] for e in self.packet['organizations']},
                          {'to_fihrdm', 'to_pdp', 'to_dpfi', 'to_peoples_party'})
         self.assertEqual(len(self.packet['institutions']), 5)
@@ -83,11 +84,14 @@ class TongaDiscoveryTests(unittest.TestCase):
         self.assertEqual(appointment['attested_on'], '2019-10-08')
         self.assertIn('15-8', recommendation['text'])
         role, = self.entries['to_prime_minister']['roles']
-        # CLAUDE-C01-02 added exactly one later holder (Sovaleni, from 2021-12-27); the 2019 one stays first.
+        # CLAUDE-C01-02 added exactly one later holder (Sovaleni, from 2021-12-27). CLAUDE-C01-08 added exactly seven
+        # earlier (1990-2018) holders ahead of the 2019 one, which stays immediately before Sovaleni.
         dict_holders = [h for h in role['holder_claims'] if isinstance(h, dict)]
         self.assertEqual([h['name'] for h in dict_holders],
-                         ["Pohiva Tu'i'onetoa", "Siaosi 'Ofakivahafolau Sovaleni"])
-        new_holder = dict_holders[0]
+                         ["Fatafehi Tu'ipelehake", 'Baron Vaea', "Prince 'Ulukalala Lavaka Ata", 'Feleti Sevele',
+                          "Lord Tu'ivakano", "Samuela 'Akilisi Pohiva", "Samuela 'Akilisi Pohiva",
+                          "Pohiva Tu'i'onetoa", "Siaosi 'Ofakivahafolau Sovaleni"])
+        new_holder = dict_holders[-2]
         self.assertEqual(new_holder['attested_on'], '2019-10-08')
         self.assertEqual(new_holder['claim_ids'], [appointment['id']])
         self.assertIsNone(new_holder['from'])

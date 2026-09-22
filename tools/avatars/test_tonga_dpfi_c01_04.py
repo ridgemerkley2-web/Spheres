@@ -126,7 +126,15 @@ class TongaDpfiTests(unittest.TestCase):
         self.assertNotIn('period', endorsement)
         self.assertIn("'the following day'", endorsement['text'])
         self.assertIn('30 December 2014 would be derived', endorsement['uncertainty'])
-        self.assertNotIn('2014-12-30', self.raw)
+        # CLAUDE-C01-08's PMO release of that day states 30 December 2014 itself; its publication date, its claim and
+        # the one holder citing it are the only uses.
+        self.assertEqual(self.raw.count('2014-12-30'), 3)
+        self.assertEqual(self.sources['to_pmo_20141230_appointment']['published_date'], '2014-12-30')
+        self.assertEqual(self.claims['to_pohiva_royal_appointment_20141230']['attested_on'], '2014-12-30')
+        self.assertEqual(self.claim_source['to_pohiva_royal_appointment_20141230'], 'to_pmo_20141230_appointment')
+        dated = [h['claim_ids'] for h in self.roles['to_pm']['holder_claims']
+                 if isinstance(h, dict) and h['attested_on'] == '2014-12-30']
+        self.assertEqual(dated, [['to_pohiva_royal_appointment_20141230']])
         self.assertEqual(len({leader['attested_on'], selection['attested_on'], cabinet['attested_on']}), 3)
         death, notice, win, oath = (self.claims[c] for c in SEAT_EVENTS)
         self.assertEqual(death['period'], {'from': '2019-09-01', 'through': '2019-09-30'})
@@ -174,21 +182,29 @@ class TongaDpfiTests(unittest.TestCase):
                     self.assertEqual((entry['from'], entry['until']), (None, None))
         self.assertEqual(self.entries['to_dpfi']['lifecycle']['from'], None)
         self.assertEqual(self.entries['to_dpfi']['lifecycle']['until'], None)
-        # Pohiva's death ends no office here: no to_pm holder for him, and no holder cites the death or seat events.
+        # Pohiva's death ends no office here, and no holder cites the death or seat events. CLAUDE-C01-08 adds exactly
+        # two to_pm holders for him, from the PMO appointment records, and neither has an end.
         pm_holders = [h['name'] for h in self.roles['to_pm']['holder_claims'] if isinstance(h, dict)]
-        self.assertEqual(pm_holders, ["Pohiva Tu'i'onetoa", "Siaosi 'Ofakivahafolau Sovaleni"])
-        self.assertFalse(any('Akilisi' in name for name in pm_holders))
+        self.assertEqual(pm_holders, ["Fatafehi Tu'ipelehake", 'Baron Vaea', "Prince 'Ulukalala Lavaka Ata", 'Feleti Sevele',
+                                      "Lord Tu'ivakano", "Samuela 'Akilisi Pohiva", "Samuela 'Akilisi Pohiva",
+                                      "Pohiva Tu'i'onetoa", "Siaosi 'Ofakivahafolau Sovaleni"])
+        akilisi = [(h['attested_on'], h['from'], h['until']) for h in self.roles['to_pm']['holder_claims']
+                   if isinstance(h, dict) and 'Akilisi' in h['name']]
+        self.assertEqual(akilisi, [('2014-12-30', None, None), (None, '2018-01-02', None)])
         for _, _, ids in self.holder_ids():
             self.assertFalse(set(ids) & set(SEAT_EVENTS))
             self.assertFalse(set(ids) & set(PM_2014))
         self.assertNotIn('to_pohiva_death_month_2019', self.entries['to_prime_minister']['claim_ids'])
         self.assertIn('not used as the end of any premiership', self.entries['to_prime_minister']['coverage']['unresolved'][-1])
         self.assertIn('not used as the end of any office term', self.claims['to_pohiva_death_month_2019']['uncertainty'])
-        # Every holder observation keeps from/until null unless a source states them: the 2021 PMO effective dates and,
-        # from CLAUDE-C01-07, the Crown boundaries stated by the death notices and the devolution proclamations.
+        # Every holder observation keeps from/until null unless a source states them: the 2021 PMO effective dates;
+        # from CLAUDE-C01-07, the Crown boundaries stated by the death notices and the devolution proclamations; and,
+        # from CLAUDE-C01-08, the PMO's stated commencement (2000), accepted resignation (2006) and effective date (2018).
         stated = {("Siaosi 'Ofakivahafolau Sovaleni", '2021-12-27'), ('Poasi Mataele Tei', '2021-12-28'),
-                  ('George Tupou V', '2006-09-11'), ('Tupou VI', '2012-03-18')}
-        stated_ends = {("Taufa'ahau Tupou IV", '2006-09-11'), ('George Tupou V', '2012-03-18')}
+                  ('George Tupou V', '2006-09-11'), ('Tupou VI', '2012-03-18'),
+                  ("Prince 'Ulukalala Lavaka Ata", '2000-01-03'), ("Samuela 'Akilisi Pohiva", '2018-01-02')}
+        stated_ends = {("Taufa'ahau Tupou IV", '2006-09-11'), ('George Tupou V', '2012-03-18'),
+                       ("Prince 'Ulukalala Lavaka Ata", '2006-02-11')}
         for _, entry, _ in self.holder_ids():
             if isinstance(entry, dict):
                 if entry['until'] is not None:

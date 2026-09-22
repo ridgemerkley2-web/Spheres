@@ -1,0 +1,31 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://data.ipu.org/election-summary/HTML/2317_90.htm",
+  "accessed_date": "2026-09-22",
+  "published_date": null,
+  "access_method": "downloaded_original_html_and_page_text_read",
+  "source_response_bytes": 3669,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "normalized_response": {
+    "bytes": 2731,
+    "sha256": "94904e4ba80231f4462c86fec2dfd7edf2a00de4038cbba18b8d8a2723fbad07",
+    "rule": "Remove from the raw response bytes the single injected element that begins '<script>(function(){function c(){' and ends at its '</script>' (938 bytes, immediately before '</body>'), then hash the remaining bytes. No other byte is changed.",
+    "note": "Computed for this packet from the researcher's copy of 2026-09-22 (raw 3,669 bytes). The per-request Cloudflare token lies inside the removed element. The independent check's fresh download the same day had the same byte count and differed only in that token. A re-fetch for this packet on 2026-09-22 returned HTTP 403 (a Cloudflare challenge page), so the value was not re-derived from a third download."
+  },
+  "provenance_note": "Downloaded directly on 2026-09-22 (local) with HTTP 200. The raw response embeds a per-request Cloudflare script, so no raw response hash is asserted; normalized_response gives the reproducible hash and its rule. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_ipu_1990_tuipelehake",
+      "text": "IPU's summary of the 16 February 1990 elections ends: 'The Prime Minister is Prince Fatafefi Tu'ipelehake, brother of the King.'",
+      "locator": "'Background and outcome of elections', final sentence",
+      "uncertainty": "IPU only: an interparliamentary summary, not a Tongan record, and corroboration only. The sentence is in the present tense and follows the same paragraph's report of events of 'the next month' after the poll, so it was written in March 1990 or later and its reference date is unknown; no structured date is stored. Its publication date is unknown (footer 'Copyright 1990'). 'Fatafefi' is printed as shown. It does not by itself fix 1 January 1990."
+    }
+  ],
+  "scope_note": "Legacy PARLINE summary of the 16 February 1990 elections, read on 2026-09-22, after the cutoff, for its final sentence only; it shows no revision date. Publication date unknown (footer 'Copyright 1990'). Interparliamentary corroboration, not a Tongan record. The raw response carries a per-request Cloudflare script, so its hash is not reproducible; the extract records a normalised hash and its rule.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "HTML text read. No images reviewed."
+  }
+}

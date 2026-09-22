@@ -1,0 +1,28 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://web.archive.org/web/20161027052405id_/http://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/295-akilisi-pohiva-is-new-pm-of-tonga",
+  "original_url": "http://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/295-akilisi-pohiva-is-new-pm-of-tonga",
+  "archive_capture_utc": "2016-10-27T05:24:05Z",
+  "accessed_date": "2026-09-22",
+  "published_date": "2014-12-29",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 32247,
+  "source_response_sha256": "a018c79a07bbfc9a4474a1dbbf0f50b242c3b8c994bf283b666010bd93e50495",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original Legislative Assembly page, captured at 2016-10-27T05:24:05Z; the capture is used in place of the live page. The researcher downloaded and hashed the capture bytes before extraction on 2026-09-22 (local); the independent check re-downloaded it the same day and matched the bytes and SHA-256, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_pohiva_assembly_selection_20141229",
+      "text": "The Assembly reports that 'today' (29 December 2014) it elected Tongatapu 1 MP 'Akilisi Pohiva as the new Prime Minister: 15 voted for Pohiva and 11 for Vava'u 16 MP Samiu Kuita Vaipulu. The House was to reconvene on January 20, when the new PM and MPs would take their oath.",
+      "attested_on": "2014-12-29",
+      "locator": "Body paragraphs 1 and 3",
+      "uncertainty": "The Assembly's selection, not the royal appointment. The 20 January oath is prospective and was not verified. The Speaker election in the same item is not imported."
+    }
+  ],
+  "scope_note": "Legislative Assembly news item of 29 December 2014 (raw Internet Archive capture of 27 October 2016). Used for the Assembly's selection; the Speaker election in the same item and the prospective oath date are not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  }
+}

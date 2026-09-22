@@ -1,0 +1,35 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://web.archive.org/web/20111130040811id_/http://pmo.gov.to/press-releases/1958-appointment-of-new-prime-minister-lord-tuivakano",
+  "original_url": "http://pmo.gov.to/press-releases/1958-appointment-of-new-prime-minister-lord-tuivakano",
+  "archive_capture_utc": "2011-11-30T04:08:11Z",
+  "accessed_date": "2026-09-22",
+  "published_date": "2010-12-22",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 34100,
+  "source_response_sha256": "dd2d472b4ddbb972d586f5b8599cd062d10f0d969749429a7400b5e09f44684d",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original PMO page, captured at 2011-11-30T04:08:11Z; the capture is used in place of the live page. The researcher downloaded and hashed the capture bytes before extraction on 2026-09-22 (local); the independent check re-downloaded it the same day and matched the bytes and SHA-256, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_tuivakano_royal_appointment_20101222",
+      "text": "The Palace Office release dated 22 December 2010 states that the Prime Minister-designate, Lord Tu'ivakano, was received in audience 'today, Wednesday 2 2 nd December 2010 [spacing as captured] at 12.00 NOON at the Royal Residence, The Villa for his appointment to the office of Prime Minister' in the ceremony known as 'The Kissing of Hands', and 'then received his Letter of Appointment from His Majesty The King'. The Tongan text calls the letter 'Tohi Fakanofo, ko e Palemia 'o Tonga'.",
+      "attested_on": "2010-12-22",
+      "locator": "English paragraphs 1-2; Tongan text",
+      "uncertainty": "An appointment event dated to the day and hour. No separate 'with effect from' date and no clause of the Constitution are cited."
+    },
+    {
+      "id": "to_sevele_leave_audience_20101222",
+      "text": "The same release states that before the Prime Minister-designate's audience, 'the outgoing Prime Minister, Hon Dr Feleti Vaka'uta Sevele was also received in audience at 1100 Hrs, to take his Leave'.",
+      "attested_on": "2010-12-22",
+      "locator": "English paragraph 3",
+      "uncertainty": "A leave-taking audience of the outgoing Prime Minister. It is not a stated resignation or end instrument and is not used as an 'until' date."
+    }
+  ],
+  "scope_note": "Palace Office (Office of the Lord Chamberlain) release of 22 December 2010 published on the government portal then served at pmo.gov.to (raw Internet Archive capture of 30 November 2011), with English and Tongan texts. The Letter of Appointment itself was not seen.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text (English and Tongan) read; no images reviewed."
+  }
+}

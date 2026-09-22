@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://pmo.gov.to/former-prime-minsiters/",
+  "accessed_date": "2026-09-22",
+  "published_date": null,
+  "access_method": "browser_fetched_original_html_and_page_text_read",
+  "source_response_bytes": 75947,
+  "source_response_sha256": "bb1231c3051919bf91495476a9a4820cc020a2fc0ea750702bd5ff8a029c2442",
+  "source_response_checked_in": false,
+  "provenance_note": "Fetched in a browser tab on 2026-09-22 (local); two same-origin fetches returned identical bytes and SHA-256, and the independent check re-fetched the page in its own tab with the same bytes and SHA-256. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_pmo_former_pms_2026_tuipelehake",
+      "text": "The PMO list of former Prime Ministers includes 'K.B.E Fatafehi Tu'ipelehake ( 1965 – 1991 )'.",
+      "locator": "List entry 9 (after 'Baron Vaea ( 1991 – 2000 )')",
+      "uncertainty": "A retrospective list with year precision only. It gives no appointment or retirement day and is not an instrument; no structured period is stored because the list gives years, not days. Taken on its own, it does not show that he was still in office on 1 January 1990."
+    },
+    {
+      "id": "to_pmo_former_pms_2026_vaea_lavaka",
+      "text": "The same list gives 'Baron Vaea ( 1991 – 2000 )' and 'HRH . Prince 'Uukalala Lavaka Ata ( 2000 – 2006 )' (spelling as printed).",
+      "locator": "List entries 7-8",
+      "uncertainty": "Year precision only. The PMO's own 2015 list gives Vaea 1991-1999 (to_pmo_former_pms_2015_list), so the end year conflicts."
+    },
+    {
+      "id": "to_pmo_former_pms_2026_later_years",
+      "text": "The same list gives 'Dr. Feleti Sevele ( 2006 – 2010 )', 'Lord Tu'ivakano ( 2010 – 2014 )', 'Hon. Samiuela 'Akilisi Pohiva (2015-2019)' and 'Hon. Rev. Dr. Pohiva Tu'i'onetoa (2020 – 2021)'.",
+      "locator": "List entries 3-6",
+      "uncertainty": "These year ranges disagree with dated PMO releases: Pohiva's appointment audience was on 30 December 2014 (to_pohiva_royal_appointment_20141230), and Tu'i'onetoa was appointed on 8 October 2019 (to_tuionetoa_royal_appointment_20191008). The list is therefore not used for any start or end date; it is kept on the role only as the reason those ranges are not used."
+    }
+  ],
+  "scope_note": "Retrospective list of former Prime Ministers on the live PMO site, read on 2026-09-22, after the 7 September 2026 cutoff. The page carries no publication or revision date (the PMO site search lists it under 2 November 2019) and has been edited since, because it names a 2025 holder; only the entries for holders before 2020 are used, and the later entry is not imported. Year precision only. Portrait images are not reused.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Page text read in a browser tab; a screenshot of the list section timed out. No images reviewed."
+  }
+}

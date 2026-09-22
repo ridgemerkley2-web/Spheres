@@ -1,0 +1,29 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://web.archive.org/web/20060501015706id_/http://www.pmo.gov.to:80/artman/publish/article_88.shtml",
+  "original_url": "http://www.pmo.gov.to/artman/publish/article_88.shtml",
+  "archive_capture_utc": "2006-05-01T01:57:06Z",
+  "article_timestamp": "Feb 13, 2006, 14:26",
+  "accessed_date": "2026-09-22",
+  "published_date": "2006-02-13",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 12521,
+  "source_response_sha256": "f58d6cd40419f47402f86f1b34e1ce4f32b9660318138afb1d24cba759125614",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original PMO page, captured at 2006-05-01T01:57:06Z; the capture is used in place of the live page. The researcher downloaded and hashed the capture bytes before extraction on 2026-09-22 (local); the independent check re-downloaded it the same day and matched the bytes and SHA-256, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_lavaka_ata_resignation_accepted_20060211_to",
+      "text": "The Tongan release states that the Prince Regent ('Tama Tui Fakaleo' as printed [Tama Tu'i Fakaleo]), Crown Prince 'Tupoutoa' as printed [Tupouto'a], on Saturday ('Tokonaki') 11 Fepueli 2006 accepted the letter of the Prime Minister, Prince Ulukalala Lavaka Ata, to retire ('malolo' as printed [mālōlō]) from his office as Palemia of Tonga and from his ministerial portfolios. On the same 11 February the Prince Regent appointed Hon. Dr. Feleti Sevele as 'Palemia Leoleo' as printed [Palēmia Le'ole'o] (Acting Prime Minister).",
+      "attested_on": "2006-02-11",
+      "locator": "Body paragraphs 3-4",
+      "uncertainty": "The English rendering is this packet's reading. The archived capture drops macrons and glottal stops; quoted words are given as printed with the normalised spelling in brackets. The Tongan text says 'malolo' (retire) where the English release says 'resignation'; both date the acceptance to 11 February 2006."
+    }
+  ],
+  "scope_note": "Tongan version of the same PMO release, dated 13 February 2006, 14:26 (raw Internet Archive capture of 1 May 2006); a Latin-1 page whose capture drops macrons and glottal stops.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  }
+}

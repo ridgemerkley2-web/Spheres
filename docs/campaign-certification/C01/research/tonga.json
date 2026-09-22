@@ -1948,6 +1948,1099 @@
         "sha256": "55388b9f5aa185d7195a22356afbf1963cde0e2ab0aa80a0b1778c8a042b2d46",
         "kind": "derived_factual_extract"
       }
+    },
+    {
+      "id": "to_pmo_former_pms_2026",
+      "title": "Former Prime Ministers of Tonga",
+      "url": "https://pmo.gov.to/former-prime-minsiters/",
+      "publisher": "Prime Minister's Office, Government of Tonga",
+      "accessed_date": "2026-09-22",
+      "source_type": "primary_government_reference_list",
+      "access_method": "browser_fetched_original_html_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_pmo_former_pms_2026_tuipelehake",
+          "text": "The PMO list of former Prime Ministers includes 'K.B.E Fatafehi Tu'ipelehake ( 1965 – 1991 )'.",
+          "locator": "List entry 9 (after 'Baron Vaea ( 1991 – 2000 )')",
+          "uncertainty": "A retrospective list with year precision only. It gives no appointment or retirement day and is not an instrument; no structured period is stored because the list gives years, not days. Taken on its own, it does not show that he was still in office on 1 January 1990."
+        },
+        {
+          "id": "to_pmo_former_pms_2026_vaea_lavaka",
+          "text": "The same list gives 'Baron Vaea ( 1991 – 2000 )' and 'HRH . Prince 'Uukalala Lavaka Ata ( 2000 – 2006 )' (spelling as printed).",
+          "locator": "List entries 7-8",
+          "uncertainty": "Year precision only. The PMO's own 2015 list gives Vaea 1991-1999 (to_pmo_former_pms_2015_list), so the end year conflicts."
+        },
+        {
+          "id": "to_pmo_former_pms_2026_later_years",
+          "text": "The same list gives 'Dr. Feleti Sevele ( 2006 – 2010 )', 'Lord Tu'ivakano ( 2010 – 2014 )', 'Hon. Samiuela 'Akilisi Pohiva (2015-2019)' and 'Hon. Rev. Dr. Pohiva Tu'i'onetoa (2020 – 2021)'.",
+          "locator": "List entries 3-6",
+          "uncertainty": "These year ranges disagree with dated PMO releases: Pohiva's appointment audience was on 30 December 2014 (to_pohiva_royal_appointment_20141230), and Tu'i'onetoa was appointed on 8 October 2019 (to_tuionetoa_royal_appointment_20191008). The list is therefore not used for any start or end date; it is kept on the role only as the reason those ranges are not used."
+        }
+      ],
+      "scope_note": "Retrospective list of former Prime Ministers on the live PMO site, read on 2026-09-22, after the 7 September 2026 cutoff. The page carries no publication or revision date (the PMO site search lists it under 2 November 2019) and has been edited since, because it names a 2025 holder; only the entries for holders before 2020 are used, and the later entry is not imported. Year precision only. Portrait images are not reused.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-former-pms-2026-facts.json",
+        "bytes": 3307,
+        "sha256": "5b57123b22484fb1d82f095b1b71905e6618c182c6d4c9e58369b4fd2b59eb03",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_former_pms_2015",
+      "title": "Former PMs (Prime Minister's Office website, archived)",
+      "url": "https://web.archive.org/web/20150423093610id_/http://www.pmo.gov.to/former-pms/",
+      "original_url": "http://www.pmo.gov.to/former-pms/",
+      "publisher": "Prime Minister's Office, Government of Tonga",
+      "accessed_date": "2026-09-22",
+      "source_type": "primary_government_reference_list_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_pmo_former_pms_2015_list",
+          "text": "The archived 2015 PMO list reads: 'Fatafehi Tu'ipelehake K.B.E. 1965-1991', 'Paloni Vaea 1991-1999', 'Pilinisi Lavaka Ata 'Ulukalala 2000-2006', 'Dr. Feleti Vaka'uta Sevele 2006-2010', ''Eiki Nopele Tu'ivakano 2010-2014', 'Hon. Akilisi Pohiva 2014- present'.",
+          "attested_on": "2015-04-23",
+          "locator": "Former PMs list, entries 11-16",
+          "uncertainty": "A retrospective list with year precision only. Its Vaea end year (1999) differs from the current PMO list and the 2011 MIC list (2000). attested_on is the capture date (23 April 2015), the date on which the list's 'present' is observed, not a date the PMO gives."
+        }
+      ],
+      "scope_note": "Archived PMO list of former Prime Ministers (raw Internet Archive capture of 23 April 2015). Year precision only; used for the 1990-2014 entries.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-former-pms-2015-facts.json",
+        "bytes": 2384,
+        "sha256": "ae2c2a05168baa840666b456acbf50096790bce208230d93eae8af8ea162d0f5",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_mic_pm_list_2011",
+      "title": "Tongan Prime Ministers (Ministry of Information and Communications, archived)",
+      "url": "https://web.archive.org/web/20110131121132id_/http://www.mic.gov.to:80/people/324-tongan-cabinet-ministers/2036-tongan-prime-ministers.html",
+      "original_url": "http://www.mic.gov.to/people/324-tongan-cabinet-ministers/2036-tongan-prime-ministers.html",
+      "publisher": "Ministry of Information and Communications, Government of Tonga",
+      "accessed_date": "2026-09-22",
+      "published_date": "2009-01-16",
+      "source_type": "primary_government_reference_list_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_mic_pm_list_2011_list",
+          "text": "The MIC list gives 'HRH Prince Tu'i Pelehake (Fatafehi) CBE (1965-1991)', 'Baron Vaea of Houma (1991-2000)', 'HRH 'Aho'eitu 'Unuaki'otonga Tuku'aho (Lavaka Ata 'Ulukālala) (2000-2006)', 'Dr. Feleti Sevele (2006-2010)' and 'Lord Tu'ivakano (2010-present)'.",
+          "attested_on": "2011-01-18",
+          "locator": "'PRIME MINISTERS YEAR' list",
+          "uncertainty": "A retrospective list with year precision only. The page header is dated Friday 16 January 2009, but it was 'Last Updated ( Tuesday, 18 January 2011 11:06 )' and already names Tu'ivakano. It prints CBE where the PMO lists print K.B.E. Captured 31 January 2011."
+        }
+      ],
+      "scope_note": "Archived Ministry of Information and Communications list of Prime Ministers (raw Internet Archive capture of 31 January 2011; page dated 16 January 2009, last updated 18 January 2011). Year precision only.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-pm-list-2011-facts.json",
+        "bytes": 2572,
+        "sha256": "2760b633af8a55769caf2c871843d3eb92006d457c1dbfadc9fa505c1319ba46",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_ipu_1990",
+      "title": "TONGA: parliamentary elections Fale Alea, 1990",
+      "url": "https://data.ipu.org/election-summary/HTML/2317_90.htm",
+      "publisher": "Inter-Parliamentary Union",
+      "accessed_date": "2026-09-22",
+      "source_type": "interparliamentary_election_record",
+      "access_method": "downloaded_original_html_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_ipu_1990_tuipelehake",
+          "text": "IPU's summary of the 16 February 1990 elections ends: 'The Prime Minister is Prince Fatafefi Tu'ipelehake, brother of the King.'",
+          "locator": "'Background and outcome of elections', final sentence",
+          "uncertainty": "IPU only: an interparliamentary summary, not a Tongan record, and corroboration only. The sentence is in the present tense and follows the same paragraph's report of events of 'the next month' after the poll, so it was written in March 1990 or later and its reference date is unknown; no structured date is stored. Its publication date is unknown (footer 'Copyright 1990'). 'Fatafefi' is printed as shown. It does not by itself fix 1 January 1990."
+        }
+      ],
+      "scope_note": "Legacy PARLINE summary of the 16 February 1990 elections, read on 2026-09-22, after the cutoff, for its final sentence only; it shows no revision date. Publication date unknown (footer 'Copyright 1990'). Interparliamentary corroboration, not a Tongan record. The raw response carries a per-request Cloudflare script, so its hash is not reproducible; the extract records a normalised hash and its rule.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-ipu-1990-election-facts.json",
+        "bytes": 3090,
+        "sha256": "cb8fb091683e0079013d6130fc5deef7bcfeeb166a0b36e3343e3ab6d974d830",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_ipu_1993",
+      "title": "TONGA: parliamentary elections Fale Alea, 1993",
+      "url": "https://data.ipu.org/election-summary/HTML/2317_93.htm",
+      "publisher": "Inter-Parliamentary Union",
+      "accessed_date": "2026-09-22",
+      "source_type": "interparliamentary_election_record",
+      "access_method": "downloaded_original_html_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_ipu_1993_retirement_succession_199108",
+          "text": "IPU states that after the February 1990 elections 'the Prime Minister since 1965, Prince Fatafehi Tu'ipelehake, retired from office in August 1991and was succeeded by Baron Vaea, cousin of King Taufa'ahau Tupou IV' (spacing as printed).",
+          "period": {
+            "from": "1991-08-01",
+            "through": "1991-08-31"
+          },
+          "locator": "'Background and outcome of elections', first sentence",
+          "uncertainty": "IPU only, and the only source for the month. Month precision: the day of the retirement and of Vaea's appointment are not given, and no instrument is cited. Neither is used as a holder boundary."
+        }
+      ],
+      "scope_note": "Legacy PARLINE summary of the 4 February 1993 elections, read on 2026-09-22, after the cutoff, for its first sentence only; it shows no revision date. Publication date unknown (footer 'Copyright 1993'). Interparliamentary corroboration and the only source for the August 1991 month. The raw response carries a per-request Cloudflare script, so its hash is not reproducible; the extract records a normalised hash and its rule.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-ipu-1993-election-facts.json",
+        "bytes": 3075,
+        "sha256": "8b745e011d230f9dd0b94e9681e1691c3d54d62441a558a2a7c22a829de141b7",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_vaea_tribute_20090613",
+      "title": "The Kingdom of Tonga Pays Tribute to its 12th Prime Minister, Baron Vaea of Houma (1921 - 2009)",
+      "url": "https://web.archive.org/web/20100825201222id_/https://www.pmo.gov.to/the-kingdom-of-tonga-pays-tribute-to-its-12th-prime-minister-baron-vaea-of-houma-1921-2009.html",
+      "original_url": "https://www.pmo.gov.to/the-kingdom-of-tonga-pays-tribute-to-its-12th-prime-minister-baron-vaea-of-houma-1921-2009.html",
+      "publisher": "Prime Minister's Office (PMO Website Bureau), Government of Tonga",
+      "accessed_date": "2026-09-22",
+      "published_date": "2009-06-13",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_pmo_vaea_tribute_appointment_undated",
+          "text": "The PMO tribute calls Baron Vaea of Houma Tonga's 12th Prime Minister and says that he 'reached the highest position in the Government upon his appointment by the Sovereign as Prime Minister', with concurrent portfolios including Agriculture, Fisheries and Forestry.",
+          "locator": "Biography section ('After 18 years in the Executive and the Legislature ...')",
+          "uncertainty": "No appointment date is given. The ordinal '12th' is recorded as printed and is not used to number a succession."
+        },
+        {
+          "id": "to_pmo_vaea_tribute_acting_pm_20090613",
+          "text": "The release lists 'the Acting Prime Minister – Dr. The Hon. Viliami Ta'u Tangi' among those present at the funeral service on Saturday 13 June 2009.",
+          "attested_on": "2009-06-13",
+          "locator": "First paragraph, list of those present",
+          "uncertainty": "An attestation of temporary acting service on one day during Sevele's premiership. The reason and duration are not stated, and no holder change is implied. Kept on the role as a claim; acting service is never a holder observation in this packet."
+        }
+      ],
+      "scope_note": "Archived PMO tribute release datelined Saturday 13 June 2009, posted 17 June 2009 (raw Internet Archive capture of 25 August 2010). Used for the undated appointment statement and the acting Prime Minister named at the funeral; the biography's other content and the '12th' ordinal are not used.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-vaea-tribute-20090613-facts.json",
+        "bytes": 3189,
+        "sha256": "cd59830fe2146b586c28a42fb1e933228089e7a9355c236846263ec196f57193",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_office_pm_2002",
+      "title": "Office of the Prime Minister (PMO website, archived)",
+      "url": "https://web.archive.org/web/20020420031118id_/http://pmo.gov.to:80/office_of_the_prime_minister.htm",
+      "original_url": "http://pmo.gov.to/office_of_the_prime_minister.htm",
+      "publisher": "Prime Minister's Office (Government Information Unit), Government of Tonga",
+      "accessed_date": "2026-09-22",
+      "source_type": "primary_government_office_profile_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_pmo_lavaka_ata_commencement_20000103",
+          "text": "The PMO's page on the office profiles 'HRH Prince Ulukalala Lavaka Ata, Prime Minister, and Minister for Communications and Women's Affairs', with 'Commencement Date : 3 rd January, 2000' and the career entry '2000 - Prime Minister of the Kingdom of Tonga ...'.",
+          "attested_on": "2000-01-03",
+          "locator": "Profile block below 'Official Address'",
+          "uncertainty": "A PMO profile written during his premiership (captured 20 April 2002), not an appointment instrument. 'Commencement Date' is read as the stated start of office; the appointment or signature date is not given separately."
+        }
+      ],
+      "scope_note": "Archived PMO page on the Office of the Prime Minister (raw Internet Archive capture of 20 April 2002), written during Lavaka Ata's premiership. Used only for the stated 'Commencement Date'.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-office-pm-2002-facts.json",
+        "bytes": 2444,
+        "sha256": "63745655216a029cd7754a215f2c6c54e67a98eacbba097e32713a0455463312",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_timeline_2000_en",
+      "title": "2000 January: Prince 'Ulukalala Lavaka Ata, appointed prime minister. (Our Constitution timeline, archived)",
+      "url": "https://web.archive.org/web/20100824203123id_/https://www.pmo.gov.to/ourconstitution/2000-january-prince-ulukalala-lavaka-ata-appointed-prime-minister.html",
+      "original_url": "https://www.pmo.gov.to/ourconstitution/2000-january-prince-ulukalala-lavaka-ata-appointed-prime-minister.html",
+      "publisher": "'Our Constitution' citizen-education site hosted on www.pmo.gov.to",
+      "accessed_date": "2026-09-22",
+      "source_type": "government_hosted_retrospective_timeline_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_pmo_timeline_lavaka_ata_appointed_200001",
+          "text": "The PMO-hosted timeline entry reads '2000 January - Prince 'Ulukalala Lavaka Ata, appointed prime minister.'",
+          "period": {
+            "from": "2000-01-01",
+            "through": "2000-01-31"
+          },
+          "locator": "Timeline entry title and body",
+          "uncertainty": "A retrospective civic-education timeline (footer '© Our Constitution - Copyright 2009'). Month precision; corroborates to_pmo_lavaka_ata_commencement_20000103."
+        }
+      ],
+      "scope_note": "Archived entry of the 'Our Constitution' citizen-education timeline hosted on www.pmo.gov.to (raw Internet Archive capture of 24 August 2010; footer 'Copyright 2009'). Retrospective and unattributed within government; month-precision corroboration only.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-timeline-2000-facts.json",
+        "bytes": 2461,
+        "sha256": "4f90b40253d9416b3143faa85b8ba43544defc1fa08d44a22462f95c9886b68d",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_timeline_2000_to",
+      "title": "2000 Sanuali: Fakanofo 'a Pilinisi 'Ulukalala Lavaka 'Ata ko e Palemia 'o Tonga (archived)",
+      "url": "https://web.archive.org/web/20100824231826id_/https://www.pmo.gov.to/ourconstitution/2000-sanuali-fakanofo-a-pilinisi-ulukalala-lavaka-ata-ko-e-palemia.html",
+      "original_url": "https://www.pmo.gov.to/ourconstitution/2000-sanuali-fakanofo-a-pilinisi-ulukalala-lavaka-ata-ko-e-palemia.html",
+      "publisher": "'Our Constitution' citizen-education site hosted on www.pmo.gov.to",
+      "accessed_date": "2026-09-22",
+      "source_type": "government_hosted_retrospective_timeline_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_pmo_timeline_lavaka_ata_appointed_200001_to",
+          "text": "The Tongan timeline entry is titled '2000 Sanuali: Fakanofo 'a Pilinisi 'Ulukalala Lavaka 'Ata ko e Palemia 'o Tonga' (January 2000: appointment of Prince 'Ulukalala Lavaka 'Ata as Prime Minister of Tonga; the English is this packet's reading).",
+          "period": {
+            "from": "2000-01-01",
+            "through": "2000-01-31"
+          },
+          "locator": "Page title and timeline list",
+          "uncertainty": "Same retrospective timeline as the English entry; month precision."
+        }
+      ],
+      "scope_note": "Tongan entry of the same 'Our Constitution' timeline (raw Internet Archive capture of 24 August 2010). Retrospective; month-precision corroboration only.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-timeline-to-2000-facts.json",
+        "bytes": 2407,
+        "sha256": "13a2a1136bdaf21bebc481b99a68024e2470f3f062f302b387d9791cb2dc7c36",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20060213_resignation",
+      "title": "TONGA'S PRIME MINISTER, HRH PRINCE 'ULUKALALA LAVAKA ATA, RESIGNS",
+      "url": "https://web.archive.org/web/20060501015618id_/http://www.pmo.gov.to:80/artman/publish/article_87.shtml",
+      "original_url": "http://www.pmo.gov.to/artman/publish/article_87.shtml",
+      "publisher": "Government Information Unit, Prime Minister's Office, Government of Tonga",
+      "accessed_date": "2026-09-22",
+      "published_date": "2006-02-13",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_lavaka_ata_resignation_accepted_20060211",
+          "text": "The PMO states that on Saturday, February 11th, 2006, the Prince Regent, His Royal Highness Crown Prince Tupouto'a, accepted the resignation of the Prime Minister, Prince 'Ulukalala Lavaka Ata. The resignation included all his ministerial portfolios: Telecommunications, Civil Aviation, Marine and Ports, and Disaster Relief Activities.",
+          "attested_on": "2006-02-11",
+          "locator": "Body paragraph 1",
+          "uncertainty": "Records the date the resignation was accepted, not when the resignation letter was written or submitted. The release is dated 13 February 2006, 14:14."
+        },
+        {
+          "id": "to_sevele_acting_pm_appointed_20060211",
+          "text": "The same release states that the Prince Regent also on Saturday 11 February 2006 appointed the Hon. Dr. Feleti Sevele, Minister for Labour, Commerce and Industries, to the post of Acting Prime Minister of Tonga, and that Sevele had been appointed a Minister on 21 March 2005.",
+          "attested_on": "2006-02-11",
+          "locator": "Body paragraphs 3-4",
+          "uncertainty": "An acting appointment made by the Prince Regent, distinct from the later substantive appointment. The end of the acting service is not stated. Recorded as a claim on the role, not as a holder."
+        }
+      ],
+      "scope_note": "Archived PMO release of 13 February 2006, 14:14 (raw Internet Archive capture of 1 May 2006); the original page is no longer served. Used for the accepted resignation and the acting appointment.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-resignation-20060213-facts.json",
+        "bytes": 3149,
+        "sha256": "c968480d59f266314ab2bbdb5c22d448b700e4fed01f9b30f9e546d9c0090e09",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20060213_resignation_to",
+      "title": "Malolo e Tama Palemia, Pilinisi 'Ulukalala Lavaka Ata, mei hono ngaahi fatongia 'i he Pule'anga",
+      "url": "https://web.archive.org/web/20060501015706id_/http://www.pmo.gov.to:80/artman/publish/article_88.shtml",
+      "original_url": "http://www.pmo.gov.to/artman/publish/article_88.shtml",
+      "publisher": "Government Information Unit, Prime Minister's Office, Government of Tonga",
+      "accessed_date": "2026-09-22",
+      "published_date": "2006-02-13",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_lavaka_ata_resignation_accepted_20060211_to",
+          "text": "The Tongan release states that the Prince Regent ('Tama Tui Fakaleo' as printed [Tama Tu'i Fakaleo]), Crown Prince 'Tupoutoa' as printed [Tupouto'a], on Saturday ('Tokonaki') 11 Fepueli 2006 accepted the letter of the Prime Minister, Prince Ulukalala Lavaka Ata, to retire ('malolo' as printed [mālōlō]) from his office as Palemia of Tonga and from his ministerial portfolios. On the same 11 February the Prince Regent appointed Hon. Dr. Feleti Sevele as 'Palemia Leoleo' as printed [Palēmia Le'ole'o] (Acting Prime Minister).",
+          "attested_on": "2006-02-11",
+          "locator": "Body paragraphs 3-4",
+          "uncertainty": "The English rendering is this packet's reading. The archived capture drops macrons and glottal stops; quoted words are given as printed with the normalised spelling in brackets. The Tongan text says 'malolo' (retire) where the English release says 'resignation'; both date the acceptance to 11 February 2006."
+        }
+      ],
+      "scope_note": "Tongan version of the same PMO release, dated 13 February 2006, 14:26 (raw Internet Archive capture of 1 May 2006); a Latin-1 page whose capture drops macrons and glottal stops.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-resignation-to-20060213-facts.json",
+        "bytes": 2839,
+        "sha256": "4d1437511e52dec69dbeb556401347917a9422cc2e7108019fe24d09a77adf6c",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20060330_farewell_speech",
+      "title": "Tonga Bids Farewell to Last Resident British High Commissioner",
+      "url": "https://web.archive.org/web/20060426083239id_/http://www.pmo.gov.to:80/artman/publish/article_102.shtml",
+      "original_url": "http://www.pmo.gov.to/artman/publish/article_102.shtml",
+      "publisher": "Prime Minister's Office, Government of Tonga",
+      "accessed_date": "2026-09-22",
+      "published_date": "2006-03-30",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_sevele_acting_pm_20060323",
+          "text": "The PMO item reproduces a 'SPEECH BY THE HON DR FRED V SEVELE THE ACTING PRIME MINISTER AT THE FAREWELL STATE DINNER' for the British High Commissioner, dated '7.00 pm ; 23rd Mar 2006'.",
+          "attested_on": "2006-03-23",
+          "locator": "Speech heading",
+          "uncertainty": "Shows that Sevele was still styled Acting Prime Minister on 23 March 2006. The item was posted on 30 March 2006, 13:39. A claim on the role, not a holder."
+        }
+      ],
+      "scope_note": "Archived PMO item posted 30 March 2006, 13:39 (raw Internet Archive capture of 26 April 2006). Used only for the speaker's styling in the speech heading dated 23 March 2006.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-farewell-20060330-facts.json",
+        "bytes": 2315,
+        "sha256": "8aa186c3de6c8c2ec3271e4c5b7e81457eed245d3a475a7e5d2aa8b8932114ec",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20060410_marist_remarks",
+      "title": "Remarks of the Prime Minister, the Hon. Dr. Fred Sevele at Marist Brothers High School",
+      "url": "https://web.archive.org/web/20060501190324id_/http://www.pmo.gov.to:80/artman/publish/article_107.shtml",
+      "original_url": "http://www.pmo.gov.to/artman/publish/article_107.shtml",
+      "publisher": "Prime Minister's Office, Government of Tonga",
+      "accessed_date": "2026-09-22",
+      "published_date": "2006-04-10",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_sevele_pm_20060407",
+          "text": "The PMO reproduces the 'BRIEF ADDRESS BY THE HON. DR FRED V. SEVELE PRIME MINISTER OF THE KINGDOM OF TONGA AT MARIST BROTHERS HIGH SCHOOL, SUVA ( 2:30 pm 7 th April 2006 )' and calls him 'The Prime Minister of Tonga'.",
+          "attested_on": "2006-04-07",
+          "locator": "Introductory paragraph and address heading",
+          "uncertainty": "Shows that he was styled Prime Minister, without 'Acting', by 7 April 2006: the earliest contemporaneous PMO styling found, to which the substantive holder observation is event-dated. The item does not date the appointment."
+        }
+      ],
+      "scope_note": "Archived PMO item of 10 April 2006 (raw Internet Archive capture of 1 May 2006). Used only for the styling of the speaker of an address dated 7 April 2006.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-marist-20060410-facts.json",
+        "bytes": 2373,
+        "sha256": "e59637206bfa1c528f00bb731645a790a482875ff3dd8e9342fc198ad5f02e2f",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20060413_psc",
+      "title": "Public Service moves forward with appointment of independent Commissioners",
+      "url": "https://web.archive.org/web/20060501190232id_/http://www.pmo.gov.to:80/artman/publish/article_108.shtml",
+      "original_url": "http://www.pmo.gov.to/artman/publish/article_108.shtml",
+      "publisher": "Prime Minister's Office, Government of Tonga",
+      "accessed_date": "2026-09-22",
+      "published_date": "2006-04-13",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_sevele_acting_then_pm_20060413",
+          "text": "The PMO release of 13 April 2006 refers to 'the beginning of his tenure as the countrys Acting Prime Minister, and now Prime Minister, the Hon. Dr. Fred Sevele' (apostrophe lost in the capture).",
+          "attested_on": "2006-04-13",
+          "locator": "Final paragraph",
+          "uncertainty": "Confirms the change from acting to substantive status by 13 April 2006. It gives no date for that change."
+        }
+      ],
+      "scope_note": "Archived PMO release of 13 April 2006 (raw Internet Archive capture of 1 May 2006). Used only for its final sentence on the Prime Minister's tenure; the Public Service content is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-psc-20060413-facts.json",
+        "bytes": 2254,
+        "sha256": "f6e7bcc76cebf35a636fb5ab80bf77a64538e65ae3ef7f7ee6c5e95b4d3dc505",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_timeline_2006_en",
+      "title": "2006: Feleti Sevele is appointed as the first non-noble Prime Minister (Our Constitution timeline, archived)",
+      "url": "https://web.archive.org/web/20100824203137id_/https://www.pmo.gov.to/ourconstitution/2006-feleti-sevele-is-appointed-as-the-first-non-noble-prime-minister.html",
+      "original_url": "https://www.pmo.gov.to/ourconstitution/2006-feleti-sevele-is-appointed-as-the-first-non-noble-prime-minister.html",
+      "publisher": "'Our Constitution' citizen-education site hosted on www.pmo.gov.to",
+      "accessed_date": "2026-09-22",
+      "source_type": "government_hosted_retrospective_timeline_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_sevele_appointed_20060330",
+          "text": "The PMO-hosted timeline entry reads: '30 March 2006: Feleti Sevele is appointed as the first non-noble Prime Minister of Tonga since Shirley Baker in the 19th century.'",
+          "attested_on": "2006-03-30",
+          "locator": "Timeline entry body",
+          "uncertainty": "Retrospective timeline date: an unattributed civic-education timeline (footer '© Our Constitution - Copyright 2009') hosted on pmo.gov.to, not a contemporaneous release or instrument, and its Tongan twin gives the year only. The date fits the PMO's change in usage between 23 March and 7 April 2006, but the PMO articles of 30 March to 7 April 2006 contain no appointment release, so it is kept as a claim and is not the date of the holder observation. The timeline's 'first non-noble' characterisation is not imported."
+        }
+      ],
+      "scope_note": "Archived entry of the 'Our Constitution' timeline hosted on www.pmo.gov.to (raw Internet Archive capture of 24 August 2010; footer 'Copyright 2009'). Retrospective: its 30 March 2006 date is kept as a claim labelled a retrospective timeline date and is not a holder date.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-timeline-2006-facts.json",
+        "bytes": 2828,
+        "sha256": "ec47a93c4f1e5eac8bb61a865095eaee22563c0533acb6a617fe1f4d89be1005",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_timeline_2006_to",
+      "title": "2006: Feleti Sevele 'uluaki (tu'a) Tonga fakanofo ko e Palemia (archived)",
+      "url": "https://web.archive.org/web/20100824231841id_/https://www.pmo.gov.to/ourconstitution/2006-feleti-sevele-uluaki-tua-tonga-fakanofo-ko-e-palemia.html",
+      "original_url": "https://www.pmo.gov.to/ourconstitution/2006-feleti-sevele-uluaki-tua-tonga-fakanofo-ko-e-palemia.html",
+      "publisher": "'Our Constitution' citizen-education site hosted on www.pmo.gov.to",
+      "accessed_date": "2026-09-22",
+      "source_type": "government_hosted_retrospective_timeline_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_sevele_appointed_2006_to",
+          "text": "The Tongan timeline entry reads '2006: Feleti sevele 'uluaki (tu'a) Tonga fakanofo ko e Palemia' (2006: Feleti Sevele, the first commoner Tongan appointed Prime Minister; the English is this packet's reading).",
+          "locator": "Timeline list entry (the page title prints '2006: Feleti sevele 'uluaki (tu'a) Tonga fakanofo a ko e Palemia')",
+          "uncertainty": "Year precision only; no structured period is stored. It does not repeat the English entry's 30 March date."
+        }
+      ],
+      "scope_note": "Tongan entry of the same timeline (raw Internet Archive capture of 24 August 2010). Year precision only.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-timeline-to-2006-facts.json",
+        "bytes": 2319,
+        "sha256": "4e3e446b17a054d52f853299d8c15f3b116015f175e6d06bc46e3d0567248818",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_mic_20101220_nominees",
+      "title": "Lord Tu'ivakano and 'Akilisi Pohiva - two nominees for Tonga's next PM",
+      "url": "https://web.archive.org/web/20111130060905id_/http://pmo.gov.to/press-releases/1952-lord-tuivakano-and-akilisi-pohiva-two-nominees-for-tongas-next-pm",
+      "original_url": "http://pmo.gov.to/press-releases/1952-lord-tuivakano-and-akilisi-pohiva-two-nominees-for-tongas-next-pm",
+      "publisher": "Ministry of Information and Communications, Government of Tonga",
+      "accessed_date": "2026-09-22",
+      "published_date": "2010-12-20",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_pm_2010_special_meeting_nominees_20101220",
+          "text": "MIC reports that the 26 newly elected members met on 20 December 2010 at a Special Meeting of the Legislative Assembly to elect the Prime Minister Designate by secret ballot. The Interim Speaker, Lord Tupou, read three nominations: Lord Tu'ivakano (nominated by Sunia Fili), and 'Akilisi Pohiva twice (nominated by 'Isileli Pulu and by Sitiveni Halapua). The ballot was to follow the members' speeches.",
+          "attested_on": "2010-12-20",
+          "locator": "Body paragraphs 1-3",
+          "uncertainty": "A procedural record. It gives no result, and the ballot's own date (20 or 21 December) is not stated. The release was published on the government portal then served at pmo.gov.to (captured 30 November 2011)."
+        }
+      ],
+      "scope_note": "MIC release of 20 December 2010 on the government portal then served at pmo.gov.to (raw Internet Archive capture of 30 November 2011). Procedural only; it records no result.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-nominees-20101220-facts.json",
+        "bytes": 2655,
+        "sha256": "7081224c7e484a68f6c52b51b004257b1e35b658ad20ff2570908e8dd8edbb49",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_mic_20101221_designate",
+      "title": "Lord Tu'ivakano elected Tonga's Prime Minister Designate",
+      "url": "https://web.archive.org/web/20120525141049id_/http://www.mic.gov.to/news-today/press-releases/1953-lord-tuivakano-elected-tongas-prime-minister-designate",
+      "original_url": "http://www.mic.gov.to/news-today/press-releases/1953-lord-tuivakano-elected-tongas-prime-minister-designate",
+      "publisher": "Ministry of Information and Communications, Government of Tonga",
+      "accessed_date": "2026-09-22",
+      "published_date": "2010-12-21",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_tuivakano_assembly_result_presented_20101221",
+          "text": "MIC's release dated 21 December 2010 states that the 26 newly elected members elected Lord Tu'ivakano by secret ballot to be the next Prime Minister, 14-12 against 'Akilisi Pohiva, and that the result was presented to King George Tupou V 'today at the Villa' by the Interim Speaker, Lord Tupou, before the Prime Minister Designate was announced in the House.",
+          "attested_on": "2010-12-21",
+          "locator": "Body paragraphs 1-2",
+          "uncertainty": "attested_on is the date of the presentation to the King and of the announcement ('today'), not of the ballot, whose own date (20 or 21 December 2010) the release does not state. This is the Assembly's selection, not the royal appointment. The same sentence also calls the election 'unanimously' made, which contradicts the 14-12 count; the count is recorded as printed."
+        },
+        {
+          "id": "to_tuivakano_appointment_announced_20101221",
+          "text": "The same release says the Interim Speaker announced that the King 'will formalize Lord Tu'ivakano's appointment as Tonga's Prime Minister this Wednesday, 22, December, 2010', and that Tu'ivakano 'will replace' Dr. Feleti Vaka'uta Sevele.",
+          "locator": "Body paragraphs 4 and final",
+          "uncertainty": "A prospective statement. It is not used as evidence that the appointment took place, for which see to_palace_20101222_appointment."
+        }
+      ],
+      "scope_note": "MIC release dated 21 December 2010 (raw Internet Archive capture of 25 May 2012). Used for the Assembly's selection and its presentation to the King; the prospective appointment statement is not evidence that the appointment took place.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-designate-20101221-facts.json",
+        "bytes": 3390,
+        "sha256": "aa4b81168832fe6b2a516b5be888cb5ba09f709fed84f3c95be6dc5c3d1db432",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_palace_20101222_appointment",
+      "title": "Appointment of New Prime Minister Lord Tu'ivakano",
+      "url": "https://web.archive.org/web/20111130040811id_/http://pmo.gov.to/press-releases/1958-appointment-of-new-prime-minister-lord-tuivakano",
+      "original_url": "http://pmo.gov.to/press-releases/1958-appointment-of-new-prime-minister-lord-tuivakano",
+      "publisher": "Office of the Lord Chamberlain, Palace Office (published on the Government of Tonga portal)",
+      "accessed_date": "2026-09-22",
+      "published_date": "2010-12-22",
+      "source_type": "primary_palace_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_tuivakano_royal_appointment_20101222",
+          "text": "The Palace Office release dated 22 December 2010 states that the Prime Minister-designate, Lord Tu'ivakano, was received in audience 'today, Wednesday 2 2 nd December 2010 [spacing as captured] at 12.00 NOON at the Royal Residence, The Villa for his appointment to the office of Prime Minister' in the ceremony known as 'The Kissing of Hands', and 'then received his Letter of Appointment from His Majesty The King'. The Tongan text calls the letter 'Tohi Fakanofo, ko e Palemia 'o Tonga'.",
+          "attested_on": "2010-12-22",
+          "locator": "English paragraphs 1-2; Tongan text",
+          "uncertainty": "An appointment event dated to the day and hour. No separate 'with effect from' date and no clause of the Constitution are cited."
+        },
+        {
+          "id": "to_sevele_leave_audience_20101222",
+          "text": "The same release states that before the Prime Minister-designate's audience, 'the outgoing Prime Minister, Hon Dr Feleti Vaka'uta Sevele was also received in audience at 1100 Hrs, to take his Leave'.",
+          "attested_on": "2010-12-22",
+          "locator": "English paragraph 3",
+          "uncertainty": "A leave-taking audience of the outgoing Prime Minister. It is not a stated resignation or end instrument and is not used as an 'until' date."
+        }
+      ],
+      "scope_note": "Palace Office (Office of the Lord Chamberlain) release of 22 December 2010 published on the government portal then served at pmo.gov.to (raw Internet Archive capture of 30 November 2011), with English and Tongan texts. The Letter of Appointment itself was not seen.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-palace-appointment-20101222-facts.json",
+        "bytes": 3271,
+        "sha256": "d678bda755d9f0e7f211e0e343df49833a339723c34675afbf2247b660d419a0",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_la_20141209_special_sitting",
+      "title": "Parliament special sitting for election of PM on December 24th",
+      "url": "https://web.archive.org/web/20161027022423id_/http://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/286-parliament-special-sitting-for-election-of-pm-on-december-24th",
+      "original_url": "http://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/286-parliament-special-sitting-for-election-of-pm-on-december-24th",
+      "publisher": "Legislative Assembly of Tonga",
+      "accessed_date": "2026-09-22",
+      "published_date": "2014-12-09",
+      "source_type": "primary_legislature_news_notice_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_pm_2014_writ_returned_timetable_20141209",
+          "text": "The Assembly reports that the election writ was returned to the King 'today' (9 December 2014). According to Interim Speaker Lord Tupou, nominations for PM would be called on 19 December and close on 23 December, with the special sitting likely on 24, 29 or 30 December. After the vote, the Interim Speaker reports to the King that MPs recommend the winning candidate as Prime Minister designate, who 'will then be appointed by the King'.",
+          "attested_on": "2014-12-09",
+          "locator": "Body paragraphs 1-5",
+          "uncertainty": "Procedural and prospective. The headline's 24 December was not the date the sitting was held (29 December; see to_la_20141229_pohiva_elected)."
+        }
+      ],
+      "scope_note": "Legislative Assembly news item created 9 December 2014 (raw Internet Archive capture of 27 October 2016). Procedural and prospective; the headline's 24 December was not the sitting date.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-special-sitting-20141209-facts.json",
+        "bytes": 2735,
+        "sha256": "660e36218605a2fe0851d1d77423e4bab102a230672927481a7a2bc7b5b4ee08",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_la_20141229_nominations",
+      "title": "Pohiva & Vaipulu are 2 nominations of PM",
+      "url": "https://web.archive.org/web/20161027052431id_/http://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/293-pohiva-vaipulu-are-2-nominations-of-pm",
+      "original_url": "http://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/293-pohiva-vaipulu-are-2-nominations-of-pm",
+      "publisher": "Legislative Assembly of Tonga",
+      "accessed_date": "2026-09-22",
+      "published_date": "2014-12-29",
+      "source_type": "primary_legislature_news_notice_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_pm_2014_two_nominations_20141229",
+          "text": "The Assembly reports that on 29 December 2014 Interim Speaker Lord Tupou announced two nominations in Parliament: caretaker Deputy Prime Minister Samiu Kuita Vaipulu, nominated by Vili Hingano on December 22, and Samuela 'Akilisi Pohiva, nominated by Dr. Pohiva Tu'i'onetoa.",
+          "attested_on": "2014-12-29",
+          "locator": "Body paragraphs 1-2",
+          "uncertainty": "Procedural. Tu'i'onetoa's nomination was lodged on 23 December (Assembly item 290, not imported separately)."
+        }
+      ],
+      "scope_note": "Legislative Assembly news item of 29 December 2014 (raw Internet Archive capture of 27 October 2016). Procedural only.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-nominations-20141229-facts.json",
+        "bytes": 2413,
+        "sha256": "5ddd8129a2ef8538ea3f06aaed19dc4822bc60b0832d55e5c4a28aafdbc07f25",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_la_20141229_report_to_king",
+      "title": "Interim Speaker reports to His Majesty the results of secret ballot",
+      "url": "https://web.archive.org/web/20161027052419id_/http://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/294-interim-speaker-reports-to-king-the-results-of-secret-ballot",
+      "original_url": "http://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/294-interim-speaker-reports-to-king-the-results-of-secret-ballot",
+      "publisher": "Legislative Assembly of Tonga",
+      "accessed_date": "2026-09-22",
+      "published_date": "2014-12-29",
+      "source_type": "primary_legislature_news_notice_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_pm_2014_result_reported_to_king_20141229",
+          "text": "The Assembly reports that after the newly elected MPs cast their secret ballot, Parliament adjourned until 2.30pm so that the Interim Speaker could have an audience with the King to report the winning candidate to become Prime Minister, and would announce the result when the House resumed.",
+          "attested_on": "2014-12-29",
+          "locator": "Body paragraph 1",
+          "uncertainty": "Records the report to the King. It is not the royal appointment."
+        }
+      ],
+      "scope_note": "Legislative Assembly news item of 29 December 2014 (raw Internet Archive capture of 27 October 2016). Records the report to the King, not the appointment.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-report-to-king-20141229-facts.json",
+        "bytes": 2470,
+        "sha256": "f82ae95d6e43a8ff55154f7cb4c2d05c306016f9badb5aa1e0368ccd7f1522a9",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_la_20141229_pohiva_elected",
+      "title": "'Akilisi Pohiva is new PM of Tonga",
+      "url": "https://web.archive.org/web/20161027052405id_/http://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/295-akilisi-pohiva-is-new-pm-of-tonga",
+      "original_url": "http://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/295-akilisi-pohiva-is-new-pm-of-tonga",
+      "publisher": "Legislative Assembly of Tonga",
+      "accessed_date": "2026-09-22",
+      "published_date": "2014-12-29",
+      "source_type": "primary_legislature_news_notice_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_pohiva_assembly_selection_20141229",
+          "text": "The Assembly reports that 'today' (29 December 2014) it elected Tongatapu 1 MP 'Akilisi Pohiva as the new Prime Minister: 15 voted for Pohiva and 11 for Vava'u 16 MP Samiu Kuita Vaipulu. The House was to reconvene on January 20, when the new PM and MPs would take their oath.",
+          "attested_on": "2014-12-29",
+          "locator": "Body paragraphs 1 and 3",
+          "uncertainty": "The Assembly's selection, not the royal appointment. The 20 January oath is prospective and was not verified. The Speaker election in the same item is not imported."
+        }
+      ],
+      "scope_note": "Legislative Assembly news item of 29 December 2014 (raw Internet Archive capture of 27 October 2016). Used for the Assembly's selection; the Speaker election in the same item and the prospective oath date are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-pm-elected-20141229-facts.json",
+        "bytes": 2570,
+        "sha256": "74faf6e72a31bdeb40f8496673909c9c2d6a435a1c25090a838a3cf3afe8ff11",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20141229_pm_elect",
+      "title": "Tonga's new Prime Minister- elect – 'Akilisi Pohiva",
+      "url": "https://web.archive.org/web/20150706224416id_/http://www.pmo.gov.to/tongas-new-prime-minister-elect-akilisi-pohiva/",
+      "original_url": "http://www.pmo.gov.to/tongas-new-prime-minister-elect-akilisi-pohiva/",
+      "publisher": "Prime Minister's Office, Government of Tonga",
+      "accessed_date": "2026-09-22",
+      "published_date": "2014-12-29",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_pohiva_declared_pm_elect_pmo_20141229",
+          "text": "The PMO states that Samuela 'Akilisi Pohiva was declared Tonga's new Prime Minister on 29 December 2014 by the Interim Speaker, Lord Tupou, winning 15-11 against former Deputy Prime Minister Samiu Vaipulu. It adds that 'former Prime Minister Lord Tu'ivakano was elected as new Speaker' and that a new Government was anticipated by the New Year.",
+          "attested_on": "2014-12-29",
+          "locator": "Body paragraphs 1-3",
+          "uncertainty": "Corroborates the Assembly selection. 'Former Prime Minister' describes Tu'ivakano on 29 December and is not used as an end date. The ordinals '16th Prime Minister' and 'second Prime Minister' after 2010 are not imported."
+        }
+      ],
+      "scope_note": "Archived PMO release of 29 December 2014 (raw Internet Archive capture of 6 July 2015). Corroborates the Assembly's selection; its ordinals are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-pm-elect-20141229-facts.json",
+        "bytes": 2522,
+        "sha256": "3f241d3e780ea55a1fcef99841e6dbe2736f5aa3081ac34cfba1eb1ada39ab77",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20141230_appointment",
+      "title": "King appoints 'Akilisi Pohiva as new Prime Minister of Tonga",
+      "url": "https://web.archive.org/web/20150707000535id_/http://www.pmo.gov.to/king-appoints-akilisi-pohiva-as-new-prime-minister-of-tonga/",
+      "original_url": "http://www.pmo.gov.to/king-appoints-akilisi-pohiva-as-new-prime-minister-of-tonga/",
+      "publisher": "Prime Minister's Office, Government of Tonga",
+      "accessed_date": "2026-09-22",
+      "published_date": "2014-12-30",
+      "source_type": "primary_government_appointment_announcement_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_pohiva_royal_appointment_20141230",
+          "text": "The PMO states: 'The Prime Minister-Designate, Samuela 'Akilisi Pohiva was received-in audience today, Tuesday 30th December 2014 at 10.00 a.m. at the Royal Palace, for his appointment to the office of Prime Minister. The ceremony was followed by a private audience of a short duration.'",
+          "attested_on": "2014-12-30",
+          "locator": "Body text; byline 'Prime Minister's Office December 30, 2014'",
+          "uncertainty": "An appointment event (the headline says 'King appoints'). No 'with effect from' date, instrument or clause is cited. It gives a day-precision primary date for IPU's 'following day' endorsement (to_ipu_2014_royal_endorsement_following_day), which itself keeps no structured date: this date comes from the PMO release, not from IPU's wording."
+        }
+      ],
+      "scope_note": "Archived PMO release bylined 'Prime Minister's Office December 30, 2014' (raw Internet Archive capture of 7 July 2015). Used for the appointment audience; photographs are not reused.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-appointment-20141230-facts.json",
+        "bytes": 2674,
+        "sha256": "afbbdc1f74ddde749d04310b1ff0da2de9b66764fdd9e16af1d18a549c0b0557",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_gazette_supp_14_2017",
+      "title": "Tonga Government Gazette Supplement Extraordinary No. 14 of 2017 (Instrument of Dissolution)",
+      "url": "https://ago.gov.to/cms/images/LEGISLATION/GAZETTES/2017/2017-0041/GazetteSupplementExtraordinaryNo.14of2017.pdf",
+      "publisher": "Attorney General's Office, Tonga (Tonga Government Gazette)",
+      "accessed_date": "2026-09-22",
+      "published_date": "2017-08-25",
+      "source_type": "primary_government_gazette",
+      "access_method": "downloaded_original_pdf_text_and_relevant_page_visually_read",
+      "claims": [
+        {
+          "id": "to_dissolution_instrument_20170824",
+          "text": "The Instrument of Dissolution, signed TUPOU VI and done at Nuku'alofa on 24 August 2017, states that the King, having considered advice from the Lord Speaker and having regard to Clauses 38 and 77(2), dissolves the Legislative Assembly 'with effect from Thursday 24 August 2017 at 1700 hours', with elections to be held no later than 16 November 2017. The instrument does not mention the Prime Minister.",
+          "attested_on": "2017-08-24",
+          "locator": "Gazette Supplement Extraordinary No. 14, 25 August 2017, pp. 55-56",
+          "uncertainty": "Dissolves the Assembly. It is not a dismissal of the Prime Minister and provides no caretaker instrument."
+        }
+      ],
+      "scope_note": "Gazette Supplement Extraordinary No. 14 of 25 August 2017 carrying the Instrument of Dissolution. Read on 2026-09-22, after the 7 September 2026 historical cutoff; the file is the dated historical document and no later content is used. Used only for the dissolution and its effective time; the instrument says nothing about the Prime Minister.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-gazette-supp14-20170825-facts.json",
+        "bytes": 2470,
+        "sha256": "392a199b88b66764bedfe7bab61d78e80d7917f5ef7b181f63b2b45c398168ba",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_la_20170912_speaker_release",
+      "title": "Press Release from the Speaker of the Legislative Assembly of Tonga",
+      "url": "https://web.archive.org/web/20170914091449id_/http://parliament.gov.to:80/media-centre/press-releases/press-releases-in-english/585-press-release-from-the-speaker-of-the-legislative-assembly-of-tonga",
+      "original_url": "http://parliament.gov.to/media-centre/press-releases/press-releases-in-english/585-press-release-from-the-speaker-of-the-legislative-assembly-of-tonga",
+      "publisher": "Legislative Assembly of Tonga (Office of the Speaker)",
+      "accessed_date": "2026-09-22",
+      "published_date": "2017-09-12",
+      "source_type": "primary_legislature_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_pohiva_styled_pm_20170912",
+          "text": "The Speaker, Lord Tu'ivakano, rejects claims made by 'the Hon. Prime Minister, Samuela' Akilisi Pohiva' about the advice that led to the dissolution of the Assembly 'with effect from 24 August 2017'. The release is dated Tuesday 12th September 2017.",
+          "attested_on": "2017-09-12",
+          "locator": "Body paragraph 1; sign-off",
+          "uncertainty": "Shows that the Speaker styled Pohiva Prime Minister after the dissolution. It does not state his legal status (full or caretaker). The content of the dispute is not imported."
+        }
+      ],
+      "scope_note": "Speaker's press release dated Tuesday 12 September 2017 (raw Internet Archive capture of 14 September 2017). Used only for the styling of Pohiva as Prime Minister after the dissolution; the substance of the dispute is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-speaker-release-20170912-facts.json",
+        "bytes": 2632,
+        "sha256": "89f0bdd3a8d1db83733ff62c32d812155e2df1d248851430fe3a9f0f4979fcb4",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_mic_20170907_sovaleni_letter",
+      "title": "Lea Fakamalo 'a e Tokoni Palemia Malolo Siaosi Sovaleni (MEIDECC release, archived)",
+      "url": "https://web.archive.org/web/20170910132342id_/http://mic.gov.to:80/news-today/press-releases/6910-lea-fakamalo-a-e-tokoni-palemia-mll-siaosi-sovaleni",
+      "original_url": "http://mic.gov.to/news-today/press-releases/6910-lea-fakamalo-a-e-tokoni-palemia-mll-siaosi-sovaleni",
+      "publisher": "Ministry of Meteorology, Energy, Information, Disaster Management, Environment, Climate Change and Communications (MEIDECC), Government of Tonga (published on the Government of Tonga portal)",
+      "accessed_date": "2026-09-22",
+      "published_date": "2017-09-07",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_pohiva_conveys_deputy_pm_removal_20170905",
+          "text": "The MEIDECC release dated '07 'o Sepitema, 2017' reports former Deputy Prime Minister ('Tokoni Palemia Malolo') Siaosi Sovaleni as saying that a letter reached him from 'the Palemia 'o Tonga Hon. 'Akilisi Pohiva' on 5 September ('i he 'aho 5 'o Sepitema), conveying that His Majesty had consented to the proposal that he be removed from his office of Deputy Prime Minister and from his ministerial office in the Cabinet, and that he accepted the decision.",
+          "attested_on": "2017-09-05",
+          "locator": "Body paragraph 2; page header 'Thursday, 07 September 2017 16:34'",
+          "uncertainty": "The English rendering is this packet's reading of the Tongan text; 'Malolo' is printed with a Cyrillic 'ӧ' for 'ō'. The year of '5 'o Sepitema' is taken from the release's own dateline. It shows Pohiva styled Prime Minister of Tonga and conveying the King's consent to a Cabinet change after the 24 August 2017 dissolution; it does not state whether he then served in full or caretaker capacity. The Deputy Prime Minister's removal is outside this packet's role scope and creates no holder, and Sovaleni's remarks about the dissolution are not imported."
+        }
+      ],
+      "scope_note": "Tongan-language MEIDECC release on the government portal (mic.gov.to), page dated Thursday 07 September 2017 16:34 (raw Internet Archive capture of 10 September 2017). Located by the independent check. Used only for the 5 September letter and Pohiva's styling; the Deputy Prime Minister's removal and his remarks are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-deputy-pm-removal-20170907-facts.json",
+        "bytes": 3097,
+        "sha256": "115819bbe9483e4b7d19a6af7b5c0fd0f8aa625f491c35507f99a413daa5b58c",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_mic_20171120_interim_speaker",
+      "title": "Interim Speaker of Parliament",
+      "url": "https://web.archive.org/web/20181031091602id_/http://www.mic.gov.to/news-today/press-releases/7033-interim-speaker-of-parliament-",
+      "original_url": "http://www.mic.gov.to/news-today/press-releases/7033-interim-speaker-of-parliament-",
+      "publisher": "Government of Tonga portal (mic.gov.to); release from the Office of the Interim Speaker",
+      "accessed_date": "2026-09-22",
+      "published_date": "2017-11-20",
+      "source_type": "primary_legislature_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_interim_speaker_tangi_20171117",
+          "text": "The release states that the King appointed Lord Tangi as Interim Speaker of the Legislative Assembly 'effective as of today, Friday 17th of November 2017' under Clause 61, to invite nominations for Prime Minister Designate and to convene the secret-ballot meeting. The writ was to be returned on or before 30 November 2017.",
+          "attested_on": "2017-11-17",
+          "locator": "Body paragraphs 1-3",
+          "uncertainty": "Procedural. The page is dated 20 November 2017 while the text says 'today, Friday 17th'; both are recorded as printed."
+        }
+      ],
+      "scope_note": "Release from the Office of the Interim Speaker on the government portal, page dated 20 November 2017 (raw Internet Archive capture of 31 October 2018). Procedural.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-interim-speaker-20171120-facts.json",
+        "bytes": 2440,
+        "sha256": "6ce787c8b40249f9d9939032d9579674d9dd563045c5b7721b6479211914e262",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_mic_20171215_nominations",
+      "title": "Close of PM nominations",
+      "url": "https://web.archive.org/web/20180115225644id_/http://www.mic.gov.to:80/news-today/press-releases/7059-close-of-pm-nominations",
+      "original_url": "http://www.mic.gov.to/news-today/press-releases/7059-close-of-pm-nominations",
+      "publisher": "Legislative Assembly of Tonga (published on the Government of Tonga portal)",
+      "accessed_date": "2026-09-22",
+      "published_date": "2017-12-15",
+      "source_type": "primary_legislature_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_pm_2017_nominations_closed_20171214",
+          "text": "The Legislative Assembly states that nominations for Prime Minister Designate closed at 4:30pm on Thursday 14th December 2017 with two received: the first on Tuesday 5th December 2017 from Hon. Pohiva Tu'i'onetoa, and the second on Thursday 14th December 2017 from Hon. Samiu Kuita Vaipulu.",
+          "attested_on": "2017-12-14",
+          "locator": "Body paragraphs 1-2",
+          "uncertainty": "The names are those of the members who lodged the nominations, not the candidates. The candidates were to be revealed at the meeting."
+        }
+      ],
+      "scope_note": "Legislative Assembly release on the government portal, dated 15 December 2017 (raw Internet Archive capture of 15 January 2018). Procedural; the names are those of the members who lodged nominations.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-pm-nominations-20171215-facts.json",
+        "bytes": 2452,
+        "sha256": "f74d14f5ea96dcfb271fe48ef9a26883de4631200ee4b037668f9143da663de6",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_la_20171215_meeting_programme",
+      "title": "Meeting of the Elected Representatives ... To elect the Prime Minister Designate, Speaker and Deputy Speaker",
+      "url": "https://web.archive.org/web/20180302231437id_/http://parliament.gov.to:80/media-centre/press-releases/press-releases-in-english/600-meeting-of-the-elected-representatives-to-the-legislative-assembly-of-tonga-convened-by-the-interim-speaker-of-the-legislative-assembly-of-tonga-to-elect-the-prime-minister-designate-speaker-and-deputy-speaker-of-the-legislative-assembly-of-tonga",
+      "original_url": "http://parliament.gov.to/media-centre/press-releases/press-releases-in-english/600-meeting-of-the-elected-representatives-to-the-legislative-assembly-of-tonga-convened-by-the-interim-speaker-of-the-legislative-assembly-of-tonga-to-elect-the-prime-minister-designate-speaker-and-deputy-speaker-of-the-legislative-assembly-of-tonga",
+      "publisher": "Legislative Assembly of Tonga",
+      "accessed_date": "2026-09-22",
+      "published_date": "2017-12-15",
+      "source_type": "primary_legislature_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_pm_2017_meeting_scheduled_20171218",
+          "text": "The Assembly's programme schedules the meeting of the Elected Representatives convened by the Interim Speaker for 18/12/2017 at 10:00 am. Its order of business includes the election of the Prime Minister Designate by secret ballot, a tally by the Chief Clerk and the Auditor General, and the Interim Speaker's declaration of the result.",
+          "attested_on": "2017-12-15",
+          "locator": "Programme header and items 4-9",
+          "uncertainty": "A programme published before the meeting. It records no result."
+        }
+      ],
+      "scope_note": "Legislative Assembly programme published 15 December 2017 (raw Internet Archive capture of 2 March 2018). Prospective; records no result.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-meeting-programme-20171215-facts.json",
+        "bytes": 2885,
+        "sha256": "c3b56c1ef1a1fc792db3f3634e4f7b91028c2d816b801a0c664bf01413efbfa6",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_mic_20171218_selection_to",
+      "title": "To e ikuna 'Akilisi Pōhiva fili Palēmiá",
+      "url": "https://web.archive.org/web/20180115225424id_/http://www.mic.gov.to:80/news-today/press-releases/7064-to-e-ikuna-akilisi-phiva-fili-palmia",
+      "original_url": "http://www.mic.gov.to/news-today/press-releases/7064-to-e-ikuna-akilisi-phiva-fili-palmia",
+      "publisher": "Ministry of Meteorology, Energy, Information, Disaster Management, Environment, Climate Change and Communications (MEIDECC), Government of Tonga",
+      "accessed_date": "2026-09-22",
+      "published_date": "2017-12-18",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_pohiva_assembly_reselection_20171218",
+          "text": "The Tongan release dated 18 'o Tīsema 2017 states that the People's Representative for Tongatapu 1, 'ka ko e Palēmia lolotonga' (and the current Prime Minister), Hon. Samuela 'Akilisi Pōhiva, becomes Prime Minister of Tonga for the coming term printed as '(2018 – 2021)' after winning 14 votes to 12 against the second candidate, Siaosi Sovaleni. Lord Fakafanua and Lord Tu'ilakepa were then elected Speaker and Deputy Speaker.",
+          "attested_on": "2017-12-18",
+          "locator": "Body paragraph 1",
+          "uncertainty": "The English rendering is this packet's reading. This is the Assembly's selection, not the royal appointment. 'Palēmia lolotonga' describes Pohiva on 18 December 2017; it does not state whether he then served in full or caretaker capacity. The printed 2018-2021 span is not imported as a term."
+        }
+      ],
+      "scope_note": "Tongan-language MEIDECC release dated 18 December 2017 (raw Internet Archive capture of 15 January 2018). Used for the Assembly's selection; the Speaker and Deputy Speaker elections are context only.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-mic-selection-to-20171218-facts.json",
+        "bytes": 2778,
+        "sha256": "2bb792da7a7490bb9fbc207863fc41ac5a13f98caeb1c5fe9bbf0de439d9c525",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20180104_appointment",
+      "title": "King appoints Prime Minister Hon. Samuela 'Akilisi Pohiva",
+      "url": "https://web.archive.org/web/20180113055859id_/http://www.mic.gov.to:80/news-today/press-releases/7065-king-appoints-prime-minister-hon-samuela-akilisi-pohiva",
+      "original_url": "http://www.mic.gov.to/news-today/press-releases/7065-king-appoints-prime-minister-hon-samuela-akilisi-pohiva",
+      "publisher": "Prime Minister's Office, Government of Tonga (published on the Government of Tonga portal)",
+      "accessed_date": "2026-09-22",
+      "published_date": "2018-01-04",
+      "source_type": "primary_government_appointment_announcement_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_pohiva_royal_appointment_20180102",
+          "text": "The PMO release states: 'In accordance with Clause 50A of the Constitution of Tonga, His Majesty King Tupou VI has appointed the Prime Minister-Designate, Honourable Samuela 'Akilisi Pohiva, as the Prime Minister of Tonga, with effect from 2 January, 2018.'",
+          "attested_on": "2018-01-02",
+          "locator": "Body paragraph 1; issued by the Prime Minister's Office",
+          "uncertainty": "The effective date is stated. The release carries the dateline '04th January, 2017', a misprint beside the page date of Thursday 04 January 2018. The signature or presentation date of the warrant is not given. The same release says he 'served as the 16th Prime Minister from 2015-2017' and 'will serve his second term in office from 2018-2021, as the 17th Prime Minister'; these spans and ordinals are recorded as printed and are not used as boundaries: they neither end his 2014 appointment in 2017 nor define a term."
+        }
+      ],
+      "scope_note": "PMO release on the government portal, page dated Thursday 04 January 2018 (raw Internet Archive capture of 13 January 2018); the PMO's own site showed a hosting placeholder in its only 2018 capture.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-appointment-20180104-facts.json",
+        "bytes": 2901,
+        "sha256": "ced1c1155cc88d588fb1005e6f5e725d78acca6e8dcf1596f3d185a66b5a870b",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20180122_cabinet",
+      "title": "His Majesty, The King appoints Prime Minister and Ministers of His Majesty's Cabinet",
+      "url": "https://web.archive.org/web/20181030055037id_/http://www.mic.gov.to/news-today/press-releases/7086-his-majesty-the-king-appoints-prime-minister-and-ministers-of-his-majestys-cabinet",
+      "original_url": "http://www.mic.gov.to/news-today/press-releases/7086-his-majesty-the-king-appoints-prime-minister-and-ministers-of-his-majestys-cabinet",
+      "publisher": "Prime Minister's Office, Government of Tonga (published on the Government of Tonga portal)",
+      "accessed_date": "2026-09-22",
+      "published_date": "2018-01-22",
+      "source_type": "primary_government_appointment_announcement_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_pohiva_appointment_repeated_20180122",
+          "text": "The PMO advises that the King appointed Hon. Samuela 'Akilisi Pohiva as Prime Minister 'with effect from 2nd January, 2018', and appointed eleven Ministers with effect from 5th January, 2018, among them Hon. Semisi Kioa Lafu Sika as Deputy Prime Minister. After an audience on 17 January 2018, the King appointed the Prime Minister as Minister of Foreign Affairs with effect from 19 January 2018.",
+          "attested_on": "2018-01-02",
+          "locator": "Body paragraphs 1-3",
+          "uncertainty": "Repeats the 2 January effective date. The ministerial list and Deputy Prime Minister entry are outside this packet's role scope and are not imported as holders."
+        }
+      ],
+      "scope_note": "PMO release on the government portal dated 22 January 2018 (raw Internet Archive capture of 30 October 2018). Used for the repeated effective date; the ministers, including the Deputy Prime Minister, are not imported as holders.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-cabinet-20180122-facts.json",
+        "bytes": 2730,
+        "sha256": "23208418f18a0688fd61d6b19a958023696d879a48234b4d83bfda869f129a93",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_la_minutes_20180118",
+      "title": "Miniti Fika 01, 'Aho Tu'apulelulu 18 Sanuali 2018 (Legislative Assembly minutes)",
+      "url": "https://parliament.gov.to/en/parliament-business/hansards-debates/13-2018/18-jan-may/309-miniti-fika-01-aho-18-o-sanuali-2018",
+      "publisher": "Legislative Assembly of Tonga",
+      "accessed_date": "2026-09-22",
+      "published_date": "2018-01-18",
+      "source_type": "primary_legislature_minutes",
+      "access_method": "downloaded_original_pdf_via_download_form_text_and_relevant_pages_visually_read",
+      "claims": [
+        {
+          "id": "to_pohiva_oath_assembly_20180118",
+          "text": "The minutes of Thursday 18 January 2018 record the oath of the Speaker, Lord Fakafanua, followed by 'Fakafuakava'i 'Eiki Palēmia'. The Prime Minister takes two oaths ('oku 2 'ene fuakavá): first as the Representative for Tongatapu 1, then as a Minister and Prime Minister. The first ends 'Ko au, Samuela 'Akilisi Pōhiva.'",
+          "attested_on": "2018-01-18",
+          "locator": "PDF page 7 (minutes p. 7), time block 1020-1030",
+          "uncertainty": "An oath before the Assembly, separate from the 2 January 2018 effective appointment and not a start date. The English rendering of the procedural sentence is this packet's reading."
+        }
+      ],
+      "scope_note": "Legislative Assembly minutes No. 01 of Thursday 18 January 2018, served as a PDF ('Miniti 01 18012018.pdf') through a Phoca Download form on the Hansard page. Read on 2026-09-22, after the 7 September 2026 historical cutoff; the file is the dated historical document and no later content is used. Used only for the Prime Minister's oaths.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-minutes-20180118-facts.json",
+        "bytes": 2577,
+        "sha256": "e457fed50cb35b311cc46b1ab207468423568e3456570d8dfd44ac6dccbb06bd",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_la_minutes_20190912",
+      "title": "Miniti Fika 19A, 'Aho Tu'apulelulu 12 Sepitema 2019 (Legislative Assembly minutes)",
+      "url": "https://parliament.gov.to/en/parliament-business/hansards-debates/12-2019/17-jun-dec/305-miniti-fika-19a-aho-12-o-sepitema-2019",
+      "publisher": "Legislative Assembly of Tonga",
+      "accessed_date": "2026-09-22",
+      "published_date": "2019-09-12",
+      "source_type": "primary_legislature_minutes",
+      "access_method": "downloaded_original_pdf_via_download_form_text_and_relevant_pages_visually_read",
+      "claims": [
+        {
+          "id": "to_la_20190912_pm_prayers_adjourned",
+          "text": "The minutes of the sitting of Tu'apulelulu (Thursday) 12 Sepitema 2019 (from 10:05) list ''Eiki Palēmia: Samuela 'Akilisi Pōhiva' among the Cabinet members of the House. Under the heading 'Poupou ke lotua mo hūfia e Palēmia 'o Tonga', Lord Tu'i'āfitu supports the Deputy Prime Minister's request of the previous day for prayer for the Prime Minister. At 11:15-11:20 the Acting Speaker, Lord Tu'ilakepa, adjourns the House until further notice.",
+          "attested_on": "2019-09-12",
+          "locator": "PDF page 2 (members list); page 7 (heading and Lord Tu'i'āfitu); page 19 ('Toloi toki fanongonongo e Fale Alea')",
+          "uncertainty": "The members list is a roster, not an attendance record. The minutes do not state the Prime Minister's condition, location or death, and do not give a reason for the adjournment. They are not used to date the death. The English rendering is this packet's reading."
+        }
+      ],
+      "scope_note": "Legislative Assembly minutes No. 19A of the sitting of Tu'apulelulu 12 Sepitema 2019, served as a PDF through a Phoca Download form on the Hansard page. Read on 2026-09-22, after the 7 September 2026 historical cutoff; the file is the dated historical document and no later content is used. Not used to date the Prime Minister's death.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-minutes-20190912-facts.json",
+        "bytes": 2872,
+        "sha256": "447eeabc334b9d36679f2a9ade5e7adcaae719584183d71f897b88e041342e90",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20190914_funeral_programme",
+      "title": "State funeral Programme for the late Hon. Samuela 'Akilisi Pohiva, Prime Minister of Tonga",
+      "url": "https://pmo.gov.to/wp-content/uploads/2019/09/Media-Release_14_09_2019_State-funeral-Programme-for-the-late-Hon.-Samuela-Akilisi-Pohiva-Prime-Minister-of-Tonga.pdf",
+      "publisher": "Prime Minister's Office, Government of Tonga",
+      "accessed_date": "2026-09-22",
+      "published_date": "2019-09-14",
+      "source_type": "primary_government_release",
+      "access_method": "downloaded_original_pdf_text_and_relevant_page_visually_read",
+      "claims": [
+        {
+          "id": "to_pohiva_late_pm_state_funeral_20190914",
+          "text": "The PMO media release dated 14 September 2019 sets out the State Funeral of 'Honourable Samuela 'Akilisi Pohiva, Prime Minister, Kingdom of Tonga (12 -19 September 2019)' and calls him 'the late' Prime Minister. Its first item, headed 'AUCKLAND, NEW ZEALAND' and dated the 12th of September 2019, reads 'Hon. Prime Minister rests at the Davis Funeral Directors Funeral Parlour in Auckland, New Zealand'.",
+          "attested_on": "2019-09-14",
+          "locator": "PDF page 1, title block and item 1",
+          "uncertainty": "attested_on is the release date, on which the programme calls him 'the late' Prime Minister. Because its first item already has the Prime Minister resting at an Auckland funeral parlour on the 12th, he died on or before that day (Auckland date); the release does not state the date, time or place of death, and no day of death is recorded. The funeral arrangements are not a boundary of office."
+        },
+        {
+          "id": "to_sika_acting_pm_20190914_programme",
+          "text": "The same programme, published on 14 September 2019, lists in advance 'Acting Prime Minister (Hon. Semisi Sika)' at the head of the receiving party scheduled for the arrival of the Prime Minister's casket at Fua'amotu at 3:30pm on Tuesday 17 September 2019, and 'Hon. Acting PM and Government Ministers' in the order of procession.",
+          "attested_on": "2019-09-14",
+          "locator": "PDF page 2, items 7a and 8e",
+          "uncertainty": "A prospective programme listing: it styles Sika Acting Prime Minister as of its publication on 14 September and for the planned ceremony, and does not record the ceremony taking place. His acting appointment date and instrument are not given. Acting service is a claim on the role, not a holder."
+        }
+      ],
+      "scope_note": "PMO media release of 14 September 2019 (the PMO media library holds five byte-identical uploads). Read on 2026-09-22, after the 7 September 2026 historical cutoff; the file is the dated historical document and no later content is used. It does not state the date, time or place of death; the programme's names other than the Acting Prime Minister are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-funeral-programme-20190914-facts.json",
+        "bytes": 3633,
+        "sha256": "07438a7905222bd1adb7b756434d7527d3879356845c3b547a27d0647c027620",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20190916_public_notice",
+      "title": "Public Notice (16 September 2019)",
+      "url": "https://pmo.gov.to/wp-content/uploads/2019/09/PUBLIC_NOTICE_16_09_2019-1.pdf",
+      "publisher": "Prime Minister's Office, Government of Tonga",
+      "accessed_date": "2026-09-22",
+      "published_date": "2019-09-16",
+      "source_type": "primary_government_public_notice",
+      "access_method": "downloaded_original_pdf_text_and_relevant_page_visually_read",
+      "claims": [
+        {
+          "id": "to_pohiva_cabinet_mourning_decisions_20190916",
+          "text": "The PMO public notice of 16 September 2019 announces His Majesty's Cabinet's decisions 'in honour of the late Prime Minister of Tonga, The Honourable Samuela 'Akilisi Pohiva': the cortege arriving at Fua'amotu on Tuesday 17 September 2019 at 3pm, lying in state until the morning of 19 September, the flag at half-mast and a Public Holiday and National Day of Mourning on Thursday 19 September 2019, the funeral service at the Centenary Church at 10am, and interment at Telekava Cemetery.",
+          "attested_on": "2019-09-16",
+          "locator": "Items 1-6",
+          "uncertainty": "Funeral and mourning arrangements only. The notice does not give the date of death."
+        }
+      ],
+      "scope_note": "PMO public notice of 16 September 2019 on Cabinet's funeral and mourning decisions. Read on 2026-09-22, after the 7 September 2026 historical cutoff; the file is the dated historical document and no later content is used. Funeral and mourning arrangements only; not a boundary of office.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-public-notice-20190916-facts.json",
+        "bytes": 2362,
+        "sha256": "4c5df24a6061bce670a8977c972e4da686e478a3a8dfdc1a696f2f6a2ae7400c",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_gazette_ext_28_2019",
+      "title": "Tonga Government Gazette Extraordinary No. 28 of 2019 (Death of the Prime Minister)",
+      "url": "https://ago.gov.to/cms/images/LEGISLATION/GAZETTES/2019/2019-0048/GazetteExtraordinaryNo.282019.pdf",
+      "publisher": "Attorney General's Office, Tonga (Tonga Government Gazette)",
+      "accessed_date": "2026-09-22",
+      "published_date": "2019-09-16",
+      "source_type": "primary_government_gazette",
+      "access_method": "downloaded_original_pdf_text_and_relevant_page_visually_read",
+      "claims": [
+        {
+          "id": "to_gazette_pohiva_death_notice_20190916",
+          "text": "Gazette Extraordinary No. 28 of Monday 16th September 2019, headed 'DEATH OF THE PRIME MINISTER HONOURABLE SAMUELA 'AKILISI POHIVA' (Tongan: 'KO E PEKIA 'A E 'EIKI PALEMIA KO SAMUELA 'AKILISI POHIVA'), directs that to honour 'the late Prime Minister' the flag be flown at half-mast throughout the Kingdom and at every Tongan Diplomatic Mission on the date of the funeral, Thursday 19th September 2019.",
+          "attested_on": "2019-09-16",
+          "locator": "Gazette No. 28/477, English and Tongan notices",
+          "uncertainty": "A primary official record of the death, published by 16 September 2019. It does not state the date, time or place of death."
+        },
+        {
+          "id": "to_sika_acting_pm_20190916_gazette",
+          "text": "Both notices are signed 'Hon. Semisi K.L. Sika, Acting Prime Minister of Tonga' (Tongan: 'Palemia Le'ole'o 'o Tonga').",
+          "attested_on": "2019-09-16",
+          "locator": "Signature blocks",
+          "uncertainty": "Attests Sika as Acting Prime Minister on 16 September 2019. The start of his acting service and its legal basis are not given. A claim on the role, not a holder."
+        }
+      ],
+      "scope_note": "Bilingual Gazette Extraordinary No. 28 of Monday 16 September 2019 (gazette page 28/477). Read on 2026-09-22, after the 7 September 2026 historical cutoff; the file is the dated historical document and no later content is used. It records the death but not its date, time or place.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-gazette-ext28-20190916-facts.json",
+        "bytes": 2818,
+        "sha256": "9b57521f62cb871de2f575c721a962d5b7f20af23c1d3bf126777c99a068659f",
+        "kind": "derived_factual_extract"
+      }
     }
   ],
   "organizations": [
@@ -2764,7 +3857,44 @@
             "to_assembly_pm_nominations_20211214",
             "to_pmo_sovaleni_appointment_20211228",
             "to_pmo_sovaleni_appointment_to_20211228",
-            "to_ipu_2014"
+            "to_ipu_2014",
+            "to_pmo_former_pms_2026",
+            "to_pmo_former_pms_2015",
+            "to_mic_pm_list_2011",
+            "to_ipu_1990",
+            "to_ipu_1993",
+            "to_pmo_vaea_tribute_20090613",
+            "to_pmo_office_pm_2002",
+            "to_pmo_timeline_2000_en",
+            "to_pmo_timeline_2000_to",
+            "to_pmo_20060213_resignation",
+            "to_pmo_20060213_resignation_to",
+            "to_pmo_20060330_farewell_speech",
+            "to_pmo_timeline_2006_en",
+            "to_pmo_timeline_2006_to",
+            "to_pmo_20060410_marist_remarks",
+            "to_pmo_20060413_psc",
+            "to_mic_20101220_nominees",
+            "to_mic_20101221_designate",
+            "to_palace_20101222_appointment",
+            "to_la_20141209_special_sitting",
+            "to_la_20141229_nominations",
+            "to_la_20141229_report_to_king",
+            "to_la_20141229_pohiva_elected",
+            "to_pmo_20141229_pm_elect",
+            "to_pmo_20141230_appointment",
+            "to_mic_20170907_sovaleni_letter",
+            "to_la_20170912_speaker_release",
+            "to_mic_20171120_interim_speaker",
+            "to_mic_20171215_nominations",
+            "to_la_20171215_meeting_programme",
+            "to_mic_20171218_selection_to",
+            "to_pmo_20180104_appointment",
+            "to_pmo_20180122_cabinet",
+            "to_la_minutes_20180118",
+            "to_la_minutes_20190912",
+            "to_pmo_20190914_funeral_programme",
+            "to_gazette_ext_28_2019"
           ],
           "claim_ids": [
             "to_constitution_pm_cabinet",
@@ -2782,11 +3912,186 @@
             "to_sovaleni_royal_appointment_to_20211227",
             "to_ipu_2014_pohiva_assembly_selection_20141229",
             "to_ipu_2014_royal_endorsement_following_day",
-            "to_ipu_2014_cabinet_took_office_20150119"
+            "to_ipu_2014_cabinet_took_office_20150119",
+            "to_pmo_former_pms_2026_tuipelehake",
+            "to_pmo_former_pms_2026_vaea_lavaka",
+            "to_pmo_former_pms_2026_later_years",
+            "to_pmo_former_pms_2015_list",
+            "to_mic_pm_list_2011_list",
+            "to_ipu_1990_tuipelehake",
+            "to_ipu_1993_retirement_succession_199108",
+            "to_pmo_vaea_tribute_appointment_undated",
+            "to_pmo_vaea_tribute_acting_pm_20090613",
+            "to_pmo_lavaka_ata_commencement_20000103",
+            "to_pmo_timeline_lavaka_ata_appointed_200001",
+            "to_pmo_timeline_lavaka_ata_appointed_200001_to",
+            "to_lavaka_ata_resignation_accepted_20060211",
+            "to_lavaka_ata_resignation_accepted_20060211_to",
+            "to_sevele_acting_pm_appointed_20060211",
+            "to_sevele_acting_pm_20060323",
+            "to_sevele_appointed_20060330",
+            "to_sevele_appointed_2006_to",
+            "to_sevele_pm_20060407",
+            "to_sevele_acting_then_pm_20060413",
+            "to_pm_2010_special_meeting_nominees_20101220",
+            "to_tuivakano_assembly_result_presented_20101221",
+            "to_tuivakano_appointment_announced_20101221",
+            "to_tuivakano_royal_appointment_20101222",
+            "to_sevele_leave_audience_20101222",
+            "to_pm_2014_writ_returned_timetable_20141209",
+            "to_pm_2014_two_nominations_20141229",
+            "to_pm_2014_result_reported_to_king_20141229",
+            "to_pohiva_assembly_selection_20141229",
+            "to_pohiva_declared_pm_elect_pmo_20141229",
+            "to_pohiva_royal_appointment_20141230",
+            "to_pohiva_conveys_deputy_pm_removal_20170905",
+            "to_pohiva_styled_pm_20170912",
+            "to_interim_speaker_tangi_20171117",
+            "to_pm_2017_nominations_closed_20171214",
+            "to_pm_2017_meeting_scheduled_20171218",
+            "to_pohiva_assembly_reselection_20171218",
+            "to_pohiva_royal_appointment_20180102",
+            "to_pohiva_appointment_repeated_20180122",
+            "to_pohiva_oath_assembly_20180118",
+            "to_la_20190912_pm_prayers_adjourned",
+            "to_pohiva_late_pm_state_funeral_20190914",
+            "to_sika_acting_pm_20190914_programme",
+            "to_gazette_pohiva_death_notice_20190916",
+            "to_sika_acting_pm_20190916_gazette"
           ],
           "holder_claims": [
             "to_fakafanua_appointment",
             "to_fakafanua_august",
+            {
+              "name": "Fatafehi Tu'ipelehake",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "attested_period": {
+                "from": "1990-01-01",
+                "through": "1990-12-31"
+              },
+              "sources": [
+                "to_pmo_former_pms_2026",
+                "to_pmo_former_pms_2015",
+                "to_mic_pm_list_2011",
+                "to_ipu_1990"
+              ],
+              "claim_ids": [
+                "to_pmo_former_pms_2026_tuipelehake",
+                "to_pmo_former_pms_2015_list",
+                "to_mic_pm_list_2011_list",
+                "to_ipu_1990_tuipelehake"
+              ],
+              "note": "Holder when the period opens (TO-PM90-01), at year precision. All three government lists give his premiership as 1965-1991; IPU corroborates that he was Prime Minister at the time of the February 1990 election.",
+              "uncertainty": "Year precision only. attested_period is the calendar year 1990, which lies inside the 1965-1991 range printed by every cited list if that range is read as one continuous tenure; it is not an observation on any particular day, and no 1990 gazette, instrument or contemporaneous Tongan record naming him was found. No start or end is stated; the retirement month (August 1991) is IPU-only (to_ipu_1993_retirement_succession_199108) and is not used."
+            },
+            {
+              "name": "Baron Vaea",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "attested_period": {
+                "from": "1992-01-01",
+                "through": "1998-12-31"
+              },
+              "sources": [
+                "to_pmo_former_pms_2026",
+                "to_pmo_former_pms_2015",
+                "to_mic_pm_list_2011",
+                "to_pmo_vaea_tribute_20090613",
+                "to_ipu_1993"
+              ],
+              "claim_ids": [
+                "to_pmo_former_pms_2026_vaea_lavaka",
+                "to_pmo_former_pms_2015_list",
+                "to_mic_pm_list_2011_list",
+                "to_pmo_vaea_tribute_appointment_undated",
+                "to_ipu_1993_retirement_succession_199108"
+              ],
+              "note": "Appointed Prime Minister by the Sovereign (PMO tribute, undated). The lists give 1991-2000 (current PMO list and 2011 MIC list) or 1991-1999 (2015 PMO list).",
+              "uncertainty": "Year precision only. attested_period covers the calendar years 1992-1998, which lie inside every cited list's range read as one continuous tenure; it is not a start, an end or an observation on any particular day. The appointment day is unstated (IPU gives August 1991 for the succession, month only), and the end year conflicts between the PMO lists (TO-PM90-02, TO-PM90-03)."
+            },
+            {
+              "name": "Prince 'Ulukalala Lavaka Ata",
+              "attested_on": null,
+              "from": "2000-01-03",
+              "until": "2006-02-11",
+              "sources": [
+                "to_pmo_office_pm_2002",
+                "to_pmo_timeline_2000_en",
+                "to_pmo_20060213_resignation",
+                "to_pmo_20060213_resignation_to"
+              ],
+              "claim_ids": [
+                "to_pmo_lavaka_ata_commencement_20000103",
+                "to_pmo_timeline_lavaka_ata_appointed_200001",
+                "to_lavaka_ata_resignation_accepted_20060211",
+                "to_lavaka_ata_resignation_accepted_20060211_to"
+              ],
+              "note": "The start is the PMO's stated 'Commencement Date'. The end is the Prince Regent's acceptance on 11 February 2006 of his resignation (the Tongan release: retirement) from the premiership and all his portfolios.",
+              "uncertainty": "The appointment instrument was not seen, and the date of his resignation letter is not given; 11 February 2006 is the stated date of acceptance. The end of Baron Vaea's premiership is not inferred from this start."
+            },
+            {
+              "name": "Feleti Sevele",
+              "attested_on": "2006-04-07",
+              "from": null,
+              "until": null,
+              "sources": [
+                "to_pmo_20060410_marist_remarks",
+                "to_pmo_20060413_psc"
+              ],
+              "claim_ids": [
+                "to_sevele_pm_20060407",
+                "to_sevele_acting_then_pm_20060413"
+              ],
+              "note": "Substantive Prime Minister, event-dated to 7 April 2006, the earliest contemporaneous PMO item found that styles him Prime Minister without 'Acting'; on 13 April the PMO refers to his tenure as 'Acting Prime Minister, and now Prime Minister'. His acting appointment of 11 February 2006 (to_sevele_acting_pm_appointed_20060211) is a separate claim on the role, not a holder.",
+              "uncertainty": "The substantive appointment day is not established: contemporaneous PMO usage brackets it between 23 March (styled Acting) and 7 April 2006, and the 30 March 2006 date is given only by a retrospective timeline (to_sevele_appointed_20060330). No instrument was seen. His leave-taking audience on 22 December 2010 (to_sevele_leave_audience_20101222) is not used as an end date."
+            },
+            {
+              "name": "Lord Tu'ivakano",
+              "attested_on": "2010-12-22",
+              "from": null,
+              "until": null,
+              "sources": [
+                "to_palace_20101222_appointment"
+              ],
+              "claim_ids": [
+                "to_tuivakano_royal_appointment_20101222"
+              ],
+              "note": "Received in audience at noon on 22 December 2010 at the Villa for his appointment to the office of Prime Minister ('The Kissing of Hands'), and received his Letter of Appointment. The Assembly's selection and its presentation to the King (to_tuivakano_assembly_result_presented_20101221) are separate claims.",
+              "uncertainty": "An appointment event with no stated effective date. The end is not stated: his description as 'former Prime Minister' on 29 December 2014 (to_pohiva_declared_pm_elect_pmo_20141229) is not used as an end."
+            },
+            {
+              "name": "Samuela 'Akilisi Pohiva",
+              "attested_on": "2014-12-30",
+              "from": null,
+              "until": null,
+              "sources": [
+                "to_pmo_20141230_appointment"
+              ],
+              "claim_ids": [
+                "to_pohiva_royal_appointment_20141230"
+              ],
+              "note": "Received in audience at 10:00 on 30 December 2014 at the Royal Palace for his appointment to the office of Prime Minister. The Assembly's selection on 29 December 2014 (to_pohiva_assembly_selection_20141229) is a separate claim.",
+              "uncertainty": "An appointment event with no stated effective date. His status after the 24 August 2017 dissolution is unresolved (TO-PM90-07): the PMO's later wording that he 'served as the 16th Prime Minister from 2015-2017' (to_pohiva_royal_appointment_20180102) is not used as an end, and no end of this appointment is inferred from his re-appointment effective 2 January 2018."
+            },
+            {
+              "name": "Samuela 'Akilisi Pohiva",
+              "attested_on": null,
+              "from": "2018-01-02",
+              "until": null,
+              "sources": [
+                "to_pmo_20180104_appointment",
+                "to_pmo_20180122_cabinet"
+              ],
+              "claim_ids": [
+                "to_pohiva_royal_appointment_20180102",
+                "to_pohiva_appointment_repeated_20180122"
+              ],
+              "note": "Appointed under Clause 50A with effect from 2 January 2018, following the Assembly's re-selection on 18 December 2017 (to_pohiva_assembly_reselection_20171218). He took his oaths in the Assembly on 18 January 2018 (to_pohiva_oath_assembly_20180118). Both are separate claims.",
+              "uncertainty": "until is null. His death in September 2019 is recorded in claims (Gazette Extraordinary No. 28 of 16 September 2019; the PMO programme of 14 September places it on or before the 12th, Auckland date), but no record retrieved states the day, so no end is set (TO-PM90-08)."
+            },
             {
               "name": "Pohiva Tu'i'onetoa",
               "attested_on": "2019-10-08",
@@ -2816,7 +4121,8 @@
               "note": "Royal appointment under Clause 50A with effect from 27 December 2021 (TO-TR21-03); both PMO releases are dated 28 December. The Tongan release prints the name form Hu'akavameiliku in parentheses.",
               "uncertainty": "The start is the stated effective date. The warrant's signature and presentation dates are not recorded in these releases (TO-TR21-04). The 15 December Assembly selection is a separate claim, not the start of office. No end date or term is inferred."
             }
-          ]
+          ],
+          "scope_note": "Holder observations carry from/until only where a source states a commencement or effective date, an accepted resignation or a death in office. An appointment audience with no stated effective date is event-dated through attested_on, and year-range lists support only an attested_period. Assembly selections and their presentation to the King, oaths, acting service (whether during a vacancy or an absence), dissolutions, funerals and mourning are claims, never holders or boundaries (CLAUDE-C01-08)."
         }
       ],
       "sources": [
@@ -2834,7 +4140,46 @@
         "to_assembly_pm_nominations_20211214",
         "to_pmo_sovaleni_appointment_20211228",
         "to_pmo_sovaleni_appointment_to_20211228",
-        "to_ipu_2014"
+        "to_ipu_2014",
+        "to_pmo_former_pms_2026",
+        "to_pmo_former_pms_2015",
+        "to_mic_pm_list_2011",
+        "to_ipu_1990",
+        "to_ipu_1993",
+        "to_pmo_vaea_tribute_20090613",
+        "to_pmo_office_pm_2002",
+        "to_pmo_timeline_2000_en",
+        "to_pmo_timeline_2000_to",
+        "to_pmo_20060213_resignation",
+        "to_pmo_20060213_resignation_to",
+        "to_pmo_20060330_farewell_speech",
+        "to_pmo_timeline_2006_en",
+        "to_pmo_timeline_2006_to",
+        "to_pmo_20060410_marist_remarks",
+        "to_pmo_20060413_psc",
+        "to_mic_20101220_nominees",
+        "to_mic_20101221_designate",
+        "to_palace_20101222_appointment",
+        "to_la_20141209_special_sitting",
+        "to_la_20141229_nominations",
+        "to_la_20141229_report_to_king",
+        "to_la_20141229_pohiva_elected",
+        "to_pmo_20141229_pm_elect",
+        "to_pmo_20141230_appointment",
+        "to_mic_20170907_sovaleni_letter",
+        "to_la_20170912_speaker_release",
+        "to_mic_20171120_interim_speaker",
+        "to_mic_20171215_nominations",
+        "to_la_20171215_meeting_programme",
+        "to_mic_20171218_selection_to",
+        "to_pmo_20180104_appointment",
+        "to_pmo_20180122_cabinet",
+        "to_la_minutes_20180118",
+        "to_la_minutes_20190912",
+        "to_pmo_20190914_funeral_programme",
+        "to_gazette_ext_28_2019",
+        "to_gazette_supp_14_2017",
+        "to_pmo_20190916_public_notice"
       ],
       "claim_ids": [
         "to_constitution_pm_cabinet",
@@ -2855,7 +4200,54 @@
         "to_sovaleni_royal_appointment_to_20211227",
         "to_ipu_2014_pohiva_assembly_selection_20141229",
         "to_ipu_2014_royal_endorsement_following_day",
-        "to_ipu_2014_cabinet_took_office_20150119"
+        "to_ipu_2014_cabinet_took_office_20150119",
+        "to_pmo_former_pms_2026_tuipelehake",
+        "to_pmo_former_pms_2026_vaea_lavaka",
+        "to_pmo_former_pms_2026_later_years",
+        "to_pmo_former_pms_2015_list",
+        "to_mic_pm_list_2011_list",
+        "to_ipu_1990_tuipelehake",
+        "to_ipu_1993_retirement_succession_199108",
+        "to_pmo_vaea_tribute_appointment_undated",
+        "to_pmo_vaea_tribute_acting_pm_20090613",
+        "to_pmo_lavaka_ata_commencement_20000103",
+        "to_pmo_timeline_lavaka_ata_appointed_200001",
+        "to_pmo_timeline_lavaka_ata_appointed_200001_to",
+        "to_lavaka_ata_resignation_accepted_20060211",
+        "to_lavaka_ata_resignation_accepted_20060211_to",
+        "to_sevele_acting_pm_appointed_20060211",
+        "to_sevele_acting_pm_20060323",
+        "to_sevele_appointed_20060330",
+        "to_sevele_appointed_2006_to",
+        "to_sevele_pm_20060407",
+        "to_sevele_acting_then_pm_20060413",
+        "to_pm_2010_special_meeting_nominees_20101220",
+        "to_tuivakano_assembly_result_presented_20101221",
+        "to_tuivakano_appointment_announced_20101221",
+        "to_tuivakano_royal_appointment_20101222",
+        "to_sevele_leave_audience_20101222",
+        "to_pm_2014_writ_returned_timetable_20141209",
+        "to_pm_2014_two_nominations_20141229",
+        "to_pm_2014_result_reported_to_king_20141229",
+        "to_pohiva_assembly_selection_20141229",
+        "to_pohiva_declared_pm_elect_pmo_20141229",
+        "to_pohiva_royal_appointment_20141230",
+        "to_pohiva_conveys_deputy_pm_removal_20170905",
+        "to_pohiva_styled_pm_20170912",
+        "to_interim_speaker_tangi_20171117",
+        "to_pm_2017_nominations_closed_20171214",
+        "to_pm_2017_meeting_scheduled_20171218",
+        "to_pohiva_assembly_reselection_20171218",
+        "to_pohiva_royal_appointment_20180102",
+        "to_pohiva_appointment_repeated_20180122",
+        "to_pohiva_oath_assembly_20180118",
+        "to_la_20190912_pm_prayers_adjourned",
+        "to_pohiva_late_pm_state_funeral_20190914",
+        "to_sika_acting_pm_20190914_programme",
+        "to_gazette_pohiva_death_notice_20190916",
+        "to_sika_acting_pm_20190916_gazette",
+        "to_dissolution_instrument_20170824",
+        "to_pohiva_cabinet_mourning_decisions_20190916"
       ],
       "coverage": {
         "status": "partial",
@@ -2868,10 +4260,17 @@
           "Keep Assembly nomination/election, royal appointment and actual effective date separate.",
           "Pre-reform appointment rules cannot be replaced retrospectively by the post-2010 procedure.",
           "The 2019 appointment observation does not supply the end of that premiership, caretaker service, temporary absences or any party leadership term.",
+          "TO-PM90-01/02 (tonga-prime-ministers-1990-2019-08.md): Fatafehi Tu'ipelehake is the holder when the period opens only at year precision (three government lists give 1965-1991; IPU corroborates). No 1990 gazette, instrument or contemporaneous Tongan record naming him, and no day or instrument for his retirement or Baron Vaea's appointment in 1991, was found; only IPU gives the month (August 1991).",
+          "TO-PM90-03: the end of Baron Vaea's premiership is unresolved. The PMO lists give 1999 (2015 capture) and 2000 (current), and no retirement record was found; Prince 'Ulukalala Lavaka Ata's commencement on 3 January 2000 does not supply Vaea's end. IPU's 1999 statement naming Langi Kavaliku as Prime Minister contradicts the government records and is a report lead only.",
+          "TO-PM90-04: the day of Feleti Sevele's substantive appointment in 2006 is unresolved (styled Acting on 23 March and Prime Minister on 7 April; 30 March only in a retrospective timeline), and no instrument was found. The end of his acting service, from 11 February 2006, is not separately stated.",
+          "TO-PM90-05/06: for 2010 and 2014, no appointment instrument, gazette notice or effective date beyond the appointment audiences (22 December 2010, noon; 30 December 2014, 10:00) was found, and the day of the 2010 ballot (20 or 21 December) is not stated. The ends of Sevele's (2010) and Tu'ivakano's (2014) premierships are not stated beyond a leave-taking audience and a description.",
+          "TO-PM90-07: Pohiva's status from the 24 August 2017 dissolution to his re-appointment effective 2 January 2018 is unresolved. A MEIDECC release of 7 September 2017 has him, as Prime Minister, convey the King's consent to the Deputy Prime Minister's removal on 5 September, and the Speaker styles him Prime Minister on 12 September; neither states full or caretaker status. IPU's statement that he was dismissed in August 2017 is not supported by any Tongan record found and is a report lead only.",
+          "TO-PM90-08: no primary record retrieved states the date, time or place of Pohiva's death. The PMO funeral programme places it on or before 2019-09-12 (Auckland date) and Gazette Extraordinary No. 28 of 16 September records it, so his 2018 holder observation has no end. The start date and legal basis of Semisi Sika's acting service, attested on 14 and 16 September 2019, are unknown.",
+          "Acting Prime Ministers are recorded only as claims on to_pm (Sevele from 11 February 2006, Tangi on 13 June 2009, Sika in September 2019), never as holders. Temporary acting arrangements during absences were not surveyed.",
           "2021 transition (TO-REC-10; tonga-transition-2021-02.md): the Assembly procedure and 15 December selection, the royal appointment effective 27 December (PMO releases dated 28 December) and the Cabinet effective 28 December are separately sourced (TO-TR21-01 to TO-TR21-03, TO-TR21-06); none of these dates is merged into another.",
           "TO-TR21-04: the signature and presentation dates of the Royal Warrant appointing Siaosi Sovaleni are not recorded in any retrieved primary source; the 28 December release date is not a signature date. A secondary news account of a 28 December presentation is a search lead only.",
           "TO-TR21-05: the end of Pohiva Tu'i'onetoa's premiership and any caretaker or interim boundary before 27 December 2021 are unsourced; no end date is inferred from Sovaleni's effective start. PMO site searches for 'Sovaleni' (result pages 1-2), 'caretaker' (no results), 'Tuionetoa' and 'Pohiva Tu' (no December 2021 record), plus the Assembly news archive, press releases and Hansard index, were checked; no online Government Gazette was located.",
-          "TO-DPFI-05 (tonga-dpfi-04.md): IPU 2014 dates the Assembly's election of 'Akilisi Pohiva as Prime Minister to 29 December 2014, the King's endorsement only to 'the following day', and the Cabinet's taking office to 19 January 2015. These are three separate claims. No royal instrument was seen, no to_pm holder, start or end is created for Pohiva, and his death in September 2019 is not used as the end of any premiership."
+          "TO-DPFI-05 (tonga-dpfi-04.md): IPU 2014 dates the Assembly's election of 'Akilisi Pohiva as Prime Minister to 29 December 2014, the King's endorsement only to 'the following day', and the Cabinet's taking office to 19 January 2015. These are three separate claims. No royal instrument was seen, no to_pm holder, start or end is created for Pohiva from the IPU record (CLAUDE-C01-08 later adds his holders from the PMO releases of 30 December 2014 and 4 January 2018), and his death in September 2019 is not used as the end of any premiership."
         ]
       }
     },
@@ -3141,7 +4540,8 @@
       "Reconciliation packet 01 (tonga-reconciliation-01.md) groups the PATOA/PTOA label with DPFI and adds People's Party names, incorporated-society testimony and a 2021 Assembly selection. It resolves no complete leadership term, lifespan or game mapping.",
       "Transition packet 02 (tonga-transition-2021-02.md) adds the 2021 Assembly procedure notices, the royal appointment of Siaosi Sovaleni effective 27 December 2021 and the Cabinet effective 28 December 2021, with two holder observations. The warrant's signature and presentation and the end of the previous premiership remain unresolved; no complete leadership term is claimed.",
       "DPFI packet 04 (tonga-dpfi-04.md) adds court-record name and label evidence for PTOA, a second IPU leader observation, a separately recorded party President (2022), month-precision death and seat-succession records, and records showing that the 2025 election returns carry no party labels. Founding, legal form, party leadership after September 2019 and any 2025 party-level result remain unresolved; no lifespan, merger or complete term is claimed.",
-      "Crown packet 07 (tonga-crown-07.md) adds the 1990-2026 reign chronology on to_king: Taufa'ahau Tupou IV until his death on 11 September 2006 (Tongan time), George Tupou V from accession by devolution that day until his death on 18 March 2012, and Tupou VI from 18 March 2012 with no end. Proclamations, the traditional installation, coronations, deaths, funerals and mourning are separate claims, and regencies are observations only. Regency instruments, coronation-oath dates and a ceremony record for the 2015 coronation remain unresolved."
+      "Crown packet 07 (tonga-crown-07.md) adds the 1990-2026 reign chronology on to_king: Taufa'ahau Tupou IV until his death on 11 September 2006 (Tongan time), George Tupou V from accession by devolution that day until his death on 18 March 2012, and Tupou VI from 18 March 2012 with no end. Proclamations, the traditional installation, coronations, deaths, funerals and mourning are separate claims, and regencies are observations only. Regency instruments, coronation-oath dates and a ceremony record for the 2015 coronation remain unresolved.",
+      "Prime-minister packet 08 (tonga-prime-ministers-1990-2019-08.md) adds 1990-2019 to_pm holder observations: Fatafehi Tu'ipelehake and Baron Vaea at year precision only; Prince 'Ulukalala Lavaka Ata from his stated commencement on 3 January 2000 until his resignation was accepted on 11 February 2006; Feleti Sevele (attested 7 April 2006); Lord Tu'ivakano (appointment audience 22 December 2010); and Samuela 'Akilisi Pohiva (appointment audience 30 December 2014, then appointed with effect from 2 January 2018, with no end). Assembly selections, appointment audiences, oaths, acting service, the 2017 dissolution and the 2019 death and funeral are separate claims. The 1991 and 1999-2000 transitions, the 2006 substantive appointment day, Pohiva's status after the 2017 dissolution and the day of his death remain unresolved."
     ]
   }
 }

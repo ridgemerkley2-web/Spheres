@@ -216,7 +216,11 @@ class TongaTransitionTests(unittest.TestCase):
         self.assertEqual(titled, ['to_deputy_pm', 'to_pm'])
         holders = self.roles['to_pm']['holder_claims']
         self.assertEqual(sum(isinstance(h, str) for h in holders), 2)
-        self.assertEqual([h['name'] for h in holders if isinstance(h, dict)], ["Pohiva Tu'i'onetoa", SOVALENI])
+        # CLAUDE-C01-08 added exactly seven 1990-2018 holders ahead of the 2019 and 2021 ones.
+        self.assertEqual([h['name'] for h in holders if isinstance(h, dict)],
+                         ["Fatafehi Tu'ipelehake", 'Baron Vaea', "Prince 'Ulukalala Lavaka Ata", 'Feleti Sevele',
+                          "Lord Tu'ivakano", "Samuela 'Akilisi Pohiva", "Samuela 'Akilisi Pohiva",
+                          "Pohiva Tu'i'onetoa", SOVALENI])
 
     def test_secondary_warrant_account_is_a_lead_not_a_source(self):
         for source in self.packet['sources']:
