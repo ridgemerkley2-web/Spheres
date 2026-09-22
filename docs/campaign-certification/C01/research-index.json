@@ -9,8 +9,8 @@
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 841,
     "institution_observations": 27,
-    "sources": 106,
-    "source_claims": 1688,
+    "sources": 145,
+    "source_claims": 1735,
     "discovery_batches": 92,
     "exhaustive_country_censuses": 0
   },
@@ -409,7 +409,7 @@
       "organization_observations": 4,
       "institution_observations": 5,
       "role_observations": 15,
-      "source_claims": 110,
+      "source_claims": 157,
       "mapping_pending": 9,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -433,7 +433,8 @@
           "Reconciliation packet 01 (tonga-reconciliation-01.md) groups the PATOA/PTOA label with DPFI and adds People's Party names, incorporated-society testimony and a 2021 Assembly selection. It resolves no complete leadership term, lifespan or game mapping.",
           "Transition packet 02 (tonga-transition-2021-02.md) adds the 2021 Assembly procedure notices, the royal appointment of Siaosi Sovaleni effective 27 December 2021 and the Cabinet effective 28 December 2021, with two holder observations. The warrant's signature and presentation and the end of the previous premiership remain unresolved; no complete leadership term is claimed.",
           "DPFI packet 04 (tonga-dpfi-04.md) adds court-record name and label evidence for PTOA, a second IPU leader observation, a separately recorded party President (2022), month-precision death and seat-succession records, and records showing that the 2025 election returns carry no party labels. Founding, legal form, party leadership after September 2019 and any 2025 party-level result remain unresolved; no lifespan, merger or complete term is claimed.",
-          "Crown packet 07 (tonga-crown-07.md) adds the 1990-2026 reign chronology on to_king: Taufa'ahau Tupou IV until his death on 11 September 2006 (Tongan time), George Tupou V from accession by devolution that day until his death on 18 March 2012, and Tupou VI from 18 March 2012 with no end. Proclamations, the traditional installation, coronations, deaths, funerals and mourning are separate claims, and regencies are observations only. Regency instruments, coronation-oath dates and a ceremony record for the 2015 coronation remain unresolved."
+          "Crown packet 07 (tonga-crown-07.md) adds the 1990-2026 reign chronology on to_king: Taufa'ahau Tupou IV until his death on 11 September 2006 (Tongan time), George Tupou V from accession by devolution that day until his death on 18 March 2012, and Tupou VI from 18 March 2012 with no end. Proclamations, the traditional installation, coronations, deaths, funerals and mourning are separate claims, and regencies are observations only. Regency instruments, coronation-oath dates and a ceremony record for the 2015 coronation remain unresolved.",
+          "Prime-minister packet 08 (tonga-prime-ministers-1990-2019-08.md) adds 1990-2019 to_pm holder observations: Fatafehi Tu'ipelehake and Baron Vaea at year precision only; Prince 'Ulukalala Lavaka Ata from his stated commencement on 3 January 2000 until his resignation was accepted on 11 February 2006; Feleti Sevele (attested 7 April 2006); Lord Tu'ivakano (appointment audience 22 December 2010); and Samuela 'Akilisi Pohiva (appointment audience 30 December 2014, then appointed with effect from 2 January 2018, with no end). Assembly selections, appointment audiences, oaths, acting service, the 2017 dissolution and the 2019 death and funeral are separate claims. The 1991 and 1999-2000 transitions, the 2006 substantive appointment day, Pohiva's status after the 2017 dissolution and the day of his death remain unresolved."
         ]
       }
     },
@@ -2662,8 +2663,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/tonga.json",
-      "bytes": 198967,
-      "sha256": "f7af123e3c63dcebf4f1f432c0dd8e4e9997df5581b1093eaf903fc3dc568af1"
+      "bytes": 302701,
+      "sha256": "04a1ec05256c7d1f852006b5c979ebb5e39f21212f94a0dfb6ce33b4c2e33ff4"
     },
     {
       "path": "docs/campaign-certification/C01/research/ussr.json",

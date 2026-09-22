@@ -1,0 +1,35 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://data.ipu.org/election-summary/HTML/2317_93.htm",
+  "accessed_date": "2026-09-22",
+  "published_date": null,
+  "access_method": "downloaded_original_html_and_page_text_read",
+  "source_response_bytes": 4401,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "normalized_response": {
+    "bytes": 3463,
+    "sha256": "c4caf4cea6514b6f1ee1decb0da41c5533e0b1dc9c8589b4d8194130afd5d78b",
+    "rule": "Remove from the raw response bytes the single injected element that begins '<script>(function(){function c(){' and ends at its '</script>' (938 bytes, immediately before '</body>'), then hash the remaining bytes. No other byte is changed.",
+    "note": "Computed for this packet from the researcher's copy of 2026-09-22 (raw 4,401 bytes). The per-request Cloudflare token lies inside the removed element. The independent check's fresh download the same day had the same byte count and differed only in that token. A re-fetch for this packet on 2026-09-22 returned HTTP 403 (a Cloudflare challenge page), so the value was not re-derived from a third download."
+  },
+  "provenance_note": "Downloaded directly on 2026-09-22 (local) with HTTP 200. The raw response embeds a per-request Cloudflare script, so no raw response hash is asserted; normalized_response gives the reproducible hash and its rule. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_ipu_1993_retirement_succession_199108",
+      "text": "IPU states that after the February 1990 elections 'the Prime Minister since 1965, Prince Fatafehi Tu'ipelehake, retired from office in August 1991and was succeeded by Baron Vaea, cousin of King Taufa'ahau Tupou IV' (spacing as printed).",
+      "period": {
+        "from": "1991-08-01",
+        "through": "1991-08-31"
+      },
+      "locator": "'Background and outcome of elections', first sentence",
+      "uncertainty": "IPU only, and the only source for the month. Month precision: the day of the retirement and of Vaea's appointment are not given, and no instrument is cited. Neither is used as a holder boundary."
+    }
+  ],
+  "scope_note": "Legacy PARLINE summary of the 4 February 1993 elections, read on 2026-09-22, after the cutoff, for its first sentence only; it shows no revision date. Publication date unknown (footer 'Copyright 1993'). Interparliamentary corroboration and the only source for the August 1991 month. The raw response carries a per-request Cloudflare script, so its hash is not reproducible; the extract records a normalised hash and its rule.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "HTML text read. No images reviewed."
+  }
+}

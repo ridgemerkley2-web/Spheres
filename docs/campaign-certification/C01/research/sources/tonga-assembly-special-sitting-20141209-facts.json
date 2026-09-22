@@ -1,0 +1,28 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://web.archive.org/web/20161027022423id_/http://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/286-parliament-special-sitting-for-election-of-pm-on-december-24th",
+  "original_url": "http://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/286-parliament-special-sitting-for-election-of-pm-on-december-24th",
+  "archive_capture_utc": "2016-10-27T02:24:23Z",
+  "accessed_date": "2026-09-22",
+  "published_date": "2014-12-09",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 46657,
+  "source_response_sha256": "2b34e30806269b6e58993862745ce832502716bda9e08d0df41e94ce9fdeb1fa",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original Legislative Assembly page, captured at 2016-10-27T02:24:23Z; the capture is used in place of the live page. The researcher downloaded and hashed the capture bytes before extraction on 2026-09-22 (local); the independent check re-downloaded it the same day and matched the bytes and SHA-256, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_pm_2014_writ_returned_timetable_20141209",
+      "text": "The Assembly reports that the election writ was returned to the King 'today' (9 December 2014). According to Interim Speaker Lord Tupou, nominations for PM would be called on 19 December and close on 23 December, with the special sitting likely on 24, 29 or 30 December. After the vote, the Interim Speaker reports to the King that MPs recommend the winning candidate as Prime Minister designate, who 'will then be appointed by the King'.",
+      "attested_on": "2014-12-09",
+      "locator": "Body paragraphs 1-3, 7-9 and 13-14",
+      "uncertainty": "Procedural and prospective. The headline's 24 December was not the date the sitting was held (29 December; see to_la_20141229_pohiva_elected)."
+    }
+  ],
+  "scope_note": "Legislative Assembly news item created 9 December 2014 (raw Internet Archive capture of 27 October 2016). Procedural and prospective; the headline's 24 December was not the sitting date.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  }
+}

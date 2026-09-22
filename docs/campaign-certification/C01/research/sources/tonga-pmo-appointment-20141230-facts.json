@@ -1,0 +1,28 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://web.archive.org/web/20150707000535id_/http://www.pmo.gov.to/king-appoints-akilisi-pohiva-as-new-prime-minister-of-tonga/",
+  "original_url": "http://www.pmo.gov.to/king-appoints-akilisi-pohiva-as-new-prime-minister-of-tonga/",
+  "archive_capture_utc": "2015-07-07T00:05:35Z",
+  "accessed_date": "2026-09-22",
+  "published_date": "2014-12-30",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 47640,
+  "source_response_sha256": "a72e7de90d3ad48c5a89dbfcc6ba11468dfac38a99063ac3a73f26533fb9d350",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original PMO page, captured at 2015-07-07T00:05:35Z; the capture is used in place of the live page. The researcher downloaded and hashed the capture bytes before extraction on 2026-09-22 (local); the independent check re-downloaded it the same day and matched the bytes and SHA-256, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_pohiva_royal_appointment_20141230",
+      "text": "The PMO states: 'The Prime Minister-Designate, Samuela 'Akilisi Pohiva was received-in audience today, Tuesday 30th December 2014 at 10.00 a.m. at the Royal Palace, for his appointment to the office of Prime Minister. The ceremony was followed by a private audience of a short duration.'",
+      "attested_on": "2014-12-30",
+      "locator": "Body text; byline 'Prime Minister's Office December 30, 2014'",
+      "uncertainty": "An appointment event (the headline says 'King appoints'). No 'with effect from' date, instrument or clause is cited. It gives a day-precision primary date for IPU's 'following day' endorsement (to_ipu_2014_royal_endorsement_following_day), which itself keeps no structured date: this date comes from the PMO release, not from IPU's wording."
+    }
+  ],
+  "scope_note": "Archived PMO release bylined 'Prime Minister's Office December 30, 2014' (raw Internet Archive capture of 7 July 2015). Used for the appointment audience; photographs are not reused.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  }
+}

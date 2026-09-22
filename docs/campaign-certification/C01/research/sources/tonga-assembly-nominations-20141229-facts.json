@@ -1,0 +1,28 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://web.archive.org/web/20161027052431id_/http://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/293-pohiva-vaipulu-are-2-nominations-of-pm",
+  "original_url": "http://www.parliament.gov.to/media-centre/latest-news/latest-news-in-english/293-pohiva-vaipulu-are-2-nominations-of-pm",
+  "archive_capture_utc": "2016-10-27T05:24:31Z",
+  "accessed_date": "2026-09-22",
+  "published_date": "2014-12-29",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 32613,
+  "source_response_sha256": "9ef62e7f05b9f7e675d5015968126c3ceb512d95510d5c1793ec1ef0278bd24a",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original Legislative Assembly page, captured at 2016-10-27T05:24:31Z; the capture is used in place of the live page. The researcher downloaded and hashed the capture bytes before extraction on 2026-09-22 (local); the independent check re-downloaded it the same day and matched the bytes and SHA-256, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_pm_2014_two_nominations_20141229",
+      "text": "The Assembly reports that on 29 December 2014 Interim Speaker Lord Tupou announced two nominations in Parliament: caretaker Deputy Prime Minister Samiu Kuita Vaipulu, nominated by Vili Hingano on December 22, and Samuela 'Akilisi Pohiva, nominated by Dr. Pohiva Tu'i'onetoa.",
+      "attested_on": "2014-12-29",
+      "locator": "Body paragraphs 1-3",
+      "uncertainty": "Procedural. Tu'i'onetoa's nomination was lodged on 23 December (Assembly item 290, not imported separately)."
+    }
+  ],
+  "scope_note": "Legislative Assembly news item of 29 December 2014 (raw Internet Archive capture of 27 October 2016). Procedural only.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  }
+}

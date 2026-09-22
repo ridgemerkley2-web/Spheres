@@ -1,0 +1,36 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://web.archive.org/web/20060501015618id_/http://www.pmo.gov.to:80/artman/publish/article_87.shtml",
+  "original_url": "http://www.pmo.gov.to/artman/publish/article_87.shtml",
+  "archive_capture_utc": "2006-05-01T01:56:18Z",
+  "article_timestamp": "Feb 13, 2006, 14:14",
+  "accessed_date": "2026-09-22",
+  "published_date": "2006-02-13",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 11375,
+  "source_response_sha256": "bb2d758aa139cc7c81d96c3a63a97765d2c2bf4dd046347ac190b58b69788877",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original PMO page, captured at 2006-05-01T01:56:18Z; the capture is used in place of the live page. The researcher downloaded and hashed the capture bytes before extraction on 2026-09-22 (local); the independent check re-downloaded it the same day and matched the bytes and SHA-256, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_lavaka_ata_resignation_accepted_20060211",
+      "text": "The PMO states that on Saturday, February 11th, 2006, the Prince Regent, His Royal Highness Crown Prince Tupouto'a, accepted the resignation of the Prime Minister, Prince 'Ulukalala Lavaka Ata. The resignation included all his ministerial portfolios: Telecommunications, Civil Aviation, Marine and Ports, and Disaster Relief Activities.",
+      "attested_on": "2006-02-11",
+      "locator": "Body paragraph 1",
+      "uncertainty": "Records the date the resignation was accepted, not when the resignation letter was written or submitted. The release is dated 13 February 2006, 14:14."
+    },
+    {
+      "id": "to_sevele_acting_pm_appointed_20060211",
+      "text": "The same release states that the Prince Regent also on Saturday 11 February 2006 appointed the Hon. Dr. Feleti Sevele, Minister for Labour, Commerce and Industries, to the post of Acting Prime Minister of Tonga, and that Sevele had been appointed a Minister on 21 March 2005.",
+      "attested_on": "2006-02-11",
+      "locator": "Body paragraphs 3-4",
+      "uncertainty": "An acting appointment made by the Prince Regent, distinct from the later substantive appointment. The end of the acting service is not stated. Recorded as a claim on the role, not as a holder."
+    }
+  ],
+  "scope_note": "Archived PMO release of 13 February 2006, 14:14 (raw Internet Archive capture of 1 May 2006); the original page is no longer served. Used for the accepted resignation and the acting appointment.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  }
+}
