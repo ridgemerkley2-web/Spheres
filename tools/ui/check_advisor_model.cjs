@@ -19,9 +19,26 @@ test('real annual renewal takes priority and null treasury does not become zero'
   s.programs.due='true';assert(!get(s,w,'annual-budget'));
   s.nations[0].annual_budget.due=true;assert(get(s,w,'annual-budget'));
 });
+test('disabled programmes do not read as a due renewal',()=>{
+  const s=state();s.programs={enabled:false,due:true};assert(!get(s,null,'annual-budget'),'programs.due is true whenever programmes are disabled');
+  for(const enabled of [undefined,null,'true',1]){s.programs={enabled,due:true};assert(!get(s,null,'annual-budget'),String(enabled));}
+  delete s.programs;assert(!get(s,null,'annual-budget'));
+  s.programs={enabled:true,due:true};assert(get(s,null,'annual-budget'));
+  s.programs={enabled:false,due:true};s.nations[0].annual_budget.due=true;assert(get(s,null,'annual-budget'),'the nation reading alone still marks renewal due');
+});
 test('treasury accepts only actual finite numbers and invents no low-cash threshold',()=>{
   for(const value of [null,undefined,'0','-3',NaN,Infinity,-Infinity,false,{},.00001,100]){const s=state();s.nations[0].treasury=value;assert(!get(s,null,'treasury-balance'),String(value));}
-  for(const value of [0,-3]){const s=state();s.nations[0].treasury=value;assert.match(get(s,null,'treasury-balance').evidence[0],/Treasury: \$/);}
+  for(const value of [-.0001,-3]){const s=state();s.nations[0].treasury=value;const c=get(s,null,'treasury-balance');assert.match(c.evidence[0],/Treasury: \$/);assert.match(c.reason,/negative cash balance/);assert.doesNotMatch(c.reason,/zero or negative/);}
+});
+test('a zero treasury is ordinary deficit play, not a treasury alarm',()=>{
+  for(const value of [0,-0]){const s=state();s.nations[0].treasury=value;assert(!get(s,null,'treasury-balance'),'deficits spend cash down to zero before borrowing');}
+});
+test('fiscal recovery distress opens money and recovery only for adjustment or crisis',()=>{
+  const s=state(),fr={recovery_required:true,status:'adjustment',status_label:'Recovery required',reason:'The unchanged cash budget projects a materially rising debt ratio over five years.',next_action:'Phase in tax or actual-spending changes.',months_observed:4};
+  s.fiscal_recovery=fr;let c=get(s,null,'fiscal-recovery');assert.deepEqual(c.action,{kind:'cash_flow'});assert.equal(c.priority,'attention');assert.equal(c.reason,fr.reason);assert.deepEqual(c.evidence,['Status: Recovery required.','Months observed: 4.']);assert.equal(c.caution,fr.next_action);
+  s.fiscal_recovery={...fr,status:'crisis',status_label:'Fiscal confidence crisis'};c=get(s,null,'fiscal-recovery');assert.match(c.title,/crisis/);assert.deepEqual(c.action,{kind:'cash_flow'});
+  for(const bad of [{...fr,status:'watch'},{...fr,status:'recovering'},{...fr,status:'stable'},{...fr,status:'Crisis'},{...fr,recovery_required:false},{...fr,recovery_required:'true'},{...fr,recovery_required:undefined},null,[],'crisis']){s.fiscal_recovery=bad;assert(!get(s,null,'fiscal-recovery'),JSON.stringify(bad));}
+  s.fiscal_recovery={recovery_required:true,status:'crisis'};c=get(s,null,'fiscal-recovery');assert.deepEqual(c.evidence,[]);assert.match(c.reason,/adjustment is required/);assert.match(c.caution,/changes no policy/);
 });
 test('construction requires a matching dated production snapshot and valid calendar',()=>{
   const s=state(),w=works();w.construction_budget.daily_budget_bn=0;
@@ -114,16 +131,32 @@ test('incoming resource offer requires counterpart, deadline and an actual polit
   for(const bad of [{...offer,accept_pc:null},{...offer,expires_in_days:-1},{...offer,from_id:'Japan'},{...offer,from_id:'Unknown'}]){s.resources.offers=[bad];assert(!get(s,null,'diplomacy-resource-offer'));}
 });
 test('advice is deterministic, immutable, bounded and attention is always first',()=>{
-  const s=research(state(),[domain({options:[{id:'a',name:'Research',year:1990}]})]),w=works();s.programs.due=true;s.nations[0].treasury=-3;
+  const s=research(state(),[domain({options:[{id:'a',name:'Research',year:1990}]})]),w=works();s.programs.due=true;s.nations[0].treasury=-3;s.fiscal_recovery={recovery_required:true,status:'crisis'};
   s.nations[0].takeover=Object.fromEntries(['coup','uprising','round_table','collapse'].map(k=>[k,{open:true,armed:true,gauges:[]} ]));w.queue=[{id:4,status:'blocked'}];w.construction_budget.daily_budget_bn=0;s.manufacturing_summary={attention:2};s.wars=[{id:1,posture:[{id:'Japan'}]}];
   s.agency={offers:[{id:1,from:'USA',title:'Request',expires:'1990-01-01',days_remaining:0}]};s.resources={offers:[{id:2,from_id:'USA',legs:'Trade',expires_in_days:2,accept_pc:0}]};
   const before=JSON.stringify([s,w]);freeze(s);freeze(w);const a=advisor.evaluate(s,w),b=advisor.evaluate(s,w);assert.deepEqual(a,b);assert.equal(JSON.stringify([s,w]),before);assert(a.length<=12);assert.equal(new Set(a.map(c=>c.id)).size,a.length);
   const priorities=a.map(c=>({attention:0,opportunity:1,routine:2})[c.priority]);assert.deepEqual(priorities,[...priorities].sort());
-  for(const c of a){assert.deepEqual(Object.keys(c),['id','area','priority','title','reason','evidence','caution','action','actionLabel']);assert(c.evidence.length<=5);assert(['economy','government','research','military','diplomacy'].includes(c.area));assert(['budget','construction','project','suggestion','industry','government','research','equipment','world','resources','decisions'].includes(c.action.kind));}
+  for(const c of a){assert.deepEqual(Object.keys(c),['id','area','priority','title','reason','evidence','caution','action','actionLabel']);assert(c.evidence.length<=5);assert(['economy','government','research','military','diplomacy'].includes(c.area));assert(['budget','cash_flow','construction','project','suggestion','industry','government','research','equipment','companies','air','campaign','world','resources','decisions'].includes(c.action.kind));}
+  assert(a.some(c=>c.id==='fiscal-recovery'&&c.action.kind==='cash_flow'));
   a[0].action.kind='tampered';assert.equal(advisor.evaluate(s,w)[0].action.kind,'budget');
+});
+test('airbase route advice opens the Bases page of Air command',()=>{
+  const s={...state(),session_id:'s-1',date:'1 Jan 1990'},none={saves:[],loads:[]};
+  const outcomes={nation:'Japan',date:'1 Jan 1990',as_of_day:0,money:{journal_available:true,decisions:[{id:1,day:0,kind:'construction_budget'}]},
+    construction:{projects:[{id:7,kind:'power_grid',district:'JP-13',last_day:0,last_spent_bn:.01}],completions:[],operating:[],mines:[]},
+    research:{active:null,learned:0,last_completed_day:null,drafts:[{name:'Zero',updated_day:0,valid:true}],revisions:[],projects:[]},procurement:null,aviation:{bases:[],squadrons:[],missions:[]}};
+  const project={track:'capacity',target_level:1,started_day:0,last_paid_day:null,paid_bn:0,total_cost_bn:.024,completed_day:null,cancelled_day:null};
+  for(const [title,p] of [['Fund an airbase foundation',null],['Fund your airbase work',project],['Keep airbase work funded',{...project,last_paid_day:0,paid_bn:.004}]]){
+    outcomes.aviation.bases=p?[{id:'JP-13',name:'Tokyo',project:p,history:[]}]:[];
+    const air=advisor.recognize({state:s,outcomes},none).steps.find(x=>x.id==='air_force');assert.equal(air.obstacle.title,title);assert.deepEqual(air.obstacle.action,{kind:'air',page:'bases'},title);
+    const card=advisor.evaluate(s,null,outcomes,none).find(c=>c.id==='route-next');assert.equal(card.title,title);assert.deepEqual(card.action,{kind:'air',page:'bases'},title);
+  }
+  const lesson=advisor.evaluate(s,null,{...outcomes,aviation:{bases:[],squadrons:[{id:1,assigned:4,ready:false,blocker:'No home base.'}],missions:[]}},none).find(c=>c.id==='route-next');
+  assert.deepEqual(lesson.action,{kind:'air',page:'bases'});
 });
 test('browser UMD loads without DOM, timers, network, commands or global state',()=>{
   const context={};vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../../spheres-web/ui/advisor-model.js'),'utf8'),context);assert.equal(typeof context.AdvisorModel.evaluate,'function');assert.equal(context.AdvisorModel.evaluate(state()).length,0);
+  assert.deepEqual(Object.keys(context.AdvisorModel),['evaluate','recognize']);assert.equal(context.AdvisorModel.recognize({state:state()},null).status,'unknown');
 });
 
 const fixture=path.resolve(__dirname,'../../../leadership-2035-evidence/source-state-before.json');

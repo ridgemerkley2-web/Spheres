@@ -85,6 +85,17 @@
       action: {kind: "equipment"}, actionLabel: "Open the equipment designer"
     },
     {
+      id: "air-force", title: "Prepare an air force", area: "Air force",
+      summary: "Give aircraft a base, form squadrons from delivered aircraft and read what a mission needs.",
+      steps: [
+        "Open Air command and review Bases. An airbase foundation is paid day by day from your national construction budget, so check the daily construction funding before ordering one.",
+        "A squadron needs delivered aircraft. A saved design, a development contract or a purchase still in transit does not fill a squadron; follow delivery in Companies & Procurement.",
+        "Missions need an eligible conflict, allocated force, paid upkeep and compatible stores. Read the dated reports after time passes. Completing this lesson records reading only."
+      ],
+      lookFor: "Paid airbase work, squadrons with assigned aircraft and their blockers, and dated mission reports. Reading about an air force does not create one.",
+      action: {kind: "air"}, actionLabel: "Open Air command"
+    },
+    {
       id: "diplomacy-military", title: "Read the wider situation", area: "World",
       summary: "Understand conflicts and commitments before deciding how your country responds.",
       steps: [

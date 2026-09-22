@@ -6,11 +6,13 @@ const model = require('../../spheres-web/ui/tutorial-model.js');
 const ids = model.lessons.map(lesson => lesson.id);
 const initial = () => ({version: 1, done: [], skipped: [], current: ids[0], started: false});
 
-test('nine frozen lessons describe real reading workflows and navigation only', () => {
-  assert.equal(ids.length, 9);
+test('ten frozen lessons describe real reading workflows and navigation only', () => {
+  assert.equal(ids.length, 10);
   assert.equal(new Set(ids).size, ids.length);
   assert.deepEqual(model.lessons.map(lesson => lesson.action.kind),
-    ['home', 'budget', 'construction', 'industry', 'government', 'research', 'equipment', 'world', 'campaign']);
+    ['home', 'budget', 'construction', 'industry', 'government', 'research', 'equipment', 'air', 'world', 'campaign']);
+  assert.deepEqual(ids, ['map-time', 'budget-treasury', 'construction-effects', 'industry-operations', 'government-parties',
+    'research-components', 'equipment-procurement', 'air-force', 'diplomacy-military', 'save-review']);
   for (const lesson of model.lessons) {
     for (const key of ['id', 'title', 'area', 'summary', 'lookFor', 'actionLabel']) {
       assert.equal(typeof lesson[key], 'string');
@@ -23,15 +25,32 @@ test('nine frozen lessons describe real reading workflows and navigation only', 
   assert.ok(Object.isFrozen(model.lessons));
   assert.match(model.lessons[1].steps.join(' '), /Enact & advance 1 day/);
   assert.match(model.lessons[6].steps.join(' '), /own working capital/);
-  assert.match(model.lessons[8].lookFor, /separate from campaign saves/);
+  assert.match(model.lessons[9].lookFor, /separate from campaign saves/);
+  const air = model.lessons[7];
+  assert.equal(air.steps.length, 3);
+  assert.match(air.steps[0], /construction budget/);
+  assert.match(air.steps[1], /delivered aircraft/);
+  assert.match(air.steps[2], /eligible conflict/);
+  assert.match(air.steps[2], /records reading only/);
 });
 
 test('UMD browser export works without a DOM, localStorage or campaign services', () => {
   const context = vm.createContext({});
   vm.runInContext(fs.readFileSync(require.resolve('../../spheres-web/ui/tutorial-model.js'), 'utf8'), context);
   assert.deepEqual(Object.keys(context.TutorialModel), ['lessons', 'normalize', 'advance']);
-  assert.equal(context.TutorialModel.lessons.length, 9);
+  assert.equal(context.TutorialModel.lessons.length, 10);
   assert.equal(vm.runInContext('TutorialModel.advance(null,{type:"start"}).started', context), true);
+});
+
+test('v1 progress saved before the air-force lesson stays valid and the new lesson starts unread', () => {
+  const before = ids.filter(id => id !== 'air-force');
+  const progress = model.normalize({version: 1, done: before, skipped: [], current: null, started: true});
+  assert.deepEqual(progress.done, before);
+  assert.deepEqual(progress.skipped, []);
+  assert.equal(progress.current, 'air-force');
+  const partial = model.normalize({version: 1, done: [ids[0]], skipped: [ids[6]], current: ids[6], started: true});
+  assert.deepEqual(partial, {version: 1, done: [ids[0]], skipped: [ids[6]], current: ids[6], started: true});
+  assert.equal(model.advance(partial, {type: 'skip', id: ids[6]}).current, 'air-force');
 });
 
 test('corrupted values and future or missing schema versions recover to a fresh preference', () => {
@@ -104,11 +123,11 @@ test('completion and skipping are separate, navigate to unresolved lessons and w
   assert.deepEqual(progress.skipped, [ids[1]]);
   assert.deepEqual(progress.done, [ids[0]]);
   assert.equal(progress.current, ids[2]);
-  progress = model.advance(progress, {type: 'complete', id: ids[8]});
+  progress = model.advance(progress, {type: 'complete', id: ids[9]});
   assert.equal(progress.current, ids[2], 'An out-of-order last lesson wraps to the first unresolved chapter');
   progress = model.advance(progress, {type: 'complete', id: ids[1]});
   assert.deepEqual(progress.skipped, []);
-  assert.deepEqual(progress.done, [ids[0], ids[1], ids[8]]);
+  assert.deepEqual(progress.done, [ids[0], ids[1], ids[9]]);
   progress = model.advance(progress, {type: 'skip', id: ids[0]});
   assert.deepEqual(progress.skipped, [], 'Skipping a replay must not erase a prior completion');
   assert.ok(progress.done.includes(ids[0]));
@@ -118,13 +137,13 @@ test('end of the reading list preserves skipped status and supports replay and r
   let progress = model.normalize(null);
   for (let i = 0; i < ids.length; i++) progress = model.advance(progress, {type: i === 3 ? 'skip' : 'complete', id: ids[i]});
   assert.equal(progress.current, null);
-  assert.equal(progress.done.length, 8);
+  assert.equal(progress.done.length, 9);
   assert.deepEqual(progress.skipped, [ids[3]]);
   assert.deepEqual(model.normalize(progress), progress);
   assert.equal(model.advance(progress, {type: 'start'}).current, null);
   progress = model.advance(progress, {type: 'select', id: ids[3]});
   assert.equal(progress.current, ids[3]);
-  assert.equal(progress.done.length, 8);
+  assert.equal(progress.done.length, 9);
   progress = model.advance(progress, {type: 'complete', id: ids[3]});
   assert.equal(progress.current, null);
   assert.deepEqual(progress.done, ids);

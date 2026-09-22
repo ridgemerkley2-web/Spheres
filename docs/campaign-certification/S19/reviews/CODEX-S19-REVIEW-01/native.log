@@ -1,0 +1,79 @@
+   Compiling proc-macro2 v1.0.107
+   Compiling quote v1.0.47
+   Compiling unicode-ident v1.0.24
+   Compiling serde_core v1.0.229
+   Compiling zmij v1.0.23
+   Compiling serde v1.0.229
+   Compiling serde_json v1.0.151
+   Compiling memchr v2.8.3
+   Compiling itoa v1.0.18
+   Compiling syn v3.0.3
+   Compiling httpdate v1.0.3
+   Compiling log v0.4.33
+   Compiling ascii v1.1.0
+   Compiling spheres-web v0.6.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s19-review-01\spheres-web)
+   Compiling chunked_transfer v1.5.0
+   Compiling tiny_http v0.12.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s19-review-01\spheres-web\vendor\tiny_http)
+warning: unused import: `path::PathBuf`
+ --> spheres-web\vendor\tiny_http\src\connection.rs:7:5
+  |
+7 |     path::PathBuf,
+  |     ^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `SequentialWriter`
+ --> spheres-web\vendor\tiny_http\src\util\mod.rs:7:28
+  |
+7 | pub use self::sequential::{SequentialWriter, SequentialWriterBuilder};
+  |                            ^^^^^^^^^^^^^^^^
+
+warning: trait `MustBeShareDummy` is never used
+   --> spheres-web\vendor\tiny_http\src\lib.rs:164:7
+    |
+164 | trait MustBeShareDummy: Sync + Send {}
+    |       ^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+   Compiling serde_derive v1.0.229
+warning: `tiny_http` (lib) generated 3 warnings (run `cargo fix --lib -p tiny_http` to apply 2 suggestions)
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s19-review-01\spheres-sim)
+warning: unused import: `companies`
+ --> spheres-web\src\s15_fixture_tests.rs:6:84
+  |
+6 |     airbases as ab, airmissions as am, arsenal, aviation as av, clock, commitment, companies,
+  |                                                                                    ^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: `spheres-web` (bin "spheres-web" test) generated 1 warning (run `cargo fix --bin "spheres-web" -p spheres-web --tests` to apply 1 suggestion)
+    Finished `release` profile [optimized] target(s) in 2m 13s
+     Running unittests src\main.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s19-review-target\release\deps\spheres_web-55caf82b2dcec446.exe)
+
+running 22 tests
+test guidance_outcomes::tests::guidance_log_dates_parse_only_the_exact_served_format ... ok
+test equipment_view::guidance_tests::s09_guidance_enumerates_coupled_packages_without_bypassing_research_or_load ... ok
+test guidance_outcomes::tests::guidance_completion_headlines_match_only_this_nations_construction ... ok
+test equipment_view::guidance_tests::s09_research_unlock_details_use_real_parts_and_prospective_compiled_examples ... ok
+test tests::guidance_route_requires_the_exact_active_campaign_session ... ok
+test equipment_view::guidance_tests::s09_guidance_costs_match_native_development_terms_not_purchase_affordability ... ok
+test equipment_view::guidance_tests::s09_preview_and_comparison_leave_old_revision_holdings_and_research_unchanged ... ok
+test equipment_view::flight_defense_view_tests::s16_fighter_design_library_guidance_and_comparison_use_interception ... ok
+test equipment_view::aviation_view_tests::aviation_mismatched_guidance_is_blocked_and_refit_comparison_uses_strike ... ok
+test equipment_view::guidance_tests::s09_single_component_example_shortcut_matches_exhaustive_package_selection ... ok
+test tests::guidance_outcomes_are_null_without_a_player ... ok
+test tests::guidance_outcomes_serve_unknown_sections_for_systems_a_campaign_lacks ... ok
+test tests::guidance_without_a_player_is_a_read_only_setup_snapshot ... ok
+test equipment_view::guidance_tests::s09_all_platform_recommendations_are_known_legal_deterministic_and_pure ... ok
+test tests::guidance_serves_one_players_state_and_production_at_the_same_date_without_orders ... ok
+test tests::guidance_outcomes_mark_saved_drafts_with_the_designers_own_validity ... ok
+test tests::guidance_outcomes_exclude_another_nations_records ... ok
+test tests::guidance_outcomes_date_a_dispatched_budget_enactment ... ok
+test tests::guidance_outcomes_keep_the_first_flown_mission_behind_ten_newer_orders ... ok
+test tests::guidance_outcomes_share_the_state_identity_and_leave_the_campaign_unchanged ... ok
+test tests::guidance_outcomes_date_first_hour_orders_sent_through_the_turn_path ... ok
+test tests::guidance_outcomes_serve_the_players_paid_mine_work_and_its_opening ... ok
+
+test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 413 filtered out; finished in 0.76s
+
