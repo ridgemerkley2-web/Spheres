@@ -101,3 +101,5 @@ then run `workboard.py --check`. All markers continue to refer to the same origi
 campaign pathway; this is a work split, not a replacement roadmap.
 
 Codex completed the independently ready [S21 campaign journey](campaign-certification/S21/README.md) while S19 remained claimed. It adds campaign goals/history/continuation and repairs first-day successor saves. Fetch this integration base before bringing S19 shared-shell changes forward. G4 still requires S19 and S20.
+
+Codex completed [CODEX-S22-PREP-01](planning/ai-handoffs/CODEX-S22-PREP-01.md): repaired art accounting, restored compiled equipment self-shadows, and validated the isolated renderer. This is independent preparation; S22 remains planned after S20. The original art budget gate still reports 42 overruns.

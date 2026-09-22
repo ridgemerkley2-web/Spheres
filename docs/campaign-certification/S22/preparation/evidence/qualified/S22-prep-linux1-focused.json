@@ -1,0 +1,28 @@
+{
+  "revision": "2c959cd7c4f61d09a77d5859b1cbee24aa509b10",
+  "lane": "focused",
+  "command": [
+    "node",
+    "--test",
+    "tools/ui/check_mesh_accounting.cjs",
+    "tools/ui/check_webgl_measurement.cjs",
+    "tools/ui/check_equipment_shadows.cjs",
+    "tools/ui/check_equipment_model.cjs"
+  ],
+  "started_utc": "2026-09-22T02:53:47.574262+00:00",
+  "clean_before": true,
+  "runner_sha256": "f010cde732a21c8cc454ecd0aaa325ba7fe0994dae87ae28bbc55971de0c9f06",
+  "expected_exit_code": 0,
+  "exit_code": 0,
+  "finished_utc": "2026-09-22T02:53:51.532301+00:00",
+  "clean_after": true,
+  "revision_after": "2c959cd7c4f61d09a77d5859b1cbee24aa509b10",
+  "log_sha256": "cf9ac75538209bd117ac9eeceb492785839ed2bb084e8b6272e462124d342ed8",
+  "passed": true,
+  "counts": {
+    "tests": 39,
+    "pass": 39,
+    "fail": 0,
+    "skipped": 0
+  }
+}

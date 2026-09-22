@@ -1,0 +1,23 @@
+{
+  "revision": "2c959cd7c4f61d09a77d5859b1cbee24aa509b10",
+  "lane": "focused",
+  "command": [
+    "node",
+    "--test",
+    "tools/ui/check_mesh_accounting.cjs",
+    "tools/ui/check_webgl_measurement.cjs",
+    "tools/ui/check_equipment_shadows.cjs",
+    "tools/ui/check_equipment_model.cjs"
+  ],
+  "started_utc": "2026-09-22T02:52:48.060906+00:00",
+  "clean_before": true,
+  "runner_sha256": "f010cde732a21c8cc454ecd0aaa325ba7fe0994dae87ae28bbc55971de0c9f06",
+  "expected_exit_code": 0,
+  "exit_code": 0,
+  "finished_utc": "2026-09-22T02:52:48.906660+00:00",
+  "clean_after": true,
+  "revision_after": "2c959cd7c4f61d09a77d5859b1cbee24aa509b10",
+  "log_sha256": "ddf2f1f865c9f0dbcfff1abb2dbf6dc0998bb86e40004993cf796f04f4fef85a",
+  "passed": true,
+  "counts": {}
+}

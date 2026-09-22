@@ -1,0 +1,47 @@
+✔ perspective views contain a complete tank at normal zoom without clipping across aspect ratios (2.0867ms)
+✔ model identity follows configuration rather than display names or property insertion order (0.2035ms)
+✔ cosmetic paint preserves unpainted materials and never mutates original colors (0.6239ms)
+✔ changing detail level replaces the displayed and exported geometry; equivalent detail reuses it (4.4763ms)
+✔ material readiness redraws the designer and paint/geometry updates reuse its texture pack (2.1355ms)
+✔ designer context loss abandons old material handles and restoration owns a fresh pack (1.2822ms)
+✔ repainting/name edits reuse geometry, a component edit replaces buffers, disposal releases all GPU resources and listeners (1.2041ms)
+✔ idle preview is demand-rendered and rotation suspends while hidden or outside the viewport (0.933ms)
+✔ WebGL loss pauses rendering and restores current geometry, rather than creating a second renderer (1.4047ms)
+✔ partial context restoration releases GPU allocations while preserving the selected part and downloadable finish (3.4262ms)
+✔ unavailable graphics retain a clear fallback and a downloadable actual mesh (0.8952ms)
+✔ downloads follow the selected finish even when WebGL is unavailable (0.7042ms)
+✔ changing finish during context loss updates downloads and the restored GPU colors (1.0602ms)
+✔ failed rebuild clears stale imagery and exports, releases model buffers, and allows the same specification to retry (1.257ms)
+✔ a partial GPU upload failure releases newly allocated model buffers and can recover (1.7786ms)
+✔ ray picking returns the nearest actual triangle and respects empty space and occlusion (0.3266ms)
+✔ a canvas click picks visible geometry, bubbles its slot, and preserves camera and exported finish (1.229ms)
+✔ orbit drags, cancelled gestures and two-pointer gestures do not select parts (2.7668ms)
+✔ all specialist hulls, tall radar and extended barrels fit the unchanged camera views (121.965ms)
+✔ projected visible mission installations and weapons ray-pick their true specification slots (123.7833ms)
+✔ native keyboard part selection works without graphics and selection survives context restoration (1.4476ms)
+✔ aircraft fit all camera views and expose each specification through visible triangle picking (425.2188ms)
+✔ named views preserve an explicit user zoom while Reset returns to the complete-model fit (1.9338ms)
+✔ one RGBA depth target renders actual mesh once and replaces projected floor shadow (5.6361ms)
+✔ camera, paint, name and selection reuse light depth; geometry changes invalidate it without allocating another target (2.9823ms)
+✔ 512 targets work on smaller devices while missing capabilities use the unchanged projected-shadow path (4.6667ms)
+✔ every partial shadow allocation, shader and link failure releases resources and leaves a functioning fallback (8.6515ms)
+✔ a failing optional depth draw returns to the default framebuffer and replaces its sampling shader (1.4779ms)
+✔ context loss discards shadow handles without GL calls and restores the latest geometry on the same canvas (1.5552ms)
+✔ failed context restoration cleans both renderer and shadow resources before a successful retry (1.3441ms)
+✔ mesh corners and their ground projections fit a stable light volume across vehicle sizes (0.8535ms)
+✔ packed depth preserves ordering and receiver shaders share the correct precision and material visibility (1.6847ms)
+✔ CPU material tags are counted without being mistaken for an uploaded float attribute (0.9719ms)
+✔ shared backing allocation is counted once, while each GPU attribute upload has its own payload (0.1952ms)
+✔ changed or corrupt layouts refuse measurement rather than silently excluding bytes (1.0227ms)
+✔ inventory totals sum measured payloads without assuming one byte rate per triangle (0.5288ms)
+✔ buffer replacement and deletion count residency; repeated passes count submissions without inventing storage (2.2554ms)
+✔ WebGL2 ranged uploads use actual BUFFER_SIZE; indexed and instanced calls count submitted primitives (0.2112ms)
+✔ context loss drops live buffers and restore starts from zero, preserving a cumulative peak (0.136ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 39
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 778.4789

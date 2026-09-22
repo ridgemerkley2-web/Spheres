@@ -1,0 +1,18 @@
+{
+  "revision": "2c959cd7c4f61d09a77d5859b1cbee24aa509b10",
+  "lane": "browser",
+  "command": [
+    "node",
+    "tools/ui/art-memory-browser.cjs"
+  ],
+  "started_utc": "2026-09-22T02:52:48.060902+00:00",
+  "clean_before": true,
+  "runner_sha256": "f010cde732a21c8cc454ecd0aaa325ba7fe0994dae87ae28bbc55971de0c9f06",
+  "expected_exit_code": 0,
+  "exit_code": 0,
+  "finished_utc": "2026-09-22T02:53:05.022155+00:00",
+  "clean_after": true,
+  "revision_after": "2c959cd7c4f61d09a77d5859b1cbee24aa509b10",
+  "log_sha256": "254508c22463a8814572fc5840b4844e22c804bce932401ef59704de25c12d67",
+  "passed": true
+}

@@ -1,0 +1,61 @@
+wrote docs/art/P0_BUDGETS.md — 112 graded configurations from 4,058 builds
+  triangles (everything resident, close detail): 1,863,230
+  upload bytes:                                  201,228,840 (191.91 MiB)
+  generator source:                              661,527 (646.0 KiB), 185,109 gzipped (180.8 KiB)
+
+build time — cold is the first build in a fresh process, warm is the mean of a loop in a hot one.
+(neither is written to the document: roadmap 7.6 wants that file byte-identical between runs)
+case                                       require     cold  warm mean   median      min     n    rse
+EquipmentMesh.build tank_heavy               3.19    58.41      36.51    35.49    32.35    20  2.5%
+SiteMesh.build arms_plant complete L5        4.17    34.98      14.80    14.58    12.72    41  2.3%
+SiteMesh.build arms_plant complete L5 far    4.04     2.62       0.10     0.09     0.08  5000  0.4%
+TownMesh.block residential                   2.81   128.08      54.00    54.53    47.10    20  2.4%
+TownMesh.block residential map               2.98    15.48       0.76     0.64     0.53   785  2.1%
+TownMesh.building house                      2.86    15.42       1.51     1.26     1.10   398  2.7%
+all times in milliseconds. The warm loop runs at least 20 builds and then keeps going for 600 ms, capped at 5,000;
+rse is the relative standard error of that mean, so a row is worth reading to about that fraction of itself.
+town-mesh.js memoises baked variants module-wide, so a warm block is mostly stamping cached geometry; cold is the true first-paint cost.
+
+42 configurations OVER budget — `--check` will exit 1:
+  ground.tank_standard.baseline.v1 (baseline): 68,872 against 45,000, over by 23,872
+  ground.tank_standard.baseline.v1 (heaviest): 69,000 against 45,000, over by 24,000
+  ground.tank_heavy.baseline.v1 (baseline): 74,144 against 45,000, over by 29,144
+  ground.tank_heavy.baseline.v1 (heaviest): 74,272 against 45,000, over by 29,272
+  ground.tank_light.baseline.v1 (baseline): 68,872 against 45,000, over by 23,872
+  ground.tank_light.baseline.v1 (heaviest): 69,000 against 45,000, over by 24,000
+  ground.tank_destroyer.baseline.v1 (baseline): 68,872 against 45,000, over by 23,872
+  ground.tank_destroyer.baseline.v1 (heaviest): 69,000 against 45,000, over by 24,000
+  ground.ground_ifv.baseline.v1 (heaviest): 49,348 against 45,000, over by 4,348
+  ground.ground_artillery.baseline.v1 (baseline): 45,330 against 45,000, over by 330
+  ground.ground_artillery.baseline.v1 (heaviest): 49,248 against 45,000, over by 4,248
+  ground.ground_air_defense.baseline.v1 (heaviest): 45,812 against 45,000, over by 812
+  aviation.air_fighter.baseline.v1 (baseline LOD0): 200,446 against 60,000, over by 140,446
+  aviation.air_light_attack.baseline.v1 (baseline LOD0): 199,326 against 60,000, over by 139,326
+  aviation.air_tactical_strike.baseline.v1 (baseline LOD0): 228,640 against 60,000, over by 168,640
+  aviation.air_tactical_strike.baseline.v1 (baseline LOD1): 14,904 against 12,000, over by 2,904
+  aviation.air_tactical_strike.baseline.v1 (baseline LOD2): 1,696 against 1,500, over by 196
+  site.infrastructure.v1 (near complete/L5/building): 30,756 against 12,000, over by 18,756
+  site.civilian_industry.v1 (near complete/L5/building): 39,302 against 12,000, over by 27,302
+  site.power_grid.v1 (near complete/L5/building): 38,552 against 12,000, over by 26,552
+  site.research_center.v1 (near complete/L5/building): 32,780 against 12,000, over by 20,780
+  site.arms_plant.v1 (near complete/L5/building): 35,636 against 12,000, over by 23,636
+  site.machinery_works.v1 (near complete/L5/building): 37,728 against 12,000, over by 25,728
+  site.generation.v1 (near complete/L5/building): 39,020 against 12,000, over by 27,020
+  site.processing_plant.v1 (near complete/L5/building): 34,770 against 12,000, over by 22,770
+  site.freight_terminal.v1 (near complete/L5/building): 36,430 against 12,000, over by 24,430
+  site.warehouse.v1 (near complete/L5/building): 34,006 against 12,000, over by 22,006
+  site.automation.v1 (near complete/L5/building): 33,316 against 12,000, over by 21,316
+  site.efficiency.v1 (near complete/L5/building): 33,056 against 12,000, over by 21,056
+  site.starter_industry.v1 (near complete/L5/building): 30,164 against 12,000, over by 18,164
+  site.office_district.v1 (near complete/L5/building): 32,350 against 12,000, over by 20,350
+  site.shipyard.v1 (near complete/L5/building): 30,324 against 12,000, over by 18,324
+  site.advanced_industry.v1 (near complete/L5/building): 30,328 against 12,000, over by 18,328
+  town.temperate.mixed.v1 (close id 1997): 199,331 against 150,000, over by 49,331
+  town.temperate.residential.v1 (close id 1994): 214,044 against 150,000, over by 64,044
+  town.temperate.commercial.v1 (close id 1991): 151,008 against 150,000, over by 1,008
+  town.temperate.civic.v1 (close id 1992): 161,077 against 150,000, over by 11,077
+  town.kit.row_house (close, maximum size): 21,222 against 12,000, over by 9,222
+  town.kit.mid_apartment (close, maximum size): 14,540 against 12,000, over by 2,540
+  town.kit.high_apartment (close, maximum size): 12,028 against 12,000, over by 28
+  town.kit.civic (close, maximum size): 13,637 against 12,000, over by 1,637
+  town.kit.university (close, maximum size): 24,252 against 12,000, over by 12,252

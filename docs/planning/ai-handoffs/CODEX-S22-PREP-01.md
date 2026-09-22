@@ -1,6 +1,7 @@
 # CODEX-S22-PREP-01 — art accounting and shadow compiler repair
 
-Owner: Codex. State: implementation prepared; exact-source validation pending.
+Owner: Codex. State: **complete bounded preparation**, qualified at `2c959cd`.
+[Validation, remaining work and evidence](../../campaign-certification/S22/preparation/README.md).
 Branch: `codex/campaign-certification`; base: `7a13135e2a26a007eaf161b799ffc9e2f582a43d`.
 Parent: S22 preparation. S22 remains planned and depends on S20; this packet
 does not claim the performance session or its campaign qualification is complete.
