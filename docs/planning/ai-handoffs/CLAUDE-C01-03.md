@@ -1,6 +1,7 @@
 # CLAUDE-C01-03 — Tonga's next succession transition
 
-Owner: Claude. State: **available, unclaimed**. Parent: C01 (incomplete).
+Owner: Claude. State: **claimed 21 September 2026; in progress** (not ready for review). Parent: C01 (incomplete).
+Claimed on branch `claude/c01-tonga-03`, base `04bc99a6` (current integration); result commit recorded at submission.
 Predecessor: [CLAUDE-C01-02](CLAUDE-C01-02.md), accepted as bounded research.
 Start from the current `codex/campaign-certification`; record the actual base and
 claim commit before work. Suggested branch: `claude/c01-tonga-03`.
