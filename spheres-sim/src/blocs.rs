@@ -104,23 +104,27 @@ fn slot(shares: &mut [(Bloc, f64); 5], bloc: Bloc) -> &mut f64 {
 /// design's third presence clause (D5, "foreign backing already behind
 /// it"), built 2026-09-06 on Ridge's ruling M1. One clean `BackBloc`
 /// operation puts `statecraft::BACKING_STEP` = 0.06 behind a bloc, so THE
-/// FIRST SUCCESSFUL OPERATION CREATES THE PRESENCE, and it lapses when the
-/// money stops (the stock cools `BACKING_DECAY` a month). Historical
-/// anchor: the Afghan mujahideen parties existed inside Afghanistan only as
-/// Pakistani- and Saudi-funded organisations run from Peshawar; Sudan's NIF
-/// grew on Gulf money; Nicaragua's contras were a movement a sponsor
-/// created. The line is the ruling's own number.
+/// FIRST SUCCESSFUL OPERATION CREATES THE PRESENCE. Since 2026-09-22, the
+/// established organization is remembered separately from the funding:
+/// money still cools by `BACKING_DECAY`, but its withdrawal does not erase
+/// an organization that was created. The threshold itself is unchanged.
 pub const PRESENCE_BACKING: f64 = 0.05;
 
 /// Whether a bloc has any standing presence in a polity's transcribed shape: a
 /// party of that bloc in the (possibly dormant) table, or the bloc's installing
 /// pillar in the pillar list — or, since M1, foreign backing of at least
 /// [`PRESENCE_BACKING`] behind it (`backing`, the stock plus patronage
-/// gravity). The backing clause reads the world, which is why the world is
+/// gravity), or an organization established by an earlier qualifying covert
+/// funding operation. The backing clause reads the world, which is why the world is
 /// an argument; with the arm off the stock is always empty (`BackBloc` is
 /// refused) and nothing the tick reads asks, so the answer is the table's.
 pub fn bloc_present(w: &WorldState, id: NationId, bloc: Bloc) -> bool {
-    bloc_in_table(w, id, bloc) || bloc_backed(w, id, bloc)
+    bloc_in_table(w, id, bloc) || bloc_backed(w, id, bloc) || bloc_established(w, id, bloc)
+}
+
+fn bloc_established(w: &WorldState, id: NationId, bloc: Bloc) -> bool {
+    w.rules.ideology_blocs && government::state(w, id)
+        .is_some_and(|g| g.established_movements.contains(&bloc))
 }
 
 /// The table half of [`bloc_present`]: a party or an installing pillar of the
@@ -384,7 +388,8 @@ pub fn strongest_challenger(w: &WorldState, id: NationId) -> Option<(Bloc, f64)>
 /// because a Western winner has nothing to govern through in a party-less
 /// polity until a table is transcribed (design S4: "closed until a table
 /// exists"). A bloc present through foreign backing alone (M1,
-/// [`bloc_backed`]) could win on the same terms as one carried by a pillar:
+/// [`bloc_backed`]), including an organization that outlasts that funding,
+/// could win on the same terms as one carried by a pillar:
 /// the Peshawar parties took Kabul in April 1992 with no seat and no
 /// institution inside the country — but a Western one still needs a table.
 pub fn bloc_can_win(w: &WorldState, id: NationId, bloc: Bloc) -> bool {
@@ -400,7 +405,7 @@ pub fn bloc_can_win(w: &WorldState, id: NationId, bloc: Bloc) -> bool {
     if bloc == Bloc::Western {
         return by_party;
     }
-    by_party || by_pillar || bloc_backed(w, id, bloc)
+    by_party || by_pillar || bloc_backed(w, id, bloc) || bloc_established(w, id, bloc)
 }
 
 /// W: the strongest non-ruling bloc by influence among those that could
@@ -1148,16 +1153,17 @@ mod tests {
     /// so the clause is reached only in that month; it stands as ruled.
     #[test]
     fn the_bloc_layer_is_inert_over_time() {
-        // 2026-09-22: measured with Algeria's sourced FLN-only opening chamber.
-        // Independent seat-only overlays of the previous library reproduce
-        // these six timelines; see the remaining-failures verification report.
+        // 2026-09-22: measured after the disorder-accountability and live coup
+        // trigger repairs. Startup is unchanged; default political timelines
+        // deliberately move. See 2026-09-22-outstanding-repairs.md. The bloc
+        // feature's on/off assertions below remain unchanged.
         const BASE: [u64; 6] = [
-            0x95e5fe35215c4fc9,
-            0x7bbec62d113c034b,
-            0xb3e5a927a2f9e509,
-            0x75c7ea1b2a4b46f8,
-            0x9a08dffbeab9da85,
-            0xa9a05daae84bd1bb,
+            0x6ea274024b464232,
+            0x7c2e0fcc0fb734fb,
+            0x051617762ec0fe42,
+            0x6d7cdc5bf6f6b626,
+            0x767e55bdcad677a5,
+            0x65453e75ccabbec6,
         ];
         for seed in 0..6u64 {
             let mut w = world_1990(GameRules { seed, ..GameRules::default() });
@@ -1351,7 +1357,8 @@ mod tests {
     /// MEASURED on that tree: Western 67, Communist 17, Nationalist 7,
     /// Islamist 3, Non-Aligned 43. The 2026-09-22 correction seats Algeria's
     /// 1987 national chamber, moving one from Islamist to Nationalist:
-    /// [67, 17, 8, 2, 43], still summing to the 137 nations of the roster.
+    /// [67, 17, 8, 2, 43]. A sourced Nationalist override for Libya's leader
+    /// then moves one from Non-Aligned to Nationalist: [67, 17, 9, 2, 42].
     /// The counts are pinned as transcribed data is pinned elsewhere in this
     /// suite — a change here is a change to a sourced row or to the pillar map,
     /// and it is meant to be noticed. The bars of the design brief that the
@@ -1368,8 +1375,12 @@ mod tests {
         let (census, who) = census_1990(&w);
         assert_eq!(census.iter().sum::<usize>(), alive(&w).len());
         assert!(census.iter().all(|c| *c > 0), "every bloc rules somewhere in 1990: {census:?}");
-        assert_eq!(census, [67, 17, 8, 2, 43], "the census after Algeria's sourced opening chamber correction");
+        assert_eq!(census, [67, 17, 9, 2, 42], "the census after Algeria seating and Libya ideology corrections");
         assert_eq!(ruling_bloc(&w, NationId::Algeria), Some(Bloc::Nationalist));
+        assert_eq!(leader_bloc(&w, NationId::Libya), Some(Bloc::Nationalist));
+        assert_eq!(ruling_bloc(&w, NationId::Libya), Some(Bloc::Nationalist));
+        assert_eq!(pillar_bloc(NationId::Libya, Pillar::Party), Bloc::NonAligned,
+            "the sourced leader override does not redefine institutional pillars");
         assert_eq!(who[Bloc::Islamist as usize], ["Iran", "Sudan"]);
         // The decided cases (design D1-D6) as the table alone settles them.
         assert_eq!(ruling_bloc(&w, NationId::Poland), Some(Bloc::Western), "Solidarity's umbrella");
@@ -1382,7 +1393,7 @@ mod tests {
         assert_eq!(ruling_bloc(&w, NationId::USA), Some(Bloc::Western));
         // The bars of the brief the rows meet.
         assert!(census[Bloc::Western as usize] >= 55, "Western: {census:?}");
-        for id in ["Iraq", "Syria"] {
+        for id in ["Iraq", "Syria", "Libya"] {
             assert!(who[Bloc::Nationalist as usize].contains(&id), "{id} is not Nationalist: {who:?}");
         }
         for id in ["Iran", "Sudan"] {
@@ -1442,14 +1453,13 @@ mod tests {
     ///   transcribed party.
     /// * Islamist exactly Iran and Sudan — fixed on 2026-09-22 by separating
     ///   Algeria's actual FLN-only national chamber from its support proxies.
-    ///   This assertion remains here; the other two disagreements remain red.
-    /// * Nationalist includes Libya — the rows read Libya Non-Aligned: Gaddafi
-    ///   is tied to the Party pillar (the Revolutionary Committees Movement),
-    ///   which the D3 pillar map installs as Non-Aligned in a non-Communist
-    ///   regime, and no fetched source gave the row a bloc_override the way
-    ///   Sudan's did.
+    ///   This assertion remains here.
+    /// * Nationalist includes Libya — fixed with a sourced leader override
+    ///   from the 1987 US Library of Congress country study. The Party pillar
+    ///   is still Non-Aligned generically; governing ideology is distinct from
+    ///   the institutional tie. The Communist-count disagreement remains.
     #[test]
-    #[ignore = "RED BY DESIGN and filed as BUGS.md P-6: two disagreements remain (Communist 17 vs 11-13; Libya Non-Aligned); Algeria's opening chamber is corrected"]
+    #[ignore = "BUGS.md P-6: Communist count 17 vs 11-13 remains; Algeria's chamber and Libya's governing ideology are corrected"]
     fn the_1990_census_meets_the_design_brief() {
         let w = world_1990(on(1990));
         let (census, who) = census_1990(&w);

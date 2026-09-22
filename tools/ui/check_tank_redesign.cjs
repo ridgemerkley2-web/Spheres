@@ -11,8 +11,10 @@ function span(v,axis){const values=v.map(v=>v.p[axis]);return [Math.min(...value
 // aircraft pins updated for the approved 100k+ inspection/LOD pass. The dedicated specialist
 // test additionally freezes approved tank/air material sidecars. Only tactical
 // LOD1/2 pins change for the reviewed September 22 coarse-mesh optimization.
+// Tracked specialist LOD0 pins also record removal of sealed pin caps; exterior
+// equivalence is independently checked by check_equipment_connector_optimization.
 const nonTankReviewed={
-  "ground_ifv/0": "4e6ebec21677943fcbbda5eab877c430809ad10f55f1a475bfa95969a9967047",
+  "ground_ifv/0": "f1b860212af9393b6d97d950abd7865ce8594759dc3d72bb9ad62da1fc822359",
   "ground_ifv/1": "35bae9a60e93112a15e554f7177fbecdd1e84024ec4580c98ed5970d18b61c11",
   "ground_ifv/2": "e92e4ccd6e2ee26da60662a0b1a30bd9b75e46eb3580da978326dcc77c128611",
   "ground_apc/0": "09aca7cdb83190111eb9764d5c40c24c6b871e635d1c73d6486f5b006a92cb78",
@@ -21,10 +23,10 @@ const nonTankReviewed={
   "ground_recon/0": "a08518bf42fb38a8274a3afecef879f667c54fa89ba53c7d8a6c74e5f2fb8d25",
   "ground_recon/1": "2e3009c7bc5c3704813cee2aa6f34bc45c1261c8a317778ab4056371f7c05cc2",
   "ground_recon/2": "7a5bd0559ddebc51842140f0beea3be6c78cd735fabff792eeab596250eaffd3",
-  "ground_artillery/0": "b1b58a04631c2655df0343e1ff2dcd5d7de019dd44a6b33da67caec80c767ff7",
+  "ground_artillery/0": "e6f6e2a59e1f21c857a82e5251bee39b86183c30048b34bcacb56e57c22cc3d8",
   "ground_artillery/1": "f78b20e414d4d9036de6044c59d5cddfecd543c5ea1c59d5cd3148aed0861001",
   "ground_artillery/2": "3c731bf952b76bb78bf0e90deb6511ee77d9263ae5bf63cc5fcf3af384c5c411",
-  "ground_air_defense/0": "48f8fb87e23fff8d3eeac21715797c1046ce637fb0f00a271c130b0a46e36846",
+  "ground_air_defense/0": "d94283b9460155e60e9110c22244501c20430e60807bf6b8695e6c54535c55a2",
   "ground_air_defense/1": "36c715bf0fcb113a2eebb6f393706aeda342db8b93e24eec3b531a9b17bdf774",
   "ground_air_defense/2": "d897cdd61f676e5b10ddc35f2838ee5ea7c43e71d05fede729d856f708f1bb4e",
   "air_light_attack/0": "8bb05850c444fa4b756be1a29f67bc5bc312344e82cb50dc00e80d3329bf647c",

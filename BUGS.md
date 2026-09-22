@@ -1,5 +1,26 @@
 # BUGS
 
+## 2026-09-22 government and art repair update
+
+[Outstanding-repair verification](docs/campaign-certification/verification/2026-09-22-outstanding-repairs.md)
+records the current source and measurements. Incumbents now lose support for
+disorder; coups require a still-live loyalty/crisis trigger; qualifying funded
+organizations persist after funding withdrawal, including migration before an
+old save's first decay, exposure or crackdown.
+
+P-6's Algeria national-chamber and Libya governing-ideology errors are repaired.
+The remaining Communist-count conflict (17 against an old 11–13 quota) is still
+open. The six optional A1–A5/A7 outcome gates also remain open; ideological
+takeovers stay disabled in normal campaign rules. No historical country was
+relabeled and no statistical gate was weakened to force a pass.
+
+Art contract revision 2 reconciles the old inspection proposals with the
+accepted detailed models and audits real buildings separately from compounds.
+Buried tank/factory geometry is removed with containment and rendered-image
+proofs. Two full-detail TownMesh review scenes still exceed the unchanged 150k
+scene ceiling; the current campaign city renderer uses CityMesh. These remaining
+scene failures are not hidden by switching the benchmark to a cheaper tier.
+
 ## 2026-09-04 approved E-3 and replay assessment
 
 `TECH_REFERENCE_REPAIR.md` closes the credited-revelation benchmark defect under

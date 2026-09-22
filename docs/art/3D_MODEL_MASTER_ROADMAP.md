@@ -74,14 +74,21 @@ These are initial budgets to validate on the user's machine, not measured perfor
 
 | Asset/use | Detail target | Texture/material target |
 |---|---|---|
-| Ground vehicle close inspection LOD0 | 20–45k triangles assembled | ≤4 materials; vertex colors first; optional shared 1–2K atlas later |
-| Aircraft inspection LOD0 | 25–60k | ≤4 materials; shared family atlas |
+| Tank inspection LOD0 | 20–150k; actual GLB <12 MB | ≤4 materials; vertex colors first; optional shared 1–2K atlas later |
+| Armoured specialist inspection LOD0 | 8–48k; actual GLB <5 MB | Existing armoured vehicle inspection quality; coarse tiers remain separate |
+| Aircraft inspection LOD0 | 100–250k; actual GLB <28 MB | Required 100k minimum; ≤4 materials; shared family atlas |
 | Large ship inspection LOD0 | 40–90k | ≤6 materials; repeated fittings instanced |
 | LOD1 catalogue preview | 4–12k | Retain silhouette, markings and named selectable major parts |
 | LOD2 map vehicle | 300–1,500 | One material where practical |
 | Building close view / map | 2–12k / 100–800 | Shared regional/industrial atlas or palette |
 | Tree/prop near / far | 100–800 / billboard or 20–100 | Shared atlas; avoid alpha overdraw |
 | Scene assembly | Target ≤150k visible triangles initially | Shared assets, baked backdrop detail; no all-page continuous rendering |
+
+**Contract revision 2 (22 September 2026).** The original 20–45k ground and 25–60k aircraft proposals predated the accepted detailed tank rebuild and Ridge's later requirement for 100,000+ triangles per aircraft inspection model. Inspection now uses the quality bands already enforced by `tools/ui/check_equipment_mesh.cjs` and `tools/ui/check_s16_fighter_mesh.cjs`, with the existing serialized export ceilings in `tools/ui/check_equipment_export.cjs`. These limits were not inferred by rounding up the current meshes. See `TANK_GEOMETRY_DIRECTION.md` for the reviewed tank detail requirements. The LOD1, LOD2, individual-building and scene ceilings remain unchanged. P0 retains a separate diagnostic comparison against the original proposal; a changed verdict does not mean geometry was removed.
+
+A factory compound, terrace of dwellings or multi-building campus pays the full scene budget, and every actual building also pays the 12k individual-building ceiling. Authored constituent ranges must account for every triangle once. Shared walls and roofs are charged in full to each owning building and once to the complete scene; yards, roads, vehicles and other props remain in the complete scene total. Splitting a mesh into arbitrary ranges is not a way to create extra building allowances. The constituent inventory identifies the physical structures, and its coverage and ownership are checked independently.
+
+The aircraft 100k inspection floor is mandatory. Other lower bounds describe expected density; the existing platform-specific quality tests remain authoritative. Serialized GLB limits are decimal bytes (12,000,000 / 5,000,000 / 28,000,000), not runtime GPU memory limits. Browser buffer-allocation checks establish residency accounting and disposal behavior, not a frame-rate guarantee. The frame-rate targets below still require performance measurement.
 
 Measure frame time, upload stalls, GPU memory and download bytes in a fixed benchmark. Target smooth 60fps in the focused single-model viewer and at least 30fps in a representative city/map scene on agreed hardware. If missed, reduce distant content before lowering text/control responsiveness. Establish final simultaneous instance limits through the first benchmark, not a promise of unlimited cities.
 

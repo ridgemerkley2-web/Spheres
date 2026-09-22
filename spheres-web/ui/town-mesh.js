@@ -175,12 +175,31 @@
     // Pending elevations and the openings that will be cut out of them; see
     // the punched-wall note below.
     this.faces = []; this.holes = [];
+    this.unit = null; this.unitTriangles = [];
     // 2 close, 1 card, 0 map. Read by the shared kit — a chamfer, a slate
     // course, a glazing bar, a tree limb and a parked car all ask it whether
     // they are worth drawing — so the three LODs are one call graph and a kind
     // never has to know which one it is being built at.
     this.detail = detail == null ? 2 : detail | 0;
   }
+  // Budget ownership is authored at physical component boundaries. It never
+  // changes geometry or divides a shared roof by an invented dwelling count.
+  Builder.prototype.budgetUnit = function (id, kind, buildingIds) {
+    this.unit = { id, kind, buildingIds: buildingIds || [] };
+    return this;
+  };
+  Builder.prototype.budgetRanges = function () {
+    const ranges = [];
+    for (let i = 0; i < this.unitTriangles.length; i += 1) {
+      const unit = this.unitTriangles[i];
+      if (!unit) throw new Error("Town budget ownership is incomplete");
+      const last = ranges[ranges.length - 1];
+      if (last && last.id.startsWith(unit.id + ":") && last.kind === unit.kind
+          && last.buildingIds.join("|") === unit.buildingIds.join("|")) last.count += 3;
+      else ranges.push({ id: unit.id + ":" + i, kind: unit.kind, buildingIds: unit.buildingIds.slice(), first: i * 3, count: 3 });
+    }
+    return ranges;
+  };
   /// How many sides a round thing gets. Curvature is the one place where
   /// segments are worth real triangles, so close view is generous; the map is
   /// where a six-sided pipe is not only acceptable but invisible.
@@ -221,6 +240,7 @@
     if (!(len > 1e-7)) return this;
     nx /= len; ny /= len; nz /= len;
     const m = mat == null ? 1 : mat;
+    if (this.unit) this.unitTriangles.push(this.unit);
     const tri = [A, B, C];
     for (let k = 0; k < 3; k += 1) {
       this.pos.push(tri[k][0], tri[k][1], tri[k][2]);
@@ -314,7 +334,7 @@
     this.quad([x0, y1, z0], [x0, y1, z1], [x1, y1, z1], [x1, y1, z0], slot, mat);
     this.quad([x0, y0, z0], [x1, y0, z0], [x1, y0, z1], [x0, y0, z1], slot, mat);
     for (const f of [["z+", z1, x0, x1], ["z-", z0, x0, x1], ["x+", x1, z0, z1], ["x-", x0, z0, z1]]) {
-      this.faces.push({ tf: this.tf, side: f[0], at: f[1], u0: f[2], u1: f[3], v0: y0, v1: y1, slot, mat });
+      this.faces.push({ tf: this.tf, unit: this.unit, side: f[0], at: f[1], u0: f[2], u1: f[3], v0: y0, v1: y1, slot, mat });
     }
     return this;
   };
@@ -342,9 +362,9 @@
     const faces = this.faces;
     if (!faces.length) { this.holes = []; return this; }
     this.faces = [];
-    const saved = this.tf;
+    const saved = this.tf, savedUnit = this.unit;
     for (const f of faces) {
-      this.tf = f.tf;
+      this.tf = f.tf; this.unit = f.unit;
       const cuts = [];
       for (const world of this.holes) {
         const h = toLocal(f.tf, world);
@@ -357,7 +377,7 @@
       }
       emitFace(this, f, cuts);
     }
-    this.tf = saved;
+    this.tf = saved; this.unit = savedUnit;
     this.holes = [];
     return this;
   };
@@ -602,6 +622,8 @@
       slot: new Uint8Array(this.slot),
       mat: new Float32Array(this.mat),
       tris: this.pos.length / 9,
+      budgetUnits: this.unit ? this.budgetRanges() : null,
+      budgetBuildings: this.budgetBuildings || null,
     };
   };
 
@@ -1484,7 +1506,11 @@
       const units = Math.round(p.w / 5.9), uw = p.w / units;
       const hw = p.w / 2, hd = 4.4, h = p.storeys * STOREY;
       const zc = -p.d / 2 + 5.0 + hd;
+      const homes = Array.from({ length: units }, (_, i) => "dwelling-" + (i + 1));
+      b.budgetBuildings = homes.map((id, i) => ({ id, label: "Dwelling " + (i + 1) }));
+      b.budgetUnit("lot-ground", "terrain");
       grass(b, -hw, hw, -p.d / 2, p.d / 2);
+      b.budgetUnit("shared-envelope", "shared", homes);
       b.push(0, 0, 0, zc);
       shell(b, hw, hd, h, p.storeys - 1, (i) => i * STOREY);
       gableRoof(b, hw, hd, h, hd * 0.8, 0.22);
@@ -1492,11 +1518,14 @@
         (function () { const xs = []; for (let u = 0; u < units; u += 1) xs.push(-hw + uw * (u + 0.5)); return xs; })(), 1.25);
       // A stack on every party wall and both ends: the signature of a terrace.
       for (let i = 0; i <= units; i += 1) {
+        b.budgetUnit("party-stack-" + i, "shared", homes.slice(Math.max(0, i - 1), Math.min(units, i + 1)));
         const inset = i === 0 ? 0.62 : i === units ? -0.62 : 0;
         chimney(b, -hw + uw * i + inset, 0, h, h + hd * 0.8 + 0.95, 0.95, 0.7, i === 0 || i === units ? 2 : 3);
       }
+      b.budgetUnit("shared-envelope", "shared", homes);
       rainwater(b, hw, hd, h);
       for (let u = 0; u < units; u += 1) {
+        b.budgetUnit(homes[u], "building", [homes[u]]);
         const cx = -hw + uw * (u + 0.5);
         frontDoor(b, cx + uw * 0.28, hd, 2.05);
         sash(b, cx - uw * 0.2, 0.85, uw * 0.42, 1.6, hd, 2, 3);
@@ -1507,6 +1536,8 @@
       }
       b.push(2, 0, 0, 0);
       for (let u = 0; u < units; u += 1) {
+        // Yaw 2 reverses the physical dwelling order on the rear elevation.
+        b.budgetUnit(homes[units - 1 - u], "building", [homes[units - 1 - u]]);
         const cx = -hw + uw * (u + 0.5);
         // The ground-floor back window sits BESIDE the addition, not behind it,
         // which is both where a terrace actually puts it and the only place it
@@ -1529,13 +1560,17 @@
       b.pop();
       // Forecourt: a shallow strip, dwarf wall and railings, no front garden.
       const fz = p.d / 2;
+      b.budgetUnit("lot-ground", "terrain");
       paving(b, -hw, hw, zc + hd, fz - 1.0);
+      b.budgetUnit("forecourt-boundary", "prop");
       lowWall(b, -hw, hw, fz - 1.2, fz - 0.85, 0.5);
       railing(b, -hw, hw, fz - 1.02, 0.58, 0.5, 0.24);
+      b.budgetUnit("lot-ground", "terrain");
       for (let u = 0; u < units; u += 1) grass(b, -hw + uw * u + 0.4, -hw + uw * (u + 1) - 0.4, -p.d / 2 + 0.5, zc - hd - 3.0);
       // Two cars nose to tail at the kerb. A terrace with an empty frontage is
       // the single clearest tell that a street was generated rather than lived
       // in, and this is four hundred triangles against that.
+      b.budgetUnit("parked-cars", "prop");
       parkedCar(b, -hw + uw * 0.9, fz - 1.9, 0, SLOT.CAR_A, 4.0);
       if (units > 3) parkedCar(b, -hw + uw * (units - 1.1), fz - 1.9, 0, SLOT.CAR_C, 4.2);
       return "Original game art: representative temperate terrace, continuous eaves and party-wall stacks over " +
@@ -2133,7 +2168,14 @@
       const hw = p.w / 2, hd = 7.0, h = TALL_STOREY + (p.storeys - 1) * 3.5;
       const zc = -p.d / 2 + 24.0 + hd;
       const wingH = TALL_STOREY + 3.5, wd = 8.0;
+      b.budgetBuildings = [
+        { id: "main-range", label: "Main university range" },
+        { id: "west-wing", label: "West university wing" },
+        { id: "east-wing", label: "East university wing" },
+      ];
+      b.budgetUnit("campus-ground", "terrain");
       grass(b, -hw, hw, -p.d / 2, p.d / 2);
+      b.budgetUnit("main-range", "building", ["main-range"]);
       // A U around a courtyard: main range at the rear, two wings coming
       // forward. It costs three volumes and it is the shape that says campus.
       b.push(0, 0, 0, zc);
@@ -2175,6 +2217,8 @@
       b.pop();
       b.pop();
       for (const sx of [-1, 1]) {
+        const unit = sx < 0 ? "west-wing" : "east-wing";
+        b.budgetUnit(unit, "building", [unit]);
         const cx = sx * (hw - 6.0);
         b.push(0, cx, 0, zc - hd - wd);
         shell(b, 6.0, wd, wingH, 1, () => TALL_STOREY);
@@ -2191,13 +2235,17 @@
         b.pop();
       }
       // Courtyard between the wings.
+      b.budgetUnit("campus-ground", "terrain");
       const cyz = zc - hd - wd;
       paving(b, -hw + 12.5, hw - 12.5, cyz - wd, cyz + wd);
+      b.budgetUnit("courtyard-furniture-and-trees", "prop");
       for (const x of [-hw + 15, hw - 15]) tree(b, x, cyz, 7.6, 0.2, 6);
       bench(b, 0, cyz - wd + 2.0, 0); bench(b, 0, cyz + wd - 2.0, 2);
       const fz = p.d / 2;
       railing(b, -hw, hw, fz - 0.8, 0, 1.9, 0.3);
+      b.budgetUnit("campus-ground", "terrain");
       paving(b, -3.0, 3.0, zc + hd + 1.4, fz - 0.9);
+      b.budgetUnit("entrance-trees", "prop");
       for (const x of [-hw + 5, hw - 5]) tree(b, x, fz - 5.0, 8.2, -0.2, 6);
       return "Original game art: representative temperate university range around a courtyard. Original design; not any existing institution.";
     },
@@ -3091,6 +3139,7 @@
     out.part(baked.label, kind, 0, () => { stampInto(out, baked, 0, 0, 0, scheme); });
     return out.finish(baked.description, {
       kind, lod, scheme: SCHEMES[scheme].id,
+      ...(baked.budgetUnits ? { budgetUnits: baked.budgetUnits, budgetBuildings: baked.budgetBuildings } : {}),
       storeys: p.storeys, footprint: baked.footprint,
       variantKey: baked.key, label: baked.label,
     });

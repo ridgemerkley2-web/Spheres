@@ -22,7 +22,9 @@ const LEGACY_KINDS=['infrastructure','civilian_industry','power_grid','research_
 // Pin the reviewed facility geometry, semantic ranges and bounds across
 // stages, levels and both LODs, including a stopped pose. The 038fe0b baseline
 // was deliberately refreshed after merging coplanar rafter spans and removing
-// four coincident perimeter posts; separate tests retain the original map bytes.
+// four coincident perimeter posts, then removing steel fully enclosed inside
+// complete lead halls. Independent containment/subset tests verify that repair;
+// separate tests retain all unfinished-stage and original map bytes.
 test('the original thirteen facility meshes keep their reviewed geometry and semantics',()=>{
   const hash=crypto.createHash('sha256');
   for(const key of LEGACY_KINDS)for(const stage of STAGES)for(const lod of [0,1])for(let level=1;level<=5;level++)for(const status of ['building','paused']){
@@ -30,7 +32,7 @@ test('the original thirteen facility meshes keep their reviewed geometry and sem
     hash.update(JSON.stringify([key,stage,lod,level,status,mesh.bounds,mesh.parts,mesh.shading]));
     for(const buffer of [mesh.positions,mesh.normals,mesh.colors])hash.update(Buffer.from(buffer.buffer,buffer.byteOffset,buffer.byteLength));
   }
-  assert.equal(hash.digest('hex'),'e01e2ef84f08b6cf7ed4aca985574537d75031b3e0dd92f8c5c92c4e25540936');
+  assert.equal(hash.digest('hex'),'a4848b09985672763420d2e6b906b52c513eab332998b4e72c8a26353ea47458');
 });
 
 // BUDGET, and what moved. LOD1 is unchanged and is the hard one: sites are drawn

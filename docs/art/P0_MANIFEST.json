@@ -26,46 +26,46 @@
       "generator": "EquipmentMesh.build({platform})",
       "runtime": "spheres-web/ui/equipment-model.js (WebGL viewer, selectable parts)",
       "glb": "spheres-web/ui/equipment-models/spheres-tank-balanced.glb",
-      "glb_bytes": 7536696,
+      "glb_bytes": 7101240,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
       "lod": {
-        "LOD0": 68872,
+        "LOD0": 64840,
         "LOD1": 8050,
         "LOD2": 1168
       },
       "payloads": {
         "LOD0": {
-          "triangles": 68872,
-          "vertices": 206616,
+          "triangles": 64840,
+          "vertices": 194520,
           "attributes": {
             "positions": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 2479392,
+              "bytes": 2334240,
               "usage": "base vertex attribute"
             },
             "normals": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 2479392,
+              "bytes": 2334240,
               "usage": "base vertex attribute"
             },
             "colors": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 2479392,
+              "bytes": 2334240,
               "usage": "base vertex attribute"
             },
             "materialClasses": {
               "type": "Uint8Array",
               "components": 1,
-              "bytes": 206616,
+              "bytes": 194520,
               "usage": "CPU material classification; not uploaded directly"
             }
           },
-          "cpu_attribute_view_bytes": 7644792,
-          "cpu_backing_buffer_bytes": 7644792,
-          "base_attribute_upload_bytes": 7438176
+          "cpu_attribute_view_bytes": 7197240,
+          "cpu_backing_buffer_bytes": 7197240,
+          "base_attribute_upload_bytes": 7002720
         },
         "LOD1": {
           "triangles": 8050,
@@ -180,46 +180,46 @@
       "generator": "EquipmentMesh.build({platform})",
       "runtime": "spheres-web/ui/equipment-model.js (WebGL viewer, selectable parts)",
       "glb": "spheres-web/ui/equipment-models/spheres-tank-heavy.glb",
-      "glb_bytes": 8112580,
+      "glb_bytes": 7635652,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
       "lod": {
-        "LOD0": 74144,
+        "LOD0": 69728,
         "LOD1": 5834,
         "LOD2": 1204
       },
       "payloads": {
         "LOD0": {
-          "triangles": 74144,
-          "vertices": 222432,
+          "triangles": 69728,
+          "vertices": 209184,
           "attributes": {
             "positions": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 2669184,
+              "bytes": 2510208,
               "usage": "base vertex attribute"
             },
             "normals": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 2669184,
+              "bytes": 2510208,
               "usage": "base vertex attribute"
             },
             "colors": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 2669184,
+              "bytes": 2510208,
               "usage": "base vertex attribute"
             },
             "materialClasses": {
               "type": "Uint8Array",
               "components": 1,
-              "bytes": 222432,
+              "bytes": 209184,
               "usage": "CPU material classification; not uploaded directly"
             }
           },
-          "cpu_attribute_view_bytes": 8229984,
-          "cpu_backing_buffer_bytes": 8229984,
-          "base_attribute_upload_bytes": 8007552
+          "cpu_attribute_view_bytes": 7739808,
+          "cpu_backing_buffer_bytes": 7739808,
+          "base_attribute_upload_bytes": 7530624
         },
         "LOD1": {
           "triangles": 5834,
@@ -334,46 +334,46 @@
       "generator": "EquipmentMesh.build({platform})",
       "runtime": "spheres-web/ui/equipment-model.js (WebGL viewer, selectable parts)",
       "glb": "spheres-web/ui/equipment-models/spheres-tank-light.glb",
-      "glb_bytes": 7535500,
+      "glb_bytes": 7100044,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
       "lod": {
-        "LOD0": 68872,
+        "LOD0": 64840,
         "LOD1": 8050,
         "LOD2": 1168
       },
       "payloads": {
         "LOD0": {
-          "triangles": 68872,
-          "vertices": 206616,
+          "triangles": 64840,
+          "vertices": 194520,
           "attributes": {
             "positions": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 2479392,
+              "bytes": 2334240,
               "usage": "base vertex attribute"
             },
             "normals": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 2479392,
+              "bytes": 2334240,
               "usage": "base vertex attribute"
             },
             "colors": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 2479392,
+              "bytes": 2334240,
               "usage": "base vertex attribute"
             },
             "materialClasses": {
               "type": "Uint8Array",
               "components": 1,
-              "bytes": 206616,
+              "bytes": 194520,
               "usage": "CPU material classification; not uploaded directly"
             }
           },
-          "cpu_attribute_view_bytes": 7644792,
-          "cpu_backing_buffer_bytes": 7644792,
-          "base_attribute_upload_bytes": 7438176
+          "cpu_attribute_view_bytes": 7197240,
+          "cpu_backing_buffer_bytes": 7197240,
+          "base_attribute_upload_bytes": 7002720
         },
         "LOD1": {
           "triangles": 8050,
@@ -488,46 +488,46 @@
       "generator": "EquipmentMesh.build({platform})",
       "runtime": "spheres-web/ui/equipment-model.js (WebGL viewer, selectable parts)",
       "glb": "spheres-web/ui/equipment-models/spheres-tank-destroyer.glb",
-      "glb_bytes": 7433032,
+      "glb_bytes": 6997576,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
       "lod": {
-        "LOD0": 68872,
+        "LOD0": 64840,
         "LOD1": 8050,
         "LOD2": 1168
       },
       "payloads": {
         "LOD0": {
-          "triangles": 68872,
-          "vertices": 206616,
+          "triangles": 64840,
+          "vertices": 194520,
           "attributes": {
             "positions": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 2479392,
+              "bytes": 2334240,
               "usage": "base vertex attribute"
             },
             "normals": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 2479392,
+              "bytes": 2334240,
               "usage": "base vertex attribute"
             },
             "colors": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 2479392,
+              "bytes": 2334240,
               "usage": "base vertex attribute"
             },
             "materialClasses": {
               "type": "Uint8Array",
               "components": 1,
-              "bytes": 206616,
+              "bytes": 194520,
               "usage": "CPU material classification; not uploaded directly"
             }
           },
-          "cpu_attribute_view_bytes": 7644792,
-          "cpu_backing_buffer_bytes": 7644792,
-          "base_attribute_upload_bytes": 7438176
+          "cpu_attribute_view_bytes": 7197240,
+          "cpu_backing_buffer_bytes": 7197240,
+          "base_attribute_upload_bytes": 7002720
         },
         "LOD1": {
           "triangles": 8050,
@@ -642,46 +642,46 @@
       "generator": "EquipmentMesh.build({platform})",
       "runtime": "spheres-web/ui/equipment-model.js (WebGL viewer, selectable parts)",
       "glb": "spheres-web/ui/equipment-models/spheres-ground-ifv.glb",
-      "glb_bytes": 4781488,
+      "glb_bytes": 4605232,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
       "lod": {
-        "LOD0": 44222,
+        "LOD0": 42590,
         "LOD1": 5862,
         "LOD2": 1144
       },
       "payloads": {
         "LOD0": {
-          "triangles": 44222,
-          "vertices": 132666,
+          "triangles": 42590,
+          "vertices": 127770,
           "attributes": {
             "positions": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 1591992,
+              "bytes": 1533240,
               "usage": "base vertex attribute"
             },
             "normals": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 1591992,
+              "bytes": 1533240,
               "usage": "base vertex attribute"
             },
             "colors": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 1591992,
+              "bytes": 1533240,
               "usage": "base vertex attribute"
             },
             "materialClasses": {
               "type": "Uint8Array",
               "components": 1,
-              "bytes": 132666,
+              "bytes": 127770,
               "usage": "CPU material classification; not uploaded directly"
             }
           },
-          "cpu_attribute_view_bytes": 4908642,
-          "cpu_backing_buffer_bytes": 4908642,
-          "base_attribute_upload_bytes": 4775976
+          "cpu_attribute_view_bytes": 4727490,
+          "cpu_backing_buffer_bytes": 4727490,
+          "base_attribute_upload_bytes": 4599720
         },
         "LOD1": {
           "triangles": 5862,
@@ -1128,46 +1128,46 @@
       "generator": "EquipmentMesh.build({platform})",
       "runtime": "spheres-web/ui/equipment-model.js (WebGL viewer, selectable parts)",
       "glb": "spheres-web/ui/equipment-models/spheres-ground-artillery.glb",
-      "glb_bytes": 4901380,
+      "glb_bytes": 4709572,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
       "lod": {
-        "LOD0": 45330,
+        "LOD0": 43554,
         "LOD1": 5182,
         "LOD2": 1144
       },
       "payloads": {
         "LOD0": {
-          "triangles": 45330,
-          "vertices": 135990,
+          "triangles": 43554,
+          "vertices": 130662,
           "attributes": {
             "positions": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 1631880,
+              "bytes": 1567944,
               "usage": "base vertex attribute"
             },
             "normals": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 1631880,
+              "bytes": 1567944,
               "usage": "base vertex attribute"
             },
             "colors": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 1631880,
+              "bytes": 1567944,
               "usage": "base vertex attribute"
             },
             "materialClasses": {
               "type": "Uint8Array",
               "components": 1,
-              "bytes": 135990,
+              "bytes": 130662,
               "usage": "CPU material classification; not uploaded directly"
             }
           },
-          "cpu_attribute_view_bytes": 5031630,
-          "cpu_backing_buffer_bytes": 5031630,
-          "base_attribute_upload_bytes": 4895640
+          "cpu_attribute_view_bytes": 4834494,
+          "cpu_backing_buffer_bytes": 4834494,
+          "base_attribute_upload_bytes": 4703832
         },
         "LOD1": {
           "triangles": 5182,
@@ -1290,46 +1290,46 @@
       "generator": "EquipmentMesh.build({platform})",
       "runtime": "spheres-web/ui/equipment-model.js (WebGL viewer, selectable parts)",
       "glb": "spheres-web/ui/equipment-models/spheres-ground-air-defense.glb",
-      "glb_bytes": 4452684,
+      "glb_bytes": 4279020,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
       "lod": {
-        "LOD0": 41178,
+        "LOD0": 39570,
         "LOD1": 5632,
         "LOD2": 1112
       },
       "payloads": {
         "LOD0": {
-          "triangles": 41178,
-          "vertices": 123534,
+          "triangles": 39570,
+          "vertices": 118710,
           "attributes": {
             "positions": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 1482408,
+              "bytes": 1424520,
               "usage": "base vertex attribute"
             },
             "normals": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 1482408,
+              "bytes": 1424520,
               "usage": "base vertex attribute"
             },
             "colors": {
               "type": "Float32Array",
               "components": 3,
-              "bytes": 1482408,
+              "bytes": 1424520,
               "usage": "base vertex attribute"
             },
             "materialClasses": {
               "type": "Uint8Array",
               "components": 1,
-              "bytes": 123534,
+              "bytes": 118710,
               "usage": "CPU material classification; not uploaded directly"
             }
           },
-          "cpu_attribute_view_bytes": 4570758,
-          "cpu_backing_buffer_bytes": 4570758,
-          "base_attribute_upload_bytes": 4447224
+          "cpu_attribute_view_bytes": 4392270,
+          "cpu_backing_buffer_bytes": 4392270,
+          "base_attribute_upload_bytes": 4273560
         },
         "LOD1": {
           "triangles": 5632,
@@ -1962,7 +1962,7 @@
       "lod": {
         "LOD0": {
           "min": 8846,
-          "max": 23160
+          "max": 22180
         },
         "LOD1": {
           "min": 244,
@@ -2046,7 +2046,7 @@
       "lod": {
         "LOD0": {
           "min": 8066,
-          "max": 31386
+          "max": 30406
         },
         "LOD1": {
           "min": 180,
@@ -2130,7 +2130,7 @@
       "lod": {
         "LOD0": {
           "min": 9390,
-          "max": 30956
+          "max": 29976
         },
         "LOD1": {
           "min": 276,
@@ -2214,7 +2214,7 @@
       "lod": {
         "LOD0": {
           "min": 8066,
-          "max": 25184
+          "max": 24204
         },
         "LOD1": {
           "min": 180,
@@ -2298,7 +2298,7 @@
       "lod": {
         "LOD0": {
           "min": 8202,
-          "max": 28040
+          "max": 27060
         },
         "LOD1": {
           "min": 180,
@@ -2382,7 +2382,7 @@
       "lod": {
         "LOD0": {
           "min": 9366,
-          "max": 29972
+          "max": 28992
         },
         "LOD1": {
           "min": 204,
@@ -2466,7 +2466,7 @@
       "lod": {
         "LOD0": {
           "min": 8394,
-          "max": 31264
+          "max": 30284
         },
         "LOD1": {
           "min": 196,
@@ -2550,7 +2550,7 @@
       "lod": {
         "LOD0": {
           "min": 8746,
-          "max": 27174
+          "max": 26194
         },
         "LOD1": {
           "min": 220,
@@ -2634,7 +2634,7 @@
       "lod": {
         "LOD0": {
           "min": 8802,
-          "max": 28690
+          "max": 27710
         },
         "LOD1": {
           "min": 198,
@@ -2718,7 +2718,7 @@
       "lod": {
         "LOD0": {
           "min": 8560,
-          "max": 26410
+          "max": 25430
         },
         "LOD1": {
           "min": 188,
@@ -2802,7 +2802,7 @@
       "lod": {
         "LOD0": {
           "min": 9044,
-          "max": 25720
+          "max": 24740
         },
         "LOD1": {
           "min": 220,
@@ -2886,7 +2886,7 @@
       "lod": {
         "LOD0": {
           "min": 8882,
-          "max": 25460
+          "max": 24480
         },
         "LOD1": {
           "min": 208,
@@ -2970,7 +2970,7 @@
       "lod": {
         "LOD0": {
           "min": 7250,
-          "max": 22052
+          "max": 21072
         },
         "LOD1": {
           "min": 164,
@@ -3054,7 +3054,7 @@
       "lod": {
         "LOD0": {
           "min": 8066,
-          "max": 24754
+          "max": 23774
         },
         "LOD1": {
           "min": 180,
@@ -3138,7 +3138,7 @@
       "lod": {
         "LOD0": {
           "min": 8474,
-          "max": 22728
+          "max": 21748
         },
         "LOD1": {
           "min": 188,
@@ -3222,7 +3222,7 @@
       "lod": {
         "LOD0": {
           "min": 8202,
-          "max": 22732
+          "max": 21752
         },
         "LOD1": {
           "min": 180,

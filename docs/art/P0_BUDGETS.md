@@ -7,7 +7,7 @@ on every run, so a budget edited there fails this tool rather than silently
 changing a verdict.
 
     node tools/ui/bench_art.cjs           regenerate this file, print timings to stdout
-    node tools/ui/bench_art.cjs --check   exit 1 if this file is stale or anything is over budget
+    node tools/ui/bench_art.cjs --check   exit 1 if stale, over budget or below a required quality floor
     node tools/ui/bench_art.cjs --check-records   check reproducibility only; does not pass the budget gate
 
 ## What this file deliberately does not contain
@@ -55,110 +55,269 @@ Read from roadmap section 4. The cell text is compared on every run; if section
 
 | class | roadmap row | roadmap cell | applied as | applied to |
 | --- | --- | --- | --- | --- |
-| vehicle LOD0 | Ground vehicle close inspection LOD0 | 20–45k triangles assembled | 20,000–45,000 tris | every ground platform, baseline and heaviest |
-| aircraft LOD0 | Aircraft inspection LOD0 | 25–60k | 25,000–60,000 tris | all three CP1 aircraft baselines |
+| tank LOD0 | Tank inspection LOD0 | 20–150k; actual GLB <12 MB | 20,000–150,000 tris | four tank platforms, baseline and heaviest |
+| specialist LOD0 | Armoured specialist inspection LOD0 | 8–48k; actual GLB <5 MB | 8,000–48,000 tris | five armoured specialist platforms, baseline and heaviest |
+| aircraft LOD0 | Aircraft inspection LOD0 | 100–250k; actual GLB <28 MB | 100,000–250,000 tris | all three CP1 aircraft baselines |
 | vehicle LOD1 | LOD1 catalogue preview | 4–12k | 4,000–12,000 tris | all twelve ground/air baselines |
 | vehicle LOD2 | LOD2 map vehicle | 300–1,500 | 300–1,500 tris | all twelve ground/air baselines |
-| building near | Building close view / map | 2–12k / 100–800 | 2,000–12,000 tris | construction sites LOD0, town kit close |
+| building near | Building close view / map | 2–12k / 100–800 | 2,000–12,000 tris | each physical building, including shared envelope cost |
 | building far | Building close view / map | 2–12k / 100–800 | 100–800 tris | construction sites LOD1, town kit map |
-| scene assembly | Scene assembly | Target ≤150k visible triangles initially | ≤ 150,000 tris | one town block |
+| scene assembly | Scene assembly | Target ≤150k visible triangles initially | ≤ 150,000 tris | one town block, complete compound, terrace or campus |
 
 `OVER` means above the ceiling and fails `--check`. `under` means below the
-floor of a range: that is a detail-density note, not a performance risk, and it
-does not fail. A budget with only a ceiling can only be `PASS` or `OVER`.
+floor of a range. Aircraft inspection's 100,000 minimum is a required quality
+floor and FAILS the gate; other lower bounds remain density notes, with their
+platform-specific quality checks enforced by the equipment suite. A budget
+with only a ceiling can only be `PASS` or `OVER`.
 
 ## Verdicts
 
-112 graded configurations: 77 PASS, 0 under the detail floor, 35 over the ceiling.
+245 graded configurations: 164 PASS, 79 under the detail floor, 2 over the ceiling.
 
 The geometry sweep covers nine ground platforms, all three CP1 aircraft,
-construction sites and town assets. These are the original roadmap ceilings;
-later high-detail requests have not silently replaced them. Reported overruns
-remain open design/performance decisions rather than being hidden by measurement repairs.
+construction sites and town assets. Contract revision 2 reconciles the original
+proposal with the subsequently implemented inspection quality/export contracts
+and distinguishes a physical building from a multi-building scene. The original
+comparison remains visible below. No frame-rate guarantee follows from this gate.
 
-35 measured configurations are over budget. `--check` exits 1 while any row here has content.
+2 measured configurations are over budget. `--check` exits 1 while any row here has content.
 
 | asset | configuration | measured | budget ceiling | over by |
 | --- | --- | --- | --- | --- |
-| `ground.tank_standard.baseline.v1` | baseline | 68,872 | 45,000 | 23,872 (53.0%) |
-| `ground.tank_standard.baseline.v1` | heaviest | 69,000 | 45,000 | 24,000 (53.3%) |
-| `ground.tank_heavy.baseline.v1` | baseline | 74,144 | 45,000 | 29,144 (64.8%) |
-| `ground.tank_heavy.baseline.v1` | heaviest | 74,272 | 45,000 | 29,272 (65.0%) |
-| `ground.tank_light.baseline.v1` | baseline | 68,872 | 45,000 | 23,872 (53.0%) |
-| `ground.tank_light.baseline.v1` | heaviest | 69,000 | 45,000 | 24,000 (53.3%) |
-| `ground.tank_destroyer.baseline.v1` | baseline | 68,872 | 45,000 | 23,872 (53.0%) |
-| `ground.tank_destroyer.baseline.v1` | heaviest | 69,000 | 45,000 | 24,000 (53.3%) |
-| `ground.ground_ifv.baseline.v1` | heaviest | 49,348 | 45,000 | 4,348 (9.7%) |
-| `ground.ground_artillery.baseline.v1` | baseline | 45,330 | 45,000 | 330 (0.7%) |
-| `ground.ground_artillery.baseline.v1` | heaviest | 49,248 | 45,000 | 4,248 (9.4%) |
-| `ground.ground_air_defense.baseline.v1` | heaviest | 45,812 | 45,000 | 812 (1.8%) |
-| `aviation.air_fighter.baseline.v1` | baseline LOD0 | 200,446 | 60,000 | 140,446 (234.1%) |
-| `aviation.air_light_attack.baseline.v1` | baseline LOD0 | 199,326 | 60,000 | 139,326 (232.2%) |
-| `aviation.air_tactical_strike.baseline.v1` | baseline LOD0 | 228,640 | 60,000 | 168,640 (281.1%) |
-| `site.infrastructure.v1` | near complete/L5/building | 30,420 | 12,000 | 18,420 (153.5%) |
-| `site.civilian_industry.v1` | near complete/L5/building | 38,646 | 12,000 | 26,646 (222.0%) |
-| `site.power_grid.v1` | near complete/L5/building | 38,216 | 12,000 | 26,216 (218.5%) |
-| `site.research_center.v1` | near complete/L5/building | 32,444 | 12,000 | 20,444 (170.4%) |
-| `site.arms_plant.v1` | near complete/L5/building | 35,300 | 12,000 | 23,300 (194.2%) |
-| `site.machinery_works.v1` | near complete/L5/building | 37,232 | 12,000 | 25,232 (210.3%) |
-| `site.generation.v1` | near complete/L5/building | 38,524 | 12,000 | 26,524 (221.0%) |
-| `site.processing_plant.v1` | near complete/L5/building | 34,434 | 12,000 | 22,434 (186.9%) |
-| `site.freight_terminal.v1` | near complete/L5/building | 36,094 | 12,000 | 24,094 (200.8%) |
-| `site.warehouse.v1` | near complete/L5/building | 33,670 | 12,000 | 21,670 (180.6%) |
-| `site.automation.v1` | near complete/L5/building | 32,980 | 12,000 | 20,980 (174.8%) |
-| `site.efficiency.v1` | near complete/L5/building | 32,720 | 12,000 | 20,720 (172.7%) |
-| `site.starter_industry.v1` | near complete/L5/building | 29,828 | 12,000 | 17,828 (148.6%) |
-| `site.office_district.v1` | near complete/L5/building | 32,014 | 12,000 | 20,014 (166.8%) |
-| `site.shipyard.v1` | near complete/L5/building | 29,988 | 12,000 | 17,988 (149.9%) |
-| `site.advanced_industry.v1` | near complete/L5/building | 29,992 | 12,000 | 17,992 (149.9%) |
 | `town.temperate.mixed.v1` | close id 1997 | 163,671 | 150,000 | 13,671 (9.1%) |
 | `town.temperate.residential.v1` | close id 1994 | 174,540 | 150,000 | 24,540 (16.4%) |
-| `town.kit.row_house` | close, maximum size | 16,382 | 12,000 | 4,382 (36.5%) |
-| `town.kit.university` | close, maximum size | 16,656 | 12,000 | 4,656 (38.8%) |
 
 Widening the roadmap budget to make this table empty is the one repair
 this harness exists to forbid. Either the mesh loses the triangles, or
 section 4's ceiling is deliberately re-argued and re-derived — a design
 decision, recorded as such, not a quiet edit to a number in a table.
 
+No required inspection quality floor is missed.
+
+## Original proposal comparison (superseded units/inspection targets)
+
+33 configurations still exceed the original proposal on
+the CURRENT meshes. These are diagnostic comparisons, not current-contract
+passes or claims that those triangles disappeared. Tank/specialist inspection
+now follows the already-enforced quality and serialized export limits; aircraft
+preserve the user's later 100k+ requirement. Whole compounds, terraces and
+campuses also pay the scene budget, with every actual building separately graded.
+
+| asset | configuration | triangles | original ceiling |
+| --- | --- | ---: | ---: |
+| `ground.tank_standard.baseline.v1` | baseline | 64,840 | 45,000 |
+| `ground.tank_standard.baseline.v1` | heaviest | 74,044 | 45,000 |
+| `ground.tank_heavy.baseline.v1` | baseline | 69,728 | 45,000 |
+| `ground.tank_heavy.baseline.v1` | heaviest | 80,476 | 45,000 |
+| `ground.tank_light.baseline.v1` | baseline | 64,840 | 45,000 |
+| `ground.tank_light.baseline.v1` | heaviest | 74,044 | 45,000 |
+| `ground.tank_destroyer.baseline.v1` | baseline | 64,840 | 45,000 |
+| `ground.tank_destroyer.baseline.v1` | heaviest | 74,044 | 45,000 |
+| `ground.ground_ifv.baseline.v1` | heaviest | 47,716 | 45,000 |
+| `ground.ground_artillery.baseline.v1` | heaviest | 47,472 | 45,000 |
+| `aviation.air_fighter.baseline.v1` | baseline LOD0 | 200,446 | 60,000 |
+| `aviation.air_light_attack.baseline.v1` | baseline LOD0 | 199,326 | 60,000 |
+| `aviation.air_tactical_strike.baseline.v1` | baseline LOD0 | 228,640 | 60,000 |
+| `site.infrastructure.v1` | near complete/L5/building | 29,440 | 12,000 |
+| `site.civilian_industry.v1` | near complete/L5/building | 37,666 | 12,000 |
+| `site.power_grid.v1` | near complete/L5/building | 37,236 | 12,000 |
+| `site.research_center.v1` | near complete/L5/building | 31,464 | 12,000 |
+| `site.arms_plant.v1` | near complete/L5/building | 34,320 | 12,000 |
+| `site.machinery_works.v1` | near complete/L5/building | 36,252 | 12,000 |
+| `site.generation.v1` | near complete/L5/building | 37,544 | 12,000 |
+| `site.processing_plant.v1` | near complete/L5/building | 33,454 | 12,000 |
+| `site.freight_terminal.v1` | near complete/L5/building | 35,114 | 12,000 |
+| `site.warehouse.v1` | near complete/L5/building | 32,690 | 12,000 |
+| `site.automation.v1` | near complete/L5/building | 32,000 | 12,000 |
+| `site.efficiency.v1` | near complete/L5/building | 31,740 | 12,000 |
+| `site.starter_industry.v1` | near complete/L5/building | 28,848 | 12,000 |
+| `site.office_district.v1` | near complete/L5/building | 31,034 | 12,000 |
+| `site.shipyard.v1` | near complete/L5/building | 29,008 | 12,000 |
+| `site.advanced_industry.v1` | near complete/L5/building | 29,012 | 12,000 |
+| `town.temperate.mixed.v1` | close id 1997 | 163,671 | 150,000 |
+| `town.temperate.residential.v1` | close id 1994 | 174,540 | 150,000 |
+| `town.kit.row_house` | close, maximum size | 16,382 | 12,000 |
+| `town.kit.university` | close, maximum size | 16,656 | 12,000 |
+
+## Physical building accounting
+
+Authored ranges cover each triangle exactly once. Terrain and props remain in
+the total scene cost. A shared roof/wall is charged in FULL to every owning
+building, rather than divided across them, and once to the assembly. Unknown
+owners, duplicate ranges, gaps and missing building geometry fail measurement.
+Each row records its worst observed configuration; a sum of these independent
+maxima is not a simultaneously rendered scene.
+
+| asset / physical building | worst configuration | own tris | shared tris (full) | charged tris | 12k ceiling verdict |
+| --- | --- | ---: | ---: | ---: | --- |
+| `site.infrastructure/welfare-cabins` | frame/L1/building | 2,084 | 0 | 2,084 | PASS |
+| `site.infrastructure/wing-1` | site/L2/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.infrastructure/wing-2` | site/L3/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.infrastructure/wing-3` | site/L4/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.infrastructure/wing-4` | site/L5/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.infrastructure/lead` | complete/L1/building | 8,592 | 0 | 8,592 | PASS |
+| `site.infrastructure/bridge` | complete/L1/building | 1,024 | 0 | 1,024 | under by 976 |
+| `site.infrastructure/control-kiosk` | frame/L1/building | 268 | 0 | 268 | under by 1,732 |
+| `site.civilian_industry/welfare-cabins` | frame/L1/building | 2,084 | 0 | 2,084 | PASS |
+| `site.civilian_industry/wing-1` | site/L2/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.civilian_industry/wing-2` | site/L3/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.civilian_industry/wing-3` | site/L4/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.civilian_industry/wing-4` | site/L5/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.civilian_industry/lead` | complete/L1/building | 8,644 | 288 | 8,932 | PASS |
+| `site.civilian_industry/module-2` | complete/L1/building | 4,322 | 288 | 4,610 | PASS |
+| `site.civilian_industry/module-3` | complete/L1/building | 3,676 | 288 | 3,964 | PASS |
+| `site.civilian_industry/service-block` | frame/L1/building | 276 | 0 | 276 | under by 1,724 |
+| `site.power_grid/welfare-cabins` | frame/L1/building | 2,084 | 0 | 2,084 | PASS |
+| `site.power_grid/wing-1` | site/L2/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.power_grid/wing-2` | site/L3/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.power_grid/wing-3` | site/L4/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.power_grid/wing-4` | site/L5/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.power_grid/lead` | complete/L1/building | 8,436 | 0 | 8,436 | PASS |
+| `site.research_center/welfare-cabins` | frame/L1/building | 2,084 | 0 | 2,084 | PASS |
+| `site.research_center/wing-1` | site/L2/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.research_center/wing-2` | site/L3/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.research_center/wing-3` | site/L4/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.research_center/wing-4` | site/L5/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.research_center/lead` | complete/L1/building | 8,696 | 512 | 9,208 | PASS |
+| `site.research_center/laboratory` | complete/L1/building | 3,154 | 512 | 3,666 | PASS |
+| `site.research_center/service-annex` | complete/L1/building | 152 | 0 | 152 | under by 1,848 |
+| `site.arms_plant/welfare-cabins` | frame/L1/building | 2,084 | 0 | 2,084 | PASS |
+| `site.arms_plant/wing-1` | site/L2/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.arms_plant/wing-2` | site/L3/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.arms_plant/wing-3` | site/L4/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.arms_plant/wing-4` | site/L5/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.arms_plant/lead` | complete/L1/building | 11,690 | 0 | 11,690 | PASS |
+| `site.arms_plant/gatehouse` | complete/L1/building | 572 | 0 | 572 | under by 1,428 |
+| `site.machinery_works/welfare-cabins` | frame/L1/building | 2,084 | 0 | 2,084 | PASS |
+| `site.machinery_works/wing-1` | site/L2/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.machinery_works/wing-2` | site/L3/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.machinery_works/wing-3` | site/L4/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.machinery_works/wing-4` | site/L5/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.machinery_works/lead` | complete/L1/building | 9,874 | 0 | 9,874 | PASS |
+| `site.machinery_works/fitting-bay` | complete/L1/building | 4,322 | 0 | 4,322 | PASS |
+| `site.machinery_works/compressor-house` | enclosed/L1/building | 216 | 0 | 216 | under by 1,784 |
+| `site.generation/welfare-cabins` | frame/L1/building | 2,084 | 0 | 2,084 | PASS |
+| `site.generation/wing-1` | site/L2/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.generation/wing-2` | site/L3/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.generation/wing-3` | site/L4/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.generation/wing-4` | site/L5/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.generation/lead` | complete/L1/building | 8,852 | 0 | 8,852 | PASS |
+| `site.generation/conversion-block` | complete/L1/building | 4,322 | 0 | 4,322 | PASS |
+| `site.processing_plant/welfare-cabins` | frame/L1/building | 2,084 | 0 | 2,084 | PASS |
+| `site.processing_plant/wing-1` | site/L2/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.processing_plant/wing-2` | site/L3/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.processing_plant/wing-3` | site/L4/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.processing_plant/wing-4` | site/L5/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.processing_plant/lead` | complete/L1/building | 8,792 | 0 | 8,792 | PASS |
+| `site.processing_plant/process-tower` | enclosed/L1/building | 2,836 | 0 | 2,836 | PASS |
+| `site.freight_terminal/welfare-cabins` | frame/L1/building | 2,084 | 0 | 2,084 | PASS |
+| `site.freight_terminal/wing-1` | site/L2/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.freight_terminal/wing-2` | site/L3/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.freight_terminal/wing-3` | site/L4/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.freight_terminal/wing-4` | site/L5/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.freight_terminal/lead` | complete/L1/building | 9,874 | 0 | 9,874 | PASS |
+| `site.warehouse/welfare-cabins` | frame/L1/building | 2,084 | 0 | 2,084 | PASS |
+| `site.warehouse/wing-1` | site/L2/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.warehouse/wing-2` | site/L3/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.warehouse/wing-3` | site/L4/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.warehouse/wing-4` | site/L5/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.warehouse/lead` | complete/L1/building | 10,690 | 0 | 10,690 | PASS |
+| `site.warehouse/pump-house` | enclosed/L1/building | 512 | 0 | 512 | under by 1,488 |
+| `site.automation/host` | foundation/L1/building | 2,086 | 0 | 2,086 | PASS |
+| `site.automation/welfare-cabins` | frame/L1/building | 2,084 | 0 | 2,084 | PASS |
+| `site.automation/wing-1` | site/L2/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.automation/wing-2` | site/L3/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.automation/wing-3` | site/L4/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.automation/wing-4` | site/L5/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.automation/lead` | complete/L1/building | 8,384 | 0 | 8,384 | PASS |
+| `site.automation/control-kiosk` | complete/L1/building | 268 | 0 | 268 | under by 1,732 |
+| `site.efficiency/host` | complete/L1/building | 1,788 | 0 | 1,788 | under by 212 |
+| `site.efficiency/welfare-cabins` | frame/L1/building | 2,084 | 0 | 2,084 | PASS |
+| `site.efficiency/wing-1` | site/L2/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.efficiency/wing-2` | site/L3/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.efficiency/wing-3` | site/L4/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.efficiency/wing-4` | site/L5/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.efficiency/lead` | complete/L1/building | 8,328 | 0 | 8,328 | PASS |
+| `site.efficiency/control-kiosk` | complete/L1/building | 1,052 | 0 | 1,052 | under by 948 |
+| `site.starter_industry/welfare-cabins` | frame/L1/building | 2,084 | 0 | 2,084 | PASS |
+| `site.starter_industry/wing-1` | site/L2/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.starter_industry/wing-2` | site/L3/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.starter_industry/wing-3` | site/L4/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.starter_industry/wing-4` | site/L5/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.starter_industry/lead` | complete/L1/building | 8,552 | 0 | 8,552 | PASS |
+| `site.starter_industry/blockwork-store` | frame/L1/building | 246 | 0 | 246 | under by 1,754 |
+| `site.starter_industry/office-pod` | enclosed/L1/building | 220 | 0 | 220 | under by 1,780 |
+| `site.starter_industry/lean-to` | complete/L1/building | 474 | 0 | 474 | under by 1,526 |
+| `site.office_district/welfare-cabins` | frame/L1/building | 2,084 | 0 | 2,084 | PASS |
+| `site.office_district/wing-1` | site/L2/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.office_district/wing-2` | site/L3/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.office_district/wing-3` | site/L4/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.office_district/wing-4` | site/L5/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.office_district/lead` | complete/L1/building | 8,540 | 0 | 8,540 | PASS |
+| `site.office_district/office-floors` | complete/L1/building | 3,794 | 0 | 3,794 | PASS |
+| `site.shipyard/welfare-cabins` | frame/L1/building | 2,084 | 0 | 2,084 | PASS |
+| `site.shipyard/wing-1` | site/L2/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.shipyard/wing-2` | site/L3/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.shipyard/wing-3` | site/L4/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.shipyard/wing-4` | site/L5/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.shipyard/lead` | complete/L1/building | 8,800 | 0 | 8,800 | PASS |
+| `site.shipyard/pump-house` | enclosed/L1/building | 96 | 0 | 96 | under by 1,904 |
+| `site.advanced_industry/welfare-cabins` | frame/L1/building | 2,084 | 0 | 2,084 | PASS |
+| `site.advanced_industry/wing-1` | site/L2/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.advanced_industry/wing-2` | site/L3/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.advanced_industry/wing-3` | site/L4/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.advanced_industry/wing-4` | site/L5/building | 1,398 | 0 | 1,398 | under by 602 |
+| `site.advanced_industry/lead` | complete/L1/building | 8,996 | 0 | 8,996 | PASS |
+| `site.advanced_industry/process-gallery` | enclosed/L1/building | 1,260 | 0 | 1,260 | under by 740 |
+| `town.kit.row_house/dwelling-1` | maximum size, seed 0 | 1,388 | 3,440 | 4,828 | PASS |
+| `town.kit.row_house/dwelling-2` | maximum size, seed 0 | 1,388 | 3,490 | 4,878 | PASS |
+| `town.kit.row_house/dwelling-3` | maximum size, seed 0 | 1,388 | 3,490 | 4,878 | PASS |
+| `town.kit.row_house/dwelling-4` | maximum size, seed 0 | 1,388 | 3,490 | 4,878 | PASS |
+| `town.kit.row_house/dwelling-5` | maximum size, seed 0 | 1,388 | 3,490 | 4,878 | PASS |
+| `town.kit.row_house/dwelling-6` | maximum size, seed 0 | 1,388 | 3,440 | 4,828 | PASS |
+| `town.kit.university/main-range` | maximum size, seed 0 | 9,472 | 0 | 9,472 | PASS |
+| `town.kit.university/west-wing` | maximum size, seed 0 | 2,298 | 0 | 2,298 | PASS |
+| `town.kit.university/east-wing` | maximum size, seed 0 | 2,298 | 0 | 2,298 | PASS |
+
 ## Ground vehicles, LOD0
 
 `baseline` is `EquipmentMesh.build({platform})` with no components named.
-`heaviest` is the costliest specification found by greedy per-slot ascent over
-all 65 components the simulation defines in
-`equipment_specs.rs` and `equipment_ground.rs`, keeping only the ones the
-generator accepts for that chassis. It is a ceiling on the ART: greed is a lower
-bound on the true maximum rather than a proof of it, and the simulation's own
-compatibility matrix may refuse some of these combinations as designs. What it
-answers is the question the budget asks — how heavy can this platform get.
+`heaviest` is the costliest sampled specification found by greedy per-slot ascent
+over all 76 components in `equipment.rs`,
+`equipment_specs.rs` and `equipment_ground.rs`. All generator-accepted slots are
+seeded, including the seven optional tank slots omitted by the default mesh.
+Heavy tanks also start a search from the existing fully loaded regression fixture.
+This is a measured lower bound on the true maximum, not an exhaustive proof.
+The generator accepts the samples; the native compatibility matrix may refuse
+some combinations as orderable designs. Baseline measurements remain separate.
 
 | asset | configuration | LOD0 tris | budget | verdict | base upload bytes | parts |
 | --- | --- | --- | --- | --- | --- | --- |
-| `ground.tank_standard.baseline.v1` | baseline | 68,872 | 20,000–45,000 | **OVER by 23,872 (53.0%)** | 7,438,176 | 21 |
-| `ground.tank_standard.baseline.v1` | heaviest | 69,000 | 20,000–45,000 | **OVER by 24,000 (53.3%)** | 7,452,000 | 23 |
-| `ground.tank_heavy.baseline.v1` | baseline | 74,144 | 20,000–45,000 | **OVER by 29,144 (64.8%)** | 8,007,552 | 21 |
-| `ground.tank_heavy.baseline.v1` | heaviest | 74,272 | 20,000–45,000 | **OVER by 29,272 (65.0%)** | 8,021,376 | 23 |
-| `ground.tank_light.baseline.v1` | baseline | 68,872 | 20,000–45,000 | **OVER by 23,872 (53.0%)** | 7,438,176 | 21 |
-| `ground.tank_light.baseline.v1` | heaviest | 69,000 | 20,000–45,000 | **OVER by 24,000 (53.3%)** | 7,452,000 | 23 |
-| `ground.tank_destroyer.baseline.v1` | baseline | 68,872 | 20,000–45,000 | **OVER by 23,872 (53.0%)** | 7,438,176 | 21 |
-| `ground.tank_destroyer.baseline.v1` | heaviest | 69,000 | 20,000–45,000 | **OVER by 24,000 (53.3%)** | 7,452,000 | 23 |
-| `ground.ground_ifv.baseline.v1` | baseline | 44,222 | 20,000–45,000 | PASS | 4,775,976 | 28 |
-| `ground.ground_ifv.baseline.v1` | heaviest | 49,348 | 20,000–45,000 | **OVER by 4,348 (9.7%)** | 5,329,584 | 29 |
-| `ground.ground_apc.baseline.v1` | baseline | 26,746 | 20,000–45,000 | PASS | 2,888,568 | 22 |
-| `ground.ground_apc.baseline.v1` | heaviest | 37,004 | 20,000–45,000 | PASS | 3,996,432 | 25 |
-| `ground.ground_recon.baseline.v1` | baseline | 23,726 | 20,000–45,000 | PASS | 2,562,408 | 22 |
-| `ground.ground_recon.baseline.v1` | heaviest | 34,036 | 20,000–45,000 | PASS | 3,675,888 | 25 |
-| `ground.ground_artillery.baseline.v1` | baseline | 45,330 | 20,000–45,000 | **OVER by 330 (0.7%)** | 4,895,640 | 30 |
-| `ground.ground_artillery.baseline.v1` | heaviest | 49,248 | 20,000–45,000 | **OVER by 4,248 (9.4%)** | 5,318,784 | 31 |
-| `ground.ground_air_defense.baseline.v1` | baseline | 41,178 | 20,000–45,000 | PASS | 4,447,224 | 28 |
-| `ground.ground_air_defense.baseline.v1` | heaviest | 45,812 | 20,000–45,000 | **OVER by 812 (1.8%)** | 4,947,696 | 29 |
+| `ground.tank_standard.baseline.v1` | baseline | 64,840 | 20,000–150,000 | PASS | 7,002,720 | 21 |
+| `ground.tank_standard.baseline.v1` | heaviest | 74,044 | 20,000–150,000 | PASS | 7,996,752 | 28 |
+| `ground.tank_heavy.baseline.v1` | baseline | 69,728 | 20,000–150,000 | PASS | 7,530,624 | 21 |
+| `ground.tank_heavy.baseline.v1` | heaviest | 80,476 | 20,000–150,000 | PASS | 8,691,408 | 28 |
+| `ground.tank_light.baseline.v1` | baseline | 64,840 | 20,000–150,000 | PASS | 7,002,720 | 21 |
+| `ground.tank_light.baseline.v1` | heaviest | 74,044 | 20,000–150,000 | PASS | 7,996,752 | 28 |
+| `ground.tank_destroyer.baseline.v1` | baseline | 64,840 | 20,000–150,000 | PASS | 7,002,720 | 21 |
+| `ground.tank_destroyer.baseline.v1` | heaviest | 74,044 | 20,000–150,000 | PASS | 7,996,752 | 28 |
+| `ground.ground_ifv.baseline.v1` | baseline | 42,590 | 8,000–48,000 | PASS | 4,599,720 | 28 |
+| `ground.ground_ifv.baseline.v1` | heaviest | 47,716 | 8,000–48,000 | PASS | 5,153,328 | 29 |
+| `ground.ground_apc.baseline.v1` | baseline | 26,746 | 8,000–48,000 | PASS | 2,888,568 | 22 |
+| `ground.ground_apc.baseline.v1` | heaviest | 37,004 | 8,000–48,000 | PASS | 3,996,432 | 25 |
+| `ground.ground_recon.baseline.v1` | baseline | 23,726 | 8,000–48,000 | PASS | 2,562,408 | 22 |
+| `ground.ground_recon.baseline.v1` | heaviest | 34,036 | 8,000–48,000 | PASS | 3,675,888 | 25 |
+| `ground.ground_artillery.baseline.v1` | baseline | 43,554 | 8,000–48,000 | PASS | 4,703,832 | 30 |
+| `ground.ground_artillery.baseline.v1` | heaviest | 47,472 | 8,000–48,000 | PASS | 5,126,976 | 31 |
+| `ground.ground_air_defense.baseline.v1` | baseline | 39,570 | 8,000–48,000 | PASS | 4,273,560 | 28 |
+| `ground.ground_air_defense.baseline.v1` | heaviest | 44,204 | 8,000–48,000 | PASS | 4,774,032 | 29 |
 
 Components that make each platform heaviest:
 
-- `tank_standard`: armament=gun_120, mobility=engine_diesel_600, sensors=optics_night
-- `tank_heavy`: armament=gun_120, mobility=engine_diesel_600, sensors=optics_night
-- `tank_light`: armament=gun_120, mobility=engine_diesel_600, sensors=optics_night
-- `tank_destroyer`: armament=gun_120, mobility=engine_diesel_600, sensors=optics_night
+- `tank_standard`: active_protection=aps_soft, ammunition=ammo_support, communications=comms_data, fire_control=fcs_stabilized, mobility=engine_diesel_600, protection=protection_active, sensors=optics_night, suspension=suspension_hydro, tracks=tracks_standard, transmission=transmission_auto, turret=turret_autoload
+- `tank_heavy`: active_protection=aps_hard, ammunition=ammo_support, armament=gun_125, communications=comms_data, fire_control=fcs_stabilized, mobility=engine_diesel_600, protection=protection_heavy, sensors=optics_night, suspension=suspension_hydro, tracks=tracks_wide, transmission=transmission_auto, turret=turret_autoload
+- `tank_light`: active_protection=aps_soft, ammunition=ammo_support, communications=comms_data, fire_control=fcs_stabilized, mobility=engine_diesel_600, protection=protection_active, sensors=optics_night, suspension=suspension_hydro, tracks=tracks_standard, transmission=transmission_auto, turret=turret_autoload
+- `tank_destroyer`: active_protection=aps_soft, ammunition=ammo_support, communications=comms_data, fire_control=fcs_stabilized, mobility=engine_diesel_600, protection=protection_active, sensors=optics_night, suspension=suspension_hydro, tracks=tracks_standard, transmission=transmission_auto, turret=turret_autoload
 - `ground_ifv`: active_protection=aps_hard, ammunition=ground_ammo_guided, armament=ground_aa_gun, communications=ground_comms_network, fire_control=fcs_digital, mobility=engine_diesel_1200, sensors=optics_night, suspension=suspension_hydro, transmission=ground_transmission_electric, troop_compartment=ground_troops_protected, turret=ground_turret_howitzer
 - `ground_apc`: active_protection=aps_hard, ammunition=ground_ammo_guided, armament=ground_aa_gun, communications=ground_comms_network, fire_control=fcs_digital, mobility=engine_diesel_1200, sensors=optics_night, suspension=suspension_hydro, transmission=ground_transmission_electric, troop_compartment=ground_troops_protected, turret=ground_turret_howitzer, wheels=ground_wheels_runflat
 - `ground_recon`: active_protection=aps_hard, ammunition=ground_ammo_guided, armament=ground_aa_gun, communications=ground_comms_network, fire_control=fcs_digital, mobility=engine_diesel_1200, recon_package=ground_recon_mast, sensors=optics_night, suspension=suspension_hydro, transmission=ground_transmission_electric, turret=ground_turret_howitzer, wheels=ground_wheels_runflat
@@ -170,7 +329,7 @@ Components that make each platform heaviest:
 Every row uses the current baseline specification. This proves these builds,
 not the full space of component combinations. All three aircraft now have
 authored LOD1 and LOD2 meshes. A baseline `tank_heavy` probe measures
-74,144 / 5,834 / 1,204 triangles across LOD0/1/2.
+69,728 / 5,834 / 1,204 triangles across LOD0/1/2.
 
 | platform | detail | triangles | budget | verdict | base upload bytes | CPU backing bytes |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -192,13 +351,13 @@ authored LOD1 and LOD2 meshes. A baseline `tank_heavy` probe measures
 | ground_artillery | LOD2 | 1,144 | 300–1,500 | PASS | 123,552 | 126,984 |
 | ground_air_defense | LOD1 | 5,632 | 4,000–12,000 | PASS | 608,256 | 625,152 |
 | ground_air_defense | LOD2 | 1,112 | 300–1,500 | PASS | 120,096 | 123,432 |
-| air_fighter | LOD0 | 200,446 | 25,000–60,000 | **OVER by 140,446 (234.1%)** | 21,648,168 | 22,249,506 |
+| air_fighter | LOD0 | 200,446 | 100,000–250,000 | PASS | 21,648,168 | 22,249,506 |
 | air_fighter | LOD1 | 11,594 | 4,000–12,000 | PASS | 1,252,152 | 1,286,934 |
 | air_fighter | LOD2 | 1,296 | 300–1,500 | PASS | 139,968 | 143,856 |
-| air_light_attack | LOD0 | 199,326 | 25,000–60,000 | **OVER by 139,326 (232.2%)** | 21,527,208 | 22,125,186 |
+| air_light_attack | LOD0 | 199,326 | 100,000–250,000 | PASS | 21,527,208 | 22,125,186 |
 | air_light_attack | LOD1 | 11,474 | 4,000–12,000 | PASS | 1,239,192 | 1,273,614 |
 | air_light_attack | LOD2 | 1,252 | 300–1,500 | PASS | 135,216 | 138,972 |
-| air_tactical_strike | LOD0 | 228,640 | 25,000–60,000 | **OVER by 168,640 (281.1%)** | 24,693,120 | 25,379,040 |
+| air_tactical_strike | LOD0 | 228,640 | 100,000–250,000 | PASS | 24,693,120 | 25,379,040 |
 | air_tactical_strike | LOD1 | 10,936 | 4,000–12,000 | PASS | 1,181,088 | 1,213,896 |
 | air_tactical_strike | LOD2 | 1,392 | 300–1,500 | PASS | 150,336 | 154,512 |
 
@@ -209,22 +368,22 @@ across that whole sweep, so `max` is the worst case the sim can ask for.
 
 | asset | near min | near max | near verdict | far min | far max | far verdict | worst-case near bytes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `site.infrastructure.v1` | 8,846 | 30,420 | **OVER by 18,420 (153.5%)** | 244 | 756 | PASS | 3,285,360 |
-| `site.civilian_industry.v1` | 8,066 | 38,646 | **OVER by 26,646 (222.0%)** | 180 | 594 | PASS | 4,173,768 |
-| `site.power_grid.v1` | 9,390 | 38,216 | **OVER by 26,216 (218.5%)** | 276 | 712 | PASS | 4,127,328 |
-| `site.research_center.v1` | 8,066 | 32,444 | **OVER by 20,444 (170.4%)** | 180 | 580 | PASS | 3,503,952 |
-| `site.arms_plant.v1` | 8,202 | 35,300 | **OVER by 23,300 (194.2%)** | 180 | 470 | PASS | 3,812,400 |
-| `site.machinery_works.v1` | 9,366 | 37,232 | **OVER by 25,232 (210.3%)** | 204 | 630 | PASS | 4,021,056 |
-| `site.generation.v1` | 8,394 | 38,524 | **OVER by 26,524 (221.0%)** | 196 | 696 | PASS | 4,160,592 |
-| `site.processing_plant.v1` | 8,746 | 34,434 | **OVER by 22,434 (186.9%)** | 220 | 688 | PASS | 3,718,872 |
-| `site.freight_terminal.v1` | 8,802 | 36,094 | **OVER by 24,094 (200.8%)** | 198 | 722 | PASS | 3,898,152 |
-| `site.warehouse.v1` | 8,560 | 33,670 | **OVER by 21,670 (180.6%)** | 188 | 614 | PASS | 3,636,360 |
-| `site.automation.v1` | 9,044 | 32,980 | **OVER by 20,980 (174.8%)** | 220 | 658 | PASS | 3,561,840 |
-| `site.efficiency.v1` | 8,882 | 32,720 | **OVER by 20,720 (172.7%)** | 208 | 730 | PASS | 3,533,760 |
-| `site.starter_industry.v1` | 7,250 | 29,828 | **OVER by 17,828 (148.6%)** | 164 | 542 | PASS | 3,221,424 |
-| `site.office_district.v1` | 8,066 | 32,014 | **OVER by 20,014 (166.8%)** | 180 | 598 | PASS | 3,457,512 |
-| `site.shipyard.v1` | 8,474 | 29,988 | **OVER by 17,988 (149.9%)** | 188 | 642 | PASS | 3,238,704 |
-| `site.advanced_industry.v1` | 8,202 | 29,992 | **OVER by 17,992 (149.9%)** | 180 | 654 | PASS | 3,239,136 |
+| `site.infrastructure.v1` | 8,846 | 29,440 | PASS | 244 | 756 | PASS | 3,179,520 |
+| `site.civilian_industry.v1` | 8,066 | 37,666 | PASS | 180 | 594 | PASS | 4,067,928 |
+| `site.power_grid.v1` | 9,390 | 37,236 | PASS | 276 | 712 | PASS | 4,021,488 |
+| `site.research_center.v1` | 8,066 | 31,464 | PASS | 180 | 580 | PASS | 3,398,112 |
+| `site.arms_plant.v1` | 8,202 | 34,320 | PASS | 180 | 470 | PASS | 3,706,560 |
+| `site.machinery_works.v1` | 9,366 | 36,252 | PASS | 204 | 630 | PASS | 3,915,216 |
+| `site.generation.v1` | 8,394 | 37,544 | PASS | 196 | 696 | PASS | 4,054,752 |
+| `site.processing_plant.v1` | 8,746 | 33,454 | PASS | 220 | 688 | PASS | 3,613,032 |
+| `site.freight_terminal.v1` | 8,802 | 35,114 | PASS | 198 | 722 | PASS | 3,792,312 |
+| `site.warehouse.v1` | 8,560 | 32,690 | PASS | 188 | 614 | PASS | 3,530,520 |
+| `site.automation.v1` | 9,044 | 32,000 | PASS | 220 | 658 | PASS | 3,456,000 |
+| `site.efficiency.v1` | 8,882 | 31,740 | PASS | 208 | 730 | PASS | 3,427,920 |
+| `site.starter_industry.v1` | 7,250 | 28,848 | PASS | 164 | 542 | PASS | 3,115,584 |
+| `site.office_district.v1` | 8,066 | 31,034 | PASS | 180 | 598 | PASS | 3,351,672 |
+| `site.shipyard.v1` | 8,474 | 29,008 | PASS | 188 | 642 | PASS | 3,132,864 |
+| `site.advanced_industry.v1` | 8,202 | 29,012 | PASS | 180 | 654 | PASS | 3,133,296 |
 
 Which configuration is the worst case, and how many selectable parts it carries:
 
@@ -263,13 +422,13 @@ building.
 | `town.temperate.industrial.v1` | 73,866 | 84,250 | PASS | 2,444 | 3,124 | 9,099,000 | 13 |
 
 The map LOD has no roadmap row of its own — section 4 budgets a scene assembly
-and a building, not a coarse scene — so the map column is recorded without a
-verdict. The heaviest map block is 4,098 triangles, which is
+and a building, not a separate coarse scene — so both block detail levels are
+graded against the existing scene ceiling. The heaviest map block is 4,098 triangles, which is
 5.1x the building-far ceiling
 of 800; that says the row is the wrong one for a whole
 tile of town, not that the mesh is wrong. A coarse-scene budget is a gap in
-section 4, and until it exists the map block is measured and left ungraded rather
-than graded against a number written for one building.
+section 4; the common scene ceiling remains enforced until a stricter coarse
+scene budget is established.
 
 ## Town building kit
 
@@ -282,7 +441,7 @@ same triangles twice.
 | kind | worst case | close tris | close verdict | map tris | map verdict |
 | --- | --- | --- | --- | --- | --- |
 | `house` | 11.8 x 20 m, 3 storeys | 6,059 | PASS | 152 | PASS |
-| `row_house` | 35.4 x 17 m, 3 storeys | 16,382 | **OVER by 4,382 (36.5%)** | 188 | PASS |
+| `row_house` | 35.4 x 17 m, 3 storeys | 16,382 | PASS | 188 | PASS |
 | `low_apartment` | 22 x 21 m, 4 storeys | 7,968 | PASS | 164 | PASS |
 | `mid_apartment` | 27 x 24 m, 7 storeys | 11,600 | PASS | 172 | PASS |
 | `high_apartment` | 26 x 34 m, 16 storeys | 9,308 | PASS | 222 | PASS |
@@ -292,12 +451,12 @@ same triangles twice.
 | `civic` | 30 x 30 m, 3 storeys | 9,761 | PASS | 228 | PASS |
 | `school` | 44 x 34 m, 2 storeys | 6,540 | PASS | 230 | PASS |
 | `hospital` | 40 x 42 m, 6 storeys | 6,858 | PASS | 246 | PASS |
-| `university` | 42 x 40 m, 4 storeys | 16,656 | **OVER by 4,656 (38.8%)** | 308 | PASS |
+| `university` | 42 x 40 m, 4 storeys | 16,656 | PASS | 308 | PASS |
 | `stadium` | 178 x 140 m, 1 storey | 5,102 | PASS | 214 | PASS |
 | `park` | 46 x 30 m, 1 storey | 6,920 | PASS | 346 | PASS |
 | `utility` | 17 x 15 m, 1 storey | 4,448 | PASS | 200 | PASS |
 
-Every kit piece stays inside the building row at the largest size its kind admits, at both LODs — including the props (`park`, `utility`, `stadium`), which section 4 gives no rule for classifying and which would want the tree/prop row rather than this one.
+No kit measurement falls below its applied density range. Single buildings use the building ceiling; terraces and campuses use the scene ceiling plus a separate check for every physical building. The legacy park, utility and stadium kit classifications remain unchanged.
 
 ## Tightest passes
 
@@ -306,11 +465,11 @@ failure; this is where the next art pass will push something over.
 
 | asset | configuration | triangles | ceiling | of ceiling |
 | --- | --- | --- | --- | --- |
-| `ground.ground_ifv.baseline.v1` | baseline | 44,222 | 45,000 | 98.3% |
+| `ground.ground_ifv.baseline.v1` | heaviest | 47,716 | 48,000 | 99.4% |
+| `ground.ground_artillery.baseline.v1` | heaviest | 47,472 | 48,000 | 98.9% |
+| `site.arms_plant.v1/lead` | complete/L1/building | 11,690 | 12,000 | 97.4% |
 | `town.kit.mid_apartment` | close, maximum size | 11,600 | 12,000 | 96.7% |
 | `aviation.air_fighter.baseline.v1` | baseline LOD1 | 11,594 | 12,000 | 96.6% |
-| `aviation.air_light_attack.baseline.v1` | baseline LOD1 | 11,474 | 12,000 | 95.6% |
-| `site.infrastructure.v1` | far complete/L5/building | 756 | 800 | 94.5% |
 
 ## Hypothetical ground/site/town inventory, not live residency
 
@@ -320,14 +479,14 @@ added here. CPU backing bytes and per-attribute layouts are in P0_MEASUREMENTS.j
 
 | set | assets | stored triangles | base upload payload bytes |
 | --- | --- | --- | --- |
-| Ground vehicles, heaviest specification | 9 | 496,720 | 53,645,760 |
-| Construction sites, worst case near | 16 | 542,502 | 58,590,216 |
+| Ground vehicles, heaviest specification | 9 | 513,040 | 55,408,320 |
+| Construction sites, worst case near | 16 | 526,822 | 56,896,776 |
 | Town blocks, worst case close | 5 | 676,332 | 73,043,856 |
-| **Measured set, close detail** | **30** | **1,715,554** | **185,279,832** (176.70 MiB) |
-| Sites/towns coarse; ground vehicles retained at LOD0 for comparison | 30 | 525,552 | 56,759,616 (54.13 MiB) |
+| **Measured set, close detail** | **30** | **1,716,194** | **185,348,952** (176.76 MiB) |
+| Sites/towns coarse; ground vehicles retained at LOD0 for comparison | 30 | 541,872 | 58,522,176 (55.81 MiB) |
 
 The comparison row deliberately retains the measured vehicles at LOD0:
-496,720 of its 525,552 triangles are
+513,040 of its 541,872 triangles are
 the nine ground vehicles, with 28,832
 for the coarse sites and blocks. It is not the live map's rendering cost and
 does not imply the available ground LOD1/LOD2 geometry is unused.
@@ -350,29 +509,49 @@ compression/headers, renderer, stylesheet and other page costs are not included.
 
 | file | bytes | |
 | --- | --- | --- |
-| `spheres-web/ui/equipment-mesh.js` | 180,384 | 176.2 KiB |
-| `spheres-web/ui/site-mesh.js` | 304,444 | 297.3 KiB |
-| `spheres-web/ui/town-mesh.js` | 171,386 | 167.4 KiB |
-| **total** | **656,214** | **640.8 KiB** |
+| `spheres-web/ui/equipment-mesh.js` | 180,994 | 176.8 KiB |
+| `spheres-web/ui/site-mesh.js` | 308,376 | 301.1 KiB |
+| `spheres-web/ui/town-mesh.js` | 174,196 | 170.1 KiB |
+| **total** | **663,566** | **648.0 KiB** |
 
-656,214 bytes of source produce 1,715,554 triangles of
-geometry — 282x its own weight in vertex data. That ratio is not fixed
+663,566 bytes of source produce 1,716,194 triangles of
+geometry — 279x its own weight in vertex data. That ratio is not fixed
 at authoring time either: it grows with every extra seed, stage, level and
 district asked of the same source.
 
 13 exported `.glb` files sit in `spheres-web/ui/equipment-models/`
-totalling 125,594,104 bytes (119.78 MiB). They are the
+totalling 122,833,624 bytes (117.14 MiB). They are the
 portable deliverable roadmap section 4 asks for, not a runtime download — the game
 never fetches them — and they are the comparison that settles the argument:
 13 equipment exports (3 aircraft and 10 ground-vehicle configurations) as binary assets weigh
-191.4x the entire generator source
+185.1x the entire generator source
 that builds every vehicle, every site at every stage and every town block.
+
+Actual committed export sizes are enforced with the existing strict byte limits.
+The separate export-reproduction check also verifies the canonical file set and
+contents against the generator; size alone does not prove a valid asset.
+
+| export | bytes | must be below | verdict |
+| --- | ---: | ---: | --- |
+| `spheres-air-fighter.glb` | 21,653,740 | 28,000,000 | PASS |
+| `spheres-air-light-attack.glb` | 21,532,596 | 28,000,000 | PASS |
+| `spheres-air-tactical-strike.glb` | 24,698,664 | 28,000,000 | PASS |
+| `spheres-ground-air-defense.glb` | 4,279,020 | 5,000,000 | PASS |
+| `spheres-ground-apc.glb` | 2,893,352 | 5,000,000 | PASS |
+| `spheres-ground-artillery.glb` | 4,709,572 | 5,000,000 | PASS |
+| `spheres-ground-ifv.glb` | 4,605,232 | 5,000,000 | PASS |
+| `spheres-ground-recon.glb` | 2,567,168 | 5,000,000 | PASS |
+| `spheres-tank-balanced.glb` | 7,101,240 | 12,000,000 | PASS |
+| `spheres-tank-destroyer.glb` | 6,997,576 | 12,000,000 | PASS |
+| `spheres-tank-heavy.glb` | 7,635,652 | 12,000,000 | PASS |
+| `spheres-tank-light.glb` | 7,100,044 | 12,000,000 | PASS |
+| `spheres-tank-mobile.glb` | 7,059,768 | 12,000,000 | PASS |
 
 ## Method
 
 - Every number is measured by building the mesh and reading `triangleCount`,
   `parts` and the attribute arrays. Nothing is copied from another document.
-- Sweeps: vehicles 631 builds, sites 3,200,
+- Sweeps: vehicles 1,229 builds, sites 3,200,
   town blocks 80, town kit 120.
 - The vehicle worst case is greedy coordinate ascent over the simulation's own
   component catalogue, repeated until a pass buys nothing (2 passes).

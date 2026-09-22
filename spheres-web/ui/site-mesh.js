@@ -198,6 +198,7 @@
     this.stack = [];
     this.sg = 0;
     this.sgNext = 0;
+    this.collectBudget = false; this.budgetUnits = []; this.budgetBuildings = new Map();
   }
   /// Everything emitted inside `fn` shares one smoothing group. A FRESH id per
   /// call, deliberately: two drums standing shoulder to shoulder touch at their
@@ -263,11 +264,23 @@
   /// and the card renderer already speak it. A part that draws nothing is not
   /// recorded — an empty range would break the contiguity the checks assert, and
   /// a stage that has no crane should not carry a crane entry.
-  Mesh.prototype.part = function (name, fn) {
+  // Ownership is an explicit argument at the authoring call, separate from
+  // the picker's unchanged part identity. A list names physical buildings;
+  // multiple owners charge the entire shared connector to each building.
+  // No triangle is divided by a building count or hidden from the assembly.
+  Mesh.prototype.part = function (name, ownership, fn) {
+    if (typeof ownership === "function") { fn = ownership; ownership = null; }
     const first = this.pos.length / 3;
     fn(this);
     const count = this.pos.length / 3 - first;
     if (count > 0) {
+      if (this.collectBudget) {
+        if (!ownership) throw new Error("Missing site budget ownership: " + name);
+        const buildingIds = Array.isArray(ownership) ? ownership : [];
+        const kind = buildingIds.length > 1 ? "shared" : buildingIds.length ? "building" : ownership;
+        this.budgetUnits.push({ id: "part-" + this.parts.length, kind, buildingIds: buildingIds.slice(), first, count });
+        for (const id of buildingIds) this.budgetBuildings.set(id, { id, label: id.replace(/-/g, " ") });
+      }
       const cut = name.indexOf(" / ");
       this.parts.push({
         name,
@@ -1045,7 +1058,7 @@
   /// by construction. The members are I-sections rather than solid boxes,
   /// because the flange-web-flange read is what tells a viewer this is rolled
   /// steel and not a length of timber, and it is only three primitives.
-  function portal(m, cz, span, depth, eaves, ridge, col) {
+  function portal(m, cz, span, depth, eaves, ridge, col, sealedInterior) {
     const hw = span / 2, t = 0.22, fl = 0.055, dep = 0.34;
     // The four rafter faces are planar with constant material. A single span
     // preserves their outline and lighting without redundant coplanar seams.
@@ -1054,7 +1067,7 @@
       m.save();
       if (s < 0) m.scale(-1, 1, 1);
       // Column, as flange / web / flange.
-      m.beam(hw - t, hw - t + fl, depth + 0.2, eaves, cz - t, cz + t, col, 0.016);
+      if (!sealedInterior) m.beam(hw - t, hw - t + fl, depth + 0.2, eaves, cz - t, cz + t, col, 0.016);
       m.beam(hw + t - fl, hw + t, depth + 0.2, eaves, cz - t, cz + t, shade(col, 0.94), 0.016);
       m.bar(hw - t + fl, hw + t - fl, depth + 0.2, eaves, cz - 0.05, cz + 0.05, shade(col, 0.8));
       // Grout bed, base plate, holding-down bolts. The bolts are the only place
@@ -1064,19 +1077,19 @@
       m.beam(hw - 0.5, hw + 0.5, depth + 0.1, depth + 0.16, cz - 0.5, cz + 0.5, shade(col, 0.8), 0.02);
       for (let b = 0; b < 4; b += 1) {
         const bx = hw + (b % 2 ? 0.34 : -0.34), bz = cz + (b < 2 ? 0.34 : -0.34);
-        m.rod([bx, depth + 0.16, bz], [bx, depth + 0.3, bz], 0.038, 6, P.steel, true);
+        if (!sealedInterior || b % 2) m.rod([bx, depth + 0.16, bz], [bx, depth + 0.3, bz], 0.038, 6, P.steel, true);
       }
       // Haunch: the deepened wedge under the rafter at the eaves, and the pair
       // of stiffeners welded either side of it.
       const hx = hw - span * 0.09, hy = eaves + (ridge - eaves) * (span * 0.09) / hw;
-      m.webPlate([[hw - t, eaves + dep], [hw - t, eaves - 0.85], [hx, hy]], cz - t, cz + t, shade(col, 0.96));
+      if (!sealedInterior) m.webPlate([[hw - t, eaves + dep], [hw - t, eaves - 0.85], [hx, hy]], cz - t, cz + t, shade(col, 0.96));
       for (const zs of [-1, 1]) {
         m.bar(hw - t, hw + t - fl, eaves - 0.5, eaves, cz + zs * 0.14 - 0.02, cz + zs * 0.14 + 0.02, shade(col, 1.06));
       }
       // Rafter, spanning eaves to ridge. Four faces: the underside
       // used to be left open, and a rafter you can see the inside of is a
       // rafter that is not there.
-      for (let i = 0; i < steps; i += 1) {
+      for (let i = 0; !sealedInterior && i < steps; i += 1) {
         const x0 = hw * (1 - i / steps), x1 = hw * (1 - (i + 1) / steps);
         const y0 = eaves + (ridge - eaves) * (i / steps), y1 = eaves + (ridge - eaves) * ((i + 1) / steps);
         m.quad([x0, y0, cz - t], [x1, y1, cz - t], [x1, y1 + dep, cz - t], [x0, y0 + dep, cz - t], shade(col, 1.05));
@@ -1088,7 +1101,7 @@
     }
     // Apex splice plate, bolted through both rafters. One per frame, not one
     // per side, which is why it sits outside the mirror.
-    m.beam(-0.55, 0.55, ridge - 0.12, ridge + dep + 0.12, cz - t - 0.03, cz + t + 0.03, shade(col, 1.08), 0.018);
+    if (!sealedInterior) m.beam(-0.55, 0.55, ridge - 0.12, ridge + dep + 0.12, cz - t - 0.03, cz + t + 0.03, shade(col, 1.08), 0.018);
   }
 
   /// A clad wall in local space: spans x in [-w/2, w/2], y in [0, h], facing +Z.
@@ -1797,15 +1810,23 @@
     // envelope and cannot be seen from any angle this renderer offers, and at
     // five levels those hidden frames were most of a level-5 compound's budget.
     if (o.frame !== false) {
-    m.part(`structure / portal frames and haunches${tag}`, () => {
+    m.part(`structure / portal frames and haunches${tag}`, [o.tag ? o.tag.replace(/ /g, "-") : "lead"], () => {
       for (let i = 0; i < frames; i += 1) {
         const z = -dz / 2 + (i * dz) / (frames - 1);
         m.save().move(o.x, 0, o.z);
-        portal(m, z, w, o.deck, eaves, ridge, steel);
+        // Only the lead hall has the guaranteed full ground slab. Once its
+        // cladding and gables are complete, inner portal steel is enclosed by
+        // that slab, four opaque walls and both roof slopes. Keep the exposed
+        // outer flange, web, base plates and outer bolts. End portals remain
+        // whole because their plates project past the gables; secondary halls
+        // and every unfinished stage retain their complete steelwork.
+        const sealedInterior = d0.fine && !o.tag && clad === 1
+          && i > 0 && i + 1 < frames && dz / (frames - 1) > 0.5 && o.deck >= 0.6;
+        portal(m, z, w, o.deck, eaves, ridge, steel, sealedInterior);
         m.restore();
       }
     });
-    m.part(`structure / purlins, rails and bracing${tag}`, () => {
+    m.part(`structure / purlins, rails and bracing${tag}`, [o.tag ? o.tag.replace(/ /g, "-") : "lead"], () => {
       m.save().move(o.x, 0, o.z);
       roof(m, w, dz, eaves, ridge, sheets, P.roof, d0, { clad: 0, purlins: true });
       for (const s of [-1, 1]) {
@@ -1829,7 +1850,7 @@
     });
     }
     if (clad <= 0) return;
-    m.part(`envelope / wall cladding${tag}`, () => {
+    m.part(`envelope / wall cladding${tag}`, [o.tag ? o.tag.replace(/ /g, "-") : "lead"], () => {
       m.save().move(o.x, o.deck, o.z);
       // A delivered wing is a secondary object and is drawn a step plainer —
       // the same call already made for its hidden frames and its rainwater
@@ -1848,7 +1869,7 @@
       }
       m.restore();
     });
-    m.part(`envelope / roof sheeting and ridge${tag}`, () => {
+    m.part(`envelope / roof sheeting and ridge${tag}`, [o.tag ? o.tag.replace(/ /g, "-") : "lead"], () => {
       m.save().move(o.x, o.deck, o.z);
       roof(m, w, dz, eaves, ridge, sheets, P.roof, d0, { clad });
       // Gable tympanum, only where the wall below it is sheeted.
@@ -1862,7 +1883,7 @@
       m.restore();
     });
     if (clad > 0.9 && d0.fine) {
-      m.part(`envelope / ridge ventilator${tag}`, () => {
+      m.part(`envelope / ridge ventilator${tag}`, [o.tag ? o.tag.replace(/ /g, "-") : "lead"], () => {
         m.save().move(o.x, o.deck, o.z);
         m.bar(-1.2, 1.2, ridge + 0.25, ridge + 1.5, -dz * 0.3, dz * 0.3, shade(P.roof, 1.06));
         for (let i = 0; i < 5; i += 1) {
@@ -1872,7 +1893,7 @@
         m.bar(-1.45, 1.45, ridge + 1.5, ridge + 1.62, -dz * 0.32, dz * 0.32, shade(P.roof, 0.86));
         m.restore();
       });
-      m.part(`envelope / rainwater goods${tag}`, () => {
+      m.part(`envelope / rainwater goods${tag}`, [o.tag ? o.tag.replace(/ /g, "-") : "lead"], () => {
         m.save().move(o.x, o.deck, o.z);
         for (const s of [-1, 1]) {
           m.bar(s * (w / 2) - 0.2, s * (w / 2) + 0.24, eaves, eaves + 0.32, -dz / 2, dz / 2, shade(P.galv, 0.94));
@@ -1896,7 +1917,7 @@
   /// sliding leaves on the gable a finished vehicle would come out of.
   function hallDoors(m, o, d0) {
     const { w, dz, eaves } = o.block;
-    m.part("envelope / assembly doors and personnel access", () => {
+    m.part("envelope / assembly doors and personnel access", ["lead"], () => {
       m.save().move(o.x, o.deck, o.z + dz / 2 + 0.02);
       for (let i = 0; i < 3; i += 1) {
         const cx = (i - 1) * (w / 3.4), dw = w / 4.6, dh = eaves * 0.66;
@@ -1950,7 +1971,7 @@
   /// controlled dock — it is not a claim about anything the sim models.
   function loadingArea(m, o, d0) {
     const x = o.x + 8, z = o.z - o.block.dz / 2 - 8.0;
-    m.part("yard / loading dock and levellers", () => {
+    m.part("yard / loading dock and levellers", ["lead"], () => {
       m.bar(x - 11, x + 11, GRADE, GRADE + 1.25, z - 3.2, z + 3.2, P.concrete);
       if (d0.fine) m.beam(x - 11.2, x + 11.2, GRADE + 1.2, GRADE + 1.34, z - 3.4, z + 3.4, P.kerb, 0.025);
       else m.bar(x - 11.2, x + 11.2, GRADE + 1.2, GRADE + 1.32, z - 3.4, z + 3.4, P.kerb);
@@ -1992,7 +2013,7 @@
         }
       }
     });
-    m.part("yard / dock canopy", () => {
+    m.part("yard / dock canopy", ["lead"], () => {
       const posts = d0.fine ? 5 : 2;
       for (let i = 0; i < posts; i += 1) {
         const px = x - 10 + (i * 20) / (posts - 1);
@@ -2016,7 +2037,7 @@
         for (const px of [x - 10, x + 10]) m.rod([px, GRADE + 0.15, z - 5.58], [px, GRADE + 0.15, z - 5.1], 0.11, 8, P.galv, false);
       }
     });
-    m.part("yard / bollards and dock markings", () => {
+    m.part("yard / bollards and dock markings", "prop", () => {
       const n = d0.fine ? 8 : 3;
       for (let i = 0; i < n; i += 1) {
         const bx = x - 10.5 + (i * 21) / (n - 1);
@@ -2038,7 +2059,7 @@
   }
 
   function gatehouse(m, x, z, d0) {
-    m.part("yard / gatehouse and controlled entry", () => {
+    m.part("yard / gatehouse and controlled entry", ["gatehouse"], () => {
       m.bar(x - 2.4, x + 2.4, GRADE, GRADE + 3.1, z - 2.0, z + 2.0, shade(P.clad, 1.02));
       if (d0.fine) m.beam(x - 2.7, x + 2.7, GRADE + 3.1, GRADE + 3.38, z - 2.3, z + 2.3, P.roof, 0.025);
       else m.bar(x - 2.7, x + 2.7, GRADE + 3.1, GRADE + 3.35, z - 2.3, z + 2.3, P.roof);
@@ -2068,7 +2089,7 @@
   /// Test and service yard: hardstand, ramps and lane markings. A place to run
   /// a finished machine, not a proving ground — and labelled as the former.
   function testYard(m, x, z, w, d, d0) {
-    m.part("yard / test and service hardstand", () => {
+    m.part("yard / test and service hardstand", "terrain", () => {
       m.save().move(0, GRADE, 0);
       m.plate([[x - w / 2, z - d / 2], [x + w / 2, z - d / 2], [x + w / 2, z + d / 2], [x - w / 2, z + d / 2]], 0.12, P.asphalt);
       m.restore();
@@ -2105,7 +2126,7 @@
   }
 
   function utilities(m, x, z, d0, tall) {
-    m.part("services / substation, tanks and stack", () => {
+    m.part("services / substation, tanks and stack", "prop", () => {
       m.bar(x - 3.0, x + 3.0, GRADE, GRADE + 3.4, z - 2.2, z + 2.2, shade(P.concrete, 0.96));
       if (d0.fine) m.beam(x - 3.2, x + 3.2, GRADE + 3.4, GRADE + 3.62, z - 2.4, z + 2.4, P.roof, 0.025);
       else m.bar(x - 3.2, x + 3.2, GRADE + 3.4, GRADE + 3.6, z - 2.4, z + 2.4, P.roof);
@@ -2198,7 +2219,7 @@
   // bodies are unchanged: same geometry, same names, same triangles.
 
   function propStack(m, k, x, z, W, D, d0, built) {
-    m.part("services / flue stack", () => {
+    m.part("services / flue stack", "prop", () => {
       const sx = x + W * 0.26, sz = z - D * 0.18, sh = built ? 22 : 6;
       m.column(sx, GRADE, sz, sh, 1.3, 1.0, d0.fine ? 14 : d0.seg, shade(P.clad, 0.86), false);
       if (!d0.fine) return;
@@ -2217,7 +2238,7 @@
   }
 
   function propTanks(m, k, x, z, W, D, d0, built) {
-    m.part("services / tank farm", () => {
+    m.part("services / tank farm", "prop", () => {
       const n = d0.fine ? 3 : 2, th = built ? 9 : 2.5;
       for (let i = 0; i < n; i += 1) {
         const tz = z + D * 0.1 + i * 6.5, tx = x + W * 0.3;
@@ -2252,7 +2273,7 @@
   }
 
   function propPipeRack(m, k, x, z, W, D, d0, built) {
-    m.part("services / pipe rack", () => {
+    m.part("services / pipe rack", "prop", () => {
       const rz = z - D * 0.3;
       for (let i = 0; i < (d0.fine ? 5 : 2); i += 1) {
         const px = x - W * 0.3 + (i * W * 0.6) / 4;
@@ -2278,7 +2299,7 @@
   }
 
   function propTransformers(m, k, x, z, W, D, d0, built) {
-    m.part("services / transformer bays", () => {
+    m.part("services / transformer bays", "prop", () => {
       for (let i = 0; i < (d0.fine ? 3 : 2); i += 1) {
         const tx = x - W * 0.22 + i * 7.5, tz = z + D * 0.16;
         m.bar(tx - 2.2, tx + 2.2, GRADE + (d0.fine ? 0.2 : 0), GRADE + 3.2, tz - 1.6, tz + 1.6, shade(P.steel, 1.05));
@@ -2298,7 +2319,7 @@
   }
 
   function propPylon(m, k, x, z, W, D, d0, built) {
-    m.part("services / feeder gantry", () => {
+    m.part("services / feeder gantry", "prop", () => {
       const px = x - W * 0.3, py = built ? 14 : 5, pz = z - D * 0.2;
       for (const sx of [-1, 1]) {
         for (const sz of [-1, 1]) {
@@ -2327,7 +2348,7 @@
   }
 
   function propContainers(m, k, x, z, W, D, d0, built) {
-    m.part("yard / container stacks", () => {
+    m.part("yard / container stacks", "prop", () => {
       const n = d0.fine ? 6 : 2;
       for (let i = 0; i < n; i += 1) {
         const cx = x - W * 0.3 + (i % 3) * 7.0, cz = z + D * 0.18 + Math.floor(i / 3) * 3.2;
@@ -2359,7 +2380,7 @@
   }
 
   function propGantry(m, k, x, z, W, D, d0, built) {
-    m.part("yard / transfer gantry", () => {
+    m.part("yard / transfer gantry", "prop", () => {
       const gz = z + D * 0.18, h = built ? 12 : 4;
       for (const sx of [-1, 1]) {
         if (d0.fine) {
@@ -2394,7 +2415,7 @@
   }
 
   function propYardCrane(m, k, x, z, W, D, d0, built) {
-    m.part("yard / outdoor crane rail", () => {
+    m.part("yard / outdoor crane rail", "prop", () => {
       const rz = z - D * 0.28;
       for (const s of [-1, 1]) {
         m.bar(x - W * 0.34, x + W * 0.34, GRADE, GRADE + 0.25, rz + s * 4 - 0.3, rz + s * 4 + 0.3, P.steel);
@@ -2433,7 +2454,7 @@
   }
 
   function propDocks(m, k, x, z, W, D, d0, built) {
-    m.part("yard / loading docks", () => {
+    m.part("yard / loading docks", ["lead"], () => {
       const dz0 = z - D * 0.24;
       m.bar(x - W * 0.3, x + W * 0.3, GRADE, GRADE + 1.25, dz0 - 2.4, dz0 + 2.4, P.concrete);
       const n = d0.fine ? 5 : 2;
@@ -2460,7 +2481,7 @@
   }
 
   function propRoadStrip(m, k, x, z, W, D, d0, built) {
-    m.part("yard / access road", () => {
+    m.part("yard / access road", "terrain", () => {
       m.save().move(0, GRADE, 0);
       m.plate([[x - W * 0.42, z - D * 0.44], [x + W * 0.42, z - D * 0.44], [x + W * 0.42, z - D * 0.30], [x - W * 0.42, z - D * 0.30]], 0.1, P.asphalt);
       m.restore();
@@ -2481,11 +2502,11 @@
   }
 
   function propPipeStack(m, k, x, z, W, D, d0, built) {
-    m.part("yard / stacked sections", () => materialStack(m, x - W * 0.3, z + D * 0.26, 1, d0));
+    m.part("yard / stacked sections", "prop", () => materialStack(m, x - W * 0.3, z + D * 0.26, 1, d0));
   }
 
   function propKiosk(m, k, x, z, W, D, d0, built) {
-    m.part("services / control kiosk", () => {
+    m.part("services / control kiosk", ["control-kiosk"], () => {
       const kx = x + W * 0.32, kz = z - D * 0.3;
       m.bar(kx - 2.2, kx + 2.2, GRADE, GRADE + 2.9, kz - 1.6, kz + 1.6, shade(P.clad, 1.04));
       if (d0.fine) m.beam(kx - 2.4, kx + 2.4, GRADE + 2.9, GRADE + 3.12, kz - 1.8, kz + 1.8, P.roof, 0.025);
@@ -2504,7 +2525,7 @@
   }
 
   function propGlazing(m, k, x, z, W, D, d0, built) {
-    m.part("envelope / strip glazing", () => {
+    m.part("envelope / strip glazing", ["lead"], () => {
       const b = k.block;
       const n = d0.fine ? 8 : 3;
       for (const s of [-1, 1]) {
@@ -2523,7 +2544,7 @@
   }
 
   function propPlantRoom(m, k, x, z, W, D, d0, built) {
-    m.part("services / roof plant", () => {
+    m.part("services / roof plant", ["lead"], () => {
       const b = k.block;
       m.bar(x - 4, x + 4, GRADE + b.eaves + 0.2, GRADE + b.eaves + 2.6, z - 3, z + 3, shade(P.galv, 0.95));
       if (!d0.fine) return;
@@ -2541,7 +2562,7 @@
   }
 
   function propAnnex(m, k, x, z, W, D, d0, built) {
-    m.part("structure / service annex", () => {
+    m.part("structure / service annex", ["service-annex"], () => {
       const b = k.block;
       m.bar(x + b.w / 2, x + b.w / 2 + 9, GRADE, GRADE + 5.2, z - 5, z + 5, shade(k.body, 0.95));
       if (d0.fine) m.beam(x + b.w / 2 - 0.2, x + b.w / 2 + 9.2, GRADE + 5.2, GRADE + 5.54, z - 5.3, z + 5.3, P.roof, 0.03);
@@ -2559,7 +2580,7 @@
   }
 
   function propLeanTo(m, k, x, z, W, D, d0, built) {
-    m.part("structure / open lean-to", () => {
+    m.part("structure / open lean-to", ["lean-to"], () => {
       const b = k.block;
       const n = d0.fine ? 4 : 2;
       for (let i = 0; i < n; i += 1) {
@@ -2583,7 +2604,7 @@
   }
 
   function propRobotCell(m, k, x, z, W, D, d0, built) {
-    m.part("structure / machine cell annex", () => {
+    m.part("structure / machine cell annex", ["machine-annex"], () => {
       const b = k.block;
       m.bar(x - b.w / 2 - 8, x - b.w / 2, GRADE, GRADE + 4.6, z - 4, z + 4, shade(k.accent, 1.05));
       if (!d0.fine) return;
@@ -2603,7 +2624,7 @@
   }
 
   function propDuctRun(m, k, x, z, W, D, d0, built) {
-    m.part("services / heat recovery ducts", () => {
+    m.part("services / heat recovery ducts", "prop", () => {
       const b = k.block;
       const n = d0.fine ? 4 : 2;
       for (let i = 0; i < n; i += 1) {
@@ -2631,7 +2652,7 @@
     // roadmap is explicit that automation and efficiency are not new
     // standalone buildings. The host shed is therefore drawn complete at
     // every stage: the staged work is the kit going into it.
-    m.part("structure / existing host facility", () => {
+    m.part("structure / existing host facility", ["host"], () => {
       // BUTTED, not standing nearby. A retrofit is installed INTO a
       // facility that already exists, and the annex carrying the new work
       // shares a wall with it: the host's near face lands exactly on the
@@ -2954,7 +2975,7 @@
     const clad = CLAD_BY_STAGE[stage - 1];
     const steel = clad > 0.9 ? shade(o.col, 0.7) : P.primer;
     const tag = o.tag ? ` (${o.tag})` : "";
-    m.part(`structure / framed floors and columns${tag}`, () => {
+    m.part(`structure / framed floors and columns${tag}`, [o.tag ? o.tag.replace(/ /g, "-") : "laboratory"], () => {
       m.save().move(o.x, o.deck, o.z);
       const cols = d0.fine ? 5 : 3, rows = d0.fine ? 3 : 2;
       for (let i = 0; i < cols; i += 1) {
@@ -2979,7 +3000,7 @@
       m.restore();
     });
     if (clad <= 0) return;
-    m.part(`envelope / spandrel panels and strip glazing${tag}`, () => {
+    m.part(`envelope / spandrel panels and strip glazing${tag}`, [o.tag ? o.tag.replace(/ /g, "-") : "laboratory"], () => {
       m.save().move(o.x, o.deck, o.z);
       const done = clamp01(clad);
       const x1 = -hw + b.w * done;
@@ -3011,7 +3032,7 @@
       }
       m.restore();
     });
-    m.part(`envelope / roof deck and parapet${tag}`, () => {
+    m.part(`envelope / roof deck and parapet${tag}`, [o.tag ? o.tag.replace(/ /g, "-") : "laboratory"], () => {
       m.save().move(o.x, o.deck, o.z);
       deck(m, -hw, hw, b.eaves, -hd, hd, shade(P.roof, 0.98));
       for (const s of [-1, 1]) {
@@ -3062,7 +3083,7 @@
     // start, subbase, base, binder and surface: each stage lays one and each
     // one is 60-80 mm proud of the last, so the edge of the road reads as a
     // build-up rather than as a painted stripe.
-    m.part("corridor / carriageway formation", () => {
+    m.part("corridor / carriageway formation", "terrain", () => {
       const layers = [
         [P.hardcore, half + 1.6, 0.10],
         [shade(P.hardcore, 0.88), half + 1.2, 0.18],
@@ -3106,7 +3127,7 @@
     // things, and naming them the same made the corridor's own work look
     // identical at the frame and commissioning stages to anything reading the
     // part list — which is exactly what a picker and the checks do.
-    m.part(built ? "corridor / duct route reinstated" : "corridor / utility duct trench", () => {
+    m.part(built ? "corridor / duct route reinstated" : "corridor / utility duct trench", "terrain", () => {
       const tz = rz + half + 3.6;
       if (!built) {
         m.bar(-W * 0.42, W * 0.42, PIT, GRADE, tz - 1.1, tz + 1.1, P.earthCut);
@@ -3141,7 +3162,7 @@
     if (stage >= 2) {
       // Abutments each side of the carriageway and a pier between them. At the
       // foundation stage they are bases only; the stems come with the frame.
-      m.part("structure / abutments and pier", () => {
+      m.part("structure / abutments and pier", ["bridge"], () => {
         for (const s of [-1, 1]) {
           const az = rz + s * (half + 5.5);
           m.bar(bx - 5.5, bx + 5.5, PIT, GRADE + (stage >= 3 ? 5.4 : 0.9), az - 1.6, az + 1.6, shade(P.concrete, 0.94));
@@ -3170,7 +3191,7 @@
     if (stage >= 3) {
       // Precast beams, landed. Two of them at the frame stage and the full set
       // once the deck is on, so the span is visibly incomplete while it is.
-      m.part("structure / deck beams", () => {
+      m.part("structure / deck beams", ["bridge"], () => {
         const beams = stage >= 4 ? 5 : 2;
         for (let i = 0; i < beams; i += 1) {
           const px = bx - 4.0 + (i * 8.0) / 4;
@@ -3183,7 +3204,7 @@
       // The deck slab is its own operation and its own part: the beams are
       // landed by crane in a morning and the slab is poured on them weeks
       // later, with the approach embankments built up to meet it.
-      m.part("structure / deck slab and approaches", () => {
+      m.part("structure / deck slab and approaches", ["bridge"], () => {
         {
           m.bar(bx - 5.0, bx + 5.0, GRADE + 7.1, GRADE + 7.35, rz - half - 6.4, rz + half + 6.4, shade(P.concrete, 1.02));
           if (d0.fine) {
@@ -3200,7 +3221,7 @@
       });
     }
     if (done) {
-      m.part("corridor / parapets, barrier and sign gantry", () => {
+      m.part("corridor / parapets, barrier and sign gantry", ["bridge"], () => {
         for (const s of [-1, 1]) {
           if (d0.fine) m.beam(bx + s * 5.05 - 0.16, bx + s * 5.05 + 0.16, GRADE + 7.35, GRADE + 8.55, rz - half - 6.4, rz + half + 6.4, P.kerb, 0.025);
           else m.bar(bx + s * 5.05 - 0.16, bx + s * 5.05 + 0.16, GRADE + 7.35, GRADE + 8.55, rz - half - 6.4, rz + half + 6.4, P.kerb);
@@ -3238,7 +3259,7 @@
     }
     // The stockpile: culvert rings, kerb packs and a headwall unit. Precast is
     // what a corridor job keeps in the open, and the rings are round.
-    m.part("yard / precast and culvert stockpile", () => {
+    m.part("yard / precast and culvert stockpile", "prop", () => {
       const sx = W * 0.34, sz = D * 0.26;
       for (let i = 0; i < (d0.fine ? 4 : 2); i += 1) {
         const cx = sx - 2.4 + (i % 2) * 3.4, cz = sz + Math.floor(i / 2) * 3.0;
@@ -3285,7 +3306,7 @@
         }, i === 2 ? stage - 1 : stage, d0);
       }
     } else if (stage >= 4) {
-      m.part("structure / repeat modules", () => {
+      m.part("structure / repeat modules", "prop", () => {
         for (const i of mods) {
           const mx = o.x + i * (b.w + gap);
           if (i === 2 && stage < 5) continue;
@@ -3297,7 +3318,7 @@
       // The module bases the frames stand on, and the movement joint between
       // them. A modular building is a row of separate structures that touch,
       // and the joint is the only thing that says so from outside.
-      m.part("structure / module bases and movement joints", () => {
+      m.part("structure / module bases and movement joints", ["lead", "module-2", "module-3"], () => {
         for (const i of mods) {
           const mx = o.x + i * (b.w + gap);
           m.bar(mx - b.w / 2 - 1.1, mx + b.w / 2 + 1.1, PIT, GRADE + 0.18, o.z - b.dz / 2 - 1.1, o.z + b.dz / 2 + 1.1, P.concrete);
@@ -3314,7 +3335,7 @@
     if (stage >= 4) {
       // Link bridges at high level between modules. A modular factory moves
       // work between its modules and the bridge is where that happens.
-      m.part("structure / high-level module links", () => {
+      m.part("structure / high-level module links", ["lead", "module-2", "module-3"], () => {
         for (let i = 0; i < 2; i += 1) {
           const jx = o.x + b.w / 2 + gap / 2 + i * (b.w + gap);
           const y = GRADE + b.eaves * 0.62;
@@ -3331,7 +3352,7 @@
     // The service yard: a low service block, an external plant compound and the
     // pair of tanks a factory keeps outside its own envelope.
     if (stage >= 3) {
-      m.part("structure / service block", () => {
+      m.part("structure / service block", ["service-block"], () => {
         const sx = o.x + b.w * 1.1, sz = o.z + b.dz / 2 + 7.6;
         m.bar(sx - 8, sx + 8, GRADE, GRADE + 4.2, sz - 4, sz + 4, shade(k.body, 0.93));
         if (d0.fine) {
@@ -3348,7 +3369,7 @@
       });
     }
     if (stage >= 4) {
-      m.part("services / external plant compound", () => {
+      m.part("services / external plant compound", "prop", () => {
         const px = o.x + b.w * 2.2, pz = o.z + b.dz / 2 + 7.4;
         m.bar(px - 6, px + 6, GRADE, GRADE + 0.3, pz - 4, pz + 4, shade(P.concrete, 0.94));
         for (let i = 0; i < (d0.fine ? 3 : 1); i += 1) {
@@ -3392,7 +3413,7 @@
     // building is seated hard against one side.
     const yx = -W * 0.02, yz = o.z - 2;
     if (d0.fine && stage >= 3) genericBlock(m, k, o, d0);
-    m.part("yard / earth grid and stone surfacing", () => {
+    m.part("yard / earth grid and stone surfacing", "terrain", () => {
       // A switchyard stands on stone over a buried earth grid. Before the stone
       // goes down the grid is a set of open trenches with bare conductor in
       // them, and that is the whole of what a substation site looks like at
@@ -3415,7 +3436,7 @@
       }
     });
     if (stage >= 2) {
-      m.part("services / equipment plinths and cable trench", () => {
+      m.part("services / equipment plinths and cable trench", "prop", () => {
         for (let i = 0; i < (d0.fine ? 6 : 2); i += 1) {
           const n = d0.fine ? 6 : 2;
           const px = yx - 13 + (i * 26) / (n - 1);
@@ -3437,7 +3458,7 @@
     if (stage >= 3) {
       // Busbar gantries. Steel first and conductors last: a yard with its
       // structures up and nothing strung is exactly what stage three is.
-      m.part("structure / busbar gantries", () => {
+      m.part("structure / busbar gantries", "prop", () => {
         for (let g = 0; g < (d0.fine ? 3 : 2); g += 1) {
           const n = d0.fine ? 3 : 2;
           const gx = yx - 11 + (g * 22) / (n - 1);
@@ -3474,7 +3495,7 @@
     if (built) {
       // Circuit breakers and disconnectors on the plinths. Three porcelain
       // stacks on a tank is what a breaker looks like and it is unmistakable.
-      m.part("services / circuit breakers and disconnectors", () => {
+      m.part("services / circuit breakers and disconnectors", "prop", () => {
         for (let i = 0; i < (d0.fine ? 4 : 2); i += 1) {
           const n = d0.fine ? 4 : 2;
           const px = yx - 12 + (i * 24) / (n - 1);
@@ -3499,7 +3520,7 @@
     }
     propPylon(m, k, YARD.x, YARD.z, W, D, d0, built);
     if (done) {
-      m.part("services / line termination tower", () => {
+      m.part("services / line termination tower", "prop", () => {
         // ONE tower, not two. A second lattice costs 1,500 close triangles and
         // adds a repeat of the same silhouette; the line it carries is what
         // says the yard is connected to something, and one tower carries it.
@@ -3526,7 +3547,7 @@
       deckedBlock(m, lab, stage, d0);
     } else {
       if (stage >= 4) {
-        m.part("structure / laboratory block", () => {
+        m.part("structure / laboratory block", ["laboratory"], () => {
           m.bar(lab.x - 12, lab.x + 12, GRADE, GRADE + 8.8, lab.z - 7.5, lab.z + 7.5, shade(k.body, done ? 1.02 : 0.92));
           deck(m, lab.x - 12, lab.x + 12, GRADE + 9.6, lab.z - 7.5, lab.z + 7.5, shade(P.roof, 0.98));
           for (const s of [-1, 1]) {
@@ -3535,7 +3556,7 @@
           }
         });
       } else if (stage === 3) {
-        m.part("structure / laboratory frames", () => {
+        m.part("structure / laboratory frames", ["laboratory"], () => {
           for (let i = 0; i < 3; i += 1) {
             const fx = lab.x - 10 + i * 10;
             m.bar(fx - 0.3, fx + 0.3, GRADE, GRADE + 8.8, lab.z - 7, lab.z + 7, P.primer);
@@ -3546,7 +3567,7 @@
     if (stage >= 3) {
       // The link. Two campus buildings that do not touch are two buildings; the
       // glazed link is what makes them a campus.
-      m.part("structure / glazed link and entrance", () => {
+      m.part("structure / glazed link and entrance", ["lead", "laboratory"], () => {
         const lx = (o.x + b.w / 2 + lab.x - 12) / 2, lz = o.z - 1.5;
         const gapw = (lab.x - 12) - (o.x + b.w / 2);
         m.bar(lx - gapw / 2 - 0.2, lx + gapw / 2 + 0.2, GRADE, GRADE + 4.6, lz - 4.2, lz + 4.2, shade(P.galv, 0.9));
@@ -3570,7 +3591,7 @@
       // Fume extract. A laboratory's roof is covered in it and nothing else on
       // this list has anything like it: a run of stacks with weather cowls on a
       // plant deck, ducted down into the block.
-      m.part("services / fume extract and roof plant", () => {
+      m.part("services / fume extract and roof plant", ["laboratory"], () => {
         const ry = lab.deck + lab.block.eaves;
         if (d0.fine) gratedDeck(m, lab.x + 3, lab.z, 13, 8, ry + 1.1, d0, true);
         for (let i = 0; i < (d0.fine ? 5 : 2); i += 1) {
@@ -3590,7 +3611,7 @@
       });
     }
     if (done) {
-      m.part("yard / courtyard and planting", () => {
+      m.part("yard / courtyard and planting", "terrain", () => {
         const cx = (o.x + lab.x) / 2, cz = o.z + b.dz / 2 + 7.5;
         m.save().move(0, GRADE, 0);
         m.plate([[cx - 13, cz - 5], [cx + 13, cz - 5], [cx + 13, cz + 5], [cx - 13, cz + 5]], 0.12, P.kerb);
@@ -3629,7 +3650,7 @@
       if (stage >= 3) genericBlock(m, k, o, d0);
       stagedBlock(m, bay2, stage, d0);
     } else if (stage >= 4) {
-      m.part("structure / fitting bay", () => {
+      m.part("structure / fitting bay", "prop", () => {
         m.bar(bay2.x - bay2.block.w / 2, bay2.x + bay2.block.w / 2, GRADE, GRADE + bay2.block.eaves,
           bay2.z - bay2.block.dz / 2, bay2.z + bay2.block.dz / 2, shade(k.body, done ? 0.95 : 0.86));
       });
@@ -3639,7 +3660,7 @@
       // down each side of the tall bay, and the bridge spans between them with
       // a crab on it. It is drawn before the cladding because that is when it
       // is installed, and it is why the bay is as tall as it is.
-      m.part("structure / overhead travelling crane", () => {
+      m.part("structure / overhead travelling crane", "prop", () => {
         const cy = GRADE + 0.18 + b.eaves * 0.68;
         for (const s of [-1, 1]) {
           const cx = o.x + s * (b.w / 2 - 1.1);
@@ -3671,7 +3692,7 @@
     if (built) {
       // What a machine shop keeps outside: stillages of finished work, swarf
       // skips and a compressor house. All three are on every one of them.
-      m.part("yard / stillages and swarf skips", () => {
+      m.part("yard / stillages and swarf skips", "prop", () => {
         for (let i = 0; i < (d0.fine ? 6 : 2); i += 1) {
           const sx = W * 0.14 + (i % 3) * 3.4, sz = -D * 0.10 + Math.floor(i / 3) * 3.4;
           m.bar(sx - 1.4, sx + 1.4, GRADE + 0.16, GRADE + 1.3, sz - 1.2, sz + 1.2, shade(P.primer, 0.94 + 0.06 * (i % 3)));
@@ -3693,7 +3714,7 @@
           m.rod([kx - 1.4, GRADE + 0.9, kz - 1.12], [kx + 1.4, GRADE + 0.9, kz - 1.12], 0.07, 6, shade(P.dark, 1.1), false);
         }
       });
-      m.part("services / compressor house", () => {
+      m.part("services / compressor house", ["compressor-house"], () => {
         const hx = o.x - b.w / 2 - 6.5, hz = o.z + b.dz * 0.3;
         m.bar(hx - 3.2, hx + 3.2, GRADE, GRADE + 3.4, hz - 2.6, hz + 2.6, shade(P.clad, 0.98));
         if (!d0.fine) return;
@@ -3729,7 +3750,7 @@
       if (stage >= 3) genericBlock(m, k, o, d0);
       stagedBlock(m, conv, stage, d0);
     } else if (stage >= 4) {
-      m.part("structure / conversion block", () => {
+      m.part("structure / conversion block", "prop", () => {
         m.bar(conv.x - 8.5, conv.x + 8.5, GRADE, GRADE + conv.block.eaves, conv.z - conv.block.dz / 2, conv.z + conv.block.dz / 2,
           shade(k.body, done ? 0.92 : 0.84));
       });
@@ -3738,7 +3759,7 @@
       // Heat rejection. Every generation technology on the roadmap's later list
       // rejects heat, and a raised bank of fan cells is the shape that is
       // common to all of them — which is exactly why it is the one drawn here.
-      m.part("services / heat rejection bank", () => {
+      m.part("services / heat rejection bank", "prop", () => {
         const hx = o.x - b.w * 0.1, hz = o.z + b.dz / 2 + 7.6, hy = GRADE + (built ? 7.4 : 3.0);
         const cells = d0.fine ? 4 : 2;
         for (let i = 0; i < cells; i += 1) {
@@ -3774,7 +3795,7 @@
       // Consumables handling: a covered gallery from a ground hopper up into
       // the conversion block. Deliberately unlabelled as to what it carries —
       // the sim records no fuel and the art will not invent one.
-      m.part("services / consumables handling gallery", () => {
+      m.part("services / consumables handling gallery", "prop", () => {
         const bxp = o.x + b.w * 0.1, bz = o.z - b.dz / 2 - 13.0;
         m.bar(bxp - 5.5, bxp + 5.5, GRADE, GRADE + 3.2, bz - 4.4, bz + 4.4, shade(P.concrete, 0.94));
         if (d0.fine) {
@@ -3791,7 +3812,7 @@
       propTanks(m, k, YARD.x, YARD.z, W, D, d0, built);
     }
     if (done) {
-      m.part("services / takeoff gantry", () => {
+      m.part("services / takeoff gantry", "prop", () => {
         const gx = -W * 0.34, gz = D * 0.36;
         for (const s of [-1, 1]) {
           if (d0.fine) {
@@ -3829,7 +3850,7 @@
     const tx = o.x + b.w / 2 + 11, tz = o.z + 1;
     if (d0.fine && stage >= 3) genericBlock(m, k, o, d0);
     if (stage >= 2) {
-      m.part("earthworks / vessel bases and bund slab", () => {
+      m.part("earthworks / vessel bases and bund slab", ["process-tower"], () => {
         // A process structure sits on its own raft, and the tank farm sits in a
         // bund. Both are cast before any steel arrives, and at the foundation
         // stage they are the only thing on this side of the site.
@@ -3846,7 +3867,7 @@
       // standing through the decks and a stair up the outside. The vessels
       // arrive with the envelope, so at stage three the structure is empty and
       // says so.
-      m.part("structure / process tower and access decks", () => {
+      m.part("structure / process tower and access decks", ["process-tower"], () => {
         // Four decks close up; two at map range, where the structure reads as
         // its outline and the decks only have to say it has more than one.
         const levels = d0.fine ? 4 : 2, lh = d0.fine ? 4.2 : 8.4;
@@ -3877,7 +3898,7 @@
       });
     }
     if (built) {
-      m.part("services / process vessels", () => {
+      m.part("services / process vessels", ["process-tower"], () => {
         vessel(m, tx - 3.4, tz - 1.6, GRADE + 1.2, 13.5, 1.9, d0, shade(P.galv, 0.96));
         vessel(m, tx + 3.2, tz + 2.0, GRADE + 5.6, 8.6, 1.5, d0, shade(P.galv, 1.02));
         if (!d0.fine) return;
@@ -3895,7 +3916,7 @@
     if (stage >= 3) propPipeRack(m, k, YARD.x, YARD.z, W, D, d0, built);
     propStack(m, k, YARD.x, YARD.z, W, D, d0, built);
     if (done) {
-      m.part("yard / road tanker loading bay", () => {
+      m.part("yard / road tanker loading bay", "prop", () => {
         const lx = -W * 0.30, lz = D * 0.30;
         m.save().move(0, GRADE, 0);
         m.plate([[lx - 8, lz - 4], [lx + 8, lz - 4], [lx + 8, lz + 4], [lx - 8, lz + 4]], 0.14, shade(P.concrete, 0.96));
@@ -3924,7 +3945,7 @@
   /// it. Split out of the vessels so the picker can name the two apart, which
   /// is what a part is for.
   function processDrum(m, tx, tz, d0) {
-    m.part("services / horizontal drum and pumps", () => {
+    m.part("services / horizontal drum and pumps", "prop", () => {
       drum(m, tx + 1.5, tz + 8.5, 9.5, 1.5, d0, shade(P.galv, 0.98));
       if (!d0.fine) return;
       for (let i = 0; i < 3; i += 1) {
@@ -3948,7 +3969,7 @@
     const b = k.block;
     const rz = o.z + b.dz / 2 + 7.5;
     if (d0.fine && stage >= 3) genericBlock(m, k, o, d0);
-    m.part("yard / rail formation and sidings", () => {
+    m.part("yard / rail formation and sidings", "terrain", () => {
       // Stage one is a graded formation with a capping layer on it; the ballast
       // and the track come later, because that is the order a siding is laid in
       // and because a terminal with track already down is not a terminal being
@@ -3971,7 +3992,7 @@
       // long building whose entire point is the covered edge where road meets
       // rail, and that edge is what makes this kind read as transfer rather
       // than as storage.
-      m.part("structure / transfer canopy and doors", () => {
+      m.part("structure / transfer canopy and doors", ["lead"], () => {
         const cz = o.z - b.dz / 2 - 3.4;
         const posts = d0.fine ? 7 : 3;
         for (let i = 0; i < posts; i += 1) {
@@ -4001,7 +4022,7 @@
       });
     }
     if (done) {
-      m.part("yard / trailer park and running lanes", () => {
+      m.part("yard / trailer park and running lanes", "prop", () => {
         const px = -W * 0.24, pz = D * 0.34;
         m.save().move(0, GRADE, 0);
         m.plate([[px - 14, pz - 5], [px + 14, pz - 5], [px + 14, pz + 5], [px - 14, pz + 5]], 0.12, P.asphalt);
@@ -4041,7 +4062,7 @@
       // Racking, installed once the envelope is on. It is the reason the hall
       // is as tall as it is and it is visible through the open dock doors, so
       // it is worth its triangles even after the walls close.
-      m.part("structure / pallet racking", () => {
+      m.part("structure / pallet racking", "prop", () => {
         // Racking is inside a sheeted building. At map range the building is
         // opaque, so this is one of the few parts that draws nothing at all
         // there rather than a cheaper version of itself.
@@ -4069,7 +4090,7 @@
           }
         }
       });
-      m.part("structure / dock elevation and canopy", () => {
+      m.part("structure / dock elevation and canopy", ["lead"], () => {
         const dz0 = o.z - b.dz / 2;
         const docks = d0.fine ? 7 : 3;
         m.bar(o.x - b.w / 2, o.x + b.w / 2, GRADE, GRADE + 1.25, dz0 - 3.2, dz0, P.concrete);
@@ -4105,7 +4126,7 @@
       // Sprinkler tank and pump house. The tank is the tallest round thing on a
       // distribution site and it goes up with the frame, because the hall
       // cannot be handed over without it.
-      m.part("services / sprinkler tank and pump house", () => {
+      m.part("services / sprinkler tank and pump house", ["pump-house"], () => {
         const sx = o.x - b.w / 2 - 8.5, sz = o.z + b.dz * 0.22;
         m.column(sx, GRADE + 0.5, sz, built ? 9.5 : 4.0, 3.4, 3.4, d0.fine ? 14 : d0.seg, shade(P.galv, 0.94), true);
         if (d0.fine) {
@@ -4134,7 +4155,7 @@
       });
     }
     if (done) {
-      m.part("yard / trailer standing", () => {
+      m.part("yard / trailer standing", "terrain", () => {
         const px = W * 0.26, pz = D * 0.34;
         m.save().move(0, GRADE, 0);
         m.plate([[px - 9, pz - 6], [px + 9, pz - 6], [px + 9, pz + 6], [px - 9, pz + 6]], 0.12, P.asphalt);
@@ -4165,7 +4186,7 @@
     if (d0.fine && stage >= 3) genericBlock(m, k, o, d0);
     const lx = o.x + b.w / 2 + 12.5, lz = o.z - 5.5;    // inside the host's footprint
     if (stage <= 2) {
-      m.part("site / floor broken out for machine bases", () => {
+      m.part("site / floor broken out for machine bases", ["host"], () => {
         // A retrofit's excavation is a saw-cut in a floor that is already
         // there, not a hole in a field. The cut edge, the broken slab and the
         // spoil beside it are the whole of it.
@@ -4181,7 +4202,7 @@
       });
     }
     if (stage === 2) {
-      m.part("earthworks / machine bases and isolation pads", () => {
+      m.part("earthworks / machine bases and isolation pads", ["host"], () => {
         for (let i = 0; i < 3; i += 1) {
           const bx = lx - 4.4 + i * 4.4;
           m.bar(bx - 1.5, bx + 1.5, PIT, GRADE + 0.35, lz - 1.6, lz + 1.6, P.concreteWet);
@@ -4197,7 +4218,7 @@
       });
     }
     if (stage >= 3) {
-      m.part("structure / machine cell line", () => {
+      m.part("structure / machine cell line", "prop", () => {
         for (let i = 0; i < 3; i += 1) {
           const bx = lx - 4.4 + i * 4.4;
           m.bar(bx - 1.5, bx + 1.5, PIT, GRADE + 0.42, lz - 1.6, lz + 1.6, shade(P.concrete, 0.98));
@@ -4245,7 +4266,7 @@
       });
     }
     if (stage >= 3) {
-      m.part("services / guarding and interlocks", () => {
+      m.part("services / guarding and interlocks", "prop", () => {
         guardFence(m, lx, lz, 15.5, 8.6, d0, 2.2);
         if (!d0.fine || !built) return;
         // Light curtain posts on the open bay and a stop button at the corner.
@@ -4257,10 +4278,10 @@
       });
     }
     if (built) {
-      m.part("services / control cabinets and cable tray", () => {
+      m.part("services / control cabinets and cable tray", "prop", () => {
         cabinets(m, lx - 6.5, lz + 5.2, d0.fine ? 5 : 2, d0, shade(k.accent, 1.1));
       });
-      m.part("services / compressed air and chiller skid", () => {
+      m.part("services / compressed air and chiller skid", "prop", () => {
         const sx = o.x - b.w / 2 - 3.2, sz = o.z + 3.0;
         m.bar(sx - 2.4, sx + 2.4, GRADE + 0.25, GRADE + 2.3, sz - 1.5, sz + 1.5, shade(P.galv, 0.96));
         if (!d0.fine) return;
@@ -4278,7 +4299,7 @@
       // marked out on the floor it runs on, and the pallets of parts it feeds
       // on are standing beside it: without them the finished installation and
       // the one still being commissioned are the same picture.
-      m.part("yard / line markings and part store", () => {
+      m.part("yard / line markings and part store", "prop", () => {
         for (let i = 0; i < (d0.fine ? 4 : 2); i += 1) {
           const n = d0.fine ? 4 : 2;
           const mx = lx - 7.0 + (i * 14) / (n - 1);
@@ -4311,7 +4332,7 @@
     if (d0.fine && stage >= 3) genericBlock(m, k, o, d0);
     const hx = o.x + b.w / 2 + 12.5;                    // the host's centre line
     if (stage >= 2) {
-      m.part("earthworks / skid plinth and trestle bases", () => {
+      m.part("earthworks / skid plinth and trestle bases", "prop", () => {
         m.bar(o.x - 6.5, o.x - 1.0, PIT, GRADE + (stage >= 3 ? 0.45 : 0.2), o.z + 4.0, o.z + 8.4, P.concreteWet);
         if (stage === 2 && d0.fine) rebarCage(m, o.x - 3.7, o.z + 6.2, 1.9, 1.6, PIT + 0.1, GRADE + 1.3, 6);
         for (let i = 0; i < (d0.fine ? 4 : 2); i += 1) {
@@ -4328,7 +4349,7 @@
       // The heat recovery skid: a finned recovery block on a frame with a flue
       // duct spliced into the host's existing flue. This is the physical half
       // of an efficiency project and it is the only large object in it.
-      m.part("services / heat recovery skid and economiser", () => {
+      m.part("services / heat recovery skid and economiser", "prop", () => {
         const sx = o.x - 3.7, sz = o.z + 6.2;
         m.bar(sx - 2.6, sx + 2.6, GRADE + 0.45, GRADE + (built ? 4.6 : 1.4), sz - 2.0, sz + 2.0, shade(P.galv, 0.95));
         if (!built) return;
@@ -4352,7 +4373,7 @@
           }
         }
       });
-      m.part("services / insulated pipe run", () => {
+      m.part("services / insulated pipe run", "prop", () => {
         // Lagged flow and return on trestles, from the skid into the host. The
         // lagging is why the pipe is fat, and the fat pipe is what says the
         // circuit is hot.
@@ -4380,7 +4401,7 @@
       // it is drawn where insulation actually goes: onto the walls of the
       // building that already exists, half done at the commissioning stage and
       // closed at hand-over. Nothing here is a new building.
-      m.part("envelope / wall cladding (over-clad to host)", () => {
+      m.part("envelope / wall cladding (over-clad to host)", ["host"], () => {
         const clad = CLAD_BY_STAGE[stage - 1];
         for (const s of [-1, 1]) {
           m.save().move(hx, GRADE, o.z + s * 8.25).rotY(s > 0 ? 0 : 180);
@@ -4392,7 +4413,7 @@
           m.beam(hx - 11.3, hx + 11.3, GRADE + 7.0, GRADE + 7.26, o.z + s * 8.35 - 0.16, o.z + s * 8.35 + 0.16, shade(P.galv, 1.04), 0.02);
         }
       });
-      m.part("envelope / roof insulation boards", () => {
+      m.part("envelope / roof insulation boards", ["host"], () => {
         // Boards stacked on the roof and part laid, which is what the job looks
         // like on the day it is being done and the reason the stack shrinks
         // rather than the building growing.
@@ -4413,10 +4434,10 @@
       });
     }
     if (built) {
-      m.part("services / controls kiosk and panel line", () => {
+      m.part("services / controls kiosk and panel line", ["control-kiosk"], () => {
         cabinets(m, o.x + 2.0, o.z - 6.4, d0.fine ? 4 : 2, d0, shade(P.clad, 1.02));
       });
-      m.part("services / thermal buffer vessel", () => {
+      m.part("services / thermal buffer vessel", "prop", () => {
         vessel(m, o.x - 8.5, o.z + 6.2, GRADE + 0.5, 7.0, 1.4, d0, shade(P.hut, 0.98));
         if (!d0.fine) return;
         for (let i = 0; i < 5; i += 1) {
@@ -4430,7 +4451,7 @@
       // ON its metering — that is how anyone knows what it did — and until it
       // is there the circuit is not finished, which is the difference between
       // this stage and the one before it.
-      m.part("services / metering and valve station", () => {
+      m.part("services / metering and valve station", "prop", () => {
         const vx = o.x + 4.4, vz = o.z + 6.2, y = GRADE + 2.4;
         m.rod([vx - 2.2, y, vz], [vx + 2.2, y, vz], 0.3, d0.fine ? 10 : 4, shade(P.hut, 1.02), true);
         for (const s2 of [-1, 1]) {
@@ -4465,7 +4486,7 @@
       // steel: the small permanent store is laid in blockwork with a mono-pitch
       // roof, and the course lines are the only thing on this site that says
       // masonry.
-      m.part("structure / blockwork store", () => {
+      m.part("structure / blockwork store", ["blockwork-store"], () => {
         const sx = o.x + b.w / 2 + 7.5, sz = o.z + 1.0, h0 = 3.0, h1 = 4.2;
         m.bar(sx - 4.5, sx + 4.5, GRADE, GRADE + h0, sz - 3.2, sz + 3.2, shade(P.hardcore, 1.0));
         m.webPlate([[sx - 4.5, GRADE + h0], [sx + 4.5, GRADE + h0], [sx + 4.5, GRADE + h1]], sz - 3.2, sz + 3.2, shade(P.hardcore, 0.96));
@@ -4483,7 +4504,7 @@
       });
     }
     if (built) {
-      m.part("structure / office pod and canopy", () => {
+      m.part("structure / office pod and canopy", ["office-pod"], () => {
         const px = o.x - b.w / 2 - 6.0, pz = o.z - b.dz * 0.2;
         m.bar(px - 3.4, px + 3.4, GRADE + 0.15, GRADE + 3.0, pz - 2.4, pz + 2.4, shade(P.hut, 1.02));
         if (!d0.fine) return;
@@ -4497,7 +4518,7 @@
         m.beam(px + 0.6, px + 3.6, GRADE + 3.22, GRADE + 3.4, pz - 4.2, pz - 2.3, shade(k.accent, 1.1), 0.02);
         for (const cx of [1.0, 3.2]) m.rod([px + cx, GRADE + 3.22, pz - 4.0], [px + cx, GRADE + 0.15, pz - 4.0], 0.09, 8, P.galv, false);
       });
-      m.part("yard / open stock rack and compressor", () => {
+      m.part("yard / open stock rack and compressor", "prop", () => {
         const rx = o.x + b.w * 0.1, rz = o.z + b.dz / 2 + 9.5;
         for (let i = 0; i < (d0.fine ? 4 : 2); i += 1) {
           const n = d0.fine ? 4 : 2;
@@ -4541,7 +4562,7 @@
       deckedBlock(m, { x, z, deck: GRADE + 0.18, col: k.body, tag: "office floors",
         block: { w: 24, dz: 15, eaves: 13.2, floors: 3 } }, stage, d0);
     } else if (stage >= 3) {
-      m.part("structure / office floor silhouette", () => {
+      m.part("structure / office floor silhouette", ["office-floors"], () => {
         if (stage === 3) {
           for (const dx of [-10, 0, 10]) m.bar(x + dx - 0.3, x + dx + 0.3, GRADE, GRADE + 13.2, z - 7.5, z + 7.5, P.primer);
         } else {
@@ -4551,7 +4572,7 @@
       });
     }
     if (stage >= 4) {
-      m.part("services / office air handling terrace", () => {
+      m.part("services / office air handling terrace", ["office-floors"], () => {
         for (const dx of [-5, 5]) {
           m.bar(x + dx - 2.0, x + dx + 2.0, GRADE + 13.4, GRADE + 15.1, z - 2, z + 2, P.galv);
           if (d0.fine) {
@@ -4560,13 +4581,13 @@
           }
         }
       });
-      m.part("envelope / office entrance canopy", () => {
+      m.part("envelope / office entrance canopy", ["office-floors"], () => {
         m.bar(x - 4, x + 4, GRADE + 3.5, GRADE + 3.8, z + 7.5, z + 11.5, k.accent);
         for (const dx of [-3.5, 3.5]) m.column(x + dx, GRADE, z + 11, 3.5, 0.12, 0.12, d0.fine ? 12 : 4, P.galv, false);
         if (d0.fine) m.bar(x - 2.2, x + 2.2, GRADE, GRADE + 3.1, z + 7.61, z + 7.75, P.glass);
       });
     }
-    if (stage >= 5) m.part("yard / office pedestrian forecourt", () => {
+    if (stage >= 5) m.part("yard / office pedestrian forecourt", "terrain", () => {
       m.bar(x - 13, x + 13, GRADE, GRADE + 0.15, z + 9, z + 15, P.kerb);
       for (const dx of [-10, 10]) {
         m.bar(x + dx - 1.5, x + dx + 1.5, GRADE + 0.15, GRADE + 0.6, z + 10.5, z + 13.5, P.concrete);
@@ -4583,14 +4604,14 @@
     // The dock occupies the clear centre of the compound. Shared stored units
     // stay on the eastern hardstand, clear of this basin and its repair access.
     const x = W * 0.02, z = 1.0;
-    if (stage >= 2) m.part("dock / dry dock base and retaining walls", () => {
+    if (stage >= 2) m.part("dock / dry dock base and retaining walls", "terrain", () => {
       m.bar(x - 6, x + 6, GRADE + 0.02, GRADE + 0.10, z - 14, z + 14, shade(P.concrete, 0.66));
       for (const dx of [-6.6, 6.6]) m.bar(x + dx - 0.6, x + dx + 0.6, GRADE, GRADE + (stage >= 3 ? 1.9 : 0.4), z - 14, z + 14, P.concrete);
       if (d0.fine && stage >= 3) {
         for (let i = 0; i < 10; i += 1) m.beam(x - 1.0, x + 1.0, GRADE + 0.10, GRADE + 0.7, z - 12 + i * 2.5, z - 11.4 + i * 2.5, P.timber, 0.025);
       }
     });
-    if (stage >= 3) m.part("structure / shipyard lifting gantry", () => {
+    if (stage >= 3) m.part("structure / shipyard lifting gantry", "prop", () => {
       for (const dx of [-8, 8]) {
         m.bar(x + dx - 0.32, x + dx + 0.32, GRADE + 0.12, GRADE + 0.30, z - 15, z + 15, P.steel);
         m.bar(x + dx - 0.55, x + dx + 0.55, GRADE + 0.3, GRADE + 20.0, z - 1.0, z + 1.0, k.accent);
@@ -4606,12 +4627,12 @@
         m.beam(x - 0.8, x + 0.8, GRADE + 9.4, GRADE + 10.2, z - 0.4, z + 0.4, P.safety, 0.03);
       }
     });
-    if (stage >= 4) m.part("services / dock pump house and shore cabinets", () => {
+    if (stage >= 4) m.part("services / dock pump house and shore cabinets", ["pump-house"], () => {
       m.bar(x + 9.5, x + 14.5, GRADE, GRADE + 3.2, z + 7, z + 13, k.body);
       for (let i = 0; i < (d0.fine ? 4 : 1); i += 1) m.bar(x + 9.5, x + 10.6, GRADE + 0.1, GRADE + 1.8, z - 10 + i * 3, z - 9 + i * 3, P.galv);
       if (d0.fine) m.rod([x + 11, GRADE + 1.2, z + 7], [x + 11, GRADE + 1.2, z - 12], 0.15, 10, P.galv, true);
     });
-    if (stage >= 5) m.part("dock / caisson gate and quay bollards", () => {
+    if (stage >= 5) m.part("dock / caisson gate and quay bollards", "prop", () => {
       m.bar(x - 6, x + 6, GRADE + 0.1, GRADE + 1.8, z + 13.4, z + 14.0, P.steel);
       for (const dx of [-7.2, 7.2]) for (let i = 0; i < (d0.fine ? 5 : 2); i += 1) {
         const bz = z - 11 + i * (d0.fine ? 5.5 : 22);
@@ -4626,7 +4647,7 @@
     const { o, d0, stage } = c;
     if (d0.fine && stage >= 3) genericBlock(m, k, o, d0);
     const x = o.x + 20, z = o.z;
-    if (stage >= 3) m.part("structure / controlled process service gallery", () => {
+    if (stage >= 3) m.part("structure / controlled process service gallery", ["process-gallery"], () => {
       for (const dz of [-6, 0, 6]) {
         m.bar(x - 2.8, x + 2.8, GRADE + 4.5, GRADE + 4.8, z + dz - 0.2, z + dz + 0.2, P.steel);
         for (const dx of [-2.6, 2.6]) m.bar(x + dx - 0.16, x + dx + 0.16, GRADE, GRADE + 4.8, z + dz - 0.16, z + dz + 0.16, P.steel);
@@ -4636,14 +4657,14 @@
       }
     });
     if (stage >= 4) {
-      m.part("services / filtered air supply bank", () => {
+      m.part("services / filtered air supply bank", ["process-gallery"], () => {
         for (let i = 0; i < 3; i += 1) {
           const fx = o.x - 8 + i * 8;
           m.bar(fx - 2.6, fx + 2.6, GRADE + k.block.ridge + 0.15, GRADE + k.block.ridge + 2.0, o.z - 3, o.z + 3, P.galv);
           if (d0.fine) for (let s = 0; s < 9; s += 1) m.beam(fx - 2.3, fx + 2.3, GRADE + k.block.ridge + 0.3 + s * 0.17, GRADE + k.block.ridge + 0.36 + s * 0.17, o.z + 3, o.z + 3.18, P.dark, 0.01);
         }
       });
-      m.part("services / enclosed process supply cabinets", () => {
+      m.part("services / enclosed process supply cabinets", ["process-gallery"], () => {
         for (const dz of [-4.5, 0, 4.5]) {
           m.bar(x - 2.0, x + 2.0, GRADE + 0.15, GRADE + 3.3, z + dz - 1.5, z + dz + 1.5, shade(k.body, 0.94));
           if (d0.fine) {
@@ -4653,7 +4674,7 @@
         }
       });
     }
-    if (stage >= 5) m.part("envelope / clean loading vestibule", () => {
+    if (stage >= 5) m.part("envelope / clean loading vestibule", ["lead"], () => {
       const front = o.z + k.block.dz / 2;
       m.bar(o.x - 4.5, o.x + 4.5, GRADE, GRADE + 4.4, front + 0.1, front + 5.0, k.body);
       m.bar(o.x - 2.0, o.x + 2.0, GRADE + 0.2, GRADE + 3.8, front + 5.0, front + 5.1, P.door);
@@ -4688,7 +4709,7 @@
   function genericBlock(m, k, o, d0) {
     hall(m, o, d0);
     if (o.clad > 0.9) {
-      m.part("envelope / roller doors", () => {
+      m.part("envelope / roller doors", ["lead"], () => {
         m.save().move(o.x, o.deck, o.z + o.block.dz / 2 + 0.02);
         for (let i = 0; i < 2; i += 1) {
           const cx = (i - 0.5) * (o.block.w / 2.6), dw = o.block.w / 5.2, dh = o.block.eaves * 0.55;
@@ -4712,7 +4733,7 @@
   /// while a stage is looked at for a few dozen days.
   function finishedPlant(m, k, o, W, D, d0) {
     const b = o.block;
-    m.part("envelope / roof lights", () => {
+    m.part("envelope / roof lights", ["lead"], () => {
       const pitch = Math.atan2(b.ridge - b.eaves, b.w / 2) / DEG;
       for (const s of [-1, 1]) {
         m.save().move(o.x, o.deck, o.z).rotY(s > 0 ? 0 : 180).move(0, 0, 0);
@@ -4737,7 +4758,7 @@
         m.restore();
       }
     });
-    m.part("envelope / wall louvres and vents", () => {
+    m.part("envelope / wall louvres and vents", ["lead"], () => {
       for (const s of [-1, 1]) {
         for (let i = 0; i < (d0.fine ? 8 : 3); i += 1) {
           const n = d0.fine ? 8 : 3;
@@ -4754,7 +4775,7 @@
         }
       }
     });
-    m.part("services / roof plant and access walkway", () => {
+    m.part("services / roof plant and access walkway", ["lead"], () => {
       // Air handling, extract cowls and a condenser bank on a frame over the
       // ridge, with a walkway and a handrail to reach them. This is the one
       // thing an industrial building always has on top of it and the model
@@ -4787,7 +4808,7 @@
         }
       }
     });
-    m.part("envelope / entrance canopy and reception", () => {
+    m.part("envelope / entrance canopy and reception", ["lead"], () => {
       const ex = o.x - b.w * 0.36, ez = o.z - b.dz / 2;
       for (const px of [ex - 2.4, ex + 2.4]) {
         if (d0.fine) m.rod([px, GRADE, ez - 3.06], [px, GRADE + 3.4, ez - 3.06], 0.15, 8, P.galv, false);
@@ -4819,7 +4840,7 @@
         }
       }
     });
-    m.part("yard / marked bays and kerbs", () => {
+    m.part("yard / marked bays and kerbs", "terrain", () => {
       const bays = d0.fine ? 10 : 3, bx = -W * 0.42, bz = -D * 0.30;
       for (let i = 0; i <= bays; i += 1) {
         const lz = bz + (i * 20) / bays;
@@ -4841,7 +4862,7 @@
         }
       }
     });
-    m.part("yard / parked vehicles and stored units", () => {
+    m.part("yard / parked vehicles and stored units", "prop", () => {
       // A yard parks what fits in it. The row used to be four vehicles at fixed
       // 9.2 m centres whatever the compound was, which ran the last one seven
       // metres off the end of the hardstanding on the smaller kinds — and an
@@ -4907,7 +4928,7 @@
         m.beam(cx - 3.05, cx + 3.05, GRADE, GRADE + 0.16, cz - 1.24, cz + 1.24, shade(P.steel, 0.86), 0.02);
       }
     });
-    m.part("yard / bollards and gate island", () => {
+    m.part("yard / bollards and gate island", "prop", () => {
       for (let i = 0; i < (d0.fine ? 10 : 3); i += 1) {
         const n = d0.fine ? 10 : 3;
         const bx = -W * 0.42 + (i * W * 0.84) / (n - 1);
@@ -4915,7 +4936,7 @@
         else m.column(bx, GRADE, -D * 0.415, 1.0, 0.2, 0.2, d0.seg, P.safety, true);
       }
     });
-    m.part("yard / weighbridge and external storage racks", () => {
+    m.part("yard / weighbridge and external storage racks", "prop", () => {
       const wx = -W * 0.47, wz = D * 0.10;
       if (d0.fine) {
         // A weighbridge is a plate deck in a pit with a kerb round it and a
@@ -4977,11 +4998,11 @@
     const stage = st.index + 1;
     const working = st.active;
     const b = k.block;
-    m.part("site / perimeter hoarding and gate", () => hoarding(m, W, D, d0, P.hoard));
-    m.part("site / accommodation and welfare", () => {
+    m.part("site / perimeter hoarding and gate", "prop", () => hoarding(m, W, D, d0, P.hoard));
+    m.part("site / accommodation and welfare", ["welfare-cabins"], () => {
       siteHuts(m, -W * 0.42, -D * 0.20, 8 + (h % 5) * 4, stage >= 3 ? 4 : 2, d0);
     });
-    m.part("site / stacked materials", () => {
+    m.part("site / stacked materials", "prop", () => {
       const kinds = stage === 1 ? [2, 3, 1] : stage === 2 ? [3, 2, 1] : stage === 3 ? [0, 3, 1] : [0, 1];
       kinds.forEach((kind, i) => {
         materialStack(m, W * 0.40 - i * 0.4, -D * 0.26 + i * 7.5, kind, d0);
@@ -4991,7 +5012,7 @@
     // for the life of the job, and the reason a site does not put mud on the
     // province's road: worth the eighty triangles because it is the piece that
     // says these gates are used.
-    m.part("site / wheel wash and traffic control", () => {
+    m.part("site / wheel wash and traffic control", "prop", () => {
       const gz = -D / 2 + 6.0;
       m.bar(-4.4, 4.4, GRADE, GRADE + 0.22, gz - 3.0, gz + 3.0, P.concreteWet);
       for (let i = 0; i < 6; i += 1) {
@@ -5004,7 +5025,7 @@
       }
     });
     if (stage <= 2) {
-      m.part("earthworks / topsoil bund", () => {
+      m.part("earthworks / topsoil bund", "terrain", () => {
         // Stripped topsoil, stockpiled along the boundary. It goes back as the
         // verge at hand-over, which is why the finished site has one and the
         // stages in between do not.
@@ -5013,7 +5034,7 @@
           m.mound(-W * 0.42 + (i * W * 0.84) / (n - 1), GRADE, D * 0.44, 2.6, 1.5, d0.fine ? 6 : 4, P.earth);
         }
       });
-      m.part("earthworks / spoil heaps", () => {
+      m.part("earthworks / spoil heaps", "terrain", () => {
         for (let i = 0; i < (stage === 1 ? 2 : 4); i += 1) {
           const a = ((i * 97 + h) % 360) * DEG;
           m.mound(o.x + (b.w / 2 + 5.0) * Math.cos(a), GRADE, o.z + (b.dz / 2 + 5.0) * Math.sin(a),
@@ -5022,14 +5043,14 @@
         }
       });
     }
-    if (stage === 2) m.part("plant / batching skid and bowser", () => sitePlant(m, -W * 0.42, D * 0.30, d0));
+    if (stage === 2) m.part("plant / batching skid and bowser", "prop", () => sitePlant(m, -W * 0.42, D * 0.30, d0));
     if (stage >= 3 && stage <= 4) {
-      m.part("plant / tower crane", () => {
+      m.part("plant / tower crane", "prop", () => {
         towerCrane(m, -W * 0.42, -D * 0.06, 26, 22, working, d0, (h % 8) * 45 + (working ? 0 : 20));
       });
     }
-    if (stage === 4) m.part("plant / gable scaffold", () => scaffold(m, o.x, o.z + b.dz / 2 + 1.4, b.w * 0.55, b.eaves, d0));
-    m.part("services / lighting masts", () => {
+    if (stage === 4) m.part("plant / gable scaffold", "prop", () => scaffold(m, o.x, o.z + b.dz / 2 + 1.4, b.w * 0.55, b.eaves, d0));
+    m.part("services / lighting masts", "prop", () => {
       const n = stage >= 4 ? 4 : 2;
       for (let i = 0; i < n; i += 1) {
         const sx = i % 2 ? 1 : -1, sz = i < 2 ? 1 : -1;
@@ -5037,7 +5058,7 @@
       }
     });
     if (!working) {
-      m.part("site / work stopped notice", () => stopBoard(m, 0, -D / 2 + 3.2, st.status === "blocked", d0));
+      m.part("site / work stopped notice", "prop", () => stopBoard(m, 0, -D / 2 + 3.2, st.status === "blocked", d0));
     }
   }
 
@@ -5088,27 +5109,27 @@
     const seat = homeSeat(k, W, D);
     const o = { x: seat.x, z: seat.z, block: b, col: k.body, deck: GRADE + 0.18, clad: CLAD_BY_STAGE[st.index] };
 
-    m.part("site / formation platform", () => {
+    m.part("site / formation platform", "terrain", () => {
       platform(m, W, D, stage <= 2 ? { x: o.x, z: o.z, w: b.w + 3.2, d: b.dz + 3.2 } : null, P.fill);
     });
     if (stage <= 2) {
-      m.part("earthworks / excavation", () => {
+      m.part("earthworks / excavation", "terrain", () => {
         excavation(m, o.x, o.z, b.w + 3.2, b.dz + 3.2, stage === 1 ? 0.35 : 1.1, stage === 2 && d0.fine ? 5 : 0);
       });
       if (stage === 2) {
-        m.part("earthworks / pad footings, reinforcement and formwork", () => {
+        m.part("earthworks / pad footings, reinforcement and formwork", ["lead"], () => {
           footings(m, o.x, o.z, b.w, b.dz, (k.grid || [4, 3])[0], (k.grid || [4, 3])[1], d0);
         });
-        m.part("earthworks / blinding and formed slab edge", () => {
+        m.part("earthworks / blinding and formed slab edge", ["lead"], () => {
           m.bar(o.x - b.w / 2 - 1, o.x + b.w / 2 + 1, PIT, PIT + 0.12, o.z - b.dz / 2 - 1, o.z - b.dz / 2 + 3, P.concreteWet);
           m.bar(o.x - b.w / 2 - 1, o.x - b.w / 2 + 3, PIT, PIT + 0.12, o.z - b.dz / 2 - 1, o.z + b.dz / 2 + 1, P.concreteWet);
         });
       }
     } else {
-      m.part("structure / ground slab", () => slab(m, o.x, o.z, b.w + 2.2, b.dz + 2.2, P.concrete, d0));
+      m.part("structure / ground slab", ["lead"], () => slab(m, o.x, o.z, b.w + 2.2, b.dz + 2.2, P.concrete, d0));
     }
     if (stage === 1) {
-      m.part("site / setting out and access", () => {
+      m.part("site / setting out and access", "terrain", () => {
         // Profiles, not pegs. Setting out is a pair of posts with a board
         // across them and a line pulled between boards, and the line is the
         // thing the building is actually built to — it is the one part of this
@@ -5157,7 +5178,7 @@
         frame: false,
         tag: `wing ${l}`,
       };
-      m.part(`structure / delivered wing ${l}`, () => {
+      m.part(`structure / delivered wing ${l}`, ["wing-" + l], () => {
         m.bar(wing.x - wing.block.w / 2 - 1, wing.x + wing.block.w / 2 + 1, PIT, GRADE + 0.18,
           wing.z - wing.block.dz / 2 - 1, wing.z + wing.block.dz / 2 + 1, P.concrete);
       });
@@ -5182,8 +5203,8 @@
     }
 
     if (stage >= 5) {
-      m.part("yard / permanent perimeter", () => fence(m, W, D, d0));
-      m.part("yard / apron and verge", () => {
+      m.part("yard / permanent perimeter", "prop", () => fence(m, W, D, d0));
+      m.part("yard / apron and verge", "terrain", () => {
         m.save().move(0, GRADE, 0);
         m.plate([[-W * 0.44, -D * 0.44], [W * 0.44, -D * 0.44], [W * 0.44, -D * 0.28], [-W * 0.44, -D * 0.28]], 0.1, P.asphalt);
         m.restore();
@@ -5200,7 +5221,7 @@
             ((W * 0.92) / (n - 1)) * 0.56, 0.55, d0.fine ? 7 : 4, shade(P.grass, 0.96 + 0.06 * (i % 3)));
         }
       });
-      m.part("yard / signage and lighting", () => {
+      m.part("yard / signage and lighting", "prop", () => {
         // A totem at the gate: two posts on base plates, a framed board between
         // them, and a low plinth. The accent colour appears here and almost
         // nowhere else, which is the point — a factory should read as a factory
@@ -5240,12 +5261,12 @@
     const x = seat.x, z = seat.z;
     const o = { x, z, block: b, col: k.body, deck: GRADE + 0.18, clad: CLAD_BY_STAGE[st.index] };
 
-    m.part("site / formation platform", () => platform(m, W, D, null, P.fill));
-    m.part("site / perimeter", () => {
+    m.part("site / formation platform", "terrain", () => platform(m, W, D, null, P.fill));
+    m.part("site / perimeter", "prop", () => {
       if (stage >= 5) fence(m, W, D, d0); else hoarding(m, W, D, d0, P.hoard);
     });
     if (stage <= 2) {
-      m.part("earthworks / dig and spoil", () => {
+      m.part("earthworks / dig and spoil", "prop", () => {
         // 20 mm PROUD of the platform deck, not flush with it. The coarse
         // platform is drawn without a hole (the hole costs triangles this budget
         // does not have), so a dig whose top face sits exactly at GRADE is
@@ -5258,7 +5279,7 @@
         }
       });
       if (stage === 2) {
-        m.part("earthworks / footings", () => {
+        m.part("earthworks / footings", "prop", () => {
           for (let i = 0; i < 6; i += 1) {
             const fx = x + ((i % 3) - 1) * (b.w / 3), fz = z + (i < 3 ? -1 : 1) * (b.dz / 4);
             m.bar(fx - 1.4, fx + 1.4, GRADE - 0.4, GRADE + 0.3, fz - 1.4, fz + 1.4, P.concreteWet);
@@ -5266,10 +5287,10 @@
         });
       }
     } else {
-      m.part("structure / slab", () => slab(m, x, z, b.w + 2, b.dz + 2, P.concrete));
+      m.part("structure / slab", "prop", () => slab(m, x, z, b.w + 2, b.dz + 2, P.concrete));
     }
     if (stage === 3) {
-      m.part("structure / frame", () => {
+      m.part("structure / frame", "prop", () => {
         for (let i = 0; i < 3; i += 1) {
           const fz = z - b.dz / 2 + (i * b.dz) / 2;
           for (const s of [-1, 1]) m.bar(x + s * b.w / 2 - 0.4, x + s * b.w / 2 + 0.4, GRADE, GRADE + b.eaves, fz - 0.4, fz + 0.4, P.primer);
@@ -5279,7 +5300,7 @@
       });
     }
     if (stage >= 4) {
-      m.part("envelope / massing", () => {
+      m.part("envelope / massing", "prop", () => {
         m.bar(x - b.w / 2, x + b.w / 2, GRADE, GRADE + b.eaves, z - b.dz / 2, z + b.dz / 2,
           stage >= 5 ? k.body : shade(k.body, 0.9));
         m.save().move(x, GRADE, z);
@@ -5298,7 +5319,7 @@
         // The unclad end is the whole story of this stage at map scale: an
         // outline of frame where the sheeting has not reached, and scaffold
         // against it. Without them stage four reads as a finished building.
-        m.part("structure / open bays and scaffold", () => {
+        m.part("structure / open bays and scaffold", "prop", () => {
           for (const s of [-1, 1]) {
             m.bar(x + s * b.w / 2 - 0.4, x + s * b.w / 2 + 0.4, GRADE, GRADE + b.eaves + (b.ridge - b.eaves) * 0.3, z - b.dz / 2, z - b.dz / 2 + 0.8, P.primer);
           }
@@ -5313,7 +5334,7 @@
       }
     }
     for (let l = 1; l < level; l += 1) {
-      m.part(`structure / delivered wing ${l}`, () => {
+      m.part(`structure / delivered wing ${l}`, ["wing-" + l], () => {
         const at = wingSeat(k, o, W, D, l);
         m.bar(at.x - 4.5, at.x + 4.5, GRADE, GRADE + Math.max(4.2, Math.min(7.5, b.eaves * 0.62)),
           at.z - 4, at.z + 4, shade(k.body, 0.96));
@@ -5326,24 +5347,24 @@
     // objects that still read at a hundred metres.
     if (!k.bespoke) KIND_WORKS[k.key](m, k, { o, W, D, d0, stage, h, level });
     if (stage >= 3 && stage <= 4) {
-      m.part("plant / tower crane", () => towerCrane(m, -W * 0.42, -D * 0.06, 26, 22, st.active, d0, (h % 8) * 45));
+      m.part("plant / tower crane", "prop", () => towerCrane(m, -W * 0.42, -D * 0.06, 26, 22, st.active, d0, (h % 8) * 45));
     }
     if (stage < 5) {
-      m.part("site / huts and materials", () => {
+      m.part("site / huts and materials", "prop", () => {
         // One cabin at map range. A stacked pair is 5.4 m of silhouette against
         // a 70 m compound and the second one adds nothing you can see.
         siteHuts(m, -W * 0.34, D * 0.3, 8 + (h % 5) * 4, 1, d0);
         materialStack(m, W * 0.30, -D * 0.30, stage <= 2 ? 2 : 0, d0);
       });
-      if (!st.active) m.part("site / work stopped notice", () => stopBoard(m, 0, -D / 2 + 3.2, st.status === "blocked", d0));
+      if (!st.active) m.part("site / work stopped notice", "prop", () => stopBoard(m, 0, -D / 2 + 3.2, st.status === "blocked", d0));
     } else {
-      m.part("yard / apron", () => {
+      m.part("yard / apron", "prop", () => {
         m.save().move(0, GRADE, 0);
         m.plate([[-W * 0.44, -D * 0.44], [W * 0.44, -D * 0.44], [W * 0.44, -D * 0.28], [-W * 0.44, -D * 0.28]], 0.1, P.asphalt);
         m.restore();
       });
       if (k.bespoke) {
-        m.part("yard / loading dock and stack", () => {
+        m.part("yard / loading dock and stack", "prop", () => {
           m.bar(x - 11, x + 11, GRADE, GRADE + 1.3, z - b.dz / 2 - 12, z - b.dz / 2 - 6, P.concrete);
           m.column(W * 0.28, GRADE, D * 0.26, 17, 0.95, 0.75, 4, shade(P.clad, 0.88), false);
         });
@@ -5359,7 +5380,7 @@
       // failure and a lie about which of the two a viewer is looking at. What
       // goes back is what is actually there: stored units in the yard, marked
       // bays, the gate island and the lighting.
-      m.part("yard / hand-over dressing", () => {
+      m.part("yard / hand-over dressing", "prop", () => {
         for (let i = 0; i < 5; i += 1) {
           m.bar(W * 0.20 + (i % 2) * 6.4, W * 0.20 + (i % 2) * 6.4 + 5.6, GRADE, GRADE + 2.5,
             D * 0.02 + Math.floor(i / 2) * 3.0 - 1.2, D * 0.02 + Math.floor(i / 2) * 3.0 + 1.2, shade(k.accent, 0.86 + 0.1 * (i % 3)));
@@ -5474,6 +5495,7 @@
       positions, normals, colors,
       bounds: { min, max },
       parts: this.parts,
+      ...(this.collectBudget ? { budgetUnits: this.budgetUnits, budgetBuildings: [...this.budgetBuildings.values()] } : {}),
       triangleCount: count,
       // What the smoothing pass actually did, so a caller (and the checks) can
       // see it regress instead of taking it on trust.
@@ -5511,6 +5533,7 @@
     const level = Math.max(1, Math.min(5, rawLevel));
     const variant = typeof o.variant === "number" && isFinite(o.variant) ? Math.abs(Math.round(o.variant)) % 1000 : 0;
     const m = new Mesh();
+    m.collectBudget = !lod;
     const pad = lod ? buildFar(m, k, st, level, variant) : buildNear(m, k, st, level, variant);
     // PLACEHOLDER IS A PER-KIND FACT. It used to be `!k.bespoke`, which meant
     // "anything without its own builder", and that was accurate exactly while

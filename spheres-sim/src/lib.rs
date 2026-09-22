@@ -5315,7 +5315,10 @@ mod tests {
         // E-3 is repaired and its original calibration bars remain unchanged.
         // Measured again for the sourced Algeria opening-chamber correction;
         // see 2026-09-22-remaining-failures.md. Election/balance rules unchanged.
-        const GOLDEN: u64 = 0x4d2b187b81788c76;
+        // Subsequent disorder-accountability and live coup-trigger repairs
+        // intentionally move the timeline, not startup. See the measured
+        // before/after in 2026-09-22-outstanding-repairs.md.
+        const GOLDEN: u64 = 0x6866c0bc2e38de35;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);
@@ -5428,7 +5431,7 @@ mod tests {
         // This constant tracks the tree's ACTUAL by construction, so moving it
         // is not a golden re-pin; the two real goldens above stay where they are.
         // Updated with the approved E-3 semantic/schema baseline; resource invariance is still tested on/off.
-        const RUN_ACTUAL: u64 = 0x4d2b187b81788c76;
+        const RUN_ACTUAL: u64 = 0x6866c0bc2e38de35;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);
@@ -5734,7 +5737,7 @@ mod tests {
         // This constant tracks the tree's ACTUAL by construction, so moving it
         // is not a golden re-pin; the two real goldens above stay where they are.
         // Updated with the approved E-3 semantic/schema baseline; resource invariance is still tested on/off.
-        const RUN_ACTUAL: u64 = 0x4d2b187b81788c76;
+        const RUN_ACTUAL: u64 = 0x6866c0bc2e38de35;
         assert!(!GameRules::default().resource_market, "the suite's default must be off");
         let w = world_1990(GameRules::default());
         let off_text = save(&w);

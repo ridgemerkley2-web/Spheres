@@ -40,7 +40,9 @@
 <body>
 <h1>Art review bench</h1>
 <p class="lede">Every P0 asset, drawn by the same modules the game loads, under one neutral rig.
-Hover to turn. Triangle counts are measured live; a count outside its budget is marked.</p>
+Hover to turn. Triangle counts are measured live; a count outside its budget is marked.
+Inspection bands follow contract revision 2. The <a href="../../docs/art/P0_BUDGETS.md">full budget report</a>
+keeps the original targets, export limits and individual building measurements.</p>
 <div class="bar" id="bar"></div>
 <div class="grid" id="grid"></div>
 
@@ -78,16 +80,14 @@ Hover to turn. Triangle counts are measured live; a count outside its budget is 
   Arsenal3D.register("scatter", (r) => { const [kind, lod] = r.split("/");
     return ScatterMesh.piece(kind, { lod: lod === "far" ? "far" : 0 }); });
 
-  // ROADMAP SECTION 4, QUOTED. These were this file's own numbers and four of
-  // them were LOOSER than the roadmap they claimed to grade against — vehicles
-  // at 150,000 where section 4 says 45,000, sites and stages at 40,000 where it
-  // says 12,000, town at 400,000 where it says 150,000. A review bench whose
-  // bars are wider than the budget shows over-budget art as passing, which is
-  // the one thing it must not do. tools/ui/bench_art.cjs is the authority: it
-  // re-reads section 4 and exits if a cell has moved. This page cannot read a
-  // file, so it carries the numbers and names the row it took each from.
+  // ROADMAP SECTION 4, contract revision 2. Inspection follows the previously
+  // approved tank/specialist quality bands; catalogue and map ceilings stay
+  // unchanged. A compound pays the full scene budget, while its constituent
+  // buildings are separately charged in the linked P0 report. This gallery
+  // still prints the entire actually rendered mesh, never a divided count.
   const S4 = {
-    vehicle_lod0: [20000, 45000, "Ground vehicle close inspection LOD0"],
+    vehicle_lod0: [20000, 150000, "Tank inspection LOD0"],
+    specialist_lod0: [8000, 48000, "Armoured specialist inspection LOD0"],
     vehicle_lod1: [4000, 12000, "LOD1 catalogue preview"],
     vehicle_lod2: [300, 1500, "LOD2 map vehicle"],
     building_near: [2000, 12000, "Building close view / map"],
@@ -97,6 +97,8 @@ Hover to turn. Triangle counts are measured live; a count outside its budget is 
     tree_prop_far: [20, 100, "Tree/prop near / far"],
   };
   const num = (n) => n.toLocaleString();
+  const compoundNote = (mesh) => `${mesh.budgetBuildings.length} physical structures · `
+    + '<a href="../../docs/art/P0_BUDGETS.md#physical-building-accounting">individual building 12k checks</a>';
   // `band` is a key into S4, or null for art section 4 has NO ROW for. A null
   // band prints the measurement and says so, rather than inventing a bar: the
   // road and prop kits are graded nowhere, and pretending otherwise with a
@@ -124,7 +126,7 @@ Hover to turn. Triangle counts are measured live; a count outside its budget is 
     "Vehicles LOD0": () => ["tank_standard","tank_heavy","tank_light","tank_destroyer",
         "ground_ifv","ground_apc","ground_recon","ground_artillery","ground_air_defense"]
       .map((p) => card(`veh:${p}/0`, p, "close inspection",
-        EquipmentMesh.build({ platform: p }).triangleCount, "vehicle_lod0")),
+        EquipmentMesh.build({ platform: p }).triangleCount, p.startsWith("tank_") ? "vehicle_lod0" : "specialist_lod0")),
     // All nine platforms at every level. The three that were missing here
     // (tank_heavy, tank_light, tank_destroyer at LOD1 and LOD2) build fine and
     // were simply never listed, so the bench showed 21 of the 27 that ship.
@@ -136,15 +138,19 @@ Hover to turn. Triangle counts are measured live; a count outside its budget is 
         "ground_ifv","ground_apc","ground_recon","ground_artillery","ground_air_defense"]
       .map((p) => card(`veh:${p}/2`, p, "map scale",
         EquipmentMesh.build({ platform: p, lod: 2 }).triangleCount, "vehicle_lod2")),
-    "Sites complete": () => SiteMesh.kinds()
-      .map((k) => card(`site:${k}/complete/2`, SiteMesh.meta(k).name || k, "level 2, complete",
-        SiteMesh.build(k, "complete", { level: 2 }).triangleCount, "building_near")),
+    "Sites complete": () => SiteMesh.kinds().map((k) => {
+      const mesh = SiteMesh.build(k, "complete", { level: 2 });
+      return card(`site:${k}/complete/2`, SiteMesh.meta(k).name || k, `level 2, complete compound · ${compoundNote(mesh)}`,
+        mesh.triangleCount, "scene");
+    }),
     "Sites at map LOD": () => SiteMesh.kinds()
       .map((k) => card(`siteFar:${k}/complete/2`, SiteMesh.meta(k).name || k, "map sprite",
         SiteMesh.build(k, "complete", { level: 2, lod: "far" }).triangleCount, "building_far")),
-    "Arms plant stages": () => SiteMesh.stages("arms_plant")
-      .map((s) => card(`site:arms_plant/${s.key}/2`, s.name, `${Math.round(s.from * 100)}%–${Math.round(s.to * 100)}% of recorded work`,
-        SiteMesh.build("arms_plant", s.key, { level: 2 }).triangleCount, "building_near")),
+    "Arms plant stages": () => SiteMesh.stages("arms_plant").map((s) => {
+      const mesh = SiteMesh.build("arms_plant", s.key, { level: 2 });
+      return card(`site:arms_plant/${s.key}/2`, s.name, `${Math.round(s.from * 100)}%–${Math.round(s.to * 100)}% of recorded work · ${compoundNote(mesh)}`,
+        mesh.triangleCount, "scene");
+    }),
     // THE CAPTION MUST MEASURE WHAT THE CANVAS DRAWS. It did not: the count came
     // from `{id: 1990}` while the provider splits the id out of the string and
     // passes `{id: "1990"}`, and town-mesh seeds those differently — so every

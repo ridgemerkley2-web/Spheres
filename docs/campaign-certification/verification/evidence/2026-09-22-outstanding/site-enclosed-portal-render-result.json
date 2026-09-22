@@ -1,0 +1,26 @@
+{
+  "baseline": "5d86fb35",
+  "method": "Existing Arsenal3D WebGL renderer; 512px identical camera pairs. Temporary isolated headless Chrome; no game server or campaign data.",
+  "cases": [
+    {
+      "name": "arms-plant-front",
+      "before": 35300,
+      "after": 34320,
+      "changedPixels": 0,
+      "totalPixels": 262144,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0
+    },
+    {
+      "name": "arms-plant-rear",
+      "before": 35300,
+      "after": 34320,
+      "changedPixels": 0,
+      "totalPixels": 262144,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

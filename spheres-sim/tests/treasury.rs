@@ -42,7 +42,9 @@ use spheres_sim::{save, state_hash, tick_month, Command};
 const START_ACTUAL: u64 = 0x6fc47dff64344b17;
 // Approved benchmark/revelation-ledger baseline; treasury remains absent in this fixture.
 // HEADLESS_BASELINE_2026-09-04.md records the semantic and schema assessment.
-const RUN_ACTUAL: u64 = 0x4d2b187b81788c76;
+// Subsequently measured after disorder/live coup-trigger repairs; see
+// 2026-09-22-outstanding-repairs.md. Treasury feature invariants are unchanged.
+const RUN_ACTUAL: u64 = 0x6866c0bc2e38de35;
 
 /// With no budget seated anywhere — which is the default board, every AI
 /// nation, and every save written before the treasury existed — a 240-month

@@ -330,9 +330,9 @@
       const axis = sub(b, a), length = Math.hypot(...axis);
       if (length < 1e-9) return;
       const profile = [];
-      if (caps && radius > 1e-9) profile.push({ r: 0, h: 0 }, { r: radius, h: 0 });
+      if (caps && caps.start !== false && radius > 1e-9) profile.push({ r: 0, h: 0 }, { r: radius, h: 0 });
       profile.push({ r: radius, h: 0, s: 1 }, { r: radiusEnd, h: length, s: 1 });
-      if (caps && radiusEnd > 1e-9) profile.push({ r: radiusEnd, h: length }, { r: 0, h: length });
+      if (caps && caps.end !== false && radiusEnd > 1e-9) profile.push({ r: radiusEnd, h: length }, { r: 0, h: length });
       revolve(a, axis, profile, color, segments, Math.hypot(Math.max(radius, radiusEnd) * 2, length));
     }
     // A bore. 8S triangles: the outer wall and the inner wall are both turned,
@@ -546,7 +546,10 @@
     for(const side of [-1,1]){
       const edge=add(pin,[side*(trackWidth/2-.018),0,0]);
       b.box(edge,[.074,.061,pitch*.44],PALETTE.steel,basis);
-      b.cylinder(add(edge,[side*.027,0,0]),add(edge,[side*.050,0,0]),.027,PALETTE.bright,6);
+      // The pin starts 10 mm inside its solid connector block. Its radius
+      // fits within both block cross-sections, so only that buried end cap
+      // can be omitted; the exposed barrel and outside head stay closed.
+      b.cylinder(add(edge,[side*.027,0,0]),add(edge,[side*.050,0,0]),.027,PALETTE.bright,6,.027,{start:false});
     }
   }
   // Restrained wear, varied by loop index so the same input still gives the same
@@ -1958,7 +1961,11 @@
             // as links rather than a rubber ribbon at any distance.
             for (const rim of [-1, 1]) {
               const pinCenter = add(center, mul(tangent, step * 0.40));
-              b.cylinder(add(pinCenter, [rim * (trackWidth / 2 - 0.025), 0, 0]), add(pinCenter, [rim * (trackWidth / 2 + 0.050), 0, 0]), 0.025, c.bright, 6);
+              // The inspection connector below also encloses this pin's inner
+              // cap: its longitudinal offset is .06 pitch and its radius .025.
+              // Keep both caps on coarse meshes and any future tighter pitch.
+              const caps=b.level===0&&step*.16>.025?{start:false}:true;
+              b.cylinder(add(pinCenter, [rim * (trackWidth / 2 - 0.025), 0, 0]), add(pinCenter, [rim * (trackWidth / 2 + 0.050), 0, 0]), 0.025, c.bright, 6,.025,caps);
             }
             b.box(add(center, mul(outward, 0.032)), [trackWidth + 0.070, 0.023, step * 0.14], c.bright, basis);
             // The inspection horn tapers into the now-open paired-wheel channel;

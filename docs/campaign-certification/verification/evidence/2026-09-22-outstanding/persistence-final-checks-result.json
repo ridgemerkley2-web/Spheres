@@ -1,0 +1,39 @@
+{
+  "dynamic_gates": {
+    "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\algeria-opening-20260922\\persistence-final-A1-A5-A7.log",
+    "exit_code": 101,
+    "command": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\bloc_census-b35be4d742aae476.exe --ignored --skip bloc_census --nocapture --test-threads=4"
+  },
+  "executable_sha256": [
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_sim-de8a2e7790f15db6.exe",
+      "Hash": "E48F018F1B7BB0F21AC8C938A5AA3340B2EED2F25DBD54AB5D21ED7A96958471"
+    },
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\bloc_census-b35be4d742aae476.exe",
+      "Hash": "B1ED47C7DEA7565C807CB1A562ABD6E28D08AC8B14E32FA6B9C624ED872C758C"
+    }
+  ],
+  "P6": {
+    "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\algeria-opening-20260922\\persistence-final-P6.log",
+    "exit_code": 101,
+    "command": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_sim-de8a2e7790f15db6.exe --ignored --exact blocs::tests::the_1990_census_meets_the_design_brief --nocapture --test-threads=1"
+  },
+  "source_sha256": [
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\src\\government.rs",
+      "Hash": "978BA1BE5F0F0E92D2C45D050CE6B6BF6FFC59E43090E4E4868502B424C24D3A"
+    },
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\src\\blocs.rs",
+      "Hash": "4A9FA4626049BA3A6E4667CDE7AE8E2BA063AC0787ECEB15D433697F4ED05637"
+    },
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\src\\statecraft.rs",
+      "Hash": "EAE2D88EF1D2A7AA33AD78AC65714C3B53C06E3EA592B6C319F9E1533D76FBDF"
+    }
+  ],
+  "focused_passed": 9,
+  "focused_total": 9,
+  "finished_utc": "2026-09-22T15:15:46.8791764Z"
+}
