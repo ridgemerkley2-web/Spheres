@@ -73,7 +73,7 @@ test('forebody shapes contain curved intermediate sections rather than only line
 test('every engine choice exposes two actual inlet throats with unobstructed depth to the fan',()=>{
   for(const platform of ['air_light_attack','air_tactical_strike'])for(const engine of ['air_engine_economical','air_engine_efficient','air_engine_twin']){
     const strike=platform==='air_tactical_strike';if(!strike&&engine==='air_engine_twin')continue;
-    const mesh=build({platform,components:{air_engine:engine}}),twin=engine==='air_engine_twin',w=strike?.77:.58,y=strike?2.10:1.72,r=(twin?.54:engine==='air_engine_efficient'?.52:.43)*(strike?(twin?.70:.75):(twin?.66:.65)),x=strike?1.10+r*.65:w+r+.045,z=strike?1.60:.85;
+    const mesh=build({platform,components:{air_engine:engine}}),twin=engine==='air_engine_twin',w=strike?.77:.58,y=strike?2.10:1.72,r=(twin?.54:engine==='air_engine_efficient'?.52:.43)*(strike?(twin?.70:.75):(twin?.66:.65)),x=strike?1.10+r*.65:w+r+.045,z=strike?1.60:2.55;
     const shift=mesh.bounds.max[1]-(y+(strike?2:1.65));
     for(const side of [-1,1]){
       const hit=raycast(mesh,[side*x,y-(strike?.37:.15)+shift,20],[0,0,-1]);assert(hit,`${platform} ${engine} inlet is visible`);assert.equal(hit.part.slot,'air_engine');
