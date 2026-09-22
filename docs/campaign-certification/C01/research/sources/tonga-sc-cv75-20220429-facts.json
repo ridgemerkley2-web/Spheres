@@ -1,0 +1,49 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://ago.gov.to/cms/judgements/supreme-court-civil/category/206-cv-2022.html?download=2386%3Akelekolio-kiu-v-pohiva-tuionetoa-cv-75-21-tosc-29-apr-2022-cooper-j-judgement",
+  "accessed_date": "2026-09-21",
+  "published_date": "2022-04-29",
+  "access_method": "downloaded_original_pdf_text_and_relevant_pages_visually_read",
+  "source_response_bytes": 602620,
+  "source_response_sha256": "57fb2ac33421699958da3267e9d0540fa533ff2f944c36c022d5535aa3012372",
+  "source_response_checked_in": false,
+  "provenance_note": "Original response bytes were downloaded during this review and hashed before extraction. The PDF is a JBIG2 page scan with an OCR text layer, so every imported label was checked against the rendered page images. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_paati_a_e_kakai_name_20211001",
+      "text": "The trial judgment lists Tu'i'onetoa among the guests at the 1 October 2021 Niutao event as the then Prime Minister and Minister for Public Enterprises and leader of the Paati 'a e Kakai; the People's Party.",
+      "attested_on": "2021-10-01",
+      "locator": "PDF page 2, paragraphs 7-8",
+      "uncertainty": "A judicial description of the event's guests, not a party instrument. 'Leader' is used descriptively here and is not an appointment record or term boundary."
+    },
+    {
+      "id": "to_peoples_party_incorporated_society_2022",
+      "text": "A Ministry for Trade and Economic Development officer whose work includes registering incorporated societies testified that the People's Party is an incorporated society with 35 members, including Tu'i'onetoa as president and Tevita Lavemaau as secretary, and that it has a constitution and stated aims.",
+      "locator": "PDF page 4, paragraphs 33-35 (witness Poini Paongo); trial dates on PDF page 1",
+      "period": {
+        "from": "2022-04-19",
+        "through": "2022-04-21"
+      },
+      "uncertainty": "Testimony summarised from the 19-21 April 2022 trial. No registration date, society number, registered name or register extract is given. The member count and officers are those reported at trial, not a founding roster or continuous term. Incorporation as a society is not a statutory party registration."
+    },
+    {
+      "id": "to_speech_transcript_ptoa_20211001",
+      "text": "The trial judgment quotes the translated transcript of Tu'i'onetoa's 1 October 2021 Niutao speech (Exhibit 1(b)): he says he started with PTOA until it changed course, and that he left to start a new vision. The transcript spells the label PTOA.",
+      "attested_on": "2021-10-01",
+      "locator": "PDF pages 33-34, paragraph 324 and footnote 5 (Exhibit 1(b), paragraph 5, page 4)",
+      "uncertainty": "A speaker's translated self-description. It gives no joining or departure date and does not expand the acronym."
+    }
+  ],
+  "scope_note": "Party-identity evidence only. The Court of Appeal allowed the appeal from this judgment and set aside its declarations and costs order (AC 8 of 2022, 9 August 2022, paragraph 44). This intake imports no allegation, finding, declaration, penalty or office exclusion; only background descriptions and testimony that the appeal did not concern are used.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2,
+      4,
+      33,
+      34
+    ],
+    "method": "Pages 1, 2, 4, 33 and 34 rendered with PDFium and visually reviewed: trial and judgment dates, the Paati 'a e Kakai description, the incorporated-society testimony and the PTOA transcript quotation."
+  }
+}
