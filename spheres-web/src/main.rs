@@ -42,6 +42,7 @@ mod fiscal_recovery_view;
 mod money_commitments;
 mod money_view;
 mod construction_outcomes;
+mod guidance_outcomes;
 mod companies_view;
 mod transport;
 mod decision_review;
@@ -5556,6 +5557,7 @@ fn guidance_json(g: &Game) -> serde_json::Value {
     serde_json::json!({
         "state": state_json(g, None),
         "production": g.world.player.map(|me| production_json(&g.world, me)),
+        "outcomes": g.world.player.map(|me| guidance_outcomes::outcomes_json(g, me)),
     })
 }
 
@@ -8558,6 +8560,329 @@ mod tests {
             assert_eq!(view["state"]["t"], month_index(2002, 6));
             assert_eq!(save(&g.world), before,
                 "Reading advice must not open budgets, settle work, or change the saved world");
+        }
+    }
+
+    #[test]
+    fn guidance_outcomes_are_null_without_a_player() {
+        let g = Game::new(42, None);
+        let before = save(&g.world);
+        let view = guidance_json(&g);
+        assert!(view["outcomes"].is_null(), "no chosen nation means no campaign results to read");
+        assert_eq!(save(&g.world), before);
+    }
+
+    #[test]
+    fn guidance_outcomes_serve_unknown_sections_for_systems_a_campaign_lacks() {
+        let g = Game::new(42, Some(NationId::Japan));
+        let view = guidance_json(&g);
+        let outcomes = &view["outcomes"];
+        assert_eq!(outcomes["nation"], view["state"]["player"]);
+        assert_eq!(outcomes["money"]["journal_available"], false);
+        assert!(outcomes["money"]["decisions"].is_null(), "a missing journal is unknown, not an empty record");
+        for section in ["construction", "research", "procurement", "aviation"] {
+            assert!(outcomes[section].is_null(), "{section} is not enabled in a legacy monthly world");
+        }
+    }
+
+    fn outcomes_campaign(me: NationId) -> Game {
+        let mut g = Game::new(1, None);
+        assert!(new_game(&mut g, 1990, Some(me)).1);
+        g
+    }
+
+    #[test]
+    fn guidance_outcomes_share_the_state_identity_and_leave_the_campaign_unchanged() {
+        let me = NationId::France;
+        let mut g = outcomes_campaign(me);
+        advance_request(&mut g, &serde_json::json!({"days":2,"commands":[]})).unwrap();
+        let world = save(&g.world);
+        let archive = serde_json::to_string(&(&g.log, &g.history, g.history_epoch)).unwrap();
+        let view = guidance_json(&g);
+        let (state, outcomes) = (&view["state"], &view["outcomes"]);
+        println!("guidance outcomes example: {outcomes}");
+        assert_eq!(outcomes["nation"], state["player"]);
+        assert_eq!(outcomes["date"], state["date"]);
+        let day = spheres_sim::clock::date_day(state["year"].as_i64().unwrap() as i32,
+            state["month"].as_u64().unwrap() as u32, state["day"].as_u64().unwrap() as u32);
+        assert_eq!(outcomes["as_of_day"], day);
+        assert_eq!(outcomes["as_of_day"], view["production"]["as_of_day"]);
+        assert_eq!(*outcomes, guidance_outcomes::outcomes_json(&g, me), "a repeated read serves the same result");
+        for section in ["money", "construction", "research", "procurement", "aviation"] {
+            assert!(outcomes[section].is_object(), "a fresh browser campaign enables {section}");
+        }
+        assert_eq!(outcomes["money"]["journal_available"], true);
+        assert!(outcomes["money"]["decisions"].as_array().unwrap().is_empty(), "nothing was enacted");
+        assert!(outcomes["construction"]["completions"].as_array().unwrap().is_empty());
+        assert_eq!(save(&g.world), world, "reading results must not change the saved world");
+        assert_eq!(serde_json::to_string(&(&g.log, &g.history, g.history_epoch)).unwrap(), archive);
+    }
+
+    #[test]
+    fn guidance_outcomes_date_a_dispatched_budget_enactment() {
+        let me = NationId::France;
+        let mut g = outcomes_campaign(me);
+        let opened = guidance_json(&g)["outcomes"]["as_of_day"].as_i64().unwrap();
+        let payload = department_payload(&g.world, me);
+        advance_request(&mut g, &serde_json::json!({"days":1,"commands":[payload]})).unwrap();
+        let view = guidance_json(&g);
+        let outcomes = &view["outcomes"];
+        let as_of = outcomes["as_of_day"].as_i64().unwrap();
+        assert_eq!(as_of, opened + 1);
+        let enacted: Vec<_> = outcomes["money"]["decisions"].as_array().unwrap().iter()
+            .filter(|d| d["kind"] == "program_budget").collect();
+        assert_eq!(enacted.len(), 1, "{}", outcomes["money"]);
+        let day = enacted[0]["day"].as_i64().unwrap();
+        assert!(day <= as_of);
+        assert_eq!(day, opened, "an order sent with an advance is dispatched on the day it was reviewed");
+        let journal = g.world.fiscal_recovery.nations[&me].money_journal.as_ref().unwrap();
+        assert!(journal.decisions.iter().any(|d| serde_json::json!(d.id) == enacted[0]["id"] && d.kind == "program_budget"));
+        assert_eq!(outcomes["money"]["program"]["enabled"], true);
+        assert_eq!(outcomes["money"]["program"]["fiscal_year"], 1990);
+    }
+
+    #[test]
+    fn guidance_outcomes_exclude_another_nations_records() {
+        use spheres_sim::airbases::{Airbase, BaseProject, UpgradeTrack};
+        use spheres_sim::airmissions::{MissionKind, MissionOrder, MissionStatus};
+        use spheres_sim::aviation::{AviationState, Squadron};
+        let (me, other) = (NationId::France, NationId::Germany);
+        let mut g = outcomes_campaign(me);
+        let today = spheres_sim::clock::absolute_day(&g.world);
+        let district = |g: &Game, n: NationId, skip: usize|
+            g.world.districts.iter().filter(|(_, o)| **o == n).nth(skip).unwrap().0.clone();
+        let (mine, theirs, theirs_too) = (district(&g, me, 0), district(&g, other, 0), district(&g, other, 1));
+        for (id, nation, at) in [(9000, me, &mine), (9001, other, &theirs)] {
+            g.world.production.projects.push(Project { id, nation, district: at.clone(), kind: ProjectKind::ProcessingPlant,
+                priority: Priority::Normal, status: ProjectStatus::Building, reason: None, progress_days: 1.0, total_days: 360,
+                resources_used: [0.0; 12], capacity_micros: None, started_day: None });
+            g.world.production.industry.projects.insert(id, spheres_sim::industry::ProjectFunding { spent_bn: 0.001,
+                contract_cost_bn: Some(0.12), last_spent_bn: Some(0.001), last_day: Some(today - 1), ..Default::default() });
+        }
+        g.record(format!("{} completes Materials Processing level 1 in {theirs}.", other.name()));
+        g.record(format!("{} completes Materials Processing level 1 in {mine}.", me.name()));
+        g.record(format!("{} completes its domination agenda: influence in Europe.", me.name()));
+        let project = |id: u32, sponsor: NationId, completed: Option<i32>| BaseProject { id, sponsor,
+            track: UpgradeTrack::Capacity, target_level: 1, total_cost_bn: 0.024, paid_bn: 0.024, total_days: 12,
+            progress_days: 12.0, daily_budget_mn: 2.0, started_day: today - id as i32 % 100, last_paid_day: Some(today - 1),
+            paused: false, completed_day: completed, cancelled_day: None, reason: None };
+        let bases = &mut g.world.airbases.get_or_insert_with(Default::default).bases;
+        bases.push(Airbase { id: theirs.clone(), district: theirs.clone(), name: "Shared field".into(), sponsor: other,
+            capacity_level: 1, support_level: 0, protection_level: 0, project: Some(project(9121, other, None)),
+            history: vec![project(9122, me, Some(today - 1)), project(9123, other, Some(today - 2))] });
+        bases.push(Airbase { id: theirs_too.clone(), district: theirs_too.clone(), name: "German field".into(), sponsor: other,
+            capacity_level: 1, support_level: 0, protection_level: 0, project: Some(project(9124, other, None)),
+            history: vec![project(9125, other, Some(today - 1))] });
+        assert!(g.world.nation(me).aviation.is_none());
+        g.world.nation_mut(other).aviation = Some(AviationState { next_id: 2, last_service_day: None,
+            squadrons: vec![Squadron { id: 1, name: "Other".into(), revision: "other".into(), assigned: 4, base: None,
+                transit: None, service_days_left: 0 }] });
+        let order = |id: u32, nation: NationId| MissionOrder { id, nation, squadron: 1, conflict: 1,
+            kind: MissionKind::DefendSkies, target: String::new(), issued_day: today - 2, launch_day: today - 1,
+            status: MissionStatus::Flown, report: None };
+        let missions = g.world.air_missions.get_or_insert_with(Default::default);
+        missions.orders.push(order(9201, other));
+        missions.orders.push(order(9202, me));
+        for (id, buyer) in [(9301, other), (9302, me)] {
+            g.world.companies.deliveries.push(spheres_sim::companies::Delivery { id, company: 0, buyer, product: 1,
+                revision_id: format!("{}-design-1", buyer.code()), district: mine.clone(), quantity: 4, unit_price_bn: 0.01,
+                total_price_bn: 0.04, cost_basis_bn: 0.03, purchased_day: today - 1, settled_day: Some(today - 1),
+                due_day: Some(today + 6), delivered_day: None, status: "in_transit".into(), reason: String::new() });
+        }
+        let before = save(&g.world);
+        let view = guidance_json(&g);
+        let outcomes = &view["outcomes"];
+        assert_eq!(save(&g.world), before);
+        let ids = |v: &serde_json::Value| v.as_array().unwrap().iter().map(|r| r["id"].as_u64().unwrap()).collect::<Vec<_>>();
+        let projects = ids(&outcomes["construction"]["projects"]);
+        assert!(projects.contains(&9000) && !projects.contains(&9001), "{projects:?}");
+        let row = outcomes["construction"]["projects"].as_array().unwrap().iter().find(|r| r["id"] == 9000).unwrap();
+        assert_eq!((&row["kind"], &row["district"], &row["last_day"]), (&serde_json::json!("processing_plant"),
+            &serde_json::json!(mine), &serde_json::json!(today - 1)));
+        assert_eq!((row["last_spent_bn"].as_f64(), row["contract_cost_bn"].as_f64()), (Some(0.001), Some(0.12)));
+        let completions = outcomes["construction"]["completions"].as_array().unwrap();
+        assert_eq!(completions.len(), 1, "{completions:?}");
+        assert_eq!(completions[0]["text"], format!("{} completes Materials Processing level 1 in {mine}.", me.name()));
+        assert_eq!((&completions[0]["district"], &completions[0]["kind"]), (&serde_json::json!(mine), &serde_json::json!("processing_plant")),
+            "a completion names its site, so another nation's plant in the same district is not the player's");
+        assert_eq!((&completions[0]["date"], &completions[0]["day"]), (&serde_json::json!(g.world.date_str()), &serde_json::json!(today)));
+        let bases = outcomes["aviation"]["bases"].as_array().unwrap();
+        let shared = bases.iter().find(|b| b["name"] == "Shared field").expect("the player's improvement lists its host base");
+        assert!(shared["project"].is_null(), "the host's own current work is not the player's");
+        assert_eq!(shared["history"].as_array().unwrap().len(), 1);
+        assert_eq!(shared["history"][0]["started_day"], today - 22);
+        assert!(bases.iter().all(|b| b["name"] != "German field"), "{bases:?}");
+        assert!(outcomes["aviation"]["squadrons"].as_array().unwrap().is_empty());
+        assert_eq!(ids(&outcomes["aviation"]["missions"]), vec![9202]);
+        assert_eq!(ids(&outcomes["procurement"]["deliveries"]), vec![9302]);
+        assert!(outcomes["procurement"]["deliveries"][0]["company"].is_null(), "an unknown supplier is not named");
+    }
+
+    #[test]
+    fn guidance_outcomes_date_first_hour_orders_sent_through_the_turn_path() {
+        use spheres_sim::airbases::AirbaseCommand;
+        let me = NationId::France;
+        let mut g = outcomes_campaign(me);
+        let opened = spheres_sim::clock::absolute_day(&g.world);
+        let orders = serde_json::json!([department_payload(&g.world, me), {"kind":"construction_budget","daily_budget_bn":0.01}]);
+        advance_request(&mut g, &serde_json::json!({"days":1,"commands":orders})).unwrap();
+        let item = production_json(&g.world, me)["suggestions"]["items"][0].clone();
+        let mut start = serde_json::json!({"kind":"start_project","district":item["district"],"project_kind":item["project_kind"]});
+        if let Some(size) = item["capacity_micros"].as_u64() {
+            start = serde_json::json!({"kind":"start_industry_module","district":item["district"],"capacity_micros":size});
+        }
+        let field = g.world.districts.iter().filter(|(_, o)| **o == me).map(|(d, _)| d.clone()).find(|d|
+            spheres_sim::airbases::refusal(&g.world, me, &AirbaseCommand::Establish { district: d.clone(),
+                name: "Guidance field".into(), daily_budget_mn: 2.0 }).is_none()).expect("France can fund a domestic airfield");
+        let ordered = spheres_sim::clock::absolute_day(&g.world);
+        let orders = serde_json::json!([start,
+            {"kind":"air_base","order":{"action":"establish","district":field,"name":"Guidance field","daily_budget_mn":2.0}},
+            {"kind":"equipment_research","component":"tank_running_gear"},
+            {"kind":"equipment_save","name":"Guidance draft","platform":spheres_sim::equipment::PLATFORMS[0].id,"components":{}}]);
+        // The browser clock posts one day per turn; a headline naming the player can stop a longer span.
+        advance_request(&mut g, &serde_json::json!({"days":1,"commands":orders})).unwrap();
+        for _ in 0..4 { advance_request(&mut g, &serde_json::json!({"days":1,"commands":[]})).unwrap(); }
+        let before = save(&g.world);
+        let view = guidance_json(&g);
+        assert_eq!(save(&g.world), before);
+        let outcomes = &view["outcomes"];
+        println!("guidance outcomes after orders: {outcomes}");
+        let as_of = outcomes["as_of_day"].as_i64().unwrap();
+        assert_eq!(as_of, i64::from(ordered) + 5);
+        let kinds: Vec<_> = outcomes["money"]["decisions"].as_array().unwrap().iter()
+            .map(|d| (d["kind"].as_str().unwrap().to_string(), d["day"].as_i64().unwrap())).collect();
+        for kind in ["program_budget", "construction_budget"] {
+            assert!(kinds.contains(&(kind.to_string(), i64::from(opened))), "{kind}: {kinds:?}");
+        }
+        let projects = outcomes["construction"]["projects"].as_array().unwrap();
+        assert_eq!(projects.len(), 1, "{projects:?}");
+        assert!(projects[0]["last_spent_bn"].as_f64().unwrap() > 0.0);
+        assert_eq!(projects[0]["last_day"], as_of - 1, "the tick settles a day before the date moves");
+        let research = &outcomes["research"];
+        assert_eq!(research["active"]["component"], "tank_running_gear");
+        assert_eq!(research["active"]["cost"], 24.0);
+        assert_eq!(research["drafts"][0]["name"], "Guidance draft");
+        assert_eq!(research["drafts"][0]["updated_day"], ordered);
+        assert_eq!(research["drafts"][0]["valid"], false, "a draft with no components is not a valid design");
+        let base = outcomes["aviation"]["bases"].as_array().unwrap().iter().find(|b| b["id"] == field).unwrap();
+        assert_eq!(base["project"]["started_day"], ordered);
+        assert!(base["project"]["paid_bn"].as_f64().unwrap() > 0.0);
+        assert_eq!(base["project"]["last_paid_day"], as_of - 1);
+        assert!(base["project"]["completed_day"].is_null());
+    }
+
+    #[test]
+    fn guidance_outcomes_serve_the_players_paid_mine_work_and_its_opening() {
+        let (me, other) = (NationId::France, NationId::Germany);
+        let mut g = outcomes_campaign(me);
+        let orders = serde_json::json!([department_payload(&g.world, me), {"kind":"construction_budget","daily_budget_bn":0.05}]);
+        advance_request(&mut g, &serde_json::json!({"days":1,"commands":orders})).unwrap();
+        let eligible = |g: &Game, n: NationId| g.world.districts.iter().filter(|(_, o)| **o == n)
+            .flat_map(|(d, _)| ALL.into_iter().map(move |c| (d.clone(), c)))
+            .find(|(d, c)| resources::mine_refusal(&g.world, n, d, *c).is_none());
+        let (site, commodity) = eligible(&g, me).expect("France has an eligible mapped deposit");
+        let order = serde_json::json!({"kind":"develop_resource","district":site,"commodity":commodity.key()});
+        advance_request(&mut g, &serde_json::json!({"days":1,"commands":[order]})).unwrap();
+        for _ in 0..3 { advance_request(&mut g, &serde_json::json!({"days":1,"commands":[]})).unwrap(); }
+        let (theirs, their_commodity) = eligible(&g, other).expect("Germany has an eligible mapped deposit");
+        resources::start_mine(&mut g.world, other, &theirs, their_commodity).unwrap();
+        // A legacy prepaid row has no funding ledger, so its payment is unknown rather than zero.
+        let (legacy, legacy_commodity) = eligible(&g, me).expect("France has a second eligible deposit");
+        let at = g.world.resources.mine_projects.binary_search_by(|m| (m.district.as_str(), m.commodity)
+            .cmp(&(legacy.as_str(), legacy_commodity))).unwrap_err();
+        g.world.resources.mine_projects.insert(at, resources::MineProject { district: legacy.clone(), commodity: legacy_commodity,
+            started_by: me, months_left: 6, months_total: 12, days_left: None, investment_bn: 0.3, output: 1.0 });
+        let before = save(&g.world);
+        let view = guidance_json(&g);
+        assert_eq!(save(&g.world), before);
+        let outcomes = &view["outcomes"];
+        println!("guidance outcomes with mine work: {}", outcomes["construction"]);
+        let as_of = outcomes["as_of_day"].as_i64().unwrap();
+        let mines = outcomes["construction"]["mines"].as_array().expect("mine work is served beside projects");
+        let mut expected = vec![(site.clone(), commodity.key()), (legacy.clone(), legacy_commodity.key())];
+        expected.sort();
+        assert_eq!(mines.iter().map(|m| (m["district"].as_str().unwrap().to_string(), m["commodity"].as_str().unwrap())).collect::<Vec<_>>(),
+            expected, "only the player's mines, sorted by district and commodity: {mines:?}");
+        let key = spheres_sim::industry::mine_key(&site, commodity);
+        let funding = g.world.production.industry.mines[&key].clone();
+        let paid = mines.iter().find(|m| m["district"] == site && m["commodity"] == commodity.key()).unwrap();
+        assert!(paid["spent_bn"].as_f64().unwrap() > 0.0, "{paid}");
+        assert_eq!(paid["spent_bn"].as_f64(), Some(funding.spent_bn));
+        assert_eq!(paid["last_day"], as_of - 1, "the tick settles a day before the date moves");
+        assert_eq!((paid["progress_days"].as_f64(), paid["total_days"].as_u64()), (Some(funding.progress_days), Some(u64::from(funding.total_days))));
+        assert!(funding.progress_days > 0.0);
+        let unfunded = mines.iter().find(|m| m["district"] == legacy && m["commodity"] == legacy_commodity.key()).unwrap();
+        for field in ["spent_bn", "last_day", "progress_days", "total_days"] {
+            assert!(unfunded[field].is_null(), "{field} of a row with no funding ledger is not estimated: {unfunded}");
+        }
+        // Finish the funded mine through the tick: its opening headline is a construction completion at its site.
+        let investment = g.world.resources.mine_projects.iter().find(|p| p.started_by == me && p.district == site && p.commodity == commodity)
+            .unwrap().investment_bn;
+        let f = g.world.production.industry.mines.get_mut(&key).unwrap();
+        f.progress_days = f.total_days as f64 - 0.5;
+        f.spent_bn = investment - 1e-4;
+        advance_request(&mut g, &serde_json::json!({"days":1,"commands":[]})).unwrap();
+        let view = guidance_json(&g);
+        let construction = &view["outcomes"]["construction"];
+        println!("guidance outcomes after the mine opens: {construction}");
+        let opened = construction["completions"].as_array().unwrap().iter().find(|c| c["kind"] == "mine")
+            .unwrap_or_else(|| panic!("the mine opening is a completion: {construction}"));
+        assert!(opened["text"].as_str().unwrap().starts_with(&format!("{} opens the {} ", me.name(), commodity.name())), "{opened}");
+        assert_eq!(opened["district"], site);
+        assert!(opened["day"].as_i64().unwrap() <= view["outcomes"]["as_of_day"].as_i64().unwrap());
+        assert!(construction["mines"].as_array().unwrap().iter().all(|m| m["district"] != site || m["commodity"] != commodity.key()),
+            "an opened mine is no longer construction work: {construction}");
+    }
+
+    #[test]
+    fn guidance_outcomes_keep_the_first_flown_mission_behind_ten_newer_orders() {
+        use spheres_sim::airmissions::{MissionKind, MissionOrder, MissionReport, MissionStatus};
+        let (me, other) = (NationId::France, NationId::Germany);
+        let mut g = outcomes_campaign(me);
+        let today = spheres_sim::clock::absolute_day(&g.world);
+        let order = |id: u32, nation: NationId, status: MissionStatus| MissionOrder { id, nation, squadron: 1, conflict: 1,
+            kind: MissionKind::DefendSkies, target: String::new(), issued_day: today - 30, launch_day: today - 29, status,
+            report: (status == MissionStatus::Flown).then(|| MissionReport { day: today - 29, summary: "Flown".into(), aircraft: 4,
+                sorties: 4.0, family: String::new(), stores_used: 0.0, aircraft_lost: 0, applied_power: 1.0, contacted: false, defense: None }) };
+        let orders = &mut g.world.air_missions.get_or_insert_with(Default::default).orders;
+        orders.push(order(9400, other, MissionStatus::Flown));
+        orders.push(order(9401, me, MissionStatus::Flown));
+        orders.extend((9402..9412).map(|id| order(id, me, if id % 2 == 0 { MissionStatus::Cancelled } else { MissionStatus::Blocked })));
+        let served = |g: &Game| guidance_json(g)["outcomes"]["aviation"]["missions"].as_array().unwrap().clone();
+        let ids = |rows: &[serde_json::Value]| rows.iter().map(|m| m["id"].as_u64().unwrap()).collect::<Vec<_>>();
+        let rows = served(&g);
+        assert_eq!(ids(&rows), std::iter::once(9401).chain(9402..9412).collect::<Vec<_>>(), "the first flight is kept beside the newest ten");
+        assert_eq!((&rows[0]["status"], &rows[0]["report_day"]), (&serde_json::json!("flown"), &serde_json::json!(today - 29)));
+        let orders = &mut g.world.air_missions.as_mut().unwrap().orders;
+        orders.retain(|o| o.id != 9411);
+        assert_eq!(ids(&served(&g)), (9401..9411).collect::<Vec<_>>(), "a flight among the newest ten is served once");
+        let orders = &mut g.world.air_missions.as_mut().unwrap().orders;
+        orders.push(order(9411, me, MissionStatus::Cancelled));
+        let first = orders.iter_mut().find(|o| o.id == 9401).unwrap();
+        (first.status, first.report) = (MissionStatus::Cancelled, None);
+        assert_eq!(ids(&served(&g)), (9402..9412).collect::<Vec<_>>(), "with no flight only the newest ten are served");
+    }
+
+    #[test]
+    fn guidance_outcomes_mark_saved_drafts_with_the_designers_own_validity() {
+        use spheres_sim::equipment as eq;
+        let me = NationId::France;
+        let mut g = outcomes_campaign(me);
+        let good = eq::baseline_spec();
+        assert!(eq::design_preview(&g.world, me, &good).valid, "the baseline design is legal for France at the start");
+        let orders = serde_json::json!([
+            {"kind":"equipment_save","name":"Baseline","platform":good.platform,"components":good.components},
+            {"kind":"equipment_save","name":"Empty","platform":good.platform,"components":{}}]);
+        advance_request(&mut g, &serde_json::json!({"days":1,"commands":orders})).unwrap();
+        let view = guidance_json(&g);
+        let drafts = view["outcomes"]["research"]["drafts"].as_array().unwrap();
+        let valid = |name: &str| drafts.iter().find(|d| d["name"] == name).map(|d| d["valid"].clone());
+        assert_eq!(valid("Baseline"), Some(serde_json::json!(true)), "{drafts:?}");
+        assert_eq!(valid("Empty"), Some(serde_json::json!(false)), "{drafts:?}");
+        let saved = &g.world.nation(me).equipment.as_ref().unwrap().drafts;
+        assert_eq!(saved.len(), 2);
+        for d in saved.values() {
+            assert_eq!(valid(&d.name), Some(serde_json::json!(eq::design_preview(&g.world, me, &d.spec).valid)), "the designer's check decides");
         }
     }
 
