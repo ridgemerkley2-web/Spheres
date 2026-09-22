@@ -1,10 +1,14 @@
 'use strict';
 // Deliberately invented review scenarios, never a campaign API or saved world.
 const sampleNation={id:'ExampleRepublic',name:'Example Republic',alive:true,treasury:4,annual_budget:{due:false}};
-let sampleState, sampleProduction, scenario='opening';const memory=new Map();
+let sampleState, sampleProduction, sampleOutcomes, scenario='opening';const memory=new Map();
 function scenarioData(){
-  const state={session_id:'sample-guidance-1',player:'ExampleRepublic',player_name:'Example Republic',date:'1 Jan 1990',year:1990,month:1,day:1,t:0,simulation_cadence:'daily',nations:[structuredClone(sampleNation),{id:'Neighbor',name:'Neighboring Republic',alive:true}],programs:{due:false},wars:[],research:{nation:'Example Republic',monthly:1,domains:[{name:'Energy',domain:'Energy',project:null,options:[{id:'example-energy',name:'Sample energy technology',year:1990}]}]}};
+  const state={session_id:'sample-guidance-1',player:'ExampleRepublic',player_name:'Example Republic',date:'1 Jan 1990',year:1990,month:1,day:1,t:0,simulation_cadence:'daily',nations:[structuredClone(sampleNation),{id:'Neighbor',name:'Neighboring Republic',alive:true}],programs:{enabled:true,due:false},wars:[],research:{nation:'Example Republic',monthly:1,domains:[{name:'Energy',domain:'Energy',project:null,options:[{id:'example-energy',name:'Sample energy technology',year:1990}]}]}};
   const production={nation:'ExampleRepublic',mode:'province_projects',construction_budget:{enrolled:true,daily_budget_bn:.01,available_bn:.01},queue:[],mine_queue:[],completed:[],catalog:[],provinces:[],suggestions:{as_of_day:0,items:[]}};
+  // A fresh campaign's dated records: every first-hour step reads Not yet with its obstacle.
+  const outcomes={nation:'ExampleRepublic',date:state.date,as_of_day:0,money:{journal_available:true,decisions:[],program:{enabled:true,fiscal_year:1990,settled_day:null}},
+    construction:{projects:[],completions:[],operating:[],mines:[]},research:{active:null,learned:0,last_completed_day:null,drafts:[],revisions:[],projects:[]},
+    procurement:{companies:0,certified_products:0,developing_products:0,deliveries:[],imports:[]},aviation:{bases:[],squadrons:[],missions:[]}};
   if(scenario==='opening')state.programs.due=true;
   if(scenario==='construction'){
     production.construction_budget.daily_budget_bn=0;
@@ -16,21 +20,21 @@ function scenarioData(){
     state.wars=[{id:1,theatre_name:'Sample theatre',class:'limited conflict',posture:[{id:'ExampleRepublic'}]}];
     state.operations={enabled:true,deployments:[{nation:'ExampleRepublic',conflict:1,requested:8,deployed:5}]};
   }
-  if(scenario==='empty'){state.research=null;return {state,production:null};}
-  return {state,production};
+  if(scenario==='empty'){state.research=null;return {state,production:null,outcomes:null};}
+  return {state,production,outcomes};
 }
-function resetSample(){const data=scenarioData();sampleState=data.state;sampleProduction=data.production;}
+function resetSample(){const data=scenarioData();sampleState=data.state;sampleProduction=data.production;sampleOutcomes=data.outcomes;}
 resetSample();
 const review=GuidanceUI.mount({
   getState:()=>sampleState,canNavigate:()=>true,pause:()=>{},busy:()=>false,
   supports:()=>true,storage:{getItem:key=>memory.get(key),setItem:(key,value)=>memory.set(key,value)},
   asset:key=>`../../spheres-web/ui/area-art/${key}-v1.webp`,
-  readSnapshot:async()=>{if(scenario==='offline')throw new Error('Sample: the game connection is unavailable. You can retry the briefing and continue reading the tutorial.');return {state:structuredClone(sampleState),production:structuredClone(sampleProduction)};},
+  readSnapshot:async()=>{if(scenario==='offline')throw new Error('Sample: the game connection is unavailable. You can retry the briefing and continue reading the tutorial.');return {state:structuredClone(sampleState),production:structuredClone(sampleProduction),outcomes:structuredClone(sampleOutcomes)};},
   navigate(action){const target=document.getElementById('destination');target.replaceChildren();const heading=document.createElement('h2');heading.textContent='Review destination: '+action.kind;const note=document.createElement('p');note.textContent='In the game this opens the existing review screen. This isolated page records the destination only, so it cannot issue an order or change a campaign.';target.append(heading,note);target.scrollIntoView({block:'center'});}
 });
 document.getElementById('learn').onclick=()=>review.open('tutorial');
 document.getElementById('advice').onclick=()=>review.open('advisors');
 document.getElementById('guide').onclick=()=>review.open('glossary');
 document.getElementById('scenario').onchange=e=>{scenario=e.target.value;resetSample();review.changed();review.open('advisors');};
-document.getElementById('change').onclick=()=>{sampleState={...sampleState,date:'2 Jan 1990',t:1,day:2};if(sampleProduction)sampleProduction={...sampleProduction,suggestions:{...sampleProduction.suggestions,as_of_day:1}};review.changed();review.open('advisors');};
+document.getElementById('change').onclick=()=>{sampleState={...sampleState,date:'2 Jan 1990',t:1,day:2};if(sampleProduction)sampleProduction={...sampleProduction,suggestions:{...sampleProduction.suggestions,as_of_day:1}};if(sampleOutcomes)sampleOutcomes={...sampleOutcomes,date:'2 Jan 1990',as_of_day:1};review.changed();review.open('advisors');};
 review.open('tutorial');
