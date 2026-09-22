@@ -21,7 +21,11 @@ jobs:
           node-version: '22'
           cache: npm
           cache-dependency-path: tools/ui/package-lock.json
-      - run: cargo test --locked --release --workspace --no-fail-fast
+      # The absolute resource timing limit is load-sensitive. Keep its original
+      # assertion, but measure it without the parallel simulation suite running.
+      - run: cargo test --locked --release --workspace --no-fail-fast -- --skip tests::the_resource_pass_stays_under_budget
+      - name: Verify resource timing budget in isolation
+        run: cargo test --locked --release -p spheres-sim --lib tests::the_resource_pass_stays_under_budget -- --exact --nocapture --test-threads=1
       - run: node tools/ui/run-unit.cjs
       - run: cargo build --locked --release -p spheres-web
       - run: npm ci --prefix tools/ui
