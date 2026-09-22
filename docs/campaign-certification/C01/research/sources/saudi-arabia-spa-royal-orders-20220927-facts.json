@@ -1,0 +1,83 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://www.spa.gov.sa/2387811",
+  "accessed_date": "2026-09-21",
+  "published_date": "2022-09-27",
+  "access_method": "downloaded_original_html_and_embedded_article_text_read; first recorded 2026-09-13 from a search-index read",
+  "source_response_bytes": 182652,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "article_content_sha256": "fdf5daa9b68e30b4208c70c3396fac1df690d9f75db4f642d763b39884f7eaef",
+  "article_content_field": "__NEXT_DATA__ props.pageProps.newsDetails.content, encoded as UTF-8",
+  "portal_metadata": {
+    "uuid": "7b01ea3149",
+    "locale": "en",
+    "published_at_utc": "2022-09-27T18:24:17Z",
+    "date_hijri_field": "1444-03-01",
+    "filing_time_printed": "21:24 LOCAL TIME 18:24 GMT"
+  },
+  "response_observations": [
+    {
+      "downloaded_by": "researcher",
+      "url_form": "https://www.spa.gov.sa/2387811",
+      "bytes": 182652,
+      "sha256": "1c55fb65f81b8b433e1a41802c3e2fc2299939d5ac5635f64cb350c0dc89ff50",
+      "views_count": 3040,
+      "server_id": "S102"
+    },
+    {
+      "downloaded_by": "researcher",
+      "url_form": "https://www.spa.gov.sa/2387811",
+      "bytes": 182652,
+      "sha256": "7718cadeb96a1f17ba7df1f61295210eb239e66c53f8e7db9433416d79fe737d",
+      "views_count": 3041,
+      "server_id": "S102"
+    },
+    {
+      "downloaded_by": "checker",
+      "url_form": "https://www.spa.gov.sa/2387811",
+      "bytes": 182652,
+      "sha256": "431eb78756d3a3150c96c910a5697d8b337d88e78a352c285d0ad480af6ef877",
+      "views_count": 3042,
+      "server_id": "S102"
+    }
+  ],
+  "provenance_note": "Downloaded with curl -L on 2026-09-21 twice by the researcher and once, independently, by the checker (3 responses; 182,652 bytes; SHA-256 1c55fb65..., 7718cade..., 431eb787...). The response embeds a live views_count and a load-balancer server_id in its __NEXT_DATA__ JSON, so response bytes and SHA-256 vary between fetches and between URL forms; no response hash is asserted. article_content_sha256 is the SHA-256 of the UTF-8 newsDetails.content field; it was identical in every download and is the reproducible identity. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "sa_mbs_pm_appointment",
+      "text": "King Salman appointed Crown Prince Mohammed bin Salman prime minister on 27 September 2022, expressly excepting Article 56 of the Basic Law and related Cabinet-law provisions.",
+      "locator": "First royal order, point 1",
+      "period": {
+        "from": "2022-09-27",
+        "through": "2022-09-27"
+      }
+    },
+    {
+      "id": "sa_king_cabinet_chair_exception",
+      "text": "The same order reserves chairing of Cabinet sessions attended by the King to the King, and separately reconstitutes the Cabinet with Mohammed bin Salman as prime minister.",
+      "locator": "First royal order, point 2; second order",
+      "period": {
+        "from": "2022-09-27",
+        "through": "2022-09-27"
+      }
+    },
+    {
+      "id": "sa_salman_king_observation",
+      "text": "The release identifies Salman bin Abdulaziz Al Saud as King.",
+      "locator": "Opening paragraph",
+      "period": {
+        "from": "2022-09-27",
+        "through": "2022-09-27"
+      },
+      "uncertainty": "This observation alone does not certify his full reign or continuity through the research cutoff."
+    }
+  ],
+  "scope_note": "First recorded on 13 September 2026 from a search-index read and re-read in full on 21 September 2026 from a downloaded original (CLAUDE-C01-03, SA-EXEC-08). The three claims are unchanged. The release, datelined Jeddah, 27 September 2022, styles Mohammed bin Salman 'the Crown Prince' in the Prime Minister order and in the Cabinet list; the other Cabinet members and the third order are not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not visually rendered. HTML news article (not a scan or PDF); the article text was read from the embedded newsDetails JSON of the downloaded response."
+  }
+}

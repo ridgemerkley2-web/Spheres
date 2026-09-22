@@ -1,0 +1,55 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://www.spa.gov.sa/280287",
+  "accessed_date": "2026-09-21",
+  "published_date": "2005-08-01",
+  "access_method": "downloaded_original_html_and_embedded_article_text_read",
+  "source_response_bytes": 179929,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "article_content_sha256": "f7434392d2e79e260d60b2da656559c5b1bb429b14deac750e73bff9003a6ccd",
+  "article_content_field": "__NEXT_DATA__ props.pageProps.newsDetails.content, encoded as UTF-8",
+  "title_as_published": "عام / خادم الحرمين الشريفين الملك فهد بن عبدالعزيز / سيرة ذاتية",
+  "portal_metadata": {
+    "uuid": "50857a3b1d",
+    "locale": "ar",
+    "published_at_utc": "2005-08-01T10:43:06Z",
+    "date_hijri_field": "1426-06-26",
+    "filing_time_printed": "13:44 Makkah time"
+  },
+  "response_observations": [
+    {
+      "downloaded_by": "researcher",
+      "url_form": "https://www.spa.gov.sa/280287",
+      "bytes": 179929,
+      "sha256": "224bb57a914dabf16a5e018332627ea48ba663f404cc113f4b827dce1968c6e1",
+      "views_count": 8715,
+      "server_id": "S102"
+    },
+    {
+      "downloaded_by": "checker",
+      "url_form": "https://www.spa.gov.sa/280287",
+      "bytes": 179929,
+      "sha256": "68de918ce12827c65f5eb026d1e494bbbf4f7b202c254ed504aa18ce23df2e92",
+      "views_count": 8716,
+      "server_id": "S101"
+    }
+  ],
+  "provenance_note": "Downloaded with curl -L on 2026-09-21 by the researcher and again, independently, by the checker (2 responses; 179,929 bytes; SHA-256 224bb57a..., 68de918c...). The response embeds a live views_count and a load-balancer server_id in its __NEXT_DATA__ JSON, so response bytes and SHA-256 vary between fetches and between URL forms; no response hash is asserted. article_content_sha256 is the SHA-256 of the UTF-8 newsDetails.content field; it was identical in every download and is the reproducible identity. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "sa_fahd_mourned_26_6_1426",
+      "text": "An SPA biographical feature datelined 26 Jumada II 1426 / 1 August 2005 says that the Royal Court mourned King Fahd today, Monday 26/6/1426 AH, corresponding to 1 August 2005, and that death came to him after an illness.",
+      "attested_on": "2005-08-01",
+      "locator": "Dateline and opening paragraph; trailer (filed 13:44 Makkah time)",
+      "uncertainty": "An editorial feature, not the Royal Court statement. It is used only to corroborate that Monday 26/6/1426 AH is 1 August 2005; it gives no day or hour of death and is not the term-end evidence."
+    }
+  ],
+  "scope_note": "Only the opening paragraph is used (SA-EXEC-01). The biography that follows is not imported, and its release ends with 'to follow'.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not visually rendered. HTML news article (not a scan or PDF); the article text was read from the embedded newsDetails JSON of the downloaded response."
+  }
+}

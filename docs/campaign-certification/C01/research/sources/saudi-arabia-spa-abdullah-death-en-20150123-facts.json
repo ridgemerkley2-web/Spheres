@@ -1,0 +1,75 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://www.spa.gov.sa/1319397",
+  "accessed_date": "2026-09-21",
+  "published_date": "2015-01-23",
+  "access_method": "downloaded_original_html_and_embedded_article_text_read",
+  "source_response_bytes": 176591,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "article_content_sha256": "0d1f4e2c93a805e2b3ddef1c5012a04bca4be9838d837c1c014eda874584078c",
+  "article_content_field": "__NEXT_DATA__ props.pageProps.newsDetails.content, encoded as UTF-8",
+  "portal_metadata": {
+    "uuid": "95113b73d4",
+    "locale": "en",
+    "published_at_utc": "2015-01-23T07:45:13Z",
+    "date_hijri_field": "1436-04-03",
+    "filing_time_printed": "SPA 10:44 LOCAL TIME 07:44 GMT"
+  },
+  "response_observations": [
+    {
+      "downloaded_by": "researcher",
+      "url_form": "https://www.spa.gov.sa/1319397",
+      "bytes": 176591,
+      "sha256": "8f4c7085c45866f5d4ad9978f878115945207a8bfd81730987ce18229890c403",
+      "views_count": 7883,
+      "server_id": "S102"
+    },
+    {
+      "downloaded_by": "checker",
+      "url_form": "https://www.spa.gov.sa/1319397",
+      "bytes": 176591,
+      "sha256": "0bf0ed4d5b9749b8fb93e916ce5bbda9b2db7523f3dbb49067137d2829c65e8f",
+      "views_count": 7884,
+      "server_id": "S102"
+    }
+  ],
+  "provenance_note": "Downloaded with curl -L on 2026-09-21 by the researcher and again, independently, by the checker (2 responses; 176,591 bytes; SHA-256 8f4c7085..., 0bf0ed4d...). The response embeds a live views_count and a load-balancer server_id in its __NEXT_DATA__ JSON, so response bytes and SHA-256 vary between fetches and between URL forms; no response hash is asserted. article_content_sha256 is the SHA-256 of the UTF-8 newsDetails.content field; it was identical in every download and is the reproducible identity. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "sa_abdullah_death_20150123",
+      "text": "SPA's English release of a Royal Court statement, datelined Riyadh, Rabi II 3, 1436 / 23 January 2015, says Crown Prince Salman bin Abdulaziz, the family and the nation mourn King Abdullah bin Abdulaziz, who died at one o'clock that morning, Friday 03/04/1436 AH. Funeral prayers are set for after Asr that day at Imam Turki bin Abdullah Mosque in Riyadh.",
+      "attested_on": "2015-01-23",
+      "locator": "Dateline; first Royal Court statement; trailer (10:44 local time)",
+      "uncertainty": "He is styled King at his death, so this statement is the evidence for the end of his reign."
+    },
+    {
+      "id": "sa_salman_king_pledge_20150123",
+      "text": "A second Royal Court statement in the same release says Crown Prince Salman bin Abdulaziz received the pledge of allegiance as King in accordance with the Basic Law of Governance.",
+      "attested_on": "2015-01-23",
+      "locator": "Second Royal Court statement, sentence 1",
+      "uncertainty": "Accession by pledge; no coronation, oath or inauguration is described. The statement gives no time for the pledge. It followed the death at 1 a.m. on 23 January, and the Arabic original was filed at 02:33 Makkah time that day, so the pledge falls on 23 January 2015."
+    },
+    {
+      "id": "sa_muqrin_cp_pledge_20150123",
+      "text": "After that pledge was completed, King Salman called for the pledge to Prince Muqrin bin Abdulaziz as Crown Prince under item Second of Royal Order A/86 dated 26/5/1435 AH, which provided for the pledge to Muqrin in the event of a vacancy in the crown princeship, and Muqrin received it.",
+      "attested_on": "2015-01-23",
+      "locator": "Second Royal Court statement, sentences 2-3",
+      "uncertainty": "This English release renders A/86 as 'Royal Decree'; the Arabic original (sa_spa_abdullah_death_20150123_ar) and Royal Order A/160 call it a Royal Order (al-amr al-malaki). A/86 itself was not read and its Gregorian date was not verified. No separate time is given for Muqrin's pledge."
+    },
+    {
+      "id": "sa_citizen_pledge_scheduled_20150123",
+      "text": "The statement says the citizens' pledge to King Salman and Crown Prince Muqrin will begin at the Governance Palace (Qasr al-Hukm) in Riyadh after Isha prayers that day, Friday 03/04/1436 AH.",
+      "attested_on": "2015-01-23",
+      "locator": "Second Royal Court statement, final sentence",
+      "uncertainty": "A scheduled event; this source does not attest that the citizens' pledge took place."
+    }
+  ],
+  "scope_note": "English release of the two Royal Court statements; the Arabic original is sa_spa_abdullah_death_20150123_ar. The English dateline (23 January 2015) agrees with the day of death in the body. Used for SA-EXEC-05.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not visually rendered. HTML news article (not a scan or PDF); the article text was read from the embedded newsDetails JSON of the downloaded response."
+  }
+}

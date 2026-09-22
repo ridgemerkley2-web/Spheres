@@ -1,0 +1,61 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://www.spa.gov.sa/en/N2653199",
+  "accessed_date": "2026-09-21",
+  "published_date": "2026-08-13",
+  "access_method": "downloaded_original_html_and_embedded_article_text_read",
+  "source_response_bytes": 166476,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "article_content_sha256": "ddac38970a06e83ffc1399472b4fcea83f292af261b5bc12dd3629c574a902b6",
+  "article_content_field": "__NEXT_DATA__ props.pageProps.newsDetails.content, encoded as UTF-8",
+  "portal_metadata": {
+    "uuid": "N2653199",
+    "locale": "en",
+    "published_at_utc": "2026-08-13T14:41:19Z",
+    "date_hijri_field": "1448-02-30",
+    "filing_time_printed": "17:41 Local Time 14:41 GMT"
+  },
+  "response_observations": [
+    {
+      "downloaded_by": "researcher",
+      "url_form": "https://www.spa.gov.sa/en/N2653199",
+      "bytes": 166476,
+      "sha256": "3c2fab63a74eef6ab33218db3370997b8159e603557492d2f50edcbeb5317863",
+      "views_count": 404,
+      "server_id": "S102"
+    },
+    {
+      "downloaded_by": "checker",
+      "url_form": "https://www.spa.gov.sa/en/N2653199",
+      "bytes": 166476,
+      "sha256": "397c9fb057079ecbad6c5db5a5dfa236034f451eea5df425974638f11549a653",
+      "views_count": 405,
+      "server_id": "S102"
+    }
+  ],
+  "provenance_note": "Downloaded with curl -L on 2026-09-21 by the researcher and again, independently, by the checker (2 responses; 166,476 bytes; SHA-256 3c2fab63..., 397c9fb0...). The response embeds a live views_count and a load-balancer server_id in its __NEXT_DATA__ JSON, so response bytes and SHA-256 vary between fetches and between URL forms; no response hash is asserted. article_content_sha256 is the SHA-256 of the UTF-8 newsDetails.content field; it was identical in every download and is the reproducible identity. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "sa_salman_king_obs_20260813",
+      "text": "SPA's English release datelined Jeddah, August 13, 2026 says King Salman bin Abdulaziz Al Saud issued royal orders that day.",
+      "attested_on": "2026-08-13",
+      "locator": "Dateline and opening sentence; trailer (17:41 local time)",
+      "uncertainty": "A point observation 25 days before the cutoff. It does not certify continuity through 7 September 2026."
+    },
+    {
+      "id": "sa_mbs_cp_pm_obs_20260813",
+      "text": "The first order reconstitutes the Cabinet with its current members under the chairmanship of Prince Mohammed bin Salman bin Abdulaziz Al Saud, styled Crown Prince and Prime Minister, citing earlier royal orders that limit a Cabinet's term to four years.",
+      "attested_on": "2026-08-13",
+      "locator": "First order",
+      "uncertainty": "Attests both styles on this date. It does not establish uninterrupted tenure since 2017 (Crown Prince) or 2022 (Prime Minister)."
+    }
+  ],
+  "scope_note": "English release. The portal lists an Arabic version (N2653088) that was not downloaded. The relief and appointment orders for other authorities are not imported. Used for SA-EXEC-08.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not visually rendered. HTML news article (not a scan or PDF); the article text was read from the embedded newsDetails JSON of the downloaded response."
+  }
+}

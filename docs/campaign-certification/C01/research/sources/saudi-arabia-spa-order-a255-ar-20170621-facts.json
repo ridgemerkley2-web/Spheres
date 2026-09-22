@@ -1,0 +1,79 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://www.spa.gov.sa/4058adbaf7",
+  "accessed_date": "2026-09-21",
+  "published_date": "2017-06-21",
+  "access_method": "downloaded_original_html_and_embedded_article_text_read",
+  "source_response_bytes": 203626,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "article_content_sha256": "b0161db294693e805fdddc7ecc0197b98299682becc4fde901aa9978b366c28e",
+  "article_content_field": "__NEXT_DATA__ props.pageProps.newsDetails.content, encoded as UTF-8",
+  "title_as_published": "عام / صدور عدد من الأوامر الملكية",
+  "portal_metadata": {
+    "uuid": "4058adbaf7",
+    "locale": "ar",
+    "published_at_utc": "2017-06-21T03:23:38Z",
+    "date_hijri_field": "1438-09-26",
+    "legacy_ids": [
+      "1641876"
+    ],
+    "filing_time_printed": "06:23 Makkah time"
+  },
+  "response_observations": [
+    {
+      "downloaded_by": "checker",
+      "url_form": "https://www.spa.gov.sa/4058adbaf7",
+      "bytes": 203626,
+      "sha256": "5bd61452c1befbca3cc82094b7b12c8eed4b140ef8e7c18414525a527ac6ea3a",
+      "views_count": 10793,
+      "server_id": "S101"
+    },
+    {
+      "downloaded_by": "checker",
+      "url_form": "https://www.spa.gov.sa/1641876",
+      "bytes": 204437,
+      "sha256": "3fcc459b92679767260b6b98ed12f2d7c19ba2a2a3b42caed8742ef5c87f8cba",
+      "views_count": 10792,
+      "server_id": "S102"
+    }
+  ],
+  "provenance_note": "Downloaded with curl -L on 2026-09-21 by the packet's independent checker (2 responses; 203,626 and 204,437 bytes; SHA-256 5bd61452..., 3fcc459b...). The response embeds a live views_count and a load-balancer server_id in its __NEXT_DATA__ JSON, so response bytes and SHA-256 vary between fetches and between URL forms; no response hash is asserted. article_content_sha256 is the SHA-256 of the UTF-8 newsDetails.content field; it was identical in every download and is the reproducible identity. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "sa_mbn_relieved_20170621",
+      "text": "Royal Order A/255 dated 26/9/1438 AH, issued that day according to the dateline Makkah 26 Ramadan 1438 / 21 June 2017: item First relieves Prince Mohammed bin Nayef bin Abdulaziz of the crown princeship and of the posts of Deputy Prime Minister and Minister of Interior.",
+      "attested_on": "2017-06-21",
+      "locator": "Dateline; order number and date; item First; trailer (filed 06:23 Makkah time)",
+      "uncertainty": "A relief by royal order. The recital refers to justifications reviewed by the Allegiance Commission members without stating them."
+    },
+    {
+      "id": "sa_mbs_cp_selected_20170621",
+      "text": "Item Second of the same order selects Prince Mohammed bin Salman bin Abdulaziz as Crown Prince and appoints him Deputy Prime Minister, continuing as Minister of Defence and in the other tasks assigned to him.",
+      "attested_on": "2017-06-21",
+      "locator": "Order A/255, item Second",
+      "uncertainty": "The order states no effective date, and no end of his crown-princeship is recorded in this packet."
+    },
+    {
+      "id": "sa_allegiance_31_of_34_20170621",
+      "text": "The order's recital rests on the justifications reviewed by the Allegiance Commission members and on their support by a great majority, 31 of 34.",
+      "attested_on": "2017-06-21",
+      "locator": "Order A/255, recital",
+      "uncertainty": "A recital in the royal order, not a record published by the Commission."
+    },
+    {
+      "id": "sa_mbs_deputy_cp_date_discrepancy",
+      "text": "The recital of Royal Order A/255 (Arabic original, and likewise SPA's English translation) dates Royal Order A/160 10/6/1436 AH. The 2015 A/160 original, A/159 and the Royal Court pledge call all read 10/7/1436 AH (29 April 2015). The 29 April 2015 date is kept, and 10/6 is recorded as an error in the 2017 order text as SPA published it.",
+      "attested_on": "2017-06-21",
+      "locator": "Order A/255, recital citing A/160",
+      "uncertainty": "The error is in the published 2017 order text, not an English translation error. The Umm al-Qura gazette text of A/255 was not checked."
+    }
+  ],
+  "scope_note": "Arabic original of the 21 June 2017 order (also served at legacy SPA IDs from 1641876), located by the packet's independent checker. SPA's English release (sa_spa_order_a255_20170621_en) is its translation and prints no order number. The release ends with 'to follow'; the other orders issued that day are not imported. Used for SA-EXEC-07.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not visually rendered. HTML news article (not a scan or PDF); the article text was read from the embedded newsDetails JSON of the checker's downloaded response and re-read from that local copy for this packet."
+  }
+}

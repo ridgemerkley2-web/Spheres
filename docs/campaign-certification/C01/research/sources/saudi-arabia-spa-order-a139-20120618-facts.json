@@ -1,0 +1,55 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://www.spa.gov.sa/1008740",
+  "accessed_date": "2026-09-21",
+  "published_date": "2012-06-18",
+  "access_method": "downloaded_original_html_and_embedded_article_text_read",
+  "source_response_bytes": 175052,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "article_content_sha256": "045a57f40d1b03c5c5e71f8b0caa83d8abe8597e00008b42461ab767b0d11347",
+  "article_content_field": "__NEXT_DATA__ props.pageProps.newsDetails.content, encoded as UTF-8",
+  "title_as_published": "عام /أمر ملكي/ اختيار الأمير سلمان بن عبدالعزيز ولياً للعهد وتعيينه نائباً لرئيس مجلس الوزراء ووزيراً للدفاع",
+  "portal_metadata": {
+    "uuid": "c6ce8d1b3d",
+    "locale": "ar",
+    "published_at_utc": "2012-06-18T14:00:10Z",
+    "date_hijri_field": "1433-07-28",
+    "filing_time_printed": "17:01 Makkah time"
+  },
+  "response_observations": [
+    {
+      "downloaded_by": "researcher",
+      "url_form": "https://www.spa.gov.sa/1008740",
+      "bytes": 175052,
+      "sha256": "0585968284c03dbabd56ccf46b715eda390d60ab35f01853de9b1ce8bc297bf6",
+      "views_count": 3353,
+      "server_id": "S102"
+    },
+    {
+      "downloaded_by": "checker",
+      "url_form": "https://www.spa.gov.sa/1008740",
+      "bytes": 175052,
+      "sha256": "561c4df3e75d4e889d2e7779fe4e88b6c9336c7263dc3b9399dee3c9acfa455b",
+      "views_count": 3354,
+      "server_id": "S102"
+    }
+  ],
+  "provenance_note": "Downloaded with curl -L on 2026-09-21 by the researcher and again, independently, by the checker (2 responses; 175,052 bytes; SHA-256 05859682..., 561c4df3...). The response embeds a live views_count and a load-balancer server_id in its __NEXT_DATA__ JSON, so response bytes and SHA-256 vary between fetches and between URL forms; no response hash is asserted. article_content_sha256 is the SHA-256 of the UTF-8 newsDetails.content field; it was identical in every download and is the reproducible identity. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "sa_salman_cp_order_a139",
+      "text": "Royal Order A/139 dated 28/7/1433 AH, issued that day according to the dateline Taif 28 Rajab 1433 / 18 June 2012: King Abdullah chose Prince Salman bin Abdulaziz as Crown Prince and ordered his appointment as Deputy Prime Minister and Minister of Defence, citing item Third of Royal Order A/135 and the public interest.",
+      "attested_on": "2012-06-18",
+      "locator": "Dateline; order number and date; preamble and operative paragraph; trailer (filed 17:01 Makkah time)",
+      "uncertainty": "The order mentions no Allegiance Commission vote or notification."
+    }
+  ],
+  "scope_note": "Used for SA-EXEC-04.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not visually rendered. HTML news article (not a scan or PDF); the article text was read from the embedded newsDetails JSON of the downloaded response."
+  }
+}

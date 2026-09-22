@@ -63,8 +63,8 @@
       "title": "Three Royal Orders Issued",
       "url": "https://www.spa.gov.sa/2387811",
       "publisher": "Saudi Press Agency",
-      "accessed_date": "2026-09-13",
-      "access_method": "official_article_full_text_read_in_search_index; direct page exposed no extracted article",
+      "accessed_date": "2026-09-21",
+      "access_method": "downloaded_original_html_and_embedded_article_text_read; first recorded 2026-09-13 from a search-index read",
       "claims": [
         {
           "id": "sa_mbs_pm_appointment",
@@ -95,7 +95,14 @@
           "uncertainty": "This observation alone does not certify his full reign or continuity through the research cutoff."
         }
       ],
-      "published_date": "2022-09-27"
+      "published_date": "2022-09-27",
+      "scope_note": "First recorded on 13 September 2026 from a search-index read and re-read in full on 21 September 2026 from a downloaded original (CLAUDE-C01-03, SA-EXEC-08). The three claims are unchanged. The release, datelined Jeddah, 27 September 2022, styles Mohammed bin Salman 'the Crown Prince' in the Prime Minister order and in the Cabinet list; the other Cabinet members and the third order are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-royal-orders-20220927-facts.json",
+        "bytes": 4428,
+        "sha256": "1927cdad7c2f40587ec9e7b8d9dee503830841dc365ab366a9f092ced8a24e6c",
+        "kind": "derived_factual_extract"
+      }
     },
     {
       "id": "sa_boe_shura_law",
@@ -233,6 +240,655 @@
       ],
       "published_date": "2016-06-08",
       "scope_note": "The date is the UN document's distribution date; adoption occurred in the Committee's 18 April–13 May 2016 session."
+    },
+    {
+      "id": "sa_bush41_address_19900808",
+      "title": "Address to the Nation Announcing the Deployment of United States Armed Forces to Saudi Arabia",
+      "url": "https://www.bush41library.gov/digital-research-room/finding-aid/public-papers/address-nation-announcing-deployment-united-states",
+      "publisher": "George H.W. Bush Presidential Library and Museum (U.S. National Archives), Public Papers of the Presidents",
+      "accessed_date": "2026-09-21",
+      "published_date": "1990-08-08",
+      "source_type": "foreign_government_official_record",
+      "access_method": "downloaded_original_html_and_article_text_read",
+      "claims": [
+        {
+          "id": "sa_fahd_king_obs_19900808",
+          "text": "In his 8 August 1990 address the U.S. President says that, after consulting with King Fahd, he sent the Secretary of Defense to discuss cooperative measures; the Public Papers editorial note identifies him as King Fahd bin Abd al-Aziz Al Saud of Saudi Arabia.",
+          "attested_on": "1990-08-08",
+          "locator": "Address body, consultation paragraph; closing editorial Note",
+          "uncertainty": "A foreign official record, not a Saudi royal record, read from a presidential-library web transcription of the Public Papers rather than the GPO print edition. It attests the title on this date only; it gives no accession date, term start or continuity."
+        }
+      ],
+      "scope_note": "Used only as the 1990 opening-window observation of King Fahd (SA-EXEC-01). No Saudi record from 1990 was retrieved.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-bush41-address-19900808-facts.json",
+        "bytes": 2245,
+        "sha256": "9d823e0b3e46c4dcec758c9493e83411e4db508cf97a9c216f2b208074c8d483",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_fahd_death_20050801_ar",
+      "title": "Royal Court mourns King Fahd, Custodian of the Two Holy Mosques (Arabic statement)",
+      "url": "https://www.spa.gov.sa/7be193c458",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2005-08-01",
+      "source_type": "primary_royal_court_statement",
+      "access_method": "downloaded_original_html_and_embedded_article_text_read",
+      "claims": [
+        {
+          "id": "sa_fahd_death_announced_20050801",
+          "text": "A Royal Court statement datelined Riyadh 26 Jumada II 1426 / 1 August 2005 mourns King Fahd bin Abdulaziz in the name of Crown Prince Abdullah bin Abdulaziz, all members of the family and on behalf of the nation, saying that death came to him after an illness. The funeral prayer is set for the next day, Tuesday, after Asr at Imam Turki bin Abdullah Mosque in Riyadh.",
+          "attested_on": "2005-08-01",
+          "locator": "Dateline; Royal Court statement, paragraphs 1 and 3; trailer (filed 11:04 Makkah time)",
+          "uncertainty": "The statement dates the announcement, not the death: it gives no day or hour of death. King Fahd's reign therefore ends at a death announced on 1 August 2005 (26/6/1426 AH), and no until date is recorded."
+        }
+      ],
+      "scope_note": "Arabic original of the Royal Court death statement (also served at legacy SPA ID 280265), located by the packet's independent checker. SPA's English release (sa_spa_fahd_death_20050801_en) is its translation. Used for SA-EXEC-01.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-fahd-death-ar-20050801-facts.json",
+        "bytes": 3794,
+        "sha256": "9603394fb90781874548f45d1e215b74935fe3f61d3ffa0f3ff3fe07b33e8511",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_fahd_death_20050801_en",
+      "title": "Royal Court announces demise of King Fahd with sorrow and sadness",
+      "url": "https://www.spa.gov.sa/en/35256ba2d1",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2005-08-01",
+      "source_type": "official_english_translation",
+      "access_method": "downloaded_original_html_and_embedded_article_text_read",
+      "claims": [
+        {
+          "id": "sa_abdullah_cp_obs_20050801",
+          "text": "SPA's English release of the Royal Court announcement of King Fahd's death names the announcer as Crown Prince Abdullah bin Abdulaziz, the Deputy Premier and Commander of the National Guard.",
+          "attested_on": "2005-08-01",
+          "locator": "Dateline 'Riyadh, Aug 1'; paragraph 1; trailer (11:22 local time)",
+          "uncertainty": "A point observation of his styles at the announcement; it does not establish when his crown-princeship began. The English dateline has no year: the date rests on the Arabic original (26 Jumada II 1426 / 1 August 2005), which styles him Crown Prince only."
+        }
+      ],
+      "scope_note": "SPA English translation of the Arabic Royal Court statement sa_spa_fahd_death_20050801_ar. Used only for Abdullah's styles on 1 August 2005 (SA-EXEC-01).",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-fahd-death-en-20050801-facts.json",
+        "bytes": 3366,
+        "sha256": "0bb848eb60ca4f764f8710f5fca34689f141be0ea79107a158e8226642ee5f3d",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_allegiance_20050801_ar",
+      "title": "Statement from the Royal Court: pledge of allegiance (Arabic)",
+      "url": "https://www.spa.gov.sa/a1252ad00a",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2005-08-01",
+      "source_type": "primary_royal_court_statement",
+      "access_method": "downloaded_original_html_and_embedded_article_text_read",
+      "claims": [
+        {
+          "id": "sa_abdullah_family_pledge_20050801",
+          "text": "A Royal Court statement dated Riyadh 26 Jumada II 1426 / 1 August 2005 reports that members of the family pledged allegiance (bay'a) to Crown Prince Abdullah bin Abdulaziz as King in accordance with Article 5 of the Basic Law of Governance.",
+          "attested_on": "2005-08-01",
+          "locator": "Dateline; Royal Court statement, sentence 1; trailer (filed 11:06 Makkah time)",
+          "uncertainty": "Reported in the past tense under the statement's dateline. The statement does not say 'today' and gives no separate date or time for the family pledge, so attested_on is the statement date, not an evidenced pledge date. No coronation, oath or inauguration is described."
+        },
+        {
+          "id": "sa_sultan_cp_selected_20050801",
+          "text": "The same statement reports that, after the pledge was completed, King Abdullah announced the selection of Prince Sultan bin Abdulaziz as Crown Prince in accordance with Article 5, and that the family pledged allegiance to him.",
+          "attested_on": "2005-08-01",
+          "locator": "Royal Court statement, sentences 2-3",
+          "uncertainty": "Selection and family pledge are reported by the 1 August 2005 statement without a separate date or time. No Allegiance Commission role is mentioned."
+        },
+        {
+          "id": "sa_citizen_pledge_scheduled_20050803",
+          "text": "The statement says the citizens' pledge to King Abdullah and Crown Prince Sultan will begin at Qasr al-Hukm in Riyadh after noon prayers on the day after tomorrow, Wednesday.",
+          "attested_on": "2005-08-01",
+          "locator": "Royal Court statement, final sentence",
+          "uncertainty": "A scheduled event. Counted from the Monday 1 August 2005 dateline, Wednesday is 3 August 2005. This source does not attest that the pledge took place."
+        }
+      ],
+      "scope_note": "Arabic original of the Royal Court accession statement. SPA's English release (sa_spa_allegiance_20050801_en) is its translation. Used for SA-EXEC-02.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-allegiance-ar-20050801-facts.json",
+        "bytes": 4645,
+        "sha256": "df39431c22b1a2f849bdbfe7233e672d07c249417c6118eeca56276f93d096aa",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_allegiance_20050801_en",
+      "title": "Royal Family pledges allegiance to Crown Prince Abdullah as King",
+      "url": "https://www.spa.gov.sa/280269",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2005-08-01",
+      "source_type": "official_english_translation",
+      "access_method": "downloaded_original_html_and_embedded_article_text_read",
+      "claims": [
+        {
+          "id": "sa_family_pledge_en_translation_20050801",
+          "text": "SPA's English release datelined 'Riyadh, Aug 1' renders the same Royal Court statement: members of the Royal Family pledged allegiance to Crown Prince Abdullah bin Abdulaziz as King under the fifth article of the basic system of rule; King Abdullah then chose Prince Sultan bin Abdulaziz as Crown Prince; citizens would pledge at the Governorate Palace in Riyadh after noon prayers on Wednesday. It attributes the text to a statement released by the Royal Court that day.",
+          "attested_on": "2005-08-01",
+          "locator": "Dateline; paragraphs 1-3; trailer (11:42 local time)",
+          "uncertainty": "A translation that adds no event. 'Released today' dates the statement, not the family pledge. The dateline has no year; the date rests on the Arabic original (sa_spa_allegiance_20050801_ar)."
+        }
+      ],
+      "scope_note": "SPA English translation of sa_spa_allegiance_20050801_ar (uuid 1458cdff09, requested at legacy ID 280269), located and downloaded by the packet's independent checker. Used for SA-EXEC-02.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-allegiance-en-20050801-facts.json",
+        "bytes": 3404,
+        "sha256": "4484468e1f36943cc57906bcb82ad30b150f56df7233d05094ae8a07e79c0935",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_fahd_bio_20050801",
+      "title": "King Fahd bin Abdulaziz, Custodian of the Two Holy Mosques: biography (Arabic)",
+      "url": "https://www.spa.gov.sa/280287",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2005-08-01",
+      "source_type": "official_news_agency_biographical_feature",
+      "access_method": "downloaded_original_html_and_embedded_article_text_read",
+      "claims": [
+        {
+          "id": "sa_fahd_mourned_26_6_1426",
+          "text": "An SPA biographical feature datelined 26 Jumada II 1426 / 1 August 2005 says that the Royal Court mourned King Fahd today, Monday 26/6/1426 AH, corresponding to 1 August 2005, and that death came to him after an illness.",
+          "attested_on": "2005-08-01",
+          "locator": "Dateline and opening paragraph; trailer (filed 13:44 Makkah time)",
+          "uncertainty": "An editorial feature, not the Royal Court statement. It is used only to corroborate that Monday 26/6/1426 AH is 1 August 2005; it gives no day or hour of death and is not the term-end evidence."
+        }
+      ],
+      "scope_note": "Only the opening paragraph is used (SA-EXEC-01). The biography that follows is not imported, and its release ends with 'to follow'.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-fahd-biography-20050801-facts.json",
+        "bytes": 3427,
+        "sha256": "d2d296009577df54394d9b1492df7d34b9664f223143a643ac0569fe98938a46",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_sultan_death_20111022",
+      "title": "Death of the Crown Prince: Royal Court statement (Arabic)",
+      "url": "https://www.spa.gov.sa/936277",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2011-10-22",
+      "source_type": "primary_royal_court_statement",
+      "access_method": "downloaded_original_html_and_embedded_article_text_read",
+      "claims": [
+        {
+          "id": "sa_sultan_death_20111022",
+          "text": "A Royal Court statement datelined Riyadh 24 Dhu al-Qa'da 1432 / 22 October 2011 says King Abdullah mourns Crown Prince Sultan bin Abdulaziz, Deputy Prime Minister, Minister of Defence and Aviation and Inspector General, who died at dawn that day, Saturday 24/11/1432 AH, outside the Kingdom after an illness. The funeral prayer is set for after Asr on Tuesday 27/11/1432 AH at Imam Turki bin Abdullah Mosque in Riyadh.",
+          "attested_on": "2011-10-22",
+          "locator": "Dateline; Royal Court statement, paragraph 1; trailer (filed 07:25 Makkah time)",
+          "uncertainty": "The place of death is given only as outside the Kingdom. He is styled Crown Prince at his death, so this statement is the evidence for the end of his crown-princeship."
+        }
+      ],
+      "scope_note": "Used for SA-EXEC-03.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-sultan-death-20111022-facts.json",
+        "bytes": 3470,
+        "sha256": "9147f58c37fb1523ca1e26fbd435f537f8ec76809266665b115d49112204872c",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_nayef_cp_20111027",
+      "title": "Royal order issued choosing Prince Nayef bin Abdulaziz as Crown Prince (Arabic)",
+      "url": "https://www.spa.gov.sa/938356",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2011-10-27",
+      "source_type": "primary_royal_order_text",
+      "access_method": "downloaded_original_html_and_embedded_article_text_read",
+      "claims": [
+        {
+          "id": "sa_nayef_cp_order_a224",
+          "text": "Royal Order A/224 dated 29/11/1432 AH (dateline Riyadh 29 Dhu al-Qa'da 1432 / 27 October 2011): King Abdullah, having notified the chairman and members of the Allegiance Commission, chose Prince Nayef bin Abdulaziz as Crown Prince and ordered his appointment as Deputy Prime Minister and Minister of Interior.",
+          "attested_on": "2011-10-27",
+          "locator": "Dateline; order number and date; operative paragraph",
+          "uncertainty": "The order says the Commission was notified; it reports no Commission vote. The release was filed at 00:51 Makkah time on 28 October 2011, and the portal's date_hijri field (1432-12-01) reflects that filing day, not the order date. The printed order date, 29/11/1432 AH, which the dateline equates with 27 October 2011, stands."
+        },
+        {
+          "id": "sa_allegiance_law_a135_cited",
+          "text": "The order's preamble cites the Basic Law of Governance (Royal Order A/90 of 27/8/1412 AH), the Council of Ministers Law (Royal Order A/13 of 3/3/1414 AH), the Allegiance Commission Law (Royal Order A/135 of 26/9/1427 AH) and item Third of A/135.",
+          "attested_on": "2011-10-27",
+          "locator": "Preamble",
+          "uncertainty": "Citations inside a later order, not the establishing instruments. Their Gregorian dates were not verified here."
+        }
+      ],
+      "scope_note": "The release ends with 'to follow'; any continuation was not read. published_date is the printed dateline; the portal timestamp is 00:52 Makkah time on 28 October 2011. Used for SA-EXEC-03.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a224-20111027-facts.json",
+        "bytes": 4219,
+        "sha256": "82d64155eaed70a7753ccdd5c46f6e633f45161a8683a02ced42e1c4624992a0",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_nayef_death_20120616",
+      "title": "Statement from the Royal Court: death of Prince Nayef bin Abdulaziz (Arabic)",
+      "url": "https://www.spa.gov.sa/1007895",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2012-06-16",
+      "source_type": "primary_royal_court_statement",
+      "access_method": "downloaded_original_html_and_embedded_article_text_read",
+      "claims": [
+        {
+          "id": "sa_nayef_death_20120616",
+          "text": "A Royal Court statement datelined Jeddah 26 Rajab 1433 / 16 June 2012 says King Abdullah mourns Prince Nayef bin Abdulaziz, Crown Prince, Deputy Prime Minister and Minister of Interior, who died that day, Saturday 26/7/1433 AH, outside the Kingdom. The funeral prayer is set for after Maghrib on Sunday 27/7/1433 AH at the Grand Mosque in Makkah.",
+          "attested_on": "2012-06-16",
+          "locator": "Dateline; Royal Court statement; trailer (filed 13:29 Makkah time)",
+          "uncertainty": "No hour or place of death is given beyond outside the Kingdom. He is styled Crown Prince at his death, so this statement is the evidence for the end of his crown-princeship."
+        }
+      ],
+      "scope_note": "Used for SA-EXEC-03.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-nayef-death-20120616-facts.json",
+        "bytes": 3444,
+        "sha256": "243c27161fb998940f3bd09d4b54f94465ed499bdf44937095f4a8e95bd572e8",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_salman_cp_20120618",
+      "title": "Royal order: Prince Salman bin Abdulaziz chosen as Crown Prince and appointed Deputy Prime Minister and Minister of Defence (Arabic)",
+      "url": "https://www.spa.gov.sa/1008740",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2012-06-18",
+      "source_type": "primary_royal_order_text",
+      "access_method": "downloaded_original_html_and_embedded_article_text_read",
+      "claims": [
+        {
+          "id": "sa_salman_cp_order_a139",
+          "text": "Royal Order A/139 dated 28/7/1433 AH, issued that day according to the dateline Taif 28 Rajab 1433 / 18 June 2012: King Abdullah chose Prince Salman bin Abdulaziz as Crown Prince and ordered his appointment as Deputy Prime Minister and Minister of Defence, citing item Third of Royal Order A/135 and the public interest.",
+          "attested_on": "2012-06-18",
+          "locator": "Dateline; order number and date; preamble and operative paragraph; trailer (filed 17:01 Makkah time)",
+          "uncertainty": "The order mentions no Allegiance Commission vote or notification."
+        }
+      ],
+      "scope_note": "Used for SA-EXEC-04.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a139-20120618-facts.json",
+        "bytes": 3409,
+        "sha256": "b9bcbf1afe592cf1e215ee8d46aa49e87a15728422656e70b7299f357c6eda2b",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_abdullah_death_20150123_en",
+      "title": "Royal Court: Death of King Abdullah bin Abdulaziz, pledging allegiance to Prince Salman bin Abdulaziz as king and Prince Muqrin bin Abdulaziz as Crown Prince",
+      "url": "https://www.spa.gov.sa/1319397",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2015-01-23",
+      "source_type": "primary_royal_court_statement_english_release",
+      "access_method": "downloaded_original_html_and_embedded_article_text_read",
+      "claims": [
+        {
+          "id": "sa_abdullah_death_20150123",
+          "text": "SPA's English release of a Royal Court statement, datelined Riyadh, Rabi II 3, 1436 / 23 January 2015, says Crown Prince Salman bin Abdulaziz, the family and the nation mourn King Abdullah bin Abdulaziz, who died at one o'clock that morning, Friday 03/04/1436 AH. Funeral prayers are set for after Asr that day at Imam Turki bin Abdullah Mosque in Riyadh.",
+          "attested_on": "2015-01-23",
+          "locator": "Dateline; first Royal Court statement; trailer (10:44 local time)",
+          "uncertainty": "He is styled King at his death, so this statement is the evidence for the end of his reign."
+        },
+        {
+          "id": "sa_salman_king_pledge_20150123",
+          "text": "A second Royal Court statement in the same release says Crown Prince Salman bin Abdulaziz received the pledge of allegiance as King in accordance with the Basic Law of Governance.",
+          "attested_on": "2015-01-23",
+          "locator": "Second Royal Court statement, sentence 1",
+          "uncertainty": "Accession by pledge; no coronation, oath or inauguration is described. The statement gives no time for the pledge. It followed the death at 1 a.m. on 23 January, and the Arabic original was filed at 02:33 Makkah time that day, so the pledge falls on 23 January 2015."
+        },
+        {
+          "id": "sa_muqrin_cp_pledge_20150123",
+          "text": "After that pledge was completed, King Salman called for the pledge to Prince Muqrin bin Abdulaziz as Crown Prince under item Second of Royal Order A/86 dated 26/5/1435 AH, which provided for the pledge to Muqrin in the event of a vacancy in the crown princeship, and Muqrin received it.",
+          "attested_on": "2015-01-23",
+          "locator": "Second Royal Court statement, sentences 2-3",
+          "uncertainty": "This English release renders A/86 as 'Royal Decree'; the Arabic original (sa_spa_abdullah_death_20150123_ar) and Royal Order A/160 call it a Royal Order (al-amr al-malaki). A/86 itself was not read and its Gregorian date was not verified. No separate time is given for Muqrin's pledge."
+        },
+        {
+          "id": "sa_citizen_pledge_scheduled_20150123",
+          "text": "The statement says the citizens' pledge to King Salman and Crown Prince Muqrin will begin at the Governance Palace (Qasr al-Hukm) in Riyadh after Isha prayers that day, Friday 03/04/1436 AH.",
+          "attested_on": "2015-01-23",
+          "locator": "Second Royal Court statement, final sentence",
+          "uncertainty": "A scheduled event; this source does not attest that the citizens' pledge took place."
+        }
+      ],
+      "scope_note": "English release of the two Royal Court statements; the Arabic original is sa_spa_abdullah_death_20150123_ar. The English dateline (23 January 2015) agrees with the day of death in the body. Used for SA-EXEC-05.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-abdullah-death-en-20150123-facts.json",
+        "bytes": 5307,
+        "sha256": "ad15b59411f6650a72ce8ecfc8adaeffb1f0890bf60e259f6b1014a190a133cd",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_abdullah_death_20150123_ar",
+      "title": "Royal Court: death of King Abdullah bin Abdulaziz; pledge to Prince Salman bin Abdulaziz as King and Prince Muqrin bin Abdulaziz as Crown Prince (Arabic)",
+      "url": "https://www.spa.gov.sa/1319360",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2015-01-23",
+      "source_type": "primary_royal_court_statement",
+      "access_method": "downloaded_original_html_and_embedded_article_text_read",
+      "claims": [
+        {
+          "id": "sa_abdullah_death_ar_dateline",
+          "text": "The Arabic original carries the same two statements: King Abdullah's death at 1 a.m. on 'this day, Friday' 3/4/1436 AH; Salman's pledge as King under the Basic Law; and Muqrin's pledge as Crown Prince under item Second of Royal Order A/86. Its dateline reads Riyadh 2 Rabi II 1436 / 22 January 2015, and its trailer records filing at 02:33 Makkah time.",
+          "attested_on": "2015-01-23",
+          "locator": "Dateline; both Royal Court statements; trailer",
+          "uncertainty": "The dateline is one day earlier than the day of death in its own body. The portal publication time, 2015-01-22T23:34:02Z, is 02:34 Makkah time on 23 January, after the 1 a.m. death, so the release was filed early on 23 January under the previous day's dateline. The body date is used; the dateline is treated as a filing artefact."
+        }
+      ],
+      "scope_note": "published_date is the Makkah-time publication day from the portal timestamp (02:34 on 23 January 2015); the printed dateline, 22 January, is recorded in the claim. Used for SA-EXEC-05.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-abdullah-death-ar-20150123-facts.json",
+        "bytes": 3870,
+        "sha256": "935fe931142a6da2d5621cfc4b9ba1e5cad36d52994477f745c30ced280b428d",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_order_a159_20150429",
+      "title": "Royal orders: Royal Order A/159 (Arabic)",
+      "url": "https://www.spa.gov.sa/1355272",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2015-04-29",
+      "source_type": "primary_royal_order_text",
+      "access_method": "downloaded_original_html_and_embedded_article_text_read",
+      "claims": [
+        {
+          "id": "sa_muqrin_relieved_a159",
+          "text": "Royal Order A/159 dated 10/7/1436 AH, issued that day according to the dateline Riyadh 10 Rajab 1436 / 29 April 2015: citing Prince Muqrin bin Abdulaziz's letter of the same date asking to be relieved of the crown princeship, King Salman relieves him, at his request, of the crown princeship and of the post of Deputy Prime Minister.",
+          "attested_on": "2015-04-29",
+          "locator": "Dateline; order number and date; recital and item First; trailer (filed 06:16 Makkah time)",
+          "uncertainty": "A relief at his own request, not a death. No Allegiance Commission vote is stated for the relief."
+        },
+        {
+          "id": "sa_mbn_cp_a159",
+          "text": "Item Second of the same order selects Prince Mohammed bin Nayef bin Abdulaziz as Crown Prince and appoints him Deputy Prime Minister, Minister of Interior and Chairman of the Council of Political and Security Affairs; the preamble cites Royal Order A/52 of 3/4/1436 AH.",
+          "attested_on": "2015-04-29",
+          "locator": "Preamble and item Second",
+          "uncertainty": "No Allegiance Commission vote is stated for this selection. A/52 was cited but not read."
+        }
+      ],
+      "scope_note": "The release ends with 'to follow'; its continuation, Royal Order A/160, is recorded separately (sa_spa_order_a160_20150429). Used for SA-EXEC-06.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a159-20150429-facts.json",
+        "bytes": 3923,
+        "sha256": "6efcf75c4f155200ef2cdf9f35c6e5eb78dcf40c15bf74bb6a181da67aa6f45c",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_order_a160_20150429",
+      "title": "Royal orders, first addition: Royal Order A/160 (Arabic)",
+      "url": "https://www.spa.gov.sa/1355273",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2015-04-29",
+      "source_type": "primary_royal_order_text",
+      "access_method": "downloaded_original_html_and_embedded_article_text_read",
+      "claims": [
+        {
+          "id": "sa_mbs_deputy_cp_a160",
+          "text": "Royal Order A/160 dated 10/7/1436 AH: on the nomination of Crown Prince Mohammed bin Nayef in a letter of the same date, and after the support of the great majority of Allegiance Commission members, King Salman selects Prince Mohammed bin Salman bin Abdulaziz as Deputy Crown Prince and appoints him Second Deputy Prime Minister, Minister of Defence and Chairman of the Council of Economic and Development Affairs. The preamble cites item Third of Royal Order A/135 and item Fourth of Royal Order A/86.",
+          "attested_on": "2015-04-29",
+          "locator": "Order number and date; recitals; item First; trailer (filed 06:16 Makkah time)",
+          "uncertainty": "'Great majority' is unquantified. Deputy Crown Prince is a separate office and is not a role in this packet; no holder is added."
+        }
+      ],
+      "scope_note": "First addition to the 29 April 2015 royal-orders release. It carries no dateline of its own; the portal timestamp is 06:18 Makkah time on 29 April 2015. Used for SA-EXEC-06.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a160-20150429-facts.json",
+        "bytes": 3635,
+        "sha256": "5e1ca99dcb8448b5b1c1408bcef3895fee9dacb117272c5c02a95ff246d0771a",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_pledge_call_20150429",
+      "title": "Royal Court: the King calls for the pledge to Prince Mohammed bin Nayef as Crown Prince and Prince Mohammed bin Salman as Deputy Crown Prince at Qasr al-Hukm after Isha prayers today (Arabic)",
+      "url": "https://www.spa.gov.sa/cac63786db",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2015-04-29",
+      "source_type": "primary_royal_court_statement",
+      "access_method": "downloaded_original_html_and_embedded_article_text_read",
+      "claims": [
+        {
+          "id": "sa_pledge_call_20150429",
+          "text": "Citing Royal Orders A/159 and A/160 of 10/7/1436 AH, King Salman called for the pledge to Mohammed bin Nayef as Crown Prince and Mohammed bin Salman as Deputy Crown Prince at Qasr al-Hukm in Riyadh after Isha prayers that day, Wednesday 10/7/1436 AH.",
+          "attested_on": "2015-04-29",
+          "locator": "Dateline Riyadh 10 Rajab 1436 / 29 April 2015; Royal Court statement; trailer (filed 06:33 Makkah time)",
+          "uncertainty": "A called pledge. That it took place is attested separately (sa_pledge_held_20150429)."
+        }
+      ],
+      "scope_note": "Used for SA-EXEC-06.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-pledge-call-20150429-facts.json",
+        "bytes": 3141,
+        "sha256": "d70ac75065c0c940bdbc7edcb8ae05798e3a17eb3d324cdd5e209224277e5bbe",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_pledge_held_20150429",
+      "title": "Prince Mohammed bin Nayef and Prince Mohammed bin Salman receive the pledge of allegiance (Arabic)",
+      "url": "https://www.spa.gov.sa/5766455156",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2015-04-29",
+      "source_type": "official_news_agency_report",
+      "access_method": "downloaded_original_html_and_embedded_article_text_read",
+      "claims": [
+        {
+          "id": "sa_pledge_held_20150429",
+          "text": "An SPA report datelined Riyadh 10 Rajab 1436 / 29 April 2015 says that Prince Muqrin bin Abdulaziz pledged allegiance that evening, at Qasr al-Hukm in Riyadh, to Mohammed bin Nayef as Crown Prince and Mohammed bin Salman as Deputy Crown Prince, and that princes, the Grand Mufti, scholars, ministers, senior civil and military officials and large crowds of citizens also gave the pledge.",
+          "attested_on": "2015-04-29",
+          "locator": "Dateline; paragraphs 1-2; trailer (filed 21:45 Makkah time)",
+          "uncertainty": "A news-agency report of the evening ceremony, kept separate from the orders (A/159, A/160) and from the call. The release ends with 'to follow'; any continuation was not read."
+        }
+      ],
+      "scope_note": "Located by the researcher through SPA site search and downloaded by the packet's independent checker. Used for SA-EXEC-06.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-pledge-held-20150429-facts.json",
+        "bytes": 3340,
+        "sha256": "bcf7fa8587f1ebd45b932c741db11343455a92b6ed17b82606f907ee4fe94350",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_order_a255_20170621_ar",
+      "title": "A number of royal orders issued: Royal Order A/255 (Arabic)",
+      "url": "https://www.spa.gov.sa/4058adbaf7",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2017-06-21",
+      "source_type": "primary_royal_order_text",
+      "access_method": "downloaded_original_html_and_embedded_article_text_read",
+      "claims": [
+        {
+          "id": "sa_mbn_relieved_20170621",
+          "text": "Royal Order A/255 dated 26/9/1438 AH, issued that day according to the dateline Makkah 26 Ramadan 1438 / 21 June 2017: item First relieves Prince Mohammed bin Nayef bin Abdulaziz of the crown princeship and of the posts of Deputy Prime Minister and Minister of Interior.",
+          "attested_on": "2017-06-21",
+          "locator": "Dateline; order number and date; item First; trailer (filed 06:23 Makkah time)",
+          "uncertainty": "A relief by royal order. The recital refers to justifications reviewed by the Allegiance Commission members without stating them."
+        },
+        {
+          "id": "sa_mbs_cp_selected_20170621",
+          "text": "Item Second of the same order selects Prince Mohammed bin Salman bin Abdulaziz as Crown Prince and appoints him Deputy Prime Minister, continuing as Minister of Defence and in the other tasks assigned to him.",
+          "attested_on": "2017-06-21",
+          "locator": "Order A/255, item Second",
+          "uncertainty": "The order states no effective date, and no end of his crown-princeship is recorded in this packet."
+        },
+        {
+          "id": "sa_allegiance_31_of_34_20170621",
+          "text": "The order's recital rests on the justifications reviewed by the Allegiance Commission members and on their support by a great majority, 31 of 34.",
+          "attested_on": "2017-06-21",
+          "locator": "Order A/255, recital",
+          "uncertainty": "A recital in the royal order, not a record published by the Commission."
+        },
+        {
+          "id": "sa_mbs_deputy_cp_date_discrepancy",
+          "text": "The recital of Royal Order A/255 (Arabic original, and likewise SPA's English translation) dates Royal Order A/160 10/6/1436 AH. The 2015 A/160 original, A/159 and the Royal Court pledge call all read 10/7/1436 AH (29 April 2015). The 29 April 2015 date is kept, and 10/6 is recorded as an error in the 2017 order text as SPA published it.",
+          "attested_on": "2017-06-21",
+          "locator": "Order A/255, recital citing A/160",
+          "uncertainty": "The error is in the published 2017 order text, not an English translation error. The Umm al-Qura gazette text of A/255 was not checked."
+        }
+      ],
+      "scope_note": "Arabic original of the 21 June 2017 order (also served at legacy SPA IDs from 1641876), located by the packet's independent checker. SPA's English release (sa_spa_order_a255_20170621_en) is its translation and prints no order number. The release ends with 'to follow'; the other orders issued that day are not imported. Used for SA-EXEC-07.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a255-ar-20170621-facts.json",
+        "bytes": 5224,
+        "sha256": "1f92baa5ef1d330cfd09015d5731f95b34d2604502b8722dfb158a0a217f07b9",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_order_a255_20170621_en",
+      "title": "A number of royal orders issued",
+      "url": "https://www.spa.gov.sa/1641911",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2017-06-21",
+      "source_type": "official_english_translation",
+      "access_method": "downloaded_original_html_and_embedded_article_text_read",
+      "claims": [
+        {
+          "id": "sa_orders_20170621_en_translation",
+          "text": "SPA's English release datelined Makkah, Ramadan 26, 1438 / June 21, 2017 translates the same order without printing its number: it relieves Mohammed bin Naif of the posts of Crown Prince, Deputy Premier and Minister of Interior; selects Mohammed bin Salman as Crown Prince and Deputy Premier, continuing as Minister of Defense; recites the Allegiance-Pledge Commission's support by 31 of 34; and dates the Deputy Crown Prince order 10/6/1436 AH.",
+          "attested_on": "2017-06-21",
+          "locator": "Dateline; recital; items First and Second; trailer (11:14 local time)",
+          "uncertainty": "A translation that adds no event; the Arabic original (sa_spa_order_a255_20170621_ar) carries the events."
+        }
+      ],
+      "scope_note": "SPA English translation of Royal Order A/255. Used for SA-EXEC-07, including the finding that the 10/6/1436 AH date is not a translation error.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-order-a255-en-20170621-facts.json",
+        "bytes": 3448,
+        "sha256": "a7a5bff1e4855c479fbbcf900db6cc46ab1c5bd2a75ef04b17da5b0d444bf8d1",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_pledge_call_20170621",
+      "title": "The King calls for the pledge to Prince Mohammed bin Salman bin Abdulaziz as Crown Prince after Taraweeh prayers today, Wednesday, at Al-Safa Palace in Makkah (Arabic)",
+      "url": "https://www.spa.gov.sa/2c7ada880e",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2017-06-21",
+      "source_type": "primary_royal_court_statement",
+      "access_method": "downloaded_original_html_and_embedded_article_text_read",
+      "claims": [
+        {
+          "id": "sa_pledge_call_20170621",
+          "text": "Citing Royal Order A/255 of 26/9/1438 AH, King Salman called for the pledge to Mohammed bin Salman as Crown Prince at Al-Safa Palace in Makkah after Taraweeh prayers that day, Wednesday 26/9/1438 AH.",
+          "attested_on": "2017-06-21",
+          "locator": "Dateline; statement; trailer (filed 07:05 Makkah time)",
+          "uncertainty": "A called pledge; this source does not attest that the general pledge took place. Its dateline misprints the Hijri year as 1437 (26 Ramadan 1437 / 21 June 2017), while the body reads 1438."
+        }
+      ],
+      "scope_note": "Located and downloaded by the packet's independent checker (also served at legacy SPA ID 1641892). Used for SA-EXEC-07.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-pledge-call-20170621-facts.json",
+        "bytes": 3627,
+        "sha256": "e15b044d7a58c65fa330dab3d1f5773a9c4e0ee2b02194d984b289b4be3acb3d",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_mbn_pledge_20170621_ar",
+      "title": "Prince Mohammed bin Nayef bin Abdulaziz pledges allegiance to Prince Mohammed bin Salman bin Abdulaziz as Crown Prince at Al-Safa Palace in Makkah (Arabic)",
+      "url": "https://www.spa.gov.sa/45ccd99bc4",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2017-06-21",
+      "source_type": "official_news_agency_report",
+      "access_method": "downloaded_original_html_and_embedded_article_text_read",
+      "claims": [
+        {
+          "id": "sa_mbn_pledge_to_mbs_20170621",
+          "text": "An SPA report datelined Makkah 26 Ramadan 1438 / 21 June 2017 says Prince Mohammed bin Nayef pledged allegiance today, at Al-Safa Palace in Makkah, to Prince Mohammed bin Salman on his selection as Crown Prince.",
+          "attested_on": "2017-06-21",
+          "locator": "Dateline and sole paragraph; trailer (filed 08:37 Makkah time)",
+          "uncertainty": "An individual pledge by the relieved Crown Prince; it does not date the general pledge called for that evening."
+        }
+      ],
+      "scope_note": "Arabic original of the report (also served at legacy SPA ID 1641897), located by the packet's independent checker. SPA's English release (sa_spa_mbn_pledge_20170621_en) is its translation. Used for SA-EXEC-07.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-mbn-pledge-ar-20170621-facts.json",
+        "bytes": 3673,
+        "sha256": "f5744cace48a04b4a0bede428916b602231fa98af25d0dc3a546ffb52f24a1f3",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_mbn_pledge_20170621_en",
+      "title": "Prince Mohammed bin Naif bin Abdulaziz Pledges Allegiance to Prince Mohammed bin Salman bin Abdulaziz as Crown Prince",
+      "url": "https://www.spa.gov.sa/1642006",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2017-06-21",
+      "source_type": "official_english_translation",
+      "access_method": "downloaded_original_html_and_embedded_article_text_read",
+      "claims": [
+        {
+          "id": "sa_mbn_pledge_en_translation_20170621",
+          "text": "SPA's English release datelined Makkah, Ramadan 26, 1438 / June 21, 2017 translates the same report: Mohammed bin Naif pledged allegiance to Mohammed bin Salman on his selection as Crown Prince at Al-Safa Palace in Makkah.",
+          "attested_on": "2017-06-21",
+          "locator": "Dateline and sole paragraph; trailer (14:15 local time)",
+          "uncertainty": "A translation that adds no event and omits the Arabic 'today'; the Arabic original (sa_spa_mbn_pledge_20170621_ar) carries the event."
+        }
+      ],
+      "scope_note": "SPA English translation of sa_spa_mbn_pledge_20170621_ar. Used for SA-EXEC-07.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-mbn-pledge-en-20170621-facts.json",
+        "bytes": 3187,
+        "sha256": "c6e92143c3ece9b896e0e6c322bd7bb38296d75b3689d8afade0fb7639ae1df7",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "sa_spa_orders_20260813",
+      "title": "Royal Orders Issued",
+      "url": "https://www.spa.gov.sa/en/N2653199",
+      "publisher": "Saudi Press Agency (SPA)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2026-08-13",
+      "source_type": "primary_royal_order_english_release",
+      "access_method": "downloaded_original_html_and_embedded_article_text_read",
+      "claims": [
+        {
+          "id": "sa_salman_king_obs_20260813",
+          "text": "SPA's English release datelined Jeddah, August 13, 2026 says King Salman bin Abdulaziz Al Saud issued royal orders that day.",
+          "attested_on": "2026-08-13",
+          "locator": "Dateline and opening sentence; trailer (17:41 local time)",
+          "uncertainty": "A point observation 25 days before the cutoff. It does not certify continuity through 7 September 2026."
+        },
+        {
+          "id": "sa_mbs_cp_pm_obs_20260813",
+          "text": "The first order reconstitutes the Cabinet with its current members under the chairmanship of Prince Mohammed bin Salman bin Abdulaziz Al Saud, styled Crown Prince and Prime Minister, citing earlier royal orders that limit a Cabinet's term to four years.",
+          "attested_on": "2026-08-13",
+          "locator": "First order",
+          "uncertainty": "Attests both styles on this date. It does not establish uninterrupted tenure since 2017 (Crown Prince) or 2022 (Prime Minister)."
+        }
+      ],
+      "scope_note": "English release. The portal lists an Arabic version (N2653088) that was not downloaded. The relief and appointment orders for other authorities are not imported. Used for SA-EXEC-08.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-royal-orders-20260813-facts.json",
+        "bytes": 3709,
+        "sha256": "f5581de8479f5b9c441d78a75f96f802885cb823ca5c7c0d4e1cb01b31185b65",
+        "kind": "derived_factual_extract"
+      }
     }
   ],
   "organizations": [
@@ -450,15 +1106,81 @@
           "sources": [
             "sa_basic_law_boe",
             "sa_spa_pm_2022",
-            "sa_basic_law_arabic"
+            "sa_basic_law_arabic",
+            "sa_bush41_address_19900808",
+            "sa_spa_fahd_death_20050801_ar",
+            "sa_spa_fahd_bio_20050801",
+            "sa_spa_allegiance_20050801_ar",
+            "sa_spa_allegiance_20050801_en",
+            "sa_spa_abdullah_death_20150123_en",
+            "sa_spa_abdullah_death_20150123_ar",
+            "sa_spa_orders_20260813"
           ],
           "claim_ids": [
             "sa_basic_royal_government",
             "sa_king_cabinet_chair_exception",
-            "sa_salman_king_observation"
+            "sa_salman_king_observation",
+            "sa_fahd_king_obs_19900808",
+            "sa_fahd_death_announced_20050801",
+            "sa_fahd_mourned_26_6_1426",
+            "sa_abdullah_family_pledge_20050801",
+            "sa_family_pledge_en_translation_20050801",
+            "sa_citizen_pledge_scheduled_20050803",
+            "sa_abdullah_death_20150123",
+            "sa_salman_king_pledge_20150123",
+            "sa_citizen_pledge_scheduled_20150123",
+            "sa_abdullah_death_ar_dateline",
+            "sa_salman_king_obs_20260813"
           ],
           "holder_claims": [
-            "sa_salman_king_observation"
+            "sa_salman_king_observation",
+            {
+              "name": "Fahd bin Abdulaziz Al Saud",
+              "attested_on": "1990-08-08",
+              "from": null,
+              "until": null,
+              "sources": [
+                "sa_bush41_address_19900808",
+                "sa_spa_fahd_death_20050801_ar"
+              ],
+              "claim_ids": [
+                "sa_fahd_king_obs_19900808",
+                "sa_fahd_death_announced_20050801"
+              ],
+              "note": "Observed as King on 8 August 1990 in a U.S. official record (SA-EXEC-01). The Royal Court announced his death on 1 August 2005 (26/6/1426 AH).",
+              "uncertainty": "The 1990 observation is a foreign record; no Saudi 1990 record, 1982 accession or 1996 delegation is sourced, and continuity between 1990 and 2005 is not observed. The death announcement states no day or hour of death, so until is null rather than the announcement date."
+            },
+            {
+              "name": "Abdullah bin Abdulaziz Al Saud",
+              "attested_on": "2005-08-01",
+              "from": null,
+              "until": "2015-01-23",
+              "sources": [
+                "sa_spa_allegiance_20050801_ar",
+                "sa_spa_abdullah_death_20150123_en"
+              ],
+              "claim_ids": [
+                "sa_abdullah_family_pledge_20050801",
+                "sa_abdullah_death_20150123"
+              ],
+              "note": "Family pledge as King reported by the Royal Court statement dated 1 August 2005 (SA-EXEC-02). Died at 1 a.m. on Friday 3/4/1436 AH, 23 January 2015, styled King (SA-EXEC-05).",
+              "uncertainty": "The accession statement gives no separate date for the family pledge, so attested_on is the statement date and from is null. until is the stated day of death. No observation between the two dates is recorded."
+            },
+            {
+              "name": "Salman bin Abdulaziz Al Saud",
+              "attested_on": "2015-01-23",
+              "from": null,
+              "until": null,
+              "sources": [
+                "sa_spa_abdullah_death_20150123_en"
+              ],
+              "claim_ids": [
+                "sa_salman_king_pledge_20150123"
+              ],
+              "note": "Received the pledge as King under the Basic Law, reported by the Royal Court statement of 23 January 2015 (SA-EXEC-05). Separately observed as King on 27 September 2022 and 13 August 2026.",
+              "uncertainty": "No coronation, oath, inauguration or effective-date wording is recorded, so from is null. No end date is inferred, and continuity to 7 September 2026 is not established."
+            },
+            "sa_salman_king_obs_20260813"
           ]
         },
         {
@@ -467,14 +1189,164 @@
           "kind": "institutional_office",
           "sources": [
             "sa_spa_pm_2022",
-            "sa_boe_succession_law"
+            "sa_boe_succession_law",
+            "sa_spa_fahd_death_20050801_en",
+            "sa_spa_allegiance_20050801_ar",
+            "sa_spa_sultan_death_20111022",
+            "sa_spa_nayef_cp_20111027",
+            "sa_spa_nayef_death_20120616",
+            "sa_spa_salman_cp_20120618",
+            "sa_spa_abdullah_death_20150123_en",
+            "sa_spa_order_a159_20150429",
+            "sa_spa_pledge_call_20150429",
+            "sa_spa_pledge_held_20150429",
+            "sa_spa_order_a255_20170621_ar",
+            "sa_spa_order_a255_20170621_en",
+            "sa_spa_pledge_call_20170621",
+            "sa_spa_mbn_pledge_20170621_ar",
+            "sa_spa_mbn_pledge_20170621_en",
+            "sa_spa_orders_20260813"
           ],
           "claim_ids": [
             "sa_succession_function",
-            "sa_mbs_pm_appointment"
+            "sa_mbs_pm_appointment",
+            "sa_abdullah_cp_obs_20050801",
+            "sa_abdullah_family_pledge_20050801",
+            "sa_sultan_cp_selected_20050801",
+            "sa_citizen_pledge_scheduled_20050803",
+            "sa_sultan_death_20111022",
+            "sa_nayef_cp_order_a224",
+            "sa_nayef_death_20120616",
+            "sa_salman_cp_order_a139",
+            "sa_salman_king_pledge_20150123",
+            "sa_muqrin_cp_pledge_20150123",
+            "sa_citizen_pledge_scheduled_20150123",
+            "sa_muqrin_relieved_a159",
+            "sa_mbn_cp_a159",
+            "sa_pledge_call_20150429",
+            "sa_pledge_held_20150429",
+            "sa_mbn_relieved_20170621",
+            "sa_mbs_cp_selected_20170621",
+            "sa_allegiance_31_of_34_20170621",
+            "sa_orders_20170621_en_translation",
+            "sa_pledge_call_20170621",
+            "sa_mbn_pledge_to_mbs_20170621",
+            "sa_mbn_pledge_en_translation_20170621",
+            "sa_mbs_cp_pm_obs_20260813"
           ],
           "holder_claims": [
-            "sa_mbs_pm_appointment"
+            "sa_mbs_pm_appointment",
+            {
+              "name": "Abdullah bin Abdulaziz Al Saud",
+              "attested_on": "2005-08-01",
+              "from": null,
+              "until": null,
+              "sources": [
+                "sa_spa_fahd_death_20050801_en",
+                "sa_spa_allegiance_20050801_ar"
+              ],
+              "claim_ids": [
+                "sa_abdullah_cp_obs_20050801",
+                "sa_abdullah_family_pledge_20050801"
+              ],
+              "note": "Styled Crown Prince, Deputy Premier and Commander of the National Guard when King Fahd's death was announced on 1 August 2005; the same day's Royal Court statement reports the family pledge to him as King (SA-EXEC-01 and 02).",
+              "uncertainty": "A point observation: the start of his crown-princeship is outside the sources read. His accession ended it, but the statement gives no separate date for the family pledge, so until is null."
+            },
+            {
+              "name": "Sultan bin Abdulaziz Al Saud",
+              "attested_on": "2005-08-01",
+              "from": null,
+              "until": "2011-10-22",
+              "sources": [
+                "sa_spa_allegiance_20050801_ar",
+                "sa_spa_sultan_death_20111022"
+              ],
+              "claim_ids": [
+                "sa_sultan_cp_selected_20050801",
+                "sa_sultan_death_20111022"
+              ],
+              "note": "Selected Crown Prince by King Abdullah after the family pledge, reported by the Royal Court statement dated 1 August 2005 (SA-EXEC-02). Died at dawn on Saturday 24/11/1432 AH, 22 October 2011, styled Crown Prince (SA-EXEC-03).",
+              "uncertainty": "The selection has no separate date or time beyond the statement date, so from is null. until is the stated day of death."
+            },
+            {
+              "name": "Nayef bin Abdulaziz Al Saud",
+              "attested_on": "2011-10-27",
+              "from": null,
+              "until": "2012-06-16",
+              "sources": [
+                "sa_spa_nayef_cp_20111027",
+                "sa_spa_nayef_death_20120616"
+              ],
+              "claim_ids": [
+                "sa_nayef_cp_order_a224",
+                "sa_nayef_death_20120616"
+              ],
+              "note": "Chosen Crown Prince by Royal Order A/224 of 29/11/1432 AH, 27 October 2011, after the Allegiance Commission was notified. Died on Saturday 26/7/1433 AH, 16 June 2012, styled Crown Prince (SA-EXEC-03).",
+              "uncertainty": "The order states no effective date, so from is null and attested_on is the order date. until is the stated day of death."
+            },
+            {
+              "name": "Salman bin Abdulaziz Al Saud",
+              "attested_on": "2012-06-18",
+              "from": null,
+              "until": "2015-01-23",
+              "sources": [
+                "sa_spa_salman_cp_20120618",
+                "sa_spa_abdullah_death_20150123_en"
+              ],
+              "claim_ids": [
+                "sa_salman_cp_order_a139",
+                "sa_salman_king_pledge_20150123"
+              ],
+              "note": "Chosen Crown Prince by Royal Order A/139 of 28/7/1433 AH, 18 June 2012 (SA-EXEC-04). His crown-princeship ended when he received the pledge as King on 23 January 2015 (SA-EXEC-05).",
+              "uncertainty": "The order states no effective date, so from is null. until rests on his own accession in the 23 January 2015 statement, which then applies the crown-princeship vacancy provision; it is not taken from Muqrin's pledge."
+            },
+            {
+              "name": "Muqrin bin Abdulaziz Al Saud",
+              "attested_on": "2015-01-23",
+              "from": null,
+              "until": "2015-04-29",
+              "sources": [
+                "sa_spa_abdullah_death_20150123_en",
+                "sa_spa_order_a159_20150429"
+              ],
+              "claim_ids": [
+                "sa_muqrin_cp_pledge_20150123",
+                "sa_muqrin_relieved_a159"
+              ],
+              "note": "Received the pledge as Crown Prince on 23 January 2015 under item Second of Royal Order A/86 (SA-EXEC-05). Relieved at his own request of the crown princeship and the Deputy Premiership by Royal Order A/159 of 10/7/1436 AH, 29 April 2015 (SA-EXEC-06).",
+              "uncertainty": "The pledge has no stated time or effective-date wording, so from is null. until is the date of the relief order. His earlier Deputy Crown Prince office under A/86 is not a role in this packet."
+            },
+            {
+              "name": "Mohammed bin Nayef bin Abdulaziz Al Saud",
+              "attested_on": "2015-04-29",
+              "from": null,
+              "until": "2017-06-21",
+              "sources": [
+                "sa_spa_order_a159_20150429",
+                "sa_spa_order_a255_20170621_ar"
+              ],
+              "claim_ids": [
+                "sa_mbn_cp_a159",
+                "sa_mbn_relieved_20170621"
+              ],
+              "note": "Selected Crown Prince by item Second of Royal Order A/159 of 10/7/1436 AH, 29 April 2015; the pledge was called for and held that evening (SA-EXEC-06). Relieved by item First of Royal Order A/255 of 26/9/1438 AH, 21 June 2017 (SA-EXEC-07).",
+              "uncertainty": "The order states no effective date, so from is null and attested_on is the order date, not the evening pledge. until is the date of the relief order."
+            },
+            {
+              "name": "Mohammed bin Salman bin Abdulaziz Al Saud",
+              "attested_on": "2017-06-21",
+              "from": null,
+              "until": null,
+              "sources": [
+                "sa_spa_order_a255_20170621_ar"
+              ],
+              "claim_ids": [
+                "sa_mbs_cp_selected_20170621"
+              ],
+              "note": "Selected Crown Prince by item Second of Royal Order A/255 of 26/9/1438 AH, 21 June 2017, with 31 of 34 Allegiance Commission members recited in support (SA-EXEC-07). Separately styled Crown Prince on 27 September 2022 and 13 August 2026.",
+              "uncertainty": "The order states no effective date, so from is null. No end date is inferred, and continuity to 7 September 2026 is not established."
+            },
+            "sa_mbs_cp_pm_obs_20260813"
           ]
         }
       ],
@@ -482,13 +1354,17 @@
         "sa_basic_law_boe",
         "sa_wipo_basic_law_history",
         "sa_spa_pm_2022",
-        "sa_basic_law_arabic"
+        "sa_basic_law_arabic",
+        "sa_spa_order_a160_20150429",
+        "sa_spa_order_a255_20170621_ar"
       ],
       "claim_ids": [
         "sa_basic_royal_government",
         "sa_basic_law_promulgation",
         "sa_salman_king_observation",
-        "sa_king_cabinet_chair_exception"
+        "sa_king_cabinet_chair_exception",
+        "sa_mbs_deputy_cp_a160",
+        "sa_mbs_deputy_cp_date_discrepancy"
       ],
       "coverage": {
         "status": "partial",
@@ -499,7 +1375,12 @@
         "unresolved": [
           "Complete 1990–2026 reigns, crown princes, acting arrangements and accession dates from dated royal records.",
           "Do not treat the royal family or succession commission as a party, coalition or single interchangeable leader role.",
-          "The 2022 office observation is not a verified uninterrupted interval to September 2026."
+          "The 2022 office observation is not a verified uninterrupted interval to September 2026.",
+          "SA-EXEC-01: the 1990 observation of King Fahd is a U.S. official record; no Saudi 1990 record, his 1982 accession or the 1996 delegation to Crown Prince Abdullah is sourced. His death was announced on 1 August 2005 without a stated day or hour, so his reign has no recorded end date.",
+          "SA-EXEC-02 and 05: the accession statements of 1 August 2005 and 23 January 2015 describe no coronation, oath or inauguration. The citizens' pledges scheduled for 3 August 2005 and for the evening of 23 January 2015 are not attested as held.",
+          "Deputy Crown Prince (Muqrin under Royal Order A/86, Mohammed bin Nayef under A/52, Mohammed bin Salman under A/160) is not a role here; A/86 and A/52 were cited but not read. The 2017 order misdates A/160 as 10/6/1436 AH; the 2015 records read 10/7/1436.",
+          "Continuity of King Salman and of Mohammed bin Salman as Crown Prince between the dated observations and through 7 September 2026 is not established; the last observation is 13 August 2026.",
+          "Umm al-Qura gazette texts of A/224, A/139, A/86, A/52, A/159, A/160 and A/255, and Gregorian dates for A/90, A/13, A/135, A/86 and A/52, were not checked."
         ]
       }
     },
@@ -522,26 +1403,31 @@
           "kind": "head_of_government",
           "sources": [
             "sa_basic_law_boe",
-            "sa_spa_pm_2022"
+            "sa_spa_pm_2022",
+            "sa_spa_orders_20260813"
           ],
           "claim_ids": [
             "sa_basic_pm_rule",
             "sa_king_cabinet_chair_exception",
-            "sa_mbs_pm_appointment"
+            "sa_mbs_pm_appointment",
+            "sa_mbs_cp_pm_obs_20260813"
           ],
           "holder_claims": [
-            "sa_mbs_pm_appointment"
+            "sa_mbs_pm_appointment",
+            "sa_mbs_cp_pm_obs_20260813"
           ]
         }
       ],
       "sources": [
         "sa_basic_law_boe",
-        "sa_spa_pm_2022"
+        "sa_spa_pm_2022",
+        "sa_spa_orders_20260813"
       ],
       "claim_ids": [
         "sa_basic_pm_rule",
         "sa_mbs_pm_appointment",
-        "sa_king_cabinet_chair_exception"
+        "sa_king_cabinet_chair_exception",
+        "sa_mbs_cp_pm_obs_20260813"
       ],
       "coverage": {
         "status": "partial",
@@ -552,7 +1438,9 @@
         "unresolved": [
           "Reconcile the pre-1992 Cabinet framework, later laws and each deputy/acting office with exact effective dates.",
           "Preserve the specific 27 September 2022 exception and the King's conditional Cabinet chairing; do not copy the Basic Law's default over it.",
-          "Independently verify later appointments and office observations through cutoff."
+          "Independently verify later appointments and office observations through cutoff.",
+          "SA-EXEC-08: before 27 September 2022 the crown princes were styled or appointed Deputy Prime Minister (2005 styling; 2011, 2012, 2015 and 2017 orders). No King is added as a Prime Minister holder by inference from Article 56, whose text here rests on a search-index read.",
+          "Mohammed bin Salman is styled Prime Minister on 13 August 2026; continuity since the 27 September 2022 appointment is not established."
         ]
       }
     },
@@ -575,22 +1463,26 @@
           "kind": "collective_seat",
           "sources": [
             "sa_basic_law_boe",
-            "sa_spa_pm_2022"
+            "sa_spa_pm_2022",
+            "sa_spa_orders_20260813"
           ],
           "claim_ids": [
             "sa_basic_pm_rule",
-            "sa_king_cabinet_chair_exception"
+            "sa_king_cabinet_chair_exception",
+            "sa_mbs_cp_pm_obs_20260813"
           ],
           "holder_claims": []
         }
       ],
       "sources": [
         "sa_basic_law_boe",
-        "sa_spa_pm_2022"
+        "sa_spa_pm_2022",
+        "sa_spa_orders_20260813"
       ],
       "claim_ids": [
         "sa_basic_pm_rule",
-        "sa_king_cabinet_chair_exception"
+        "sa_king_cabinet_chair_exception",
+        "sa_mbs_cp_pm_obs_20260813"
       ],
       "coverage": {
         "status": "partial",
@@ -718,11 +1610,18 @@
         }
       ],
       "sources": [
-        "sa_boe_succession_law"
+        "sa_boe_succession_law",
+        "sa_spa_nayef_cp_20111027",
+        "sa_spa_order_a160_20150429",
+        "sa_spa_order_a255_20170621_ar"
       ],
       "claim_ids": [
         "sa_succession_membership",
-        "sa_succession_function"
+        "sa_succession_function",
+        "sa_allegiance_law_a135_cited",
+        "sa_nayef_cp_order_a224",
+        "sa_mbs_deputy_cp_a160",
+        "sa_allegiance_31_of_34_20170621"
       ],
       "coverage": {
         "status": "partial",
@@ -733,7 +1632,8 @@
         "unresolved": [
           "Verify the establishing royal order, effective date, implementing rules and historical membership.",
           "Keep nominations, collective decisions and actual royal appointments distinct.",
-          "No named chairman or member terms are populated from unsourced memory."
+          "No named chairman or member terms are populated from unsourced memory.",
+          "Commission participation by order: A/224 (2011) states only that the Commission was notified; A/139 (2012) mentions none; A/159 (2015) states none for the Crown Prince selection; A/160 (2015) recites a great majority without a count; A/255 (2017) recites 31 of 34. No record published by the Commission was read, and the Gregorian date of the establishing Royal Order A/135 (26/9/1427 AH) was not verified."
         ]
       }
     },
