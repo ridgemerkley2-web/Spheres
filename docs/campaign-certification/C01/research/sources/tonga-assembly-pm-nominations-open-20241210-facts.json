@@ -1,0 +1,27 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://parliament.gov.to/en/media-centre/press-releases/nomination-of-candidates-for-prime-minister-now-open",
+  "accessed_date": "2026-09-21",
+  "published_date": "2024-12-10",
+  "access_method": "fetched_original_html_and_article_text_read",
+  "source_response_bytes": 55980,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "provenance_note": "Fetched by direct HTTPS request on 2026-09-22 UTC (2026-09-21 local), HTTP 200, 55,980 bytes. The independent check re-fetched it the same day with a cache-busting query and read the same article text and metadata; its byte count differed by a few bytes. Each response embeds a per-request form token and the page displays a live hit counter, so no response hash is asserted. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_pm_nominations_invited_20241210",
+      "text": "The Office of the Speaker's release issued 10 December 2024 states that Speaker Lord Fakafanua issued invitations 'today' to all Elected Representatives to nominate an Elected Representative as candidate for Prime Minister Designate, following the vacancy in the Office of the Prime Minister due to the resignation of former Prime Minister Hon. Hu'akavameiliku (Siaosi 'Ofa ki Vahafolau Sovaleni) on Monday 9 December 2024; nominations close at 4.30pm on Monday 23 December 2024, and the meeting of all Elected Representatives to elect the Prime Minister Designate is to be held on Tuesday 24 December 2024.",
+      "attested_on": "2024-12-10",
+      "locator": "Press release body, paragraphs 1-3; issue line",
+      "uncertainty": "'Last Updated 16 January 2025' is page metadata, not the issue date. The name form 'Siaosi 'Ofa ki Vahafolau Sovaleni' is recorded as printed; it differs from the 2021 PMO form 'Ofakivahafolau and is not normalised."
+    }
+  ],
+  "scope_note": "Printed issue line 10 December 2024; the page metadata 'Last Updated 16 January 2025' is not the issue date. A Tongan-language counterpart ('Atā ke fai ha fokotu'u ...') was fetched (56,881 bytes) and not imported separately. Joomla page: each response embeds a per-request form token and the page shows a live hit counter, so no response hash is asserted.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Press-release text, issue line and page metadata read; no images reviewed."
+  }
+}

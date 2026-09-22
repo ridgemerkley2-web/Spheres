@@ -1,0 +1,27 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://parliament.gov.to/en/media-centre/latest-news/tonga-prime-minister-and-cabinet-ministers-take-oath-of-office-in-parliament",
+  "accessed_date": "2026-09-21",
+  "published_date": "2025-02-03",
+  "access_method": "fetched_original_html_and_article_text_read",
+  "source_response_bytes": 70501,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "provenance_note": "Fetched by direct HTTPS request on 2026-09-22 UTC (2026-09-21 local), HTTP 200, 70,501 bytes. The independent check re-fetched it the same day with a cache-busting query and read the same article text and metadata; its byte count differed by a few bytes. Each response embeds a per-request form token and the page displays a live hit counter, so no response hash is asserted. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_assembly_news_oath_20250131",
+      "text": "The Assembly news notice created 3 February 2025 reports that Prime Minister Hon. 'Aisake Eke and his Cabinet Ministers took their oath of office in the Legislative Assembly on Friday 31 January, 'marking the official beginning of their term in Parliament'; that all Ministers, including the Crown Prince as Minister of Foreign Affairs and His Majesty's Armed Forces, took their oaths in Tongan; and that Hon. Paula Piveni Piukala's motion to take his oath in English was lost, 7 in favour and 13 against.",
+      "attested_on": "2025-01-31",
+      "locator": "Article body, paragraphs 1-5",
+      "uncertainty": "'Official beginning of their term in Parliament' is the notice's wording and is not read as the start of office."
+    }
+  ],
+  "scope_note": "Assembly news notice created 3 February 2025 at 17:12 (+13:00): the report date is not the 31 January oath date. Its 25 gallery photographs were not used. Joomla page: each response embeds a per-request form token and the page shows a live hit counter, so no response hash is asserted.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Article text, its created date and its page metadata read; the gallery photographs were not used."
+  }
+}

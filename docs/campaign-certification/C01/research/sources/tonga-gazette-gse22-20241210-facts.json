@@ -1,0 +1,30 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://ago.gov.to/cms/images/LEGISLATION/GAZETTES/2024/2024-0047/GazetteSupplementExtraordinaryNo.222024.pdf",
+  "accessed_date": "2026-09-21",
+  "published_date": "2024-12-10",
+  "access_method": "downloaded_original_pdf_text_read",
+  "source_response_bytes": 273587,
+  "source_response_sha256": "f5f830a993c20954a34f1fe806618d03cf81c07239f2b563414429585ec6fa5b",
+  "source_response_checked_in": false,
+  "provenance_note": "Downloaded directly on 2026-09-21 (HTTP 200) and hashed before extraction; the independent check re-downloaded identical bytes, and the Tongan-labelled URL returned the same bytes. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_cabinet_proclamation_20241210",
+      "text": "Gazette Supplement Extraordinary No. 22 of 10 December 2024 prints a proclamation by which Cabinet, exercising section 1(2) of the Foreign Investment Act 2020 (Act 7 of 2020), brings that Act into force on 10 December 2024; it is made at Nuku'alofa that day and signed by Paula Pouvalu Ma'u, Chief Secretary and Secretary to Cabinet.",
+      "attested_on": "2024-12-10",
+      "locator": "English column (printed p.90) and Tongan column (printed p.91)",
+      "uncertainty": "Shows Cabinet exercising a statutory power the day after the resignation. It names no Prime Minister or Acting Prime Minister and is not a caretaker instrument. The Act's content is outside this packet."
+    }
+  ],
+  "scope_note": "Listed in the Attorney General's Office 'Gazettes by year' view for 2024 as item 2024-0047 ('GAZ_SE 22/24 10 December 2024 Proclamation'). That listing is selective (its numbering has gaps and it holds mostly legislation), so the absence of a notice from it is not evidence that no Gazette notice exists. The Tongan-labelled file (KaseteFakalahiMakeheFika222024x.pdf) returned identical bytes.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "text_layer_only_pages_one_based": [
+      1
+    ],
+    "method": "The text layer of PDF page 1 (printed pages 90-91; PDF page 2 is blank) was read; the page was not rendered."
+  }
+}

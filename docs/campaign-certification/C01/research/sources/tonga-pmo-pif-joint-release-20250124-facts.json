@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://pmo.gov.to/pacific-islands-forum-secretary-general-meets-new-prime-minister-of-tonga/",
+  "accessed_date": "2026-09-21",
+  "published_date": "2025-01-24",
+  "access_method": "browser_fetched_original_html_and_release_text_read",
+  "source_response_url": "https://pmo.gov.to/pacific-islands-forum-secretary-general-meets-new-prime-minister-of-tonga/",
+  "source_response_bytes": 71411,
+  "source_response_sha256": "be3dff707279e0943b06a9c599c6813775976175d446af5fc638bf0713c30d76",
+  "source_response_checked_in": false,
+  "rest_response": {
+    "url": "https://pmo.gov.to/wp-json/wp/v2/posts/14141",
+    "bytes": 7313,
+    "sha256": "396dbbb6a471631fa554d0c805c1105204d47ce2d1ab8566d4e862ceec8449a5",
+    "date": "2025-01-24T16:49:24",
+    "date_gmt": "2025-01-24T03:49:24",
+    "modified": "2025-01-24T16:52:33",
+    "modified_gmt": "2025-01-24T03:52:33"
+  },
+  "provenance_note": "Fetched on 2026-09-22 UTC (2026-09-21 local) from a browser page on the same origin; two consecutive requests returned the same 71,411 bytes and SHA-256. A direct non-browser request returned HTTP 403, so reproduction outside a browser is not asserted. The WordPress REST record of the post was fetched the same way for its dates. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_eke_pm_pif_release_20250124",
+      "text": "The PMO joint media release dated '(24th January, 2025)', posted the same day, calls Hon. Dr 'Aisake Valu Eke 'The Prime Minister of Tonga and Chair of the Pacific Islands Forum (PIF)' and quotes him as 'Forum Chair and Prime Minister'.",
+      "attested_on": "2025-01-24",
+      "locator": "Release date line and first paragraph; quotation attribution in paragraph 4; post date 2025-01-24T16:49:24 local (03:49:24 UTC)",
+      "uncertainty": "A dated office observation two days after the appointment release, from a page still live at access; it is not an appointment record or a start date. Its body dates the meeting '24 February 2025', a misprint in a release dated and posted on 24 January 2025; the meeting date is not imported."
+    }
+  ],
+  "scope_note": "Live PMO post 14141 (category 'Media Release'). Used only as a dated, still-live corroboration that Eke held the premiership two days after the appointment release, which survives only in archive captures; the forum business is not imported. A direct non-browser request returned HTTP 403, so the page was fetched in a browser.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Page text read in the browser; the featured photograph was not used."
+  }
+}
