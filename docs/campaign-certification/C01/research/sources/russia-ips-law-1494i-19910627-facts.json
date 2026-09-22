@@ -1,0 +1,43 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102011894&page=1&rdk=0",
+  "source_title": "Law of the RSFSR No. 1494-I of 27 June 1991 'On the assumption of office of the President of the RSFSR' (original edition)",
+  "accessed_date": "2026-09-21",
+  "published_date": null,
+  "document_date": "1991-06-27",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102011894&page=1&rdk=0",
+  "source_response_bytes": 25981,
+  "source_response_sha256": "c296f80617ba6afe8de1fc834d4729dd64cb71c8002582ea0a79b260d549e56a",
+  "source_response_checked_in": false,
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=1494-I&a8type=1&sort=7&page=firstlast&lstsize=50",
+    "bytes": 9404,
+    "sha256": "c94849679065d26a93071c79ced9846fe68a4b1d453c6b15383d8cb877b2ff59",
+    "note": "Portal search-result card listing the act, its status and its publication citation; read over HTTP. The check and this packet returned identical bytes."
+  },
+  "provenance_note": "The portal's document frame for the original edition (rdk=0, 'Исходная редакция') was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 21 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response. The dossier retrieval, the independent check and this packet's retrieval, all on 21 September 2026, returned identical bytes. This checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "claims": [
+    {
+      "id": "ru_rsfsr_inauguration_law_rules_19910627",
+      "text": "A President elected under the RSFSR Constitution takes office no later than one month after the official announcement of the election results, swearing an oath to the people at a solemn session of the highest body of state power, after which the State Anthem is played. From the moment of the oath the President and the Vice-President are deemed to have taken office, to have given up their deputies' mandates and to be released from other posts. The Council of Ministers resigns before the new President within ten days. The law enters into force on adoption.",
+      "locator": "Articles 1-4 and 10",
+      "attested_on": "1991-06-27",
+      "uncertainty": "Rule statute; it gives no oath date. The oath date comes from the stenographic record (ru_steno_oath_19910710)."
+    },
+    {
+      "id": "ru_yeltsin_ss_chair_signature_19910627",
+      "text": "The law is signed by B. N. Yeltsin as Chairman of the RSFSR Supreme Soviet, Moscow, House of Soviets of the RSFSR, 27 June 1991, No. 1494-I.",
+      "locator": "Signature and date block",
+      "attested_on": "1991-06-27",
+      "uncertainty": "After the 12 June vote and the 19 June result he still signed as Chairman. Recorded as a claim only; it does not fix when that chairmanship ended (see ru_res_1595i_yeltsin_release_19910710)."
+    }
+  ],
+  "scope_note": "Rule statute for the assumption of office. Gazette citation: Vedomosti 1991 No. 26, art. 880. The portal card marks the law as no longer in force; when and how it lapsed is outside this packet.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Official HTML text read in full after windows-1251 decoding; the portal offers no facsimile."
+  }
+}

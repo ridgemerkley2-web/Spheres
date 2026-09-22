@@ -21,13 +21,24 @@ class RussiaDiscoveryTests(unittest.TestCase):
     def validate(self, packet=None):
         return research.validate(packet or self.packet, research.ROOT, {'Russia'}, {'Russia': set()})
 
+    def factions(self):
+        # CLAUDE-C01-05 added exactly one non-faction institution, the RSFSR presidency, pinned in
+        # test_ussr_russia_transition_c01_05. Faction checks keep their full strength on the five factions.
+        rows = [e for e in self.packet['institutions'] if e['kind'] == 'parliamentary_faction']
+        self.assertEqual(len(rows), 5)
+        self.assertEqual([e['id'] for e in self.packet['institutions'] if e['kind'] != 'parliamentary_faction'],
+                         ['ru_rsfsr_presidency'])
+        return rows
+
     def test_partial_intake_has_fourteen_lists_and_five_distinct_institutions(self):
         ids = self.validate()
-        self.assertEqual(tuple(len(ids[key]) for key in ('entries', 'sources', 'claims', 'roles')), (19, 2, 24, 5))
+        # CLAUDE-C01-05 added 13 sources, 24 claims, one institution and two roles.
+        self.assertEqual(tuple(len(ids[key]) for key in ('entries', 'sources', 'claims', 'roles')), (20, 15, 48, 7))
         self.assertEqual(len(self.packet['organizations']), 14)
-        self.assertEqual(len(self.packet['institutions']), 5)
+        self.assertEqual(len(self.packet['institutions']), 6)
         self.assertEqual({e['kind'] for e in self.packet['organizations']}, {'federal_election_ballot_party_list'})
-        self.assertEqual({e['kind'] for e in self.packet['institutions']}, {'parliamentary_faction'})
+        self.assertEqual({e['kind'] for e in self.packet['institutions']}, {'parliamentary_faction', 'executive_presidency_office'})
+        self.assertEqual(len(self.factions()), 5)
         coverage = self.packet['coverage']
         self.assertFalse(coverage['exhaustive_organization_register_reviewed'])
         self.assertIsNone(coverage['unrepresented_organization_total'])
@@ -76,7 +87,7 @@ class RussiaDiscoveryTests(unittest.TestCase):
             ('Единая Россия', 324), ('КПРФ', 57), ('Справедливая Россия — За правду', 28),
             ('ЛДПР', 23), ('Новые люди', 15)])
         self.assertEqual(sum(row['members'] for row in rows), 447)
-        for entry in self.packet['institutions']:
+        for entry in self.factions():
             self.assertIsNone(entry['membership_observation']['party_election_seats'])
             self.assertEqual(entry['membership_observation']['attested_on'], '2021-10-12')
             self.assertEqual(entry['constituent_organization_ids'], [])
@@ -84,7 +95,7 @@ class RussiaDiscoveryTests(unittest.TestCase):
     def test_only_parliamentary_offices_are_attested_without_invented_starts(self):
         expected = {'Владимир Васильев', 'Геннадий Зюганов', 'Владимир Жириновский', 'Сергей Миронов', 'Алексей Нечаев'}
         actual = set()
-        for entry in self.packet['institutions']:
+        for entry in self.factions():
             self.assertEqual(len(entry['roles']), 1)
             role = entry['roles'][0]
             self.assertEqual(role['kind'], 'parliamentary_leader')
@@ -125,11 +136,14 @@ class RussiaDiscoveryTests(unittest.TestCase):
         self.assertIn('Original response verification remains open', ' '.join(self.packet['coverage']['unresolved']))
 
     def test_sources_and_claims_reconcile_with_factual_snapshots(self):
-        self.assertEqual({urlsplit(s['url']).hostname for s in self.packet['sources']}, {'www.rcoit.ru', 'duma.gov.ru'})
+        # CLAUDE-C01-05 added the legal portal, Rosarkhiv and Presidential Library sources.
+        self.assertEqual({urlsplit(s['url']).hostname for s in self.packet['sources']},
+                         {'www.rcoit.ru', 'duma.gov.ru', 'pravo.gov.ru', 'projects.rusarchives.ru', 'www.prlib.ru'})
         for source in self.packet['sources']:
             extract = self.extracts[source['id']]
             self.assertEqual(extract['source_url'], source['url'])
-            self.assertEqual(source['accessed_date'], '2026-09-13')
+            original = source['id'] in {'ru_cec_ballot_order_20210816', 'ru_duma_factions_20211012'}
+            self.assertEqual(source['accessed_date'], '2026-09-13' if original else '2026-09-21')
             self.assertEqual(extract['format'], 'spheres-c01-derived-factual-table/v1')
             if 'claims' in extract:
                 self.assertEqual(extract['claims'], source['claims'])
@@ -157,10 +171,10 @@ class RussiaDiscoveryTests(unittest.TestCase):
         index = research.build()
         country = next(p for p in index['countries'] if p['nation'] == 'Russia')
         self.assertFalse(country['country_census_complete'])
-        self.assertEqual(country['mapping_pending'], 19)
-        self.assertEqual(country['role_observations'], 5)
+        self.assertEqual(country['mapping_pending'], 20)
+        self.assertEqual(country['role_observations'], 7)
         work = [row for row in index['work_orders'] if row['nation'] == 'Russia']
-        self.assertEqual([len(row['members']) for row in work], [10, 9])
+        self.assertEqual([len(row['members']) for row in work], [10, 10])
         self.assertEqual({member for row in work for member in row['members']}, set(self.validate()['entries']))
         self.assertEqual({row['status'] for row in work}, {'open'})
         self.assertFalse(index['runtime_roster_modified'])

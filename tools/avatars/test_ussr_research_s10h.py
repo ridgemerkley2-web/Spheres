@@ -6,6 +6,11 @@ import unittest
 import campaign_research as research
 
 
+# The three 1990 sources of S10.h. CLAUDE-C01-05 added seven 1991 sources that
+# test_ussr_russia_transition_c01_05 owns and pins.
+ORIGINAL_1990_SOURCES = {'su_presidency_law_19900314', 'su_japan_diplomatic_bluebook_1990', 'su_bush_presidential_letter_19900320'}
+
+
 class UssrDiscoveryTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -20,7 +25,8 @@ class UssrDiscoveryTests(unittest.TestCase):
 
     def test_bounded_inventory_cannot_certify_an_exhaustive_country(self):
         ids = self.validate()
-        self.assertEqual(tuple(len(ids[key]) for key in ('entries', 'sources', 'claims', 'roles')), (4, 3, 8, 5))
+        # CLAUDE-C01-05 added seven sources and 13 claims; no entry or role.
+        self.assertEqual(tuple(len(ids[key]) for key in ('entries', 'sources', 'claims', 'roles')), (4, 10, 21, 5))
         self.assertEqual(len(self.packet['organizations']), 1)
         self.assertEqual(len(self.packet['institutions']), 3)
         self.assertEqual(self.packet['coverage']['status'], 'partial_primary_source_inventory')
@@ -131,15 +137,22 @@ class UssrDiscoveryTests(unittest.TestCase):
             self.assertTrue(row['url'].endswith('.jpg'))
             self.assertGreater(row['bytes'], 1000)
             self.assertRegex(row['sha256'], r'^[0-9a-f]{64}$')
-        for extract in self.extracts.values():
-            self.assertEqual(extract['visual_review']['pdf_pages_one_based'], [])
+        for sid, extract in self.extracts.items():
+            if sid in ORIGINAL_1990_SOURCES:
+                self.assertEqual(extract['visual_review']['pdf_pages_one_based'], [])
             self.assertIn('no source artwork or portrait copied', extract['rights_note'])
             self.assertIn('No portrait permission or likeness approval', extract['rights_note'])
+        # Only the CLAUDE-C01-05 UN and NARA PDFs record rendered PDF pages (pinned in its own test).
+        self.assertEqual({sid for sid, e in self.extracts.items() if e['visual_review']['pdf_pages_one_based']},
+                         {'su_un_a46_771_minsk_19911208', 'su_un_a47_60_almaata_19911221', 'su_nara_bush_gorbachev_telcon_19911225'})
 
     def test_cutoff_and_unknown_term_guards_reject_future_or_reversed_history(self):
         self.assertEqual(self.packet['research_cutoff'], '2026-09-07')
         self.assertEqual(self.packet['coverage']['period'], {'from': '1990-01-01', 'through': '2026-09-07'})
-        self.assertEqual({s['accessed_date'] for s in self.sources.values()}, {'2026-09-13'})
+        self.assertEqual({sid: s['accessed_date'] for sid, s in self.sources.items() if sid in ORIGINAL_1990_SOURCES},
+                         dict.fromkeys(ORIGINAL_1990_SOURCES, '2026-09-13'))
+        # CLAUDE-C01-05 sources were accessed on 2026-09-21.
+        self.assertEqual({s['accessed_date'] for s in self.sources.values()}, {'2026-09-13', '2026-09-21'})
         packet = copy.deepcopy(self.packet)
         packet['institutions'][0]['roles'][0]['holder_claims'][0]['attested_on'] = '2026-09-08'
         with self.assertRaisesRegex(ValueError, 'exceeds cutoff'):
@@ -154,7 +167,7 @@ class UssrDiscoveryTests(unittest.TestCase):
         country = next(c for c in index['countries'] if c['nation'] == 'USSR')
         self.assertEqual(country['organization_observations'], 1)
         self.assertEqual(country['institution_observations'], 3)
-        self.assertEqual(country['source_claims'], 8)
+        self.assertEqual(country['source_claims'], 21)
         self.assertEqual(country['mapping_pending'], 4)
         self.assertFalse(country['country_census_complete'])
         self.assertFalse(index['c01_complete'])

@@ -1,0 +1,60 @@
+{
+  "format": "spheres-primary-source-factual-extract/v1",
+  "source_url": "https://projects.rusarchives.ru/statehood/10-12-soglashenie-sng.shtml",
+  "source_title": "Rosarkhiv virtual exhibition item 10-12: Agreement on the creation of the Commonwealth of Independent States, 8 December 1991 (GARF photocopy with autograph signatures)",
+  "accessed_date": "2026-09-21",
+  "published_date": null,
+  "document_date": "1991-12-08",
+  "access_method": "internet_archive_capture_of_official_exhibition_page_and_facsimile_images",
+  "source_response_url": "https://web.archive.org/web/20241112065507id_/https://projects.rusarchives.ru/statehood/10-12-soglashenie-sng.shtml",
+  "source_response_bytes": 36632,
+  "source_response_sha256": "a5599981e5268a2b9db3d5a28e4b69cd151d58759f734c3b1167c457d52a1547",
+  "source_response_checked_in": false,
+  "facsimile_responses": [
+    {
+      "leaf": 1,
+      "url": "https://web.archive.org/web/20220401204228id_/https://projects.rusarchives.ru/statehood/images/10-12-1-soglashenie-sng.jpg",
+      "bytes": 166429,
+      "sha256": "8f57200075fe4bf0a5991e4e38254edee941a57d7572e5bd6d016b75f61f1e71",
+      "content_type": "image/jpeg",
+      "relied_on": true
+    },
+    {
+      "leaf": 4,
+      "url": "https://web.archive.org/web/20220401204302id_/https://projects.rusarchives.ru/statehood/images/10-12-4-soglashenie-sng.jpg",
+      "bytes": 145917,
+      "sha256": "1b129b351c00e6540394fedf912df35a934e276d14dbbc74919e2e63e9892810",
+      "content_type": "image/jpeg",
+      "relied_on": false
+    },
+    {
+      "leaf": 5,
+      "url": "https://web.archive.org/web/20220401120715id_/https://projects.rusarchives.ru/statehood/images/10-12-5-soglashenie-sng.jpg",
+      "bytes": 178616,
+      "sha256": "425e690e2d5084ca7f62c54cff39f1ad99c4ce9c71dead6945d966b107451429",
+      "content_type": "image/jpeg",
+      "relied_on": true
+    }
+  ],
+  "capture_note": "The dossier requested these leaves with the year wildcard '2024id_'. The Internet Archive redirects that request to the captures recorded here (20220401204228, 20220401204302 and 20220401120715 for leaves 1, 4 and 5). This packet repeated the request on 21 September 2026, recorded the resolved captures and re-downloaded identical bytes.",
+  "provenance_note": "The official host (projects.rusarchives.ru) refused connections from this environment, so the exhibition page and its images were read from Internet Archive raw captures (id_). The packet URL is the official page; the capture actually read is the recorded response. The page and image hashes matched on the dossier retrieval, the independent check and a re-download for this packet. This checked-in file is a derived factual extract, not the original response or an archived snapshot of it. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "claims": [
+    {
+      "id": "su_garf_belovezha_copy_19911208",
+      "text": "GARF holds a photocopy with the autograph signatures of S. Shushkevich and V. Kebich (Republic of Belarus), B. Yeltsin and G. Burbulis (RSFSR) and L. Kravchuk and V. Fokin (Ukraine). Its Russian preamble states that the USSR as a subject of international law and a geopolitical reality 'прекращает свое существование' (ceases its existence); leaf 5 carries Articles 11-14 and 'Совершено в городе Минске 8 декабря 1991 года'.",
+      "locator": "Exhibit caption; facsimile leaves 1 and 5",
+      "attested_on": "1991-12-08",
+      "uncertainty": "Rosarkhiv calls it a photocopy ('ксерокопия') with autographs, not an authentic signed copy; the authentic copies were not reviewed. It records signature, not ratification or entry into force."
+    }
+  ],
+  "scope_note": "The 2012 exhibition page (caption and transcription) and facsimile leaves 1 and 5, read from Internet Archive captures because the official host refused connections. Leaf 4 was downloaded but not relied on.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [
+      1,
+      5
+    ],
+    "method": "Leaves 1 and 5 viewed in the dossier; leaf 5 (Articles 11-14, date and signatures) viewed again for this packet."
+  }
+}

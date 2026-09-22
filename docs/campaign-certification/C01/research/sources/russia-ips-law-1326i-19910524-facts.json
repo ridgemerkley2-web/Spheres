@@ -1,0 +1,36 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102011559&page=1&rdk=0",
+  "source_title": "Law of the RSFSR No. 1326-I of 24 May 1991 'On amendments and additions to the Constitution (Basic Law) of the RSFSR' (original edition)",
+  "accessed_date": "2026-09-21",
+  "published_date": null,
+  "document_date": "1991-05-24",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102011559&page=1&rdk=0",
+  "source_response_bytes": 43600,
+  "source_response_sha256": "1bf0fdfc84f92fe922e2a7dabbaeb9ed294804e36cfb8163694c414c2cc4f2e4",
+  "source_response_checked_in": false,
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=1326-I&a8type=1&sort=7&page=firstlast&lstsize=50",
+    "bytes": 11456,
+    "sha256": "7a583f9cf5a3ae2a015fefbce54b72fa1b2c4bebd336bfb6b2286b2e7f6b89d6",
+    "note": "Portal search-result card listing the act, its status and its publication citation; read over HTTP. The check and this packet returned identical bytes."
+  },
+  "provenance_note": "The portal's document frame for the original edition (rdk=0, 'Исходная редакция') was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 21 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response. The dossier retrieval, the independent check and this packet's retrieval, all on 21 September 2026, returned identical bytes. This checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "claims": [
+    {
+      "id": "ru_rsfsr_constitution_ch13_1_19910524",
+      "text": "The Congress of People's Deputies amends the RSFSR Constitution, inserting Chapter 13-1 'President of the RSFSR' (Articles 121-1 to 121-11): the President is the highest official and head of executive power, elected for five years; the chapter sets the oath and a Vice-President elected jointly who exercises the President's powers on the President's removal, resignation, inability or death. The new Article 122 makes the Council of Ministers accountable to the President. Signed B. N. Yeltsin, Chairman of the RSFSR Supreme Soviet, Moscow, Kremlin, 24 May 1991, No. 1326-I.",
+      "locator": "Point 11 (Chapter 13-1), point 12 (Article 122); signature and date block",
+      "attested_on": "1991-05-24",
+      "uncertainty": "Constitutional text as adopted on 24 May 1991, a separate event from the 24 April statute. Its own entry into force and later amendment history were not reviewed."
+    }
+  ],
+  "scope_note": "Constitutional amendment writing the presidency into the RSFSR Constitution; only points 11 and 12 and the signature block are imported. Gazette citation: Vedomosti 1991 No. 22, art. 776.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Official HTML text read in full after windows-1251 decoding; the portal offers no facsimile."
+  }
+}

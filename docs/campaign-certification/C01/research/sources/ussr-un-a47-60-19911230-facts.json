@@ -1,0 +1,62 @@
+{
+  "format": "spheres-primary-source-factual-extract/v1",
+  "source_url": "https://documents.un.org/api/symbol/access?s=A/47/60&l=en&t=pdf",
+  "source_title": "UN document A/47/60-S/23329 (30 December 1991): letter of 27 December 1991 from Belarus transmitting the Alma-Ata Protocol, Declaration and related decisions of 21 December 1991",
+  "accessed_date": "2026-09-21",
+  "published_date": "1991-12-30",
+  "document_date": "1991-12-30",
+  "access_method": "downloaded_original_pdfs_english_and_russian_issues",
+  "source_response_url": "https://documents.un.org/doc/undoc/gen/n91/425/70/pdf/n9142570.pdf",
+  "source_response_bytes": 148826,
+  "source_response_sha256": "cade387d0dc6fc3fabbd95eeded60c04570d519572eec318389eade57e4b347a",
+  "source_response_checked_in": false,
+  "language_issue_responses": [
+    {
+      "language": "ru",
+      "url": "https://documents.un.org/api/symbol/access?s=A/47/60&l=ru&t=pdf",
+      "response_url": "https://documents.un.org/doc/undoc/gen/n91/425/72/img/n9142572.pdf",
+      "bytes": 1030051,
+      "sha256": "6c164a2135743ad5494c169537b0258d724dc70d7d95d06980063394f601cf15",
+      "note": "Image-only PDF; the page 5 image was extracted and read for the Declaration's wording and the Russian signature titles."
+    }
+  ],
+  "provenance_note": "Both issues were downloaded from the UN symbol links, which redirect to the recorded PDFs. The English issue matched on the dossier, check and packet retrievals; the Russian issue matched on the check and packet retrievals. This checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "claims": [
+    {
+      "id": "su_almaata_protocol_19911221",
+      "text": "Annex I, the Protocol to the Minsk Agreement: the Republic of Azerbaijan, the Republic of Armenia, the Republic of Belarus, the Republic of Kazakhstan, the Republic of Kyrgyzstan, the Republic of Moldova, the Russian Federation (RSFSR), the Republic of Tajikistan, Turkmenistan, the Republic of Uzbekistan and Ukraine constitute the Commonwealth of Independent States as High Contracting Parties. The Agreement establishing the Commonwealth enters into force for each party from the moment of its ratification, and documents regulating cooperation are to be drawn up taking into account the reservations made on ratification. Signed for the Russian Federation (RSFSR) by B. Yeltsin, Alma-Ata, 21 December 1991.",
+      "locator": "English PDF page 3, Annex I",
+      "attested_on": "1991-12-21",
+      "uncertainty": "Georgia is not a signatory. The ratification rule is dated 21 December, after the RSFSR's ratification of 12 December. The other parties' ratification dates were not reviewed."
+    },
+    {
+      "id": "su_almaata_declaration_19911221",
+      "text": "Annex II, the Alma-Ata Declaration: the Commonwealth is neither a state nor a supra-state entity. The UN English text reads 'With the establishment of the Commonwealth of Independent States, the Union of Soviet Socialist Republics ceased to exist'; the Russian-language issue reads 'С образованием Содружества Независимых Государств Союз Советских Социалистических Республик прекращает свое существование' (present tense). The participants guarantee the discharge of the former USSR's treaty obligations. Signed by the same eleven leaders, Yeltsin as 'Президент Российской Федерации (РСФСР)', Alma-Ata, 21 December 1991.",
+      "locator": "English PDF pages 4-5, Annex II; Russian-language issue, PDF page 5",
+      "attested_on": "1991-12-21",
+      "uncertainty": "A multilateral declaration, not an act of a USSR organ. The English past tense is not used to date the end of the USSR or of any USSR office; the Russian text is in the present tense. No text addresses the USSR Presidency or Gorbachev."
+    },
+    {
+      "id": "su_almaata_coordinating_bodies_19911221",
+      "text": "Annex IV: a Council of Heads of State is established as the supreme organ of the Commonwealth, together with a Council of Heads of Government; plenipotentiaries are to submit by 30 December 1991 proposals on abolishing the structures of the former USSR and on the Commonwealth's coordinating bodies.",
+      "locator": "English PDF page 7, Annex IV",
+      "attested_on": "1991-12-21",
+      "uncertainty": "An instruction to propose abolition, not the abolition of any named USSR office."
+    }
+  ],
+  "scope_note": "UN English translation of Russian originals, circulated on 30 December 1991 under a covering letter dated 27 December 1991 from the Permanent Representative of Belarus; transmission is not signature. The English PDF is an OCR-reconstructed rendering with visible recognition errors. Annex III (interim command of the armed forces assigned to Marshal E. I. Shaposhnikov) and Annex V (support for Russia's continuance of the USSR's membership of the UN and other international organizations) were verified but are not imported: they concern no institution in this packet, and continuity of UN membership is not a domestic institutional mapping.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      3,
+      5,
+      8
+    ],
+    "facsimile_pages_one_based": [],
+    "russian_issue_pdf_pages_one_based": [
+      5
+    ],
+    "method": "English pages 1, 3, 5 and 8 rendered in full in the dossier, with pages 2, 4, 6 and 7 read from the text layer; the Russian page 5 image read in the check and again for this packet."
+  }
+}
