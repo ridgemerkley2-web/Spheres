@@ -249,8 +249,9 @@ Evidence (US primary records only):
 - Bush's address at 9 p.m. that day (`su_bush_address_cis_19911225`): the end of the old
   Soviet Union is "signified today by Mikhail Gorbachev's decision to resign as President".
 
-Decision: accepted **for the day only**. Gorbachev announced on 25 December 1991 that he was
-ceasing to act as USSR President; that rests on the telcon and the Bush address, and it is
+Decision: accepted **for the day only**. Gorbachev announced his resignation as USSR President on
+25 December 1991 (telcon: 'as soon as I announce my resignation'; Bush: 'decision to resign as
+President'); that rests on the telcon and the Bush address, and it is
 recorded as role claims on `su_president`. A second Gorbachev holder observation is added,
 `attested_on` 1991-12-25 (the telcon's title), with `from` and `until` null. **No `until` is
 set**: neither record is a Soviet instrument, one gives intent before the act and the other
