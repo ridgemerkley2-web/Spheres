@@ -49,6 +49,29 @@ jobs:
       - run: npm ci --prefix tools/ui
       - run: npx --prefix tools/ui playwright install --with-deps chromium
       - run: node tools/ui/ci-browser.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: browser-evidence-${{ matrix.os }}
+          path: artifacts/browser-ci
+  # This static WebGL harness needs no native executable. Give it an independent
+  # allowance so a cold Windows Rust build cannot consume its execution time.
+  town-browser:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: tools/ui/package-lock.json
+      - run: npm ci --prefix tools/ui
+      - run: npx --prefix tools/ui playwright install --with-deps chromium
       - name: Verify actual adaptive town submissions and recovery
         env:
           SPHERES_BROWSER_CHANNEL: chromium
@@ -57,14 +80,12 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: browser-evidence-${{ matrix.os }}
-          path: |
-            artifacts/browser-ci
-            artifacts/town-scene-browser
-  # Preserve the original required-check names, each covering both suites.
+          name: town-scene-evidence-${{ matrix.os }}
+          path: artifacts/town-scene-browser
+  # Preserve the original required-check names, each covering every suite.
   verify:
     if: always()
-    needs: [javascript, native]
+    needs: [javascript, native, town-browser]
     strategy:
       fail-fast: false
       matrix:
@@ -72,8 +93,9 @@ jobs:
     runs-on: ${{ matrix.os }}
     timeout-minutes: 5
     steps:
-      - name: Require every native and JavaScript check to pass
+      - name: Require every native, JavaScript and town browser check to pass
         env:
           NATIVE_RESULT: ${{ needs.native.result }}
           JAVASCRIPT_RESULT: ${{ needs.javascript.result }}
-        run: python -c "import os,sys; results={key:os.environ[key] for key in ('NATIVE_RESULT','JAVASCRIPT_RESULT')}; print(results); sys.exit(0 if all(value=='success' for value in results.values()) else 1)"
+          TOWN_BROWSER_RESULT: ${{ needs['town-browser'].result }}
+        run: python -c "import os,sys; results={key:os.environ[key] for key in ('NATIVE_RESULT','JAVASCRIPT_RESULT','TOWN_BROWSER_RESULT')}; print(results); sys.exit(0 if all(value=='success' for value in results.values()) else 1)"
