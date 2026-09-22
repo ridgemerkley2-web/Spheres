@@ -1,11 +1,15 @@
 # CLAUDE-S19-01 — outcome-aware first-hour guidance
 
-Owner: Claude. State: **claimed 21 September 2026; in progress** (not ready for review). Parent: S19.
+Owner: Claude. State: **implementation accepted and integrated** on 21 September 2026; S19 qualification remains in progress.
+Submission `7de625393fe6dc214e39ebd084424d04b229614b`; integration `2400800bee73`.
+[Codex independent review and remaining qualification](../../campaign-certification/S19/integration/README.md).
 Canonical dependencies: S06, S07, S10, S18. Reviewer/integrator: Codex.
-Branch `claude/s19-guidance-01`; base `939e8f9`; result commit: recorded at submission.
-Planned paths: the four guidance modules, focused `tools/ui` checks and new S19 docs/evidence;
-any `main.rs`/`index.html` change will be a small explicit patch listed here for Codex.
-Next checkpoint: design note, then implementation against a disposable campaign.
+Branch `claude/s19-guidance-01`; base `939e8f9`, merged with integration `5b46e40a`;
+result `f3d4f82ae673859052404529c32853f398019464` plus the evidence commit at the branch head.
+Evidence: [S19 README](../../campaign-certification/S19/README.md) and [manifest](../../campaign-certification/S19/manifest.json).
+Coordination patch for Codex: `main.rs` (`mod guidance_outcomes;`, one `outcomes` key, tests) and
+`index.html` (guidance routes cash_flow/air/companies/equipment tab/industry; `GUIDANCE_RECEIPT` hook in `api()`).
+Next checkpoint: Codex qualifies later purchase/delivery, output and flown-result milestones before S19 closure; Claude provides bounded repairs if needed. S20 will build on these routes after that qualification.
 
 Read S19's exact acceptance criteria through
 `python tools/planning/workboard.py --session S19`, then inspect the current code.

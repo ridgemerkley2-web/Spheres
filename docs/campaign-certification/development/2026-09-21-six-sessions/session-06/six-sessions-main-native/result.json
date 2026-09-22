@@ -1,0 +1,121 @@
+{
+  "scope": "Exact native build browser review of equipment navigation, map finder/province activity, local timing report, tutorial and real Congo selection. Switches this disposable preview to Congo, then restores its copied France save. No response substitutions, government/military orders or day advances.",
+  "passed": true,
+  "revision": "8cf61817d06f2f2cc565dc14c2ffa2a509eaea7d",
+  "assets": {
+    "index.html": "c75ae92b2c5b56e44a7d9bde4a7985731537b0fe28eaae3cec961a2208b42b19",
+    "equipment-ui.js": "6129cb5a822ba7957dc4f35f59eb03980961bdea163d67d817f38885b3eb4801",
+    "equipment-ui.css": "257656cd55cefcd1e6f07c6b97814bcf536f31bdc2beec92f6c79d053d236097",
+    "province-economy-ui.js": "bc6a54891adcbecc7fd59c9786dd7f3eff633d74cfb7e373e123994fdc9ad720",
+    "province-economy.css": "ebcf99317b177e0aa64688f3e6d7f4631202b9f829c71e9d2c7849563b2c15c5",
+    "performance-ui.js": "34ede72c98a99a30dc8812b44c20d812eec6fc4b30f8066f219434f22358781e",
+    "guidance-ui.js": "5de0ff7d6e2c9aa7db0027c70517171f5ad4076f75a0c8f019a19f31e02c9e23",
+    "advisor-model.js": "97efaed3381bde23529aef72d822f0edb4452e7f280e4efdc2a24413add77ae1",
+    "equipment-model.js": "e26a05e28d36f2bf90c464f9ea33697bc95fcb5ca703621ea7d7153a77984f73"
+  },
+  "commands": [],
+  "pageErrors": [],
+  "sections": [
+    "flight",
+    "companies",
+    "designer",
+    "research",
+    "library",
+    "development",
+    "production",
+    "ammunition",
+    "service"
+  ],
+  "timing": {
+    "build": {
+      "version": "0.6.0",
+      "revision": "8cf61817d06f",
+      "branch": "codex/campaign-certification",
+      "built_at_unix_seconds": 1790049344
+    },
+    "build_error": null,
+    "recording": false,
+    "started": "2026-09-22T03:59:30.273Z",
+    "stopped": "2026-09-22T03:59:30.638Z",
+    "stop_reason": "stopped by player",
+    "start_context": {
+      "session_id": "30528-1790049502865934400-1",
+      "player": "France",
+      "date": "3 Jan 1990"
+    },
+    "current_context": {
+      "session_id": "30528-1790049502865934400-1",
+      "player": "France",
+      "date": "3 Jan 1990"
+    },
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "synchronous_state_render": {
+      "samples": 0,
+      "median_ms": null,
+      "p95_ms": null,
+      "max_ms": null
+    },
+    "input_to_following_frame": {
+      "samples": 3,
+      "median_ms": 18.899999976158142,
+      "p95_ms": 23.69999998807907,
+      "max_ms": 23.69999998807907
+    },
+    "visible_frame_intervals": {
+      "samples": 25,
+      "median_ms": 10,
+      "p95_ms": 40.09999999999991,
+      "max_ms": 60
+    },
+    "discarded_older_observations": {
+      "render": 0,
+      "input": 0,
+      "frames": 0
+    },
+    "observations_ms": {
+      "synchronous_state_render": [],
+      "input_to_following_frame": [
+        18.400000035762787,
+        18.899999976158142,
+        23.69999998807907
+      ],
+      "visible_frame_intervals": [
+        10,
+        10,
+        10,
+        60,
+        9.900000000000091,
+        40.09999999999991,
+        10,
+        9.900000000000091,
+        10,
+        10.099999999999909,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        9.900000000000091,
+        10.099999999999909,
+        10,
+        10,
+        30,
+        10
+      ]
+    },
+    "method": "Local opt-in sample; latest 256 observations per metric. Frame intervals are visible-page requestAnimationFrame cadence, not a GPU or map FPS measurement. Hidden-tab intervals are excluded. State render measures synchronous redraw only; trusted click/key input ends after two animation frames (a paint opportunity, not exact display latency). Dialog input is excluded. Server/network and asynchronous room loads are not measured. Sampling stops on campaign identity change. Reports remain local unless you choose to share the downloaded file."
+  },
+  "guidance": {
+    "status": "ready",
+    "route": null
+  },
+  "congo_selection": true,
+  "preview_restored": true
+}

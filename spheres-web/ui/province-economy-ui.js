@@ -99,6 +99,7 @@ function economySectorsHtml(sectors) {
 }
 
 function economyProjectsHtml(projects) {
+  if (Array.isArray(projects)) projects=projects.filter(p=>p&&typeof p==="object"&&!Array.isArray(p));
   if (!Array.isArray(projects) || !projects.length) return `<p class="pe-empty">No project contribution in this reading. The inherited economy still produces output.</p>`;
   return `<div class="pe-projects">${projects.map(project=>`<article class="pe-project">
     <div class="pe-project-top"><span class="pe-badge">${economyText(economyProjectClass(project.classification))}</span><span>${economyText(String(project.status || "Recorded").replace(/_/g," "))}</span></div>
@@ -150,10 +151,30 @@ function economicCompositionHtml(data, scope) {
     ${nation ? economyProvincesHtml(data) : ""}</div>`;
 }
 
+function provinceActivity(data) {
+  if (!data || !Array.isArray(data.projects)) return null;
+  const projects=data.projects.filter(p=>p&&typeof p==="object"&&!Array.isArray(p));
+  const construction=p=>p.sector==="construction"||String(p.id||"").startsWith("construction:")||p.status==="building";
+  const producing=p=>!construction(p)&&p.classification!=="pending_order"&&
+    ((Number.isFinite(p.output_quantity_daily)&&p.output_quantity_daily>0)||(Number.isFinite(p.gross_output_daily_bn)&&p.gross_output_daily_bn>0));
+  return {construction:projects.filter(construction).length,producing:projects.filter(producing).length,
+    attention:projects.filter(p=>["blocked","paused","slowed","stalled","inactive"].includes(p.status)),total:projects.length};
+}
+
+function provinceActivityHtml(data) {
+  const activity=provinceActivity(data);
+  if (!activity) return '<section class="pe-activity" aria-label="Province activity"><h3>Province activity</h3><p>Project activity is unavailable in this reading.</p></section>';
+  return `<section class="pe-activity" aria-label="Province activity"><p class="pe-kicker">At a glance</p><h3>Work and output</h3>
+    <dl class="pe-activity-counts"><div><dt>Construction records</dt><dd>${activity.construction}</dd></div><div><dt>Producing records</dt><dd>${activity.producing}</dd></div><div><dt>Need attention</dt><dd>${activity.attention.length}</dd></div></dl>
+    <p class="pe-note">${economyText(economyReceiptLabel(data))}. Counts describe project records, not a census of buildings. A construction or producing record may also need attention.</p>
+    ${activity.attention.length?`<ul class="pe-activity-problems">${activity.attention.slice(0,3).map(p=>`<li><strong>${economyText(p.name||p.kind||"Project")} · ${economyText(p.status)}</strong><p>${economyText(p.reason||"Open the project record for the available details.")}</p></li>`).join("")}</ul>${activity.attention.length>3?`<p>${activity.attention.length-3} more records need attention.</p>`:""}`:`<p>${activity.total?"No blocked, paused, slowed, stalled or inactive project status is recorded here.":"No project records yet. The inherited economy still contributes output."}</p>`}
+    ${activity.total?'<button type="button" data-economy-review-projects>Review project records ↓</button>':""}</section>`;
+}
+
 function provinceEconomyHtml(reading) {
   if (!reading || reading.loading) return `<section class="pe-province" aria-label="Province economy"><div class="pe-empty" role="status">Reading the province's economic ledger…</div></section>`;
   if (reading.error) return `<section class="pe-province" aria-label="Province economy"><div class="pe-empty" role="status">Economic reading unavailable. ${economyText(reading.error)}</div></section>`;
-  return `<section class="pe-province" aria-label="Province economy">${economicCompositionHtml(reading.economy,"province")}${reading.economy?.starting_industry?"":economyStartingIndustryHtml(reading.starting_industry,"province")}</section>`;
+  return `<section class="pe-province" aria-label="Province economy">${provinceActivityHtml(reading.economy)}${economicCompositionHtml(reading.economy,"province")}${reading.economy?.starting_industry?"":economyStartingIndustryHtml(reading.starting_industry,"province")}</section>`;
 }
 
 function economyProvincesHtml(data) {
@@ -198,6 +219,12 @@ function wireProvinceDossierState(box) {
     details.ontoggle=()=>rememberProvinceDossier();
   });
   box.onscroll=()=>rememberProvinceDossier();
+  box.querySelectorAll("[data-economy-review-projects]").forEach(button=>button.onclick=()=>{
+    const details=box.querySelector('details[data-detail-key="economy-projects"]');if(!details)return;
+    details.open=true;const target=details.querySelector("summary");target?.focus({preventScroll:true});
+    if(target){const head=box.querySelector(".province-head");box.scrollTop+=target.getBoundingClientRect().top-box.getBoundingClientRect().top-(head?.getBoundingClientRect().height||0)-12;}
+    rememberProvinceDossier();
+  });
 }
 
 function resetProvinceDossierState() {

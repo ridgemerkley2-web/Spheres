@@ -2,7 +2,7 @@
 
 Updated 21 September 2026. **Integration branch: `codex/campaign-certification`.**
 Start from this branch, not `master` or an older Claude branch. S01–S18 and S21 are complete;
-Claude has claimed S19 on `claude/s19-guidance-01`; implementation is in progress.
+Claude's S19 implementation is integrated; later-campaign browser qualification remains.
 CP1 certification and worldwide character coverage remain open.
 
 The [campaign pathway](CERTIFIED_CAMPAIGN_PATHWAY.md) defines the approved game scope.
@@ -15,24 +15,26 @@ handoff plan, not a claim that Claude has started work or permission to run ever
 
 | Workstream | Owner | Session markers | Boundary and next step |
 |---|---|---|---|
-| Flight and player journey | Codex | S18, S20, S21 | S18 and S21 complete. S20 navigation follows the S19 handoff. |
-| Tutorial and advisors | Claude | S19 | Claimed on `claude/s19-guidance-01` at `97d126d`; in progress, not ready for review. |
-| Historical characters and cartoons | Claude | C01–C07, S23 | First Tonga packet integrated and checked. CLAUDE-C01-02 is the next bounded research packet. |
+| Flight and player journey | Codex | S18, S20, S21 | S18 and S21 complete. S20 follows final S19 qualification; independent narrow controls are integrated. |
+| Tutorial and advisors | Claude | S19 | Submission `7de62539` integrated at `2400800b`; Codex qualifies remaining later outcomes before closure. |
+| Historical characters and cartoons | Claude | C01–C07, S23 | Two Tonga packets accepted. CLAUDE-C01-03 is available and unclaimed. |
 | Integration, performance and qualification | Codex | S22, S24, S25, S27–S30 | Integrate reviewed work and run exact-build checks. Neither a content batch nor a unit-test pass earns CP1. |
 | Independent human playtests | User / human testers | S26 | Codex prepares reproducible builds and tasks; Claude may review observations. AI testing cannot substitute for human sessions. |
 | Later aircraft/naval expansion | Codex | E01–E04, E06 | Parked until CP1; preserve the current three supported mission families. |
 | Later company identity/history | Claude | E05 | Parked until CP1. No changes to the current supplier economy during research. |
 | Completed foundation | Codex / retained evidence | S00–S17 | Reference only. Reopen only for a specific reproduced defect; retain the original qualification records. |
 
-## Historical research: `CLAUDE-C01-01` integrated
+## Historical research: two bounded Tonga packets integrated
 
 Claude submitted the [first Tonga packet](https://github.com/ridgemerkley2-web/Spheres/tree/claude/c01-tonga-01)
 at `426f0ddb17a93c3d8b9a809c0129b441b29d3fe6`, based on `3d422da`.
 Its [handoff](planning/ai-handoffs/CLAUDE-C01-01.md) is **accepted and integrated**,
 qualified at `fdb6d2c` with [source review and validation evidence](campaign-certification/C01/integrations/CLAUDE-C01-01/README.md).
-Do not repeat that packet or claim C01 complete. The next optional research packet
-is [CLAUDE-C01-02](planning/ai-handoffs/CLAUDE-C01-02.md), limited to the 2021 Tonga
-appointment transition. Research remains separate from installed leaders and avatars.
+The [second packet](planning/ai-handoffs/CLAUDE-C01-02.md), submitted at `b6767837`,
+is also accepted, with [independent source and atlas review](campaign-certification/C01/integrations/CLAUDE-C01-02/README.md).
+Do not repeat either packet or claim C01 complete. The next optional, unclaimed
+packet is [CLAUDE-C01-03](planning/ai-handoffs/CLAUDE-C01-03.md), limited to the
+2024–2025 Tonga succession transition. Research remains separate from installed leaders and avatars.
 
 Claim one bounded C01 batch rather than attempting
 the entire world at once. C02 batches contain at most ten leadership chains/people;
@@ -41,11 +43,14 @@ through the frozen, researched present-day cutoff; later candidates are explicit
 fictional through 2035. The existing cutoff is 7 September 2026 until a sourced
 change is reviewed. Do not silently advance it to the current date.
 
-Claude’s active gameplay packet is [CLAUDE-S19-01](planning/ai-handoffs/CLAUDE-S19-01.md),
-claimed at `97d126d6bc2314e91baa7edd3655864745c74455` from base `939e8f9`.
-The claim record is integrated; no S19 implementation has been submitted for review.
-S20 integration must wait for S19’s shared-navigation handoff so
-both assistants do not independently edit the campaign shell.
+Claude’s gameplay packet [CLAUDE-S19-01](planning/ai-handoffs/CLAUDE-S19-01.md) was
+submitted at `7de62539` and is integrated at `2400800b` after an independent complete
+first-hour browser rerun, 1,672 UI tests and 414 native web tests. The
+[integration review](campaign-certification/S19/integration/README.md) retains its
+remaining qualification: actual later purchase/delivery, completed output and flown
+results through the guidance panel. Codex owns that integration check; Claude may
+provide bounded repairs. S19 remains in progress and S20 waits for its closure.
+Use the integrated routes instead of restarting or independently rewriting them.
 
 ## Query each AI’s own work
 
@@ -59,12 +64,12 @@ python tools/planning/workboard.py --session C01
 python tools/planning/workboard.py --check
 ```
 
-Copy this into Claude to continue its claimed gameplay session:
+Copy this into Claude to start the next optional research packet:
 
-> Fetch origin/codex/campaign-certification, read docs/AI_WORKSTREAMS.md, and continue
-> your claimed CLAUDE-S19-01 branch. S18 is complete. Follow the file boundaries, outcome checks
-> and evidence requirements. Return a separate reviewable branch and commit; leave
-> central roadmap completion to Codex after integration.
+> Fetch origin/codex/campaign-certification and read docs/AI_WORKSTREAMS.md and
+> docs/planning/ai-handoffs/CLAUDE-C01-03.md. Claim that bounded packet from the
+> current integration base in a separate branch. Follow its source, file and
+> evidence boundaries; return a ready-for-review handoff without changing roadmap status.
 
 To ask either assistant for a status check:
 
@@ -103,3 +108,9 @@ campaign pathway; this is a work split, not a replacement roadmap.
 Codex completed the independently ready [S21 campaign journey](campaign-certification/S21/README.md) while S19 remained claimed. It adds campaign goals/history/continuation and repairs first-day successor saves. Fetch this integration base before bringing S19 shared-shell changes forward. G4 still requires S19 and S20.
 
 Codex completed [CODEX-S22-PREP-01](planning/ai-handoffs/CODEX-S22-PREP-01.md): repaired art accounting, restored compiled equipment self-shadows, and validated the isolated renderer. This is independent preparation; S22 remains planned after S20. The original art budget gate still reports 42 overruns.
+
+The [six-session development journal](campaign-certification/development/2026-09-21-six-sessions/README.md)
+records the subsequent equipment picker, province activity overview, local timing
+export, Congo selection repair, 137-country preflight and reviewed Claude integration.
+The latest separate preview is <http://127.0.0.1:7866/>. These six development
+checkpoints do not automatically close six canonical markers.

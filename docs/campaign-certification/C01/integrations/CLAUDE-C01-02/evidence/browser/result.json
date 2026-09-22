@@ -1,0 +1,365 @@
+{
+  "format": "spheres-s10h-research-browser/v1",
+  "revision": "c792588f4fc691d1f0ee6b6eed8d8c36f00552dd",
+  "clean_before": true,
+  "started_utc": "2026-09-22T04:09:53.269Z",
+  "scope": "Static research references only. No game server, campaign save, command or elapsed campaign time.",
+  "requests": [
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/tools/ui/leadership-research-review.html?country=France"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/tools/ui/leadership-research-review.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/tools/ui/leadership-research-review.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/docs/campaign-certification/C01/research-index.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/docs/campaign-certification/C01/countries.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/docs/campaign-certification/C01/research/france.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/docs/campaign-certification/C01/research/brazil.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/docs/campaign-certification/C01/research/france.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/docs/campaign-certification/C01/research/india.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/docs/campaign-certification/C01/research/japan.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/docs/campaign-certification/C01/research/russia.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/docs/campaign-certification/C01/research/saudi-arabia.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/docs/campaign-certification/C01/research/south-africa.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/docs/campaign-certification/C01/research/tonga.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/docs/campaign-certification/C01/research/ussr.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/docs/campaign-certification/C01/research/tonga.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/docs/campaign-certification/C01/research/tonga.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/tools/ui/leadership-research-review.html?country=Tonga"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/tools/ui/leadership-research-review.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/tools/ui/leadership-research-review.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/docs/campaign-certification/C01/research-index.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/docs/campaign-certification/C01/countries.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/docs/campaign-certification/C01/research/tonga.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/tools/ui/leadership-research-review.html?country=Tonga"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/tools/ui/leadership-research-review.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/tools/ui/leadership-research-review.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/docs/campaign-certification/C01/research-index.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/docs/campaign-certification/C01/countries.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/docs/campaign-certification/C01/research/tonga.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/docs/campaign-certification/C01/research/france.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/docs/campaign-certification/C01/research/japan.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/tools/ui/leadership-research-review.html?country=Tonga"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/tools/ui/leadership-research-review.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/tools/ui/leadership-research-review.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/docs/campaign-certification/C01/research-index.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/docs/campaign-certification/C01/countries.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:59551/docs/campaign-certification/C01/research/tonga.json"
+    }
+  ],
+  "errors": [],
+  "countries": [
+    {
+      "nation": "Brazil",
+      "organization_observations": 31,
+      "institution_observations": 0,
+      "roles_filter": 0,
+      "first_claim_exact": true
+    },
+    {
+      "nation": "France",
+      "organization_observations": 635,
+      "institution_observations": 0,
+      "roles_filter": 0,
+      "first_claim_exact": true
+    },
+    {
+      "nation": "India",
+      "organization_observations": 82,
+      "institution_observations": 0,
+      "roles_filter": 0,
+      "first_claim_exact": true
+    },
+    {
+      "nation": "Japan",
+      "organization_observations": 16,
+      "institution_observations": 7,
+      "roles_filter": 3,
+      "first_claim_exact": true
+    },
+    {
+      "nation": "Russia",
+      "organization_observations": 14,
+      "institution_observations": 5,
+      "roles_filter": 5,
+      "first_claim_exact": true
+    },
+    {
+      "nation": "SaudiArabia",
+      "organization_observations": 6,
+      "institution_observations": 6,
+      "roles_filter": 6,
+      "first_claim_exact": true
+    },
+    {
+      "nation": "SouthAfrica",
+      "organization_observations": 52,
+      "institution_observations": 1,
+      "roles_filter": 2,
+      "first_claim_exact": true
+    },
+    {
+      "nation": "Tonga",
+      "organization_observations": 4,
+      "institution_observations": 5,
+      "roles_filter": 8,
+      "first_claim_exact": true
+    },
+    {
+      "nation": "USSR",
+      "organization_observations": 1,
+      "institution_observations": 3,
+      "roles_filter": 4,
+      "first_claim_exact": true
+    }
+  ],
+  "screenshots": [
+    "to_prime_minister-appointment-1440.png",
+    "to_prime_minister-appointment-390.png",
+    "to_prime_minister-appointment-320.png",
+    "to_cabinet-appointment-1440.png",
+    "to_cabinet-appointment-390.png",
+    "to_cabinet-appointment-320.png",
+    "tonga-society-1440.png",
+    "tonga-society-390.png",
+    "tonga-society-320.png",
+    "atlas-keyboard-focus.png",
+    "atlas-1440.png",
+    "atlas-role-1440.png",
+    "atlas-390.png",
+    "atlas-role-390.png",
+    "atlas-320.png",
+    "atlas-role-320.png"
+  ],
+  "authored_error_cases": [
+    {
+      "kind": "tampered_packet_bytes",
+      "rejected": true,
+      "old_data_absent": true
+    },
+    {
+      "kind": "superseded_country_request",
+      "latest_country": "Japan",
+      "old_data_absent": true
+    }
+  ],
+  "source_files": {
+    "tools/ui/leadership-research-review.html": "56b25f6764040b4a46f49fcf652060c87bdc08ba7d13157a2e9be6ce0a2b5aaa",
+    "tools/ui/leadership-research-review.css": "51c3d88382ef0bf01e896e1bf871349cc471438929d144d8fe146a76014cf21e",
+    "tools/ui/leadership-research-review.js": "ce5ae8150d1d5824b112cb402220f4e3b17c211c3841ae444013b36d6d6172ab",
+    "tools/ui/ci-leadership-research-browser.cjs": "da6d95b8eabc5274e2f2ca272d7846b0f840e967aabcca4361dfecb5079c8f26",
+    "docs/campaign-certification/C01/research-index.json": "990d76111b45d93c77d9da5d1ff49ad328f4d86c9d37bca6b8119e951ef1903a",
+    "docs/campaign-certification/C01/research/brazil.json": "4709177ebd35439933819a9319a7aca829b217bc7e486280705a7acdbf89ef66",
+    "docs/campaign-certification/C01/research/france.json": "6ac88df4bfc04728352b644ec419355bec519bb3ee8932dcf1df25b2964b112c",
+    "docs/campaign-certification/C01/research/india.json": "25e00e7364722357290cb785502abad018e60d512221cadd7fa5785f7569a4ae",
+    "docs/campaign-certification/C01/research/japan.json": "2aaa46d504ee151f5d92ee25849f7773db9c49ce7597f6ac87f5921b753ed573",
+    "docs/campaign-certification/C01/research/russia.json": "3ff8b214e21092420135927b0913e2a51b15baa08687444834d204cbb0fe12a1",
+    "docs/campaign-certification/C01/research/saudi-arabia.json": "8c432b519fd01641e23de609fcfc6c98d893ab177be1038faf7b0d9cb0f45490",
+    "docs/campaign-certification/C01/research/south-africa.json": "ce1d742da90c1765fdacb5627a6808bc88d86dbee62599d50e605f567b92c609",
+    "docs/campaign-certification/C01/research/tonga.json": "e50c01cab147507be1880d3ee1657619049b04394af04ef272de3d2ffa3ec102",
+    "docs/campaign-certification/C01/research/ussr.json": "7130e97ff0fbfa8224e787b167835395cea2127fa3e567ae75e6604a752c3f57",
+    "tools/avatars/campaign_research.py": "82294ea6e849736551d2688e01e48fade211aed93ca85a2eb674ecee9cbb791b",
+    "tools/avatars/import_cnccfp_census.py": "4a8df4c840e57a40c646d8fce582bf9e0ca54712771759bfc9f1d7843ebe479c",
+    "docs/campaign-certification/C01/countries.json": "3f3ea61354fadbf85d182b6593f5cdf13e13a856d3fe59b64e1f3305c6622ca4",
+    "docs/campaign-certification/C01/represented-organizations.json": "85603b71cc5488937fff54f38dbf36ad18af6124d6dc3a492dbb20760d2c8e66"
+  },
+  "origin": "http://127.0.0.1:59551",
+  "pagination": {
+    "first_page": 25,
+    "next_page": 50,
+    "opened_evidence_preserved": true
+  },
+  "appointment_effectiveness": [
+    {
+      "entry": "to_prime_minister",
+      "name": "Siaosi 'Ofakivahafolau Sovaleni",
+      "from": "2021-12-27",
+      "end_not_inferred": true
+    },
+    {
+      "entry": "to_cabinet",
+      "name": "Poasi Mataele Tei",
+      "from": "2021-12-28",
+      "end_not_inferred": true
+    }
+  ],
+  "society_observations": {
+    "separate_offices": 3,
+    "observation_period": [
+      "2022-04-19",
+      "2022-04-21"
+    ],
+    "terms_not_inferred": true,
+    "uncertainty_visible": true
+  },
+  "empty_country": {
+    "nation": "UK",
+    "existing_game_party_rows": 4,
+    "party_count_matches_inventory": true,
+    "undiscovered_organization_count": "Unknown",
+    "no_stale_observations": true
+  },
+  "keyboard": {
+    "summary_reached_with_tab": true,
+    "opened_with_enter": true,
+    "focus_outline": {
+      "focused": true,
+      "offset": "-4px",
+      "width": "3px"
+    }
+  },
+  "layouts": [
+    {
+      "width": 1440,
+      "scroll_width": 1440,
+      "viewport": 1440,
+      "overflow": []
+    },
+    {
+      "width": 1440,
+      "scroll_width": 1440,
+      "viewport": 1440,
+      "overflow": []
+    },
+    {
+      "width": 390,
+      "scroll_width": 390,
+      "viewport": 390,
+      "overflow": []
+    },
+    {
+      "width": 390,
+      "scroll_width": 390,
+      "viewport": 390,
+      "overflow": []
+    },
+    {
+      "width": 320,
+      "scroll_width": 320,
+      "viewport": 320,
+      "overflow": []
+    },
+    {
+      "width": 320,
+      "scroll_width": 320,
+      "viewport": 320,
+      "overflow": []
+    }
+  ],
+  "deep_link_reload": {
+    "country": "Tonga",
+    "preserved": true
+  },
+  "revision_after": "c792588f4fc691d1f0ee6b6eed8d8c36f00552dd",
+  "clean_after": true,
+  "source_files_unchanged": true,
+  "passed": true,
+  "finished_utc": "2026-09-22T04:09:57.062Z"
+}

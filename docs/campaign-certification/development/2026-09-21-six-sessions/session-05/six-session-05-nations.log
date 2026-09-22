@@ -1,0 +1,13 @@
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+    Finished `release` profile [optimized] target(s) in 1m 38s
+     Running unittests src\lib.rs (..\integration-target\release\deps\spheres_sim-de8a2e7790f15db6.exe)
+
+running 5 tests
+test nations::tests::identity_is_a_code_on_disk_and_an_index_in_memory ... ok
+test nations::tests::every_name_the_old_parser_took_still_parses_to_the_same_nation ... ok
+test nations::tests::the_roster_knows_who_touches_whom ... ok
+test nations::tests::the_roster_is_internally_consistent ... ok
+test nations::tests::every_canonical_country_code_survives_the_user_input_parser ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 908 filtered out; finished in 0.00s
+

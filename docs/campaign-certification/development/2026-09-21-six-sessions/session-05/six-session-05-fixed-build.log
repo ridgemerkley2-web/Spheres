@@ -1,0 +1,26 @@
+   Compiling spheres-web v0.6.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-web)
+warning: unused import: `path::PathBuf`
+ --> spheres-web\vendor\tiny_http\src\connection.rs:7:5
+  |
+7 |     path::PathBuf,
+  |     ^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `SequentialWriter`
+ --> spheres-web\vendor\tiny_http\src\util\mod.rs:7:28
+  |
+7 | pub use self::sequential::{SequentialWriter, SequentialWriterBuilder};
+  |                            ^^^^^^^^^^^^^^^^
+
+warning: trait `MustBeShareDummy` is never used
+   --> spheres-web\vendor\tiny_http\src\lib.rs:164:7
+    |
+164 | trait MustBeShareDummy: Sync + Send {}
+    |       ^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+warning: `tiny_http` (lib) generated 3 warnings (run `cargo fix --lib -p tiny_http` to apply 2 suggestions)
+    Finished `release` profile [optimized] target(s) in 1m 32s

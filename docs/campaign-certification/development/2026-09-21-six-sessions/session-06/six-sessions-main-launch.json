@@ -1,0 +1,35 @@
+{
+  "url": "http://127.0.0.1:7864",
+  "pid": 30528,
+  "directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-six-sessions-main-20260921-205821",
+  "runtime_revision": "8cf61817d06f2f2cc565dc14c2ffa2a509eaea7d",
+  "executable_sha256": "8fa2fe8ac086b633221286ccd72b4793f178e0832eec1d3aee52a75563f730b3",
+  "build": {
+    "branch": "codex/campaign-certification",
+    "built_at_unix_seconds": 1790049344,
+    "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+    "distribution": "Local offline game server; source and attribution accompany the release",
+    "revision": "8cf61817d06f",
+    "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-six-sessions-main-20260921-205821",
+    "version": "0.6.0"
+  },
+  "served_assets_sha256": {
+    "index.html": "c75ae92b2c5b56e44a7d9bde4a7985731537b0fe28eaae3cec961a2208b42b19",
+    "equipment-ui.js": "6129cb5a822ba7957dc4f35f59eb03980961bdea163d67d817f38885b3eb4801",
+    "equipment-ui.css": "257656cd55cefcd1e6f07c6b97814bcf536f31bdc2beec92f6c79d053d236097",
+    "province-economy-ui.js": "bc6a54891adcbecc7fd59c9786dd7f3eff633d74cfb7e373e123994fdc9ad720",
+    "province-economy.css": "ebcf99317b177e0aa64688f3e6d7f4631202b9f829c71e9d2c7849563b2c15c5",
+    "performance-ui.js": "34ede72c98a99a30dc8812b44c20d812eec6fc4b30f8066f219434f22358781e",
+    "guidance-ui.js": "5de0ff7d6e2c9aa7db0027c70517171f5ad4076f75a0c8f019a19f31e02c9e23",
+    "advisor-model.js": "97efaed3381bde23529aef72d822f0edb4452e7f280e4efdc2a24413add77ae1",
+    "equipment-model.js": "e26a05e28d36f2bf90c464f9ea33697bc95fcb5ca703621ea7d7153a77984f73"
+  },
+  "player": "France",
+  "date": "3 Jan 1990",
+  "save_copy": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-six-sessions-main-20260921-205821\\saves\\development-review.json",
+    "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S19-review-01\\candidate-navigation\\server\\saves\\s19-route-review.json",
+    "sha256": "55c81129e05e2db7294219c06db7ec6596e93ec21b476623035be433fe7e5bce"
+  },
+  "scope": "Separate development review runtime. Exact compiled assets; original playsets and saves preserved. No campaign certification."
+}

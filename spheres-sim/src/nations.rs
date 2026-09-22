@@ -1245,15 +1245,9 @@ pub const ROSTER: &[NationRow] = &[
     // every sense this column means. The Central African one is the Ubangi and
     // then dry ground east of Zongo.
     //
-    // ALIAS COLLISION, FOR THE INTEGRATOR, NOT FIXED HERE. This row holds
-    // "congo" as an alias and sits earlier in the roster than the new Congo row
-    // below, so `NationId::parse("congo")` resolves to Zaire. For 1990 that is
-    // backwards: the country called Congo in January 1990 is the one with its
-    // capital at Brazzaville, and this one had been Zaire since 1971. Fixing it
-    // means deleting one alias from another branch's row, which is not this
-    // branch's to delete mid-integration. The new row's own aliases are all
-    // unambiguous, so nothing is unreachable — "cog", "brazzaville" and
-    // "congo-brazzaville" all land where they should. Resolve by union.
+    // "Congo" is another nation's canonical code. Do not use it as a Zaire
+    // alias: the country selector and read routes send canonical codes through
+    // the same parser as human input. "zar" and "drc" remain unambiguous.
     // Zambia appended with the Southern Africa fill-in: the Zaire-Zambia border
     // is 2,332km of land, the Copperbelt runs across it, and the pedicle of
     // Zaire's Katanga cuts into Zambia far enough that the Zambian road from
@@ -1262,7 +1256,7 @@ pub const ROSTER: &[NationRow] = &[
     // Two branches extended this row from opposite sides — Central Africa added
     // the Congo and CAR borders, Southern Africa added Zambia. Unioned, which is
     // what the integration rule means: never choose a side of a neighbour list.
-    row("Zaire", "Zaire", &["zar", "congo", "drc"], "CentralAfrica",
+    row("Zaire", "Zaire", &["zar", "drc"], "CentralAfrica",
         &["Angola", "Uganda", "CentralAfricanRepublic", "Congo", "Zambia"], &[], true, false, false),
 
     // Cabinda is Angola's own exclave, cut off from the rest of the country by the
@@ -1773,8 +1767,7 @@ pub const ROSTER: &[NationRow] = &[
     // Congo-Brazzaville. The code is "Congo" and the display name is
     // "Congo-Brazzaville", because in January 1990 the state whose plain name
     // was Congo is this one — the other had been Zaire since 27 October 1971 —
-    // and a player who types "congo" deserves to be told which. See the alias
-    // note on the Zaire row above for the collision this leaves standing.
+    // and a player who types "congo" should select this canonical country.
     //
     // Four borders, and the striking one is Angola: not Angola proper, which is
     // 400 km further south past the Zaire river mouth, but Cabinda, whose
@@ -3514,6 +3507,19 @@ mod tests {
         assert!(serde_json::from_str::<NationId>("\"Atlantis\"").is_err());
         // ...and an index is never a code.
         assert!(serde_json::from_str::<NationId>("12").is_err());
+    }
+
+    #[test]
+    fn every_canonical_country_code_survives_the_user_input_parser() {
+        for &id in all_nations() {
+            assert_eq!(NationId::parse(id.code()), Some(id), "selector code {} chose another country", id.code());
+            assert_eq!(NationId::parse(&id.code().to_lowercase()), Some(id), "lowercase code {} chose another country", id.code());
+        }
+        assert_eq!(NationId::parse("Congo"), Some(NationId::Congo));
+        assert_eq!(NationId::parse("Congo-Brazzaville"), Some(NationId::Congo));
+        for alias in ["Zaire", "zar", "drc"] {
+            assert_eq!(NationId::parse(alias), Some(NationId::Zaire));
+        }
     }
 
     #[test]

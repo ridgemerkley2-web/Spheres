@@ -1,0 +1,471 @@
+{
+  "format": "claude-s19-submission/v1",
+  "session": "S19",
+  "packet": "CLAUDE-S19-01",
+  "status": "ready_for_review",
+  "note": "Submitted by Claude for Codex review. This is not a closure record: Codex integrates, reruns exact-build checks and updates canonical status. G4 and CP1 are not claimed.",
+  "branch": "claude/s19-guidance-01",
+  "base_revision": "939e8f9",
+  "integration_merged": "5b46e40a (merged into the branch before the final run)",
+  "candidate_revision": "f3d4f82ae673859052404529c32853f398019464",
+  "g4_earned": false,
+  "cp1_earned": false,
+  "commits": {
+    "native_read_model": "495a7a4",
+    "browser_guidance_and_host_patch": "aa46add",
+    "docs": "6289c4a",
+    "integration_merge": "merge of origin/codex/campaign-certification",
+    "province_names_and_airbase_date": "8d01b9a",
+    "driver_and_date_wrap": "f3d4f82"
+  },
+  "host_patch_for_codex": {
+    "spheres-web/src/main.rs": [
+      "mod guidance_outcomes;",
+      "guidance_json gains \"outcomes\"",
+      "tests in mod tests"
+    ],
+    "spheres-web/ui/index.html": [
+      "GUIDANCE_ROUTES + guidanceNavigate: cash_flow, air (page bases), companies, equipment tab, industry district/project_kind",
+      "window.GUIDANCE_RECEIPT and one hook in api() after successful /api/save or /api/load"
+    ]
+  },
+  "validation": {
+    "node_unit": "node tools/ui/run-unit.cjs — 1663 pass, 0 fail, 1 skip (pre-existing archived-fixture skip) at f3d4f82 content",
+    "guidance_focused": "node --test tools/ui/check_tutorial_model.cjs tools/ui/check_advisor_model.cjs tools/ui/check_guidance_outcomes.cjs tools/ui/check_guidance_ui.cjs tools/ui/check_guidance_host.cjs",
+    "native": "CARGO_TARGET_DIR=<per-worktree> cargo test -p spheres-web --release — 414 passed, 0 failed, 21 ignored (after merging 5b46e40a)",
+    "diff_check": "git diff --check clean"
+  },
+  "browser": {
+    "driver": "tools/ui/ci-guidance-route.cjs",
+    "binary_sha256": "cde6fee0ab7d7b046c9f0dcbd6ae8fc787f2cc78fc992cd4fb33fb7cb1f32d5f",
+    "build_revision": "f3d4f82ae673",
+    "browser": "system Chrome 153.0.8010.53",
+    "playwright": "1.58.2 (existing local install via NODE_PATH; nothing downloaded)",
+    "fixture": "Fresh France chosen through #newCampaignBtn, the nation picker and #startBtn in a fresh browser profile and a fresh server save directory. No fixture saves, seeded money, granted research, synthetic responses or hidden state mutation. page.request is used only for GET reads and /api/save archive snapshots (observation outside the page api(), so no guidance receipt can come from them); every such call is listed in observer_requests. page.route delays real /api/guidance traffic in the stale stages (a held response in 8 and 8b, a held request in 8c) and never changes a body. Stages 8 and 8b install a read-only PerformanceObserver and MutationObserver in the page (window.__s19Race, removed afterwards) to see the held response arrive and prove no repaint followed.",
+    "passing_runs": [
+      "route-france-p0XdHz (retained)",
+      "route-france-k3Qb0b (repeat; result.json retained)"
+    ],
+    "stages": [
+      "1 initial route",
+      "2 reading vs result",
+      "2b lesson skip",
+      "3 finances",
+      "3b advisors route-next",
+      "4a preview without confirm",
+      "4b command before result",
+      "4 construction",
+      "5 research design",
+      "6a command before result",
+      "6b funded days",
+      "6 air force",
+      "7 procurement",
+      "8 stale response",
+      "8b in-dialog race",
+      "8c later-day identity race",
+      "9a named save",
+      "9b confirmed load",
+      "9c reload continue",
+      "10a keyboard escape",
+      "10 narrow",
+      "10 final desktop",
+      "10c restart lessons",
+      "11 new campaign"
+    ],
+    "commands": [
+      [
+        "construction_budget"
+      ],
+      [
+        "start_industry_module"
+      ],
+      [
+        "equipment_save"
+      ],
+      [
+        "air_base"
+      ]
+    ],
+    "advances": 17,
+    "page_errors": []
+  },
+  "retention": {
+    "files_inventory": {
+      "inventory": [
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/advisors-fresh-desktop.png",
+          "bytes": 355466,
+          "sha256": "199d67b2ca255788d6eea9e1647c32bfbe87b7dfd45aff0ac1f249bf73919e87"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/advisors-route-next-desktop.png",
+          "bytes": 252672,
+          "sha256": "2d345eea57aca9a03c33f3e2861f5bf99962b0f965059bda2c6cf93229ed679a"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/advisors-route-next-landing.png",
+          "bytes": 1314877,
+          "sha256": "7b63b217214955d310f7c6fd33a69e269634a78f649f5f3e71bab61e8d9a9b0f"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/air-bases-landing-desktop.png",
+          "bytes": 908777,
+          "sha256": "75105622ba032cfa8d9f08a54666dc6d19908c224353c67324b139ba1d86e85d"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/air-foundation-review-desktop.png",
+          "bytes": 284060,
+          "sha256": "61750d7e6d3baee633c6fb1ecc93ed878a6d94140f9d0cae1c9f5ef1000c6d2c"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/campaigns-from-obstacle.png",
+          "bytes": 1389271,
+          "sha256": "adc70309ebfec763b79f21dc0c845fe594dac5a83696e3c6699cba8acced6129"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/construction-preview-desktop.png",
+          "bytes": 1128740,
+          "sha256": "41f2da153110abc15d5264fc0e6f3f72d3125d83f9c2eaf9351c99835023a80a"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/construction-preview-unconfirmed.png",
+          "bytes": 1128740,
+          "sha256": "b836079726305ee32dd1aa8b5cd1c9a5e68306951c1448345ad5f6b646fc0af2"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/designer-saved-desktop.png",
+          "bytes": 552689,
+          "sha256": "9eef82d12a32984bff7358002a32e3aadc095da609a9893a1a0a2e3735b3f313"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/guidance-after-budget-lesson.json",
+          "bytes": 23020,
+          "sha256": "28388cef063b286c290e1cbfbecbec2c461320164726bd9413a53572f25caf9a"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/guidance-after-dialog-race.json",
+          "bytes": 21144,
+          "sha256": "43513ac7ebab5ef8939788238049a644dc568269ef9620d59bbe4edd83ec6c16"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/guidance-after-held.json",
+          "bytes": 21137,
+          "sha256": "bbf0e04908e973f161ddb34b26f38d88be50a7d0f61ef79e41e7f0f900b0a243"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/guidance-after-identity-race.json",
+          "bytes": 21130,
+          "sha256": "e21a230528becff4d4bff9721c96a2c4f9dec9194754a77b96e4a2297adbf8a7"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/guidance-after-preview.json",
+          "bytes": 22296,
+          "sha256": "006c0649f9035ceec64be76171dcd875cf07bf6bc37ef206cd47f70a660406bc"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/guidance-after-restart.json",
+          "bytes": 20960,
+          "sha256": "b74fa3b6048357e96751c565e0c53b231557a1858859d928afadd9e7abdae19b"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/guidance-after-skip.json",
+          "bytes": 23046,
+          "sha256": "a597a836f160b5cf0ae0a169550d7f420451989ec8847dc9d73ee772234addc5"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/guidance-air-force.json",
+          "bytes": 21135,
+          "sha256": "d950442f134d31634f0eac36e039dbdab8b3411e7c81deb97979ca3f2c02e217"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/guidance-airbase-funded.json",
+          "bytes": 22055,
+          "sha256": "7e8599e50d772801d597bcf7918a56e0fa4eb00e65efb345e7921c53acf0079b"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/guidance-airbase-ordered.json",
+          "bytes": 21690,
+          "sha256": "c2d47899e4fa8d19345a2efce6ff8d765230ad51ff9b63f34f136ad7deeddc00"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/guidance-before-preview.json",
+          "bytes": 22297,
+          "sha256": "337f43523f28565f716585f343c302121bdad8f87987562f8670cff5cff49a8e"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/guidance-before-save.json",
+          "bytes": 21122,
+          "sha256": "223735b28a300413e784c1d8e6628b535b45ab6ef9c067e85a8bdf59cd9d884d"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/guidance-construction.json",
+          "bytes": 21983,
+          "sha256": "7c8ab184fc825703b4ebd5f90e538cca07fb1ab4aec011b21b2912160166e4ac"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/guidance-final-desktop.json",
+          "bytes": 21032,
+          "sha256": "a0cd7215653378b1e95b50fb0f9c22396486f35a9aa620012cf34d6a7fc5c59a"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/guidance-finances.json",
+          "bytes": 22191,
+          "sha256": "0828a93a2ccd59a3ed8bf3e64356b0e5d70c3e1c5f67d145eea1ba87ed6fb532"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/guidance-initial.json",
+          "bytes": 22972,
+          "sha256": "6204608087b2a8fc1e45fb6c22d20b6177ae5127c1a4cd4424bead7a337bc60f"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/guidance-loaded.json",
+          "bytes": 21025,
+          "sha256": "4cf5c4735059ac1d539e84f6817d516a5fa990b178b5ed089ec1723aab325e99"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/guidance-narrow.json",
+          "bytes": 21025,
+          "sha256": "3353a49fd8df47e30560e340cbc465a285c6e8a012f67b656871bbea791602b8"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/guidance-new-campaign.json",
+          "bytes": 23387,
+          "sha256": "0417971aa486b8e7bd8aae0953ad690fc254faa5f10b44fd1ce2f970fc126615"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/guidance-procurement.json",
+          "bytes": 21137,
+          "sha256": "0ed76cc9a90dc7752d122879109e4b103af9f72c90d920e5bdea4f6f8f1f52e6"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/guidance-reload-continue.json",
+          "bytes": 21034,
+          "sha256": "5771ddecafbb19bd919498f70b5b36319ffe42dcef2e57f76b68ea1098a22329"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/guidance-research-design.json",
+          "bytes": 21308,
+          "sha256": "a7a735d4ea7f944cb3f83b3b24e4d1ae5d263c7c110edba3eb52d37a0ec4d187"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/guidance-saved.json",
+          "bytes": 21599,
+          "sha256": "faeadaf40466b02b7bf8f57a919b1a0e8bcbd6d1c0767520b7b9b17578d7b6c9"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/guidance-workshop-queued.json",
+          "bytes": 22657,
+          "sha256": "b28f091fcf7db532d6bf9cac636f5e00e7440d1d88586bb7f0c493cbbf08c224"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/identity-race-refused.png",
+          "bytes": 421949,
+          "sha256": "9fc3384f5a3a9a5d9bde46b3a612963f6fa8c49a8469f3460eea21b0c10a5a5b"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/identity-race-second-page.png",
+          "bytes": 467275,
+          "sha256": "037fa702d8591500a7f3311abb337964a736762a8c2623ae8507278fc4597244"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/identity-race-stale-route.png",
+          "bytes": 157274,
+          "sha256": "e982382fcc1b399b0602d24e232caacb068391e5f41740aa7532e83a173a123d"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/lesson-initial-desktop.png",
+          "bytes": 393567,
+          "sha256": "90316ce3742548a980483e49294eaab0d756e53d9230b364f6f01df8982afebd"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/lesson-skipped-desktop.png",
+          "bytes": 151530,
+          "sha256": "c669c6bb27a0370bef31aa68b78671f793d0c2c23a20cbdc3117d2e264bb578a"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/narrow-initial-obstacles.png",
+          "bytes": 43310,
+          "sha256": "52e1c38e3e41c64d862b33b1e2c5e4a9e48ca6dee823e9838f5de4c939c5d964"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/narrow-initial-route.png",
+          "bytes": 45789,
+          "sha256": "42bbbbbc97b8f6f0a186eb030dbd3bcc3fa4e83199c2742f157be0b458eb944e"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/narrow-lesson-actions.png",
+          "bytes": 41290,
+          "sha256": "e27b67fd1eef0cff5c97cfd372c0f2a8e33830c50d53b99ade088ddc606806c4"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/narrow-lesson-controls.png",
+          "bytes": 54150,
+          "sha256": "e5a412684c5f0fd1a071d05a240ed285cb3d608edc72c0a197665db402ba647c"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/narrow-lesson-top.png",
+          "bytes": 159609,
+          "sha256": "b14266013f653902371b222f3967dff3132ba0f367b341fd2912c9f9e8de76cd"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/narrow-route-air-save.png",
+          "bytes": 50750,
+          "sha256": "fd1e381e09fd91447e3acad554272db4669769ef95b1836953560c04c16da9e7"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/narrow-route-panel.png",
+          "bytes": 50194,
+          "sha256": "dc2aea02a7fbff01345530c26b3064d1fd77617ee41e9211ffbbb84e3a3b2927"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/procurement-companies-desktop.png",
+          "bytes": 898722,
+          "sha256": "68d4a8f7803c796d4a6395a17a5c15b59f9c432dcc98d75286d7e7e8cf968f34"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/progress.jsonl",
+          "bytes": 10860,
+          "sha256": "45ca06b85ecec21ca06b02a55d14f9658582e1bf7edae7b099711639ce5f9afb"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/reading-vs-result-desktop.png",
+          "bytes": 150493,
+          "sha256": "5b776afdd19954fda67de76b4eed67d717216ba474c535c27886cd9905ddff0c"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/result.json",
+          "bytes": 364142,
+          "sha256": "d2e4acabf89dd46a4504e16796d82366fc9339c7310769e0330475bea404b5f9"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/route-after-restart.png",
+          "bytes": 146499,
+          "sha256": "5050f872cb473b3ad941cce3001236194f681b1985c040a8bd475cd325e8d9c9"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/route-after-stale-desktop.png",
+          "bytes": 154310,
+          "sha256": "b411ff6890bf559079d49a1eb37ce05bed96ee1bda4d3c5d8ae093429626c557"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/route-air-desktop.png",
+          "bytes": 152675,
+          "sha256": "2e3d07105ab0f8f139acea89b4f37266036b26d8c03ae7d1d7bf2ac2694c536e"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/route-airbase-funded.png",
+          "bytes": 152889,
+          "sha256": "4fdc3a7c80f05e12893e2f6fd57f7ca79944669404a7d638cd74d42684af0847"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/route-airbase-ordered.png",
+          "bytes": 144282,
+          "sha256": "143d63bca3c1082beca84c71d2645cdf959488784ef2025e4d5ae148933717df"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/route-construction-desktop.png",
+          "bytes": 141241,
+          "sha256": "9d923ce7637dcfd0778b720ba073eb4338d3a94d39816581880083e6100b85c4"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/route-final-desktop-steps.png",
+          "bytes": 147783,
+          "sha256": "0c06c801fcf90186b9e26be47b8cdeac5b183ad7da44e94473c76da84af795de"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/route-final-desktop.png",
+          "bytes": 149822,
+          "sha256": "094e120be4f01aafc9305f4c607cba2782bf12729f73a026cbd37791f3be48e0"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/route-finances-desktop.png",
+          "bytes": 148131,
+          "sha256": "a76268db87ceb04f70585f65cef718c66dd767c4c744d8ca89f8ea77f3be1f35"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/route-initial-desktop.png",
+          "bytes": 140037,
+          "sha256": "d78f5465ddafa0f899b7e9880b7bb2693a2339e51f74fcf0797950a520bcc763"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/route-loaded-desktop.png",
+          "bytes": 149838,
+          "sha256": "883eb6d08832602a1f8b2b937cf6006da1b08ea9b1f19fcbc47d40b5853ba798"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/route-new-campaign.png",
+          "bytes": 140087,
+          "sha256": "fb6e27b458b87502dcdf0b1451e633fbeb4df41d51eaab50a4a6c440994b2c77"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/route-research-desktop.png",
+          "bytes": 144757,
+          "sha256": "1a0a0c85352d4e61627154904a85e6c16083c2e481dd213b5fc76cd2d51e9cdd"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/route-saved-desktop.png",
+          "bytes": 159671,
+          "sha256": "b94fcea1fde570e75de687cfd19410ae515bf6f9a3492e7b8713d6fb7fbe69de"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/route-workshop-queued.png",
+          "bytes": 149472,
+          "sha256": "6d2ed2766fbcf80f64fd11247318d5f488c60d12d0e0eac49b60c5b2ad22f6cd"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/server.log",
+          "bytes": 78,
+          "sha256": "d893adc953fd732f1db28c63023b937a402cb197623dcf41058e04aec1af7491"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-p0XdHz/s19-first-hour.json.gz",
+          "source": "named save written by the visible #saveNamedBtn",
+          "bytes": 16277259,
+          "sha256": "11e93a0d8855d79e226bf4522a8f30d7c7112141c46d88addaaf868d46c98e1e",
+          "encoding": "gzip",
+          "stored_bytes": 3150660,
+          "stored_sha256": "c81d62950fec1e6cfcf5e009202dd9f9b8a724638c5f080b15b1202eb988ff58"
+        },
+        {
+          "stored": "docs/campaign-certification/S19/evidence/route-france-k3Qb0b-result.json",
+          "bytes": 364142,
+          "sha256": "78aa0a0c5ab1c038d8246327169ba9c04fa07df37ee39f1261ac253dd64c13a5",
+          "note": "repeat run, result only"
+        }
+      ],
+      "unretained_archive_snapshots": [
+        {
+          "file": "s19-preview-after.json",
+          "bytes": 13481627,
+          "sha256": "4b1386decc8cbc2b1ff2bafc380b06c7adc86dae520099213d64cd23310d1900",
+          "retained": false
+        },
+        {
+          "file": "s19-preview-before.json",
+          "bytes": 13481627,
+          "sha256": "67c9b9d509bd39604d35e33ebff6b526cc52252134237b06d9716bf0cec53774",
+          "retained": false
+        },
+        {
+          "file": "s19-read-after.json",
+          "bytes": 13148877,
+          "sha256": "3ff9f01100308d15235ee9520ce2500b85c2847a7fca58141b1b70edb0052a02",
+          "retained": false
+        },
+        {
+          "file": "s19-read-before.json",
+          "bytes": 13148877,
+          "sha256": "a6a0880523400a0ea866ffbd77532565c9f632c3df71554bbfbf32795aa18f56",
+          "retained": false
+        }
+      ]
+    }
+  },
+  "known_limitations": [
+    "Procurement, construction completion and site output, squadron formation/readiness, missions, design commissioning, development payment and component research completion are not reachable in a fresh campaign's first hour; the browser shows them as an honest Not yet with the obstacle named. Their recognition is covered by Node and native tests only.",
+    "research_design is achieved by saving a natively valid design draft (no money), as DESIGN.md allows.",
+    "Receipts from another tab via the storage event, an unreadable receipt store, a backup load and a different nation in a new campaign are covered by Node tests, not the browser run.",
+    "Keyboard activation was shown for a route obstacle, F1 and Escape; skip and restart were exercised by pointer.",
+    "Outside S19: the airbase review's default name comes from the first listed province (spheres-web/src/equipment_flight_view.rs:412-420); the driver renames the base in the visible field."
+  ]
+}
