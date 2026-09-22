@@ -9,8 +9,8 @@
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 841,
     "institution_observations": 27,
-    "sources": 58,
-    "source_claims": 1606,
+    "sources": 61,
+    "source_claims": 1613,
     "discovery_batches": 92,
     "exhaustive_country_censuses": 0
   },
@@ -408,8 +408,8 @@
       "packet": "docs/campaign-certification/C01/research/tonga.json",
       "organization_observations": 4,
       "institution_observations": 5,
-      "role_observations": 12,
-      "source_claims": 28,
+      "role_observations": 14,
+      "source_claims": 35,
       "mapping_pending": 9,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -429,7 +429,8 @@
           "Full leader/chair/parliamentary-role intervals, constitutional effective dates and 1990 opening office holders still require source-by-source verification.",
           "The last verified observations are not automatic extensions to the 7 September 2026 cutoff; unknown gaps remain unknown.",
           "No future candidate, fictional successor, portrait likeness or avatar completion is certified by this research packet. Fiction begins only after the preserved historical cutoff under the separate policy.",
-          "The added 2021 People's Party and Leader observations close only a missing sourced observation. No country census or discovery batch is complete; the 2019 national appointment supplies no party office or campaign eligibility."
+          "The added 2021 People's Party and Leader observations close only a missing sourced observation. No country census or discovery batch is complete; the 2019 national appointment supplies no party office or campaign eligibility.",
+          "Reconciliation packet 01 (tonga-reconciliation-01.md) groups the PATOA/PTOA label with DPFI and adds People's Party names, incorporated-society testimony and a 2021 Assembly selection. It resolves no complete leadership term, lifespan or game mapping."
         ]
       }
     },
@@ -2658,8 +2659,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/tonga.json",
-      "bytes": 42497,
-      "sha256": "47ed35a711420136fdee343666231d4c84c48005db758402c67b8c88ba8b20ad"
+      "bytes": 58219,
+      "sha256": "5704e94cd1d1614efd04d7924c42211ecc489c688b6451c492995621980bea38"
     },
     {
       "path": "docs/campaign-certification/C01/research/ussr.json",
