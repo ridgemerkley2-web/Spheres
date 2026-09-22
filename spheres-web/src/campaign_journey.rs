@@ -237,8 +237,10 @@ mod tests {
             transport::immediate_request(&mut g,&p).unwrap();
             let mut expected=before;
             expected.player=Some(to);expected.player_set_rate=false;
-            expected.campaign_aims=g.world.campaign_aims.clone();
-            assert_eq!(save(&g.world),save(&expected),"only control and the aim record may change");
+            let goal=expected.campaign_aims.active.take().unwrap();
+            expected.campaign_aims.history.push(campaign_aims::Record{goal,
+                ended_day:spheres_sim::clock::absolute_day(&expected),outcome:"government ended".into()});
+            assert_eq!(save(&g.world),save(&expected),"control and the exact former-country aim record are the only changes");
             assert!(g.world.campaign_aims.active.is_none());
             assert_eq!(g.world.campaign_aims.history[0].goal.nation,from);
             assert_eq!(g.world.campaign_aims.history[0].outcome,"government ended");
