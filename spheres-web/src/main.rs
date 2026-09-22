@@ -10779,6 +10779,14 @@ mod tests {
             "precondition: the player's nation is gone"
         );
 
+        // S21 makes observer continuation explicit. Before choosing it, the
+        // result stays paused; afterwards the original no-repeated-death bar holds.
+        let frozen = save(&g.world);
+        assert!(g.advance(12, vec![]).0);
+        assert_eq!(save(&g.world), frozen);
+        let observe = serde_json::json!({"session_id":g.session_id,"commands":[{
+            "kind":"continue_campaign","action":"observe","player":g.world.player,"date":g.world.date_str()}]});
+        transport::immediate_request(&mut g, &observe).unwrap();
         // From here the player is a spectator, and a spectator can still watch.
         // Twelve asked for is twelve delivered — unless some OTHER major event
         // interrupts, which is the ordinary behaviour and not this defect, so

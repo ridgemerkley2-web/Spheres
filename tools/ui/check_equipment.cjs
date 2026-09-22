@@ -1285,7 +1285,7 @@ test('s12-s15 air shell sends all reviewed kinds through protected receipts and 
   for(const [index,command] of commands.entries()){
     c.eq.tab='designer';const result=await c.equipmentCommand(command),[route,options]=c.requests[index];
     assert.equal(route,'/api/command');assert.equal(options.method,'POST');
-    assert.deepEqual(JSON.parse(options.body),{commands:[command],session_id:'one',client_id:'air-shell',request_seq:index+1});
+    assert.deepEqual(JSON.parse(options.body),{commands:[command],session_id:'one',client_id:'air-shell',request_seq:index+1,player_context:'USA'});
     assert.equal(c.eq.tab,'flight');assert.match(result.message,/Air command/);assert.equal(c.COMMAND_CHANNEL.pending,null);
   }
   assert.equal(adopted,4);assert.equal(c.eq.draft.name,'Unfinished aircraft');
@@ -1391,5 +1391,5 @@ test('s17 military staff setting uses a pure review and protected command receip
   c.fetch=async(route,options)=>{c.requests.push([route,plain(options)]);return {ok:true,text:async()=>JSON.stringify({session_id:'one',player:'USA',errors:[]})};};
   c.adopt=async(state)=>{c.S=state;};c.banner=message=>assert.fail(message);
   const result=await c.equipmentCommand(command);assert.match(result.message,/Air command/);assert.equal(c.eq.tab,'flight');
-  assert.deepEqual(JSON.parse(c.requests[0][1].body),{commands:[command],session_id:'one',client_id:'staff',request_seq:1});
+  assert.deepEqual(JSON.parse(c.requests[0][1].body),{commands:[command],session_id:'one',client_id:'staff',request_seq:1,player_context:'USA'});
 });

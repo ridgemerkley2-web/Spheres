@@ -3579,7 +3579,6 @@ const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 /// Read/turn callers get a thrown Error. Immediate commands use the shared
 /// receipt channel and return an unchanged state with errors to legacy panels.
 async function api(path, body, rawCommand = false) {
-  if (!rawCommand && body !== undefined && ["/api/command", "/api/advance"].includes(path)) body = {player_context:S?.player, ...body};
   if (!rawCommand && body !== undefined && ["/api/command", "/api/advance", "/api/save", "/api/load", "/api/new"].includes(path)
       && typeof guardEconomicOrder === "function" && guardEconomicOrder(path, body)) {
     const message="Confirm the pending financial order in the Exchange before sending another change.";
@@ -3587,6 +3586,7 @@ async function api(path, body, rawCommand = false) {
     throw new Error(message);
   }
   if (!rawCommand && typeof COMMAND_CHANNEL !== "undefined") {
+    if (body !== undefined && ["/api/command", "/api/advance"].includes(path)) body = {player_context:S?.player, ...body};
     if (path === "/api/command" && body !== undefined) {
       const externalReceipt = !!body.client_id;
       try {
@@ -4368,6 +4368,15 @@ $("#drawerScrim").onclick = closeGameDrawers;
 async function adopt(state, withHistory, allowCampaignChange = false) {
   if (!allowCampaignChange && S?.session_id && state.session_id && S.session_id !== state.session_id) {
     throw new Error("The live campaign changed. Open Campaigns and Continue to inspect it before sending more orders.");
+  }
+  if (S?.player && state.player && S.player !== state.player && S.session_id === state.session_id) {
+    // A successor takes its own decisions. Discard unsent former-government
+    // drafts, but retain an uncertain submitted turn for explicit review.
+    queued = [];
+    if (pendingAdvance) pendingAdvance.reviewRequired = true;
+    persistPendingAdvance();
+    SESSION.live = state;
+    clockPause();
   }
   S = state;
   if (typeof GUIDANCE !== "undefined") GUIDANCE.changed();
