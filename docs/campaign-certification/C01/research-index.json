@@ -9,8 +9,8 @@
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 841,
     "institution_observations": 27,
-    "sources": 68,
-    "source_claims": 1622,
+    "sources": 79,
+    "source_claims": 1644,
     "discovery_batches": 92,
     "exhaustive_country_censuses": 0
   },
@@ -408,8 +408,8 @@
       "packet": "docs/campaign-certification/C01/research/tonga.json",
       "organization_observations": 4,
       "institution_observations": 5,
-      "role_observations": 14,
-      "source_claims": 44,
+      "role_observations": 15,
+      "source_claims": 66,
       "mapping_pending": 9,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -431,7 +431,8 @@
           "No future candidate, fictional successor, portrait likeness or avatar completion is certified by this research packet. Fiction begins only after the preserved historical cutoff under the separate policy.",
           "The added 2021 People's Party and Leader observations close only a missing sourced observation. No country census or discovery batch is complete; the 2019 national appointment supplies no party office or campaign eligibility.",
           "Reconciliation packet 01 (tonga-reconciliation-01.md) groups the PATOA/PTOA label with DPFI and adds People's Party names, incorporated-society testimony and a 2021 Assembly selection. It resolves no complete leadership term, lifespan or game mapping.",
-          "Transition packet 02 (tonga-transition-2021-02.md) adds the 2021 Assembly procedure notices, the royal appointment of Siaosi Sovaleni effective 27 December 2021 and the Cabinet effective 28 December 2021, with two holder observations. The warrant's signature and presentation and the end of the previous premiership remain unresolved; no complete leadership term is claimed."
+          "Transition packet 02 (tonga-transition-2021-02.md) adds the 2021 Assembly procedure notices, the royal appointment of Siaosi Sovaleni effective 27 December 2021 and the Cabinet effective 28 December 2021, with two holder observations. The warrant's signature and presentation and the end of the previous premiership remain unresolved; no complete leadership term is claimed.",
+          "DPFI packet 04 (tonga-dpfi-04.md) adds court-record name and label evidence for PTOA, a second IPU leader observation, a separately recorded party President (2022), month-precision death and seat-succession records, and records showing that the 2025 election returns carry no party labels. Founding, legal form, party leadership after September 2019 and any 2025 party-level result remain unresolved; no lifespan, merger or complete term is claimed."
         ]
       }
     },
@@ -2660,8 +2661,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/tonga.json",
-      "bytes": 79596,
-      "sha256": "e50c01cab147507be1880d3ee1657619049b04394af04ef272de3d2ffa3ec102"
+      "bytes": 122053,
+      "sha256": "cedfe51783ede853e774cef9bd2efab18efbc53e6e43ee912285a65f7bbdb51c"
     },
     {
       "path": "docs/campaign-certification/C01/research/ussr.json",

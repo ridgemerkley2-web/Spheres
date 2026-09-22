@@ -1,0 +1,26 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://data.ipu.org/parliament/TO/TO-LC01/election/TO-LC01-E20251120/",
+  "accessed_date": "2026-09-21",
+  "published_date": null,
+  "access_method": "browser_fetched_original_html_and_page_text_read",
+  "source_response_bytes": 164916,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "provenance_note": "Fetched in-browser on 2026-09-21 (local): two fetches by the researcher, two by the checker and two for this packet each returned 164,916 bytes, with a different SHA-256 every time because the page embeds per-request markup. No response hash is asserted. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_ipu_2025_no_party_result",
+      "text": "For the 20 November 2025 election, IPU's Candidates field reads 'Not applicable. There is no party system or candidates stood as independents.' Its 'Number of parties winning seats', 'Percentage of parties winning seats' and 'Percentage of seats won by largest party or coalition' fields also read 'Not applicable'. The 'About the election' narrative names no party and does not mention PTOA or DPFI.",
+      "attested_on": "2025-11-20",
+      "locator": "Background, 'Candidates'; Results, 'About the election' and the three party fields",
+      "uncertainty": "IPU's silence states neither that PTOA won no seats nor that it won any; it supports only that IPU records no party-level result for 2025."
+    }
+  ],
+  "scope_note": "Live Parline page read after the cutoff for its 2025 election-description fields only; the page shows no revision date. IPU cites Legislative Assembly communications of 23 November 2025 and 23 January 2026 and news outlets. A direct non-browser request returned HTTP 403. The page's HTML changes between requests, so its response hash cannot be reproduced.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Page text of Background, 'Candidates', 'About the election', the party fields and 'Sources' read in the browser. No images reviewed."
+  }
+}
