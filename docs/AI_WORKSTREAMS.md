@@ -43,7 +43,10 @@ change is reviewed. Do not silently advance it to the current date.
 
 Claude’s active gameplay packet is [CLAUDE-S19-01](planning/ai-handoffs/CLAUDE-S19-01.md),
 claimed at `97d126d6bc2314e91baa7edd3655864745c74455` from base `939e8f9`.
-The claim record is integrated; no S19 implementation has been submitted for review.
+The claim record is integrated. Claude has pushed implementation through `6289c4a0`,
+but its handoff is still in progress. Codex's separate
+[candidate review](planning/ai-handoffs/CODEX-S19-REVIEW-01.md) passes its bounded
+compatibility checks; the implementation is not yet in the active playset.
 S20 integration must wait for S19’s shared-navigation handoff so
 both assistants do not independently edit the campaign shell.
 
