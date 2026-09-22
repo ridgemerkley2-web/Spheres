@@ -194,35 +194,41 @@ mod tests {
     }
 
     #[test]
-    fn army_presence_old_saves_upgrade_once_without_overwriting_live_loyalty() {
-        let mut w = world_1990(GameRules::default());
-        let original = crate::save(&w);
-        w = crate::load(&original).unwrap();
-        for id in opening_institutions().iter().map(|r| r.nation) { government::ensure(&mut w, id); }
-        assert_eq!(crate::save(&w), original, "default/off saves are byte stable");
-        w.rules.ideology_blocs = true;
-        for id in opening_institutions().iter().map(|r| r.nation) {
-            let before = government::state(&w, id).unwrap().clone();
-            government::ensure(&mut w, id);
-            w.governments.states.iter_mut().find(|g| g.nation == id).unwrap().pillars.iter_mut()
-                .find(|(p, _)| *p == Pillar::Army).unwrap().1 = 0.72;
-            government::ensure(&mut w, id);
-            let g = government::state(&w, id).unwrap();
-            assert_eq!(g.pillars.iter().filter(|(p, _)| *p == Pillar::Army).count(), 1);
-            assert_eq!(g.loyalty(Pillar::Army), 0.72);
-            assert_eq!(g.support, before.support);
-            assert_eq!(g.seats, before.seats);
-            assert_eq!(g.coalition, before.coalition);
-            assert_eq!(g.next_election, before.next_election);
-            assert_eq!(g.elected, before.elected);
-            assert_eq!(g.months_in_office, before.months_in_office);
-            assert_eq!(g.coup_pressure, before.coup_pressure);
-            assert_eq!(g.office_month_fraction, before.office_month_fraction);
-            for (pillar, loyalty) in before.pillars {
-                assert_eq!(g.loyalty(pillar), loyalty, "existing institution is not reseated");
-            }
+    fn army_presence_old_saves_preserve_recorded_institutions_and_live_loyalty() {
+        let mut off = world_1990(GameRules::default());
+        let original = crate::save(&off);
+        off = crate::load(&original).unwrap();
+        government::ensure_all(&mut off);
+        assert_eq!(crate::save(&off), original, "default/off saves are byte stable");
+
+        let mut rules = GameRules::default(); rules.ideology_blocs = true;
+        let mut w = world_1990(rules);
+        // Older saves recorded no Army for these countries. Empty and other-
+        // pillar vectors are both authoritative, not missing histories.
+        for row in opening_institutions() {
+            let g = w.governments.states.iter_mut().find(|g| g.nation == row.nation).unwrap();
+            g.pillars.retain(|(p, _)| *p != Pillar::Army);
+            g.army_authority = None;
         }
+        w.governments.states.iter_mut().find(|g| g.nation == NationId::UK).unwrap()
+            .pillars.push((Pillar::Security, 0.37));
+        let before = serde_json::to_value(&w.governments).unwrap();
+        let rng = serde_json::to_value(&w.rng).unwrap();
         let saved = crate::save(&w);
-        assert_eq!(crate::save(&crate::load(&saved).unwrap()), saved);
+        w = crate::load(&saved).unwrap();
+        government::ensure_all(&mut w);
+        government::ensure_all(&mut w);
+        assert_eq!(serde_json::to_value(&w.governments).unwrap(), before,
+            "existing saved governments must not gain an invented loyalty stock");
+        assert_eq!(serde_json::to_value(&w.rng).unwrap(), rng);
+        assert_eq!(crate::save(&w), saved);
+        // A genuinely absent government may still be constructed lazily.
+        w.governments.states.retain(|g| g.nation != NationId::USA);
+        government::ensure(&mut w, NationId::USA);
+        assert_eq!(government::state(&w, NationId::USA).unwrap().loyalty(Pillar::Army), 0.65);
+        let usa = w.governments.states.iter_mut().find(|g| g.nation == NationId::USA).unwrap();
+        usa.pillars.iter_mut().find(|(p, _)| *p == Pillar::Army).unwrap().1 = 0.72;
+        government::ensure(&mut w, NationId::USA);
+        assert_eq!(government::state(&w, NationId::USA).unwrap().loyalty(Pillar::Army), 0.72);
     }
 }

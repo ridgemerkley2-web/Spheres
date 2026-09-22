@@ -6085,15 +6085,9 @@ fn opening_seats(w: &WorldState, pol: &Polity, support: &[(String, f64)]) -> Vec
 /// written before this module existed still loads and simply grows one.
 pub fn ensure(w: &mut WorldState, id: NationId) {
     if state(w, id).is_some() {
-        // Older lens saves may predate these sourced institutional
-        // omissions. Add only the verified missing pillar; retain live loyalty
-        // and every existing political/electoral field on subsequent ensures.
-        if w.rules.ideology_blocs && crate::army_institutions::institution(id).is_some() {
-            let g = state_mut(w, id).unwrap();
-            if !g.pillars.iter().any(|(p, _)| *p == Pillar::Army) {
-                g.pillars.push((Pillar::Army, 0.65));
-            }
-        }
+        // Existing pillars, including an explicitly empty vector, are saved
+        // campaign state. Ordinary ensures/load cannot import new institutions.
+        // Fresh worlds receive their institutions during initial construction.
         // Seated already. The only thing left to do is the political arm's
         // seed, which returns at once unless the arm is on and this nation is
         // an unseeded regime — a save switched on after it was written.

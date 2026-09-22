@@ -734,7 +734,7 @@ across 66 targets. The treasury source audit sees a `debt_gdp` assignment in
 new test fixture code. Moving that unchanged `cfg(test)` module to its own file
 keeps the production audit intact. The two web failures concern advancing time
 after the player's country disappears and a scenario that did not exercise a
-dead belligerent. Follow-up test changes await checkpoint 25; none converts the
+dead belligerent. Follow-up test changes pass checkpoint25; none converts the
 failed checkpoint-24 result into a pass.
 
 The [fixed seed-0 diagnostic](../campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-24-seed0-trace-analysis.md)
@@ -753,3 +753,26 @@ and executable/library/log hashes are archived. The two approximately 6 MB raw
 trace files remain external and are identified by the receipt; no binaries or
 redundant full logs were added to Git. A1 remains open, and the reserved
 independent cohort remains uninspected.
+
+## Checkpoint26: load preservation and fresh-browser construction
+
+[Checkpoint25](../campaign-certification/verification/evidence/2026-09-22-completion/checkpoint25-validation/README.md)
+passes 1,884 ordinary native tests with no failures, but separately exercising the
+unchanged genuine pinned-master archive finds an Army-pillar insertion during
+load. Three other archive checks and both mature native latency checks pass;
+the original fixture hashes stay unchanged.
+
+The repair removes that existing-state retrofit. New browser games instead pass
+the lens to the authoritative world initializer before governments are seated,
+which also corrects missing sourced authority, established movements and prior
+mandates on that fresh path. Saved January 1 campaigns retain their recorded
+institutions and unknown source fields. The former unit expectation requiring
+retroactive Army insertion is explicitly superseded by the stronger original
+archive-preservation contract; its old body is archived. No source dataset or
+A1–A10 coefficient/threshold changed. The rebuilt repair suite is pending.
+
+The original 12-seed diagnostic captures all country counts without changing its A1
+assertions. It still fails at median 7 and top-three share 0.585714. A displayed
+inverse-HHI/effective-country comparison is a different, unapproved criterion;
+it is not called equivalent and cannot certify the current model. The independent
+1000-series cohort remains untouched.

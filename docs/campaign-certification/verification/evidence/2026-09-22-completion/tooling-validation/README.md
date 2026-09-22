@@ -5,9 +5,43 @@ final commit or hosted CI passed. Native tests, political calibration and browse
 journeys have separate receipts. The independent tooling batch preceded the final
 snap-election grace fix; the affected leadership checks were repeated afterward.
 
-The current source and generated records are restored to **iteration21**. Candidate
+## Current metadata: checkpoint26
+
+The latest provenance receipt is `checkpoint26/leadership-provenance-result.json`,
+after the fresh-only Army enrollment and fresh-browser initialization repair.
+All seven commands pass, including 8 production self-tests and 7 census tests.
+Government source is
+`0e2dbdefe5ed1909804b81d43b736c94315be647d615bda85e62e1fe78a2b73f`;
+the frozen server source is
+`f954638dbdc4db92d838c8aeaa0bd471a029b9ebe662256f327d685ac6876709`.
+All protected source hashes and modification times remained unchanged. The wrapper
+refuses noncanonical source bytes instead of rewriting a native input.
+
+Exactly four provenance fields changed: the government hash in production and
+census, the census byte count, and its downstream production hash. The five other
+generated reports remain byte-identical. Production is
+`f98cbae966b91bbcccc3ce6a76f0d15f52a59fd11ce53d0063b8effd55acded8`;
+census is `3bd35544f2cc363e9a45ef317169b461d3d98a9ef3841a7e8fb5f3f127e87244`.
+Targeted Node leadership/research checks pass **89/89 with zero skips**, preserving
+source and metadata bytes and timestamps. Historical coverage, artwork and C01
+completion status are unchanged. These passes establish metadata coherence;
+the new native build, archived-save regression and browser behavior require their
+own receipts. **A1 remains unresolved.**
+
+The separate `checkpoint24-python/` archive retains the full **252-test Python
+pass with zero skips** on clean `b51b7333`: 162 avatar, 25 terrain, 3 UI-export,
+47 self-tests, 7 military-authority and 8 resource-coverage tests. Its eleven raw
+logs and exact commands are preserved, with all protected source/generated hashes
+and modification times unchanged. That result belongs to checkpoint24; it is not
+renamed as a checkpoint26 run. The latest seven-command pass above rechecks the
+changed government parsing/provenance inputs. Repeated tests are not added to a
+unique-test total.
+
+## Earlier provenance history
+
+Earlier source and generated records were restored to **iteration21** after candidate
 22 was rejected: its joint outcome criteria failed, including A1 concentration and
-A2. Its measurements and prospective review remain preserved. The latest metadata
+A2. Its measurements and prospective review remain preserved. That historical restoration
 receipt is `iteration22-rejected-restored21/`: the parent reran all seven commands
 successfully, and an independent read verified all seven generated outputs exactly
 match their iteration21 bytes. Government source is

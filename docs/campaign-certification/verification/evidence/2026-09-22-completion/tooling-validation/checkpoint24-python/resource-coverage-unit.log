@@ -1,0 +1,13 @@
+test_application_is_deterministic_and_idempotent (test_coverage.CoverageTests.test_application_is_deterministic_and_idempotent) ... ok
+test_bounded_report_preserves_other_coverage_markers (test_coverage.CoverageTests.test_bounded_report_preserves_other_coverage_markers) ... ok
+test_committed_reporting_matches_the_real_source (test_coverage.CoverageTests.test_committed_reporting_matches_the_real_source) ... ok
+test_corrupt_workbook_or_disagreed_source_pin_is_rejected (test_coverage.CoverageTests.test_corrupt_workbook_or_disagreed_source_pin_is_rejected) ... ok
+test_pinned_real_source_year_units_and_every_dropped_bauxite_producer (test_coverage.CoverageTests.test_pinned_real_source_year_units_and_every_dropped_bauxite_producer) ... ok
+test_report_changes_no_existing_resource_value_or_limit (test_coverage.CoverageTests.test_report_changes_no_existing_resource_value_or_limit) ... ok
+test_unknown_country_or_roster_change_requires_a_crosswalk_review (test_coverage.CoverageTests.test_unknown_country_or_roster_change_requires_a_crosswalk_review) ... ok
+test_wrong_sheet_or_unit_is_rejected (test_coverage.CoverageTests.test_wrong_sheet_or_unit_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.443s
+
+OK

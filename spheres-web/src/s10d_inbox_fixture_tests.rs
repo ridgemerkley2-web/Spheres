@@ -18,7 +18,7 @@ fn s10d_export_disposable_diplomatic_inbox_fixture() {
         .expect("Set SPHERES_S10D_INBOX_FIXTURE_DIR to a new disposable directory"));
     assert!(destination.is_absolute(), "The fixture destination must be absolute");
     assert!(!destination.exists(), "Never overwrite an existing fixture or save directory");
-    let mut g = Game::new(13, Some(NationId::France));
+    let mut g = Game::new_fresh(13, Some(NationId::France));
     fresh_play_rules(&mut g).unwrap();
     // Authored preconditions, explicitly disclosed in the exported manifest.
     // Actual proposal functions below still enforce their native hard rules.

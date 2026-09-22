@@ -52,6 +52,136 @@
       "sha256": "91d9d2d8ba0c9fcaf5d7fc7c90407d8423a2f6cd4cb2d3f4da460bf3dd3676b2"
     },
     {
+      "path": "checkpoint24-python/.gitattributes",
+      "bytes": 85,
+      "sha256": "81c1208010243775bb83d1af7473668c25f9674c428f408b68031601c8e562de"
+    },
+    {
+      "path": "checkpoint24-python/authority-unit.log",
+      "bytes": 1342,
+      "sha256": "4fbf122175baa60662679be65d6399306c46010bab8ad6171d80fbea0d49ed8d"
+    },
+    {
+      "path": "checkpoint24-python/avatar-unit.log",
+      "bytes": 28717,
+      "sha256": "77d3431151d1660e0a17495dd4a93f70edcb6176bd94a880ffc40391add3ce44"
+    },
+    {
+      "path": "checkpoint24-python/calibration-self-test.log",
+      "bytes": 715,
+      "sha256": "605fd00c8abd34570fb25347c60f986d929f99cadad2bad9db7be899b19f6159"
+    },
+    {
+      "path": "checkpoint24-python/fictional-art-self-test.log",
+      "bytes": 1098,
+      "sha256": "5fc05efdf57872988d623bc7ccf88c06349c64537d603e3f6a0793b2d8f8719d"
+    },
+    {
+      "path": "checkpoint24-python/historical-import-self-test.log",
+      "bytes": 820,
+      "sha256": "cdb1958c89a0b68821f74faab647cdcf47eeb7fcddd23db9f0e89f21e011ad3c"
+    },
+    {
+      "path": "checkpoint24-python/leadership-production-self-test.log",
+      "bytes": 1317,
+      "sha256": "6e06fef03efd439141fbf1a5c8cee9486c2eeca6ce9023e8042a27a957ed1c70"
+    },
+    {
+      "path": "checkpoint24-python/party-import-self-test.log",
+      "bytes": 989,
+      "sha256": "fdcc1745dfb4067ec07e9755a414cca50b39711ba4fca32dc5cb33c75dc3742e"
+    },
+    {
+      "path": "checkpoint24-python/person-art-self-test.log",
+      "bytes": 2078,
+      "sha256": "db4c541a61e31d53e8ebbdec368040884ac87d8def14a7776593a6ac6d894489"
+    },
+    {
+      "path": "checkpoint24-python/resource-coverage-unit.log",
+      "bytes": 1283,
+      "sha256": "699243237f568da2e1de3b3cd8a31390f776570053bab220ac2257c2e8e0c95c"
+    },
+    {
+      "path": "checkpoint24-python/result.json",
+      "bytes": 9131,
+      "sha256": "544b135b6812cb4445b3afabe26f92c1b6bd6bbea2d670316ff551f2fc33f3ca"
+    },
+    {
+      "path": "checkpoint24-python/terrain-unit.log",
+      "bytes": 3897,
+      "sha256": "813a18a5e112974e10a86f0316100074fef4c6ba177f25d01f6c8729ba91f9e5"
+    },
+    {
+      "path": "checkpoint24-python/ui-export-unit.log",
+      "bytes": 689,
+      "sha256": "7308a46eb4e572cb2de50d8dffa34c237b9ff3ff4e4f18c9998036c49b4fb059"
+    },
+    {
+      "path": "checkpoint26/.gitattributes",
+      "bytes": 85,
+      "sha256": "81c1208010243775bb83d1af7473668c25f9674c428f408b68031601c8e562de"
+    },
+    {
+      "path": "checkpoint26/census-build.log",
+      "bytes": 1463,
+      "sha256": "627b0f8dee139e3f4f02f7880585c8857db6005114aabe495e7e64a1d8d0aee3"
+    },
+    {
+      "path": "checkpoint26/census-check.log",
+      "bytes": 1462,
+      "sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+    },
+    {
+      "path": "checkpoint26/census-unit.log",
+      "bytes": 1150,
+      "sha256": "ec45d7ec8820afc98bd8d64dad60820946cde50b84d6b49ed8f52e9c22bb94a4"
+    },
+    {
+      "path": "checkpoint26/leadership-provenance-result.json",
+      "bytes": 21144,
+      "sha256": "3f534d1e90861afbfa1f8ef70492eaec6ba09efa1aeb9742efb9b2112a565a0b"
+    },
+    {
+      "path": "checkpoint26/leadership-provenance.diff",
+      "bytes": 1919,
+      "sha256": "d709817e1bd0db3b43f81d2166da9836102d5945398b0701eff6a8ec8ed059a8"
+    },
+    {
+      "path": "checkpoint26/leadership-ui-targeted-result.json",
+      "bytes": 1909,
+      "sha256": "bf86cb1921ae40ce407b863c1ae76070059cd53108c834c5765ddb1c68d1baf9"
+    },
+    {
+      "path": "checkpoint26/leadership-ui-targeted.log",
+      "bytes": 8451,
+      "sha256": "b118c24513a20a567eb536dab461eeaaa0a668c401036751299fa6bb27a7759e"
+    },
+    {
+      "path": "checkpoint26/production-build.log",
+      "bytes": 796,
+      "sha256": "ede01baeaf00d1291e7980acaf67ee41fdc7281b8c9eb0b633122423d2ccea17"
+    },
+    {
+      "path": "checkpoint26/production-check.log",
+      "bytes": 796,
+      "sha256": "ede01baeaf00d1291e7980acaf67ee41fdc7281b8c9eb0b633122423d2ccea17"
+    },
+    {
+      "path": "checkpoint26/production-self-test.log",
+      "bytes": 1317,
+      "sha256": "e47b90be27468aa20a819d07ea3309d7958e85073d8d163a615f14d2827e5d0f"
+    },
+    {
+      "path": "checkpoint26/research-check.log",
+      "bytes": 250,
+      "sha256": "bbdaaa6498ffb2ad3aaa7e42442256e05602572192e967e2f66991ed3837c709"
+    },
+    {
+      "path": "checkpoint26/verify-leadership-provenance.py",
+      "bytes": 6933,
+      "sha256": "58ef03ce82a7bfbc80e6f6bafe4b5f29fdff2b367399e8e16124a7d52c566e30"
+    },
+    {
       "path": "component-coverage.log",
       "bytes": 62,
       "sha256": "1e35b83bda49100f908f97af053d615a9a804bca7719ffc36328a16129fb2c64"
@@ -508,8 +638,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 10335,
-      "sha256": "2ba152d7ac3a8a83b09f11474dcb769fe97ffa2e4b5d1b8ddccf81fc08faa9a3"
+      "bytes": 12300,
+      "sha256": "5e005e4f4c57d16d3aaef7ca0a73f4580787a12e8c88e202185b97eaf369a575"
     },
     {
       "path": "research-check.log",

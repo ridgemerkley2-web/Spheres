@@ -5,7 +5,7 @@ use spheres_sim::{clock, company_network, operational_warfare, supplier_operatio
 use std::collections::BTreeSet;
 
 fn economy_ready(player: Option<NationId>) -> Game {
-    let mut g = Game::new(1990, player);
+    let mut g = Game::new_fresh(1990, player);
     clock::enable_daily_play(&mut g.world);
     spheres_sim::starting_industry::enable_new_world(&mut g.world).unwrap();
     spheres_sim::starting_industry::enrich_new_world(&mut g.world).unwrap();
@@ -144,7 +144,7 @@ fn opening_market_refuses_a_disabled_market_without_changes() {
 fn fresh_start_adopts_all_capabilities_without_free_work_or_supplier_stock() {
     let base = economy_ready(Some(NationId::France));
     let quoted = quoted_stocks(&base.world);
-    let mut fresh = Game::new(1990, Some(NationId::France));
+    let mut fresh = Game::new_fresh(1990, Some(NationId::France));
     fresh_play_rules(&mut fresh).unwrap();
     assert!(fresh.world.rules.historical_party_leadership && fresh.world.rules.industry_rebuild
         && fresh.world.rules.fiscal_recovery && spheres_sim::population::active(&fresh.world));
@@ -160,7 +160,7 @@ fn fresh_start_adopts_all_capabilities_without_free_work_or_supplier_stock() {
 
 #[test]
 fn fresh_startup_repeat_and_save_resume_preserve_exact_owned_state() {
-    let mut fresh = Game::new(1990, Some(NationId::France));
+    let mut fresh = Game::new_fresh(1990, Some(NationId::France));
     fresh_play_rules(&mut fresh).unwrap();
     let before = save(&fresh.world);
     fresh_play_rules(&mut fresh).unwrap();
@@ -172,7 +172,7 @@ fn fresh_startup_repeat_and_save_resume_preserve_exact_owned_state() {
 
 #[test]
 fn setup_without_a_selected_nation_and_tiny_new_campaign_use_unified_rules() {
-    let mut boot = Game::new(1990, None);
+    let mut boot = Game::new_fresh(1990, None);
     fresh_play_rules(&mut boot).unwrap();
     assert!(company_network::has_state(&boot.world) && operational_warfare::has_state(&boot.world));
     assert_no_startup_settlement(&boot.world);
@@ -201,4 +201,55 @@ fn legacy_load_keeps_company_and_operational_upgrades_opt_in() {
     play_rules(&mut loaded);
     assert!(before == save(&loaded.world), "ordinary browser adoption cannot enable new capabilities");
     assert_eq!((loaded.world.year, loaded.world.month, loaded.world.day), (1990, 1, 1));
+}
+
+#[test]
+fn fresh_browser_seats_sourced_politics_but_january_archives_keep_recorded_state() {
+    use spheres_sim::government::{self, Pillar};
+    let direct = world_1990(GameRules { ideology_blocs: true, ..Default::default() });
+    let mut fresh = Game::new_fresh(1990, Some(NationId::USA));
+    fresh_play_rules(&mut fresh).unwrap();
+    for expected in &direct.governments.states {
+        let actual = government::state(&fresh.world, expected.nation).unwrap();
+        assert_eq!(serde_json::to_value(actual).unwrap(), serde_json::to_value(expected).unwrap(),
+            "{:?}: fresh browser government must match authoritative initialization", expected.nation);
+    }
+    assert!(government::state(&fresh.world, NationId::Suriname).unwrap().opening_mandate.is_some());
+    assert!(government::state(&fresh.world, NationId::USA).unwrap().army_authority.is_some());
+    assert!(government::state(&fresh.world, NationId::Afghanistan).unwrap()
+        .established_movements.contains(&government::Bloc::Islamist));
+    let usa = fresh.world.governments.states.iter_mut().find(|g| g.nation == NationId::USA).unwrap();
+    usa.pillars.iter_mut().find(|(p, _)| *p == Pillar::Army).unwrap().1 = 0.72;
+    usa.army_authority.as_mut().unwrap().current_leverage = 0.40;
+    let recorded = save(&fresh.world);
+    fresh_play_rules(&mut fresh).unwrap();
+    assert_eq!(save(&fresh.world), recorded, "repeat capability setup preserves live loyalty and source/campaign authority");
+
+    let mut legacy = Game::new(1990, Some(NationId::USA));
+    play_rules(&mut legacy);
+    for (id, pillars) in [(NationId::USA, vec![]), (NationId::UK, vec![(Pillar::Security, 0.37)])] {
+        let g = legacy.world.governments.states.iter_mut().find(|g| g.nation == id).unwrap();
+        g.pillars = pillars;
+        g.army_authority = None;
+    }
+    assert_eq!((legacy.world.year, legacy.world.month, legacy.world.day), (1990, 1, 1));
+    let before = serde_json::to_value(&legacy.world.governments).unwrap();
+    let loaded = loaded_play_game(load(&save(&legacy.world)).unwrap());
+    assert_eq!(serde_json::to_value(&loaded.world.governments).unwrap(), before,
+        "a January 1 archive is not a new campaign");
+    assert!(government::state(&loaded.world, NationId::USA).unwrap().army_authority.is_none());
+    assert!(government::state(&loaded.world, NationId::Suriname).unwrap().opening_mandate.is_none());
+    let mut uninterrupted = loaded.world.clone();
+    let mut resumed = loaded_play_game(load(&save(&loaded.world)).unwrap()).world;
+    tick_day(&mut uninterrupted, &[]);
+    tick_day(&mut resumed, &[]);
+    assert_eq!(save(&uninterrupted), save(&resumed), "the same next day must follow a second load");
+}
+
+#[test]
+fn fresh_capabilities_refuse_a_default_world_before_any_adoption() {
+    let mut legacy = Game::new(1990, Some(NationId::USA));
+    let before = save(&legacy.world);
+    assert!(fresh_play_rules(&mut legacy).is_err());
+    assert_eq!(save(&legacy.world), before, "incorrect constructor must be refused before mutating a world");
 }

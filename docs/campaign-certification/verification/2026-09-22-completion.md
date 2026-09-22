@@ -5,8 +5,11 @@ the seven political checks and two town-scene overruns left by the preceding
 [outstanding-repairs report](2026-09-22-outstanding-repairs.md). It does not
 equate a green regression suite with completion of the entire campaign roadmap.
 
-**Validation in progress.** The final political readings and complete native
-workspace verification must be recorded before this repair pass is closed.
+**Validation in progress.** Checkpoint25 passes all 1,884 ordinary native tests,
+but a separately exercised original archive exposed a real load-time government
+mutation. Its repair and the related fresh-browser initialization correction are
+now staged for checkpoint26 verification. A1 political concentration still fails
+its unchanged rule; this repair pass and campaign certification remain open.
 
 ## Town scenes
 
@@ -80,8 +83,9 @@ additional Tonga resignation, caretaker and appointment evidence merged at
 reproduced; 85 Python checks and 11 atlas unit tests pass. The [merged browser check](../C01/integrations/CLAUDE-C01-03/browser-validation.json)
 passes all nine packets at 1,440, 390 and 320 pixels, including the corrected
 holder dates and uncertain term endings. Its research-index checks pass; the
-shared production census fingerprint remains pending the political source
-freeze. C01-05/06 remain submitted and pending independent acceptance; the older
+shared production census fingerprint has since been refreshed and checked through
+the checkpoint26 provenance pass; this does not expand historical coverage.
+C01-05/06 remain submitted and pending independent acceptance; the older
 Saudi C01-03 branch is the renamed C01-06 packet, not separate work.
 Missing instruments, uncertain terms and incomplete country coverage remain
 open. No portraits, complete historical chains or C01 closure are implied.
@@ -252,7 +256,7 @@ records **1,881 passed, three failed, 89 ignored and one timing check filtered**
 Failures are the treasury source audit encountering a test-fixture debt write,
 the web clock scenario after country disappearance, and the dead-belligerent
 scenario failing to create its required state. Their follow-up corrections
-await checkpoint 25; the original failing log is retained.
+pass checkpoint25 below; the original failing log is retained.
 
 A [fixed seed-0 trace](evidence/2026-09-22-completion/political-calibration/iteration-24-seed0-trace-analysis.md)
 finds six first and four repeated elected coups. No additional funding-threshold
@@ -260,3 +264,37 @@ or authority-reset defect is supported: the four affordable sub-threshold
 increases already target loyalty above .397. The prospective plan, compact
 case evidence and exact binary/library/log receipts are archived. This
 diagnostic does not certify A1 or replace its failed ensemble result.
+
+## Checkpoints 25 and 26: exact saved-state preservation
+
+The [checkpoint25 validation archive](evidence/2026-09-22-completion/checkpoint25-validation/README.md)
+records **1,884 passed, zero failed, 89 ignored and one timing check filtered**
+across 66 native targets at `7b8a3dbb`. The isolated resource measurement passes
+its unchanged 0.15 ms/month hard bar at 0.0631; it misses the advisory 0.05 target.
+Three of four genuine archived-save checks pass. The fourth, the unchanged
+pinned-master property test, finds a real mutation: loading adds an Army pillar
+to an already recorded empty government. All 32 original fixture/provenance files
+remain unchanged. The failed result is retained rather than masked by the green
+ordinary suite.
+
+Both mature native-preview latency checks pass their original 300 ms p95 / 750 ms
+maximum bars. Decision and government previews measure p95 12.7586 / 11.9048 ms;
+reciprocal-route review measures 188.0559 ms. The largest observed sample is
+189.2093 ms. Archives, source and binaries remain unchanged; these are native
+preview measurements, not browser or HTTP latency.
+
+The [checkpoint26 repair](evidence/2026-09-22-completion/checkpoint25-validation/repair/diagnosis.md)
+removes institution retrofitting from existing-government `ensure`. A missing
+whole government retains the established lazy construction path. A separate
+fresh-browser constructor now supplies the political rules before the canonical
+`world_1990` initializer, giving new campaigns the same sourced institutions,
+established movements, military authority and prior mandate. Loading an archive,
+even dated January 1, never enters that constructor. The genuine archive test and
+its exact property assertions remain untouched. Rebuilt native/archive/browser
+verification of this correction is pending.
+
+The [original 12-seed diagnostic](evidence/2026-09-22-completion/political-calibration/iteration-25-original12-country-counts-README.md)
+preserves the unchanged failing A1 result: median 7 coups and top-three share
+0.585714. A separately displayed effective-country-count comparison is a proposed
+alternative design criterion, **not an approved replacement or a pass**. No
+outcome threshold has changed; no reserved independent seed has been run.

@@ -63,3 +63,10 @@ docs/campaign-certification/verification/evidence/2026-09-22-completion/tooling-
 docs/campaign-certification/verification/evidence/2026-09-22-completion/tooling-validation/*.log -text -whitespace
 docs/campaign-certification/verification/evidence/2026-09-22-completion/tooling-validation/**/*.log -text -whitespace
 docs/campaign-certification/verification/evidence/2026-09-22-completion/resource-coverage/*.log -text -whitespace
+
+# Validation archives retain exact captured bytes, including original log whitespace.
+docs/campaign-certification/verification/evidence/2026-09-22-completion/checkpoint25-validation/** -text -whitespace
+docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-25-original12-country-counts* -text -whitespace
+docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/original12-* -text -whitespace
+docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/analyze-original12-country-counts.py -text
+docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/prepare-original12-country-counts.py -text

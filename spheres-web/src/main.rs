@@ -297,8 +297,20 @@ fn exchange_session_matches(method: &Method, url: &str, payload: &serde_json::Va
 }
 
 impl Game {
+    /// Default/off worlds remain available to the legacy regression fixtures.
+    #[cfg(test)]
     fn new(seed: u64, player: Option<NationId>) -> Game {
-        let rules = GameRules { seed, ..GameRules::default() };
+        Self::new_with_rules(GameRules { seed, ..GameRules::default() }, player)
+    }
+
+    /// Fresh browser political data is initialized by the authoritative world
+    /// constructor, before any government or movement is seated. Save loading
+    /// never enters this path, even when its recorded date is January 1.
+    fn new_fresh(seed: u64, player: Option<NationId>) -> Game {
+        Self::new_with_rules(GameRules { seed, ideology_blocs: true, ..GameRules::default() }, player)
+    }
+
+    fn new_with_rules(rules: GameRules, player: Option<NationId>) -> Game {
         let mut world = world_1990(rules);
         world.player = player;
         // The derived HAVE cache, built before the first tick so the resource
@@ -7138,6 +7150,9 @@ fn play_rules(g: &mut Game) {
 /// adopt the connected economy, company operations and daily operational warfare.
 /// Existing saves keep those upgrades opt-in; loading never grants supplier stock.
 fn fresh_play_rules(g: &mut Game) -> Result<(), String> {
+    if !g.world.rules.ideology_blocs {
+        return Err("Create a fresh campaign with its political rules before adopting browser capabilities.".into());
+    }
     spheres_sim::clock::enable_daily_play(&mut g.world);
     if spheres_sim::starting_industry::enable_new_world(&mut g.world)? {
         spheres_sim::starting_industry::enrich_new_world(&mut g.world)?;
@@ -7223,7 +7238,7 @@ fn apply_orders(w: &mut WorldState, me: NationId, list: &[serde_json::Value]) ->
 }
 
 fn new_game(g: &mut Game, seed: u64, player: Option<NationId>) -> (serde_json::Value, bool) {
-    let mut fresh = Game::new(seed, player);
+    let mut fresh = Game::new_fresh(seed, player);
     if let Some(id) = player {
         // Asked of the world that was just built rather than of `start_1990`,
         // so this stays true if the roster ever seats a nation it does not
@@ -7298,7 +7313,7 @@ fn main() {
     let port = listen_port(&args, env_port.as_deref());
 
     // Setup and /api/new adopt the same capabilities before the first response.
-    let mut boot = Game::new(1990, None);
+    let mut boot = Game::new_fresh(1990, None);
     fresh_play_rules(&mut boot).expect("fresh 1990 campaign capabilities must validate");
     let game: Mutex<Game> = Mutex::new(boot);
 
@@ -16535,7 +16550,7 @@ mod tests {
 
         // Exercise the same factories as boot and /api/new. Counting source
         // mentions also counted test fixtures and the fresh_play_rules name.
-        let mut boot = Game::new(1990, Some(NationId::Iraq));
+        let mut boot = Game::new_fresh(1990, Some(NationId::Iraq));
         fresh_play_rules(&mut boot).unwrap();
         let (_, started) = new_game(&mut g, 1990, Some(NationId::Iraq));
         assert!(started);
@@ -18408,7 +18423,7 @@ mod s02_connected_economy_api_tests {
         assert_eq!(view["upgrade"]["available"],true);
         assert!(view["population"].is_null());assert!(view["industry"].is_null());
         assert_eq!(save(&legacy.world),before);
-        let mut fresh=Game::new(1990,Some(NationId::France));fresh_play_rules(&mut fresh).unwrap();
+        let mut fresh=Game::new_fresh(1990,Some(NationId::France));fresh_play_rules(&mut fresh).unwrap();
         let before=save(&fresh.world);let view=connected_economy_json(&fresh.world,NationId::France);
         assert_eq!(view["enabled"],true);assert_eq!(view["upgrade"]["available"],false);
         assert_eq!(view["population"]["policies"].as_array().unwrap().len(),4);
@@ -18421,7 +18436,7 @@ mod s02_connected_economy_api_tests {
 
     #[test]
     fn s02_connected_reading_is_pure_and_exposes_the_same_snapshot_in_cash_flow_and_state() {
-        let mut g=Game::new(1990,Some(NationId::France));fresh_play_rules(&mut g).unwrap();
+        let mut g=Game::new_fresh(1990,Some(NationId::France));fresh_play_rules(&mut g).unwrap();
         let fresh=connected_economy_json(&g.world,NationId::France);
         for _ in 0..3 {spheres_sim::tick_day(&mut g.world,&[]);}
         let before=save(&g.world);let reading=connected_economy_json(&g.world,NationId::France);

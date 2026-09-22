@@ -26,7 +26,7 @@ fn s10g_export_disposable_sanctions_fixture() {
         .expect("Set SPHERES_S10G_SANCTIONS_FIXTURE_DIR to a new disposable directory"));
     assert!(destination.is_absolute());
     assert!(!destination.exists(), "Never overwrite an existing fixture or campaign directory");
-    let mut g = Game::new(13, Some(NationId::France));
+    let mut g = Game::new_fresh(13, Some(NationId::France));
     fresh_play_rules(&mut g).unwrap();
     g.world.statecraft.pacts.clear();
     g.world.statecraft.trade.clear();

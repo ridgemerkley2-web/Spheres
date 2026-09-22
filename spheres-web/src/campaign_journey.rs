@@ -187,7 +187,7 @@ mod tests {
                 "player":g.world.player,"date":g.world.date_str()}]})
     }
     fn dissolved(id: NationId) -> Game {
-        let mut g = Game::new(1990, Some(id));
+        let mut g = Game::new_fresh(1990, Some(id));
         crate::fresh_play_rules(&mut g).unwrap();
         campaign_aims::choose(&mut g.world, id, campaign_aims::Aim::Prosperity).unwrap();
         g.world.nation_mut(id).stability = 0.;
@@ -322,7 +322,7 @@ mod tests {
     fn s21_export_review_fixtures() {
         let path=std::path::PathBuf::from(std::env::var_os("SPHERES_S21_FIXTURE_DIR").unwrap());
         assert!(path.is_absolute()&&!path.exists());std::fs::create_dir(&path).unwrap();
-        let mut g=Game::new(1990,Some(NationId::France));crate::fresh_play_rules(&mut g).unwrap();g.history.clear();g.snapshot();
+        let mut g=Game::new_fresh(1990,Some(NationId::France));crate::fresh_play_rules(&mut g).unwrap();g.history.clear();g.snapshot();
         campaign_aims::choose(&mut g.world,NationId::France,campaign_aims::Aim::Prosperity).unwrap();
         for h in g.world.headlines.clone(){g.record(h);}
         std::fs::write(path.join("active.json"),storage::encode(&g).unwrap()).unwrap();
