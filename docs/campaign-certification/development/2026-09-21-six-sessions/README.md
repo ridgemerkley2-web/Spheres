@@ -11,8 +11,8 @@ qualification remain in the canonical pathway.
 | 2 | Equipment section selection and direct keyboard/touch access to controls | Complete; S20 independent preparation |
 | 3 | Clearer province economic activity overview | Complete; S20 independent preparation |
 | 4 | Performance observation improvements | Complete; S22 independent preparation |
-| 5 | Worldwide startup preflight | In progress |
-| 6 | Integrate available handoffs, native build and combined browser review | Planned |
+| 5 | Worldwide startup preflight and Congo selection fix | Complete; 137/137 starters pass |
+| 6 | Integrate available handoffs, native build and combined browser review | In progress |
 
 ## Session 1
 
@@ -87,3 +87,32 @@ explicitly recorded; the tiny browser sample proves recorder behavior, not game
 performance. Visible-page animation cadence is not claimed as GPU/map FPS, and
 synchronous redraw timing is not server or asynchronous loading time. Full S22
 workloads and the existing 42 art-budget overruns remain open.
+
+Post-session 4 fetch: S19 remains `8d01b9ae`, Tonga remains `852510d3`;
+no newer Claude changes at that checkpoint.
+
+## Session 5
+
+Added `tools/campaign/worldwide_preflight.py`: a reproducible native check of all
+137 ordinary 1990 starters, using a fresh server and two bounded scratch save
+slots. It validates selected country, government, cash flow, guidance, seven days
+of protected advances, duplicate-turn protection, and full campaign archive
+save/load/save equality (excluding only the save timestamp). It verifies the exact
+source revision, binary hash and clean checkout before and after the run.
+
+The first sweep passed 134/137. Congo's canonical code incorrectly matched the
+earlier Zaire alias; removing that ambiguous alias fixes both API and menu starts
+while retaining `zar` and `drc`. Native regressions check all 160 canonical codes
+in original and lowercase form. The other two failures were harness assumptions:
+Honduras and USA legitimately pause for leadership events. The harness now records
+these interruptions and submits a new protected request for the remaining days,
+without suppressing game events.
+
+The corrected sweep passes **137/137** at source
+`8cf61817d06f2f2cc565dc14c2ffa2a509eaea7d`; binary SHA-256
+`8fa2fe8ac086b633221286ccd72b4793f178e0832eec1d3aee52a75563f730b3`.
+Five native nation tests and the locked release build pass. The changed UI's
+179 tests also pass on Linux. Raw first/final results and logs are in `session-05/`.
+This is a backend startup preflight, not successor activation, 20-year campaigns,
+137-country browser review, adversarial recovery, historical-content approval or
+S24 certification. Session 6 separately checks Congo through the actual menu.

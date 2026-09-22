@@ -1,0 +1,1084 @@
+TAP version 13
+# Subtest: designer starts from the server balanced preset and renders supplied ratings and costs without recalculating
+ok 1 - designer starts from the server balanced preset and renders supplied ratings and costs without recalculating
+  ---
+  duration_ms: 19.48893
+  type: 'test'
+  ...
+# Subtest: starting from a legacy model uses its supplied separate specifications and preserves the original
+ok 2 - starting from a legacy model uses its supplied separate specifications and preserves the original
+  ---
+  duration_ms: 9.127188
+  type: 'test'
+  ...
+# Subtest: independent new specifications are submitted separately and grouped for review
+ok 3 - independent new specifications are submitted separately and grouped for review
+  ---
+  duration_ms: 16.502132
+  type: 'test'
+  ...
+# Subtest: aviation family uses supplied defaults, clears ground slots and groups all eight independent specifications
+ok 4 - aviation family uses supplied defaults, clears ground slots and groups all eight independent specifications
+  ---
+  duration_ms: 432.633382
+  type: 'test'
+  ...
+# Subtest: aircraft part inspection focuses its group and payload edits submit all eight slots to a pure fresh review
+ok 5 - aircraft part inspection focuses its group and payload edits submit all eight slots to a pure fresh review
+  ---
+  duration_ms: 295.817365
+  type: 'test'
+  ...
+# Subtest: aviation readiness precedes maintenance, preserves server loadout readings and navigates through captured actions
+ok 6 - aviation readiness precedes maintenance, preserves server loadout readings and navigates through captured actions
+  ---
+  duration_ms: 2.404695
+  type: 'test'
+  ...
+# Subtest: 3D preview retains one live host and camera across pricing responses, typing, and component changes
+ok 7 - 3D preview retains one live host and camera across pricing responses, typing, and component changes
+  ---
+  duration_ms: 8.844181
+  type: 'test'
+  ...
+# Subtest: model controls retain focus across a repaint and expose keyboard, camera, finish, and download actions
+ok 8 - model controls retain focus across a repaint and expose keyboard, camera, finish, and download actions
+  ---
+  duration_ms: 2.704985
+  type: 'test'
+  ...
+# Subtest: leaving the designer and closing release the model exactly once while returning remounts it
+ok 9 - leaving the designer and closing release the model exactly once while returning remounts it
+  ---
+  duration_ms: 3.135672
+  type: 'test'
+  ...
+# Subtest: same campaign state refresh keeps the preview but switching nations disposes before the new response arrives
+ok 10 - same campaign state refresh keeps the preview but switching nations disposes before the new response arrives
+  ---
+  duration_ms: 8.400884
+  type: 'test'
+  ...
+# Subtest: an unavailable or failed renderer leaves the configuration and priced review usable
+ok 11 - an unavailable or failed renderer leaves the configuration and priced review usable
+  ---
+  duration_ms: 2.921123
+  type: 'test'
+  ...
+# Subtest: component choice permits a future draft but invalidates old effects and uses a pure server review
+ok 12 - component choice permits a future draft but invalidates old effects and uses a pure server review
+  ---
+  duration_ms: 4.905124
+  type: 'test'
+  ...
+# Subtest: name and search edits preserve caret and never create orders or discard the draft on tab navigation
+ok 13 - name and search edits preserve caret and never create orders or discard the draft on tab navigation
+  ---
+  duration_ms: 5.124688
+  type: 'test'
+  ...
+# Subtest: development, manufacturing and service show dated receipts, preserved platform age and real funding labels
+ok 14 - development, manufacturing and service show dated receipts, preserved platform age and real funding labels
+  ---
+  duration_ms: 1.016376
+  type: 'test'
+  ...
+# Subtest: unknown supplied metrics and costs remain unknown; all unsafe names, notes and attributes are escaped
+ok 15 - unknown supplied metrics and costs remain unknown; all unsafe names, notes and attributes are escaped
+  ---
+  duration_ms: 0.802695
+  type: 'test'
+  ...
+# Subtest: research links navigate to exact technology without acquiring it or changing allocations
+ok 16 - research links navigate to exact technology without acquiring it or changing allocations
+  ---
+  duration_ms: 2.817405
+  type: 'test'
+  ...
+# Subtest: save and programme actions require an explicit review confirmation and send exactly the supplied command
+ok 17 - save and programme actions require an explicit review confirmation and send exactly the supplied command
+  ---
+  duration_ms: 8.556014
+  type: 'test'
+  ...
+# Subtest: quantity, site and daily funding changes request a new quote before an exact committed order
+ok 18 - quantity, site and daily funding changes request a new quote before an exact committed order
+  ---
+  duration_ms: 8.200931
+  type: 'test'
+  ...
+# Subtest: late order quotes cannot re-enable a commit after input edits, tab navigation or closing
+ok 19 - late order quotes cannot re-enable a commit after input edits, tab navigation or closing
+  ---
+  duration_ms: 4.961151
+  type: 'test'
+  ...
+# Subtest: an invalid order quote or unknown number never falls back to a zero-cost accepted order
+ok 20 - an invalid order quote or unknown number never falls back to a zero-cost accepted order
+  ---
+  duration_ms: 3.297233
+  type: 'test'
+  ...
+# Subtest: stale state, pending orders and replacement payloads block captured buttons and direct confirmations
+ok 21 - stale state, pending orders and replacement payloads block captured buttons and direct confirmations
+  ---
+  duration_ms: 16.982038
+  type: 'test'
+  ...
+# Subtest: reads and previews validate session identity and rejected previews cannot expose a legal action
+ok 22 - reads and previews validate session identity and rejected previews cannot expose a legal action
+  ---
+  duration_ms: 6.607678
+  type: 'test'
+  ...
+# Subtest: new campaign removes old drafts and holdings immediately while same-campaign refresh preserves work
+ok 23 - new campaign removes old drafts and holdings immediately while same-campaign refresh preserves work
+  ---
+  duration_ms: 8.223797
+  type: 'test'
+  ...
+# Subtest: an old design quote loses to the latest draft and cannot survive closing
+ok 24 - an old design quote loses to the latest draft and cannot survive closing
+  ---
+  duration_ms: 4.548146
+  type: 'test'
+  ...
+# Subtest: refresh failures remain explicit and retryable without losing a draft or creating a polling loop
+ok 25 - refresh failures remain explicit and retryable without losing a draft or creating a polling loop
+  ---
+  duration_ms: 6.709037
+  type: 'test'
+  ...
+# Subtest: tabs support roving keyboard focus and details, scroll and refresh focus survive repaint
+ok 26 - tabs support roving keyboard focus and details, scroll and refresh focus survive repaint
+  ---
+  duration_ms: 3.964301
+  type: 'test'
+  ...
+# Subtest: explicit opening uses root visibility, respects requested tabs and makes one snapshot read
+ok 27 - explicit opening uses root visibility, respects requested tabs and makes one snapshot read
+  ---
+  duration_ms: 2.485178
+  type: 'test'
+  ...
+# Subtest: published assets parse and retain scoped responsive controls without an alternative command channel
+ok 28 - published assets parse and retain scoped responsive controls without an alternative command channel
+  ---
+  duration_ms: 1.259453
+  type: 'test'
+  ...
+# Subtest: order review reveals itself from a long catalogue and retains its raw-input requirements through requotes
+ok 29 - order review reveals itself from a long catalogue and retains its raw-input requirements through requotes
+  ---
+  duration_ms: 3.484768
+  type: 'test'
+  ...
+# Subtest: active equipment campaigns expose supplied funding and plant navigation without inventing orders
+ok 30 - active equipment campaigns expose supplied funding and plant navigation without inventing orders
+  ---
+  duration_ms: 1.594326
+  type: 'test'
+  ...
+# Subtest: fullscreen bridge mounts outside the inert game, closes other rooms, and preserves the draft on return
+ok 31 - fullscreen bridge mounts outside the inert game, closes other rooms, and preserves the draft on return
+  ---
+  duration_ms: 11.537298
+  type: 'test'
+  ...
+# Subtest: shell commands use the existing channel and adopted response while preserving local drafts and policy queues
+ok 32 - shell commands use the existing channel and adopted response while preserving local drafts and policy queues
+  ---
+  duration_ms: 4.845589
+  type: 'test'
+  ...
+# Subtest: reviewed retirement reaches the real command bridge and reports immediate fleet changes
+ok 33 - reviewed retirement reaches the real command bridge and reports immediate fleet changes
+  ---
+  duration_ms: 4.735199
+  type: 'test'
+  ...
+# Subtest: refused, uncertain and cross-campaign command responses never adopt or announce a successful order
+ok 34 - refused, uncertain and cross-campaign command responses never adopt or announce a successful order
+  ---
+  duration_ms: 6.146731
+  type: 'test'
+  ...
+# Subtest: research navigation keeps equipment-only integrations local and pins a genuine prerequisite in its real domain
+ok 35 - research navigation keeps equipment-only integrations local and pins a genuine prerequisite in its real domain
+  ---
+  duration_ms: 5.20576
+  type: 'test'
+  ...
+# Subtest: funding and plant shortcuts retain exact backend targets and never issue equipment commands
+ok 36 - funding and plant shortcuts retain exact backend targets and never issue equipment commands
+  ---
+  duration_ms: 2.18336
+  type: 'test'
+  ...
+# Subtest: fullscreen equipment consumes world shortcuts, permits native input, pauses a running clock and closes on Escape
+ok 37 - fullscreen equipment consumes world shortcuts, permits native input, pauses a running clock and closes on Escape
+  ---
+  duration_ms: 2.761285
+  type: 'test'
+  ...
+# Subtest: raw-input navigation opens Resources without orders or loss of an unsaved equipment draft
+ok 38 - raw-input navigation opens Resources without orders or loss of an unsaved equipment draft
+  ---
+  duration_ms: 2.466379
+  type: 'test'
+  ...
+# Subtest: the published shell includes reachable research and manufacturing entrances plus session and modal hooks
+ok 39 - the published shell includes reachable research and manufacturing entrances plus session and modal hooks
+  ---
+  duration_ms: 12.160551
+  type: 'test'
+  ...
+# Subtest: legacy manufacturing holdings distinguish complete vehicles from legacy equipment equivalents
+ok 40 - legacy manufacturing holdings distinguish complete vehicles from legacy equipment equivalents
+  ---
+  duration_ms: 2.118601
+  type: 'test'
+  ...
+# Subtest: research branches expose real prerequisites, unlocks and four states with independent filters
+ok 41 - research branches expose real prerequisites, unlocks and four states with independent filters
+  ---
+  duration_ms: 5.843309
+  type: 'test'
+  ...
+# Subtest: research review buttons and prerequisite links retain campaign freshness guards after filtering
+ok 42 - research review buttons and prerequisite links retain campaign freshness guards after filtering
+  ---
+  duration_ms: 1.099037
+  type: 'test'
+  ...
+# Subtest: research connectors represent only actual visible prerequisite edges
+ok 43 - research connectors represent only actual visible prerequisite edges
+  ---
+  duration_ms: 0.805608
+  type: 'test'
+  ...
+# Subtest: vehicle family changes preserve compatible parts and discard incompatible slots and source revisions
+ok 44 - vehicle family changes preserve compatible parts and discard incompatible slots and source revisions
+  ---
+  duration_ms: 4.775446
+  type: 'test'
+  ...
+# Subtest: platform changes update untouched starting names while retaining typed and saved names
+ok 45 - platform changes update untouched starting names while retaining typed and saved names
+  ---
+  duration_ms: 16.278085
+  type: 'test'
+  ...
+# Subtest: fractional ratings display at most three decimals while preserving precise server comparison data
+ok 46 - fractional ratings display at most three decimals while preserving precise server comparison data
+  ---
+  duration_ms: 1.121893
+  type: 'test'
+  ...
+# Subtest: comparison uses supplied numbers, directional tradeoffs and component changes with a persistent baseline
+ok 47 - comparison uses supplied numbers, directional tradeoffs and component changes with a persistent baseline
+  ---
+  duration_ms: 5.854304
+  type: 'test'
+  ...
+# Subtest: late comparison responses cannot price a different baseline or enable its old actions
+ok 48 - late comparison responses cannot price a different baseline or enable its old actions
+  ---
+  duration_ms: 5.969338
+  type: 'test'
+  ...
+# Subtest: modernization gives reasons and tradeoffs and opens a local proposal without issuing an order
+ok 49 - modernization gives reasons and tradeoffs and opens a local proposal without issuing an order
+  ---
+  duration_ms: 4.358884
+  type: 'test'
+  ...
+# Subtest: model part events open and focus their specification without repricing or remounting the camera
+ok 50 - model part events open and focus their specification without repricing or remounting the camera
+  ---
+  duration_ms: 2.410304
+  type: 'test'
+  ...
+# Subtest: production supply precedes project cards and shows server quantities with separate physical units
+ok 51 - production supply precedes project cards and shows server quantities with separate physical units
+  ---
+  duration_ms: 1.745536
+  type: 'test'
+  ...
+# Subtest: per-project supply expands and keeps its exact resource target without placing an order
+ok 52 - per-project supply expands and keeps its exact resource target without placing an order
+  ---
+  duration_ms: 1.49034
+  type: 'test'
+  ...
+# Subtest: optional supply data preserves old responses and explicit empty stages without inventing requirements
+ok 53 - optional supply data preserves old responses and explicit empty stages without inventing requirements
+  ---
+  duration_ms: 1.249052
+  type: 'test'
+  ...
+# Subtest: supply navigation rejects stale data, replaced readings, pending orders and command-shaped actions
+ok 54 - supply navigation rejects stale data, replaced readings, pending orders and command-shaped actions
+  ---
+  duration_ms: 5.787991
+  type: 'test'
+  ...
+# Subtest: order supply appears before confirmation and invalid orders may review resources without submitting
+ok 55 - order supply appears before confirmation and invalid orders may review resources without submitting
+  ---
+  duration_ms: 4.923637
+  type: 'test'
+  ...
+# Subtest: quoted supply links require the captured quote and current order settings even when campaign data is fresh
+ok 56 - quoted supply links require the captured quote and current order settings even when campaign data is fresh
+  ---
+  duration_ms: 15.331142
+  type: 'test'
+  ...
+# Subtest: supply text and attributes escape unsafe server content while small physical requirements remain visible
+ok 57 - supply text and attributes escape unsafe server content while small physical requirements remain visible
+  ---
+  duration_ms: 0.853048
+  type: 'test'
+  ...
+# Subtest: commodity navigation reaches the exact resource and preserves unsaved designs while refusing pending navigation
+ok 58 - commodity navigation reaches the exact resource and preserves unsaved designs while refusing pending navigation
+  ---
+  duration_ms: 2.356161
+  type: 'test'
+  ...
+# Subtest: material tables contain horizontal scrolling and retain readable narrow controls
+ok 59 - material tables contain horizontal scrolling and retain readable narrow controls
+  ---
+  duration_ms: 0.814793
+  type: 'test'
+  ...
+# Subtest: service overview precedes modernization and displays supplied fleet counts and role capabilities
+ok 60 - service overview precedes modernization and displays supplied fleet counts and role capabilities
+  ---
+  duration_ms: 1.622178
+  type: 'test'
+  ...
+# Subtest: service navigation preserves a local design and refuses stale readings or command-shaped shortcuts
+ok 61 - service navigation preserves a local design and refuses stale readings or command-shaped shortcuts
+  ---
+  duration_ms: 10.807137
+  type: 'test'
+  ...
+# Subtest: retirement effects and permanent loss are reviewed before any command and quantity edits require a new captured quote
+ok 62 - retirement effects and permanent loss are reviewed before any command and quantity edits require a new captured quote
+  ---
+  duration_ms: 7.015113
+  type: 'test'
+  ...
+# Subtest: invalid retirement reviews keep effects visible but cannot remove vehicles
+ok 63 - invalid retirement reviews keep effects visible but cannot remove vehicles
+  ---
+  duration_ms: 3.874413
+  type: 'test'
+  ...
+# Subtest: retirement confirmation from a dismissed review cannot confirm another current review
+ok 64 - retirement confirmation from a dismissed review cannot confirm another current review
+  ---
+  duration_ms: 4.022867
+  type: 'test'
+  ...
+# Subtest: fleet shortcuts switch only recognized equipment tabs while preserving the open room and unsaved design
+ok 65 - fleet shortcuts switch only recognized equipment tabs while preserving the open room and unsaved design
+  ---
+  duration_ms: 4.08914
+  type: 'test'
+  ...
+# Subtest: service overview and effects escape labels, role detail and attributes while optional responses stay usable
+ok 66 - service overview and effects escape labels, role detail and attributes while optional responses stay usable
+  ---
+  duration_ms: 1.047736
+  type: 'test'
+  ...
+# Subtest: maintenance, supply and target confirmations use the real command bridge with accurate outcomes
+ok 67 - maintenance, supply and target confirmations use the real command bridge with accurate outcomes
+  ---
+  duration_ms: 6.240031
+  type: 'test'
+  ...
+# Subtest: maintenance and target planning show authoritative figures without issuing orders on navigation
+ok 68 - maintenance and target planning show authoritative figures without issuing orders on navigation
+  ---
+  duration_ms: 2.834745
+  type: 'test'
+  ...
+# Subtest: supply horizon keeps its numeric type and editing the cash cap invalidates the previous purchase review
+ok 69 - supply horizon keeps its numeric type and editing the cash cap invalidates the previous purchase review
+  ---
+  duration_ms: 7.447724
+  type: 'test'
+  ...
+# Subtest: ammunition is a separate keyboard workflow with server figures, action paths and one search
+ok 70 - ammunition is a separate keyboard workflow with server figures, action paths and one search
+  ---
+  duration_ms: 4.381438
+  type: 'test'
+  ...
+# Subtest: ammunition order edits require a new captured quote before submitting the server command
+ok 71 - ammunition order edits require a new captured quote before submitting the server command
+  ---
+  duration_ms: 6.908422
+  type: 'test'
+  ...
+# Subtest: ammunition activation and batch controls remain reviewed and reject stale board actions
+ok 72 - ammunition activation and batch controls remain reviewed and reject stale board actions
+  ---
+  duration_ms: 4.096723
+  type: 'test'
+  ...
+# Subtest: all ammunition bridge commands report their own result and preserve unrelated drafts and queues
+ok 73 - all ammunition bridge commands report their own result and preserve unrelated drafts and queues
+  ---
+  duration_ms: 16.393892
+  type: 'test'
+  ...
+# Subtest: ammunition empty states, filtering and server text stay usable and escaped
+ok 74 - ammunition empty states, filtering and server text stay usable and escaped
+  ---
+  duration_ms: 2.720647
+  type: 'test'
+  ...
+# Subtest: ammunition reserve cards share search counts and retain authoritative values and original action indexes
+ok 75 - ammunition reserve cards share search counts and retain authoritative values and original action indexes
+  ---
+  duration_ms: 4.661148
+  type: 'test'
+  ...
+# Subtest: reserve target and Boolean automation edits invalidate captured quotes before exact confirmation
+ok 76 - reserve target and Boolean automation edits invalidate captured quotes before exact confirmation
+  ---
+  duration_ms: 12.987134
+  type: 'test'
+  ...
+# Subtest: reserve removal requires its own fresh quote and stale reserve cards cannot send commands
+ok 77 - reserve removal requires its own fresh quote and stale reserve cards cannot send commands
+  ---
+  duration_ms: 10.20974
+  type: 'test'
+  ...
+# Subtest: reserve bridge distinguishes manual, automatic and removal outcomes and returns to ammunition only on success
+ok 78 - reserve bridge distinguishes manual, automatic and removal outcomes and returns to ammunition only on success
+  ---
+  duration_ms: 10.020881
+  type: 'test'
+  ...
+# Subtest: material purchasing policy precedes manual purchases and shows three recent receipts with preserved history paths
+ok 79 - material purchasing policy precedes manual purchases and shows three recent receipts with preserved history paths
+  ---
+  duration_ms: 2.70811
+  type: 'test'
+  ...
+# Subtest: optional material purchasing data keeps old payloads usable, escapes receipt text and avoids duplicated ammunition history
+ok 80 - optional material purchasing data keeps old payloads usable, escapes receipt text and avoids duplicated ammunition history
+  ---
+  duration_ms: 2.496905
+  type: 'test'
+  ...
+# Subtest: material purchasing authorization uses exact edited Boolean and numeric values only after a fresh quote
+ok 81 - material purchasing authorization uses exact edited Boolean and numeric values only after a fresh quote
+  ---
+  duration_ms: 10.390654
+  type: 'test'
+  ...
+# Subtest: material purchasing reviews reject stale or pending confirmations and invalid authorization quotes
+ok 82 - material purchasing reviews reject stale or pending confirmations and invalid authorization quotes
+  ---
+  duration_ms: 19.767015
+  type: 'test'
+  ...
+# Subtest: clearing the material purchasing policy requires a fresh explicit review
+ok 83 - clearing the material purchasing policy requires a fresh explicit review
+  ---
+  duration_ms: 11.055794
+  type: 'test'
+  ...
+# Subtest: material purchasing bridge distinguishes disabled, enabled and cleared policies and returns to Production
+ok 84 - material purchasing bridge distinguishes disabled, enabled and cleared policies and returns to Production
+  ---
+  duration_ms: 11.499593
+  type: 'test'
+  ...
+# Subtest: supplier market leads with actual foreign stock and separates company administration and paid arrivals
+ok 85 - supplier market leads with actual foreign stock and separates company administration and paid arrivals
+  ---
+  duration_ms: 3.562418
+  type: 'test'
+  ...
+# Subtest: supplier location and affordable filters use native quantities and retain original offer action paths
+ok 86 - supplier location and affordable filters use native quantities and retain original offer action paths
+  ---
+  duration_ms: 21.447973
+  type: 'test'
+  ...
+# Subtest: foreign model inspection uses the seller specification without unlocking parts or replacing the draft
+ok 87 - foreign model inspection uses the seller specification without unlocking parts or replacing the draft
+  ---
+  duration_ms: 6.801429
+  type: 'test'
+  ...
+# Subtest: supplier commissioning is shown as paid work rather than invented ready inventory or dates
+ok 88 - supplier commissioning is shown as paid work rather than invented ready inventory or dates
+  ---
+  duration_ms: 1.452012
+  type: 'test'
+  ...
+# Subtest: import cancellation reviews blocked access and dated refund terms before issuing the exact command
+ok 89 - import cancellation reviews blocked access and dated refund terms before issuing the exact command
+  ---
+  duration_ms: 17.843474
+  type: 'test'
+  ...
+# Subtest: import filters and reviews cannot act across replaced campaigns, stale dates or pending receipts
+ok 90 - import filters and reviews cannot act across replaced campaigns, stale dates or pending receipts
+  ---
+  duration_ms: 21.249279
+  type: 'test'
+  ...
+# Subtest: market zero matches keeps an explicit route to unavailable offers and restores focused filters
+ok 91 - market zero matches keeps an explicit route to unavailable offers and restores focused filters
+  ---
+  duration_ms: 5.40722
+  type: 'test'
+  ...
+# Subtest: domestic and foreign paid deliveries retain separate original action paths outside the offer filters
+ok 92 - domestic and foreign paid deliveries retain separate original action paths outside the offer filters
+  ---
+  duration_ms: 5.661469
+  type: 'test'
+  ...
+# Subtest: import ammunition preserves exact family and store units without a guessed vehicle or researched components
+ok 93 - import ammunition preserves exact family and store units without a guessed vehicle or researched components
+  ---
+  duration_ms: 4.713335
+  type: 'test'
+  ...
+# Subtest: paused supplier programmes link to existing Exchange enrollment without adopting rules or spending
+ok 94 - paused supplier programmes link to existing Exchange enrollment without adopting rules or spending
+  ---
+  duration_ms: 2.616426
+  type: 'test'
+  ...
+# Subtest: new import commands use the existing transaction channel without modifying drafts or research
+ok 95 - new import commands use the existing transaction channel without modifying drafts or research
+  ---
+  duration_ms: 7.985647
+  type: 'test'
+  ...
+# Subtest: companies explain separate ownership and show server-priced stock, delivery and fleet need without issuing orders
+ok 96 - companies explain separate ownership and show server-priced stock, delivery and fleet need without issuing orders
+  ---
+  duration_ms: 3.251466
+  type: 'test'
+  ...
+# Subtest: company model inspection uses frozen specifications while preserving an unfinished design and one live renderer
+ok 97 - company model inspection uses frozen specifications while preserving an unfinished design and one live renderer
+  ---
+  duration_ms: 7.160551
+  type: 'test'
+  ...
+# Subtest: company establishment name, facility and paid capital remain editable and are sent only after a fresh review
+ok 98 - company establishment name, facility and paid capital remain editable and are sent only after a fresh review
+  ---
+  duration_ms: 8.709763
+  type: 'test'
+  ...
+# Subtest: manufacturer selection keeps numeric identity and quotes development separately from stock purchases
+ok 99 - manufacturer selection keeps numeric identity and quotes development separately from stock purchases
+  ---
+  duration_ms: 8.191143
+  type: 'test'
+  ...
+# Subtest: company purchase quantity changes invalidate the old sale quote and show delivery and upkeep before confirmation
+ok 100 - company purchase quantity changes invalidate the old sale quote and show delivery and upkeep before confirmation
+  ---
+  duration_ms: 13.684502
+  type: 'test'
+  ...
+# Subtest: company purchases cannot commit insufficient stock or funding and old inputs cannot alter another review
+ok 101 - company purchases cannot commit insufficient stock or funding and old inputs cannot alter another review
+  ---
+  duration_ms: 9.110705
+  type: 'test'
+  ...
+# Subtest: company buttons and reviewed purchase reject replaced state, old campaigns and pending orders
+ok 102 - company buttons and reviewed purchase reject replaced state, old campaigns and pending orders
+  ---
+  duration_ms: 27.951981
+  type: 'test'
+  ...
+# Subtest: company renderers escape all supplier, specification, milestone and offer text and tolerate old payloads
+ok 103 - company renderers escape all supplier, specification, milestone and offer text and tolerate old payloads
+  ---
+  duration_ms: 1.932429
+  type: 'test'
+  ...
+# Subtest: company command bridge uses the existing transaction channel and returns to procurement only after success
+ok 104 - company command bridge uses the existing transaction channel and returns to procurement only after success
+  ---
+  duration_ms: 28.146739
+  type: 'test'
+  ...
+# Subtest: companies navigation stays in the equipment room, preserves drafts and has visible entry points
+ok 105 - companies navigation stays in the equipment room, preserves drafts and has visible entry points
+  ---
+  duration_ms: 2.641786
+  type: 'test'
+  ...
+# Subtest: a tank draft survives the no-manufacturer route and returns to the same editable specifications
+ok 106 - a tank draft survives the no-manufacturer route and returns to the same editable specifications
+  ---
+  duration_ms: 4.281783
+  type: 'test'
+  ...
+# Subtest: establishment with no eligible plant shows an explained unavailable select and keeps the server refusal visible
+ok 107 - establishment with no eligible plant shows an explained unavailable select and keeps the server refusal visible
+  ---
+  duration_ms: 3.103773
+  type: 'test'
+  ...
+# Subtest: company family filters use supplied categories and keep accounts and paid deliveries visible
+ok 108 - company family filters use supplied categories and keep accounts and paid deliveries visible
+  ---
+  duration_ms: 365.533067
+  type: 'test'
+  ...
+# Subtest: mixed supplier 3D inspection retains exact aircraft and specialist specs without touching the local tank draft
+ok 109 - mixed supplier 3D inspection retains exact aircraft and specialist specs without touching the local tank draft
+  ---
+  duration_ms: 302.66933
+  type: 'test'
+  ...
+# Subtest: filtered aircraft purchases retain original action identity and require a new review after changing model family
+ok 110 - filtered aircraft purchases retain original action identity and require a new review after changing model family
+  ---
+  duration_ms: 323.815928
+  type: 'test'
+  ...
+# Subtest: company search combines with family filtering while empty results remove a previous 3D model and preserve the draft
+ok 111 - company search combines with family filtering while empty results remove a previous 3D model and preserve the draft
+  ---
+  duration_ms: 306.655303
+  type: 'test'
+  ...
+# Subtest: family fallback requires known catalogue metadata and campaign changes reset the filter and selected model
+ok 112 - family fallback requires known catalogue metadata and campaign changes reset the filter and selected model
+  ---
+  duration_ms: 402.59972
+  type: 'test'
+  ...
+# Subtest: ammunition supplier shelf shows authoritative stock, reserve reasons and arrivals ahead of preserved public batches
+ok 113 - ammunition supplier shelf shows authoritative stock, reserve reasons and arrivals ahead of preserved public batches
+  ---
+  duration_ms: 307.814422
+  type: 'test'
+  ...
+# Subtest: ammunition supplier search keeps original offer paths and combines supplier, family and paid-delivery records
+ok 114 - ammunition supplier search keeps original offer paths and combines supplier, family and paid-delivery records
+  ---
+  duration_ms: 307.232504
+  type: 'test'
+  ...
+# Subtest: reviewed ammunition stock quantity invalidates previous quotes and confirms only the exact fresh supplier command
+ok 115 - reviewed ammunition stock quantity invalidates previous quotes and confirms only the exact fresh supplier command
+  ---
+  duration_ms: 305.088611
+  type: 'test'
+  ...
+# Subtest: supplier ammunition commissioning and failed purchases use standard review guards without replacing old public batch controls
+ok 116 - supplier ammunition commissioning and failed purchases use standard review guards without replacing old public batch controls
+  ---
+  duration_ms: 369.278179
+  type: 'test'
+  ...
+# Subtest: company ammunition filtering never fabricates a vehicle preview and rejects captured hidden vehicle controls
+ok 117 - company ammunition filtering never fabricates a vehicle preview and rejects captured hidden vehicle controls
+  ---
+  duration_ms: 310.043372
+  type: 'test'
+  ...
+# Subtest: supplier ammunition empty and unavailable records retain explanations, escape text and invent no prices or model units
+ok 118 - supplier ammunition empty and unavailable records retain explanations, escape text and invent no prices or model units
+  ---
+  duration_ms: 2.038629
+  type: 'test'
+  ...
+# Subtest: all company ammunition bridge commands preserve payloads and drafts and return to the ammunition shelf only on success
+ok 119 - all company ammunition bridge commands preserve payloads and drafts and return to the ammunition shelf only on success
+  ---
+  duration_ms: 982.379168
+  type: 'test'
+  ...
+# Subtest: converted ammunition reserve plans follow served manual controls while existing public batches remain separately controllable
+ok 120 - converted ammunition reserve plans follow served manual controls while existing public batches remain separately controllable
+  ---
+  duration_ms: 313.028288
+  type: 'test'
+  ...
+# Subtest: a supplier reserve preserves the actual suspended automatic preference and confirms without claiming replenishment was enabled
+ok 121 - a supplier reserve preserves the actual suspended automatic preference and confirms without claiming replenishment was enabled
+  ---
+  duration_ms: 325.182262
+  type: 'test'
+  ...
+# Subtest: manufacturer refit contracts render in both service and companies with original action paths and retained public work
+ok 122 - manufacturer refit contracts render in both service and companies with original action paths and retained public work
+  ---
+  duration_ms: 337.763819
+  type: 'test'
+  ...
+# Subtest: refit contracts are optional for old saves and empty state guides the available fleet without inventing work
+ok 123 - refit contracts are optional for old saves and empty state guides the available fleet without inventing work
+  ---
+  duration_ms: 1.677231
+  type: 'test'
+  ...
+# Subtest: manufacturer refit review shows authoritative escrow, readiness, queue and exact profile comparison before spending
+ok 124 - manufacturer refit review shows authoritative escrow, readiness, queue and exact profile comparison before spending
+  ---
+  duration_ms: 328.612508
+  type: 'test'
+  ...
+# Subtest: source and target inspection keep one exact aircraft or ground model and preserve unfinished designer specifications
+ok 125 - source and target inspection keep one exact aircraft or ground model and preserve unfinished designer specifications
+  ---
+  duration_ms: 619.329224
+  type: 'test'
+  ...
+# Subtest: changing refit target or quantity hides stale identity and rejects old model controls and confirmation
+ok 126 - changing refit target or quantity hides stale identity and rejects old model controls and confirmation
+  ---
+  duration_ms: 309.565833
+  type: 'test'
+  ...
+# Subtest: refit cancellation reviews released and finishing quantities plus deferred refunds without a daily funding control
+ok 127 - refit cancellation reviews released and finishing quantities plus deferred refunds without a daily funding control
+  ---
+  duration_ms: 304.785709
+  type: 'test'
+  ...
+# Subtest: unavailable refit offers and changed campaigns block spending while unknown or ammunition specs never get a guessed vehicle model
+ok 128 - unavailable refit offers and changed campaigns block spending while unknown or ammunition specs never get a guessed vehicle model
+  ---
+  duration_ms: 933.628009
+  type: 'test'
+  ...
+# Subtest: company refit bridge retains reviewed fixed-price commands, pending refunds and drafts through the transaction channel
+ok 129 - company refit bridge retains reviewed fixed-price commands, pending refunds and drafts through the transaction channel
+  ---
+  duration_ms: 659.326086
+  type: 'test'
+  ...
+# Subtest: s09 guidance displays native conditions and costs and replacement is a cancellable local review
+ok 130 - s09 guidance displays native conditions and costs and replacement is a cancellable local review
+  ---
+  duration_ms: 10.014081
+  type: 'test'
+  ...
+# Subtest: s09 captured recommendation and replacement controls reject stale campaign, preview and draft identities
+ok 131 - s09 captured recommendation and replacement controls reject stale campaign, preview and draft identities
+  ---
+  duration_ms: 20.440329
+  type: 'test'
+  ...
+# Subtest: s09 presets and exact saved library rows ask before discarding an unsaved design
+ok 132 - s09 presets and exact saved library rows ask before discarding an unsaved design
+  ---
+  duration_ms: 7.644539
+  type: 'test'
+  ...
+# Subtest: s09 save status is exact native identity, never a local acknowledgement or automatic save
+ok 133 - s09 save status is exact native identity, never a local acknowledgement or automatic save
+  ---
+  duration_ms: 12.160927
+  type: 'test'
+  ...
+# Subtest: s09 accepted save becomes saved only when its exact name and specification appear in the refreshed native library
+ok 134 - s09 accepted save becomes saved only when its exact name and specification appear in the refreshed native library
+  ---
+  duration_ms: 8.246549
+  type: 'test'
+  ...
+# Subtest: s09 research effects explore an actual compatible part without teaching it or replacing edits before confirmation
+ok 135 - s09 research effects explore an actual compatible part without teaching it or replacing edits before confirmation
+  ---
+  duration_ms: 12.232321
+  type: 'test'
+  ...
+# Subtest: s09 unlock exploration refuses invented compatibility and stale buttons while future preview blockers remain authoritative
+ok 136 - s09 unlock exploration refuses invented compatibility and stale buttons while future preview blockers remain authoritative
+  ---
+  duration_ms: 6.383775
+  type: 'test'
+  ...
+# Subtest: s09 named saved drafts reopen by actual ID after load while unsaved memory and replacement proposals are cleared
+ok 137 - s09 named saved drafts reopen by actual ID after load while unsaved memory and replacement proposals are cleared
+  ---
+  duration_ms: 16.726904
+  type: 'test'
+  ...
+# Subtest: s09 guidance and research details escape supplied text and keep optional older payloads usable
+ok 138 - s09 guidance and research details escape supplied text and keep optional older payloads usable
+  ---
+  duration_ms: 5.66582
+  type: 'test'
+  ...
+# Subtest: s09 rich research lists disclose five parts first and retain every later component identity and expanded state
+ok 139 - s09 rich research lists disclose five parts first and retain every later component identity and expanded state
+  ---
+  duration_ms: 4.798633
+  type: 'test'
+  ...
+# Subtest: s09 current-design costs have a separate escaped heading and guidance uses the served art route
+ok 140 - s09 current-design costs have a separate escaped heading and guidance uses the served art route
+  ---
+  duration_ms: 2.380628
+  type: 'test'
+  ...
+# Subtest: S18 flight pages separate live records, retain local drafts, and never invent assignments
+ok 141 - S18 flight pages separate live records, retain local drafts, and never invent assignments
+  ---
+  duration_ms: 3.302048
+  type: 'test'
+  ...
+# Subtest: s12-s15 air shell sends all reviewed kinds through protected receipts and returns to flight
+ok 142 - s12-s15 air shell sends all reviewed kinds through protected receipts and returns to flight
+  ---
+  duration_ms: 18.140658
+  type: 'test'
+  ...
+# Subtest: s12 nested squadron fields requote the exact native order and confirm only current input
+ok 143 - s12 nested squadron fields requote the exact native order and confirm only current input
+  ---
+  duration_ms: 8.154641
+  type: 'test'
+  ...
+# Subtest: s12 nested order paths reject prototype keys and captured air controls reject stale state
+ok 144 - s12 nested order paths reject prototype keys and captured air controls reject stale state
+  ---
+  duration_ms: 1.01049
+  type: 'test'
+  ...
+# Subtest: s13 air command map links preserve native range and capacity and require a current reading
+ok 145 - s13 air command map links preserve native range and capacity and require a current reading
+  ---
+  duration_ms: 1.800362
+  type: 'test'
+  ...
+# Subtest: s14 routine support retains typed boolean permission through the shared review form
+ok 146 - s14 routine support retains typed boolean permission through the shared review form
+  ---
+  duration_ms: 4.774202
+  type: 'test'
+  ...
+# Subtest: s15 refused mission review still opens its native target geometry without launching
+ok 147 - s15 refused mission review still opens its native target geometry without launching
+  ---
+  duration_ms: 3.296126
+  type: 'test'
+  ...
+# Subtest: s16 defense province edits requote the native patrol and preserve role-aware map navigation
+ok 148 - s16 defense province edits requote the native patrol and preserve role-aware map navigation
+  ---
+  duration_ms: 5.068495
+  type: 'test'
+  ...
+# Subtest: s16 interception report preserves distinct native estimates and one actual aircraft loss total
+ok 149 - s16 interception report preserves distinct native estimates and one actual aircraft loss total
+  ---
+  duration_ms: 1.280367
+  type: 'test'
+  ...
+# Subtest: s17 military staff setting uses a pure review and protected command receipt
+ok 150 - s17 military staff setting uses a pure review and protected command receipt
+  ---
+  duration_ms: 4.902389
+  type: 'test'
+  ...
+# Subtest: restart drops pending input callbacks from the prior sample
+ok 151 - restart drops pending input callbacks from the prior sample
+  ---
+  duration_ms: 7.640503
+  type: 'test'
+  ...
+# Subtest: input spanning a visibility transition is excluded even after returning
+ok 152 - input spanning a visibility transition is excluded even after returning
+  ---
+  duration_ms: 0.581675
+  type: 'test'
+  ...
+# Subtest: hidden periods and a campaign switch cannot contaminate frame timings
+ok 153 - hidden periods and a campaign switch cannot contaminate frame timings
+  ---
+  duration_ms: 1.314136
+  type: 'test'
+  ...
+# Subtest: records keep a bounded tail, count discarded observations and export copies
+ok 154 - records keep a bounded tail, count discarded observations and export copies
+  ---
+  duration_ms: 0.775745
+  type: 'test'
+  ...
+# Subtest: disabled, synthetic and dialog inputs create no samples
+ok 155 - disabled, synthetic and dialog inputs create no samples
+  ---
+  duration_ms: 0.589585
+  type: 'test'
+  ...
+# Subtest: render measurement preserves values and thrown errors without recording after stop
+ok 156 - render measurement preserves values and thrown errors without recording after stop
+  ---
+  duration_ms: 0.8289
+  type: 'test'
+  ...
+# Subtest: native build identity is read without commands and unavailable identity stays explicit
+ok 157 - native build identity is read without commands and unavailable identity stays explicit
+  ---
+  duration_ms: 4.595454
+  type: 'test'
+  ...
+# Subtest: province activity distinguishes paid construction, producing records and reported obstacles without altering receipts
+ok 158 - province activity distinguishes paid construction, producing records and reported obstacles without altering receipts
+  ---
+  duration_ms: 33.887892
+  type: 'test'
+  ...
+# Subtest: province activity keeps missing data unknown, empty records explicit and hostile explanations escaped
+ok 159 - province activity keeps missing data unknown, empty records explicit and hostile explanations escaped
+  ---
+  duration_ms: 0.762188
+  type: 'test'
+  ...
+# Subtest: Materials GDP bridge displays the served decomposition without adding observed output twice
+ok 160 - Materials GDP bridge displays the served decomposition without adding observed output twice
+  ---
+  duration_ms: 2.17813
+  type: 'test'
+  ...
+# Subtest: An observed inherited Materials project names the included GDP share without subtracting in JavaScript
+ok 161 - An observed inherited Materials project names the included GDP share without subtracting in JavaScript
+  ---
+  duration_ms: 0.568437
+  type: 'test'
+  ...
+# Subtest: All-country and province inherited estimates stay compact and expose location uncertainty
+ok 162 - All-country and province inherited estimates stay compact and expose location uncertainty
+  ---
+  duration_ms: 2.307356
+  type: 'test'
+  ...
+# Subtest: Inherited counts retain tiny nonzero capacity and unknown amounts never become free zeros
+ok 163 - Inherited counts retain tiny nonzero capacity and unknown amounts never become free zeros
+  ---
+  duration_ms: 0.570302
+  type: 'test'
+  ...
+# Subtest: the real page loads the assets and refreshes selected economy readings from server state
+ok 164 - the real page loads the assets and refreshes selected economy readings from server state
+  ---
+  duration_ms: 10.723654
+  type: 'test'
+  ...
+# Subtest: money and percentages keep missing amounts unknown, zero exact and small output visible
+ok 165 - money and percentages keep missing amounts unknown, zero exact and small output visible
+  ---
+  duration_ms: 0.739104
+  type: 'test'
+  ...
+# Subtest: province output, sectors and work amounts are served values, never added again in the browser
+ok 166 - province output, sectors and work amounts are served values, never added again in the browser
+  ---
+  duration_ms: 1.46327
+  type: 'test'
+  ...
+# Subtest: classification labels distinguish inherited activity, new value, enablers and undelivered orders
+ok 167 - classification labels distinguish inherited activity, new value, enablers and undelivered orders
+  ---
+  duration_ms: 1.51656
+  type: 'test'
+  ...
+# Subtest: hostile server labels cannot create HTML or break quoted province attributes
+ok 168 - hostile server labels cannot create HTML or break quoted province attributes
+  ---
+  duration_ms: 1.069784
+  type: 'test'
+  ...
+# Subtest: missing or legacy economic data gets an explicit fallback, not fabricated zeros
+ok 169 - missing or legacy economic data gets an explicit fallback, not fabricated zeros
+  ---
+  duration_ms: 0.655917
+  type: 'test'
+  ...
+# Subtest: the national ledger retains unallocated GDP and makes mapped provinces selectable for all countries
+ok 170 - the national ledger retains unallocated GDP and makes mapped provinces selectable for all countries
+  ---
+  duration_ms: 2.769021
+  type: 'test'
+  ...
+# Subtest: expanded sections survive insertion, reorder and async rerender by stable keys
+ok 171 - expanded sections survive insertion, reorder and async rerender by stable keys
+  ---
+  duration_ms: 1.194386
+  type: 'test'
+  ...
+# Subtest: actual adopt → full map rebuild → async province refresh keeps open sections and scroll
+ok 172 - actual adopt → full map rebuild → async province refresh keeps open sections and scroll
+  ---
+  duration_ms: 14.45976
+  type: 'test'
+  ...
+# Subtest: province choices remain isolated and survive a loading-only drawer and another full rebuild
+ok 173 - province choices remain isolated and survive a loading-only drawer and another full rebuild
+  ---
+  duration_ms: 5.61949
+  type: 'test'
+  ...
+# Subtest: a new campaign clears province choices and rejects previous DOM and pending readings
+ok 174 - a new campaign clears province choices and rejects previous DOM and pending readings
+  ---
+  duration_ms: 6.156459
+  type: 'test'
+  ...
+# Subtest: national fetching is lazy, caches the exact reading and does not repaint another nation
+ok 175 - national fetching is lazy, caches the exact reading and does not repaint another nation
+  ---
+  duration_ms: 1.945177
+  type: 'test'
+  ...
+# Subtest: same-day adoption invalidation and daily changes cannot revive old national responses
+ok 176 - same-day adoption invalidation and daily changes cannot revive old national responses
+  ---
+  duration_ms: 2.923338
+  type: 'test'
+  ...
+# Subtest: request failures are visible, cached without a retry loop and explicitly retryable
+ok 177 - request failures are visible, cached without a retry loop and explicitly retryable
+  ---
+  duration_ms: 1.382372
+  type: 'test'
+  ...
+# Subtest: the existing province loader carries economy and rejects stale province responses
+ok 178 - the existing province loader carries economy and rejects stale province responses
+  ---
+  duration_ms: 2.82711
+  type: 'test'
+  ...
+# Subtest: styles keep narrow dossiers contained, large touch controls and reduced-motion support
+ok 179 - styles keep narrow dossiers contained, large touch controls and reduced-motion support
+  ---
+  duration_ms: 0.11035
+  type: 'test'
+  ...
+1..179
+# tests 179
+# suites 0
+# pass 179
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 10131.901924
