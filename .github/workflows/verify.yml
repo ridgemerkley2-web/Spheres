@@ -21,6 +21,8 @@ jobs:
       # Independent of the native build: both suites must report even when
       # the other fails, and neither should delay the other's feedback.
       - run: node tools/ui/run-unit.cjs
+      - name: Enforce current geometry and visible-scene budgets
+        run: node tools/ui/bench_art.cjs --check
       - name: Verify detailed lake surface bindings
         run: python -B tools/terrain/test_lake_surfaces.py
   native:
@@ -47,11 +49,18 @@ jobs:
       - run: npm ci --prefix tools/ui
       - run: npx --prefix tools/ui playwright install --with-deps chromium
       - run: node tools/ui/ci-browser.cjs
+      - name: Verify actual adaptive town submissions and recovery
+        env:
+          SPHERES_BROWSER_CHANNEL: chromium
+          SPHERES_ART_OUTPUT: artifacts/town-scene-browser
+        run: node tools/ui/town-scene-browser.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: browser-evidence-${{ matrix.os }}
-          path: artifacts/browser-ci
+          path: |
+            artifacts/browser-ci
+            artifacts/town-scene-browser
   # Preserve the original required-check names, each covering both suites.
   verify:
     if: always()

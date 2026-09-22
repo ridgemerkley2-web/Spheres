@@ -83,6 +83,8 @@ function runGallery() {
     assert.ok(!/failed to build/.test(html2), `${name} failed to build: ${html2.slice(0, 200)}`);
     const cards = [...html2.matchAll(/data-kit3d="([^"]*)"[\s\S]*?<em[^>]*>([\d,]+) triangles([^<]*)</g)]
       .map((m) => ({ id: m[1], caption: Number(m[2].replace(/,/g, "")), note: m[3] }));
+    for(const m of html2.matchAll(/data-town-scene="([^"]*)"[\s\S]*?<em>([\d,]+) full-close stored triangles/g))
+      cards.push({id:'town-scene:'+m[1],caption:Number(m[2].replace(/,/g,'')),scene:true});
     views.set(name, cards);
     renderedHtml.set(name, html2);
   }
@@ -98,7 +100,7 @@ test("the bench renders every view, and every view has cards", () => {
   }
   // The kits that ship must all be represented somewhere.
   const all = [...G.views.values()].flat().map((c) => c.id).join(" ");
-  for (const [kit, marker] of [["equipment", "veh:"], ["sites", "site:"], ["town", "town:"],
+  for (const [kit, marker] of [["equipment", "veh:"], ["sites", "site:"], ["town", "town-scene:"],
     ["roads", "road:"], ["props", "prop:"], ["scatter", "scatter:"]]) {
     assert.ok(all.includes(marker), `no ${kit} card on the bench (looked for "${marker}")`);
   }
@@ -111,6 +113,12 @@ test("every caption is the count of the mesh that card actually draws", () => {
   const wrong = [];
   for (const [view, cards] of G.views) {
     for (const c of cards) {
+      if(c.scene){
+        const [id,district,numeric]=c.id.slice('town-scene:'.length).split('/');
+        const scene=require(ui('town-mesh.js')).scene({id:numeric?Number(id):id,district});
+        assert.equal(c.caption,scene.rawCloseTriangles,'raw storage is explicitly distinguished from live submissions');
+        continue;
+      }
       const colon = c.id.indexOf(":");
       let mesh;
       if (colon < 0) {
@@ -163,6 +171,18 @@ test("no band on the bench is looser than the roadmap section 4 row it cites", (
     assert.ok(digits.includes(shrink(max)) || digits.includes(String(max)),
       `${key}: ceiling ${max} is not in the section 4 cell "${cell}" for row "${row}"`);
   }
+});
+
+test('town cards expose real focus controls and report draw-plan counts after each redraw',()=>{
+  assert.equal(G.views.get('Town').length,require(ui('town-mesh.js')).districts().length);
+  assert.equal(G.views.get('Town budget cases').length,2);
+  const page=fs.readFileSync(PAGE,'utf8');
+  assert.match(page,/Arsenal3D\.mountScene\(canvas, scene/);
+  assert.match(page,/num\(plan\.triangles\).*submitted triangles/);
+  assert.match(page,/controller\.focus\(select\.value/);
+  assert.match(page,/controller\.reset\(\)/);
+  assert.match(page,/controller\.dispose\(\)/);
+  for(const view of ['Town','Town budget cases'])assert.match(G.renderedHtml.get(view),/data-town-lot/);
 });
 
 test("inspection cards distinguish tanks and specialists while compound cards retain complete scene counts",()=>{

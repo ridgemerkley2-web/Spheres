@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "scope": "Offline generated payloads; no live residency, frame cost or driver VRAM measurement",
+  "scope": "Generated payloads and renderer camera draw plans; no live residency, frame cost or driver VRAM measurement",
   "budget_contract_version": 2,
   "vehicles": {
     "rows": [
@@ -6577,9 +6577,9 @@
         },
         "map": {
           "lo": {
-            "tris": 3302,
-            "config": "id 1996",
-            "lots": 16
+            "tris": 3258,
+            "config": "id 1990",
+            "lots": 15
           },
           "hi": {
             "tris": 3878,
@@ -6615,6 +6615,27 @@
             },
             "parts": 20
           },
+          "budget": {
+            "row": "Scene assembly",
+            "cell": "Target ≤150k visible triangles initially",
+            "min": null,
+            "max": 150000
+          },
+          "v": {
+            "state": "PASS",
+            "over": 0,
+            "text": "PASS"
+          }
+        },
+        "rendered": {
+          "hi": {
+            "tris": 149997,
+            "config": "id 1997, 2048x1440, yaw 270, pitch 8, zoom 1, lot-13",
+            "drawCalls": 16,
+            "culled": 1,
+            "demotions": 0
+          },
+          "views": 50880,
           "budget": {
             "row": "Scene assembly",
             "cell": "Target ≤150k visible triangles initially",
@@ -6733,6 +6754,27 @@
             "over": 0,
             "text": "PASS"
           }
+        },
+        "rendered": {
+          "hi": {
+            "tris": 149934,
+            "config": "id \"1990\", 2048x1440, yaw 0, pitch 35, zoom 0.55, lot-15",
+            "drawCalls": 17,
+            "culled": 0,
+            "demotions": 2
+          },
+          "views": 53440,
+          "budget": {
+            "row": "Scene assembly",
+            "cell": "Target ≤150k visible triangles initially",
+            "min": null,
+            "max": 150000
+          },
+          "v": {
+            "state": "PASS",
+            "over": 0,
+            "text": "PASS"
+          }
         }
       },
       {
@@ -6840,6 +6882,27 @@
             "over": 0,
             "text": "PASS"
           }
+        },
+        "rendered": {
+          "hi": {
+            "tris": 125494,
+            "config": "id 1991, 2048x1440, yaw 0, pitch 75, zoom 0.55, lot-17",
+            "drawCalls": 19,
+            "culled": 0,
+            "demotions": 0
+          },
+          "views": 48960,
+          "budget": {
+            "row": "Scene assembly",
+            "cell": "Target ≤150k visible triangles initially",
+            "min": null,
+            "max": 150000
+          },
+          "v": {
+            "state": "PASS",
+            "over": 0,
+            "text": "PASS"
+          }
         }
       },
       {
@@ -6898,9 +6961,9 @@
         },
         "map": {
           "lo": {
-            "tris": 3026,
-            "config": "id 1996",
-            "lots": 12
+            "tris": 2864,
+            "config": "id 1990",
+            "lots": 11
           },
           "hi": {
             "tris": 3766,
@@ -6936,6 +6999,27 @@
             },
             "parts": 18
           },
+          "budget": {
+            "row": "Scene assembly",
+            "cell": "Target ≤150k visible triangles initially",
+            "min": null,
+            "max": 150000
+          },
+          "v": {
+            "state": "PASS",
+            "over": 0,
+            "text": "PASS"
+          }
+        },
+        "rendered": {
+          "hi": {
+            "tris": 128377,
+            "config": "id 1992, 1280x720, yaw 0, pitch 75, zoom 1, lot-16",
+            "drawCalls": 18,
+            "culled": 0,
+            "demotions": 0
+          },
+          "views": 38720,
           "budget": {
             "row": "Scene assembly",
             "cell": "Target ≤150k visible triangles initially",
@@ -7054,11 +7138,33 @@
             "over": 0,
             "text": "PASS"
           }
+        },
+        "rendered": {
+          "hi": {
+            "tris": 84250,
+            "config": "id 1996, 2048x1440, yaw 0, pitch 35, zoom 0.55, lot-2",
+            "drawCalls": 14,
+            "culled": 0,
+            "demotions": 0
+          },
+          "views": 37760,
+          "budget": {
+            "row": "Scene assembly",
+            "cell": "Target ≤150k visible triangles initially",
+            "min": null,
+            "max": 150000
+          },
+          "v": {
+            "state": "PASS",
+            "over": 0,
+            "text": "PASS"
+          }
         }
       }
     ],
-    "builds": 80,
-    "sweep": "5 districts x 8 ids x 2 LODs"
+    "builds": 90,
+    "sweep": "5 districts x 9 ids x 2 stored LODs",
+    "plannedViews": 229760
   },
   "buildings": {
     "rows": [
@@ -8738,8 +8844,8 @@
       },
       {
         "file": "spheres-web/ui/town-mesh.js",
-        "bytes": 174196,
-        "gzip": 49730
+        "bytes": 178182,
+        "gzip": 50905
       }
     ],
     "glb": [
@@ -8822,8 +8928,8 @@
         "state": "PASS"
       }
     ],
-    "bytes": 663566,
-    "gzip": 188442,
+    "bytes": 667552,
+    "gzip": 189617,
     "glbBytes": 122833624
   },
   "graded": [
@@ -11576,17 +11682,17 @@
     },
     {
       "asset": "town.temperate.mixed.v1",
-      "config": "close id 1997",
-      "tris": 163671,
+      "config": "rendered id 1997, 2048x1440, yaw 270, pitch 8, zoom 1, lot-13",
+      "tris": 149997,
       "budget": {
         "row": "Scene assembly",
         "cell": "Target ≤150k visible triangles initially",
         "min": null,
         "max": 150000
       },
-      "state": "OVER",
-      "over": 13671,
-      "text": "**OVER by 13,671 (9.1%)**"
+      "state": "PASS",
+      "over": 0,
+      "text": "PASS"
     },
     {
       "asset": "town.temperate.mixed.v1",
@@ -11604,17 +11710,17 @@
     },
     {
       "asset": "town.temperate.residential.v1",
-      "config": "close id 1994",
-      "tris": 174540,
+      "config": "rendered id \"1990\", 2048x1440, yaw 0, pitch 35, zoom 0.55, lot-15",
+      "tris": 149934,
       "budget": {
         "row": "Scene assembly",
         "cell": "Target ≤150k visible triangles initially",
         "min": null,
         "max": 150000
       },
-      "state": "OVER",
-      "over": 24540,
-      "text": "**OVER by 24,540 (16.4%)**"
+      "state": "PASS",
+      "over": 0,
+      "text": "PASS"
     },
     {
       "asset": "town.temperate.residential.v1",
@@ -11632,7 +11738,7 @@
     },
     {
       "asset": "town.temperate.commercial.v1",
-      "config": "close id 1991",
+      "config": "rendered id 1991, 2048x1440, yaw 0, pitch 75, zoom 0.55, lot-17",
       "tris": 125494,
       "budget": {
         "row": "Scene assembly",
@@ -11660,7 +11766,7 @@
     },
     {
       "asset": "town.temperate.civic.v1",
-      "config": "close id 1992",
+      "config": "rendered id 1992, 1280x720, yaw 0, pitch 75, zoom 1, lot-16",
       "tris": 128377,
       "budget": {
         "row": "Scene assembly",
@@ -11688,7 +11794,7 @@
     },
     {
       "asset": "town.temperate.industrial.v1",
-      "config": "close id 1996",
+      "config": "rendered id 1996, 2048x1440, yaw 0, pitch 35, zoom 0.55, lot-2",
       "tris": 84250,
       "budget": {
         "row": "Scene assembly",
@@ -12261,36 +12367,7 @@
       "text": "PASS"
     }
   ],
-  "over": [
-    {
-      "asset": "town.temperate.mixed.v1",
-      "config": "close id 1997",
-      "tris": 163671,
-      "budget": {
-        "row": "Scene assembly",
-        "cell": "Target ≤150k visible triangles initially",
-        "min": null,
-        "max": 150000
-      },
-      "state": "OVER",
-      "over": 13671,
-      "text": "**OVER by 13,671 (9.1%)**"
-    },
-    {
-      "asset": "town.temperate.residential.v1",
-      "config": "close id 1994",
-      "tris": 174540,
-      "budget": {
-        "row": "Scene assembly",
-        "cell": "Target ≤150k visible triangles initially",
-        "min": null,
-        "max": 150000
-      },
-      "state": "OVER",
-      "over": 24540,
-      "text": "**OVER by 24,540 (16.4%)**"
-    }
-  ],
+  "over": [],
   "qualityUnder": [],
   "legacyOver": [
     {
@@ -12674,34 +12751,6 @@
       "text": "**OVER by 17,012 (141.8%)**"
     },
     {
-      "asset": "town.temperate.mixed.v1",
-      "config": "close id 1997",
-      "tris": 163671,
-      "budget": {
-        "row": "Scene assembly",
-        "cell": "Target ≤150k visible triangles initially",
-        "min": null,
-        "max": 150000
-      },
-      "state": "OVER",
-      "over": 13671,
-      "text": "**OVER by 13,671 (9.1%)**"
-    },
-    {
-      "asset": "town.temperate.residential.v1",
-      "config": "close id 1994",
-      "tris": 174540,
-      "budget": {
-        "row": "Scene assembly",
-        "cell": "Target ≤150k visible triangles initially",
-        "min": null,
-        "max": 150000
-      },
-      "state": "OVER",
-      "over": 24540,
-      "text": "**OVER by 24,540 (16.4%)**"
-    },
-    {
       "asset": "town.kit.row_house",
       "config": "close, maximum size",
       "tris": 16382,
@@ -12728,6 +12777,34 @@
       "state": "OVER",
       "over": 4656,
       "text": "**OVER by 4,656 (38.8%)**"
+    },
+    {
+      "asset": "town.temperate.mixed.v1",
+      "config": "raw close id 1997",
+      "tris": 163671,
+      "budget": {
+        "row": "Scene assembly",
+        "cell": "Target ≤150k visible triangles initially",
+        "min": null,
+        "max": 150000
+      },
+      "state": "OVER",
+      "over": 13671,
+      "text": "**OVER by 13,671 (9.1%)**"
+    },
+    {
+      "asset": "town.temperate.residential.v1",
+      "config": "raw close id 1994",
+      "tris": 174540,
+      "budget": {
+        "row": "Scene assembly",
+        "cell": "Target ≤150k visible triangles initially",
+        "min": null,
+        "max": 150000
+      },
+      "state": "OVER",
+      "over": 24540,
+      "text": "**OVER by 24,540 (16.4%)**"
     }
   ],
   "inventory": {

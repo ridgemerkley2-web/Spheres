@@ -35,6 +35,12 @@
   .over { color:#e0a05a; }
   .ungraded { color:#6f8496; font-style:italic; }
   .warn { padding:14px; border:1px solid #6b3030; border-radius:12px; background:#2a1717; }
+  .town-card { grid-column:span 2; }
+  .town-card canvas { height:360px; touch-action:none; cursor:grab; }
+  .town-card canvas:focus-visible { outline:2px solid #81c4ee; }
+  .town-controls { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+  .town-controls select,.town-controls button { background:#0d141b; color:inherit; border:1px solid #48839f; padding:7px; border-radius:6px; }
+  @media(max-width:600px) { .town-card { grid-column:span 1; } .town-card canvas { height:280px; } }
 </style>
 </head>
 <body>
@@ -122,6 +128,21 @@ keeps the original targets, export limits and individual building measurements.<
       <em class="${over ? "over" : under ? "ungraded" : b ? "" : "ungraded"}">${num(tris)} triangles${note}</em></article>`;
   };
 
+  const townOptions = (key) => { const [id, district, numeric] = key.split("/");
+    return { id: numeric ? Number(id) : id, district }; };
+  const townCard = (key) => {
+    const scene = TownMesh.scene(townOptions(key));
+    return `<article class="card town-card" data-town="${key}">
+      <canvas data-town-scene="${key}"></canvas><b>${scene.district} · ${typeof scene.blockId} seed ${scene.blockId}</b>
+      <span>Drag to turn · scroll or +/− to zoom · choose any building for full-detail inspection.</span>
+      <div class="town-controls"><label>Inspect building <select data-town-lot><option value="">Whole block</option>
+      ${scene.lots.map(lot => `<option value="${lot.id}">${lot.index + 1}. ${lot.label}</option>`).join("")}</select></label>
+      <button data-town-reset>Reset view</button></div>
+      <em data-town-measure>Waiting for the first measured frame.</em>
+      <em>${num(scene.rawCloseTriangles)} full-close stored triangles · ${scene.lots.length} stable lots.
+      <a href="../../docs/art/P0_BUDGETS.md">Raw geometry and individual building diagnostics</a></em></article>`;
+  };
+
   const VIEWS = {
     "Vehicles LOD0": () => ["tank_standard","tank_heavy","tank_light","tank_destroyer",
         "ground_ifv","ground_apc","ground_recon","ground_artillery","ground_air_defense"]
@@ -157,11 +178,8 @@ keeps the original targets, export limits and individual building measurements.<
     // town card printed a number for a block that was not on screen, civic worst
     // at 131,586 against the 106,789 actually drawn. The id is now built once,
     // as a string, and used for both.
-    "Town": () => TownMesh.districts().map((d) => {
-      const id = `town:1990/${d}/close`;
-      const drawn = TownMesh.block({ id: "1990", district: d, lod: "close" });
-      return card(id, d, "assembled block", drawn.triangleCount, "scene");
-    }),
+    "Town": () => TownMesh.districts().map((d) => townCard(`1990/${d}`)),
+    "Town budget cases": () => [townCard("1997/mixed/numeric"), townCard("1994/residential/numeric")],
     "Deck": () => ArsenalModels.ids()
       .map((id) => { const g = ArsenalModels.build(id);
         return card(id, g.name, g.cls, g.count / 3, null); }),
@@ -185,12 +203,30 @@ keeps the original targets, export limits and individual building measurements.<
   };
 
   let view = "Vehicles LOD0";
+  const townControllers = [];
   function draw() {
+    for (const controller of townControllers) controller.dispose();
+    townControllers.length = 0;
     let html = "";
     try { html = VIEWS[view]().join(""); }
     catch (e) { html = `<div class="warn">${view} failed to build: ${e.message}</div>`; }
     grid.innerHTML = html;
     Arsenal3D.scan(grid);
+    grid.querySelectorAll("[data-town]").forEach(holder => {
+      const scene = TownMesh.scene(townOptions(holder.dataset.town));
+      const canvas = holder.querySelector("canvas"), caption = holder.querySelector("[data-town-measure]");
+      const select = holder.querySelector("[data-town-lot]");
+      const controller = Arsenal3D.mountScene(canvas, scene, { onDraw(plan) {
+        const tiers = ["close", "mid", "map"].map(tier => `${plan.draws.filter(x => x.tier === tier).length} ${tier}`).join(" / ");
+        caption.textContent = `${num(plan.triangles)} submitted triangles / ${num(plan.budget)} scene ceiling · ${plan.drawCalls} draws · ${tiers} · ${plan.culled.length} outside view · ${num(Arsenal3D.cacheStats().triangles)} shared resident triangles`;
+        caption.className = plan.triangles > plan.budget ? "over" : "";
+        select.value = plan.selected || "";
+      } });
+      if (!controller) { caption.textContent = "3D view unavailable; full geometry counts remain above."; return; }
+      townControllers.push(controller);
+      select.addEventListener("change", () => controller.focus(select.value || null));
+      holder.querySelector("[data-town-reset]").addEventListener("click", () => controller.reset());
+    });
   }
   bar.innerHTML = Object.keys(VIEWS).map((k) =>
     `<button data-v="${k}" class="${k === view ? "on" : ""}">${k}</button>`).join("");

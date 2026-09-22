@@ -643,7 +643,7 @@
   /// from the LOWEST vertex rather than a nominal datum, because a kerb
   /// upstand, a sunken loading dock and a garden step all disagree about where
   /// the ground is and the renderer only needs nothing to float.
-  Builder.prototype.finish = function (description, extra) {
+  Builder.prototype.finish = function (description, extra, ground) {
     const n = this.pos.length / 3;
     const positions = new Float32Array(this.pos);
     const normals = new Float32Array(this.nrm);
@@ -660,7 +660,7 @@
         if (positions[i + k] > max[k]) max[k] = positions[i + k];
       }
     }
-    const drop = min[1];
+    const drop = ground == null ? min[1] : ground;
     if (drop !== 0) {
       for (let i = 1; i < positions.length; i += 3) positions[i] -= drop;
       min[1] -= drop; max[1] -= drop;
@@ -2669,7 +2669,7 @@
   function variantFor(kind, p, lod) {
     const key = kind + "|" + p.w + "|" + p.d + "|" + p.storeys + "|" + lod + "|" + p.seed;
     const hit = variants.get(key);
-    if (hit) return hit;
+    if (hit) { variants.delete(key); variants.set(key, hit); return hit; }
     const b = new Builder(DETAIL[lod]);
     const spec = KINDS[kind];
     let description;
@@ -2719,6 +2719,14 @@
     }
     baked.extent = baked.tris ? [ex1 - ex0, ez1 - ez0] : [0, 0];
     variants.set(key, baked);
+    // A long city-browsing session must not retain every seed ever inspected.
+    // Callers retain their own light metadata, never rely on cache residency.
+    let total = 0;
+    for (const v of variants.values()) total += v.tris;
+    for (const [oldKey, v] of variants) {
+      if (total <= 400000 || oldKey === key) break;
+      variants.delete(oldKey); total -= v.tris;
+    }
     return baked;
   }
 
@@ -2963,7 +2971,7 @@
   /// so two tiles laid side by side make one full carriageway between them and
   /// a single tile still reads correctly on its own. That is a deliberate
   /// compromise for a P0 whose job is to be looked at as one block.
-  function block(opts) {
+  function block(opts, sceneLots) {
     const o = opts || {};
     const seed = seedOf(o.id == null ? 0 : o.id);
     const district = DISTRICTS[o.district] ? o.district : "mixed";
@@ -2986,10 +2994,15 @@
         seed: SEEDED[kind] ? mix32(seed ^ Math.imul(lotIndex + 1, 0x27d4eb2f)) : 0 };
       const baked = variantFor(kind, p, lod);
       const scheme = ask(seed, 900 + lotIndex * 5) % SCHEMES.length;
-      out.part(label + " / " + baked.label, kind, lotIndex, () => {
+      if (sceneLots) {
+        sceneLots.push({ index: lotIndex, kind, params: p, yaw, x, z, scheme, label: baked.label });
+        tris += baked.tris;
+      } else out.part(label + " / " + baked.label, kind, lotIndex, () => {
         tris += stampInto(out, baked, yaw, x, z, scheme);
       });
-      used.set(baked.key, (used.get(baked.key) || 0) + 1);
+      const use = used.get(baked.key);
+      if (use) use.uses++;
+      else used.set(baked.key, { key: baked.key, kind, triangleCount: baked.tris, uses: 1 });
       lots.push({ index: lotIndex, kind, label: baked.label, x: quantise(x), z: quantise(z), yaw,
         width: p.w, depth: p.d, storeys: p.storeys, scheme: SCHEMES[scheme].id, variant: baked.key });
       lotIndex += 1;
@@ -3099,10 +3112,7 @@
     });
 
     const variantList = [];
-    for (const [key, count] of used) {
-      const baked = variants.get(key);
-      variantList.push({ key, kind: baked.kind, triangleCount: baked.tris, uses: count });
-    }
+    for (const value of used.values()) variantList.push(value);
     variantList.sort((a, c) => (a.key < c.key ? -1 : a.key > c.key ? 1 : 0));
 
     return out.finish(
@@ -3119,8 +3129,68 @@
         variantCount: variantList.length,
         anchor: anchored,
         buildingTriangles: tris,
-      },
+      }, sceneLots ? 0 : undefined,
     );
+  }
+
+  // A scene describes the SAME close block. Only its draw list changes with
+  // the camera. Exact (unrounded) placements come from the layout above; public
+  // lot captions round metres and must never be used as rendering transforms.
+  // Local buffers bake cardinal yaw before colour, matching stampInto's light.
+  function scene(opts) {
+    const lots = [], background = block({ ...(opts || {}), lod: "close" }, lots);
+    const bounds = { min: background.bounds.min.slice(), max: background.bounds.max.slice() };
+    let rawCloseTriangles = background.triangleCount;
+    for (const lot of lots) {
+      lot.id = "lot-" + lot.index;
+      lot.offset = [lot.x, 0, lot.z];
+      lot.triangles = {};
+      const keys = {};
+      lot.meshKey = (lod) => keys[normaliseLod(lod)];
+      lot.mesh = (lod) => {
+        const tier = normaliseLod(lod), baked = variantFor(lot.kind, lot.params, tier);
+        const out = new Builder(DETAIL[tier]);
+        stampInto(out, baked, lot.yaw, 0, 0, lot.scheme);
+        return out.finish(baked.description, { id: lot.meshKey(tier), lod: tier }, 0);
+      };
+      for (const lod of ["close", "mid", "map"]) {
+        const baked = variantFor(lot.kind, lot.params, lod);
+        lot.triangles[lod] = baked.tris;
+        keys[lod] = "town-lot:" + baked.key + ":" + lot.yaw + ":" + lot.scheme;
+      }
+      const close = lot.mesh("close");
+      lot.bounds = { min: close.bounds.min.map((v, i) => v + lot.offset[i]),
+        max: close.bounds.max.map((v, i) => v + lot.offset[i]) };
+      lot.closeBounds = { min: lot.bounds.min.slice(), max: lot.bounds.max.slice() };
+      // Coarse roof envelopes can extend slightly past individual close roof
+      // tiles. Cull against their union, not a potentially smaller close box.
+      for (const tier of ["mid", "map"]) {
+        const mesh = lot.mesh(tier);
+        for (let i = 0; i < 3; i++) {
+          lot.bounds.min[i] = Math.min(lot.bounds.min[i], mesh.bounds.min[i] + lot.offset[i]);
+          lot.bounds.max[i] = Math.max(lot.bounds.max[i], mesh.bounds.max[i] + lot.offset[i]);
+        }
+      }
+      for (let i = 0; i < 3; i++) {
+        bounds.min[i] = Math.min(bounds.min[i], lot.closeBounds.min[i]);
+        bounds.max[i] = Math.max(bounds.max[i], lot.closeBounds.max[i]);
+      }
+      rawCloseTriangles += close.triangleCount;
+    }
+    const ground = bounds.min[1];
+    for (let i = 1; i < background.positions.length; i += 3) background.positions[i] -= ground;
+    background.bounds.min[1] -= ground; background.bounds.max[1] -= ground;
+    for (const lot of lots) {
+      lot.offset[1] = -ground; lot.bounds.min[1] -= ground; lot.bounds.max[1] -= ground;
+      lot.closeBounds.min[1] -= ground; lot.closeBounds.max[1] -= ground;
+    }
+    bounds.min[1] -= ground; bounds.max[1] -= ground;
+    const id = "town-scene:" + JSON.stringify([background.blockId, background.district,
+      background.tile, background.streetWidth]);
+    background.id = id + ":streets";
+    return { assetKind: "town-scene", id, bounds, background, lots, rawCloseTriangles,
+      blockId: background.blockId, district: background.district,
+      description: background.description, budget: 150000 };
   }
 
   // --------------------------------------------------------------- exports
@@ -3155,6 +3225,9 @@
 
   return Object.freeze({
     block, building, kinds, kindInfo,
+    scene,
+    cacheStats: () => ({ variants: variants.size,
+      triangles: [...variants.values()].reduce((n, v) => n + v.tris, 0), cap: 400000 }),
     districts: districtNames,
     schemes: SCHEMES.map((s) => s.id),
     version: "urban.temperate_block.v1",

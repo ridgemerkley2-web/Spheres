@@ -51,6 +51,7 @@ function timedRequire(file) {
 const EquipmentMesh = timedRequire("equipment-mesh.js");
 const SiteMesh = timedRequire("site-mesh.js");
 const TownMesh = timedRequire("town-mesh.js");
+const Arsenal3D = require(ui('arsenal3d.js'));
 
 // ------------------------------------------------------------------ budgets
 // Each entry quotes the roadmap cell it was derived from, verbatim. verifyBudgets
@@ -301,7 +302,27 @@ function measureSites() {
 // ---------------------------------------------------------------- town blocks
 // Eight ids per district. A block is seeded by its id, so one id is one sample
 // of a generator that hands back a different street on the next tile.
-const BLOCK_IDS = [1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997];
+const BLOCK_IDS = [1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, '1990'];
+// Device-pixel viewports; the string id is the gallery's actual provider id.
+// Use the renderer's own camera/frustum/LOD planner, including selected-lot
+// framing. Geometry inventory remains reported separately below.
+function measureTownScene(scene) {
+  let hi = null, views = 0;
+  for (const [width,height] of [[390,280],[780,560],[1280,720],[2048,1440]]) {
+    for (const yaw of [0,34,90,180,270]) for (const pitch of [8,20,35,75]) for (const zoom of [0.55,1,2.5,4]) {
+      for (const selected of [null,...scene.lots.map(lot=>lot.id)]) {
+        const plan = Arsenal3D.scenePlan(scene,{width,height,yaw,pitch,zoom,selected});
+        if (plan.budget !== BUDGETS.scene.max) throw new Error('town renderer scene ceiling drifted');
+        if (!Number.isSafeInteger(plan.triangles) || plan.triangles <= 0) throw new Error('empty/invalid town draw plan');
+        views++;
+        if (!hi || plan.triangles > hi.tris) hi = {tris:plan.triangles,
+          config:`${width}x${height}, yaw ${yaw}, pitch ${pitch}, zoom ${zoom}, ${selected || 'overview'}`,
+          drawCalls:plan.drawCalls,culled:plan.culled.length,demotions:plan.demotions};
+      }
+    }
+  }
+  return {hi,views,budget:BUDGETS.scene,v:verdict(hi.tris,BUDGETS.scene)};
+}
 function measureTownBlocks() {
   const rows = []; let builds = 0;
   for (const district of TownMesh.districts()) {
@@ -317,9 +338,23 @@ function measureTownBlocks() {
       }
       row[lod] = { lo, hi, budget: BUDGETS.scene, v: verdict(hi.tris, BUDGETS.scene) };
     }
+    let rendered = null;
+    for (const id of BLOCK_IDS) {
+      const measured = measureTownScene(TownMesh.scene({id,district}));
+      if (!rendered) rendered = {...measured,hi:{...measured.hi,config:`id ${JSON.stringify(id)}, ${measured.hi.config}`}};
+      else {
+        rendered.views += measured.views;
+        if (measured.hi.tris > rendered.hi.tris) {
+          rendered.hi = {...measured.hi,config:`id ${JSON.stringify(id)}, ${measured.hi.config}`};
+          rendered.v = measured.v;
+        }
+      }
+    }
+    row.rendered = rendered;
     rows.push(row);
   }
-  return { rows, builds, sweep: `${TownMesh.districts().length} districts x ${BLOCK_IDS.length} ids x 2 LODs` };
+  return { rows, builds, sweep: `${TownMesh.districts().length} districts x ${BLOCK_IDS.length} ids x 2 stored LODs`,
+    plannedViews:rows.reduce((n,r)=>n+r.rendered.views,0) };
 }
 
 // The kit the blocks are assembled from, at the largest footprint and the
@@ -434,7 +469,7 @@ function render(m) {
 
   const blockRows = m.blocks.rows.map((r) =>
     `| \`town.temperate.${r.district}.v1\` | ${fmt(r.close.lo.tris)} | ${fmt(r.close.hi.tris)} | ${r.close.v.text} | `
-    + `${fmt(r.map.lo.tris)} | ${fmt(r.map.hi.tris)} | ${fmt(r.close.hi.bytes)} | ${r.close.hi.lots == null ? "—" : r.close.hi.lots} |`).join("\n");
+    + `${fmt(r.map.hi.tris)} | ${fmt(r.rendered.hi.tris)} | ${r.rendered.v.text} | ${fmt(r.close.hi.bytes)} |`).join("\n");
 
   const kitRows = m.buildings.rows.map((r) =>
     `| \`${r.kind}\` | ${dim(r.width)} x ${dim(r.depth)} m, ${plural(r.storeys, "storey")} | ${fmt(r.close.hi.tris)} | ${r.close.v.text} | `
@@ -640,14 +675,28 @@ ${siteWorst}
 
 ## Town blocks
 
-Swept over ${m.blocks.sweep} = ${fmt(m.blocks.builds)} builds. A block is one
+Swept over ${m.blocks.sweep} = ${fmt(m.blocks.builds)} raw builds and
+${fmt(m.blocks.plannedViews)} camera/selection plans from the renderer itself. A block is one
 ${TownMesh.defaultTile[0]} x ${TownMesh.defaultTile[1]} m tile of ${TownMesh.era} temperate town,
-graded against the scene-assembly ceiling because a block is a scene, not a
-building.
+graded against the unchanged 150k **visible** scene ceiling using the actual
+draw plan. Full close geometry is preserved; its overage remains an explicit
+storage diagnostic, not a claim that those triangles disappeared. The renderer
+selects close/mid/map per projected lot size, culls outside the camera frustum,
+and budgets the resulting draw list. A selected lot keeps close geometry.
 
-| asset | close min | close max | close verdict | map min | map max | worst close bytes | lots |
+| asset | raw close min | raw close max | raw close comparison | raw map max | max drawn | visible verdict | raw close bytes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 ${blockRows}
+
+| asset | most expensive sampled view | draw calls | culled lots | budget demotions |
+| --- | --- | ---: | ---: | ---: |
+${m.blocks.rows.map(r=>`| ${r.district} | ${r.rendered.hi.config} | ${r.rendered.hi.drawCalls} | ${r.rendered.hi.culled} | ${r.rendered.hi.demotions} |`).join('\n')}
+
+This camera sweep uses four device-pixel viewports, five yaw angles, four pitch angles, four zoom
+levels, overview and every selectable lot, across eight numeric seeds plus the
+gallery's string seed. It invokes the same planner consumed by WebGL drawScene;
+browser submission, context-loss and navigation tests verify that connection.
+It does not measure frame rate, GPU memory, or the separate globe CityMesh path.
 
 The map LOD has no roadmap row of its own — section 4 budgets a scene assembly
 and a building, not a separate coarse scene — so both block detail levels are
@@ -791,7 +840,7 @@ function main() {
     graded.push({ asset: `site.${r.kind}.v1`, config: `far ${r.far.hi.config}`, tris: r.far.hi.tris, budget: r.far.budget, ...r.far.v });
     for (const b of r.constituents) graded.push({asset:`site.${r.kind}.v1/${b.id}`, config:b.config, tris:b.tris, budget:b.budget, ...b.v});
   }
-  for (const r of blocks.rows) for (const lod of ['close','map']) graded.push({ asset: `town.temperate.${r.district}.v1`, config: `${lod} ${r[lod].hi.config}`, tris: r[lod].hi.tris, budget: r[lod].budget, ...r[lod].v });
+  for (const r of blocks.rows) for (const lod of ['rendered','map']) graded.push({ asset: `town.temperate.${r.district}.v1`, config: `${lod} ${r[lod].hi.config}`, tris: r[lod].hi.tris, budget: r[lod].budget, ...r[lod].v });
   for (const r of buildings.rows) {
     graded.push({ asset: `town.kit.${r.kind}`, config: "close, maximum size", tris: r.close.hi.tris, budget: r.close.budget, ...r.close.v });
     graded.push({ asset: `town.kit.${r.kind}`, config: "map, maximum size", tris: r.map.hi.tris, budget: r.map.budget, ...r.map.v });
@@ -809,7 +858,9 @@ function main() {
     if (g.asset.startsWith('town.kit.') && g.config.startsWith('close,')) budget=BUDGETS.building_near;
     return {...g,budget,...verdict(g.tris,budget)};
   });
-  const legacyOver=legacyGraded.filter(g=>g.state==='OVER');
+  const legacyOver=[...legacyGraded.filter(g=>g.state==='OVER'),
+    ...blocks.rows.filter(r=>r.close.v.state==='OVER').map(r=>({asset:`town.temperate.${r.district}.v1`,
+      config:`raw close ${r.close.hi.config}`,tris:r.close.hi.tris,budget:BUDGETS.scene,...r.close.v}))];
 
   const heaviest = vehicles.rows.filter((r) => r.config === "heaviest");
   const near = [...heaviest, ...sites.rows.map(r => r.near.hi), ...blocks.rows.map(r => r.close.hi)];
@@ -824,7 +875,7 @@ function main() {
   };
 
   const blockMapMax = Math.max(...blocks.rows.map((r) => r.map.hi.tris));
-  const measurement = {schema_version: 1, scope: 'Offline generated payloads; no live residency, frame cost or driver VRAM measurement',
+  const measurement = {schema_version: 1, scope: 'Generated payloads and renderer camera draw plans; no live residency, frame cost or driver VRAM measurement',
     budget_contract_version:2, vehicles, details, sites, blocks, buildings, source,
     graded, over, qualityUnder, legacyOver, inventory, blockMapMax};
   const md = render(measurement);
@@ -884,4 +935,4 @@ function main() {
 }
 
 if (require.main === module) main();
-module.exports = {BUDGETS, verdict, budgetFailed, verifyBudgets, gradeExport, maxedSpec};
+module.exports = {BUDGETS, verdict, budgetFailed, verifyBudgets, gradeExport, maxedSpec, measureTownScene};

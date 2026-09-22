@@ -1,0 +1,221 @@
+{
+  "reviewed_at_utc": "2026-09-22T16:25:36.515259+00:00",
+  "method": "Independent direct HTTPS requests with Python urllib; raw bytes hashed in memory. PDF pages rendered only in local evidence for visual review. No original source responses retained.",
+  "sources": [
+    {
+      "extract": "tonga-sc-cv55-20220829-facts.json",
+      "url": "https://ago.gov.to/cms/judgements/supreme-court-civil/category/206-cv-2022.html?download=2491:fatai-helu-and-paula-piveni-piukala-v-electoral-commission-the-election-of-lord-nuku-cv-55-22-tosc-29-aug-2022-whitten-qc-cj-ruling",
+      "expected_sha256": "a5f84dcfa45b40af7cc2a5db28ccd47eff6d3d43f5581c9c733e8876cc8681c9",
+      "status": 200,
+      "final_url": "https://ago.gov.to/cms/judgements/supreme-court-civil/category/206-cv-2022.html?download=2491:fatai-helu-and-paula-piveni-piukala-v-electoral-commission-the-election-of-lord-nuku-cv-55-22-tosc-29-aug-2022-whitten-qc-cj-ruling",
+      "content_type": "application/pdf",
+      "bytes": 348680,
+      "sha256": "a5f84dcfa45b40af7cc2a5db28ccd47eff6d3d43f5581c9c733e8876cc8681c9",
+      "matches_recorded_bytes": true,
+      "matches_recorded_sha256": true,
+      "pages": 20,
+      "review_pages_one_based": [
+        1
+      ]
+    },
+    {
+      "extract": "tonga-ipu-2014-election-facts.json",
+      "url": "https://data.ipu.org/election-summary/HTML/2317_14.htm",
+      "expected_sha256": null,
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "extract": "tonga-ipu-2025-election-facts.json",
+      "url": "https://data.ipu.org/parliament/TO/TO-LC01/election/TO-LC01-E20251120/",
+      "expected_sha256": null,
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "extract": "tonga-tec-results-2025-facts.json",
+      "url": "https://elections.gov.to/wp-content/uploads/2025/11/Tonga-General-Elections-Results-revised-20251.pdf",
+      "expected_sha256": "fe27cd3c700ca2e4ca5f11c6ab22c9a8c4d87882aaf471f55f741b5145381f88",
+      "status": 200,
+      "final_url": "https://elections.gov.to/wp-content/uploads/2025/11/Tonga-General-Elections-Results-revised-20251.pdf",
+      "content_type": "application/pdf",
+      "bytes": 8171403,
+      "sha256": "fe27cd3c700ca2e4ca5f11c6ab22c9a8c4d87882aaf471f55f741b5145381f88",
+      "matches_recorded_bytes": true,
+      "matches_recorded_sha256": true,
+      "pages": 17,
+      "review_pages_one_based": [
+        1,
+        2
+      ]
+    },
+    {
+      "extract": "tonga-pmo-gazette20-20060911-facts.json",
+      "url": "https://web.archive.org/web/20070514085818id_/http://www.pmo.gov.to/artman/publish/article_170.shtml",
+      "expected_sha256": "0e8ebd4c7b7ef60b26b61030853879d4b29ae7a6791986168fba73632e64c73e",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20070514085818id_/http://www.pmo.gov.to/artman/publish/article_170.shtml",
+      "content_type": "text/html; charset=ISO-8859-1",
+      "bytes": 11613,
+      "sha256": "0e8ebd4c7b7ef60b26b61030853879d4b29ae7a6791986168fba73632e64c73e",
+      "matches_recorded_bytes": true,
+      "matches_recorded_sha256": true
+    },
+    {
+      "extract": "tonga-pmo-gazette19-20060911-facts.json",
+      "url": "https://web.archive.org/web/20061005235237id_/http://www.pmo.gov.to/artman/publish/article_172.shtml",
+      "expected_sha256": "637e14492c723f8ccf2a6f8cbba34a20b21cbbcce23930e2c0dca9dbaef5d378",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20061005235237id_/http://www.pmo.gov.to/artman/publish/article_172.shtml",
+      "content_type": "text/html; charset=ISO-8859-1",
+      "bytes": 11706,
+      "sha256": "637e14492c723f8ccf2a6f8cbba34a20b21cbbcce23930e2c0dca9dbaef5d378",
+      "matches_recorded_bytes": true,
+      "matches_recorded_sha256": true
+    },
+    {
+      "extract": "tonga-gazette-ext8-20120319-facts.json",
+      "url": "https://ago.gov.to/cms/images/LEGISLATION/GAZETTES/2012/2012-0008/GazetteExtraordinaryNo.8of2012.pdf",
+      "expected_sha256": "ec50ad5d05fbf90ec52ea6dce7913178b4e4bf04456e5c78e8e619c98eef0b6b",
+      "status": 200,
+      "final_url": "https://ago.gov.to/cms/images/LEGISLATION/GAZETTES/2012/2012-0008/GazetteExtraordinaryNo.8of2012.pdf",
+      "content_type": "application/pdf",
+      "bytes": 659563,
+      "sha256": "ec50ad5d05fbf90ec52ea6dce7913178b4e4bf04456e5c78e8e619c98eef0b6b",
+      "matches_recorded_bytes": true,
+      "matches_recorded_sha256": true,
+      "pages": 1,
+      "review_pages_one_based": [
+        1
+      ]
+    },
+    {
+      "extract": "tonga-gazette-ext9-20120319-facts.json",
+      "url": "https://ago.gov.to/cms/images/LEGISLATION/GAZETTES/2012/2012-0009/GazetteExtraordinaryNo.9of2012.pdf",
+      "expected_sha256": "773fd96d13b46e8fbba1e943e1f85d7b6d406cbc65937b313c3631f5b294d3e9",
+      "status": 200,
+      "final_url": "https://ago.gov.to/cms/images/LEGISLATION/GAZETTES/2012/2012-0009/GazetteExtraordinaryNo.9of2012.pdf",
+      "content_type": "application/pdf",
+      "bytes": 662692,
+      "sha256": "773fd96d13b46e8fbba1e943e1f85d7b6d406cbc65937b313c3631f5b294d3e9",
+      "matches_recorded_bytes": true,
+      "matches_recorded_sha256": true,
+      "pages": 2,
+      "review_pages_one_based": [
+        1
+      ]
+    },
+    {
+      "extract": "tonga-act-income-tax-19900712-facts.json",
+      "url": "https://ago.gov.to/cms/images/LEGISLATION/AMENDING/1990/1990-0004/IncomeTaxAmendmentAct1990.pdf",
+      "expected_sha256": "25d2c916b3fb7e2187d7e5ae0350651ea453de3e1a4ba84caa786f90c485c419",
+      "status": 200,
+      "final_url": "https://ago.gov.to/cms/images/LEGISLATION/AMENDING/1990/1990-0004/IncomeTaxAmendmentAct1990.pdf",
+      "content_type": "application/pdf",
+      "bytes": 35041,
+      "sha256": "25d2c916b3fb7e2187d7e5ae0350651ea453de3e1a4ba84caa786f90c485c419",
+      "matches_recorded_bytes": true,
+      "matches_recorded_sha256": true,
+      "pages": 3,
+      "review_pages_one_based": [
+        1
+      ]
+    },
+    {
+      "extract": "tonga-act-constitution-19900808-facts.json",
+      "url": "https://ago.gov.to/cms/images/LEGISLATION/AMENDING/1990/1990-0012/ActofConstitutionofTongaAmendmentAct1990.pdf",
+      "expected_sha256": "4eab11f44316d1687023313b05119ff41d64f78e84c2622043d445c841dca90a",
+      "status": 200,
+      "final_url": "https://ago.gov.to/cms/images/LEGISLATION/AMENDING/1990/1990-0012/ActofConstitutionofTongaAmendmentAct1990.pdf",
+      "content_type": "application/pdf",
+      "bytes": 32413,
+      "sha256": "4eab11f44316d1687023313b05119ff41d64f78e84c2622043d445c841dca90a",
+      "matches_recorded_bytes": true,
+      "matches_recorded_sha256": true,
+      "pages": 2,
+      "review_pages_one_based": [
+        1
+      ]
+    },
+    {
+      "extract": "tonga-pmo-qsc-20060313-facts.json",
+      "url": "https://web.archive.org/web/20060907124302id_/http://www.pmo.gov.to:80/artman/publish/article_100.shtml",
+      "expected_sha256": "3c22f49704578d31f44fee0e1c77941bb1fd9756f491fb343d2eba4d7474b3b5",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20060907124302id_/http://www.pmo.gov.to:80/artman/publish/article_100.shtml",
+      "content_type": "text/html; charset=ISO-8859-1",
+      "bytes": 13490,
+      "sha256": "3c22f49704578d31f44fee0e1c77941bb1fd9756f491fb343d2eba4d7474b3b5",
+      "matches_recorded_bytes": true,
+      "matches_recorded_sha256": true
+    },
+    {
+      "extract": "tonga-pmo-throne-speech-20060601-facts.json",
+      "url": "https://web.archive.org/web/20061005234255id_/http://www.pmo.gov.to/artman/publish/article_118.shtml",
+      "expected_sha256": "2643d47bb38d0960d9882e4cce00c4990f3041573c007b69926f358cc7223803",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20061005234255id_/http://www.pmo.gov.to/artman/publish/article_118.shtml",
+      "content_type": "text/html; charset=ISO-8859-1",
+      "bytes": 23572,
+      "sha256": "2643d47bb38d0960d9882e4cce00c4990f3041573c007b69926f358cc7223803",
+      "matches_recorded_bytes": true,
+      "matches_recorded_sha256": true
+    },
+    {
+      "extract": "tonga-tlr-2006-regency-facts.json",
+      "url": "https://ago.gov.to/cms/ago-materials/publications/tonga-law-reports.html?download=1560:2006_tlr",
+      "expected_sha256": "2b4b56d06edd5cdaa65fe74d55b29dff37aa366a162374fb6f3801d3114c3aef",
+      "status": 200,
+      "final_url": "https://ago.gov.to/cms/ago-materials/publications/tonga-law-reports.html?download=1560:2006_tlr",
+      "content_type": "application/pdf",
+      "bytes": 2053972,
+      "sha256": "2b4b56d06edd5cdaa65fe74d55b29dff37aa366a162374fb6f3801d3114c3aef",
+      "matches_recorded_bytes": true,
+      "matches_recorded_sha256": true,
+      "pages": 351,
+      "review_pages_one_based": [
+        166,
+        168,
+        170
+      ]
+    },
+    {
+      "extract": "tonga-un-a61-pv1-20060912-facts.json",
+      "url": "https://documents.un.org/doc/undoc/gen/n06/520/19/pdf/n0652019.pdf",
+      "expected_sha256": "36a4903f5b55ef362f6daa70d8de272d6467f1dd9de6f91117b697be9ee23b8e",
+      "status": 200,
+      "final_url": "https://documents.un.org/doc/undoc/gen/n06/520/19/pdf/n0652019.pdf",
+      "content_type": "application/pdf",
+      "bytes": 56229,
+      "sha256": "36a4903f5b55ef362f6daa70d8de272d6467f1dd9de6f91117b697be9ee23b8e",
+      "matches_recorded_bytes": true,
+      "matches_recorded_sha256": true,
+      "pages": 8,
+      "review_pages_one_based": [
+        1,
+        2,
+        3
+      ]
+    }
+  ],
+  "web_reader_checks": [
+    {
+      "url": "https://data.ipu.org/election-summary/HTML/2317_14.htm",
+      "status": "content independently read; direct response hash not reproduced",
+      "locators": [
+        "Election date",
+        "Purpose of elections paragraphs1-3",
+        "Source communications"
+      ]
+    },
+    {
+      "url": "https://data.ipu.org/parliament/TO/TO-LC01/election/TO-LC01-E20251120/",
+      "status": "content independently read; direct response hash not reproduced",
+      "locators": [
+        "Candidates",
+        "Number of parties winning seats",
+        "About the election"
+      ]
+    }
+  ],
+  "packet_sha256": "f7af123e3c63dcebf4f1f432c0dd8e4e9997df5581b1093eaf903fc3dc568af1",
+  "scope": "Critical claim review only; source original files and page renders are not checked in. Acceptance is bounded research intake, not all-claim re-verification or C01 completion."
+}

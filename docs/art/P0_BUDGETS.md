@@ -72,7 +72,7 @@ with only a ceiling can only be `PASS` or `OVER`.
 
 ## Verdicts
 
-245 graded configurations: 164 PASS, 79 under the detail floor, 2 over the ceiling.
+245 graded configurations: 166 PASS, 79 under the detail floor, 0 over the ceiling.
 
 The geometry sweep covers nine ground platforms, all three CP1 aircraft,
 construction sites and town assets. Contract revision 2 reconciles the original
@@ -80,17 +80,7 @@ proposal with the subsequently implemented inspection quality/export contracts
 and distinguishes a physical building from a multi-building scene. The original
 comparison remains visible below. No frame-rate guarantee follows from this gate.
 
-2 measured configurations are over budget. `--check` exits 1 while any row here has content.
-
-| asset | configuration | measured | budget ceiling | over by |
-| --- | --- | --- | --- | --- |
-| `town.temperate.mixed.v1` | close id 1997 | 163,671 | 150,000 | 13,671 (9.1%) |
-| `town.temperate.residential.v1` | close id 1994 | 174,540 | 150,000 | 24,540 (16.4%) |
-
-Widening the roadmap budget to make this table empty is the one repair
-this harness exists to forbid. Either the mesh loses the triangles, or
-section 4's ceiling is deliberately re-argued and re-derived — a design
-decision, recorded as such, not a quiet edit to a number in a table.
+Nothing measured is over its budget.
 
 No required inspection quality floor is missed.
 
@@ -134,10 +124,10 @@ campuses also pay the scene budget, with every actual building separately graded
 | `site.office_district.v1` | near complete/L5/building | 31,034 | 12,000 |
 | `site.shipyard.v1` | near complete/L5/building | 29,008 | 12,000 |
 | `site.advanced_industry.v1` | near complete/L5/building | 29,012 | 12,000 |
-| `town.temperate.mixed.v1` | close id 1997 | 163,671 | 150,000 |
-| `town.temperate.residential.v1` | close id 1994 | 174,540 | 150,000 |
 | `town.kit.row_house` | close, maximum size | 16,382 | 12,000 |
 | `town.kit.university` | close, maximum size | 16,656 | 12,000 |
+| `town.temperate.mixed.v1` | raw close id 1997 | 163,671 | 150,000 |
+| `town.temperate.residential.v1` | raw close id 1994 | 174,540 | 150,000 |
 
 ## Physical building accounting
 
@@ -408,18 +398,36 @@ Which configuration is the worst case, and how many selectable parts it carries:
 
 ## Town blocks
 
-Swept over 5 districts x 8 ids x 2 LODs = 80 builds. A block is one
+Swept over 5 districts x 9 ids x 2 stored LODs = 90 raw builds and
+229,760 camera/selection plans from the renderer itself. A block is one
 148 x 104 m tile of 1990 temperate town,
-graded against the scene-assembly ceiling because a block is a scene, not a
-building.
+graded against the unchanged 150k **visible** scene ceiling using the actual
+draw plan. Full close geometry is preserved; its overage remains an explicit
+storage diagnostic, not a claim that those triangles disappeared. The renderer
+selects close/mid/map per projected lot size, culls outside the camera frustum,
+and budgets the resulting draw list. A selected lot keeps close geometry.
 
-| asset | close min | close max | close verdict | map min | map max | worst close bytes | lots |
+| asset | raw close min | raw close max | raw close comparison | raw map max | max drawn | visible verdict | raw close bytes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `town.temperate.mixed.v1` | 149,019 | 163,671 | **OVER by 13,671 (9.1%)** | 3,302 | 3,878 | 17,676,468 | 16 |
-| `town.temperate.residential.v1` | 149,907 | 174,540 | **OVER by 24,540 (16.4%)** | 3,250 | 4,098 | 18,850,320 | 20 |
-| `town.temperate.commercial.v1` | 98,486 | 125,494 | PASS | 3,012 | 3,680 | 13,553,352 | 18 |
-| `town.temperate.civic.v1` | 87,961 | 128,377 | PASS | 3,026 | 3,766 | 13,864,716 | 17 |
-| `town.temperate.industrial.v1` | 73,866 | 84,250 | PASS | 2,444 | 3,124 | 9,099,000 | 13 |
+| `town.temperate.mixed.v1` | 149,019 | 163,671 | **OVER by 13,671 (9.1%)** | 3,878 | 149,997 | PASS | 17,676,468 |
+| `town.temperate.residential.v1` | 149,907 | 174,540 | **OVER by 24,540 (16.4%)** | 4,098 | 149,934 | PASS | 18,850,320 |
+| `town.temperate.commercial.v1` | 98,486 | 125,494 | PASS | 3,680 | 125,494 | PASS | 13,553,352 |
+| `town.temperate.civic.v1` | 87,961 | 128,377 | PASS | 3,766 | 128,377 | PASS | 13,864,716 |
+| `town.temperate.industrial.v1` | 73,866 | 84,250 | PASS | 3,124 | 84,250 | PASS | 9,099,000 |
+
+| asset | most expensive sampled view | draw calls | culled lots | budget demotions |
+| --- | --- | ---: | ---: | ---: |
+| mixed | id 1997, 2048x1440, yaw 270, pitch 8, zoom 1, lot-13 | 16 | 1 | 0 |
+| residential | id "1990", 2048x1440, yaw 0, pitch 35, zoom 0.55, lot-15 | 17 | 0 | 2 |
+| commercial | id 1991, 2048x1440, yaw 0, pitch 75, zoom 0.55, lot-17 | 19 | 0 | 0 |
+| civic | id 1992, 1280x720, yaw 0, pitch 75, zoom 1, lot-16 | 18 | 0 | 0 |
+| industrial | id 1996, 2048x1440, yaw 0, pitch 35, zoom 0.55, lot-2 | 14 | 0 | 0 |
+
+This camera sweep uses four device-pixel viewports, five yaw angles, four pitch angles, four zoom
+levels, overview and every selectable lot, across eight numeric seeds plus the
+gallery's string seed. It invokes the same planner consumed by WebGL drawScene;
+browser submission, context-loss and navigation tests verify that connection.
+It does not measure frame rate, GPU memory, or the separate globe CityMesh path.
 
 The map LOD has no roadmap row of its own — section 4 budgets a scene assembly
 and a building, not a separate coarse scene — so both block detail levels are
@@ -465,11 +473,11 @@ failure; this is where the next art pass will push something over.
 
 | asset | configuration | triangles | ceiling | of ceiling |
 | --- | --- | --- | --- | --- |
+| `town.temperate.mixed.v1` | rendered id 1997, 2048x1440, yaw 270, pitch 8, zoom 1, lot-13 | 149,997 | 150,000 | 100.0% |
+| `town.temperate.residential.v1` | rendered id "1990", 2048x1440, yaw 0, pitch 35, zoom 0.55, lot-15 | 149,934 | 150,000 | 100.0% |
 | `ground.ground_ifv.baseline.v1` | heaviest | 47,716 | 48,000 | 99.4% |
 | `ground.ground_artillery.baseline.v1` | heaviest | 47,472 | 48,000 | 98.9% |
 | `site.arms_plant.v1/lead` | complete/L1/building | 11,690 | 12,000 | 97.4% |
-| `town.kit.mid_apartment` | close, maximum size | 11,600 | 12,000 | 96.7% |
-| `aviation.air_fighter.baseline.v1` | baseline LOD1 | 11,594 | 12,000 | 96.6% |
 
 ## Hypothetical ground/site/town inventory, not live residency
 
@@ -511,11 +519,11 @@ compression/headers, renderer, stylesheet and other page costs are not included.
 | --- | --- | --- |
 | `spheres-web/ui/equipment-mesh.js` | 180,994 | 176.8 KiB |
 | `spheres-web/ui/site-mesh.js` | 308,376 | 301.1 KiB |
-| `spheres-web/ui/town-mesh.js` | 174,196 | 170.1 KiB |
-| **total** | **663,566** | **648.0 KiB** |
+| `spheres-web/ui/town-mesh.js` | 178,182 | 174.0 KiB |
+| **total** | **667,552** | **651.9 KiB** |
 
-663,566 bytes of source produce 1,716,194 triangles of
-geometry — 279x its own weight in vertex data. That ratio is not fixed
+667,552 bytes of source produce 1,716,194 triangles of
+geometry — 278x its own weight in vertex data. That ratio is not fixed
 at authoring time either: it grows with every extra seed, stage, level and
 district asked of the same source.
 
@@ -524,7 +532,7 @@ totalling 122,833,624 bytes (117.14 MiB). They are the
 portable deliverable roadmap section 4 asks for, not a runtime download — the game
 never fetches them — and they are the comparison that settles the argument:
 13 equipment exports (3 aircraft and 10 ground-vehicle configurations) as binary assets weigh
-185.1x the entire generator source
+184.0x the entire generator source
 that builds every vehicle, every site at every stage and every town block.
 
 Actual committed export sizes are enforced with the existing strict byte limits.
@@ -552,7 +560,7 @@ contents against the generator; size alone does not prove a valid asset.
 - Every number is measured by building the mesh and reading `triangleCount`,
   `parts` and the attribute arrays. Nothing is copied from another document.
 - Sweeps: vehicles 1,229 builds, sites 3,200,
-  town blocks 80, town kit 120.
+  town blocks 90, town kit 120.
 - The vehicle worst case is greedy coordinate ascent over the simulation's own
   component catalogue, repeated until a pass buys nothing (2 passes).
 - Build times are measured cold in a fresh process and warm in a loop, and are

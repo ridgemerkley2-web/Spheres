@@ -3269,7 +3269,7 @@
       "game_id": "visual_only",
       "source": "spheres-web/ui/town-mesh.js",
       "generator": "TownMesh.block({id, district, lod})",
-      "runtime": "spheres-web/ui/arsenal3d.js via the 'town' provider",
+      "runtime": "tools/arsenal/art-gallery.html: TownMesh.scene via Arsenal3D.mountScene; the main-page 'town' provider remains dormant, and globe CityMesh is separate",
       "glb": null,
       "lod": {
         "LOD0": 159598,
@@ -3300,7 +3300,7 @@
       "era": [
         "1990-baseline"
       ],
-      "validation": "tools/ui/check_town_mesh.cjs",
+      "validation": "tools/ui/check_town_mesh.cjs; tools/ui/check_town_scene.cjs; tools/ui/town-scene-browser.cjs; tools/ui/bench_art.cjs --check",
       "milestone": "P0",
       "units": "metres",
       "axes": "+X right, +Y up, +Z forward",
@@ -3313,7 +3313,7 @@
       "game_id": "visual_only",
       "source": "spheres-web/ui/town-mesh.js",
       "generator": "TownMesh.block({id, district, lod})",
-      "runtime": "spheres-web/ui/arsenal3d.js via the 'town' provider",
+      "runtime": "tools/arsenal/art-gallery.html: TownMesh.scene via Arsenal3D.mountScene; the main-page 'town' provider remains dormant, and globe CityMesh is separate",
       "glb": null,
       "lod": {
         "LOD0": 171520,
@@ -3344,7 +3344,7 @@
       "era": [
         "1990-baseline"
       ],
-      "validation": "tools/ui/check_town_mesh.cjs",
+      "validation": "tools/ui/check_town_mesh.cjs; tools/ui/check_town_scene.cjs; tools/ui/town-scene-browser.cjs; tools/ui/bench_art.cjs --check",
       "milestone": "P0",
       "units": "metres",
       "axes": "+X right, +Y up, +Z forward",
@@ -3357,7 +3357,7 @@
       "game_id": "visual_only",
       "source": "spheres-web/ui/town-mesh.js",
       "generator": "TownMesh.block({id, district, lod})",
-      "runtime": "spheres-web/ui/arsenal3d.js via the 'town' provider",
+      "runtime": "tools/arsenal/art-gallery.html: TownMesh.scene via Arsenal3D.mountScene; the main-page 'town' provider remains dormant, and globe CityMesh is separate",
       "glb": null,
       "lod": {
         "LOD0": 109058,
@@ -3388,7 +3388,7 @@
       "era": [
         "1990-baseline"
       ],
-      "validation": "tools/ui/check_town_mesh.cjs",
+      "validation": "tools/ui/check_town_mesh.cjs; tools/ui/check_town_scene.cjs; tools/ui/town-scene-browser.cjs; tools/ui/bench_art.cjs --check",
       "milestone": "P0",
       "units": "metres",
       "axes": "+X right, +Y up, +Z forward",
@@ -3401,7 +3401,7 @@
       "game_id": "visual_only",
       "source": "spheres-web/ui/town-mesh.js",
       "generator": "TownMesh.block({id, district, lod})",
-      "runtime": "spheres-web/ui/arsenal3d.js via the 'town' provider",
+      "runtime": "tools/arsenal/art-gallery.html: TownMesh.scene via Arsenal3D.mountScene; the main-page 'town' provider remains dormant, and globe CityMesh is separate",
       "glb": null,
       "lod": {
         "LOD0": 105672,
@@ -3432,7 +3432,7 @@
       "era": [
         "1990-baseline"
       ],
-      "validation": "tools/ui/check_town_mesh.cjs",
+      "validation": "tools/ui/check_town_mesh.cjs; tools/ui/check_town_scene.cjs; tools/ui/town-scene-browser.cjs; tools/ui/bench_art.cjs --check",
       "milestone": "P0",
       "units": "metres",
       "axes": "+X right, +Y up, +Z forward",
@@ -3445,7 +3445,7 @@
       "game_id": "visual_only",
       "source": "spheres-web/ui/town-mesh.js",
       "generator": "TownMesh.block({id, district, lod})",
-      "runtime": "spheres-web/ui/arsenal3d.js via the 'town' provider",
+      "runtime": "tools/arsenal/art-gallery.html: TownMesh.scene via Arsenal3D.mountScene; the main-page 'town' provider remains dormant, and globe CityMesh is separate",
       "glb": null,
       "lod": {
         "LOD0": 82142,
@@ -3476,7 +3476,7 @@
       "era": [
         "1990-baseline"
       ],
-      "validation": "tools/ui/check_town_mesh.cjs",
+      "validation": "tools/ui/check_town_mesh.cjs; tools/ui/check_town_scene.cjs; tools/ui/town-scene-browser.cjs; tools/ui/bench_art.cjs --check",
       "milestone": "P0",
       "units": "metres",
       "axes": "+X right, +Y up, +Z forward",

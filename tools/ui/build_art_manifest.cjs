@@ -128,7 +128,7 @@ const townBlocks = TownMesh.districts().map((district) => {
     game_id: "visual_only",
     source: "spheres-web/ui/town-mesh.js",
     generator: "TownMesh.block({id, district, lod})",
-    runtime: "spheres-web/ui/arsenal3d.js via the 'town' provider",
+    runtime: "tools/arsenal/art-gallery.html: TownMesh.scene via Arsenal3D.mountScene; the main-page 'town' provider remains dormant, and globe CityMesh is separate",
     glb: null,
     lod: { LOD0: near.triangleCount, LOD1: far.triangleCount },
     parts: near.parts.length,
@@ -138,7 +138,7 @@ const townBlocks = TownMesh.districts().map((district) => {
     bounds: bounds(near),
     basis: "representative — plausible 1990 temperate massing, not a reconstruction of any real town",
     era: ["1990-baseline"],
-    validation: "tools/ui/check_town_mesh.cjs",
+    validation: "tools/ui/check_town_mesh.cjs; tools/ui/check_town_scene.cjs; tools/ui/town-scene-browser.cjs; tools/ui/bench_art.cjs --check",
     milestone: "P0",
     ...CONVENTION,
   };
