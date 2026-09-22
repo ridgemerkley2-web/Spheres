@@ -276,7 +276,7 @@ class TongaPrimeMinisterTests(unittest.TestCase):
                          'government_hosted_retrospective_timeline_archived')
         # Tongan wording is quoted as printed, with the normalised spelling in brackets.
         tongan = self.claims['to_lavaka_ata_resignation_accepted_20060211_to']['text']
-        for printed in ("'malolo' as printed [mālōlō]", "'Palemia Leoleo' as printed [Palēmia Le'ole'o]"):
+        for printed in ("'malolo' as printed [mālōlō]", "'Palemia Le'ole'o' as printed [Palēmia Le'ole'o]"):
             self.assertIn(printed, tongan)
         self.assertNotIn("Le'ole'o (Acting", tongan)
         # Death: recorded, bounded to on or before the Auckland item, and never a day.
@@ -288,7 +288,7 @@ class TongaPrimeMinisterTests(unittest.TestCase):
         # The 2017 context is recorded, dated, and decides nothing about his status.
         letter = self.claims['to_pohiva_conveys_deputy_pm_removal_20170905']
         self.assertEqual(letter['attested_on'], '2017-09-05')
-        self.assertIn("'the Palemia 'o Tonga Hon. 'Akilisi Pohiva'", letter['text'])
+        self.assertIn("the 'Palemia 'o Tonga Hon. 'Akilisi Pohiva'", letter['text'])
         self.assertIn('full or caretaker', letter['uncertainty'])
         self.assertIn('full or caretaker', self.claims['to_pohiva_assembly_reselection_20171218']['uncertainty'])
         self.assertIn("'served as the 16th Prime Minister from 2015-2017'",

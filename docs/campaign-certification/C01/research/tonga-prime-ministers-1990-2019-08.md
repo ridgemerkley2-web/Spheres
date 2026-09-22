@@ -62,7 +62,7 @@ merged into another, even where two fall on the same day.
 
 | Date | Event | Claim or field |
 |---|---|---|
-| 1965-1991 (years) | Tu'ipelehake in three government lists | `to_pmo_former_pms_2026_tuipelehake`, `to_pmo_former_pms_2015_list`, `to_mic_pm_list_2011_list` (no structured date) |
+| 1965-1991 (years) | Tu'ipelehake in three government lists | `to_pmo_former_pms_2026_tuipelehake`, `to_pmo_former_pms_2015_list`, `to_mic_pm_list_2011_list` (no structured date for the range; the 2015 and 2011 list claims carry only their observation dates, 2015-04-23 and 2011-01-18, as `attested_on`) |
 | after 16 Feb 1990 (reference date unknown) | IPU: "The Prime Minister is Prince Fatafefi Tu'ipelehake" | `to_ipu_1990_tuipelehake` (no structured date) |
 | Aug 1991 (month, IPU only) | Tu'ipelehake retires; succeeded by Baron Vaea | `to_ipu_1993_retirement_succession_199108` |
 | undated | Vaea appointed "by the Sovereign" | `to_pmo_vaea_tribute_appointment_undated` |
@@ -167,11 +167,11 @@ Evidence: the PMO's English and Tongan releases of 13 February 2006 state that o
 11 February 2006 the Prince Regent, Crown Prince Tupouto'a, accepted Lavaka Ata's resignation with
 all his portfolios (`to_lavaka_ata_resignation_accepted_20060211`), which the Tongan text calls
 retirement ("malolo" as printed; `to_lavaka_ata_resignation_accepted_20060211_to`), and on the same
-day appointed Sevele Acting Prime Minister ("Palemia Leoleo" as printed;
+day appointed Sevele Acting Prime Minister ("Palemia Le'ole'o" as printed, without the macron;
 `to_sevele_acting_pm_appointed_20060211`). The PMO styles Sevele "THE ACTING PRIME MINISTER" in a
 speech dated 23 March 2006 (`to_sevele_acting_pm_20060323`) and "PRIME MINISTER OF THE KINGDOM OF
 TONGA" in an address dated 7 April 2006 (`to_sevele_pm_20060407`), and on 13 April refers to "his
-tenure as the countrys Acting Prime Minister, and now Prime Minister" (`to_sevele_acting_then_pm_20060413`).
+tenure as the country's Acting Prime Minister, and now Prime Minister" (`to_sevele_acting_then_pm_20060413`).
 The PMO-hosted timeline dates his appointment to 30 March 2006 (`to_sevele_appointed_20060330`);
 its Tongan entry gives the year only (`to_sevele_appointed_2006_to`).
 
@@ -231,7 +231,7 @@ Prime Minister" on 29 December is only a description.
 Evidence: the Instrument of Dissolution dissolved the Assembly "with effect from Thursday 24 August
 2017 at 1700 hours" and says nothing about the Prime Minister (`to_dissolution_instrument_20170824`).
 A MEIDECC release of 7 September 2017 reports former Deputy Prime Minister Siaosi Sovaleni as
-saying that on 5 September a letter from "the Palemia 'o Tonga Hon. 'Akilisi Pohiva" conveyed the
+saying that on 5 September a letter from the "Palemia 'o Tonga Hon. 'Akilisi Pohiva" conveyed the
 King's consent to his removal as Deputy Prime Minister and Minister
 (`to_pohiva_conveys_deputy_pm_removal_20170905`; located by the checker). The Speaker's release of
 12 September still calls him "the Hon. Prime Minister" (`to_pohiva_styled_pm_20170912`). Lord
@@ -445,14 +445,14 @@ and `primary_palace_release_archived` (PMO, MIC/MEIDECC, Palace Office),
 | D1 | Tu'ipelehake and Vaea holders attested no date, though TO-PM90-01 was "accepted" | **Applied**: `attested_period` 1990 for Tu'ipelehake (three government lists) and 1992-1998 for Vaea, each with a year-precision and continuity statement; TO-PM90-01 relabelled "Accepted at year precision" |
 | D2 | New `capacity` key: unvalidated, unrendered, inconsistent with CLAUDE-C01-07 and with the Tangi treatment | **Applied** (first option): no `capacity` key; Sevele's 2006 and Sika's 2019 acting service are role claims, not holders; the criterion (no acting service, from vacancy or absence, is a holder) is stated in the role scope note and coverage |
 | D3 | Sevele's substantive holder dated from a retrospective timeline | **Applied**: holder event-dated to 7 April 2006 (`to_sevele_pm_20060407`); 30 March kept as a claim labelled a retrospective timeline date |
-| D4 | IPU "dismissed" called "contradicted"; a primary release of 7 September 2017 missed; PMO "2015-2017" wording not discussed | **Applied**: reworded to "not supported by any Tongan record found" and kept as a lead; MEIDECC release added (`to_pohiva_conveys_deputy_pm_removal_20170905`, attested 5 September 2017, English as this packet's reading); the "2015-2017" and "2018-2021" wording recorded in `to_pohiva_royal_appointment_20180102` and both Pohiva holders' uncertainty; status 24 Aug 2017 - 2 Jan 2018 unresolved |
+| D4 | IPU "dismissed" called "contradicted"; a primary release of 7 September 2017 missed; PMO "2015-2017" wording not discussed | **Applied**: reworded to "not supported by any Tongan record found" and kept as a lead; MEIDECC release added (`to_pohiva_conveys_deputy_pm_removal_20170905`, attested 5 September 2017, English as this packet's reading); the "2015-2017" and "2018-2021" wording recorded in `to_pohiva_royal_appointment_20180102`, and the "2015-2017" wording in the 2014 Pohiva holder's uncertainty; status 24 Aug 2017 - 2 Jan 2018 unresolved |
 | D5 | Death bound stated as "by 14 September" and a 12-14 September period that reads as a death window | **Applied**: "on or before 12 September 2019 (Auckland date); day not stated"; the period replaced by `attested_on` 2019-09-14 (publication); Pohiva's `until` null |
 | D6 | IPU 1990 claim dated to the election day | **Applied**: `attested_on` removed; undated IPU corroboration |
 | D7 | `to_sika_acting_pm_20190917_programme` encoded the ceremony date | **Applied**: renamed `to_sika_acting_pm_20190914_programme` and described as a prospective programme listing |
 | D8 | 2010 selection dated to 21 December though the ballot may have been on 20 December | **Applied**: renamed `to_tuivakano_assembly_result_presented_20101221`; 21 December dates only the presentation and announcement; the ballot day is stated as unknown |
-| D9 | Tongan forms normalised in quotation | **Applied**: quoted as printed ("malolo", "Palemia Leoleo", "Tama Tui Fakaleo", "Tupoutoa") with the normalised spelling in brackets |
+| D9 | Tongan forms normalised in quotation | **Applied, corrected**: the capture's bytes 0x91/0x92 render as glottal stops, so only macrons are missing; quoted as printed ("malolo", "Palemia Le'ole'o", "Tama Tu'i Fakale'o", "Tupouto'a") with the macron spelling in brackets |
 | D10 | Locator of `to_sevele_appointed_2006_to` did not match the quote | **Applied**: locator is now the timeline list entry, and the page title is quoted as printed |
-| D11 | Live pages read after the cutoff without a note | **Applied**: scope notes on the live PMO list, both IPU pages, both gazettes, both minutes and both PMO PDFs; the list's post-2019 entry is not imported |
+| D11 | Live pages read after the cutoff without a note | **Applied**: scope notes on the live PMO list, both IPU pages, both gazettes, both minutes and both PMO PDFs; the list's 2021-2024 and 2025 entries are not imported |
 | D12 | Two claims had no home | **Applied**: `to_pmo_former_pms_2026_later_years` and `to_pmo_vaea_tribute_acting_pm_20090613` are on the `to_pm` role |
 | D13 | IPU 1993 "Last-Modified" statement not reproducible | **Applied**: removed |
 
@@ -524,6 +524,10 @@ These are proposals for the integrator. They are not created in `work-orders.jso
     stated 2000-2006 boundaries.
   - `test_campaign_census` needs `spheres-sim/data`, which is absent from this sparse worktree; it was
     not run here, and the sparse checkout was not widened.
+- Existing text edited: CLAUDE-C01-04's TO-DPFI-05 coverage entry on `to_prime_minister` now reads "no
+  to_pm holder, start or end is created for Pohiva from the IPU record (CLAUDE-C01-08 later adds his
+  holders from the PMO releases of 30 December 2014 and 4 January 2018)"; it stays the last
+  `unresolved` item, so the C01-04 check on its wording still passes.
 - New fields: none. `attested_period` on a prime-minister holder reuses the field CLAUDE-C01-01 put on
   the People's Party holders, which the atlas already renders. The role `scope_note` follows the
   `to_king` precedent. No UI code changed and no browser review was run.
