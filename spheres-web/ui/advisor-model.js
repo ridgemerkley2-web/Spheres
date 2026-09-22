@@ -262,7 +262,9 @@
   // A dated payment: positive last_spent_bn needs a valid last_day; unpaid rows carry null or zero.
   function payment(r,c,detail){if(!obj(r))return BAD;const spent=own(r,"last_spent_bn");if(spent===null||spent===0)return null;if(!finite(spent)||spent<0)return BAD;
     const d=dayOf(own(r,"last_day"),c.day);return d===BAD||d===null?BAD:d===FUTURE?null:{day:d,detail:detail(spent)};}
-  const place=r=>[clip(own(r,"kind"),60)?.replace(/_/g," "),clip(own(r,"district"),40)].filter(Boolean).join(" in ")||"a project";
+  // Player-facing province name when served; the id stays the matching key.
+  const where=r=>clip(own(r,"district_name"),60)||clip(own(r,"district"),40);
+  const place=r=>[clip(own(r,"kind"),60)?.replace(/_/g," "),where(r)].filter(Boolean).join(" in ")||"a project";
 
   function finances(def,sec,c){
     const start=dayIndex(c.year,1,1),decisions=own(sec,"journal_available")===true?list(sec,"decisions"):null;
@@ -284,7 +286,7 @@
     const projects=list(sec,"projects"),mines=list(sec,"mines"),ends=list(sec,"completions"),sites=new Set(),site=(d,k)=>JSON.stringify([d,k]);let unsure=!ends||ends.over;
     const pre=(l,f)=>l&&{rows:l.rows.map(f),over:l.over};
     // Mine funding stamps last_day on every settle attempt, so it bounds the payment date rather than naming it.
-    const mined=r=>{if(!obj(r))return BAD;const spent=own(r,"spent_bn"),last=own(r,"last_day"),d=dayOf(last,c.day),district=clip(own(r,"district"),40),what=clip(own(r,"commodity"),30);
+    const mined=r=>{if(!obj(r))return BAD;const spent=own(r,"spent_bn"),last=own(r,"last_day"),d=dayOf(last,c.day),district=where(r),what=clip(own(r,"commodity"),30);
       if(!district||!what)return BAD;if(spent===null)return last===null?null:BAD;if(!finite(spent)||spent<0||d===BAD||spent>0&&d===null)return BAD;
       return spent>0&&typeof d==="number"?{day:null,detail:clip(`Paid mine work: ${money(spent)} for ${what.replace(/_/g," ")} in ${district} by ${iso(d)}.`)}:null;};
     const work=scan("work_paid",[pre(projects,r=>payment(r,c,v=>`Paid ${money(v)} for ${place(r)}.`)),pre(mines,mined)],x=>x);
@@ -370,7 +372,7 @@
       return !finite(paid)||paid<0||!finite(total)||total<0||cancel!==null&&!count(cancel)||last===BAD||fin===BAD?BAD:{paid,total,last,fin,live:cancel===null,what:what(p)};});
     const finished=history.map(h=>{if(!obj(h))return BAD;const d=dayOf(own(h,"completed_day"),c.day);return d===BAD?BAD:typeof d==="number"?{day:d,what:what(h)}:null;});
     const sets=[{rows:projects,over:bad},{rows:finished,over:false}];
-    const funded=scan("base_funded",sets,x=>x===BAD?BAD:!x?null:"paid" in x?(x.live&&x.paid>0&&typeof x.last==="number"?{day:x.last,detail:`Paid ${money(x.paid)} of ${money(x.total)} for ${x.what}.`}:null):{day:null,detail:`Paid through completion of ${x.what}.`});
+    const funded=scan("base_funded",sets,x=>x===BAD?BAD:!x?null:"paid" in x?(x.live&&x.paid>0&&typeof x.last==="number"?{day:x.last,detail:`Paid ${money(x.paid)} of ${money(x.total)} for ${x.what}.`}:null):{day:x.day,detail:`Paid through completion of ${x.what}.`});
     const completed=scan("base_completed",sets,x=>x===BAD?BAD:!x?null:"paid" in x?(x.live&&typeof x.fin==="number"?{day:x.fin,detail:`Completed ${x.what}.`}:null):{day:x.day,detail:`Completed ${x.what}.`});
     const squadrons=list(sec,"squadrons"),wings=squadrons&&{rows:squadrons.rows.map(r=>{if(!obj(r))return BAD;const n=own(r,"assigned"),ready=own(r,"ready"),blocker=own(r,"blocker");
       return !count(n)||typeof ready!=="boolean"||blocker!==null&&typeof blocker!=="string"?BAD:{n,ready:ready&&n>0&&blocker===null,blocker:clip(blocker)};}),over:squadrons.over};

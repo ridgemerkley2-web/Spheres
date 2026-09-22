@@ -70,7 +70,7 @@ fn construction(g:&crate::Game,me:NationId)->Value {
     let projects:Vec<Value>=projects.into_iter().map(|p|{
         let f=w.production.industry.projects.get(&p.id);
         let scale=industrial_modules::scale(p);
-        json!({"id":p.id,"kind":p.kind.key(),"district":p.district,
+        json!({"id":p.id,"kind":p.kind.key(),"district":p.district,"district_name":districts::name_of(&p.district),
             "spent_bn":f.map(|f|f.spent_bn),"contract_cost_bn":f.and_then(|f|f.contract_cost_bn),
             "last_day":f.and_then(|f|f.last_day),"last_spent_bn":f.and_then(|f|f.last_spent_bn),
             "progress_days":p.progress_days*scale,
@@ -79,19 +79,19 @@ fn construction(g:&crate::Game,me:NationId)->Value {
     let mut completions:Vec<Value>=g.log.iter().rev()
         .filter_map(|e|e.tags.contains(&me).then(||construction_headline(&e.text,me,w)).flatten().map(|site|(e,site)))
         .take(COMPLETIONS).map(|(e,(district,kind))|json!({"date":e.date,"day":log_day(&e.date),"text":e.text,
-            "district":district,"kind":kind})).collect();
+            "district":district,"district_name":district.as_deref().and_then(districts::name_of),"kind":kind})).collect();
     completions.reverse();
     // Mine work is paid daily from the same construction budget. A legacy
     // prepaid row has no funding entry, so its payment fields stay null.
     let mut mines:Vec<_>=w.resources.mine_projects.iter().filter(|p|p.started_by==me).collect();
     mines.sort_by(|a,b|(a.district.as_str(),a.commodity).cmp(&(b.district.as_str(),b.commodity)));
     let mines:Vec<Value>=mines.into_iter().map(|p|{let f=w.production.industry.mines.get(&industry::mine_key(&p.district,p.commodity));
-        json!({"district":p.district,"commodity":p.commodity.key(),"spent_bn":f.map(|f|f.spent_bn),"last_day":f.and_then(|f|f.last_day),
+        json!({"district":p.district,"district_name":districts::name_of(&p.district),"commodity":p.commodity.key(),"spent_bn":f.map(|f|f.spent_bn),"last_day":f.and_then(|f|f.last_day),
             "progress_days":f.map(|f|f.progress_days),"total_days":f.map(|f|f.total_days)})}).collect();
     let operating:Vec<Value>=industry::snapshot(w,me).sites.iter().filter_map(|s|{
         let o=s.operation.as_ref().filter(|o|o.nation==me)?;
         (s.output_daily.is_finite()&&s.output_daily>0.0).then(||
-            json!({"district":s.district,"kind":s.kind.key(),"day":o.day,"output_daily":s.output_daily}))
+            json!({"district":s.district,"district_name":districts::name_of(&s.district),"kind":s.kind.key(),"day":o.day,"output_daily":s.output_daily}))
     }).collect();
     json!({"projects":projects,"completions":completions,"operating":operating,"mines":mines})
 }
