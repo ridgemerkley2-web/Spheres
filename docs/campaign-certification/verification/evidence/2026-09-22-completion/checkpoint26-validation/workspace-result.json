@@ -1,0 +1,28 @@
+{
+  "revision": "9f7faed5f541e14545e01caf1616ba08c6ad8ff9",
+  "command": [
+    "cargo",
+    "test",
+    "--locked",
+    "--release",
+    "--workspace",
+    "--no-fail-fast",
+    "--",
+    "--skip",
+    "tests::the_resource_pass_stays_under_budget"
+  ],
+  "exit_code": 0,
+  "targets": 66,
+  "totals": {
+    "passed": 1886,
+    "failed": 0,
+    "ignored": 89,
+    "measured": 0,
+    "filtered": 1
+  },
+  "log": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\completion-checkpoint26-workspace-20260922.log",
+    "sha256": "9ce2526264f3586eca0cc02e6b7ff9e03b24ac245ca539b0e7add31e820e570e"
+  },
+  "scope": "Ordinary workspace tests; political outcome checks and archives are separately executed."
+}

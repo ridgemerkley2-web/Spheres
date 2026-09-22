@@ -769,7 +769,7 @@ mandates on that fresh path. Saved January 1 campaigns retain their recorded
 institutions and unknown source fields. The former unit expectation requiring
 retroactive Army insertion is explicitly superseded by the stronger original
 archive-preservation contract; its old body is archived. No source dataset or
-A1–A10 coefficient/threshold changed. The rebuilt repair suite is pending.
+A1–A10 coefficient/threshold changed. The rebuilt repair passes 1,886 ordinary native tests, all four original archive checks and the browser journey; its source-bound receipts are in the linked checkpoint26 validation record.
 
 The original 12-seed diagnostic captures all country counts without changing its A1
 assertions. It still fails at median 7 and top-three share 0.585714. A displayed

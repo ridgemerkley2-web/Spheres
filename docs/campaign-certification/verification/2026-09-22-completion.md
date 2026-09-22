@@ -5,11 +5,12 @@ the seven political checks and two town-scene overruns left by the preceding
 [outstanding-repairs report](2026-09-22-outstanding-repairs.md). It does not
 equate a green regression suite with completion of the entire campaign roadmap.
 
-**Validation in progress.** Checkpoint25 passes all 1,884 ordinary native tests,
-but a separately exercised original archive exposed a real load-time government
-mutation. Its repair and the related fresh-browser initialization correction are
-now staged for checkpoint26 verification. A1 political concentration still fails
-its unchanged rule; this repair pass and campaign certification remain open.
+**Political verification remains open.** At checkpoint26 (`9f7faed5`), all
+1,886 ordinary native tests and 1,701 JavaScript tests pass. Four genuine archived
+save checks, both mature native latency checks and the actual browser journey
+also pass. The load-time government mutation is repaired. A1 political coup
+concentration still fails its unchanged rule; neither this technical checkpoint
+nor the in-progress hosted run is campaign certification.
 
 ## Town scenes
 
@@ -290,11 +291,37 @@ fresh-browser constructor now supplies the political rules before the canonical
 `world_1990` initializer, giving new campaigns the same sourced institutions,
 established movements, military authority and prior mandate. Loading an archive,
 even dated January 1, never enters that constructor. The genuine archive test and
-its exact property assertions remain untouched. Rebuilt native/archive/browser
-verification of this correction is pending.
+its exact property assertions remain untouched. The rebuilt native/archive/browser
+checks now pass as recorded below.
 
 The [original 12-seed diagnostic](evidence/2026-09-22-completion/political-calibration/iteration-25-original12-country-counts-README.md)
 preserves the unchanged failing A1 result: median 7 coups and top-three share
 0.585714. A separately displayed effective-country-count comparison is a proposed
 alternative design criterion, **not an approved replacement or a pass**. No
 outcome threshold has changed; no reserved independent seed has been run.
+
+The [completed checkpoint26 receipt](evidence/2026-09-22-completion/checkpoint26-validation/README.md)
+records **1,886 native passes, zero failures, 89 ignored and one timing check
+filtered**, plus **1,701 JavaScript passes with no failures or skips**. All four
+unchanged archive checks now pass, including the originally failing master
+archive. Both latency tests pass at a maximum p95 of 172.6067 ms and maximum
+sample 179.594 ms, under the unchanged 300/750 ms limits. The separately isolated
+resource check measures 0.0612 ms/month against its unchanged 0.15 hard bar; the
+0.05 advisory target is still missed.
+
+The real browser journey passes on exact `9f7faed5`, checking 22 served assets,
+menu/advisors/integrated panels, named save/history continuation and recovery
+from a lost committed command response. Local execution uses installed Chrome
+153.0.8010.53 and Playwright 1.62.1; this is distinct from hosted Chromium.
+Original saves and preview servers pass the preservation verifier. The original
+political suite still reports 10 passes and one A1 failure, with all printed
+metrics and 20 printed seed rows identical to iteration 23. No new N200 or held-out
+cohort is claimed by this source-boundary repair.
+
+The preceding [hosted25 run](https://github.com/ridgemerkley2-web/Spheres/actions/runs/35791726122)
+is complete: native/core-browser, JavaScript/tooling and town-browser all pass on
+Ubuntu and Windows. Only both A1 political checks and their fail-closed aggregates
+fail. The current [hosted26 run](https://github.com/ridgemerkley2-web/Spheres/actions/runs/35794328514)
+is still in progress when this local receipt is committed. Remaining model work
+preserves the existing acceptance rules unless a separate design change is
+explicitly chosen; local technical success does not erase the political failure.
