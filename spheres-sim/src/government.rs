@@ -5551,17 +5551,22 @@ pub fn polity(id: NationId) -> Option<&'static Polity> {
 /// and Haiti party tables — its `GovState.support` for the two and the 1990
 /// start hash do not move — while the lens world seats them like any other
 /// dormant table. Every reader with the world in hand asks this. The readers
-/// without one (`regime_is_communist` and `pillar_bloc` through it,
-/// `home_pillar`, the two `pillar_name`s) read `POLITIES`, and are
+/// without one (`regime_is_communist` and `pillar_bloc` through it)
+/// read `POLITIES`, and are
 /// table-invariant for the two D4 nations: the pillars, the ruling
 /// institution and the system are identical in both blocks and neither
 /// table's largest party is Communist — asserted, not assumed, by
-/// `d4_tables_are_read_under_the_switch_and_invisible_off`. Party-id-keyed
+/// `d4_tables_are_read_under_the_switch_and_invisible_off`. Named pillar readers
+/// also use this accessor for the explicit sourced Army-presence overlay.
+/// Party-id-keyed
 /// readers (`spec`, `base_share`) resolve the id in whichever table carries
 /// it (`table_of`), because a D4 id can only be in a state the switch seated.
 pub fn polity_in(w: &WorldState, id: NationId) -> Option<&'static Polity> {
     if w.rules.ideology_blocs {
         if let Some(pol) = D4_POLITIES.iter().find(|x| x.nation == id) {
+            return Some(pol);
+        }
+        if let Some(pol) = crate::army_institutions::polity_overlay(id) {
             return Some(pol);
         }
     }
@@ -5880,11 +5885,35 @@ pub struct Governments {
     pub states: Vec<GovState>,
 }
 
+/// What voters remember about the current governing party or regime. This is
+/// model time, not a scheduled historical event. Re-election and cabinet
+/// reshuffles do not give the same governing party a clean performance record.
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct PoliticalRecord {
+    pub government: String,
+    pub months: f64,
+    pub performance: f64,
+}
+
+/// First model observation for an unsourced successor absent from the opening
+/// roster. This is a population reference for an estimate, not historical
+/// personnel data. Retaining its date prevents growth from recruiting a force.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+pub struct ArmyPopulationReference {
+    pub population_m: f64,
+    pub observed_on: (i32, u32, u32),
+}
+
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct GovState {
     pub nation: NationId,
     /// (party id, support 0..1), in table order and always summing to 1.
     pub support: Vec<(String, f64)>,
+    /// Constituency shares observed at the latest completed, fully legal ballot.
+    /// Older saves retain the opening estimate until they actually hold one.
+    /// This is vote support, never the electoral system's amplified seat shares.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub vote_anchor: Option<Vec<(String, f64)>>,
     /// (party id, seat share 0..1) as of the last election.
     pub seats: Vec<(String, f64)>,
     /// Who is in office. The first entry leads it.
@@ -5893,6 +5922,18 @@ pub struct GovState {
     pub next_election: (i32, u32),
     /// Whether anyone has voted yet under this module.
     pub elected: bool,
+    /// The current mandate began with an unrestricted completed ballot and
+    /// has not subsequently banned a party. Old saves assert no such history.
+    #[serde(default, skip_serializing_if = "election_not_pending")]
+    pub unrestricted_mandate: bool,
+    /// Sourced pre-campaign parliamentary authority; never a completed model
+    /// ballot or a claim of unrestricted civilian rule. Old saves remain unknown.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub opening_mandate: Option<crate::opening_mandates::OpeningMandate>,
+    /// A newly opened regime has an interim cabinet but has not completed its
+    /// first free ballot. Absent older saves retain their recorded status.
+    #[serde(default, skip_serializing_if = "election_not_pending")]
+    pub awaiting_first_election: bool,
     /// (pillar, loyalty 0..1) for a regime that is not elected.
     pub pillars: Vec<(Pillar, f64)>,
     /// How close the pillars are to acting. Accumulates while they are unpaid.
@@ -5903,18 +5944,33 @@ pub struct GovState {
     /// a government formed mid-month must not age a whole month at midnight.
     #[serde(default, skip_serializing_if = "office_fraction_is_zero")]
     pub office_month_fraction: f64,
+    /// A rolling record, learned from current conditions when an older save
+    /// first advances. Its absence does not invent any pre-save history.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub political_record: Option<PoliticalRecord>,
+    /// A sourced active armed contest's material dependency, separate from
+    /// voter support. Missing older saves do not acquire a fictional conflict.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub armed_security: Option<crate::armed_security::SecurityContest>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub army_population_reference: Option<ArmyPopulationReference>,
+    /// Lagged historical executive-removal assessment and separate campaign
+    /// leverage. Missing saves remain unknown and use the existing proxy.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub army_authority: Option<crate::army_authority::ArmyAuthority>,
     /// The political arm (`rules.ideology_blocs`). For a regime that holds no
     /// elections, the standing of each bloc in the country — the thing a vote
     /// would measure if one were held — as (bloc, share) over all five blocs in
-    /// enum order, summing to one. Seeded FLAT from the leader row on the first
-    /// switched-on `ensure` (design D5) and moved every month by
-    /// `drift_movements` (S3), the regime's sibling of `drift_support`. Empty,
-    /// and absent from the save, for an electoral nation (whose shares are
-    /// read off `support`) and whenever the arm is off.
+    /// enum order, summing to one. Seeded from institutions and the dormant
+    /// competitive party table on the first switched-on `ensure`, then moved by
+    /// `drift_movements` (S3), the regime's sibling of `drift_support`. Retained
+    /// after liberalisation for constituents with no party on the ballot;
+    /// represented blocs then divide their remaining mass using `support`.
+    /// Empty in an initially electoral nation and an untouched flag-off save.
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub movements: Vec<(Bloc, f64)>,
-    /// Organizations created by qualifying foreign backing outside the static
-    /// party/pillar table. Their existence survives the withdrawal of funding;
+    /// Organizations sourced at campaign opening or created by qualifying
+    /// foreign backing outside the formal party/pillar table. Their existence survives the withdrawal of funding;
     /// their support and foreign influence still move through the usual rules.
     /// Empty for old saves and omitted until an organization is established.
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
@@ -5934,11 +5990,14 @@ pub struct GovState {
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub banned: Vec<String>,
     /// The bloc that holds power in a regime, seeded from the leader row and
-    /// kept when the arm is on. An electoral nation's ruling bloc is read off
-    /// its coalition leader instead and is not stored.
+    /// kept when the arm is on. Retained through the unelected interim after
+    /// opening; a completed electoral government's live ruling bloc is read
+    /// from its coalition/head instead, without using this dormant record.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub regime_bloc: Option<Bloc>,
 }
+
+fn election_not_pending(value: &bool) -> bool { !*value }
 
 fn office_fraction_is_zero(value: &f64) -> bool {
     *value == 0.0
@@ -6026,11 +6085,21 @@ fn opening_seats(w: &WorldState, pol: &Polity, support: &[(String, f64)]) -> Vec
 /// written before this module existed still loads and simply grows one.
 pub fn ensure(w: &mut WorldState, id: NationId) {
     if state(w, id).is_some() {
+        // Older lens saves may predate these sourced institutional
+        // omissions. Add only the verified missing pillar; retain live loyalty
+        // and every existing political/electoral field on subsequent ensures.
+        if w.rules.ideology_blocs && crate::army_institutions::institution(id).is_some() {
+            let g = state_mut(w, id).unwrap();
+            if !g.pillars.iter().any(|(p, _)| *p == Pillar::Army) {
+                g.pillars.push((Pillar::Army, 0.65));
+            }
+        }
         // Seated already. The only thing left to do is the political arm's
         // seed, which returns at once unless the arm is on and this nation is
         // an unseeded regime — a save switched on after it was written.
         seed_blocs(w, id);
         remember_established_movements(w, id);
+        remember_army_population_reference(w, id);
         return;
     }
     let pol = match polity_in(w, id) {
@@ -6042,19 +6111,33 @@ pub fn ensure(w: &mut WorldState, id: NationId) {
     normalise(&mut support);
     let pillars: Vec<(Pillar, f64)> =
         pol.pillars.iter().map(|s| (s.pillar, 0.65)).collect();
+    let established_movements = if w.rules.ideology_blocs && (w.year, w.month, w.day) == (1990, 1, 1) {
+        let mut blocs: Vec<Bloc> = crate::data::opening_movements_1990().iter()
+            .filter(|r| r.nation == id).map(|r| r.bloc).collect();
+        blocs.sort();
+        blocs
+    } else { vec![] };
     let mut g = GovState {
         nation: id,
         seats: support.clone(),
         support,
+        vote_anchor: None,
         coalition: vec![],
         next_election: pol.next,
         elected: false,
+        unrestricted_mandate: false,
+        opening_mandate: None,
+        awaiting_first_election: false,
         pillars,
         coup_pressure: 0.0,
         months_in_office: 0,
         office_month_fraction: 0.0,
+        political_record: None,
+        armed_security: None,
+        army_population_reference: None,
+        army_authority: None,
         movements: vec![],
-        established_movements: vec![],
+        established_movements,
         surging: vec![],
         banned: vec![],
         regime_bloc: None,
@@ -6066,6 +6149,22 @@ pub fn ensure(w: &mut WorldState, id: NationId) {
     }
     seed_blocs(w, id);
     remember_established_movements(w, id);
+    remember_army_population_reference(w, id);
+}
+
+fn remember_army_population_reference(w: &mut WorldState, id: NationId) {
+    if !w.rules.ideology_blocs || crate::data::army_personnel_1990(id).is_some()
+        || army_opening_population_m(id).is_some()
+        || state(w, id).is_none_or(|g| g.army_population_reference.is_some())
+    { return; }
+    let Some(n) = w.nation_opt(id).filter(|n| n.alive && n.population.is_finite() && n.population > 0.0) else { return; };
+    let reference = ArmyPopulationReference {
+        population_m: n.population,
+        // The legacy day wrapper settles a monthly model at month end; that
+        // is not an observation on the last civil day. Match office dates.
+        observed_on: (w.year, w.month, if crate::clock::is_daily(w) { w.day.max(1) } else { 1 }),
+    };
+    state_mut(w, id).unwrap().army_population_reference = Some(reference);
 }
 
 /// Funding above the existing organization threshold establishes a faction,
@@ -6110,11 +6209,10 @@ pub(crate) fn remember_established_movements(w: &mut WorldState, id: NationId) {
 /// call it every tick and a save written before the arm — or with it off —
 /// grows its blocs the first time it is loaded with the arm on.
 ///
-/// The seed is FLAT from the leader row (design D5): the ruling bloc at 0.60,
-/// the remaining 0.40 split equally over the non-ruling blocs PRESENT in the
-/// polity — a party of that bloc in the dormant table, or the bloc's installing
-/// pillar in the pillar list; foreign backing is S3 — every bloc floored at
-/// 0.002, then normalised. Dormant tables stay dormant: `support` is untouched.
+/// Institutions provide the original 0.60/0.40 estimate. Where a dormant table
+/// carries a competing party bloc, `movement_constituencies` also reads those
+/// organizations instead of flattening their transcribed support. Every bloc
+/// is floored and normalized. Dormant party `support` itself is untouched.
 pub fn seed_blocs(w: &mut WorldState, id: NationId) {
     if !w.rules.ideology_blocs {
         return;
@@ -6142,7 +6240,7 @@ pub fn seed_blocs(w: &mut WorldState, id: NationId) {
         Some(b) => b,
         None => return,
     };
-    let movements = crate::blocs::flat_seed(w, id, ruling);
+    let movements = movement_constituencies(w, id, ruling);
     // A bloc seeded at or over the surge line has not CROSSED it: the latch
     // is seeded closed for it, so the first tick does not announce the
     // seed as news (measured 2026-09-05: Iraq's and Syria's lone Non-Aligned
@@ -6265,15 +6363,16 @@ fn form_government(w: &mut WorldState, id: NationId, announce: bool) {
     if ranked.is_empty() {
         return;
     }
-    // A pariah party that wins outright still governs — the cordon holds against
-    // coalition partners, not against arithmetic.
+    // A pariah party that wins outright still governs. A plurality may govern
+    // alone as a minority, but changing who leads cannot evade the cordon:
+    // parties that refuse it as a junior also refuse its cabinet invitation.
     let leader = ranked.remove(0).0;
     let mut coalition = vec![leader.clone()];
     let mut held = {
         let g = state(w, id).unwrap();
         g.seat_share(&leader)
     };
-    if held < 0.5 {
+    if held < 0.5 && !pariahs.contains(&leader) {
         // Nearest ideological neighbour first, and never a pariah as a partner.
         let mut candidates: Vec<(String, f64, f64)> = ranked
             .iter()
@@ -6305,6 +6404,7 @@ fn form_government(w: &mut WorldState, id: NationId, announce: bool) {
         g.months_in_office = 0;
         g.office_month_fraction = 0.0;
     }
+    crate::opening_mandates::discard_incompatible(w, id);
     let _ = sys;
     if announce {
         // Note what is *not* here: a stability bonus. The code this module
@@ -6399,12 +6499,105 @@ fn governing_record(pn: &Pains) -> f64 {
     0.35 - (0.90 * pn.prices + 0.90 * pn.growth + 1.10 * pn.war + 0.90 * pn.order.min(1.0))
 }
 
+/// Accountability follows the actual incumbent through an institutional
+/// opening. An interim table has not yet replaced that authority. Attribute
+/// a regime's record to a party only when its live office explicitly names
+/// that party and its programme agrees; a military/court movement stays a
+/// regime record rather than acquiring a fictional partisan history.
+fn record_identity(w: &WorldState, id: NationId) -> Option<(String, Option<String>)> {
+    let g = state(w, id)?;
+    let electoral = is_electoral(w, id);
+    if w.rules.ideology_blocs && (!electoral || g.awaiting_first_election) {
+        let bloc = g.regime_bloc?;
+        let regime = format!("regime:{bloc:?}");
+        if let Some(crate::data::Tie::Party(party)) = crate::blocs::leader_row(w, id).and_then(|row| row.tie_now()) {
+            if bloc_of(id, &party) == bloc
+                && polity_in(w, id).is_some_and(|p| p.parties.iter().any(|s| s.id == party.as_str()))
+            {
+                // Older saves named this same current authority by its bloc.
+                // Rekey its observed record; do not reset or invent a past.
+                return Some((format!("party:{party}"), Some(regime)));
+            }
+        }
+        return Some((regime, None));
+    }
+    if electoral {
+        g.leader().map(|party| (format!("party:{party}"), None))
+    } else {
+        g.regime_bloc.map(|bloc| (format!("regime:{bloc:?}"), None))
+    }
+}
+
+/// Voters judge a governing term, not only conditions near the next ballot.
+/// The country's ordinary term supplies the rolling memory's time constant;
+/// current conditions carry one quarter of the judgement and the record three
+/// quarters. These are design choices, not empirical electoral estimates.
+/// Existing saved performance remains a prior estimate, never reinterpreted as
+/// an exact historical sum. Sustained recovery eventually replaces it. No RNG.
+fn remembered_record(w: &mut WorldState, id: NationId, pn: &Pains) -> f64 {
+    let current = governing_record(pn);
+    let dt = crate::clock::month_fraction(w);
+    let term = polity_in(w, id).map_or(48, |p| p.term_months).max(1) as f64;
+    let learning = crate::clock::blend(w, 1.0 / term);
+    let Some((government, legacy_identity)) = record_identity(w, id) else { return current; };
+    let g = match state_mut(w, id) {
+        Some(g) => g,
+        None => return current,
+    };
+    if let Some(memory) = &mut g.political_record {
+        if legacy_identity.as_deref() == Some(memory.government.as_str()) {
+            memory.government = government.clone();
+        }
+    }
+    if g.political_record.as_ref().is_none_or(|r| r.government != government) {
+        g.political_record = Some(PoliticalRecord { government, months: 0.0, performance: current });
+    }
+    let memory = g.political_record.as_mut().unwrap();
+    memory.months += dt;
+    memory.performance += (current - memory.performance) * learning;
+    0.25 * current + 0.75 * memory.performance
+}
+
+/// Bad government can lose a mandate within a term; good government earns it
+/// more slowly from an opposition that has its own loyal voters. Design rates
+/// are 2.4% of the incumbent pool per unit of adverse record per month, versus
+/// 1% of the opposition pool times its remaining contestable share for gains.
+/// Neither direction can transfer more than 1.5 percentage points a month.
+const ADVERSE_RECORD_RESPONSE: f64 = 0.024;
+fn performance_transfer(record: f64, held: f64, dt: f64) -> f64 {
+    if record < 0.0 {
+        -(-record * ADVERSE_RECORD_RESPONSE * held).min(0.015).min(held) * dt
+    } else {
+        let available = (1.0 - held).max(0.0);
+        (record * 0.010 * available * available).min(0.015).min(available) * dt
+    }
+}
+
+/// Bound the complete change after constituency reversion, floors and
+/// normalisation, not just its performance component. Half the L1 distance
+/// counts each transferred voter once. A convex blend of the old and candidate
+/// distributions preserves their sum and nonnegative shares.
+fn bound_vote_change<T>(before: &[f64], after: &mut [(T, f64)], limit: f64) {
+    debug_assert_eq!(before.len(), after.len());
+    let transferred: f64 = before.iter().zip(after.iter())
+        .map(|(old, (_, new))| (new - old).abs()).sum::<f64>() * 0.5;
+    if transferred > limit {
+        let fraction = limit.max(0.0) / transferred;
+        for (old, (_, new)) in before.iter().zip(after.iter_mut()) {
+            *new = old + (*new - old) * fraction;
+        }
+    }
+}
+
 /// One month of the electorate changing its mind. Monthly, so the coefficients
 /// are small; a bad year moves five to ten points, which is about what a bad
 /// year does.
 pub(crate) fn drift_support(w: &mut WorldState, id: NationId) {
     let dt = crate::clock::month_fraction(w);
-    let reversion = crate::clock::blend(w, 0.020);
+    // A last election is a constituency estimate, not a permanent vote quota.
+    // A 0.5% monthly pull preserves an anchor without undoing a bad term in
+    // about three years, as the old 2% snapback did.
+    let reversion = crate::clock::blend(w, 0.005);
     let pn = pains(w, id);
     let development = {
         let n = w.nation(id);
@@ -6417,8 +6610,19 @@ pub(crate) fn drift_support(w: &mut WorldState, id: NationId) {
     // fighting a war it was visibly losing still gained support every month as
     // long as the economy was fine — and it was why an incumbent's support crept
     // upward for forty years with nothing ever pushing back.
-    let record = governing_record(&pn);
+    let record = remembered_record(w, id, &pn);
     let incumbents: Vec<String> = match state(w, id) {
+        Some(g) if w.rules.ideology_blocs && g.awaiting_first_election => {
+            // The leading list in a provisional table has not taken power.
+            // Charge the actual continuing party, when one is known. A
+            // military/court interim keeps its programme record but cannot
+            // debit that history from an unvoted civilian opposition list.
+            record_identity(w, id).and_then(|(key, _)| {
+                key.strip_prefix("party:")
+                    .filter(|party| g.support.iter().any(|(id, _)| id.as_str() == *party))
+                    .map(|party| vec![party.to_string()])
+            }).unwrap_or_default()
+        }
         Some(g) => g.coalition.clone(),
         None => return,
     };
@@ -6432,11 +6636,13 @@ pub(crate) fn drift_support(w: &mut WorldState, id: NationId) {
     // What flows out of (or into) the parties of government this month. Small,
     // because it is a month: a bad year moves five or six points, which is about
     // what a bad year does.
-    let swing = record * 0.006 * dt;
     let appeals: Vec<(String, f64)> = families
         .iter()
         .filter(|(pid, _)| !incumbents.contains(pid))
-        .map(|(pid, f)| (pid.clone(), appeal(*f, &pn, development).max(0.01)))
+        .map(|(pid, f)| {
+            let reach = state(w, id).map_or(0.002, |g| g.support_of(pid).max(0.002));
+            (pid.clone(), appeal(*f, &pn, development).max(0.01) * reach)
+        })
         .collect();
     let appeal_total: f64 = appeals.iter().map(|(_, a)| *a).sum();
     let g = match state_mut(w, id) {
@@ -6444,35 +6650,46 @@ pub(crate) fn drift_support(w: &mut WorldState, id: NationId) {
         None => return,
     };
     let held: f64 = incumbents.iter().map(|p| g.support_of(p)).sum();
+    let before: Vec<f64> = g.support.iter().map(|(_, s)| *s).collect();
     // A party with nothing left cannot lose more, and one with everything
     // cannot gain: the transfer is bounded by what exists on each side.
-    let moved = if swing < 0.0 {
-        -(-swing * held).min(0.015 * dt)
-    } else {
-        (swing * (1.0 - held)).min(0.015 * dt)
-    };
+    let moved = performance_transfer(record, held, dt);
+    let leading = incumbents.first().map(String::as_str);
+    let responsibility: f64 = incumbents.iter().map(|p| {
+        g.support_of(p) * if moved < 0.0 && Some(p.as_str()) == leading { 2.0 } else { 1.0 }
+    }).sum();
     for e in g.support.iter_mut() {
         if incumbents.contains(&e.0) {
-            // Shared out among the governing parties in proportion to their size:
-            // the prime minister's party wears most of it, which is right.
-            let share = if held > 0.0 { e.1 / held } else { 0.0 };
+            // The leading party is more accountable than a junior partner.
+            // Purely proportional losses locked their ranking forever, making
+            // a coalition leader immune to replacement by its own electorate.
+            let weight = if moved < 0.0 && Some(e.0.as_str()) == leading { 2.0 } else { 1.0 };
+            let share = if responsibility > 0.0 { e.1 * weight / responsibility } else { 0.0 };
             e.1 += moved * share;
         } else if appeal_total > 0.0 {
             let a = appeals.iter().find(|(p, _)| *p == e.0).map(|(_, a)| *a).unwrap_or(0.0);
-            e.1 -= moved * (a / appeal_total);
+            // A government gaining votes draws from actual opposition voters;
+            // appeal chooses where a loss goes, not how to overdraw a small
+            // party and create votes when its floor is applied.
+            let share = if moved >= 0.0 { e.1 / (1.0 - held).max(1e-12) } else { a / appeal_total };
+            e.1 -= moved * share;
         }
         e.1 = e.1.max(0.002);
     }
-    // ...and then everyone drifts back toward who their voters are. This is what
-    // makes the whole thing an equilibrium instead of a ratchet: a government
-    // that delivers for twenty years ends up perhaps twelve points above its
-    // structural share, not at a hundred per cent.
+    // Constituency reversion uses the latest real, fully legal ballot. A new
+    // election supplies newer evidence than the opening 1990 estimate; a
+    // reshuffle or an annulled vote does not. The anchor stays fixed between
+    // elections, and diminishing gains plus the complete transfer bound still
+    // prevent a month's good performance from manufacturing a monopoly.
     for e in g.support.iter_mut() {
-        let base = base_share(id, &e.0);
+        let base = g.vote_anchor.as_ref()
+            .and_then(|anchor| anchor.iter().find(|(party, _)| *party == e.0))
+            .map_or_else(|| base_share(id, &e.0), |(_, share)| *share);
         e.1 += (base - e.1) * reversion;
         e.1 = e.1.max(0.002);
     }
     normalise(&mut g.support);
+    bound_vote_change(&before, &mut g.support, 0.015 * dt);
 }
 
 // ---------------------------------------------------------------------------
@@ -6521,19 +6738,71 @@ fn normalise_blocs(v: &mut [(Bloc, f64)]) {
     }
 }
 
+/// Competitive dormant party tables contain information about organization
+/// that an equal split among pillars discards. Blend that constituency with
+/// the institutional seed at equal weight. A table carrying only the ruling
+/// bloc is not evidence that everyone supports it, so it keeps the existing
+/// institutional estimate. Shares remain proxies, not invented opinion polls.
+fn movement_constituencies(w: &WorldState, id: NationId, ruling: Bloc) -> [(Bloc, f64); 5] {
+    let mut seed = crate::blocs::flat_seed(w, id, ruling);
+    let Some(pol) = polity_in(w, id) else { return seed; };
+    if !pol.parties.iter().any(|p| bloc_of(id, p.id) != ruling && p.family != Family::Regionalist) {
+        return seed;
+    }
+    let total: f64 = pol.parties.iter().map(|p| p.start.max(0.001)).sum();
+    if total <= 0.0 { return seed; }
+    for (bloc, share) in &mut seed {
+        let constituency: f64 = pol.parties.iter().filter(|p| bloc_of(id, p.id) == *bloc)
+            .map(|p| p.start.max(0.001) / total).sum();
+        *share = (0.5 * *share + 0.5 * constituency).max(crate::blocs::SHARE_FLOOR);
+    }
+    normalise_blocs(&mut seed);
+    seed
+}
+
+/// Organised civilian constituencies excluded from choosing a government can
+/// ask for representation without an economic collapse. Dormant party shares
+/// are model proxies (some are transcribed from later elections), not current
+/// polls. The actual leader's party is represented; other parties count even
+/// when they share its bloc. A pillar-led regime represents no civilian party.
+/// Single-party, partyless, unidentifiable and already electoral governments
+/// do not acquire an invented opposition through this read-only helper.
+pub fn franchise_demand(w: &WorldState, id: NationId) -> f64 {
+    if !w.rules.ideology_blocs || is_electoral(w, id) || state(w, id).is_none() {
+        return 0.0;
+    }
+    let Some(pol) = polity_in(w, id) else { return 0.0; };
+    let civilian: Vec<&PartySpec> = pol.parties.iter()
+        .filter(|p| p.family != Family::Regionalist).collect();
+    if civilian.len() < 2 { return 0.0; }
+    let represented = match crate::blocs::leader_row(w, id).and_then(|row| row.tie_now()) {
+        Some(crate::data::Tie::Party(party)) => {
+            if !civilian.iter().any(|p| p.id == party) { return 0.0; }
+            Some(party)
+        }
+        Some(crate::data::Tie::Pillar(_)) => None,
+        None => return 0.0,
+    };
+    let total: f64 = civilian.iter().map(|p| p.start.max(0.0)).sum();
+    if total <= 0.0 { return 0.0; }
+    let excluded: f64 = civilian.iter()
+        .filter(|p| represented.as_deref() != Some(p.id))
+        .map(|p| p.start.max(0.0)).sum();
+    (excluded / total * w.nation(id).authoritarianism.clamp(0.0, 1.0)).clamp(0.0, 1.0)
+}
+
 /// One month of a regime's country changing its mind — the sibling of
 /// `drift_support` for a state that holds no elections, built to the same
 /// shape so the two cannot disagree in kind. The ruling bloc wears the
 /// government's record (the same `record` line, off the same `pains`); what
 /// it loses flows to the non-ruling blocs PRESENT in the polity in proportion
-/// to `bloc_appeal`; then everything reverts toward the flat seed at a quarter
-/// of the electorate's rate (0.005 against 0.020 — a country with no ballot
-/// has weaker anchors, INVENTED, design S3), every bloc is floored at
+/// to `bloc_appeal`; then everything reverts toward its constituency estimate
+/// at the same 0.005 monthly rate as the electorate. Every bloc is floored at
 /// `SHARE_FLOOR`, and the five are normalised. Draws no RNG.
 ///
 /// INERT WITH THE SWITCH OFF: returns on `rules.ideology_blocs` before it
-/// reads anything, and with the switch on it touches `movements` and nothing
-/// the economy or the RNG reads.
+/// reads anything, and with the switch on it touches movements and their
+/// remembered governing record, never the RNG.
 pub(crate) fn drift_movements(w: &mut WorldState, id: NationId) {
     if !w.rules.ideology_blocs {
         return;
@@ -6547,13 +6816,13 @@ pub(crate) fn drift_movements(w: &mut WorldState, id: NationId) {
     };
     let dt = crate::clock::month_fraction(w);
     let reversion = crate::clock::blend(w, 0.005);
+    let before: Vec<f64> = shares.iter().map(|(_, s)| *s).collect();
     let pn = pains(w, id);
     let development = {
         let n = w.nation(id);
         (n.gdp * 1000.0 / n.population.max(0.001) / 20000.0).clamp(0.0, 1.0)
     };
-    let record = governing_record(&pn);
-    let swing = record * 0.006 * dt;
+    let record = remembered_record(w, id, &pn);
     let appeals: Vec<(Bloc, f64)> = Bloc::ALL
         .iter()
         .copied()
@@ -6563,26 +6832,25 @@ pub(crate) fn drift_movements(w: &mut WorldState, id: NationId) {
     let appeal_total: f64 = appeals.iter().map(|(_, a)| *a).sum();
     let held = shares[ruling as usize].1;
     // Bounded by what exists on each side, exactly as a party's transfer is.
-    let moved = if swing < 0.0 {
-        -(-swing * held).min(0.015 * dt)
-    } else {
-        (swing * (1.0 - held)).min(0.015 * dt)
-    };
+    let moved = performance_transfer(record, held, dt);
     if appeal_total > 0.0 {
+        let available: f64 = appeals.iter().map(|(b, _)| shares[*b as usize].1).sum();
         shares[ruling as usize].1 += moved;
         for (b, a) in &appeals {
-            shares[*b as usize].1 -= moved * (a / appeal_total);
+            let weight = if moved >= 0.0 { shares[*b as usize].1 / available.max(1e-12) } else { a / appeal_total };
+            shares[*b as usize].1 -= moved * weight;
         }
         for e in shares.iter_mut() {
             e.1 = e.1.max(crate::blocs::SHARE_FLOOR);
         }
     }
-    let seed = crate::blocs::flat_seed(w, id, ruling);
+    let seed = movement_constituencies(w, id, ruling);
     for (i, e) in shares.iter_mut().enumerate() {
         e.1 += (seed[i].1 - e.1) * reversion;
         e.1 = e.1.max(crate::blocs::SHARE_FLOOR);
     }
     normalise_blocs(&mut shares);
+    bound_vote_change(&before, &mut shares, 0.015 * dt);
     if let Some(g) = state_mut(w, id) {
         g.movements = shares;
     }
@@ -6671,17 +6939,16 @@ fn note_surges(w: &mut WorldState, id: NationId) {
 /// from the last pre-1990 result — each party receives its bloc's share times
 /// its table weight within the bloc. A bloc that has a movement but no party
 /// to carry it (present through a pillar alone: an army with no nationalist
-/// party) is dropped, the rest renormalised, and the loss is returned as a
-/// clause for the headline. Clears the regime's stored blocs, because an
-/// electoral nation stores none. Returns `None`, and writes nothing, with the
+/// party) is absent from that ballot, the represented votes renormalised,
+/// and the exclusion returned as a clause for the headline. Keep the stored
+/// movements so the national view retains those unrepresented constituents,
+/// and the incumbent programme until an actual handover. Returns `None`, and writes nothing, with the
 /// switch off or where there are no movements to read.
 fn reseed_support_from_movements(w: &mut WorldState, id: NationId) -> Option<String> {
     let (support, lost) = reseeded_support(w, id)?;
     if let Some(g) = state_mut(w, id) {
         g.support = support;
-        g.movements.clear();
         g.surging.clear();
-        g.regime_bloc = None;
     }
     lost
 }
@@ -6741,8 +7008,15 @@ fn schedule_first_elections(w: &mut WorldState, id: NationId, months: u32) -> Op
     let when = add_months(w.year, w.month, months);
     let lost = reseed_support_from_movements(w, id);
     let takeover = w.rules.ideology_takeover;
+    let lens = w.rules.ideology_blocs;
     if let Some(g) = state_mut(w, id) {
         g.next_election = when;
+        if lens {
+            g.awaiting_first_election = true;
+            g.elected = false;
+            g.unrestricted_mandate = false;
+            g.opening_mandate = None;
+        }
         // An electoral state keeps no pillars — except, under the roads (S4,
         // route 2), the two that can remove an elected government: the Army
         // and the Security service stay, at the loyalty they had, and the
@@ -6770,6 +7044,21 @@ fn add_months(y: i32, m: u32, months: u32) -> (i32, u32) {
 fn due(w: &WorldState, g: &GovState) -> bool {
     let (y, m) = g.next_election;
     y > 0 && (w.year > y || (w.year == y && w.month >= m))
+}
+
+/// An opening chamber can already name the eventual winning party while the
+/// sourced prime minister still belongs to the outgoing government. Only an
+/// explicitly parliamentary office is reconciled with that first ballot;
+/// a presidency, crown or unknown role is not inferred from a country list.
+fn parliamentary_office_party_mismatch(w: &WorldState, id: NationId, winner: &str) -> bool {
+    if !w.rules.ideology_blocs { return false; }
+    let Some(row) = crate::blocs::leader_row(w, id) else { return false; };
+    let office = row.emergent.as_ref().map_or(row.office.as_str(), |e| e.office.as_str());
+    let parliamentary = office == "Prime Minister" || office.starts_with("Prime Minister ")
+        || matches!(office, "Federal Chancellor" | "Chairman of the Council of Ministers"
+            | "President of the Council of Ministers" | "President of the Government" | "head of government");
+    parliamentary && matches!(row.tie_now(), Some(crate::data::Tie::Party(ref party))
+        if party != winner && spec(id, party).is_some() && spec(id, winner).is_some())
 }
 
 /// Run one.
@@ -6806,30 +7095,81 @@ pub fn hold_election(w: &mut WorldState, id: NationId) {
         return;
     }
     let (y, m) = (w.year, w.month);
+    crate::opening_mandates::clear(w, id);
     let on = w.rules.ideology_blocs;
     let led_before: Option<String> = state(w, id).and_then(|g| g.leader()).map(|s| s.to_string());
+    let first_free = on && state(w, id).is_some_and(|g| g.awaiting_first_election);
+    let first_modeled_ballot = on && is_electoral(w, id) && state(w, id).is_some_and(|g| !g.elected);
+    let prior_elected_months = state(w, id)
+        .filter(|g| g.elected && g.unrestricted_mandate && !g.awaiting_first_election && g.banned.is_empty())
+        .map_or(0, |g| g.months_in_office);
     if let Some(g) = state_mut(w, id) {
         normalise(&mut g.support);
         // `seats_from` itself, with the arm off or nothing banned.
         let banned = g.banned.clone();
         g.seats = seats_from_legal(on, &g.support, sys, &banned);
         g.next_election = add_months(y, m, term);
-        g.elected = true;
+        // Under the lens an annulled result is not a completed election.
+        // The off path keeps the historical statement in its original order.
+        if !on { g.elected = true; }
     }
     // The annulment (S4): after the seats and before the formation, the
     // army may refuse the result. Nothing while the takeover switch is off.
     if annul_election(w, id) {
         return;
     }
+    if let Some(g) = state_mut(w, id) {
+        g.elected = true;
+        if on { g.unrestricted_mandate = g.banned.is_empty(); }
+    }
     form_government(w, id, true);
+    if let Some(g) = state_mut(w, id) {
+        // Do not turn a ban's missing voters, an empty chamber, or the earlier
+        // annulment branch into a new estimate of the whole constituency.
+        if (!on || g.banned.is_empty()) && g.seats.iter().any(|(_, share)| *share > 0.0) {
+            g.vote_anchor = Some(g.support.clone());
+        }
+    }
     // Succession (D2): a NEW leading party seats "the {party} government";
     // the same leading party as before the vote keeps whoever held the
     // office (the Congress the table seats for the United States is led by
     // the Democrats before and after 1992, and Bush stays until his
-    // ceiling). Nothing with the lens off.
+    // ceiling). At the first completed ballot, a sourced parliamentary office
+    // must also agree with the actual winner, even if the opening chamber was
+    // already seeded with that party (Hungary in 1990). Nothing with the lens off.
     let leads_now = state(w, id).and_then(|g| g.leader()).map(|s| s.to_string());
-    if let Some(leader) = leads_now.filter(|l| Some(l) != led_before.as_ref()) {
-        seat_office(w, id, &Succession::Election { leader });
+    let regime_handover = first_free && crate::blocs::leader_row(w, id).is_some_and(|row| {
+        matches!(row.tie_now(), Some(crate::data::Tie::Pillar(Pillar::Army | Pillar::Security)))
+            // `by_pillar` creates this exact role for a model-generated regime
+            // office, including a Party takeover. An inherited crown keeps its
+            // sourced office (e.g. King), so a chamber cannot claim it here.
+            || row.emergent.as_ref().is_some_and(|e| e.office == "head of state" && e.pillar.is_some())
+    });
+    let mut actual_handover = false;
+    if let Some(leader) = leads_now.clone().filter(|l| Some(l) != led_before.as_ref() || regime_handover
+        || (first_modeled_ballot && parliamentary_office_party_mismatch(w, id, l))) {
+        // Keep the transition marker through succession: an original military
+        // ruler, like an emergent junta, yields to this first genuine ballot.
+        let succession = Succession::Election { leader };
+        actual_handover = on && succession_seat(w, id, &succession).is_some();
+        seat_office(w, id, &succession);
+    }
+    // A constitutional handover is evidence that civilians can actually
+    // transfer authority. Coups already increase authoritarianism; completed
+    // peaceful transfers must be able to consolidate civilian control too.
+    // Five points per full elected term is a game-design quantity, not a
+    // historical estimate. Prorating by the outgoing mandate's duration keeps
+    // repeated snap elections from manufacturing extra institutional gains.
+    if actual_handover && prior_elected_months > 0 && led_before.is_some() && leads_now != led_before
+        && state(w, id).is_some_and(|g| g.banned.is_empty())
+    {
+        let consolidation = 0.05 * (prior_elected_months as f64 / term.max(1) as f64).min(1.0);
+        let n = w.nation_mut(id);
+        n.authoritarianism = (n.authoritarianism - consolidation).max(0.05).min(n.authoritarianism);
+        crate::army_authority::consolidate_transfer(w, id, consolidation);
+    }
+    if first_free {
+        state_mut(w, id).unwrap().awaiting_first_election = false;
     }
 }
 
@@ -6868,17 +7208,22 @@ pub fn annulment_check(w: &WorldState, id: NationId) -> Option<String> {
     if !g.pillars.iter().any(|(p, _)| *p == Pillar::Army) {
         return None;
     }
-    if crate::blocs::effective_army_loyalty(w, id) >= ELECTORAL_COUP_ARMY {
-        return None;
-    }
     let winner = would_be_leader(g)?;
     if !matches!(bloc_of(id, &winner), Bloc::Communist | Bloc::Islamist) {
+        return None;
+    }
+    let effective = crate::blocs::effective_army_loyalty(w, id);
+    let prospective = army_programme_veto_loyalty(w, id, &winner);
+    if prospective >= ELECTORAL_COUP_ARMY {
         return None;
     }
     if w.nation(id).authoritarianism < ANNULMENT_AUTH {
         return None;
     }
-    if crate::blocs::discontent(w, id) < ANNULMENT_DISCONTENT {
+    // Material disloyalty still needs the existing popular-crisis condition.
+    // A separately established institutional veto of the incoming programme
+    // is a political crisis even when prices and output have recovered.
+    if crate::blocs::discontent(w, id) < ANNULMENT_DISCONTENT && prospective >= effective {
         return None;
     }
     if crate::blocs::court_pillar(w, id).is_some() {
@@ -7029,6 +7374,9 @@ pub fn invite_refusal(w: &WorldState, id: NationId, party: &str) -> Option<Strin
     }
     if s.pariah {
         return Some(format!("No party in {} will sit in cabinet with {}.", id.name(), s.name));
+    }
+    if let Some(leader) = g.leader().and_then(|p| spec(id, p)).filter(|s| s.pariah) {
+        return Some(format!("No party in {} will sit in cabinet with {}.", id.name(), leader.name));
     }
     if g.seat_share(party) <= 0.0 {
         return Some(format!("{} holds no seats.", s.name));
@@ -7343,6 +7691,11 @@ pub fn suspend_constitution(w: &mut WorldState, id: NationId) -> Result<(), Stri
     }
     if let Some(g) = state_mut(w, id) {
         g.regime_bloc = Some(p.ruling);
+        g.elected = false;
+        g.unrestricted_mandate = false;
+        g.opening_mandate = None;
+        g.awaiting_first_election = false;
+        g.next_election = (0, 0);
         g.movements = p.movements.to_vec();
         g.surging = latched_at_seed(&p.movements, p.ruling);
     }
@@ -7463,6 +7816,8 @@ pub fn ban_party(w: &mut WorldState, id: NationId, party: &str) -> Result<(), St
         // to the government's majority is the chamber's arithmetic, not an
         // arm of this lever.
         g.banned.push(p.party.clone());
+        g.unrestricted_mandate = false;
+        g.opening_mandate = None;
         g.seats = p.seats_after.clone();
     }
     for d in &p.democracies {
@@ -7729,6 +8084,11 @@ pub struct RoundTablePlan {
     pub lost: Option<String>,
 }
 
+/// Invented negotiation quorum: organised civilian constituencies excluded
+/// from representation amount to at least a quarter of the country. This is
+/// a peaceful bargaining condition, not a historical turnout or uprising bar.
+pub const ROUND_TABLE_FRANCHISE_QUORUM: f64 = 0.25;
+
 /// Why a round table would be refused, read without touching the world.
 pub fn round_table_refusal(w: &WorldState, id: NationId) -> Option<String> {
     if !w.rules.ideology_blocs {
@@ -7748,6 +8108,13 @@ pub fn round_table_refusal(w: &WorldState, id: NationId) -> Option<String> {
         Some(b) => b,
         None => return Some("no regime".into()),
     };
+    // A government can negotiate representation with organised civilian
+    // parties while the economy and armed services are healthy. The demand
+    // helper requires real alternative party organisations and distinguishes
+    // their dormant constituency proxy from current election support.
+    if franchise_demand(w, id) >= ROUND_TABLE_FRANCHISE_QUORUM {
+        return None;
+    }
     let d = crate::blocs::discontent(w, id);
     if d < 0.40 {
         return Some(format!(
@@ -7803,6 +8170,13 @@ pub fn round_table_effects(w: &WorldState, id: NationId) -> Vec<String> {
             p.support.iter().map(|(q, s)| format!("{} {:.3}", q, s)).collect::<Vec<_>>().join(", ")
         ),
     ];
+    let franchise = franchise_demand(w, id);
+    if franchise >= ROUND_TABLE_FRANCHISE_QUORUM {
+        out.push(format!(
+            "Organised civilian constituencies excluded from representation: {:.0}% (party-table estimate). Negotiation quorum: 25%.",
+            franchise * 100.0
+        ));
+    }
     if let Some(clause) = &p.lost {
         out.push(format!("Lost in the seating: {}.", clause));
     }
@@ -7860,9 +8234,10 @@ pub fn lever_effects(w: &WorldState, c: &crate::Command) -> Option<Vec<String>> 
 /// the strongest non-ruling non-Western bloc at or over 0.35 of influence,
 /// authoritarianism at or over 0.40 and 60 held; a programme toward the
 /// strongest pillar's colour when the ruling movement is under 0.30 and 70
-/// held; a round table when discontent is at or over 0.50, the largest
-/// movement at or over 0.35, the armed pillars' mean loyalty under 0.50 and
-/// 60 held. Each is asked its own refusal, so the AI never asks for what the
+/// held; an affordable, legally available round table when the armed pillars'
+/// mean loyalty is under 0.50. The action's own discontent and movement
+/// requirements apply, and its actual standing bill is used. Each is asked
+/// its own refusal, so the AI never asks for what the
 /// world would refuse. The draw that decides whether the government acts on
 /// the choice lives in `stratagems::ai_stratagems`, the module that already
 /// draws for the deck; this module draws nothing.
@@ -7927,7 +8302,8 @@ pub fn ai_lever(w: &WorldState, id: NationId) -> Option<crate::Command> {
             }
         }
     }
-    if pc >= 60.0 {
+    let round_table = Command::ConveneRoundTable { nation: id };
+    if crate::affordable(w, &round_table) {
         let armed: Vec<f64> = g
             .pillars
             .iter()
@@ -7936,13 +8312,10 @@ pub fn ai_lever(w: &WorldState, id: NationId) -> Option<crate::Command> {
             .collect();
         let armed_mean =
             if armed.is_empty() { 1.0 } else { armed.iter().sum::<f64>() / armed.len() as f64 };
-        let largest = largest_non_ruling(&g.movements, ruling).map_or(0.0, |(_, s)| s);
-        if crate::blocs::discontent(w, id) >= 0.50
-            && largest >= 0.35
-            && armed_mean < 0.50
+        if (armed_mean < 0.50 || franchise_demand(w, id) >= ROUND_TABLE_FRANCHISE_QUORUM)
             && round_table_refusal(w, id).is_none()
         {
-            return Some(Command::ConveneRoundTable { nation: id });
+            return Some(round_table);
         }
     }
     None
@@ -7953,17 +8326,19 @@ pub fn ai_lever(w: &WorldState, id: NationId) -> Option<crate::Command> {
 // ---------------------------------------------------------------------------
 
 // ---------------------------------------------------------------------------
-// The Army pillar's target (M2, Ridge's ruling of 2026-09-06): the share arm
-// as it always was, and — under the lens only — a pay-per-soldier arm.
+// The Army pillar's target: legacy share arm off; annual resources per
+// active member under the lens. M2's old relative-income form is retained
+// below as a diagnostic, not the live funding interpretation.
 // ---------------------------------------------------------------------------
 
-/// The pay ratio the Army pillar reads under the lens (M2): military
-/// expenditure PER SOLDIER over GDP PER HEAD — `(mil_spend_gdp · gdp /
+/// The historical M2 diagnostic ratio: military
+/// expenditure PER RECORDED FORCE MEMBER over GDP PER HEAD — `(mil_spend_gdp · gdp /
 /// personnel) / (gdp / population)`, which the output cancels out of, so it
 /// is the live defence share times the population over the transcribed
 /// 1990 personnel (`data::army_personnel_1990`; `Nation.population` is in
-/// millions). `None` where no personnel was sourced: the arm falls back to
-/// the share-only line and the nation is counted (BUGS H-3). Pure.
+/// millions). This is the total armed-services series, including qualifying
+/// paramilitaries, not land-Army headcount or salary. `None` where personnel
+/// was not sourced; this historical diagnostic never estimates a count. Pure.
 pub fn army_pay_ratio(w: &WorldState, id: NationId) -> Option<f64> {
     let personnel = crate::data::army_personnel_1990(id)?;
     if !(personnel > 0.0) {
@@ -7971,6 +8346,241 @@ pub fn army_pay_ratio(w: &WorldState, id: NationId) -> Option<f64> {
     }
     let n = w.nation_opt(id)?;
     Some(n.mil_spend_gdp * n.population * 1_000_000.0 / personnel)
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum ArmyPersonnelBasis {
+    Sourced1990,
+    /// Explicit model estimate, never a transcribed historical headcount.
+    ModelEstimate,
+}
+
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct ArmyPersonnelAssessment {
+    pub members: f64,
+    pub basis: ArmyPersonnelBasis,
+}
+
+/// Robust cross-roster fallback for an UNSOURCED force, not a historical fact
+/// about that country. The median is derived once from every finite, positive
+/// sourced personnel/population pair in the embedded roster. Apply it to the
+/// unsourced nation's opening population, matching the sourced series' date.
+/// Source records and saves are never filled with this estimate; callers
+/// expose its basis.
+pub fn estimated_army_population_share() -> Option<f64> {
+    static SHARE: std::sync::OnceLock<Option<f64>> = std::sync::OnceLock::new();
+    *SHARE.get_or_init(|| {
+        let mut ratios: Vec<f64> = crate::data::EMBEDDED_NATIONS.iter()
+            .filter_map(|src| serde_json::from_str::<crate::data::NationRecord>(src.json).ok())
+            .filter_map(|r| {
+                let members = r.military.personnel_1990?;
+                let population = r.economy.population_m * 1_000_000.0;
+                if !members.is_finite() || !population.is_finite() || members <= 0.0
+                    || population <= 0.0 || members > population { return None; }
+                Some(members / population)
+            }).collect();
+        ratios.sort_by(f64::total_cmp);
+        let mid = ratios.len() / 2;
+        if ratios.is_empty() { None }
+        else if ratios.len() % 2 == 0 { Some((ratios[mid - 1] + ratios[mid]) * 0.5) }
+        else { Some(ratios[mid]) }
+    })
+}
+
+fn assess_army_personnel(sourced: Option<f64>, population_m: f64, estimated_share: Option<f64>) -> Option<ArmyPersonnelAssessment> {
+    if let Some(members) = sourced {
+        // A supplied zero/invalid count is not silently replaced by an army.
+        return (members.is_finite() && members > 0.0)
+            .then_some(ArmyPersonnelAssessment { members, basis: ArmyPersonnelBasis::Sourced1990 });
+    }
+    let share = estimated_share?;
+    if !population_m.is_finite() || population_m <= 0.0 || !share.is_finite()
+        || share <= 0.0 || share > 1.0 { return None; }
+    let members = population_m * 1_000_000.0 * share;
+    (members.is_finite() && members > 0.0)
+        .then_some(ArmyPersonnelAssessment { members, basis: ArmyPersonnelBasis::ModelEstimate })
+}
+
+/// A fallback has the same reference date as the sourced personnel series.
+/// Changing today's population must not automatically recruit soldiers only
+/// in countries whose historical force size is unknown. Any future force-size
+/// dynamics must apply to both bases, separately from this opening assessment.
+fn army_opening_population_m(id: NationId) -> Option<f64> {
+    static TABLE: std::sync::OnceLock<Vec<Option<f64>>> = std::sync::OnceLock::new();
+    let table = TABLE.get_or_init(|| {
+        let mut populations = vec![None; crate::nations::nation_count()];
+        for src in crate::data::EMBEDDED_NATIONS {
+            if let Ok(record) = serde_json::from_str::<crate::data::NationRecord>(src.json) {
+                let population = record.economy.population_m;
+                if population.is_finite() && population > 0.0 {
+                    populations[record.id.index()] = Some(population);
+                }
+            }
+        }
+        populations
+    });
+    table.get(id.index()).copied().flatten()
+}
+
+pub fn army_personnel_assessment(w: &WorldState, id: NationId) -> Option<ArmyPersonnelAssessment> {
+    let n = w.nation_opt(id)?;
+    let sourced = crate::data::army_personnel_1990(id);
+    let population = if sourced.is_none() {
+        // Retain the missing-data path's existing invalid live-state guard.
+        if !n.population.is_finite() || n.population <= 0.0 { return None; }
+        army_opening_population_m(id).or_else(|| state(w, id)
+            .and_then(|g| g.army_population_reference.as_ref())
+            .map(|reference| reference.population_m))?
+    } else { n.population };
+    assess_army_personnel(sourced, population,
+        if w.rules.ideology_blocs { estimated_army_population_share() } else { None })
+}
+
+/// Annual defence resources per recorded force member, in model dollars.
+/// GDP is billions of dollars; personnel is people. This is resources for
+/// pay, equipment and operations together, NOT an estimate of a soldier's
+/// salary (World Bank MS.MIL.XPND.GD.ZS metadata includes all three).
+/// The personnel series includes all armed services and qualifying
+/// paramilitaries; it is not a land-Army count (MS.MIL.TOTL.P1 metadata).
+/// Unsourced personnel uses the explicitly labelled model assessment above.
+pub fn army_resources_per_member(w: &WorldState, id: NationId) -> Option<f64> {
+    let personnel = army_personnel_assessment(w, id)?.members;
+    let n = w.nation_opt(id)?;
+    if !personnel.is_finite() || personnel <= 0.0 || !n.gdp.is_finite()
+        || !n.mil_spend_gdp.is_finite() || n.gdp < 0.0 || n.mil_spend_gdp < 0.0
+        || !n.population.is_finite() || n.population <= 0.0
+    {
+        return None;
+    }
+    Some(n.mil_spend_gdp * n.gdp * 1_000_000_000.0 / personnel)
+}
+
+/// Modeled annual operating basket, in 1990 dollars per active member:
+/// imported maintenance/equipment plus personnel and locally bought support.
+/// GDP/head is only a local-cost proxy, not a claimed soldier salary. The
+/// $2,500 imported component and 1.5 local-income multiplier are explicit
+/// game-design assumptions. A universal dollar salary threshold incorrectly
+/// treated inexpensive conscript armies as chronically unpaid. Conversely,
+/// an income ratio alone made imported equipment free in a poor country.
+/// Full provision includes a second basket for reserve stocks/modernisation.
+/// The spending direction is supported by Powell (2012), pp. 1026-1029:
+/// expenditure per soldier proxies organisational resources and predicts
+/// fewer coup attempts; neither these coefficients nor causal loyalty
+/// endpoints are empirical estimates from that paper.
+/// https://jonathanmpowell.com/wp-content/uploads/2025/10/powell-2012jcr-determinants-of-the-attempting-and-outcome-of-coups-detat.pdf
+pub const ARMY_IMPORTED_OPERATING_ALLOWANCE: f64 = 2_500.0;
+pub const ARMY_LOCAL_OPERATING_MULTIPLE: f64 = 1.5;
+
+pub fn army_operating_allowance(income_per_head: f64) -> f64 {
+    ARMY_IMPORTED_OPERATING_ALLOWANCE + ARMY_LOCAL_OPERATING_MULTIPLE * income_per_head.max(0.0)
+}
+
+pub fn army_resource_loyalty_target(resources: f64, income_per_head: f64, exhaustion: f64) -> f64 {
+    let funded = (resources / (2.0 * army_operating_allowance(income_per_head))).clamp(0.0, 1.0);
+    0.20 + funded * 0.65 - exhaustion * 0.45
+}
+
+/// Military resources and obedience to civilian office are distinct. These
+/// design coefficients model an institution with executive-removal leverage
+/// losing confidence in sustained civilian crisis; they are not coup estimates.
+/// Known historical leverage replaces the old authoritarianism proxy only in
+/// this political channel. Unknown assessments retain the original proxy.
+pub const ARMY_CRISIS_CONFIDENCE_WEIGHT: f64 = 0.65;
+pub const ARMY_PROGRAMME_VETO_WEIGHT: f64 = 0.45;
+
+fn civilian_army_executive_leverage(w: &WorldState, id: NationId) -> f64 {
+    if !w.rules.ideology_blocs || !is_electoral(w, id)
+        || state(w, id).is_none_or(|g| !g.pillars.iter().any(|(p, _)| *p == Pillar::Army))
+    { return 0.0; }
+    crate::army_authority::current_leverage(w, id).unwrap_or_else(||
+        ((w.nation(id).authoritarianism - 0.20) / 0.40).clamp(0.0, 1.0))
+}
+
+fn established_civilian_record(w: &WorldState, id: NationId) -> Option<&PoliticalRecord> {
+    let g = state(w, id)?;
+    let record = g.political_record.as_ref()?;
+    if record.months < 6.0 || !record.performance.is_finite()
+        || record.government != format!("party:{}", g.leader()?) { return None; }
+    Some(record)
+}
+
+/// Current national constituency carried by a completed, unrestricted elected
+/// coalition, or only the attested parties of a separately sourced opening
+/// parliamentary mandate. The latter does not certify unrestricted democracy.
+/// Party support after an opening is conditional on the parties on offer; distribute each actual national bloc mass among those parties before
+/// counting legal, represented coalition members. Missing-party movements,
+/// opposition voters and seats awarded by the electoral formula add no consent.
+/// These shares are a model proxy for public consent, not approval polling.
+fn civilian_public_mandate(w: &WorldState, id: NationId) -> f64 {
+    if !w.rules.ideology_blocs || !is_electoral(w, id) { return 0.0; }
+    let Some(g) = state(w, id) else { return 0.0; };
+    let modeled_ballot = g.elected && g.unrestricted_mandate;
+    let opening_parties = if modeled_ballot { None } else { crate::opening_mandates::attested_parties(w, id) };
+    if g.awaiting_first_election || !g.banned.is_empty() || (!modeled_ballot && opening_parties.is_none()) {
+        return 0.0;
+    }
+    let Some(pol) = polity_in(w, id) else { return 0.0; };
+    let mut mandate = 0.0;
+    for (bloc, national) in crate::blocs::bloc_shares(w, id) {
+        if !national.is_finite() { return 0.0; }
+        let mut represented = 0.0;
+        let mut governing = 0.0;
+        for (party, share) in &g.support {
+            if !share.is_finite() || *share < 0.0 { return 0.0; }
+            if bloc_of(id, party) != bloc { continue; }
+            represented += share;
+            if g.in_government(party) && g.seat_share(party) > 0.0
+                && (modeled_ballot || opening_parties.is_some_and(|parties| parties.contains(party)))
+                && pol.parties.iter().any(|p| p.id == party)
+            {
+                governing += share;
+            }
+        }
+        if represented > 0.0 {
+            mandate += national.clamp(0.0, 1.0) * (governing / represented).clamp(0.0, 1.0);
+        }
+    }
+    mandate.clamp(0.0, 1.0)
+}
+
+/// A paid force can still lose confidence in a persistently failing civilian
+/// government. This lowers its gradual loyalty target, never its equipment or
+/// strength. A fresh administration, a quiet country, an absent army, and
+/// strong civilian control have no such penalty. Existing loyalty smoothing
+/// and coup pressure retain their time requirements.
+/// Popular consent limits this particular political grievance; it does not
+/// erase underfunding, war exhaustion or an army's prospective programme veto.
+/// Powell (2012), pp. 1020-1021, distinguishes public legitimacy from military
+/// corporate grievances. The linear outside-constituency multiplier here is an
+/// explicit game assumption, not a coefficient estimated by that study.
+pub fn army_civilian_confidence_penalty(w: &WorldState, id: NationId) -> f64 {
+    let leverage = civilian_army_executive_leverage(w, id);
+    if leverage <= 0.0 { return 0.0; }
+    let Some(record) = established_civilian_record(w, id) else { return 0.0; };
+    let discontent = crate::blocs::discontent(w, id);
+    if discontent < ELECTORAL_COUP_DISCONTENT { return 0.0; }
+    let sustained_crisis = 0.5 * discontent + 0.5 * (-record.performance).clamp(0.0, 1.0);
+    ARMY_CRISIS_CONFIDENCE_WEIGHT * leverage * sustained_crisis * (1.0 - civilian_public_mandate(w, id))
+}
+
+/// Read prospective acceptance of a new radical programme at a completed
+/// election. An institution with removal leverage can resist a mandate that
+/// threatens its existing programme even when its material bills were paid.
+/// This is separate from the gradual crisis confidence already in the pillar.
+/// The existing monarchy and authoritarianism guards still apply. The economic
+/// discontent guard belongs to the separate material-grievance route: an
+/// institutional conflict does not require invented bad inflation or output.
+/// No extra voters or foreign backing are invented here.
+pub fn army_programme_veto_loyalty(w: &WorldState, id: NationId, winner: &str) -> f64 {
+    let loyalty = crate::blocs::effective_army_loyalty(w, id);
+    let leverage = civilian_army_executive_leverage(w, id);
+    if leverage <= 0.0 || established_civilian_record(w, id).is_none()
+        || !matches!(bloc_of(id, winner), Bloc::Communist | Bloc::Islamist)
+        || crate::blocs::ruling_bloc(w, id) == Some(bloc_of(id, winner))
+    { return loyalty; }
+    let mandate = state(w, id).and_then(|g| g.seats.iter().find(|(p, _)| p == winner))
+        .map_or(0.0, |(_, share)| share.clamp(0.0, 1.0));
+    loyalty - ARMY_PROGRAMME_VETO_WEIGHT * leverage * mandate
 }
 
 /// The pay ratio at and under which a soldier reads UNPAID on the pay arm:
@@ -7991,8 +8601,10 @@ pub const ARMY_PAY_FULL_AT: f64 = 2.0;
 /// is the round number above it, and it also clears the second sentence
 /// (`0.20 + 0.65 · 0.80 = 0.72` for a fully paid army with no budget).
 pub const ARMY_PAY_WEIGHT_RULED: f64 = 0.80;
-/// The weight the pay arm SHIPS with, sized by measurement ("the census
-/// decides"), and the measurement is ZERO. Transcribed from the World Bank
+/// The weight the historical M2 comparison used, sized by measurement
+/// ("the census decides"), was ZERO. The live lens now uses annual resources
+/// per member; this old form remains available for regression comparison.
+/// Transcribed from the World Bank
 /// series the ruling names (MS.MIL.TOTL.P1, MS.MIL.XPND.CD, 1990; the
 /// data pass's `stage1.json`, read against the roster's own `mil_spend_gdp`
 /// and `population_m`), the ruled ratio reads the 1990 roster's named
@@ -8007,9 +8619,10 @@ pub const ARMY_PAY_WEIGHT_RULED: f64 = 0.80;
 /// 0.8%-of-GDP army — which removed a government in 1993 — as paid, and
 /// Algeria's ANP (3.0) as paid, which is the annulment R2 measured at
 /// 53% of seeds gone to 0. No positive weight moves any named army toward
-/// the line; every one moves away. So the arm ships at 0.0, the form
+/// the line; every one moves away. So that arm shipped at 0.0, the form
 /// stands above it exactly as ruled and is exercised by its test at
-/// `ARMY_PAY_WEIGHT_RULED`, and the denominator is Ridge's to re-rule
+/// `ARMY_PAY_WEIGHT_RULED`. The 2026-09-22 resource model now uses the
+/// annual-dollar alternative instead of this relative-income denominator
 /// (H-3 tables the alternative Powell's own variable would give: pay per
 /// soldier in absolute 1990 dollars — Nigeria $4,596, Haiti $4,262,
 /// Pakistan $4,509, Thailand $7,837, Algeria $7,381 against Switzerland
@@ -8054,10 +8667,17 @@ pub fn army_loyalty_target(mil: f64, exhaustion: f64, pay_ratio: Option<f64>, we
 /// targets loyalty walks toward. Factored out of `regime_tick` so the arm's
 /// electoral army tick (S4, route 2) reads the Army and Security lines from
 /// the same formulas; every input is read at the same point and the
-/// arithmetic is untouched — the Army line is `army_loyalty_target`, the
-/// share arm verbatim with the lens off and the ONE place the lens changes
-/// a target with it on (M2).
+/// Army line retains the share arm verbatim with the lens off. The lens
+/// reads resources per active member when personnel data exists, and the
+/// old share line otherwise; missing data is not evidence of zero funding.
 fn pillar_targets(w: &WorldState, id: NationId, pillars: &[Pillar]) -> Vec<(Pillar, f64)> {
+    // A party apparatus can be loyal to a programme and still lose its
+    // organization as that programme loses domestic support. Authoritarianism
+    // alone cannot keep its political base intact. No foreign backing enters.
+    let party_mandate = if w.rules.ideology_blocs {
+        state(w, id).and_then(|g| g.regime_bloc.and_then(|ruling|
+            g.movements.iter().find(|(b, _)| *b == ruling).map(|(_, share)| *share)))
+    } else { None };
     let (mil, _invest, growth, infl, stab, auth, exhaustion, sanctioned) = {
         let n = w.nation(id);
         (
@@ -8070,6 +8690,7 @@ fn pillar_targets(w: &WorldState, id: NationId, pillars: &[Pillar]) -> Vec<(Pill
             w.sanction_weight(id),
         )
     };
+    let income_per_head = w.nation(id).gdp * 1000.0 / w.nation(id).population;
     let mut targets: Vec<(Pillar, f64)> = vec![];
     for pillar in pillars.iter().copied() {
         let t = match pillar {
@@ -8080,20 +8701,26 @@ fn pillar_targets(w: &WorldState, id: NationId, pillars: &[Pillar]) -> Vec<(Pill
             // build. Twenty years of a defence budget cut to a tenth of a percent
             // of GDP produced no coup at all, because the model could not express
             // an army that had been abandoned.
-            Pillar::Army => army_loyalty_target(
-                mil,
-                exhaustion,
-                if w.rules.ideology_blocs { army_pay_ratio(w, id) } else { None },
-                ARMY_PAY_WEIGHT,
-            ),
+            Pillar::Army => match w.rules.ideology_blocs.then(|| army_resources_per_member(w, id)).flatten() {
+                Some(resources) => army_resource_loyalty_target(resources, income_per_head, exhaustion)
+                    - army_civilian_confidence_penalty(w, id),
+                None => army_loyalty_target(mil, exhaustion, None, ARMY_PAY_WEIGHT)
+                    - army_civilian_confidence_penalty(w, id),
+            },
             // The apparatus is loyal because it *is* the regime — it has nowhere
             // else to go — so its floor rises with how authoritarian the state
             // is. What moves it is the programme visibly failing and the country
             // visibly slipping, which is what the last two terms read.
             Pillar::Party => {
-                0.35 + auth * 0.40
+                let institutional = 0.35 + auth * 0.40
                     + (growth * 10.0).clamp(-0.25, 0.25)
-                    + (stab / 100.0 - 0.5) * 0.35
+                    + (stab / 100.0 - 0.5) * 0.35;
+                // Modeled .20 organizational core plus .80 represented
+                // constituency: a majority-supported party remains robust,
+                // while one abandoned by its supporters must negotiate or
+                // govern through institutions other than party discipline.
+                party_mandate.map_or(institutional,
+                    |share| institutional.min(0.20 + 0.80 * share.clamp(0.0, 1.0)))
             }
             // The services want a free hand and a quiet street.
             Pillar::Security => 0.30 + auth * 0.45 + (stab / 100.0) * 0.30,
@@ -8185,6 +8812,28 @@ pub const ELECTORAL_COUP_DISCONTENT: f64 = 0.25;
 /// honeymoon is the shorter one). INVENTED (design S4, route 2).
 pub const ELECTORAL_COUP_SETTLED: u32 = 12;
 
+/// Completed months under the same accountable governing party. Renewing a
+/// ballot or replacing its officeholder does not erase that party's observed
+/// history. Election/term clocks remain separate and still restart normally.
+/// A new party does not match the outgoing record; old saves without valid
+/// matching history retain their observed office age. Interim governments
+/// await a real ballot and cannot spend old history to end that protection.
+/// Pure and inert to the legacy clock when the ideology lens is off.
+pub fn electoral_coup_settled_months(w: &WorldState, id: NationId) -> u32 {
+    let Some(g) = state(w, id) else { return 0; };
+    if !w.rules.ideology_blocs { return g.months_in_office; }
+    if g.awaiting_first_election { return 0; }
+    let observed = g.leader().and_then(|party| {
+        g.political_record.as_ref().filter(|record|
+            record.government == format!("party:{party}")
+                && record.months.is_finite() && record.months >= 0.0)
+    });
+    observed.map_or(g.months_in_office, |record| {
+        // Match the existing office clock's calendar rounding tolerance.
+        g.months_in_office.max((record.months + 1e-12).floor() as u32)
+    })
+}
+
 /// Route 2's slow half: in an electoral polity whose state carries an Army
 /// pillar, the Army and Security lines of `pillar_targets` are walked as a
 /// regime's are, and pressure accrues at the ELECTORAL rate — while the
@@ -8253,7 +8902,7 @@ fn seat_spec_pillars(w: &mut WorldState, id: NationId) {
 }
 
 /// Route 2's trigger and break: pressure at or past `1 / crisis_intensity`
-/// and the government at least `ELECTORAL_COUP_SETTLED` months in office ->
+/// and the same accountable government observed for `ELECTORAL_COUP_SETTLED` months ->
 /// `regime_break` with the Army as the mover, authoritarianism
 /// `max(auth + 0.25, 0.65)`, the regime in the NATIONALIST colour, the
 /// coalition kept as a dormant record, the movements seeded from the
@@ -8264,11 +8913,14 @@ fn maybe_electoral_coup(w: &mut WorldState, id: NationId) -> bool {
     if !w.rules.ideology_takeover {
         return false;
     }
-    let (pressure, settled, has_army) = match state(w, id) {
-        Some(g) => (g.coup_pressure, g.months_in_office, g.pillars.iter().any(|(p, _)| *p == Pillar::Army)),
+    let (pressure, has_army) = match state(w, id) {
+        Some(g) => (g.coup_pressure, g.pillars.iter().any(|(p, _)| *p == Pillar::Army)),
         None => return false,
     };
-    if !has_army || settled < ELECTORAL_COUP_SETTLED {
+    let settled = electoral_coup_settled_months(w, id);
+    if !has_army || settled < ELECTORAL_COUP_SETTLED
+        || (w.rules.ideology_blocs && state(w, id).is_some_and(|g| g.awaiting_first_election))
+    {
         return false;
     }
     // Pressure records past grievances; it cannot substitute for the trigger
@@ -8282,7 +8934,7 @@ fn maybe_electoral_coup(w: &mut WorldState, id: NationId) -> bool {
     if pressure < 1.0 / w.rules.crisis_intensity.max(0.1) {
         return false;
     }
-    let name = pillar_name(id, Pillar::Army);
+    let name = pillar_name(w, id, Pillar::Army);
     break_electoral(
         w,
         id,
@@ -8340,8 +8992,8 @@ pub fn winner_authoritarianism(auth: f64, winner: Bloc) -> f64 {
 
 /// The spec pillar a bloc governs through, where the polity has one: the
 /// first pillar in the list whose installing bloc is the winner's.
-fn home_pillar(id: NationId, bloc: Bloc) -> Option<Pillar> {
-    polity(id)?.pillars.iter().map(|s| s.pillar).find(|p| pillar_bloc(id, *p) == bloc)
+fn home_pillar(w: &WorldState, id: NationId, bloc: Bloc) -> Option<Pillar> {
+    polity_in(w, id)?.pillars.iter().map(|s| s.pillar).find(|p| pillar_bloc(id, *p) == bloc)
 }
 
 /// The uprising (S4, route 3), fired by `politics::tick` on its draw. The
@@ -8359,6 +9011,17 @@ fn home_pillar(id: NationId, bloc: Bloc) -> Option<Pillar> {
 /// Draws no RNG.
 pub(crate) fn uprising(w: &mut WorldState, id: NationId) {
     let winner = crate::blocs::challenger(w, id).map(|(b, _)| b);
+    settle_uprising(w, id, winner, 0.15);
+}
+
+/// An existing armed organization can win through a material collapse without
+/// being granted a popular mandate. Use the same office/institution settlement
+/// as an uprising but add no rally bonus to the electorate or movement shares.
+pub(crate) fn armed_opposition_victory(w: &mut WorldState, id: NationId, winner: Bloc) {
+    settle_uprising(w, id, Some(winner), 0.0);
+}
+
+fn settle_uprising(w: &mut WorldState, id: NationId, winner: Option<Bloc>, rally: f64) {
     let old = crate::blocs::ruling_bloc(w, id);
     let electoral = is_electoral(w, id);
     {
@@ -8392,12 +9055,14 @@ pub(crate) fn uprising(w: &mut WorldState, id: NationId) {
         }
         m
     };
-    movements[winner as usize].1 += 0.15;
-    for e in movements.iter_mut() {
-        e.1 = e.1.max(crate::blocs::SHARE_FLOOR);
+    if rally != 0.0 {
+        movements[winner as usize].1 += rally;
+        for e in movements.iter_mut() {
+            e.1 = e.1.max(crate::blocs::SHARE_FLOOR);
+        }
+        normalise_blocs(&mut movements);
     }
-    normalise_blocs(&mut movements);
-    let home = home_pillar(id, winner);
+    let home = home_pillar(w, id, winner);
     let pillars: Vec<(Pillar, f64)> = polity_in(w, id)
         .map(|p| p.pillars.iter().map(|s| (s.pillar, if Some(s.pillar) == home { 0.80 } else { 0.55 })).collect())
         .unwrap_or_default();
@@ -8406,6 +9071,10 @@ pub(crate) fn uprising(w: &mut WorldState, id: NationId) {
         g.months_in_office = 0;
         g.office_month_fraction = 0.0;
         g.coup_pressure = 0.0;
+        g.elected = false;
+        g.unrestricted_mandate = false;
+        g.opening_mandate = None;
+        g.awaiting_first_election = false;
         g.regime_bloc = Some(winner);
         g.surging = latched_at_seed(&movements, winner);
         g.movements = movements.to_vec();
@@ -8417,6 +9086,42 @@ pub(crate) fn uprising(w: &mut WorldState, id: NationId) {
     w.headline(format!("Revolution in {}: the {} movement takes power.", id.name(), winner.label()));
     seat_office(w, id, &Succession::Takeover { bloc: winner });
     crate::statecraft::takeover_payoff(w, id, winner, old);
+}
+
+/// An uncrowned stability collapse changes order, output and institutions,
+/// but has no actor that installs a new political programme. Preserve the
+/// actual bloc and constituency across either institutional boundary; an
+/// opening owes a future ballot, rather than installing the dormant party row.
+/// The old numerical effects are identical when the political lens is off.
+pub(crate) fn generic_regime_collapse(w: &mut WorldState, id: NationId, auth_shift: f64) {
+    let was_electoral = is_electoral(w, id);
+    let actual_programme = if w.rules.ideology_blocs {
+        crate::blocs::ruling_bloc(w, id).map(|bloc| (bloc, crate::blocs::bloc_shares(w, id)))
+    } else { None };
+    {
+        let n = w.nation_mut(id);
+        n.stability = 45.0;
+        n.gdp *= 0.93;
+        crate::economy::refresh_debt_ratio(n);
+        n.authoritarianism = (n.authoritarianism + auth_shift).clamp(0.05, 0.95);
+    }
+    if let Some((ruling, mut movements)) = actual_programme {
+        let electoral = is_electoral(w, id);
+        if was_electoral != electoral {
+            for (_, share) in &mut movements { *share = share.max(crate::blocs::SHARE_FLOOR); }
+            normalise_blocs(&mut movements);
+            if let Some(g) = state_mut(w, id) {
+                g.regime_bloc = Some(ruling);
+                g.surging = latched_at_seed(&movements, ruling);
+                g.movements = movements.to_vec();
+                g.next_election = (0, 0);
+                g.elected = false;
+                g.unrestricted_mandate = false;
+                g.opening_mandate = None;
+                g.awaiting_first_election = electoral;
+            }
+        }
+    }
 }
 
 /// Route 4 (S4), the round table as a DRIFT rather than an event: while
@@ -8470,7 +9175,7 @@ fn maybe_coup(w: &mut WorldState, id: NationId) {
     if pressure < 1.0 / w.rules.crisis_intensity.max(0.1) {
         return;
     }
-    let name = pillar_name(id, pillar);
+    let name = coup_pillar_name(w, id, pillar);
     // The one number the regime's own coup and the arm's roads compute
     // differently is the authoritarianism the new regime opens at: here the
     // pre-arm rule, per pillar, read before anything is written.
@@ -8480,13 +9185,14 @@ fn maybe_coup(w: &mut WorldState, id: NationId) {
         Pillar::Clergy => (auth + 0.05).min(0.98),
         _ => (auth - 0.04).max(0.05),
     };
-    // Under the ROADS the institution that moved rules in its own colour
-    // (and the foreign payoff reads it as the winner); under the lens alone
+    // Under the ROADS an organized, stronger domestic alternative may
+    // replace the programme; otherwise only the officeholder changes.
+    // Under the lens alone
     // this is `maybe_coup`'s pre-arm block verbatim and the regime keeps the
     // colour it had, so a takeover effect is never live with
     // `ideology_takeover` off. With everything off nothing is written,
     // because `regime_bloc` is never stored there.
-    let regime_bloc = if w.rules.ideology_takeover { Some(pillar_bloc(id, pillar)) } else { None };
+    let regime_bloc = if w.rules.ideology_takeover { regime_coup_bloc(w, id, pillar) } else { None };
     regime_break(
         w,
         id,
@@ -8499,9 +9205,49 @@ fn maybe_coup(w: &mut WorldState, id: NationId) {
     );
 }
 
+/// A palace coup changes who runs the existing regime. An institution's
+/// generic affinity does not, by itself, supply a new political programme.
+/// It can install that alternative when an organized domestic movement for
+/// it has overtaken the ruling programme. Foreign funding is influence, not
+/// domestic support, and cannot manufacture this mandate. Electoral coups
+/// still explicitly replace civilian government with military rule.
+fn regime_coup_bloc(w: &WorldState, id: NationId, pillar: Pillar) -> Option<Bloc> {
+    let ruling = crate::blocs::ruling_bloc(w, id)?;
+    // The state's Party apparatus belongs to the current governing movement.
+    // Reusing its 1990 affiliation after a revolution resurrected a defeated
+    // party when the successor government's own organisation lost discipline.
+    if pillar == Pillar::Party { return Some(ruling); }
+    let alternative = pillar_bloc(id, pillar);
+    let shares = crate::blocs::bloc_shares(w, id);
+    let independent_organisation = polity_in(w, id).is_some_and(|p|
+        p.parties.iter().any(|party| bloc_of(id, party.id) == alternative))
+        || state(w, id).is_some_and(|g| g.established_movements.contains(&alternative));
+    if alternative != ruling && crate::blocs::bloc_can_win(w, id, alternative)
+        && independent_organisation
+        && shares[alternative as usize].1 > shares[ruling as usize].1
+    {
+        Some(alternative)
+    } else {
+        Some(ruling)
+    }
+}
+
+fn coup_pillar_name(w: &WorldState, id: NationId, pillar: Pillar) -> String {
+    if w.rules.ideology_takeover && pillar == Pillar::Party
+        && state(w, id).is_some_and(|g| g.pillars.iter().any(|(p, _)| *p == Pillar::Party))
+    {
+        if let Some(ruling) = crate::blocs::ruling_bloc(w, id) {
+            if ruling != pillar_bloc(id, pillar) {
+                return format!("the {} governing organisation", ruling.label());
+            }
+        }
+    }
+    pillar_name(w, id, pillar).to_string()
+}
+
 /// The transcribed name of one of a regime's institutions, or the generic.
-fn pillar_name(id: NationId, pillar: Pillar) -> &'static str {
-    polity(id)
+fn pillar_name(w: &WorldState, id: NationId, pillar: Pillar) -> &'static str {
+    polity_in(w, id)
         .and_then(|pol| pol.pillars.iter().find(|s| s.pillar == pillar))
         .map(|s| s.name)
         .unwrap_or("the security apparatus")
@@ -8533,6 +9279,7 @@ fn regime_break(w: &mut WorldState, id: NationId, b: Break) {
     // The colour that falls, read before anything is written and only
     // under the roads, for the foreign payoff below.
     let loser = if w.rules.ideology_takeover { crate::blocs::ruling_bloc(w, id) } else { None };
+    let lens = w.rules.ideology_blocs;
     {
         let n = w.nation_mut(id);
         n.stability = (n.stability - 16.0).max(5.0);
@@ -8544,6 +9291,13 @@ fn regime_break(w: &mut WorldState, id: NationId, b: Break) {
     }
     if let Some(g) = state_mut(w, id) {
         g.coup_pressure = 0.0;
+        if lens {
+            g.awaiting_first_election = false;
+            g.elected = false;
+            g.unrestricted_mandate = false;
+            g.opening_mandate = None;
+            g.next_election = (0, 0);
+        }
         for e in g.pillars.iter_mut() {
             // The institution that moved is loyal to itself; the rest fall in
             // behind it, because the alternative has just been demonstrated.
@@ -8561,13 +9315,52 @@ fn regime_break(w: &mut WorldState, id: NationId, b: Break) {
             g.surging = latched_at_seed(&g.movements, bloc);
         }
     }
+    if b.pillar == Pillar::Army { crate::army_authority::army_seizure(w, id); }
     w.headline(b.headline);
     // Succession (D2): the institution that moved seats its own name.
     seat_office(w, id, &Succession::Coup { pillar: b.pillar });
     // The foreign payoff (S4): nothing while the takeover switch is off.
     if let Some(winner) = b.regime_bloc {
-        crate::statecraft::takeover_payoff(w, id, winner, loser);
+        if Some(winner) != loser {
+            crate::statecraft::takeover_payoff(w, id, winner, loser);
+        }
     }
+}
+
+/// A legacy AI's affordable operating allocation for its actual Army pillar.
+/// This is a budget priority, not free loyalty: resources still have to be
+/// paid through SetMilSpend and the normal fiscal settlement. The same floor
+/// is read by fiscal consolidation so the two AIs cannot buy and cut the
+/// identical appropriation every month. Explicit/player budgets have their
+/// own authority and never use this fallback policy.
+pub fn ai_army_funding_floor(w: &WorldState, id: NationId) -> Option<f64> {
+    if !w.rules.ideology_blocs || Some(id) == w.player { return None; }
+    let n = w.nation_opt(id).filter(|n| n.alive)?;
+    if n.on_the_books() || crate::programs::enrolled(w, id)
+        || crate::fiscal_recovery::enabled(w) || !n.gdp.is_finite() || n.gdp <= 0.0
+        || !n.population.is_finite() || n.population <= 0.0
+    { return None; }
+    let g = state(w, id)?;
+    if !g.pillars.iter().any(|(p, _)| *p == Pillar::Army) { return None; }
+    let personnel = army_personnel_assessment(w, id)?.members;
+    if !personnel.is_finite() || personnel <= 0.0 { return None; }
+    // Invert the CURRENT Army pillar target, including its existing war and
+    // civilian-confidence losses. Funding the raw .40 resource term while
+    // ignoring those losses could declare the budget adequate at .22 actual
+    // loyalty. The .40 target retains the modest margin above the .35 line;
+    // it does not buy away a prospective programme veto or change loyalty
+    // directly. Beyond a full resource basket, further spending cannot help.
+    let funded = ((0.40 - 0.20 + n.war_exhaustion * 0.45
+        + army_civilian_confidence_penalty(w, id)) / 0.65).clamp(0.0, 1.0);
+    let resources = funded * 2.0 * army_operating_allowance(n.gdp * 1000.0 / n.population);
+    let needed = resources * personnel / (n.gdp * 1_000_000_000.0);
+    let conditions = crate::economy::Conditions::of(w, id);
+    let terms = crate::economy::growth_terms(n, n.state_invest_gdp, n.interest_rate, &conditions);
+    let fiscal = crate::economy::Fiscal::of(n, &terms);
+    // Retain all existing civilian expenditure and debt service. No new
+    // borrowing or invented treasury is authorized by this response.
+    let affordable = (fiscal.balance_gdp + n.mil_spend_gdp).max(0.0);
+    Some(needed.min(affordable).min(0.35).max(0.0))
 }
 
 /// AI regimes pay their bills. A government that will not spend on the people
@@ -8581,6 +9374,23 @@ fn ai_government(w: &mut WorldState) {
         .map(|n| n.id)
         .collect();
     for id in ids {
+        // Retain the annual review, with a month-end emergency review when
+        // actual loyalty has fallen below the existing .40 funded margin.
+        // A confidence loss emerging midyear must not wait until next January
+        // when an affordable, useful appropriation is already available.
+        // Hysteresis avoids buying tiny changes; the same paid command and
+        // fiscal floor still protect civilian spending and debt service.
+        if crate::clock::month_end(w)
+            && state(w, id).is_some_and(|g|
+                g.loyalty(Pillar::Army) < if w.month == 1 { 0.50 } else { 0.40 })
+        {
+            if let Some(share) = ai_army_funding_floor(w, id) {
+                if share >= w.nation(id).mil_spend_gdp + 0.001 {
+                    let command = crate::Command::SetMilSpend { nation: id, share };
+                    if crate::affordable(w, &command) { let _ = crate::apply_command(w, &command); }
+                }
+            }
+        }
         if is_electoral(w, id) {
             continue;
         }
@@ -8618,6 +9428,7 @@ pub fn tick(w: &mut WorldState) {
     let ids: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
 
     for id in ids.clone() {
+        crate::opening_mandates::discard_incompatible(w, id);
         if state(w, id).is_none() {
             continue;
         }
@@ -8634,23 +9445,35 @@ pub fn tick(w: &mut WorldState) {
         }
 
         if is_electoral(w, id) {
-            // A regime that has just opened up owes the country a vote. Nothing
-            // schedules this: it happens because authoritarianism fell, whether
-            // through a stratagem, a revolution or a collapse.
+            // A missing calendar is not necessarily a regime opening. A new
+            // electoral successor already has an accountable modeled cabinet;
+            // scheduling its vote must not invent an interim authority that
+            // freezes its support and record. An explicit nonparty authority,
+            // stored regime or saved pending opening retains that seam, as does the
+            // legacy path with the political lens off.
             let unscheduled = state(w, id).is_some_and(|g| g.next_election.0 == 0);
             if unscheduled {
-                // The liberalisation seam (S3) runs inside: the dormant table
-                // is seated from the movements, not from the last pre-1990
-                // result. A no-op, returning `None`, with the arm off.
-                let lost = schedule_first_elections(w, id, 18);
-                w.headline(match lost {
-                    None => format!("{} sets a date for its first free elections.", id.name()),
-                    Some(clause) => format!(
-                        "{} sets a date for its first free elections; {}.",
-                        id.name(),
-                        clause
-                    ),
-                });
+                let party_authority = crate::blocs::leader_row(w, id).map_or(true, |row|
+                    matches!(row.tie_now(), Some(crate::data::Tie::Party(_))));
+                let ordinary_cabinet = w.rules.ideology_blocs && party_authority && state(w, id)
+                    .is_some_and(|g| g.regime_bloc.is_none() && !g.awaiting_first_election);
+                if ordinary_cabinet {
+                    let when = add_months(w.year, w.month, 18);
+                    state_mut(w, id).unwrap().next_election = when;
+                    w.headline(format!("{} sets a date for national elections.", id.name()));
+                } else {
+                    // The dormant table is seated from the movements while the
+                    // real regime retains authority until its first free vote.
+                    let lost = schedule_first_elections(w, id, 18);
+                    w.headline(match lost {
+                        None => format!("{} sets a date for its first free elections.", id.name()),
+                        Some(clause) => format!(
+                            "{} sets a date for its first free elections; {}.",
+                            id.name(),
+                            clause
+                        ),
+                    });
+                }
             }
 
             drift_support(w, id);
@@ -8676,7 +9499,9 @@ pub fn tick(w: &mut WorldState) {
                 ),
                 None => (false, 0),
             };
-            if fragile && months >= 12 {
+            if fragile && months >= 12
+                && !(w.rules.ideology_blocs && state(w, id).is_some_and(|g| g.awaiting_first_election))
+            {
                 w.headline(format!(
                     "The government of {} falls; the country goes to the polls.",
                     id.name()
@@ -8692,8 +9517,15 @@ pub fn tick(w: &mut WorldState) {
         } else {
             // An authoritarian regime does not hold elections, and if it once
             // did, the parliament it had stops mattering.
+            let lens = w.rules.ideology_blocs;
             if let Some(g) = state_mut(w, id) {
                 g.next_election = (0, 0);
+                if lens {
+                    g.awaiting_first_election = false;
+                    g.elected = false;
+                    g.unrestricted_mandate = false;
+                    g.opening_mandate = None;
+                }
                 if g.pillars.is_empty() {
                     g.pillars = vec![];
                 }
@@ -8730,6 +9562,7 @@ pub fn tick(w: &mut WorldState) {
 
     term_limits(w);
     ai_government(w);
+    crate::armed_security::tick(w);
 }
 
 /// A constitutional term limit already binding on 1 January 1990 (the
@@ -8828,6 +9661,12 @@ pub fn succession_seat(w: &WorldState, id: NationId, how: &Succession) -> Option
         Some(Tie::Pillar(p)) => Some(*p),
         _ => None,
     };
+    // A takeover creates a new generic regime office. Its later succession
+    // must not inherit the historical office's crown/heir simply because a
+    // Party organisation now holds it. Sourced and inherited offices retain
+    // their existing separate succession rules.
+    let generated_regime_office = row.emergent.as_ref()
+        .is_some_and(|e| e.office == "head of state");
     let seat = |described: String, office: String, party: Option<String>, pillar: Option<Pillar>| Emergent {
         described,
         office,
@@ -8844,7 +9683,7 @@ pub fn succession_seat(w: &WorldState, id: NationId, how: &Succession) -> Option
         }
     };
     let by_pillar = |pillar: Pillar| -> (Emergent, bool) {
-        (seat(pillar_name(id, pillar).to_string(), "head of state".into(), None, Some(pillar)), false)
+        (seat(coup_pillar_name(w, id, pillar), "head of state".into(), None, Some(pillar)), false)
     };
     Some(match how {
         Succession::Election { leader } => {
@@ -8855,7 +9694,14 @@ pub fn succession_seat(w: &WorldState, id: NationId, how: &Succession) -> Option
             // of the day, served beside the row. Read on the transcribed row
             // alone; an emergent pillar holder (the junta after a coup) does
             // give way to the party the first free elections seat.
-            if row.emergent.is_none() && holder_pillar.is_some() {
+            let military_transition = matches!(holder_pillar, Some(Pillar::Army | Pillar::Security))
+                && state(w, id).is_some_and(|g| g.awaiting_first_election);
+            // Inherited crowns and other sourced pillar offices remain distinct
+            // from the elected chamber after succession too. Only the generic
+            // regime role generated by `by_pillar` yields as an emergent office.
+            let inherited_pillar_office = holder_pillar.is_some()
+                && row.emergent.as_ref().map_or(true, |e| e.office != "head of state");
+            if inherited_pillar_office && !military_transition {
                 return None;
             }
             // The transcribed person whose own party leads keeps the office;
@@ -8866,7 +9712,7 @@ pub fn succession_seat(w: &WorldState, id: NationId, how: &Succession) -> Option
             (seat(government_of(id, leader), "head of government".into(), Some(leader.clone()), None), false)
         }
         Succession::Coup { pillar } => {
-            if *pillar == Pillar::Party && holder_pillar == Some(Pillar::Party) {
+            if *pillar == Pillar::Party && holder_pillar == Some(Pillar::Party) && !generated_regime_office {
                 house(row)
             } else {
                 by_pillar(*pillar)
@@ -8874,7 +9720,7 @@ pub fn succession_seat(w: &WorldState, id: NationId, how: &Succession) -> Option
         }
         Succession::Takeover { bloc } => match bloc {
             Bloc::Nationalist | Bloc::NonAligned => {
-                let pillar = home_pillar(id, *bloc)
+                let pillar = home_pillar(w, id, *bloc)
                     .or_else(|| polity_in(w, id).and_then(|p| p.pillars.iter().map(|s| s.pillar).find(|p| *p == Pillar::Army)))
                     .or_else(|| polity_in(w, id).and_then(|p| p.pillars.first().map(|s| s.pillar)));
                 match pillar {
@@ -8886,7 +9732,7 @@ pub fn succession_seat(w: &WorldState, id: NationId, how: &Succession) -> Option
                 Some(p) => (seat(government_of(id, p.id), "head of government".into(), Some(p.id.to_string()), None), false),
                 None => {
                     let fallback = if *bloc == Bloc::Islamist { Pillar::Clergy } else { Pillar::Party };
-                    let pillar = home_pillar(id, *bloc).unwrap_or(fallback);
+                    let pillar = home_pillar(w, id, *bloc).unwrap_or(fallback);
                     by_pillar(pillar)
                 }
             },
@@ -8905,12 +9751,12 @@ pub fn succession_seat(w: &WorldState, id: NationId, how: &Succession) -> Option
         },
         Succession::Death => match (&holder_party, holder_pillar) {
             (Some(p), _) => (seat(government_of(id, p), row.office.clone(), Some(p.clone()), None), false),
-            (None, Some(Pillar::Party)) => house(row),
+            (None, Some(Pillar::Party)) if !generated_regime_office => house(row),
             (None, Some(pl)) => by_pillar(pl),
             (None, None) => return None,
         },
         Succession::Programme => {
-            if row.heir.is_some() || holder_pillar == Some(Pillar::Party) {
+            if !generated_regime_office && (row.heir.is_some() || holder_pillar == Some(Pillar::Party)) {
                 house(row)
             } else if let Some(p) = &holder_party {
                 (seat(government_of(id, p), "head of government".into(), Some(p.clone()), None), false)
@@ -8936,6 +9782,12 @@ pub fn seat_office(w: &mut WorldState, id: NationId, how: &Succession) {
         Some(x) => x,
         None => return,
     };
+    // The source attests an Assembly-backed party government, not the lifetime
+    // of one person. Same-party death/term succession leaves that authority
+    // intact; a ballot, programme or seizure cannot inherit it.
+    if !matches!(how, Succession::Death | Succession::TermLimit) {
+        crate::opening_mandates::clear(w, id);
+    }
     let described = seat.described.clone();
     crate::party_leadership::on_succession(w, id, how, seat.party.as_deref());
     if let Some(rows) = w.leadership.as_mut() {
@@ -8952,6 +9804,7 @@ pub fn seat_office(w: &mut WorldState, id: NationId, how: &Succession) {
             row.emergent = Some(seat);
         }
     }
+    crate::opening_mandates::discard_incompatible(w, id);
     if matches!(how, Succession::TermLimit | Succession::Death) {
         w.headline(format!("{} is led by {}.", id.name(), described));
     }
@@ -9191,16 +10044,21 @@ mod tests {
         for w in [&mut calm, &mut burning] {
             w.rules.ai_aggression = 0.0;
         }
-        for _ in 0..48 {
+        // Compare the same incumbent before the first scheduled ballot. Once
+        // the right actually governs, it must answer for continuing inflation
+        // too; a four-year comparison otherwise mixes those two mechanisms.
+        for _ in 0..36 {
             burning.nation_mut(NationId::France).inflation = 0.22;
             crate::tick_month(&mut burning, &[]);
             crate::tick_month(&mut calm, &[]);
         }
         let c = state(&calm, NationId::France).unwrap();
         let b = state(&burning, NationId::France).unwrap();
+        assert_eq!(c.leader(), Some("fr_ps"));
+        assert_eq!(b.leader(), Some("fr_ps"));
         assert!(
             b.support_of("fr_ps") < c.support_of("fr_ps") - 0.005,
-            "four years of 22% inflation cost the governing party nothing: {:.3} vs {:.3}",
+            "three years of 22% inflation cost the governing party nothing: {:.3} vs {:.3}",
             b.support_of("fr_ps"),
             c.support_of("fr_ps")
         );
@@ -9213,6 +10071,22 @@ mod tests {
              RPR {:+.4} against PCF {:+.4}",
             right, left
         );
+        for _ in 36..39 {
+            burning.nation_mut(NationId::France).inflation = 0.22;
+            crate::tick_month(&mut burning, &[]);
+            crate::tick_month(&mut calm, &[]);
+        }
+        assert_eq!(state(&calm, NationId::France).unwrap().leader(), Some("fr_ps"));
+        assert_eq!(state(&burning, NationId::France).unwrap().leader(), Some("fr_rpr"));
+        let taking_office = state(&burning, NationId::France).unwrap().support_of("fr_rpr");
+        for _ in 39..48 {
+            burning.nation_mut(NationId::France).inflation = 0.22;
+            crate::tick_month(&mut burning, &[]);
+        }
+        let b = state(&burning, NationId::France).unwrap();
+        assert_eq!(b.leader(), Some("fr_rpr"));
+        assert!(b.support_of("fr_rpr") < taking_office - 0.005,
+            "the new government escaped accountability for continuing inflation");
     }
 
     #[test]
@@ -9242,6 +10116,574 @@ mod tests {
             let g = state(w, id).unwrap();
             assert!((g.support.iter().map(|(_, s)| *s).sum::<f64>() - 1.0).abs() < 1e-12);
             assert!(g.support.iter().all(|(_, s)| s.is_finite() && *s > 0.0));
+        }
+    }
+
+    #[test]
+    fn political_record_remembers_a_bad_term_but_resets_when_another_party_governs() {
+        let id = NationId::UK;
+        let mut w = w1990();
+        assert!(!crate::save(&w).contains("political_record"));
+        let bad = Pains { prices: 1.0, growth: 0.5, war: 0.0, order: 0.2 };
+        let good = Pains { prices: 0.0, growth: 0.0, war: 0.0, order: 0.0 };
+        for _ in 0..24 { remembered_record(&mut w, id, &bad); }
+        let first_recovery = remembered_record(&mut w, id, &good);
+        assert!(first_recovery < governing_record(&good));
+        assert!(first_recovery > governing_record(&bad), "recovery must help immediately");
+        let old_party = state(&w, id).unwrap().leader().unwrap().to_string();
+        form_government(&mut w, id, false);
+        assert_eq!(state(&w, id).unwrap().leader(), Some(old_party.as_str()));
+        remembered_record(&mut w, id, &good);
+        assert_eq!(state(&w, id).unwrap().political_record.as_ref().unwrap().months, 26.0,
+            "a reshuffle cannot erase continuous tenure");
+        let saved = crate::save(&w);
+        w = crate::load(&saved).unwrap();
+        assert_eq!(crate::save(&w), saved);
+        let opposition = polity_in(&w, id).unwrap().parties.iter().find(|p| p.id != old_party).unwrap().id;
+        state_mut(&mut w, id).unwrap().coalition = vec![opposition.into()];
+        assert_eq!(remembered_record(&mut w, id, &good), governing_record(&good));
+        assert_eq!(state(&w, id).unwrap().political_record.as_ref().unwrap().months, 1.0);
+        for _ in 0..120 { remembered_record(&mut w, id, &good); }
+        assert_eq!(state(&w, id).unwrap().political_record.as_ref().unwrap().performance, governing_record(&good));
+    }
+
+    #[test]
+    fn a_continuing_incumbent_keeps_its_record_through_opening_and_its_first_ballot() {
+        let id = NationId::USSR;
+        let mut w = world_1990(on_rules(7));
+        let bad = Pains { prices: 1.0, growth: 0.5, war: 0.0, order: 0.2 };
+        let good = Pains { prices: 0.0, growth: 0.0, war: 0.0, order: 0.0 };
+        for _ in 0..24 { remembered_record(&mut w, id, &bad); }
+        let before = state(&w, id).unwrap().political_record.clone().unwrap();
+        assert_eq!(before.government, "party:su_cpsu");
+        let rng = w.rng.clone();
+        w.nation_mut(id).authoritarianism = 0.59;
+        schedule_first_elections(&mut w, id, 6);
+        assert_eq!(state(&w, id).unwrap().leader(), Some("su_cpsu"));
+        assert_eq!(record_identity(&w, id).unwrap().0, before.government);
+        let mut daily = w.clone();
+        daily.rules.daily_simulation = true;
+        remembered_record(&mut w, id, &good);
+        for _ in 0..31 { remembered_record(&mut daily, id, &good); }
+        let interim = state(&w, id).unwrap().political_record.clone().unwrap();
+        let d = state(&daily, id).unwrap().political_record.as_ref().unwrap();
+        assert_eq!(interim.months, 25.0);
+        assert!((interim.performance - d.performance).abs() < 1e-12);
+        assert!((interim.months - d.months).abs() < 1e-12);
+        assert!(interim.performance < 0.0, "announcing elections cannot erase the same government's bad term");
+        w = crate::load(&crate::save(&w)).unwrap();
+        hold_election(&mut w, id);
+        assert!(!state(&w, id).unwrap().awaiting_first_election);
+        assert_eq!(record_identity(&w, id).unwrap().0, "party:su_cpsu");
+        remembered_record(&mut w, id, &good);
+        let elected = state(&w, id).unwrap().political_record.as_ref().unwrap();
+        assert_eq!(elected.months, 26.0);
+        assert!(elected.performance < 0.0);
+        assert_eq!(w.rng, rng);
+    }
+
+    #[test]
+    fn a_real_party_or_military_handover_resets_accountability_without_inventing_party_history() {
+        let id = NationId::USSR;
+        let bad = Pains { prices: 1.0, growth: 0.5, war: 0.0, order: 0.2 };
+        let good = Pains { prices: 0.0, growth: 0.0, war: 0.0, order: 0.0 };
+        let mut base = world_1990(on_rules(7));
+        for _ in 0..24 { remembered_record(&mut base, id, &bad); }
+        let mut opposition = base.clone();
+        opposition.nation_mut(id).authoritarianism = 0.59;
+        schedule_first_elections(&mut opposition, id, 6);
+        for (party, share) in &mut state_mut(&mut opposition, id).unwrap().support {
+            *share = if party == "su_dr" { 1.0 } else { 0.0 };
+        }
+        hold_election(&mut opposition, id);
+        assert_eq!(state(&opposition, id).unwrap().leader(), Some("su_dr"));
+        assert_eq!(remembered_record(&mut opposition, id, &good), governing_record(&good));
+        let r = state(&opposition, id).unwrap().political_record.as_ref().unwrap();
+        assert_eq!(r.government, "party:su_dr");
+        assert_eq!(r.months, 1.0);
+
+        let mut military = base;
+        state_mut(&mut military, id).unwrap().regime_bloc = Some(Bloc::Nationalist);
+        seat_office(&mut military, id, &Succession::Coup { pillar: Pillar::Army });
+        for _ in 0..24 { remembered_record(&mut military, id, &bad); }
+        assert_eq!(state(&military, id).unwrap().political_record.as_ref().unwrap().government, "regime:Nationalist");
+        military.nation_mut(id).authoritarianism = 0.59;
+        schedule_first_elections(&mut military, id, 6);
+        remembered_record(&mut military, id, &bad);
+        assert_eq!(state(&military, id).unwrap().political_record.as_ref().unwrap().months, 25.0,
+            "the interim does not fabricate a new accountable party");
+        hold_election(&mut military, id);
+        assert_eq!(remembered_record(&mut military, id, &good), governing_record(&good));
+        let r = state(&military, id).unwrap().political_record.as_ref().unwrap();
+        assert!(r.government.starts_with("party:"));
+        assert_eq!(r.months, 1.0, "the actual civilian handover starts a new record");
+    }
+
+    #[test]
+    fn a_legacy_regime_record_is_rekeyed_only_for_its_observed_live_party() {
+        let id = NationId::USSR;
+        let mut w = world_1990(on_rules(7));
+        let bad = Pains { prices: 1.0, growth: 0.5, war: 0.0, order: 0.2 };
+        let good = Pains { prices: 0.0, growth: 0.0, war: 0.0, order: 0.0 };
+        state_mut(&mut w, id).unwrap().political_record = Some(PoliticalRecord {
+            government: "regime:Communist".into(), months: 24.0, performance: governing_record(&bad),
+        });
+        let mut off = w.clone();
+        off.rules.ideology_blocs = false;
+        remembered_record(&mut off, id, &good);
+        assert_eq!(state(&off, id).unwrap().political_record.as_ref().unwrap().government, "regime:Communist");
+        w = crate::load(&crate::save(&w)).unwrap();
+        remembered_record(&mut w, id, &good);
+        let r = state(&w, id).unwrap().political_record.as_ref().unwrap();
+        assert_eq!(r.government, "party:su_cpsu");
+        assert_eq!(r.months, 25.0);
+        assert!(r.performance < 0.0, "the existing estimate survives the representation upgrade");
+        state_mut(&mut w, id).unwrap().regime_bloc = Some(Bloc::Islamist);
+        seat_office(&mut w, id, &Succession::Takeover { bloc: Bloc::Islamist });
+        assert_eq!(remembered_record(&mut w, id, &good), governing_record(&good));
+        let r = state(&w, id).unwrap().political_record.as_ref().unwrap();
+        assert_eq!(r.government, "regime:Islamist");
+        assert_eq!(r.months, 1.0);
+    }
+
+    #[test]
+    fn an_unvoted_opposition_list_does_not_inherit_the_incumbents_bad_record() {
+        let id = NationId::USSR;
+        let mut base = world_1990(on_rules(7));
+        state_mut(&mut base, id).unwrap().movements = vec![
+            (Bloc::Western, 0.65), (Bloc::Communist, 0.20),
+            (Bloc::Nationalist, 0.146), (Bloc::Islamist, 0.002), (Bloc::NonAligned, 0.002),
+        ];
+        base.nation_mut(id).authoritarianism = 0.59;
+        schedule_first_elections(&mut base, id, 6);
+        // The scheduling seam retains the last chamber until a ballot. Stage
+        // a provisional opposition-led cabinet explicitly: this test isolates
+        // who bears responsibility, not whether that interim can win seats.
+        let support = state(&base, id).unwrap().support.clone();
+        let system = polity_in(&base, id).unwrap().system;
+        state_mut(&mut base, id).unwrap().seats = seats_from(&support, system);
+        form_government(&mut base, id, false);
+        assert_eq!(state(&base, id).unwrap().leader(), Some("su_dr"), "opposition leads only the provisional table");
+        assert_eq!(record_identity(&base, id).unwrap().0, "party:su_cpsu");
+        let mut quiet = base.clone();
+        let mut crisis = base.clone();
+        for w in [&mut quiet, &mut crisis] {
+            let n = w.nation_mut(id);
+            n.stability = 85.0; n.inflation = 0.02; n.growth_last = 0.03;
+            n.war_exhaustion = 0.0; n.separatism = 0.0;
+        }
+        crisis.nation_mut(id).inflation = 0.30;
+        crisis.nation_mut(id).stability = 10.0;
+        drift_support(&mut quiet, id);
+        drift_support(&mut crisis, id);
+        let q = state(&quiet, id).unwrap();
+        let c = state(&crisis, id).unwrap();
+        assert!(c.support_of("su_cpsu") < q.support_of("su_cpsu"), "the actual incumbent remains accountable");
+        assert!(c.support_of("su_dr") > q.support_of("su_dr"), "an unvoted opposition is not charged the incumbent's crisis");
+
+        state_mut(&mut base, id).unwrap().regime_bloc = Some(Bloc::Nationalist);
+        seat_office(&mut base, id, &Succession::Coup { pillar: Pillar::Army });
+        let support = state(&base, id).unwrap().support.clone();
+        drift_support(&mut base, id);
+        assert_eq!(state(&base, id).unwrap().support, support,
+            "an unidentified partisan history is retained as a regime record, not assigned to a civilian list");
+        assert_eq!(state(&base, id).unwrap().political_record.as_ref().unwrap().government, "regime:Nationalist");
+    }
+
+    #[test]
+    fn political_record_learns_one_calendar_month_in_both_clock_modes() {
+        let id = NationId::UK;
+        let mut monthly = w1990();
+        let bad = Pains { prices: 1.0, growth: 0.5, war: 0.0, order: 0.2 };
+        let good = Pains { prices: 0.0, growth: 0.0, war: 0.0, order: 0.0 };
+        remembered_record(&mut monthly, id, &bad);
+        let mut daily = monthly.clone();
+        daily.rules.daily_simulation = true;
+        let rng = serde_json::to_string(&daily.rng).unwrap();
+        remembered_record(&mut monthly, id, &good);
+        for _ in 0..31 { remembered_record(&mut daily, id, &good); }
+        let m = state(&monthly, id).unwrap().political_record.as_ref().unwrap();
+        let d = state(&daily, id).unwrap().political_record.as_ref().unwrap();
+        assert!((m.performance - d.performance).abs() < 1e-12);
+        assert!((m.months - d.months).abs() < 1e-12);
+        assert_eq!(serde_json::to_string(&daily.rng).unwrap(), rng);
+    }
+
+    #[test]
+    fn a_full_term_remembers_early_hardship_but_sustained_recovery_is_forgiven() {
+        for (id, expected_term) in [(NationId::UK, 60), (NationId::USA, 48)] {
+            let mut w = w1990();
+            let term = polity_in(&w, id).unwrap().term_months;
+            assert_eq!(term, expected_term, "exercise both five- and four-year terms");
+            let bad_months = term / 2;
+            let recovery_months = term - bad_months;
+            let bad = Pains { prices: 1.0, growth: 0.0, war: 0.0, order: 0.0 };
+            let good = Pains { prices: 0.0, growth: 0.0, war: 0.0, order: 0.0 };
+            for _ in 0..bad_months { remembered_record(&mut w, id, &bad); }
+            let mut judgement = 0.0;
+            for _ in 0..recovery_months { judgement = remembered_record(&mut w, id, &good); }
+            assert_eq!(state(&w, id).unwrap().political_record.as_ref().unwrap().months, term as f64);
+            assert!(judgement < 0.0,
+                "{id:?}: recovery erased the first half of the same {term}-month difficult term: {judgement}");
+            assert!(judgement > governing_record(&bad), "recovery has no effect");
+            // A saved rolling estimate remains a prior; neither load nor a new
+            // filter invents an exact series of past economic observations.
+            let saved = crate::save(&w);
+            w = crate::load(&saved).unwrap();
+            assert_eq!(crate::save(&w), saved);
+            for _ in 0..240 { judgement = remembered_record(&mut w, id, &good); }
+            assert!(judgement > 0.30, "old hardship became permanent electoral fatigue");
+            assert!(judgement <= governing_record(&good));
+        }
+    }
+
+    #[test]
+    fn lawful_transfers_consolidate_civilian_control_without_snap_election_farming() {
+        let id = NationId::UK;
+        let mut original = world_1990(on_rules(7));
+        assert!(!crate::save(&original).contains("unrestricted_mandate"));
+        original.nation_mut(id).authoritarianism = 0.55;
+        let term = polity_in(&original, id).unwrap().term_months;
+        {
+            let g = state_mut(&mut original, id).unwrap();
+            g.elected = true;
+            g.unrestricted_mandate = true;
+            g.months_in_office = term;
+            g.support = vec![("uk_con".into(), 0.25), ("uk_lab".into(), 0.55),
+                ("uk_lib".into(), 0.18), ("uk_nat".into(), 0.02)];
+        }
+        let rng = original.rng.state;
+        let mut full = original.clone();
+        hold_election(&mut full, id);
+        assert_eq!(state(&full, id).unwrap().leader(), Some("uk_lab"));
+        assert!((full.nation(id).authoritarianism - 0.50).abs() < 1e-12);
+        assert_eq!(full.rng.state, rng);
+        let saved = crate::save(&full);
+        full = crate::load(&saved).unwrap();
+        assert_eq!(crate::save(&full), saved);
+        state_mut(&mut full, id).unwrap().months_in_office = term;
+        hold_election(&mut full, id);
+        assert!((full.nation(id).authoritarianism - 0.50).abs() < 1e-12,
+            "retaining the incumbent is not a transfer of power");
+
+        let mut short = original.clone();
+        for index in 0..5 {
+            let g = state_mut(&mut short, id).unwrap();
+            g.months_in_office = term / 5;
+            let winner = if index % 2 == 0 { "uk_lab" } else { "uk_con" };
+            for (party, share) in &mut g.support { *share = if party == winner { 0.85 } else { 0.05 }; }
+            hold_election(&mut short, id);
+        }
+        assert!((short.nation(id).authoritarianism - 0.50).abs() < 1e-12,
+            "five one-fifth-term transfers cannot earn more than one full term");
+        for control in 0..4 {
+            let mut w = original.clone();
+            match control {
+                0 => { let g = state_mut(&mut w, id).unwrap(); g.elected = false; g.awaiting_first_election = true; }
+                1 => state_mut(&mut w, id).unwrap().banned.push("uk_lib".into()),
+                2 => w.rules.ideology_blocs = false,
+                _ => state_mut(&mut w, id).unwrap().months_in_office = 0,
+            }
+            hold_election(&mut w, id);
+            assert_eq!(w.nation(id).authoritarianism, 0.55, "control {control}");
+        }
+        let mut already_open = original.clone();
+        already_open.nation_mut(id).authoritarianism = 0.02;
+        hold_election(&mut already_open, id);
+        assert_eq!(already_open.nation(id).authoritarianism, 0.02,
+            "consolidation must never raise authoritarianism below its reward floor");
+
+        for held_restricted_ballot in [false, true] {
+            let mut restricted = original.clone();
+            ban_party(&mut restricted, id, "uk_lib").unwrap();
+            assert!(!state(&restricted, id).unwrap().unrestricted_mandate);
+            if held_restricted_ballot { hold_election(&mut restricted, id); }
+            restricted = crate::load(&crate::save(&restricted)).unwrap();
+            assert!(!state(&restricted, id).unwrap().unrestricted_mandate);
+            legalize_party(&mut restricted, id, "uk_lib").unwrap();
+            let auth_before = restricted.nation(id).authoritarianism;
+            let g = state_mut(&mut restricted, id).unwrap();
+            g.months_in_office = term;
+            let winner = if g.leader() == Some("uk_con") { "uk_lab" } else { "uk_con" };
+            for (party, share) in &mut g.support { *share = if party == winner { 0.85 } else { 0.05 }; }
+            hold_election(&mut restricted, id);
+            assert_eq!(restricted.nation(id).authoritarianism, auth_before,
+                "legalization cannot retroactively certify the outgoing restricted mandate");
+            assert!(state(&restricted, id).unwrap().unrestricted_mandate,
+                "a newly completed unrestricted ballot can begin its own eligible term");
+        }
+
+        // The initial US table seats Congress: its Democratic majority can
+        // become Republican while Republican President Bush keeps his office.
+        let mut divided = world_1990(on_rules(7));
+        let usa = NationId::USA;
+        let authority = divided.nation(usa).authoritarianism;
+        let office = serde_json::to_string(crate::blocs::leader_row(&divided, usa).unwrap()).unwrap();
+        let term = polity_in(&divided, usa).unwrap().term_months;
+        let g = state_mut(&mut divided, usa).unwrap();
+        assert_eq!(g.leader(), Some("us_dem"));
+        g.elected = true;
+        g.unrestricted_mandate = true;
+        g.months_in_office = term;
+        for (party, share) in &mut g.support { *share = if party == "us_rep" { 0.9 } else { 0.05 }; }
+        hold_election(&mut divided, usa);
+        assert_eq!(state(&divided, usa).unwrap().leader(), Some("us_rep"));
+        assert_eq!(serde_json::to_string(crate::blocs::leader_row(&divided, usa).unwrap()).unwrap(), office);
+        assert_eq!(divided.nation(usa).authoritarianism, authority, "a chamber flip is not an executive handover");
+    }
+
+    #[test]
+    fn completed_ballots_refresh_constituencies_without_reinterpreting_seats_or_old_saves() {
+        let id = NationId::UK;
+        let mut w = w1990();
+        assert!(!crate::save(&w).contains("vote_anchor"));
+        let old = crate::load(&crate::save(&w)).unwrap();
+        assert!(state(&old, id).unwrap().vote_anchor.is_none());
+        let votes = vec![("uk_con".into(), 0.25), ("uk_lab".into(), 0.55),
+            ("uk_lib".into(), 0.18), ("uk_nat".into(), 0.02)];
+        state_mut(&mut w, id).unwrap().support = votes.clone();
+        hold_election(&mut w, id);
+        let g = state(&w, id).unwrap();
+        assert_eq!(g.vote_anchor.as_ref(), Some(&votes));
+        assert_ne!(g.vote_anchor.as_ref(), Some(&g.seats), "a seat bonus is not extra voters");
+        assert_eq!(g.leader(), Some("uk_lab"));
+        let saved = crate::save(&w);
+        w = crate::load(&saved).unwrap();
+        assert_eq!(crate::save(&w), saved);
+        // Renewing the same governing party still supplies a new observation.
+        let mut next_votes = votes;
+        next_votes[0].1 += 0.04;
+        next_votes[1].1 -= 0.04;
+        state_mut(&mut w, id).unwrap().support = next_votes.clone();
+        hold_election(&mut w, id);
+        assert_eq!(state(&w, id).unwrap().vote_anchor.as_ref(), Some(&next_votes));
+        assert_eq!(state(&w, id).unwrap().leader(), Some("uk_lab"));
+    }
+
+    #[test]
+    fn voter_reversion_uses_the_last_observed_ballot_and_never_rewrites_it_during_drift() {
+        let id = NationId::UK;
+        let mut observed = w1990();
+        state_mut(&mut observed, id).unwrap().support = vec![
+            ("uk_con".into(), 0.25), ("uk_lab".into(), 0.55),
+            ("uk_lib".into(), 0.18), ("uk_nat".into(), 0.02)];
+        hold_election(&mut observed, id);
+        let anchor = state(&observed, id).unwrap().vote_anchor.clone();
+        let mut obsolete = observed.clone();
+        state_mut(&mut obsolete, id).unwrap().vote_anchor = None;
+        for w in [&mut observed, &mut obsolete] {
+            let n = w.nation_mut(id);
+            n.inflation = 0.03;
+            n.growth_last = 0.02;
+            n.stability = 70.0;
+            n.war_exhaustion = 0.0;
+            n.separatism = 0.0;
+            drift_support(w, id);
+        }
+        assert!(state(&observed, id).unwrap().support_of("uk_lab")
+            > state(&obsolete, id).unwrap().support_of("uk_lab"),
+            "reversion still undoes the observed electorate in favour of 1990");
+        assert_eq!(state(&observed, id).unwrap().vote_anchor, anchor);
+        let before = state(&observed, id).unwrap().support.clone();
+        observed.nation_mut(id).inflation = 0.80;
+        for _ in 0..24 { drift_support(&mut observed, id); }
+        let g = state(&observed, id).unwrap();
+        assert!(g.support_of("uk_lab") < before.iter().find(|(p, _)| p == "uk_lab").unwrap().1,
+            "a completed vote cannot freeze support against later poor performance");
+        assert_eq!(g.vote_anchor, anchor);
+        assert!((g.support.iter().map(|(_, share)| *share).sum::<f64>() - 1.0).abs() < 1e-12);
+    }
+
+    #[test]
+    fn reshuffles_and_restricted_ballots_do_not_fabricate_a_new_constituency() {
+        let id = NationId::UK;
+        let mut w = world_1990(roads_rules(7));
+        hold_election(&mut w, id);
+        let anchor = state(&w, id).unwrap().vote_anchor.clone();
+        assert!(anchor.is_some());
+        {
+            let g = state_mut(&mut w, id).unwrap();
+            for (_, share) in &mut g.support { *share = 0.25; }
+        }
+        form_government(&mut w, id, false);
+        assert_eq!(state(&w, id).unwrap().vote_anchor, anchor);
+        state_mut(&mut w, id).unwrap().banned.push("uk_lab".into());
+        hold_election(&mut w, id);
+        let g = state(&w, id).unwrap();
+        assert_eq!(g.seat_share("uk_lab"), 0.0);
+        assert_eq!(g.vote_anchor, anchor, "excluded voters are not a new national electorate");
+    }
+
+    #[test]
+    fn coalition_exclusion_is_symmetric_without_erasing_pluralities_or_majorities() {
+        let id = NationId::Italy;
+        let mut w = w1990();
+        let original_votes = state(&w, id).unwrap().support.clone();
+        let seats = vec![("it_pci".into(), 0.35), ("it_psi".into(), 0.30),
+            ("it_dc".into(), 0.20), ("it_msi".into(), 0.05),
+            ("it_pri".into(), 0.05), ("it_psdi".into(), 0.03), ("it_pli".into(), 0.02)];
+        state_mut(&mut w, id).unwrap().seats = seats.clone();
+        form_government(&mut w, id, false);
+        let g = state(&w, id).unwrap();
+        assert_eq!(g.coalition, vec!["it_pci".to_string()],
+            "a pariah plurality cannot bypass coalition exclusion by leading");
+        assert_eq!(g.government_seats(), 0.35);
+        assert_eq!(g.support, original_votes);
+        assert_eq!(g.seats, seats);
+        // Swap the two largest parties: the ordinary leader must still refuse
+        // the pariah as a junior and find an eligible partner instead.
+        {
+            let g = state_mut(&mut w, id).unwrap();
+            g.seats[0].1 = 0.30;
+            g.seats[1].1 = 0.35;
+        }
+        form_government(&mut w, id, false);
+        let g = state(&w, id).unwrap();
+        assert_eq!(g.leader(), Some("it_psi"));
+        assert!(!g.in_government("it_pci"));
+        assert!(!g.in_government("it_msi"));
+        assert!(g.government_seats() >= 0.5);
+        {
+            let g = state_mut(&mut w, id).unwrap();
+            g.seats[0].1 = 0.55;
+            g.seats[1].1 = 0.10;
+        }
+        let majority_seats = state(&w, id).unwrap().seats.clone();
+        form_government(&mut w, id, false);
+        let g = state(&w, id).unwrap();
+        assert_eq!(g.coalition, vec!["it_pci".to_string()]);
+        assert_eq!(g.government_seats(), 0.55, "the cordon cannot cancel an outright majority");
+        assert_eq!(g.support, original_votes);
+        assert_eq!(g.seats, majority_seats);
+        assert!((g.seats.iter().map(|(_, s)| *s).sum::<f64>() - 1.0).abs() < 1e-12);
+    }
+
+    #[test]
+    fn coalition_invitation_preview_and_command_enforce_both_sides_of_the_cordon() {
+        let id = NationId::Italy;
+        for (leader, invitee) in [("it_pci", "it_psi"), ("it_psi", "it_pci")] {
+            let mut w = w1990();
+            w.nation_mut(id).political_capital = 100.0;
+            state_mut(&mut w, id).unwrap().coalition = vec![leader.into()];
+            let command = crate::Command::InviteToGovernment { nation: id, party: invitee.into() };
+            let before = crate::save(&w);
+            let reason = invite_refusal(&w, id, invitee).expect("cordon must apply in both directions");
+            assert!(reason.contains("Italian Communist Party"));
+            assert_eq!(crate::refusal_of(&w, &command), Some(reason.clone()));
+            assert_eq!(crate::apply_command(&mut w, &command), Err(reason));
+            assert!(crate::save(&w) == before, "a refused invitation charged or mutated the world");
+        }
+        let mut allowed = w1990();
+        allowed.nation_mut(id).political_capital = 100.0;
+        state_mut(&mut allowed, id).unwrap().coalition = vec!["it_dc".into()];
+        let command = crate::Command::InviteToGovernment { nation: id, party: "it_psi".into() };
+        assert!(crate::refusal_of(&allowed, &command).is_none());
+        crate::apply_command(&mut allowed, &command).expect("eligible parties may still form a coalition");
+        assert!(state(&allowed, id).unwrap().in_government("it_psi"));
+    }
+
+    #[test]
+    fn a_coalition_leader_is_accountable_without_erasing_junior_or_opposition_voters() {
+        let id = NationId::Bulgaria;
+        let mut w = w1990();
+        let g = state(&w, id).unwrap();
+        let lead = g.coalition[0].clone();
+        let junior = g.coalition[1].clone();
+        let ratio_before = g.support_of(&lead) / g.support_of(&junior);
+        {
+            let n = w.nation_mut(id);
+            n.inflation = 0.30;
+            n.growth_last = -0.06;
+            n.stability = 30.0;
+        }
+        for _ in 0..24 { drift_support(&mut w, id); }
+        let g = state(&w, id).unwrap();
+        assert!(g.support_of(&lead) / g.support_of(&junior) < ratio_before - 0.05,
+            "the prime minister's party cannot be permanently locked above a junior partner");
+        assert_eq!(g.coalition[0], lead, "voter drift does not itself change a government");
+        assert!(g.support.iter().all(|(_, s)| s.is_finite() && *s > 0.0));
+        assert!((g.support.iter().map(|(_, s)| *s).sum::<f64>() - 1.0).abs() < 1e-12);
+    }
+
+    #[test]
+    fn performance_transfers_are_bounded_and_good_government_has_diminishing_returns() {
+        for dt in [1.0, 1.0 / 28.0, 1.0 / 31.0] {
+            for held in [0.0, 0.002, 0.2, 0.5, 0.9, 0.998, 1.0] {
+                for record in [-3.45, -0.5, 0.0, 0.35] {
+                    let moved = performance_transfer(record, held, dt);
+                    assert!(moved.is_finite() && moved.abs() <= 0.015 * dt + 1e-12);
+                    assert!(held + moved >= 0.0 && held + moved <= 1.0);
+                    assert!(moved * record >= 0.0, "a good record cannot cost votes or a bad one earn them");
+                }
+            }
+        }
+        assert!(performance_transfer(0.35, 0.8, 1.0) < performance_transfer(0.35, 0.4, 1.0));
+        assert!(performance_transfer(0.35, 0.8, 1.0) > 0.0, "success can still earn votes");
+    }
+
+    #[test]
+    fn the_complete_vote_change_preserves_totals_and_its_calendar_bound() {
+        let before = [0.70, 0.20, 0.098, 0.002];
+        for dt in [1.0, 1.0 / 28.0, 1.0 / 31.0] {
+            let mut candidate = [(0, 0.65), (1, 0.24), (2, 0.108), (3, 0.002)];
+            bound_vote_change(&before, &mut candidate, 0.015 * dt);
+            let moved = before.iter().zip(&candidate)
+                .map(|(old, (_, new))| (old - new).abs()).sum::<f64>() * 0.5;
+            assert!((moved - 0.015 * dt).abs() < 1e-12);
+            assert!((candidate.iter().map(|(_, s)| *s).sum::<f64>() - 1.0).abs() < 1e-12);
+            assert!(candidate.iter().all(|(_, s)| *s >= 0.002));
+            let bounded = candidate;
+            bound_vote_change(&before, &mut candidate, 0.015 * dt);
+            for (a, b) in bounded.iter().zip(&candidate) { assert!((a.1 - b.1).abs() < 1e-12); }
+        }
+    }
+
+    #[test]
+    fn franchise_demand_reads_excluded_parties_including_same_bloc_alternatives() {
+        let w = world_1990(on_rules(7));
+        let saved = crate::save(&w);
+        for id in [NationId::Albania, NationId::CapeVerde, NationId::Malawi] {
+            let leader = crate::blocs::leader_row(&w, id).unwrap().tie_now().unwrap();
+            let crate::data::Tie::Party(ruling) = leader else { panic!("expected party leader"); };
+            let pol = polity_in(&w, id).unwrap();
+            let total: f64 = pol.parties.iter().filter(|p| p.family != Family::Regionalist)
+                .map(|p| p.start).sum();
+            let incumbent = pol.parties.iter().find(|p| p.id == ruling).unwrap().start;
+            let expected = (1.0 - incumbent / total) * w.nation(id).authoritarianism;
+            assert!((franchise_demand(&w, id) - expected).abs() < 1e-12);
+            assert!(franchise_demand(&w, id) > 0.25, "{id:?} has an excluded civilian constituency");
+            if id != NationId::Albania {
+                assert!(pol.parties.iter().any(|p| p.id != ruling
+                    && bloc_of(id, p.id) == bloc_of(id, &ruling)),
+                    "fixture must include opposition in the incumbent's own bloc");
+            }
+        }
+        for id in [NationId::China, NationId::SaudiArabia, NationId::France] {
+            assert_eq!(franchise_demand(&w, id), 0.0, "{id:?} invented excluded alternatives");
+        }
+        for n in &w.nations { assert!((0.0..=1.0).contains(&franchise_demand(&w, n.id))); }
+        assert_eq!(crate::save(&w), saved, "reading demand changed the campaign");
+        let mut off = w;
+        off.rules.ideology_blocs = false;
+        assert_eq!(franchise_demand(&off, NationId::Albania), 0.0);
+    }
+
+    #[test]
+    fn movement_constituencies_keep_organized_opposition_and_single_party_uncertainty() {
+        let w = world_1990(on_rules(7));
+        let id = NationId::Zambia;
+        let flat = crate::blocs::flat_seed(&w, id, Bloc::NonAligned);
+        let seeded = state(&w, id).unwrap();
+        assert!(seeded.movements[Bloc::Western as usize].1 > flat[Bloc::Western as usize].1,
+            "a large organized opposition cannot become equal to a pillar-only faction");
+        assert!(seeded.movements[Bloc::Western as usize].1 > seeded.movements[Bloc::Nationalist as usize].1);
+        assert_eq!(state(&w, NationId::China).unwrap().movements,
+            crate::blocs::flat_seed(&w, NationId::China, Bloc::Communist).to_vec(),
+            "a single-party table is not a reliable 100% popularity reading");
+        for g in &w.governments.states {
+            if g.movements.is_empty() { continue; }
+            assert!((g.movements.iter().map(|(_, s)| *s).sum::<f64>() - 1.0).abs() < 1e-12);
+            assert!(g.movements.iter().all(|(_, s)| s.is_finite() && *s > 0.0));
         }
     }
 
@@ -9480,10 +10922,44 @@ mod tests {
         state(w, id).unwrap().movements.iter().find(|(x, _)| *x == b).map(|(_, s)| *s).unwrap()
     }
 
+    // A deliberately counterfactual absence fixture for the general funding
+    // mechanic. The historical 1990 board now includes the sourced resistance.
+    fn afghan_fixture_without_an_opening_organization() -> WorldState {
+        let mut w = world_1990(on_rules(7));
+        let id = NationId::Afghanistan;
+        state_mut(&mut w, id).unwrap().established_movements.clear();
+        let shares = crate::blocs::flat_seed(&w, id, Bloc::Communist);
+        state_mut(&mut w, id).unwrap().movements = shares.to_vec();
+        w
+    }
+
+    #[test]
+    fn sourced_opening_organizations_exist_without_buying_them_and_preserve_saved_histories() {
+        let id = NationId::Afghanistan;
+        let mut w = world_1990(on_rules(7));
+        let g = state(&w, id).unwrap();
+        assert_eq!(g.established_movements, [Bloc::Islamist]);
+        assert_eq!(g.support, vec![("af_pdpa".to_string(), 1.0)], "organization presence is not a new parliamentary vote share");
+        assert!(w.statecraft.backing.is_empty());
+        assert!(crate::blocs::bloc_can_win(&w, id, Bloc::Islamist));
+        assert!(!crate::blocs::bloc_in_table(&w, id, Bloc::Islamist));
+        let saved = crate::save(&w);
+        assert_eq!(crate::save(&crate::load(&saved).unwrap()), saved);
+        state_mut(&mut w, id).unwrap().established_movements.clear();
+        ensure_all(&mut w);
+        assert!(state(&w, id).unwrap().established_movements.is_empty(), "an existing campaign is not reseeded from history");
+        w.year = 1991;
+        w.governments.states.retain(|g| g.nation != id);
+        ensure(&mut w, id);
+        assert!(state(&w, id).unwrap().established_movements.is_empty(), "a later missing-record load cannot infer a 1990 history");
+        let off = w1990();
+        assert!(state(&off, id).unwrap().established_movements.is_empty());
+    }
+
     #[test]
     fn an_established_movement_survives_funding_decay_and_save_load_without_free_support() {
         let (id, sponsor, bloc) = (NationId::Afghanistan, NationId::Pakistan, Bloc::Islamist);
-        let mut w = world_1990(on_rules(7));
+        let mut w = afghan_fixture_without_an_opening_organization();
         assert!(!crate::blocs::bloc_present(&w, id, bloc));
         let support = state(&w, id).unwrap().support.clone();
         let movements = state(&w, id).unwrap().movements.clone();
@@ -9517,7 +10993,7 @@ mod tests {
     #[test]
     fn old_saves_recognize_qualifying_movement_backing_without_inventing_past_organizations() {
         let (id, sponsor, bloc) = (NationId::Afghanistan, NationId::Pakistan, Bloc::Islamist);
-        let mut w = world_1990(on_rules(7));
+        let mut w = afghan_fixture_without_an_opening_organization();
         assert!(!crate::save(&w).contains("established_movements"));
         // This is the old save shape: a backing stock with no new field.
         w.statecraft.backing.push(crate::world::Backing {
@@ -9568,7 +11044,7 @@ mod tests {
         assert!(state(&off, id).unwrap().established_movements.is_empty());
         assert!(!crate::save(&off).contains("established_movements"));
 
-        let mut on = world_1990(on_rules(7));
+        let mut on = afghan_fixture_without_an_opening_organization();
         crate::statecraft::add_backing(&mut on, NationId::USSR, id, Bloc::Communist);
         assert!(state(&on, id).unwrap().established_movements.is_empty(), "the party table already records this presence");
         crate::statecraft::add_backing(&mut on, sponsor, id, bloc);
@@ -9584,16 +11060,16 @@ mod tests {
     /// running_away`, for a regime's movements. `drift_movements` is called
     /// directly with China's pains pinned, so the numbers are the function's
     /// and not the economy's. Quiet (record +0.35): the ruling share climbs
-    /// from the 0.60 seed and SETTLES — the fixed point of the swing against
-    /// the 0.005 reversion is 0.0021(1-h) = 0.005(h-0.6), h = 0.718; MEASURED
-    /// 0.71316 after 480 months, moving 2.76e-5 a month. A catastrophe
+    /// from the 0.60 seed and SETTLES. With diminishing returns, the approximate
+    /// fixed point is 0.0035(1-h)^2 = 0.005(h-0.6), h about 0.674. A catastrophe
     /// (prices 1, growth 1, war 0.8, order 0.5: record -2.78): the share falls
-    /// toward 0.01668h = 0.005(0.6-h), h = 0.138; MEASURED 0.13865, never
-    /// to the floor, and no month moves it more than the 0.015 bound. Under a
+    /// toward RESPONSE*2.78*0.995h = 0.005(0.6-h), evaluated below. The 0.995
+    /// factor accounts for reversion occurring after the performance transfer.
+    /// It settles above the floor, and no month exceeds the 0.015 bound. Under a
     /// war the Nationalist bloc (the PLA's) gains more than the Western
-    /// (the coastal provinces'), because `bloc_appeal` reads the war. Watched
-    /// red with the reversion line removed: the quiet run read 0.8521 against
-    /// the 0.80 bar after 480 months, still climbing.
+    /// (the coastal provinces'), because `bloc_appeal` reads the war. These
+    /// conservation, transfer and equilibrium bounds predate the new response
+    /// model and still apply; no historical outcome is scheduled by them.
     #[test]
     fn a_regime_s_movements_move_with_the_pains_and_revert() {
         let mut w = world_1990(on_rules(7));
@@ -9646,7 +11122,19 @@ mod tests {
         }
         let fallen = share(&w, id, Bloc::Communist);
         println!("ruin: fallen {fallen:.6} movements {:?}", state(&w, id).unwrap().movements);
-        assert!(fallen > 0.05 && fallen < 0.30, "the ruined equilibrium reads {fallen}");
+        // This coefficient-dependent equilibrium is a design calculation,
+        // not a historical popularity floor. The original >5% assertion
+        // belonged to the former 0.018 response, whose fixed point was .055.
+        // Floor normalisation and finite memory explain the small tolerance.
+        let expected_ruined = 0.005 * 0.6 / (0.005 + 0.995 * ADVERSE_RECORD_RESPONSE * 2.78);
+        assert!((fallen - expected_ruined).abs() < 0.0015,
+            "ruined equilibrium {fallen}, expected approximately {expected_ruined}");
+        assert!(fallen > crate::blocs::SHARE_FLOOR, "the incumbent must retain a constituency above the floor");
+        drift_movements(&mut w, id);
+        let ruined_step = (share(&w, id, Bloc::Communist) - fallen).abs();
+        assert!(ruined_step < 1e-4, "the ruined electorate has not settled: {ruined_step}");
+        let ruined_sum: f64 = state(&w, id).unwrap().movements.iter().map(|(_, s)| *s).sum();
+        assert!((ruined_sum - 1.0).abs() < 1e-9);
         for (b, s) in &state(&w, id).unwrap().movements {
             // Floored BEFORE the normalisation, as the seed is, so an absent
             // bloc reads a hair under 0.002 after it.
@@ -9668,9 +11156,9 @@ mod tests {
     /// the Nationalist bloc's only presence. Movements written by hand, the
     /// regime opened to 0.30, one tick: the parties are seated at their bloc's
     /// share times their weight within it (a one-party bloc takes the whole
-    /// share), the Nationalist 0.30 is dropped and named in the headline with
-    /// its share, the Communist floor is dropped silently (no party AND no
-    /// pillar), and the regime's stored blocs are cleared. Watched red with the
+    /// share), the Nationalist 0.30 is excluded from the ballot and named in
+    /// the headline. Both it and the Communist floor remain in the national
+    /// constituency, independently of normalized party votes. Watched red with the
     /// `lost` clause never composed: the headline read the plain sentence.
     #[test]
     fn the_liberalisation_seam_reseeds_parties_from_movements() {
@@ -9698,7 +11186,9 @@ mod tests {
         assert!((g.support_of("id_golkar") - 0.398 / kept).abs() < 1e-9, "{:?}", g.support);
         assert!((g.support_of("id_ppp") - 0.20 / kept).abs() < 1e-9, "{:?}", g.support);
         assert!((g.support_of("id_pdi") - 0.10 / kept).abs() < 1e-9, "{:?}", g.support);
-        assert!(g.movements.is_empty() && g.regime_bloc.is_none() && g.surging.is_empty());
+        assert_eq!(g.movements, hand);
+        assert_eq!(g.regime_bloc, Some(Bloc::NonAligned));
+        assert!(g.surging.is_empty());
         // Then through the tick, where the scheduling branch calls it.
         w.nation_mut(id).authoritarianism = 0.30;
         let news = crate::tick_month(&mut w, &[]);
@@ -9711,7 +11201,9 @@ mod tests {
             "Indonesia sets a date for its first free elections; the Nationalist movement, 30% of the country, has no party to carry it."
         );
         let g = state(&w, id).unwrap();
-        assert!(g.movements.is_empty() && g.regime_bloc.is_none());
+        assert_eq!(g.movements, hand);
+        assert_eq!(g.regime_bloc, Some(Bloc::NonAligned));
+        assert!((crate::blocs::bloc_shares(&w, id)[Bloc::Nationalist as usize].1 - 0.30).abs() < 1e-12);
         assert!(g.support_of("id_golkar") > g.support_of("id_ppp"));
         // With the switch off the same opening prints the sentence it always
         // printed and seats the table as transcribed.
@@ -9846,7 +11338,17 @@ mod tests {
         assert_eq!(np.parties.len(), 9);
         assert_eq!(ht.parties.len(), 6);
         assert_eq!(ht.term_months, 48);
-        assert_eq!(polity_in(&on, NationId::Poland).map(|p| p as *const Polity), polity(NationId::Poland).map(|p| p as *const Polity));
+        // These separately sourced Army overlays retain the original party
+        // tables and electoral contract; neither is a D4 replacement.
+        for id in [NationId::Poland, NationId::France] {
+            let base = polity(id).unwrap();
+            let live = polity_in(&on, id).unwrap();
+            assert!(std::ptr::eq(live.parties, base.parties));
+            assert_eq!((live.system, live.term_months, live.next, live.ruling),
+                (base.system, base.term_months, base.next, base.ruling));
+            assert!(!base.pillars.iter().any(|p| p.pillar == Pillar::Army));
+            assert_eq!(live.pillars.iter().filter(|p| p.pillar == Pillar::Army).count(), 1);
+        }
         for (id, lead, rows) in [(NationId::Nepal, "np_nc", 9usize), (NationId::Haiti, "ht_fncd", 6)] {
             let g = state(&on, id).expect("seated");
             assert_eq!(g.support.len(), rows, "{id:?}");
@@ -9858,10 +11360,17 @@ mod tests {
             assert!(g.regime_bloc.is_some() && g.movements.len() == 5, "{id:?}: the arm seeded it");
             assert!((g.movements[Bloc::Islamist as usize].1 - 0.002).abs() < 1e-3, "{id:?}: {:?}", g.movements);
         }
-        let np_g = state(&on, NationId::Nepal).unwrap();
-        assert!((np_g.movements[Bloc::NonAligned as usize].1 - 0.5988).abs() < 1e-3, "{:?}", np_g.movements);
-        let ht_g = state(&on, NationId::Haiti).unwrap();
-        assert!((ht_g.movements[Bloc::Nationalist as usize].1 - 0.5988).abs() < 1e-3, "{:?}", ht_g.movements);
+        // These competitive tables now inform organization instead of being
+        // flattened away. Their leading civilian bloc must gain representation
+        // relative to the institution-only seed, without switching the regime.
+        for (id, ruling) in [(NationId::Nepal, Bloc::NonAligned), (NationId::Haiti, Bloc::Nationalist)] {
+            let g = state(&on, id).unwrap();
+            let flat = crate::blocs::flat_seed(&on, id, ruling);
+            let lead = g.support.iter().max_by(|a, b| a.1.partial_cmp(&b.1).unwrap()).unwrap();
+            let civilian = bloc_of(id, &lead.0);
+            assert!(g.movements[civilian as usize].1 > flat[civilian as usize].1, "{id:?}: {:?}", g.movements);
+            assert_eq!(g.regime_bloc, Some(ruling));
+        }
         // The id-only readers stay on POLITIES and are table-invariant here.
         for pol in D4_POLITIES {
             let largest = pol.parties.iter().max_by(|a, b| a.start.partial_cmp(&b.start).unwrap()).unwrap();
@@ -10432,6 +11941,51 @@ mod tests {
         assert_eq!(plan.pillars, vec![(Pillar::Army, army, (army + 0.10).min(1.0)), (Pillar::Clergy, 1.0, 0.90)], "{:?}", plan.pillars);
     }
 
+    #[test]
+    fn organised_civilian_franchise_demand_can_buy_a_peaceful_opening_with_loyal_armed_services() {
+        use crate::{apply_command, Command};
+        let id = NationId::Albania;
+        let mut w = world_1990(on_rules(7));
+        {
+            let n = w.nation_mut(id);
+            n.stability = 85.0;
+            n.inflation = 0.02;
+            n.growth_last = 0.03;
+            n.war_exhaustion = 0.0;
+            n.separatism = 0.0;
+            n.political_capital = ROUND_TABLE_PC;
+        }
+        for (_, loyalty) in &mut state_mut(&mut w, id).unwrap().pillars { *loyalty = 0.85; }
+        assert!(crate::blocs::discontent(&w, id) < 0.40);
+        assert!(franchise_demand(&w, id) >= ROUND_TABLE_FRANCHISE_QUORUM);
+        let command = Command::ConveneRoundTable { nation: id };
+        assert_eq!(round_table_refusal(&w, id), None);
+        assert_eq!(ai_lever(&w, id), Some(command.clone()), "lawful bargaining needs no mutinous army");
+        let before = serde_json::to_string(&w).unwrap();
+        assert!(round_table_effects(&w, id).iter().any(|line| line.contains("party-table estimate")));
+        assert_eq!(serde_json::to_string(&w).unwrap(), before, "the plan and explanation are read-only");
+        w.nation_mut(id).political_capital = ROUND_TABLE_PC - 1.0;
+        assert_eq!(ai_lever(&w, id), None);
+        assert!(!crate::affordable(&w, &command));
+        w.nation_mut(id).political_capital = ROUND_TABLE_PC;
+        let mut off = w.clone();
+        off.rules.ideology_blocs = false;
+        assert_eq!(round_table_refusal(&off, id).as_deref(), Some(NO_MOVEMENTS));
+        assert_eq!(ai_lever(&off, id), None);
+        // A one-party table or insufficient excluded constituency does not
+        // acquire a negotiation mandate merely from healthy finances.
+        assert!(franchise_demand(&w, NationId::China) < ROUND_TABLE_FRANCHISE_QUORUM);
+        assert!(round_table_refusal(&w, NationId::China).is_some());
+        assert!(franchise_demand(&w, NationId::Indonesia) < ROUND_TABLE_FRANCHISE_QUORUM);
+        assert!(round_table_refusal(&w, NationId::Indonesia).is_some());
+        apply_command(&mut w, &command).expect("the funded civilian negotiation is legal");
+        assert_eq!(w.nation(id).political_capital, 0.0, "the existing 30-PC price is paid");
+        assert!(is_electoral(&w, id));
+        assert_eq!(state(&w, id).unwrap().next_election, add_months(1990, 1, 6));
+        assert!(state(&w, id).unwrap().banned.is_empty());
+        assert!(state(&w, id).unwrap().pillars.iter().all(|(_, loyalty)| *loyalty == 0.85));
+    }
+
     /// Indonesia. Refused for an electorate (Poland), for a state with no
     /// parties (Saudi Arabia), while quiet (discontent under 0.40), and while
     /// no movement reaches 25%; priced 30. With stability 20 and prices at
@@ -10514,7 +12068,9 @@ mod tests {
         assert!((g.support_of("id_golkar") - 0.50 / 0.90).abs() < 1e-12, "{}", g.support_of("id_golkar"));
         assert!((g.support_of("id_ppp") - 0.30 / 0.90).abs() < 1e-12);
         assert!((g.support_of("id_pdi") - 0.10 / 0.90).abs() < 1e-12);
-        assert!(g.movements.is_empty() && g.regime_bloc.is_none() && g.pillars.is_empty());
+        assert_eq!(g.movements.len(), 5);
+        assert_eq!(g.regime_bloc, Some(Bloc::NonAligned));
+        assert!(g.pillars.is_empty());
         assert_eq!(g.leader(), Some("id_golkar"), "the interim government");
         assert!(
             w.headlines.iter().any(|h| h == "Indonesia convenes a round table; first free elections in six months, though the Nationalist movement, 10% of the country, has no party to carry it."),
@@ -10787,8 +12343,8 @@ mod tests {
             }
         }
         assert_eq!(ai_lever(&w, id), Some(Command::ConveneRoundTable { nation: id }));
-        state_mut(&mut w, id).unwrap().movements[Bloc::Western as usize].1 = 0.34;
-        assert_eq!(ai_lever(&w, id), None, "the largest movement at 0.34");
+        state_mut(&mut w, id).unwrap().movements[Bloc::Western as usize].1 = 0.249;
+        assert_eq!(ai_lever(&w, id), None, "the largest movement is below the action's 0.25 requirement");
         state_mut(&mut w, id).unwrap().movements[Bloc::Western as usize].1 = 0.35;
         for e in state_mut(&mut w, id).unwrap().pillars.iter_mut() {
             if e.0 != Pillar::Business {
@@ -10802,12 +12358,12 @@ mod tests {
             }
         }
         w.nation_mut(id).stability = 40.0;
-        assert!(crate::blocs::discontent(&w, id) < 0.50);
-        assert_eq!(ai_lever(&w, id), None, "discontent under 0.50");
+        assert!(crate::blocs::discontent(&w, id) < 0.40);
+        assert_eq!(ai_lever(&w, id), None, "discontent below the action's 0.40 requirement");
         w.nation_mut(id).stability = 15.0;
-        w.nation_mut(id).political_capital = 59.0;
-        assert_eq!(ai_lever(&w, id), None, "59 held");
-        w.nation_mut(id).political_capital = 60.0;
+        w.nation_mut(id).political_capital = ROUND_TABLE_PC - 1.0;
+        assert_eq!(ai_lever(&w, id), None, "the actual action cannot be afforded");
+        w.nation_mut(id).political_capital = ROUND_TABLE_PC;
         assert_eq!(ai_lever(&w, id), Some(Command::ConveneRoundTable { nation: id }));
 
         // The record: twenty AI years on seed 7, the arm on, default
@@ -10869,6 +12425,167 @@ mod tests {
             assert!(w.headlines.iter().any(|h| h.starts_with("COUP IN CHINA:")));
             assert_eq!(state(&w, id).unwrap().coup_pressure, 0.0);
         }
+    }
+
+    // Advance the real government system under calm conditions, paying for
+    // two legal same-party snap ballots. The rest of the simulation is not
+    // required to test the election/Army integration seam.
+    fn twice_reelected_snap_government() -> WorldState {
+        let id = NationId::Pakistan;
+        let mut w = world_1990(roads_rules(7));
+        w.player = Some(id);
+        {
+            let n = w.nation_mut(id);
+            n.political_capital = 200.0;
+            n.stability = 70.0;
+            n.inflation = 0.03;
+            n.growth_last = 0.03;
+            n.war_exhaustion = 0.0;
+            n.separatism = 0.0;
+            n.mil_spend_gdp = 0.10;
+            let g = state_mut(&mut w, id).unwrap();
+            for (party, share) in &mut g.support {
+                *share = if party == "pk_ppp" { 0.90 } else { 0.05 };
+            }
+        }
+        for month in 1..=12 {
+            (w.year, w.month) = add_months(1990, 1, month);
+            tick(&mut w);
+            if month % 6 == 0 {
+                assert_eq!(state(&w, id).unwrap().months_in_office, 6);
+                let held = w.nation(id).political_capital;
+                let rng = w.rng.clone();
+                crate::apply_command(&mut w, &crate::Command::CallElection { nation: id }).unwrap();
+                assert_eq!(w.nation(id).political_capital, held - 25.0);
+                assert_eq!(w.rng, rng);
+                let g = state(&w, id).unwrap();
+                assert_eq!(g.leader(), Some("pk_ppp"));
+                assert_eq!(g.months_in_office, 0);
+                assert_eq!(g.next_election, add_months(w.year, w.month, 60));
+            }
+        }
+        assert_eq!(state(&w, id).unwrap().political_record.as_ref().unwrap().months, 12.0);
+        w
+    }
+
+    fn set_live_snap_army_crisis(w: &mut WorldState) {
+        let id = NationId::Pakistan;
+        let n = w.nation_mut(id);
+        n.stability = 25.0;
+        n.inflation = 0.03;
+        n.growth_last = 0.01;
+        n.war_exhaustion = 0.0;
+        n.separatism = 0.0;
+        n.mil_spend_gdp = 0.001;
+        let g = state_mut(w, id).unwrap();
+        g.coup_pressure = 1.5;
+        g.pillars.iter_mut().find(|(p, _)| *p == Pillar::Army).unwrap().1 = 0.20;
+    }
+
+    #[test]
+    fn paid_snap_ballots_do_not_renew_a_continuing_governments_coup_grace() {
+        let id = NationId::Pakistan;
+        let mut w = twice_reelected_snap_government();
+        assert_eq!(electoral_coup_settled_months(&w, id), 12);
+        set_live_snap_army_crisis(&mut w);
+        let saved = crate::save(&w);
+        w = crate::load(&saved).unwrap();
+        let watch = crate::blocs::takeover_readout(&w, id).coup;
+        assert!(watch.open && watch.armed, "continued accountable government is past its grace");
+        assert_eq!(crate::save(&w), saved, "reading the grace must not mutate the save");
+        let rng = w.rng.clone();
+        tick(&mut w);
+        assert!(!is_electoral(&w, id), "a second snap ballot shielded the same government from a live coup");
+        assert!(w.headlines.iter().any(|h| h.contains("COUP IN PAKISTAN: the Pakistan Army removes the elected government.")));
+        assert_eq!(w.rng, rng);
+    }
+
+    #[test]
+    fn a_new_accountable_party_gets_coup_grace_without_rewriting_the_election_clock() {
+        let id = NationId::Pakistan;
+        let mut w = twice_reelected_snap_government();
+        for month in 13..=18 {
+            (w.year, w.month) = add_months(1990, 1, month);
+            tick(&mut w);
+        }
+        for (party, share) in &mut state_mut(&mut w, id).unwrap().support {
+            *share = if party == "pk_iji" { 0.90 } else { 0.05 };
+        }
+        let held = w.nation(id).political_capital;
+        crate::apply_command(&mut w, &crate::Command::CallElection { nation: id }).unwrap();
+        assert_eq!(w.nation(id).political_capital, held - 25.0);
+        assert_eq!(state(&w, id).unwrap().leader(), Some("pk_iji"));
+        assert_eq!(electoral_coup_settled_months(&w, id), 0, "outgoing party history cannot settle its successor");
+        let election_date = state(&w, id).unwrap().next_election;
+        set_live_snap_army_crisis(&mut w);
+        w = crate::load(&crate::save(&w)).unwrap();
+        for month in 1..=12 {
+            let watch = crate::blocs::takeover_readout(&w, id).coup;
+            assert!(!watch.open, "new authority lost its genuine first-year grace at month {month}");
+            assert!(watch.armed, "the risk gauges remain visibly live during grace");
+            assert!(watch.reason.contains("first year"));
+            (w.year, w.month) = add_months(1991, 7, month);
+            tick(&mut w);
+            if month < 12 {
+                assert!(is_electoral(&w, id));
+                assert_eq!(state(&w, id).unwrap().next_election, election_date);
+                assert_eq!(electoral_coup_settled_months(&w, id), month);
+            }
+        }
+        assert!(!is_electoral(&w, id), "the same live crisis remains actionable when the genuine grace expires");
+    }
+
+    #[test]
+    fn electoral_coup_grace_uses_only_matching_observed_history_and_old_save_fallback() {
+        let id = NationId::Pakistan;
+        let original = twice_reelected_snap_government();
+        for how in [Succession::Death, Succession::TermLimit] {
+            let mut w = original.clone();
+            let before = serde_json::to_string(state(&w, id).unwrap()).unwrap();
+            let rng = w.rng.clone();
+            seat_office(&mut w, id, &how);
+            assert_eq!(serde_json::to_string(state(&w, id).unwrap()).unwrap(), before,
+                "same-party person succession must not mint a new governing mandate");
+            assert_eq!(electoral_coup_settled_months(&w, id), 12);
+            assert_eq!(w.rng, rng);
+        }
+        for key in [None, Some("party:pk_iji"), Some("regime:Nationalist")] {
+            let mut w = original.clone();
+            let g = state_mut(&mut w, id).unwrap();
+            g.months_in_office = 9;
+            g.political_record = key.map(|key| PoliticalRecord {
+                government: key.into(), months: 100.0, performance: -0.8,
+            });
+            w = crate::load(&crate::save(&w)).unwrap();
+            assert_eq!(electoral_coup_settled_months(&w, id), 9);
+        }
+        for months in [-1.0, f64::NAN, f64::INFINITY] {
+            let mut w = original.clone();
+            let g = state_mut(&mut w, id).unwrap();
+            g.months_in_office = 9;
+            g.political_record.as_mut().unwrap().months = months;
+            assert_eq!(electoral_coup_settled_months(&w, id), 9);
+        }
+        let mut daily_boundary = original.clone();
+        state_mut(&mut daily_boundary, id).unwrap().political_record.as_mut().unwrap().months = 12.0 - 1e-13;
+        assert_eq!(electoral_coup_settled_months(&daily_boundary, id), 12);
+        state_mut(&mut daily_boundary, id).unwrap().political_record.as_mut().unwrap().months = 12.0 - 1e-6;
+        assert_eq!(electoral_coup_settled_months(&daily_boundary, id), 11);
+        let mut interim = original.clone();
+        set_live_snap_army_crisis(&mut interim);
+        state_mut(&mut interim, id).unwrap().awaiting_first_election = true;
+        assert_eq!(electoral_coup_settled_months(&interim, id), 0);
+        assert!(!crate::blocs::takeover_readout(&interim, id).coup.open);
+        assert!(!maybe_electoral_coup(&mut interim, id));
+        let mut off = original;
+        off.rules.ideology_blocs = false;
+        off.rules.ideology_takeover = false;
+        set_live_snap_army_crisis(&mut off);
+        assert_eq!(electoral_coup_settled_months(&off, id), 0);
+        let before = crate::save(&off);
+        assert!(!maybe_electoral_coup(&mut off, id));
+        assert_eq!(crate::save(&off), before);
+        assert_eq!(crate::blocs::takeover_readout(&off, id).coup.gauges.len(), 3);
     }
 
     #[test]
@@ -11046,6 +12763,13 @@ mod tests {
             for m in 0..24 {
                 if m == 23 {
                     before_the_vote = state(&w, dz).unwrap().coalition.clone();
+                    // This is the annulment's hostile-army scenario. Annual
+                    // resource funding now responds to GDP, so a nominal
+                    // 1990 spending share cannot stand in for hostility at
+                    // the vote after two years of economic changes. Stage
+                    // the actual condition in both switch worlds.
+                    let g = state_mut(&mut w, dz).unwrap();
+                    g.pillars.iter_mut().find(|(p, _)| *p == Pillar::Army).unwrap().1 = 0.20;
                 }
                 // Algeria's transcribed numbers, held: left to the model with
                 // Algiers in the player's seat, inflation falls from 16.7% to
@@ -11127,9 +12851,8 @@ mod tests {
     /// byte-identical: for every living nation of 1990, with the lens off,
     /// the Army target `pillar_targets` serves is bit-for-bit the share
     /// arm's literal `0.20 + min(1, mil/0.08) · 0.65 − exhaustion · 0.45`,
-    /// and the same holds with the lens on at the shipped weight (0.0) —
-    /// `ARMY_PAY_WEIGHT` is the census's verdict, and this clause pins it
-    /// until Ridge re-rules the denominator. (2) The FORM, at the weight
+    /// while the lens now reads annual resources per member, retaining that
+    /// exact fallback where personnel is unsourced. (2) The historical FORM, at the weight
     /// the ruling's sentences require (`ARMY_PAY_WEIGHT_RULED` 0.80): an
     /// army paid half the national average income on an 8% budget reads
     /// 0.33, under `ELECTORAL_COUP_ARMY`; one paid three times the average
@@ -11152,7 +12875,10 @@ mod tests {
             let t_off = pillar_targets(&off, id, &[Pillar::Army])[0].1;
             assert_eq!(t_off.to_bits(), literal.clamp(0.0, 1.0).to_bits(), "{} off", id.code());
             let t_on = pillar_targets(&on, id, &[Pillar::Army])[0].1;
-            assert_eq!(t_on.to_bits(), t_off.to_bits(), "{} on at the shipped weight", id.code());
+            let expected_on = army_resources_per_member(&on, id)
+                .map(|resources| army_resource_loyalty_target(resources, n.gdp * 1000.0 / n.population, n.war_exhaustion).clamp(0.0, 1.0))
+                .unwrap_or(t_off);
+            assert_eq!(t_on.to_bits(), expected_on.to_bits(), "{} on resource target", id.code());
             match army_pay_ratio(&on, id) {
                 Some(r) => {
                     assert!(r.is_finite() && r > 0.0, "{} {r}", id.code());
@@ -11190,6 +12916,1731 @@ mod tests {
         let dz = share * pop * 1_000_000.0 / personnel;
         assert!((dz - 3.0238).abs() < 1e-3, "{dz}");
     }
+    #[test]
+    fn military_resources_have_real_units_and_change_loyalty_without_penalizing_small_budget_shares() {
+        let id = NationId::Pakistan;
+        let mut low = world_1990(roads_rules(7));
+        let personnel = crate::data::army_personnel_1990(id).unwrap();
+        {
+            let n = low.nation_mut(id);
+            n.mil_spend_gdp = 0.02;
+            n.gdp = 1_000.0 * personnel / (0.02 * 1_000_000_000.0);
+            n.stability = 25.0;
+            n.inflation = 0.03;
+            n.growth_last = 0.01;
+            n.war_exhaustion = 0.0;
+            n.separatism = 0.0;
+        }
+        let mut adequate = low.clone();
+        adequate.nation_mut(id).gdp *= 24.0;
+        assert!((army_resources_per_member(&low, id).unwrap() - 1_000.0).abs() < 1e-8);
+        assert!((army_resources_per_member(&adequate, id).unwrap() - 24_000.0).abs() < 1e-8);
+        // Saving adds no new army state or synthetic personnel history.
+        let saved = crate::save(&adequate);
+        adequate = crate::load(&saved).unwrap();
+        assert_eq!(crate::save(&adequate), saved);
+        for _ in 0..48 {
+            electoral_army_tick(&mut low, id);
+            electoral_army_tick(&mut adequate, id);
+        }
+        assert!(state(&low, id).unwrap().loyalty(Pillar::Army) < ELECTORAL_COUP_ARMY);
+        assert!(state(&low, id).unwrap().coup_pressure > 0.0);
+        assert!(state(&adequate, id).unwrap().loyalty(Pillar::Army) > 0.65);
+        assert_eq!(state(&adequate, id).unwrap().coup_pressure, 0.0);
+        adequate.nation_mut(id).mil_spend_gdp = 0.001;
+        assert!(pillar_targets(&adequate, id, &[Pillar::Army])[0].1 < ELECTORAL_COUP_ARMY,
+            "real funding cuts must still affect a formerly adequate army");
+        for resources in [0.0, 4_000.0, 5_000.0, 10_000.0, 20_000.0, 40_000.0] {
+            assert!(army_resource_loyalty_target(resources, 1_000.0, 0.0)
+                >= army_resource_loyalty_target(resources, 1_000.0, 0.5));
+        }
+    }
+
+    #[test]
+    fn army_operating_costs_include_local_support_and_imported_equipment() {
+        for income in [0.0, 250.0, 1_000.0, 5_000.0, 30_000.0] {
+            let basket = army_operating_allowance(income);
+            assert!(basket >= ARMY_IMPORTED_OPERATING_ALLOWANCE);
+            assert_eq!(army_resource_loyalty_target(0.0, income, 0.0), 0.20);
+            assert!((army_resource_loyalty_target(basket, income, 0.0) - 0.525).abs() < 1e-12);
+            assert!((army_resource_loyalty_target(2.0 * basket, income, 0.0) - 0.85).abs() < 1e-12);
+            assert!(army_resource_loyalty_target(basket, income, 0.0)
+                > army_resource_loyalty_target(basket, income + 1_000.0, 0.0),
+                "the same resources buy less support where local costs are higher");
+            let floor_resources = (0.40 - 0.20) / 0.65 * 2.0 * basket;
+            assert!((army_resource_loyalty_target(floor_resources, income, 0.0) - 0.40).abs() < 1e-12,
+                "the fiscal allocation inverts the actual loyalty model");
+            let mut previous = 0.20;
+            for fraction in [0.0, 0.1, 0.25, 0.5, 1.0, 1.5, 2.0, 4.0] {
+                let loyalty = army_resource_loyalty_target(basket * fraction, income, 0.0);
+                assert!(loyalty >= previous && loyalty <= 0.85 + 1e-12);
+                previous = loyalty;
+            }
+        }
+    }
+
+    #[test]
+    fn unsourced_army_size_is_an_explicit_model_estimate_without_rewriting_history() {
+        let id = NationId::Comoros;
+        let mut w = world_1990(roads_rules(7));
+        assert_eq!(crate::data::army_personnel_1990(id), None);
+        let estimate = army_personnel_assessment(&w, id).unwrap();
+        assert_eq!(estimate.basis, ArmyPersonnelBasis::ModelEstimate);
+        assert!(estimate.members.is_finite() && estimate.members > 0.0);
+        assert!(estimate.members < w.nation(id).population * 1_000_000.0);
+        let sourced = army_personnel_assessment(&w, NationId::Pakistan).unwrap();
+        assert_eq!(sourced.basis, ArmyPersonnelBasis::Sourced1990);
+        let estimated_resources = army_resources_per_member(&w, id).unwrap();
+        let sourced_resources = army_resources_per_member(&w, NationId::Pakistan).unwrap();
+        assert!(army_resources_per_member(&w, id).unwrap().is_finite());
+        assert!(ai_army_funding_floor(&w, id).is_some(), "an unsourced army can still receive a real budget");
+        w.nation_mut(id).population *= 2.0;
+        w.nation_mut(NationId::Pakistan).population *= 2.0;
+        assert_eq!(army_personnel_assessment(&w, id), Some(estimate),
+            "population growth must not silently recruit an unsourced force");
+        assert_eq!(army_personnel_assessment(&w, NationId::Pakistan), Some(sourced),
+            "both personnel bases use the same opening reference convention");
+        assert_eq!(army_resources_per_member(&w, id), Some(estimated_resources));
+        assert_eq!(army_resources_per_member(&w, NationId::Pakistan), Some(sourced_resources));
+        let saved = crate::save(&w);
+        let loaded = crate::load(&saved).unwrap();
+        assert_eq!(crate::save(&loaded), saved);
+        assert_eq!(army_personnel_assessment(&loaded, id), Some(estimate));
+        assert_eq!(army_personnel_assessment(&loaded, NationId::Pakistan), Some(sourced));
+        assert_eq!(crate::data::army_personnel_1990(id), None);
+        w.rules.ideology_blocs = false;
+        assert_eq!(army_personnel_assessment(&w, id), None, "legacy mode does not infer headcounts");
+        assert_eq!(ai_army_funding_floor(&w, id), None);
+        for bad in [0.0, -1.0, f64::NAN, f64::INFINITY] {
+            assert_eq!(assess_army_personnel(Some(bad), 1.0, Some(0.005)), None);
+            assert_eq!(assess_army_personnel(None, bad, Some(0.005)), None);
+            assert_eq!(assess_army_personnel(None, 1.0, Some(bad)), None);
+            w.rules.ideology_blocs = true;
+            w.nation_mut(id).population = bad;
+            assert_eq!(army_personnel_assessment(&w, id), None,
+                "an opening estimate does not excuse invalid current population");
+        }
+        assert_eq!(assess_army_personnel(None, 1.0, None), None);
+        assert_eq!(assess_army_personnel(None, 1.0, Some(1.1)), None);
+        w.nation_mut(id).population = 0.0;
+        w.rules.ideology_blocs = true;
+        assert_eq!(army_resources_per_member(&w, id), None);
+        assert_eq!(ai_army_funding_floor(&w, id), None);
+    }
+
+    #[test]
+    fn a_sourced_opening_mandate_is_not_a_completed_or_unrestricted_model_ballot() {
+        let id = NationId::Suriname;
+        let mut w = world_1990(on_rules(7));
+        let g = state(&w,id).unwrap();
+        let marker = g.opening_mandate.clone().expect("verified prior Assembly mandate");
+        assert_eq!(marker.ballot_on,"1987-11-25");
+        assert!(!g.elected && !g.unrestricted_mandate && !g.awaiting_first_election);
+        assert_eq!(g.months_in_office,0);
+        assert!(g.vote_anchor.is_none());
+        let supported = g.support.iter().find(|(p,_)|p=="sr_fdo").unwrap().1;
+        assert!((civilian_public_mandate(&w,id)-supported).abs()<1e-12,
+            "use the existing live support proxy, not a newly claimed historical vote percentage");
+        let rng = w.rng.clone();
+        let saved=crate::save(&w);
+        w=crate::load(&saved).unwrap();
+        ensure_all(&mut w);
+        assert_eq!(crate::save(&w),saved);
+        assert_eq!(w.rng,rng);
+        // A modeled ballot consumes historical authority, even if the same
+        // party and person stay. It is not a completed historical term reward.
+        let auth=w.nation(id).authoritarianism;
+        hold_election(&mut w,id);
+        let g=state(&w,id).unwrap();
+        assert!(g.opening_mandate.is_none() && g.elected && g.unrestricted_mandate);
+        assert!(g.vote_anchor.is_some());
+        assert_eq!(w.nation(id).authoritarianism,auth);
+        assert_eq!(w.rng,rng);
+        let off=w1990();
+        assert!(off.governments.states.iter().all(|g|g.opening_mandate.is_none()));
+        assert!(!crate::save(&off).contains("opening_mandate"));
+    }
+
+    #[test]
+    fn opening_consent_counts_only_attested_live_national_constituencies() {
+        let id=NationId::Suriname;
+        let mut w=world_1990(on_rules(7));
+        let baseline=civilian_public_mandate(&w,id);
+        state_mut(&mut w,id).unwrap().coalition.push("sr_ndp".into());
+        assert_eq!(civilian_public_mandate(&w,id),baseline,"joining the cabinet grants no historical authority");
+        {
+            let g=state_mut(&mut w,id).unwrap();
+            g.movements.clear();
+            for (p,s) in &mut g.support { *s=if p=="sr_fdo" {0.4} else if p=="sr_ndp" {0.6} else {0.0}; }
+            for (p,s) in &mut g.seats { *s=if p=="sr_fdo" {0.99} else {0.01/3.0}; }
+        }
+        assert!((civilian_public_mandate(&w,id)-0.4).abs()<1e-12,"seats and the new partner add no voters");
+        let resources=army_resources_per_member(&w,id);
+        {
+            let n=w.nation_mut(id); n.authoritarianism=0.55; n.stability=5.0;
+            n.inflation=0.30; n.growth_last=-0.10; n.war_exhaustion=0.20;
+        }
+        state_mut(&mut w,id).unwrap().political_record=Some(PoliticalRecord {
+            government:"party:sr_fdo".into(),months:24.0,performance:-0.80,
+        });
+        let penalty=army_civilian_confidence_penalty(&w,id);
+        let material=army_resources_per_member(&w,id).map(|r|army_resource_loyalty_target(r,
+            w.nation(id).gdp*1000.0/w.nation(id).population,w.nation(id).war_exhaustion));
+        let mut unknown=w.clone();
+        state_mut(&mut unknown,id).unwrap().opening_mandate=None;
+        let unbuffered=army_civilian_confidence_penalty(&unknown,id);
+        assert!(unbuffered>0.0 && penalty>0.0);
+        assert!((penalty-unbuffered*0.6).abs()<1e-12);
+        assert_eq!(army_resources_per_member(&unknown,id),resources);
+        assert_eq!(material,army_resources_per_member(&unknown,id).map(|r|army_resource_loyalty_target(r,
+            unknown.nation(id).gdp*1000.0/unknown.nation(id).population,unknown.nation(id).war_exhaustion)),
+            "the marker changes neither material funding nor war costs");
+        for (p,seats) in &mut state_mut(&mut w,id).unwrap().seats { if p=="sr_fdo" {*seats=0.0;} }
+        assert_eq!(civilian_public_mandate(&w,id),0.0,"no representation, no carried constituency");
+    }
+
+    #[test]
+    fn old_missing_restricted_and_future_opening_mandates_are_not_reconstructed() {
+        let id=NationId::Suriname;
+        let mut w=world_1990(on_rules(7));
+        state_mut(&mut w,id).unwrap().opening_mandate=None;
+        let legacy=crate::save(&w);
+        w=crate::load(&legacy).unwrap();
+        ensure_all(&mut w);
+        assert_eq!(civilian_public_mandate(&w,id),0.0);
+        assert!(state(&w,id).unwrap().opening_mandate.is_none());
+        assert_eq!(crate::save(&w),legacy,"January old saves do not replay fresh-world setup");
+        for other in [NationId::Guatemala,NationId::Guyana,NationId::Comoros,NationId::SaoTome,NationId::Myanmar,NationId::Hungary] {
+            assert!(state(&w,other).unwrap().opening_mandate.is_none(),"{other:?}");
+            assert_eq!(civilian_public_mandate(&w,other),0.0,"not imported is not a mandate: {other:?}");
+        }
+        let mut edited=world_1990(on_rules(7));
+        edited.leadership.as_mut().unwrap().iter_mut().find(|r|r.nation==id).unwrap().tie=
+            Some(crate::data::Tie::Party("sr_ndp".into()));
+        assert_eq!(civilian_public_mandate(&edited,id),0.0,"an incompatible actual office cannot borrow the Front's authority");
+        crate::opening_mandates::discard_incompatible(&mut edited,id);
+        assert!(state(&edited,id).unwrap().opening_mandate.is_none());
+    }
+
+    #[test]
+    fn opening_mandates_end_on_restriction_or_broken_authority_and_do_not_return() {
+        let id=NationId::Suriname;
+        let mut banned=world_1990(on_rules(7));
+        ban_party(&mut banned,id,"sr_ndp").unwrap();
+        assert!(state(&banned,id).unwrap().opening_mandate.is_none());
+        legalize_party(&mut banned,id,"sr_ndp").unwrap();
+        banned=crate::load(&crate::save(&banned)).unwrap();
+        ensure_all(&mut banned);
+        assert_eq!(civilian_public_mandate(&banned,id),0.0,"legalization does not invent a fresh mandate");
+        for how in [Succession::Coup{pillar:Pillar::Army},Succession::Takeover{bloc:Bloc::Nationalist},Succession::Programme,
+            Succession::Election{leader:"sr_ndp".into()}] {
+            let mut w=world_1990(on_rules(7));
+            let original=crate::blocs::leader_row(&w,id).unwrap().clone();
+            seat_office(&mut w,id,&how);
+            assert!(state(&w,id).unwrap().opening_mandate.is_none(),"{how:?}");
+            // Restoring a familiar office/person in a later save cannot restore
+            // the historical eligibility that the interruption consumed.
+            *w.leadership.as_mut().unwrap().iter_mut().find(|r|r.nation==id).unwrap()=original;
+            w=crate::load(&crate::save(&w)).unwrap(); ensure_all(&mut w);
+            assert_eq!(civilian_public_mandate(&w,id),0.0,"{how:?}");
+        }
+        let mut suspended=world_1990(on_rules(7));
+        suspended.nation_mut(id).stability=20.0;
+        suspend_constitution(&mut suspended,id).unwrap();
+        assert!(state(&suspended,id).unwrap().opening_mandate.is_none());
+        suspended.nation_mut(id).authoritarianism=0.50;
+        schedule_first_elections(&mut suspended,id,6);
+        assert_eq!(civilian_public_mandate(&suspended,id),0.0,"a reopening still owes a ballot");
+        assert!(!state(&suspended,id).unwrap().elected);
+    }
+
+    #[test]
+    fn lawful_same_party_succession_retains_only_the_existing_assembly_authority() {
+        let id=NationId::Suriname;
+        for how in [Succession::Death,Succession::TermLimit] {
+            let mut w=world_1990(on_rules(7));
+            let before=state(&w,id).unwrap().opening_mandate.clone();
+            let consent=civilian_public_mandate(&w,id);
+            let rng=w.rng.clone();
+            seat_office(&mut w,id,&how);
+            assert_eq!(state(&w,id).unwrap().opening_mandate,before);
+            assert_eq!(civilian_public_mandate(&w,id),consent);
+            assert!(!state(&w,id).unwrap().elected);
+            assert_eq!(state(&w,id).unwrap().months_in_office,0);
+            assert_eq!(w.rng,rng);
+            let saved=crate::save(&w);
+            assert_eq!(crate::save(&crate::load(&saved).unwrap()),saved);
+        }
+    }
+
+    #[test]
+    fn successor_personnel_observation_uses_the_model_clock_not_legacy_settlement_day() {
+        let id=NationId::Georgia;
+        let mut base=world_1990(roads_rules(7));
+        let mut successor=base.nation(NationId::Poland).clone();
+        successor.id=id; successor.population=5.5; successor.alive=true;
+        base.nations.push(successor); base.reindex();
+        let mut observations=Vec::new();
+        for (daily,day,expected) in [(false,1,1),(false,31,1),(true,12,12),(true,31,31)] {
+            let mut w=base.clone(); w.rules.daily_simulation=daily;
+            (w.year,w.month,w.day)=(1991,12,day);
+            let rng=w.rng.clone(); ensure(&mut w,id);
+            let observed=state(&w,id).unwrap().army_population_reference.clone().unwrap();
+            assert_eq!(observed.observed_on,(1991,12,expected));
+            assert_eq!(w.rng,rng);
+            let saved=crate::save(&w);
+            assert_eq!(crate::save(&crate::load(&saved).unwrap()),saved);
+            observations.push(observed);
+        }
+        assert_eq!(observations[0],observations[1],"monthly integration and its legacy day wrapper observe the same model date");
+        assert_ne!(observations[2].observed_on,observations[3].observed_on,"actual daily observation retains its civil day");
+    }
+
+    #[test]
+    fn unsourced_successors_retain_a_dated_force_reference_without_inventing_1990_history() {
+        let id = NationId::Georgia;
+        let mut w = world_1990(GameRules { daily_simulation: true, ..roads_rules(7) });
+        assert!(w.nation_opt(id).is_none());
+        assert_eq!(crate::data::army_personnel_1990(id), None);
+        assert_eq!(army_opening_population_m(id), None);
+        let mut successor = w.nation(NationId::Poland).clone();
+        successor.id = id;
+        successor.population = 5.5;
+        successor.alive = true;
+        w.nations.push(successor);
+        w.reindex();
+        (w.year, w.month, w.day) = (1993, 7, 12);
+        let rng = w.rng.clone();
+        ensure(&mut w, id);
+        let reference = state(&w, id).unwrap().army_population_reference.clone().unwrap();
+        assert_eq!(reference.observed_on, (1993, 7, 12));
+        assert_eq!(reference.population_m, 5.5);
+        let first = army_personnel_assessment(&w, id).unwrap();
+        assert_eq!(first.basis, ArmyPersonnelBasis::ModelEstimate);
+        assert!((first.members - 5_500_000.0 * estimated_army_population_share().unwrap()).abs() < 1e-9);
+        let resources = army_resources_per_member(&w, id).unwrap();
+        assert!(ai_army_funding_floor(&w, id).is_some(), "a successor still has a fundable institution");
+        w.nation_mut(id).population *= 2.0;
+        (w.year, w.month, w.day) = (1999, 1, 1);
+        ensure(&mut w, id);
+        assert_eq!(state(&w, id).unwrap().army_population_reference.as_ref(), Some(&reference));
+        assert_eq!(army_personnel_assessment(&w, id).unwrap().members, first.members);
+        assert_eq!(army_resources_per_member(&w, id), Some(resources));
+        assert_eq!(w.rng, rng);
+        let saved = crate::save(&w);
+        w = crate::load(&saved).unwrap();
+        ensure(&mut w, id);
+        assert!(crate::save(&w) == saved, "load/ensure preserves the observed reference exactly");
+        assert_eq!(crate::data::army_personnel_1990(id), None);
+
+        // An older successor save has no observation of its birth population.
+        // Record today's model observation once, explicitly dated today.
+        state_mut(&mut w, id).unwrap().army_population_reference = None;
+        let old = crate::save(&w);
+        assert!(!serde_json::to_value(state(&w, id).unwrap()).unwrap().as_object().unwrap()
+            .contains_key("army_population_reference"));
+        let mut disabled = crate::load(&old).unwrap();
+        disabled.rules.ideology_blocs = false;
+        ensure(&mut disabled, id);
+        assert!(state(&disabled, id).unwrap().army_population_reference.is_none());
+        assert!(army_personnel_assessment(&disabled, id).is_none());
+        w = crate::load(&old).unwrap();
+        w.nation_mut(id).population = 0.0;
+        ensure(&mut w, id);
+        assert!(state(&w, id).unwrap().army_population_reference.is_none());
+        w.nation_mut(id).population = 11.0;
+        w.nation_mut(id).alive = false;
+        ensure(&mut w, id);
+        assert!(state(&w, id).unwrap().army_population_reference.is_none());
+        w.nation_mut(id).alive = true;
+        ensure(&mut w, id);
+        let upgraded = state(&w, id).unwrap().army_population_reference.as_ref().unwrap();
+        assert_eq!(upgraded.observed_on, (1999, 1, 1));
+        assert_eq!(upgraded.population_m, 11.0);
+        for original in [NationId::Comoros, NationId::Pakistan] {
+            ensure(&mut w, original);
+            assert!(state(&w, original).unwrap().army_population_reference.is_none());
+        }
+    }
+
+    #[test]
+    fn an_uncrowned_collapse_preserves_the_actual_elected_programme_across_save_and_seeding() {
+        let id = NationId::Algeria;
+        for party in ["dz_fln", "dz_fis"] {
+            let mut w = world_1990(roads_rules(7));
+            w.nation_mut(id).authoritarianism = 0.55;
+            let g = state_mut(&mut w, id).unwrap();
+            g.coalition = vec![party.into()];
+            g.elected = true;
+            let ruling = crate::blocs::ruling_bloc(&w, id).unwrap();
+            let support = state(&w, id).unwrap().support.clone();
+            let leadership = serde_json::to_string(&w.leadership).unwrap();
+            generic_regime_collapse(&mut w, id, 0.15);
+            assert!(!is_electoral(&w, id));
+            assert_eq!(crate::blocs::ruling_bloc(&w, id), Some(ruling));
+            assert_eq!(state(&w, id).unwrap().leader(), Some(party));
+            assert_eq!(state(&w, id).unwrap().support, support);
+            assert_eq!(serde_json::to_string(&w.leadership).unwrap(), leadership,
+                "an uncoloured collapse names no replacement leader");
+            let movements = state(&w, id).unwrap().movements.clone();
+            w = crate::load(&crate::save(&w)).unwrap();
+            ensure(&mut w, id);
+            assert_eq!(crate::blocs::ruling_bloc(&w, id), Some(ruling));
+            assert_eq!(state(&w, id).unwrap().movements, movements);
+            // A real movement takeover can still install another programme.
+            state_mut(&mut w, id).unwrap().movements = vec![
+                (Bloc::Western, 0.60), (Bloc::Communist, 0.002),
+                (Bloc::Nationalist, 0.10), (Bloc::Islamist, 0.20), (Bloc::NonAligned, 0.098),
+            ];
+            uprising(&mut w, id);
+            assert_eq!(state(&w, id).unwrap().regime_bloc, Some(Bloc::Western));
+            assert!(w.headlines.iter().any(|h| h == "Revolution in Algeria: the Western movement takes power."));
+        }
+        let mut legacy = w1990();
+        let mut expected = legacy.clone();
+        {
+            let n = expected.nation_mut(id);
+            n.stability = 45.0;
+            n.gdp *= 0.93;
+            crate::economy::refresh_debt_ratio(n);
+            n.authoritarianism = (n.authoritarianism + 0.15).clamp(0.05, 0.95);
+        }
+        generic_regime_collapse(&mut legacy, id, 0.15);
+        assert_eq!(crate::save(&legacy), crate::save(&expected), "the flag-off collapse stays identical");
+    }
+
+    #[test]
+    fn a_partial_party_table_does_not_erase_unrepresented_national_constituencies() {
+        let id = NationId::Cambodia;
+        let mut w = world_1990(on_rules(7));
+        let hand = vec![
+            (Bloc::Western, 0.002), (Bloc::Communist, 0.20),
+            (Bloc::Nationalist, 0.49), (Bloc::Islamist, 0.002), (Bloc::NonAligned, 0.306),
+        ];
+        state_mut(&mut w, id).unwrap().movements = hand.clone();
+        w.nation_mut(id).authoritarianism = 0.59;
+        schedule_first_elections(&mut w, id, 6);
+        let shares = crate::blocs::bloc_shares(&w, id);
+        assert_eq!(state(&w, id).unwrap().support, vec![("kh_kprp".into(), 1.0)],
+            "votes among the only carried party remain conditional, not national popularity");
+        for ((b, national), (_, expected)) in shares.iter().zip(&hand) {
+            assert!((national - expected).abs() < 1e-12, "{b:?}: {national} != {expected}");
+        }
+        let saved = crate::save(&w);
+        let rng = w.rng.state;
+        for _ in 0..3 { assert_eq!(crate::blocs::bloc_shares(&w, id), shares); }
+        assert!(crate::save(&w) == saved, "constituency reads are pure");
+        assert_eq!(w.rng.state, rng);
+        w = crate::load(&saved).unwrap();
+        assert_eq!(crate::blocs::bloc_shares(&w, id), shares);
+        hold_election(&mut w, id);
+        assert!(!state(&w, id).unwrap().awaiting_first_election);
+        assert_eq!(crate::blocs::bloc_shares(&w, id), shares, "a ballot cannot count the unrepresented as votes");
+        generic_regime_collapse(&mut w, id, 0.20);
+        for ((_, national), (_, expected)) in crate::blocs::bloc_shares(&w, id).iter().zip(&hand) {
+            assert!((national - expected).abs() < 1e-12, "closing the chamber preserves the national constituency");
+        }
+        // A pre-feature electoral save contains no observation of missing
+        // constituencies. Neither loading nor a read may fabricate one.
+        let mut old = crate::load(&saved).unwrap();
+        state_mut(&mut old, id).unwrap().movements.clear();
+        assert_eq!(crate::blocs::bloc_shares(&old, id)[Bloc::Communist as usize].1, 1.0);
+        let mut off = crate::load(&saved).unwrap();
+        off.rules.ideology_blocs = false;
+        assert_eq!(crate::blocs::bloc_shares(&off, id)[Bloc::Communist as usize].1, 1.0);
+    }
+
+    #[test]
+    fn represented_parties_compete_without_spending_unrepresented_voters() {
+        let id = NationId::Indonesia;
+        let mut w = world_1990(on_rules(7));
+        state_mut(&mut w, id).unwrap().movements = vec![
+            (Bloc::Western, 0.10), (Bloc::Communist, 0.002),
+            (Bloc::Nationalist, 0.298), (Bloc::Islamist, 0.20), (Bloc::NonAligned, 0.40),
+        ];
+        w.nation_mut(id).authoritarianism = 0.59;
+        schedule_first_elections(&mut w, id, 6);
+        state_mut(&mut w, id).unwrap().support = vec![
+            ("id_golkar".into(), 0.20), ("id_ppp".into(), 0.30), ("id_pdi".into(), 0.50),
+        ];
+        let shares = crate::blocs::bloc_shares(&w, id);
+        for (bloc, expected) in [(Bloc::Western, 0.35), (Bloc::Communist, 0.002),
+            (Bloc::Nationalist, 0.298), (Bloc::Islamist, 0.21), (Bloc::NonAligned, 0.14)]
+        {
+            assert!((shares[bloc as usize].1 - expected).abs() < 1e-12, "{bloc:?}: {shares:?}");
+        }
+        assert!((shares.iter().map(|(_, s)| s).sum::<f64>() - 1.0).abs() < 1e-12);
+        let before = shares;
+        drift_support(&mut w, id);
+        let after = crate::blocs::bloc_shares(&w, id);
+        for bloc in [Bloc::Communist, Bloc::Nationalist] {
+            assert!((after[bloc as usize].1 - before[bloc as usize].1).abs() < 1e-12);
+        }
+        assert!(after.iter().zip(before).map(|((_, a), (_, b))| (a - b).abs()).sum::<f64>() <= 0.030 + 1e-12);
+    }
+
+    #[test]
+    fn opening_a_regime_preserves_its_programme_until_a_real_ballot() {
+        let id = NationId::Afghanistan;
+        for collapse in [false, true] {
+            let mut w = world_1990(on_rules(7));
+            state_mut(&mut w, id).unwrap().regime_bloc = Some(Bloc::Islamist);
+            state_mut(&mut w, id).unwrap().movements = vec![
+                (Bloc::Western, 0.10), (Bloc::Communist, 0.20),
+                (Bloc::Nationalist, 0.15), (Bloc::Islamist, 0.40), (Bloc::NonAligned, 0.15),
+            ];
+            seat_office(&mut w, id, &Succession::Takeover { bloc: Bloc::Islamist });
+            if collapse {
+                generic_regime_collapse(&mut w, id, -0.40);
+                assert!(state(&w, id).unwrap().awaiting_first_election);
+                assert_eq!(crate::blocs::ruling_bloc(&w, id), Some(Bloc::Islamist),
+                    "an uncoloured collapse is not a Communist restoration");
+            } else {
+                w.nation_mut(id).authoritarianism = 0.59;
+            }
+            schedule_first_elections(&mut w, id, 6);
+            assert_eq!(state(&w, id).unwrap().leader(), Some("af_pdpa"));
+            assert_eq!(crate::blocs::ruling_bloc(&w, id), Some(Bloc::Islamist),
+                "the conditional interim party table has not won an election");
+            assert!((crate::blocs::bloc_shares(&w, id)[Bloc::Communist as usize].1 - 0.20).abs() < 1e-12);
+            w = crate::load(&crate::save(&w)).unwrap();
+            ensure(&mut w, id);
+            assert_eq!(crate::blocs::ruling_bloc(&w, id), Some(Bloc::Islamist));
+            hold_election(&mut w, id);
+            assert!(!state(&w, id).unwrap().awaiting_first_election);
+            assert_eq!(crate::blocs::ruling_bloc(&w, id), Some(Bloc::Communist), "the actual ballot still transfers power");
+        }
+    }
+
+    #[test]
+    fn sourced_executive_removal_leverage_is_distinct_from_auth_resources_and_coup_risk() {
+        let id = NationId::Algeria;
+        let mut one = world_1990(roads_rules(7));
+        {
+            let n = one.nation_mut(id);
+            n.authoritarianism = 0.58; n.stability = 5.0;
+            n.inflation = 0.30; n.growth_last = -0.10; n.war_exhaustion = 0.0;
+            let g = state_mut(&mut one, id).unwrap();
+            g.coalition = vec!["dz_fln".into()];
+            for (party, share) in &mut g.support {
+                *share = if party == "dz_fis" { 0.80 } else if party == "dz_fln" { 0.20 } else { 0.0 };
+            }
+            g.seats = g.support.clone();
+            g.political_record = Some(PoliticalRecord {
+                government: "party:dz_fln".into(), months: 24.0, performance: -0.80,
+            });
+            g.pillars.iter_mut().find(|(p, _)| *p == Pillar::Army).unwrap().1 = 0.60;
+            g.army_authority.as_mut().unwrap().current_leverage = 1.0;
+        }
+        let mut zero = one.clone();
+        state_mut(&mut zero, id).unwrap().army_authority.as_mut().unwrap().current_leverage = 0.0;
+        assert_eq!(army_resources_per_member(&one, id), army_resources_per_member(&zero, id));
+        assert_eq!(one.nation(id).mil_strength, zero.nation(id).mil_strength);
+        assert!(army_civilian_confidence_penalty(&one, id) > 0.0);
+        assert_eq!(army_civilian_confidence_penalty(&zero, id), 0.0);
+        assert!(army_programme_veto_loyalty(&one, id, "dz_fis") < ELECTORAL_COUP_ARMY);
+        assert_eq!(army_programme_veto_loyalty(&zero, id, "dz_fis"), 0.60);
+        let known = state(&one, id).unwrap().army_authority.clone();
+        let penalty = army_civilian_confidence_penalty(&one, id);
+        one.nation_mut(id).authoritarianism = 0.05;
+        assert_eq!(army_civilian_confidence_penalty(&one, id), penalty,
+            "a nominal authoritarianism edit is not evidence of new military authority");
+        assert_eq!(state(&one, id).unwrap().army_authority, known);
+        // A known zero blocks this political-leverage channel, not material
+        // neglect, casualties, grievances, or the existing Army coup route.
+        zero.nation_mut(id).mil_spend_gdp = 0.0;
+        assert!((pillar_targets(&zero, id, &[Pillar::Army])[0].1 - 0.20).abs() < 1e-12);
+        zero.nation_mut(id).war_exhaustion = 0.20;
+        assert!((pillar_targets(&zero, id, &[Pillar::Army])[0].1 - 0.11).abs() < 1e-12);
+        {
+            let g = state_mut(&mut zero, id).unwrap();
+            g.months_in_office = 24; g.coup_pressure = 1.5;
+            g.pillars.iter_mut().find(|(p, _)| *p == Pillar::Army).unwrap().1 = 0.20;
+        }
+        assert!(maybe_electoral_coup(&mut zero, id), "zero removal leverage is not immunity to an unpaid hostile force");
+        assert_eq!(crate::army_authority::current_leverage(&zero, id), Some(1.0));
+        assert_eq!(state(&zero, id).unwrap().army_authority.as_ref().unwrap().source,
+            known.as_ref().unwrap().source, "an actual seizure changes campaign leverage, never its historical input");
+        let mut no_army = one.clone();
+        state_mut(&mut no_army, id).unwrap().pillars.retain(|(p, _)| *p != Pillar::Army);
+        assert_eq!(army_civilian_confidence_penalty(&no_army, id), 0.0);
+        assert_eq!(crate::army_authority::current_leverage(&no_army, id), None);
+        let mut unknown = one;
+        state_mut(&mut unknown, id).unwrap().army_authority = None;
+        unknown.nation_mut(id).authoritarianism = 0.40;
+        assert!((civilian_army_executive_leverage(&unknown, id) - 0.5).abs() < 1e-12);
+        let rng = unknown.rng.clone(); let saved = crate::save(&unknown);
+        assert_eq!(civilian_army_executive_leverage(&crate::load(&saved).unwrap(), id),
+            civilian_army_executive_leverage(&unknown, id));
+        assert_eq!(crate::save(&unknown), saved); assert_eq!(unknown.rng, rng);
+        break_electoral(&mut unknown, id, "test real unsourced Army takeover".into());
+        assert!(state(&unknown, id).unwrap().army_authority.is_none(), "a coup cannot invent historical source coverage");
+    }
+
+    #[test]
+    fn assessed_army_authority_changes_only_at_real_seizures_and_qualified_transfers() {
+        let id = NationId::UK;
+        let mut original = world_1990(roads_rules(7));
+        original.nation_mut(id).authoritarianism = 0.55;
+        let term = polity_in(&original, id).unwrap().term_months;
+        {
+            let g = state_mut(&mut original, id).unwrap();
+            g.elected = true; g.unrestricted_mandate = true; g.months_in_office = term;
+            g.army_authority.as_mut().unwrap().current_leverage = 0.80;
+            for (party, share) in &mut g.support {
+                *share = if party == "uk_lab" { 0.85 } else { 0.05 };
+            }
+        }
+        let before = state(&original, id).unwrap().army_authority.clone().unwrap();
+        let rng = original.rng.clone();
+        let mut full = original.clone();
+        hold_election(&mut full, id);
+        assert_eq!(state(&full, id).unwrap().leader(), Some("uk_lab"));
+        let after = state(&full, id).unwrap().army_authority.clone().unwrap();
+        assert!((after.current_leverage - 0.675).abs() < 1e-12);
+        assert_eq!(after.source, before.source);
+        assert!((full.nation(id).authoritarianism - 0.50).abs() < 1e-12,
+            "authority uses the existing consolidation exactly once; the general reform remains intact");
+        assert_eq!(full.rng, rng);
+        let saved = crate::save(&full);
+        assert_eq!(crate::save(&crate::load(&saved).unwrap()), saved);
+        for control in 0..6 {
+            let mut w = original.clone();
+            let g = state_mut(&mut w, id).unwrap();
+            match control {
+                0 => for (party, share) in &mut g.support { *share = if party == "uk_con" { 0.85 } else { 0.05 }; },
+                1 => g.elected = false,
+                2 => g.unrestricted_mandate = false,
+                3 => g.banned.push("uk_lib".into()),
+                4 => g.awaiting_first_election = true,
+                _ => g.months_in_office = 0,
+            }
+            hold_election(&mut w, id);
+            assert_eq!(state(&w, id).unwrap().army_authority.as_ref().unwrap(), &before,
+                "nonqualifying ballot cannot rewrite authority: {control}");
+        }
+        for how in [Succession::Death, Succession::TermLimit, Succession::Coup { pillar: Pillar::Army }] {
+            let mut w = original.clone();
+            seat_office(&mut w, id, &how);
+            assert_eq!(state(&w, id).unwrap().army_authority.as_ref().unwrap(), &before,
+                "changing a person/description alone is not an institutional event");
+        }
+        let mut seized = original.clone();
+        break_electoral(&mut seized, id, "test actual Army takeover".into());
+        let current = state(&seized, id).unwrap().army_authority.as_ref().unwrap();
+        assert_eq!(current.current_leverage, 1.0); assert_eq!(current.source, before.source);
+        let mut off = original;
+        off.rules.ideology_blocs = false; off.rules.ideology_takeover = false;
+        hold_election(&mut off, id);
+        assert_eq!(state(&off, id).unwrap().army_authority.as_ref().unwrap(), &before);
+    }
+
+    #[test]
+    fn army_confidence_responds_to_sustained_civilian_failure_without_changing_resources() {
+        let id = NationId::Pakistan;
+        let mut crisis = world_1990(roads_rules(7));
+        // This existing causal fixture explicitly exercises the unknown-source
+        // authoritarianism proxy; sourced leverage has separate controls below.
+        state_mut(&mut crisis, id).unwrap().army_authority = None;
+        {
+            let n = crisis.nation_mut(id);
+            n.gdp = 100.0;
+            n.mil_spend_gdp = 0.03;
+            n.authoritarianism = 0.55;
+            n.stability = 5.0;
+            n.inflation = 0.30;
+            n.growth_last = -0.10;
+            n.war_exhaustion = 0.0;
+            n.separatism = 0.0;
+        }
+        let party = state(&crisis, id).unwrap().leader().unwrap().to_string();
+        state_mut(&mut crisis, id).unwrap().political_record = Some(PoliticalRecord {
+            government: format!("party:{party}"), months: 24.0, performance: -0.80,
+        });
+        let resources = army_resources_per_member(&crisis, id).unwrap();
+        let penalty = army_civilian_confidence_penalty(&crisis, id);
+        assert!(penalty > 0.30, "sustained failure can cost an autonomous army's confidence");
+        let mut quiet = crisis.clone();
+        {
+            let n = quiet.nation_mut(id);
+            n.stability = 85.0;
+            n.inflation = 0.02;
+            n.growth_last = 0.03;
+        }
+        assert_eq!(army_civilian_confidence_penalty(&quiet, id), 0.0);
+        assert_eq!(army_resources_per_member(&quiet, id), Some(resources));
+        let mut fresh = crisis.clone();
+        state_mut(&mut fresh, id).unwrap().political_record.as_mut().unwrap().months = 5.0;
+        assert_eq!(army_civilian_confidence_penalty(&fresh, id), 0.0, "no instant crisis penalty");
+        let mut open = crisis.clone();
+        open.nation_mut(id).authoritarianism = 0.20;
+        assert_eq!(army_civilian_confidence_penalty(&open, id), 0.0);
+        let mut off = crisis.clone();
+        off.rules.ideology_blocs = false;
+        assert_eq!(army_civilian_confidence_penalty(&off, id), 0.0);
+        let loaded = crate::load(&crate::save(&crisis)).unwrap();
+        assert_eq!(army_civilian_confidence_penalty(&loaded, id), penalty);
+        for _ in 0..48 {
+            electoral_army_tick(&mut crisis, id);
+            electoral_army_tick(&mut quiet, id);
+        }
+        assert!(state(&crisis, id).unwrap().loyalty(Pillar::Army) < ELECTORAL_COUP_ARMY);
+        assert!(state(&crisis, id).unwrap().coup_pressure > 0.0);
+        assert!(state(&quiet, id).unwrap().loyalty(Pillar::Army) > 0.60);
+        assert_eq!(state(&quiet, id).unwrap().coup_pressure, 0.0);
+        assert_eq!(army_resources_per_member(&crisis, id), Some(resources), "confidence does not consume equipment");
+    }
+
+    #[test]
+    fn civilian_confidence_counts_national_consent_without_manufacturing_a_mandate() {
+        let id = NationId::Pakistan;
+        let mut strong = world_1990(roads_rules(7));
+        // This existing causal fixture explicitly exercises the unknown-source
+        // authoritarianism proxy; sourced leverage has separate controls below.
+        state_mut(&mut strong, id).unwrap().army_authority = None;
+        {
+            let n = strong.nation_mut(id);
+            n.authoritarianism = 0.55;
+            n.stability = 5.0;
+            n.inflation = 0.30;
+            n.growth_last = -0.10;
+            n.war_exhaustion = 0.0;
+            n.separatism = 0.0;
+        }
+        let leader = state(&strong, id).unwrap().leader().unwrap().to_string();
+        let opponent = state(&strong, id).unwrap().support.iter()
+            .find(|(party, _)| party != &leader).unwrap().0.clone();
+        {
+            let g = state_mut(&mut strong, id).unwrap();
+            g.elected = true;
+            g.unrestricted_mandate = true;
+            g.awaiting_first_election = false;
+            g.banned.clear();
+            g.movements.clear();
+            g.coalition = vec![leader.clone()];
+            for (party, share) in &mut g.support {
+                *share = if *party == leader { 0.8 } else if *party == opponent { 0.2 } else { 0.0 };
+            }
+            g.seats = g.support.clone();
+            g.political_record = Some(PoliticalRecord {
+                government: format!("party:{leader}"), months: 24.0, performance: -0.80,
+            });
+        }
+        let mut minority = strong.clone();
+        for (party, share) in &mut state_mut(&mut minority, id).unwrap().support {
+            *share = if *party == leader { 0.3 } else if *party == opponent { 0.7 } else { 0.0 };
+        }
+        let mut no_mandate = strong.clone();
+        state_mut(&mut no_mandate, id).unwrap().unrestricted_mandate = false;
+        let unbuffered = army_civilian_confidence_penalty(&no_mandate, id);
+        assert!(unbuffered > 0.30);
+        assert!((civilian_public_mandate(&strong, id) - 0.8).abs() < 1e-12);
+        assert!((civilian_public_mandate(&minority, id) - 0.3).abs() < 1e-12);
+        assert!((army_civilian_confidence_penalty(&strong, id) - unbuffered * 0.2).abs() < 1e-12);
+        assert!((army_civilian_confidence_penalty(&minority, id) - unbuffered * 0.7).abs() < 1e-12);
+        assert_eq!(army_resources_per_member(&strong, id), army_resources_per_member(&minority, id),
+            "public consent changes neither equipment resources nor force size");
+
+        // A manufactured chamber majority contributes no additional voters.
+        let mut amplified = strong.clone();
+        for (party, share) in &mut state_mut(&mut amplified, id).unwrap().seats {
+            *share = if *party == leader { 0.99 } else if *party == opponent { 0.01 } else { 0.0 };
+        }
+        assert_eq!(civilian_public_mandate(&amplified, id), civilian_public_mandate(&strong, id));
+        assert_eq!(army_civilian_confidence_penalty(&amplified, id), army_civilian_confidence_penalty(&strong, id));
+        for control in 0..4 {
+            let mut invalid = strong.clone();
+            let g = state_mut(&mut invalid, id).unwrap();
+            match control {
+                0 => g.elected = false,
+                1 => g.awaiting_first_election = true,
+                2 => g.unrestricted_mandate = false,
+                _ => g.banned.push(opponent.clone()),
+            }
+            assert_eq!(civilian_public_mandate(&invalid, id), 0.0, "control {control}");
+            assert_eq!(army_civilian_confidence_penalty(&invalid, id), unbuffered,
+                "an interim or restricted mandate supplies no consent buffer");
+        }
+        let mut unrepresented = strong.clone();
+        for (party, seats) in &mut state_mut(&mut unrepresented, id).unwrap().seats {
+            if *party == leader { *seats = 0.0; }
+        }
+        assert_eq!(civilian_public_mandate(&unrepresented, id), 0.0);
+        let mut unknown = strong.clone();
+        let g = state_mut(&mut unknown, id).unwrap();
+        g.coalition = vec!["unknown_party".into()];
+        g.support = vec![("unknown_party".into(), 1.0)];
+        g.seats = g.support.clone();
+        assert_eq!(civilian_public_mandate(&unknown, id), 0.0,
+            "an unknown saved party is not proof of legal representation");
+
+        // A party carrying one fifth of the country does not acquire the
+        // unrepresented four fifths when its one-party ballot reads 100%.
+        let kh = NationId::Cambodia;
+        let mut partial = world_1990(on_rules(7));
+        partial.nation_mut(kh).authoritarianism = 0.59;
+        state_mut(&mut partial, kh).unwrap().movements = vec![
+            (Bloc::Western, 0.002), (Bloc::Communist, 0.20),
+            (Bloc::Nationalist, 0.49), (Bloc::Islamist, 0.002), (Bloc::NonAligned, 0.306),
+        ];
+        schedule_first_elections(&mut partial, kh, 6);
+        assert_eq!(civilian_public_mandate(&partial, kh), 0.0, "the first ballot is still owed");
+        hold_election(&mut partial, kh);
+        assert_eq!(state(&partial, kh).unwrap().support, vec![("kh_kprp".into(), 1.0)]);
+        assert!((civilian_public_mandate(&partial, kh) - 0.20).abs() < 1e-12);
+
+        let mandate = civilian_public_mandate(&strong, id);
+        let penalty = army_civilian_confidence_penalty(&strong, id);
+        assert!(crate::statecraft::add_backing(&mut strong, NationId::USA, id, bloc_of(id, &leader)) > 0.0);
+        assert_eq!(civilian_public_mandate(&strong, id), mandate, "foreign money is not public support");
+        assert_eq!(army_civilian_confidence_penalty(&strong, id), penalty);
+        let rng = strong.rng.state;
+        let saved = crate::save(&strong);
+        for _ in 0..3 {
+            assert_eq!(civilian_public_mandate(&strong, id), mandate);
+            assert_eq!(army_civilian_confidence_penalty(&strong, id), penalty);
+        }
+        assert_eq!(strong.rng.state, rng);
+        assert_eq!(crate::save(&strong), saved, "reading a mandate is pure");
+        let loaded = crate::load(&saved).unwrap();
+        assert_eq!(crate::save(&loaded), saved);
+        assert_eq!(civilian_public_mandate(&loaded, id), mandate);
+        assert_eq!(army_civilian_confidence_penalty(&loaded, id), penalty);
+    }
+
+    #[test]
+    fn an_autonomous_army_can_veto_a_new_programme_but_civilian_control_and_loyalty_resist() {
+        let id = NationId::Algeria;
+        let mut w = world_1990(roads_rules(7));
+        // This existing causal fixture explicitly exercises the unknown-source
+        // authoritarianism proxy; sourced leverage has separate controls below.
+        state_mut(&mut w, id).unwrap().army_authority = None;
+        {
+            let n = w.nation_mut(id);
+            n.authoritarianism = 0.58;
+            n.stability = 10.0;
+            n.inflation = 0.30;
+            n.growth_last = -0.05;
+        }
+        let g = state_mut(&mut w, id).unwrap();
+        g.coalition = vec!["dz_fln".into()];
+        for (party, share) in &mut g.support {
+            *share = if party == "dz_fis" { 0.80 } else if party == "dz_fln" { 0.20 } else { 0.0 };
+        }
+        g.seats = g.support.clone();
+        for (p, loyalty) in &mut g.pillars { if *p == Pillar::Army { *loyalty = 0.60; } }
+        g.political_record = Some(PoliticalRecord { government: "party:dz_fln".into(), months: 24.0, performance: -0.80 });
+        assert!(crate::blocs::effective_army_loyalty(&w, id) > ELECTORAL_COUP_ARMY,
+            "material obedience alone is not the prospective political veto");
+        assert!(army_programme_veto_loyalty(&w, id, "dz_fis") < ELECTORAL_COUP_ARMY);
+        assert_eq!(annulment_check(&w, id).as_deref(), Some("dz_fis"));
+        assert_eq!(army_programme_veto_loyalty(&w, id, "dz_fln"), 0.60, "retaining the programme adds no threat");
+        let mut recovered = w.clone();
+        {
+            let n = recovered.nation_mut(id);
+            n.stability = 85.0;
+            n.inflation = 0.02;
+            n.growth_last = 0.03;
+            n.war_exhaustion = 0.0;
+            n.separatism = 0.0;
+        }
+        assert!(crate::blocs::discontent(&recovered, id) < ANNULMENT_DISCONTENT);
+        assert_eq!(annulment_check(&recovered, id).as_deref(), Some("dz_fis"),
+            "a prospective institutional veto does not require an economic collapse");
+        state_mut(&mut recovered, id).unwrap().political_record = None;
+        for (p, loyalty) in &mut state_mut(&mut recovered, id).unwrap().pillars {
+            if *p == Pillar::Army { *loyalty = 0.20; }
+        }
+        assert_eq!(annulment_check(&recovered, id), None,
+            "material disloyalty alone retains the original discontent requirement");
+        let mut loyal = w.clone();
+        for (p, loyalty) in &mut state_mut(&mut loyal, id).unwrap().pillars { if *p == Pillar::Army { *loyalty = 0.95; } }
+        assert_eq!(annulment_check(&loyal, id), None);
+        let mut open = w.clone();
+        open.nation_mut(id).authoritarianism = 0.20;
+        assert_eq!(army_programme_veto_loyalty(&open, id, "dz_fis"), 0.60);
+        assert_eq!(annulment_check(&open, id), None);
+        let mut fresh = w.clone();
+        state_mut(&mut fresh, id).unwrap().political_record = None;
+        assert_eq!(army_programme_veto_loyalty(&fresh, id, "dz_fis"), 0.60);
+        let mut off = w.clone();
+        off.rules.ideology_blocs = false;
+        assert_eq!(army_programme_veto_loyalty(&off, id, "dz_fis"), 0.60);
+        hold_election(&mut w, id);
+        assert!(!is_electoral(&w, id));
+        assert_eq!(state(&w, id).unwrap().regime_bloc, Some(Bloc::Nationalist));
+        assert!(state(&w, id).unwrap().banned.iter().any(|p| p == "dz_fis"));
+    }
+
+
+    // A synthetic newborn tests the generic lifecycle, not a historical date or
+    // a predicted winner. It uses the real successor table and government tick.
+    fn unscheduled_electoral_successor_fixture() -> WorldState {
+        let mut w = world_1990(on_rules(7));
+        let id = NationId::Lithuania;
+        let mut n = w.nation(NationId::Poland).clone();
+        n.id = id;
+        n.authoritarianism = 0.20;
+        n.stability = 65.0;
+        n.inflation = 0.80;
+        n.growth_last = -0.10;
+        w.nations.push(n);
+        w.reindex();
+        w.player = Some(id);
+        ensure(&mut w, id);
+        w
+    }
+
+    #[test]
+    fn scheduling_a_new_electoral_successor_preserves_its_real_governing_record() {
+        let id = NationId::Lithuania;
+        let mut w = unscheduled_electoral_successor_fixture();
+        let incumbent = state(&w, id).unwrap().leader().unwrap().to_string();
+        assert!(crate::blocs::leader_row(&w, id).is_none());
+        assert_eq!(crate::blocs::leader(&w, id).unwrap().office, "head of government");
+        {
+            let g = state_mut(&mut w, id).unwrap();
+            assert_eq!(g.next_election, (0, 0));
+            assert!(g.regime_bloc.is_none());
+            g.months_in_office = 7;
+            g.coup_pressure = 0.40;
+            g.political_record = Some(PoliticalRecord {
+                government: format!("party:{incumbent}"), months: 7.0, performance: -0.75,
+            });
+        }
+        // The one missing calendar field must be the only difference from an
+        // otherwise identical ordinary cabinet taking the same real tick.
+        let mut calendar = w.clone();
+        state_mut(&mut calendar, id).unwrap().next_election = (1991, 7);
+        let support = state(&w, id).unwrap().support_of(&incumbent);
+        let rng = w.rng.clone();
+        let saved = crate::save(&w);
+        w = crate::load(&saved).unwrap();
+        assert_eq!(crate::save(&w), saved);
+        tick(&mut w);
+        tick(&mut calendar);
+        let g = state(&w, id).unwrap();
+        assert_eq!(serde_json::to_string(g).unwrap(), serde_json::to_string(state(&calendar, id).unwrap()).unwrap());
+        assert_eq!(g.next_election, (1991, 7));
+        assert_eq!(g.months_in_office, 8);
+        assert_eq!(g.coup_pressure, 0.40);
+        assert_eq!(g.political_record.as_ref().unwrap().months, 8.0);
+        assert_eq!(g.political_record.as_ref().unwrap().government, format!("party:{incumbent}"));
+        assert!(g.support_of(&incumbent) < support);
+        assert!(!g.elected && !g.unrestricted_mandate && !g.awaiting_first_election);
+        assert!(g.vote_anchor.is_none() && g.opening_mandate.is_none());
+        assert!(crate::blocs::leader_row(&w, id).is_none(), "a calendar cannot invent a named office");
+        assert_eq!(w.rng, rng);
+    }
+
+    #[test]
+    fn a_successor_calendar_keeps_the_eighteen_month_deadline_without_claiming_a_ballot() {
+        let id = NationId::Lithuania;
+        let mut w = unscheduled_electoral_successor_fixture();
+        let rng = w.rng.clone();
+        for month in 0..18 {
+            (w.year, w.month) = add_months(1990, 1, month);
+            tick(&mut w);
+            let g = state(&w, id).unwrap();
+            assert_eq!(g.next_election, (1991, 7));
+            assert!(!g.elected && !g.unrestricted_mandate && !g.awaiting_first_election);
+            assert!(g.vote_anchor.is_none());
+            assert_eq!(g.political_record.as_ref().unwrap().months, (month + 1) as f64);
+            if month == 8 {
+                let saved = crate::save(&w);
+                w = crate::load(&saved).unwrap();
+                assert_eq!(crate::save(&w), saved);
+            }
+        }
+        assert_eq!(state(&w, id).unwrap().months_in_office, 18);
+        (w.year, w.month) = (1991, 7);
+        tick(&mut w);
+        let g = state(&w, id).unwrap();
+        assert!(g.elected && g.unrestricted_mandate && !g.awaiting_first_election);
+        assert_eq!(g.next_election, (1995, 7));
+        assert!(g.vote_anchor.is_some());
+        assert_eq!(w.rng, rng);
+    }
+
+    #[test]
+    fn successor_calendar_dates_and_accountability_survive_daily_and_legacy_saves() {
+        let id = NationId::Lithuania;
+        let base = unscheduled_electoral_successor_fixture();
+        let rng = base.rng.clone();
+        let mut monthly = base.clone();
+        let mut legacy_end = base.clone();
+        legacy_end.day = 31;
+        tick(&mut monthly);
+        tick(&mut legacy_end);
+        assert_eq!(serde_json::to_string(state(&monthly,id).unwrap()).unwrap(),
+            serde_json::to_string(state(&legacy_end,id).unwrap()).unwrap());
+        let mut daily = base;
+        daily.rules.daily_simulation = true;
+        let starting_support = state(&daily,id).unwrap().support_of("lt_sajudis");
+        for day in 1..=31 {
+            daily.day = day;
+            tick(&mut daily);
+            let g = state(&daily,id).unwrap();
+            assert_eq!(g.next_election, (1991,7));
+            assert!(!g.elected && !g.unrestricted_mandate && !g.awaiting_first_election);
+            assert_eq!(g.months_in_office, u32::from(day == 31));
+            assert!((g.political_record.as_ref().unwrap().months - day as f64 / 31.0).abs() < 1e-12);
+            if day == 15 {
+                let saved = crate::save(&daily);
+                daily = crate::load(&saved).unwrap();
+                assert_eq!(crate::save(&daily), saved);
+            }
+        }
+        assert!(state(&daily,id).unwrap().support_of("lt_sajudis") < starting_support);
+        assert_eq!(daily.rng, rng);
+        // An old save's absent marker is unknown history, not a completed vote.
+        let mut json: serde_json::Value = serde_json::from_str(&crate::save(&monthly)).unwrap();
+        for g in json["governments"]["states"].as_array_mut().unwrap() {
+            g.as_object_mut().unwrap().remove("awaiting_first_election");
+            g.as_object_mut().unwrap().remove("political_record");
+        }
+        let mut old = crate::load(&json.to_string()).unwrap();
+        assert!(!state(&old,id).unwrap().awaiting_first_election);
+        assert!(state(&old,id).unwrap().political_record.is_none());
+        tick(&mut old);
+        assert_eq!(state(&old,id).unwrap().political_record.as_ref().unwrap().months, 1.0);
+        assert!(!state(&old,id).unwrap().elected);
+    }
+
+    #[test]
+    fn missing_calendars_do_not_erase_real_regime_interims_or_change_the_lens_off_path() {
+        for id in [NationId::Suriname, NationId::Jordan, NationId::Indonesia] {
+            let mut w = world_1990(roads_rules(7));
+            w.player = Some(id);
+            if id == NationId::Suriname { break_electoral(&mut w,id,"test military takeover".into()); }
+            if id == NationId::Jordan {
+                // Jordan opens below the regime ceiling; explicitly stage a
+                // court regime before testing its subsequent liberalisation.
+                w.nation_mut(id).authoritarianism = 0.75;
+                seed_blocs(&mut w,id);
+            }
+            let authority = serde_json::to_string(&crate::blocs::leader_row(&w,id)).unwrap();
+            let regime = state(&w,id).unwrap().regime_bloc;
+            assert!(regime.is_some(), "fixture must carry an actual regime authority");
+            w.nation_mut(id).authoritarianism = 0.59;
+            w.nation_mut(id).stability = 20.0;
+            state_mut(&mut w,id).unwrap().next_election = (0,0);
+            tick(&mut w);
+            assert_eq!(state(&w,id).unwrap().next_election, (1991,7));
+            assert!(state(&w,id).unwrap().awaiting_first_election);
+            assert_eq!(state(&w,id).unwrap().regime_bloc, regime);
+            assert!(!state(&w,id).unwrap().elected);
+            assert_eq!(serde_json::to_string(&crate::blocs::leader_row(&w,id)).unwrap(),authority);
+            let saved = crate::save(&w);
+            w = crate::load(&saved).unwrap();
+            state_mut(&mut w,id).unwrap().months_in_office = 12;
+            tick(&mut w);
+            assert!(state(&w,id).unwrap().awaiting_first_election,
+                "an existing military/court/party interim keeps its first-ballot protection");
+            assert_eq!(state(&w,id).unwrap().next_election,(1991,7));
+        }
+        // A live court can outrank its electoral chamber without a stored
+        // regime bloc (the actual opening Jordan state). Missing old metadata
+        // cannot reinterpret an explicit Army authority as a party executive.
+        for id in [NationId::Jordan, NationId::Suriname] {
+            let mut w = world_1990(roads_rules(7));
+            w.player = Some(id);
+            if id == NationId::Suriname {
+                break_electoral(&mut w,id,"test military takeover".into());
+                w.nation_mut(id).authoritarianism = 0.55;
+                state_mut(&mut w,id).unwrap().regime_bloc = None;
+            }
+            assert!(is_electoral(&w,id));
+            assert!(state(&w,id).unwrap().regime_bloc.is_none());
+            assert!(matches!(crate::blocs::leader_row(&w,id).unwrap().tie_now(), Some(crate::data::Tie::Pillar(_))));
+            if id == NationId::Jordan { assert!(crate::blocs::court_pillar(&w,id).is_some()); }
+            let authority = serde_json::to_string(&crate::blocs::leader_row(&w,id)).unwrap();
+            state_mut(&mut w,id).unwrap().next_election = (0,0);
+            tick(&mut w);
+            assert!(state(&w,id).unwrap().awaiting_first_election);
+            assert!(!state(&w,id).unwrap().elected);
+            assert_eq!(state(&w,id).unwrap().next_election,(1991,7));
+            assert_eq!(serde_json::to_string(&crate::blocs::leader_row(&w,id)).unwrap(),authority);
+        }
+        let id = NationId::Lithuania;
+        let mut saved_pending = unscheduled_electoral_successor_fixture();
+        state_mut(&mut saved_pending,id).unwrap().awaiting_first_election = true;
+        saved_pending = crate::load(&crate::save(&saved_pending)).unwrap();
+        tick(&mut saved_pending);
+        assert!(state(&saved_pending,id).unwrap().awaiting_first_election,
+            "do not reinterpret an explicitly saved pending status with missing older metadata");
+        let mut off = unscheduled_electoral_successor_fixture();
+        off.rules.ideology_blocs = false;
+        state_mut(&mut off,id).unwrap().months_in_office = 7;
+        state_mut(&mut off,id).unwrap().coup_pressure = 0.40;
+        tick(&mut off);
+        let g = state(&off,id).unwrap();
+        assert_eq!(g.next_election,(1991,7));
+        assert_eq!(g.months_in_office,0, "legacy formation still resets its original office clock");
+        assert_eq!(g.coup_pressure,0.0);
+        assert!(!g.awaiting_first_election && !g.elected);
+        assert!(off.headlines.iter().any(|h|h == "Lithuania sets a date for its first free elections."));
+    }
+
+    #[test]
+    fn the_first_free_ballot_seats_the_same_interim_party_and_keeps_its_deadline() {
+        use crate::data::Tie;
+        let id = NationId::Suriname;
+        let mut w = world_1990(roads_rules(7));
+        break_electoral(&mut w, id, "test military takeover".into());
+        w.nation_mut(id).authoritarianism = 0.59;
+        schedule_first_elections(&mut w, id, 18);
+        let deadline = state(&w, id).unwrap().next_election;
+        let interim = state(&w, id).unwrap().leader().unwrap().to_string();
+        assert_eq!(crate::blocs::leader_row(&w, id).unwrap().tie_now(), Some(Tie::Pillar(Pillar::Army)));
+        assert!(state(&w, id).unwrap().awaiting_first_election);
+        assert!(!state(&w, id).unwrap().elected);
+        let saved = crate::save(&w);
+        w = crate::load(&saved).unwrap();
+        ensure(&mut w, id);
+        ensure(&mut w, id);
+        assert_eq!(state(&w, id).unwrap().next_election, deadline);
+        assert!(state(&w, id).unwrap().awaiting_first_election);
+        {
+            let g = state_mut(&mut w, id).unwrap();
+            g.months_in_office = 12;
+            g.coup_pressure = 1.5;
+            g.pillars.iter_mut().for_each(|(_, loyalty)| *loyalty = 0.10);
+        }
+        w.nation_mut(id).stability = 20.0;
+        assert!(!maybe_electoral_coup(&mut w, id), "an interim cabinet was never an elected one");
+        assert!(!crate::blocs::takeover_readout(&w, id).coup.open);
+        tick(&mut w);
+        assert!(state(&w, id).unwrap().awaiting_first_election,
+            "the ordinary fragile-cabinet clock must not preempt the first ballot");
+        assert_eq!(state(&w, id).unwrap().next_election, deadline);
+        assert_eq!(crate::blocs::leader_row(&w, id).unwrap().tie_now(), Some(Tie::Pillar(Pillar::Army)));
+        {
+            let g = state_mut(&mut w, id).unwrap();
+            let others = g.support.len() - 1;
+            for (party, share) in &mut g.support { *share = if *party == interim { 0.90 } else { 0.10 / others as f64 }; }
+            g.pillars.iter_mut().for_each(|(_, loyalty)| *loyalty = 0.85);
+        }
+        w.nation_mut(id).stability = 65.0;
+        (w.year, w.month) = deadline;
+        tick(&mut w);
+        let g = state(&w, id).unwrap();
+        assert_eq!(g.leader(), Some(interim.as_str()));
+        assert!(g.elected && !g.awaiting_first_election);
+        assert_eq!(crate::blocs::leader_row(&w, id).unwrap().tie_now(), Some(Tie::Party(interim.clone())));
+        assert_eq!(crate::blocs::ruling_bloc(&w, id), Some(bloc_of(id, &interim)));
+        let after = crate::save(&w);
+        assert_eq!(crate::save(&crate::load(&after).unwrap()), after);
+    }
+
+    #[test]
+    fn the_first_parliamentary_ballot_reconciles_the_actual_office_with_the_seeded_chamber() {
+        use crate::data::Tie;
+        let id = NationId::Hungary;
+        let mut w = world_1990(on_rules(7));
+        let g = state(&w, id).unwrap();
+        assert_eq!(g.leader(), Some("hu_mdf"));
+        assert!(!g.elected && !g.awaiting_first_election);
+        let opening = crate::blocs::leader_row(&w, id).unwrap().clone();
+        assert_eq!(opening.name.as_deref(), Some("Miklos Nemeth"));
+        assert_eq!(opening.tie_now(), Some(Tie::Party("hu_mszp".into())));
+        assert!(parliamentary_office_party_mismatch(&w, id, "hu_mdf"));
+        // Loading before the first modeled ballot must not consume that ballot.
+        w = crate::load(&crate::save(&w)).unwrap();
+        (w.year, w.month) = state(&w, id).unwrap().next_election;
+        let rng = w.rng.clone();
+        let authoritarianism = w.nation(id).authoritarianism;
+        hold_election(&mut w, id);
+        assert_eq!(state(&w, id).unwrap().leader(), Some("hu_mdf"), "the chamber need not change its leading party");
+        let elected = crate::blocs::leader_row(&w, id).unwrap().clone();
+        assert_eq!(elected.tie_now(), Some(Tie::Party("hu_mdf".into())));
+        assert!(elected.name.is_none());
+        assert_eq!(elected.emergent.as_ref().unwrap().office, "head of government");
+        assert_eq!(elected.emergent.as_ref().unwrap().since, "1990-03-01");
+        assert_eq!(w.rng, rng, "a lawful seating draws no random number");
+        assert_eq!(w.nation(id).authoritarianism, authoritarianism, "correcting the opening office grants no term-completion reward");
+        let saved = crate::save(&w);
+        w = crate::load(&saved).unwrap();
+        assert_eq!(crate::save(&w), saved);
+        w.month = 4;
+        hold_election(&mut w, id);
+        assert_eq!(crate::blocs::leader_row(&w, id), Some(&elected), "a repeated same-party ballot does not reseat the office");
+
+        // An existing completed campaign is not an opening-history repair.
+        let mut existing = world_1990(on_rules(7));
+        state_mut(&mut existing, id).unwrap().elected = true;
+        hold_election(&mut existing, id);
+        assert_eq!(crate::blocs::leader_row(&existing, id), Some(&opening));
+    }
+
+    #[test]
+    fn opening_ballots_keep_same_party_people_separate_heads_and_the_off_path() {
+        for id in [NationId::UK, NationId::USA, NationId::Jordan] {
+            let mut w = world_1990(on_rules(7));
+            let opening = crate::blocs::leader_row(&w, id).unwrap().clone();
+            let winner = state(&w, id).unwrap().leader().unwrap().to_string();
+            assert!(!parliamentary_office_party_mismatch(&w, id, &winner), "{id:?}");
+            hold_election(&mut w, id);
+            assert_eq!(crate::blocs::leader_row(&w, id), Some(&opening), "{id:?}: a parliamentary vote cannot claim another office or remove its same-party incumbent");
+        }
+        let mut off = w1990();
+        let before = off.leadership.clone();
+        let rng = off.rng.clone();
+        assert!(!parliamentary_office_party_mismatch(&off, NationId::Hungary, "hu_mdf"));
+        hold_election(&mut off, NationId::Hungary);
+        assert_eq!(off.leadership, before);
+        assert_eq!(off.rng, rng);
+    }
+
+    #[test]
+    fn an_annulled_opening_ballot_does_not_seat_the_parliamentary_winner() {
+        use crate::data::Tie;
+        let id = NationId::Hungary;
+        let mut w = world_1990(roads_rules(7));
+        w.nation_mut(id).authoritarianism = 0.60;
+        w.nation_mut(id).stability = 0.0;
+        {
+            let g = state_mut(&mut w, id).unwrap();
+            let others = g.support.len() - 1;
+            for (party, share) in &mut g.support {
+                *share = if party == "hu_mszmp" { 0.80 } else { 0.20 / others as f64 };
+            }
+            g.coalition = vec!["hu_mszmp".into()];
+            if !g.pillars.iter().any(|(pillar, _)| *pillar == Pillar::Army) { g.pillars.push((Pillar::Army, 0.10)); }
+            for (pillar, loyalty) in &mut g.pillars { if *pillar == Pillar::Army { *loyalty = 0.10; } }
+        }
+        assert!(parliamentary_office_party_mismatch(&w, id, "hu_mszmp"));
+        hold_election(&mut w, id);
+        let g = state(&w, id).unwrap();
+        assert!(!g.elected, "annulment is not a completed first mandate");
+        assert!(g.banned.iter().any(|party| party == "hu_mszmp"));
+        assert_eq!(crate::blocs::leader_row(&w, id).unwrap().tie_now(), Some(Tie::Pillar(Pillar::Army)),
+            "the refused ballot cannot overwrite the actual military takeover with its winner");
+    }
+
+    #[test]
+    fn first_free_elections_replace_original_military_rulers_but_preserve_constitutional_heads() {
+        use crate::data::Tie;
+        let mut w = world_1990(roads_rules(7));
+        let id = NationId::Myanmar;
+        assert_eq!(crate::blocs::leader_row(&w, id).unwrap().tie_now(), Some(Tie::Pillar(Pillar::Army)));
+        assert!(crate::blocs::leader_row(&w, id).unwrap().emergent.is_none());
+        w.nation_mut(id).authoritarianism = 0.50;
+        schedule_first_elections(&mut w, id, 6);
+        let interim = state(&w, id).unwrap().leader().unwrap().to_string();
+        {
+            let g = state_mut(&mut w, id).unwrap();
+            let others = g.support.len() - 1;
+            for (party, share) in &mut g.support { *share = if *party == interim { 0.90 } else { 0.10 / others as f64 }; }
+            g.pillars.iter_mut().for_each(|(_, loyalty)| *loyalty = 0.85);
+        }
+        hold_election(&mut w, id);
+        assert_eq!(crate::blocs::leader_row(&w, id).unwrap().tie_now(), Some(Tie::Party(interim)));
+        // The US chamber is not the presidency, and the Jordanian chamber is
+        // not the crown. An ordinary or opening ballot preserves those offices.
+        for id in [NationId::USA, NationId::Jordan] {
+            let before = crate::blocs::leader(&w, id).unwrap();
+            if id == NationId::Jordan { state_mut(&mut w, id).unwrap().awaiting_first_election = true; }
+            hold_election(&mut w, id);
+            let after = crate::blocs::leader(&w, id).unwrap();
+            assert_eq!(after.name, before.name);
+            assert_eq!(after.pillar, before.pillar);
+            assert_eq!(after.office, before.office);
+        }
+    }
+
+    #[test]
+    fn the_first_free_ballot_replaces_a_generic_party_regime_but_not_an_inherited_crown() {
+        use crate::data::Tie;
+        let id = NationId::SaoTome;
+        let mut w = world_1990(roads_rules(7));
+        seat_office(&mut w, id, &Succession::Coup { pillar: Pillar::Party });
+        let row = crate::blocs::leader_row(&w, id).unwrap();
+        assert_eq!(row.tie_now(), Some(Tie::Pillar(Pillar::Party)));
+        assert_eq!(row.emergent.as_ref().unwrap().office, "head of state");
+        w.nation_mut(id).authoritarianism = 0.50;
+        schedule_first_elections(&mut w, id, 6);
+        let deadline = state(&w, id).unwrap().next_election;
+        let interim = state(&w, id).unwrap().leader().unwrap().to_string();
+        let g = state_mut(&mut w, id).unwrap();
+        let others = g.support.len() - 1;
+        for (party, share) in &mut g.support { *share = if *party == interim { 0.90 } else { 0.10 / others as f64 }; }
+        for (_, loyalty) in &mut g.pillars { *loyalty = 0.85; }
+        w = crate::load(&crate::save(&w)).unwrap();
+        ensure(&mut w, id);
+        assert!(state(&w, id).unwrap().awaiting_first_election);
+        assert_eq!(crate::blocs::leader_row(&w, id).unwrap().tie_now(), Some(Tie::Pillar(Pillar::Party)));
+        assert_eq!(state(&w, id).unwrap().next_election, deadline);
+        (w.year, w.month) = deadline;
+        hold_election(&mut w, id);
+        assert_eq!(state(&w, id).unwrap().leader(), Some(interim.as_str()));
+        assert_eq!(crate::blocs::leader_row(&w, id).unwrap().tie_now(), Some(Tie::Party(interim.clone())));
+        assert_eq!(crate::blocs::ruling_bloc(&w, id), Some(bloc_of(id, &interim)));
+        assert!(!state(&w, id).unwrap().awaiting_first_election);
+        let saved = crate::save(&w);
+        assert_eq!(crate::save(&crate::load(&saved).unwrap()), saved);
+
+        // The generated heir inherits the sourced King office. Even a new
+        // parliamentary leader does not acquire that independent office.
+        let jo = NationId::Jordan;
+        seat_office(&mut w, jo, &Succession::Death);
+        let king = crate::blocs::leader(&w, jo).unwrap();
+        assert_eq!(king.office, "King");
+        state_mut(&mut w, jo).unwrap().awaiting_first_election = true;
+        let other = polity_in(&w, jo).unwrap().parties.iter()
+            .find(|p| Some(p.id) != state(&w, jo).unwrap().leader()).unwrap().id.to_string();
+        seat_office(&mut w, jo, &Succession::Election { leader: other });
+        let after = crate::blocs::leader(&w, jo).unwrap();
+        assert_eq!((after.described, after.office, after.pillar), (king.described, king.office, king.pillar));
+    }
+
+    #[test]
+    fn generated_party_regimes_keep_their_role_through_succession_and_then_yield_to_a_ballot() {
+        use crate::data::Tie;
+        for how in [Succession::Coup { pillar: Pillar::Party }, Succession::Death, Succession::Programme] {
+            let id = NationId::SaoTome;
+            let mut w = world_1990(roads_rules(7));
+            seat_office(&mut w, id, &Succession::Coup { pillar: Pillar::Party });
+            seat_office(&mut w, id, &how);
+            let ruler = crate::blocs::leader(&w, id).unwrap();
+            assert_eq!(ruler.office, "head of state", "generic regime after {:?}", how);
+            assert_eq!(ruler.pillar, Some(Pillar::Party));
+            assert_ne!(ruler.described.as_deref(), Some("the ruling house"));
+            w = crate::load(&crate::save(&w)).unwrap();
+            w.nation_mut(id).authoritarianism = 0.50;
+            schedule_first_elections(&mut w, id, 6);
+            let interim = state(&w, id).unwrap().leader().unwrap().to_string();
+            let deadline = state(&w, id).unwrap().next_election;
+            let g = state_mut(&mut w, id).unwrap();
+            let others = g.support.len() - 1;
+            for (party, share) in &mut g.support { *share = if *party == interim { 0.90 } else { 0.10 / others as f64 }; }
+            for (_, loyalty) in &mut g.pillars { *loyalty = 0.85; }
+            (w.year, w.month) = deadline;
+            hold_election(&mut w, id);
+            assert_eq!(state(&w, id).unwrap().leader(), Some(interim.as_str()));
+            assert_eq!(crate::blocs::leader_row(&w, id).unwrap().tie_now(), Some(Tie::Party(interim)), "handover after {:?}", how);
+            let saved = crate::save(&w);
+            assert_eq!(crate::save(&crate::load(&saved).unwrap()), saved);
+
+            // The same events in the actual sourced monarchy still seat its
+            // named heir once, then the ruling house, retaining the King role.
+            let jo = NationId::Jordan;
+            let mut crown = world_1990(roads_rules(7));
+            seat_office(&mut crown, jo, &how);
+            let heir = crate::blocs::leader(&crown, jo).unwrap();
+            assert_eq!(heir.office, "King");
+            assert_eq!(heir.described.as_deref(), Some("Hassan bin Talal"));
+            assert!(heir.heir.is_none());
+            seat_office(&mut crown, jo, &how);
+            assert_eq!(crate::blocs::leader(&crown, jo).unwrap().described.as_deref(), Some("the ruling house"));
+
+            // A historical heir retained as provenance after an actual coup
+            // cannot silently restore the deposed crown by changing programme.
+            let mut junta = world_1990(roads_rules(7));
+            seat_office(&mut junta, jo, &Succession::Coup { pillar: Pillar::Army });
+            seat_office(&mut junta, jo, &Succession::Coup { pillar: Pillar::Party });
+            assert!(crate::blocs::leader_row(&junta, jo).unwrap().heir.is_some());
+            seat_office(&mut junta, jo, &how);
+            let replacement = crate::blocs::leader(&junta, jo).unwrap();
+            assert_eq!(replacement.office, "head of state");
+            assert_ne!(replacement.described.as_deref(), Some("Hassan bin Talal"));
+        }
+        let mut off = w1990();
+        let saved = crate::save(&off);
+        seat_office(&mut off, NationId::SaoTome, &Succession::Coup { pillar: Pillar::Party });
+        seat_office(&mut off, NationId::SaoTome, &Succession::Programme);
+        assert_eq!(crate::save(&off), saved);
+    }
+
+    #[test]
+    fn sourced_army_presence_keeps_funded_and_civilian_control_guards() {
+        for id in crate::army_institutions::opening_institutions().iter().map(|r| r.nation) {
+            let mut w = world_1990(roads_rules(7));
+            let n = w.nation_mut(id);
+            n.mil_spend_gdp = 0.20;
+            n.growth_last = 0.04;
+            n.inflation = 0.02;
+            n.stability = 85.0;
+            n.war_exhaustion = 0.0;
+            assert_eq!(army_civilian_confidence_penalty(&w, id), 0.0);
+            assert!(pillar_targets(&w, id, &[Pillar::Army])[0].1 >= 0.80);
+            for _ in 0..48 {
+                state_mut(&mut w, id).unwrap().months_in_office += 1;
+                electoral_army_tick(&mut w, id);
+                assert!(!maybe_electoral_coup(&mut w, id), "funded and quiet {:?}", id);
+            }
+            assert!(state(&w, id).unwrap().loyalty(Pillar::Army) > 0.80);
+            // Presence permits the ordinary route under real hostile conditions,
+            // but robust civilian control and a currently loyal service still
+            // close it. No nation-specific trigger or special loyalty is added.
+            w.nation_mut(id).stability = 0.0;
+            w.nation_mut(id).inflation = 1.0;
+            let g = state_mut(&mut w, id).unwrap();
+            g.coup_pressure = 1.5;
+            g.pillars.iter_mut().find(|(p, _)| *p == Pillar::Army).unwrap().1 = 0.85;
+            assert!(!maybe_electoral_coup(&mut w, id), "loyal Army resists the crisis trigger");
+            state_mut(&mut w, id).unwrap().pillars.iter_mut().find(|(p, _)| *p == Pillar::Army).unwrap().1 = 0.10;
+            w.nation_mut(id).authoritarianism = 0.20;
+            assert_eq!(army_civilian_confidence_penalty(&w, id), 0.0, "strong civilian control adds no political disloyalty");
+            assert!(pillar_targets(&w, id, &[Pillar::Army])[0].1 >= 0.80);
+            w.nation_mut(id).authoritarianism = 0.45;
+            assert!(maybe_electoral_coup(&mut w, id), "sourced institution participates in the ordinary hostile-Army route");
+            assert!(w.headlines.iter().any(|h| h.contains(&crate::army_institutions::institution(id).unwrap().name)));
+        }
+    }
+
+    #[test]
+    fn an_annulled_first_ballot_has_no_elected_mandate_or_pending_deadline() {
+        let id = NationId::Algeria;
+        let mut w = world_1990(roads_rules(7));
+        w.nation_mut(id).stability = 10.0;
+        w.nation_mut(id).authoritarianism = 0.55;
+        let g = state_mut(&mut w, id).unwrap();
+        g.awaiting_first_election = true;
+        g.elected = false;
+        let others = g.support.len() - 1;
+        for (party, share) in &mut g.support { *share = if party == "dz_fis" { 0.75 } else { 0.25 / others as f64 }; }
+        g.pillars.iter_mut().find(|(p, _)| *p == Pillar::Army).unwrap().1 = 0.20;
+        hold_election(&mut w, id);
+        let g = state(&w, id).unwrap();
+        assert!(!g.elected && !g.awaiting_first_election);
+        assert!(g.vote_anchor.is_none(), "an annulled ballot cannot replace constituency evidence");
+        assert_eq!(g.next_election, (0, 0));
+        assert!(g.banned.iter().any(|p| p == "dz_fis"));
+        assert_eq!(crate::blocs::leader_row(&w, id).unwrap().tie_now(), Some(crate::data::Tie::Pillar(Pillar::Army)));
+        assert_eq!(crate::blocs::ruling_bloc(&w, id), Some(Bloc::Nationalist));
+    }
+
+    #[test]
+    fn pending_ballot_metadata_is_absent_for_old_saves_and_inert_with_the_lens_off() {
+        let mut off = w1990();
+        let saved = crate::save(&off);
+        assert!(!saved.contains("awaiting_first_election"));
+        let loaded = crate::load(&saved).unwrap();
+        assert!(loaded.governments.states.iter().all(|g| !g.awaiting_first_election));
+        assert_eq!(crate::save(&loaded), saved);
+        let id = NationId::Indonesia;
+        state_mut(&mut off, id).unwrap().elected = true;
+        off.nation_mut(id).authoritarianism = 0.30;
+        schedule_first_elections(&mut off, id, 18);
+        assert!(state(&off, id).unwrap().elected, "retain the off-path legacy field semantics");
+        assert!(!state(&off, id).unwrap().awaiting_first_election);
+        assert!(off.leadership.is_none());
+    }
+
+    #[test]
+    fn the_current_party_apparatus_cannot_resurrect_a_defeated_historical_programme() {
+        let id = NationId::Afghanistan;
+        let mut w = world_1990(roads_rules(7));
+        w.nation_mut(id).authoritarianism = 0.85;
+        let g = state_mut(&mut w, id).unwrap();
+        g.regime_bloc = Some(Bloc::Islamist);
+        g.movements = vec![
+            (Bloc::Western, 0.002), (Bloc::Communist, 0.60), (Bloc::Nationalist, 0.10),
+            (Bloc::Islamist, 0.20), (Bloc::NonAligned, 0.098),
+        ];
+        g.months_in_office = 48;
+        g.coup_pressure = 1.2;
+        for (p, loyalty) in &mut g.pillars { *loyalty = if *p == Pillar::Party { 0.10 } else { 0.80 }; }
+        assert!(crate::blocs::bloc_can_win(&w, id, Bloc::Communist),
+            "the deposed party remains an actual political organisation");
+        assert_eq!(regime_coup_bloc(&w, id, Pillar::Party), Some(Bloc::Islamist));
+        maybe_coup(&mut w, id);
+        let g = state(&w, id).unwrap();
+        assert_eq!(g.regime_bloc, Some(Bloc::Islamist));
+        assert_eq!(g.months_in_office, 0);
+        assert_eq!(g.coup_pressure, 0.0);
+        assert_eq!(g.loyalty(Pillar::Party), 0.90);
+        assert!(w.headlines.iter().any(|h| h.contains("COUP IN AFGHANISTAN: the Islamist governing organisation")),
+            "the coup and its actual current organisation remain visible");
+    }
+
+    #[test]
+    fn foreign_backing_alone_cannot_change_an_internal_coups_programme() {
+        let id = NationId::China;
+        let mut w = world_1990(roads_rules(7));
+        let g = state_mut(&mut w, id).unwrap();
+        g.movements = vec![
+            (Bloc::Western, 0.10), (Bloc::Communist, 0.40),
+            (Bloc::Nationalist, 0.30), (Bloc::Islamist, 0.002), (Bloc::NonAligned, 0.198),
+        ];
+        for _ in 0..4 { crate::statecraft::add_backing(&mut w, NationId::USA, id, Bloc::Nationalist); }
+        assert!(crate::blocs::influence(&w, id)[Bloc::Nationalist as usize].1 > 0.40);
+        assert_eq!(regime_coup_bloc(&w, id, Pillar::Army), Some(Bloc::Communist));
+    }
+
+    #[test]
+    fn ai_army_funding_is_priced_affordable_and_does_not_override_owned_budgets() {
+        let id = NationId::Pakistan;
+        let mut w = world_1990(roads_rules(7));
+        {
+            let n = w.nation_mut(id);
+            n.gdp = 100.0;
+            n.mil_spend_gdp = 0.001;
+            n.tax_rate = 0.50;
+            n.state_invest_gdp = 0.03;
+            n.political_capital = 100.0;
+        }
+        state_mut(&mut w, id).unwrap().pillars.iter_mut()
+            .find(|(p, _)| *p == Pillar::Army).unwrap().1 = 0.20;
+        let floor = ai_army_funding_floor(&w, id).unwrap();
+        let command = crate::Command::SetMilSpend { nation: id, share: floor };
+        let price = crate::price_of(&w, &command).unwrap();
+        assert!(floor > 0.001 && price > 0.0);
+        let mut insolvent = w.clone();
+        insolvent.nation_mut(id).tax_rate = 0.001;
+        insolvent.nation_mut(id).oil_mbd = 0.0;
+        assert_eq!(ai_army_funding_floor(&insolvent, id), Some(0.0),
+            "a deficit is not authorization for additional military spending");
+        ai_government(&mut w);
+        assert_eq!(w.nation(id).mil_spend_gdp, floor);
+        assert!((w.nation(id).political_capital - (100.0 - price)).abs() < 1e-9);
+        let terms = crate::economy::growth_terms(w.nation(id), w.nation(id).state_invest_gdp,
+            w.nation(id).interest_rate, &crate::economy::Conditions::of(&w, id));
+        assert!(crate::economy::Fiscal::of(w.nation(id), &terms).balance_gdp >= -1e-12);
+        let after = w.nation(id).political_capital;
+        ai_government(&mut w);
+        assert_eq!(w.nation(id).political_capital, after, "no repeated appropriation charge");
+        w.player = Some(id);
+        assert_eq!(ai_army_funding_floor(&w, id), None);
+        w.player = None;
+        // Opening the fiscal books transfers budget authority to the fiscal
+        // plan/program subsystem even while the nation remains AI-controlled.
+        let allocation = w.nation(id).budget_for(w.year).allocations;
+        crate::apply_command(&mut w, &crate::Command::SetAnnualBudget {
+            nation: id, fiscal_year: 1990, allocations: allocation,
+        }).unwrap();
+        assert!(w.nation(id).on_the_books());
+        assert_eq!(ai_army_funding_floor(&w, id), None);
+    }
+
+    #[test]
+    fn ai_army_appropriation_targets_actual_loyalty_without_spending_past_useful_resources() {
+        let id = NationId::Pakistan;
+        let mut w = world_1990(roads_rules(7));
+        // This existing causal fixture explicitly exercises the unknown-source
+        // authoritarianism proxy; sourced leverage has separate controls below.
+        state_mut(&mut w, id).unwrap().army_authority = None;
+        {
+            let n = w.nation_mut(id);
+            n.gdp = 100.0;
+            n.tax_rate = 0.50;
+            n.oil_mbd = 0.0;
+            n.mil_spend_gdp = 0.001;
+            n.state_invest_gdp = 0.03;
+            n.political_capital = 100.0;
+            // A moderate-autonomy crisis can be funded to the desired margin
+            // throughout the declared confidence sensitivity range. The old
+            // .55 fixture becomes politically unreachable at weight .90;
+            // separate controls below require the AI to respect that limit.
+            n.authoritarianism = 0.35;
+            n.stability = 5.0;
+            n.inflation = 0.30;
+            n.growth_last = -0.10;
+            n.war_exhaustion = 0.10;
+        }
+        let party = state(&w, id).unwrap().leader().unwrap().to_string();
+        state_mut(&mut w, id).unwrap().political_record = Some(PoliticalRecord {
+            government: format!("party:{party}"), months: 24.0, performance: -0.50,
+        });
+        let fiscal = |world: &WorldState| {
+            let n = world.nation(id);
+            let terms = crate::economy::growth_terms(n, n.state_invest_gdp, n.interest_rate,
+                &crate::economy::Conditions::of(world, id));
+            crate::economy::Fiscal::of(n, &terms)
+        };
+        let penalty = army_civilian_confidence_penalty(&w, id);
+        assert!(penalty > 0.15, "fixture needs a real established civilian crisis");
+        assert!(0.85 - w.nation(id).war_exhaustion * 0.45 - penalty > 0.40,
+            "positive inversion fixture must be reachable within useful resources");
+        let before_target = pillar_targets(&w, id, &[Pillar::Army])[0].1;
+        let floor = ai_army_funding_floor(&w, id).unwrap();
+        let available = fiscal(&w).balance_gdp + w.nation(id).mil_spend_gdp;
+        assert!(floor > w.nation(id).mil_spend_gdp && floor < available);
+        let saved = crate::save(&w);
+        let rng = w.rng.state;
+        assert_eq!(ai_army_funding_floor(&w, id), Some(floor));
+        assert_eq!(crate::save(&w), saved, "reading a funding need is pure");
+        assert_eq!(w.rng.state, rng);
+        assert_eq!(ai_army_funding_floor(&crate::load(&saved).unwrap(), id), Some(floor));
+
+        let mut tight = w.clone();
+        tight.nation_mut(id).tax_rate -= available - floor * 0.5;
+        let tight_cap = fiscal(&tight).balance_gdp + tight.nation(id).mil_spend_gdp;
+        assert!(tight_cap > 0.001 && tight_cap < floor);
+        let tight_floor = ai_army_funding_floor(&tight, id).unwrap();
+        assert!((tight_floor - tight_cap).abs() < 1e-12);
+        let civilian = tight.nation(id).state_invest_gdp;
+        crate::apply_command(&mut tight, &crate::Command::SetMilSpend { nation: id, share: tight_floor }).unwrap();
+        assert!(fiscal(&tight).balance_gdp >= -1e-12, "no new borrowing buys the target");
+        assert_eq!(tight.nation(id).state_invest_gdp, civilian);
+        assert!(pillar_targets(&tight, id, &[Pillar::Army])[0].1 < 0.40,
+            "an unaffordable political target remains below the desired margin");
+
+        let command = crate::Command::SetMilSpend { nation: id, share: floor };
+        let price = crate::price_of(&w, &command).unwrap();
+        let loyalty = state(&w, id).unwrap().loyalty(Pillar::Army);
+        crate::apply_command(&mut w, &command).unwrap();
+        assert!((w.nation(id).political_capital - (100.0 - price)).abs() < 1e-9);
+        assert_eq!(state(&w, id).unwrap().loyalty(Pillar::Army), loyalty,
+            "appropriation does not grant immediate loyalty");
+        assert!(fiscal(&w).balance_gdp >= -1e-12);
+        let actual = pillar_targets(&w, id, &[Pillar::Army])[0].1;
+        assert!(actual > before_target && (actual - 0.40).abs() < 1e-12,
+            "the paid appropriation must invert the real target, got {actual}");
+
+        // Political opposition alone can exceed what provisioning can repair.
+        // No war loss is needed, and throwing extra money beyond a fully
+        // equipped force cannot buy away its independent political grievance.
+        let mut political = w.clone();
+        political.nation_mut(id).authoritarianism = 0.59;
+        political.nation_mut(id).war_exhaustion = 0.0;
+        state_mut(&mut political, id).unwrap().political_record.as_mut().unwrap().performance = -1.0;
+        assert!(is_electoral(&political, id));
+        assert!(army_civilian_confidence_penalty(&political, id) > 0.50,
+            "even the full material target must remain below the coup line");
+        let n = political.nation(id);
+        let full_resources = 2.0 * army_operating_allowance(n.gdp * 1000.0 / n.population);
+        let useful_share = full_resources * army_personnel_assessment(&political, id).unwrap().members
+            / (n.gdp * 1_000_000_000.0);
+        let political_floor = ai_army_funding_floor(&political, id).unwrap();
+        assert!((political_floor - useful_share).abs() < 1e-12);
+        assert!(political_floor < fiscal(&political).balance_gdp + n.mil_spend_gdp,
+            "this control is politically limited, not cash limited");
+        crate::apply_command(&mut political, &crate::Command::SetMilSpend { nation: id, share: political_floor }).unwrap();
+        assert!(pillar_targets(&political, id, &[Pillar::Army])[0].1 < 0.35);
+        assert!((army_resources_per_member(&political, id).unwrap() - full_resources).abs() < 1e-9);
+        assert_eq!(ai_army_funding_floor(&political, id), Some(political_floor));
+
+        let mut exhausted = w.clone();
+        exhausted.nation_mut(id).war_exhaustion = 1.0;
+        let n = exhausted.nation(id);
+        let full_basket = 2.0 * army_operating_allowance(n.gdp * 1000.0 / n.population);
+        let full_share = full_basket * army_personnel_assessment(&exhausted, id).unwrap().members
+            / (n.gdp * 1_000_000_000.0);
+        assert!(full_share < fiscal(&exhausted).balance_gdp + n.mil_spend_gdp);
+        let capped = ai_army_funding_floor(&exhausted, id).unwrap();
+        assert!((capped - full_share).abs() < 1e-12);
+        crate::apply_command(&mut exhausted, &crate::Command::SetMilSpend { nation: id, share: capped }).unwrap();
+        let capped_target = pillar_targets(&exhausted, id, &[Pillar::Army])[0].1;
+        assert!(capped_target < 0.35, "money cannot erase overwhelming war and political losses");
+        assert!((army_resources_per_member(&exhausted, id).unwrap() - full_basket).abs() < 1e-9);
+        assert_eq!(ai_army_funding_floor(&exhausted, id), Some(capped),
+            "the AI does not chase an unreachable margin past the full basket");
+        exhausted.rules.ideology_blocs = false;
+        assert_eq!(ai_army_funding_floor(&exhausted, id), None);
+    }
+
+    #[test]
+    fn ai_can_fund_a_midyear_army_crisis_once_without_free_loyalty_or_tiny_churn() {
+        let id = NationId::Pakistan;
+        let mut base = world_1990(roads_rules(7));
+        base.month = 7;
+        {
+            let n = base.nation_mut(id);
+            n.gdp = 100.0;
+            n.tax_rate = 0.50;
+            n.oil_mbd = 0.0;
+            n.mil_spend_gdp = 0.001;
+            n.state_invest_gdp = 0.03;
+            n.political_capital = 100.0;
+            n.authoritarianism = 0.55;
+            n.stability = 5.0;
+            n.inflation = 0.30;
+            n.growth_last = -0.10;
+        }
+        let party = state(&base, id).unwrap().leader().unwrap().to_string();
+        let g = state_mut(&mut base, id).unwrap();
+        g.political_record = Some(PoliticalRecord {
+            government: format!("party:{party}"), months: 24.0, performance: -0.50,
+        });
+        g.pillars.iter_mut().find(|(p, _)| *p == Pillar::Army).unwrap().1 = 0.32;
+        g.coup_pressure = 0.80;
+        let floor = ai_army_funding_floor(&base, id).unwrap();
+        let command = crate::Command::SetMilSpend { nation: id, share: floor };
+        let price = crate::price_of(&base, &command).unwrap();
+        assert!(price > 0.0 && floor >= base.nation(id).mil_spend_gdp + 0.001);
+        let mut monthly = base.clone();
+        let rng = monthly.rng.clone();
+        ai_government(&mut monthly);
+        assert_eq!(monthly.nation(id).mil_spend_gdp, floor, "real July crisis need not wait for January");
+        assert!((monthly.nation(id).political_capital - (100.0 - price)).abs() < 1e-9);
+        assert_eq!(state(&monthly, id).unwrap().loyalty(Pillar::Army), 0.32);
+        assert_eq!(state(&monthly, id).unwrap().coup_pressure, 0.80, "no pressure reset buys safety");
+        assert_eq!(monthly.rng, rng);
+        let paid_capital = monthly.nation(id).political_capital;
+        for month in [7, 8, 9] {
+            monthly.month = month;
+            ai_government(&mut monthly);
+            assert_eq!(monthly.nation(id).political_capital, paid_capital, "same adequate allocation is not rebought");
+        }
+        let saved = crate::save(&monthly);
+        let mut loaded = crate::load(&saved).unwrap();
+        ai_government(&mut loaded);
+        assert_eq!(loaded.nation(id).mil_spend_gdp, floor);
+        assert_eq!(loaded.nation(id).political_capital, paid_capital);
+
+        let mut daily = base.clone();
+        daily.rules.daily_simulation = true;
+        let days = crate::world::days_in_month(daily.year, daily.month);
+        for day in 1..days {
+            daily.day = day;
+            ai_government(&mut daily);
+            assert_eq!(daily.nation(id).mil_spend_gdp, 0.001, "daily play waits for the same month-end review");
+            assert_eq!(daily.nation(id).political_capital, 100.0);
+        }
+        daily.day = days;
+        ai_government(&mut daily);
+        assert_eq!(daily.nation(id).mil_spend_gdp, floor);
+        assert_eq!(daily.nation(id).political_capital, paid_capital);
+        ai_government(&mut daily);
+        assert_eq!(daily.nation(id).political_capital, paid_capital, "one paid adjustment, not thirty-one");
+
+        let mut tiny = base.clone();
+        tiny.nation_mut(id).mil_spend_gdp = floor - 0.0005;
+        ai_government(&mut tiny);
+        assert_eq!(tiny.nation(id).mil_spend_gdp, floor - 0.0005);
+        assert_eq!(tiny.nation(id).political_capital, 100.0, "existing spending hysteresis remains");
+        let mut quiet = base.clone();
+        state_mut(&mut quiet, id).unwrap().pillars.iter_mut()
+            .find(|(p, _)| *p == Pillar::Army).unwrap().1 = 0.45;
+        ai_government(&mut quiet);
+        assert_eq!(quiet.nation(id).mil_spend_gdp, 0.001, "no extra midyear review above the margin");
+        quiet.month = 1;
+        ai_government(&mut quiet);
+        assert_eq!(quiet.nation(id).mil_spend_gdp, floor, "the ordinary annual review remains available");
+        for control in 0..4 {
+            let mut blocked = base.clone();
+            match control {
+                0 => blocked.nation_mut(id).political_capital = 0.0,
+                1 => blocked.nation_mut(id).tax_rate = 0.001,
+                2 => blocked.player = Some(id),
+                _ => blocked.rules.ideology_blocs = false,
+            }
+            let capital = blocked.nation(id).political_capital;
+            ai_government(&mut blocked);
+            assert_eq!(blocked.nation(id).mil_spend_gdp, 0.001, "blocked control {control} cannot receive free funding");
+            assert_eq!(blocked.nation(id).political_capital, capital);
+        }
+    }
+
+    #[test]
+    fn party_discipline_needs_a_domestic_constituency_and_stays_legacy_when_off() {
+        let id = NationId::China;
+        let mut w = world_1990(roads_rules(7));
+        let strong = pillar_targets(&w, id, &[Pillar::Party])[0].1;
+        state_mut(&mut w, id).unwrap().movements[Bloc::Communist as usize].1 = 0.20;
+        let weak = pillar_targets(&w, id, &[Pillar::Party])[0].1;
+        assert!(strong > crate::blocs::ROUND_TABLE_LOYALTY);
+        assert!(weak < crate::blocs::ROUND_TABLE_LOYALTY);
+        crate::statecraft::add_backing(&mut w, NationId::USSR, id, Bloc::Communist);
+        assert_eq!(pillar_targets(&w, id, &[Pillar::Party])[0].1, weak);
+        w.rules.ideology_blocs = false;
+        let off_weak = pillar_targets(&w, id, &[Pillar::Party])[0].1;
+        state_mut(&mut w, id).unwrap().movements[Bloc::Communist as usize].1 = 0.80;
+        assert_eq!(pillar_targets(&w, id, &[Pillar::Party])[0].1, off_weak);
+    }
+
     /// R2 (Ridge's ruling, 2026-09-06), the Algerian shape: Algeria on the
     /// roads in January 1990 — the FIS leading the table at 0.542, the ANP
     /// a live pillar, authoritarianism 0.55, discontent 0.405 at the
@@ -11740,18 +15191,47 @@ mod tests {
         let sa_row = leader_row(&w, sa).unwrap();
         assert!(sa_row.name.is_none() && sa_row.tie.is_none() && sa_row.also.is_empty());
 
-        // Through the tick: Bush's ceiling, 1997-01-20, in its month.
+        // Through the real government tick: the transcribed 1997-01-20
+        // ceiling expires in its month, once. Do not require an incumbent to
+        // survive seven years of elections and mortality before testing the
+        // clock; an earlier lawful succession has already cleared its ceiling.
         let mut w = world_1990(on_rules(7));
-        let mut seated: Option<String> = None;
-        for _ in 0..120 {
-            let news = crate::tick_month(&mut w, &[]);
-            if let Some(h) = news.iter().find(|h| h.starts_with("United States is led by")) {
-                seated = Some(h.clone());
-                break;
-            }
+        let incumbent = leader(&w, us).unwrap();
+        assert_eq!(incumbent.must_leave_by.as_deref(), Some("1997-01-20"));
+        let incumbent_name = incumbent.name.clone();
+        let current_party = incumbent.party.clone().unwrap();
+        let current_office = incumbent.office.clone();
+        let description = format!("a new {} president", spec(us, &current_party).unwrap().name);
+        let event = format!("United States is led by {description}.");
+        state_mut(&mut w, us).unwrap().next_election = (1998, 1);
+        w.year = 1996;
+        w.month = 12;
+        w.headlines.clear();
+        tick(&mut w);
+        assert_eq!(leader(&w, us).unwrap().name, incumbent_name, "no early term expiry");
+        assert_eq!(leader(&w, us).unwrap().must_leave_by.as_deref(), Some("1997-01-20"));
+        assert!(!w.headlines.iter().any(|h| h.starts_with("United States is led by")));
+
+        w.year = 1997;
+        w.month = 1;
+        w.headlines.clear();
+        tick(&mut w);
+        let events: Vec<_> = w.headlines.iter().filter(|h| h.starts_with("United States is led by")).collect();
+        assert_eq!(events, vec![&event], "one seating at the deadline month");
+        let successor = leader(&w, us).unwrap();
+        assert_eq!(successor.described.as_deref(), Some(description.as_str()));
+        assert_eq!(successor.party.as_deref(), Some(current_party.as_str()));
+        assert_eq!(successor.office, current_office);
+        assert_eq!(successor.since.as_deref(), Some("1997-01-01"));
+        assert!(successor.name.is_none() && successor.must_leave_by.is_none());
+        for month in [1, 2] {
+            w.month = month;
+            w.headlines.clear();
+            tick(&mut w);
+            assert!(!w.headlines.iter().any(|h| h.starts_with("United States is led by")),
+                "an expired term cannot seat another successor");
+            assert_eq!(leader(&w, us).unwrap().since.as_deref(), Some("1997-01-01"));
         }
-        assert_eq!(seated.as_deref(), Some("United States is led by a new Republican Party president."));
-        assert_eq!(leader(&w, us).unwrap().since.as_deref(), Some("1997-01-01"));
 
         // Forty years on the roads: never a name.
         let mut w = world_1990(roads_rules(7));
@@ -11829,9 +15309,10 @@ mod tests {
     /// Repair (2026-09-06, the design skeptic's second departure): the
     /// regime's own coup is `maybe_coup`'s block verbatim under the lens
     /// alone — China's PLA removing the Central Committee leaves the regime
-    /// Communist, the colour it had — and writes the mover's colour only
-    /// under the roads, where the deposed colour (0.60 of the movements, the
-    /// seed) is latched closed the month it becomes a non-ruling movement,
+    /// Communist, the colour it had. The 2026-09-22 repair keeps that programme
+    /// on the roads too unless a stronger organized domestic alternative
+    /// backs the mover. A deposed movement already at 0.35 is latched closed
+    /// the month it becomes a non-ruling movement,
     /// so the next month prints no "passes a third". Watched red twice: with
     /// the colour written under `ideology_blocs`, the lens-only regime read
     /// Nationalist; with the latch line removed from `regime_break`, the
@@ -11859,10 +15340,29 @@ mod tests {
         assert_eq!(crate::blocs::ruling_bloc(&lens, cn), Some(Bloc::Communist));
         assert_eq!(g.months_in_office, 0);
         assert!(g.pillars.iter().any(|(p, v)| *p == Pillar::Army && *v == 0.90));
-        // The roads: the PLA rules in its own colour, the deposed Communist
-        // movement latched, and no surge headline the next month.
+        // An internal Army coup keeps the prevailing programme even on the
+        // roads. Changing the officeholder is a real coup, not a free change
+        // of the country's political organization or public support.
         let mut roads = world_1990(roads_rules(7));
         stage(&mut roads);
+        let before = state(&roads, cn).unwrap().movements.clone();
+        maybe_coup(&mut roads, cn);
+        assert_eq!(state(&roads, cn).unwrap().regime_bloc, Some(Bloc::Communist));
+        assert_eq!(state(&roads, cn).unwrap().movements, before);
+        assert!(roads.headlines.iter().any(|h| h.starts_with("COUP IN CHINA")));
+        assert_eq!(state(&roads, cn).unwrap().months_in_office, 0);
+
+        // A genuinely stronger organized alternative can change the regime's
+        // programme. Keep the deposed 35% movement latched at the transition.
+        let mut roads = world_1990(roads_rules(7));
+        stage(&mut roads);
+        state_mut(&mut roads, cn).unwrap().movements = vec![
+            (Bloc::Western, 0.10), (Bloc::Communist, 0.35),
+            (Bloc::Nationalist, 0.45), (Bloc::Islamist, 0.002), (Bloc::NonAligned, 0.098),
+        ];
+        assert_eq!(regime_coup_bloc(&roads, cn, Pillar::Army), Some(Bloc::Communist),
+            "the army's generic affinity alone did not create an independent political organisation");
+        state_mut(&mut roads, cn).unwrap().established_movements.push(Bloc::Nationalist);
         maybe_coup(&mut roads, cn);
         let g = state(&roads, cn).unwrap();
         assert_eq!(g.regime_bloc, Some(Bloc::Nationalist));

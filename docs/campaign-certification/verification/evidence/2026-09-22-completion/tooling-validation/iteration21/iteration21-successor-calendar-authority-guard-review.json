@@ -1,0 +1,41 @@
+{
+  "scope": "Read-only independent iteration21 successor-calendar code and test review; no Cargo or runtime mutation.",
+  "source": {
+    "path": "spheres-sim/src/government.rs",
+    "sha256": "3254020ea00ec763eb95dabe0c03b79e33b861d4144d6de7307627c03de4e51c",
+    "bytes": 833242,
+    "crlf_pairs": 0,
+    "replacement_characters": 0,
+    "utf8_cp1252_e2_markers": 0
+  },
+  "production_finding": "No remaining actionable issue after the parent identified and author fixed an explicit-authority omission in the original predicate. Date-only scheduling now additionally requires no named Office or a current Party tie. Explicit Pillar/court and unknown Office retain the old seam even without stored regime metadata.",
+  "reviewed_invariants": [
+    "No invented historical or completed modeled ballot, unrestricted mandate, vote anchor or named office",
+    "Preserves observed modeled-party record and office age, pressure, support, coalition and pillars while scheduling",
+    "Real regime openings and explicitly pending old saves retain interim protections and existing authority",
+    "Off path remains the original scheduling branch",
+    "Daily and legacy-monthly dates and fractional observed accountability preserved",
+    "Existing first-free-ballot, annulment, military/court handover and snap-grace helpers unchanged"
+  ],
+  "test_issue_corrected": {
+    "test": "missing_calendars_do_not_erase_real_regime_interims_or_change_the_lens_off_path",
+    "issue": "Jordan starts electoral at authoritarianism0.55 so no initial regime_bloc exists. Original assertion incorrectly assumed a court regime.",
+    "fix_verified": "Author now explicitly stages authoritarianism0.75 and seed_blocs before reopening; original historical opening is unchanged."
+  },
+  "new_tests_reviewed": [
+    "scheduling_a_new_electoral_successor_preserves_its_real_governing_record",
+    "a_successor_calendar_keeps_the_eighteen_month_deadline_without_claiming_a_ballot",
+    "successor_calendar_dates_and_accountability_survive_daily_and_legacy_saves",
+    "missing_calendars_do_not_erase_real_regime_interims_or_change_the_lens_off_path"
+  ],
+  "native_tests_executed_by_reviewer": false,
+  "calibration_outcomes_claimed": false,
+  "metadata_regenerated": false,
+  "supersedes": "iteration21-successor-calendar-independent-review.json",
+  "additional_issue_corrected": {
+    "identified_by": "parent reviewer",
+    "issue": "Original regime-none predicate also matched opening Jordan at0.55 with King Hussein tied to the court pillar; a missing calendar alone cannot establish party executive authority.",
+    "fix_verified": "Current party_authority guard checks leader_row and tie_now; explicit Pillar or unknown current tie does not qualify. Regression stages the real opening Jordan with missing calendar and explicit Army takeover with deliberately absent old regime metadata, preserving each authority and pending lifecycle."
+  },
+  "review_limit": "Static independent review only. Native execution and overall political gate outcomes remain parent-owned. The previous review missed the explicit-authority case and is superseded by this receipt."
+}

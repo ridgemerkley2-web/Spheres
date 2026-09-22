@@ -1,0 +1,13 @@
+test_existing_art_covers_only_its_reviewed_era (__main__.self_test.<locals>.Checks.test_existing_art_covers_only_its_reviewed_era) ... ok
+test_exported_future_records_are_complete_templates_not_counted_as_art (__main__.self_test.<locals>.Checks.test_exported_future_records_are_complete_templates_not_counted_as_art) ... ok
+test_future_is_separate_and_queue_does_not_count_as_completed (__main__.self_test.<locals>.Checks.test_future_is_separate_and_queue_does_not_count_as_completed) ... ok
+test_global_inventory_excludes_no_nations_or_parties (__main__.self_test.<locals>.Checks.test_global_inventory_excludes_no_nations_or_parties) ... ok
+test_jobs_use_only_required_windows_and_never_future_history (__main__.self_test.<locals>.Checks.test_jobs_use_only_required_windows_and_never_future_history) ... ok
+test_small_coalition_components_stay_distinct (__main__.self_test.<locals>.Checks.test_small_coalition_components_stay_distinct) ... ok
+test_terms_clip_to_life_and_cutoff (__main__.self_test.<locals>.Checks.test_terms_clip_to_life_and_cutoff) ... ok
+test_uncertain_boundaries_do_not_invent_exact_terms (__main__.self_test.<locals>.Checks.test_uncertain_boundaries_do_not_invent_exact_terms) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.879s
+
+OK

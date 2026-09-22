@@ -1,0 +1,52 @@
+{
+  "iteration": 18,
+  "confidence": 0.65,
+  "negative_performance_rate": 0.024,
+  "source_manifest": "iteration-18-source-input-manifest.json",
+  "changes": "Sourced Suriname opening assembly authority, separate from simulated elected/unrestricted flags; unsourced successor force-reference date uses model clock, preserving exact legacy day-step/month-step equality.",
+  "primary": {
+    "focused_passed": 99,
+    "focused_total": 99,
+    "outcome_gates_passed": 9,
+    "outcome_gates_total": 10,
+    "remaining_gate": "A1 top-three coup concentration",
+    "A1": {
+      "median": 7,
+      "top3": 0.69
+    },
+    "A2": "8/12; Algeria0/12; annul12/12",
+    "A3": "0/20",
+    "A4": 18.5,
+    "A5": "7/12",
+    "A6": "zero12/12 at420months",
+    "A7": 8.542,
+    "A8": "all40 retain8",
+    "A9": "186/186",
+    "A10": 0.35
+  },
+  "development": {
+    "seeds": "0..199",
+    "months": 252,
+    "A1": {
+      "median": 7,
+      "top3": 0.67
+    },
+    "A2": "125/200=.625",
+    "A3": "5/200=.025",
+    "A4": 19,
+    "A5": "112/200=.560",
+    "A5_nations": {
+      "Bulgaria": 200,
+      "Poland": 200,
+      "Russia": 112
+    },
+    "A6": "zero200/200 at252months only",
+    "A7": 8.29,
+    "A8": "all200 retain8",
+    "A9": "3012/3012",
+    "A10": 0.35,
+    "runtime_seconds": 203.62
+  },
+  "interpretation": "All focused invariants pass, including original whole-world political clock test. A1 still fails on original and development readings. Correct historical mandate reduces overall coups while leaving concentration unresolved. Diagnostic completion is not calibration acceptance or whole-workspace certification.",
+  "independent_cohort": "Untouched1000-series; no acceptance/sample-size changes."
+}

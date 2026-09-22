@@ -1,0 +1,48 @@
+{
+  "scope": "Exact extracted new funding function, real private pillar_targets, state_mut and test linked against iteration9 engine. This is a focused external rustc test, not the pending combined Cargo/workspace test. No repository production mutation or RNG intervention.",
+  "base_library": {
+    "path": "../integration-target/release/deps/libspheres_sim-de80fa3e4f034d8c.rlib",
+    "bytes": 92309186,
+    "sha256": "6923e7869baeb80c6862dae5eee5d95dbb4a697f540145e671e4df4f5a38e056"
+  },
+  "sources": [
+    {
+      "path": "../evidence/political-calibration-20260922/iteration-9-army-mandates.rs",
+      "bytes": 5148,
+      "sha256": "b9b04aba1d53b839af642584e60b14617264a51ccca6e3fd80f9982623328689"
+    },
+    {
+      "path": "../evidence/political-calibration-20260922/iteration-9-army-mandates.log",
+      "bytes": 328597,
+      "sha256": "b262263c03a543909ab439684bd3b194a026e711a7f232d8eaee662a6884b54c"
+    },
+    {
+      "path": "../evidence/political-calibration-20260922/iteration-9-funding-inverse-focused.rs",
+      "bytes": 12203,
+      "sha256": "57693d89d4faa03821ba59744be9c86fa0d265b0a55b3abe2e0be91e55f85c78"
+    },
+    {
+      "path": "../evidence/political-calibration-20260922/iteration-9-funding-inverse-mutant.rs",
+      "bytes": 12108,
+      "sha256": "70cd78b4fab057cb74a0fdf20bc5f9c26efc4002d6271700d4b26b5ee4a34771"
+    }
+  ],
+  "test": "ai_army_appropriation_targets_actual_loyalty_without_spending_past_useful_resources",
+  "current": {
+    "exit_code": 0,
+    "passed": 1,
+    "failed": 0,
+    "ignored": 0
+  },
+  "old_inverse_mutation": {
+    "exit_code": 101,
+    "passed": 0,
+    "failed": 1,
+    "ignored": 0,
+    "assertion": "the paid appropriation must invert the real target, got 0"
+  },
+  "commands": [
+    "rustc --edition=2021 -O --test <focused.rs> --extern spheres_sim=../integration-target/release/deps/libspheres_sim-de80fa3e4f034d8c.rlib -L dependency=../integration-target/release/deps -o <focused.exe>",
+    "<focused.exe> --nocapture"
+  ]
+}

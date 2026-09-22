@@ -478,9 +478,13 @@ pub fn ai_stratagems(w: &mut WorldState) {
         .collect();
     for id in actors.iter().copied() {
         let held = w.nation(id).political_capital;
-        // Keep a reserve. A government that spends to the floor cannot answer
-        // the next crisis, and the crisis is what stratagems are for.
-        if held < 55.0 {
+        let lever = crate::government::ai_lever(w, id);
+        // Routine cards keep their standing reserve. A legally available
+        // political lever already checks its own price: the 30-point round
+        // table must not be silently replaced by a 55-point dispatch gate.
+        // With the political layer off, ai_lever is None and this is exactly
+        // the previous card gate, including its random-draw behavior.
+        if held < 55.0 && lever.is_none() {
             continue;
         }
         let options: Vec<_> = available(w, id).into_iter().filter(|s|
@@ -496,7 +500,6 @@ pub fn ai_stratagems(w: &mut WorldState) {
         // it only in a month a government has a lever and no card (the same
         // finding as the sponsors' draw in `politics`). The lever comes
         // first because its conditions are the narrower crisis.
-        let lever = crate::government::ai_lever(w, id);
         if options.is_empty() && lever.is_none() {
             continue;
         }
@@ -537,5 +540,43 @@ pub fn tick(w: &mut WorldState) {
             w.nation_mut(id).nuclear = true;
             w.headline(format!("{} tests a nuclear device.", id.name()));
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::{government, init::world_1990, world::GameRules};
+
+    #[test]
+    fn an_affordable_round_table_reaches_the_real_ai_dispatcher() {
+        let id = NationId::Albania;
+        let mut w = world_1990(GameRules { ideology_blocs: true, seed: 7, ..Default::default() });
+        // Isolate this government's decision opportunities. No monthly
+        // standing recovery or other country's draw can pay the bill for it.
+        for n in &mut w.nations { n.alive = n.id == id; }
+        w.nation_mut(id).political_capital = government::ROUND_TABLE_PC;
+        assert!(!government::is_electoral(&w, id));
+        assert!(matches!(government::ai_lever(&w, id), Some(crate::Command::ConveneRoundTable { .. })));
+
+        let mut off = w.clone();
+        off.rules.ideology_blocs = false;
+        let before = crate::save(&off);
+        for _ in 0..200 { ai_stratagems(&mut off); }
+        assert_eq!(crate::save(&off), before, "disabled levers consume neither standing nor random draws");
+        let mut poor = w.clone();
+        poor.nation_mut(id).political_capital = government::ROUND_TABLE_PC - 1.0;
+        let before = crate::save(&poor);
+        for _ in 0..200 { ai_stratagems(&mut poor); }
+        assert_eq!(crate::save(&poor), before, "an unfunded lever never reaches the random draw");
+
+        let mut attempts = 0;
+        while !government::is_electoral(&w, id) && attempts < 1000 {
+            ai_stratagems(&mut w);
+            attempts += 1;
+        }
+        assert!(government::is_electoral(&w, id), "the real dispatch path never offered an affordable negotiation");
+        assert_eq!(w.nation(id).political_capital, 0.0);
+        assert_eq!(government::state(&w, id).unwrap().next_election, (1990, 7));
     }
 }

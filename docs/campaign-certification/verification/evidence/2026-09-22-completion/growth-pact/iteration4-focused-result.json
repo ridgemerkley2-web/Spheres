@@ -1,0 +1,25 @@
+{
+  "build": "iteration4 normal source, source mutations restored",
+  "test_executable_sha256": "9954451fa3668890859fda584d29527678a1af1fc7a96016789af4afe01dc484",
+  "lib_source_sha256": "3340e32e7b271b5b96fd017cf2864f536a4b2251dc316927bd8658aab44fcc77",
+  "tech_source_sha256": "d9c74f5d85b4752e4dc2f586f8164b8d588d91872d6399388c152602c30eb8b9",
+  "checks": [
+    {
+      "test": "tests::mature_economies_do_not_run_hot",
+      "exit_code": 0,
+      "log": "iteration4-mature_economies_do_not_run_hot.log"
+    },
+    {
+      "test": "tests::great_power_pacts_answer_real_defensive_obligations",
+      "exit_code": 0,
+      "log": "iteration4-great_power_pacts_answer_real_defensive_obligations.log"
+    },
+    {
+      "test": "tests::guarantees_are_usually_but_not_always_honoured",
+      "exit_code": 0,
+      "log": "iteration4-guarantees_are_usually_but_not_always_honoured.log"
+    }
+  ],
+  "passed": 3,
+  "failed": 0
+}

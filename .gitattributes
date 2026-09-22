@@ -52,3 +52,13 @@ tools/arsenal/vendor/model-viewer/model-viewer.min.js -text
 tools/arsenal/vendor/model-viewer/*LICENSE -text
 # Retain the submitted portrait prompt's recorded checksum on Windows checkout.
 tools/avatars/person-prompts/taufaahau-tupou-iv-cartoon-1990-v1.txt text eol=lf
+# These evidence Markdown files are byte-hashed beside the LF-only JSON receipts.
+docs/campaign-certification/verification/evidence/2026-09-22-completion/opening-mandate/*.md text eol=lf
+
+# Historical coup data is evidence: preserve the author CSV bytes and text receipt hashes.
+docs/campaign-certification/verification/evidence/2026-09-22-completion/a1-historical-contract/*.csv -text -whitespace
+docs/campaign-certification/verification/evidence/2026-09-22-completion/a1-historical-contract/*.md text eol=lf
+docs/campaign-certification/verification/evidence/2026-09-22-completion/a1-historical-contract/*.json text eol=lf
+docs/campaign-certification/verification/evidence/2026-09-22-completion/tooling-validation/*.md text eol=lf
+docs/campaign-certification/verification/evidence/2026-09-22-completion/tooling-validation/*.log -text -whitespace
+docs/campaign-certification/verification/evidence/2026-09-22-completion/tooling-validation/**/*.log -text -whitespace

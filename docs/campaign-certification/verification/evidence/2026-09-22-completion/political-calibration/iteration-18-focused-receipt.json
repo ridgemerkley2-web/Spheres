@@ -1,0 +1,604 @@
+{
+  "iteration": 18,
+  "scope": "Exact-test invocations of the compiled repository sim-lib test binary; focused checks only, not full calibration or workspace certification.",
+  "source_and_binary": "iteration-18-results.json",
+  "source_manifest": "iteration-18-source-input-manifest.json",
+  "passed": 99,
+  "failed": 0,
+  "tests": [
+    {
+      "name": "government::tests::a_sourced_opening_mandate_is_not_a_completed_or_unrestricted_model_ballot",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "2e762422be2c7ba781209e6527fc96f530b5052d39e97e8a39cfb4870ad2a038"
+    },
+    {
+      "name": "government::tests::opening_consent_counts_only_attested_live_national_constituencies",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "5220ba81614e86f68928e956c5ad0973c722e9eeeaffcf4d13ef24ddcf9fdf57"
+    },
+    {
+      "name": "government::tests::old_missing_restricted_and_future_opening_mandates_are_not_reconstructed",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "ee81f549f88c7569262b97d59dfd05dc4dffed16564a983b03ccdd2f16822828"
+    },
+    {
+      "name": "government::tests::opening_mandates_end_on_restriction_or_broken_authority_and_do_not_return",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "0f567e862efe983754cfa1b582d3fab83082d99d1df3ad515b1a001045f4eda1"
+    },
+    {
+      "name": "government::tests::lawful_same_party_succession_retains_only_the_existing_assembly_authority",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "c4fc575cce59ac1fd988ce5ffc12c40fc8464b7a7723a306a4d21b078eaf7e4b"
+    },
+    {
+      "name": "government::tests::successor_personnel_observation_uses_the_model_clock_not_legacy_settlement_day",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "5df23314eae5d34a889d32bfef7fcbecf5a373c3750d76314be48eb0ea27bc98"
+    },
+    {
+      "name": "opening_mandates::tests::opening_mandate_catalog_is_partial_dated_and_bound_to_the_actual_office",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "80088584d2f7c653c9ce4d143aa3ae9e8ab451645012064449a0c941e8f2526e"
+    },
+    {
+      "name": "tests::the_daily_clock_preserves_the_political_arm_on_world",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "6804fc51dc876ea1c9707a37e16dccfae3f071d50c84af19516c12e654dbcd8a"
+    },
+    {
+      "name": "government::tests::an_annulled_opening_ballot_does_not_seat_the_parliamentary_winner",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "4381b3085cda8f4b6f18330907b92b29743fca5caa7fecf02fd5f681cd83b59f"
+    },
+    {
+      "name": "government::tests::opening_ballots_keep_same_party_people_separate_heads_and_the_off_path",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "8cfa22f110ff2af5d1ce9aefa427b10b5c13cb495fcf41db52e0f7eaf8a885e5"
+    },
+    {
+      "name": "government::tests::the_first_parliamentary_ballot_reconciles_the_actual_office_with_the_seeded_chamber",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "c90f0e3d885024adc30d65845920b50c9211aa003f042be59c9e878f24db31dd"
+    },
+    {
+      "name": "government::tests::ai_can_fund_a_midyear_army_crisis_once_without_free_loyalty_or_tiny_churn",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "ea09526a263f9b6cb7f795a1f90490b7b1ff490bc66fc662840a23454455be8a"
+    },
+    {
+      "name": "army_institutions::tests::army_presence_audit_covers_every_opening_polity_with_explicit_exceptions",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "911c68da426c5752e1a366cdc01edd2443b13d0190f20d4b70d9f6504ffb287f"
+    },
+    {
+      "name": "government::tests::ai_army_appropriation_targets_actual_loyalty_without_spending_past_useful_resources",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "35dcefd66253ec95cca55e1c415cd85f76613dcb6b6925b8559e89eacc0f8c70"
+    },
+    {
+      "name": "government::tests::unsourced_successors_retain_a_dated_force_reference_without_inventing_1990_history",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "77cc1220641bd13cc6f821e12fd14116b6c42a25426aa8e44a9abd2d64167abb"
+    },
+    {
+      "name": "government::tests::civilian_confidence_counts_national_consent_without_manufacturing_a_mandate",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "448a03862df5f4db2a3e3b0fbeedac577c286f98d213c0ec2660748c1df1e8ff"
+    },
+    {
+      "name": "government::tests::an_unvoted_opposition_list_does_not_inherit_the_incumbents_bad_record",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "5a5be9f0aa4d95b0a2c59f8c9b24935ecbde3456cb40cbb77eb2c7bab7a9b29a"
+    },
+    {
+      "name": "government::tests::a_legacy_regime_record_is_rekeyed_only_for_its_observed_live_party",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "cbf652154ac3fff99550b337994b8216318cba020a3d476b975e695a1157671b"
+    },
+    {
+      "name": "government::tests::a_real_party_or_military_handover_resets_accountability_without_inventing_party_history",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "1867d0151571c1d80d70b4b12363dbcc02442697f0ad27f86f8624989e72a785"
+    },
+    {
+      "name": "government::tests::a_continuing_incumbent_keeps_its_record_through_opening_and_its_first_ballot",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "94de01b69f2f1ad6e790d8b8f43ab234780560dab6c0dfe41594c7b22ed37e20"
+    },
+    {
+      "name": "armed_security::tests::an_unvoted_interim_keeps_its_real_supply_obligations_until_a_completed_ballot",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "8107b520062360debac4ab938687a72442093c8fe8d047d4a22148e9c722091f"
+    },
+    {
+      "name": "government::tests::convening_a_round_table_opens_the_country_in_six_months",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "3c0322ea6ba72db18c1251b70e7848a1c6b54c00e563c6166a8d76377699e606"
+    },
+    {
+      "name": "government::tests::the_liberalisation_seam_reseeds_parties_from_movements",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "dcd69e350b1f8e250fb0585e28b4f8c77f3782a85eef0117f1be0449e4fedb33"
+    },
+    {
+      "name": "government::tests::opening_a_regime_preserves_its_programme_until_a_real_ballot",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "b88d52c860af908ec34b905f970274672f7366eee10fa4b5b9035d130e13643b"
+    },
+    {
+      "name": "government::tests::represented_parties_compete_without_spending_unrepresented_voters",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "825a900f8a973058473c166f6781873437dd61d2c775da81f34022604a2dbc13"
+    },
+    {
+      "name": "government::tests::a_partial_party_table_does_not_erase_unrepresented_national_constituencies",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "dbebfc856b79cf26b1470d6f47b4fe584b0f4db247284df661bde947bc9fb0d4"
+    },
+    {
+      "name": "government::tests::lawful_transfers_consolidate_civilian_control_without_snap_election_farming",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "b126b63012342bc78f27021eb784ff71520c3d56d5eb89c997167f31a8f85772"
+    },
+    {
+      "name": "government::tests::generated_party_regimes_keep_their_role_through_succession_and_then_yield_to_a_ballot",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "a6f46886d92210da7078747520152cbe7ca13ef04d52688f5612ae480aaf59bd"
+    },
+    {
+      "name": "army_institutions::tests::army_presence_rejects_invalid_sources_kinds_duplicates_and_no_force_records",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "2f6def0c6b52aa71696057393f3fb368e987f7ef250dab4f52cdb120d287551d"
+    },
+    {
+      "name": "army_institutions::tests::army_presence_overlay_preserves_parties_and_is_not_inferred_from_personnel",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "6da4cd2469ad969e6b57b188815d60cb7f65607c6a613d7503eb92df23f91687"
+    },
+    {
+      "name": "army_institutions::tests::army_presence_old_saves_upgrade_once_without_overwriting_live_loyalty",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "abf32e76ff62b24ebf883f8873d4e940236db6fc366ecdf986bd69831b8e3c48"
+    },
+    {
+      "name": "government::tests::the_first_free_ballot_replaces_a_generic_party_regime_but_not_an_inherited_crown",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "54fb49e5eb7e7e52f9d1a60a619899f7e485f0764b7b8b52d38893b3e5ee2736"
+    },
+    {
+      "name": "government::tests::sourced_army_presence_keeps_funded_and_civilian_control_guards",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "53469dcd9a71ff253a7c53c06370e7f590d84166937b29c79661055f1c79f762"
+    },
+    {
+      "name": "government::tests::coalition_exclusion_is_symmetric_without_erasing_pluralities_or_majorities",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "da98cbc79e74264fe6d6670b0bb5dc91c0186e3bb55a8b8348f4c3c2cf18ecd9"
+    },
+    {
+      "name": "government::tests::coalition_invitation_preview_and_command_enforce_both_sides_of_the_cordon",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "a589b637582d7680b6fafa22da0b0a07527a7ee299ffa60c63f135cae63363f3"
+    },
+    {
+      "name": "government::tests::completed_ballots_refresh_constituencies_without_reinterpreting_seats_or_old_saves",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "e1434595090324a269e8c1c7878078726972192482aa6260103f6804e5c3141e"
+    },
+    {
+      "name": "government::tests::voter_reversion_uses_the_last_observed_ballot_and_never_rewrites_it_during_drift",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "71ae17d85d1d6396d8ccb6d050fffc28e8556bc99c77ea21b0f8e77fbf5573cf"
+    },
+    {
+      "name": "government::tests::reshuffles_and_restricted_ballots_do_not_fabricate_a_new_constituency",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "39fe32380f98ccc39949203d4d2e9f723a3f5a35569f18a7929d218d6f98c736"
+    },
+    {
+      "name": "government::tests::the_first_free_ballot_seats_the_same_interim_party_and_keeps_its_deadline",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "2c77d717ae538da3d52a500af33bbd4c04406b0298663920c8ba5da8d4c797e3"
+    },
+    {
+      "name": "government::tests::first_free_elections_replace_original_military_rulers_but_preserve_constitutional_heads",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "55c5c1e183357aeec55d95933359439e2d3a1901b3ac784a425904c2cc200d6e"
+    },
+    {
+      "name": "government::tests::an_annulled_first_ballot_has_no_elected_mandate_or_pending_deadline",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "81e6a6e48787bdcf5761da23c540d7c33d4ed50dda00083373eb35539168deaa"
+    },
+    {
+      "name": "government::tests::pending_ballot_metadata_is_absent_for_old_saves_and_inert_with_the_lens_off",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "e8cb445fcdb1f5ca8c94c96cfdcd585750c69a997b5ba610ae3a206d5e5c453e"
+    },
+    {
+      "name": "blocs::tests::coercion_reads_physical_services_before_party_discipline",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "055bfbb124250fb67edd534b47b30b0d9653876e923330101812ba2a5ca6a5df"
+    },
+    {
+      "name": "armed_security::tests::sustained_shortfalls_consume_operational_capacity_and_replacement_rebuilds_it",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "8aff3eee9641c37ca5a2a777af9b30f7c1758c1b843523d197721158975b9bab"
+    },
+    {
+      "name": "armed_security::tests::finite_reserves_follow_calendar_supply_in_both_clocks_without_harming_funded_forces",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "2214ee148105151d4a1228e3cf6ac15fdd6c1b73d088bdb0a023e1a948b704ac"
+    },
+    {
+      "name": "armed_security::tests::exhausted_reserves_do_not_override_the_real_contest_or_disabled_crises",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "5408cd975807889cab880ec4d90fd8996b0b230e42eb016d23cdb4eaf0e32ab5"
+    },
+    {
+      "name": "government::tests::a_full_term_remembers_early_hardship_but_sustained_recovery_is_forgiven",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "53f9a9b2e344194039b582f1766393802d6200cd1d5352b3f8985160f0fda844"
+    },
+    {
+      "name": "government::tests::the_current_party_apparatus_cannot_resurrect_a_defeated_historical_programme",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "893c715969f897f7da9b510a5acbcc0023fd94ee6372eb93711ce1616b43afee"
+    },
+    {
+      "name": "armed_security::tests::an_inherited_security_review_uses_the_real_paid_decision_once",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "5da4aa120605cf778c032a6b14bee5818488d4d833548e94ace7a76abb97ae67"
+    },
+    {
+      "name": "armed_security::tests::security_review_preserves_player_compatible_and_unreviewed_old_save_programmes",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "92d50234f2e5afba91346652b5b4711e8b286fdf6e5033d0a3534e117fc73022"
+    },
+    {
+      "name": "armed_security::tests::security_review_does_not_veto_replacement_or_deliberately_restored_supplies",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "09ee13abdaea4cc8d8cc46abf5224b2191aa3dab8d6b22925c20ead0e9648b20"
+    },
+    {
+      "name": "armed_security::tests::an_unaffordable_security_review_waits_without_free_effects_or_random_draws",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "5d9eb8231e4a14d1d819389aeabef5a90b310cc6b6cdc69a3a29ff4d21b3cd5f"
+    },
+    {
+      "name": "government::tests::an_autonomous_army_can_veto_a_new_programme_but_civilian_control_and_loyalty_resist",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "269b4565ceb296c720ff94029642d4d17100c23e2708f1cf410b01f82fea1312"
+    },
+    {
+      "name": "government::tests::army_confidence_responds_to_sustained_civilian_failure_without_changing_resources",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "326cde10e2ca0ee9925ec6bff5912657c34dd711d5b4c029eaa74b369ee11a78"
+    },
+    {
+      "name": "government::tests::an_uncrowned_collapse_preserves_the_actual_elected_programme_across_save_and_seeding",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "cba2cc27354c2552ea73f40e30b02253a4998650e689ff2e5a553ae952407fd8"
+    },
+    {
+      "name": "government::tests::unsourced_army_size_is_an_explicit_model_estimate_without_rewriting_history",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "e1b8999bcd8149671928b6246e6de959f217aa6c21cd9cb0f8a783ba1fa1291d"
+    },
+    {
+      "name": "armed_security::tests::armed_security_sources_reject_invalid_parameters_and_unsupported_actors",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "447c9a7f82dfc1ec1874cf3478a77730656308f4ed353b0e167d19a96e7f08ff"
+    },
+    {
+      "name": "armed_security::tests::a_military_collapse_does_not_mint_voters_and_ends_the_old_dependency",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "9af250fe109787f2ba7cea5756b633ee8fb2d83221eac7c9b52bd8c4536fe6a0"
+    },
+    {
+      "name": "stratagems::tests::an_affordable_round_table_reaches_the_real_ai_dispatcher",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "6167e54750ae13662280e6ea1a2ccfad0ac8ca2c0e524199df8d3f9f9ebcbe5a"
+    },
+    {
+      "name": "armed_security::tests::dead_patrons_dates_and_daily_steps_follow_actual_supply",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "9fb34b308f7f5f092bafcb292008f0138b362df31a37127fb7bdae73ee8280f1"
+    },
+    {
+      "name": "armed_security::tests::security_state_round_trips_and_switches_are_inert",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "09abf02b63e67fa685d7bc290687d524db62029c9d03803c5240500744cea202"
+    },
+    {
+      "name": "armed_security::tests::absent_armed_actors_and_old_saves_never_invent_a_military_claimant",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "f6d5a9027b6d616223d8e396fc0a09ddd4ad5e60816285a50df7de754cd6eb1f"
+    },
+    {
+      "name": "armed_security::tests::maintained_replaced_and_domestically_replaced_supplies_prevent_collapse",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "5ab68986720afcac5dd449c14e42afa4032c9bcf671463cb86ef8ff4a6b95fc2"
+    },
+    {
+      "name": "armed_security::tests::opening_security_is_sourced_priced_and_separate_from_votes",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "2e9e4374f6b4753fd8ee6dec2217ef98f0afb2ddbe37db5eb1a188b111af9f9a"
+    },
+    {
+      "name": "government::tests::the_complete_vote_change_preserves_totals_and_its_calendar_bound",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "73eaf9f5519236abe1973dbe5f4c41156a0746600f2c050a3293cb301139d733"
+    },
+    {
+      "name": "government::tests::franchise_demand_reads_excluded_parties_including_same_bloc_alternatives",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "1049e5ddae5b5f36003ada3fd7b52ad9c1283f4d6902a07800fe0a2d9e03d19f"
+    },
+    {
+      "name": "government::tests::organised_civilian_franchise_demand_can_buy_a_peaceful_opening_with_loyal_armed_services",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "edea9d293c8317e71f286065dc930eda2d617c3244224768f559790dc7597930"
+    },
+    {
+      "name": "government::tests::political_record_remembers_a_bad_term_but_resets_when_another_party_governs",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "5a859283a979c16fb1de74dcda0bb4f45519aad8c87428112847cdbbba608efa"
+    },
+    {
+      "name": "government::tests::political_record_learns_one_calendar_month_in_both_clock_modes",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "f990e5afb216b0412c1eb7d2344ec78c4ae61ed68e35a7ee63f1d4ac5463656c"
+    },
+    {
+      "name": "government::tests::movement_constituencies_keep_organized_opposition_and_single_party_uncertainty",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "edc8f764dae8d8925778eace8bd4d444a46d9ea342f84c73587d1cac6c32d374"
+    },
+    {
+      "name": "government::tests::a_coalition_leader_is_accountable_without_erasing_junior_or_opposition_voters",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "a18bfb678a3c5c79067ab34bcb8df165154ba258e141dcc0d6abde2601b6e087"
+    },
+    {
+      "name": "government::tests::performance_transfers_are_bounded_and_good_government_has_diminishing_returns",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "3388a7313199309ffb7268aab0dec3d382c9383ba7302aff4dfc797ccd860cc1"
+    },
+    {
+      "name": "government::tests::d4_tables_are_read_under_the_switch_and_invisible_off",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "cdb97006974166998c59c0cf8ea1ee1ff766c00e250093224d8ba1c3210dbd89"
+    },
+    {
+      "name": "government::tests::sourced_opening_organizations_exist_without_buying_them_and_preserve_saved_histories",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "cc54f27b6ca55af4de076ef02fa7244ce4cb4f320f75c14b457a278d98b0df26"
+    },
+    {
+      "name": "government::tests::an_established_movement_survives_funding_decay_and_save_load_without_free_support",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "88321861870dd4100c55962e1e49ee7eee4e506605119f17bc7c10ffbe0cd1eb"
+    },
+    {
+      "name": "government::tests::old_saves_recognize_qualifying_movement_backing_without_inventing_past_organizations",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "c11e8e22cfae9770c7c6b207d1304ea584ded8847cea128c60998f66246a0afd"
+    },
+    {
+      "name": "government::tests::movement_establishment_is_inert_when_off_and_does_not_duplicate_table_presence",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "a1a2dfe827d44f7e458ae9868020cf8c92b705f23c304aed1509d043186d496f"
+    },
+    {
+      "name": "blocs::tests::an_absent_islamist_bloc_becomes_present_after_one_sponsor_operation",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "3463ea8f0d2d63d89f8db330635f2bd7a9b60b81ad46f174db13fbae1fe5769c"
+    },
+    {
+      "name": "data::movements::tests::opening_organizations_have_sources_without_invented_vote_shares",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "7568f9ea28687a9876874f5fe65b81cd4517bd9e505da28cf3b5d22b3b3739e9"
+    },
+    {
+      "name": "data::movements::tests::opening_organizations_reject_duplicates_unknown_nations_and_unsourced_rows",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "27f712970f15ba23c2ba2a1dd5128201306624698db03ba2ceec67d0286a91dc"
+    },
+    {
+      "name": "government::tests::disorder_alone_costs_the_elected_incumbent_support",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "bde604f45cca9e882f72fc3079d7c4ff2aad30974fa4a454b6027ce0307ce9c4"
+    },
+    {
+      "name": "government::tests::disorder_alone_costs_a_regime_support_without_changing_the_quiet_record",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "10cda95b5e05644a95d731d0607f41ef3e2c7c65c2d467f4ba8818125b6fef0b"
+    },
+    {
+      "name": "government::tests::party_support_moves_with_prices_rather_than_with_a_slider",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "3054f43b365cc50b57ef954a775c507ff4165e2998119040d7fbf0d364413f59"
+    },
+    {
+      "name": "government::tests::a_war_going_badly_is_worth_votes_to_the_nationalists",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "89a259b1637372f89d3554f4d970ef449b63a85056dd37e133ec10d4246688ad"
+    },
+    {
+      "name": "government::tests::a_regime_s_movements_move_with_the_pains_and_revert",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "656e88ec0dd44e3cababe0d22c667fb63c5e95b9f54961a758dd129b958f1bca"
+    },
+    {
+      "name": "government::tests::support_finds_an_equilibrium_rather_than_running_away",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "ea5aa95cb535cc83a91bb37910c8d852a49eb635d53604d45bb169883c4663cd"
+    },
+    {
+      "name": "government::tests::army_operating_costs_include_local_support_and_imported_equipment",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "0dc514828a8b5576b12930958ccbb29ab36094c50d5269bb0f7e79a27d7abd1f"
+    },
+    {
+      "name": "government::tests::military_resources_have_real_units_and_change_loyalty_without_penalizing_small_budget_shares",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "14d774200ae7c7f1be385e44949bcb99ce5872bfa22680105c74bf71c8711131"
+    },
+    {
+      "name": "government::tests::foreign_backing_alone_cannot_change_an_internal_coups_programme",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "a13093c47c749156e0cdf29e4dff2d9fbcb4170be12404cc95adfbe7965fe0be"
+    },
+    {
+      "name": "government::tests::ai_army_funding_is_priced_affordable_and_does_not_override_owned_budgets",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "491e74077ee6dad3c6115e20dad3c8a8e23cded63841ce27bc5f5a15dbb94448"
+    },
+    {
+      "name": "government::tests::party_discipline_needs_a_domestic_constituency_and_stays_legacy_when_off",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "8891917037300640c05f95e4eb7ae2f831c06e454c7a611ae46b41b58a2349d4"
+    },
+    {
+      "name": "blocs::tests::electoral_uprising_requires_actual_coercion_failure_as_well_as_party_support",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "273108c4e49e7d45b23c2019aac63992f461a671b17204949f5a62969577de36"
+    },
+    {
+      "name": "government::tests::the_army_target_is_the_share_arm_off_and_the_pay_arm_is_the_ruled_form",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "d121634b3af8b30097e8c56e1d75f1e801228918a57aedb3ea8ef4b60879a20d"
+    },
+    {
+      "name": "government::tests::the_regime_s_own_coup_keeps_its_colour_under_the_lens_and_latches_the_deposed_movement_on_the_roads",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "b83e84c73fd3a024e75139ed5998b9918b4a4638ba6891692d5c8396d5ef9727"
+    },
+    {
+      "name": "government::tests::the_ai_takes_each_lever_only_under_its_thresholds",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "f6bc0554b38fa35e77965921af94edb0b71ccc68db0acdf537b185215f34ea48"
+    },
+    {
+      "name": "government::tests::an_unpaid_army_removes_an_elected_government_and_a_paid_one_never_does",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "9225c07061204fe08c82300639c08a88d0eded42a15b7101075343cccad053fe"
+    },
+    {
+      "name": "government::tests::the_algeria_shaped_annulment_fires_under_its_conditions_and_not_under_the_court",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "a9ff33a0ad642c4f04d7e8fd439b59ea8d91032085da3f072bb3cef5c82204db"
+    },
+    {
+      "name": "government::tests::a_paid_army_seats_the_islamists_and_a_hostile_one_annuls_the_algerian_way",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "0316b6342f31d4d5a6916f47655b5db6705f499223da9cfb384dbe5f2d7cc4e8"
+    },
+    {
+      "name": "government::tests::a_communist_movement_at_discontent_0_70_with_an_unpaid_army_takes_power",
+      "exit_code": 0,
+      "confirmed_one_pass": true,
+      "log_sha256": "4d4a6da6abe7301328dac2be8e6dc3d53d1d42c90abac984cb9f57aa400b48c3"
+    }
+  ]
+}

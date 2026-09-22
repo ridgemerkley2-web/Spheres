@@ -1,0 +1,19 @@
+✔ mapping covers exactly the canonical 137 IDs with explicit former-federation gaps (13.0597ms)
+✔ missing, suppressed and non-finite observations never coerce to zero (0.2021ms)
+✔ national share requires unique matching-year current-USD numerator and denominator (0.2094ms)
+✔ metadata ISO mapping is exact and refuses ambiguous country codes (0.2421ms)
+✔ five model groups form one nonoverlapping partition of ISIC 15 through 37 (0.5673ms)
+✔ approved partial profiles label imputation without replacing unknown source values (0.7567ms)
+✔ same-group repeated parent/child notes are counted once; USD companion is not a note (0.6681ms)
+✔ observed zero is distinct from missing; all-zero or negative mix cannot normalize (0.1884ms)
+✔ represented coverage includes resolved child divisions, not just numeric parents (0.2265ms)
+✔ current artifact coverage and sourced ratios reconcile without changing source nulls (3.957ms)
+✔ final artifact retains a nonuniform non-fallback sector mix (2.3191ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 26.6199

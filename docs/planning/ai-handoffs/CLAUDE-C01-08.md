@@ -1,21 +1,29 @@
 # CLAUDE-C01-08: Tonga prime ministers, 1990–2019
 
-Owner: Claude. State: **ready_for_review** (submitted 22 September 2026; not complete). Parent: C01 (incomplete).
+Owner: Claude. State: **accepted and integrated as bounded research** on 22 September 2026.
+Submitted `ready_for_review` that day; parent C01 remains incomplete.
+Reviewed at `14f01c5a`, merged at `bd24d577`; the subsequent C01-03 shared-record
+resolution `3291facf` was independently reviewed and merged at `5a63d7b6`.
+[Acceptance and source limitations](../../campaign-certification/C01/integrations/CLAUDE-C01-08/README.md).
 
 Origin: this is a self-proposed follow-up packet, started on the user's 22 September 2026 instruction to
-continue Claude's section. It is pending Codex acceptance and is not yet registered in
-`docs/planning/ai-workstreams.json`.
+continue Claude's section. Its accepted bounded scope is now registered in
+`docs/planning/ai-workstreams.json`; it is not an unclaimed or pending packet.
 
 Branch: `claude/c01-tonga-08`. Base: `e6f9fa41`, the head of `claude/c01-tonga-07`, which itself sits on
-CLAUDE-C01-04. Both of those packets are ready for review and not yet integrated. Claim commit: `dac0cc35`.
+CLAUDE-C01-04. Both predecessors were pending when this packet began and are now
+accepted and integrated. Claim commit: `dac0cc35`.
 
 CLAUDE-C01-04 and CLAUDE-C01-07 are now accepted and integrated, and this branch has merged integration
 `9d352f03`. It has also merged CLAUDE-C01-03 (`claude/c01-tonga-03` at `387e4526`), resolving the shared
 `to_pm` holder list (seven 1990-2018 holders, the 2019 and 2021 ones, Sovaleni's stated end, Eke) and the
-exact test pins. **Stacked: merge CLAUDE-C01-03 first**; against it, this branch contains CLAUDE-C01-08 only. The earlier conflict note no longer applies: the two packets are merged here.
+exact test pins. Both packets and their shared-record resolution are now integrated;
+the earlier merge-order instruction is historical and no further merge is needed.
 
-Result commit: the head of `claude/c01-tonga-08` at submission (the separate index commit); to be recorded by
-the integrator. Reviewer and integrator: Codex.
+Reviewed C01-08 result: `14f01c5a8bcd003723a1f122a32f11b684bc878e`.
+Integration merge: `bd24d5776f6798d19c64846f9602aa5be2ad13b0`.
+Reviewer and integrator: Codex. The source findings and original producer checks
+below retain their historical scope; the linked acceptance record owns final intake status.
 
 [Report](../../campaign-certification/C01/research/tonga-prime-ministers-1990-2019-08.md): TO-PM90-03, 05, 06
 and 07 accepted; TO-PM90-01 accepted at year precision; TO-PM90-04 and 08 accepted in part (the 2006

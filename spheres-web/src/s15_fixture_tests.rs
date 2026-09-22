@@ -3,7 +3,7 @@
 use super::*;
 use serde_json::{json, Value};
 use spheres_sim::{
-    airbases as ab, airmissions as am, arsenal, aviation as av, clock, commitment, companies,
+    airbases as ab, airmissions as am, arsenal, aviation as av, clock, commitment,
     equipment as eq,
 };
 use std::{

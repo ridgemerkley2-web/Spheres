@@ -159,7 +159,11 @@ test('browser UMD loads without DOM, timers, network, commands or global state',
   assert.deepEqual(Object.keys(context.AdvisorModel),['evaluate','recognize']);assert.equal(context.AdvisorModel.recognize({state:state()},null).status,'unknown');
 });
 
-const fixture=path.resolve(__dirname,'../../../leadership-2035-evidence/source-state-before.json');
-test('archived real API reading identifies renewal without disabled takeover alarms',{skip:!fs.existsSync(fixture)},()=>{
-  const s=JSON.parse(fs.readFileSync(fixture,'utf8')),cards=advisor.evaluate(s);assert(cards.some(c=>c.id==='annual-budget'));assert(!cards.some(c=>c.id.startsWith('government-')));assert(!cards.some(c=>c.id==='treasury-balance'));assert(cards.some(c=>c.id==='research-project'));
+const fixture=path.join(__dirname,'fixtures/advisor-archive.json');
+test('archived real API reading identifies renewal without disabled takeover alarms',()=>{
+  const bytes=fs.readFileSync(fixture),provenance=JSON.parse(fs.readFileSync(path.join(__dirname,'fixtures/advisor-archive.provenance.json'),'utf8'));
+  assert.equal(bytes.length,provenance.fixture.bytes);
+  assert.equal(require('node:crypto').createHash('sha256').update(bytes).digest('hex'),provenance.fixture.sha256);
+  const s=JSON.parse(bytes);assert.equal(s.player,'Japan');assert.equal(s.date,'1 Jan 1990');assert.equal(s.nations.length,137);
+  freeze(s);const cards=advisor.evaluate(s);assert(cards.some(c=>c.id==='annual-budget'));assert(!cards.some(c=>c.id.startsWith('government-')));assert(!cards.some(c=>c.id==='treasury-balance'));assert(cards.some(c=>c.id==='research-project'));
 });

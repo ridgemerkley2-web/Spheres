@@ -1,0 +1,276 @@
+{
+  "version": 1,
+  "as_of": "1990-01-01",
+  "scope": "All 137 embedded opening-country records: 71 existing base Army institutions, 57 explicit overlays, and 9 exclusions or unresolved cases. Successors and countries outside the roster are outside this opening audit. This is institutional presence only; there is no country-based immunity, loyalty or coup trigger.",
+  "source": {
+    "url": "https://www.gutenberg.org/cache/epub/14/pg14-images.html",
+    "author": "United States Central Intelligence Agency",
+    "edition": "The World Factbook 1990",
+    "archive": "Project Gutenberg electronic republication",
+    "source_sha256": "823bfd2f5b6e1b15cea46697ba2c8615c4d39789024ba91e874bb1576793517e",
+    "date_scope": "General information available 1 January 1990; major political updates through 30 March. Only force-presence descriptions are used.",
+    "section": "Defense Forces / Branches"
+  },
+  "new_rows": [
+    {
+      "nation": "Argentina",
+      "country_section": "Argentina",
+      "source_anchor": "id00776"
+    },
+    {
+      "nation": "Australia",
+      "country_section": "Australia",
+      "source_anchor": "id00955"
+    },
+    {
+      "nation": "Austria",
+      "country_section": "Austria",
+      "source_anchor": "id01031"
+    },
+    {
+      "nation": "Belgium",
+      "country_section": "Belgium",
+      "source_anchor": "id01448"
+    },
+    {
+      "nation": "Belize",
+      "country_section": "Belize",
+      "source_anchor": "id01521"
+    },
+    {
+      "nation": "Botswana",
+      "country_section": "Botswana",
+      "source_anchor": "id01874"
+    },
+    {
+      "nation": "Brazil",
+      "country_section": "Brazil",
+      "source_anchor": "id01974"
+    },
+    {
+      "nation": "Canada",
+      "country_section": "Canada",
+      "source_anchor": "id02663"
+    },
+    {
+      "nation": "CapeVerde",
+      "country_section": "Cape Verde",
+      "source_anchor": "id02733"
+    },
+    {
+      "nation": "Cyprus",
+      "country_section": "Cyprus",
+      "source_anchor": "id03776"
+    },
+    {
+      "nation": "Czechoslovakia",
+      "country_section": "Czechoslovakia",
+      "source_anchor": "id03851"
+    },
+    {
+      "nation": "Denmark",
+      "country_section": "Denmark",
+      "source_anchor": "id03927"
+    },
+    {
+      "nation": "Finland",
+      "country_section": "Finland",
+      "source_anchor": "id04847"
+    },
+    {
+      "nation": "France",
+      "country_section": "France",
+      "source_anchor": "id04927"
+    },
+    {
+      "nation": "Germany",
+      "country_section": "Germany, Federal Republic of",
+      "source_anchor": "id05452"
+    },
+    {
+      "nation": "Greece",
+      "country_section": "Greece",
+      "source_anchor": "id05698"
+    },
+    {
+      "nation": "Hungary",
+      "country_section": "Hungary",
+      "source_anchor": "id06688"
+    },
+    {
+      "nation": "Ireland",
+      "country_section": "Ireland",
+      "source_anchor": "id07174"
+    },
+    {
+      "nation": "Israel",
+      "country_section": "Israel",
+      "source_anchor": "id07252"
+    },
+    {
+      "nation": "Italy",
+      "country_section": "Italy",
+      "source_anchor": "id07329"
+    },
+    {
+      "nation": "Jamaica",
+      "country_section": "Jamaica",
+      "source_anchor": "id07477"
+    },
+    {
+      "nation": "Japan",
+      "country_section": "Japan",
+      "source_anchor": "id07578"
+    },
+    {
+      "nation": "Luxembourg",
+      "country_section": "Luxembourg",
+      "source_anchor": "id08682"
+    },
+    {
+      "nation": "Malta",
+      "country_section": "Malta",
+      "source_anchor": "id09196"
+    },
+    {
+      "nation": "Netherlands",
+      "country_section": "Netherlands",
+      "source_anchor": "id10463"
+    },
+    {
+      "nation": "NewZealand",
+      "country_section": "New Zealand",
+      "source_anchor": "id10684"
+    },
+    {
+      "nation": "Norway",
+      "country_section": "Norway",
+      "source_anchor": "id11189"
+    },
+    {
+      "nation": "PapuaNewGuinea",
+      "country_section": "Papua New Guinea",
+      "source_anchor": "id11590"
+    },
+    {
+      "nation": "Portugal",
+      "country_section": "Portugal",
+      "source_anchor": "id12060"
+    },
+    {
+      "nation": "Spain",
+      "country_section": "Spain",
+      "source_anchor": "id13693"
+    },
+    {
+      "nation": "Sweden",
+      "country_section": "Sweden",
+      "source_anchor": "id14117"
+    },
+    {
+      "nation": "Switzerland",
+      "country_section": "Switzerland",
+      "source_anchor": "id14189"
+    },
+    {
+      "nation": "TrinidadTobago",
+      "country_section": "Trinidad and Tobago",
+      "source_anchor": "id14702"
+    },
+    {
+      "nation": "UK",
+      "country_section": "United Kingdom",
+      "source_anchor": "id15239"
+    },
+    {
+      "nation": "Uruguay",
+      "country_section": "Uruguay",
+      "source_anchor": "id15398"
+    },
+    {
+      "nation": "USA",
+      "country_section": "United States",
+      "source_anchor": "id15324"
+    },
+    {
+      "nation": "Venezuela",
+      "country_section": "Venezuela",
+      "source_anchor": "id15598"
+    }
+  ],
+  "excluded": [
+    {
+      "nation": "Bahamas",
+      "country_section": "The Bahamas",
+      "source_anchor": "id01104",
+      "classification": "coast_guard_only",
+      "reason": "The cited defence-force entry identifies only a coast-guard component alongside police; do not infer a conventional Army pillar."
+    },
+    {
+      "nation": "CostaRica",
+      "country_section": "Costa Rica",
+      "source_anchor": "id03628",
+      "classification": "explicit_no_armed_forces",
+      "reason": "Constitutional prohibition; civilian guards are not Army evidence."
+    },
+    {
+      "nation": "Iceland",
+      "country_section": "Iceland",
+      "source_anchor": "id06763",
+      "classification": "police_coast_guard_only",
+      "reason": "Only police and coast guard named."
+    },
+    {
+      "nation": "Maldives",
+      "country_section": "Maldives",
+      "source_anchor": "id09053",
+      "classification": "explicit_no_military_force",
+      "reason": "Existing National Security Service already has Security role; positive personnel does not contradict different institutional classification."
+    },
+    {
+      "nation": "Mauritius",
+      "country_section": "Mauritius",
+      "source_anchor": "id09556",
+      "classification": "police_paramilitary_only",
+      "reason": "Special Mobile Force and support units are paramilitary/police, not conventional-force proof."
+    },
+    {
+      "nation": "Panama",
+      "country_section": "Panama",
+      "source_anchor": "id11517",
+      "classification": "military_dissolved_transition",
+      "reason": "PDF dissolved following December1989 invasion; newly restructured Public Force is not an unchanged Army."
+    },
+    {
+      "nation": "Samoa",
+      "country_section": "Western Samoa",
+      "source_anchor": "id16010",
+      "classification": "source_unknown",
+      "reason": "Branches marked NA; absence of source evidence is not proof of no institution."
+    },
+    {
+      "nation": "SolomonIslands",
+      "country_section": "Solomon Islands",
+      "source_anchor": "id13346",
+      "classification": "source_unknown",
+      "reason": "Branches marked NA; absence of source evidence is not proof of no institution."
+    },
+    {
+      "nation": "Vanuatu",
+      "country_section": "Vanuatu",
+      "source_anchor": "id15471",
+      "classification": "explicit_no_military_force",
+      "reason": "Paramilitary security force only."
+    }
+  ],
+  "mechanics_limit": "Authoritarianism at or below .20 suppresses the civilian-confidence penalty, not every coup path. Full coverage can change campaign outcomes and must be measured against unchanged gates.",
+  "outside_roster": [
+    "Niger",
+    "Mali"
+  ],
+  "already_present_examples": [
+    "Fiji",
+    "Thailand",
+    "Pakistan"
+  ]
+}

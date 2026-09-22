@@ -1,0 +1,41 @@
+{
+  "scope": "Exact extracted new ai_government and new repository test, linked against candidate11 rlib. No source mutation in repository. Combined final build/calibration remains pending.",
+  "library": {
+    "Algorithm": "SHA256",
+    "Hash": "610F89F6761D66552C41DF07344BE697ED6B088D3CD1B5D10397B23C033BE200",
+    "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\libspheres_sim-de80fa3e4f034d8c.rlib"
+  },
+  "source": {
+    "path_hint": "..\\evidence\\political-calibration-20260922\\iteration-11-emergency-focused.rs",
+    "bytes": 7659,
+    "sha256": "c69847c6b6d0fe4516e224fd0512f4c84bfb975e3ba3fd2385b32419f87d2453"
+  },
+  "test": "ai_can_fund_a_midyear_army_crisis_once_without_free_loyalty_or_tiny_churn",
+  "current": {
+    "exit_code": 0,
+    "pass": 1,
+    "fail": 0
+  },
+  "annual_only_mutant": {
+    "source": {
+      "path_hint": "..\\evidence\\political-calibration-20260922\\iteration-11-emergency-annual-mutant.rs",
+      "bytes": 7675,
+      "sha256": "0c4b626790d6b95dacf6018812df9060ec645b5082d9dcae56c636a6e9aca7cd"
+    },
+    "exit_code": 101,
+    "pass": 0,
+    "fail": 1,
+    "assertion": "real July crisis need not wait for January",
+    "left": 0.001,
+    "right": 0.03903314547720797
+  },
+  "checks": [
+    "Paid ordinary command and exact political-capital cost",
+    "No direct loyalty or pressure change, no RNG draw",
+    "No repeated same-budget payment, including after reload",
+    "Existing .001 spending hysteresis",
+    "No midyear review above .40; normal January review below .50 retained",
+    "No funding without political capital or affordable fiscal resources; player and flag-off guards retained",
+    "Daily reviews wait for the same calendar month end and charge once"
+  ]
+}

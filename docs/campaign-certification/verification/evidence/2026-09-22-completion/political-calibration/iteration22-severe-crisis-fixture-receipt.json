@@ -1,0 +1,15 @@
+{
+  "status": "Prepared externally; not compiled or executed; repository unchanged by this task",
+  "candidate": 1.2,
+  "tests": [
+    "government::tests::a_fully_provisioned_army_can_lose_confidence_after_a_sustained_severe_civilian_crisis",
+    "government::tests::confidence_keeps_quiet_consent_record_and_known_zero_guards",
+    "government::tests::severe_confidence_crisis_does_not_authorize_free_or_useless_military_spending"
+  ],
+  "fixture_sha256": "dbad100e3b33c534fa8ef05226d638e4b914d76867ef3d12b8ebbe8ea834c0b7",
+  "plan_sha256": "332c972e479cf6219beee5f974c2d6ed43842592292466596a223c027eff714c",
+  "positive": "Real completed ballot and paid appropriation; explicit counterfactual matching prior record; .85 loyal Army and zero pressure; production government ticks to actual delayed coup; real saved recovery control",
+  "bounds": "D=.25 step and max1.20 confidence/0 target clamp tested with actual finite world inputs",
+  "review": "Independent pre-boundary fixture review clean; boundary delta review requested",
+  "production_changes": "None in this task. Parent owns eventual single coefficient edit after iteration21 baseline measurement."
+}

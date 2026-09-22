@@ -1,0 +1,58 @@
+{
+  "scope": "Read-only verification of parent restoration after rejected candidate22; no generators, runtime changes or Cargo by reviewer.",
+  "current_government_sha256": "3254020ea00ec763eb95dabe0c03b79e33b861d4144d6de7307627c03de4e51c",
+  "generated_outputs": [
+    {
+      "path": "spheres-web/data/leadership_production_2035.json",
+      "sha256": "2d0147f3dbcfc6f9d311556760ed5773aea900f9f82a276051e519d5d9a9e6db",
+      "matches_iteration21": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/census.json",
+      "sha256": "91560aaffaf547594463498c76e7660704f9fbe331297f413024fe0bbcaac4f7",
+      "matches_iteration21": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/countries.json",
+      "sha256": "3f3ea61354fadbf85d182b6593f5cdf13e13a856d3fe59b64e1f3305c6622ca4",
+      "matches_iteration21": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/represented-organizations.json",
+      "sha256": "85603b71cc5488937fff54f38dbf36ad18af6124d6dc3a492dbb20760d2c8e66",
+      "matches_iteration21": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/roles-and-lifecycle.json",
+      "sha256": "17c8a72eae1b6f309d9b8bd2a7fe2531996116c23fbafab2d3ebbd8517b39625",
+      "matches_iteration21": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/work-orders.json",
+      "sha256": "ac94a794e315be810eb5c77fe65aaea9727c4f654b31d35810c0929fc8bc784d",
+      "matches_iteration21": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research-index.json",
+      "sha256": "37df1997e1e4b1acf5f6d9dffc2445c8c7edd2f137394ad7e352a75f2bbfe9ba",
+      "matches_iteration21": true
+    }
+  ],
+  "parent_commands_passed": 7,
+  "source_written_by_parent_wrapper": false,
+  "source_inputs_byte_unchanged_during_parent_run": true,
+  "status": "Exact iteration21 source and generated outputs restored. Original A1 remains outstanding; this is not a all-tests or campaign-certification pass.",
+  "receipt_sequence": "The rejection receipt predates regeneration and says provenance pending. The separate successful leadership result and this exact-byte comparison establish the subsequent restored metadata state.",
+  "binary_limit": "Global native binaries were still iteration22 when root reported restoration; source/metadata coherence is not a new native execution claim.",
+  "independent_lifecycle_review": {
+    "finding": "No confirmed missing first-ballot authority update or repeated budget/round-table reset.",
+    "evidence": [
+      "Known current leverage denotes institutional executive-removal capability, not current holder of the executive office",
+      "Existing regression explicitly excludes unelected, pending and restricted ballots from term-earned authority consolidation",
+      "Genuine first military-to-civilian ballot already seats actual party authority, clears pending status, starts actor-keyed accountability and enables observed public consent",
+      "Further round tables are refused while electoral; the scheduling seam runs once, retaining Army/Security loyalty under takeover rules and clearing pressure at the real transition",
+      "Continuous-party record prevents repeated same-party ballots from resetting coup grace; modeled fiscal appropriation retains price/affordability/full-resource constraints"
+    ],
+    "recommendation": "Do not add an automatic first-ballot reduction or cap as a bug fix. Without an independently modeled capability-transfer action this is a new institutional-transition design assumption and risks granting an additional benefit for the same ballot already represented by public consent."
+  }
+}

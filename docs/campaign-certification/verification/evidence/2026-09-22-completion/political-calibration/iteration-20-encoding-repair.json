@@ -1,0 +1,40 @@
+{
+  "utc": "2026-09-22T20:20:43.898215+00:00",
+  "cause": "UTF-8 file read with Windows default cp1252 during a terminology-only rename; precise valid sequences reversed, new legitimate Unicode untouched",
+  "raw_before_sha256": "255933253b97624dfb94a68b6c5125c85aad65c424068afe3631272153758c9c",
+  "raw_after_sha256": "6dc3b30e5fa4c967d5122d8d0b07e49650e29f5179e09a8ec4f80c3bf9a8ac98",
+  "changes": [
+    {
+      "corrupted": "\u00e2\u20ac\u201d",
+      "restored": "\u2014",
+      "count": 431
+    },
+    {
+      "corrupted": "\u00e2\u2020\u2019",
+      "restored": "\u2192",
+      "count": 29
+    },
+    {
+      "corrupted": "\u00e2\u02c6\u2019",
+      "restored": "\u2212",
+      "count": 24
+    },
+    {
+      "corrupted": "\u00c2\u00b7",
+      "restored": "\u00b7",
+      "count": 13
+    },
+    {
+      "corrupted": "\u00c3\u00a9",
+      "restored": "\u00e9",
+      "count": 1
+    },
+    {
+      "corrupted": "\u00c3\u2014",
+      "restored": "\u00d7",
+      "count": 3
+    }
+  ],
+  "total_sequences": 501,
+  "previous_build": "politics-iteration20-build.log; compiled but not measured; superseded by encoding-corrected rebuild"
+}

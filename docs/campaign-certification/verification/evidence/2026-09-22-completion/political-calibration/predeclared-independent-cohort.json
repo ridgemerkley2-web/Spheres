@@ -1,0 +1,19 @@
+{
+  "conditions": "ideology_blocs+ideology_takeover, monthly, no commands, unchanged outcome definitions",
+  "democracy_guard": {
+    "count": 12,
+    "first": 1000,
+    "months": 420,
+    "last": 1011
+  },
+  "prior_diagnostics": "seeds37/38 inspected during model development;37..60 supplemental not blind",
+  "declared_utc": "2026-09-22T16:54:37.7879874Z",
+  "execution": "Do not inspect/run until primary A1-A10 gates pass on frozen source",
+  "main_seeds": {
+    "count": 60,
+    "first": 1000,
+    "months": 252,
+    "last": 1059
+  },
+  "planned100_block": "Not executed; superseded by parent predeclared1000block"
+}

@@ -14402,12 +14402,38 @@ mod tests {
     fn the_basing_panel_does_not_sell_what_the_theatre_already_gives() {
         use spheres_sim::theatre;
 
-        // The invariant the suppression rests on, checked on a world that has
-        // actually issued grants: needing no host IMPLIES having access, so a
-        // row this panel hides is always a row that would have bought nothing.
+        // Exercise both sources of access through real host commands, without
+        // requiring an unrelated AI campaign to choose an expedition. A grant
+        // gives access but never turns a revocable visitor into a home nation.
         let mut g = Game::new(7, Some(NationId::Iraq));
+        let visitor = NationId::Iraq;
+        let host = NationId::Japan;
+        let away = theatre::TheatreId::EastAsia;
+        assert!(!theatre::needs_no_host(&g.world, visitor, away));
+        assert!(!theatre::has_access(&g.world, visitor, away));
+        spheres_sim::apply_command(&mut g.world, &Command::GrantAccess {
+            host, seeker: visitor, theatre: away, grant: true,
+        }).expect("the host can grant real basing access");
+        assert!(theatre::has_access(&g.world, visitor, away));
+        assert!(!theatre::needs_no_host(&g.world, visitor, away),
+            "a grant does not justify hiding all revocable access controls");
+        assert_eq!(theatre::granting_host(&g.world, visitor, away), Some(host));
+        g.world = spheres_sim::load(&spheres_sim::save(&g.world)).unwrap();
+        assert!(theatre::has_access(&g.world, visitor, away), "standing consent survives a save");
+        let s = state_json(&g, None);
+        let east = s["theatres"].as_array().unwrap().iter().find(|t| t["id"] == "EastAsia").unwrap();
+        assert_eq!(east["me_needs_no_host"], serde_json::json!(false));
+        spheres_sim::apply_command(&mut g.world, &Command::RevokeAccess {
+            host, seeker: visitor, theatre: away,
+        }).expect("the same host can withdraw its consent");
+        assert!(!theatre::has_access(&g.world, visitor, away));
+        assert_eq!(theatre::granting_host(&g.world, visitor, away), None);
+        assert!(theatre::needs_no_host(&g.world, visitor, theatre::TheatreId::Gulf));
+        assert!(theatre::has_access(&g.world, visitor, theatre::TheatreId::Gulf));
+
+        // Retain the twenty-year invariant: every structural resident or host
+        // has access, regardless of changing politics or incidental AI grants.
         let mut structural = 0usize;
-        let mut granted = 0usize;
         for _ in 0..(20 * 12) {
             tick_month(&mut g.world, &[]);
             for t in g.world.theatres.iter().map(|t| t.id).collect::<Vec<_>>() {
@@ -14421,18 +14447,11 @@ mod tests {
                             n,
                             t
                         );
-                    } else if theatre::has_access(&g.world, n, t) {
-                        granted += 1;
                     }
                 }
             }
         }
         assert!(structural > 0, "no nation was ever structurally in a theatre");
-        assert!(
-            granted > 0,
-            "twenty years produced no granted access, so the OTHER half of \
-             has_access was never exercised and the implication above is vacuous"
-        );
 
         // And the payload carries it, for the player's own seat, both ways.
         let s = state_json(&g, None);
@@ -17600,9 +17619,9 @@ mod tests {
             *tally.entry(b.to_string()).or_insert(0) += 1;
         }
         assert_eq!(alive, 137);
-        assert_eq!(tally["Western"], 67);
+        assert_eq!(tally["Western"], 65);
         assert_eq!(tally["NonAligned"], 42);
-        assert_eq!(tally["Communist"], 17);
+        assert_eq!(tally["Communist"], 19);
         // Algeria opens with the FLN-only 1987 national chamber, separately
         // from support proxies drawn from the later June 1990 local vote.
         assert_eq!(tally["Nationalist"], 9);

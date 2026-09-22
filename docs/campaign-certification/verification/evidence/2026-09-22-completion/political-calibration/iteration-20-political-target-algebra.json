@@ -1,0 +1,88 @@
+{
+  "iteration": 20,
+  "basis": "Exact corrected20 production formula; hypothetical algebra fixtures, not sampled campaign outcomes or proposed parameter choices",
+  "assumptions": [
+    "full military resource basket",
+    "zero war exhaustion",
+    "zero Nationalist foreign backing",
+    "electoral government with an eligible six-month political record"
+  ],
+  "formula": "loyalty target = .85 - .65 * leverage * sustained_crisis * (1-public_mandate)",
+  "required_product": 0.7692307692307692,
+  "maximum_public_mandate_for_extreme_political_only_threshold": 0.23076923076923084,
+  "cases": [
+    {
+      "leverage": 0.0,
+      "sustained_crisis": 1.0,
+      "public_mandate": 0.0,
+      "political_factor": 0.0,
+      "current_weight": 0.65,
+      "penalty": 0.0,
+      "full_provision_target": 0.85,
+      "threshold_target": 0.35,
+      "can_reach_threshold": false,
+      "minimum_weight_to_reach_threshold": null
+    },
+    {
+      "leverage": 0.5,
+      "sustained_crisis": 1.0,
+      "public_mandate": 0.0,
+      "political_factor": 0.5,
+      "current_weight": 0.65,
+      "penalty": 0.325,
+      "full_provision_target": 0.5249999999999999,
+      "threshold_target": 0.35,
+      "can_reach_threshold": false,
+      "minimum_weight_to_reach_threshold": 1.0
+    },
+    {
+      "leverage": 0.8,
+      "sustained_crisis": 0.75,
+      "public_mandate": 0.25,
+      "political_factor": 0.45000000000000007,
+      "current_weight": 0.65,
+      "penalty": 0.29250000000000004,
+      "full_provision_target": 0.5574999999999999,
+      "threshold_target": 0.35,
+      "can_reach_threshold": false,
+      "minimum_weight_to_reach_threshold": 1.111111111111111
+    },
+    {
+      "leverage": 1.0,
+      "sustained_crisis": 1.0,
+      "public_mandate": 0.25,
+      "political_factor": 0.75,
+      "current_weight": 0.65,
+      "penalty": 0.48750000000000004,
+      "full_provision_target": 0.36249999999999993,
+      "threshold_target": 0.35,
+      "can_reach_threshold": false,
+      "minimum_weight_to_reach_threshold": 0.6666666666666666
+    },
+    {
+      "leverage": 1.0,
+      "sustained_crisis": 1.0,
+      "public_mandate": 0.0,
+      "political_factor": 1.0,
+      "current_weight": 0.65,
+      "penalty": 0.65,
+      "full_provision_target": 0.19999999999999996,
+      "threshold_target": 0.35,
+      "can_reach_threshold": true,
+      "minimum_weight_to_reach_threshold": 0.5
+    },
+    {
+      "leverage": 0.8,
+      "sustained_crisis": 1.0,
+      "public_mandate": 0.0,
+      "political_factor": 0.8,
+      "current_weight": 0.65,
+      "penalty": 0.52,
+      "full_provision_target": 0.32999999999999996,
+      "threshold_target": 0.35,
+      "can_reach_threshold": true,
+      "minimum_weight_to_reach_threshold": 0.625
+    }
+  ],
+  "limits": "A target at/below .35 is necessary, not sufficient for a coup: gradual loyalty, actual discontent, settled-time and pressure requirements remain. Source expert means are an explicit game proxy, not calibrated coup probabilities."
+}

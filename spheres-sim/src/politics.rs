@@ -161,10 +161,15 @@ pub fn tick(w: &mut WorldState) {
             || crate::fiscal_recovery::enabled(w) {
             continue;
         }
+        let army_floor = crate::government::ai_army_funding_floor(w, *id);
         let n = w.nation_mut(*id);
         if n.debt_gdp > 0.85 {
             n.tax_rate = (n.tax_rate + 0.002 * dt).min(0.55);
-            n.mil_spend_gdp = (n.mil_spend_gdp * fiscal_cut).max(0.01);
+            // A funded Army's operating appropriation is a shared priority
+            // with government AI. This only limits a cut; it never raises
+            // spending implicitly, and returns the old .01 floor off.
+            let floor = army_floor.map_or(0.01, |v| v.min(n.mil_spend_gdp).max(0.01));
+            n.mil_spend_gdp = (n.mil_spend_gdp * fiscal_cut).max(floor);
             n.state_invest_gdp = (n.state_invest_gdp * fiscal_cut).max(0.02);
         } else if n.debt_gdp < 0.3 {
             if n.tax_rate > 0.30 {
@@ -238,22 +243,14 @@ pub fn tick(w: &mut WorldState) {
                     crate::government::uprising(w, id);
                 } else {
                     let auth_shift = w.rng.range(-0.3, 0.2);
-                    let n = w.nation_mut(id);
-                    n.stability = 45.0;
-                    n.gdp *= 0.93;
-                    crate::economy::refresh_debt_ratio(n);
-                    n.authoritarianism = (n.authoritarianism + auth_shift).clamp(0.05, 0.95);
+                    crate::government::generic_regime_collapse(w, id, auth_shift);
                     w.headline(format!("Revolution in {} — the old regime falls.", id.name()));
                 }
             }
         } else if !is_ussr && !is_yugo && stab < 12.0 && monthly_chance(w, 0.10 * w.rules.crisis_intensity) {
             // Generic regime collapse: chaos, then a new regime
             let auth_shift = w.rng.range(-0.3, 0.2);
-            let n = w.nation_mut(id);
-            n.stability = 45.0;
-            n.gdp *= 0.93;
-            crate::economy::refresh_debt_ratio(n);
-            n.authoritarianism = (n.authoritarianism + auth_shift).clamp(0.05, 0.95);
+            crate::government::generic_regime_collapse(w, id, auth_shift);
             w.headline(format!("Revolution in {} — the old regime falls.", id.name()));
         }
     }

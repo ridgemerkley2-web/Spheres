@@ -1,0 +1,133 @@
+{
+  "schema": 1,
+  "status": "Declared confidence grid completed; no candidate repairs all original gates or A1 development concentration. Confidence restored to .65 after comparison; later test-only fixes are not included in these binary results.",
+  "predeclared_plan": "confidence-calibration-plan.json",
+  "shared_runtime_base": "Accountability .024; iteration14 parliamentary first-ballot office correction; 57 sourced Army overlays and midyear funding; no opening historical mandate initialization.",
+  "candidates": [
+    {
+      "iteration": 14,
+      "confidence": 0.65,
+      "focused": "91/91",
+      "original_gates": "9/10",
+      "original_failures": [
+        "A1"
+      ],
+      "development": {
+        "seeds": "0..199",
+        "months": 252,
+        "A1": {
+          "median": 8,
+          "top3": 0.62
+        },
+        "A2": "125/200",
+        "A3": "1/200",
+        "A4": 19,
+        "A5": "113/200",
+        "A7": 7.64,
+        "A6": "zero200/200 at252months",
+        "A8": "all200 retain8",
+        "A9": "3247/3247",
+        "A10": 0.33
+      }
+    },
+    {
+      "iteration": 15,
+      "confidence": 0.9,
+      "focused": "90/91",
+      "original_gates": "8/10",
+      "original_failures": [
+        "A1",
+        "A5"
+      ],
+      "focused_failure": "Positive funding fixture asks resources to reach .40 when its political-confidence-adjusted maximum is about .257.",
+      "development": {
+        "seeds": "0..199",
+        "months": 252,
+        "A1": {
+          "median": 10,
+          "top3": 0.56
+        },
+        "A2": "133/200",
+        "A3": "0/200",
+        "A4": 19,
+        "A5": "108/200",
+        "A7": 6.22,
+        "A6": "zero200/200 at252months",
+        "A8": "all200 retain8",
+        "A9": "3616/3616",
+        "A10": 0.37
+      }
+    },
+    {
+      "iteration": 16,
+      "confidence": 1.2,
+      "focused": "89/91",
+      "original_gates": "7/10",
+      "original_failures": [
+        "A1",
+        "A3",
+        "A5"
+      ],
+      "focused_failures": [
+        "New negative political-funding fixture uses authoritarianism .60, outside strict electoral<.60 branch; confidence penalty therefore zero. Moderate-autonomy positive case passes.",
+        "Algeria sustained-crisis integration scenario has an ordinary military coup before its scheduled hostile-army ballot setup. Original A2 separately records12/12annulments."
+      ],
+      "development": {
+        "seeds": "0..199",
+        "months": 252,
+        "A1": {
+          "median": 11,
+          "top3": 0.5
+        },
+        "A2": "125/200",
+        "A3": "11/200",
+        "A4": 19,
+        "A5": "105/200",
+        "A7": 5.54,
+        "A6": "zero200/200 at252months",
+        "A8": "all200 retain8",
+        "A9": "4026/4026",
+        "A10": 0.37
+      }
+    }
+  ],
+  "sampling": {
+    "original_outcome_thresholds": "Unchanged; failed original small cohorts retained.",
+    "a5": [
+      {
+        "iteration": 14,
+        "p": 0.565,
+        "wilson95": [
+          0.495707,
+          0.631843
+        ],
+        "plug_in_rounded_n": 320
+      },
+      {
+        "iteration": 15,
+        "p": 0.54,
+        "wilson95": [
+          0.470823,
+          0.607669
+        ],
+        "plug_in_rounded_n": 840
+      },
+      {
+        "iteration": 16,
+        "p": 0.525,
+        "wilson95": [
+          0.455974,
+          0.593084
+        ],
+        "plug_in_rounded_n": 2160
+      }
+    ],
+    "caveats": [
+      "Plug-in margin formula is prospective sample-size guidance, not proof of power or population majority.",
+      "All Wilson95 intervals include.5; candidates were selected on development observations.",
+      "A1's discrete median concentration is not eligible for Bernoulli sizing; median.50 fails strict<.50.",
+      "Any later confirmation requires fixed disjoint seed range and stopping rule, no append-until-green, with original failures retained. No new cohort authorized or run here."
+    ]
+  },
+  "independent_cohort": "Predeclared1000..1059 remains uninspected."
+}

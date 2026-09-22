@@ -1,0 +1,15 @@
+{
+  "command": "bloc_census.exe --ignored --exact bloc_census --nocapture --test-threads=1",
+  "prior_analysis_plan": "development-cohort-analysis-plan.json",
+  "started_utc": "2026-09-22T18:30:02.5735253Z",
+  "months": 252,
+  "binary": {
+    "Algorithm": "SHA256",
+    "Hash": "D846EBB61D8D220FE09CD973E5C31C9ECC5C5DFAA775F867E2B7785755FDF881",
+    "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\bloc_census-b35be4d742aae476.exe"
+  },
+  "seed_count": 200,
+  "seed_first": 0,
+  "kind": "development diagnostic; original assertion gates unchanged; not independent validation",
+  "source_manifest": "iteration-9-source-input-manifest-supplement.json"
+}

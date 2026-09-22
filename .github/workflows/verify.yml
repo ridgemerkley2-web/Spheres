@@ -25,6 +25,10 @@ jobs:
         run: node tools/ui/bench_art.cjs --check
       - name: Verify detailed lake surface bindings
         run: python -B tools/terrain/test_lake_surfaces.py
+      - name: Verify sourced military authority inputs
+        run: python -B tools/politics/build_army_authority.py --source tools/politics/fixtures/vdem-v16-1989-military-authority.json --nations spheres-sim/data/nations --output spheres-sim/data/army_authority_1989.json --check
+      - name: Verify military authority source controls
+        run: python -B -m unittest discover -s tools/politics -p "test_*.py"
   native:
     strategy:
       fail-fast: false
@@ -82,10 +86,25 @@ jobs:
         with:
           name: town-scene-evidence-${{ matrix.os }}
           path: artifacts/town-scene-browser
+  # The opt-in political model has ten historical outcome gates. Run even
+  # the gates kept out of the default suite while calibration was incomplete;
+  # the separate measurement-only census is not an acceptance test.
+  political-calibration:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Require all ten political outcome gates and attribution controls
+        run: cargo test --locked --release -p spheres-sim --test bloc_census -- --include-ignored --skip bloc_census
   # Preserve the original required-check names, each covering every suite.
   verify:
     if: always()
-    needs: [javascript, native, town-browser]
+    needs: [javascript, native, town-browser, political-calibration]
     strategy:
       fail-fast: false
       matrix:
@@ -93,9 +112,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     timeout-minutes: 5
     steps:
-      - name: Require every native, JavaScript and town browser check to pass
+      - name: Require every native, JavaScript, town and political check to pass
         env:
           NATIVE_RESULT: ${{ needs.native.result }}
           JAVASCRIPT_RESULT: ${{ needs.javascript.result }}
           TOWN_BROWSER_RESULT: ${{ needs['town-browser'].result }}
-        run: python -c "import os,sys; results={key:os.environ[key] for key in ('NATIVE_RESULT','JAVASCRIPT_RESULT','TOWN_BROWSER_RESULT')}; print(results); sys.exit(0 if all(value=='success' for value in results.values()) else 1)"
+          POLITICAL_RESULT: ${{ needs['political-calibration'].result }}
+        run: python -c "import os,sys; results={key:os.environ[key] for key in ('NATIVE_RESULT','JAVASCRIPT_RESULT','TOWN_BROWSER_RESULT','POLITICAL_RESULT')}; print(results); sys.exit(0 if all(value=='success' for value in results.values()) else 1)"

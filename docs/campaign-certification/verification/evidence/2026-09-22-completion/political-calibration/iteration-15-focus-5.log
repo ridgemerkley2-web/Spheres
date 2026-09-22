@@ -1,0 +1,15 @@
+
+running 1 test
+
+thread 'government::tests::ai_army_appropriation_targets_actual_loyalty_without_spending_past_useful_resources' (31424) panicked at spheres-sim\src\government.rs:13737:9:
+the paid appropriation must invert the real target, got 0.25676875
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test government::tests::ai_army_appropriation_targets_actual_loyalty_without_spending_past_useful_resources ... FAILED
+
+failures:
+
+failures:
+    government::tests::ai_army_appropriation_targets_actual_loyalty_without_spending_past_useful_resources
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 993 filtered out; finished in 0.03s
+

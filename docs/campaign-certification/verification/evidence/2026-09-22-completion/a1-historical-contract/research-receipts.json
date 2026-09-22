@@ -1,0 +1,66 @@
+{
+  "review_date": "2026-09-22",
+  "scope": "read-only historical basis and taxonomy; no source edits or tests executed",
+  "sources": [
+    {
+      "url": "https://jonathanmpowell.com/wp-content/uploads/2022/11/powell-thyne-2011jpr-global-instances-of-coups.pdf",
+      "status": "full primary paper read via browser",
+      "locators": [
+        "pp251-253 definitions and exclusions",
+        "p252 success seven days"
+      ]
+    },
+    {
+      "url": "https://jonathanmpowell.com/wp-content/uploads/2026/08/pt_20260829.csv",
+      "status": "directly fetched entire author dataset and cached",
+      "sha256": "1e8f933b22f4b9a77d0ba5eb59bf0d8158adcaab27746adcf345195be87a9012",
+      "bytes": 20089
+    },
+    {
+      "url": "https://www.uky.edu/~clthyn2/coup_data/Codebook.pdf",
+      "status": "HTTP403; NOT read"
+    },
+    {
+      "url": "https://cidh.oas.org/countryrep/Peru93eng/iii.htm",
+      "status": "browser indexed substantial chapter text accessible; open reader returned internal error",
+      "locators": [
+        "paragraph42",
+        "paragraphs52-53"
+      ]
+    },
+    {
+      "url": "https://www.oas.org/en/iachr/decisions/court/12214fondoen.pdf",
+      "status": "full PDF browser read",
+      "locators": [
+        "pp7-8 proven facts and reproduced Court89.1-89.6"
+      ],
+      "limitation": "Unfinalized report header; corroboration only"
+    },
+    {
+      "url": "https://documents.un.org/doc/undoc/gen/g03/101/14/pdf/g0310114.pdf",
+      "status": "full UN PDF browser read",
+      "locators": [
+        "E/CN.4/2003/66/Add.1 paragraphs15-16"
+      ]
+    },
+    {
+      "url": "https://www.everycrsreport.com/reports/98-219.html",
+      "status": "full primary CRS republication browser read",
+      "locators": [
+        "CRS p2 January1992",
+        "CRS p3 first multi-candidate presidential election1995"
+      ],
+      "limitation": "Primary government report accessed through third-party host; unrelated local-election-date claim not relied on"
+    },
+    {
+      "url": "https://na.gov.pk/en/content.php?id=75",
+      "status": "full official HTML directly fetched; browser open reader failed",
+      "receipt": "pakistan-primary-retrieval.json"
+    }
+  ],
+  "local_source_hashes": {
+    "spheres-sim/tests/bloc_census.rs": "4d0b0c242d12933b1bd23e11cd2185c97656315820e2f9c72a7c671f5eb9bf56",
+    "SPEC.md": "b469b9851d52ad7cbc2bdad7c78e3d77e0c5abab798a0817f3854410e39f8614",
+    "BUGS.md": "37d5936d99c3b5975e0617a91b88b441e84be3e06da5425a597432478deabe3b"
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "format": "spheres-primary-source-receipts/v1",
+  "started_utc": "2026-09-22T19:20:40.027880+00:00",
+  "purpose": "Archive access results and exact response hashes where accessible, not unobserved source assertions. No full copyrighted documents copied. Web-tool readings and independent HTTP receipts are distinct.",
+  "sources": [
+    {
+      "id": "dna_history",
+      "url": "https://www.dna.sr/achtergrond-info/geschiedenis-dna/een-korte-geschiedenis/",
+      "status": "full_page_read",
+      "locator": "1987transitionparagraph; generalfreeandsecretelections25November1987",
+      "independent_receipt": {
+        "time_utc": "2026-09-22T19:20:40.632515+00:00",
+        "status": 200,
+        "final_url": "https://www.dna.sr/achtergrond-info/geschiedenis-dna/een-korte-geschiedenis/",
+        "content_type": "text/html; charset=utf-8",
+        "body_bytes": 27504,
+        "complete": true,
+        "body_sha256": "40993c4ecedec8788a996c43830c872df6aa3d40ee46ac83e4c73bde054afd9e"
+      }
+    },
+    {
+      "id": "iachr_suriname",
+      "url": "https://cidh.oas.org/annualrep/87.88eng/chap4e.htm",
+      "status": "full_page_read",
+      "locator": "Constitutionarticle177/CouncilofState; electionandinaugurationparagraph",
+      "date_conflict": "OneparagraphsaysNovember15; laterparagraphsaysNovember25. Officialparliamenthistoryconfirms25. Noimportofinconsistentday.",
+      "independent_receipt": {
+        "time_utc": "2026-09-22T19:20:40.596209+00:00",
+        "error": "HTTPError: HTTP Error 403: Forbidden",
+        "note": "The preceding web-tool read remains separately recorded; this failed fetch is not a body receipt."
+      }
+    },
+    {
+      "id": "ipu_guatemala",
+      "url": "https://data.ipu.org/election-summary/PDF/GUATEMALA_1985_E.PDF",
+      "status": "full_pdf_text_read",
+      "locator": "ChronicleXX(1985–1986)pp79–81; electiondatep79, resultandgovernmentp80",
+      "independent_receipt": {
+        "time_utc": "2026-09-22T19:20:40.235754+00:00",
+        "error": "HTTPError: HTTP Error 403: Forbidden",
+        "note": "The preceding web-tool read remains separately recorded; this failed fetch is not a body receipt."
+      }
+    },
+    {
+      "id": "iachr_guatemala",
+      "url": "https://cidh.oas.org/annualrep/87.88eng/chap4b.htm",
+      "status": "full_page_read",
+      "locator": "democraticconstitutionalgovernment; sectionmunicipalelections24April1988, PGToutlawed",
+      "date_conflict": "ReportusesJanuary16inaugurationwhileIPUandcurrentleaderrecorduseJanuary14; do notrepinleaderdatefromthisreport.",
+      "independent_receipt": {
+        "time_utc": "2026-09-22T19:20:40.488091+00:00",
+        "error": "HTTPError: HTTP Error 403: Forbidden",
+        "note": "The preceding web-tool read remains separately recorded; this failed fetch is not a body receipt."
+      }
+    },
+    {
+      "id": "ipu_guyana",
+      "url": "https://data.ipu.org/election-summary/PDF/GUYANA_1985_E.PDF",
+      "status": "full_pdf_text_read",
+      "locator": "ChronicleXX(1985–1986)pp83–84; p84conduct/electiontable",
+      "independent_receipt": {
+        "time_utc": "2026-09-22T19:20:40.358907+00:00",
+        "error": "HTTPError: HTTP Error 403: Forbidden",
+        "note": "The preceding web-tool read remains separately recorded; this failed fetch is not a body receipt."
+      }
+    },
+    {
+      "id": "un_comoros_index",
+      "url": "https://digitallibrary.un.org/nanna/record/105269/files/E_CN.4_1991_14-EN.pdf?registerDownload=1&version=1&withMetadata=0&withWatermark=0",
+      "status": "indexed_primary_text_only; directopen403",
+      "locator": "E/CN.4/1991/14p19paras70–73",
+      "limitation": "Searchindextextread, fullPDFnotfetched."
+    },
+    {
+      "id": "stp_parliament",
+      "url": "https://www2.camara.leg.br/saotomeeprincipe/parlamento/historial",
+      "status": "full_page_read",
+      "locator": "IIIlegislature1985–1991; constitutionalreformandfirstmultipartyballot",
+      "independent_receipt": {
+        "time_utc": "2026-09-22T19:20:41.367748+00:00",
+        "status": 200,
+        "final_url": "https://www2.camara.leg.br/saotomeeprincipe/parlamento/historial",
+        "content_type": "text/html;charset=utf-8",
+        "body_bytes": 29778,
+        "complete": true,
+        "body_sha256": "d3b747c42c12e667afe7c00ecf7c8bbe14fa42895b7787d1a44f00b93a1dbeba"
+      }
+    },
+    {
+      "id": "ipu_saotome",
+      "url": "https://data.ipu.org/election-summary/HTML/2275_91.htm",
+      "status": "full_page_read",
+      "locator": "20January1991background/resultstable",
+      "independent_receipt": {
+        "time_utc": "2026-09-22T19:20:40.637454+00:00",
+        "error": "HTTPError: HTTP Error 403: Forbidden",
+        "note": "The preceding web-tool read remains separately recorded; this failed fetch is not a body receipt."
+      }
+    },
+    {
+      "id": "un_myanmar_index",
+      "url": "https://digitallibrary.un.org/record/228428/files/E_CN.4_1996_65-EN.pdf",
+      "status": "indexed_primary_text_only; directopen403",
+      "locator": "E/CN.4/1996/65backgroundon27May1990ballot",
+      "limitation": "No newseatdenominatorclaim: indexedUN485vs code492 requires separateauditifused; notneededtoexcludeJanuarymandate."
+    },
+    {
+      "id": "cia1990",
+      "url": "https://www.gutenberg.org/cache/epub/14/pg14-images.html",
+      "status": "existing_complete_verified_primary_publication_text_read",
+      "cache": "cia1990-823bfd2f.html",
+      "sha256": "823bfd2f5b6e1b15cea46697ba2c8615c4d39789024ba91e874bb1576793517e",
+      "locator": "sixcountriesGovernment/Leaders/Electionssections",
+      "edition_note": "GeneralinformationJan1withpoliticalupdatesMar30; explicitlycheckelectiondatesratherthanassumeallcontentpreopening.",
+      "local_verified_bytes": 2379093,
+      "local_verified_sha256": "823bfd2f5b6e1b15cea46697ba2c8615c4d39789024ba91e874bb1576793517e"
+    },
+    {
+      "id": "suriname_official_tally_unavailable",
+      "url": "https://verkiezingen.gov.sr/storage/pdf/verslagen/1987/uitslag-verkiezingen-25-november-1987-okb.pdf",
+      "status": "indexedtitlelocated; webopenfailed; directread403",
+      "limitation": "Exactvotepercentagesnotindependentlyread."
+    }
+  ]
+}

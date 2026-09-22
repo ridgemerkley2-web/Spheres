@@ -1,0 +1,33 @@
+{
+  "gates_log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\iteration-16-A1-A10.log",
+  "iteration": 16,
+  "gates_exit": 101,
+  "finished_utc": "2026-09-22T19:25:20.5401071Z",
+  "binary_sha256": [
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_sim-de8a2e7790f15db6.exe",
+      "Hash": "816962D9663275371CBF507DAD6ADCE2709F47B0637742DDA6CD1FD55C8EB940"
+    },
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\bloc_census-b35be4d742aae476.exe",
+      "Hash": "20C88B10EF7C1F57AF10D6CF191914D193EFA4A0B265EE3A9AC723E4A14FC9CC"
+    }
+  ],
+  "focused_passed": 89,
+  "source_sha256": [
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\src\\government.rs",
+      "Hash": "7606EDFC9D040C297BF127A0473BB847438E6ABF3DDEF0FB39B4754DB7313438"
+    },
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\src\\blocs.rs",
+      "Hash": "A8ED3C7DF28D9E7D82AABF76366AB5678716A34C167276184FC42AE863E14E99"
+    },
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\src\\statecraft.rs",
+      "Hash": "EAE2D88EF1D2A7AA33AD78AC65714C3B53C06E3EA592B6C319F9E1533D76FBDF"
+    }
+  ],
+  "focused_total": 91,
+  "gates_command": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\bloc_census-b35be4d742aae476.exe --include-ignored --skip bloc_census --nocapture --test-threads=4"
+}

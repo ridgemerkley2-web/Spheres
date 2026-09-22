@@ -1,0 +1,33 @@
+{
+  "focused_total": 53,
+  "binary_sha256": [
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_sim-de8a2e7790f15db6.exe",
+      "Hash": "57965116F6BECACDEF6EFD551307EFC5D802B4F742FF1AD1BFF7B6E7EA758707"
+    },
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\bloc_census-b35be4d742aae476.exe",
+      "Hash": "A9F72E58461177159F7DEF364B360D4A15B0E44F23A346D1A7073239FCB1AA73"
+    }
+  ],
+  "gates_exit": 101,
+  "gates_command": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\bloc_census-b35be4d742aae476.exe --include-ignored --skip bloc_census --nocapture --test-threads=4",
+  "finished_utc": "2026-09-22T17:10:54.9462488Z",
+  "focused_passed": 52,
+  "gates_log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\iteration-5-A1-A10.log",
+  "source_sha256": [
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\src\\government.rs",
+      "Hash": "270A3DF749FA5789A12136901815D1EF77775FAC14B48FCF8F6290ECA10E0581"
+    },
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\src\\blocs.rs",
+      "Hash": "7F2ABB39ECD72906E98B07E1102318B18389A7AC6927DCBA99CE6FFF392483EB"
+    },
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\src\\statecraft.rs",
+      "Hash": "EAE2D88EF1D2A7AA33AD78AC65714C3B53C06E3EA592B6C319F9E1533D76FBDF"
+    }
+  ],
+  "iteration": 5
+}

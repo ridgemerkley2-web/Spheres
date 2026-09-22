@@ -1,0 +1,30 @@
+test_ambiguous_shipped_shores_are_rejected (test_lake_surfaces.LakeSurfaceTests.test_ambiguous_shipped_shores_are_rejected) ... ok
+test_coarse_shore_is_not_accepted_as_a_nearby_match (test_lake_surfaces.LakeSurfaceTests.test_coarse_shore_is_not_accepted_as_a_nearby_match) ... ok
+test_detailed_shore_binds_at_its_actual_index_and_keeps_source_level (test_lake_surfaces.LakeSurfaceTests.test_detailed_shore_binds_at_its_actual_index_and_keeps_source_level) ... ok
+test_duplicate_source_lake_is_rejected (test_lake_surfaces.LakeSurfaceTests.test_duplicate_source_lake_is_rejected) ... ok
+test_missing_source_lake_is_rejected (test_lake_surfaces.LakeSurfaceTests.test_missing_source_lake_is_rejected) ... ok
+test_multipolygon_exteriors_keep_each_ring (test_lake_surfaces.LakeSurfaceTests.test_multipolygon_exteriors_keep_each_ring) ... ok
+test_nonpolygon_and_empty_shores_are_rejected (test_lake_surfaces.LakeSurfaceTests.test_nonpolygon_and_empty_shores_are_rejected) ... ok
+test_polygon_holes_and_source_altitudes_do_not_change_exterior (test_lake_surfaces.LakeSurfaceTests.test_polygon_holes_and_source_altitudes_do_not_change_exterior) ... ok
+test_shifted_shore_is_rejected (test_lake_surfaces.LakeSurfaceTests.test_shifted_shore_is_rejected) ... ok
+test_recorded_source_digest_and_every_binding_match_shipped_paths (test_lake_surfaces.ShippedLakeProvenanceTests.test_recorded_source_digest_and_every_binding_match_shipped_paths) ... ok
+test_fixed_range_clipping_and_zero_blue (test_terrain_tiles.ElevationPackingTests.test_fixed_range_clipping_and_zero_blue) ... ok
+test_float32_source_is_promoted_before_half_code_rounding (test_terrain_tiles.ElevationPackingTests.test_float32_source_is_promoted_before_half_code_rounding) ... ok
+test_red_green_carry_preserves_adjacent_codes (test_terrain_tiles.ElevationPackingTests.test_red_green_carry_preserves_adjacent_codes) ... ok
+test_interiors_cover_every_original_sample_once_north_up (test_terrain_tiles.NativeTileTests.test_interiors_cover_every_original_sample_once_north_up) ... ok
+test_invalid_grid_shape_and_tile_indices_are_rejected (test_terrain_tiles.NativeTileTests.test_invalid_grid_shape_and_tile_indices_are_rejected) ... ok
+test_northwest_cells_wrap_longitude_and_duplicate_polar_row (test_terrain_tiles.NativeTileTests.test_northwest_cells_wrap_longitude_and_duplicate_polar_row) ... ok
+test_packed_seams_share_both_adjacent_native_cells (test_terrain_tiles.NativeTileTests.test_packed_seams_share_both_adjacent_native_cells) ... ok
+test_southeast_cells_wrap_longitude_and_duplicate_polar_row (test_terrain_tiles.NativeTileTests.test_southeast_cells_wrap_longitude_and_duplicate_polar_row) ... ok
+test_tile_names_include_padded_coordinates (test_terrain_tiles.NativeTileTests.test_tile_names_include_padded_coordinates) ... ok
+test_check_accepts_exact_artifact_and_detects_mutation_without_writing (test_terrain_tiles.PngAndArtifactTests.test_check_accepts_exact_artifact_and_detects_mutation_without_writing) ... ok
+test_check_rejects_missing_artifact_without_creating_it (test_terrain_tiles.PngAndArtifactTests.test_check_rejects_missing_artifact_without_creating_it) ... ok
+test_corrupt_crc_and_truncated_chunks_are_rejected (test_terrain_tiles.PngAndArtifactTests.test_corrupt_crc_and_truncated_chunks_are_rejected) ... ok
+test_nonzero_blue_and_changed_pixels_are_rejected (test_terrain_tiles.PngAndArtifactTests.test_nonzero_blue_and_changed_pixels_are_rejected) ... ok
+test_png_preserves_non_square_rgb_bytes_without_color_management (test_terrain_tiles.PngAndArtifactTests.test_png_preserves_non_square_rgb_bytes_without_color_management) ... ok
+test_valid_crc_color_management_chunks_are_rejected (test_terrain_tiles.PngAndArtifactTests.test_valid_crc_color_management_chunks_are_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 0.076s
+
+OK

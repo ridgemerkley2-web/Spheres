@@ -1,0 +1,155 @@
+==============================================================================
+CHECK 1: district_terrain.json — famous geography
+==============================================================================
+district_terrain.json: 2610 entries; roster: 2610 districts
+  PASS  entry count == 2610 (got 2610)
+  PASS  no roster districts missing from terrain (missing: [])
+  PASS  no terrain ids absent from roster (extra: [])
+
+-- Nepal (Himalaya) --
+  PASS  Nepal all-districts: majority in ['mountain'] — 14/14 (actual mix {'mountain': 14})
+  PASS  Nepal high-Himalaya: NP-SA (Sagarmatha): t=mountain f='Himalayas'  [expect mountain]
+  PASS  Nepal high-Himalaya: NP-GA (Gandaki): t=mountain f='Himalayas'  [expect mountain]
+  PASS  Nepal high-Himalaya: NP-DH (Dhawalagiri): t=mountain f='Himalayas'  [expect mountain]
+  PASS  Nepal high-Himalaya: NP-KA (Karnali): t=mountain f='Himalayas'  [expect mountain]
+  PASS  Nepal high-Himalaya: NP-BA (Bagmati): t=mountain f='Himalayas'  [expect mountain]
+  PASS  Nepal high-Himalaya: NP-ME (Mechi): t=mountain f='Himalayas'  [expect mountain]
+  PASS  Nepal high-Himalaya: 6 district(s) carry a 'Himalaya' feature name (need >= 3)
+
+-- Bhutan (Himalaya) --
+  PASS  Bhutan all-districts: majority in ['mountain'] — 19/20 (actual mix {'mountain': 19, 'lowland': 1})
+  PASS  Bhutan spot: BT-11 (Paro): t=mountain f='Himalayas'  [expect mountain]
+  PASS  Bhutan spot: BT-15 (Thimphu): t=mountain f='Himalayas'  [expect mountain]
+  PASS  Bhutan spot: BT-33 (Bumthang): t=mountain f='Himalayas'  [expect mountain]
+  PASS  Bhutan spot: BT-GA (Gasa): t=mountain f='Himalayas'  [expect mountain]
+  PASS  Bhutan spot: 4 district(s) carry a 'Himalaya' feature name (need >= 1)
+
+-- Swiss Alps --
+  PASS  Swiss Alpine cantons: CH-VS (Valais): t=mountain f='Alps'  [expect mountain]
+  PASS  Swiss Alpine cantons: CH-GR (Graubünden): t=mountain f='Alps'  [expect mountain]
+  PASS  Swiss Alpine cantons: CH-BE (Bern): t=mountain f='Alps'  [expect mountain]
+  PASS  Swiss Alpine cantons: CH-UR (Uri): t=mountain f='Alps'  [expect mountain]
+  PASS  Swiss Alpine cantons: CH-TI (Ticino): t=mountain f='Alps'  [expect mountain]
+  PASS  Swiss Alpine cantons: CH-GL (Glarus): t=mountain f='Alps'  [expect mountain]
+  PASS  Swiss Alpine cantons: 6 district(s) carry a 'Alps' feature name (need >= 4)
+
+-- Austrian Alps --
+  PASS  Austrian Alpine states: AT-7 (Tirol): t=mountain f='Alps'  [expect mountain]
+  PASS  Austrian Alpine states: AT-5 (Salzburg): t=mountain f='Alps'  [expect mountain]
+  PASS  Austrian Alpine states: AT-8 (Vorarlberg): t=mountain f='Alps'  [expect mountain]
+  PASS  Austrian Alpine states: AT-2 (Kärnten): t=mountain f='Alps'  [expect mountain]
+  PASS  Austrian Alpine states: AT-6 (Steiermark): t=mountain f='Alps'  [expect mountain]
+  PASS  Austrian Alpine states: 5 district(s) carry a 'Alps' feature name (need >= 3)
+
+-- Egyptian Sahara --
+  PASS  Egypt desert governorates: EG-WAD (Al Wadi at Jadid): t=desert f='Sahara'  [expect desert]
+  PASS  Egypt desert governorates: EG-MT (Matruh): t=desert f='Libyan Desert'  [expect desert]
+  PASS  Egypt desert governorates: EG-GZ (Al Jizah): t=desert f='Sahara'  [expect desert]
+  PASS  Egypt desert governorates: EG-ASN (Aswan): t=desert f='Sahara'  [expect desert]
+  PASS  Egypt desert governorates: EG-MN (Al Minya): t=desert f='Sahara'  [expect desert]
+  PASS  Egypt desert governorates: 4 district(s) carry a 'Sahara' feature name (need >= 2)
+
+-- Libyan Sahara --
+  PASS  Libya desert districts: LY-KF (Al Kufrah): t=desert f='Sahara'  [expect desert]
+  PASS  Libya desert districts: LY-MQ (Murzuq): t=desert f='Sahara'  [expect desert]
+  PASS  Libya desert districts: LY-JU (Al Jufrah): t=desert f='Sahara'  [expect desert]
+  PASS  Libya desert districts: LY-GT (Ghat): t=desert f='Sahara'  [expect desert]
+  PASS  Libya desert districts: LY-GD (Ghadamis): t=desert f='Sahara'  [expect desert]
+  PASS  Libya desert districts: LY-SB (Sabha): t=desert f='Sahara'  [expect desert]
+  PASS  Libya desert districts: LY-WD (Wadi al Hayaa): t=desert f='Sahara'  [expect desert]
+  PASS  Libya desert districts: 7 district(s) carry a 'Sahara' feature name (need >= 3)
+
+-- Algerian Sahara --
+  PASS  Algeria Saharan wilayas: DZ-01 (Adrar): t=desert f='Sahara'  [expect desert]
+  PASS  Algeria Saharan wilayas: DZ-11 (Tamanghasset): t=desert f='Sahara'  [expect desert]
+  PASS  Algeria Saharan wilayas: DZ-33 (Illizi): t=desert f='Sahara'  [expect desert]
+  PASS  Algeria Saharan wilayas: DZ-37 (Tindouf): t=desert f='Sahara'  [expect desert]
+  PASS  Algeria Saharan wilayas: DZ-30 (Ouargla): t=desert f='Sahara'  [expect desert]
+  PASS  Algeria Saharan wilayas: DZ-39 (El Oued): t=desert f='Sahara'  [expect desert]
+  PASS  Algeria Saharan wilayas: DZ-08 (Béchar): t=desert f='Sahara'  [expect desert]
+  PASS  Algeria Saharan wilayas: 7 district(s) carry a 'Sahara' feature name (need >= 3)
+
+-- Mongolian Gobi (desert or highland accepted) --
+  PASS  Gobi core aimags: MN-053 (Ömnögovi): t=highland f='Mongolian Plateau'  [expect desert/highland]
+  PASS  Gobi core aimags: MN-059 (Dundgovi): t=highland f='Mongolian Plateau'  [expect desert/highland]
+  PASS  Gobi core aimags: MN-063 (Dornogovi): t=highland f='Mongolian Plateau'  [expect desert/highland]
+  PASS  Govi-Altay (mountain accepted: Gobi-Altai range): MN-065 (Govi-Altay): t=mountain f='Altay Mountains'  [expect desert/highland/mountain]
+  WARN  Gobi: MN-064 (Govĭ-Sümber): t=mountain f='Hentiyn Mts.' [expect desert/highland; judged NE fuzzy-blob quirk]
+
+-- Tibet (mountain/highland) --
+  PASS  Tibet/Qinghai: CN-XZ (Xizang): t=highland f='Plateau of Tibet'  [expect highland/mountain]
+  PASS  Tibet/Qinghai: CN-QH (Qinghai): t=highland f='Plateau of Tibet'  [expect highland/mountain]
+
+-- Netherlands lowland (European provinces) --
+  PASS  NL provinces: NL-DR (Drenthe): t=lowland f='Northern European Plain'  [expect lowland/wetland]
+  PASS  NL provinces: NL-FL (Flevoland): t=lowland f='Northern European Plain'  [expect lowland/wetland]
+  PASS  NL provinces: NL-FR (Friesland): t=lowland f='Northern European Plain'  [expect lowland/wetland]
+  PASS  NL provinces: NL-GE (Gelderland): t=lowland f='Northern European Plain'  [expect lowland/wetland]
+  PASS  NL provinces: NL-GR (Groningen): t=lowland f='Northern European Plain'  [expect lowland/wetland]
+  PASS  NL provinces: NL-LI (Limburg): t=lowland f='Northern European Plain'  [expect lowland/wetland]
+  PASS  NL provinces: NL-NB (Noord-Brabant): t=lowland f='Northern European Plain'  [expect lowland/wetland]
+  PASS  NL provinces: NL-NH (Noord-Holland): t=lowland f='Northern European Plain'  [expect lowland/wetland]
+  PASS  NL provinces: NL-OV (Overijssel): t=lowland f='Northern European Plain'  [expect lowland/wetland]
+  PASS  NL provinces: NL-UT (Utrecht): t=lowland f='Northern European Plain'  [expect lowland/wetland]
+  PASS  NL provinces: NL-ZE (Zeeland): t=lowland f='Northern European Plain'  [expect lowland/wetland]
+  PASS  NL provinces: NL-ZH (Zuid-Holland): t=lowland f='Northern European Plain'  [expect lowland/wetland]
+
+-- Bangladesh lowland --
+  PASS  BD divisions: BD-A (Barisal): t=wetland f='Ganges Delta'  [expect lowland/wetland]
+  PASS  BD divisions: BD-B (Chittagong): t=lowland f=None  [expect lowland/wetland]
+  PASS  BD divisions: BD-C (Dhaka): t=lowland f='Ganges Plain'  [expect lowland/wetland]
+  PASS  BD divisions: BD-D (Khulna): t=wetland f='Ganges Delta'  [expect lowland/wetland]
+  PASS  BD divisions: BD-E (Rajshahi): t=lowland f='Ganges Plain'  [expect lowland/wetland]
+  PASS  BD divisions: BD-F (Rangpur): t=lowland f='Ganges Plain'  [expect lowland/wetland]
+  PASS  BD divisions: BD-G (Sylhet): t=lowland f=None  [expect lowland/wetland]
+
+-- Po Valley lowland --
+  PASS  Po Valley regions: ITA_emilia-romagna (Emilia-Romagna): t=lowland f='Appennini'  [expect lowland/wetland]
+  PASS  Po Valley regions: ITA_veneto (Veneto): t=lowland f=None  [expect lowland/wetland]
+  PASS  Po Valley regions: ITA_lombardia (Lombardia): t=lowland f=None  [expect lowland/wetland]
+  PASS  Po Valley regions: ITA_piemonte (Piemonte): t=lowland f='Alps'  [expect lowland/wetland]
+
+-- Siberian far north (tundra or equivalent) --
+  PASS  Yamal-Nenets (66N override): RU-YAN (Yamal-Nenets): t=tundra f='Western Siberian Plain'  [expect tundra]
+  PASS  far-north: RU-NEN (Nenets): t=tundra f='Bol’shezemel’skaya Tundra'  [expect tundra]
+  PASS  far-north: RU-CHU (Chukchi Autonomous Okrug): t=tundra f=None  [expect tundra]
+  PASS  far-north: RU-SA (Sakha (Yakutia)): t=tundra f='Central Siberian Plateau'  [expect tundra]
+  PASS  far-north: RU-MUR (Murmansk): t=tundra f=None  [expect tundra]
+  PASS  far-north: RU-KYA (Krasnoyarsk): t=tundra f='Central Siberian Plateau' [tundra or highland: Central Siberian Plateau]
+  PASS  at least 3 Russian districts classified tundra (got 6)
+
+==============================================================================
+CHECK 2: ui/rivers.js — named majors + canvas bounds
+==============================================================================
+  PASS  rivers.js carries the generated header
+  PASS  rivers.js is self-contained (no https://)
+  PASS  meta canvas contract w=2400 h~1018.2 (got {'w': 2400, 'h': 1018.2})
+  PASS  river count == 263 (got 263)
+  PASS  lake count == 29 (got 29)
+  PASS  major river present: Rhine
+  PASS  major river present: Tigris
+  PASS  major river present: Euphrates
+  PASS  major river present: Yangtze
+  PASS  major river present: Mississippi
+  PASS  major river present: Volga
+  PASS  major river present: Amazonas
+  PASS  major river present: Danube
+  PASS  major river present: Mekong
+  PASS  major river present: Nile
+  PASS  major river present: Ganges
+  PASS  major river present: Indus
+  PASS  major river present: Congo
+  PASS  major river present: Ob
+  PASS  major river present: Lena
+  PASS  major river present: Yenisey
+  PASS  major river present: Niger
+  PASS  major river present: Zambezi
+  PASS  major river present: Mackenzie
+  PASS  major river present: Murray
+  PASS  major river present: Rio Grande
+  PASS  major river present: Paraná
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\terrain\check.py", line 279, in <module>
+    with open(LAKES_GEOJSON, encoding="utf-8") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-web/data/ne_10m_lakes.geojson'

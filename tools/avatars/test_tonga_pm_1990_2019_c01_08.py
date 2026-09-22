@@ -519,7 +519,7 @@ class TongaPrimeMinisterTests(unittest.TestCase):
             with self.subTest(label=label), self.assertRaises((AssertionError, KeyError)):
                 pm_invariants(mutated(change))
 
-    def test_report_and_handoff_are_ready_for_review_stacked_and_close_nothing(self):
+    def test_submitted_report_and_accepted_handoff_close_no_parent_gate(self):
         self.assertIn('ready_for_review', self.report)
         table = self.section('Outcome')
         decisions = {'01': 'Accepted at year precision', '02': 'Unresolved', '03': 'Accepted', '04': 'Accepted in part',
@@ -539,9 +539,13 @@ class TongaPrimeMinisterTests(unittest.TestCase):
             self.assertIn(text, notes)
         handoff = (research.ROOT / HANDOFF).read_text(encoding='utf-8')
         for text in ('ready_for_review', 'tonga-prime-ministers-1990-2019-08.md', 'claude/c01-tonga-08', 'e6f9fa41',
-                     'CLAUDE-C01-03', '22 September 2026 instruction', 'pending Codex acceptance',
+                     'CLAUDE-C01-03', '22 September 2026 instruction', 'accepted and integrated as bounded research',
+                     '14f01c5a8bcd003723a1f122a32f11b684bc878e',
+                     'bd24d5776f6798d19c64846f9602aa5be2ad13b0', '5a63d7b6',
                      'test_tonga_pm_1990_2019_c01_08.py'):
             self.assertIn(text, handoff)
+        self.assertNotIn('pending Codex acceptance', handoff)
+        self.assertTrue((research.ROOT / 'docs/campaign-certification/C01/integrations/CLAUDE-C01-08/README.md').is_file())
         index = research.build()
         country = next(p for p in index['countries'] if p['nation'] == 'Tonga')
         self.assertFalse(country['country_census_complete'])

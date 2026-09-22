@@ -1,0 +1,1223 @@
+{
+  "scope": "Read-only current changed/untracked source and catalogue audit; compare candidate UTF8-as-CP1252 signatures with HEAD; existing legitimate source text may require interpretation.",
+  "files": [
+    {
+      "path": ".github/workflows/verify.yml",
+      "bytes": 5201,
+      "sha256": "4fa4354386a5555f783818dd55863d154f2e7f268f36eb2afb4dcaf466d72499",
+      "head_exists": true,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "docs/ADVISOR_MODEL.md",
+      "bytes": 8199,
+      "sha256": "a0e7ad3f9b51e875685634464159a6a408dd4d1ef05abd6678f06f783130bc5b",
+      "head_exists": true,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "docs/AI_WORKSTREAMS.md",
+      "bytes": 11208,
+      "sha256": "25e871559bbefe4994b3c3d8bb7842e11877c05779cf16112a807f35f106a29e",
+      "head_exists": true,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "docs/campaign-certification/C01/census.json",
+      "bytes": 6105,
+      "sha256": "d246b4a9eb01f9d737b5527e290b66ec2ecf21b5e93b17bd0cfe119677ecca15",
+      "head_exists": true,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "docs/planning/ai-handoffs/CLAUDE-C01-03.md",
+      "bytes": 4394,
+      "sha256": "5f5c43823b204b04e2cd8db29e924a42c246f69dedb00e76921ed47d5ca22864",
+      "head_exists": true,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "docs/planning/ai-handoffs/CLAUDE-C01-08.md",
+      "bytes": 7097,
+      "sha256": "eb6dcaeb71dfc0f6b427cd6ed5f78dc3a1aae7add57d10bd7936013c92378f8b",
+      "head_exists": true,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "docs/planning/ai-workstreams.json",
+      "bytes": 4613,
+      "sha256": "791fdaf3ebd00556546b7e89e06adbe7221c9a64cd13bd5ec8041b6ff25990ab",
+      "head_exists": true,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "spheres-sim/data/armed_security_1990.json",
+      "bytes": 1903,
+      "sha256": "7fa6c2fd1ddb0737d0f35faa1ab1d24d7e08c249ae0a7fa2a8a1f837ead535cf",
+      "head_exists": false,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "spheres-sim/data/army_authority_1989.json",
+      "bytes": 70204,
+      "sha256": "35e99445235348ded56a45cdd912892f0cd810c92a29121fbd66c8f911dc6d38",
+      "head_exists": false,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "spheres-sim/data/army_institution_coverage_1990.json",
+      "bytes": 7806,
+      "sha256": "836075908f6e86638f159f5b57a1048e41e847243ece75697ca2bd6b538afd52",
+      "head_exists": false,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "spheres-sim/data/army_institutions_1990.json",
+      "bytes": 32062,
+      "sha256": "9d5df834998c535e7bc8039d8352ecaf0ddcfdd8e4662830eaba2b2de26c25af",
+      "head_exists": false,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "spheres-sim/data/leaders_1990.json",
+      "bytes": 117104,
+      "sha256": "cdc868e9c60ad7df6ca92d4d8a30e1b355cab953df46108f1328d7dc6ab46008",
+      "head_exists": true,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "spheres-sim/data/movements_1990.json",
+      "bytes": 1050,
+      "sha256": "00e488f071c2457104eea18afb5975a81c80b53d505af97557187ca119cef279",
+      "head_exists": false,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "spheres-sim/data/opening_mandates_1990.json",
+      "bytes": 2246,
+      "sha256": "bc403a209d829dbd225e2df89611bc0bcbed0c27d5a8aa127325baf652a19384",
+      "head_exists": false,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "spheres-sim/src/armed_security.rs",
+      "bytes": 35882,
+      "sha256": "24f7377d32e8aef40bd04206296ff003307101ccaddbadb7b997ef98722639e1",
+      "head_exists": false,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "spheres-sim/src/army_authority.rs",
+      "bytes": 11457,
+      "sha256": "7c2d4bd867f434221490dc9cecac53eb18eef701f7a6d9a97011a4cf3a5c2053",
+      "head_exists": false,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "spheres-sim/src/army_institutions.rs",
+      "bytes": 12506,
+      "sha256": "d1b7039a5f04fb8636e32e9c5c610cdc9defe70d8c57ee0505e8a719ff732f36",
+      "head_exists": false,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "spheres-sim/src/blocs.rs",
+      "bytes": 133955,
+      "sha256": "3cdcb1ca4620e81d91f26288f39362da86a440e21610a569b4ad4e7c1640ff51",
+      "head_exists": true,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "spheres-sim/src/data/mod.rs",
+      "bytes": 97151,
+      "sha256": "485ecaddedb0610669fce4ab8f52c288bb13d4dcc459392fbeda330d99da71ef",
+      "head_exists": true,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "spheres-sim/src/data/movements.rs",
+      "bytes": 3814,
+      "sha256": "0f6dd954c0ffce448192ef45ef27732b543c6c873ce4cfb7277f6c918272cd80",
+      "head_exists": false,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "spheres-sim/src/government.rs",
+      "bytes": 821578,
+      "sha256": "6dc3b30e5fa4c967d5122d8d0b07e49650e29f5179e09a8ec4f80c3bf9a8ac98",
+      "head_exists": true,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "spheres-sim/src/init.rs",
+      "bytes": 1600,
+      "sha256": "aac78736219da05727956be0cfc680d9b8223bc3010cac6f9474c34985b9c567",
+      "head_exists": true,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "spheres-sim/src/lib.rs",
+      "bytes": 533970,
+      "sha256": "fd9f346dafa9a23b6098ac5edef61cde328adb685308758c57ac8a7efbc13047",
+      "head_exists": true,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "spheres-sim/src/opening_mandates.rs",
+      "bytes": 7945,
+      "sha256": "1c12d70b6992f89af17f8d861c364e3eac32a340905be2638484495c88bef22b",
+      "head_exists": false,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "spheres-sim/src/politics.rs",
+      "bytes": 108125,
+      "sha256": "68215324a4babb38cb2819dfd7d8bf1e5105a53c64fda8a7f712a1d40130043c",
+      "head_exists": true,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "spheres-sim/src/stratagems.rs",
+      "bytes": 28616,
+      "sha256": "f3b98971bcb4e7c585bfcf85b76c1a85ca15ceaa1157e549b52e8aacf52b4629",
+      "head_exists": true,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "spheres-sim/tests/bloc_census.rs",
+      "bytes": 65134,
+      "sha256": "4d0b0c242d12933b1bd23e11cd2185c97656315820e2f9c72a7c671f5eb9bf56",
+      "head_exists": true,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "spheres-sim/tests/treasury.rs",
+      "bytes": 43138,
+      "sha256": "7e008c3161887de70440911fe50c51287c59de6bfbadf470a7cd509773f1bb3e",
+      "head_exists": true,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "spheres-web/data/leadership_production_2035.json",
+      "bytes": 5984743,
+      "sha256": "8df0f710732b3d2e07a5a6d68545b7de1f809f04e5389fdc7c8a0185ad961ec8",
+      "head_exists": true,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "spheres-web/src/main.rs",
+      "bytes": 978918,
+      "sha256": "908f893ad9ab4d461243a18a4e4f2479a287522c8f4494a9a7304d6cb47b6b3d",
+      "head_exists": true,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "spheres-web/src/s15_fixture_tests.rs",
+      "bytes": 20568,
+      "sha256": "79ebbe15ffaebec4807627ccbe646e066376e68f37cdee9df5464a48f0a8cccc",
+      "head_exists": true,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "tools/avatars/test_tonga_pm_1990_2019_c01_08.py",
+      "bytes": 42532,
+      "sha256": "d7fcc504d9c31e00187cc7ea37823e16ef1fa61b7f11433e29b96c091b07bb18",
+      "head_exists": true,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "tools/politics/README.md",
+      "bytes": 3536,
+      "sha256": "0a3b24c8f4999e46ae47ca83f0c3a725ac836576e203527ccf83f5a49693caf9",
+      "head_exists": false,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "tools/politics/build_army_authority.py",
+      "bytes": 7287,
+      "sha256": "1d7de3d66f1ad8ac19f76c41f314ead9b4422b1474589069e220161c159c401d",
+      "head_exists": false,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "tools/politics/extract_army_authority.py",
+      "bytes": 1331,
+      "sha256": "e2dc18e47e401c4cffacca7d29e11def17604adf61355e6c81f9542dd86c6eb4",
+      "head_exists": false,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "tools/politics/fixtures/vdem-v16-1989-military-authority.json",
+      "bytes": 39803,
+      "sha256": "362db5c52447501a1403ac31d3abf59fd474768e9301b06042b35cdf1e136894",
+      "head_exists": false,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "tools/politics/test_army_authority.py",
+      "bytes": 3858,
+      "sha256": "4ceac7f3b05ec9d55f13e95acc7b4bac2676148543c4d50fb7d8bfa11918694f",
+      "head_exists": false,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "tools/ui/check_advisor_model.cjs",
+      "bytes": 20924,
+      "sha256": "e17293e7211b656efee66bde16d986202aa66a97d526e66b2fe85bc5232bd377",
+      "head_exists": true,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "tools/ui/ci-leadership-research-browser.cjs",
+      "bytes": 15905,
+      "sha256": "30f0ca129f9caba207a8fc0dc96437481e88f15f6bbe5cf798b126e4b6365763",
+      "head_exists": true,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "tools/ui/fixtures/ADVISOR_ARCHIVE.md",
+      "bytes": 2413,
+      "sha256": "4812544af02dfe7508fbdc07fb4a1f5819f8f86fcbc9b52493404c77585de9eb",
+      "head_exists": false,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "tools/ui/fixtures/advisor-archive.json",
+      "bytes": 32618,
+      "sha256": "f2f404914bcc9ee2ce9e690012e5b29b964dfef261f92f5da7201486403d6c02",
+      "head_exists": false,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    },
+    {
+      "path": "tools/ui/fixtures/advisor-archive.provenance.json",
+      "bytes": 2173,
+      "sha256": "e772d8b706467f1571324a2966209cc29a426236eb5dce23cc9572b79d853794",
+      "head_exists": false,
+      "counts": {
+        "utf8_cp1252_punctuation": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_cp1252_latin": {
+          "current": 0,
+          "head": 0
+        },
+        "utf8_latin1_prefix": {
+          "current": 0,
+          "head": 0
+        },
+        "replacement": {
+          "current": 0,
+          "head": 0
+        },
+        "c1_controls": {
+          "current": 0,
+          "head": 0
+        }
+      },
+      "samples": []
+    }
+  ]
+}

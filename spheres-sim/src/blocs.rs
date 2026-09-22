@@ -16,7 +16,7 @@
 //! every gauge to draw from the first day.
 
 use crate::data::{Office, Tie};
-use crate::government::{self, bloc_of, pillar_bloc, polity, polity_in, Bloc, GovState, Pillar};
+use crate::government::{self, bloc_of, pillar_bloc, polity_in, Bloc, GovState, Pillar};
 use crate::world::*;
 use serde::Serialize;
 
@@ -180,7 +180,8 @@ fn normalise(shares: &mut [(Bloc, f64); 5]) {
 
 /// S_B for every bloc, in enum order, summing to one for every nation that has
 /// a government. Electoral: the sum of party support over the parties of each
-/// bloc — nothing stored, so a vote and a drift move it live. Regime: the
+/// bloc. After an opening, parties divide only the represented constituency;
+/// movements with no party retain their stored national share. Regime: the
 /// stored movements, or the flat seed the arm would write if it has not been
 /// switched on, so the readout is the same either way.
 pub fn bloc_shares(w: &WorldState, id: NationId) -> [(Bloc, f64); 5] {
@@ -196,6 +197,30 @@ pub fn bloc_shares(w: &WorldState, id: NationId) -> [(Bloc, f64); 5] {
         // Support is normalised at seating and after every drift; this only
         // guards a hand-edited save.
         normalise(&mut shares);
+        if w.rules.ideology_blocs && g.movements.len() == 5 {
+            // Ballot support is conditional on the parties on offer. Opening
+            // a one-party table must not turn its 20% constituency into 100%
+            // of the country by erasing the other, unrepresented movements.
+            // Existing electoral saves without a movement record keep their
+            // historical interpretation; no missing constituency is invented.
+            if let Some(pol) = government::polity_in(w, id) {
+                let mut prior = zero_shares();
+                for (b, value) in &g.movements {
+                    *slot(&mut prior, *b) += value.max(0.0);
+                }
+                normalise(&mut prior);
+                let carried = |b| pol.parties.iter().any(|p| bloc_of(id, p.id) == b);
+                let unrepresented: f64 = prior.iter().filter(|(b, _)| !carried(*b)).map(|(_, s)| *s).sum();
+                for (b, share) in &mut shares {
+                    *share = if carried(*b) {
+                        *share * (1.0 - unrepresented).max(0.0)
+                    } else {
+                        prior.iter().find(|(bloc, _)| *bloc == *b).map_or(0.0, |(_, s)| *s)
+                    };
+                }
+                normalise(&mut shares);
+            }
+        }
         return shares;
     }
     if g.movements.len() == 5 {
@@ -241,6 +266,12 @@ pub(crate) fn court_pillar(w: &WorldState, id: NationId) -> Option<Pillar> {
 pub fn ruling_bloc(w: &WorldState, id: NationId) -> Option<Bloc> {
     let g = government::state(w, id)?;
     if government::is_electoral(w, id) {
+        // An interim party table is not a completed transfer of authority.
+        // Keep the programme that actually opened the country until its first
+        // ballot; generic Party/Army office labels do not confer a new one.
+        if w.rules.ideology_blocs && g.awaiting_first_election {
+            if let Some(bloc) = g.regime_bloc { return Some(bloc); }
+        }
         if let Some(pl) = court_pillar(w, id) {
             return leader_row(w, id)
                 .and_then(|r| r.bloc_override)
@@ -426,10 +457,13 @@ pub fn challenger(w: &WorldState, id: NationId) -> Option<(Bloc, f64)> {
 }
 
 /// Whether the state could not put the crowd down (design S4, route 3). A
-/// regime: its weakest armed institution under `COERCION_ARMED` or its mean
-/// loyalty under `COERCION_MEAN`. An electoral state: only where the winner
-/// is non-Western or authoritarianism is at or over `COERCION_AUTH` — a
-/// democracy is not overthrown by its own liberals.
+/// state needs its weakest actual Army/Security service under `COERCION_ARMED`
+/// or those services' mean under `COERCION_MEAN`. A Party-only state's Party
+/// apparatus is the fallback; unarmed civilian institutions are not. An
+/// electoral state ALSO requires the
+/// winner to be non-Western or authoritarianism at or over `COERCION_AUTH`:
+/// an open democracy is not overthrown by its own liberals. Party opposition
+/// alone does not make a functioning, loyal security apparatus disappear.
 ///
 /// CALIBRATED 2026-09-06 (the bloc census, anchor A3). The design's lines
 /// were 0.50 (weakest) and 0.55 (mean), INVENTED; both now read the pillar
@@ -449,10 +483,31 @@ pub fn coercion_fails(w: &WorldState, id: NationId, winner: Bloc) -> bool {
         Some(g) => g,
         None => return false,
     };
-    if government::is_electoral(w, id) {
-        return winner != Bloc::Western || w.nation(id).authoritarianism >= COERCION_AUTH;
+    if government::is_electoral(w, id) && winner == Bloc::Western
+        && w.nation(id).authoritarianism < COERCION_AUTH
+    {
+        return false;
     }
-    g.weakest_armed().map_or(1.0, |(_, v)| v) < COERCION_ARMED || g.mean_loyalty() < COERCION_MEAN
+    // Political discipline is not physical ability to suppress an uprising.
+    // Where actual armed services exist, a weak Party bureaucracy alone does
+    // not incapacitate them. A Party-only state retains its modeled coercive
+    // apparatus; an empty or solely civilian table supplies no evidence that
+    // armed institutions have failed. Internal Party coups still use their
+    // separate weakest_armed() rule.
+    let mut physical = g.pillars.iter().filter(|(p, _)| matches!(p, Pillar::Army | Pillar::Security));
+    if let Some((_, first)) = physical.next() {
+        let mut weakest = *first;
+        let mut total = *first;
+        let mut count = 1.0;
+        for (_, loyalty) in physical {
+            weakest = weakest.min(*loyalty);
+            total += *loyalty;
+            count += 1.0;
+        }
+        return weakest < COERCION_ARMED || total / count < COERCION_MEAN;
+    }
+    g.pillars.iter().find(|(p, _)| *p == Pillar::Party)
+        .is_some_and(|(_, loyalty)| *loyalty < COERCION_ARMED)
 }
 
 pub const COERCION_ARMED: f64 = 0.35;
@@ -764,6 +819,15 @@ pub fn takeover_readout(w: &WorldState, id: NationId) -> TakeoverReadout {
             Some(CALIBRATION_PENDING)
         } else if !has_army {
             Some(NO_ARMY)
+        } else if g.is_some_and(|g| g.awaiting_first_election) {
+            Some("interim government awaits its first free election")
+        } else if government::is_electoral(w, id)
+            && government::electoral_coup_settled_months(w, id) < government::ELECTORAL_COUP_SETTLED
+        {
+            // A fresh accountable government has time to act. Keep this an
+            // eligibility reason: an age gauge would hatch every long-serving
+            // peaceful state through half_armed(), independent of actual risk.
+            Some("new governing authority is within its first year")
         } else {
             None
         },
@@ -878,8 +942,8 @@ fn party_name(id: NationId, party: &str) -> Option<String> {
     government::party_spec(id, party).map(|s| s.name.to_string())
 }
 
-fn pillar_name(id: NationId, pillar: Pillar) -> Option<String> {
-    polity(id)?.pillars.iter().find(|s| s.pillar == pillar).map(|s| s.name.to_string())
+fn pillar_name(w: &WorldState, id: NationId, pillar: Pillar) -> Option<String> {
+    polity_in(w, id)?.pillars.iter().find(|s| s.pillar == pillar).map(|s| s.name.to_string())
 }
 
 /// The raw table row, refused or not — a refused row still carries a sourced
@@ -904,7 +968,7 @@ pub fn leader(w: &WorldState, id: NationId) -> Option<Leader> {
                 since: Some(e.since.clone()),
                 party_name: e.party.as_deref().and_then(|p| party_name(id, p)),
                 party: e.party.clone(),
-                pillar_name: e.pillar.and_then(|p| pillar_name(id, p)),
+                pillar_name: e.pillar.and_then(|p| pillar_name(w, id, p)),
                 pillar: e.pillar,
                 heir: row.heir.clone(),
                 must_leave_by: None,
@@ -924,7 +988,7 @@ pub fn leader(w: &WorldState, id: NationId) -> Option<Leader> {
             since: Some(row.since.clone()),
             party_name: party.as_deref().and_then(|p| party_name(id, p)),
             party,
-            pillar_name: pillar.and_then(|p| pillar_name(id, p)),
+            pillar_name: pillar.and_then(|p| pillar_name(w, id, p)),
             pillar,
             heir: row.heir.clone(),
             must_leave_by: row.must_leave_by.clone(),
@@ -1029,6 +1093,63 @@ mod tests {
     fn on(seed: u64) -> GameRules {
         GameRules { seed, ideology_blocs: true, ..GameRules::default() }
     }
+
+    #[test]
+    fn electoral_uprising_requires_actual_coercion_failure_as_well_as_party_support() {
+        let id = NationId::Algeria;
+        let mut w = world_1990(on(7));
+        {
+            let n = w.nation_mut(id);
+            n.stability = 10.0;
+            n.inflation = 0.18;
+            n.growth_last = 0.01;
+        }
+        let g = w.governments.states.iter_mut().find(|g| g.nation == id).unwrap();
+        for (_, loyalty) in &mut g.pillars { *loyalty = 0.80; }
+        assert!(government::is_electoral(&w, id));
+        assert_eq!(challenger(&w, id).map(|(b, _)| b), Some(Bloc::Islamist));
+        assert!(discontent(&w, id) >= UPRISING_DISCONTENT);
+        assert!(influence(&w, id)[Bloc::Islamist as usize].1 >= UPRISING_INFLUENCE);
+        assert!(!coercion_fails(&w, id, Bloc::Islamist));
+        assert!(!uprising_armed(&w, id), "a strong opposition is not itself a failed army");
+        let shares = bloc_shares(&w, id);
+        let g = w.governments.states.iter_mut().find(|g| g.nation == id).unwrap();
+        g.pillars.iter_mut().find(|(p, _)| *p == Pillar::Army).unwrap().1 = 0.20;
+        assert_eq!(bloc_shares(&w, id), shares);
+        assert!(coercion_fails(&w, id, Bloc::Islamist));
+        assert!(uprising_armed(&w, id), "the same movement can act when coercion really fails");
+        w.nation_mut(id).authoritarianism = 0.20;
+        assert!(!coercion_fails(&w, id, Bloc::Western), "retain the open-democracy guard");
+    }
+    #[test]
+    fn coercion_reads_physical_services_before_party_discipline() {
+        let id = NationId::China;
+        let mut w = world_1990(on(7));
+        for pillars in [
+            vec![(Pillar::Party, 0.01), (Pillar::Army, 0.80)],
+            vec![(Pillar::Party, 0.01), (Pillar::Security, 0.80)],
+            vec![(Pillar::Party, 0.01), (Pillar::Army, 0.80), (Pillar::Security, 0.80)],
+        ] {
+            w.governments.states.iter_mut().find(|g| g.nation == id).unwrap().pillars = pillars;
+            assert!(!coercion_fails(&w, id, Bloc::Nationalist), "weak party discipline did not disable loyal soldiers");
+            assert_eq!(government::state(&w, id).unwrap().weakest_armed(), Some((Pillar::Party, 0.01)),
+                "internal Party coup eligibility is a separate unchanged rule");
+        }
+        for physical in [Pillar::Army, Pillar::Security] {
+            w.governments.states.iter_mut().find(|g| g.nation == id).unwrap().pillars =
+                vec![(Pillar::Party, 0.90), (physical, 0.20)];
+            assert!(coercion_fails(&w, id, Bloc::Nationalist), "actual armed service failure remains reachable");
+        }
+        for loyalty in [0.20, 0.80] {
+            w.governments.states.iter_mut().find(|g| g.nation == id).unwrap().pillars = vec![(Pillar::Party, loyalty)];
+            assert_eq!(coercion_fails(&w, id, Bloc::Nationalist), loyalty < COERCION_ARMED);
+        }
+        for pillars in [vec![], vec![(Pillar::Business, 0.01), (Pillar::Clergy, 0.01)]] {
+            w.governments.states.iter_mut().find(|g| g.nation == id).unwrap().pillars = pillars;
+            assert!(!coercion_fails(&w, id, Bloc::Nationalist), "no modeled armed failure can be inferred from civilians");
+        }
+    }
+
     fn run_months(w: &mut WorldState, months: usize) {
         for _ in 0..months {
             tick_month(w, &[]);
@@ -1153,17 +1274,18 @@ mod tests {
     /// so the clause is reached only in that month; it stands as ruled.
     #[test]
     fn the_bloc_layer_is_inert_over_time() {
-        // 2026-09-22: measured after the disorder-accountability and live coup
-        // trigger repairs. Startup is unchanged; default political timelines
-        // deliberately move. See 2026-09-22-outstanding-repairs.md. The bloc
+        // 2026-09-22: measured after term-long political memory, bounded voter
+        // transfers and constituency accountability. Startup is unchanged;
+        // default political timelines deliberately move. See
+        // 2026-09-22-completion.md. The bloc
         // feature's on/off assertions below remain unchanged.
         const BASE: [u64; 6] = [
-            0x6ea274024b464232,
-            0x7c2e0fcc0fb734fb,
-            0x051617762ec0fe42,
-            0x6d7cdc5bf6f6b626,
-            0x767e55bdcad677a5,
-            0x65453e75ccabbec6,
+            0xc1dfdfb98af7814d,
+            0x42d4e809cef4b37e,
+            0x9eb28e1c90ea1a5b,
+            0xeba41ea64d148369,
+            0x024e2aa38c3862b0,
+            0x1bf19fc09e88834a,
         ];
         for seed in 0..6u64 {
             let mut w = world_1990(GameRules { seed, ..GameRules::default() });
@@ -1361,10 +1483,11 @@ mod tests {
     /// then moves one from Non-Aligned to Nationalist: [67, 17, 9, 2, 42].
     /// The counts are pinned as transcribed data is pinned elsewhere in this
     /// suite — a change here is a change to a sourced row or to the pillar map,
-    /// and it is meant to be noticed. The bars of the design brief that the
-    /// rows AGREE with are asserted here; the remaining disagreements live in
-    /// `the_1990_census_meets_the_design_brief`, which is red until Ridge
-    /// decides. Watched red by dropping Solidarity's Western override: Poland
+    /// and it is meant to be noticed. The 2026-09-22 dated-roster reconciliation
+    /// additionally restores Angola and Sao Tome's opening Communist ideology
+    /// without changing their later social-democratic election tables:
+    /// [65, 19, 9, 2, 42]. See docs/political-arm/1990-census-reconciliation.md.
+    /// Watched red by dropping Solidarity's Western override: Poland
     /// read Some(NonAligned) against Some(Western), and the Western count fell
     /// to 66.
     #[test]
@@ -1375,7 +1498,11 @@ mod tests {
         let (census, who) = census_1990(&w);
         assert_eq!(census.iter().sum::<usize>(), alive(&w).len());
         assert!(census.iter().all(|c| *c > 0), "every bloc rules somewhere in 1990: {census:?}");
-        assert_eq!(census, [67, 17, 9, 2, 42], "the census after Algeria seating and Libya ideology corrections");
+        assert_eq!(census, [65, 19, 9, 2, 42], "the dated opening-government census");
+        for id in [NationId::Angola, NationId::SaoTome] {
+            assert_eq!(leader_bloc(&w, id), Some(Bloc::Communist), "{} opening government", id.code());
+            assert_eq!(ruling_bloc(&w, id), Some(Bloc::Communist), "{} opening government", id.code());
+        }
         assert_eq!(ruling_bloc(&w, NationId::Algeria), Some(Bloc::Nationalist));
         assert_eq!(leader_bloc(&w, NationId::Libya), Some(Bloc::Nationalist));
         assert_eq!(ruling_bloc(&w, NationId::Libya), Some(Bloc::Nationalist));
@@ -1432,14 +1559,16 @@ mod tests {
         }
     }
 
-    /// The remaining bars of the design brief (2026-09-05) that the transcribed
-    /// rows DISAGREE with, kept as written — not bent (iron rule 5) — and
-    /// PARKED under `#[ignore]` with the disagreement filed as BUGS.md P-6
-    /// until Ridge rules on the rows or the bars. It was red on the tree from
+    /// P-6 historical note: the 2026-09-05 design estimate disagreed with the
+    /// transcribed rows and was originally parked under `#[ignore]`.
+    /// On 2026-09-22 a documented dated-roster contract replaces that estimate
+    /// and activates this test; see 1990-census-reconciliation.md. The original
+    /// disagreement below remains provenance, not today's acceptance rule.
+    /// It was red on the tree from
     /// the day it was written, and it was ignored rather than left red because
     /// the suite's contract is exactly three deliberate reds (the two goldens
     /// and BUGS E-3) and a fourth hides a real regression; run it with
-    /// `--ignored` to see the disagreement, unchanged. Measured on the
+    /// `--ignored` to see the disagreement at those archived commits. Measured on the
     /// integrated table, re-measured after the audit's three refusals (all
     /// three electoral, so no count moved):
     ///
@@ -1457,16 +1586,23 @@ mod tests {
     /// * Nationalist includes Libya — fixed with a sourced leader override
     ///   from the 1987 US Library of Congress country study. The Party pillar
     ///   is still Non-Aligned generically; governing ideology is distinct from
-    ///   the institutional tie. The Communist-count disagreement remains.
+    ///   the institutional tie. The Communist quota was superseded by the
+    ///   named-roster assertion below; Angola and Sao Tome were also corrected.
     #[test]
-    #[ignore = "BUGS.md P-6: Communist count 17 vs 11-13 remains; Algeria's chamber and Libya's governing ideology are corrected"]
     fn the_1990_census_meets_the_design_brief() {
         let w = world_1990(on(1990));
-        let (census, who) = census_1990(&w);
+        let (_census, who) = census_1990(&w);
         let mut misses = vec![];
-        if !(11..=13).contains(&census[Bloc::Communist as usize]) {
-            misses.push(format!("Communist {} against the brief's 11-13", census[Bloc::Communist as usize]));
-        }
+        // Reconciled P-6 contract: named governments at the actual start date,
+        // not a quota that requires relabelling historical parties. The old
+        // 11-13 estimate and its failure are retained in the dated decision
+        // record; no dynamic A1-A10 calibration threshold changes here.
+        let mut communists = who[Bloc::Communist as usize].clone();
+        communists.sort_unstable();
+        assert_eq!(communists, ["Afghanistan", "Albania", "Angola", "Bulgaria",
+            "Cambodia", "China", "Congo", "Cuba", "Ethiopia", "Laos", "Madagascar",
+            "Mongolia", "Nicaragua", "NorthKorea", "SaoTome", "Seychelles", "USSR",
+            "Vietnam", "Yugoslavia"], "dated party/leader roster changed; review its sources");
         if who[Bloc::Islamist as usize] != ["Iran", "Sudan"] {
             misses.push(format!("Islamist {:?} against the brief's exactly Iran and Sudan", who[Bloc::Islamist as usize]));
         }
@@ -2100,10 +2236,15 @@ mod tests {
         w.set_relation(usa, ussr, -40.0);
         assert!(w.patrons_of(pl).contains(&ussr));
         assert_eq!(ai_back_bloc_choice(&w, usa, pl), Some(Bloc::Communist));
-        // Egypt: Non-Aligned rules, Islamist present at 0.1327 — under the
-        // line for Iran until backing lifts it.
+        // Stage a present Islamist organization just below the sponsor's
+        // 0.15 line. This is a threshold test, not a pin on Egypt's opening
+        // estimate; the organization-informed seed can legitimately differ.
+        let g = w.governments.states.iter_mut().find(|g| g.nation == eg).unwrap();
+        let previous = g.movements[Bloc::Islamist as usize].1;
+        g.movements[Bloc::Islamist as usize].1 = 0.149;
+        g.movements[Bloc::NonAligned as usize].1 += previous - 0.149;
         let islamist = influence(&w, eg)[Bloc::Islamist as usize].1;
-        assert!((islamist - 0.1327).abs() < 1e-3, "{islamist}");
+        assert!((islamist - 0.149).abs() < 1e-12, "{islamist}");
         assert_eq!(ai_back_bloc_choice(&w, iran, eg), None, "under the line at {islamist}");
         add_backing(&mut w, NationId::SaudiArabia, eg, Bloc::Islamist);
         assert!(influence(&w, eg)[Bloc::Islamist as usize].1 >= 0.15);
@@ -2174,6 +2315,11 @@ mod tests {
         assert!(!bloc_present(&off, af, Bloc::Islamist));
         assert_eq!(ai_back_bloc_choice(&off, pk, af), None, "off: no choice");
         let mut w = world_1990(on(7));
+        // Explicit synthetic absence: the historical opening now sources the
+        // Afghan resistance separately from the one-party parliamentary table.
+        w.governments.states.iter_mut().find(|g| g.nation == af).unwrap().established_movements.clear();
+        let synthetic = flat_seed(&w, af, Bloc::Communist);
+        w.governments.states.iter_mut().find(|g| g.nation == af).unwrap().movements = synthetic.to_vec();
         assert_eq!(ruling_bloc(&w, af), Some(Bloc::Communist));
         assert!(!bloc_present(&w, af, Bloc::Islamist));
         assert!(!bloc_can_win(&w, af, Bloc::Islamist));

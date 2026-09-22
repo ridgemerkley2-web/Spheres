@@ -1,0 +1,267 @@
+{
+  "scope": "Read-only audit of original offline generation/source checks. These are documented post-generation checks; no current GitHub workflow invokes them. Missing source archives prevent completion and are not passes. Fast population explicitly excludes area reconstruction and byte-identical regeneration.",
+  "checks": [
+    {
+      "name": "resource-rules-fast",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/resources/check_resources.py",
+        "--fast"
+      ],
+      "exit_code": 1,
+      "seconds": 0.151,
+      "log_sha256": "c49a1fa592dcf6d89c226e64fb34cd2e596215b7e7d891ddf48fd8cf6b1aa8f5",
+      "log_bytes": 6625,
+      "skips": [],
+      "tail": [
+        "    z = zipfile.ZipFile(path)",
+        "  File \"C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\\Lib\\zipfile\\__init__.py\", line 1383, in __init__",
+        "    self.fp = io.open(file, filemode)",
+        "              ~~~~~~~^^^^^^^^^^^^^^^^",
+        "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\ridge\\\\Documents\\\\Codex\\\\2026-09-05\\\\pick-up-the-spheres-game-on\\\\work\\\\campaign-certification\\\\integration\\\\spheres-web\\\\data\\\\wep_prva.zip'"
+      ]
+    },
+    {
+      "name": "resource-ground-truth-fast",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/resources/check.py",
+        "--fast"
+      ],
+      "exit_code": 1,
+      "seconds": 0.126,
+      "log_sha256": "b2f7953e962403afb950d3c7d4f4568531d1178e0bff0a9a7459519d17d2bfa7",
+      "log_bytes": 2275,
+      "skips": [],
+      "tail": [
+        "         ~~~~~~~~~~~~~~~^^^^^^",
+        "  File \"C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\\Lib\\zipfile\\__init__.py\", line 1383, in __init__",
+        "    self.fp = io.open(file, filemode)",
+        "              ~~~~~~~^^^^^^^^^^^^^^^^",
+        "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\ridge\\\\Documents\\\\Codex\\\\2026-09-05\\\\pick-up-the-spheres-game-on\\\\work\\\\campaign-certification\\\\integration\\\\spheres-web\\\\data\\\\mrds-csv.zip'"
+      ]
+    },
+    {
+      "name": "population-fast",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/population/check.py",
+        "--fast"
+      ],
+      "exit_code": 0,
+      "seconds": 0.206,
+      "log_sha256": "72871a70a4d3cd6fb328424b5c1a2560ff7ab152522ff02f43b24a9bc66fa317",
+      "log_bytes": 2592,
+      "skips": [
+        "SKIP  (--fast)",
+        "SKIP  (--fast)"
+      ],
+      "tail": [
+        "  PASS  Ontario vs Nunavut           CA-ON/CA-NU  537.6x (need >= 100x)",
+        "8  BYTE-IDENTITY",
+        "  SKIP  (--fast)",
+        "",
+        "all checks passed"
+      ]
+    },
+    {
+      "name": "population-full",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/population/check.py"
+      ],
+      "exit_code": 1,
+      "seconds": 0.193,
+      "log_sha256": "d789c3cc9cc75b7354419b2885b640a58f2cf01a09f8f2025e198ef171236679",
+      "log_bytes": 1644,
+      "skips": [],
+      "tail": [
+        "    ~~~~^^",
+        "  File \"C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\population\\check.py\", line 183, in main",
+        "    with open(PREFIX + \".json\", encoding=\"utf-8\") as f:",
+        "         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+        "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\ridge\\\\Documents\\\\Codex\\\\2026-09-05\\\\pick-up-the-spheres-game-on\\\\work\\\\campaign-certification\\\\integration\\\\tools\\\\population\\\\raster/ghspop1990.json'"
+      ]
+    },
+    {
+      "name": "terrain-ground-truth",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/terrain/check.py"
+      ],
+      "exit_code": 1,
+      "seconds": 0.084,
+      "log_sha256": "eebdb349eac1f2e2a084847425de1a1a98010c04c596720b187dd5da2817d1df",
+      "log_bytes": 10763,
+      "skips": [],
+      "tail": [
+        "Traceback (most recent call last):",
+        "  File \"C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\terrain\\check.py\", line 279, in <module>",
+        "    with open(LAKES_GEOJSON, encoding=\"utf-8\") as f:",
+        "         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+        "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\ridge\\\\Documents\\\\Codex\\\\2026-09-05\\\\pick-up-the-spheres-game-on\\\\work\\\\campaign-certification\\\\integration\\\\spheres-web/data/ne_10m_lakes.geojson'"
+      ]
+    }
+  ],
+  "staging": [
+    {
+      "source": "china2014",
+      "path": "spheres-web/data/china-coal-mines.zip",
+      "exists": false,
+      "expected_bytes": 171830,
+      "expected_sha256": "1255d7f4d41b27f9ae41f483721f6d133e64cb84b0a5b615f54c91639f242bd4",
+      "source_url": "https://pubs.usgs.gov/of/2014/1219/"
+    },
+    {
+      "source": "ds896_bauxite",
+      "path": "spheres-web/data/ds896-aluminum.xlsx",
+      "exists": false,
+      "expected_bytes": 67751,
+      "expected_sha256": "0d8ae069552229b306ce4795a29704d7eb7c859346cfb1058ecddf1e9d268214",
+      "source_url": "https://www.usgs.gov/centers/national-minerals-information-center/historical-statistics-mineral-and-material-commodities"
+    },
+    {
+      "source": "ds896_copper",
+      "path": "spheres-web/data/ds896-copper.xlsx",
+      "exists": false,
+      "expected_bytes": 87835,
+      "expected_sha256": "cfc5b0cefa76305df9c3e5694a4e5ab8ebd24fc153cdfe2ef9296ee9ed95a647",
+      "source_url": "https://www.usgs.gov/centers/national-minerals-information-center/historical-statistics-mineral-and-material-commodities"
+    },
+    {
+      "source": "ds896_iron",
+      "path": "spheres-web/data/ds896-iron-steel.xlsx",
+      "exists": false,
+      "expected_bytes": 87823,
+      "expected_sha256": "ecec2a912bd70f09333b8d63606fb21c3aea63124dced3f8c5ec5796062eab8f",
+      "source_url": "https://www.usgs.gov/centers/national-minerals-information-center/historical-statistics-mineral-and-material-commodities"
+    },
+    {
+      "source": "eia_intl",
+      "path": "spheres-web/data/INTL.zip",
+      "exists": false,
+      "expected_bytes": 24126861,
+      "expected_sha256": "ff28794d074e756a1c9c9a08bbad71b9fb7c3aa245fbaa74c381f389c84fce39",
+      "source_url": "https://api.eia.gov/bulk/INTL.zip"
+    },
+    {
+      "source": "fsucoal",
+      "path": "spheres-web/data/fsucoal_deposit.shp",
+      "exists": false,
+      "expected_bytes": 242668,
+      "expected_sha256": "452fc44cf9c36ac3a06e8692f895143ad200321f8ac782b2376029925f527107",
+      "source_url": "https://pubs.usgs.gov/of/2001/ofr-01-104/fsucoal/html/data1.htm"
+    },
+    {
+      "source": "fsucoal",
+      "path": "spheres-web/data/fsucoal_deposit.dbf",
+      "exists": false,
+      "expected_bytes": 17830,
+      "expected_sha256": "35698d9a4f6cde5b121fad44fcaccbb8b1b7bcd01d4e3824f2de1ce474feeed6",
+      "source_url": "https://pubs.usgs.gov/of/2001/ofr-01-104/fsucoal/html/data1.htm"
+    },
+    {
+      "source": "minfac",
+      "path": "spheres-web/data/minfac-csv.zip",
+      "exists": false,
+      "expected_bytes": 297647,
+      "expected_sha256": "f52cb88cf058168c8ed91dd208d4ceffb2cf99dbc350ba86e3c0d972b126ab85",
+      "source_url": "https://mrdata.usgs.gov/mineral-operations/"
+    },
+    {
+      "source": "mrds",
+      "path": "spheres-web/data/mrds-csv.zip",
+      "exists": false,
+      "expected_bytes": 25791223,
+      "expected_sha256": "31be4baaa86b082787bc74989146183db21badf7157db39b3f0a6fe0b38a5477",
+      "source_url": "https://mrdata.usgs.gov/mrds/"
+    },
+    {
+      "source": "pp1802",
+      "path": "spheres-web/data/pp1802_shp.zip",
+      "exists": false,
+      "expected_bytes": 168795,
+      "expected_sha256": "441b009107c1e7f32529026d04c996c4fc1d0db5faeec7068f3aeb89ed5bebdc",
+      "source_url": "https://www.sciencebase.gov/catalog/item/594d3c8ee4b062508e39b332"
+    },
+    {
+      "source": "uscoalfields",
+      "path": "spheres-web/data/us-coalfields-gis.zip",
+      "exists": false,
+      "expected_bytes": 230322811,
+      "expected_sha256": "e491215d0a937cae48cc5e9a2763ea43c85a4d11c183ec7c5b1ac559d2a585a5",
+      "source_url": "https://pubs.usgs.gov/of/2012/1205/"
+    },
+    {
+      "source": "usda_psd",
+      "path": "spheres-web/data/psd_grains.zip",
+      "exists": false,
+      "expected_bytes": 2870854,
+      "expected_sha256": "cfe2c99d68d41b702b83bb5ce1e4d81cb74b7ab090fca3ba0f2cac1b05fe2b99",
+      "source_url": "https://apps.fas.usda.gov/psdonline/downloads/psd_grains_pulses_csv.zip"
+    },
+    {
+      "source": "wep_prva",
+      "path": "spheres-web/data/wep_prva.zip",
+      "exists": false,
+      "expected_bytes": 1511529,
+      "expected_sha256": "a3baad0c7a8b8689f3ea811c772e9740b8012667582520929e4c9cb8fb4de630",
+      "source_url": "https://www.sciencebase.gov/catalog/file/get/60ad2fa1d34e4043c850ed98"
+    },
+    {
+      "path": "spheres-web/data/ne_10m_admin_1.geojson",
+      "exists": false,
+      "bytes": null
+    },
+    {
+      "path": "spheres-web/data/ne_10m_lakes.geojson",
+      "exists": false,
+      "bytes": null
+    },
+    {
+      "path": "spheres-web/data/etopo_60s.nc",
+      "exists": false,
+      "bytes": null
+    },
+    {
+      "path": "spheres-web/data/SR_50M.zip",
+      "exists": false,
+      "bytes": null
+    },
+    {
+      "path": "tools/terrain/raster/SR_50M.tif",
+      "exists": false,
+      "bytes": null
+    },
+    {
+      "path": "tools/population/raster/ghspop1990.f32",
+      "exists": false,
+      "bytes": null
+    },
+    {
+      "path": "tools/population/raster/ghspop1990.json",
+      "exists": false,
+      "bytes": null
+    }
+  ],
+  "sources": {
+    "population": "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/GHS_POP_GLOBE_R2023A/GHS_POP_E1990_GLOBE_R2023A_4326_30ss/V1-0/GHS_POP_E1990_GLOBE_R2023A_4326_30ss_V1_0.zip",
+    "population_tif_sha256": "31002afc325652c7ea5b825069759689334dc282f2c136a3a038d94bc9061af2",
+    "notes": "Population README declares 443MB zip and 3.7GB decoded cache; not a bounded retrieval. Current detailed NOAA/HydroLAKES checks are separately recorded in repair-failures-20260922."
+  }
+}

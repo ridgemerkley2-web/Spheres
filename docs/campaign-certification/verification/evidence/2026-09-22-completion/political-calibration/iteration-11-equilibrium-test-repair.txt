@@ -1,0 +1,9 @@
+Iteration 11 test-only expectation repair (not yet compiled at this receipt)
+
+Candidate .024 measured a ruined movement equilibrium of .04195417333135568; the old >.05 assertion was derived from the former .018 response (approx .055). All other 85 focused tests passed. Original A1-A10 outcome thresholds were unchanged; nine passed and A1 concentration failed.
+
+The updated unit expectation derives the monthly transfer/reversion fixed point:
+  h = .005 * .6 / (.005 + .995 * .024 * 2.78)
+The .995 accounts for reversion following transfer. A .0015 tolerance permits finite term-memory and floor-normalization effects. Explicit incumbent-above-floor, next-step convergence <1e-4 and ruined vote-total=1 assertions are added. Existing quiet equilibrium, monotonic response, 1.5pp monthly bound, per-bloc floor, war appeal and flags-off controls remain.
+
+This adjusts a coefficient-dependent unit expectation after an intentional predeclared model calibration. It does not relax a historical outcome gate or claim the old test passed.

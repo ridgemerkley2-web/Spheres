@@ -1,0 +1,96 @@
+{
+  "iteration": 20,
+  "source": "iteration-20-confidence-diagnostic.summary.json",
+  "contextual_cases": [
+    {
+      "seed": 0,
+      "country": "Mozambique",
+      "month": 110,
+      "latest_increase_month": 109,
+      "immediately_previous_month": true,
+      "current_share_matches_latest_increase": true
+    },
+    {
+      "seed": 1,
+      "country": "SaoTome",
+      "month": 85,
+      "latest_increase_month": 84,
+      "immediately_previous_month": true,
+      "current_share_matches_latest_increase": true
+    },
+    {
+      "seed": 3,
+      "country": "Myanmar",
+      "month": 134,
+      "latest_increase_month": 133,
+      "immediately_previous_month": true,
+      "current_share_matches_latest_increase": true
+    },
+    {
+      "seed": 4,
+      "country": "Myanmar",
+      "month": 123,
+      "latest_increase_month": 122,
+      "immediately_previous_month": true,
+      "current_share_matches_latest_increase": true
+    },
+    {
+      "seed": 5,
+      "country": "Myanmar",
+      "month": 129,
+      "latest_increase_month": 128,
+      "immediately_previous_month": true,
+      "current_share_matches_latest_increase": true
+    },
+    {
+      "seed": 6,
+      "country": "Cambodia",
+      "month": 112,
+      "latest_increase_month": 111,
+      "immediately_previous_month": true,
+      "current_share_matches_latest_increase": true
+    },
+    {
+      "seed": 7,
+      "country": "Cambodia",
+      "month": 170,
+      "latest_increase_month": 169,
+      "immediately_previous_month": true,
+      "current_share_matches_latest_increase": true
+    },
+    {
+      "seed": 8,
+      "country": "Myanmar",
+      "month": 133,
+      "latest_increase_month": 132,
+      "immediately_previous_month": true,
+      "current_share_matches_latest_increase": true
+    },
+    {
+      "seed": 9,
+      "country": "Myanmar",
+      "month": 131,
+      "latest_increase_month": 130,
+      "immediately_previous_month": true,
+      "current_share_matches_latest_increase": true
+    },
+    {
+      "seed": 11,
+      "country": "SaoTome",
+      "month": 79,
+      "latest_increase_month": 78,
+      "immediately_previous_month": true,
+      "current_share_matches_latest_increase": true
+    },
+    {
+      "seed": 11,
+      "country": "Mozambique",
+      "month": 107,
+      "latest_increase_month": 106,
+      "immediately_previous_month": true,
+      "current_share_matches_latest_increase": true
+    }
+  ],
+  "all_funded_immediately_previous_month": true,
+  "interpretation": "Every observed useful-upward-opportunity snapshot follows an actual appropriation in the immediately previous month at its current share. These snapshots do not establish a forgotten-funding defect; requirements/caps change and loyalty recovers gradually. No production fix follows from this diagnostic."
+}

@@ -1,0 +1,52 @@
+{
+  "iteration": 12,
+  "negative_performance_rate": 0.024,
+  "source_manifest": "iteration-12-source-input-manifest.json",
+  "predeclared_plan": "accountability-calibration-plan.json",
+  "primary": {
+    "A3": "0/20",
+    "A7": 8.357,
+    "focused_known_failure": "D4 France full-Polity pointer expectation predates sourced Army overlay; unchanged-party/off guards must remain in test repair",
+    "A10": 0.344,
+    "A5": "7/12",
+    "outcome_gates_total": 10,
+    "focused_total": 88,
+    "A9": "194/194",
+    "A8": "40/40 retain8",
+    "A4": 20,
+    "outcome_gates_passed": 9,
+    "A2": "8/12; Algeria0/12; annul12/12",
+    "A6": "zero route events12/12 at420months",
+    "remaining_gate": "A1 top-three concentration",
+    "focused_passed": 87,
+    "A1": {
+      "median": 7,
+      "top3": 0.57
+    }
+  },
+  "development": {
+    "A3": "2/200=.010",
+    "A7": 7.56,
+    "seeds": "0..199",
+    "A9": "3276/3276",
+    "A10": 0.34,
+    "A8": "200/200 retain8",
+    "A5": "104/200=.520",
+    "months": 252,
+    "A5_nations": {
+      "Russia": 104,
+      "Bulgaria": 200,
+      "Poland": 200
+    },
+    "A4": 19,
+    "A6": "zero route events200/200 at252months only",
+    "A2": "125/200=.625",
+    "runtime_seconds": 140.64,
+    "A1": {
+      "median": 8,
+      "top3": 0.6
+    }
+  },
+  "interpretation": "Same response as iteration11 after independent57-institution coverage and midyear funding repairs. A5 remains a measured narrow pass, uncertainty spans the majority boundary; independent validation still pending.",
+  "independent_cohort": "Untouched"
+}

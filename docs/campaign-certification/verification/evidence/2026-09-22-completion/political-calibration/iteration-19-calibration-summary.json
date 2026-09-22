@@ -1,0 +1,71 @@
+{
+  "iteration": 19,
+  "configuration": "Selected .024 adverse-record response and .65 confidence; matching accountable-party coup grace replaces renewable election-term grace. No authority catalog/runtime yet.",
+  "focused": {
+    "passed": 102,
+    "total": 102
+  },
+  "original": {
+    "A2": {
+      "seeds": 12,
+      "hits": 8
+    },
+    "A5": {
+      "seeds": 12,
+      "hits": 7
+    },
+    "A7": 7.75,
+    "A1": {
+      "median_top3": 0.71,
+      "median_coups": 7.5
+    },
+    "A10": 0.344,
+    "A4": 20,
+    "failed": [
+      "A1"
+    ],
+    "passed_outcome_gates": 9,
+    "A9": "189/189",
+    "attribution_guard": "pass",
+    "A8": "40/40 keep8",
+    "total_outcome_gates": 10,
+    "A3": {
+      "seeds": 20,
+      "hits": 0
+    },
+    "A6": "zero route events in12seeds at420months"
+  },
+  "development": {
+    "A2": {
+      "hits_by_2000": 118,
+      "hits_over_run": 125,
+      "seeds": 200
+    },
+    "A5": {
+      "seeds": 200,
+      "hits": 99
+    },
+    "seeds": "0..199",
+    "A1": {
+      "median_top3": 0.67,
+      "median_coups": 7
+    },
+    "A7": 7.96,
+    "A4": 19,
+    "failed": [
+      "A1",
+      "A5"
+    ],
+    "A9": "3032/3032",
+    "months": 252,
+    "A10": 0.33,
+    "A3": {
+      "seeds": 200,
+      "hits": 2
+    },
+    "A8": "200/200 keep at least7",
+    "A6": "zero route events in200seeds at252months; not the35year check"
+  },
+  "independent_validation": "Not run; seeds1000..1059 remain untouched",
+  "status": "Incomplete. Original A1 fails and development A5 fails; diagnostic process completion is not acceptance."
+}

@@ -1,0 +1,52 @@
+{
+  "iteration": 11,
+  "negative_performance_rate": 0.024,
+  "source_manifest": "iteration-11-source-input-manifest.json",
+  "predeclared_plan": "accountability-calibration-plan.json",
+  "primary": {
+    "A9": "221/221",
+    "A10": 0.361,
+    "outcome_gates_passed": 9,
+    "A3": "0/20",
+    "A6": "zero route events12/12 at420months",
+    "focused_known_failure": "Coefficient-dependent ruined equilibrium old .05 lower bound; measured .041954; test-only analytic replacement uncompiled",
+    "A5": "7/12",
+    "focused_total": 86,
+    "A2": "8/12; Algeria0/12; annul12/12",
+    "A7": 6.975,
+    "outcome_gates_total": 10,
+    "A1": {
+      "median": 9,
+      "top3": 0.67
+    },
+    "A4": 19,
+    "remaining_gate": "A1 top-three concentration",
+    "A8": "40/40 retain8",
+    "focused_passed": 85
+  },
+  "development": {
+    "A9": "3541/3541",
+    "A10": 0.35,
+    "A3": "4/200=.020",
+    "runtime_seconds": 137.57,
+    "A5_nations": {
+      "Russia": 104,
+      "Poland": 200,
+      "Bulgaria": 200
+    },
+    "seeds": "0..199",
+    "A6": "zero route events200/200 at252months only",
+    "A2": "127/200=.635",
+    "A7": 7.0,
+    "A5": "104/200=.520",
+    "A1": {
+      "median": 9,
+      "top3": 0.62
+    },
+    "A4": 19,
+    "months": 252,
+    "A8": "200/200 retain8"
+  },
+  "interpretation": "Smallest predeclared candidate tested that satisfies all non-A1 development targets; A5 margin is uncertain and independent validation is still pending. No historical outcome or coefficient is certified by the diagnostic exit code.",
+  "independent_cohort": "Untouched"
+}

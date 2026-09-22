@@ -1,0 +1,11 @@
+{
+  "cohort": "development",
+  "note": "Byte-identical copy of compiled iteration10 binary; reporting diagnostic exit0 is completion, not acceptance.",
+  "source_manifest": "iteration-10-source-input-manifest.json",
+  "seeds": "0..199",
+  "binary_sha256": "AA4BA9B92B52BC8D7E8C0100286074BA3CF9AD5921C784D54DE9625E2EF29604",
+  "iteration": 10,
+  "started_utc": "2026-09-22T18:42:44.3342622Z",
+  "command": "iteration-10-census.exe --ignored --exact bloc_census --nocapture --test-threads=1",
+  "months": 252
+}

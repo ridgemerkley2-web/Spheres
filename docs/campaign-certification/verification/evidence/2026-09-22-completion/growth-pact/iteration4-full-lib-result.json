@@ -1,0 +1,22 @@
+{
+  "suite": "iteration4 full sim lib",
+  "test_executable_sha256": "9954451fa3668890859fda584d29527678a1af1fc7a96016789af4afe01dc484",
+  "command": "spheres_sim-de8a2e7790f15db6.exe --skip tests::the_resource_pass_stays_under_budget --test-threads=4",
+  "passed": 921,
+  "failed": 5,
+  "ignored": 25,
+  "filtered": 1,
+  "seconds": 168.45,
+  "expected_stale_golden_failures": [
+    "blocs::tests::the_bloc_layer_is_inert_over_time",
+    "tests::golden_hash_of_a_known_run",
+    "tests::the_market_switch_is_off_for_the_suite_and_deterministic_when_on",
+    "tests::the_resource_layer_is_inert_over_time"
+  ],
+  "unexpected_failures": [
+    "government::tests::every_succession_rule_seats_the_right_description_and_never_a_name"
+  ],
+  "unexpected_cause": "Initial US incumbent dies in first simulated month; old term-limit subsection assumed survival until January1997",
+  "repair": "Test government tick immediately before/at historical cutoff; no early or repeated expiry; office and party preserved",
+  "normal_recompiled_test_pending": true
+}

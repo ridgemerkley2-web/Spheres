@@ -1,0 +1,422 @@
+[
+  {
+    "iteration": 1,
+    "focused_passed": 17,
+    "focused_total": 18,
+    "gates_exit": 101,
+    "readings": [
+      "A2: 0/12 seeds; Algeria Islamist 0/12 annulled 0/12",
+      "A1: median coups 20.5 top-3 share median 0.64",
+      "A10: median discontent lead 0.266 over 12 seeds ([0.26924933994967437, 0.2668961167890933, 0.2660095327431774, 0.27089554630661666, 0.26188444579254144, 0.28871968778568524, 0.26551185178230474, 0.2656265813131976, 0.2681541977899792, 0.2670918907987249, 0.2624324956733084, 0.2647850037822964])",
+      "A3: 19/20 seeds with a Communist non-ballot takeover",
+      "A5: 0/12 seeds with a flagged successor party led back into government by ballot in >= 3 ex-communist states by 1996",
+      "A4: median 1990 regimes electoral at end-1996 3",
+      "A7: median ballot-flips / takeovers 0.799 ([0.7391304347826086, 0.782608695652174, 0.6363636363636364, 0.6956521739130435, 0.7894736842105263, 0.68, 1.0, 0.9473684210526315, 1.05, 0.8095238095238095, 0.875, 0.9])",
+      "A6 at 420 months: route events 0 in 12/12 seeds; pre-existing collapses beside [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]",
+      "A9: 1081/1081 = 1.000 of coups in nations under $8,000 a head",
+      "A8: 40/40 seeds keep >= 6 of 8; per seed [8, 8, 8, 8, 8, 7, 8, 8, 8, 7, 8, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 7, 7, 8, 7, 8, 8, 7, 8, 8, 8, 8, 8, 8, 7, 8, 8, 8, 8]",
+      "test result: FAILED. 4 passed; 6 failed; 0 ignored; 0 measured; 1 filtered out; finished in 44.68s"
+    ],
+    "log_sha256": "b4ef80d3b60fc1037902acec4a0b34c9f3a4f04505166f3b3642a4b1137df69b"
+  },
+  {
+    "iteration": 2,
+    "focused_passed": 29,
+    "focused_total": 31,
+    "gates_exit": 101,
+    "readings": [
+      "A10: median discontent lead 0.330 over 12 seeds ([0.34271241387352225, 0.2751546573685485, 0.34773859989479416, 0.3005153103151987, 0.34774587817408986, 0.28652440188442063, 0.38403635054788243, 0.3319600901582094, 0.3263297620025569, 0.3374181834121357, 0.2776173154015007, 0.3283436684944434])",
+      "A2: 0/12 seeds; Algeria Islamist 0/12 annulled 0/12",
+      "A1: median coups 16.5 top-3 share median 0.63",
+      "A3: 16/20 seeds with a Communist non-ballot takeover",
+      "A4: median 1990 regimes electoral at end-1996 8",
+      "A5: 11/12 seeds with a flagged successor party led back into government by ballot in >= 3 ex-communist states by 1996",
+      "A7: median ballot-flips / takeovers 3.750 ([3.3448275862068964, 3.88, 3.357142857142857, 3.769230769230769, 4.48, 3.8461538461538463, 3.6296296296296298, 3.9565217391304346, 3.6538461538461537, 3.730769230769231, 4.904761904761905, 3.5555555555555554])",
+      "A6 at 420 months: route events 0 in 12/12 seeds; pre-existing collapses beside [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]",
+      "A9: 696/696 = 1.000 of coups in nations under $8,000 a head",
+      "A8: 40/40 seeds keep >= 6 of 8; per seed [7, 8, 8, 8, 8, 7, 8, 8, 8, 8, 8, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]",
+      "test result: FAILED. 6 passed; 4 failed; 0 ignored; 0 measured; 1 filtered out; finished in 40.07s"
+    ],
+    "log_sha256": "4c6c55526c5ab96c68694e458f3f09f85c087135f97f273dd6651235b8c53a77"
+  },
+  {
+    "iteration": 3,
+    "focused_passed": 35,
+    "focused_total": 35,
+    "gates_exit": 101,
+    "readings": [
+      "A10: median discontent lead 0.341 over 12 seeds ([0.3493897967308832, 0.34191465275112665, 0.36272457171674644, 0.3433648521375927, 0.3410320218937638, 0.34804786760171647, 0.37178737867824746, 0.3186796253057229, 0.28606212439707984, 0.2919329172452379, 0.2774816052511291, 0.3204038009079341])",
+      "A2: 0/12 seeds; Algeria Islamist 0/12 annulled 0/12",
+      "A1: median coups 6 top-3 share median 1.00",
+      "A3: 6/20 seeds with a Communist non-ballot takeover",
+      "A4: median 1990 regimes electoral at end-1996 11.5",
+      "A5: 12/12 seeds with a flagged successor party led back into government by ballot in >= 3 ex-communist states by 1996",
+      "A7: median ballot-flips / takeovers 10.944 ([10.4, 10.88888888888889, 7.6923076923076925, 10.555555555555555, 10.555555555555555, 8.0, 12.11111111111111, 14.375, 11.0, 11.11111111111111, 14.125, 13.625])",
+      "A6 at 420 months: route events 0 in 12/12 seeds; pre-existing collapses beside [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]",
+      "A9: 131/131 = 1.000 of coups in nations under $8,000 a head",
+      "A8: 40/40 seeds keep >= 6 of 8; per seed [8, 8, 8, 8, 8, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]",
+      "test result: FAILED. 7 passed; 4 failed; 0 ignored; 0 measured; 1 filtered out; finished in 40.14s"
+    ],
+    "log_sha256": "a40f8428d668599cffb72b4ccd807569902dcb08aaaca6ca9cce2913a2fd14de"
+  },
+  {
+    "iteration": 4,
+    "focused_passed": 47,
+    "focused_total": 47,
+    "gates_exit": 101,
+    "readings": [
+      "A2: 5/12 seeds; Algeria Islamist 0/12 annulled 0/12",
+      "A1: median coups 14.5 top-3 share median 0.85",
+      "A10: median discontent lead 0.306 over 12 seeds ([0.3066610187774367, 0.34742672085620196, 0.2893638321994174, 0.3547658262408412, 0.30334778295729853, 0.35986822091827897, 0.3025322537392432, 0.2863385286021397, 0.289370700635703, 0.3062558836891701, 0.31031020349553323, 0.36999159863517367])",
+      "A3: 6/20 seeds with a Communist non-ballot takeover",
+      "A4: median 1990 regimes electoral at end-1996 21",
+      "A5: 6/12 seeds with a flagged successor party led back into government by ballot in >= 3 ex-communist states by 1996",
+      "A7: median ballot-flips / takeovers 5.570 ([3.1333333333333333, 6.0625, 6.642857142857143, 3.7142857142857144, 6.533333333333333, 3.6153846153846154, 6.785714285714286, 4.6923076923076925, 6.1875, 5.076923076923077, 7.466666666666667, 4.363636363636363])",
+      "A6 at 420 months: route events 0 in 12/12 seeds; pre-existing collapses beside [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]",
+      "A9: 236/236 = 1.000 of coups in nations under $8,000 a head",
+      "A8: 40/40 seeds keep >= 6 of 8; per seed [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]",
+      "test result: FAILED. 7 passed; 4 failed; 0 ignored; 0 measured; 1 filtered out; finished in 38.36s"
+    ],
+    "log_sha256": "d0aa5df09e8b238b8088a1df1aca55793f42400d21ebe20df731b29c1e993c52"
+  },
+  {
+    "iteration": 5,
+    "focused_passed": 52,
+    "focused_total": 53,
+    "gates_exit": 101,
+    "readings": [
+      "A2: 4/12 seeds; Algeria Islamist 0/12 annulled 12/12",
+      "A10: median discontent lead 0.300 over 12 seeds ([0.298553775542886, 0.28220605093472945, 0.304588239674766, 0.3028724715884695, 0.3099118355770171, 0.29413450517280937, 0.3008054015472195, 0.2924572789363593, 0.3845337761944498, 0.28565820901386696, 0.35642340209221324, 0.27641815928743124])",
+      "A1: median coups 15 top-3 share median 0.80",
+      "A3: 2/20 seeds with a Communist non-ballot takeover",
+      "A4: median 1990 regimes electoral at end-1996 19",
+      "A5: 7/12 seeds with a flagged successor party led back into government by ballot in >= 3 ex-communist states by 1996",
+      "A7: median ballot-flips / takeovers 7.654 ([4.416666666666667, 7.846153846153846, 9.636363636363637, 4.230769230769231, 8.76923076923077, 3.6153846153846154, 7.461538461538462, 4.2727272727272725, 8.909090909090908, 8.076923076923077, 3.9285714285714284, 9.0])",
+      "A6 at 420 months: route events 0 in 12/12 seeds; pre-existing collapses beside [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]",
+      "A9: 260/260 = 1.000 of coups in nations under $8,000 a head",
+      "test result: FAILED. 9 passed; 2 failed; 0 ignored; 0 measured; 1 filtered out; finished in 39.41s",
+      "A8: 40/40 seeds keep >= 6 of 8; per seed [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]"
+    ],
+    "log_sha256": "45064492b191e53bea2280f7a20fc2ac116698d2e6b1165db5638be0f1fa49b2"
+  },
+  {
+    "iteration": 6,
+    "focused_passed": 61,
+    "focused_total": 61,
+    "gates_exit": 101,
+    "readings": [
+      "A1: median coups 14.5 top-3 share median 0.80",
+      "A2: 6/12 seeds; Algeria Islamist 0/12 annulled 12/12",
+      "A10: median discontent lead 0.379 over 12 seeds ([0.38174635551939784, 0.35252529524989884, 0.377459114942971, 0.4012594834600485, 0.37991965944802936, 0.3049475226273728, 0.3846789367389439, 0.38868858823305275, 0.3624222109244232, 0.3079514743712075, 0.35260640220853146, 0.3925996980041943])",
+      "A3: 2/20 seeds with a Communist non-ballot takeover",
+      "A5: 6/12 seeds with a flagged successor party led back into government by ballot in >= 3 ex-communist states by 1996",
+      "A4: median 1990 regimes electoral at end-1996 19.5",
+      "A7: median ballot-flips / takeovers 5.000 ([3.4444444444444446, 5.4, 6.352941176470588, 3.85, 5.5, 3.9444444444444446, 3.789473684210526, 3.238095238095238, 6.647058823529412, 7.066666666666666, 6.4375, 4.6])",
+      "A6 at 420 months: route events 0 in 12/12 seeds; pre-existing collapses beside [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]",
+      "A9: 261/261 = 1.000 of coups in nations under $8,000 a head",
+      "A8: 40/40 seeds keep >= 6 of 8; per seed [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]",
+      "test result: FAILED. 8 passed; 3 failed; 0 ignored; 0 measured; 1 filtered out; finished in 38.70s"
+    ],
+    "log_sha256": "904f23d49de668ae9491065ab21468e3777caefc051bc2774290e737d88eab48"
+  },
+  {
+    "iteration": 7,
+    "focused_passed": 71,
+    "focused_total": 71,
+    "gates_exit": 101,
+    "readings": [
+      "A10: median discontent lead 0.367 over 12 seeds ([0.37065167887772354, 0.369131631252488, 0.36858535017926575, 0.34619908297678637, 0.36552186231555617, 0.34065947085022347, 0.3725283271441151, 0.34211826565612063, 0.3713251150958059, 0.331871452890935, 0.3413519089047998, 0.3783124377853439])",
+      "A2: 6/12 seeds; Algeria Islamist 0/12 annulled 12/12",
+      "A1: median coups 16.5 top-3 share median 0.69",
+      "A3: 4/20 seeds with a Communist non-ballot takeover",
+      "A4: median 1990 regimes electoral at end-1996 20",
+      "A5: 12/12 seeds with a flagged successor party led back into government by ballot in >= 3 ex-communist states by 1996",
+      "A7: median ballot-flips / takeovers 4.485 ([4.1, 5.4, 5.7, 4.0, 5.454545454545454, 2.9473684210526314, 5.0, 3.3333333333333335, 4.869565217391305, 6.555555555555555, 3.238095238095238, 3.611111111111111])",
+      "A6 at 420 months: route events 0 in 12/12 seeds; pre-existing collapses beside [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]",
+      "A9: 296/296 = 1.000 of coups in nations under $8,000 a head",
+      "A8: 40/40 seeds keep >= 6 of 8; per seed [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]",
+      "test result: FAILED. 8 passed; 3 failed; 0 ignored; 0 measured; 1 filtered out; finished in 39.98s"
+    ],
+    "log_sha256": "b344d2f5ac567f4dd5e77b1bd73c592373d531fa91e7040489253917c42f5255"
+  },
+  {
+    "iteration": 8,
+    "focused_passed": 78,
+    "focused_total": 78,
+    "gates_exit": 101,
+    "readings": [
+      "A2: 2/12 seeds; Algeria Islamist 0/12 annulled 12/12",
+      "A10: median discontent lead 0.369 over 12 seeds ([0.37558285466195956, 0.36593868187468304, 0.3720587908954536, 0.3667648767619107, 0.36302295393303513, 0.36047321789395603, 0.3820384473054226, 0.35446694581737753, 0.37244380772918734, 0.3712790839951894, 0.37232821849010117, 0.3586906072640962])",
+      "A1: median coups 21 top-3 share median 0.56",
+      "A3: 1/20 seeds with a Communist non-ballot takeover",
+      "A4: median 1990 regimes electoral at end-1996 22",
+      "A5: 12/12 seeds with a flagged successor party led back into government by ballot in >= 3 ex-communist states by 1996",
+      "A7: median ballot-flips / takeovers 3.054 ([3.25, 3.15, 2.9047619047619047, 2.9583333333333335, 2.925925925925926, 2.8260869565217392, 3.1818181818181817, 2.4, 4.625, 3.5384615384615383, 2.56, 4.115384615384615])",
+      "A6 at 420 months: route events 0 in 12/12 seeds; pre-existing collapses beside [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]",
+      "A9: 352/352 = 1.000 of coups in nations under $8,000 a head",
+      "A8: 40/40 seeds keep >= 6 of 8; per seed [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]",
+      "test result: FAILED. 9 passed; 2 failed; 0 ignored; 0 measured; 1 filtered out; finished in 42.93s"
+    ],
+    "log_sha256": "0e719222e943decc8e4fe958861b6c6399b39ddfa2f8bf307cf7a61be9f9dca9"
+  },
+  {
+    "iteration": 9,
+    "focused_passed": 83,
+    "focused_total": 84,
+    "gates_exit": 101,
+    "readings": [
+      "A1: median coups 15 top-3 share median 0.63",
+      "A10: median discontent lead 0.367 over 12 seeds ([0.3755469273321881, 0.3670387234655348, 0.36858619579627866, 0.36954489751690245, 0.3776958895896839, 0.37279778046217704, 0.36057232019200075, 0.34902584266873776, 0.35084929717972857, 0.36223020256405564, 0.36639276642759666, 0.35086339442490044])",
+      "A2: 8/12 seeds; Algeria Islamist 0/12 annulled 12/12",
+      "A3: 1/20 seeds with a Communist non-ballot takeover",
+      "A5: 0/12 seeds with a flagged successor party led back into government by ballot in >= 3 ex-communist states by 1996",
+      "A4: median 1990 regimes electoral at end-1996 18",
+      "A7: median ballot-flips / takeovers 4.830 ([3.473684210526316, 4.888888888888889, 5.625, 4.111111111111111, 4.809523809523809, 3.8125, 6.4375, 4.0588235294117645, 5.411764705882353, 4.8, 5.705882352941177, 4.85])",
+      "A6 at 420 months: route events 0 in 12/12 seeds; pre-existing collapses beside [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]",
+      "A9: 267/274 = 0.974 of coups in nations under $8,000 a head",
+      "A8: 40/40 seeds keep >= 6 of 8; per seed [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]",
+      "test result: FAILED. 9 passed; 2 failed; 0 ignored; 0 measured; 1 filtered out; finished in 44.41s"
+    ],
+    "log_sha256": "74cb8b1d3d648391f739613ae7b3f57844dac84c3ebe3df9b0fce26732b947f8"
+  },
+  {
+    "iteration": 10,
+    "focused_passed": 86,
+    "focused_total": 86,
+    "gates_exit": 101,
+    "readings": [
+      "A1: median coups 9.5 top-3 share median 0.62",
+      "A10: median discontent lead 0.351 over 12 seeds ([0.33506911522414917, 0.3371246454232808, 0.35377082324185577, 0.3732904647896921, 0.36121736185459674, 0.3782504153839538, 0.32595451807838044, 0.350666677070772, 0.2731650928563656, 0.3267658076236152, 0.3630853246851534, 0.3506591063764547])",
+      "A2: 8/12 seeds; Algeria Islamist 0/12 annulled 12/12",
+      "A3: 1/20 seeds with a Communist non-ballot takeover",
+      "A4: median 1990 regimes electoral at end-1996 18",
+      "A5: 0/12 seeds with a flagged successor party led back into government by ballot in >= 3 ex-communist states by 1996",
+      "A7: median ballot-flips / takeovers 6.802 ([6.0, 7.615384615384615, 6.375, 4.875, 7.642857142857143, 3.5294117647058822, 6.9375, 4.2, 8.25, 7.571428571428571, 8.583333333333334, 6.666666666666667])",
+      "A6 at 420 months: route events 0 in 12/12 seeds; pre-existing collapses beside [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]",
+      "A9: 203/203 = 1.000 of coups in nations under $8,000 a head",
+      "A8: 40/40 seeds keep >= 6 of 8; per seed [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]",
+      "test result: FAILED. 9 passed; 2 failed; 0 ignored; 0 measured; 1 filtered out; finished in 45.54s"
+    ],
+    "log_sha256": "357f945e52f31f8cf2045aef3c66b6d278079520e174503a66cfc2f22670f57a"
+  },
+  {
+    "iteration": 11,
+    "focused_passed": 85,
+    "focused_total": 86,
+    "gates_exit": 101,
+    "readings": [
+      "A1: median coups 9 top-3 share median 0.67",
+      "A10: median discontent lead 0.361 over 12 seeds ([0.3755469273321409, 0.37002707389453904, 0.3554346240382691, 0.36490877050975434, 0.3580764223544277, 0.36632525881736244, 0.3770983689248342, 0.2764790273842979, 0.3120047299001205, 0.30609932636879195, 0.36577403489413857, 0.3431011304852386])",
+      "A2: 8/12 seeds; Algeria Islamist 0/12 annulled 12/12",
+      "A3: 0/20 seeds with a Communist non-ballot takeover",
+      "A4: median 1990 regimes electoral at end-1996 19",
+      "A5: 7/12 seeds with a flagged successor party led back into government by ballot in >= 3 ex-communist states by 1996",
+      "A7: median ballot-flips / takeovers 6.975 ([6.0, 9.636363636363637, 5.35, 6.75, 7.2, 5.125, 7.647058823529412, 6.363636363636363, 8.2, 8.066666666666666, 8.0, 5.571428571428571])",
+      "A6 at 420 months: route events 0 in 12/12 seeds; pre-existing collapses beside [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]",
+      "A9: 221/221 = 1.000 of coups in nations under $8,000 a head",
+      "A8: 40/40 seeds keep >= 6 of 8; per seed [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]",
+      "test result: FAILED. 10 passed; 1 failed; 0 ignored; 0 measured; 1 filtered out; finished in 45.33s"
+    ],
+    "log_sha256": "eee45aa1ef399ed7c1963a1742bfb085bc957acc72480af835cf5fa4273f86a6"
+  },
+  {
+    "iteration": 12,
+    "focused_passed": 87,
+    "focused_total": 88,
+    "gates_exit": 101,
+    "readings": [
+      "A2: 8/12 seeds; Algeria Islamist 0/12 annulled 12/12",
+      "A1: median coups 7 top-3 share median 0.57",
+      "A10: median discontent lead 0.344 over 12 seeds ([0.3379049619749859, 0.3603565858351986, 0.27818546351034, 0.36490877050975434, 0.312294260603163, 0.3564117022489627, 0.3497560839208236, 0.3159876738535363, 0.35736979227649274, 0.3268736863723918, 0.3566788965166675, 0.32948264741951927])",
+      "A3: 0/20 seeds with a Communist non-ballot takeover",
+      "A4: median 1990 regimes electoral at end-1996 20",
+      "A5: 7/12 seeds with a flagged successor party led back into government by ballot in >= 3 ex-communist states by 1996",
+      "A7: median ballot-flips / takeovers 8.357 ([8.0, 12.444444444444445, 9.818181818181818, 7.7, 7.923076923076923, 5.133333333333334, 10.384615384615385, 6.6, 9.076923076923077, 8.714285714285714, 9.846153846153847, 6.384615384615385])",
+      "A6 at 420 months: route events 0 in 12/12 seeds; pre-existing collapses beside [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]",
+      "A9: 194/194 = 1.000 of coups in nations under $8,000 a head",
+      "A8: 40/40 seeds keep >= 6 of 8; per seed [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]",
+      "test result: FAILED. 10 passed; 1 failed; 0 ignored; 0 measured; 1 filtered out; finished in 45.98s"
+    ],
+    "log_sha256": "74c8e15f6a6caa57e7f7e11ac13b4cae2e2c8264d41947f4240d1bb41593161d"
+  },
+  {
+    "iteration": 13,
+    "focused_passed": 88,
+    "focused_total": 88,
+    "gates_exit": 101,
+    "readings": [
+      "A1: median coups 7 top-3 share median 0.57",
+      "A2: 9/12 seeds; Algeria Islamist 0/12 annulled 12/12",
+      "A10: median discontent lead 0.348 over 12 seeds ([0.30953523601383914, 0.3796088652186963, 0.3339088763063039, 0.3555188571580326, 0.3587236811089828, 0.3564117022500769, 0.2815530201179613, 0.3402363560883318, 0.3559156442920907, 0.30882145712814657, 0.3566788965178125, 0.32889742074716777])",
+      "A3: 0/20 seeds with a Communist non-ballot takeover",
+      "A4: median 1990 regimes electoral at end-1996 20.5",
+      "A5: 8/12 seeds with a flagged successor party led back into government by ballot in >= 3 ex-communist states by 1996",
+      "A7: median ballot-flips / takeovers 8.709 ([7.545454545454546, 9.818181818181818, 8.071428571428571, 8.363636363636363, 8.846153846153847, 6.384615384615385, 10.0, 6.5, 8.571428571428571, 11.307692307692308, 12.0, 11.9])",
+      "A6 at 420 months: route events 0 in 12/12 seeds; pre-existing collapses beside [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]",
+      "A9: 190/190 = 1.000 of coups in nations under $8,000 a head",
+      "A8: 40/40 seeds keep >= 6 of 8; per seed [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]",
+      "test result: FAILED. 10 passed; 1 failed; 0 ignored; 0 measured; 1 filtered out; finished in 47.51s"
+    ],
+    "log_sha256": "b024eb025da2fe626ec73cc83ff87030d14eab8ac0e066d6eddc9fec5428b42c"
+  },
+  {
+    "iteration": 14,
+    "focused_passed": 91,
+    "focused_total": 91,
+    "gates_exit": 101,
+    "readings": [
+      "A1: median coups 8.5 top-3 share median 0.60",
+      "A2: 8/12 seeds; Algeria Islamist 0/12 annulled 12/12",
+      "A10: median discontent lead 0.330 over 12 seeds ([0.3306259860281172, 0.301300724784753, 0.3591865445389138, 0.3623772797756688, 0.308355142888836, 0.30216062459146525, 0.35135378301936515, 0.30828008869221635, 0.32916011707303056, 0.3182759558504231, 0.3627675164689383, 0.34029787620570284])",
+      "A3: 0/20 seeds with a Communist non-ballot takeover",
+      "A4: median 1990 regimes electoral at end-1996 19",
+      "A5: 7/12 seeds with a flagged successor party led back into government by ballot in >= 3 ex-communist states by 1996",
+      "A7: median ballot-flips / takeovers 7.155 ([6.166666666666667, 6.0, 6.411764705882353, 7.166666666666667, 7.142857142857143, 5.846153846153846, 5.6923076923076925, 7.357142857142857, 8.0, 10.083333333333334, 9.25, 7.857142857142857])",
+      "A6 at 420 months: route events 0 in 12/12 seeds; pre-existing collapses beside [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]",
+      "A9: 198/198 = 1.000 of coups in nations under $8,000 a head",
+      "A8: 40/40 seeds keep >= 6 of 8; per seed [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]",
+      "test result: FAILED. 10 passed; 1 failed; 0 ignored; 0 measured; 1 filtered out; finished in 46.76s"
+    ],
+    "log_sha256": "92279cc81f0d56429866a602e20120de81d6560a0c1273bc3736e1bb6524c1d1"
+  },
+  {
+    "iteration": 15,
+    "focused_passed": 90,
+    "focused_total": 91,
+    "gates_exit": 101,
+    "readings": [
+      "A2: 7/12 seeds; Algeria Islamist 0/12 annulled 12/12",
+      "A10: median discontent lead 0.369 over 12 seeds ([0.3774231208702927, 0.301528951916697, 0.368270014550365, 0.37039946471509905, 0.3593720932937563, 0.37844540133617594, 0.36923331136174503, 0.3751577521325541, 0.33643309957622175, 0.368528865921409, 0.3762177606193042, 0.3188747671659795])",
+      "A1: median coups 10 top-3 share median 0.56",
+      "A3: 0/20 seeds with a Communist non-ballot takeover",
+      "A4: median 1990 regimes electoral at end-1996 19",
+      "A5: 4/12 seeds with a flagged successor party led back into government by ballot in >= 3 ex-communist states by 1996",
+      "A7: median ballot-flips / takeovers 5.918 ([4.642857142857143, 9.307692307692308, 4.733333333333333, 6.076923076923077, 6.066666666666666, 4.4, 5.769230769230769, 4.6, 7.5, 4.923076923076923, 7.0, 8.666666666666666])",
+      "A6 at 420 months: route events 0 in 12/12 seeds; pre-existing collapses beside [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]",
+      "A9: 208/208 = 1.000 of coups in nations under $8,000 a head",
+      "A8: 40/40 seeds keep >= 6 of 8; per seed [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]",
+      "test result: FAILED. 9 passed; 2 failed; 0 ignored; 0 measured; 1 filtered out; finished in 46.78s"
+    ],
+    "log_sha256": "ce90524e989cb4fbe74dce69e7a221a18b88c4d9e0f05a3430f4af6a5786fc72"
+  },
+  {
+    "iteration": 16,
+    "focused_passed": 89,
+    "focused_total": 91,
+    "gates_exit": 101,
+    "readings": [
+      "A1: median coups 11 top-3 share median 0.50",
+      "A10: median discontent lead 0.370 over 12 seeds ([0.37789477881057665, 0.36894623600424997, 0.3744311167884805, 0.3748797195352562, 0.3603019548992939, 0.3707852450743323, 0.3698057700836063, 0.368762903492557, 0.32795130220782576, 0.3617513519879567, 0.3771870020593314, 0.374814904257723])",
+      "A2: 7/12 seeds; Algeria Islamist 0/12 annulled 12/12",
+      "A3: 3/20 seeds with a Communist non-ballot takeover",
+      "A4: median 1990 regimes electoral at end-1996 18",
+      "A5: 6/12 seeds with a flagged successor party led back into government by ballot in >= 3 ex-communist states by 1996",
+      "A7: median ballot-flips / takeovers 6.029 ([4.352941176470588, 7.866666666666666, 6.5, 4.117647058823529, 4.411764705882353, 6.6, 5.947368421052632, 6.333333333333333, 6.428571428571429, 4.266666666666667, 4.266666666666667, 6.111111111111111])",
+      "A6 at 420 months: route events 0 in 12/12 seeds; pre-existing collapses beside [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]",
+      "A9: 240/240 = 1.000 of coups in nations under $8,000 a head",
+      "A8: 40/40 seeds keep >= 6 of 8; per seed [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]",
+      "test result: FAILED. 8 passed; 3 failed; 0 ignored; 0 measured; 1 filtered out; finished in 47.49s"
+    ],
+    "log_sha256": "1cfd9b21e6dcbae2c96a380d4695bcdcfa5ce476a3665317da83e56f3ec11706"
+  },
+  {
+    "iteration": 18,
+    "focused_passed": 99,
+    "focused_total": 99,
+    "gates_exit": 101,
+    "readings": [
+      "A2: 8/12 seeds; Algeria Islamist 0/12 annulled 12/12",
+      "A1: median coups 7 top-3 share median 0.69",
+      "A10: median discontent lead 0.350 over 12 seeds ([0.3165233071827601, 0.35809994929457967, 0.30661214624134026, 0.358511044306537, 0.3680024572655283, 0.3479987079811864, 0.35135378301936515, 0.3299801491224972, 0.29031324173967027, 0.26791188236986085, 0.3642864813153317, 0.35281760600146095])",
+      "A3: 0/20 seeds with a Communist non-ballot takeover",
+      "A4: median 1990 regimes electoral at end-1996 18.5",
+      "A5: 7/12 seeds with a flagged successor party led back into government by ballot in >= 3 ex-communist states by 1996",
+      "A7: median ballot-flips / takeovers 8.542 ([7.888888888888889, 6.076923076923077, 9.727272727272727, 7.181818181818182, 9.083333333333334, 7.181818181818182, 6.0, 8.333333333333334, 13.0, 11.8, 8.75, 10.2])",
+      "A6 at 420 months: route events 0 in 12/12 seeds; pre-existing collapses beside [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]",
+      "A9: 186/186 = 1.000 of coups in nations under $8,000 a head",
+      "A8: 40/40 seeds keep >= 6 of 8; per seed [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]",
+      "test result: FAILED. 10 passed; 1 failed; 0 ignored; 0 measured; 1 filtered out; finished in 46.32s"
+    ],
+    "log_sha256": "de503ff416a34a2bb18372a63f28a2288c3eedd9f6f0a24cbf8720183db452cb"
+  },
+  {
+    "iteration": 19,
+    "focused_passed": 102,
+    "focused_total": 102,
+    "gates_exit": 101,
+    "readings": [
+      "A10: median discontent lead 0.344 over 12 seeds ([0.32248836133628944, 0.3300267172456549, 0.3512043583415277, 0.34465422287090186, 0.32353712913527577, 0.32904729107303754, 0.3331262035681693, 0.34325027115354967, 0.35351982453413555, 0.3536612344888613, 0.3547368301124513, 0.34989433130161995])",
+      "A2: 8/12 seeds; Algeria Islamist 0/12 annulled 12/12",
+      "A1: median coups 7.5 top-3 share median 0.71",
+      "A3: 0/20 seeds with a Communist non-ballot takeover",
+      "A4: median 1990 regimes electoral at end-1996 20",
+      "A5: 7/12 seeds with a flagged successor party led back into government by ballot in >= 3 ex-communist states by 1996",
+      "A7: median ballot-flips / takeovers 7.750 ([6.454545454545454, 6.7272727272727275, 7.571428571428571, 6.666666666666667, 5.076923076923077, 7.4, 8.23076923076923, 10.8, 7.928571428571429, 8.857142857142858, 14.666666666666666, 9.090909090909092])",
+      "A6 at 420 months: route events 0 in 12/12 seeds; pre-existing collapses beside [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]",
+      "A9: 189/189 = 1.000 of coups in nations under $8,000 a head",
+      "A8: 40/40 seeds keep >= 6 of 8; per seed [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]",
+      "test result: FAILED. 10 passed; 1 failed; 0 ignored; 0 measured; 1 filtered out; finished in 51.12s"
+    ],
+    "log_sha256": "b0efef93cb983fce29cfa583f3b4e73e91925f21975d234a5961ee2a19b37cdd"
+  },
+  {
+    "iteration": 20,
+    "focused_passed": 107,
+    "focused_total": 107,
+    "gates_exit": 101,
+    "readings": [
+      "A2: 9/12 seeds; Algeria Islamist 0/12 annulled 12/12",
+      "A1: median coups 8.5 top-3 share median 0.62",
+      "A10: median discontent lead 0.358 over 12 seeds ([0.3632567782819012, 0.3637826922475649, 0.34218659411572516, 0.35813668127290876, 0.34618869427505017, 0.36762231360262493, 0.33196814125861807, 0.3095773657016341, 0.327822131767043, 0.3636339173970208, 0.3582004104595086, 0.3680328207736876])",
+      "A3: 0/20 seeds with a Communist non-ballot takeover",
+      "A5: 7/12 seeds with a flagged successor party led back into government by ballot in >= 3 ex-communist states by 1996",
+      "A4: median 1990 regimes electoral at end-1996 19",
+      "A7: median ballot-flips / takeovers 7.815 ([7.818181818181818, 7.428571428571429, 8.214285714285714, 6.461538461538462, 4.5, 6.636363636363637, 8.75, 7.8125, 9.166666666666666, 9.0, 12.0, 6.357142857142857])",
+      "A6 at 420 months: route events 0 in 12/12 seeds; pre-existing collapses beside [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]",
+      "A9: 203/203 = 1.000 of coups in nations under $8,000 a head",
+      "A8: 40/40 seeds keep >= 6 of 8; per seed [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]",
+      "test result: FAILED. 10 passed; 1 failed; 0 ignored; 0 measured; 1 filtered out; finished in 89.06s"
+    ],
+    "log_sha256": "b6147fa709e1c10563130066905b57278a582c4e05cf27025c2ab9c68f384e3f"
+  },
+  {
+    "iteration": 21,
+    "focused_passed": 111,
+    "focused_total": 111,
+    "gates_exit": 101,
+    "readings": [
+      "A10: median discontent lead 0.337 over 12 seeds ([0.3401979804503408, 0.36523447873857756, 0.32993728554138274, 0.35813668127290876, 0.3416090980971754, 0.34503098928776754, 0.33196814125861807, 0.32526592777490126, 0.3116707132067447, 0.31612125067599806, 0.3338531105169207, 0.3680328207736876])",
+      "A2: 9/12 seeds; Algeria Islamist 0/12 annulled 12/12",
+      "A1: median coups 8.5 top-3 share median 0.62",
+      "A3: 0/20 seeds with a Communist non-ballot takeover",
+      "A5: 12/12 seeds with a flagged successor party led back into government by ballot in >= 3 ex-communist states by 1996",
+      "A4: median 1990 regimes electoral at end-1996 19",
+      "A7: median ballot-flips / takeovers 8.156 ([7.8, 8.0, 9.0, 6.769230769230769, 4.733333333333333, 7.5, 9.75, 8.3125, 9.615384615384615, 10.615384615384615, 10.666666666666666, 6.0])",
+      "A6 at 420 months: route events 0 in 12/12 seeds; pre-existing collapses beside [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]",
+      "A9: 199/199 = 1.000 of coups in nations under $8,000 a head",
+      "A8: 40/40 seeds keep >= 6 of 8; per seed [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]",
+      "test result: FAILED. 10 passed; 1 failed; 0 ignored; 0 measured; 1 filtered out; finished in 47.01s"
+    ],
+    "log_sha256": "345718881b9dd9638cc620fcd53271391915e67ce66c7dd585eca6115a4ff598"
+  },
+  {
+    "iteration": 22,
+    "focused_passed": 113,
+    "focused_total": 114,
+    "gates_exit": 101,
+    "readings": [
+      "A2: 6/12 seeds; Algeria Islamist 0/12 annulled 12/12",
+      "A10: median discontent lead 0.346 over 12 seeds ([0.34626060373349715, 0.34186641731319034, 0.33357067846028987, 0.3525052645613181, 0.3466856666921014, 0.35073507838559786, 0.3474602556309461, 0.333011930148056, 0.3643280428937556, 0.34056711899729974, 0.3427576907755001, 0.3502378364430636])",
+      "A1: median coups 12.5 top-3 share median 0.52",
+      "A3: 0/20 seeds with a Communist non-ballot takeover",
+      "A5: 12/12 seeds with a flagged successor party led back into government by ballot in >= 3 ex-communist states by 1996",
+      "A4: median 1990 regimes electoral at end-1996 19.5",
+      "A7: median ballot-flips / takeovers 5.296 ([4.733333333333333, 9.466666666666667, 8.066666666666666, 5.357142857142857, 4.352941176470588, 5.235294117647059, 4.0, 7.352941176470588, 6.444444444444445, 4.166666666666667, 4.533333333333333, 6.277777777777778])",
+      "A6 at 420 months: route events 0 in 12/12 seeds; pre-existing collapses beside [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]",
+      "A9: 238/238 = 1.000 of coups in nations under $8,000 a head",
+      "A8: 40/40 seeds keep >= 6 of 8; per seed [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]",
+      "test result: FAILED. 9 passed; 2 failed; 0 ignored; 0 measured; 1 filtered out; finished in 47.55s"
+    ],
+    "log_sha256": "20a4a825c240ec60e6b7686760205577abc2a497451b5d1f7866efcca5628417"
+  }
+]

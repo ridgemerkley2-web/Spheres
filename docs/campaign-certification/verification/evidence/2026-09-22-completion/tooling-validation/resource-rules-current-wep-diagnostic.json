@@ -1,0 +1,26 @@
+{
+  "command": [
+    "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "tools/resources/check_resources.py",
+    "--fast"
+  ],
+  "exit_code": 0,
+  "seconds": 3.281,
+  "log_sha256": "ad772cb5ac876e61c34e0b4a15c0ee05b7e0cfb3552c081f99183206c60b2acc",
+  "source_sha256": "5c8540657585d213cf82c324d9af19948d9b3470394b57330ade6c30b7ed1918",
+  "source_url": "https://www.sciencebase.gov/catalog/file/get/60ad2fa1d34e4043c850ed98",
+  "scope": "Unmodified rule assertions against current official WEP member payloads. This is not proof of equality to the unavailable historical pinned ZIP. Full resource byte regeneration is explicitly skipped.",
+  "temporary_source_removed": true,
+  "shipped_artifact_unchanged": true,
+  "tail": [
+    "  PASS  no coal field or coal mine carries a tonnage, capacity or reserve figure",
+    "",
+    "CHECK 4: determinism",
+    "  SKIP  (--fast)",
+    "",
+    "168 checks, 0 failed"
+  ]
+}
