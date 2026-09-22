@@ -35,12 +35,20 @@
   .over { color:#e0a05a; }
   .ungraded { color:#6f8496; font-style:italic; }
   .warn { padding:14px; border:1px solid #6b3030; border-radius:12px; background:#2a1717; }
+  .town-card { grid-column:span 2; }
+  .town-card canvas { height:360px; touch-action:none; cursor:grab; }
+  .town-card canvas:focus-visible { outline:2px solid #81c4ee; }
+  .town-controls { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+  .town-controls select,.town-controls button { background:#0d141b; color:inherit; border:1px solid #48839f; padding:7px; border-radius:6px; }
+  @media(max-width:600px) { .town-card { grid-column:span 1; } .town-card canvas { height:280px; } }
 </style>
 </head>
 <body>
 <h1>Art review bench</h1>
 <p class="lede">Every P0 asset, drawn by the same modules the game loads, under one neutral rig.
-Hover to turn. Triangle counts are measured live; a count outside its budget is marked.</p>
+Hover to turn. Triangle counts are measured live; a count outside its budget is marked.
+Inspection bands follow contract revision 2. The <a href="../../docs/art/P0_BUDGETS.md">full budget report</a>
+keeps the original targets, export limits and individual building measurements.</p>
 <div class="bar" id="bar"></div>
 <div class="grid" id="grid"></div>
 
@@ -78,16 +86,14 @@ Hover to turn. Triangle counts are measured live; a count outside its budget is 
   Arsenal3D.register("scatter", (r) => { const [kind, lod] = r.split("/");
     return ScatterMesh.piece(kind, { lod: lod === "far" ? "far" : 0 }); });
 
-  // ROADMAP SECTION 4, QUOTED. These were this file's own numbers and four of
-  // them were LOOSER than the roadmap they claimed to grade against — vehicles
-  // at 150,000 where section 4 says 45,000, sites and stages at 40,000 where it
-  // says 12,000, town at 400,000 where it says 150,000. A review bench whose
-  // bars are wider than the budget shows over-budget art as passing, which is
-  // the one thing it must not do. tools/ui/bench_art.cjs is the authority: it
-  // re-reads section 4 and exits if a cell has moved. This page cannot read a
-  // file, so it carries the numbers and names the row it took each from.
+  // ROADMAP SECTION 4, contract revision 2. Inspection follows the previously
+  // approved tank/specialist quality bands; catalogue and map ceilings stay
+  // unchanged. A compound pays the full scene budget, while its constituent
+  // buildings are separately charged in the linked P0 report. This gallery
+  // still prints the entire actually rendered mesh, never a divided count.
   const S4 = {
-    vehicle_lod0: [20000, 45000, "Ground vehicle close inspection LOD0"],
+    vehicle_lod0: [20000, 150000, "Tank inspection LOD0"],
+    specialist_lod0: [8000, 48000, "Armoured specialist inspection LOD0"],
     vehicle_lod1: [4000, 12000, "LOD1 catalogue preview"],
     vehicle_lod2: [300, 1500, "LOD2 map vehicle"],
     building_near: [2000, 12000, "Building close view / map"],
@@ -97,6 +103,8 @@ Hover to turn. Triangle counts are measured live; a count outside its budget is 
     tree_prop_far: [20, 100, "Tree/prop near / far"],
   };
   const num = (n) => n.toLocaleString();
+  const compoundNote = (mesh) => `${mesh.budgetBuildings.length} physical structures · `
+    + '<a href="../../docs/art/P0_BUDGETS.md#physical-building-accounting">individual building 12k checks</a>';
   // `band` is a key into S4, or null for art section 4 has NO ROW for. A null
   // band prints the measurement and says so, rather than inventing a bar: the
   // road and prop kits are graded nowhere, and pretending otherwise with a
@@ -120,11 +128,26 @@ Hover to turn. Triangle counts are measured live; a count outside its budget is 
       <em class="${over ? "over" : under ? "ungraded" : b ? "" : "ungraded"}">${num(tris)} triangles${note}</em></article>`;
   };
 
+  const townOptions = (key) => { const [id, district, numeric] = key.split("/");
+    return { id: numeric ? Number(id) : id, district }; };
+  const townCard = (key) => {
+    const scene = TownMesh.scene(townOptions(key));
+    return `<article class="card town-card" data-town="${key}">
+      <canvas data-town-scene="${key}"></canvas><b>${scene.district} · ${typeof scene.blockId} seed ${scene.blockId}</b>
+      <span>Drag to turn · scroll or +/− to zoom · choose any building for full-detail inspection.</span>
+      <div class="town-controls"><label>Inspect building <select data-town-lot><option value="">Whole block</option>
+      ${scene.lots.map(lot => `<option value="${lot.id}">${lot.index + 1}. ${lot.label}</option>`).join("")}</select></label>
+      <button data-town-reset>Reset view</button></div>
+      <em data-town-measure>Waiting for the first measured frame.</em>
+      <em>${num(scene.rawCloseTriangles)} full-close stored triangles · ${scene.lots.length} stable lots.
+      <a href="../../docs/art/P0_BUDGETS.md">Raw geometry and individual building diagnostics</a></em></article>`;
+  };
+
   const VIEWS = {
     "Vehicles LOD0": () => ["tank_standard","tank_heavy","tank_light","tank_destroyer",
         "ground_ifv","ground_apc","ground_recon","ground_artillery","ground_air_defense"]
       .map((p) => card(`veh:${p}/0`, p, "close inspection",
-        EquipmentMesh.build({ platform: p }).triangleCount, "vehicle_lod0")),
+        EquipmentMesh.build({ platform: p }).triangleCount, p.startsWith("tank_") ? "vehicle_lod0" : "specialist_lod0")),
     // All nine platforms at every level. The three that were missing here
     // (tank_heavy, tank_light, tank_destroyer at LOD1 and LOD2) build fine and
     // were simply never listed, so the bench showed 21 of the 27 that ship.
@@ -136,26 +159,27 @@ Hover to turn. Triangle counts are measured live; a count outside its budget is 
         "ground_ifv","ground_apc","ground_recon","ground_artillery","ground_air_defense"]
       .map((p) => card(`veh:${p}/2`, p, "map scale",
         EquipmentMesh.build({ platform: p, lod: 2 }).triangleCount, "vehicle_lod2")),
-    "Sites complete": () => SiteMesh.kinds()
-      .map((k) => card(`site:${k}/complete/2`, SiteMesh.meta(k).name || k, "level 2, complete",
-        SiteMesh.build(k, "complete", { level: 2 }).triangleCount, "building_near")),
+    "Sites complete": () => SiteMesh.kinds().map((k) => {
+      const mesh = SiteMesh.build(k, "complete", { level: 2 });
+      return card(`site:${k}/complete/2`, SiteMesh.meta(k).name || k, `level 2, complete compound · ${compoundNote(mesh)}`,
+        mesh.triangleCount, "scene");
+    }),
     "Sites at map LOD": () => SiteMesh.kinds()
       .map((k) => card(`siteFar:${k}/complete/2`, SiteMesh.meta(k).name || k, "map sprite",
         SiteMesh.build(k, "complete", { level: 2, lod: "far" }).triangleCount, "building_far")),
-    "Arms plant stages": () => SiteMesh.stages("arms_plant")
-      .map((s) => card(`site:arms_plant/${s.key}/2`, s.name, `${Math.round(s.from * 100)}%–${Math.round(s.to * 100)}% of recorded work`,
-        SiteMesh.build("arms_plant", s.key, { level: 2 }).triangleCount, "building_near")),
+    "Arms plant stages": () => SiteMesh.stages("arms_plant").map((s) => {
+      const mesh = SiteMesh.build("arms_plant", s.key, { level: 2 });
+      return card(`site:arms_plant/${s.key}/2`, s.name, `${Math.round(s.from * 100)}%–${Math.round(s.to * 100)}% of recorded work · ${compoundNote(mesh)}`,
+        mesh.triangleCount, "scene");
+    }),
     // THE CAPTION MUST MEASURE WHAT THE CANVAS DRAWS. It did not: the count came
     // from `{id: 1990}` while the provider splits the id out of the string and
     // passes `{id: "1990"}`, and town-mesh seeds those differently — so every
     // town card printed a number for a block that was not on screen, civic worst
     // at 131,586 against the 106,789 actually drawn. The id is now built once,
     // as a string, and used for both.
-    "Town": () => TownMesh.districts().map((d) => {
-      const id = `town:1990/${d}/close`;
-      const drawn = TownMesh.block({ id: "1990", district: d, lod: "close" });
-      return card(id, d, "assembled block", drawn.triangleCount, "scene");
-    }),
+    "Town": () => TownMesh.districts().map((d) => townCard(`1990/${d}`)),
+    "Town budget cases": () => [townCard("1997/mixed/numeric"), townCard("1994/residential/numeric")],
     "Deck": () => ArsenalModels.ids()
       .map((id) => { const g = ArsenalModels.build(id);
         return card(id, g.name, g.cls, g.count / 3, null); }),
@@ -179,12 +203,30 @@ Hover to turn. Triangle counts are measured live; a count outside its budget is 
   };
 
   let view = "Vehicles LOD0";
+  const townControllers = [];
   function draw() {
+    for (const controller of townControllers) controller.dispose();
+    townControllers.length = 0;
     let html = "";
     try { html = VIEWS[view]().join(""); }
     catch (e) { html = `<div class="warn">${view} failed to build: ${e.message}</div>`; }
     grid.innerHTML = html;
     Arsenal3D.scan(grid);
+    grid.querySelectorAll("[data-town]").forEach(holder => {
+      const scene = TownMesh.scene(townOptions(holder.dataset.town));
+      const canvas = holder.querySelector("canvas"), caption = holder.querySelector("[data-town-measure]");
+      const select = holder.querySelector("[data-town-lot]");
+      const controller = Arsenal3D.mountScene(canvas, scene, { onDraw(plan) {
+        const tiers = ["close", "mid", "map"].map(tier => `${plan.draws.filter(x => x.tier === tier).length} ${tier}`).join(" / ");
+        caption.textContent = `${num(plan.triangles)} submitted triangles / ${num(plan.budget)} scene ceiling · ${plan.drawCalls} draws · ${tiers} · ${plan.culled.length} outside view · ${num(Arsenal3D.cacheStats().triangles)} shared resident triangles`;
+        caption.className = plan.triangles > plan.budget ? "over" : "";
+        select.value = plan.selected || "";
+      } });
+      if (!controller) { caption.textContent = "3D view unavailable; full geometry counts remain above."; return; }
+      townControllers.push(controller);
+      select.addEventListener("change", () => controller.focus(select.value || null));
+      holder.querySelector("[data-town-reset]").addEventListener("click", () => controller.reset());
+    });
   }
   bar.innerHTML = Object.keys(VIEWS).map((k) =>
     `<button data-v="${k}" class="${k === view ? "on" : ""}">${k}</button>`).join("");

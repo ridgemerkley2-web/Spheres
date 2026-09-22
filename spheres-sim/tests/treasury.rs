@@ -37,10 +37,14 @@ use spheres_sim::{save, state_hash, tick_month, Command};
 /// of the difference from this branch's old actuals is upstream's district
 /// field. Had the merged tree read NEITHER pair, something of ours would have
 /// stopped being inert; it reads origin's, so nothing has.
-const START_ACTUAL: u64 = 0xe26e4bf8d6c60066;
+// 2026-09-22 measured political baseline: Algeria's FLN-only opening chamber.
+// Treasury on/off assertions below are unchanged; see the failure follow-up.
+const START_ACTUAL: u64 = 0x6fc47dff64344b17;
 // Approved benchmark/revelation-ledger baseline; treasury remains absent in this fixture.
 // HEADLESS_BASELINE_2026-09-04.md records the semantic and schema assessment.
-const RUN_ACTUAL: u64 = 0x0cbd02497c30957c;
+// Subsequently measured after disorder/live coup-trigger repairs; see
+// 2026-09-22-outstanding-repairs.md. Treasury feature invariants are unchanged.
+const RUN_ACTUAL: u64 = 0x6866c0bc2e38de35;
 
 /// With no budget seated anywhere — which is the default board, every AI
 /// nation, and every save written before the treasury existed — a 240-month

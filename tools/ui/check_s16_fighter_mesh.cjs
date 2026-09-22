@@ -111,11 +111,20 @@ check("fighter resolver refuses bombs and ground parts without mutating the requ
   assert.deepEqual(mesh.specification.components,defaults);
   assert.equal(digest(mesh),digest(build(spec)));assert.equal(JSON.stringify(raw),before);
 });
-check("inherited ground assets retain S15 bytes and aircraft retain the reviewed S18 interiors",()=>{
+check("ground assets retain reviewed sealed-pin optimization or S15 bytes and aircraft retain reviewed S18 interiors",()=>{
   const baseline=JSON.parse(fs.readFileSync(baselinePath,"utf8"));
   assert.equal(baseline.source_revision,sourceRevision);
   assert.equal(baseline.rows.length,legacySpecs.length*3);
   const aircraft=JSON.parse(fs.readFileSync(path.join(__dirname,'s18_aircraft_mesh_hashes.json'),'utf8'));
-  for(const row of baseline.rows){const expected=row.spec.platform.startsWith('air_')?aircraft.rows.find(r=>JSON.stringify(r.spec)===JSON.stringify(row.spec)):row;assert(expected,'Reviewed specification exists');assert.equal(digest(build(row.spec)),expected.sha256,`${row.spec.platform} LOD${row.spec.lod} reviewed geometry`);}
+  const ground=JSON.parse(fs.readFileSync(path.join(__dirname,'reviewed_ground_inspection_hashes.json'),'utf8'));
+  assert.deepEqual(ground.rows.map(row=>[row.spec.platform,row.spec.lod]),[
+    'tank_standard','tank_heavy','tank_light','tank_destroyer','ground_ifv','ground_artillery','ground_air_defense'
+  ].map(platform=>[platform,0]),'Only the seven tracked inspection meshes receive reviewed replacements');
+  for(const row of baseline.rows){
+    const same=entry=>JSON.stringify(entry.spec)===JSON.stringify(row.spec),replacement=ground.rows.find(same);
+    if(replacement)assert.equal(replacement.inherited_sha256,row.sha256,'The unchanged inherited baseline documents the replaced pin geometry');
+    const expected=row.spec.platform.startsWith('air_')?aircraft.rows.find(same):replacement||row;
+    assert(expected,'Reviewed specification exists');assert.equal(digest(build(row.spec)),expected.sha256,`${row.spec.platform} LOD${row.spec.lod} reviewed geometry`);
+  }
 });
 process.stdout.write(`${checks} S16 fighter mesh checks passed.\n`);

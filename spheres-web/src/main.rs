@@ -11641,7 +11641,7 @@ mod tests {
             .expect("the cabinet dispatch is gone");
         assert!(room_pause < cabinet, "the cabinet swallows the pause key");
         assert!(
-            INDEX.contains("      && !tech.open && !stock.open\r\n"),
+            INDEX.lines().any(|line| line == "      && !tech.open && !stock.open"),
             "both space rules fire on one press: the top rule no longer stands aside for the two boards"
         );
         // Said on the card, both halves.
@@ -17601,10 +17601,12 @@ mod tests {
         }
         assert_eq!(alive, 137);
         assert_eq!(tally["Western"], 67);
-        assert_eq!(tally["NonAligned"], 43);
+        assert_eq!(tally["NonAligned"], 42);
         assert_eq!(tally["Communist"], 17);
-        assert_eq!(tally["Nationalist"], 7);
-        assert_eq!(tally["Islamist"], 3);
+        // Algeria opens with the FLN-only 1987 national chamber, separately
+        // from support proxies drawn from the later June 1990 local vote.
+        assert_eq!(tally["Nationalist"], 9);
+        assert_eq!(tally["Islamist"], 2);
         // A loaded save is played with the lens on too.
         let loaded = loaded_play_game(Game::new(7, Some(NationId::Poland)).world);
         assert!(loaded.world.rules.ideology_blocs && !loaded.world.rules.ideology_takeover);
@@ -17784,7 +17786,7 @@ mod tests {
             .split_once("const MAP_MODES = {")
             .expect("MAP_MODES is gone")
             .1
-            .split_once("\r\n};")
+            .split_once("\n};")
             .expect("MAP_MODES is brace-terminated")
             .0;
         let entries: Vec<&str> = modes.lines().filter(|l| {
@@ -17829,7 +17831,7 @@ mod tests {
         assert_eq!(handler.matches(r#"k === "i" || k === "I""#).count(), 1, "I is bound exactly once");
         assert!(handler.contains("if (gov.open) { closeGovernment(); return; }"), "Escape does not close the screen");
         assert!(handler.contains("if (gov.open) { govKeys(e); return; }"), "the screen does not take the keyboard");
-        assert!(handler.contains("      && !gov.open\r\n"), "the pause-only branch must skip the screen, like the board");
+        assert!(handler.lines().any(|line| line == "      && !gov.open"), "the pause-only branch must skip the screen, like the board");
         // Space is bound ahead of the screen's dispatch, so pause reaches the clock.
         let space = handler
             .find("if (e.key === \" \" && !e.target?.closest?.('button, summary, select, [role=\"tab\"]')) {")

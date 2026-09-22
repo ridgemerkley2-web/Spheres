@@ -1,0 +1,102 @@
+{
+  "errors": [],
+  "comparisons": [
+    {
+      "key": "arms_plant-complete-34",
+      "pixels": 480000,
+      "changedOver2Channels": 2,
+      "changedFraction": 0.000004166666666666667,
+      "maxChannelDelta": 10,
+      "meanChannelDelta": 0.000036979166666666667
+    },
+    {
+      "key": "arms_plant-complete-145",
+      "pixels": 480000,
+      "changedOver2Channels": 12,
+      "changedFraction": 0.000025,
+      "maxChannelDelta": 35,
+      "meanChannelDelta": 0.00015677083333333333
+    },
+    {
+      "key": "civilian_industry-complete-34",
+      "pixels": 480000,
+      "changedOver2Channels": 7,
+      "changedFraction": 0.000014583333333333333,
+      "maxChannelDelta": 21,
+      "meanChannelDelta": 0.00010208333333333334
+    },
+    {
+      "key": "civilian_industry-complete-145",
+      "pixels": 480000,
+      "changedOver2Channels": 15,
+      "changedFraction": 0.00003125,
+      "maxChannelDelta": 37,
+      "meanChannelDelta": 0.00018541666666666666
+    },
+    {
+      "key": "generation-complete-34",
+      "pixels": 480000,
+      "changedOver2Channels": 2,
+      "changedFraction": 0.000004166666666666667,
+      "maxChannelDelta": 11,
+      "meanChannelDelta": 0.0000328125
+    },
+    {
+      "key": "generation-complete-145",
+      "pixels": 480000,
+      "changedOver2Channels": 4,
+      "changedFraction": 0.000008333333333333334,
+      "maxChannelDelta": 29,
+      "meanChannelDelta": 0.00006979166666666666
+    },
+    {
+      "key": "starter_industry-complete-34",
+      "pixels": 480000,
+      "changedOver2Channels": 2,
+      "changedFraction": 0.000004166666666666667,
+      "maxChannelDelta": 25,
+      "meanChannelDelta": 0.00004479166666666667
+    },
+    {
+      "key": "starter_industry-complete-145",
+      "pixels": 480000,
+      "changedOver2Channels": 2,
+      "changedFraction": 0.000004166666666666667,
+      "maxChannelDelta": 24,
+      "meanChannelDelta": 0.00004010416666666667
+    },
+    {
+      "key": "arms_plant-frame-34",
+      "pixels": 480000,
+      "changedOver2Channels": 19,
+      "changedFraction": 0.00003958333333333333,
+      "maxChannelDelta": 47,
+      "meanChannelDelta": 0.0006197916666666667
+    },
+    {
+      "key": "arms_plant-frame-145",
+      "pixels": 480000,
+      "changedOver2Channels": 45,
+      "changedFraction": 0.00009375,
+      "maxChannelDelta": 64,
+      "meanChannelDelta": 0.0007286458333333333
+    },
+    {
+      "key": "arms_plant-enclosed-34",
+      "pixels": 480000,
+      "changedOver2Channels": 9,
+      "changedFraction": 0.00001875,
+      "maxChannelDelta": 47,
+      "meanChannelDelta": 0.0002890625
+    },
+    {
+      "key": "arms_plant-enclosed-145",
+      "pixels": 480000,
+      "changedOver2Channels": 27,
+      "changedFraction": 0.00005625,
+      "maxChannelDelta": 45,
+      "meanChannelDelta": 0.00028645833333333333
+    }
+  ],
+  "passed": true
+}

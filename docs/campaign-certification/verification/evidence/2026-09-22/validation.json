@@ -1,0 +1,67 @@
+{
+  "baseline_revision": "ca00e02b59fa87b408d482d8f105dce5b047c0c0",
+  "source_hash_normalization": "UTF-8 text with LF line endings",
+  "source_sha256": {
+    "spheres-web/ui/equipment-mesh.js": "3d58d0d57f2efca11ac97cd1512159c774d806f5836fa17088478fe9392accd8",
+    "spheres-web/ui/town-mesh.js": "c0e3805de9aeb18b6c278bda726e3f67b8ea52b12636b251ed0e15f0ac5a60a2",
+    "tools/terrain/make_lake_surfaces.py": "6f7eefd7dfde8c307694ddb7307c35ef44aa763ff5f458cc5596bf6276ddf7f0",
+    "tools/terrain/make_rivers.py": "6cb09e225d2ebc106d3bcb40cdd4bb2896647971bba58a22e04510a1ea13eb58",
+    "tools/ui/build_equipment_models.cjs": "7b2bd9ca59cedfd9404a06709f447d0786f1683f4176f2444c513e028e1b1078"
+  },
+  "javascript": {
+    "command": "node tools/ui/run-unit.cjs",
+    "passed": 1675,
+    "failed": 0,
+    "skipped": 0,
+    "initial_run": {
+      "passed": 1673,
+      "failed": 2,
+      "reason": "Reviewed tactical coarse hashes also needed refreshing in older tank/specialist snapshot tables."
+    }
+  },
+  "python": {
+    "lake_surface_tests": 10,
+    "terrain_tile_tests": 15,
+    "failed": 0
+  },
+  "terrain_regeneration": {
+    "lake_surfaces": 6,
+    "lake_source_elevations_and_paths_unchanged": true,
+    "png_tiles_exact": 608,
+    "constant_tiles": 40,
+    "png_bytes": 133418791,
+    "manifest_encoding_and_source_hashes_exact": true,
+    "embed_exact": true,
+    "runtime": {
+      "python": "3.12.14",
+      "numpy": "2.3.5",
+      "pillow": "12.3.0",
+      "h5py": "3.16.0"
+    }
+  },
+  "art_budget_gate": {
+    "status": "failed",
+    "before": {
+      "pass": 70,
+      "over": 42,
+      "under": 0
+    },
+    "after": {
+      "pass": 77,
+      "over": 35,
+      "under": 0
+    },
+    "ceilings_changed": false
+  },
+  "political_calibration": {
+    "remaining_failures": 7,
+    "rerun_this_followup": false,
+    "source_and_targets_changed": false
+  },
+  "originals": {
+    "protected_saves_and_files": 8,
+    "protected_worktree_heads": 2,
+    "unchanged": true
+  },
+  "native_and_hosted_ci": "Native source unchanged. This local record does not claim a rebuilt native or new hosted CI result."
+}

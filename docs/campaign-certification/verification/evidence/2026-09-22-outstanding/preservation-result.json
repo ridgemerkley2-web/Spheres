@@ -1,0 +1,304 @@
+{
+  "sourceRevision": "5d86fb35507acbd8fa4662ea9dc3f5f566ef93da",
+  "sourceSha256": "4f8a6b30fbc575578785525fa131862765afd36736c41d37799ef77a1f0b9921",
+  "unchanged": [
+    {
+      "platform": "tank_standard",
+      "lod": 1,
+      "sha256": "c88c3ecd73ae3ca9ee9a7c9a52be0324f43136c320d7c745d60aa41326e69ea2"
+    },
+    {
+      "platform": "tank_standard",
+      "lod": 2,
+      "sha256": "1f651c10cd41a1d8503df36382573201aa8e8542f6a4f5a1590fc023d0f93faa"
+    },
+    {
+      "platform": "tank_heavy",
+      "lod": 1,
+      "sha256": "f84b50729d8edbc97612a639292518a5a7362e201fa2e875667ce1b45ee852da"
+    },
+    {
+      "platform": "tank_heavy",
+      "lod": 2,
+      "sha256": "bb36ab12808ba6f498a9ecd3565edc84b3fac791bd3675b38eab36cfb2241c93"
+    },
+    {
+      "platform": "tank_light",
+      "lod": 1,
+      "sha256": "1eafad843d1429df2354d81113f4f06593fdba5e6d0a93edca82f7d751cac929"
+    },
+    {
+      "platform": "tank_light",
+      "lod": 2,
+      "sha256": "74b8ddf0d6a2c98413800b5fddced1f4eaba1d2461d7e8fc32ccc596df59dd26"
+    },
+    {
+      "platform": "tank_destroyer",
+      "lod": 1,
+      "sha256": "15a8ce97c55c32240e427ec0acef012b2fcafacb1900f1773648ae053c63cfbd"
+    },
+    {
+      "platform": "tank_destroyer",
+      "lod": 2,
+      "sha256": "13befa0032352121d83e1fde3425d65c73a2a828285049853f92195d3ad582f4"
+    },
+    {
+      "platform": "ground_ifv",
+      "lod": 1,
+      "sha256": "ba8161e136477b0b1bb4ddd90e851d2cd6c1836a1050839ffcd91f2adf5e1a4f"
+    },
+    {
+      "platform": "ground_ifv",
+      "lod": 2,
+      "sha256": "ca3e30bbc0e6f4db2a406e9993575cef2250517abb065dba5cd196f066984828"
+    },
+    {
+      "platform": "ground_apc",
+      "lod": 0,
+      "sha256": "75cdf1b7ac55da5a50e25dd4d3a68aabf765d53bf9b350bd4db697a3d1e83c78"
+    },
+    {
+      "platform": "ground_apc",
+      "lod": 1,
+      "sha256": "3564cf0af34a7132d702d309519f553d871c3a405f41e762694124c257772c96"
+    },
+    {
+      "platform": "ground_apc",
+      "lod": 2,
+      "sha256": "ec85aa78f5fbeb4e3bd5f4d79bf782dfa1d609d79831946eb1e3a98a17459664"
+    },
+    {
+      "platform": "ground_recon",
+      "lod": 0,
+      "sha256": "b1f8a68cd8f2df222fadb499176a53c8f486320869942b5cc5d9158160434efa"
+    },
+    {
+      "platform": "ground_recon",
+      "lod": 1,
+      "sha256": "61fee3b20d568a322d35747776871de2f55065e03573791d49ebbdbf5166f0b4"
+    },
+    {
+      "platform": "ground_recon",
+      "lod": 2,
+      "sha256": "6fc09cf42f07be5fbd1b90e922c123f2b98cd69c02053aa4062f859a61b00b1f"
+    },
+    {
+      "platform": "ground_artillery",
+      "lod": 1,
+      "sha256": "16fa07fe55a6cf4c75dfbe573ea88b952fb3c09a2efaa65a9e2b4b13f66fe09d"
+    },
+    {
+      "platform": "ground_artillery",
+      "lod": 2,
+      "sha256": "ba5ebbbaff442370e092f3f6a6b5958f0a132fd32edcb7b2064f16be5af0120d"
+    },
+    {
+      "platform": "ground_air_defense",
+      "lod": 1,
+      "sha256": "a771e76cd56854dba763a2710ba6e5847769f06b5077f25272bc31c49b493d0c"
+    },
+    {
+      "platform": "ground_air_defense",
+      "lod": 2,
+      "sha256": "39bdaa66e0384b7d0a502e4b54e0040b93dd9aa290c31dba91f4442c2a7dec24"
+    },
+    {
+      "platform": "air_light_attack",
+      "lod": 0,
+      "sha256": "562a407a1cf4f3323b1457b7704b725f6704bbac3f7725f841a2dd8147b42f5c"
+    },
+    {
+      "platform": "air_light_attack",
+      "lod": 1,
+      "sha256": "8e025022224d3b497b6b5bd59fe2c4470fd665f6af32cafb085cf95ed118f368"
+    },
+    {
+      "platform": "air_light_attack",
+      "lod": 2,
+      "sha256": "e56f759430d32b752b6e888196afc6e11ed8f74d4396256c342448977b867361"
+    },
+    {
+      "platform": "air_tactical_strike",
+      "lod": 0,
+      "sha256": "12bb817ad63e081074868f78e114669e71b110846941fd803141a8c2f1c2fc01"
+    },
+    {
+      "platform": "air_tactical_strike",
+      "lod": 1,
+      "sha256": "411a5b68c5143528da07ddcc8c968c57352ea1038f33115ba597dce7893b75e8"
+    },
+    {
+      "platform": "air_tactical_strike",
+      "lod": 2,
+      "sha256": "d142e1bd9a69b11b8b6b3cb4bf72a062076fa11ae152268db607931c018c10aa"
+    },
+    {
+      "platform": "air_fighter",
+      "lod": 0,
+      "sha256": "5bf250cbc7a89339c331fec2320cefbf7a39236387562919cd31bcf317bde692"
+    },
+    {
+      "platform": "air_fighter",
+      "lod": 1,
+      "sha256": "66a039d4c73e17d1e8c519f8516c8c631f356ff731fb9b655bb384f92a8fe886"
+    },
+    {
+      "platform": "air_fighter",
+      "lod": 2,
+      "sha256": "ea71045e758f0990024e2594938959fa79e53821c6e8bbe3ec33bb28a51692bb"
+    }
+  ],
+  "improvements": [
+    {
+      "platform": "tank_standard",
+      "config": "baseline",
+      "before": 68872,
+      "after": 64840,
+      "saved": 4032,
+      "components": {}
+    },
+    {
+      "platform": "tank_standard",
+      "config": "heaviest",
+      "before": 69000,
+      "after": 64968,
+      "saved": 4032,
+      "components": {
+        "armament": "gun_120",
+        "mobility": "engine_diesel_600",
+        "sensors": "optics_night"
+      }
+    },
+    {
+      "platform": "tank_heavy",
+      "config": "baseline",
+      "before": 74144,
+      "after": 69728,
+      "saved": 4416,
+      "components": {}
+    },
+    {
+      "platform": "tank_heavy",
+      "config": "heaviest",
+      "before": 74272,
+      "after": 69856,
+      "saved": 4416,
+      "components": {
+        "armament": "gun_120",
+        "mobility": "engine_diesel_600",
+        "sensors": "optics_night"
+      }
+    },
+    {
+      "platform": "tank_light",
+      "config": "baseline",
+      "before": 68872,
+      "after": 64840,
+      "saved": 4032,
+      "components": {}
+    },
+    {
+      "platform": "tank_light",
+      "config": "heaviest",
+      "before": 69000,
+      "after": 64968,
+      "saved": 4032,
+      "components": {
+        "armament": "gun_120",
+        "mobility": "engine_diesel_600",
+        "sensors": "optics_night"
+      }
+    },
+    {
+      "platform": "tank_destroyer",
+      "config": "baseline",
+      "before": 68872,
+      "after": 64840,
+      "saved": 4032,
+      "components": {}
+    },
+    {
+      "platform": "tank_destroyer",
+      "config": "heaviest",
+      "before": 69000,
+      "after": 64968,
+      "saved": 4032,
+      "components": {
+        "armament": "gun_120",
+        "mobility": "engine_diesel_600",
+        "sensors": "optics_night"
+      }
+    },
+    {
+      "platform": "ground_ifv",
+      "config": "heaviest",
+      "before": 49348,
+      "after": 47716,
+      "saved": 1632,
+      "components": {
+        "active_protection": "aps_hard",
+        "ammunition": "ground_ammo_guided",
+        "armament": "ground_aa_gun",
+        "communications": "ground_comms_network",
+        "fire_control": "fcs_digital",
+        "mobility": "engine_diesel_1200",
+        "sensors": "optics_night",
+        "suspension": "suspension_hydro",
+        "transmission": "ground_transmission_electric",
+        "troop_compartment": "ground_troops_protected",
+        "turret": "ground_turret_howitzer"
+      }
+    },
+    {
+      "platform": "ground_artillery",
+      "config": "baseline",
+      "before": 45330,
+      "after": 43554,
+      "saved": 1776,
+      "components": {}
+    },
+    {
+      "platform": "ground_artillery",
+      "config": "heaviest",
+      "before": 49248,
+      "after": 47472,
+      "saved": 1776,
+      "components": {
+        "active_protection": "aps_hard",
+        "ammunition": "ground_ammo_guided",
+        "armament": "ground_aa_gun",
+        "artillery_loader": "ground_loader_assisted",
+        "communications": "ground_comms_network",
+        "fire_control": "fcs_digital",
+        "mobility": "engine_diesel_1200",
+        "sensors": "optics_night",
+        "suspension": "suspension_hydro",
+        "transmission": "ground_transmission_electric"
+      }
+    },
+    {
+      "platform": "ground_air_defense",
+      "config": "heaviest",
+      "before": 45812,
+      "after": 44204,
+      "saved": 1608,
+      "components": {
+        "active_protection": "aps_hard",
+        "ammunition": "ground_ammo_guided",
+        "communications": "ground_comms_network",
+        "fire_control": "fcs_digital",
+        "mobility": "engine_diesel_1200",
+        "radar": "ground_radar_tracking",
+        "sensors": "optics_night",
+        "suspension": "suspension_hydro",
+        "transmission": "ground_transmission_electric",
+        "turret": "ground_turret_howitzer"
+      }
+    }
+  ],
+  "partComparisons": 271,
+  "pinInstances": 1942,
+  "minPitch": 0.17917467880072535,
+  "maxPitch": 0.20462818228067436,
+  "passed": true
+}

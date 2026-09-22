@@ -1,5 +1,26 @@
 # BUGS
 
+## 2026-09-22 government and art repair update
+
+[Outstanding-repair verification](docs/campaign-certification/verification/2026-09-22-outstanding-repairs.md)
+records the current source and measurements. Incumbents now lose support for
+disorder; coups require a still-live loyalty/crisis trigger; qualifying funded
+organizations persist after funding withdrawal, including migration before an
+old save's first decay, exposure or crackdown.
+
+P-6's Algeria national-chamber and Libya governing-ideology errors are repaired.
+The remaining Communist-count conflict (17 against an old 11–13 quota) is still
+open. The six optional A1–A5/A7 outcome gates also remain open; ideological
+takeovers stay disabled in normal campaign rules. No historical country was
+relabeled and no statistical gate was weakened to force a pass.
+
+Art contract revision 2 reconciles the old inspection proposals with the
+accepted detailed models and audits real buildings separately from compounds.
+Buried tank/factory geometry is removed with containment and rendered-image
+proofs. Two full-detail TownMesh review scenes still exceed the unchanged 150k
+scene ceiling; the current campaign city renderer uses CityMesh. These remaining
+scene failures are not hidden by switching the benchmark to a cheaper tier.
+
 ## 2026-09-04 approved E-3 and replay assessment
 
 `TECH_REFERENCE_REPAIR.md` closes the credited-revelation benchmark defect under
@@ -2938,6 +2959,18 @@ Ridge approved "The Political Arm of SPHERES", revision 2, on 2026-09-05, quoted
 **And after the fix the hatch STILL covers all 137 living nations of 1990**, measured on seed 7 in `politics_is_null_off_and_served_whole_on` and pinned there: 171 discontent gauges at half (the coup's 0.25 and the uprising's 0.45 both read the same number, so any stability under about 45 arms both), Western influence 80 (any chamber with 20% of the vote on the Western side), stability-toward-12 72 (anyone under 56), army loyalty 71 (every pillar seated at 0.65 reads 0.538 toward 0.35), party loyalty 60, challenger influence 24; the band, no longer read, would have hatched 102, none of them alone. A ROAD-level reading — every threshold gauge on one road at half — would hatch 73. **Not changed:** the gauge-level reading is the approved page's, and re-reading it (road-level, a higher fraction, or the `Below` arm read as value/trigger) is Ridge's call. Until then the Ideology map's hatch is decorative at the start and the legend says what it means.
 
 ### P-6 — the 1990 census disagrees with three bars of the design brief, and the bar is parked under `#[ignore]`
+
+**Update, 2026-09-22:** Algeria's opening chamber now uses the FLN's 295/295
+national seats from the [IPU's 1987 election report](https://data.ipu.org/election-summary/PDF/ALGERIA_1987_E.PDF).
+The [1989](https://www.ecoi.net/en/document/1280981.html) and
+[1990](https://www.ecoi.net/en/document/1324300.html) US State Department reports
+confirm FLN-only national representation. This corrects the Islamist subcase:
+the opening census is **[67, 17, 8, 2, 43]**, with only Iran and Sudan Islamist.
+The later local-election support proxies remain separate; existing governments
+in saved games are preserved. The Communist-count and Libya disagreements
+remain, and the original P-6 assertions are unchanged. The original finding
+below is retained as history. See
+[the follow-up verification](docs/campaign-certification/verification/2026-09-22-remaining-failures.md).
 
 `spheres-sim/src/blocs.rs`, `the_1990_census_meets_the_design_brief`. The brief asked Communist 11-13, Islamist exactly Iran and Sudan, and Libya Nationalist. The transcribed table reads, on the full 137-row table (measured, and pinned in `the_1990_ruling_bloc_census`): **Western 67, Communist 17, Nationalist 7, Islamist 3, Non-Aligned 43.** The three misses:
 

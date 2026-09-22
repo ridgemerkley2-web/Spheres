@@ -1,5 +1,9 @@
 # Section 4's triangle ceilings are stale — a decision for Ridge, not for me
 
+This is a historical decision note. Current reproducible counts are in
+[P0_BUDGETS.md](P0_BUDGETS.md); later safe geometry reductions do not change
+the ceilings or resolve the remaining fidelity/budget decisions described here.
+
 `node tools/ui/bench_art.cjs --check` exits 1 with **30 configurations over
 budget**. I have not touched the ceilings, and I am not going to: the harness
 explicitly forbids widening a budget to empty its own table, and §4 is your

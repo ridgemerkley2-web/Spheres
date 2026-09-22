@@ -132,10 +132,10 @@ const unchanged={
   'air_light_attack/loaded/0':'4ffbafb0c0759ec6339fd46cec2d39aa2693fa3265c27eabb35324d6e5715b18',
   'air_light_attack/loaded/1':'899341af7ec1e5cb049c32c60a1fc5fcaec3253ea7005e0f0997cb7714757d65',
   'air_light_attack/loaded/2':'3c3fc77f6b562359f4c9c7290ed25408df00d4ac3366e9a761521cdcd345f1fa',
-  'air_tactical_strike/default/2':'98e82e0f3ab981894d492fcf948a351f0b79f12fb6bc4570abc1ba233da7cb35',
-  'air_tactical_strike/loaded/2':'df95e2dfd8d1b3164a10f594b7c4129c77aa403fbcde76c55749854b5e848d9b'
+  'air_tactical_strike/default/0':'dafd50527f3d43b6cbc6597f9b82c00ce32d5c98c7df2d6e0650ee88d9ba7349',
+  'air_tactical_strike/loaded/0':'9bd70fbba15f70db0c438df935f185e987741d6ee09e2960f068aac2d3957de8'
 };
-test('tactical map meshes retain their original inspection pass geometry',()=>{
+test('tactical inspection geometry stays byte-identical through coarse LOD optimization',()=>{
   for(const [key,expected] of Object.entries(unchanged).filter(([key])=>key.startsWith('air_tactical_strike'))){
     const [platform,preset,lod]=key.split('/');
     assert.equal(digest(build({platform,components:preset==='loaded'?loaded:{},lod:Number(lod)})),expected,key);

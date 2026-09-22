@@ -1,0 +1,85 @@
+{
+  "baseline": "ca00e02b59fa87b408d482d8f105dce5b047c0c0",
+  "changes": [
+    "Sealed glazing-frame faces omitted; exposed mullions, bevels, glass and reveals retained",
+    "Duplicate middle glazing bar already enclosed behind meeting rail omitted",
+    "Fully covered interior baluster caps omitted; protruding end caps retained"
+  ],
+  "rows": [
+    {
+      "kind": "row_house",
+      "before": 21222,
+      "after": 17904,
+      "reduction": 3318,
+      "ceiling": 12000,
+      "over": true
+    },
+    {
+      "kind": "mid_apartment",
+      "before": 14540,
+      "after": 11768,
+      "reduction": 2772,
+      "ceiling": 12000,
+      "over": false
+    },
+    {
+      "kind": "high_apartment",
+      "before": 12028,
+      "after": 9500,
+      "reduction": 2528,
+      "ceiling": 12000,
+      "over": false
+    },
+    {
+      "kind": "civic",
+      "before": 13637,
+      "after": 10445,
+      "reduction": 3192,
+      "ceiling": 12000,
+      "over": false
+    },
+    {
+      "kind": "university",
+      "before": 24252,
+      "after": 19046,
+      "reduction": 5206,
+      "ceiling": 12000,
+      "over": true
+    },
+    {
+      "district": "mixed",
+      "before": 199331,
+      "after": 175277,
+      "reduction": 24054,
+      "ceiling": 150000,
+      "over": true
+    },
+    {
+      "district": "residential",
+      "before": 214044,
+      "after": 184684,
+      "reduction": 29360,
+      "ceiling": 150000,
+      "over": true
+    },
+    {
+      "district": "commercial",
+      "before": 151008,
+      "after": 129734,
+      "reduction": 21274,
+      "ceiling": 150000,
+      "over": false
+    },
+    {
+      "district": "civic",
+      "before": 161077,
+      "after": 135157,
+      "reduction": 25920,
+      "ceiling": 150000,
+      "over": false
+    }
+  ],
+  "previousOverruns": 9,
+  "remainingOverruns": 4,
+  "scope": "Only town-mesh.js and focused town surface test; no ceilings, measurement formulas or shared generated records changed."
+}

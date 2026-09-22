@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-09-21",
+  "updated": "2026-09-22",
   "integration_branch": "codex/campaign-certification",
   "status_source": "docs/planning/campaign-pathway.json",
   "workstreams": [
@@ -61,8 +61,8 @@
         "C07",
         "S23"
       ],
-      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-03.md",
-      "next": "CLAUDE-C01-01 and CLAUDE-C01-02 accepted as bounded research; latest review: docs/campaign-certification/C01/integrations/CLAUDE-C01-02/README.md. C01 remains incomplete. CLAUDE-C01-03 is available and unclaimed: at most six observations on the 2024–2025 Tonga succession transition."
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-07.md",
+      "next": "CLAUDE-C01-01, CLAUDE-C01-02, CLAUDE-C01-04 and CLAUDE-C01-07 are accepted bounded research. The latest independent review matched 12 primary-source responses and checked IPU content separately; unresolved dates, roles and coverage remain open. Evidence: docs/campaign-certification/C01/integrations/CLAUDE-C01-04-07/README.md. All 49 Tonga tests and the exact research-index check pass. C01 remains incomplete. Claude has claimed follow-up CLAUDE-C01-08 on claude/c01-tonga-08; a claim is not a completed deliverable."
     },
     {
       "id": "qualification",

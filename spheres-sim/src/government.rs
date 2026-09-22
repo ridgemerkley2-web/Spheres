@@ -2548,16 +2548,20 @@ pub const POLITIES: &[Polity] = &[
     // 12 June 1990: FIS 54.2%, FLN 28.1%, RCD 2.1%, PNSD 1.6%, PSD 1.1%, PRA
     // 0.8%, PAGS 0.3%, independents 11.7%, on a 65.2% turnout.
     //
-    // Algeria sits BELOW the 0.60 electoral ceiling on purpose. In January 1990
-    // this was a state whose government could be removed by a vote — thirty-odd
-    // parties were legal under the constitution of 23 February 1989 — and five
-    // months later a vote removed it from more than half the country's
-    // communes. The legislative election that followed was called for 1991,
-    // postponed, and held on 26 December 1991; the army cancelled the second
-    // round on 11 January 1992 and the war began. Nothing here schedules any of
-    // that. What is stated is an electorate, a scheduled election, and an army
-    // that is a pillar of the regime rather than a servant of the chamber, and
-    // the model is left to do what it does with the three of them together.
+    // These are retained SUPPORT PROXIES, normalized over the represented
+    // parties, not measured January popularity or national parliamentary seats.
+    // The opening national chamber is seated separately by opening_seats:
+    // FLN won all 295 seats in February 1987 and remained the only represented
+    // party throughout 1990. FIS was legal by late 1989, so it belongs in the
+    // support model without being installed as the opening government.
+    // https://data.ipu.org/election-summary/PDF/ALGERIA_1987_E.PDF
+    // https://www.ecoi.net/en/document/1280981.html (US State Department, 1989)
+    // https://www.ecoi.net/en/document/1324300.html (US State Department, 1990)
+    //
+    // Algeria remains below the electoral ceiling, allowing a later vote to
+    // change the government. December 1991 is the model's existing historical
+    // election timing, not a date already announced in January 1990. The
+    // chamber override does not prescribe an election winner or army response.
     // https://en.wikipedia.org/wiki/1990_Algerian_local_elections
     Polity {
         nation: NationId::Algeria,
@@ -5909,6 +5913,12 @@ pub struct GovState {
     /// read off `support`) and whenever the arm is off.
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub movements: Vec<(Bloc, f64)>,
+    /// Organizations created by qualifying foreign backing outside the static
+    /// party/pillar table. Their existence survives the withdrawal of funding;
+    /// their support and foreign influence still move through the usual rules.
+    /// Empty for old saves and omitted until an organization is established.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub established_movements: Vec<Bloc>,
     /// The surge latch (S3): the non-ruling blocs whose movement has crossed
     /// 0.30 upward and not yet fallen back under 0.25, so the headline "passes
     /// a third of the country" fires once per crossing and not every month
@@ -5998,6 +6008,20 @@ fn normalise(v: &mut [(String, f64)]) {
     }
 }
 
+/// Last elected national chamber, distinct from the modeled electorate. This
+/// override is only for a missing government on the exact campaign start date;
+/// it never rewrites an existing save or invents a chamber for a later date.
+fn opening_seats(w: &WorldState, pol: &Polity, support: &[(String, f64)]) -> Vec<(String, f64)> {
+    if pol.nation == NationId::Algeria && (w.year, w.month, w.day) == (1990, 1, 1) {
+        // IPU, 26 February 1987: FLN 295 of 295 national Assembly seats.
+        // https://data.ipu.org/election-summary/PDF/ALGERIA_1987_E.PDF
+        // The 1989/1990 State Department reports confirm FLN-only national
+        // representation despite legal opposition and the June local election.
+        return support.iter().map(|(id, _)| (id.clone(), if id == "dz_fln" { 1.0 } else { 0.0 })).collect();
+    }
+    seats_from(support, pol.system)
+}
+
 /// Seat a government from the transcribed table. Called lazily so that a save
 /// written before this module existed still loads and simply grows one.
 pub fn ensure(w: &mut WorldState, id: NationId) {
@@ -6006,6 +6030,7 @@ pub fn ensure(w: &mut WorldState, id: NationId) {
         // seed, which returns at once unless the arm is on and this nation is
         // an unseeded regime — a save switched on after it was written.
         seed_blocs(w, id);
+        remember_established_movements(w, id);
         return;
     }
     let pol = match polity_in(w, id) {
@@ -6029,19 +6054,53 @@ pub fn ensure(w: &mut WorldState, id: NationId) {
         months_in_office: 0,
         office_month_fraction: 0.0,
         movements: vec![],
+        established_movements: vec![],
         surging: vec![],
         banned: vec![],
         regime_bloc: None,
     };
-    // Seats at the opening are the last real result read through this system's
-    // own machinery, so that January 1990 and January 1994 are described the
-    // same way.
-    g.seats = seats_from(&g.support, pol.system);
+    g.seats = opening_seats(w, pol, &g.support);
     w.governments.states.push(g);
     if is_electoral(w, id) {
         form_government(w, id, false);
     }
     seed_blocs(w, id);
+    remember_established_movements(w, id);
+}
+
+/// Funding above the existing organization threshold establishes a faction,
+/// rather than renting its existence until the next decay tick. This also
+/// recognizes qualifying backing in older saves without inventing a history
+/// for funding that had already disappeared before the save was written.
+/// Existing votes, money and RNG are unchanged. Table-backed organizations
+/// need no mark; older saves missing a government use the normal lazy setup.
+pub(crate) fn remember_established_movements(w: &mut WorldState, id: NationId) {
+    if !w.rules.ideology_blocs || w.statecraft.backing.is_empty() {
+        return;
+    }
+    // Aid gravity alone is influence, not an operation paying organizers.
+    let stock = crate::blocs::backing_stock(w, id);
+    let newly_present: Vec<Bloc> = stock.into_iter().filter_map(|(bloc, weight)| {
+        (weight >= crate::blocs::PRESENCE_BACKING && !crate::blocs::bloc_in_table(w, id, bloc))
+            .then_some(bloc)
+    }).collect();
+    if newly_present.is_empty() {
+        return;
+    }
+    if state(w, id).is_none() {
+        // ensure calls back after inserting the government. A polity without
+        // a government table simply returns without inventing an organization.
+        ensure(w, id);
+        return;
+    }
+    if let Some(g) = state_mut(w, id) {
+        for bloc in newly_present {
+            if !g.established_movements.contains(&bloc) {
+                g.established_movements.push(bloc);
+            }
+        }
+        g.established_movements.sort();
+    }
 }
 
 /// The political arm's opening state for one nation, written once and only
@@ -6330,6 +6389,16 @@ fn appeal(family: Family, pn: &Pains, development: f64) -> f64 {
     }
 }
 
+/// The incumbent is accountable for the same four pains that give opposition
+/// parties and movements their appeal. Disorder used to enter the opposition's
+/// allocation weights without costing the government any support: a state
+/// losing control of its streets could still gain support each month.
+/// Order uses the same modeled weight as prices and growth; its separatism
+/// component is capped as it is in the discontent gauge.
+fn governing_record(pn: &Pains) -> f64 {
+    0.35 - (0.90 * pn.prices + 0.90 * pn.growth + 1.10 * pn.war + 0.90 * pn.order.min(1.0))
+}
+
 /// One month of the electorate changing its mind. Monthly, so the coefficients
 /// are small; a bad year moves five to ten points, which is about what a bad
 /// year does.
@@ -6348,7 +6417,7 @@ pub(crate) fn drift_support(w: &mut WorldState, id: NationId) {
     // fighting a war it was visibly losing still gained support every month as
     // long as the economy was fine — and it was why an incumbent's support crept
     // upward for forty years with nothing ever pushing back.
-    let record = 0.35 - (0.90 * pn.prices + 0.90 * pn.growth + 1.10 * pn.war);
+    let record = governing_record(&pn);
     let incumbents: Vec<String> = match state(w, id) {
         Some(g) => g.coalition.clone(),
         None => return,
@@ -6483,7 +6552,7 @@ pub(crate) fn drift_movements(w: &mut WorldState, id: NationId) {
         let n = w.nation(id);
         (n.gdp * 1000.0 / n.population.max(0.001) / 20000.0).clamp(0.0, 1.0)
     };
-    let record = 0.35 - (0.90 * pn.prices + 0.90 * pn.growth + 1.10 * pn.war);
+    let record = governing_record(&pn);
     let swing = record * 0.006 * dt;
     let appeals: Vec<(Bloc, f64)> = Bloc::ALL
         .iter()
@@ -8202,6 +8271,14 @@ fn maybe_electoral_coup(w: &mut WorldState, id: NationId) -> bool {
     if !has_army || settled < ELECTORAL_COUP_SETTLED {
         return false;
     }
+    // Pressure records past grievances; it cannot substitute for the trigger
+    // still being live. A paid army or a resolved crisis gets a chance to cool
+    // the gauge instead of staging a coup after its reason to move has gone.
+    if crate::blocs::effective_army_loyalty(w, id) >= ELECTORAL_COUP_ARMY
+        || crate::blocs::discontent(w, id) < ELECTORAL_COUP_DISCONTENT
+    {
+        return false;
+    }
     if pressure < 1.0 / w.rules.crisis_intensity.max(0.1) {
         return false;
     }
@@ -8380,6 +8457,12 @@ fn maybe_coup(w: &mut WorldState, id: NationId) {
         Some(x) => x,
         None => return,
     };
+    // The gauge can remain above the firing line while it cools after a
+    // payment. An institution that has recovered its loyalty must not move
+    // solely because pressure was accumulated before the recovery.
+    if loyalty >= 0.35 {
+        return;
+    }
     // The pressure gauge *is* the risk: it climbs only while an institution is
     // going unpaid, and a coup happens when it tops out. A regime that keeps its
     // pillars fed never reaches this line, and one that neglects them reaches it
@@ -8404,7 +8487,6 @@ fn maybe_coup(w: &mut WorldState, id: NationId) {
     // `ideology_takeover` off. With everything off nothing is written,
     // because `regime_bloc` is never stored there.
     let regime_bloc = if w.rules.ideology_takeover { Some(pillar_bloc(id, pillar)) } else { None };
-    let _ = loyalty;
     regime_break(
         w,
         id,
@@ -8885,6 +8967,90 @@ mod tests {
     }
 
     #[test]
+    fn algeria_opens_with_its_national_chamber_and_separate_opposition_support() {
+        for daily in [false, true] {
+            let w = world_1990(GameRules {
+                daily_simulation: daily,
+                historical_party_leadership: daily,
+                ..GameRules::default()
+            });
+            let g = state(&w, NationId::Algeria).unwrap();
+            let pol = polity_in(&w, NationId::Algeria).unwrap();
+            let mut expected: Vec<_> = pol.parties.iter()
+                .map(|p| (p.id.to_string(), p.start.max(0.001))).collect();
+            normalise(&mut expected);
+            assert_eq!(g.support, expected, "seats must not overwrite popularity proxies");
+            assert_eq!(g.seats.len(), pol.parties.len());
+            for (id, seats) in &g.seats {
+                assert_eq!(*seats, if id == "dz_fln" { 1.0 } else { 0.0 });
+            }
+            assert_eq!(g.leader(), Some("dz_fln"));
+            assert_eq!(g.government_seats(), 1.0);
+            assert!(!g.elected);
+            assert!(g.banned.is_empty());
+            assert_eq!(g.next_election, (1991, 12));
+            assert!(w.headlines.is_empty(), "initialization is not an election or succession");
+            for other in &w.governments.states {
+                if other.nation != NationId::Algeria {
+                    let pol = polity_in(&w, other.nation).unwrap();
+                    assert_eq!(other.seats, seats_from(&other.support, pol.system));
+                }
+            }
+        }
+    }
+
+    #[test]
+    fn algerian_opening_seats_preserve_saved_governments_and_later_date_fallbacks() {
+        let id = NationId::Algeria;
+        for date in [(1990, 1, 1), (1990, 1, 2), (1990, 2, 1), (1994, 1, 1)] {
+            let mut w = w1990();
+            (w.year, w.month, w.day) = date;
+            // A populated save may contain a player's divergent January result.
+            // Preserve that result as well as ordinary later campaign state.
+            let pol = polity_in(&w, id).unwrap();
+            let g = state_mut(&mut w, id).unwrap();
+            g.seats = seats_from(&g.support, pol.system);
+            g.coalition = vec!["dz_fis".to_string()];
+            g.elected = true;
+            g.months_in_office = 3;
+            let before = serde_json::to_string(state(&w, id).unwrap()).unwrap();
+            let mut resumed = crate::load(&crate::save(&w)).unwrap();
+            ensure_all(&mut resumed);
+            ensure_all(&mut resumed);
+            assert_eq!(serde_json::to_string(state(&resumed, id).unwrap()).unwrap(), before);
+
+            if date != (1990, 1, 1) {
+                resumed.governments.states.retain(|g| g.nation != id);
+                ensure(&mut resumed, id);
+                let g = state(&resumed, id).unwrap();
+                assert_eq!(g.seats, seats_from(&g.support, pol.system), "date {date:?}");
+                assert_eq!(g.leader(), Some("dz_fis"), "later fallback remains unchanged");
+            }
+        }
+        let mut w = w1990();
+        let before = crate::state_hash(&w);
+        ensure_all(&mut w);
+        assert_eq!(crate::state_hash(&w), before);
+        let resumed = crate::load(&crate::save(&w)).unwrap();
+        assert_eq!(crate::state_hash(&resumed), before);
+    }
+
+    #[test]
+    fn an_actual_algerian_election_replaces_the_opening_chamber() {
+        let id = NationId::Algeria;
+        let mut w = w1990();
+        assert_eq!(state(&w, id).unwrap().leader(), Some("dz_fln"));
+        let support = state(&w, id).unwrap().support.clone();
+        let expected = seats_from(&support, polity_in(&w, id).unwrap().system);
+        hold_election(&mut w, id);
+        let g = state(&w, id).unwrap();
+        assert_eq!(g.support, support);
+        assert_eq!(g.seats, expected);
+        assert_eq!(g.leader(), Some("dz_fis"));
+        assert!(g.elected);
+    }
+
+    #[test]
     fn daily_government_age_and_support_do_not_jump_a_month_per_day() {
         let mut w = world_1990(GameRules { daily_simulation: true, ..GameRules::default() });
         let id = NationId::USA;
@@ -9047,6 +9213,64 @@ mod tests {
              RPR {:+.4} against PCF {:+.4}",
             right, left
         );
+    }
+
+    #[test]
+    fn disorder_alone_costs_the_elected_incumbent_support() {
+        let id = NationId::UK;
+        let mut quiet = w1990();
+        {
+            let n = quiet.nation_mut(id);
+            n.inflation = 0.03;
+            n.growth_last = 0.01;
+            n.war_exhaustion = 0.0;
+            n.stability = 60.0;
+            n.separatism = 0.0;
+        }
+        let mut disorder = quiet.clone();
+        disorder.nation_mut(id).stability = 0.0;
+        let leader = state(&quiet, id).unwrap().leader().unwrap().to_string();
+        let before = state(&quiet, id).unwrap().support_of(&leader);
+        for _ in 0..12 {
+            drift_support(&mut quiet, id);
+            drift_support(&mut disorder, id);
+        }
+        assert!(state(&quiet, id).unwrap().support_of(&leader) > before);
+        assert!(state(&disorder, id).unwrap().support_of(&leader) < before,
+            "a government losing control gained support despite every other pain being neutral");
+        for w in [&quiet, &disorder] {
+            let g = state(w, id).unwrap();
+            assert!((g.support.iter().map(|(_, s)| *s).sum::<f64>() - 1.0).abs() < 1e-12);
+            assert!(g.support.iter().all(|(_, s)| s.is_finite() && *s > 0.0));
+        }
+    }
+
+    #[test]
+    fn disorder_alone_costs_a_regime_support_without_changing_the_quiet_record() {
+        let id = NationId::China;
+        let mut quiet = world_1990(on_rules(7));
+        {
+            let n = quiet.nation_mut(id);
+            n.inflation = 0.03;
+            n.growth_last = 0.01;
+            n.war_exhaustion = 0.0;
+            n.stability = 60.0;
+            n.separatism = 0.0;
+        }
+        let mut disorder = quiet.clone();
+        disorder.nation_mut(id).stability = 0.0;
+        let before = share(&quiet, id, Bloc::Communist);
+        for _ in 0..12 {
+            drift_movements(&mut quiet, id);
+            drift_movements(&mut disorder, id);
+        }
+        assert!(share(&quiet, id, Bloc::Communist) > before);
+        assert!(share(&disorder, id, Bloc::Communist) < before);
+        for w in [&quiet, &disorder] {
+            let g = state(w, id).unwrap();
+            assert!((g.movements.iter().map(|(_, s)| *s).sum::<f64>() - 1.0).abs() < 1e-12);
+            assert!(g.movements.iter().all(|(_, s)| s.is_finite() && *s > 0.0));
+        }
     }
 
     #[test]
@@ -9256,6 +9480,106 @@ mod tests {
         state(w, id).unwrap().movements.iter().find(|(x, _)| *x == b).map(|(_, s)| *s).unwrap()
     }
 
+    #[test]
+    fn an_established_movement_survives_funding_decay_and_save_load_without_free_support() {
+        let (id, sponsor, bloc) = (NationId::Afghanistan, NationId::Pakistan, Bloc::Islamist);
+        let mut w = world_1990(on_rules(7));
+        assert!(!crate::blocs::bloc_present(&w, id, bloc));
+        let support = state(&w, id).unwrap().support.clone();
+        let movements = state(&w, id).unwrap().movements.clone();
+        let rng = serde_json::to_string(&w.rng).unwrap();
+        assert_eq!(crate::statecraft::add_backing(&mut w, sponsor, id, bloc), crate::statecraft::BACKING_STEP);
+        assert_eq!(state(&w, id).unwrap().established_movements, [bloc]);
+        assert_eq!(state(&w, id).unwrap().support, support);
+        assert_eq!(state(&w, id).unwrap().movements, movements);
+        assert_eq!(serde_json::to_string(&w.rng).unwrap(), rng);
+        // Saving immediately after funding must keep the organization too.
+        let saved = crate::save(&w);
+        assert!(saved.contains("established_movements"));
+        w = crate::load(&saved).unwrap();
+        assert_eq!(crate::save(&w), saved);
+        for _ in 0..12 { crate::statecraft::tick(&mut w); }
+        assert!(w.statecraft.backing.is_empty());
+        assert!(!crate::blocs::bloc_backed(&w, id, bloc));
+        assert!(crate::blocs::bloc_present(&w, id, bloc));
+        assert!(crate::blocs::bloc_can_win(&w, id, bloc));
+        assert_eq!(state(&w, id).unwrap().movements, movements, "recognition must not purchase votes");
+        assert_eq!(crate::blocs::backing(&w, id)[bloc as usize].1, 0.0);
+        assert!((crate::blocs::influence(&w, id)[bloc as usize].1 - share(&w, id, bloc)).abs() < 1e-12);
+        let saved = crate::save(&w);
+        w = crate::load(&saved).unwrap();
+        ensure_all(&mut w);
+        ensure_all(&mut w);
+        assert_eq!(crate::save(&w), saved);
+        assert_eq!(state(&w, id).unwrap().established_movements, [bloc]);
+    }
+
+    #[test]
+    fn old_saves_recognize_qualifying_movement_backing_without_inventing_past_organizations() {
+        let (id, sponsor, bloc) = (NationId::Afghanistan, NationId::Pakistan, Bloc::Islamist);
+        let mut w = world_1990(on_rules(7));
+        assert!(!crate::save(&w).contains("established_movements"));
+        // This is the old save shape: a backing stock with no new field.
+        w.statecraft.backing.push(crate::world::Backing {
+            sponsor, target: id, bloc, weight: crate::blocs::PRESENCE_BACKING, exposed: false,
+        });
+        let old_save = crate::save(&w);
+        assert!(!old_save.contains("established_movements"));
+        let mut resumed = crate::load(&old_save).unwrap();
+        assert!(state(&resumed, id).unwrap().established_movements.is_empty());
+        // Statecraft runs before government on a tick, and commands can reduce
+        // backing even sooner. Recognition must precede every reduction.
+        for reduction in 0..3 {
+            let mut first_action = crate::load(&old_save).unwrap();
+            match reduction {
+                0 => crate::statecraft::tick(&mut first_action),
+                1 => crate::statecraft::halve_foreign_backing(&mut first_action, id),
+                _ => crate::statecraft::expose_backing(&mut first_action, sponsor, id, bloc),
+            }
+            assert!(crate::blocs::backing_stock(&first_action, id)[bloc as usize].1 < crate::blocs::PRESENCE_BACKING);
+            assert_eq!(state(&first_action, id).unwrap().established_movements, [bloc]);
+            assert!(crate::blocs::bloc_can_win(&first_action, id, bloc));
+        }
+        let mut pre_government_save = crate::load(&old_save).unwrap();
+        pre_government_save.governments.states.retain(|g| g.nation != id);
+        crate::statecraft::halve_foreign_backing(&mut pre_government_save, id);
+        assert_eq!(state(&pre_government_save, id).unwrap().established_movements, [bloc]);
+        ensure_all(&mut resumed);
+        assert_eq!(state(&resumed, id).unwrap().established_movements, [bloc]);
+        // Repeat funding/ensuring cannot duplicate a record.
+        crate::statecraft::add_backing(&mut resumed, sponsor, id, bloc);
+        ensure_all(&mut resumed);
+        assert_eq!(state(&resumed, id).unwrap().established_movements, [bloc]);
+
+        w.statecraft.backing[0].weight = crate::blocs::PRESENCE_BACKING / 2.0;
+        ensure_all(&mut w);
+        assert!(state(&w, id).unwrap().established_movements.is_empty());
+        w.statecraft.backing.clear();
+        ensure_all(&mut w);
+        assert!(!crate::blocs::bloc_present(&w, id, bloc), "a faded pre-upgrade history cannot be inferred");
+    }
+
+    #[test]
+    fn movement_establishment_is_inert_when_off_and_does_not_duplicate_table_presence() {
+        let (id, sponsor, bloc) = (NationId::Afghanistan, NationId::Pakistan, Bloc::Islamist);
+        let mut off = w1990();
+        crate::statecraft::add_backing(&mut off, sponsor, id, bloc);
+        ensure_all(&mut off);
+        assert!(state(&off, id).unwrap().established_movements.is_empty());
+        assert!(!crate::save(&off).contains("established_movements"));
+
+        let mut on = world_1990(on_rules(7));
+        crate::statecraft::add_backing(&mut on, NationId::USSR, id, Bloc::Communist);
+        assert!(state(&on, id).unwrap().established_movements.is_empty(), "the party table already records this presence");
+        crate::statecraft::add_backing(&mut on, sponsor, id, bloc);
+        on.statecraft.backing.clear();
+        on.rules.ideology_blocs = false;
+        let before = crate::save(&on);
+        remember_established_movements(&mut on, id);
+        assert_eq!(crate::save(&on), before);
+        assert!(!crate::blocs::bloc_present(&on, id, bloc), "stored organizations must not turn on an inactive layer");
+    }
+
     /// The equilibrium sibling of `support_finds_an_equilibrium_rather_than_
     /// running_away`, for a regime's movements. `drift_movements` is called
     /// directly with China's pains pinned, so the numbers are the function's
@@ -9263,8 +9587,8 @@ mod tests {
     /// from the 0.60 seed and SETTLES — the fixed point of the swing against
     /// the 0.005 reversion is 0.0021(1-h) = 0.005(h-0.6), h = 0.718; MEASURED
     /// 0.71316 after 480 months, moving 2.76e-5 a month. A catastrophe
-    /// (prices 1, growth 1, war 0.8: record -2.33): the share falls to the
-    /// fixed point 0.014h = 0.005(0.6-h), h = 0.158; MEASURED 0.15839, never
+    /// (prices 1, growth 1, war 0.8, order 0.5: record -2.78): the share falls
+    /// toward 0.01668h = 0.005(0.6-h), h = 0.138; MEASURED 0.13865, never
     /// to the floor, and no month moves it more than the 0.015 bound. Under a
     /// war the Nationalist bloc (the PLA's) gains more than the Western
     /// (the coastal provinces'), because `bloc_appeal` reads the war. Watched
@@ -10522,6 +10846,64 @@ mod tests {
         GameRules { seed, ideology_blocs: true, ideology_takeover: true, ai_aggression: 0.0, ..GameRules::default() }
     }
 
+    #[test]
+    fn recovered_armed_loyalty_prevents_a_regime_coup_from_old_pressure() {
+        for roads in [false, true] {
+            let id = NationId::China;
+            let mut w = world_1990(GameRules { ideology_takeover: roads, ..on_rules(7) });
+            {
+                let g = state_mut(&mut w, id).unwrap();
+                g.months_in_office = 48;
+                g.coup_pressure = 1.5;
+                for (_, loyalty) in &mut g.pillars { *loyalty = 0.80; }
+            }
+            let before = crate::save(&w);
+            // Recovery can be in a resumed save; no extra marker or migration
+            // is needed to prevent the accumulated gauge firing by itself.
+            w = crate::load(&before).unwrap();
+            maybe_coup(&mut w, id);
+            assert_eq!(crate::save(&w), before, "paid pillars staged a coup from old pressure");
+            let g = state_mut(&mut w, id).unwrap();
+            g.pillars.iter_mut().find(|(p, _)| *p == Pillar::Army).unwrap().1 = 0.20;
+            maybe_coup(&mut w, id);
+            assert!(w.headlines.iter().any(|h| h.starts_with("COUP IN CHINA:")));
+            assert_eq!(state(&w, id).unwrap().coup_pressure, 0.0);
+        }
+    }
+
+    #[test]
+    fn electoral_coup_requires_a_current_hostile_army_and_crisis() {
+        let id = NationId::Pakistan;
+        let mut staged = world_1990(roads_rules(7));
+        {
+            let n = staged.nation_mut(id);
+            n.inflation = 0.03;
+            n.growth_last = 0.01;
+            n.war_exhaustion = 0.0;
+            n.separatism = 0.0;
+            n.stability = 25.0;
+            let g = state_mut(&mut staged, id).unwrap();
+            g.months_in_office = 24;
+            g.coup_pressure = 1.5;
+            for (p, loyalty) in &mut g.pillars {
+                *loyalty = if *p == Pillar::Army { 0.20 } else { 0.80 };
+            }
+        }
+        for (army, stability) in [(0.80, 25.0), (ELECTORAL_COUP_ARMY, 25.0), (0.20, 60.0)] {
+            let mut recovered = staged.clone();
+            recovered.nation_mut(id).stability = stability;
+            state_mut(&mut recovered, id).unwrap().pillars.iter_mut()
+                .find(|(p, _)| *p == Pillar::Army).unwrap().1 = army;
+            let before = crate::save(&recovered);
+            recovered = crate::load(&before).unwrap();
+            assert!(!maybe_electoral_coup(&mut recovered, id));
+            assert_eq!(crate::save(&recovered), before);
+        }
+        assert!(maybe_electoral_coup(&mut staged, id), "the still-live trigger must remain reachable");
+        assert!(!is_electoral(&staged, id));
+        assert_eq!(state(&staged, id).unwrap().coup_pressure, 0.0);
+    }
+
     /// Route 2 (S4). Pakistan, an electoral polity with an Army pillar, its
     /// defence budget cut to a tenth of a percent every month and its
     /// stability held at 35 (Pakistan's own 52 reads discontent 0.147, under
@@ -10692,9 +11074,8 @@ mod tests {
         let g = state(&w, dz).unwrap();
         assert_eq!(g.regime_bloc, Some(Bloc::Nationalist));
         assert_eq!(g.banned, vec!["dz_fis".to_string()], "every party of the winner's bloc is banned");
-        // The table's opening seating already has the FIS leading (its share
-        // is the 1991 result, entered as the last vote before 1990), so the
-        // dormant record is the cabinet that sat before the annulled vote.
+        // The dormant record retains the cabinet that sat before the
+        // annulled vote, rather than installing the rejected winner.
         assert!(!dormant.is_empty());
         assert_eq!(g.coalition, dormant, "the cabinet that sat before the vote is the dormant record");
         assert_eq!(g.loyalty(Pillar::Army), 0.90);
@@ -10828,6 +11209,11 @@ mod tests {
             let mut w = world_1990(roads_rules(7));
             w.nation_mut(dz).stability = 40.0;
             w.nation_mut(dz).inflation = 0.167;
+            // This test inspects annulment of a completed FIS-winning vote,
+            // not the FLN-only chamber inherited at the campaign start.
+            let system = polity_in(&w, dz).unwrap().system;
+            let g = state_mut(&mut w, dz).unwrap();
+            g.seats = seats_from(&g.support, system);
             w
         };
         let army = |w: &mut WorldState, v: f64| {

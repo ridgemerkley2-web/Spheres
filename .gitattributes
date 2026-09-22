@@ -30,6 +30,8 @@
 # rule should hold for all of them, not only the four that happened to be
 # hashed today.
 *.json text eol=lf
+# The terrain generator also compares this generated Rust file byte for byte.
+spheres-web/ui/terrain-tiles/embed.rs text eol=lf
 # These source files are also byte-hashed by the leadership production inventory.
 spheres-sim/src/nations.rs text eol=lf
 spheres-sim/src/government.rs text eol=lf
