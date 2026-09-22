@@ -8758,6 +8758,8 @@ mod tests {
         assert_eq!(projects.len(), 1, "{projects:?}");
         assert!(projects[0]["last_spent_bn"].as_f64().unwrap() > 0.0);
         assert_eq!(projects[0]["last_day"], as_of - 1, "the tick settles a day before the date moves");
+        assert_eq!(projects[0]["district_name"].as_str(), spheres_sim::districts::name_of(projects[0]["district"].as_str().unwrap()),
+            "the player-facing province name travels beside the id");
         let research = &outcomes["research"];
         assert_eq!(research["active"]["component"], "tank_running_gear");
         assert_eq!(research["active"]["cost"], 24.0);

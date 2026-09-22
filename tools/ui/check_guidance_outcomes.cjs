@@ -497,3 +497,13 @@ test('the browser UMD build exposes recognize without DOM, clock or storage',()=
 });
 
 function setDate(r,y,m,d){const day=DAY(y,m,d),date=`${d} ${MON[m-1]} ${y}`;Object.assign(r.state,{year:y,month:m,day:d,date,t:(y-1990)*12+m-1});r.outcomes.date=date;r.outcomes.as_of_day=day;r.production.date=date;r.production.as_of_day=day;return r;}
+
+test('milestone details name the province, never the internal district id, and a completed airbase keeps a funding date',()=>{
+  const r=achieved(),o=r.outcomes;o.construction.projects[0].district_name='Île-de-France';
+  let route=run(r,loaded());const mile=id=>route.steps.flatMap(s=>s.milestones).find(m=>m.id===id);
+  assert.match(mile('work_paid').detail,/starter industry in Île-de-France/);assert.doesNotMatch(mile('work_paid').detail,/FR-IDF/);
+  o.construction.projects=[];o.construction.mines=[{district:'FR-NOR',district_name:'Normandie',commodity:'coal',spent_bn:.02,last_day:o.as_of_day-1,progress_days:5,total_days:60}];
+  o.construction.completions=[];route=run(r,loaded());assert.match(mile('work_paid').detail,/coal in Normandie by/);
+  const funded=mile('base_funded');assert.equal(funded.status,'done');assert.equal(funded.date,iso(DAY(1990,1,14)),'paid through a dated completion');
+  o.construction.mines[0].district_name=null;route=run(r,loaded());assert.match(mile('work_paid').detail,/coal in FR-NOR by/,'a missing name falls back to the id');
+});
