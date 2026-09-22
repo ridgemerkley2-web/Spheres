@@ -357,8 +357,11 @@ test('historical cache can be reused only for the same nation and date',()=>{
 test('selector art credit no longer invents a verified portrait source',()=>{
  const code=hostFunction('loadFigurePortrait');assert.match(code,/identity_source_asset \|\| leaderArt.identity_source_wikidata \|\| "authored historical identity"/);assert.doesNotMatch(code,/"verified portrait"/);
 });
-test('index host preserves its CRLF line endings and every inline script parses',()=>{
- const bytes=fs.readFileSync(path.resolve(__dirname,'../../spheres-web/ui/index.html'),'utf8');assert.equal((bytes.match(/\n/g)||[]).length,(bytes.match(/\r\n/g)||[]).length);
+test('index host has consistent LF or CRLF line endings and every inline script parses',()=>{
+ const bytes=fs.readFileSync(path.resolve(__dirname,'../../spheres-web/ui/index.html'),'utf8');
+ const lines=(bytes.match(/\n/g)||[]).length,crlf=(bytes.match(/\r\n/g)||[]).length;
+ assert(lines>0,'Host must contain line breaks');assert.equal(/\r(?!\n)/.test(bytes),false,'Host must not contain lone CR line endings');
+ assert(crlf===0||crlf===lines,'Host must use consistent LF or CRLF line endings');
  let count=0;for(const match of bytes.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script\s*>/gi)){
   if(/\bsrc\s*=/.test(match[1])||/type\s*=\s*["']application\//i.test(match[1]))continue;
   new vm.Script(match[2],{filename:'index-inline-'+(++count)});

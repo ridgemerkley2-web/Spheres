@@ -6,7 +6,22 @@ on:
 permissions:
   contents: read
 jobs:
-  verify:
+  javascript:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      # Independent of the native build: both suites must report even when
+      # the other fails, and neither should delay the other's feedback.
+      - run: node tools/ui/run-unit.cjs
+  native:
     strategy:
       fail-fast: false
       matrix:
@@ -26,7 +41,6 @@ jobs:
       - run: cargo test --locked --release --workspace --no-fail-fast -- --skip tests::the_resource_pass_stays_under_budget
       - name: Verify resource timing budget in isolation
         run: cargo test --locked --release -p spheres-sim --lib tests::the_resource_pass_stays_under_budget -- --exact --nocapture --test-threads=1
-      - run: node tools/ui/run-unit.cjs
       - run: cargo build --locked --release -p spheres-web
       - run: npm ci --prefix tools/ui
       - run: npx --prefix tools/ui playwright install --with-deps chromium
@@ -36,3 +50,19 @@ jobs:
         with:
           name: browser-evidence-${{ matrix.os }}
           path: artifacts/browser-ci
+  # Preserve the original required-check names, each covering both suites.
+  verify:
+    if: always()
+    needs: [javascript, native]
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 5
+    steps:
+      - name: Require every native and JavaScript check to pass
+        env:
+          NATIVE_RESULT: ${{ needs.native.result }}
+          JAVASCRIPT_RESULT: ${{ needs.javascript.result }}
+        run: python -c "import os,sys; results={key:os.environ[key] for key in ('NATIVE_RESULT','JAVASCRIPT_RESULT')}; print(results); sys.exit(0 if all(value=='success' for value in results.values()) else 1)"

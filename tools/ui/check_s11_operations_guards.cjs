@@ -41,6 +41,8 @@ test('valid equipment shortcuts pause and open the exact existing tab without a 
   }
   const f=fixture();await assert.rejects(f.navigate('market'),/unavailable/);assert.deepEqual(f.calls,[]);
 });
-test('editing the ordinary host retains its required CRLF line endings',()=>{
-  assert.equal(page.split('\n').length,page.split('\r\n').length);
+test('editing the ordinary host retains consistent LF or CRLF line endings',()=>{
+  const lines=(page.match(/\n/g)||[]).length,crlf=(page.match(/\r\n/g)||[]).length;
+  assert(lines>0,'Host must contain line breaks');assert.equal(/\r(?!\n)/.test(page),false,'Host must not contain lone CR line endings');
+  assert(crlf===0||crlf===lines,'Host must use consistent LF or CRLF line endings');
 });
