@@ -169,3 +169,11 @@ The scripts retain the recorded session-workspace layout; the committed portable
 guidance driver is `tools/ui/ci-guidance-route.cjs`. Initial local runner setup/path
 issues were corrected without product changes. The [S19 integration review](../../S19/integration/README.md)
 states the remaining qualification explicitly.
+
+Post-session 6 fetch after pushing `af9a6221`: S19 is `7de62539`, Tonga is
+`b6767837`; both submissions are integrated. No newer Claude submission remains
+at this checkpoint. The integration branch and `codex/s19-review-01` were pushed.
+All 118 committed files in the final-session and Tonga integration evidence
+manifests match their recorded bytes/hashes. The 44-marker workboard passes;
+runtime source is unchanged from the tested `2400800b` build. Stop after these
+six sessions; the remaining work is recorded for the next authorized continuation.
