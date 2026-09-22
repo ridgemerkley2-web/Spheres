@@ -10,8 +10,8 @@ qualification remain in the canonical pathway.
 | 1 | Review Claude's S19 candidate against S21/S22 preparation | Complete; separate candidate, not accepted S19 |
 | 2 | Equipment section selection and direct keyboard/touch access to controls | Complete; S20 independent preparation |
 | 3 | Clearer province economic activity overview | Complete; S20 independent preparation |
-| 4 | Performance observation improvements | In progress |
-| 5 | Worldwide startup preflight | Planned |
+| 4 | Performance observation improvements | Complete; S22 independent preparation |
+| 5 | Worldwide startup preflight | In progress |
 | 6 | Integrate available handoffs, native build and combined browser review | Planned |
 
 ## Session 1
@@ -66,3 +66,24 @@ record, 0 producing records, 1 attention item, with the native budget reason.
 Project disclosure and keyboard focus work, with no horizontal overflow, orders,
 advances or page errors. Two UI assets are substituted as in session 2; this is
 development evidence. See `session-03/`.
+
+Post-session 3 fetch: S19 remains `8d01b9ae`, Tonga claim remains `852510d3`;
+no newer Claude changes.
+
+## Session 4
+
+The optional About → Performance sample recorder now captures bounded raw frame
+intervals and native build identity, exports a local JSON report, counts discarded
+older samples and stops when campaign identity changes. Closing the panel continues
+sampling; Stop cancels the frame loop. A generation guard prevents pending input
+callbacks from a prior sample being counted after restart. Visibility transitions
+exclude hidden-page frame intervals and input spanning a hidden period.
+
+Seven focused regressions pass. Chrome at 390px starts via About, records trusted
+Home/keyboard input and visible frames, stops, downloads and parses the report,
+checks the native build revision and verifies the sample stops growing. No game
+commands, advances or page errors. See `session-04/`. UI-asset substitution is
+explicitly recorded; the tiny browser sample proves recorder behavior, not game
+performance. Visible-page animation cadence is not claimed as GPU/map FPS, and
+synchronous redraw timing is not server or asynchronous loading time. Full S22
+workloads and the existing 42 art-budget overruns remain open.
