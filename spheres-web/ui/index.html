@@ -3630,6 +3630,7 @@ async function api(path, body, rawCommand = false) {
   if (requestedSession && S?.session_id !== requestedSession && !["/api/new", "/api/load"].includes(path)) {
     throw new Error("The campaign changed while this request was in flight. Its old response was not adopted.");
   }
+  if (body !== undefined && (path === "/api/save" || path === "/api/load")) { try { window.GUIDANCE_RECEIPT?.({path, body, data, state:S}); } catch (_) {} }
   return data;
 }
 
@@ -18806,7 +18807,7 @@ $("#stockBtn").onclick = toggleStockScreen;
 $("#govBtn").onclick = toggleGovernment;
 
 // Navigation only. The existing screens own quotes, confirmations and commands.
-const GUIDANCE_ROUTES = new Set(["home","budget","construction","project","suggestion","industry","government","research","equipment","world","decisions","resources","campaign"]);
+const GUIDANCE_ROUTES = new Set(["home","budget","cash_flow","construction","project","suggestion","industry","government","research","equipment","air","companies","world","decisions","resources","campaign"]);
 function guidanceBusy() {
   return advancing || !!pendingAdvance || SESSION.busy || CAB.busy || PROD.busy
     || !!(COMMAND_CHANNEL.busy || COMMAND_CHANNEL.pending) || equipmentExternalPending()
@@ -18822,16 +18823,30 @@ function guidanceNavigate(action) {
   if (keysCardIsOpen()) setKeysCard(false);
   if (action.kind === "home") homeNation();
   else if (action.kind === "budget") openConstructionCabinet("budget");
+  else if (action.kind === "cash_flow") openCashFlow();
   else if (action.kind === "construction") openConstruction();
   else if (action.kind === "project") openConstruction({project:action.id});
   else if (action.kind === "suggestion") {
     openConstruction();
     constructionPreviewProject(action.project_kind, action.district, action.capacity_micros);
   }
-  else if (action.kind === "industry") openIndustry();
+  else if (action.kind === "industry") {
+    // The route's own kind is "industry", so a facility kind travels as project_kind.
+    if (typeof action.district === "string" && typeof action.project_kind === "string") openIndustry({district:action.district, kind:action.project_kind});
+    else openIndustry();
+  }
   else if (action.kind === "government") openGovernment(S.player);
   else if (action.kind === "research") openTech(action.domain);
-  else if (action.kind === "equipment") openEquipmentDrawer();
+  else if (action.kind === "equipment") {
+    if (typeof action.tab === "string" && typeof EQUIPMENT_TABS !== "undefined" && EQUIPMENT_TABS.some(row => row[0] === action.tab)) openEquipment({tab:action.tab});
+    else openEquipmentDrawer();
+  }
+  else if (action.kind === "air") {
+    openEquipment({tab:"flight"});
+    // After openEquipment's synchronous campaign reset; the helper validates the page and refuses while work is pending.
+    if (action.page === "bases" && typeof equipmentFlightSelectPage === "function") equipmentFlightSelectPage("bases");
+  }
+  else if (action.kind === "companies") openEquipment({tab:"companies"});
   else if (action.kind === "world") toggleGameDrawer("intelDrawer");
   else if (action.kind === "decisions") openAgency();
   else if (action.kind === "resources") openStock();
@@ -18846,6 +18861,7 @@ const GUIDANCE = GuidanceUI.mount({
   storage:{getItem:key=>localStorage.getItem(key),setItem:(key,value)=>localStorage.setItem(key,value)}
 });
 window.openGuidance = view=>GUIDANCE.open(view);
+window.GUIDANCE_RECEIPT = receipt=>GUIDANCE.receipt(receipt);
 document.addEventListener("keydown", event=>{
   if (event.key !== "F1" || event.ctrlKey || event.metaKey || event.altKey) return;
   event.preventDefault(); event.stopImmediatePropagation(); openGuidance("tutorial");
