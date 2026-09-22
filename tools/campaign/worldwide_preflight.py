@@ -4,7 +4,7 @@ Example: python tools/campaign/worldwide_preflight.py --binary <release-exe>
   --out <new-directory> --expected-revision <40-char-commit> [--limit 3]
 Only launches its own server. Existing servers and save directories are never used.
 """
-import argparse, datetime, hashlib, json, math, pathlib, socket, subprocess, time, urllib.parse, urllib.request
+import argparse, datetime, hashlib, json, pathlib, socket, subprocess, time, traceback, urllib.parse, urllib.request
 
 
 def canonical(value):
@@ -70,7 +70,8 @@ def main():
                 started=time.monotonic();case={'nation':nation,'passed':False,'checks':[]}
                 try:
                     state=req('/api/new',{'seed':args.seed,'nation':nation})
-                    assert state['player']==nation and [state['year'],state['month'],state['day']]==[1990,1,1]
+                    assert state['player']==nation, f"Requested {nation}, selected {state['player']}"
+                    assert [state['year'],state['month'],state['day']]==[1990,1,1], f"Unexpected start date: {state['date']}"
                     assert isinstance(state['districts'],dict)
                     me=next(n for n in state['nations'] if n['id']==nation);assert me['alive']
                     case['checks'].append('start_and_map_ownership_state')
@@ -80,11 +81,19 @@ def main():
                         else:assert reading['nation']==nation
                         case['checks'].append(route[5:])
                     assert digest(req('/api/state'))==digest(state),'Read-only views changed campaign state'
-                    payload={'days':7,'commands':[],'session_id':state['session_id'],'player_context':nation,'client_id':'worldwide-preflight','request_seq':1}
-                    advanced=req('/api/advance',payload)
-                    assert advanced['player']==nation and [advanced['year'],advanced['month'],advanced['day']]==[1990,1,8]
-                    # Retrying the same protected turn must not advance another week.
-                    assert digest(req('/api/advance',payload))==digest(advanced),'Duplicate turn changed campaign'
+                    advanced=state;sequence=0;case['interruptions']=[]
+                    target=datetime.date(1990,1,8)
+                    while datetime.date(advanced['year'],advanced['month'],advanced['day'])<target:
+                        previous=datetime.date(advanced['year'],advanced['month'],advanced['day']);sequence+=1
+                        payload={'days':(target-previous).days,'commands':[],'session_id':advanced['session_id'],'player_context':nation,'client_id':'worldwide-preflight','request_seq':sequence}
+                        advanced=req('/api/advance',payload)
+                        reached=datetime.date(advanced['year'],advanced['month'],advanced['day'])
+                        assert advanced['player']==nation and previous<reached<=target, f"Unexpected advance: {advanced['player']} at {advanced['date']}"
+                        # Event interruptions are ordinary play. Record them and submit a
+                        # new protected request for the remaining days; never suppress events.
+                        if advanced.get('interrupt'):case['interruptions'].append({'date':advanced['date'],'reason':advanced['interrupt']})
+                        assert reached==target or advanced.get('interrupt'),'Short advance without an interruption'
+                        assert digest(req('/api/advance',payload))==digest(advanced),'Duplicate turn changed campaign'
                     case['checks'].extend(['seven_days','duplicate_turn'])
                     # Reuse only these scratch slots inside our newly-created server directory.
                     # At most two current files plus native backups are retained, not 137 full worlds.
@@ -99,7 +108,7 @@ def main():
                     assert before_hash==after_hash,'Campaign archive changed across load/save (world, history, log, journey included)'
                     case.update(passed=True,date=loaded['date'],archive_sha256=before_hash,roundtrip_sha256=after_hash)
                     case['checks'].append('full_archive_roundtrip')
-                except Exception as error:case['error']=str(error)
+                except Exception as error:case['error']=str(error) or repr(error);case['traceback']=traceback.format_exc(limit=2)
                 case['elapsed_seconds']=round(time.monotonic()-started,3);proof['cases'].append(case);write()
                 print(f"{len(proof['cases'])}/{len(nations[:args.limit])} {nation}: {'PASS' if case['passed'] else 'FAIL '+case['error']}",flush=True)
                 if process.poll() is not None:break
