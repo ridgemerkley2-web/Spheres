@@ -55,6 +55,28 @@ async function main(){
     proof.countries.push({nation:row.nation,organization_observations:row.organization_observations,institution_observations:row.institution_observations,roles_filter:roleEntries.length,first_claim_exact:true});
   }
   await page.locator('#atlas-country').selectOption('Tonga');await ready(page,'Tonga');
+  // Appointment effectiveness is distinct from an observation, selection,
+  // announcement or a complete office term. Review the new dated holders too.
+  await page.locator('#atlas-kind').selectOption('roles');
+  const appointmentChecks=[
+    {entry:'to_prime_minister',name:"Siaosi 'Ofakivahafolau Sovaleni",from:'2021-12-27'},
+    {entry:'to_cabinet',name:'Poasi Mataele Tei',from:'2021-12-28'},
+  ];
+  proof.appointment_effectiveness=[];
+  for(const check of appointmentChecks){
+    await page.locator('#atlas-search').fill(check.name);
+    const entry=page.locator('.entry[data-research-id="'+check.entry+'"]');
+    await entry.locator(':scope > summary').click();await entry.locator('.role').first().waitFor();
+    const holder=entry.locator('.role p').filter({hasText:check.name}).first();
+    assert((await holder.textContent()).includes('Reported interval: '+check.from+' → Not established'));
+    for(const width of [1440,390,320]){
+      await page.setViewportSize({width,height:1000});await holder.scrollIntoViewIfNeeded();await layout(page);
+      await shot(page,check.entry+'-appointment-'+width+'.png');
+    }
+    proof.appointment_effectiveness.push({...check,end_not_inferred:true});
+  }
+  await page.setViewportSize({width:1440,height:1000});await page.locator('#atlas-search').fill('');
+  await page.locator('#atlas-kind').selectOption('all');
   await page.locator('#atlas-search').fill("Tu'i'onetoa");assert((await page.locator('.entry').count())>0);
   const society=page.locator('.entry[data-research-id="to_peoples_party"]');await society.locator(':scope > summary').click();
   await society.locator('.role').first().waitFor();
