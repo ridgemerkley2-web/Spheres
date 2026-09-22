@@ -12,8 +12,8 @@
     "runtime_loader": "runtime geometry is generated locally; no GLB asset fetch or build step is required"
   },
   "counts": {
-    "vehicles": 11,
-    "sites": 13,
+    "vehicles": 12,
+    "sites": 16,
     "town_blocks": 5
   },
   "vehicles": [
@@ -24,7 +24,7 @@
       "game_id": "tank_standard",
       "source": "spheres-web/ui/equipment-mesh.js",
       "generator": "EquipmentMesh.build({platform})",
-      "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
+      "runtime": "spheres-web/ui/equipment-model.js (WebGL viewer, selectable parts)",
       "glb": "spheres-web/ui/equipment-models/spheres-tank-balanced.glb",
       "glb_bytes": 7536696,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
@@ -32,6 +32,107 @@
         "LOD0": 68872,
         "LOD1": 8050,
         "LOD2": 1168
+      },
+      "payloads": {
+        "LOD0": {
+          "triangles": 68872,
+          "vertices": 206616,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 2479392,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 2479392,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 2479392,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 206616,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 7644792,
+          "cpu_backing_buffer_bytes": 7644792,
+          "base_attribute_upload_bytes": 7438176
+        },
+        "LOD1": {
+          "triangles": 8050,
+          "vertices": 24150,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 289800,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 289800,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 289800,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 24150,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 893550,
+          "cpu_backing_buffer_bytes": 893550,
+          "base_attribute_upload_bytes": 869400
+        },
+        "LOD2": {
+          "triangles": 1168,
+          "vertices": 3504,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 42048,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 42048,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 42048,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 3504,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 129648,
+          "cpu_backing_buffer_bytes": 129648,
+          "base_attribute_upload_bytes": 126144
+        }
       },
       "parts": 21,
       "slots": [
@@ -41,7 +142,7 @@
         "protection",
         "sensors"
       ],
-      "materials": 1,
+      "materials": "authored vertex palette and material classes; shared renderer textures",
       "pivot": "hull centreline, ground contact at Y=0",
       "bounds": {
         "min": [
@@ -77,7 +178,7 @@
       "game_id": "tank_heavy",
       "source": "spheres-web/ui/equipment-mesh.js",
       "generator": "EquipmentMesh.build({platform})",
-      "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
+      "runtime": "spheres-web/ui/equipment-model.js (WebGL viewer, selectable parts)",
       "glb": "spheres-web/ui/equipment-models/spheres-tank-heavy.glb",
       "glb_bytes": 8112580,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
@@ -85,6 +186,107 @@
         "LOD0": 74144,
         "LOD1": 5834,
         "LOD2": 1204
+      },
+      "payloads": {
+        "LOD0": {
+          "triangles": 74144,
+          "vertices": 222432,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 2669184,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 2669184,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 2669184,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 222432,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 8229984,
+          "cpu_backing_buffer_bytes": 8229984,
+          "base_attribute_upload_bytes": 8007552
+        },
+        "LOD1": {
+          "triangles": 5834,
+          "vertices": 17502,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 210024,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 210024,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 210024,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 17502,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 647574,
+          "cpu_backing_buffer_bytes": 647574,
+          "base_attribute_upload_bytes": 630072
+        },
+        "LOD2": {
+          "triangles": 1204,
+          "vertices": 3612,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 43344,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 43344,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 43344,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 3612,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 133644,
+          "cpu_backing_buffer_bytes": 133644,
+          "base_attribute_upload_bytes": 130032
+        }
       },
       "parts": 21,
       "slots": [
@@ -94,7 +296,7 @@
         "protection",
         "sensors"
       ],
-      "materials": 1,
+      "materials": "authored vertex palette and material classes; shared renderer textures",
       "pivot": "hull centreline, ground contact at Y=0",
       "bounds": {
         "min": [
@@ -130,7 +332,7 @@
       "game_id": "tank_light",
       "source": "spheres-web/ui/equipment-mesh.js",
       "generator": "EquipmentMesh.build({platform})",
-      "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
+      "runtime": "spheres-web/ui/equipment-model.js (WebGL viewer, selectable parts)",
       "glb": "spheres-web/ui/equipment-models/spheres-tank-light.glb",
       "glb_bytes": 7535500,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
@@ -138,6 +340,107 @@
         "LOD0": 68872,
         "LOD1": 8050,
         "LOD2": 1168
+      },
+      "payloads": {
+        "LOD0": {
+          "triangles": 68872,
+          "vertices": 206616,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 2479392,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 2479392,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 2479392,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 206616,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 7644792,
+          "cpu_backing_buffer_bytes": 7644792,
+          "base_attribute_upload_bytes": 7438176
+        },
+        "LOD1": {
+          "triangles": 8050,
+          "vertices": 24150,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 289800,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 289800,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 289800,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 24150,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 893550,
+          "cpu_backing_buffer_bytes": 893550,
+          "base_attribute_upload_bytes": 869400
+        },
+        "LOD2": {
+          "triangles": 1168,
+          "vertices": 3504,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 42048,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 42048,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 42048,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 3504,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 129648,
+          "cpu_backing_buffer_bytes": 129648,
+          "base_attribute_upload_bytes": 126144
+        }
       },
       "parts": 21,
       "slots": [
@@ -147,7 +450,7 @@
         "protection",
         "sensors"
       ],
-      "materials": 1,
+      "materials": "authored vertex palette and material classes; shared renderer textures",
       "pivot": "hull centreline, ground contact at Y=0",
       "bounds": {
         "min": [
@@ -183,7 +486,7 @@
       "game_id": "tank_destroyer",
       "source": "spheres-web/ui/equipment-mesh.js",
       "generator": "EquipmentMesh.build({platform})",
-      "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
+      "runtime": "spheres-web/ui/equipment-model.js (WebGL viewer, selectable parts)",
       "glb": "spheres-web/ui/equipment-models/spheres-tank-destroyer.glb",
       "glb_bytes": 7433032,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
@@ -191,6 +494,107 @@
         "LOD0": 68872,
         "LOD1": 8050,
         "LOD2": 1168
+      },
+      "payloads": {
+        "LOD0": {
+          "triangles": 68872,
+          "vertices": 206616,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 2479392,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 2479392,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 2479392,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 206616,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 7644792,
+          "cpu_backing_buffer_bytes": 7644792,
+          "base_attribute_upload_bytes": 7438176
+        },
+        "LOD1": {
+          "triangles": 8050,
+          "vertices": 24150,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 289800,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 289800,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 289800,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 24150,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 893550,
+          "cpu_backing_buffer_bytes": 893550,
+          "base_attribute_upload_bytes": 869400
+        },
+        "LOD2": {
+          "triangles": 1168,
+          "vertices": 3504,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 42048,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 42048,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 42048,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 3504,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 129648,
+          "cpu_backing_buffer_bytes": 129648,
+          "base_attribute_upload_bytes": 126144
+        }
       },
       "parts": 21,
       "slots": [
@@ -200,7 +604,7 @@
         "protection",
         "sensors"
       ],
-      "materials": 1,
+      "materials": "authored vertex palette and material classes; shared renderer textures",
       "pivot": "hull centreline, ground contact at Y=0",
       "bounds": {
         "min": [
@@ -236,7 +640,7 @@
       "game_id": "ground_ifv",
       "source": "spheres-web/ui/equipment-mesh.js",
       "generator": "EquipmentMesh.build({platform})",
-      "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
+      "runtime": "spheres-web/ui/equipment-model.js (WebGL viewer, selectable parts)",
       "glb": "spheres-web/ui/equipment-models/spheres-ground-ifv.glb",
       "glb_bytes": 4781488,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
@@ -244,6 +648,107 @@
         "LOD0": 44222,
         "LOD1": 5862,
         "LOD2": 1144
+      },
+      "payloads": {
+        "LOD0": {
+          "triangles": 44222,
+          "vertices": 132666,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 1591992,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 1591992,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 1591992,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 132666,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 4908642,
+          "cpu_backing_buffer_bytes": 4908642,
+          "base_attribute_upload_bytes": 4775976
+        },
+        "LOD1": {
+          "triangles": 5862,
+          "vertices": 17586,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 211032,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 211032,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 211032,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 17586,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 650682,
+          "cpu_backing_buffer_bytes": 650682,
+          "base_attribute_upload_bytes": 633096
+        },
+        "LOD2": {
+          "triangles": 1144,
+          "vertices": 3432,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 41184,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 41184,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 41184,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 3432,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 126984,
+          "cpu_backing_buffer_bytes": 126984,
+          "base_attribute_upload_bytes": 123552
+        }
       },
       "parts": 28,
       "slots": [
@@ -261,7 +766,7 @@
         "troop_compartment",
         "turret"
       ],
-      "materials": 1,
+      "materials": "authored vertex palette and material classes; shared renderer textures",
       "pivot": "hull centreline, ground contact at Y=0",
       "bounds": {
         "min": [
@@ -297,7 +802,7 @@
       "game_id": "ground_apc",
       "source": "spheres-web/ui/equipment-mesh.js",
       "generator": "EquipmentMesh.build({platform})",
-      "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
+      "runtime": "spheres-web/ui/equipment-model.js (WebGL viewer, selectable parts)",
       "glb": "spheres-web/ui/equipment-models/spheres-ground-apc.glb",
       "glb_bytes": 2893352,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
@@ -305,6 +810,107 @@
         "LOD0": 26746,
         "LOD1": 4197,
         "LOD2": 982
+      },
+      "payloads": {
+        "LOD0": {
+          "triangles": 26746,
+          "vertices": 80238,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 962856,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 962856,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 962856,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 80238,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 2968806,
+          "cpu_backing_buffer_bytes": 2968806,
+          "base_attribute_upload_bytes": 2888568
+        },
+        "LOD1": {
+          "triangles": 4197,
+          "vertices": 12591,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 151092,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 151092,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 151092,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 12591,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 465867,
+          "cpu_backing_buffer_bytes": 465867,
+          "base_attribute_upload_bytes": 453276
+        },
+        "LOD2": {
+          "triangles": 982,
+          "vertices": 2946,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 35352,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 35352,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 35352,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 2946,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 109002,
+          "cpu_backing_buffer_bytes": 109002,
+          "base_attribute_upload_bytes": 106056
+        }
       },
       "parts": 22,
       "slots": [
@@ -322,7 +928,7 @@
         "turret",
         "wheels"
       ],
-      "materials": 1,
+      "materials": "authored vertex palette and material classes; shared renderer textures",
       "pivot": "hull centreline, ground contact at Y=0",
       "bounds": {
         "min": [
@@ -358,7 +964,7 @@
       "game_id": "ground_recon",
       "source": "spheres-web/ui/equipment-mesh.js",
       "generator": "EquipmentMesh.build({platform})",
-      "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
+      "runtime": "spheres-web/ui/equipment-model.js (WebGL viewer, selectable parts)",
       "glb": "spheres-web/ui/equipment-models/spheres-ground-recon.glb",
       "glb_bytes": 2567168,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
@@ -366,6 +972,107 @@
         "LOD0": 23726,
         "LOD1": 4476,
         "LOD2": 944
+      },
+      "payloads": {
+        "LOD0": {
+          "triangles": 23726,
+          "vertices": 71178,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 854136,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 854136,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 854136,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 71178,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 2633586,
+          "cpu_backing_buffer_bytes": 2633586,
+          "base_attribute_upload_bytes": 2562408
+        },
+        "LOD1": {
+          "triangles": 4476,
+          "vertices": 13428,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 161136,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 161136,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 161136,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 13428,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 496836,
+          "cpu_backing_buffer_bytes": 496836,
+          "base_attribute_upload_bytes": 483408
+        },
+        "LOD2": {
+          "triangles": 944,
+          "vertices": 2832,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 33984,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 33984,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 33984,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 2832,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 104784,
+          "cpu_backing_buffer_bytes": 104784,
+          "base_attribute_upload_bytes": 101952
+        }
       },
       "parts": 22,
       "slots": [
@@ -383,7 +1090,7 @@
         "turret",
         "wheels"
       ],
-      "materials": 1,
+      "materials": "authored vertex palette and material classes; shared renderer textures",
       "pivot": "hull centreline, ground contact at Y=0",
       "bounds": {
         "min": [
@@ -419,7 +1126,7 @@
       "game_id": "ground_artillery",
       "source": "spheres-web/ui/equipment-mesh.js",
       "generator": "EquipmentMesh.build({platform})",
-      "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
+      "runtime": "spheres-web/ui/equipment-model.js (WebGL viewer, selectable parts)",
       "glb": "spheres-web/ui/equipment-models/spheres-ground-artillery.glb",
       "glb_bytes": 4901380,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
@@ -427,6 +1134,107 @@
         "LOD0": 45330,
         "LOD1": 5182,
         "LOD2": 1144
+      },
+      "payloads": {
+        "LOD0": {
+          "triangles": 45330,
+          "vertices": 135990,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 1631880,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 1631880,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 1631880,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 135990,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 5031630,
+          "cpu_backing_buffer_bytes": 5031630,
+          "base_attribute_upload_bytes": 4895640
+        },
+        "LOD1": {
+          "triangles": 5182,
+          "vertices": 15546,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 186552,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 186552,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 186552,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 15546,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 575202,
+          "cpu_backing_buffer_bytes": 575202,
+          "base_attribute_upload_bytes": 559656
+        },
+        "LOD2": {
+          "triangles": 1144,
+          "vertices": 3432,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 41184,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 41184,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 41184,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 3432,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 126984,
+          "cpu_backing_buffer_bytes": 126984,
+          "base_attribute_upload_bytes": 123552
+        }
       },
       "parts": 30,
       "slots": [
@@ -444,7 +1252,7 @@
         "transmission",
         "turret"
       ],
-      "materials": 1,
+      "materials": "authored vertex palette and material classes; shared renderer textures",
       "pivot": "hull centreline, ground contact at Y=0",
       "bounds": {
         "min": [
@@ -480,7 +1288,7 @@
       "game_id": "ground_air_defense",
       "source": "spheres-web/ui/equipment-mesh.js",
       "generator": "EquipmentMesh.build({platform})",
-      "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
+      "runtime": "spheres-web/ui/equipment-model.js (WebGL viewer, selectable parts)",
       "glb": "spheres-web/ui/equipment-models/spheres-ground-air-defense.glb",
       "glb_bytes": 4452684,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
@@ -488,6 +1296,107 @@
         "LOD0": 41178,
         "LOD1": 5632,
         "LOD2": 1112
+      },
+      "payloads": {
+        "LOD0": {
+          "triangles": 41178,
+          "vertices": 123534,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 1482408,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 1482408,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 1482408,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 123534,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 4570758,
+          "cpu_backing_buffer_bytes": 4570758,
+          "base_attribute_upload_bytes": 4447224
+        },
+        "LOD1": {
+          "triangles": 5632,
+          "vertices": 16896,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 202752,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 202752,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 202752,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 16896,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 625152,
+          "cpu_backing_buffer_bytes": 625152,
+          "base_attribute_upload_bytes": 608256
+        },
+        "LOD2": {
+          "triangles": 1112,
+          "vertices": 3336,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 40032,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 40032,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 40032,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 3336,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 123432,
+          "cpu_backing_buffer_bytes": 123432,
+          "base_attribute_upload_bytes": 120096
+        }
       },
       "parts": 28,
       "slots": [
@@ -505,7 +1414,7 @@
         "transmission",
         "turret"
       ],
-      "materials": 1,
+      "materials": "authored vertex palette and material classes; shared renderer textures",
       "pivot": "hull centreline, ground contact at Y=0",
       "bounds": {
         "min": [
@@ -541,12 +1450,115 @@
       "game_id": "air_light_attack",
       "source": "spheres-web/ui/equipment-mesh.js",
       "generator": "EquipmentMesh.build({platform})",
-      "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
+      "runtime": "spheres-web/ui/equipment-model.js (WebGL viewer, selectable parts)",
       "glb": "spheres-web/ui/equipment-models/spheres-air-light-attack.glb",
-      "glb_bytes": 21348060,
+      "glb_bytes": 21532596,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
       "lod": {
-        "LOD0": 197632
+        "LOD0": 199326,
+        "LOD1": 11474,
+        "LOD2": 1252
+      },
+      "payloads": {
+        "LOD0": {
+          "triangles": 199326,
+          "vertices": 597978,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 7175736,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 7175736,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 7175736,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 597978,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 22125186,
+          "cpu_backing_buffer_bytes": 22125186,
+          "base_attribute_upload_bytes": 21527208
+        },
+        "LOD1": {
+          "triangles": 11474,
+          "vertices": 34422,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 413064,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 413064,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 413064,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 34422,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 1273614,
+          "cpu_backing_buffer_bytes": 1273614,
+          "base_attribute_upload_bytes": 1239192
+        },
+        "LOD2": {
+          "triangles": 1252,
+          "vertices": 3756,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 45072,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 45072,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 45072,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 3756,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 138972,
+          "cpu_backing_buffer_bytes": 138972,
+          "base_attribute_upload_bytes": 135216
+        }
       },
       "parts": 16,
       "slots": [
@@ -559,7 +1571,7 @@
         "air_radar",
         "air_wing"
       ],
-      "materials": 1,
+      "materials": "opaque/glass surface ranges; shared renderer textures",
       "pivot": "airframe centreline, parked landing-gear contact at Y=0",
       "bounds": {
         "min": [
@@ -595,12 +1607,115 @@
       "game_id": "air_tactical_strike",
       "source": "spheres-web/ui/equipment-mesh.js",
       "generator": "EquipmentMesh.build({platform})",
-      "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
+      "runtime": "spheres-web/ui/equipment-model.js (WebGL viewer, selectable parts)",
       "glb": "spheres-web/ui/equipment-models/spheres-air-tactical-strike.glb",
       "glb_bytes": 24698664,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
       "lod": {
-        "LOD0": 228640
+        "LOD0": 228640,
+        "LOD1": 14904,
+        "LOD2": 1696
+      },
+      "payloads": {
+        "LOD0": {
+          "triangles": 228640,
+          "vertices": 685920,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 8231040,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 8231040,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 8231040,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 685920,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 25379040,
+          "cpu_backing_buffer_bytes": 25379040,
+          "base_attribute_upload_bytes": 24693120
+        },
+        "LOD1": {
+          "triangles": 14904,
+          "vertices": 44712,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 536544,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 536544,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 536544,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 44712,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 1654344,
+          "cpu_backing_buffer_bytes": 1654344,
+          "base_attribute_upload_bytes": 1609632
+        },
+        "LOD2": {
+          "triangles": 1696,
+          "vertices": 5088,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 61056,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 61056,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 61056,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 5088,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 188256,
+          "cpu_backing_buffer_bytes": 188256,
+          "base_attribute_upload_bytes": 183168
+        }
       },
       "parts": 17,
       "slots": [
@@ -613,7 +1728,7 @@
         "air_radar",
         "air_wing"
       ],
-      "materials": 1,
+      "materials": "opaque/glass surface ranges; shared renderer textures",
       "pivot": "airframe centreline, parked landing-gear contact at Y=0",
       "bounds": {
         "min": [
@@ -630,6 +1745,163 @@
           11.84,
           4.082,
           17.73
+        ]
+      },
+      "basis": "fictional — original game art, not a named real vehicle",
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_equipment_mesh.cjs, check_equipment_model.cjs, check_equipment_export.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "aviation.air_fighter.baseline.v1",
+      "display_name": "Visual interpretation of an original single-seat defensive fighter aircraft",
+      "kind": "modular platform",
+      "game_id": "air_fighter",
+      "source": "spheres-web/ui/equipment-mesh.js",
+      "generator": "EquipmentMesh.build({platform})",
+      "runtime": "spheres-web/ui/equipment-model.js (WebGL viewer, selectable parts)",
+      "glb": "spheres-web/ui/equipment-models/spheres-air-fighter.glb",
+      "glb_bytes": 21653740,
+      "regenerate": "node tools/ui/build_equipment_models.cjs",
+      "lod": {
+        "LOD0": 200446,
+        "LOD1": 11594,
+        "LOD2": 1296
+      },
+      "payloads": {
+        "LOD0": {
+          "triangles": 200446,
+          "vertices": 601338,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 7216056,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 7216056,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 7216056,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 601338,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 22249506,
+          "cpu_backing_buffer_bytes": 22249506,
+          "base_attribute_upload_bytes": 21648168
+        },
+        "LOD1": {
+          "triangles": 11594,
+          "vertices": 34782,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 417384,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 417384,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 417384,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 34782,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 1286934,
+          "cpu_backing_buffer_bytes": 1286934,
+          "base_attribute_upload_bytes": 1252152
+        },
+        "LOD2": {
+          "triangles": 1296,
+          "vertices": 3888,
+          "attributes": {
+            "positions": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 46656,
+              "usage": "base vertex attribute"
+            },
+            "normals": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 46656,
+              "usage": "base vertex attribute"
+            },
+            "colors": {
+              "type": "Float32Array",
+              "components": 3,
+              "bytes": 46656,
+              "usage": "base vertex attribute"
+            },
+            "materialClasses": {
+              "type": "Uint8Array",
+              "components": 1,
+              "bytes": 3888,
+              "usage": "CPU material classification; not uploaded directly"
+            }
+          },
+          "cpu_attribute_view_bytes": 143856,
+          "cpu_backing_buffer_bytes": 143856,
+          "base_attribute_upload_bytes": 139968
+        }
+      },
+      "parts": 16,
+      "slots": [
+        "air_avionics",
+        "air_countermeasures",
+        "air_engine",
+        "air_fuel",
+        "air_hardpoints",
+        "air_payload",
+        "air_radar",
+        "air_wing"
+      ],
+      "materials": "opaque/glass surface ranges; shared renderer textures",
+      "pivot": "airframe centreline, parked landing-gear contact at Y=0",
+      "bounds": {
+        "min": [
+          -4.77,
+          0,
+          -7.562
+        ],
+        "max": [
+          4.77,
+          3.712,
+          8.168
+        ],
+        "size": [
+          9.54,
+          3.712,
+          15.73
         ]
       },
       "basis": "fictional — original game art, not a named real vehicle",
@@ -1723,6 +2995,258 @@
           50.56,
           11.78,
           38
+        ]
+      },
+      "basis": "fictional — representative industrial scenery, no sourced building",
+      "placeholder": false,
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_site_mesh.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "site.office_district.v1",
+      "display_name": "Office district",
+      "kind": "facility assembly (staged)",
+      "game_id": "office_district",
+      "game_id_source": "spheres-sim/src/production.rs PROJECT_KINDS",
+      "source": "spheres-web/ui/site-mesh.js",
+      "generator": "SiteMesh.build(kind, stageOrProgress, {level, status, lod})",
+      "runtime": "spheres-web/ui/arsenal3d.js via the 'site' provider; card strip in productionCardHtml",
+      "glb": null,
+      "regenerate": "none — built in the browser from source",
+      "stages": [
+        {
+          "key": "site",
+          "name": "Site establishment",
+          "from": 0,
+          "to": 0.12
+        },
+        {
+          "key": "foundation",
+          "name": "Foundations",
+          "from": 0.12,
+          "to": 0.34
+        },
+        {
+          "key": "frame",
+          "name": "Structural frame",
+          "from": 0.34,
+          "to": 0.62
+        },
+        {
+          "key": "enclosed",
+          "name": "Enclosed and commissioning",
+          "from": 0.62,
+          "to": 1
+        },
+        {
+          "key": "complete",
+          "name": "Complete",
+          "from": 1,
+          "to": 1
+        }
+      ],
+      "lod": {
+        "LOD0": {
+          "min": 8066,
+          "max": 25090
+        },
+        "LOD1": {
+          "min": 180,
+          "max": 550
+        }
+      },
+      "parts": 26,
+      "materials": "vertex colour only",
+      "pivot": "footprint centre at grade, Y=0",
+      "bounds": {
+        "min": [
+          -33,
+          0,
+          -23
+        ],
+        "max": [
+          33,
+          15.7,
+          23
+        ],
+        "size": [
+          66,
+          15.7,
+          46
+        ]
+      },
+      "basis": "fictional — representative industrial scenery, no sourced building",
+      "placeholder": false,
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_site_mesh.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "site.shipyard.v1",
+      "display_name": "Shipyard",
+      "kind": "facility assembly (staged)",
+      "game_id": "shipyard",
+      "game_id_source": "spheres-sim/src/production.rs PROJECT_KINDS",
+      "source": "spheres-web/ui/site-mesh.js",
+      "generator": "SiteMesh.build(kind, stageOrProgress, {level, status, lod})",
+      "runtime": "spheres-web/ui/arsenal3d.js via the 'site' provider; card strip in productionCardHtml",
+      "glb": null,
+      "regenerate": "none — built in the browser from source",
+      "stages": [
+        {
+          "key": "site",
+          "name": "Site establishment",
+          "from": 0,
+          "to": 0.12
+        },
+        {
+          "key": "foundation",
+          "name": "Foundations",
+          "from": 0.12,
+          "to": 0.34
+        },
+        {
+          "key": "frame",
+          "name": "Structural frame",
+          "from": 0.34,
+          "to": 0.62
+        },
+        {
+          "key": "enclosed",
+          "name": "Enclosed and commissioning",
+          "from": 0.62,
+          "to": 1
+        },
+        {
+          "key": "complete",
+          "name": "Complete",
+          "from": 1,
+          "to": 1
+        }
+      ],
+      "lod": {
+        "LOD0": {
+          "min": 8474,
+          "max": 23064
+        },
+        "LOD1": {
+          "min": 188,
+          "max": 594
+        }
+      },
+      "parts": 24,
+      "materials": "vertex colour only",
+      "pivot": "footprint centre at grade, Y=0",
+      "bounds": {
+        "min": [
+          -36,
+          0,
+          -25
+        ],
+        "max": [
+          36,
+          21.6,
+          25
+        ],
+        "size": [
+          72,
+          21.6,
+          50
+        ]
+      },
+      "basis": "fictional — representative industrial scenery, no sourced building",
+      "placeholder": false,
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_site_mesh.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "site.advanced_industry.v1",
+      "display_name": "Advanced industry",
+      "kind": "facility assembly (staged)",
+      "game_id": "advanced_industry",
+      "game_id_source": "spheres-sim/src/production.rs PROJECT_KINDS",
+      "source": "spheres-web/ui/site-mesh.js",
+      "generator": "SiteMesh.build(kind, stageOrProgress, {level, status, lod})",
+      "runtime": "spheres-web/ui/arsenal3d.js via the 'site' provider; card strip in productionCardHtml",
+      "glb": null,
+      "regenerate": "none — built in the browser from source",
+      "stages": [
+        {
+          "key": "site",
+          "name": "Site establishment",
+          "from": 0,
+          "to": 0.12
+        },
+        {
+          "key": "foundation",
+          "name": "Foundations",
+          "from": 0.12,
+          "to": 0.34
+        },
+        {
+          "key": "frame",
+          "name": "Structural frame",
+          "from": 0.34,
+          "to": 0.62
+        },
+        {
+          "key": "enclosed",
+          "name": "Enclosed and commissioning",
+          "from": 0.62,
+          "to": 1
+        },
+        {
+          "key": "complete",
+          "name": "Complete",
+          "from": 1,
+          "to": 1
+        }
+      ],
+      "lod": {
+        "LOD0": {
+          "min": 8202,
+          "max": 23068
+        },
+        "LOD1": {
+          "min": 180,
+          "max": 606
+        }
+      },
+      "parts": 24,
+      "materials": "vertex colour only",
+      "pivot": "footprint centre at grade, Y=0",
+      "bounds": {
+        "min": [
+          -33,
+          0,
+          -24
+        ],
+        "max": [
+          33,
+          13.79,
+          24
+        ],
+        "size": [
+          66,
+          13.79,
+          48
         ]
       },
       "basis": "fictional — representative industrial scenery, no sourced building",

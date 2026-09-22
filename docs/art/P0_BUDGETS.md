@@ -8,6 +8,7 @@ changing a verdict.
 
     node tools/ui/bench_art.cjs           regenerate this file, print timings to stdout
     node tools/ui/bench_art.cjs --check   exit 1 if this file is stale or anything is over budget
+    node tools/ui/bench_art.cjs --check-records   check reproducibility only; does not pass the budget gate
 
 ## What this file deliberately does not contain
 
@@ -23,11 +24,11 @@ Stated plainly, because these numbers are easy to mistake for performance:
 - **Frame time and frame rate.** Nothing here draws a pixel. There is no GL
   context, no rasteriser and no shader in this process, so nothing in this file
   is evidence for the roadmap's 60fps viewer or 30fps map targets.
-- **GPU memory as the driver actually allocates it.** The byte figures are the
-  size of the attribute arrays as JavaScript produces them. A driver aligns and
-  pads buffers, may keep a shadow copy in system memory, and charges per-buffer
-  overhead on top. Read the totals as a floor on GPU memory, never as an
-  allocation.
+- **Live GPU residency.** Base-upload figures sum only position, normal and
+  colour arrays. They exclude derived surface attributes, floor geometry,
+  shadow targets, textures, driver alignment and overhead. CPU material-class
+  tags are measured separately in P0_MEASUREMENTS.json. No offline inventory
+  total describes what a browser is holding or drawing at a given moment.
 - **Upload stalls.** How long `bufferData` blocks, whether it lands mid-frame,
   and what the driver does on re-specification are runtime properties of the
   real WebGL path.
@@ -42,9 +43,10 @@ Stated plainly, because these numbers are easy to mistake for performance:
   unavailable, context loss and restore, keyboard selection. Those need a
   browser and are the job of the check tools that drive one.
 
-What it *does* measure honestly: how many triangles the generators emit, how
-many bytes those triangles occupy in a vertex buffer, and how many bytes of
-source the game downloads to be able to make them.
+This measures generated triangles, CPU mesh arrays, base attribute upload
+payloads and source bytes. The browser probe in
+`tools/ui/art-memory-browser.cjs` separately records actual buffer storage
+requests and draw submissions; neither tool measures driver VRAM or visible pixels.
 
 ## Budgets applied
 
@@ -54,6 +56,9 @@ Read from roadmap section 4. The cell text is compared on every run; if section
 | class | roadmap row | roadmap cell | applied as | applied to |
 | --- | --- | --- | --- | --- |
 | vehicle LOD0 | Ground vehicle close inspection LOD0 | 20–45k triangles assembled | 20,000–45,000 tris | every ground platform, baseline and heaviest |
+| aircraft LOD0 | Aircraft inspection LOD0 | 25–60k | 25,000–60,000 tris | all three CP1 aircraft baselines |
+| vehicle LOD1 | LOD1 catalogue preview | 4–12k | 4,000–12,000 tris | all twelve ground/air baselines |
+| vehicle LOD2 | LOD2 map vehicle | 300–1,500 | 300–1,500 tris | all twelve ground/air baselines |
 | building near | Building close view / map | 2–12k / 100–800 | 2,000–12,000 tris | construction sites LOD0, town kit close |
 | building far | Building close view / map | 2–12k / 100–800 | 100–800 tris | construction sites LOD1, town kit map |
 | scene assembly | Scene assembly | Target ≤150k visible triangles initially | ≤ 150,000 tris | one town block |
@@ -64,25 +69,34 @@ does not fail. A budget with only a ceiling can only be `PASS` or `OVER`.
 
 ## Verdicts
 
-79 graded configurations: 47 PASS, 2 under the detail floor, 30 over the ceiling.
+112 graded configurations: 70 PASS, 0 under the detail floor, 42 over the ceiling.
 
-The geometry sweep covers nine ground platforms, construction sites and town
-assets. The export inventory below also includes tactical aircraft; aircraft
-geometry is listed in [P0_MANIFEST.md](P0_MANIFEST.md) but is not graded by this ground-only
-vehicle budget sweep.
+The geometry sweep covers nine ground platforms, all three CP1 aircraft,
+construction sites and town assets. These are the original roadmap ceilings;
+later high-detail requests have not silently replaced them. Reported overruns
+remain open design/performance decisions rather than being hidden by measurement repairs.
 
-30 measured configurations are over budget. `--check` exits 1 while any row here has content.
+42 measured configurations are over budget. `--check` exits 1 while any row here has content.
 
 | asset | configuration | measured | budget ceiling | over by |
 | --- | --- | --- | --- | --- |
-| `ground.tank_standard.baseline.v1` | baseline | 47,288 | 45,000 | 2,288 (5.1%) |
-| `ground.tank_standard.baseline.v1` | heaviest | 47,776 | 45,000 | 2,776 (6.2%) |
-| `ground.tank_heavy.baseline.v1` | baseline | 50,816 | 45,000 | 5,816 (12.9%) |
-| `ground.tank_heavy.baseline.v1` | heaviest | 51,304 | 45,000 | 6,304 (14.0%) |
-| `ground.tank_light.baseline.v1` | baseline | 47,288 | 45,000 | 2,288 (5.1%) |
-| `ground.tank_light.baseline.v1` | heaviest | 47,776 | 45,000 | 2,776 (6.2%) |
-| `ground.tank_destroyer.baseline.v1` | baseline | 47,288 | 45,000 | 2,288 (5.1%) |
-| `ground.tank_destroyer.baseline.v1` | heaviest | 47,776 | 45,000 | 2,776 (6.2%) |
+| `ground.tank_standard.baseline.v1` | baseline | 68,872 | 45,000 | 23,872 (53.0%) |
+| `ground.tank_standard.baseline.v1` | heaviest | 69,000 | 45,000 | 24,000 (53.3%) |
+| `ground.tank_heavy.baseline.v1` | baseline | 74,144 | 45,000 | 29,144 (64.8%) |
+| `ground.tank_heavy.baseline.v1` | heaviest | 74,272 | 45,000 | 29,272 (65.0%) |
+| `ground.tank_light.baseline.v1` | baseline | 68,872 | 45,000 | 23,872 (53.0%) |
+| `ground.tank_light.baseline.v1` | heaviest | 69,000 | 45,000 | 24,000 (53.3%) |
+| `ground.tank_destroyer.baseline.v1` | baseline | 68,872 | 45,000 | 23,872 (53.0%) |
+| `ground.tank_destroyer.baseline.v1` | heaviest | 69,000 | 45,000 | 24,000 (53.3%) |
+| `ground.ground_ifv.baseline.v1` | heaviest | 49,348 | 45,000 | 4,348 (9.7%) |
+| `ground.ground_artillery.baseline.v1` | baseline | 45,330 | 45,000 | 330 (0.7%) |
+| `ground.ground_artillery.baseline.v1` | heaviest | 49,248 | 45,000 | 4,248 (9.4%) |
+| `ground.ground_air_defense.baseline.v1` | heaviest | 45,812 | 45,000 | 812 (1.8%) |
+| `aviation.air_fighter.baseline.v1` | baseline LOD0 | 200,446 | 60,000 | 140,446 (234.1%) |
+| `aviation.air_light_attack.baseline.v1` | baseline LOD0 | 199,326 | 60,000 | 139,326 (232.2%) |
+| `aviation.air_tactical_strike.baseline.v1` | baseline LOD0 | 228,640 | 60,000 | 168,640 (281.1%) |
+| `aviation.air_tactical_strike.baseline.v1` | baseline LOD1 | 14,904 | 12,000 | 2,904 (24.2%) |
+| `aviation.air_tactical_strike.baseline.v1` | baseline LOD2 | 1,696 | 1,500 | 196 (13.1%) |
 | `site.infrastructure.v1` | near complete/L5/building | 30,756 | 12,000 | 18,756 (156.3%) |
 | `site.civilian_industry.v1` | near complete/L5/building | 39,302 | 12,000 | 27,302 (227.5%) |
 | `site.power_grid.v1` | near complete/L5/building | 38,552 | 12,000 | 26,552 (221.3%) |
@@ -96,6 +110,9 @@ vehicle budget sweep.
 | `site.automation.v1` | near complete/L5/building | 33,316 | 12,000 | 21,316 (177.6%) |
 | `site.efficiency.v1` | near complete/L5/building | 33,056 | 12,000 | 21,056 (175.5%) |
 | `site.starter_industry.v1` | near complete/L5/building | 30,164 | 12,000 | 18,164 (151.4%) |
+| `site.office_district.v1` | near complete/L5/building | 32,350 | 12,000 | 20,350 (169.6%) |
+| `site.shipyard.v1` | near complete/L5/building | 30,324 | 12,000 | 18,324 (152.7%) |
+| `site.advanced_industry.v1` | near complete/L5/building | 30,328 | 12,000 | 18,328 (152.7%) |
 | `town.temperate.mixed.v1` | close id 1997 | 199,331 | 150,000 | 49,331 (32.9%) |
 | `town.temperate.residential.v1` | close id 1994 | 214,044 | 150,000 | 64,044 (42.7%) |
 | `town.temperate.commercial.v1` | close id 1991 | 151,008 | 150,000 | 1,008 (0.7%) |
@@ -122,26 +139,26 @@ bound on the true maximum rather than a proof of it, and the simulation's own
 compatibility matrix may refuse some of these combinations as designs. What it
 answers is the question the budget asks — how heavy can this platform get.
 
-| asset | configuration | LOD0 tris | budget | verdict | upload bytes | parts |
+| asset | configuration | LOD0 tris | budget | verdict | base upload bytes | parts |
 | --- | --- | --- | --- | --- | --- | --- |
-| `ground.tank_standard.baseline.v1` | baseline | 47,288 | 20,000–45,000 | **OVER by 2,288 (5.1%)** | 5,107,104 | 21 |
-| `ground.tank_standard.baseline.v1` | heaviest | 47,776 | 20,000–45,000 | **OVER by 2,776 (6.2%)** | 5,159,808 | 23 |
-| `ground.tank_heavy.baseline.v1` | baseline | 50,816 | 20,000–45,000 | **OVER by 5,816 (12.9%)** | 5,488,128 | 21 |
-| `ground.tank_heavy.baseline.v1` | heaviest | 51,304 | 20,000–45,000 | **OVER by 6,304 (14.0%)** | 5,540,832 | 23 |
-| `ground.tank_light.baseline.v1` | baseline | 47,288 | 20,000–45,000 | **OVER by 2,288 (5.1%)** | 5,107,104 | 21 |
-| `ground.tank_light.baseline.v1` | heaviest | 47,776 | 20,000–45,000 | **OVER by 2,776 (6.2%)** | 5,159,808 | 23 |
-| `ground.tank_destroyer.baseline.v1` | baseline | 47,288 | 20,000–45,000 | **OVER by 2,288 (5.1%)** | 5,107,104 | 21 |
-| `ground.tank_destroyer.baseline.v1` | heaviest | 47,776 | 20,000–45,000 | **OVER by 2,776 (6.2%)** | 5,159,808 | 23 |
-| `ground.ground_ifv.baseline.v1` | baseline | 20,746 | 20,000–45,000 | PASS | 2,240,568 | 28 |
-| `ground.ground_ifv.baseline.v1` | heaviest | 26,272 | 20,000–45,000 | PASS | 2,837,376 | 29 |
-| `ground.ground_apc.baseline.v1` | baseline | 20,710 | 20,000–45,000 | PASS | 2,236,680 | 22 |
-| `ground.ground_apc.baseline.v1` | heaviest | 30,212 | 20,000–45,000 | PASS | 3,262,896 | 25 |
-| `ground.ground_recon.baseline.v1` | baseline | 18,418 | 20,000–45,000 | under by 1,582 | 1,989,144 | 22 |
-| `ground.ground_recon.baseline.v1` | heaviest | 28,000 | 20,000–45,000 | PASS | 3,024,000 | 25 |
-| `ground.ground_artillery.baseline.v1` | baseline | 20,822 | 20,000–45,000 | PASS | 2,248,776 | 30 |
-| `ground.ground_artillery.baseline.v1` | heaviest | 25,656 | 20,000–45,000 | PASS | 2,770,848 | 31 |
-| `ground.ground_air_defense.baseline.v1` | baseline | 18,950 | 20,000–45,000 | under by 1,050 | 2,046,600 | 28 |
-| `ground.ground_air_defense.baseline.v1` | heaviest | 24,024 | 20,000–45,000 | PASS | 2,594,592 | 29 |
+| `ground.tank_standard.baseline.v1` | baseline | 68,872 | 20,000–45,000 | **OVER by 23,872 (53.0%)** | 7,438,176 | 21 |
+| `ground.tank_standard.baseline.v1` | heaviest | 69,000 | 20,000–45,000 | **OVER by 24,000 (53.3%)** | 7,452,000 | 23 |
+| `ground.tank_heavy.baseline.v1` | baseline | 74,144 | 20,000–45,000 | **OVER by 29,144 (64.8%)** | 8,007,552 | 21 |
+| `ground.tank_heavy.baseline.v1` | heaviest | 74,272 | 20,000–45,000 | **OVER by 29,272 (65.0%)** | 8,021,376 | 23 |
+| `ground.tank_light.baseline.v1` | baseline | 68,872 | 20,000–45,000 | **OVER by 23,872 (53.0%)** | 7,438,176 | 21 |
+| `ground.tank_light.baseline.v1` | heaviest | 69,000 | 20,000–45,000 | **OVER by 24,000 (53.3%)** | 7,452,000 | 23 |
+| `ground.tank_destroyer.baseline.v1` | baseline | 68,872 | 20,000–45,000 | **OVER by 23,872 (53.0%)** | 7,438,176 | 21 |
+| `ground.tank_destroyer.baseline.v1` | heaviest | 69,000 | 20,000–45,000 | **OVER by 24,000 (53.3%)** | 7,452,000 | 23 |
+| `ground.ground_ifv.baseline.v1` | baseline | 44,222 | 20,000–45,000 | PASS | 4,775,976 | 28 |
+| `ground.ground_ifv.baseline.v1` | heaviest | 49,348 | 20,000–45,000 | **OVER by 4,348 (9.7%)** | 5,329,584 | 29 |
+| `ground.ground_apc.baseline.v1` | baseline | 26,746 | 20,000–45,000 | PASS | 2,888,568 | 22 |
+| `ground.ground_apc.baseline.v1` | heaviest | 37,004 | 20,000–45,000 | PASS | 3,996,432 | 25 |
+| `ground.ground_recon.baseline.v1` | baseline | 23,726 | 20,000–45,000 | PASS | 2,562,408 | 22 |
+| `ground.ground_recon.baseline.v1` | heaviest | 34,036 | 20,000–45,000 | PASS | 3,675,888 | 25 |
+| `ground.ground_artillery.baseline.v1` | baseline | 45,330 | 20,000–45,000 | **OVER by 330 (0.7%)** | 4,895,640 | 30 |
+| `ground.ground_artillery.baseline.v1` | heaviest | 49,248 | 20,000–45,000 | **OVER by 4,248 (9.4%)** | 5,318,784 | 31 |
+| `ground.ground_air_defense.baseline.v1` | baseline | 41,178 | 20,000–45,000 | PASS | 4,447,224 | 28 |
+| `ground.ground_air_defense.baseline.v1` | heaviest | 45,812 | 20,000–45,000 | **OVER by 812 (1.8%)** | 4,947,696 | 29 |
 
 Components that make each platform heaviest:
 
@@ -149,24 +166,52 @@ Components that make each platform heaviest:
 - `tank_heavy`: armament=gun_120, mobility=engine_diesel_600, sensors=optics_night
 - `tank_light`: armament=gun_120, mobility=engine_diesel_600, sensors=optics_night
 - `tank_destroyer`: armament=gun_120, mobility=engine_diesel_600, sensors=optics_night
-- `ground_ifv`: active_protection=aps_hard, ammunition=ground_ammo_guided, armament=ground_aa_gun, communications=ground_comms_network, fire_control=fcs_digital, mobility=engine_diesel_1200, protection=ground_armor_modular, sensors=optics_night, suspension=suspension_hydro, transmission=ground_transmission_electric, turret=ground_station_mg
-- `ground_apc`: active_protection=aps_hard, ammunition=ground_ammo_guided, armament=ground_aa_gun, communications=ground_comms_network, fire_control=fcs_digital, mobility=engine_diesel_1200, protection=ground_armor_modular, sensors=optics_night, suspension=suspension_hydro, transmission=ground_transmission_electric, wheels=ground_wheels_runflat
-- `ground_recon`: active_protection=aps_hard, ammunition=ground_ammo_guided, armament=ground_aa_gun, communications=ground_comms_network, fire_control=fcs_digital, mobility=engine_diesel_1200, protection=ground_armor_modular, recon_package=ground_recon_mast, sensors=optics_night, suspension=suspension_hydro, transmission=ground_transmission_electric, wheels=ground_wheels_runflat
-- `ground_artillery`: active_protection=aps_hard, ammunition=ground_ammo_guided, armament=ground_aa_gun, artillery_loader=ground_loader_assisted, communications=ground_comms_network, fire_control=fcs_digital, mobility=engine_diesel_1200, protection=ground_armor_modular, sensors=optics_night, suspension=suspension_hydro, transmission=ground_transmission_electric, turret=ground_station_mg
-- `ground_air_defense`: active_protection=aps_hard, ammunition=ground_ammo_guided, communications=ground_comms_network, fire_control=fcs_digital, mobility=engine_diesel_1200, protection=ground_armor_modular, radar=ground_radar_tracking, sensors=optics_night, suspension=suspension_hydro, transmission=ground_transmission_electric, turret=ground_station_mg
+- `ground_ifv`: active_protection=aps_hard, ammunition=ground_ammo_guided, armament=ground_aa_gun, communications=ground_comms_network, fire_control=fcs_digital, mobility=engine_diesel_1200, sensors=optics_night, suspension=suspension_hydro, transmission=ground_transmission_electric, troop_compartment=ground_troops_protected, turret=ground_turret_howitzer
+- `ground_apc`: active_protection=aps_hard, ammunition=ground_ammo_guided, armament=ground_aa_gun, communications=ground_comms_network, fire_control=fcs_digital, mobility=engine_diesel_1200, sensors=optics_night, suspension=suspension_hydro, transmission=ground_transmission_electric, troop_compartment=ground_troops_protected, turret=ground_turret_howitzer, wheels=ground_wheels_runflat
+- `ground_recon`: active_protection=aps_hard, ammunition=ground_ammo_guided, armament=ground_aa_gun, communications=ground_comms_network, fire_control=fcs_digital, mobility=engine_diesel_1200, recon_package=ground_recon_mast, sensors=optics_night, suspension=suspension_hydro, transmission=ground_transmission_electric, turret=ground_turret_howitzer, wheels=ground_wheels_runflat
+- `ground_artillery`: active_protection=aps_hard, ammunition=ground_ammo_guided, armament=ground_aa_gun, artillery_loader=ground_loader_assisted, communications=ground_comms_network, fire_control=fcs_digital, mobility=engine_diesel_1200, sensors=optics_night, suspension=suspension_hydro, transmission=ground_transmission_electric
+- `ground_air_defense`: active_protection=aps_hard, ammunition=ground_ammo_guided, communications=ground_comms_network, fire_control=fcs_digital, mobility=engine_diesel_1200, radar=ground_radar_tracking, sensors=optics_night, suspension=suspension_hydro, transmission=ground_transmission_electric, turret=ground_turret_howitzer
 
-Ground equipment has numeric LOD0, LOD1 and LOD2. A baseline `tank_heavy`
-probe measures 50,816 / 9,010 / 1,200 triangles respectively.
-The graded vehicle sweep above remains LOD0-only; this probe is not a complete
-coarse-configuration budget audit. [P0_MANIFEST.md](P0_MANIFEST.md) records all
-ground baselines at each detail level, and `check_equipment_mesh.cjs` checks
-the 4–12k catalogue and 300–1,500 map bands
-across individual and combined component choices. Aircraft currently have
-inspection geometry only and are outside this vehicle sweep.
+## Aircraft inspection and ground/air cheaper detail levels
+
+Every row uses the current baseline specification. This proves these builds,
+not the full space of component combinations. All three aircraft now have
+authored LOD1 and LOD2 meshes. A baseline `tank_heavy` probe measures
+74,144 / 5,834 / 1,204 triangles across LOD0/1/2.
+
+| platform | detail | triangles | budget | verdict | base upload bytes | CPU backing bytes |
+| --- | --- | --- | --- | --- | --- | --- |
+| tank_standard | LOD1 | 8,050 | 4,000–12,000 | PASS | 869,400 | 893,550 |
+| tank_standard | LOD2 | 1,168 | 300–1,500 | PASS | 126,144 | 129,648 |
+| tank_heavy | LOD1 | 5,834 | 4,000–12,000 | PASS | 630,072 | 647,574 |
+| tank_heavy | LOD2 | 1,204 | 300–1,500 | PASS | 130,032 | 133,644 |
+| tank_light | LOD1 | 8,050 | 4,000–12,000 | PASS | 869,400 | 893,550 |
+| tank_light | LOD2 | 1,168 | 300–1,500 | PASS | 126,144 | 129,648 |
+| tank_destroyer | LOD1 | 8,050 | 4,000–12,000 | PASS | 869,400 | 893,550 |
+| tank_destroyer | LOD2 | 1,168 | 300–1,500 | PASS | 126,144 | 129,648 |
+| ground_ifv | LOD1 | 5,862 | 4,000–12,000 | PASS | 633,096 | 650,682 |
+| ground_ifv | LOD2 | 1,144 | 300–1,500 | PASS | 123,552 | 126,984 |
+| ground_apc | LOD1 | 4,197 | 4,000–12,000 | PASS | 453,276 | 465,867 |
+| ground_apc | LOD2 | 982 | 300–1,500 | PASS | 106,056 | 109,002 |
+| ground_recon | LOD1 | 4,476 | 4,000–12,000 | PASS | 483,408 | 496,836 |
+| ground_recon | LOD2 | 944 | 300–1,500 | PASS | 101,952 | 104,784 |
+| ground_artillery | LOD1 | 5,182 | 4,000–12,000 | PASS | 559,656 | 575,202 |
+| ground_artillery | LOD2 | 1,144 | 300–1,500 | PASS | 123,552 | 126,984 |
+| ground_air_defense | LOD1 | 5,632 | 4,000–12,000 | PASS | 608,256 | 625,152 |
+| ground_air_defense | LOD2 | 1,112 | 300–1,500 | PASS | 120,096 | 123,432 |
+| air_fighter | LOD0 | 200,446 | 25,000–60,000 | **OVER by 140,446 (234.1%)** | 21,648,168 | 22,249,506 |
+| air_fighter | LOD1 | 11,594 | 4,000–12,000 | PASS | 1,252,152 | 1,286,934 |
+| air_fighter | LOD2 | 1,296 | 300–1,500 | PASS | 139,968 | 143,856 |
+| air_light_attack | LOD0 | 199,326 | 25,000–60,000 | **OVER by 139,326 (232.2%)** | 21,527,208 | 22,125,186 |
+| air_light_attack | LOD1 | 11,474 | 4,000–12,000 | PASS | 1,239,192 | 1,273,614 |
+| air_light_attack | LOD2 | 1,252 | 300–1,500 | PASS | 135,216 | 138,972 |
+| air_tactical_strike | LOD0 | 228,640 | 25,000–60,000 | **OVER by 168,640 (281.1%)** | 24,693,120 | 25,379,040 |
+| air_tactical_strike | LOD1 | 14,904 | 4,000–12,000 | **OVER by 2,904 (24.2%)** | 1,609,632 | 1,654,344 |
+| air_tactical_strike | LOD2 | 1,696 | 300–1,500 | **OVER by 196 (13.1%)** | 183,168 | 188,256 |
 
 ## Construction sites
 
-Swept over 13 kinds x 5 stages x 5 levels x 4 statuses x 2 LODs = 2,600 builds. `min` and `max` are
+Swept over 16 kinds x 5 stages x 5 levels x 4 statuses x 2 LODs = 3,200 builds. `min` and `max` are
 across that whole sweep, so `max` is the worst case the sim can ask for.
 
 | asset | near min | near max | near verdict | far min | far max | far verdict | worst-case near bytes |
@@ -184,6 +229,9 @@ across that whole sweep, so `max` is the worst case the sim can ask for.
 | `site.automation.v1` | 9,044 | 33,316 | **OVER by 21,316 (177.6%)** | 220 | 658 | PASS | 3,598,128 |
 | `site.efficiency.v1` | 8,882 | 33,056 | **OVER by 21,056 (175.5%)** | 208 | 730 | PASS | 3,570,048 |
 | `site.starter_industry.v1` | 7,250 | 30,164 | **OVER by 18,164 (151.4%)** | 164 | 542 | PASS | 3,257,712 |
+| `site.office_district.v1` | 8,066 | 32,350 | **OVER by 20,350 (169.6%)** | 180 | 598 | PASS | 3,493,800 |
+| `site.shipyard.v1` | 8,474 | 30,324 | **OVER by 18,324 (152.7%)** | 188 | 642 | PASS | 3,274,992 |
+| `site.advanced_industry.v1` | 8,202 | 30,328 | **OVER by 18,328 (152.7%)** | 180 | 654 | PASS | 3,275,424 |
 
 Which configuration is the worst case, and how many selectable parts it carries:
 
@@ -202,6 +250,9 @@ Which configuration is the worst case, and how many selectable parts it carries:
 | `site.automation.v1` | complete/L5/building | 47 | complete/L5/building | 15 |
 | `site.efficiency.v1` | complete/L5/building | 50 | complete/L5/building | 19 |
 | `site.starter_industry.v1` | complete/L5/building | 45 | complete/L5/building | 14 |
+| `site.office_district.v1` | complete/L5/building | 46 | complete/L5/building | 14 |
+| `site.shipyard.v1` | complete/L5/building | 44 | complete/L5/building | 14 |
+| `site.advanced_industry.v1` | complete/L5/building | 44 | complete/L5/building | 14 |
 
 ## Town blocks
 
@@ -232,7 +283,7 @@ than graded against a number written for one building.
 The pieces a block is assembled from, each at the largest width and tallest
 storey count its kind admits (15 kinds at maximum width and storeys x 4 seeds x 2 LODs = 120 builds).
 These are constituents of the blocks above, not separately resident assets, so
-they are graded but never added into the resident totals — that would count the
+they are graded but never added into the inventory totals — that would count the
 same triangles twice.
 
 | kind | worst case | close tris | close verdict | map tris | map verdict |
@@ -262,69 +313,73 @@ failure; this is where the next art pass will push something over.
 
 | asset | configuration | triangles | ceiling | of ceiling |
 | --- | --- | --- | --- | --- |
+| `ground.ground_ifv.baseline.v1` | baseline | 44,222 | 45,000 | 98.3% |
+| `aviation.air_fighter.baseline.v1` | baseline LOD1 | 11,594 | 12,000 | 96.6% |
+| `aviation.air_light_attack.baseline.v1` | baseline LOD1 | 11,474 | 12,000 | 95.6% |
 | `site.infrastructure.v1` | far complete/L5/building | 756 | 800 | 94.5% |
-| `site.efficiency.v1` | far complete/L5/building | 730 | 800 | 91.3% |
-| `town.kit.low_apartment` | close, maximum size | 10,844 | 12,000 | 90.4% |
-| `site.freight_terminal.v1` | far complete/L5/building | 722 | 800 | 90.3% |
-| `site.power_grid.v1` | far complete/L5/building | 712 | 800 | 89.0% |
+| `ground.ground_air_defense.baseline.v1` | baseline | 41,178 | 45,000 | 91.5% |
 
-## Resident cost, if the measured ground, site and town set were resident at once
+## Hypothetical ground/site/town inventory, not live residency
 
-No frame draws this. It is the measured set held at once, which is the
-number that decides whether a bounded cache can keep everything rather than
-rebuild it.
+This sums one measured mesh per asset. No frame draws this set and no runtime
+cache is being observed. Aircraft appear in the detail table above but are not
+added here. CPU backing bytes and per-attribute layouts are in P0_MEASUREMENTS.json.
 
-| set | assets | triangles | upload bytes |
+| set | assets | stored triangles | base upload payload bytes |
 | --- | --- | --- | --- |
-| Ground vehicles, heaviest specification | 9 | 328,796 | 35,509,968 |
-| Construction sites, worst case near | 13 | 455,516 | 49,195,728 |
+| Ground vehicles, heaviest specification | 9 | 496,720 | 53,645,760 |
+| Construction sites, worst case near | 16 | 548,518 | 59,239,944 |
 | Town blocks, worst case close | 5 | 817,992 | 88,343,136 |
-| **Measured set, close detail** | **27** | **1,602,304** | **173,048,832** (165.03 MiB) |
-| Sites/towns coarse; ground vehicles retained at LOD0 for comparison | 27 | 355,734 | 38,419,272 (36.64 MiB) |
+| **Measured set, close detail** | **30** | **1,863,230** | **201,228,840** (191.91 MiB) |
+| Sites/towns coarse; ground vehicles retained at LOD0 for comparison | 30 | 525,552 | 56,759,616 (54.13 MiB) |
 
 The comparison row deliberately retains the measured vehicles at LOD0:
-328,796 of its 355,734 triangles are
-the nine ground vehicles, with 26,938
+496,720 of its 525,552 triangles are
+the nine ground vehicles, with 28,832
 for the coarse sites and blocks. It is not the live map's rendering cost and
 does not imply the available ground LOD1/LOD2 geometry is unused.
 
-Upload arithmetic, for every byte figure above: the meshes are non-indexed with
-three `Float32Array` attributes, so bytes = triangles x 3 vertices x 3
-components x 4 bytes x 3 attributes = triangles x 108. The tool
-checks that against the real `byteLength` of every mesh it measures and stops if
-a generator ever stops matching it.
+Payloads are summed from each actual attribute's `byteLength`, not inferred
+from a universal bytes-per-triangle constant. Known CPU-only material tags
+are validated and counted separately; unknown layouts fail with an explanation.
+Shared CPU backing buffers are counted once per mesh. Independently uploaded
+attributes count once per upload even if their CPU views alias one allocation.
+Tank/armoured inspection additionally prepares four floats per vertex; the
+browser probe records this actual upload plus the floor. Repeated shadow,
+glass and highlight passes submit geometry again without storing another copy.
 
-## Source cost — what the player actually downloads
+## Canonical source cost — not measured network traffic
 
 The generators ship as source and build their meshes in the browser without
 fetching GLB assets or requiring a build step. These figures measure the three
-geometry generators; renderer, stylesheet and other page costs are not included.
+geometry generators normalized to Git's LF text. Checkout line endings, HTTP
+compression/headers, renderer, stylesheet and other page costs are not included.
 
 | file | bytes | |
 | --- | --- | --- |
-| `spheres-web/ui/equipment-mesh.js` | 134,101 | 131.0 KiB |
-| `spheres-web/ui/site-mesh.js` | 300,602 | 293.6 KiB |
-| `spheres-web/ui/town-mesh.js` | 172,044 | 168.0 KiB |
-| **total** | **606,747** | **592.5 KiB** |
+| `spheres-web/ui/equipment-mesh.js` | 177,487 | 173.3 KiB |
+| `spheres-web/ui/site-mesh.js` | 304,159 | 297.0 KiB |
+| `spheres-web/ui/town-mesh.js` | 168,970 | 165.0 KiB |
+| **total** | **650,616** | **635.4 KiB** |
 
-606,747 bytes of source produce 1,602,304 triangles of
-geometry — 285x its own weight in vertex data. That ratio is not fixed
+650,616 bytes of source produce 1,863,230 triangles of
+geometry — 309x its own weight in vertex data. That ratio is not fixed
 at authoring time either: it grows with every extra seed, stage, level and
 district asked of the same source.
 
-12 exported `.glb` files sit in `spheres-web/ui/equipment-models/`
-totalling 40,029,808 bytes (38.18 MiB). They are the
+13 exported `.glb` files sit in `spheres-web/ui/equipment-models/`
+totalling 125,594,104 bytes (119.78 MiB). They are the
 portable deliverable roadmap section 4 asks for, not a runtime download — the game
 never fetches them — and they are the comparison that settles the argument:
-12 equipment exports (2 aircraft and 10 ground-vehicle configurations) as binary assets weigh
-66.0x the entire generator source
+13 equipment exports (3 aircraft and 10 ground-vehicle configurations) as binary assets weigh
+193.0x the entire generator source
 that builds every vehicle, every site at every stage and every town block.
 
 ## Method
 
 - Every number is measured by building the mesh and reading `triangleCount`,
   `parts` and the attribute arrays. Nothing is copied from another document.
-- Sweeps: vehicles 631 builds, sites 2,600,
+- Sweeps: vehicles 631 builds, sites 3,200,
   town blocks 80, town kit 120.
 - The vehicle worst case is greedy coordinate ascent over the simulation's own
   component catalogue, repeated until a pass buys nothing (2 passes).

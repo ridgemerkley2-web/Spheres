@@ -5,8 +5,8 @@
 // "initial budgets to validate on the user's machine, not measured performance
 // promises". The P0 exit gate then asks for "measured performance recorded".
 // This tool measures the ground-vehicle, site and town set, counts the
-// triangles the generator actually emits, computes the bytes those meshes would
-// occupy on the GPU, weighs the source that produces them, and states PASS,
+// triangles the generator emits, records CPU mesh and base attribute payload
+// bytes, weighs the source that produces them, and states PASS,
 // UNDER or OVER against the roadmap's own numbers.
 //
 //   node tools/ui/bench_art.cjs            -> docs/art/P0_BUDGETS.md, timings on stdout
@@ -34,6 +34,7 @@ const fs = require("fs");
 const path = require("path");
 const zlib = require("zlib");
 const { spawnSync } = require("child_process");
+const {measureMesh, sumPayloads} = require('./mesh-accounting.cjs');
 
 const ROOT = path.resolve(__dirname, "..", "..");
 const ui = (f) => path.join(ROOT, "spheres-web", "ui", f);
@@ -57,6 +58,7 @@ const TownMesh = timedRequire("town-mesh.js");
 // file exists to prevent.
 const BUDGETS = {
   vehicle_lod0: { row: "Ground vehicle close inspection LOD0", cell: "20–45k triangles assembled", min: 20000, max: 45000 },
+  aircraft_lod0: { row: "Aircraft inspection LOD0", cell: "25–60k", min: 25000, max: 60000 },
   vehicle_lod1: { row: "LOD1 catalogue preview", cell: "4–12k", min: 4000, max: 12000 },
   vehicle_lod2: { row: "LOD2 map vehicle", cell: "300–1,500", min: 300, max: 1500 },
   building_near: { row: "Building close view / map", cell: "2–12k / 100–800", min: 2000, max: 12000 },
@@ -87,28 +89,11 @@ function verifyBudgets() {
 }
 
 // ------------------------------------------------------------- mesh arithmetic
-// Non-indexed, three Float32Array attributes, nine floats per triangle each.
-// That is the arithmetic behind every byte figure in the document, so it is
-// checked against the real arrays rather than assumed: a generator that starts
-// emitting UVs or an index buffer stops this tool instead of quietly making
-// every number in the file wrong.
-const BYTES_PER_TRI = 3 /* vertices */ * 3 /* components */ * 4 /* bytes */ * 3 /* attributes */;
-function uploadBytes(mesh, where) {
-  const views = Object.keys(mesh).filter((k) => ArrayBuffer.isView(mesh[k]));
-  const expect = ["positions", "normals", "colors"];
-  const shaped = views.length === 3 && expect.every((k) => views.includes(k))
-    && expect.every((k) => mesh[k] instanceof Float32Array && mesh[k].length === mesh.triangleCount * 9);
-  if (!shaped) {
-    console.error(`${where}: vertex layout changed (attributes: ${views.join(", ") || "none"}). `
-      + "The triangles*3*3*4*3 upload arithmetic in tools/ui/bench_art.cjs no longer holds; fix the tool before trusting a budget.");
-    process.exit(1);
-  }
-  const actual = expect.reduce((a, k) => a + mesh[k].byteLength, 0);
-  if (actual !== mesh.triangleCount * BYTES_PER_TRI) {
-    console.error(`${where}: ${actual} attribute bytes against ${mesh.triangleCount * BYTES_PER_TRI} predicted`);
-    process.exit(1);
-  }
-  return actual;
+// Material-class bytes belong to the CPU mesh; the viewer derives a separate
+// float surface attribute. Base uploads are not the viewer's total residency.
+function payload(mesh, where) {
+  const accounting = measureMesh(mesh, where);
+  return {bytes: accounting.base_attribute_upload_bytes, accounting};
 }
 
 const fmt = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -185,7 +170,7 @@ function measureVehicles() {
     ]) {
       rows.push({
         asset: `ground.${platform}.baseline.v1`, platform, config, note,
-        tris: mesh.triangleCount, bytes: uploadBytes(mesh, `${platform} ${config}`),
+        tris: mesh.triangleCount, ...payload(mesh, `${platform} ${config}`),
         parts: mesh.parts.length, budget: BUDGETS.vehicle_lod0,
         v: verdict(mesh.triangleCount, BUDGETS.vehicle_lod0),
       });
@@ -195,6 +180,23 @@ function measureVehicles() {
   // contract without pretending the LOD0 sweep grades every coarse variant.
   const lodProbe = [0, 1, 2].map(lod => EquipmentMesh.build({ platform: "tank_heavy", lod }).triangleCount);
   return { rows, builds: builds + 3, passes, components: components.length, lodProbe };
+}
+
+// Grade actual cheaper meshes too; baseline probes do not prove every possible
+// component combination, and are labelled accordingly in the report.
+function measureDetailLevels() {
+  const rows = [];
+  for (const platform of [...PLATFORMS, 'air_fighter', 'air_light_attack', 'air_tactical_strike']) {
+    for (const lod of [0, 1, 2]) {
+      if (lod === 0 && !platform.startsWith('air_')) continue;
+      const mesh = EquipmentMesh.build({platform, lod});
+      const budget = lod === 0 ? BUDGETS.aircraft_lod0 : BUDGETS[`vehicle_lod${lod}`];
+      rows.push({asset: `${platform.startsWith('air_') ? 'aviation' : 'ground'}.${platform}.baseline.v1`,
+        platform, config: `baseline LOD${lod}`, lod, tris: mesh.triangleCount,
+        ...payload(mesh, `${platform} LOD${lod}`), budget, v: verdict(mesh.triangleCount, budget)});
+    }
+  }
+  return {rows, builds: rows.length};
 }
 
 // --------------------------------------------------------------------- sites
@@ -219,7 +221,7 @@ function measureSites() {
             builds++;
             const at = { tris: mesh.triangleCount, config: `${stage.key}/L${level}/${status}` };
             if (!lo || at.tris < lo.tris) lo = at;
-            if (!hi || at.tris > hi.tris) hi = { ...at, bytes: uploadBytes(mesh, `${kind} ${at.config}`), parts: mesh.parts.length };
+            if (!hi || at.tris > hi.tris) hi = { ...at, ...payload(mesh, `${kind} ${at.config}`), parts: mesh.parts.length };
           }
         }
       }
@@ -246,7 +248,7 @@ function measureTownBlocks() {
         builds++;
         const at = { tris: mesh.triangleCount, config: `id ${id}`, lots: mesh.lots ? mesh.lots.length : null };
         if (!lo || at.tris < lo.tris) lo = at;
-        if (!hi || at.tris > hi.tris) hi = { ...at, bytes: uploadBytes(mesh, `town ${district} ${lod}`), parts: mesh.parts.length };
+        if (!hi || at.tris > hi.tris) hi = { ...at, ...payload(mesh, `town ${district} ${lod}`), parts: mesh.parts.length };
       }
       row[lod] = { lo, hi, budget: BUDGETS.scene, v: verdict(hi.tris, BUDGETS.scene) };
     }
@@ -258,7 +260,7 @@ function measureTownBlocks() {
 // The kit the blocks are assembled from, at the largest footprint and the
 // tallest storey count each kind admits. These are constituents of a block, not
 // separately resident assets, so they are graded but never added to the
-// resident total — that would count the same triangles twice.
+// inventory total — that would count the same triangles twice.
 function measureTownBuildings() {
   const rows = []; let builds = 0;
   for (const kind of TownMesh.kinds()) {
@@ -270,7 +272,7 @@ function measureTownBuildings() {
       for (const id of [0, 1, 2, 3]) {
         const mesh = TownMesh.building(kind, { id, width, storeys, lod: lod === "map" ? "map" : undefined });
         builds++;
-        if (!hi || mesh.triangleCount > hi.tris) hi = { tris: mesh.triangleCount, bytes: uploadBytes(mesh, `${kind} ${lod}`), parts: mesh.parts.length };
+        if (!hi || mesh.triangleCount > hi.tris) hi = { tris: mesh.triangleCount, ...payload(mesh, `${kind} ${lod}`), parts: mesh.parts.length };
       }
       const budget = lod === "map" ? BUDGETS.building_far : BUDGETS.building_near;
       row[lod] = { hi, budget, v: verdict(hi.tris, budget) };
@@ -283,7 +285,9 @@ function measureTownBuildings() {
 // -------------------------------------------------------------- source weight
 function measureSource() {
   const files = GENERATORS.map((f) => {
-    const buf = fs.readFileSync(ui(f));
+    // Git's LF text, so Windows checkout conversion cannot stale the record.
+    // This is canonical source weight, not a browser HTTP transfer measurement.
+    const buf = Buffer.from(fs.readFileSync(ui(f), 'utf8').replace(/\r\n/g, '\n'));
     return { file: `spheres-web/ui/${f}`, bytes: buf.length, gzip: zlib.gzipSync(buf, { level: 9 }).length };
   });
   const dir = path.join(ROOT, "spheres-web", "ui", "equipment-models");
@@ -397,6 +401,7 @@ changing a verdict.
 
     node tools/ui/bench_art.cjs           regenerate this file, print timings to stdout
     node tools/ui/bench_art.cjs --check   exit 1 if this file is stale or anything is over budget
+    node tools/ui/bench_art.cjs --check-records   check reproducibility only; does not pass the budget gate
 
 ## What this file deliberately does not contain
 
@@ -412,11 +417,11 @@ Stated plainly, because these numbers are easy to mistake for performance:
 - **Frame time and frame rate.** Nothing here draws a pixel. There is no GL
   context, no rasteriser and no shader in this process, so nothing in this file
   is evidence for the roadmap's 60fps viewer or 30fps map targets.
-- **GPU memory as the driver actually allocates it.** The byte figures are the
-  size of the attribute arrays as JavaScript produces them. A driver aligns and
-  pads buffers, may keep a shadow copy in system memory, and charges per-buffer
-  overhead on top. Read the totals as a floor on GPU memory, never as an
-  allocation.
+- **Live GPU residency.** Base-upload figures sum only position, normal and
+  colour arrays. They exclude derived surface attributes, floor geometry,
+  shadow targets, textures, driver alignment and overhead. CPU material-class
+  tags are measured separately in P0_MEASUREMENTS.json. No offline inventory
+  total describes what a browser is holding or drawing at a given moment.
 - **Upload stalls.** How long \`bufferData\` blocks, whether it lands mid-frame,
   and what the driver does on re-specification are runtime properties of the
   real WebGL path.
@@ -431,9 +436,10 @@ Stated plainly, because these numbers are easy to mistake for performance:
   unavailable, context loss and restore, keyboard selection. Those need a
   browser and are the job of the check tools that drive one.
 
-What it *does* measure honestly: how many triangles the generators emit, how
-many bytes those triangles occupy in a vertex buffer, and how many bytes of
-source the game downloads to be able to make them.
+This measures generated triangles, CPU mesh arrays, base attribute upload
+payloads and source bytes. The browser probe in
+\`tools/ui/art-memory-browser.cjs\` separately records actual buffer storage
+requests and draw submissions; neither tool measures driver VRAM or visible pixels.
 
 ## Budgets applied
 
@@ -443,6 +449,9 @@ Read from roadmap section 4. The cell text is compared on every run; if section
 | class | roadmap row | roadmap cell | applied as | applied to |
 | --- | --- | --- | --- | --- |
 | vehicle LOD0 | ${BUDGETS.vehicle_lod0.row} | ${BUDGETS.vehicle_lod0.cell} | ${budgetText(BUDGETS.vehicle_lod0)} tris | every ground platform, baseline and heaviest |
+| aircraft LOD0 | ${BUDGETS.aircraft_lod0.row} | ${BUDGETS.aircraft_lod0.cell} | ${budgetText(BUDGETS.aircraft_lod0)} tris | all three CP1 aircraft baselines |
+| vehicle LOD1 | ${BUDGETS.vehicle_lod1.row} | ${BUDGETS.vehicle_lod1.cell} | ${budgetText(BUDGETS.vehicle_lod1)} tris | all twelve ground/air baselines |
+| vehicle LOD2 | ${BUDGETS.vehicle_lod2.row} | ${BUDGETS.vehicle_lod2.cell} | ${budgetText(BUDGETS.vehicle_lod2)} tris | all twelve ground/air baselines |
 | building near | ${BUDGETS.building_near.row} | ${BUDGETS.building_near.cell} | ${budgetText(BUDGETS.building_near)} tris | construction sites LOD0, town kit close |
 | building far | ${BUDGETS.building_far.row} | ${BUDGETS.building_far.cell} | ${budgetText(BUDGETS.building_far)} tris | construction sites LOD1, town kit map |
 | scene assembly | ${BUDGETS.scene.row} | ${BUDGETS.scene.cell} | ${budgetText(BUDGETS.scene)} tris | one town block |
@@ -455,10 +464,10 @@ does not fail. A budget with only a ceiling can only be \`PASS\` or \`OVER\`.
 
 ${m.graded.length} graded configurations: ${gradeCount("PASS")} PASS, ${gradeCount("UNDER")} under the detail floor, ${gradeCount("OVER")} over the ceiling.
 
-The geometry sweep covers nine ground platforms, construction sites and town
-assets. The export inventory below also includes tactical aircraft; aircraft
-geometry is listed in [P0_MANIFEST.md](P0_MANIFEST.md) but is not graded by this ground-only
-vehicle budget sweep.
+The geometry sweep covers nine ground platforms, all three CP1 aircraft,
+construction sites and town assets. These are the original roadmap ceilings;
+later high-detail requests have not silently replaced them. Reported overruns
+remain open design/performance decisions rather than being hidden by measurement repairs.
 
 ${overSection}
 
@@ -473,7 +482,7 @@ bound on the true maximum rather than a proof of it, and the simulation's own
 compatibility matrix may refuse some of these combinations as designs. What it
 answers is the question the budget asks — how heavy can this platform get.
 
-| asset | configuration | LOD0 tris | budget | verdict | upload bytes | parts |
+| asset | configuration | LOD0 tris | budget | verdict | base upload bytes | parts |
 | --- | --- | --- | --- | --- | --- | --- |
 ${vehicleRows}
 
@@ -481,14 +490,16 @@ Components that make each platform heaviest:
 
 ${m.vehicles.rows.filter((r) => r.config === "heaviest").map((r) => `- \`${r.platform}\`: ${r.note}`).join("\n")}
 
-Ground equipment has numeric LOD0, LOD1 and LOD2. A baseline \`tank_heavy\`
-probe measures ${m.vehicles.lodProbe.map(fmt).join(" / ")} triangles respectively.
-The graded vehicle sweep above remains LOD0-only; this probe is not a complete
-coarse-configuration budget audit. [P0_MANIFEST.md](P0_MANIFEST.md) records all
-ground baselines at each detail level, and \`check_equipment_mesh.cjs\` checks
-the ${BUDGETS.vehicle_lod1.cell} catalogue and ${BUDGETS.vehicle_lod2.cell} map bands
-across individual and combined component choices. Aircraft currently have
-inspection geometry only and are outside this vehicle sweep.
+## Aircraft inspection and ground/air cheaper detail levels
+
+Every row uses the current baseline specification. This proves these builds,
+not the full space of component combinations. All three aircraft now have
+authored LOD1 and LOD2 meshes. A baseline \`tank_heavy\` probe measures
+${m.vehicles.lodProbe.map(fmt).join(" / ")} triangles across LOD0/1/2.
+
+| platform | detail | triangles | budget | verdict | base upload bytes | CPU backing bytes |
+| --- | --- | --- | --- | --- | --- | --- |
+${m.details.rows.map(r => `| ${r.platform} | LOD${r.lod} | ${fmt(r.tris)} | ${budgetText(r.budget)} | ${r.v.text} | ${fmt(r.bytes)} | ${fmt(r.accounting.cpu_backing_buffer_bytes)} |`).join("\n")}
 
 ## Construction sites
 
@@ -530,7 +541,7 @@ than graded against a number written for one building.
 The pieces a block is assembled from, each at the largest width and tallest
 storey count its kind admits (${m.buildings.sweep} = ${fmt(m.buildings.builds)} builds).
 These are constituents of the blocks above, not separately resident assets, so
-they are graded but never added into the resident totals — that would count the
+they are graded but never added into the inventory totals — that would count the
 same triangles twice.
 
 | kind | worst case | close tris | close verdict | map tris | map verdict |
@@ -548,45 +559,49 @@ failure; this is where the next art pass will push something over.
 | --- | --- | --- | --- | --- |
 ${tightest}
 
-## Resident cost, if the measured ground, site and town set were resident at once
+## Hypothetical ground/site/town inventory, not live residency
 
-No frame draws this. It is the measured set held at once, which is the
-number that decides whether a bounded cache can keep everything rather than
-rebuild it.
+This sums one measured mesh per asset. No frame draws this set and no runtime
+cache is being observed. Aircraft appear in the detail table above but are not
+added here. CPU backing bytes and per-attribute layouts are in P0_MEASUREMENTS.json.
 
-| set | assets | triangles | upload bytes |
+| set | assets | stored triangles | base upload payload bytes |
 | --- | --- | --- | --- |
-| Ground vehicles, heaviest specification | ${m.resident.vehicles.n} | ${fmt(m.resident.vehicles.tris)} | ${fmt(m.resident.vehicles.bytes)} |
-| Construction sites, worst case near | ${m.resident.sites.n} | ${fmt(m.resident.sites.tris)} | ${fmt(m.resident.sites.bytes)} |
-| Town blocks, worst case close | ${m.resident.blocks.n} | ${fmt(m.resident.blocks.tris)} | ${fmt(m.resident.blocks.bytes)} |
-| **Measured set, close detail** | **${m.resident.total.n}** | **${fmt(m.resident.total.tris)}** | **${fmt(m.resident.total.bytes)}** (${mib(m.resident.total.bytes)}) |
-| Sites/towns coarse; ground vehicles retained at LOD0 for comparison | ${m.resident.map.n} | ${fmt(m.resident.map.tris)} | ${fmt(m.resident.map.bytes)} (${mib(m.resident.map.bytes)}) |
+| Ground vehicles, heaviest specification | ${m.inventory.vehicles.n} | ${fmt(m.inventory.vehicles.tris)} | ${fmt(m.inventory.vehicles.bytes)} |
+| Construction sites, worst case near | ${m.inventory.sites.n} | ${fmt(m.inventory.sites.tris)} | ${fmt(m.inventory.sites.bytes)} |
+| Town blocks, worst case close | ${m.inventory.blocks.n} | ${fmt(m.inventory.blocks.tris)} | ${fmt(m.inventory.blocks.bytes)} |
+| **Measured set, close detail** | **${m.inventory.total.n}** | **${fmt(m.inventory.total.tris)}** | **${fmt(m.inventory.total.bytes)}** (${mib(m.inventory.total.bytes)}) |
+| Sites/towns coarse; ground vehicles retained at LOD0 for comparison | ${m.inventory.map.n} | ${fmt(m.inventory.map.tris)} | ${fmt(m.inventory.map.bytes)} (${mib(m.inventory.map.bytes)}) |
 
 The comparison row deliberately retains the measured vehicles at LOD0:
-${fmt(m.resident.map.vehicleShare)} of its ${fmt(m.resident.map.tris)} triangles are
-the nine ground vehicles, with ${fmt(m.resident.map.tris - m.resident.map.vehicleShare)}
+${fmt(m.inventory.map.vehicleShare)} of its ${fmt(m.inventory.map.tris)} triangles are
+the nine ground vehicles, with ${fmt(m.inventory.map.tris - m.inventory.map.vehicleShare)}
 for the coarse sites and blocks. It is not the live map's rendering cost and
 does not imply the available ground LOD1/LOD2 geometry is unused.
 
-Upload arithmetic, for every byte figure above: the meshes are non-indexed with
-three \`Float32Array\` attributes, so bytes = triangles x 3 vertices x 3
-components x 4 bytes x 3 attributes = triangles x ${BYTES_PER_TRI}. The tool
-checks that against the real \`byteLength\` of every mesh it measures and stops if
-a generator ever stops matching it.
+Payloads are summed from each actual attribute's \`byteLength\`, not inferred
+from a universal bytes-per-triangle constant. Known CPU-only material tags
+are validated and counted separately; unknown layouts fail with an explanation.
+Shared CPU backing buffers are counted once per mesh. Independently uploaded
+attributes count once per upload even if their CPU views alias one allocation.
+Tank/armoured inspection additionally prepares four floats per vertex; the
+browser probe records this actual upload plus the floor. Repeated shadow,
+glass and highlight passes submit geometry again without storing another copy.
 
-## Source cost — what the player actually downloads
+## Canonical source cost — not measured network traffic
 
 The generators ship as source and build their meshes in the browser without
 fetching GLB assets or requiring a build step. These figures measure the three
-geometry generators; renderer, stylesheet and other page costs are not included.
+geometry generators normalized to Git's LF text. Checkout line endings, HTTP
+compression/headers, renderer, stylesheet and other page costs are not included.
 
 | file | bytes | |
 | --- | --- | --- |
 ${sourceRows}
 | **total** | **${fmt(m.source.bytes)}** | **${kib(m.source.bytes)}** |
 
-${fmt(m.source.bytes)} bytes of source produce ${fmt(m.resident.total.tris)} triangles of
-geometry — ${fmt(Math.round(m.resident.total.bytes / m.source.bytes))}x its own weight in vertex data. That ratio is not fixed
+${fmt(m.source.bytes)} bytes of source produce ${fmt(m.inventory.total.tris)} triangles of
+geometry — ${fmt(Math.round(m.inventory.total.bytes / m.source.bytes))}x its own weight in vertex data. That ratio is not fixed
 at authoring time either: it grows with every extra seed, stage, level and
 district asked of the same source.
 
@@ -630,6 +645,7 @@ function main() {
   verifyBudgets();
 
   const vehicles = measureVehicles();
+  const details = measureDetailLevels();
   const sites = measureSites();
   const blocks = measureTownBlocks();
   const buildings = measureTownBuildings();
@@ -639,6 +655,7 @@ function main() {
   // disagree with the tables above them.
   const graded = [];
   for (const r of vehicles.rows) graded.push({ asset: r.asset, config: r.config, tris: r.tris, budget: r.budget, ...r.v });
+  for (const r of details.rows) graded.push({ asset: r.asset, config: r.config, tris: r.tris, budget: r.budget, ...r.v });
   for (const r of sites.rows) {
     graded.push({ asset: `site.${r.kind}.v1`, config: `near ${r.near.hi.config}`, tris: r.near.hi.tris, budget: r.near.budget, ...r.near.v });
     graded.push({ asset: `site.${r.kind}.v1`, config: `far ${r.far.hi.config}`, tris: r.far.hi.tris, budget: r.far.budget, ...r.far.v });
@@ -651,41 +668,46 @@ function main() {
   const over = graded.filter((g) => g.state === "OVER");
 
   const heaviest = vehicles.rows.filter((r) => r.config === "heaviest");
-  const sum = (rows, pick) => rows.reduce((a, r) => a + pick(r), 0);
-  const set = (n, tris) => ({ n, tris, bytes: tris * BYTES_PER_TRI });
-  const vehicleSet = set(heaviest.length, sum(heaviest, (r) => r.tris));
-  const siteSet = set(sites.rows.length, sum(sites.rows, (r) => r.near.hi.tris));
-  const blockSet = set(blocks.rows.length, sum(blocks.rows, (r) => r.close.hi.tris));
-  const mapTris = vehicleSet.tris + sum(sites.rows, (r) => r.far.hi.tris) + sum(blocks.rows, (r) => r.map.hi.tris);
-  const resident = {
+  const near = [...heaviest, ...sites.rows.map(r => r.near.hi), ...blocks.rows.map(r => r.close.hi)];
+  const coarse = [...heaviest, ...sites.rows.map(r => r.far.hi), ...blocks.rows.map(r => r.map.hi)];
+  const vehicleSet = sumPayloads(heaviest);
+  const siteSet = sumPayloads(sites.rows.map(r => r.near.hi));
+  const blockSet = sumPayloads(blocks.rows.map(r => r.close.hi));
+  const inventory = {
     vehicles: vehicleSet, sites: siteSet, blocks: blockSet,
-    total: set(vehicleSet.n + siteSet.n + blockSet.n, vehicleSet.tris + siteSet.tris + blockSet.tris),
-    map: { ...set(vehicleSet.n + siteSet.n + blockSet.n, mapTris), vehicleShare: vehicleSet.tris },
+    total: sumPayloads(near),
+    map: {...sumPayloads(coarse), vehicleShare: vehicleSet.tris},
   };
 
   const blockMapMax = Math.max(...blocks.rows.map((r) => r.map.hi.tris));
-  const md = render({ vehicles, sites, blocks, buildings, source, graded, over, resident, blockMapMax });
+  const measurement = {schema_version: 1, scope: 'Offline generated payloads; no live residency, frame cost or driver VRAM measurement',
+    vehicles, details, sites, blocks, buildings, source, graded, over, inventory, blockMapMax};
+  const md = render(measurement);
   const outMd = path.join(ROOT, "docs", "art", "P0_BUDGETS.md");
+  const outJson = path.join(ROOT, 'docs', 'art', 'P0_MEASUREMENTS.json');
+  const json = JSON.stringify(measurement, null, 2) + '\n';
 
-  if (argv.includes("--check")) {
-    const stale = !fs.existsSync(outMd) || fs.readFileSync(outMd, "utf8").replace(/\r\n/g, "\n") !== md;
-    if (stale) console.error(`stale, re-run without --check:\n  ${outMd}`);
+  if (argv.includes("--check") || argv.includes('--check-records')) {
+    const stale = !fs.existsSync(outMd) || fs.readFileSync(outMd, "utf8").replace(/\r\n/g, "\n") !== md
+      || !fs.existsSync(outJson) || fs.readFileSync(outJson, 'utf8') !== json;
+    if (stale) console.error(`stale measurement records; re-run without --check:\n  ${outMd}\n  ${outJson}`);
     for (const o of over) {
       console.error(`over budget: ${o.asset} (${o.config}) is ${fmt(o.tris)} triangles against a ceiling of `
         + `${fmt(o.budget.max)} — over by ${fmt(o.over)} (${((o.over / o.budget.max) * 100).toFixed(1)}%)`);
     }
-    if (stale || over.length) process.exit(1);
-    console.log(`budgets current: ${graded.length} graded configurations, all inside roadmap section 4`);
+    if (stale || argv.includes('--check') && over.length) process.exit(1);
+    console.log(`records current: ${graded.length} graded configurations; ${over.length} over budget. ${over.length ? 'Budget gate remains FAIL.' : 'Budget gate PASS.'}`);
     return;
   }
 
   fs.mkdirSync(path.dirname(outMd), { recursive: true });
   fs.writeFileSync(outMd, md, "utf8");
+  fs.writeFileSync(outJson, json, 'utf8');
 
-  const builds = vehicles.builds + sites.builds + blocks.builds + buildings.builds;
+  const builds = vehicles.builds + details.builds + sites.builds + blocks.builds + buildings.builds;
   console.log(`wrote docs/art/P0_BUDGETS.md — ${graded.length} graded configurations from ${fmt(builds)} builds`);
-  console.log(`  triangles (everything resident, close detail): ${fmt(resident.total.tris)}`);
-  console.log(`  upload bytes:                                  ${fmt(resident.total.bytes)} (${mib(resident.total.bytes)})`);
+  console.log(`  triangles (hypothetical inventory, close detail): ${fmt(inventory.total.tris)}`);
+  console.log(`  base attribute payload bytes:                  ${fmt(inventory.total.bytes)} (${mib(inventory.total.bytes)})`);
   console.log(`  generator source:                              ${fmt(source.bytes)} (${kib(source.bytes)}), ${fmt(source.gzip)} gzipped (${kib(source.gzip)})`);
 
   console.log("\nbuild time — cold is the first build in a fresh process, warm is the mean of a loop in a hot one.");

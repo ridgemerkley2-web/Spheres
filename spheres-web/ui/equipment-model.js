@@ -155,8 +155,8 @@ float shadowVisibility(vec3 position,vec3 normal){
   if(p.x<=uShadowTexel||p.x>=1.-uShadowTexel||p.y<=uShadowTexel||p.y>=1.-uShadowTexel||p.z<=0.||p.z>=1.)return 1.;
   float visibility=0.,depth=p.z-uShadowDepthBias*(1.+2.*slope);
   for(int y=-1;y<=1;y++)for(int x=-1;x<=1;x++){
-    vec4 packed=texture2D(uShadowMap,p.xy+vec2(float(x),float(y))*uShadowTexel);
-    float stored=dot(packed,vec4(.000000059604644775390625,.0000152587890625,.00390625,1.))*(255./256.);
+    vec4 packedDepth=texture2D(uShadowMap,p.xy+vec2(float(x),float(y))*uShadowTexel);
+    float stored=dot(packedDepth,vec4(.000000059604644775390625,.0000152587890625,.00390625,1.))*(255./256.);
     visibility+=step(depth,stored);
   }
   return visibility/9.;
