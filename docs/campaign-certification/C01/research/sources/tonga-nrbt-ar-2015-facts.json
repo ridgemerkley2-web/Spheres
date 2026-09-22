@@ -1,0 +1,28 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://www.reservebank.to/data/docs/publications/ar/annual_report_2015_eng.pdf",
+  "accessed_date": "2026-09-21",
+  "published_date": null,
+  "access_method": "downloaded_original_pdf_text_and_relevant_page_visually_read",
+  "source_response_bytes": 12583944,
+  "source_response_sha256": "fc1b8717f0a247e956ae2af7b2664de1704d115b16e2ff22b6e0430aeec2041e",
+  "source_response_checked_in": false,
+  "provenance_note": "Original response downloaded (curl -L) and hashed before extraction on 2026-09-21 (local). This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_crown_tupou_vi_coronation_20150704_nrbt",
+      "text": "The report states that each banknote on the numismatic uncut sheets carries the special serial number KT 04.07.15 to commemorate the Coronation of King Tupou VI on 4 July 2015. The same page records that King Tupou VI launched the new coronation currency series on 29 June 2015.",
+      "attested_on": "2015-07-04",
+      "locator": "'Numismatic Banknotes and Coins', printed page 25 (PDF page 30)",
+      "uncertainty": "Evidence tier: a non-ceremonial Tongan public body plus foreign corroboration (to_crown_tupou_vi_coronation_iha_20150704). A statutory central-bank report written after the event, not a palace, PMO or Gazette ceremony record. The coronation is not the start of the reign."
+    }
+  ],
+  "scope_note": "Used only for the coronation date and currency launch on printed page 25. The report's publication date is not printed on the pages read, so none is recorded.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      30
+    ],
+    "method": "PDF page 30 (printed page 25) was rendered and visually checked in the research dossier."
+  }
+}

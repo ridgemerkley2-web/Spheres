@@ -184,13 +184,21 @@ class TongaDpfiTests(unittest.TestCase):
         self.assertNotIn('to_pohiva_death_month_2019', self.entries['to_prime_minister']['claim_ids'])
         self.assertIn('not used as the end of any premiership', self.entries['to_prime_minister']['coverage']['unresolved'][-1])
         self.assertIn('not used as the end of any office term', self.claims['to_pohiva_death_month_2019']['uncertainty'])
-        # Every holder observation keeps from/until null unless a source states them (only the 2021 PMO effective dates).
-        stated = {("Siaosi 'Ofakivahafolau Sovaleni", '2021-12-27'), ('Poasi Mataele Tei', '2021-12-28')}
+        # Every holder observation keeps from/until null unless a source states them: the 2021 PMO effective dates and,
+        # from CLAUDE-C01-07, the Crown boundaries stated by the death notices and the devolution proclamations.
+        stated = {("Siaosi 'Ofakivahafolau Sovaleni", '2021-12-27'), ('Poasi Mataele Tei', '2021-12-28'),
+                  ('George Tupou V', '2006-09-11'), ('Tupou VI', '2012-03-18')}
+        stated_ends = {("Taufa'ahau Tupou IV", '2006-09-11'), ('George Tupou V', '2012-03-18')}
         for _, entry, _ in self.holder_ids():
             if isinstance(entry, dict):
-                self.assertIsNone(entry['until'])
+                if entry['until'] is not None:
+                    self.assertIn((entry['name'], entry['until']), stated_ends)
                 if entry['from'] is not None:
                     self.assertIn((entry['name'], entry['from']), stated)
+        ends = [(e['name'], e['until']) for _, e, _ in self.holder_ids() if isinstance(e, dict) and e['until']]
+        self.assertEqual(sorted(ends), sorted(stated_ends))
+        starts = [(e['name'], e['from']) for _, e, _ in self.holder_ids() if isinstance(e, dict) and e['from']]
+        self.assertEqual(sorted(starts), sorted(stated))
 
     def test_holders_are_exactly_as_intended(self):
         leader = self.roles['to_dpfi_leader']

@@ -1,0 +1,27 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://www.kunaicho.go.jp/activity/gonittei/02/gaikoku/h27tonga/cpv-h27-tonga.html",
+  "accessed_date": "2026-09-21",
+  "published_date": null,
+  "document_date": "2015-06-12",
+  "access_method": "downloaded_original_html_and_page_text_read",
+  "source_response_bytes": 10032,
+  "source_response_sha256": "9f90055bca476f2e81a6d50702c9ca9eb9b97a3c0a27db5ea754503f739fd884",
+  "source_response_checked_in": false,
+  "provenance_note": "Original response downloaded (curl -L) and hashed before extraction on 2026-09-21 (local). This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_crown_tupou_vi_coronation_iha_20150704",
+      "text": "A Japanese Cabinet understanding of 12 June 2015 records the Tongan Government's invitation to the Crown Prince and Crown Princess to the King's coronation to be held on 4 July; the itinerary lists King Tupou VI's coronation at the Free Wesleyan Centenary Church on the morning of Saturday 4 July 2015.",
+      "attested_on": "2015-07-04",
+      "locator": "Cabinet understanding paragraph; itinerary entry for 4 July (Saturday)",
+      "uncertainty": "A foreign official planning record; corroboration only. With the NRBT report it is the whole support for the 4 July 2015 date: no palace, PMO or Gazette ceremony record was found."
+    }
+  ],
+  "scope_note": "Japanese-language page; the claim is a summary, not an official translation. The Cabinet understanding date is recorded as document_date; the page's publication date is unknown. Only the coronation invitation and itinerary entry are imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "HTML text read; no images reviewed."
+  }
+}
