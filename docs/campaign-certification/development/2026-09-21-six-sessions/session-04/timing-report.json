@@ -1,0 +1,86 @@
+{
+  "build": {
+    "version": "0.6.0",
+    "revision": "d35dae5c4b29",
+    "branch": "codex/s19-review-01",
+    "built_at_unix_seconds": 1790046766
+  },
+  "build_error": null,
+  "recording": false,
+  "started": "2026-09-22T03:42:21.046Z",
+  "stopped": "2026-09-22T03:42:21.298Z",
+  "stop_reason": "stopped by player",
+  "start_context": {
+    "session_id": "24152-1790047437890942400-1",
+    "player": "France",
+    "date": "3 Jan 1990"
+  },
+  "current_context": {
+    "session_id": "24152-1790047437890942400-1",
+    "player": "France",
+    "date": "3 Jan 1990"
+  },
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "synchronous_state_render": {
+    "samples": 0,
+    "median_ms": null,
+    "p95_ms": null,
+    "max_ms": null
+  },
+  "input_to_following_frame": {
+    "samples": 4,
+    "median_ms": 18.19999998807907,
+    "p95_ms": 22.799999952316284,
+    "max_ms": 22.799999952316284
+  },
+  "visible_frame_intervals": {
+    "samples": 24,
+    "median_ms": 10,
+    "p95_ms": 10.100000000000023,
+    "max_ms": 10.100000000000023
+  },
+  "discarded_older_observations": {
+    "render": 0,
+    "input": 0,
+    "frames": 0
+  },
+  "observations_ms": {
+    "synchronous_state_render": [],
+    "input_to_following_frame": [
+      18.19999998807907,
+      17,
+      15.600000023841858,
+      22.799999952316284
+    ],
+    "visible_frame_intervals": [
+      10,
+      10,
+      10,
+      10,
+      10,
+      10.100000000000023,
+      10,
+      9.899999999999977,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10.100000000000023,
+      9.899999999999977,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10.100000000000023,
+      9.899999999999977,
+      10.100000000000023
+    ]
+  },
+  "method": "Local opt-in sample; latest 256 observations per metric. Frame intervals are visible-page requestAnimationFrame cadence, not a GPU or map FPS measurement. Hidden-tab intervals are excluded. State render measures synchronous redraw only; trusted click/key input ends after two animation frames (a paint opportunity, not exact display latency). Dialog input is excluded. Server/network and asynchronous room loads are not measured. Sampling stops on campaign identity change. Reports remain local unless you choose to share the downloaded file."
+}
