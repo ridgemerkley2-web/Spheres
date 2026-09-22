@@ -1,8 +1,13 @@
 # CLAUDE-C01-01 — one Tonga census reconciliation packet
 
-Owner: Claude. State: **ready to claim, not started by this handoff**.
+Owner: Claude. State: **ready_for_review** (claimed and submitted 21 September 2026; not complete).
 Parent: C01 (in progress, incomplete). Dependency: S01 (complete).
-Branch / base commit / result commit: record when claimed / submitted.
+Branch `claude/c01-tonga-01`; base `3d422da`; result `8e94a3b` (packet) and
+`8b9b7e6` (regenerated research index, a separate integration patch).
+Touched paths: `tonga.json`, `tonga-reconciliation-01.md`, three new
+`research/sources/tonga-*-facts.json` extracts, `test_tonga_research_s10g.py`
+(pins updated, none loosened) and new `test_tonga_reconciliation_c01.py`. Next checkpoint:
+Codex review, then `C01-Tonga-REC-002`..`005` as proposed in the report.
 Integrator and reviewer: Codex. Runs independently of S18.
 
 Read `docs/campaign-certification/C01/README.md`, `research/README.md`,
