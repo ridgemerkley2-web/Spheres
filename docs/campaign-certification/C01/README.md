@@ -74,10 +74,16 @@ source claims and unresolved questions beside each observation. It is a research
 reference and does not load or change a campaign.
 
 The discovery index now totals nine country packets, 841 organization and 27
-institution observations, 61 sources, 1,613 claims and 92 open work batches.
+institution observations, 68 sources, 1,622 claims and 92 open work batches.
 All nine certification identity IDs have partial packets; 151 other identities
 still have none. No exhaustive country census is closed; the research cutoff
 remains unchanged.
+
+The [second Tonga integration](integrations/CLAUDE-C01-02/README.md) accepts the
+bounded 2021 transition research: seven sources, nine claims and two effective
+appointment starts. Assembly selection, appointment effect, announcement and
+Cabinet oaths remain separate; unknown office endings remain unknown. No installed
+leader, avatar or completed leadership chain is added.
 
 **Partial inventory recorded; C01 remains incomplete.** This reproducible
 audit was originally an S10 prerequisite under the earlier scope, recorded at

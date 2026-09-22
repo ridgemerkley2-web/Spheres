@@ -1,0 +1,27 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://parliament.gov.to/en/media-centre/latest-news/two-prime-minister-candidate-nominations-received",
+  "accessed_date": "2026-09-21",
+  "published_date": "2021-12-14",
+  "access_method": "fetched_original_html_and_article_text_read",
+  "source_response_bytes": 54450,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "provenance_note": "Fetched twice on 2026-09-22 UTC (2026-09-21 local) by direct HTTPS request, HTTP 200. Both responses were 54,450 bytes but their SHA-256 values differed (222e97aa... and 417e6e26...) because each response embeds a per-request form token; the page also displays a live hit counter. No response hash is asserted. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_pm_two_nominations_20211214",
+      "text": "The Assembly reports that when nominations closed at 4.30pm 'today', two nominations for Prime Minister had been received, the first on Monday 13 December and the second that day, and that the candidates would be revealed at the meeting to elect the Prime Minister Designate 'tomorrow, Wednesday 15 December at 10am'.",
+      "attested_on": "2021-12-14",
+      "locator": "News item created 14 December 2021, paragraph 1",
+      "uncertainty": "Candidates are not named. In the Assembly's news sequence the next notice was created on 4 January 2022; no Assembly notice of the 15 December result was found."
+    }
+  ],
+  "scope_note": "Used only for the 2021 Prime Minister selection procedure (TO-TR21-01, TO-TR21-02). Joomla news page: each response embeds a per-request form token and shows a live hit counter, so no response hash is asserted. The 'created' date is the page's publication metadata.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Article text, its created date and its article navigation read; no images reviewed."
+  }
+}

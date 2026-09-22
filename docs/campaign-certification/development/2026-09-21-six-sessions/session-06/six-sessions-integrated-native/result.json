@@ -1,0 +1,699 @@
+{
+  "scope": "Exact native build browser review of equipment navigation, map finder/province activity, local timing report, tutorial and real Congo selection. Switches this disposable preview to Congo, then restores its copied France save. No response substitutions, government/military orders or day advances.",
+  "passed": true,
+  "revision": "2400800bee73ecbc39bedaebba10bbe573a42ade",
+  "assets": {
+    "index.html": "4f4613d8a4c5c98202215e1a49c1b0b70f81cc8839d85e09cd8856dadacb3c57",
+    "equipment-ui.js": "6129cb5a822ba7957dc4f35f59eb03980961bdea163d67d817f38885b3eb4801",
+    "equipment-ui.css": "257656cd55cefcd1e6f07c6b97814bcf536f31bdc2beec92f6c79d053d236097",
+    "province-economy-ui.js": "bc6a54891adcbecc7fd59c9786dd7f3eff633d74cfb7e373e123994fdc9ad720",
+    "province-economy.css": "ebcf99317b177e0aa64688f3e6d7f4631202b9f829c71e9d2c7849563b2c15c5",
+    "performance-ui.js": "34ede72c98a99a30dc8812b44c20d812eec6fc4b30f8066f219434f22358781e",
+    "guidance-ui.js": "058318a655200aacf3df4eb4c08953a2dbd4b2180b81d1a332c6996a8e3e4717",
+    "advisor-model.js": "bfd85d0340d37bc6edb7044ac3ac866d84916ad96c446bc2a35ec7269cf1da14",
+    "equipment-model.js": "e26a05e28d36f2bf90c464f9ea33697bc95fcb5ca703621ea7d7153a77984f73"
+  },
+  "commands": [],
+  "pageErrors": [],
+  "sections": [
+    "flight",
+    "companies",
+    "designer",
+    "research",
+    "library",
+    "development",
+    "production",
+    "ammunition",
+    "service"
+  ],
+  "timing": {
+    "build": {
+      "version": "0.6.0",
+      "revision": "2400800bee73",
+      "branch": "codex/campaign-certification",
+      "built_at_unix_seconds": 1790050507
+    },
+    "build_error": null,
+    "recording": false,
+    "started": "2026-09-22T04:15:37.739Z",
+    "stopped": "2026-09-22T04:15:38.084Z",
+    "stop_reason": "stopped by player",
+    "start_context": {
+      "session_id": "28776-1790050534675839700-1",
+      "player": "France",
+      "date": "3 Jan 1990"
+    },
+    "current_context": {
+      "session_id": "28776-1790050534675839700-1",
+      "player": "France",
+      "date": "3 Jan 1990"
+    },
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "synchronous_state_render": {
+      "samples": 0,
+      "median_ms": null,
+      "p95_ms": null,
+      "max_ms": null
+    },
+    "input_to_following_frame": {
+      "samples": 3,
+      "median_ms": 18.5,
+      "p95_ms": 22.400000035762787,
+      "max_ms": 22.400000035762787
+    },
+    "visible_frame_intervals": {
+      "samples": 24,
+      "median_ms": 10,
+      "p95_ms": 40,
+      "max_ms": 50.09999999999991
+    },
+    "discarded_older_observations": {
+      "render": 0,
+      "input": 0,
+      "frames": 0
+    },
+    "observations_ms": {
+      "synchronous_state_render": [],
+      "input_to_following_frame": [
+        18.400000035762787,
+        18.5,
+        22.400000035762787
+      ],
+      "visible_frame_intervals": [
+        10,
+        40,
+        9.900000000000091,
+        50.09999999999991,
+        9.900000000000091,
+        10.099999999999909,
+        9.900000000000091,
+        10.099999999999909,
+        10,
+        9.900000000000091,
+        10.099999999999909,
+        9.900000000000091,
+        10.099999999999909,
+        9.900000000000091,
+        10.099999999999909,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        30,
+        10
+      ]
+    },
+    "method": "Local opt-in sample; latest 256 observations per metric. Frame intervals are visible-page requestAnimationFrame cadence, not a GPU or map FPS measurement. Hidden-tab intervals are excluded. State render measures synchronous redraw only; trusted click/key input ends after two animation frames (a paint opportunity, not exact display latency). Dialog input is excluded. Server/network and asynchronous room loads are not measured. Sampling stops on campaign identity change. Reports remain local unless you choose to share the downloaded file."
+  },
+  "guidance": {
+    "status": "ready",
+    "route": {
+      "status": "ready",
+      "reason": null,
+      "as_of": {
+        "session_id": "28776-1790050534675839700-1",
+        "player": "France",
+        "date": "3 Jan 1990",
+        "day": 2
+      },
+      "steps": [
+        {
+          "id": "finances",
+          "title": "Enact a yearly budget",
+          "lessons": [
+            "budget-treasury"
+          ],
+          "status": "achieved",
+          "summary": "Yearly budget enacted on 1990-01-01.",
+          "milestones": [
+            {
+              "id": "budget_enacted",
+              "label": "Yearly budget enacted",
+              "status": "done",
+              "day": 0,
+              "date": "1990-01-01",
+              "detail": "Inherited plan enacted with construction funding."
+            }
+          ],
+          "obstacle": null
+        },
+        {
+          "id": "construction",
+          "title": "Fund a useful construction project",
+          "lessons": [
+            "construction-effects",
+            "industry-operations"
+          ],
+          "status": "achieved",
+          "summary": "Construction work paid on 1990-01-01.",
+          "milestones": [
+            {
+              "id": "work_paid",
+              "label": "Construction work paid",
+              "status": "done",
+              "day": 0,
+              "date": "1990-01-01",
+              "detail": "Paid $0.0003bn for starter industry in Île-de-France."
+            },
+            {
+              "id": "project_completed",
+              "label": "Project completed",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": null
+            },
+            {
+              "id": "site_producing",
+              "label": "Completed site producing",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": null
+            }
+          ],
+          "obstacle": null
+        },
+        {
+          "id": "research_design",
+          "title": "Research toward a design",
+          "lessons": [
+            "research-components"
+          ],
+          "status": "not_yet",
+          "summary": "Not yet achieved in this campaign.",
+          "milestones": [
+            {
+              "id": "research_active",
+              "label": "Component research under way",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": "No component research selected."
+            },
+            {
+              "id": "design_saved",
+              "label": "Design saved",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": null
+            },
+            {
+              "id": "design_commissioned",
+              "label": "Design commissioned",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": null
+            },
+            {
+              "id": "development_paid",
+              "label": "Development paid",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": null
+            },
+            {
+              "id": "research_completed",
+              "label": "Component research completed",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": null
+            }
+          ],
+          "obstacle": {
+            "title": "Save your first design",
+            "reason": "A saved design is your blueprint: companies develop it and component research improves it. Saving costs no money.",
+            "action": {
+              "kind": "equipment",
+              "tab": "designer"
+            },
+            "actionLabel": "Open the designer"
+          }
+        },
+        {
+          "id": "procurement",
+          "title": "Buy equipment from a company",
+          "lessons": [
+            "equipment-procurement"
+          ],
+          "status": "not_yet",
+          "summary": "Not yet achieved in this campaign.",
+          "milestones": [
+            {
+              "id": "manufacturer",
+              "label": "Manufacturer established",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": null
+            },
+            {
+              "id": "certified_product",
+              "label": "Certified product available",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": null
+            },
+            {
+              "id": "purchase_placed",
+              "label": "Purchase placed",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": null
+            },
+            {
+              "id": "purchase_paid",
+              "label": "Purchase paid",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": null
+            },
+            {
+              "id": "equipment_delivered",
+              "label": "Equipment delivered",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": null
+            }
+          ],
+          "obstacle": {
+            "title": "Establish a manufacturer",
+            "reason": "Equipment is bought from companies. Without a manufacturer, nobody can develop or build your designs.",
+            "action": {
+              "kind": "companies"
+            },
+            "actionLabel": "Review companies"
+          }
+        },
+        {
+          "id": "air_force",
+          "title": "Prepare an air force",
+          "lessons": [
+            "air-force"
+          ],
+          "status": "not_yet",
+          "summary": "Not yet achieved in this campaign.",
+          "milestones": [
+            {
+              "id": "base_funded",
+              "label": "Airbase work funded",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": null
+            },
+            {
+              "id": "base_completed",
+              "label": "Airbase improvement completed",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": null
+            },
+            {
+              "id": "squadron_formed",
+              "label": "Squadron formed",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": "Needs delivered aircraft."
+            },
+            {
+              "id": "squadron_ready",
+              "label": "Squadron ready",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": "Needs delivered aircraft and a base."
+            },
+            {
+              "id": "mission_flown",
+              "label": "Mission flown",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": "Needs ready aircraft and an eligible conflict."
+            }
+          ],
+          "obstacle": {
+            "title": "Fund an airbase foundation",
+            "reason": "Aircraft need a home base before squadrons can form. A foundation needs about 12 funded days of construction money.",
+            "action": {
+              "kind": "air",
+              "page": "bases"
+            },
+            "actionLabel": "Review airbases"
+          }
+        },
+        {
+          "id": "save_resume",
+          "title": "Save and resume",
+          "lessons": [
+            "save-review"
+          ],
+          "status": "not_yet",
+          "summary": "Not yet achieved in this campaign.",
+          "milestones": [
+            {
+              "id": "campaign_saved",
+              "label": "Campaign saved",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": null
+            },
+            {
+              "id": "campaign_resumed",
+              "label": "Resumed from a save",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": null
+            }
+          ],
+          "obstacle": {
+            "title": "Save your campaign",
+            "reason": "A named save lets you return to this exact moment, and saving never changes the campaign.",
+            "action": {
+              "kind": "campaign"
+            },
+            "actionLabel": "Open campaigns"
+          }
+        }
+      ]
+    }
+  },
+  "congo_selection": true,
+  "campaign_switch_route": {
+    "status": "ready",
+    "reason": null,
+    "as_of": {
+      "session_id": "28776-1790050538992970500-2",
+      "player": "Congo",
+      "date": "1 Jan 1990",
+      "day": 0
+    },
+    "steps": [
+      {
+        "id": "finances",
+        "title": "Enact a yearly budget",
+        "lessons": [
+          "budget-treasury"
+        ],
+        "status": "not_yet",
+        "summary": "Not yet achieved in this campaign.",
+        "milestones": [
+          {
+            "id": "budget_enacted",
+            "label": "Yearly budget enacted",
+            "status": "pending",
+            "day": null,
+            "date": null,
+            "detail": "No 1990 budget decision in the money journal yet."
+          }
+        ],
+        "obstacle": {
+          "title": "Enact this year's budget",
+          "reason": "Your budget sets what each ministry spends in 1990. Until you enact one, the inherited plan keeps running unchanged.",
+          "action": {
+            "kind": "budget"
+          },
+          "actionLabel": "Review yearly budget"
+        }
+      },
+      {
+        "id": "construction",
+        "title": "Fund a useful construction project",
+        "lessons": [
+          "construction-effects",
+          "industry-operations"
+        ],
+        "status": "not_yet",
+        "summary": "Not yet achieved in this campaign.",
+        "milestones": [
+          {
+            "id": "work_paid",
+            "label": "Construction work paid",
+            "status": "pending",
+            "day": null,
+            "date": null,
+            "detail": null
+          },
+          {
+            "id": "project_completed",
+            "label": "Project completed",
+            "status": "pending",
+            "day": null,
+            "date": null,
+            "detail": null
+          },
+          {
+            "id": "site_producing",
+            "label": "Completed site producing",
+            "status": "pending",
+            "day": null,
+            "date": null,
+            "detail": null
+          }
+        ],
+        "obstacle": {
+          "title": "Start a useful construction project",
+          "reason": "Construction turns money into lasting capacity: jobs, output and a bigger tax base. Compare the effects, then fund one project.",
+          "action": {
+            "kind": "construction"
+          },
+          "actionLabel": "Explore construction"
+        }
+      },
+      {
+        "id": "research_design",
+        "title": "Research toward a design",
+        "lessons": [
+          "research-components"
+        ],
+        "status": "not_yet",
+        "summary": "Not yet achieved in this campaign.",
+        "milestones": [
+          {
+            "id": "research_active",
+            "label": "Component research under way",
+            "status": "pending",
+            "day": null,
+            "date": null,
+            "detail": "No component research selected."
+          },
+          {
+            "id": "design_saved",
+            "label": "Design saved",
+            "status": "pending",
+            "day": null,
+            "date": null,
+            "detail": null
+          },
+          {
+            "id": "design_commissioned",
+            "label": "Design commissioned",
+            "status": "pending",
+            "day": null,
+            "date": null,
+            "detail": null
+          },
+          {
+            "id": "development_paid",
+            "label": "Development paid",
+            "status": "pending",
+            "day": null,
+            "date": null,
+            "detail": null
+          },
+          {
+            "id": "research_completed",
+            "label": "Component research completed",
+            "status": "pending",
+            "day": null,
+            "date": null,
+            "detail": null
+          }
+        ],
+        "obstacle": {
+          "title": "Save your first design",
+          "reason": "A saved design is your blueprint: companies develop it and component research improves it. Saving costs no money.",
+          "action": {
+            "kind": "equipment",
+            "tab": "designer"
+          },
+          "actionLabel": "Open the designer"
+        }
+      },
+      {
+        "id": "procurement",
+        "title": "Buy equipment from a company",
+        "lessons": [
+          "equipment-procurement"
+        ],
+        "status": "not_yet",
+        "summary": "Not yet achieved in this campaign.",
+        "milestones": [
+          {
+            "id": "manufacturer",
+            "label": "Manufacturer established",
+            "status": "pending",
+            "day": null,
+            "date": null,
+            "detail": null
+          },
+          {
+            "id": "certified_product",
+            "label": "Certified product available",
+            "status": "pending",
+            "day": null,
+            "date": null,
+            "detail": null
+          },
+          {
+            "id": "purchase_placed",
+            "label": "Purchase placed",
+            "status": "pending",
+            "day": null,
+            "date": null,
+            "detail": null
+          },
+          {
+            "id": "purchase_paid",
+            "label": "Purchase paid",
+            "status": "pending",
+            "day": null,
+            "date": null,
+            "detail": null
+          },
+          {
+            "id": "equipment_delivered",
+            "label": "Equipment delivered",
+            "status": "pending",
+            "day": null,
+            "date": null,
+            "detail": null
+          }
+        ],
+        "obstacle": {
+          "title": "Establish a manufacturer",
+          "reason": "Equipment is bought from companies. Without a manufacturer, nobody can develop or build your designs.",
+          "action": {
+            "kind": "companies"
+          },
+          "actionLabel": "Review companies"
+        }
+      },
+      {
+        "id": "air_force",
+        "title": "Prepare an air force",
+        "lessons": [
+          "air-force"
+        ],
+        "status": "not_yet",
+        "summary": "Not yet achieved in this campaign.",
+        "milestones": [
+          {
+            "id": "base_funded",
+            "label": "Airbase work funded",
+            "status": "pending",
+            "day": null,
+            "date": null,
+            "detail": null
+          },
+          {
+            "id": "base_completed",
+            "label": "Airbase improvement completed",
+            "status": "pending",
+            "day": null,
+            "date": null,
+            "detail": null
+          },
+          {
+            "id": "squadron_formed",
+            "label": "Squadron formed",
+            "status": "pending",
+            "day": null,
+            "date": null,
+            "detail": "Needs delivered aircraft."
+          },
+          {
+            "id": "squadron_ready",
+            "label": "Squadron ready",
+            "status": "pending",
+            "day": null,
+            "date": null,
+            "detail": "Needs delivered aircraft and a base."
+          },
+          {
+            "id": "mission_flown",
+            "label": "Mission flown",
+            "status": "pending",
+            "day": null,
+            "date": null,
+            "detail": "Needs ready aircraft and an eligible conflict."
+          }
+        ],
+        "obstacle": {
+          "title": "Fund an airbase foundation",
+          "reason": "Aircraft need a home base before squadrons can form. A foundation needs about 12 funded days of construction money.",
+          "action": {
+            "kind": "air",
+            "page": "bases"
+          },
+          "actionLabel": "Review airbases"
+        }
+      },
+      {
+        "id": "save_resume",
+        "title": "Save and resume",
+        "lessons": [
+          "save-review"
+        ],
+        "status": "not_yet",
+        "summary": "Not yet achieved in this campaign.",
+        "milestones": [
+          {
+            "id": "campaign_saved",
+            "label": "Campaign saved",
+            "status": "pending",
+            "day": null,
+            "date": null,
+            "detail": null
+          },
+          {
+            "id": "campaign_resumed",
+            "label": "Resumed from a save",
+            "status": "pending",
+            "day": null,
+            "date": null,
+            "detail": null
+          }
+        ],
+        "obstacle": {
+          "title": "Save your campaign",
+          "reason": "A named save lets you return to this exact moment, and saving never changes the campaign.",
+          "action": {
+            "kind": "campaign"
+          },
+          "actionLabel": "Open campaigns"
+        }
+      }
+    ]
+  },
+  "preview_restored": true
+}

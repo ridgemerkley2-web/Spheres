@@ -1,0 +1,124 @@
+{
+  "format": "spheres-c01-integration-review/v1",
+  "packet": "CLAUDE-C01-02",
+  "accepted": true,
+  "parent_complete": false,
+  "submission": "b6767837b8080cae133e073ffb9ecb6f9371ee5f",
+  "qualified_source": "c792588f4fc691d1f0ee6b6eed8d8c36f00552dd",
+  "integration_merge": "2d5ffffea8141fa13fe51cc8ce6c6a95ca9fe6d9",
+  "recorded_utc": "2026-09-22T04:13:10.590500+00:00",
+  "scope": "Bounded research only; no installed leader, avatar or campaign mutation.",
+  "source_review": "Four Assembly notices read; four PMO release images byte-matched and visually read. Article HTML unavailable through web reader. Original images excluded from Git.",
+  "files": [
+    {
+      "path": "evidence/atlas-tests.log",
+      "bytes": 1142,
+      "sha256": "22bf2e149ba20c23daac3f731284eec2281f8c321d6402e56d1fd7f4e1f80bff"
+    },
+    {
+      "path": "evidence/browser/atlas-1440.png",
+      "bytes": 146003,
+      "sha256": "ddd36d3d4297545b5cbeb1338470f83b6099f01334ca2f6649c008d90ce8ba2f"
+    },
+    {
+      "path": "evidence/browser/atlas-320.png",
+      "bytes": 82087,
+      "sha256": "5d0b3df5962645d12325a9d6ea6d7c8502e660009b918317ba8d50a50cfd46f7"
+    },
+    {
+      "path": "evidence/browser/atlas-390.png",
+      "bytes": 80797,
+      "sha256": "d837853cfddfac5c01f81de5ef849541c436fef55f6e5263bea9572b4255c765"
+    },
+    {
+      "path": "evidence/browser/atlas-keyboard-focus.png",
+      "bytes": 130822,
+      "sha256": "2e18b9cbc20dd42b777de5d0d63879f17fd84ddbf6b594e53fccc456e4a35c97"
+    },
+    {
+      "path": "evidence/browser/atlas-role-1440.png",
+      "bytes": 71558,
+      "sha256": "288e118f7c5777580cd5a3775eedf04fad424fd4d3aa13ee2dea5dfdc57e39fc"
+    },
+    {
+      "path": "evidence/browser/atlas-role-320.png",
+      "bytes": 43268,
+      "sha256": "301fac20f8c78e5f538293fae9605a8df6e2ab8159d11f42f477a7c15470048e"
+    },
+    {
+      "path": "evidence/browser/atlas-role-390.png",
+      "bytes": 51506,
+      "sha256": "0837c2d4eab39668aa17adfd4fda6c2f3d95478318693751409ef449fee42d4f"
+    },
+    {
+      "path": "evidence/browser/result.json",
+      "bytes": 11497,
+      "sha256": "b827b32349a7d3c7f673beb708e68d02652a12ff38762d5bcc9a88117e7d4172"
+    },
+    {
+      "path": "evidence/browser/to_cabinet-appointment-1440.png",
+      "bytes": 66524,
+      "sha256": "1356b246764e083a70bb71602fc0e64d72c3e0e05576ae157b34e7bcb2787e1c"
+    },
+    {
+      "path": "evidence/browser/to_cabinet-appointment-320.png",
+      "bytes": 43763,
+      "sha256": "c5fbd2c024c832d9d7db2e6dc3a1df16d7728ef6c2e2be664e936ec824486458"
+    },
+    {
+      "path": "evidence/browser/to_cabinet-appointment-390.png",
+      "bytes": 48202,
+      "sha256": "9fb704e83d3505cb8751e29e6967209da44c22f909847fce18ee213876c5952d"
+    },
+    {
+      "path": "evidence/browser/to_prime_minister-appointment-1440.png",
+      "bytes": 103637,
+      "sha256": "8fff0068fe6e4bacd47c960a68fdcdff701a879247ba8ccf3003679155f690b6"
+    },
+    {
+      "path": "evidence/browser/to_prime_minister-appointment-320.png",
+      "bytes": 44246,
+      "sha256": "7e5d286b9001c08e55b73f296246ba537a9a29a63bdc39ed205bf2368ad80a28"
+    },
+    {
+      "path": "evidence/browser/to_prime_minister-appointment-390.png",
+      "bytes": 51841,
+      "sha256": "bd32138c861f174028b7bc2fe04f76d4761df9b906d27e4a96d056029f6715ee"
+    },
+    {
+      "path": "evidence/browser/tonga-society-1440.png",
+      "bytes": 87368,
+      "sha256": "47264301498c9480c31fb5ceed2c0070e0f516eaa488897d82922d76a6362d68"
+    },
+    {
+      "path": "evidence/browser/tonga-society-320.png",
+      "bytes": 43143,
+      "sha256": "23deb5b588e4ec0726ac84dcc076b920b86c8f3b04d8eb254184f8b36620ab2a"
+    },
+    {
+      "path": "evidence/browser/tonga-society-390.png",
+      "bytes": 49386,
+      "sha256": "1938d08d0183998084e66e43745b5f1a26d46f0d438e865a38ce7876bdb3e756"
+    },
+    {
+      "path": "evidence/campaign-tests.log",
+      "bytes": 120,
+      "sha256": "b503d31e5da05ebdfeb92ed72cac56bb64c116c8e742a79a82a3408cf4c25fa0"
+    },
+    {
+      "path": "evidence/research-tests.log",
+      "bytes": 183,
+      "sha256": "e8593fb3882ab4b04c8b675005c8f99f6dd83335e843302597272aad5251f97a"
+    },
+    {
+      "path": "evidence/source-checks.json",
+      "bytes": 1380,
+      "sha256": "6ef438d05ffcb2412d9f0d31d79294e3ea6954c70ccf9ca74f7bc1ee34a68093"
+    },
+    {
+      "path": "evidence/tonga-tests.log",
+      "bytes": 132,
+      "sha256": "9bbc1309fbe70e4ff7deaf420cdd9982e284c95ad5ec0b6cd536a9f12ddfee7f"
+    }
+  ]
+}

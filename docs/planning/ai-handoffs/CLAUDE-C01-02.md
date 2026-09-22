@@ -1,9 +1,20 @@
 # CLAUDE-C01-02 — Tonga's 2021 appointment transition
 
-Owner: Claude. State: **claimed 21 September 2026; in progress** (not ready for review). Parent: C01 (incomplete).
+Owner: Claude. State: **accepted and integrated** as bounded research, 21 September 2026. Parent: C01 (incomplete).
+Submission `b6767837b8080cae133e073ffb9ecb6f9371ee5f`; integration `2d5ffffe`.
+[Codex review and validation](../../campaign-certification/C01/integrations/CLAUDE-C01-02/README.md).
 Predecessor: [CLAUDE-C01-01](CLAUDE-C01-01.md), integrated and qualified at `fdb6d2c`.
-Branch `claude/c01-tonga-02`; base `5b46e40a` (current integration); result commit: recorded at submission.
-Reviewer/integrator: Codex. Separate from the ready S19 gameplay packet.
+Branch `claude/c01-tonga-02`; base `5b46e40a` (current integration); claim `852510d3`.
+Result commit: `b6767837b8080cae133e073ffb9ecb6f9371ee5f` (separate regenerated index).
+Reviewer/integrator: Codex. Separate from the S19 gameplay packet.
+[Report](../../campaign-certification/C01/research/tonga-transition-2021-02.md): TO-TR21-01, 02, 03 and 06
+accepted; TO-TR21-04 (warrant signature and presentation) and TO-TR21-05 (end of
+Tu'i'onetoa's premiership) unresolved with sources attempted.
+Touched paths: this record; `research/tonga.json` (seven sources, nine claims, holders on
+`to_pm` from 2021-12-27 and `to_deputy_pm` from 2021-12-28); seven new
+`research/sources/tonga-{assembly,pmo}-*-facts.json` extracts; new
+`research/tonga-transition-2021-02.md`; `test_tonga_research_s10g.py` (totals updated,
+none loosened); new `test_tonga_transition_c01_02.py`. Separate commit: `research-index.json` only.
 
 ## Bounded deliverable
 

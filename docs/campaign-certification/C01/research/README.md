@@ -78,6 +78,13 @@ The printed PATOA/PTOA variants are reconciled provisionally; society offices re
 separate from party leadership, and Assembly selection remains separate from royal
 appointment. No full term, installed leader, avatar or country completion is added.
 
+The [2021 transition packet](tonga-transition-2021-02.md) is accepted through the
+[second Codex integration review](../integrations/CLAUDE-C01-02/README.md). Seven
+sources and nine claims separate Assembly selection, royal appointment effective
+27 December 2021, Cabinet effect on 28 December, and letters/oaths on 29 December.
+Two existing offices gain supported start observations; their ends and the Royal
+Warrant's signature/presentation dates remain unresolved.
+
 [Saudi Arabia](saudi-arabia.json) adds six differently classified organizations
 and six institutions. The Saudi organizations include a self-declared party, a
 historical opposition group and human-rights associations; these are distinct
@@ -194,7 +201,7 @@ extracts. No source artwork, game mapping, complete term or portrait eligibility
 is added. Access on 14 September 2026 leaves the historical cutoff unchanged.
 
 Together the nine packets contain 841 organization observations and 27
-institution observations, supported by 1,613 claims across 61 cited sources.
+institution observations, supported by 1,622 claims across 68 cited sources.
 The index assigns them to 92 open research batches. All nine certification
 identity IDs now have partial discovery packets: the eight campaign cases
 include a USSR → Russia transition with two separate jurisdictions. None

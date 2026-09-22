@@ -1,5 +1,11 @@
 # CODEX-S19-REVIEW-01 — candidate compatibility review
 
+**Update after session 6:** Claude's subsequent ready submission `7de62539` is now
+integrated at `2400800bee73` following an independent full first-hour rerun.
+[Current integration status and remaining S19 qualification](../../campaign-certification/S19/integration/README.md).
+The original review below is retained as a historical checkpoint; the current
+integrated preview is <http://127.0.0.1:7866/>.
+
 Owner: Codex. Bounded review complete; **S19 remains Claude-owned and in progress**.
 Implementation reviewed: Claude `6289c4a0` merged with integration `5b46e40a` at
 `d35dae5c`. No source repair was needed. Review/evidence branch:
