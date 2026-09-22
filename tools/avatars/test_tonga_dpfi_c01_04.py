@@ -94,7 +94,9 @@ class TongaDpfiTests(unittest.TestCase):
     def test_new_records_are_bounded_reuse_ids_and_every_claim_is_cited(self):
         ids = self.validate()
         self.assertLessEqual(NEW_SOURCES, set(ids['sources']))
-        self.assertEqual({c['id'] for sid in NEW_SOURCES for c in self.sources[sid]['claims']}, NEW_CLAIMS)
+        # to_ipu_2025 is shared with CLAUDE-C01-03, which owns its to_ipu_2025_transition claim.
+        self.assertEqual({c['id'] for sid in NEW_SOURCES for c in self.sources[sid]['claims']},
+                         NEW_CLAIMS | {'to_ipu_2025_transition'})
         cited = {cid for e in self.entries.values() for cid in e['claim_ids']}
         self.assertLessEqual(NEW_CLAIMS, cited)
         # No new organization or institution: the existing to_dpfi entry and its leader role are reused.
@@ -185,9 +187,10 @@ class TongaDpfiTests(unittest.TestCase):
         # Pohiva's death ends no office here, and no holder cites the death or seat events. CLAUDE-C01-08 adds exactly
         # two to_pm holders for him, from the PMO appointment records, and neither has an end.
         pm_holders = [h['name'] for h in self.roles['to_pm']['holder_claims'] if isinstance(h, dict)]
+        # CLAUDE-C01-08 adds the 1990-2018 holders and CLAUDE-C01-03 adds Eke; this packet adds no prime-minister holder.
         self.assertEqual(pm_holders, ["Fatafehi Tu'ipelehake", 'Baron Vaea', "Prince 'Ulukalala Lavaka Ata", 'Feleti Sevele',
                                       "Lord Tu'ivakano", "Samuela 'Akilisi Pohiva", "Samuela 'Akilisi Pohiva",
-                                      "Pohiva Tu'i'onetoa", "Siaosi 'Ofakivahafolau Sovaleni"])
+                                      "Pohiva Tu'i'onetoa", "Siaosi 'Ofakivahafolau Sovaleni", "'Aisake Valu Eke"])
         akilisi = [(h['attested_on'], h['from'], h['until']) for h in self.roles['to_pm']['holder_claims']
                    if isinstance(h, dict) and 'Akilisi' in h['name']]
         self.assertEqual(akilisi, [('2014-12-30', None, None), (None, '2018-01-02', None)])
@@ -195,16 +198,22 @@ class TongaDpfiTests(unittest.TestCase):
             self.assertFalse(set(ids) & set(SEAT_EVENTS))
             self.assertFalse(set(ids) & set(PM_2014))
         self.assertNotIn('to_pohiva_death_month_2019', self.entries['to_prime_minister']['claim_ids'])
-        self.assertIn('not used as the end of any premiership', self.entries['to_prime_minister']['coverage']['unresolved'][-1])
+        # CLAUDE-C01-03 appends its own notes after this one, so pin that exactly one entry carries it.
+        self.assertEqual(sum('not used as the end of any premiership' in u
+                             for u in self.entries['to_prime_minister']['coverage']['unresolved']), 1)
         self.assertIn('not used as the end of any office term', self.claims['to_pohiva_death_month_2019']['uncertainty'])
         # Every holder observation keeps from/until null unless a source states them: the 2021 PMO effective dates;
         # from CLAUDE-C01-07, the Crown boundaries stated by the death notices and the devolution proclamations; and,
         # from CLAUDE-C01-08, the PMO's stated commencement (2000), accepted resignation (2006) and effective date (2018).
         stated = {("Siaosi 'Ofakivahafolau Sovaleni", '2021-12-27'), ('Poasi Mataele Tei', '2021-12-28'),
                   ('George Tupou V', '2006-09-11'), ('Tupou VI', '2012-03-18'),
-                  ("Prince 'Ulukalala Lavaka Ata", '2000-01-03'), ("Samuela 'Akilisi Pohiva", '2018-01-02')}
+                  ("Prince 'Ulukalala Lavaka Ata", '2000-01-03'), ("Samuela 'Akilisi Pohiva", '2018-01-02'),
+                  # CLAUDE-C01-03: the 2025 Cabinet's stated effective date for the new Deputy Prime Minister.
+                  ('Taniela Likuohihifo Fusimalohi', '2025-01-28')}
         stated_ends = {("Taufa'ahau Tupou IV", '2006-09-11'), ('George Tupou V', '2012-03-18'),
-                       ("Prince 'Ulukalala Lavaka Ata", '2006-02-11')}
+                       ("Prince 'Ulukalala Lavaka Ata", '2006-02-11'),
+                       # CLAUDE-C01-03: Sovaleni's resignation 'effective immediately' and its acceptance, 9 December 2024.
+                       ("Siaosi 'Ofakivahafolau Sovaleni", '2024-12-09')}
         for _, entry, _ in self.holder_ids():
             if isinstance(entry, dict):
                 if entry['until'] is not None:

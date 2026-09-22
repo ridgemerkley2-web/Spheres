@@ -1,0 +1,27 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://parliament.gov.to/en/media-centre/press-releases/the-office-of-the-lord-speaker-of-the-legislative-assembly-received-the-first-nomination-for-prime-minister-designate-today",
+  "accessed_date": "2026-09-21",
+  "published_date": "2024-12-20",
+  "access_method": "fetched_original_html_and_article_text_read",
+  "source_response_bytes": 56828,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "provenance_note": "Fetched by direct HTTPS request on 2026-09-22 UTC (2026-09-21 local), HTTP 200, 56,828 bytes. The independent check re-fetched it the same day with a cache-busting query and read the same article text and metadata; its byte count differed by a few bytes. Each response embeds a per-request form token and the page displays a live hit counter, so no response hash is asserted. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_pm_first_nomination_20241220",
+      "text": "The Lord Speaker's release issued 20 December 2024 states that the first written nomination for Prime Minister Designate was received 'this afternoon', that the candidate would be revealed at the meeting of Elected Representatives on Tuesday 24 December 2024, and that nominations remained open until 4.30pm on Monday 23 December 2024.",
+      "attested_on": "2024-12-20",
+      "locator": "Press release body; issue line",
+      "uncertainty": "Procedural record; names no candidate."
+    }
+  ],
+  "scope_note": "Printed issue line 20 December 2024; the page metadata 'Last Updated 16 January 2025' is not the issue date. Joomla page: each response embeds a per-request form token and the page shows a live hit counter, so no response hash is asserted.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Press-release text, issue line and page metadata read; no images reviewed."
+  }
+}

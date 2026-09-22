@@ -10,10 +10,9 @@ Branch: `claude/c01-tonga-08`. Base: `e6f9fa41`, the head of `claude/c01-tonga-0
 CLAUDE-C01-04. Both of those packets are ready for review and not yet integrated. Claim commit: `dac0cc35`.
 
 CLAUDE-C01-04 and CLAUDE-C01-07 are now accepted and integrated, and this branch has merged integration
-`9d352f03`, so it applies directly; against integration it contains CLAUDE-C01-08 only. `tonga.json` may conflict with CLAUDE-C01-03 (`claude/c01-tonga-03`, ready for review) in
-the `to_pm` holder list: this packet inserts seven holders before Tu'i'onetoa, while CLAUDE-C01-03 sets
-Sovaleni's `until` and appends Eke after him, and both packets' tests pin the exact holder list. Claude will
-rebase on request after either one merges.
+`9d352f03`. It has also merged CLAUDE-C01-03 (`claude/c01-tonga-03` at `387e4526`), resolving the shared
+`to_pm` holder list (seven 1990-2018 holders, the 2019 and 2021 ones, Sovaleni's stated end, Eke) and the
+exact test pins. **Stacked: merge CLAUDE-C01-03 first**; against it, this branch contains CLAUDE-C01-08 only. The earlier conflict note no longer applies: the two packets are merged here.
 
 Result commit: the head of `claude/c01-tonga-08` at submission (the separate index commit); to be recorded by
 the integrator. Reviewer and integrator: Codex.

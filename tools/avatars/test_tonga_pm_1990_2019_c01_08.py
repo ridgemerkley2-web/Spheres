@@ -83,8 +83,9 @@ ENTRY_ONLY = ('to_dissolution_instrument_20170824', 'to_pohiva_cabinet_mourning_
 
 TUIPELEHAKE, VAEA, LAVAKA, SEVELE = "Fatafehi Tu'ipelehake", 'Baron Vaea', "Prince 'Ulukalala Lavaka Ata", 'Feleti Sevele'
 TUIVAKANO, POHIVA = "Lord Tu'ivakano", "Samuela 'Akilisi Pohiva"
+# CLAUDE-C01-03 appends Eke (attested at his 2025 appointment) after Sovaleni.
 NAMES = [TUIPELEHAKE, VAEA, LAVAKA, SEVELE, TUIVAKANO, POHIVA, POHIVA, "Pohiva Tu'i'onetoa",
-         "Siaosi 'Ofakivahafolau Sovaleni"]
+         "Siaosi 'Ofakivahafolau Sovaleni", "'Aisake Valu Eke"]
 # (attested_on, from, until, attested_period) of the seven holders this packet adds, in list order.
 HOLDERS = [
     (None, None, None, {'from': '1990-01-01', 'through': '1990-12-31'}),
@@ -302,7 +303,8 @@ class TongaPrimeMinisterTests(unittest.TestCase):
 
     def test_ends_only_where_a_source_states_one(self):
         ends = [(h['name'], h['until']) for h in self.holders if h['until']]
-        self.assertEqual(ends, [(LAVAKA, '2006-02-11')])
+        # The only other stated end is CLAUDE-C01-03's: Sovaleni's resignation and its acceptance, 9 December 2024.
+        self.assertEqual(ends, [(LAVAKA, '2006-02-11'), ("Siaosi 'Ofakivahafolau Sovaleni", '2024-12-09')])
         lavaka = self.holders[2]
         self.assertEqual(lavaka['until'], self.claims['to_lavaka_ata_resignation_accepted_20060211']['attested_on'])
         self.assertEqual(lavaka['from'], self.claims['to_pmo_lavaka_ata_commencement_20000103']['attested_on'])
@@ -330,9 +332,11 @@ class TongaPrimeMinisterTests(unittest.TestCase):
         packet_rows = [u for u in unresolved if u.startswith('TO-PM90-')]
         self.assertEqual([u.split(':', 1)[0].split(' ', 1)[0] for u in packet_rows],
                          ['TO-PM90-01/02', 'TO-PM90-03', 'TO-PM90-04', 'TO-PM90-05/06', 'TO-PM90-07', 'TO-PM90-08'])
-        self.assertTrue(unresolved[-1].startswith('TO-DPFI-05'))
-        self.assertIn('from the IPU record (CLAUDE-C01-08 later adds his holders', unresolved[-1])
-        self.assertIn('Prime-minister packet 08', self.packet['coverage']['unresolved'][-1])
+        # CLAUDE-C01-03 appends its own notes after these, so pin exactly one entry each rather than the last one.
+        dpfi = [u for u in unresolved if u.startswith('TO-DPFI-05')]
+        self.assertEqual(len(dpfi), 1)
+        self.assertIn('from the IPU record (CLAUDE-C01-08 later adds his holders', dpfi[0])
+        self.assertEqual(sum('Prime-minister packet 08' in u for u in self.packet['coverage']['unresolved']), 1)
 
     def test_holders_are_exactly_as_intended(self):
         pm_invariants(self.packet)
@@ -354,7 +358,8 @@ class TongaPrimeMinisterTests(unittest.TestCase):
                 self.assertIn(self.claim_source[cid], sources)
         # The existing 2019 and 2021 holders keep their places and content; the string holders stay first.
         self.assertEqual(self.role['holder_claims'][:2], ['to_fakafanua_appointment', 'to_fakafanua_august'])
-        self.assertEqual(len(self.role['holder_claims']), 11)
+        # Two string holders, this packet's seven, the 2019 and 2021 ones, and CLAUDE-C01-03's Eke.
+        self.assertEqual(len(self.role['holder_claims']), 12)
         self.assertEqual(self.holders[7]['claim_ids'], ['to_tuionetoa_royal_appointment_20191008'])
         self.assertEqual(self.holders[8]['from'], '2021-12-27')
         # Acting service, the Deputy Prime Minister and the selections become nobody's holder anywhere.

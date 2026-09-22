@@ -1,0 +1,71 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://parliament.gov.to/en/parliament-business/hansards-debates/3-2024/131-miniti-fika-48-aho-09-o-tisema-2024",
+  "accessed_date": "2026-09-21",
+  "published_date": "2025-03-04",
+  "access_method": "downloaded_original_pdf_text_and_relevant_pages_visually_read",
+  "source_response_url": "https://parliament.gov.to/en/parliament-business/hansards-debates/3-2024/131-miniti-fika-48-aho-09-o-tisema-2024",
+  "source_response_request": "HTTP POST of the Phoca Download form (download=131) on the file page; response Content-Type application/pdf, Content-Disposition filename 'Miniti Fika 48 Fale Alea 09122024.pdf'",
+  "source_response_bytes": 404595,
+  "source_response_sha256": "9e9cf1dd8d5833fc4b2f9b1c4ccf3df01cf7471686a5e7768f00aa42023c27d5",
+  "source_response_checked_in": false,
+  "provenance_note": "Downloaded on 2026-09-21 and hashed before extraction; the independent check re-downloaded the same 404,595 bytes and SHA-256 the same day. A plain re-request can return HTTP 303 with an empty body: the file page is served from a page cache carrying a stale form token, so the Phoca POST fails its token check. Requesting the file page with a cache-busting query string yields a fresh token and the full PDF. source_response_url is the file page to which the download form is posted. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_sovaleni_resignation_statement_20241209",
+      "text": "The minutes of sitting No. 48 (Monday 9 December 2024), whose agenda listed Motion No. 4A/2024 for a vote of no confidence in the Prime Minister and the Prime Minister's written reply, record Prime Minister Siaosi Sovaleni ('Eiki Palēmia) announcing in the House, under the heading 'Fakafisi 'Eiki Palēmia mei he lakanga Palēmia 'o Tonga', that he resigns as Prime Minister of Tonga 'Fakatatau ki he Konisitūtoné Kupu 50 (2)(c), effective immediately he 'ahó ni' (in accordance with clause 50(2)(c), effective immediately today), and taking leave of the Deputy Prime Minister and Cabinet.",
+      "attested_on": "2024-12-09",
+      "locator": "PDF p.3 (agenda items 4.1-4.2); PDF pp.40-41 (heading; time blocks 1150-1155 and 1155-1200)",
+      "uncertainty": "The clause is printed '50 (2)(c)'; the Speaker later cites clause 50(a)(2)(c). The printed form is kept and not corrected. The time of day is bracketed only by the transcript's five-minute blocks. The resignation letter itself, and the date on which it was written or signed, are not in the minutes. The Speaker relied on His Majesty's written reply, not on these words, for confirmation (to_speaker_vonc_withdrawn_procedure_20241209)."
+    },
+    {
+      "id": "to_palace_acceptance_letter_20241209",
+      "text": "The same minutes record the Table Clerk reading, in the 1400-1405 block after the House resumed, a letter from the Palace Office dated Monday 9 December 2024, signed by Sione U. Fifita, Secretary to His Majesty, and addressed to Speaker Lord Fakafanua: the Palace Office had received that day, Monday 9 December 2024, Hon. Hu'akavameiliku's letter to King Tupou VI resigning as Prime Minister of Tonga, and His Majesty had graciously accepted the resignation ('Kuo mokoi 'a e Finangalo 'a 'Ene 'Afio ki he fakafisi').",
+      "attested_on": "2024-12-09",
+      "locator": "PDF p.42: Speaker's adjournment to 2pm at the top of the page; 1400-1405 block, heading 'Tohi mei he 'Ofisi Palasi fekau'aki mo e Tohi Fakafisi Palēmia 'o Tonga'",
+      "uncertainty": "The Palace letter is known only as read into the minutes; the original and the resignation letter are not published. The minutes bracket the acceptance: the resignation was announced in the 1150-1200 block; the Speaker then said the matter was to be completed with His Majesty under the Constitution and adjourned the House to 2pm; at 1400-1405 he said the recess had been used to convey it to His Majesty ('Na'a tau ngāue'aki aipē 'a e taimi mālōlō ke fakahoko eni ki he 'Ene 'Afio') and that the Palace letter had then reached his Office. Acceptance therefore fell within that recess on 9 December; its clock time is not recorded."
+    },
+    {
+      "id": "to_speaker_vonc_withdrawn_procedure_20241209",
+      "text": "The Speaker then removed agenda items 4.1 and 4.2 (the no-confidence motion and the Prime Minister's reply), ruled that both documents be released as public records of the Assembly although not tabled, and stated that because the office of Prime Minister was vacant the Schedule under clause 50(A) applied: invitations within 10 days, counted from the next day; 14 days for nominations, expected to end on Monday 23 December; and a meeting within 3 days, to be held on 24 December, to which he adjourned the House. He also read clause 50(a)(2)(c) (a Prime Minister holds office until death, resignation or revocation of appointment) and stated that the resignation had been confirmed that day by His Majesty's written reply ('tohi tali mei he 'Ene 'Afió').",
+      "attested_on": "2024-12-09",
+      "locator": "PDF p.43 (end of the 1400-1405 block: items 4.1-4.2 removed and public-record ruling; 1405-1410 block: the Schedule); p.46 (1410-1415: clause 50(a)(2)(c) read; 1415-1420: confirmation by His Majesty's reply); p.50 (adjournment to 24 Tīsema)",
+      "uncertainty": "Procedural statements by the Speaker in debate. No vote on the motion took place; this is a clause 50A vacancy, not a clause 50B removal."
+    },
+    {
+      "id": "to_speaker_caretaker_ruling_20241209",
+      "text": "Answering Lord Tu'ivakanō's request that the King be asked for an interim Cabinet ('Kapineti fakataimi') during the 14-day period, the Speaker had section 18(2) of the Government Act read (the Deputy Prime Minister exercises the powers and performs the duties of the Prime Minister when the Prime Minister cannot act because of absence, illness or other reason) and ruled that on a resignation under clause 50(a) the existing Cabinet remains and, under the Government Act, the Deputy Prime Minister acts ('Le'ole'o leva 'a e 'Eiki Tokoni Palēmiá'); he found no constitutional power for the King to remove the Cabinet short of dissolving the Assembly, the Cabinet leaving office under the Constitution only when the Prime Minister is removed under clause 50(b).",
+      "attested_on": "2024-12-09",
+      "locator": "PDF pp.47-50 (headings 'Tokanga Nōpele Tongatapu 2 ke 'omai ha Kapineti Fakataimi ...'; 1420-1430 blocks)",
+      "uncertainty": "The Speaker's ruling in debate, not an instrument appointing an Acting Prime Minister. It names no person and dates no start. The Government Act was not retrieved; section 18(2) is taken only as read into the minutes. Ha'apai 13 cites an earlier precedent of a Prime Minister's death, which is not imported."
+    },
+    {
+      "id": "to_deputy_pm_vaipulu_listed_20241209",
+      "text": "The members' list printed at the front of the same minutes ('Hou'eiki Minisitā Kapineti') sets Hon. Samiu Vaipulu against ''Eiki Tokoni Palēmia, 'Eiki Minisitā Lao & Pilīsone' (Deputy Prime Minister; Justice and Prisons), Hon. Siaosi Sovaleni against ''Eiki Palēmia' with Education & Training and Police & Fire Services, and Hon. Tiofilusi Tiueti against Finance & National Planning and Revenue & Customs. The Lands and Internal Affairs portfolio lines are printed in red with no name.",
+      "attested_on": "2024-12-09",
+      "locator": "PDF p.2, rendered page",
+      "uncertainty": "A membership list attached to the minutes of 9 December; it gives no appointment date and precedes the resignation in the same sitting. pdftotext -layout output pairs Tiueti with the Deputy Prime Minister line; the pypdfium2 text layer and the rendered page pair Vaipulu with it, and the pairing here follows the rendered page. It says nothing about acting office."
+    }
+  ],
+  "scope_note": "Tongan-language verbatim minutes (50-page PDF, created 14 February 2025) of the sitting of 9 December 2024, downloaded through the Phoca Download button on the file page. The 4 March 2025 listing date is the upload date, not the sitting date. English renderings in the claims are this packet's reading, not an official translation. The no-confidence motion and the Prime Minister's reply are not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      2,
+      3,
+      40,
+      41,
+      42,
+      43,
+      46,
+      48,
+      49,
+      50
+    ],
+    "facsimile_pages_one_based": [],
+    "text_layer_only_pages_one_based": [
+      47
+    ],
+    "method": "Listed pages rendered with pypdfium2 and read; PDF page numbers equal printed page numbers. Page 47 was read from the pypdfium2 text layer only. The p.2 members' list was paired from the rendered page because pdftotext -layout output misaligns it; the pypdfium2 text layer agrees with the rendered page."
+  }
+}
