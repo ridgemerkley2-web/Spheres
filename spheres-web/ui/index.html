@@ -2451,6 +2451,7 @@
 <link rel="stylesheet" href="/agency.css">
 <link rel="stylesheet" href="/operations-ui.css">
 <link rel="stylesheet" href="/campaign-operations-ui.css">
+<link rel="stylesheet" href="/campaign-journey.css">
 <link rel="stylesheet" href="/area-art.css">
 <style>
 .session-pending button { min-height:44px; white-space:normal; }
@@ -2725,6 +2726,7 @@
       <div class="sr-only" id="productionLive" role="status" aria-live="polite"></div>
     </aside>
     <nav id="commandDock" aria-label="Game systems">
+      <button class="dockbtn" id="campaignJourneyBtn" type="button" aria-haspopup="dialog" disabled><span class="icon" aria-hidden="true">✦</span><span class="copy"><span class="label">Campaign</span><small>goals &amp; history</small></span></button>
       <button class="dockbtn" id="dominationDockBtn" type="button" aria-controls="dominationScreen" aria-expanded="false" disabled>
         <span class="icon" aria-hidden="true"><span class="dom-dock-core"></span></span>
         <span class="copy"><span class="label">Global Command</span><small id="dockDomination">campaign director</small></span>
@@ -3190,6 +3192,7 @@
 <script src="/campaign-transport.js"></script>
 <script src="/area-art.js"></script>
 <script src="/campaign-ui.js"></script>
+<script src="/campaign-journey.js"></script>
 <script src="/chronicle-data.js"></script>
 <script src="/chronicle-ui.js"></script>
 <script src="/programs-ui.js"></script>
@@ -3576,6 +3579,7 @@ const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 /// Read/turn callers get a thrown Error. Immediate commands use the shared
 /// receipt channel and return an unchanged state with errors to legacy panels.
 async function api(path, body, rawCommand = false) {
+  if (!rawCommand && body !== undefined && ["/api/command", "/api/advance"].includes(path)) body = {player_context:S?.player, ...body};
   if (!rawCommand && body !== undefined && ["/api/command", "/api/advance", "/api/save", "/api/load", "/api/new"].includes(path)
       && typeof guardEconomicOrder === "function" && guardEconomicOrder(path, body)) {
     const message="Confirm the pending financial order in the Exchange before sending another change.";
@@ -5039,6 +5043,7 @@ function render() {
     : "budget & policy";
   $("#dockWorld").textContent = `${S.wars.length} active conflict${S.wars.length === 1 ? "" : "s"} · ${S.log.length} dispatches`;
   renderDominationDock();
+  syncCampaignJourney(S);
   renderAgency(S);
   renderLogisticsDock();
   renderProductionDock();

@@ -67,7 +67,12 @@ pub(crate) fn advance_request(
         }
         _ => return Err("A protected turn needs both a browser identity and sequence.".into()),
     };
+    if let Some(reason) = crate::campaign_journey::pause_reason(g) { return Err(reason.into()); }
+    crate::campaign_journey::validate_player(g, payload)?;
     let commands = advance_commands(&g.world, payload)?;
+    if !commands.is_empty() && g.world.player.is_some_and(|id| !g.world.nation_opt(id).is_some_and(|n| n.alive)) {
+        return Err("An observer cannot issue government orders.".into());
+    }
     let days = asked_days(payload)?;
     let months = if days.is_none() {
         Some(asked_months(payload)?)
@@ -108,7 +113,7 @@ pub(crate) fn immediate_request(
         .get("commands")
         .and_then(|v| v.as_array())
         .ok_or("Commands must be a list.")?;
-    let fingerprint = serde_json::to_string(&(list, payload.get("review_kind"), payload.get("review_token"))).map_err(|e| e.to_string())?;
+    let fingerprint = serde_json::to_string(&(list, payload.get("review_kind"), payload.get("review_token"), payload.get("player_context"))).map_err(|e| e.to_string())?;
     let token = match (payload.get("client_id"), payload.get("request_seq")) {
         (None, None) => None,
         (Some(client), Some(seq)) => {
@@ -154,6 +159,20 @@ pub(crate) fn immediate_request(
         _ => return Err("Protected orders need both a browser identity and a sequence.".into()),
     };
     crate::decision_review::validate(g, payload)?;
+    crate::campaign_journey::validate_player(g, payload)?;
+    if list.iter().any(crate::campaign_journey::is_command) {
+        crate::campaign_journey::apply(g, payload)?;
+        if let Some((client, seq)) = token {
+            g.command_receipts.insert(client, (seq, fingerprint, vec![]));
+        }
+        let mut out = state_json(g, None);
+        out["errors"] = serde_json::json!([]);
+        out["command_replayed"] = false.into();
+        return Ok(out);
+    }
+    if !g.world.nation_opt(me).is_some_and(|n| n.alive) {
+        return Err("This government no longer exists. Open Campaign to review continuation choices.".into());
+    }
     // Parse the complete batch first; malformed input cannot half-commit an
     // immediate command list. Gameplay refusals still report per-order errors.
     advance_commands(&g.world, payload)?;

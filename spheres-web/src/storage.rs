@@ -23,6 +23,8 @@ struct Campaign {
     log: Vec<Event>,
     #[serde(default)]
     history_epoch: u64,
+    #[serde(default)]
+    journey: crate::campaign_journey::Journey,
     saved_date: String,
     player: Option<String>,
     saved_unix: u64,
@@ -35,6 +37,7 @@ pub(crate) fn encode(g: &Game) -> Result<String, String> {
         history: g.history.clone(),
         log: g.log.clone(),
         history_epoch: g.history_epoch,
+        journey: g.journey.clone(),
         saved_date: g.world.date_str(),
         player: g.world.player.map(|p| p.name().into()),
         saved_unix: std::time::SystemTime::now()
@@ -79,6 +82,7 @@ pub(crate) fn decode(text: &str) -> Result<Game, String> {
     }
     g.log = file.log;
     g.history_epoch = file.history_epoch;
+    g.journey = file.journey;
     g.storage_notice = Some("Campaign and its history restored.".into());
     Ok(g)
 }
