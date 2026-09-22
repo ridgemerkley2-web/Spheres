@@ -844,7 +844,7 @@
           "text": "IPU states that the Democratic Party of the Friendly Islands (DPFI), led by the veteran pro-democracy MP 'Akilisi Pohiva, took eight of the 17 directly elected seats at the 27 November 2014 election, and that two of the independents who won seats joined the DPFI after the elections. It calls Pohiva the DPFI leader during the election campaign, and its summary fields give two parties contesting and one winning seats.",
           "attested_on": "2014-11-27",
           "locator": "'Purpose of elections', paragraphs 1-2; summary fields 'Number of parties contesting the election' and 'Number of parties winning seats'",
-          "uncertainty": "IPU-only: an interparliamentary summary citing Legislative Assembly communications, not a Legislative Assembly, registry or court record. A leader attestation at the election, not a leadership start or term. The two independents' joining dates are not given. IPU's 2014 party counts differ in approach from its 2017, 2021 and 2025 pages, which say candidates formally stood as independents; the eight-seat figure is IPU's statement and is not used as a party seat total."
+          "uncertainty": "IPU-only: an interparliamentary summary citing Legislative Assembly communications, not a Legislative Assembly, registry or court record. A leader attestation at the election, not a leadership start or term. The two independents' joining dates are not given. IPU's 2014 party counts differ in approach from its later pages: 2017 says candidates formally ran as independents, 2021 says Tonga has no political parties although some candidates ran under group banners, and 2025 reads 'no party system or candidates stood as independents'; the eight-seat figure is IPU's statement and is not used as a party seat total."
         },
         {
           "id": "to_ipu_2014_pohiva_assembly_selection_20141229",
@@ -870,8 +870,8 @@
       "scope_note": "Legacy PARLINE summary read after the cutoff for its dated 2014 narrative and summary fields only. Publication date unknown: the server's Last-Modified is 22 April 2024 and the footer reads 'Copyright 1996-2016'. IPU cites Legislative Assembly communications of 3 December 2014, 21 January 2015 and 1 January 2017. Interparliamentary record, not a registration record. A direct non-browser request returned HTTP 403. The raw response carries a per-request Cloudflare script, so its hash is not reproducible; the extract records a normalised hash and its rule.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/tonga-ipu-2014-election-facts.json",
-        "bytes": 5805,
-        "sha256": "31c2173c86559141fac2e89f8bab77f6736693e4093eca441d0008288ae87563",
+        "bytes": 5950,
+        "sha256": "ab53c98de7ed418550eb78173fddf727974744c62e5f9c09070d009a7730da0d",
         "kind": "derived_factual_extract"
       }
     },
@@ -1012,28 +1012,28 @@
           "text": "The Commission's final-results box for Tongatapu 1 (2025 General Election) gives Tevita Fatafehi Puloka 1,343 votes (62.58%, order of election 1), Siaosi Vailahi Pohiva 758 (35.32%, order 2) and Eliesa Fifita 45 (2.10%, order 3).",
           "attested_on": "2025-11-20",
           "locator": "PDF page 1, 'Final results for Tongatapu 1 - 2025 General Election'",
-          "uncertainty": "Personal results only; the table records no party affiliation. The document is undated and labelled revised."
+          "uncertainty": "Personal results only; the table records no party affiliation. The document is undated and labelled revised. The Commission document gives only '2025 General Election'; the day in attested_on is taken from IPU 2025 and CV 49/2025 (to_ipu_2025_no_party_result, to_fasi_v_sika_poll_result_20251120), not from this source."
         },
         {
           "id": "to_tec_2025_tongatapu2",
           "text": "The Commission's final-results box for Tongatapu 2 (2025 General Election) gives Semisi Kioa Lafu Sika 951 votes (55.45%, order of election 1) and 'Uhilamoelangi Fasi 764 (44.55%, order 2).",
           "attested_on": "2025-11-20",
           "locator": "PDF page 2, 'Final results for Tongatapu 2 - 2025 General Election'",
-          "uncertainty": "A poll result, not a record of seat status after the poll: the election was the subject of petition CV 49/2025 (to_sc_fasi_v_sika_20260518), whose determination is not imported, and no seat holding at the cutoff is asserted. No party affiliation is recorded."
+          "uncertainty": "A poll result, not a record of seat status after the poll: the election was the subject of petition CV 49/2025 (to_sc_fasi_v_sika_20260518), whose determination is not imported, and no seat holding at the cutoff is asserted. No party affiliation is recorded. The Commission document gives only '2025 General Election'; the day in attested_on is taken from IPU 2025 and CV 49/2025 (to_ipu_2025_no_party_result, to_fasi_v_sika_poll_result_20251120), not from this source."
         },
         {
           "id": "to_tec_2025_no_party_column",
           "text": "The constituency tables list number, candidate name, village and votes by polling place, with no party or affiliation column.",
           "attested_on": "2025-11-20",
           "locator": "PDF pages 1-2 (read); pages 3-17 (same layout on thumbnail review)",
-          "uncertainty": "A structural observation; the figures on pages 3-17 were not transcribed."
+          "uncertainty": "A structural observation; the figures on pages 3-17 were not transcribed. The Commission document gives only '2025 General Election'; the day in attested_on is taken from IPU 2025 and CV 49/2025 (to_ipu_2025_no_party_result, to_fasi_v_sika_poll_result_20251120), not from this source."
         }
       ],
       "scope_note": "Undated 17-page image-only scan labelled 'revised'; the month (November 2025) comes only from the upload path, so no published_date is recorded. It is the Commission's tabulation of the poll, not a record of later petitions or seat changes.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/tonga-tec-results-2025-facts.json",
-        "bytes": 3394,
-        "sha256": "8be0815e01c46a4f57776e5a21f67f6763bbfca192debc838854479ecb5ce4b3",
+        "bytes": 4027,
+        "sha256": "b3f265a54c7e569011d4c94186e76d106a03a5aa43d932af693aaf1d28866c32",
         "kind": "derived_factual_extract"
       }
     },
@@ -1051,14 +1051,14 @@
           "text": "The Commission's 2025 'Candidates - People's Representatives' table gives constituency, candidate and village or area only, with no party label. For example, the Tongatapu 1 rows list three candidates and the Tongatapu 2 rows two, each with a village or area and no party.",
           "attested_on": "2025-11-20",
           "locator": "Section 'Candidates - People's Representatives' (Constituency / Candidate / Village/Area table)",
-          "uncertainty": "The page is undated; the table is taken to be the 2025 candidate list from the 2025 Election Updates section it sits in. The absence of party labels reflects the Commission's format, not an absence of party campaigning."
+          "uncertainty": "The page is undated; the table is taken to be the 2025 candidate list from the 2025 Election Updates section it sits in. The absence of party labels reflects the Commission's format, not an absence of party campaigning. The Commission document gives only '2025 General Election'; the day in attested_on is taken from IPU 2025 and CV 49/2025 (to_ipu_2025_no_party_result, to_fasi_v_sika_poll_result_20251120), not from this source."
         }
       ],
       "scope_note": "Live, undated WordPress home page read after the cutoff; used only for the layout of its 2025 people's-representative candidate list. An independent re-download the same day reproduced the response hash exactly, but a live page may change.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/tonga-tec-candidates-2025-facts.json",
-        "bytes": 2199,
-        "sha256": "565deabada14eb401418c39649a91e1c9938cd3d2d730c82d30bea0c7f121363",
+        "bytes": 2410,
+        "sha256": "c93af63a59351a913eb8e54728ec2a575863971c2318052d2a498e21887707c0",
         "kind": "derived_factual_extract"
       }
     },
@@ -1300,7 +1300,7 @@
           "TO-DPFI-01 (tonga-dpfi-04.md): the Supreme Court (CV 55/2022, 29 August 2022) expands PTOA as Paati Temokalati 'a e 'Otu Motu 'Anga'ofa, also known as the Democratic Party, and the Court of Appeal (AC 22/2022, 6 April 2023) refers to 'PTOA or the Democratic Party'. Neither uses the English 'Democratic Party of the Friendly Islands'; the English name links to PTOA only through IPU 2021. These are court descriptions, not a register entry.",
           "TO-DPFI-02: CV 23/2021 records evidence naming 'Mr Pohiva and the PTOA party' in the campaign after the August 2017 dissolution; reading Mr Pohiva as 'Akilisi Pohiva is contextual. With IPU 2017 this strengthens, but does not replace, the provisional grouping, and no party office for Pohiva comes from the court record.",
           "TO-DPFI-03: founding unresolved. No founding statute, launch notice or registration instrument was found; a September 2010 launch appears only in a contemporary news report (a lead). lifecycle.from stays null.",
-          "TO-DPFI-04: legal form unresolved. None of the records searched (the judgments listed in tonga-dpfi-04.md, by text layer where one exists and visually where listed) describes PTOA as incorporated or registered, and the 2022 proceeding was brought by two individuals. Societies are filed on paper and are outside MCCTIL's online register (to_incsoc_paper_register_20260721), so a paper-register search is needed. Neither incorporation nor its absence is inferred.",
+          "TO-DPFI-04: legal form unresolved. None of the records searched (the judgments listed in tonga-dpfi-04.md, by text layer where one exists and visually where listed) describes PTOA as incorporated or registered, and the 2022 proceeding was brought by two individuals. Societies are filed on paper and cannot be filed through MCCTIL's online register (to_incsoc_paper_register_20260721), so a paper-register search is needed. Neither incorporation nor its absence is inferred.",
           "TO-DPFI-05: IPU 2014 adds a second leader observation for 'Akilisi Pohiva (27 November 2014). Both leader observations are IPU-only, not Legislative Assembly, registry or court records; no continuous leadership term from 2010 to 2019 is inferred. The 2014 Assembly selection, endorsement and Cabinet claims belong to to_pm and to_cabinet.",
           "TO-DPFI-06: 'Akilisi Pohiva's death is recorded at month precision (September 2019); the exact day needs a Prime Minister's Office release or Gazette notice. Neither Assembly article records a party-leadership transfer.",
           "TO-DPFI-07: Fatai Helu is recited as President of the party on 29 August 2022 (role to_dpfi_president, from and until null), a judicial background recital that probably relays the applicants' filings. The party leader after September 2019 is unresolved: rival leadership claims appear only in news and tertiary leads, and no party office for 2023 to the cutoff was found in the records searched. Whether President and Leader are one office is unknown.",

@@ -12,7 +12,7 @@ Reviewer/integrator: Codex. Separate from the ready S19 gameplay packet.
 TO-DPFI-03 (founding), 04 (legal form) and 07 (party offices after September 2019) unresolved with sources
 attempted; TO-DPFI-08 (a 2025 result of no seats) not accepted. All fifteen checker defects applied.
 Touched paths: this record; `research/tonga.json` (eleven sources, 22 claims, a second `to_dpfi_leader` holder
-attested 2014-11-27, new role `to_dpfi_president` with one holder attested 2022-08-29, seven name observations);
+attested 2014-11-27, new role `to_dpfi_president` with one holder attested 2022-08-29, six name observations);
 eleven new `research/sources/tonga-{sc,ca,ipu,assembly,mcctil,tec}-*-facts.json` extracts; new
 `research/tonga-dpfi-04.md`; `test_tonga_research_s10g.py` (totals updated) and `test_tonga_reconciliation_c01.py`
 (DPFI leader holder pin updated to the exact new list), none loosened; new `test_tonga_dpfi_c01_04.py`.

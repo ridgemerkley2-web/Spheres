@@ -10,7 +10,7 @@ This packet reviews eight observations about the Democratic Party of the Friendl
 Islands (`to_dpfi`), printed in Tongan court records as PTOA, in [tonga.json](tonga.json).
 It adds eleven sources and 22 claims, a second holder observation on the existing
 `to_dpfi_leader` role, one new party role (`to_dpfi_president`) with one holder
-observation, and seven name observations. It adds no organization, institution, game
+observation, and six name observations. It adds no organization, institution, game
 mapping, lifespan, merger, portrait or avatar. The parent scope (C01, C06, S23, WC1 and
 CP1) remains open.
 
@@ -62,6 +62,8 @@ state or event as the source dates it (for example, the 1 October 2021 Niutao ev
 the 2022 judgments). The date a court or page was issued is `published_date`. A claim
 the source dates only by month uses a `period`; a claim dated only relatively gets no
 structured date.
+Exception: the Electoral Commission claims carry the 20 November 2025 poll day stated by
+IPU 2025 and CV 49/2025, because the Commission documents are dated only '2025'.
 
 ## Observations
 
@@ -351,7 +353,8 @@ packet keeps the `parliament.gov.to` form used by its other Assembly sources.
   an Incapsula block to curl and in a browser tab. Bot protection was not bypassed.
 - Tonga Business Registries entity search
   ([corp/search.aspx](https://www.businessregistries.gov.to/corp/search.aspx)): behind
-  reCAPTCHA; not used. It does not hold societies in any case.
+  reCAPTCHA; not used. The memo says society filings cannot be made online; whether the
+  register holds any society records was not established.
 - Prime Minister's Office ([pmo.gov.to](https://pmo.gov.to/)), for a September 2019 death
   statement: HTTP 403 to curl; not tried in a browser.
 - IPU Parline by curl: HTTP 403; read in a browser instead. The new Parline pages for 2010
@@ -430,8 +433,9 @@ These are proposals for the integrator. They are not created in `work-orders.jso
   Pohiva · Observed on 2014-11-27") and "President of the party (PTOA)" ("Fatai Helu ·
   Observed on 2022-08-29"). No UI code changed; the Node checks pass, and no browser review
   was run.
-- CV 49/2025 records findings against a named, sitting representative. Only its page 1
-  poll statement is imported. Reviewers should keep it that way.
+- CV 49/2025 contains findings and a determination concerning the respondent. Only its
+  page 1 poll statement is imported; its findings and determination are not, and no seat
+  status is asserted. Reviewers should keep it that way.
 
 ## Checks
 
