@@ -1,0 +1,28 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://web.archive.org/web/20061105045105id_/http://www.pmo.gov.to:80/artman/publish/article_180.shtml",
+  "original_url": "http://www.pmo.gov.to/artman/publish/article_180.shtml",
+  "archive_capture_utc": "2006-11-05T04:51:05Z",
+  "article_timestamp": "Sep 20, 2006, 16:15",
+  "accessed_date": "2026-09-21",
+  "published_date": "2006-09-20",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 12099,
+  "source_response_sha256": "c9de08e98677ab1070b4316685b71f8c99d40555f703f1f8cd8caf361e0bb993",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original PMO page, captured at 2006-11-05T04:51:05Z; the original official page is no longer served. The capture bytes were downloaded and hashed before extraction on 2026-09-21 (local). This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_crown_tupou_iv_burial_reported_20060920",
+      "text": "The PMO report of 20 September 2006 describes the burial 'yesterday' of King Taufa'ahau Tupou IV at the Royal Tombs, Mala'e Kula, following his passing away in New Zealand and lying in state at the Royal Palace.",
+      "locator": "Paragraph 2; article timestamp Sep 20, 2006, 16:15",
+      "uncertainty": "No structured date: 19 September 2006 would be derived from 'yesterday' relative to the article's timestamp. It agrees with the State Funeral day appointed and announced in advance (to_crown_tupou_iv_state_funeral_holiday_20060919, to_crown_tupou_iv_funeral_announced_20060911). The report gives no date of death. A funeral is not a reign boundary."
+    }
+  ],
+  "scope_note": "Archived PMO article (raw Internet Archive capture of 5 November 2006, 04:51:05 UTC); the original page is no longer served. Used only for the burial report; the description of the ceremony is not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  }
+}

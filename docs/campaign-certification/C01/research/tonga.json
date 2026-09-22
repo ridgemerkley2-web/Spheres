@@ -30,6 +30,24 @@
           "id": "to_constitution_assembly",
           "text": "The Assembly includes nobles' representatives, people's representatives and Cabinet. Its recommended Speaker must be an elected nobles' representative and is appointed by the King.",
           "locator": "Clauses 59, 61"
+        },
+        {
+          "id": "to_crown_const2020_succession_c32",
+          "text": "Clause 32 of the 2020 Revised Edition sets hereditary succession to the Crown and Throne: to the eldest male child and the heirs of his body, through the male line, then to the female line, with fallback procedures if there is no lawful heir.",
+          "locator": "Clause 32, PDF pages 14-15",
+          "uncertainty": "A legal rule in a consolidated edition. It dates no accession and is not backdated to 1990. Re-read on 2026-09-21 for CLAUDE-C01-07; the source's recorded access date is that of its first intake. Downloaded copy: 789,048 bytes, SHA-256 197f1dcaf64c3267e589354aafdc2783dae7fac9f4d3b296808d21d45f7004de."
+        },
+        {
+          "id": "to_crown_const2020_coronation_oath_c34",
+          "text": "Clause 34 prescribes the oath to be taken by those who succeed to the throne. The clause does not make succession conditional on the oath, and it does not fix when the oath is taken.",
+          "locator": "Clause 34, PDF pages 15-16",
+          "uncertainty": "No coronation-oath event is dated by this clause, and no retrieved source dates the oath for George Tupou V or Tupou VI. Re-read on 2026-09-21 for CLAUDE-C01-07; the source's recorded access date is that of its first intake."
+        },
+        {
+          "id": "to_crown_const2020_prince_regent_c42_43",
+          "text": "Clause 43 provides: 'Should the King wish to travel abroad it shall be lawful for him to appoint a Prince Regent who shall administer the affairs of the Kingdom during his absence.' If the King dies while his heir is under eighteen and his will names no Prince Regent, the Legislative Assembly 'shall choose by ballot a Prince Regent', 'but the representatives of the people shall have no voice in such election'. Clause 42 refers a minority regency to clause 43.",
+          "locator": "Clauses 42-43, PDF page 17",
+          "uncertainty": "Enabling provision only; it records no appointment. A regent administers the Kingdom during the King's absence or the heir's minority and is not a King. Re-read on 2026-09-21 for CLAUDE-C01-07; the source's recorded access date is that of its first intake."
         }
       ],
       "edition": "2020 Revised Edition",
@@ -52,6 +70,18 @@
           "id": "to_older_assembly",
           "text": "The older text includes Privy Councillors and Cabinet in the Assembly, specifies nine noble and nine people's elected representatives, and gives the King appointment of the Speaker.",
           "locator": "Clauses 59-61"
+        },
+        {
+          "id": "to_crown_const1988_form_tupou_iv_c31",
+          "text": "The older revised text, labelled '1988 Revised Edition' and carrying amendment notes up to Act 12 of 1990, states in clause 31 (Form of Government) that the form of government is a constitutional government under His Majesty King Taufa'ahau Tupou IV, his heirs and successors.",
+          "locator": "Cover (PDF page 1, '1988 Revised Edition'); clause 31, PDF page 14; amendment notes citing Act 12 of 1990",
+          "uncertainty": "An edition text with no event date. Its latest amendment note is Act 12 of 1990 (assented 8 August 1990), so it is a consolidation as it stood after August 1990, not a 1988 text, and its label is not used as a date. It does not by itself attest the 1990 holder. Re-read on 2026-09-21 for CLAUDE-C01-07; the source's recorded access date is that of its first intake. Downloaded copy: 134,165 bytes, SHA-256 a07b3daff533502fa4943ff6e64ab87f1bf75a223c5aefa6c5c2868ced4cd21f, fetched without the packet URL's zoom_highlight query."
+        },
+        {
+          "id": "to_crown_const1988_prince_regent_c42_43",
+          "text": "Clauses 42-43 of the older revised text are worded identically to clauses 42-43 of the 2020 Revised Edition, including the King's power to appoint a Prince Regent to administer the affairs of the Kingdom during his absence abroad.",
+          "locator": "Clauses 42-43, PDF page 17",
+          "uncertainty": "Enabling provision only. This consolidation runs only to 1990 and does not by itself show the text in force in 2004-2006; the Supreme Court's application of clause 43 to the 1 June 2006 opening is recorded separately (to_crown_princess_regent_opening_20060601_court). Re-read on 2026-09-21 for CLAUDE-C01-07; the source's recorded access date is that of its first intake."
         }
       ],
       "scope_note": "The volume carries a 1988 Revised Edition label but includes later amendment notes, including Act 12 of 1990. It is not accepted as an exact 1 January 1990 legal snapshot."
@@ -160,6 +190,13 @@
             "from": "2008-04-23",
             "through": "2008-04-24"
           }
+        },
+        {
+          "id": "to_ipu_2008_gtv_speaker_20080502",
+          "text": "IPU's 2008 election summary states that on 2 May King George Tupou V appointed Tu'ilakepa, a nobles' representative from Vava'u, as the new Speaker.",
+          "attested_on": "2008-05-02",
+          "locator": "Election background, final paragraph",
+          "uncertainty": "IPU-only: an interparliamentary summary citing Legislative Assembly and Prime Minister's Office communications, not a royal instrument. It attests George Tupou V acting as King before his coronation. Re-read on 2026-09-21 for CLAUDE-C01-07; the source's recorded access date is that of its first intake."
         }
       ],
       "source_type": "interparliamentary_election_record",
@@ -188,6 +225,16 @@
           "text": "IPU also mentions a 'Democratic party' without enough identifying detail in the account to establish a distinct legal entity.",
           "locator": "Election background",
           "uncertainty": "Do not automatically merge with DPFI or create an additional counted organization from this ambiguous label."
+        },
+        {
+          "id": "to_ipu_2010_gtv_acceded_sept2006",
+          "text": "IPU states that King George Tupou V had acceded to the throne in September 2006.",
+          "locator": "Election background, second paragraph",
+          "period": {
+            "from": "2006-09-01",
+            "through": "2006-09-30"
+          },
+          "uncertainty": "IPU-only month-level corroboration; the accession day comes from the Tongan records (TO-CROWN-04). Re-read on 2026-09-21 for CLAUDE-C01-07; the source's recorded access date is that of its first intake."
         }
       ],
       "source_type": "interparliamentary_election_record",
@@ -1087,6 +1134,820 @@
         "sha256": "8b2c020f686cff31f984d4f4f45ca095ab7726127a67d7b4943ad380e7a9d876",
         "kind": "derived_factual_extract"
       }
+    },
+    {
+      "id": "to_act_income_tax_amend_1990",
+      "title": "Income Tax (Amendment) Act 1990 (No. 4 of 1990)",
+      "url": "https://ago.gov.to/cms/images/LEGISLATION/AMENDING/1990/1990-0004/IncomeTaxAmendmentAct1990.pdf",
+      "publisher": "Attorney General's Office, Tonga (legislation database reproduction)",
+      "accessed_date": "2026-09-21",
+      "document_date": "1990-07-12",
+      "source_type": "primary_legislation_reproduction",
+      "access_method": "downloaded_original_pdf_text_and_relevant_page_visually_read",
+      "claims": [
+        {
+          "id": "to_crown_assent_tupou_iv_19900712",
+          "text": "The assent block reads 'I assent, TAUFA'AHAU TUPOU IV, 12th July 1990'; the Act records its passage by the Legislative Assembly on 14 June 1990.",
+          "attested_on": "1990-07-12",
+          "locator": "PDF page 1, assent block and passage line",
+          "uncertainty": "A dated attestation of Tupou IV exercising the royal assent. It dates neither the start of his reign nor its continuity. The file is a re-typeset reproduction by the Attorney General's Office, not a facsimile of the gazetted print."
+        }
+      ],
+      "scope_note": "Used only for the assent attestation (TO-CROWN-01). The assent date is recorded as document_date; the reproduction's own publication date is unknown. The Act's substance is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-act-income-tax-19900712-facts.json",
+        "bytes": 2022,
+        "sha256": "583464fdaa8c99f88c51c985085771570f5e5cb801165a6ee5816c5a812e66a1",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_act_constitution_amend_1990",
+      "title": "Act of Constitution of Tonga (Amendment) Act 1990 (No. 12 of 1990)",
+      "url": "https://ago.gov.to/cms/images/LEGISLATION/AMENDING/1990/1990-0012/ActofConstitutionofTongaAmendmentAct1990.pdf",
+      "publisher": "Attorney General's Office, Tonga (legislation database reproduction)",
+      "accessed_date": "2026-09-21",
+      "document_date": "1990-08-08",
+      "source_type": "primary_legislation_reproduction",
+      "access_method": "downloaded_original_pdf_text_read",
+      "claims": [
+        {
+          "id": "to_crown_assent_tupou_iv_19900808",
+          "text": "The assent block reads 'I assent, TAUFA'AHAU TUPOU IV, 8th August, 1990'; the Act records its passage on 26 July 1990.",
+          "attested_on": "1990-08-08",
+          "locator": "PDF page 1, assent block and passage line",
+          "uncertainty": "A dated attestation of Tupou IV exercising the royal assent only. Re-typeset reproduction; the assent block was read from the text layer, not from a rendered page."
+        }
+      ],
+      "scope_note": "Used only for the assent attestation (TO-CROWN-01). This is Act 12 of 1990, the latest amendment noted in the older revised constitution text. The assent date is recorded as document_date. The Act's substance is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-act-constitution-19900808-facts.json",
+        "bytes": 1895,
+        "sha256": "a688d678dafbef86224b068a1d23a9073ee7143088b5ed691dd4ca6803408100",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_tlr_2006",
+      "title": "Tonga Law Reports 2006 ([2006] Tonga LR): Lasike & ors v Noble Tu'iha'angana & ors (Supreme Court, CV 431/2006); Flyniu & anor v Ata & ors (Supreme Court, CV 575/2004)",
+      "url": "https://ago.gov.to/cms/ago-materials/publications/tonga-law-reports.html?download=1560:2006_tlr",
+      "publisher": "Attorney General's Office, Tonga (Tonga Law Reports)",
+      "accessed_date": "2026-09-21",
+      "source_type": "primary_court_record",
+      "access_method": "downloaded_original_pdf_text_and_relevant_pages_visually_read",
+      "claims": [
+        {
+          "id": "to_crown_princess_regent_opening_20060601_court",
+          "text": "In Lasike v Noble Tu'iha'angana (Webster CJ; heard 17 June, decided 19 June 2006) the Supreme Court records that the Legislative Assembly was opened on 1 June 2006 by HRH Princess Salote Mafile'o Pilolevu Tuita as Princess Regent, in the absence of the King abroad in Auckland; the Chief Justice was an eyewitness. The court treats clause 43 as the provision under which the Princess Regent was appointed, construes its words 'Prince Regent who shall administer the affairs of the Kingdom during his [The King's] absence', and holds the Opening lawful.",
+          "attested_on": "2006-06-01",
+          "locator": "[2006] Tonga LR 139 (headnote), 140 (Preliminary), 142 (Clause 43) and 144 (Conclusion); PDF pages 165, 166, 168 and 170",
+          "uncertainty": "The court took her due appointment as given for the purposes of the case and did not adjudicate it; no appointment instrument, appointment date or end date is given. A regency observation, not a reign. Pages 166 and 170 were visually checked; pages 165 and 168 were read from the text layer."
+        },
+        {
+          "id": "to_crown_regent_assent_practice_2006_court",
+          "text": "The same judgment observes that this may have been the first opening of the Assembly by a Regent (at least in recent years), and that in practice the Regent has regularly exercised other weighty powers such as assenting to Acts passed by the Assembly.",
+          "locator": "[2006] Tonga LR 142, lines 216-220; PDF page 168",
+          "uncertainty": "A general judicial observation naming no person and giving no dates. It does not establish that any particular assent was given by a Regent."
+        },
+        {
+          "id": "to_crown_regent_tupouto_a_2004_pleading",
+          "text": "In Flyniu v Ata (ruling of 15 November 2004) the court summarises the plaintiffs' claim that the Privy Council approved the Domestic Civil Aviation Policy dated 30 July 2004 while 'the Regent at the time, HRH Crown Prince Tupouto'a' participated.",
+          "locator": "[2006] Tonga LR 10 (headnote) and 12 (Plaintiffs' claims); PDF pages 36 and 38",
+          "uncertainty": "A party's allegation as restated by the court, not a finding; unconfirmed. The approval date is unstated (on or after the policy's 30 July 2004 date), so no structured date is recorded, and no regency dates are given."
+        }
+      ],
+      "scope_note": "Regency observations only, from two judgments printed in the 2006 volume: Lasike (heard 17 June, decided 19 June 2006) and Flyniu (ruling of 15 November 2004). The volume's publication date is unknown. The Lasike reasoning on section 17 of the Legislative Assembly Act and the Flyniu merits are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-tlr-2006-regency-facts.json",
+        "bytes": 4009,
+        "sha256": "b20223f62769a0b9653660db57a0fc21db671e1a187ee22604f005eec7420094",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_act_income_tax_amend_2006",
+      "title": "Income Tax (Amendment) Act 2006 (Act 2 of 2006)",
+      "url": "https://ago.gov.to/cms/images/LEGISLATION/AMENDING/2006/2006-0002/IncomeTaxAmendmentAct2006.pdf",
+      "publisher": "Attorney General's Office, Tonga (legislation database reproduction)",
+      "accessed_date": "2026-09-21",
+      "document_date": "2006-06-30",
+      "source_type": "primary_legislation_reproduction",
+      "access_method": "downloaded_original_pdf_text_and_relevant_page_visually_read",
+      "claims": [
+        {
+          "id": "to_crown_assent_tupouto_a_20060630",
+          "text": "The assent block reads 'I assent, TUPOUTO'A, 30th June, 2006'; the Act records its passage on 29 June 2006.",
+          "attested_on": "2006-06-30",
+          "locator": "PDF page 1, assent block and passage line",
+          "uncertainty": "The capacity in which Tupouto'a assented (for example as Prince Regent) is not printed, so this is not accepted as a regency observation on its own, and the re-typeset text could carry transcription errors. It is not a to_king holder observation."
+        }
+      ],
+      "scope_note": "Used only for the assent line (TO-CROWN-02). Re-typeset reproduction by the Attorney General's Office; the assent date is recorded as document_date. The Act's substance is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-act-income-tax-20060630-facts.json",
+        "bytes": 1993,
+        "sha256": "a65c28290c250fa19fddf32dd001a5117280d2c853ad1c8383ce9fa212738446",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20060313_qsc_anniversary",
+      "title": "The Government, the Free Wesleyan Church of Tonga and the people, commemorate the 80th Anniversary of the Queen Salote College",
+      "url": "https://web.archive.org/web/20060907124302id_/http://www.pmo.gov.to:80/artman/publish/article_100.shtml",
+      "original_url": "http://www.pmo.gov.to/artman/publish/article_100.shtml",
+      "publisher": "Information Unit, Prime Minister's Office, Tonga",
+      "accessed_date": "2026-09-21",
+      "published_date": "2006-03-13",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_crown_prince_regent_tupouto_a_20060313",
+          "text": "The PMO's report of Monday 13 March 2006 lists first, in the order of wreath-laying at the Royal Tombs service that day, 'The Prince Regent, HRH Crown Prince Tupouto'a'.",
+          "attested_on": "2006-03-13",
+          "locator": "Article body, wreath-laying list item (1); article timestamp Mar 13, 2006, 22:41",
+          "uncertainty": "The title the PMO used on the day. No appointment instrument, start or end of this regency is given. A regency observation, not a reign."
+        }
+      ],
+      "scope_note": "Archived PMO article (raw Internet Archive capture of 7 September 2006, 12:43:02 UTC); the original page is no longer served. Used only for the Prince Regent title. The anniversary content and the other names in the list are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-qsc-20060313-facts.json",
+        "bytes": 2259,
+        "sha256": "e9486680bf4b466ee2ddd1bc8569a87a55be2466684123196100eb48365a68c6",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20060601_throne_speech",
+      "title": "The Princess Regent opens the Parliament of Tonga for 2006 (Speech from the Throne)",
+      "url": "https://web.archive.org/web/20061005234255id_/http://www.pmo.gov.to/artman/publish/article_118.shtml",
+      "original_url": "http://www.pmo.gov.to/artman/publish/article_118.shtml",
+      "publisher": "Prime Minister's Office, Tonga (Government Information Unit)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2006-06-01",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_crown_princess_regent_speech_20060601",
+          "text": "The PMO publishes the Speech from the Throne delivered by the Princess Regent, HRH Princess Salote Mafile'o Pilolevu Tuita, at the Opening of Parliament on 1 June 2006.",
+          "attested_on": "2006-06-01",
+          "locator": "Article heading and speech title block; article timestamp Jun 1, 2006, 16:34",
+          "uncertainty": "An event observation. The regency's instrument, start and end are not stated. A regency observation, not a reign."
+        }
+      ],
+      "scope_note": "Archived PMO article (raw Internet Archive capture of 5 October 2006, 23:42:55 UTC); the original page is no longer served. Used only for the Princess Regent's opening; the speech's policy content is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-throne-speech-20060601-facts.json",
+        "bytes": 2201,
+        "sha256": "3d1ee38a84465bdd78502b1d698f16bef46a256179aab8c99bb4a8bdab8fa2e0",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20060818_succession",
+      "title": "Succession to the Tongan Throne",
+      "url": "https://web.archive.org/web/20061018001211id_/http://www.pmo.gov.to:80/artman/publish/article_154.shtml",
+      "original_url": "http://www.pmo.gov.to/artman/publish/article_154.shtml",
+      "publisher": "Government Information Unit, Prime Minister's Office, Tonga (in consultation with the Palace Office and the Office of the Lord Chamberlain)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2006-08-18",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_crown_succession_not_oath_dependent_2006",
+          "text": "The PMO, in consultation with the Palace Office and the Office of the Lord Chamberlain, states that no vacancy in the Throne would arise on the King's passing because Crown Prince Tupouto'a is the lawful heir; that succession is not dependent on the heir taking the Coronation Oath; and that the powers of office pass to the new King from the time of his appointment, expected immediately upon the passing of the present Monarch, without awaiting the oath.",
+          "attested_on": "2006-08-18",
+          "locator": "Clarification paragraphs 3-7; article timestamp Aug 18, 2006, 17:36",
+          "uncertainty": "A prospective statement of the government's legal position, issued before the death; not an event record. The newspaper report it answers is not imported."
+        }
+      ],
+      "scope_note": "Archived PMO article (raw Internet Archive capture of 18 October 2006, 00:12:11 UTC); the original page is no longer served. Used only for the government's stated position on succession and the coronation oath.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-succession-20060818-facts.json",
+        "bytes": 2525,
+        "sha256": "d2ebcbf3f09eac865d28f84c879145d5ffdb4376acf2d2c4592300ec942d7eda",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20060911_proclamation",
+      "title": "PROCLAMATION OF CROWN PRINCE TUPOUTO'A, THE KING OF THE KINGDOM OF TONGA (PMO reproduction of Tonga Government Gazette No. 19, Monday 11 September 2006)",
+      "url": "https://web.archive.org/web/20061005235237id_/http://www.pmo.gov.to/artman/publish/article_172.shtml",
+      "original_url": "http://www.pmo.gov.to/artman/publish/article_172.shtml",
+      "publisher": "Prime Minister's Office, Tonga (Government Information Unit), reproducing the Tonga Government Gazette",
+      "accessed_date": "2026-09-21",
+      "published_date": "2006-09-11",
+      "source_type": "primary_gazette_web_reproduction_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_crown_gtv_devolution_proclamation_20060911",
+          "text": "Gazette No. 19 of Monday 11 September 2006 carries a proclamation in the name of His Majesty George Tupou V, by Prime Minister Feleti Vaka'uta Sevele, stating that by the decease of His Late Majesty King Taufa'ahau Tupou IV the Crown of the Kingdom of Tonga devolves upon Crown Prince Tupouto'a. The ministers, as members of the Privy Council, Speaker Tu'iha'angana and Chief Justice Anthony David Ford proclaim that Crown Prince Tupouto'a 'has now become the only lawful and rightful heir to the throne, King of the Kingdom of Tonga', as King George Tupou V. It is given at Nuku'alofa on 11 September 2006 and signed by Ma'afu, Clerk to the Privy Council.",
+          "attested_on": "2006-09-11",
+          "locator": "Reproduced gazette header, proclamation text and sign-off; article timestamp Sep 11, 2006, 18:44",
+          "uncertainty": "The proclamation is its own event, dated 11 September 2006; it does not state the date or time of the death. Its statement that the Crown devolved by the decease is the basis for the accession date (TO-CROWN-04); the proclamation date is not used as the start. PMO web reproduction, not the gazette facsimile."
+        }
+      ],
+      "scope_note": "English text of Gazette No. 19 as reproduced on the PMO website (raw Internet Archive capture of 5 October 2006, 23:52:37 UTC); the original page is no longer served, and the gazette facsimile was not found. The Tongan text is a separate source (to_pmo_20060911_proclamation_to).",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-gazette19-20060911-facts.json",
+        "bytes": 2977,
+        "sha256": "4d3090e65785f99481f5f3a54acf1c705a68e197416094e752e69b993c3e058b",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20060911_death_notice",
+      "title": "PASSING AWAY OF HIS MAJESTY KING TAUFA'AHAU TUPOU IV (PMO reproduction of Tonga Government Gazette No. 20, Monday 11 September 2006)",
+      "url": "https://web.archive.org/web/20070514085818id_/http://www.pmo.gov.to/artman/publish/article_170.shtml",
+      "original_url": "http://www.pmo.gov.to/artman/publish/article_170.shtml",
+      "publisher": "Prime Minister's Office, Tonga (Government Information Unit), reproducing the Tonga Government Gazette",
+      "accessed_date": "2026-09-21",
+      "published_date": "2006-09-11",
+      "source_type": "primary_gazette_web_reproduction_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_crown_tupou_iv_death_20060911",
+          "text": "Gazette No. 20 of Monday 11 September 2006 carries Prime Minister Feleti Vaka'uta Sevele's announcement that the passing away of His Majesty King Taufa'ahau Tupou IV occurred in Auckland, New Zealand, 'at 11:34 pm on 10th September 2006 (New Zealand time), 12:34 am on 11th September 2006, (Tongan time)'.",
+          "attested_on": "2006-09-11",
+          "printed_times": [
+            {
+              "zone": "New Zealand time",
+              "date": "2006-09-10",
+              "time": "23:34"
+            },
+            {
+              "zone": "Tongan time",
+              "date": "2006-09-11",
+              "time": "00:34"
+            }
+          ],
+          "locator": "Reproduced gazette header and first paragraph; article timestamp Sep 11, 2006, 18:32",
+          "uncertainty": "attested_on is the Tongan calendar date, as for George Tupou V's death, which is recorded in Tonga time; the New Zealand date, 10 September, is kept in printed_times and is the date the UN record gives (to_crown_tupou_iv_death_20060910_un). The two printed times are one instant, consistent with New Zealand standard time (UTC+12) and Tongan time (UTC+13) in September 2006. PMO web reproduction, not the gazette facsimile."
+        },
+        {
+          "id": "to_crown_tupou_iv_funeral_announced_20060911",
+          "text": "The same notice announces that the late King will arrive in Tonga by Royal New Zealand Air Force flight on Wednesday 13 September 2006 and lie in state at the Royal Palace, and that the State Funeral will be at the Mala'e Kula Royal Tombs on Tuesday 19 September 2006.",
+          "attested_on": "2006-09-11",
+          "locator": "Second paragraph",
+          "uncertainty": "An advance announcement, dated by the notice. The burial is reported separately after the event (to_crown_tupou_iv_burial_reported_20060920). A funeral is not a reign boundary."
+        },
+        {
+          "id": "to_crown_tupou_iv_mourning_20060911",
+          "text": "The notice declares a period of State mourning of one month, beginning 'today' and ending on 17 October 2006, with flags flown at half-mast throughout the Kingdom.",
+          "locator": "Third paragraph",
+          "period": {
+            "from": "2006-09-11",
+            "through": "2006-10-17"
+          },
+          "uncertainty": "A mourning instrument, separate from the death, the accession and the proclamation; not a reign boundary."
+        }
+      ],
+      "scope_note": "Death notice by the Prime Minister as reproduced on the PMO website (raw Internet Archive capture of 14 May 2007, 08:58:18 UTC; the page header shows a later site update, 11 May 2007, while the article is timestamped 11 September 2006). The original page is no longer served, and the Gazette No. 20 facsimile was not found. Located by the independent check.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-gazette20-20060911-facts.json",
+        "bytes": 4228,
+        "sha256": "a8f723219f40a9d5f366cbb8169747adb5f91f6a4e7815941039a77ea5449eec",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20060911_proclamation_to",
+      "title": "TALAKI FAKAPULE'ANGA 'O E HOKO 'A E PILINISI KALAUNI, TUPOUTO'A, KI HE TALONI 'O TONGA (PMO reproduction of Kasete 'a e Pule'anga Tonga Fika 19, Monite 11 Sepitema 2006)",
+      "url": "https://web.archive.org/web/20070312032819id_/http://www.pmo.gov.to/artman/publish/article_171.shtml",
+      "original_url": "http://www.pmo.gov.to/artman/publish/article_171.shtml",
+      "publisher": "Prime Minister's Office, Tonga (Government Information Unit), reproducing the Tonga Government Gazette",
+      "accessed_date": "2026-09-21",
+      "published_date": "2006-09-11",
+      "source_type": "primary_gazette_web_reproduction_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_crown_gtv_devolution_proclamation_to_20060911",
+          "text": "The Tongan text of Gazette No. 19 (Kasete 'a e Pule'anga Tonga, Fika 19, Monite 11 Sepitema 2006) carries the FANONGONONGO in the name of SIAOSI TUPOU V, Tu'i 'o e 'Otu Tonga, by Premier Feleti Vaka'uta Sevele. It states that at the death (hala) of Taufa'ahau Tupou IV the Crown of Tonga passed to Crown Prince Tupouto'a, proclaims that he has become the rightful King (Tu'i totonu), and is signed at Nuku'alofa on 11 September 2006 by Ma'afu, Kalake ki he Fakataha Tokoni.",
+          "attested_on": "2006-09-11",
+          "locator": "Reproduced gazette header, FANONGONONGO and sign-off; article timestamp Sep 11, 2006, 18:40",
+          "uncertainty": "A summary of the Tongan text, not an official translation. It corroborates the English proclamation (to_crown_gtv_devolution_proclamation_20060911) and, like it, gives no date or time of death. PMO web reproduction, not the gazette facsimile."
+        }
+      ],
+      "scope_note": "Tongan text of Gazette No. 19 as reproduced on the PMO website (raw Internet Archive capture of 12 March 2007, 03:28:19 UTC); the original page is no longer served. Located by the independent check and imported as corroboration only.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-gazette19-to-20060911-facts.json",
+        "bytes": 2722,
+        "sha256": "763149373e8c9495a10d301eba6d2b4935f7dec813c7d10f54f9376c43df0141",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20060914_funeral_holiday",
+      "title": "Government declares public holiday",
+      "url": "https://web.archive.org/web/20061017154738id_/http://www.pmo.gov.to:80/artman/publish/article_173.shtml",
+      "original_url": "http://www.pmo.gov.to/artman/publish/article_173.shtml",
+      "publisher": "Prime Minister's Office, Tonga (Chief Secretary and Secretary to Cabinet)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2006-09-14",
+      "document_date": "2006-09-13",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_crown_tupou_iv_state_funeral_holiday_20060919",
+          "text": "The Chief Secretary and Secretary to Cabinet announces that, under the Public Holidays Act and in honour of the State Funeral of King Taufa'ahau Tupou IV, 19 September 2006 has been appointed a public holiday. The Tongan notice (FANONGONONGO) is dated 13/09/06.",
+          "attested_on": "2006-09-19",
+          "locator": "Tongan FANONGONONGO heading and English 'Announcement of Public Holiday'; article timestamp Sep 14, 2006, 09:00",
+          "uncertainty": "The funeral day as appointed in advance; the burial is reported separately (to_crown_tupou_iv_burial_reported_20060920). The Tongan notice is dated 13 September (document_date) and the PMO article 14 September (published_date); the English text carries no date of its own."
+        }
+      ],
+      "scope_note": "Archived PMO article (raw Internet Archive capture of 17 October 2006, 15:47:38 UTC); the original page is no longer served. Used only for the appointed State Funeral holiday.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-funeral-holiday-20060914-facts.json",
+        "bytes": 2495,
+        "sha256": "ce389be0880a285a91d25a9f9d0c99c60ad87231ae3eaded7a9ec0773cc49c09",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20060920_last_tribute",
+      "title": "Country pays last tribute to beloved Monarch",
+      "url": "https://web.archive.org/web/20061105045105id_/http://www.pmo.gov.to:80/artman/publish/article_180.shtml",
+      "original_url": "http://www.pmo.gov.to/artman/publish/article_180.shtml",
+      "publisher": "Prime Minister's Office, Tonga (Government Information Unit)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2006-09-20",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_crown_tupou_iv_burial_reported_20060920",
+          "text": "The PMO report of 20 September 2006 describes the burial 'yesterday' of King Taufa'ahau Tupou IV at the Royal Tombs, Mala'e Kula, following his passing away in New Zealand and lying in state at the Royal Palace.",
+          "locator": "Paragraph 2; article timestamp Sep 20, 2006, 16:15",
+          "uncertainty": "No structured date: 19 September 2006 would be derived from 'yesterday' relative to the article's timestamp. It agrees with the State Funeral day appointed and announced in advance (to_crown_tupou_iv_state_funeral_holiday_20060919, to_crown_tupou_iv_funeral_announced_20060911). The report gives no date of death. A funeral is not a reign boundary."
+        }
+      ],
+      "scope_note": "Archived PMO article (raw Internet Archive capture of 5 November 2006, 04:51:05 UTC); the original page is no longer served. Used only for the burial report; the description of the ceremony is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-last-tribute-20060920-facts.json",
+        "bytes": 2417,
+        "sha256": "014d92f4ba0249b3c5d3e3fd75511451c6cf0aaea82dae7943d368503d1302a7",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20060928_crown_prince",
+      "title": "His Royal Highness Prince Tupouto'a Lavaka is the Crown Prince of Tonga",
+      "url": "https://web.archive.org/web/20061005234019id_/http://www.pmo.gov.to/artman/publish/article_183.shtml",
+      "original_url": "http://www.pmo.gov.to/artman/publish/article_183.shtml",
+      "publisher": "Prime Minister's Office, Tonga (Government Information Unit)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2006-09-28",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_crown_crown_prince_tupouto_a_lavaka_2006",
+          "text": "The PMO article of 28 September 2006 reports that the title of Crown Prince was vested 'yesterday' on the former Prince 'Ulukalala Lavaka Ata, in a ceremony at his residence, and that King Siaosi Tupou V also bestowed on him the noble title Tupouto'a; he is henceforth known as His Royal Highness Crown Prince Tupouto'a Lavaka, the heir apparent.",
+          "locator": "Paragraphs 1-2; article timestamp Sep 28, 2006, 11:10",
+          "uncertainty": "No structured date: the vesting is dated only 'yesterday' relative to the article, and 27 September 2006 would be derived. An identity observation linking the 2012 proclamation's 'Crown Prince Tupouto'a Lavaka' to his earlier name; not an accession or a to_king holder observation."
+        }
+      ],
+      "scope_note": "Archived PMO article (raw Internet Archive capture of 5 October 2006, 23:40:19 UTC); the original page is no longer served. Used only for the Crown Prince title and name; the other titles and estates it lists are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-crown-prince-20060928-facts.json",
+        "bytes": 2506,
+        "sha256": "e575022a504d7294246640d5baefd34b351bd9510ac09a235de6b9bc5c3d8068",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_act_public_enterprises_amend_2006",
+      "title": "Public Enterprises (Amendment) Act 2006 (No. 13 of 2006)",
+      "url": "https://ago.gov.to/cms/images/LEGISLATION/AMENDING/2006/2006-0003/PublicEnterprisesAmendmentAct2006.pdf",
+      "publisher": "Attorney General's Office, Tonga (legislation database; printed by Tonga Print 2006)",
+      "accessed_date": "2026-09-21",
+      "document_date": "2006-10-03",
+      "source_type": "primary_legislation_print",
+      "access_method": "downloaded_original_pdf_text_and_relevant_page_visually_read",
+      "claims": [
+        {
+          "id": "to_crown_assent_gtv_20061003",
+          "text": "The assent block reads 'I assent, GEORGE TUPOU V, 3rd October, 2006' (Tongan text: SIAOSI TUPOU V); the Act records its passage on 2 October 2006.",
+          "attested_on": "2006-10-03",
+          "locator": "PDF page 1 (English) and page 2 (Tongan), assent blocks",
+          "uncertainty": "A dated attestation of the new King exercising the royal assent, before his coronation. It is not a start date."
+        }
+      ],
+      "scope_note": "Used only for the assent attestation (TO-CROWN-04). Print layout of the original Act; the assent date is recorded as document_date. The Act's substance is not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-act-public-enterprises-20061003-facts.json",
+        "bytes": 1941,
+        "sha256": "4871c91619af71d94e46223b2c384d31e9ec53d0fc82132ca378210c074ab91e",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_2008_coronation_programme",
+      "title": "His Majesty King Siaosi Tupou V coronation programme (29 July - 2 August 2008)",
+      "url": "https://web.archive.org/web/20080731092343id_/http://www.pmo.gov.to:80/index.php?option=com_content&task=view&id=204&Itemid=30",
+      "original_url": "http://www.pmo.gov.to/index.php?option=com_content&task=view&id=204&Itemid=30",
+      "publisher": "Prime Minister's Office, Tonga",
+      "accessed_date": "2026-09-21",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_crown_gtv_taumafa_kava_scheduled_20080730",
+          "text": "The programme schedules the 'Traditional Installation Ceremony of His Majesty King George Tupou V - Taumafa Kava' at Mala'e Pangai at 10:00 on Wednesday 30 July 2008.",
+          "attested_on": "2008-07-30",
+          "locator": "Programme, Wednesday 30 July 2008",
+          "uncertainty": "A prospective schedule, not a post-event report; the installation's occurrence is recorded by to_crown_gtv_taumafa_kava_held_20080730, which names the venue Pangai Lahi. The traditional installation is distinct from the 2006 accession and from the church coronation."
+        },
+        {
+          "id": "to_crown_gtv_coronation_scheduled_20080801",
+          "text": "The programme schedules 'THE CORONATION OF HIS MAJESTY KING GEORGE TUPOU V' at the Free Wesleyan Centenary Church, Kolomotu'a, at 10:00 on Friday 1 August 2008, followed at 13:00 by a Royal Luncheon hosted by the Prime Minister.",
+          "attested_on": "2008-08-01",
+          "locator": "Programme, Friday 1 August 2008",
+          "uncertainty": "A prospective schedule; occurrence is corroborated by to_crown_gtv_coronation_day_address_20080801 and to_crown_gtv_coronation_guests_20080801. The coronation is not the start of the reign."
+        }
+      ],
+      "scope_note": "Archived PMO programme page (raw Internet Archive capture of 31 July 2008, 09:23:43 UTC); the page carries no date of its own, so no published_date is recorded. Only the installation and coronation entries are imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-coronation-programme-2008-facts.json",
+        "bytes": 2932,
+        "sha256": "b20ba2ac85058b95fb25a8a1814bba173fafab7f17415d37272a391551a659cb",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20080728_lord_chamberlain_profile",
+      "title": "His Majesty King George Tupou V, A Monarch for a time of change",
+      "url": "https://web.archive.org/web/20080801052730id_/http://www.pmo.gov.to:80/index.php?option=com_content&task=view&id=226&Itemid=135",
+      "original_url": "http://www.pmo.gov.to/index.php?option=com_content&task=view&id=226&Itemid=135",
+      "publisher": "Prime Minister's Office, Tonga; authorised and issued by the Office of the Lord Chamberlain",
+      "accessed_date": "2026-09-21",
+      "published_date": "2008-07-28",
+      "source_type": "primary_palace_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_crown_gtv_profile_proclaimed_sept2006",
+          "text": "The profile, authorised and issued by the Office of the Lord Chamberlain on 28 July 2008, says that the King was proclaimed Monarch in September 2006, that his father died 'two years ago', and that his official coronation takes place on 1 August.",
+          "locator": "Opening paragraphs; divestment paragraph; sign-off 'Office of the Lord Chamberlain, 28 July 2008'",
+          "period": {
+            "from": "2006-09-01",
+            "through": "2006-09-30"
+          },
+          "uncertainty": "Month-level corroboration of the proclamation. The coronation date is prospective and 'two years ago' is relative, so neither is given a structured date here."
+        },
+        {
+          "id": "to_crown_gtv_prince_regent_numerous_occasions",
+          "text": "The profile states that King George, as Crown Prince, acted as Prince Regent on numerous occasions and presided over meetings of the Privy Council, especially when his father's health began to fail.",
+          "locator": "Paragraph on his service before accession",
+          "uncertainty": "Undated and general: no instrument, occasion or period is given. Regency observations, not a reign."
+        }
+      ],
+      "scope_note": "Palace-authorised profile carried on the PMO website (raw Internet Archive capture of 1 August 2008, 05:27:30 UTC); the original page is no longer served. Only the proclamation month, the prospective coronation date and the regency statement are imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-profile-20080728-facts.json",
+        "bytes": 2922,
+        "sha256": "db87cbcfd8ae0316fc78edf488cb200d3d19cb51142987bff333a4e7dd9ede6d",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20080730_taumafa_kava",
+      "title": "Sacred Kava and Mats of Power",
+      "url": "https://web.archive.org/web/20080807055636id_/http://www.pmo.gov.to:80/index.php?option=com_content&task=view&id=235&Itemid=29",
+      "original_url": "http://www.pmo.gov.to/index.php?option=com_content&task=view&id=235&Itemid=29",
+      "publisher": "Prime Minister's Office, Tonga; issued by Tu'ivanuavou, Keeper of the Palace Records and Master of the Royal Household",
+      "accessed_date": "2026-09-21",
+      "published_date": "2008-07-30",
+      "source_type": "primary_palace_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_crown_gtv_taumafa_kava_held_20080730",
+          "text": "The release datelined 'From the Office of thr Primer Minister, Nuku'alofa, 30 Jul 2008' [as printed] says that the King's traditional installation at the taumafa kava ceremony 'took place today (July 30th)' at Pangai Lahi, near the royal palace. It is issued by Tu'ivanuavou, Keeper of the Palace Records and Master of the Royal Household, on 30 July 2008.",
+          "attested_on": "2008-07-30",
+          "locator": "Dateline and first paragraph; issuing line at the end",
+          "uncertainty": "Post-event occurrence record for the traditional installation. The venue is named Pangai Lahi here and Mala'e Pangai in the programme (to_crown_gtv_taumafa_kava_scheduled_20080730); both names are kept as printed."
+        },
+        {
+          "id": "to_crown_gtv_taumafa_kava_declaration_20080730",
+          "text": "The same release reports that the talking chief Motu'apuaka declared at the ceremony that from that moment His Majesty became King of Tonga, and it says that to Tongans the taumafa kava was King George's true coronation.",
+          "attested_on": "2008-07-30",
+          "locator": "Paragraph 2 and the paragraph before the closing acclamation",
+          "uncertainty": "A customary declaration and a cultural characterisation, reported by the palace. They are not the constitutional accession, which followed from the devolution of the Crown on 11 September 2006 (TO-CROWN-04), nor the church coronation of 1 August 2008, and they are not used as a start date."
+        }
+      ],
+      "scope_note": "Palace release carried on the PMO website (raw Internet Archive capture of 7 August 2008, 05:56:36 UTC). Located by the independent check among files downloaded but not imported by the researcher. Only the occurrence, the venue and the reported declaration are imported; the ceremonial detail, participants and regalia are not.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-taumafa-kava-20080730-facts.json",
+        "bytes": 3369,
+        "sha256": "ab4f3a4c9a96890a2dbf0f5458fa21f4c275d51ba6bd81e69630a2b12f5aa716",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_2008_pm_luncheon_address",
+      "title": "Address by the Hon Prime Minister Dr. Feleti Vakauta Sevele at the Coronation Royal Luncheon",
+      "url": "https://web.archive.org/web/20080807055641id_/http://www.pmo.gov.to:80/index.php?option=com_content&task=view&id=237&Itemid=95",
+      "original_url": "http://www.pmo.gov.to/index.php?option=com_content&task=view&id=237&Itemid=95",
+      "publisher": "Prime Minister's Office, Tonga",
+      "accessed_date": "2026-09-21",
+      "published_date": "2008-08-01",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_crown_gtv_coronation_day_address_20080801",
+          "text": "At the Coronation Royal Luncheon the Prime Minister addresses King George Tupou V and guests gathered 'today' to celebrate the Coronation of the King, 'the formal coronation of our King', and refers to 'today's Coronation'. The page ends with the dateline 'From the office of the Prime Minister,Nuku'alofa, Tomnga, 1 August 2008' [as printed].",
+          "attested_on": "2008-08-01",
+          "locator": "Opening paragraphs; closing dateline",
+          "uncertainty": "Dated by the page's own dateline; the PMO programme, which places the Royal Luncheon at 13:00 on 1 August 2008, corroborates it. A same-day address, not a ceremony record."
+        },
+        {
+          "id": "to_crown_gtv_investiture_address_wednesday",
+          "text": "The same address says that 'On Wednesday this week' the King received the ancient kingly title Tu'i Kanokupolu, as the 23rd Tu'i Kanokupolu, at his traditional investiture, the taumafa kava ceremony.",
+          "locator": "Paragraph on the traditional investiture",
+          "uncertainty": "No structured date: 'Wednesday this week' is relative to the 1 August 2008 dateline. It corroborates the traditional installation recorded by to_crown_gtv_taumafa_kava_held_20080730 and is not a separate event."
+        }
+      ],
+      "scope_note": "Archived PMO speech page (raw Internet Archive capture of 7 August 2008, 05:56:41 UTC); the original page is no longer served. Only the coronation-day and investiture statements are imported. The page's sidebar also links a 2008 Princess Regent throne address, which is a lead only.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-luncheon-20080801-facts.json",
+        "bytes": 3054,
+        "sha256": "a6ed5808cea1504ed262b499e54789bfeeb3e213f9ce6ca034c6e0096e1f4879",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_20080801_royal_visitors",
+      "title": "Prime Minister Welcomes Royal Visitors and Other Guests to Tonga",
+      "url": "https://web.archive.org/web/20080807055652id_/http://www.pmo.gov.to:80/index.php?option=com_content&task=view&id=239&Itemid=29",
+      "original_url": "http://www.pmo.gov.to/index.php?option=com_content&task=view&id=239&Itemid=29",
+      "publisher": "Information Unit, Prime Minister's Office, Tonga",
+      "accessed_date": "2026-09-21",
+      "published_date": "2008-08-01",
+      "source_type": "primary_government_release_archived",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_crown_gtv_coronation_guests_20080801",
+          "text": "The PMO release datelined 1 August 2008 records the Prime Minister's thanks to overseas royalty and regal representatives visiting Tonga for the coronation of King George Tupou V, among them the Duke and Duchess of Gloucester for Queen Elizabeth II and Crown Prince Naruhito for the Japanese Imperial Family.",
+          "attested_on": "2008-08-01",
+          "locator": "Dateline and paragraphs 1-3",
+          "uncertainty": "A same-day release; it corroborates the event date but does not narrate the ceremony."
+        }
+      ],
+      "scope_note": "Archived PMO release (raw Internet Archive capture of 7 August 2008, 05:56:52 UTC); the original page is no longer served. Only the coronation reference and two named delegations are imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-royal-visitors-20080801-facts.json",
+        "bytes": 2246,
+        "sha256": "9bb9ecdac6e44a169472cc696cc0d3e465f24d2031e8842913f31c0de010cec3",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_gazette_ext_8_2012",
+      "title": "Tonga Government Gazette Extraordinary No. 8 of 2012: Death of His Majesty King George Tupou V",
+      "url": "https://ago.gov.to/cms/images/LEGISLATION/GAZETTES/2012/2012-0008/GazetteExtraordinaryNo.8of2012.pdf",
+      "publisher": "Government of Tonga (Tonga Print Ltd, by authority); hosted by the Attorney General's Office",
+      "accessed_date": "2026-09-21",
+      "published_date": "2012-03-19",
+      "source_type": "primary_government_gazette",
+      "access_method": "downloaded_original_pdf_text_and_relevant_page_visually_read",
+      "claims": [
+        {
+          "id": "to_crown_gtv_death_20120318",
+          "text": "Prime Minister Lord Tu'ivakano announces that King George Tupou V died in Hong Kong, China, at 15:58 (Hong Kong, China time), which was 20:58 (Tonga time), on 18 March 2012.",
+          "attested_on": "2012-03-18",
+          "printed_times": [
+            {
+              "zone": "Hong Kong, China time",
+              "date": "2012-03-18",
+              "time": "15:58"
+            },
+            {
+              "zone": "Tonga time",
+              "date": "2012-03-18",
+              "time": "20:58"
+            }
+          ],
+          "locator": "PDF page 1 (gazette page 8/113), English and Tongan notices",
+          "uncertainty": "Official death notice. The mourning it declares is a separate claim (to_crown_gtv_mourning_declared_20120319)."
+        },
+        {
+          "id": "to_crown_gtv_mourning_declared_20120319",
+          "text": "The same notice declares State mourning for three months from 19 March 2012, ending 19 June 2012, with flags at half-mast throughout the Kingdom.",
+          "locator": "PDF page 1 (gazette page 8/113), second paragraph",
+          "period": {
+            "from": "2012-03-19",
+            "through": "2012-06-19"
+          },
+          "uncertainty": "A mourning instrument, later revoked and replaced (to_crown_gtv_mourning_revised_20120330); not a reign boundary."
+        }
+      ],
+      "scope_note": "Bilingual gazette; the Tongan-language link returns a byte-identical file. Used for the death notice and the mourning it declares.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-gazette-ext8-20120319-facts.json",
+        "bytes": 2680,
+        "sha256": "66cb470eed549cc2c5619bf0e12130f85136bd059f18419cc9f39fba708d73d6",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_gazette_ext_9_2012",
+      "title": "Tonga Government Gazette Extraordinary No. 9 of 2012: Proclamation (Tupou VI)",
+      "url": "https://ago.gov.to/cms/images/LEGISLATION/GAZETTES/2012/2012-0009/GazetteExtraordinaryNo.9of2012.pdf",
+      "publisher": "Government of Tonga (Tonga Print Ltd, by authority); hosted by the Attorney General's Office",
+      "accessed_date": "2026-09-21",
+      "published_date": "2012-03-19",
+      "source_type": "primary_government_gazette",
+      "access_method": "downloaded_original_pdf_text_and_relevant_page_visually_read",
+      "claims": [
+        {
+          "id": "to_crown_tupou_vi_devolution_proclamation_20120319",
+          "text": "Gazette Extraordinary No. 9 of Monday 19 March 2012 carries a proclamation in the name of His Majesty Tupou VI, by Prime Minister Lord Tu'ivakano, stating that by the decease of His Late Majesty King George Tupou V the Crown of the Kingdom of Tonga devolves upon Crown Prince Tupouto'a Lavaka. The Cabinet Ministers, Speaker Lasike and Chief Justice Michael Dishington Scott proclaim that Crown Prince Tupouto'a Lavaka has now become King of the Kingdom of Tonga, as King Tupou VI. It is given at Nuku'alofa on 19 March 2012, with a Tongan FANONGONONGO to the same effect.",
+          "attested_on": "2012-03-19",
+          "locator": "PDF page 1 (gazette 9/115), English; page 2 (9/116), Tongan",
+          "uncertainty": "The proclamation is its own event, dated 19 March 2012, and prints no accession time. The accession date (18 March 2012) rests on its statement that the Crown devolves by the decease, with the death date and time from Gazette Extraordinary No. 8; the proclamation date is not used as the start."
+        }
+      ],
+      "scope_note": "The Tongan-language link returns a byte-identical file. Used only for the proclamation.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-gazette-ext9-20120319-facts.json",
+        "bytes": 2465,
+        "sha256": "e6d7eec7fa0e5c468c0ab21964cd5fc16d0b8133e48894aa729e357a6b356459",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_gazette_ext_14_2012",
+      "title": "Tonga Government Gazette Extraordinary No. 14 of 2012: New period of State Mourning",
+      "url": "https://ago.gov.to/cms/images/LEGISLATION/GAZETTES/2012/2012-0014/GazetteExtraordinaryNo.14of2012.pdf",
+      "publisher": "Government of Tonga (Tonga Print Ltd, by authority); hosted by the Attorney General's Office",
+      "accessed_date": "2026-09-21",
+      "published_date": "2012-03-30",
+      "source_type": "primary_government_gazette",
+      "access_method": "downloaded_original_pdf_text_and_relevant_page_visually_read",
+      "claims": [
+        {
+          "id": "to_crown_gtv_mourning_revised_20120330",
+          "text": "In accordance with King Tupou VI's wishes, Cabinet revokes the State mourning proclaimed on 19 March 2012 and fixes a new official period from Monday 19 March to Saturday 31 March 2012 inclusive; made at Nuku'alofa on 30 March 2012.",
+          "attested_on": "2012-03-30",
+          "locator": "PDF page 1 (gazette page 14/127)",
+          "uncertainty": "A mourning instrument. It attests Tupou VI as King on 30 March 2012 and is not a reign boundary."
+        }
+      ],
+      "scope_note": "Used only for the revised mourning period and the King it names.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-gazette-ext14-20120330-facts.json",
+        "bytes": 1793,
+        "sha256": "2e46e26c856af8ebf68251392eda0f4f1cf1e0f4d9fe6686e5c3294512c8362a",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_gazette_supp_4_2015",
+      "title": "Tonga Government Gazette Supplement Extraordinary No. 4 of 2015 (coronation import exemptions)",
+      "url": "https://ago.gov.to/cms/images/LEGISLATION/GAZETTES/2015/2015-0007/GazetteSupplementExtraordinaryNo.4of2015.pdf",
+      "publisher": "Government of Tonga (Tonga Post Ltd, by authority); hosted by the Attorney General's Office",
+      "accessed_date": "2026-09-21",
+      "published_date": "2015-06-25",
+      "source_type": "primary_government_gazette",
+      "access_method": "downloaded_original_pdf_text_and_relevant_page_visually_read",
+      "claims": [
+        {
+          "id": "to_crown_tupou_vi_coronation_exemptions_2015",
+          "text": "Orders made at Nuku'alofa on 23 June 2015 under the Consumption Tax, Customs and Excise Tax legislation exempt specified imports 'for the Coronation of His Majesty Tupou VI'; the exemptions come into effect from gazetting (25 June 2015) and expire on 7 July 2015.",
+          "locator": "PDF pages 1-3 (gazette pages 133-138)",
+          "period": {
+            "from": "2015-06-25",
+            "through": "2015-07-07"
+          },
+          "uncertainty": "Context only: the orders do not state the coronation date."
+        }
+      ],
+      "scope_note": "The same file is also linked under AGO item 2015-0004. Used only as context for the coronation; the exempted goods are not imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-gazette-supp4-20150625-facts.json",
+        "bytes": 1965,
+        "sha256": "0d70fcabf7750e37779c767f3dc910babe1789f53f93de7fe9acc0048f0e3c9a",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_nrbt_ar_2015",
+      "title": "National Reserve Bank of Tonga Annual Report for the Year Ended 30 June 2015",
+      "url": "https://www.reservebank.to/data/docs/publications/ar/annual_report_2015_eng.pdf",
+      "publisher": "National Reserve Bank of Tonga",
+      "accessed_date": "2026-09-21",
+      "source_type": "primary_central_bank_statutory_report",
+      "access_method": "downloaded_original_pdf_text_and_relevant_page_visually_read",
+      "claims": [
+        {
+          "id": "to_crown_tupou_vi_coronation_20150704_nrbt",
+          "text": "The report states that each banknote on the numismatic uncut sheets carries the special serial number KT 04.07.15 to commemorate the Coronation of King Tupou VI on 4 July 2015. The same page records that King Tupou VI launched the new coronation currency series on 29 June 2015.",
+          "attested_on": "2015-07-04",
+          "locator": "'Numismatic Banknotes and Coins', printed page 25 (PDF page 30)",
+          "uncertainty": "Evidence tier: a non-ceremonial Tongan public body plus foreign corroboration (to_crown_tupou_vi_coronation_iha_20150704). A statutory central-bank report written after the event, not a palace, PMO or Gazette ceremony record. The coronation is not the start of the reign."
+        }
+      ],
+      "scope_note": "Used only for the coronation date and currency launch on printed page 25. The report's publication date is not printed on the pages read, so none is recorded.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-nrbt-ar-2015-facts.json",
+        "bytes": 2132,
+        "sha256": "0c32c2ddeff0ca0a09bcdcb2ab267cde8ddbeb65da85aa967fd076da8d575120",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_un_a61_pv1",
+      "title": "United Nations General Assembly, Sixty-first session, 1st plenary meeting, 12 September 2006 (A/61/PV.1)",
+      "url": "https://documents.un.org/doc/undoc/gen/n06/520/19/pdf/n0652019.pdf",
+      "publisher": "United Nations",
+      "accessed_date": "2026-09-21",
+      "document_date": "2006-09-12",
+      "source_type": "intergovernmental_official_record",
+      "access_method": "downloaded_original_pdf_text_and_relevant_page_visually_read",
+      "claims": [
+        {
+          "id": "to_crown_tupou_iv_death_20060910_un",
+          "text": "The President of the General Assembly pays tribute to King Taufa'ahau Tupou IV, who 'passed away on Sunday, 10 September 2006'; Iran's representative adds that he passed away the previous Sunday in a hospital in New Zealand.",
+          "attested_on": "2006-09-10",
+          "locator": "Page 1, 'Tribute to the memory of His Majesty King Taufa'ahau Tupou IV'",
+          "uncertainty": "Corroboration only: an intergovernmental record, not a Tongan one. It gives no time. Its 10 September is the New Zealand calendar date printed in Gazette No. 20 (to_crown_tupou_iv_death_20060911), where the death fell at 00:34 on 11 September, Tongan time."
+        },
+        {
+          "id": "to_crown_gtv_king_20060912_un",
+          "text": "Tonga's representative speaks on behalf of King George Tupou V, and the United States representative conveys condolences to King George Tupou V, 'who has succeeded his father'. Tonga's representative also says Tupou IV became King in 1965 and reigned for 41 years.",
+          "attested_on": "2006-09-12",
+          "locator": "Pages 2-3 (statements of Mr Wolff and Mrs 'Utoikamanu)",
+          "uncertainty": "A dated attestation of George Tupou V as King. The 1965 accession is year-level context outside the 1990 period and is not structured."
+        }
+      ],
+      "scope_note": "Verbatim record of the meeting of 12 September 2006 (document_date); the record's issue date is not used. Only the tribute statements are imported. Request URL: https://documents.un.org/api/symbol/access?s=A/61/PV.1&l=en&t=pdf.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-un-a61-pv1-20060912-facts.json",
+        "bytes": 2779,
+        "sha256": "9f156d70a2cacb22c8ebfed536cb2fa6da32959465e4dd6b47443024cf8f3d20",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_iha_2008_tonga_visit",
+      "title": "トンガご訪問（平成20年） [The Crown Prince of Japan's visit to Tonga, 2008]",
+      "url": "https://www.kunaicho.go.jp/activity/gonittei/02/gaikoku/h20tonga/cpv-h20-tonga.html",
+      "publisher": "Imperial Household Agency of Japan",
+      "accessed_date": "2026-09-21",
+      "document_date": "2008-07-11",
+      "source_type": "foreign_government_official_record",
+      "access_method": "downloaded_original_html_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_crown_gtv_coronation_iha_20080801",
+          "text": "A Japanese Cabinet understanding of 11 July 2008 records the Tongan Government's invitation to the Crown Prince to the King's coronation to be held on 1 August; the itinerary lists attendance at King George Tupou V's coronation at the Free Wesleyan Church on the morning of Friday 1 August 2008.",
+          "attested_on": "2008-08-01",
+          "locator": "Cabinet understanding paragraph; itinerary entry for 1 August (Friday)",
+          "uncertainty": "A foreign official planning record; corroboration only."
+        }
+      ],
+      "scope_note": "Japanese-language page; the claim is a summary, not an official translation. The Cabinet understanding date is recorded as document_date; the page's publication date is unknown. Only the coronation invitation and itinerary entry are imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-iha-2008-facts.json",
+        "bytes": 1968,
+        "sha256": "1b6871a31c0167e633b07bfa39287d778723c169594a5ed0f723bfd92f9b7273",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_iha_2015_tonga_visit",
+      "title": "トンガご訪問（平成27年） [The Crown Prince and Crown Princess of Japan's visit to Tonga, 2015]",
+      "url": "https://www.kunaicho.go.jp/activity/gonittei/02/gaikoku/h27tonga/cpv-h27-tonga.html",
+      "publisher": "Imperial Household Agency of Japan",
+      "accessed_date": "2026-09-21",
+      "document_date": "2015-06-12",
+      "source_type": "foreign_government_official_record",
+      "access_method": "downloaded_original_html_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_crown_tupou_vi_coronation_iha_20150704",
+          "text": "A Japanese Cabinet understanding of 12 June 2015 records the Tongan Government's invitation to the Crown Prince and Crown Princess to the King's coronation to be held on 4 July; the itinerary lists King Tupou VI's coronation at the Free Wesleyan Centenary Church on the morning of Saturday 4 July 2015.",
+          "attested_on": "2015-07-04",
+          "locator": "Cabinet understanding paragraph; itinerary entry for 4 July (Saturday)",
+          "uncertainty": "A foreign official planning record; corroboration only. With the NRBT report it is the whole support for the 4 July 2015 date: no palace, PMO or Gazette ceremony record was found."
+        }
+      ],
+      "scope_note": "Japanese-language page; the claim is a summary, not an official translation. The Cabinet understanding date is recorded as document_date; the page's publication date is unknown. Only the coronation invitation and itinerary entry are imported.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-iha-2015-facts.json",
+        "bytes": 2104,
+        "sha256": "55388b9f5aa185d7195a22356afbf1963cde0e2ab0aa80a0b1778c8a042b2d46",
+        "kind": "derived_factual_extract"
+      }
     }
   ],
   "organizations": [
@@ -1653,27 +2514,209 @@
           "kind": "head_of_state",
           "sources": [
             "to_constitution_2020",
-            "to_pm_appointment_2025"
+            "to_pm_appointment_2025",
+            "to_constitution_older",
+            "to_act_income_tax_amend_1990",
+            "to_act_constitution_amend_1990",
+            "to_pmo_20060818_succession",
+            "to_pmo_20060911_death_notice",
+            "to_un_a61_pv1",
+            "to_pmo_20060911_proclamation",
+            "to_pmo_20060911_proclamation_to",
+            "to_ipu_2010",
+            "to_pmo_20080728_lord_chamberlain_profile",
+            "to_act_public_enterprises_amend_2006",
+            "to_ipu_2008",
+            "to_pmo_2008_coronation_programme",
+            "to_pmo_20080730_taumafa_kava",
+            "to_pmo_2008_pm_luncheon_address",
+            "to_pmo_20080801_royal_visitors",
+            "to_iha_2008_tonga_visit",
+            "to_gazette_ext_8_2012",
+            "to_gazette_ext_9_2012",
+            "to_gazette_supp_4_2015",
+            "to_nrbt_ar_2015",
+            "to_iha_2015_tonga_visit"
           ],
           "claim_ids": [
             "to_constitution_crown",
-            "to_tupou_vi_2025"
+            "to_tupou_vi_2025",
+            "to_crown_const2020_succession_c32",
+            "to_crown_const2020_coronation_oath_c34",
+            "to_crown_const1988_form_tupou_iv_c31",
+            "to_crown_assent_tupou_iv_19900712",
+            "to_crown_assent_tupou_iv_19900808",
+            "to_crown_succession_not_oath_dependent_2006",
+            "to_crown_tupou_iv_death_20060911",
+            "to_crown_tupou_iv_death_20060910_un",
+            "to_crown_gtv_devolution_proclamation_20060911",
+            "to_crown_gtv_devolution_proclamation_to_20060911",
+            "to_crown_gtv_king_20060912_un",
+            "to_ipu_2010_gtv_acceded_sept2006",
+            "to_crown_gtv_profile_proclaimed_sept2006",
+            "to_crown_assent_gtv_20061003",
+            "to_ipu_2008_gtv_speaker_20080502",
+            "to_crown_gtv_taumafa_kava_scheduled_20080730",
+            "to_crown_gtv_taumafa_kava_held_20080730",
+            "to_crown_gtv_taumafa_kava_declaration_20080730",
+            "to_crown_gtv_investiture_address_wednesday",
+            "to_crown_gtv_coronation_scheduled_20080801",
+            "to_crown_gtv_coronation_day_address_20080801",
+            "to_crown_gtv_coronation_guests_20080801",
+            "to_crown_gtv_coronation_iha_20080801",
+            "to_crown_gtv_death_20120318",
+            "to_crown_tupou_vi_devolution_proclamation_20120319",
+            "to_crown_tupou_vi_coronation_exemptions_2015",
+            "to_crown_tupou_vi_coronation_20150704_nrbt",
+            "to_crown_tupou_vi_coronation_iha_20150704"
           ],
           "holder_claims": [
-            "to_tupou_vi_2025"
-          ]
+            "to_tupou_vi_2025",
+            {
+              "name": "Taufa'ahau Tupou IV",
+              "attested_on": null,
+              "from": null,
+              "until": "2006-09-11",
+              "sources": [
+                "to_act_income_tax_amend_1990",
+                "to_act_constitution_amend_1990",
+                "to_pmo_20060911_death_notice",
+                "to_pmo_20060911_proclamation"
+              ],
+              "claim_ids": [
+                "to_crown_assent_tupou_iv_19900712",
+                "to_crown_assent_tupou_iv_19900808",
+                "to_crown_tupou_iv_death_20060911",
+                "to_crown_gtv_devolution_proclamation_20060911"
+              ],
+              "note": "King when the period opens: dated royal assents of 12 July and 8 August 1990 (TO-CROWN-01). His reign ended with his death in Auckland at 00:34 on 11 September 2006, Tongan time (23:34 on 10 September, New Zealand time), as Gazette No. 20 records; Gazette No. 19 states that the Crown devolved by his decease (TO-CROWN-03, TO-CROWN-04).",
+              "uncertainty": "The start of the reign (1965) is outside the period and is not structured. The end is the Tongan calendar date of the death, to which the proclamation's devolution wording ties the transfer of the Crown; it is not taken from George Tupou V's proclamation or coronation. The State Funeral, burial and mourning are separate claims."
+            },
+            {
+              "name": "George Tupou V",
+              "attested_on": null,
+              "from": "2006-09-11",
+              "until": "2012-03-18",
+              "sources": [
+                "to_pmo_20060911_death_notice",
+                "to_pmo_20060911_proclamation",
+                "to_pmo_20060911_proclamation_to",
+                "to_gazette_ext_8_2012",
+                "to_gazette_ext_9_2012"
+              ],
+              "claim_ids": [
+                "to_crown_tupou_iv_death_20060911",
+                "to_crown_gtv_devolution_proclamation_20060911",
+                "to_crown_gtv_devolution_proclamation_to_20060911",
+                "to_crown_gtv_death_20120318",
+                "to_crown_tupou_vi_devolution_proclamation_20120319"
+              ],
+              "note": "Formerly Crown Prince Tupouto'a; Siaosi Tupou V in the Tongan texts. Accession by devolution of the Crown on the decease of Taufa'ahau Tupou IV at 00:34 on 11 September 2006, Tongan time (TO-CROWN-04); proclaimed King by Gazette No. 19 on the same Tongan day, as a separate event. Traditional installation (taumafa kava) on 30 July 2008 and coronation on 1 August 2008 (TO-CROWN-05). Died in Hong Kong at 20:58 on 18 March 2012, Tonga time (TO-CROWN-06).",
+              "uncertainty": "The start is the stated devolution on his predecessor's death, not the proclamation, the traditional installation, the coronation or the coronation oath (which no source dates). The end is his death as Gazette Extraordinary No. 8 records it; Gazette Extraordinary No. 9 states that the Crown devolved by his decease. No accession time is stored."
+            },
+            {
+              "name": "Tupou VI",
+              "attested_on": null,
+              "from": "2012-03-18",
+              "until": null,
+              "sources": [
+                "to_gazette_ext_8_2012",
+                "to_gazette_ext_9_2012"
+              ],
+              "claim_ids": [
+                "to_crown_gtv_death_20120318",
+                "to_crown_tupou_vi_devolution_proclamation_20120319"
+              ],
+              "note": "Formerly Crown Prince Tupouto'a Lavaka, the former Prince 'Ulukalala Lavaka Ata, on whom the Crown Prince title was vested in September 2006. Accession by devolution of the Crown on the decease of George Tupou V at 20:58 on 18 March 2012, Tonga time; proclaimed King on 19 March 2012 as a separate event (TO-CROWN-07); crowned on 4 July 2015 (TO-CROWN-08).",
+              "uncertainty": "The start is the stated devolution on his predecessor's death, not the proclamation or the coronation. No end is inferred: no source here records one before the 7 September 2026 cutoff, and the latest attestation in this packet is 18 December 2025 (to_tupou_vi_2025)."
+            }
+          ],
+          "scope_note": "Holder observations carry from/until only where a source states them: accession by devolution of the Crown on the predecessor's death, as each proclamation states, and death. Proclamations, the traditional installation, coronations and the coronation oath are separate claims and never a start date. Prince or Princess Regent observations are claims on to_crown, not reigns or to_king holders."
         }
       ],
       "sources": [
         "to_constitution_2020",
         "to_constitution_older",
         "to_reform_act_2010",
-        "to_pm_appointment_2025"
+        "to_pm_appointment_2025",
+        "to_act_income_tax_amend_1990",
+        "to_act_constitution_amend_1990",
+        "to_pmo_20060818_succession",
+        "to_pmo_20060911_death_notice",
+        "to_un_a61_pv1",
+        "to_pmo_20060911_proclamation",
+        "to_pmo_20060911_proclamation_to",
+        "to_ipu_2010",
+        "to_pmo_20080728_lord_chamberlain_profile",
+        "to_act_public_enterprises_amend_2006",
+        "to_ipu_2008",
+        "to_pmo_2008_coronation_programme",
+        "to_pmo_20080730_taumafa_kava",
+        "to_pmo_2008_pm_luncheon_address",
+        "to_pmo_20080801_royal_visitors",
+        "to_iha_2008_tonga_visit",
+        "to_gazette_ext_8_2012",
+        "to_gazette_ext_9_2012",
+        "to_gazette_supp_4_2015",
+        "to_nrbt_ar_2015",
+        "to_iha_2015_tonga_visit",
+        "to_tlr_2006",
+        "to_pmo_20060313_qsc_anniversary",
+        "to_pmo_20060601_throne_speech",
+        "to_act_income_tax_amend_2006",
+        "to_pmo_20060914_funeral_holiday",
+        "to_pmo_20060920_last_tribute",
+        "to_pmo_20060928_crown_prince",
+        "to_gazette_ext_14_2012"
       ],
       "claim_ids": [
         "to_constitution_crown",
         "to_reform_structure",
-        "to_tupou_vi_2025"
+        "to_tupou_vi_2025",
+        "to_crown_const2020_succession_c32",
+        "to_crown_const2020_coronation_oath_c34",
+        "to_crown_const1988_form_tupou_iv_c31",
+        "to_crown_assent_tupou_iv_19900712",
+        "to_crown_assent_tupou_iv_19900808",
+        "to_crown_succession_not_oath_dependent_2006",
+        "to_crown_tupou_iv_death_20060911",
+        "to_crown_tupou_iv_death_20060910_un",
+        "to_crown_gtv_devolution_proclamation_20060911",
+        "to_crown_gtv_devolution_proclamation_to_20060911",
+        "to_crown_gtv_king_20060912_un",
+        "to_ipu_2010_gtv_acceded_sept2006",
+        "to_crown_gtv_profile_proclaimed_sept2006",
+        "to_crown_assent_gtv_20061003",
+        "to_ipu_2008_gtv_speaker_20080502",
+        "to_crown_gtv_taumafa_kava_scheduled_20080730",
+        "to_crown_gtv_taumafa_kava_held_20080730",
+        "to_crown_gtv_taumafa_kava_declaration_20080730",
+        "to_crown_gtv_investiture_address_wednesday",
+        "to_crown_gtv_coronation_scheduled_20080801",
+        "to_crown_gtv_coronation_day_address_20080801",
+        "to_crown_gtv_coronation_guests_20080801",
+        "to_crown_gtv_coronation_iha_20080801",
+        "to_crown_gtv_death_20120318",
+        "to_crown_tupou_vi_devolution_proclamation_20120319",
+        "to_crown_tupou_vi_coronation_exemptions_2015",
+        "to_crown_tupou_vi_coronation_20150704_nrbt",
+        "to_crown_tupou_vi_coronation_iha_20150704",
+        "to_crown_const2020_prince_regent_c42_43",
+        "to_crown_const1988_prince_regent_c42_43",
+        "to_crown_regent_tupouto_a_2004_pleading",
+        "to_crown_prince_regent_tupouto_a_20060313",
+        "to_crown_princess_regent_speech_20060601",
+        "to_crown_princess_regent_opening_20060601_court",
+        "to_crown_regent_assent_practice_2006_court",
+        "to_crown_assent_tupouto_a_20060630",
+        "to_crown_gtv_prince_regent_numerous_occasions",
+        "to_crown_tupou_iv_funeral_announced_20060911",
+        "to_crown_tupou_iv_mourning_20060911",
+        "to_crown_tupou_iv_state_funeral_holiday_20060919",
+        "to_crown_tupou_iv_burial_reported_20060920",
+        "to_crown_crown_prince_tupouto_a_lavaka_2006",
+        "to_crown_gtv_mourning_declared_20120319",
+        "to_crown_gtv_mourning_revised_20120330"
       ],
       "coverage": {
         "status": "partial",
@@ -1683,7 +2726,12 @@
         },
         "unresolved": [
           "Source the 1990–2026 reign and regency chronology, including accession versus coronation dates.",
-          "Review each amendment and royal reserved power by effective period; a monarch is not a party leader."
+          "Review each amendment and royal reserved power by effective period; a monarch is not a party leader.",
+          "TO-CROWN-01 to TO-CROWN-08 (tonga-crown-07.md): the reign chronology is recorded on to_king as Taufa'ahau Tupou IV until 11 September 2006, George Tupou V from 11 September 2006 until 18 March 2012 and Tupou VI from 18 March 2012 with no end, each boundary being a death and the stated devolution of the Crown on it (Tongan calendar dates). Proclamations (11 September 2006, 19 March 2012), the traditional installation (30 July 2008), coronations (1 August 2008, 4 July 2015), deaths, funerals and mourning are separate claims.",
+          "TO-CROWN-02: regency is recorded only as dated observations (Prince Regent Tupouto'a on 13 March 2006; Princess Regent Pilolevu on 1 June 2006), not as reigns or to_king holders. No appointment instrument, start or end was found in the records searched; the 2004 court pleading and the 30 June 2006 TUPOUTO'A assent remain unconfirmed, and regencies during the reigns of George Tupou V and Tupou VI were not researched.",
+          "TO-CROWN-05 and TO-CROWN-08: no retrieved source dates the clause 34 coronation oath for George Tupou V or Tupou VI. The 4 July 2015 coronation rests on a non-ceremonial Tongan public body (the Reserve Bank's annual report) plus foreign corroboration; no palace, PMO or Gazette ceremony record was found.",
+          "Gazette Nos. 19 and 20 of 11 September 2006 were read only as PMO web reproductions in archived captures; no facsimile was found. Tupou IV's 1965 accession and his coronation are outside the period and are not structured.",
+          "No end of Tupou VI's reign before the 7 September 2026 cutoff is asserted, and the latest attestation remains 18 December 2025 (to_tupou_vi_2025)."
         ]
       }
     },
@@ -2092,7 +3140,8 @@
       "The added 2021 People's Party and Leader observations close only a missing sourced observation. No country census or discovery batch is complete; the 2019 national appointment supplies no party office or campaign eligibility.",
       "Reconciliation packet 01 (tonga-reconciliation-01.md) groups the PATOA/PTOA label with DPFI and adds People's Party names, incorporated-society testimony and a 2021 Assembly selection. It resolves no complete leadership term, lifespan or game mapping.",
       "Transition packet 02 (tonga-transition-2021-02.md) adds the 2021 Assembly procedure notices, the royal appointment of Siaosi Sovaleni effective 27 December 2021 and the Cabinet effective 28 December 2021, with two holder observations. The warrant's signature and presentation and the end of the previous premiership remain unresolved; no complete leadership term is claimed.",
-      "DPFI packet 04 (tonga-dpfi-04.md) adds court-record name and label evidence for PTOA, a second IPU leader observation, a separately recorded party President (2022), month-precision death and seat-succession records, and records showing that the 2025 election returns carry no party labels. Founding, legal form, party leadership after September 2019 and any 2025 party-level result remain unresolved; no lifespan, merger or complete term is claimed."
+      "DPFI packet 04 (tonga-dpfi-04.md) adds court-record name and label evidence for PTOA, a second IPU leader observation, a separately recorded party President (2022), month-precision death and seat-succession records, and records showing that the 2025 election returns carry no party labels. Founding, legal form, party leadership after September 2019 and any 2025 party-level result remain unresolved; no lifespan, merger or complete term is claimed.",
+      "Crown packet 07 (tonga-crown-07.md) adds the 1990-2026 reign chronology on to_king: Taufa'ahau Tupou IV until his death on 11 September 2006 (Tongan time), George Tupou V from accession by devolution that day until his death on 18 March 2012, and Tupou VI from 18 March 2012 with no end. Proclamations, the traditional installation, coronations, deaths, funerals and mourning are separate claims, and regencies are observations only. Regency instruments, coronation-oath dates and a ceremony record for the 2015 coronation remain unresolved."
     ]
   }
 }

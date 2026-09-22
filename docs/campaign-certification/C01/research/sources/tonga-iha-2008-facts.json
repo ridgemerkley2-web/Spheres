@@ -1,0 +1,27 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://www.kunaicho.go.jp/activity/gonittei/02/gaikoku/h20tonga/cpv-h20-tonga.html",
+  "accessed_date": "2026-09-21",
+  "published_date": null,
+  "document_date": "2008-07-11",
+  "access_method": "downloaded_original_html_and_page_text_read",
+  "source_response_bytes": 11320,
+  "source_response_sha256": "b357802d80a19eca7b8f5ace84250d439800daab70f5a39437e30aad64d0dc41",
+  "source_response_checked_in": false,
+  "provenance_note": "Original response downloaded (curl -L) and hashed before extraction on 2026-09-21 (local). This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_crown_gtv_coronation_iha_20080801",
+      "text": "A Japanese Cabinet understanding of 11 July 2008 records the Tongan Government's invitation to the Crown Prince to the King's coronation to be held on 1 August; the itinerary lists attendance at King George Tupou V's coronation at the Free Wesleyan Church on the morning of Friday 1 August 2008.",
+      "attested_on": "2008-08-01",
+      "locator": "Cabinet understanding paragraph; itinerary entry for 1 August (Friday)",
+      "uncertainty": "A foreign official planning record; corroboration only."
+    }
+  ],
+  "scope_note": "Japanese-language page; the claim is a summary, not an official translation. The Cabinet understanding date is recorded as document_date; the page's publication date is unknown. Only the coronation invitation and itinerary entry are imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "HTML text read; no images reviewed."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://web.archive.org/web/20080801052730id_/http://www.pmo.gov.to:80/index.php?option=com_content&task=view&id=226&Itemid=135",
+  "original_url": "http://www.pmo.gov.to/index.php?option=com_content&task=view&id=226&Itemid=135",
+  "archive_capture_utc": "2008-08-01T05:27:30Z",
+  "accessed_date": "2026-09-21",
+  "published_date": "2008-07-28",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 41693,
+  "source_response_sha256": "31da340f408061683c9e3c53179dcf101582457df8bbdb5b7eee04befa35ef03",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original PMO page, captured at 2008-08-01T05:27:30Z; the original official page is no longer served. The capture bytes were downloaded and hashed before extraction on 2026-09-21 (local). This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_crown_gtv_profile_proclaimed_sept2006",
+      "text": "The profile, authorised and issued by the Office of the Lord Chamberlain on 28 July 2008, says that the King was proclaimed Monarch in September 2006, that his father died 'two years ago', and that his official coronation takes place on 1 August.",
+      "locator": "Opening paragraphs; divestment paragraph; sign-off 'Office of the Lord Chamberlain, 28 July 2008'",
+      "period": {
+        "from": "2006-09-01",
+        "through": "2006-09-30"
+      },
+      "uncertainty": "Month-level corroboration of the proclamation. The coronation date is prospective and 'two years ago' is relative, so neither is given a structured date here."
+    },
+    {
+      "id": "to_crown_gtv_prince_regent_numerous_occasions",
+      "text": "The profile states that King George, as Crown Prince, acted as Prince Regent on numerous occasions and presided over meetings of the Privy Council, especially when his father's health began to fail.",
+      "locator": "Paragraph on his service before accession",
+      "uncertainty": "Undated and general: no instrument, occasion or period is given. Regency observations, not a reign."
+    }
+  ],
+  "scope_note": "Palace-authorised profile carried on the PMO website (raw Internet Archive capture of 1 August 2008, 05:27:30 UTC); the original page is no longer served. Only the proclamation month, the prospective coronation date and the regency statement are imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  }
+}

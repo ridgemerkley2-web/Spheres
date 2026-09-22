@@ -1,0 +1,29 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://ago.gov.to/cms/images/LEGISLATION/AMENDING/2006/2006-0003/PublicEnterprisesAmendmentAct2006.pdf",
+  "accessed_date": "2026-09-21",
+  "published_date": null,
+  "document_date": "2006-10-03",
+  "access_method": "downloaded_original_pdf_text_and_relevant_page_visually_read",
+  "source_response_bytes": 55577,
+  "source_response_sha256": "dfbd2d2833725bbc8cd80e9a64c9c0e016ca2959ab5567dbb6cc556b4b61ce99",
+  "source_response_checked_in": false,
+  "provenance_note": "Original response downloaded (curl -L) and hashed before extraction on 2026-09-21 (local). This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_crown_assent_gtv_20061003",
+      "text": "The assent block reads 'I assent, GEORGE TUPOU V, 3rd October, 2006' (Tongan text: SIAOSI TUPOU V); the Act records its passage on 2 October 2006.",
+      "attested_on": "2006-10-03",
+      "locator": "PDF page 1 (English) and page 2 (Tongan), assent blocks",
+      "uncertainty": "A dated attestation of the new King exercising the royal assent, before his coronation. It is not a start date."
+    }
+  ],
+  "scope_note": "Used only for the assent attestation (TO-CROWN-04). Print layout of the original Act; the assent date is recorded as document_date. The Act's substance is not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "PDF page 1 (original print layout) was rendered and visually checked in the research dossier; the page 2 Tongan assent was read from the text layer."
+  }
+}

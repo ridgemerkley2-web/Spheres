@@ -1,0 +1,29 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://ago.gov.to/cms/images/LEGISLATION/AMENDING/2006/2006-0002/IncomeTaxAmendmentAct2006.pdf",
+  "accessed_date": "2026-09-21",
+  "published_date": null,
+  "document_date": "2006-06-30",
+  "access_method": "downloaded_original_pdf_text_and_relevant_page_visually_read",
+  "source_response_bytes": 28627,
+  "source_response_sha256": "379391bdb43899697e95948988f99a9e0e27ef89809f47299ef00e8565934731",
+  "source_response_checked_in": false,
+  "provenance_note": "Original response downloaded (curl -L) and hashed before extraction on 2026-09-21 (local). This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_crown_assent_tupouto_a_20060630",
+      "text": "The assent block reads 'I assent, TUPOUTO'A, 30th June, 2006'; the Act records its passage on 29 June 2006.",
+      "attested_on": "2006-06-30",
+      "locator": "PDF page 1, assent block and passage line",
+      "uncertainty": "The capacity in which Tupouto'a assented (for example as Prince Regent) is not printed, so this is not accepted as a regency observation on its own, and the re-typeset text could carry transcription errors. It is not a to_king holder observation."
+    }
+  ],
+  "scope_note": "Used only for the assent line (TO-CROWN-02). Re-typeset reproduction by the Attorney General's Office; the assent date is recorded as document_date. The Act's substance is not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "PDF page 1 was rendered and visually checked in the research dossier; the assent block reads TUPOUTO'A."
+  }
+}
