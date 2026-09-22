@@ -1,6 +1,6 @@
 # Saudi executive chronology 03: kings, crown princes and the 2022 prime-minister exception
 
-Packet: **CLAUDE-C01-03**. State: **ready_for_review** (not complete).
+Packet: **CLAUDE-C01-06**. State: **ready_for_review** (not complete).
 Owner: Claude. Integrator/reviewer: Codex. Branch `claude/c01-saudi-03`, base
 `857da24d`. Research access: 21 September 2026. The historical cutoff stays
 **7 September 2026**; the latest observation recorded is 13 August 2026.
@@ -418,7 +418,7 @@ These are proposals for the integrator. They are not created in `work-orders.jso
 - `research/README.md` and the Saudi paragraph of `C01/README.md` need the new totals and a
   pointer to this report. They are left for the integrator.
 - No existing test pins Saudi totals, so no existing test changed. The new
-  `test_saudi_executive_c01_03.py` pins them.
+  `test_saudi_executive_c01_06.py` pins them.
 - `test_campaign_census.py` cannot run in this sparse worktree, because
   `spheres-sim/data/party_leaders.json` is not checked out. It fails the same way at the base
   commit. It was run in a `git archive` export of its inputs (the `spheres-sim` and
@@ -440,7 +440,7 @@ python -X utf8 tools/avatars/campaign_research.py --check
 python -X utf8 -m unittest discover -s tools/avatars -p "test_*research*.py"
 python -X utf8 -m unittest discover -s tools/avatars -p "test_tonga_*.py"
 python -X utf8 -m unittest discover -s tools/avatars -p "test_campaign*.py"
-python -X utf8 -m unittest discover -s tools/avatars -p "test_saudi_executive_c01_03.py"
+python -X utf8 -m unittest discover -s tools/avatars -p "test_saudi_executive_c01_06.py"
 node --test tools/ui/check_leadership_research_review.cjs
 python tools/planning/workboard.py --check
 git diff --check

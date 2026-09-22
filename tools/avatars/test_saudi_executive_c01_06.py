@@ -1,4 +1,4 @@
-"""CLAUDE-C01-03: Saudi kings and crown princes 1990-2026 keep death, pledge, selection and relief dates apart."""
+"""CLAUDE-C01-06: Saudi kings and crown princes 1990-2026 keep death, pledge, selection and relief dates apart."""
 import copy
 from datetime import datetime, timedelta
 import hashlib
@@ -152,8 +152,8 @@ RESPONSE_BYTES = {
 BUSH_RESPONSE = (31889, '539f115582aea3de304d4557c61bb18169f829616c04d72b50d591c5f91ba1c3')
 SECONDARY = ('aljazeera', 'npr.org', 'meed', 'arabnews', 'alriyadh', 'okaz', 'aawsat', 'abc.net', 'saudipedia',
              'nsarchive', 'govinfo', 'mof.gov.sa', 'my.gov.sa', 'wikipedia')
-REPORT = research.RESEARCH / 'saudi-executive-chronology-03.md'
-HANDOFF = 'docs/planning/ai-handoffs/CLAUDE-C01-03.md'
+REPORT = research.RESEARCH / 'saudi-executive-chronology-06.md'
+HANDOFF = 'docs/planning/ai-handoffs/CLAUDE-C01-06.md'
 
 
 class SaudiExecutiveChronologyTests(unittest.TestCase):
@@ -430,7 +430,7 @@ class SaudiExecutiveChronologyTests(unittest.TestCase):
         for marker in ('C01', 'C06', 'S23', 'WC1', 'CP1'):
             self.assertNotRegex(self.report, rf'\b{marker}\b[^.\n]*\bis (now )?complete\b')
         handoff = (research.ROOT / HANDOFF).read_text(encoding='utf-8')
-        for phrase in ('ready_for_review', 'saudi-executive-chronology-03.md', 'pending Codex acceptance',
+        for phrase in ('ready_for_review', 'saudi-executive-chronology-06.md', 'pending Codex acceptance',
                        "21 September 2026 instruction for six further autonomous sessions"):
             self.assertIn(phrase, handoff)
         index = research.build()
