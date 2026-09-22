@@ -1,0 +1,163 @@
+{
+  "schema": "spheres-rejected-candidate-independent-verification/v1",
+  "recorded_utc": "2026-09-22T23:21:06.508538+00:00",
+  "reviewer": "verify_ui_browser",
+  "candidate": "27 confidence1.20 on corrected26",
+  "decision": "REJECTED; independently consistent with unmodified raw test results",
+  "revision": "12278ea4c66863200fd10948350ae69391954cfa",
+  "runtime_baseline": "9f7faed5f541e14545e01caf1616ba08c6ad8ff9",
+  "source_review": {
+    "listed_inputs": 1932,
+    "current_matches_baseline": 1931,
+    "current_differences_after_recorded_restoration": [
+      {
+        "path": "spheres-sim/src/dyads.rs",
+        "baseline_sha256": "710a8121c1f93c3516b05e99ee37a3fd4323aa42be7023d6947c227076fe295f",
+        "current": {
+          "bytes": 27224,
+          "sha256": "a9bc6689a343d1957130a3b38af4f020e2d22b4d8c2c9dfe77db4b3f89c2a98b"
+        },
+        "baseline_git_blob_reconstructed_with_CRLF_matches": true,
+        "git_blob_sha256": "598b67a983843cf7e238cf0af2d635021a5c50801ad623a7242fdb28bde49efa"
+      }
+    ],
+    "only_candidate_edit": "ARMY_CRISIS_CONFIDENCE_WEIGHT: 0.65 -> 1.20",
+    "baseline_government_sha256": "0e2dbdefe5ed1909804b81d43b736c94315be647d615bda85e62e1fe78a2b73f",
+    "reconstructed_candidate_sha256": "2826b999790fd24a851dd307fadd4ea6adcb2eda2fade43a133d9eb369af7501",
+    "candidate_reconstructed_by_exact_single_replacement": true,
+    "full_baseline_body_omitted_from_archive": "Recoverable from revision Git blob; baseline and candidate SHA verified.",
+    "recorded_restoration": "Original result records all1932 native input hashes restored and clean Git status at2026-09-22T23:14:05.947771+00:00.",
+    "current_state_scope": "The independent audit ran after the separate authorized empty-stall optimization in dyads.rs. Current government and1931 inputs match baseline; current dyads differs but HEAD LF blob reconstructed with the existing CRLF checkout convention matches its baseline raw hash. This is not a claim that the current worktree is clean.",
+    "later_application_receipt": {
+      "path": "empty-stall-optimization/application.json",
+      "sha256": "c7350518b3bedd814f1a21239756a289ff9358ac0833c75a2f5961efd341ea4d"
+    },
+    "git_status_before_archive": " M spheres-sim/src/dyads.rs\n"
+  },
+  "log_verification": {
+    "native": {
+      "file": "iteration-27-correctness.log",
+      "sha256": "4b2f1ad8b26da19801736df764faaca856b8825b105cabb66a639c9658dcf7cb",
+      "bytes": 115763,
+      "summaries": [
+        [
+          "FAILED",
+          "1004",
+          "1",
+          "25",
+          "1"
+        ],
+        [
+          "ok",
+          "5",
+          "0",
+          "7",
+          "0"
+        ]
+      ],
+      "failures": [
+        "government::tests::the_algeria_shaped_annulment_fires_under_its_conditions_and_not_under_the_court"
+      ]
+    },
+    "political": {
+      "file": "iteration-27-A1-A10.log",
+      "sha256": "406ffe1ea1520266f62212ccfaf0aac72c18338c5208878e074b5da2b218117c",
+      "bytes": 13268,
+      "summaries": [
+        [
+          "FAILED",
+          "9",
+          "2",
+          "0",
+          "1"
+        ]
+      ],
+      "failures": [
+        "a2_an_islamist_takeover_without_a_ballot_in_most_seeds_by_2000",
+        "a1_coups_against_elected_governments_are_spread_not_three_micro_polities"
+      ]
+    }
+  },
+  "outcome": {
+    "A1": {
+      "median_electoral_coups": 12,
+      "required_median_range": [
+        4,
+        14
+      ],
+      "median_top3_share": 0.5,
+      "required_top3_comparison": "strictly <0.5",
+      "result": "FAIL"
+    },
+    "A2": {
+      "seeds_with_islamist_takeover_by_2000": 6,
+      "total_seeds": 12,
+      "required_count": "greater than6 and at most10",
+      "result": "FAIL"
+    },
+    "original_suite": "9passed/2failed includes eight other A1-A10 gates plus attribution regression; not eleven independent outcome targets.",
+    "correctness": "Sim library1004passed/1failed/25ignored/1filtered; ordinary bloc integration5passed/0failed/7ignored. Ignored/filtered tests are explicitly not passes."
+  },
+  "preserved_rules": {
+    "thresholds_and_cohorts_unchanged": true,
+    "test_or_fixture_edits_in_candidate_patch": false
+  },
+  "execution_limits": {
+    "new_Cargo_or_simulations_by_reviewer": false,
+    "candidate_binaries_executed_by_reviewer": false,
+    "candidate_binary_hashes": "Recorded by parent build receipt; executable paths are mutable and baseline rebuild is underway, so reviewer does not claim independently rehashed retained candidate binaries.",
+    "N200_and_holdout": "Not run according to result and bounded commands. This audit verifies retained evidence and does not independently audit every historical host process."
+  },
+  "checked_evidence": [
+    {
+      "path": "checkpoint26-confidence120-reassessment-plan.json",
+      "bytes": 9120,
+      "sha256": "c38e8528563f7b2a0737b87f27baeaaec4e00b4e2daddd777f6e1d73fe38fb6e"
+    },
+    {
+      "path": "checkpoint26-confidence120-independent-review.json",
+      "bytes": 4159,
+      "sha256": "25792f69d29853561a018b7077ffd5b48b496fe46600822de949129eb54ce635"
+    },
+    {
+      "path": "checkpoint26-confidence120-independent-review.md",
+      "bytes": 2119,
+      "sha256": "2e23ee650a258e45f8f6ae15e1c5315609fadd28c6b16c7f3fb7b356b34274d8"
+    },
+    {
+      "path": "iteration-27-prospective-application.json",
+      "bytes": 1908,
+      "sha256": "25cc2575a5a7ddc609b5015bc6792e42254fea9b93b846097adfa886c8c732bc"
+    },
+    {
+      "path": "iteration-27-build-receipt.json",
+      "bytes": 1020,
+      "sha256": "e13559faf66de85ab5689273e4161489978f83f3cd4a35523f338396ab17c656"
+    },
+    {
+      "path": "iteration-27-result.json",
+      "bytes": 3657,
+      "sha256": "bc1a87d2d27a870c1ebc2a3b4cc33f3c6f740c88c8afdb52344d8dc68990226c"
+    },
+    {
+      "path": "iteration-27-baseline-source-manifest.json",
+      "bytes": 342906,
+      "sha256": "c5b0b5f294c85b9a1fc90fd9344d6d5d8f21cc0c2e3b3ef9502a4f0900e0fa62"
+    },
+    {
+      "path": "iteration-27-candidate.patch",
+      "bytes": 756,
+      "sha256": "163377b8b84035f9cbb0aaef96e2938826554fadfa1c1be6bf7d02b42625a9bd"
+    },
+    {
+      "path": "iteration-27-correctness.log",
+      "bytes": 115763,
+      "sha256": "4b2f1ad8b26da19801736df764faaca856b8825b105cabb66a639c9658dcf7cb"
+    },
+    {
+      "path": "iteration-27-A1-A10.log",
+      "bytes": 13268,
+      "sha256": "406ffe1ea1520266f62212ccfaf0aac72c18338c5208878e074b5da2b218117c"
+    }
+  ]
+}

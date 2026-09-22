@@ -1,0 +1,142 @@
+{
+  "reviewed_utc": "2026-09-22T23:29:36.327702+00:00",
+  "reviewer": "/root/verify_linux_ci",
+  "stage": 2,
+  "head": "12278ea4c66863200fd10948350ae69391954cfa",
+  "decision": "Exact reviewed predicate reorder; no actionable source-level issue. Stage2 runtime correctness and performance remain pending.",
+  "source_after_raw_sha256": "76bcc8dfdbe03939962a297d17e15d81ce0d03d6d3733ce7f2922495ee8529a8",
+  "reconstructed_stage1_raw_sha256": "a9bc6689a343d1957130a3b38af4f020e2d22b4d8c2c9dfe77db4b3f89c2a98b",
+  "reconstructed_baseline_raw_sha256": "710a8121c1f93c3516b05e99ee37a3fd4323aa42be7023d6947c227076fe295f",
+  "prospective_application_sha256": "b1c2adcc9700e87fd971e95272544f803b43530cf6f8b8409ddb150156b7f42e",
+  "stage1_result_receipt_sha256": "7dfd0319fcd754a74cc61c2d420d9f84245c6902a0fd479b43d2cf7038821deb",
+  "stage1_evidence_scope": "Prior stage1 results are not claimed as stage2 execution results.",
+  "checked_source_files": [
+    {
+      "path": "spheres-sim/src/dyads.rs",
+      "raw_sha256": "76bcc8dfdbe03939962a297d17e15d81ce0d03d6d3733ce7f2922495ee8529a8",
+      "canonical_sha256": "c6f9226ffb00fc6c8c7af9ef780243b67f1d3e93eb22b9f2610ac3615afeafe7",
+      "matches_baseline_after_removing_only_reviewed_runtime_changes": true
+    },
+    {
+      "path": "spheres-sim/src/resources.rs",
+      "raw_sha256": "3ea70fb478e9c691db34186505c6d350ed5e563c1879f96f4551f2b8ebec7898",
+      "canonical_sha256": "e05ef3a9571dbf7acdbaa2b584752d172cbe78080da9535ec6ce70a0e77929b2",
+      "matches_baseline_after_removing_only_reviewed_runtime_changes": true
+    },
+    {
+      "path": "spheres-sim/src/lib.rs",
+      "raw_sha256": "f2852dfc40d213f74d04647ccedd4d674c9e00e08d1bc5f79ff6de20624eef82",
+      "canonical_sha256": "f2852dfc40d213f74d04647ccedd4d674c9e00e08d1bc5f79ff6de20624eef82",
+      "matches_baseline_after_removing_only_reviewed_runtime_changes": true
+    },
+    {
+      "path": "spheres-sim/src/government.rs",
+      "raw_sha256": "0e2dbdefe5ed1909804b81d43b736c94315be647d615bda85e62e1fe78a2b73f",
+      "canonical_sha256": "0e2dbdefe5ed1909804b81d43b736c94315be647d615bda85e62e1fe78a2b73f",
+      "matches_baseline_after_removing_only_reviewed_runtime_changes": true
+    }
+  ],
+  "equivalence": {
+    "old_body_condition": "tracked(k) && stalled[k.idx()]",
+    "new_body_condition": "stalled[k.idx()] && tracked(k)",
+    "truth_table": [
+      {
+        "stalled": false,
+        "tracked": false,
+        "old_enters_body": false,
+        "new_enters_body": false
+      },
+      {
+        "stalled": false,
+        "tracked": true,
+        "old_enters_body": false,
+        "new_enters_body": false
+      },
+      {
+        "stalled": true,
+        "tracked": false,
+        "old_enters_body": false,
+        "new_enters_body": false
+      },
+      {
+        "stalled": true,
+        "tracked": true,
+        "old_enters_body": true,
+        "new_enters_body": true
+      }
+    ],
+    "order": "Both visit ALL in its original order. Every eligible commodity executes the same refusal, flow, flag and reach statements in that order.",
+    "side_effects": "Both operands are pure reads. A false mask entry skips only immutable tracked-table access. No world arithmetic, mutation, RNG, priority, serialization, fixture or assertion is changed.",
+    "empty_mask": "The accepted stage1 early return is byte-identical.",
+    "untracked_case_caution": "TRACKED currently equals all twelve COMMODITIES and the loader enforces it. Thus the false-tracked truth-table rows are analytic parity, not claimed live-fixture coverage. A future withdrawn commodity remains excluded even if supplied a true stall entry.",
+    "cold_table_caution": "As in stage1, no parity claim is made for panic timing of invalid embedded data; valid initialized game tables are assumed."
+  },
+  "unchanged_existing_checks": [
+    {
+      "name": "resources::tests::the_last_resort_predicate",
+      "path": "spheres-sim/src/resources.rs",
+      "line": 9193,
+      "existing_unchanged": true,
+      "scope": "Exercises no-stall and positive last-resort cases, refusals, sanctions, priced-out asks, reach, settled claims and market appetite.",
+      "stage2_execution_status": "Pending parent full workspace result"
+    },
+    {
+      "name": "resources::tests::a_deficit_alone_never_raises_appetite",
+      "path": "spheres-sim/src/resources.rs",
+      "line": 9289,
+      "existing_unchanged": true,
+      "scope": "Bitwise market-on/off appetite equality for deficits without refusal memory across contacts.",
+      "stage2_execution_status": "Pending parent full workspace result"
+    },
+    {
+      "name": "resources::tests::the_stall_mask_equals_twelve_calls",
+      "path": "spheres-sim/src/resources.rs",
+      "line": 9405,
+      "existing_unchanged": true,
+      "scope": "Validates caller mask against twelve independent commodity queries for both market arms, including actual stalls.",
+      "stage2_execution_status": "Pending parent full workspace result"
+    },
+    {
+      "name": "dyads::tests::a_claim_pressed_by_force_stops_being_a_war_aim",
+      "path": "spheres-sim/src/dyads.rs",
+      "line": 456,
+      "existing_unchanged": true,
+      "scope": "Adjacent unchanged claim/appetite control; it is not a direct proof of the new fast path.",
+      "stage2_execution_status": "Pending parent full workspace result"
+    },
+    {
+      "name": "tests::the_market_switch_is_off_for_the_suite_and_deterministic_when_on",
+      "path": "spheres-sim/src/lib.rs",
+      "line": 5722,
+      "existing_unchanged": true,
+      "scope": "Pins default start/run state and checks market-on deterministic execution and saved-midpoint replay.",
+      "stage2_execution_status": "Pending parent full workspace result"
+    },
+    {
+      "name": "tests::golden_hash_of_a_known_run",
+      "path": "spheres-sim/src/lib.rs",
+      "line": 5083,
+      "existing_unchanged": true,
+      "scope": "Retains the exact default 240-month world fingerprint; no repinning allowed for this optimization.",
+      "stage2_execution_status": "Pending parent full workspace result"
+    },
+    {
+      "name": "tests::the_resource_layer_is_inert_over_time",
+      "path": "spheres-sim/src/lib.rs",
+      "line": 5428,
+      "existing_unchanged": true,
+      "scope": "Retains default/gate-off fingerprints plus six-seed 40-year gate parity.",
+      "stage2_execution_status": "Pending parent full workspace result"
+    }
+  ],
+  "verification_remaining": [
+    "Parent full workspace with unchanged fingerprints and seven existing checks.",
+    "Parent isolated existing resource timing check; retain advisory misses if any."
+  ],
+  "advisory_ms_unchanged": 0.05,
+  "hard_ms_unchanged": 0.15,
+  "stage2_speedup_claimed": false,
+  "native_execution_by_reviewer": false,
+  "repository_edits_by_reviewer": false,
+  "political_calibration_or_criteria_changed": false
+}

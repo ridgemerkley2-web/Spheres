@@ -1,0 +1,28 @@
+{
+  "utc": "2026-09-22T23:37:02.919174+00:00",
+  "stage": 2,
+  "workspace_exit": 0,
+  "workspace_totals": {
+    "passed": 1886,
+    "failed": 0,
+    "ignored": 89,
+    "filtered": 1,
+    "targets": 66
+  },
+  "workspace_sha256": "0b4ec5c2d7d7f42fa8cd52dd235e4839f25eb3906f95c181f29b11bdeedfda88",
+  "timing_exit": 0,
+  "timing_sha256": "3fbd0ffd0e81f3220d50f24245bdad2acbfb0b8a76f84094cae27c168bb09c70",
+  "timing_ms": {
+    "resources": 0.0339,
+    "buy": 0.0082,
+    "appetite": 0.0162,
+    "total": 0.0584
+  },
+  "advisory_met": false,
+  "hard_limit_met": true,
+  "binary_sha256": "5547e3ff3d511e9d0025a4c1ad1fd3d8a12e967610fd16dbf332c502125ddd3c",
+  "dyads_sha256": "76bcc8dfdbe03939962a297d17e15d81ce0d03d6d3733ce7f2922495ee8529a8",
+  "decision": "Do not retain stage2; no measured incremental gain. Timing variance is not called a semantic/performance regression. Select smaller stage1 optimization, whose unchanged full suite passed at its exact source hash; no further timing trials or optimizations.",
+  "selected_source_sha256": "a9bc6689a343d1957130a3b38af4f020e2d22b4d8c2c9dfe77db4b3f89c2a98b",
+  "restored_utc": "2026-09-22T23:37:02.958955+00:00"
+}

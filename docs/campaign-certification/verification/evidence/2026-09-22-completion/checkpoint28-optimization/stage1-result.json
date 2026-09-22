@@ -1,0 +1,28 @@
+{
+  "utc": "2026-09-22T23:27:38.443266+00:00",
+  "stage": 1,
+  "workspace_exit": 0,
+  "workspace_totals": {
+    "passed": 1886,
+    "failed": 0,
+    "ignored": 89,
+    "filtered": 1,
+    "targets": 66
+  },
+  "workspace_sha256": "594470237f3dfcf8afeef6c6a04e3ec19ccf312c4871788d5567e372c8984f9a",
+  "timing_exit": 0,
+  "timing_sha256": "84864297cdd8f0d94727f95e5d58da162a79a52789d12120e7f2831be8de2dd2",
+  "timing_ms": {
+    "resources": 0.0334,
+    "buy": 0.0079,
+    "appetite": 0.016,
+    "total": 0.0573
+  },
+  "advisory_met": false,
+  "hard_limit_met": true,
+  "binary_sha256": "d78241c942ed62f418a5cf81a184abb014ced7a29db8798c0b09958ee9f83afa",
+  "dyads_sha256": "a9bc6689a343d1957130a3b38af4f020e2d22b4d8c2c9dfe77db4b3f89c2a98b",
+  "baseline_total_ms": 0.0629,
+  "observed_speedup_percent": 8.903020667726553,
+  "scope": "Unchanged full suite; measured one isolated best-of-three harness reading per source. No gameplay/result changes or criteria changes."
+}

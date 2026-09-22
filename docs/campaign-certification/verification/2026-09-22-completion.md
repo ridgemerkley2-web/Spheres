@@ -10,7 +10,7 @@ equate a green regression suite with completion of the entire campaign roadmap.
 save checks, both mature native latency checks and the actual browser journey
 also pass. The load-time government mutation is repaired. A1 political coup
 concentration still fails its unchanged rule; neither this technical checkpoint
-nor the in-progress hosted run is campaign certification.
+nor the completed hosted run is campaign certification.
 
 ## Town scenes
 
@@ -322,6 +322,46 @@ The preceding [hosted25 run](https://github.com/ridgemerkley2-web/Spheres/action
 is complete: native/core-browser, JavaScript/tooling and town-browser all pass on
 Ubuntu and Windows. Only both A1 political checks and their fail-closed aggregates
 fail. The current [hosted26 run](https://github.com/ridgemerkley2-web/Spheres/actions/runs/35794328514)
-is still in progress when this local receipt is committed. Remaining model work
-preserves the existing acceptance rules unless a separate design change is
-explicitly chosen; local technical success does not erase the political failure.
+is now complete too: the six native/core-browser, JavaScript/tooling and town-browser
+jobs pass across both platforms. Both political jobs fail only original A1, and
+both aggregate jobs correctly fail closed. The [final hosted26 archive](evidence/2026-09-22-completion/checkpoint26-hosted-final/README.md)
+retains exact run, log and artifact identities. Remaining model work preserves the
+existing acceptance rules unless a separate design change is explicitly chosen;
+local technical success does not erase the political failure.
+
+## Rejected confidence reassessment 27
+
+One prospectively declared confidence-response adjustment, from 0.65 to 1.20,
+was tested on the independently repaired fiscal/AI base. It was rejected: the
+unchanged library suite recorded 1,004 passes and an Algeria election-chronology
+failure. The complete original political suite recorded nine passes and two
+failures: A1 at median 12 coups / 0.50 top-three share (the rule is strictly
+below 0.50), and A2 at six of twelve seeds (the rule requires more than six).
+The [complete trial archive](evidence/2026-09-22-completion/checkpoint27-rejected-model/README.md)
+preserves the prospective plan, exact one-line diff, original logs and independent
+review. No assertion, fixture or threshold was changed. All 1,932 baseline native
+inputs were restored byte for byte; the rebuilt Algeria scenario passes again.
+The candidate did not advance to development N200 or the reserved holdout.
+
+## Resource lookup optimization, selected after checkpoints28/29
+
+The [selected optimization and full evidence](evidence/2026-09-22-completion/checkpoint28-optimization/README.md)
+add only an early return when the resource-stall mask is empty. The original
+per-target search cannot find a resource objective in that state. All nonempty
+masks keep the original path; no simulation coefficient, test or save field changes.
+
+The selected source passes 1,886 native tests across 66 targets, with zero
+failures, 89 ignored and one timing check filtered. Its separate timing check
+passes at 0.0573 ms/month against 0.0629 on the restored baseline, about a 9%
+local reduction. Both satisfy the unchanged 0.15 hard limit and miss the 0.05
+advisory target. A further pure-predicate reorder also passed all 1,886 tests
+but showed no additional gain (0.0584); it was removed and the smaller selected
+source restored byte for byte. Fresh selected-source checks pass all eight
+resource, deterministic-campaign and Algeria scenarios.
+
+The original political suite remains 10 passes and one A1 failure at 7 / 0.59.
+Seven provenance commands pass without changing generated files; a separate
+input-hash audit justifies the existing 1,701-pass Node result for unchanged
+JavaScript inputs, without claiming another run. Original saves and preview
+servers again pass preservation checks. Technical verification and a modest
+measured speed improvement do not close political A1 or the full campaign roadmap.

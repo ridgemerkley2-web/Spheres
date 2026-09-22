@@ -776,3 +776,16 @@ assertions. It still fails at median 7 and top-three share 0.585714. A displayed
 inverse-HHI/effective-country comparison is a different, unapproved criterion;
 it is not called equivalent and cannot certify the current model. The independent
 1000-series cohort remains untouched.
+
+## Rejected reassessment 27 on the corrected base
+
+The single predeclared 0.65-to-1.20 confidence trial failed the unchanged Algeria
+chronology test (1,004 other library tests passed), A1 concentration (12 / 0.50,
+with a strict below-0.50 rule) and A2 frequency (6/12, requiring more than six).
+The [independently reviewed archive](../campaign-certification/verification/evidence/2026-09-22-completion/checkpoint27-rejected-model/README.md)
+keeps the original failure evidence and the exact coefficient-only patch. The
+prior 0.65 model was restored without changing fixtures, and its rebuilt Algeria
+scenario passed. No N200 or independent holdout was run for this rejected trial.
+The separate empty-stall resource optimization changes no political coefficient
+or outcome criterion. A1 remains open; the alternative diversity rule remains
+unapproved.

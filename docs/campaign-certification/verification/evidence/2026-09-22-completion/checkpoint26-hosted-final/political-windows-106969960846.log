@@ -1,0 +1,472 @@
+﻿2026-09-22T22:48:53.5363088Z Current runner version: '2.337.0'
+2026-09-22T22:48:53.6770062Z ##[group]Runner Image Provisioner
+2026-09-22T22:48:53.6771603Z Hosted Compute Agent
+2026-09-22T22:48:53.6772565Z Version: 20260828.587
+2026-09-22T22:48:53.6773575Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-09-22T22:48:53.6775259Z Build Date: 2026-08-28T16:44:25Z
+2026-09-22T22:48:53.6776415Z Worker ID: {a647268c-ef60-4bcb-b088-2b0a109e719a}
+2026-09-22T22:48:53.6777217Z Azure Region: westus
+2026-09-22T22:48:53.6778128Z ##[endgroup]
+2026-09-22T22:48:53.6780521Z ##[group]Operating System
+2026-09-22T22:48:53.6781494Z Microsoft Windows Server 2025
+2026-09-22T22:48:53.6782503Z 10.0.26100
+2026-09-22T22:48:53.6783396Z Datacenter
+2026-09-22T22:48:53.6785361Z ##[endgroup]
+2026-09-22T22:48:53.6786391Z ##[group]Runner Image
+2026-09-22T22:48:53.6787444Z Image: windows-2025-vs2026
+2026-09-22T22:48:53.6788474Z Version: 20260907.229.1
+2026-09-22T22:48:53.6791175Z Included Software: https://github.com/actions/runner-images/blob/win25-vs2026/20260907.229/images/windows/Windows2025-VS2026-Readme.md
+2026-09-22T22:48:53.6794181Z Image Release: https://github.com/actions/runner-images/releases/tag/win25-vs2026%2F20260907.229
+2026-09-22T22:48:53.6796477Z ##[endgroup]
+2026-09-22T22:48:53.6798473Z ##[group]GITHUB_TOKEN Permissions
+2026-09-22T22:48:53.6802495Z Contents: read
+2026-09-22T22:48:53.6803351Z Metadata: read
+2026-09-22T22:48:53.6803908Z ##[endgroup]
+2026-09-22T22:48:53.6807027Z Secret source: Actions
+2026-09-22T22:48:53.6808221Z Cache mode: write
+2026-09-22T22:48:53.6809603Z Prepare workflow directory
+2026-09-22T22:48:53.9021445Z Prepare all required actions
+2026-09-22T22:48:53.9144168Z Getting action download info
+2026-09-22T22:48:54.3580414Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-09-22T22:48:54.7441732Z Download action repository 'dtolnay/rust-toolchain@stable' (SHA:6bed0761d98439e5a578e2877258200ad565ba87)
+2026-09-22T22:48:55.2060254Z Complete job name: political-calibration (windows-latest)
+2026-09-22T22:48:55.3737551Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-22T22:48:55.3748058Z ##[group]Run actions/checkout@v4
+2026-09-22T22:48:55.3749216Z with:
+2026-09-22T22:48:55.3749714Z   repository: ridgemerkley2-web/Spheres
+2026-09-22T22:48:55.3753763Z   token: ***
+2026-09-22T22:48:55.3754205Z   ssh-strict: true
+2026-09-22T22:48:55.3754646Z   ssh-user: git
+2026-09-22T22:48:55.3755104Z   persist-credentials: true
+2026-09-22T22:48:55.3755595Z   clean: true
+2026-09-22T22:48:55.3756057Z   sparse-checkout-cone-mode: true
+2026-09-22T22:48:55.3756586Z   fetch-depth: 1
+2026-09-22T22:48:55.3757029Z   fetch-tags: false
+2026-09-22T22:48:55.3757481Z   show-progress: true
+2026-09-22T22:48:55.3757978Z   lfs: false
+2026-09-22T22:48:55.3758430Z   submodules: false
+2026-09-22T22:48:55.3758896Z   set-safe-directory: true
+2026-09-22T22:48:55.3759404Z   allow-unsafe-pr-checkout: false
+2026-09-22T22:48:55.3760148Z ##[endgroup]
+2026-09-22T22:48:55.6093483Z Syncing repository: ridgemerkley2-web/Spheres
+2026-09-22T22:48:55.6096588Z ##[group]Getting Git version info
+2026-09-22T22:48:55.6097549Z Working directory is 'D:\a\Spheres\Spheres'
+2026-09-22T22:48:55.7533243Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-09-22T22:48:56.2766137Z git version 2.55.0.windows.5
+2026-09-22T22:48:56.2884529Z ##[endgroup]
+2026-09-22T22:48:56.2922989Z Temporarily overriding HOME='D:\a\_temp\da2da582-e316-4148-943b-c3dd7488ec39' before making global git config changes
+2026-09-22T22:48:56.2925943Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-22T22:48:56.2938487Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\Spheres\Spheres
+2026-09-22T22:48:56.5112322Z Deleting the contents of 'D:\a\Spheres\Spheres'
+2026-09-22T22:48:56.5120535Z ##[group]Initializing the repository
+2026-09-22T22:48:56.5133432Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\Spheres\Spheres
+2026-09-22T22:48:56.7089837Z Initialized empty Git repository in D:/a/Spheres/Spheres/.git/
+2026-09-22T22:48:56.7263883Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/ridgemerkley2-web/Spheres
+2026-09-22T22:48:57.0294626Z ##[endgroup]
+2026-09-22T22:48:57.0295739Z ##[group]Disabling automatic garbage collection
+2026-09-22T22:48:57.0296747Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+2026-09-22T22:48:57.1751448Z ##[endgroup]
+2026-09-22T22:48:57.1753064Z ##[group]Setting up auth
+2026-09-22T22:48:57.1799215Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-09-22T22:48:57.4796979Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-09-22T22:49:00.2551730Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-22T22:49:00.3023969Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-09-22T22:49:00.9875675Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-22T22:49:01.0210508Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-09-22T22:49:01.6374232Z [command]"C:\Program Files\Git\bin\git.exe" config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+2026-09-22T22:49:01.6787216Z ##[endgroup]
+2026-09-22T22:49:01.6788102Z ##[group]Fetching the repository
+2026-09-22T22:49:01.6800556Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +9f7faed5f541e14545e01caf1616ba08c6ad8ff9:refs/remotes/origin/codex/campaign-certification
+2026-09-22T22:50:00.7271509Z From https://github.com/ridgemerkley2-web/Spheres
+2026-09-22T22:50:00.7272627Z  * [new ref]         9f7faed5f541e14545e01caf1616ba08c6ad8ff9 -> origin/codex/campaign-certification
+2026-09-22T22:50:00.7320938Z ##[endgroup]
+2026-09-22T22:50:00.7321833Z ##[group]Determining the checkout info
+2026-09-22T22:50:00.7324803Z ##[endgroup]
+2026-09-22T22:50:00.7336828Z [command]"C:\Program Files\Git\bin\git.exe" sparse-checkout disable
+2026-09-22T22:50:00.7887560Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all extensions.worktreeConfig
+2026-09-22T22:50:00.8225852Z ##[group]Checking out the ref
+2026-09-22T22:50:00.8238023Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force -B codex/campaign-certification refs/remotes/origin/codex/campaign-certification
+2026-09-22T22:50:01.9210253Z Updating files:  16% (1865/11624)
+2026-09-22T22:50:01.9918143Z Updating files:  17% (1977/11624)
+2026-09-22T22:50:02.0758582Z Updating files:  18% (2093/11624)
+2026-09-22T22:50:02.1570381Z Updating files:  19% (2209/11624)
+2026-09-22T22:50:02.2511508Z Updating files:  20% (2325/11624)
+2026-09-22T22:50:02.2886814Z Updating files:  21% (2442/11624)
+2026-09-22T22:50:02.4142447Z Updating files:  22% (2558/11624)
+2026-09-22T22:50:02.9024129Z Updating files:  23% (2674/11624)
+2026-09-22T22:50:03.5480791Z Updating files:  23% (2762/11624)
+2026-09-22T22:50:03.9186117Z Updating files:  24% (2790/11624)
+2026-09-22T22:50:04.9317678Z Updating files:  24% (2807/11624)
+2026-09-22T22:50:05.9084132Z Updating files:  24% (2852/11624)
+2026-09-22T22:50:06.1931460Z Updating files:  24% (2893/11624)
+2026-09-22T22:50:06.9074389Z Updating files:  25% (2906/11624)
+2026-09-22T22:50:07.2842898Z Updating files:  25% (2939/11624)
+2026-09-22T22:50:07.3676762Z Updating files:  26% (3023/11624)
+2026-09-22T22:50:07.4527632Z Updating files:  27% (3139/11624)
+2026-09-22T22:50:07.8585721Z Updating files:  28% (3255/11624)
+2026-09-22T22:50:07.9106737Z Updating files:  29% (3371/11624)
+2026-09-22T22:50:08.2971341Z Updating files:  29% (3380/11624)
+2026-09-22T22:50:08.5158841Z Updating files:  30% (3488/11624)
+2026-09-22T22:50:08.6870195Z Updating files:  31% (3604/11624)
+2026-09-22T22:50:08.9128277Z Updating files:  32% (3720/11624)
+2026-09-22T22:50:09.1345081Z Updating files:  32% (3774/11624)
+2026-09-22T22:50:09.3722870Z Updating files:  33% (3836/11624)
+2026-09-22T22:50:09.5737373Z Updating files:  34% (3953/11624)
+2026-09-22T22:50:09.8534563Z Updating files:  35% (4069/11624)
+2026-09-22T22:50:09.9240202Z Updating files:  36% (4185/11624)
+2026-09-22T22:50:10.1514672Z Updating files:  36% (4193/11624)
+2026-09-22T22:50:10.4338429Z Updating files:  37% (4301/11624)
+2026-09-22T22:50:10.5693745Z Updating files:  38% (4418/11624)
+2026-09-22T22:50:10.8718165Z Updating files:  39% (4534/11624)
+2026-09-22T22:50:10.9310806Z Updating files:  40% (4650/11624)
+2026-09-22T22:50:11.3134956Z Updating files:  40% (4670/11624)
+2026-09-22T22:50:11.5628822Z Updating files:  41% (4766/11624)
+2026-09-22T22:50:11.8611855Z Updating files:  42% (4883/11624)
+2026-09-22T22:50:11.9483382Z Updating files:  43% (4999/11624)
+2026-09-22T22:50:12.0932593Z Updating files:  43% (5074/11624)
+2026-09-22T22:50:12.7297101Z Updating files:  44% (5115/11624)
+2026-09-22T22:50:12.9553786Z Updating files:  45% (5231/11624)
+2026-09-22T22:50:13.2428831Z Updating files:  45% (5268/11624)
+2026-09-22T22:50:13.9534340Z Updating files:  46% (5348/11624)
+2026-09-22T22:50:14.2151698Z Updating files:  46% (5425/11624)
+2026-09-22T22:50:14.4652909Z Updating files:  47% (5464/11624)
+2026-09-22T22:50:14.9548557Z Updating files:  48% (5580/11624)
+2026-09-22T22:50:15.0890511Z Updating files:  48% (5672/11624)
+2026-09-22T22:50:15.8272051Z Updating files:  49% (5696/11624)
+2026-09-22T22:50:15.9561462Z Updating files:  50% (5812/11624)
+2026-09-22T22:50:16.1347121Z Updating files:  50% (5884/11624)
+2026-09-22T22:50:16.9629079Z Updating files:  51% (5929/11624)
+2026-09-22T22:50:16.9869927Z Updating files:  51% (6040/11624)
+2026-09-22T22:50:17.3736753Z Updating files:  52% (6045/11624)
+2026-09-22T22:50:18.1508019Z Updating files:  53% (6161/11624)
+2026-09-22T22:50:18.3725379Z Updating files:  53% (6221/11624)
+2026-09-22T22:50:18.7307690Z Updating files:  54% (6277/11624)
+2026-09-22T22:50:18.9702025Z Updating files:  55% (6394/11624)
+2026-09-22T22:50:19.3904398Z Updating files:  55% (6438/11624)
+2026-09-22T22:50:19.9732304Z Updating files:  56% (6510/11624)
+2026-09-22T22:50:20.0447127Z Updating files:  56% (6617/11624)
+2026-09-22T22:50:20.6203950Z Updating files:  57% (6626/11624)
+2026-09-22T22:50:20.9743718Z Updating files:  58% (6742/11624)
+2026-09-22T22:50:21.8398092Z Updating files:  58% (6769/11624)
+2026-09-22T22:50:21.9809055Z Updating files:  59% (6859/11624)
+2026-09-22T22:50:22.8265523Z Updating files:  59% (6905/11624)
+2026-09-22T22:50:22.9838204Z Updating files:  60% (6975/11624)
+2026-09-22T22:50:23.1911655Z Updating files:  60% (7057/11624)
+2026-09-22T22:50:24.0281976Z Updating files:  61% (7091/11624)
+2026-09-22T22:50:24.6996423Z Updating files:  61% (7156/11624)
+2026-09-22T22:50:24.9803952Z Updating files:  62% (7207/11624)
+2026-09-22T22:50:25.1968392Z Updating files:  62% (7286/11624)
+2026-09-22T22:50:25.3375833Z Updating files:  63% (7324/11624)
+2026-09-22T22:50:25.9891756Z Updating files:  64% (7440/11624)
+2026-09-22T22:50:26.0819703Z Updating files:  64% (7539/11624)
+2026-09-22T22:50:26.3544552Z Updating files:  65% (7556/11624)
+2026-09-22T22:50:26.4983689Z Updating files:  66% (7672/11624)
+2026-09-22T22:50:26.6575954Z Updating files:  67% (7789/11624)
+2026-09-22T22:50:26.7622435Z Updating files:  68% (7905/11624)
+2026-09-22T22:50:27.2249898Z Updating files:  69% (8021/11624)
+2026-09-22T22:50:27.2694515Z Updating files:  69% (8074/11624)
+2026-09-22T22:50:27.3939334Z Updating files:  70% (8137/11624)
+2026-09-22T22:50:27.4900127Z Updating files:  71% (8254/11624)
+2026-09-22T22:50:27.5310043Z Updating files:  72% (8370/11624)
+2026-09-22T22:50:27.5663980Z Updating files:  73% (8486/11624)
+2026-09-22T22:50:27.6005336Z Updating files:  74% (8602/11624)
+2026-09-22T22:50:27.6327407Z Updating files:  75% (8718/11624)
+2026-09-22T22:50:27.6749745Z Updating files:  76% (8835/11624)
+2026-09-22T22:50:27.7205389Z Updating files:  77% (8951/11624)
+2026-09-22T22:50:27.7676026Z Updating files:  78% (9067/11624)
+2026-09-22T22:50:27.8311427Z Updating files:  79% (9183/11624)
+2026-09-22T22:50:27.9114444Z Updating files:  80% (9300/11624)
+2026-09-22T22:50:27.9674673Z Updating files:  81% (9416/11624)
+2026-09-22T22:50:27.9807584Z Updating files:  82% (9532/11624)
+2026-09-22T22:50:28.0045984Z Updating files:  82% (9572/11624)
+2026-09-22T22:50:28.0391439Z Updating files:  83% (9648/11624)
+2026-09-22T22:50:28.9906578Z Updating files:  84% (9765/11624)
+2026-09-22T22:50:29.5258769Z Updating files:  84% (9849/11624)
+2026-09-22T22:50:29.9855519Z Updating files:  85% (9881/11624)
+2026-09-22T22:50:30.9932512Z Updating files:  85% (9894/11624)
+2026-09-22T22:50:31.5505414Z Updating files:  85% (9958/11624)
+2026-09-22T22:50:31.9882474Z Updating files:  86% (9997/11624)
+2026-09-22T22:50:32.9965378Z Updating files:  86% (10049/11624)
+2026-09-22T22:50:33.1719301Z Updating files:  86% (10096/11624)
+2026-09-22T22:50:33.2497743Z Updating files:  87% (10113/11624)
+2026-09-22T22:50:33.3991784Z Updating files:  88% (10230/11624)
+2026-09-22T22:50:33.5610896Z Updating files:  89% (10346/11624)
+2026-09-22T22:50:33.7148794Z Updating files:  90% (10462/11624)
+2026-09-22T22:50:33.9232952Z Updating files:  91% (10578/11624)
+2026-09-22T22:50:34.0038551Z Updating files:  92% (10695/11624)
+2026-09-22T22:50:34.2019685Z Updating files:  92% (10742/11624)
+2026-09-22T22:50:34.3041298Z Updating files:  93% (10811/11624)
+2026-09-22T22:50:34.5313229Z Updating files:  94% (10927/11624)
+2026-09-22T22:50:34.5581781Z Updating files:  95% (11043/11624)
+2026-09-22T22:50:34.5867059Z Updating files:  96% (11160/11624)
+2026-09-22T22:50:34.6135922Z Updating files:  97% (11276/11624)
+2026-09-22T22:50:34.6818964Z Updating files:  98% (11392/11624)
+2026-09-22T22:50:34.7259802Z Updating files:  99% (11508/11624)
+2026-09-22T22:50:34.7263450Z Updating files: 100% (11624/11624)
+2026-09-22T22:50:34.7264527Z Updating files: 100% (11624/11624), done.
+2026-09-22T22:50:34.7567485Z Switched to a new branch 'codex/campaign-certification'
+2026-09-22T22:50:34.7585880Z branch 'codex/campaign-certification' set up to track 'origin/codex/campaign-certification'.
+2026-09-22T22:50:35.0561039Z ##[endgroup]
+2026-09-22T22:50:35.0908721Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+2026-09-22T22:50:35.1187288Z 9f7faed5f541e14545e01caf1616ba08c6ad8ff9
+2026-09-22T22:50:35.1881965Z ##[group]Run dtolnay/rust-toolchain@stable
+2026-09-22T22:50:35.1882402Z with:
+2026-09-22T22:50:35.1882646Z   toolchain: stable
+2026-09-22T22:50:35.1882890Z ##[endgroup]
+2026-09-22T22:50:35.1963667Z ##[start-action display=Parse toolchain version;id=__dtolnay_rust-toolchain.parse]
+2026-09-22T22:50:35.2157809Z ##[group]Run if [[ -z $toolchain ]]; then
+2026-09-22T22:50:35.2158399Z [36;1mif [[ -z $toolchain ]]; then[0m
+2026-09-22T22:50:35.2159056Z [36;1m  # GitHub does not enforce `required: true` inputs itself. https://github.com/actions/runner/issues/1070[0m
+2026-09-22T22:50:35.2159708Z [36;1m  echo "'toolchain' is a required input" >&2[0m
+2026-09-22T22:50:35.2160099Z [36;1m  exit 1[0m
+2026-09-22T22:50:35.2160531Z [36;1melif [[ $toolchain =~ ^stable' '[0-9]+' '(year|month|week|day)s?' 'ago$ ]]; then[0m
+2026-09-22T22:50:35.2161041Z [36;1m  if [[ Windows == macOS ]]; then[0m
+2026-09-22T22:50:35.2161778Z [36;1m    echo "toolchain=1.$((($(date -v-$(sed 's/stable \([0-9]*\) \(.\).*/\1\2/' <<< $toolchain) +%s)/60/60/24-16569)/7/6))" >> $GITHUB_OUTPUT[0m
+2026-09-22T22:50:35.2162662Z [36;1m  else[0m
+2026-09-22T22:50:35.2163154Z [36;1m    echo "toolchain=1.$((($(date --date "${toolchain#stable }" +%s)/60/60/24-16569)/7/6))" >> $GITHUB_OUTPUT[0m
+2026-09-22T22:50:35.2163699Z [36;1m  fi[0m
+2026-09-22T22:50:35.2164083Z [36;1melif [[ $toolchain =~ ^stable' 'minus' '[0-9]+' 'releases?$ ]]; then[0m
+2026-09-22T22:50:35.2164697Z [36;1m  echo "toolchain=1.$((($(date +%s)/60/60/24-16569)/7/6-${toolchain//[^0-9]/}))" >> $GITHUB_OUTPUT[0m
+2026-09-22T22:50:35.2165249Z [36;1melif [[ $toolchain =~ ^1\.[0-9]+$ ]]; then[0m
+2026-09-22T22:50:35.2165860Z [36;1m  echo "toolchain=1.$((i=${toolchain#1.}, c=($(date +%s)/60/60/24-16569)/7/6, i+9*i*(10*i<=c)+90*i*(100*i<=c)))" >> $GITHUB_OUTPUT[0m
+2026-09-22T22:50:35.2166426Z [36;1melse[0m
+2026-09-22T22:50:35.2166750Z [36;1m  echo "toolchain=$toolchain" >> $GITHUB_OUTPUT[0m
+2026-09-22T22:50:35.2167111Z [36;1mfi[0m
+2026-09-22T22:50:35.2189804Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-09-22T22:50:35.2190313Z env:
+2026-09-22T22:50:35.2190591Z   toolchain: stable
+2026-09-22T22:50:35.2190905Z ##[endgroup]
+2026-09-22T22:50:35.4285430Z ##[end-action id=__dtolnay_rust-toolchain.parse;outcome=success;conclusion=success;duration_ms=232]
+2026-09-22T22:50:35.4299835Z ##[start-action display=Construct rustup command line;id=__dtolnay_rust-toolchain.flags]
+2026-09-22T22:50:35.4915570Z ##[group]Run echo "targets=$(for t in ${targets//,/ }; do echo -n ' --target' $t; done)" >> $GITHUB_OUTPUT
+2026-09-22T22:50:35.4916320Z [36;1mecho "targets=$(for t in ${targets//,/ }; do echo -n ' --target' $t; done)" >> $GITHUB_OUTPUT[0m
+2026-09-22T22:50:35.4917004Z [36;1mecho "components=$(for c in ${components//,/ }; do echo -n ' --component' $c; done)" >> $GITHUB_OUTPUT[0m
+2026-09-22T22:50:35.4917533Z [36;1mecho "downgrade=" >> $GITHUB_OUTPUT[0m
+2026-09-22T22:50:35.4935426Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-09-22T22:50:35.4935902Z env:
+2026-09-22T22:50:35.4936142Z   targets: 
+2026-09-22T22:50:35.4936378Z   components: 
+2026-09-22T22:50:35.4936617Z ##[endgroup]
+2026-09-22T22:50:35.5615955Z ##[end-action id=__dtolnay_rust-toolchain.flags;outcome=success;conclusion=success;duration_ms=131]
+2026-09-22T22:50:35.5619543Z ##[start-action display=Set $CARGO_HOME;id=__dtolnay_rust-toolchain.__run]
+2026-09-22T22:50:35.5754676Z ##[group]Run echo CARGO_HOME=${CARGO_HOME:-"$USERPROFILE\.cargo"} >> $GITHUB_ENV
+2026-09-22T22:50:35.5755229Z [36;1mecho CARGO_HOME=${CARGO_HOME:-"$USERPROFILE\.cargo"} >> $GITHUB_ENV[0m
+2026-09-22T22:50:35.5771912Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-09-22T22:50:35.5772310Z ##[endgroup]
+2026-09-22T22:50:35.6297722Z ##[end-action id=__dtolnay_rust-toolchain.__run;outcome=success;conclusion=success;duration_ms=67]
+2026-09-22T22:50:35.6302957Z ##[start-action display=Install rustup if needed;id=__dtolnay_rust-toolchain.__run_2]
+2026-09-22T22:50:35.6314929Z ##[end-action id=__dtolnay_rust-toolchain.__run_2;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-09-22T22:50:35.6317071Z ##[start-action display=Install rustup if needed on windows;id=__dtolnay_rust-toolchain.__run_3]
+2026-09-22T22:50:35.6463575Z ##[group]Run if ! command -v rustup &>/dev/null; then
+2026-09-22T22:50:35.6463959Z [36;1mif ! command -v rustup &>/dev/null; then[0m
+2026-09-22T22:50:35.6464778Z [36;1m  curl --proto '=https' --tlsv1.2 --retry 10 --retry-connrefused --location --silent --show-error --fail https://win.rustup.rs/x86_64 --output 'D:\a\_temp\rustup-init.exe'[0m
+2026-09-22T22:50:35.6465706Z [36;1m  'D:\a\_temp\rustup-init.exe' --default-toolchain none --no-modify-path -y[0m
+2026-09-22T22:50:35.6466147Z [36;1m  echo "$CARGO_HOME\bin" >> $GITHUB_PATH[0m
+2026-09-22T22:50:35.6466424Z [36;1mfi[0m
+2026-09-22T22:50:35.6482774Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-09-22T22:50:35.6483935Z env:
+2026-09-22T22:50:35.6484128Z   CARGO_HOME: C:\Users\runneradmin\.cargo
+2026-09-22T22:50:35.6484381Z ##[endgroup]
+2026-09-22T22:50:35.7046066Z ##[end-action id=__dtolnay_rust-toolchain.__run_3;outcome=success;conclusion=success;duration_ms=72]
+2026-09-22T22:50:35.7061407Z ##[start-action display=rustup toolchain install stable;id=__dtolnay_rust-toolchain.__run_4]
+2026-09-22T22:50:35.7217576Z ##[group]Run rustup toolchain install stable --profile minimal --no-self-update
+2026-09-22T22:50:35.7218332Z [36;1mrustup toolchain install stable --profile minimal --no-self-update[0m
+2026-09-22T22:50:35.7235366Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-09-22T22:50:35.7235905Z env:
+2026-09-22T22:50:35.7236184Z   CARGO_HOME: C:\Users\runneradmin\.cargo
+2026-09-22T22:50:35.7236548Z   RUSTUP_PERMIT_COPY_RENAME: 1
+2026-09-22T22:50:35.7236864Z ##[endgroup]
+2026-09-22T22:50:39.0350016Z info: syncing channel updates for stable-x86_64-pc-windows-msvc
+2026-09-22T22:50:39.4700052Z 
+2026-09-22T22:50:39.4918031Z   stable-x86_64-pc-windows-msvc unchanged - rustc 1.98.1 (48a229cea 2026-09-01)
+2026-09-22T22:50:39.4918430Z 
+2026-09-22T22:50:39.5034638Z ##[end-action id=__dtolnay_rust-toolchain.__run_4;outcome=success;conclusion=success;duration_ms=3797]
+2026-09-22T22:50:39.5042837Z ##[start-action display=rustup default stable;id=__dtolnay_rust-toolchain.__run_5]
+2026-09-22T22:50:39.5211302Z ##[group]Run rustup default stable
+2026-09-22T22:50:39.5211704Z [36;1mrustup default stable[0m
+2026-09-22T22:50:39.5228825Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-09-22T22:50:39.5229221Z env:
+2026-09-22T22:50:39.5229418Z   CARGO_HOME: C:\Users\runneradmin\.cargo
+2026-09-22T22:50:39.5229670Z ##[endgroup]
+2026-09-22T22:50:39.6141615Z info: using existing install for stable-x86_64-pc-windows-msvc
+2026-09-22T22:50:39.6337598Z info: default toolchain set to stable-x86_64-pc-windows-msvc
+2026-09-22T22:50:39.6340239Z 
+2026-09-22T22:50:39.6552084Z   stable-x86_64-pc-windows-msvc unchanged - rustc 1.98.1 (48a229cea 2026-09-01)
+2026-09-22T22:50:39.6552479Z 
+2026-09-22T22:50:39.6638666Z ##[end-action id=__dtolnay_rust-toolchain.__run_5;outcome=success;conclusion=success;duration_ms=159]
+2026-09-22T22:50:39.6641945Z ##[start-action display=Create cachekey;id=__dtolnay_rust-toolchain.rustc-version]
+2026-09-22T22:50:39.6780840Z ##[group]Run DATE=$(rustc +stable --version --verbose | sed -ne 's/^commit-date: \(20[0-9][0-9]\)-\([01][0-9]\)-\([0-3][0-9]\)$/\1\2\3/p')
+2026-09-22T22:50:39.6781666Z [36;1mDATE=$(rustc +stable --version --verbose | sed -ne 's/^commit-date: \(20[0-9][0-9]\)-\([01][0-9]\)-\([0-3][0-9]\)$/\1\2\3/p')[0m
+2026-09-22T22:50:39.6782304Z [36;1mHASH=$(rustc +stable --version --verbose | sed -ne 's/^commit-hash: //p')[0m
+2026-09-22T22:50:39.6782790Z [36;1mecho "cachekey=$(echo $DATE$HASH | head -c12)" >> $GITHUB_OUTPUT[0m
+2026-09-22T22:50:39.6799994Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-09-22T22:50:39.6800453Z env:
+2026-09-22T22:50:39.6800654Z   CARGO_HOME: C:\Users\runneradmin\.cargo
+2026-09-22T22:50:39.6800913Z ##[endgroup]
+2026-09-22T22:50:40.4987126Z ##[end-action id=__dtolnay_rust-toolchain.rustc-version;outcome=success;conclusion=success;duration_ms=834]
+2026-09-22T22:50:40.4991764Z ##[start-action display=Disable incremental compilation;id=__dtolnay_rust-toolchain.__run_6]
+2026-09-22T22:50:40.5135480Z ##[group]Run if [ -z "${CARGO_INCREMENTAL+set}" ]; then
+2026-09-22T22:50:40.5135851Z [36;1mif [ -z "${CARGO_INCREMENTAL+set}" ]; then[0m
+2026-09-22T22:50:40.5136174Z [36;1m  echo CARGO_INCREMENTAL=0 >> $GITHUB_ENV[0m
+2026-09-22T22:50:40.5136435Z [36;1mfi[0m
+2026-09-22T22:50:40.5151848Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-09-22T22:50:40.5152240Z env:
+2026-09-22T22:50:40.5152440Z   CARGO_HOME: C:\Users\runneradmin\.cargo
+2026-09-22T22:50:40.5152695Z ##[endgroup]
+2026-09-22T22:50:40.5579134Z ##[end-action id=__dtolnay_rust-toolchain.__run_6;outcome=success;conclusion=success;duration_ms=58]
+2026-09-22T22:50:40.5582060Z ##[start-action display=Enable colors in Cargo output;id=__dtolnay_rust-toolchain.__run_7]
+2026-09-22T22:50:40.5718201Z ##[group]Run if [ -z "${CARGO_TERM_COLOR+set}" ]; then
+2026-09-22T22:50:40.5718572Z [36;1mif [ -z "${CARGO_TERM_COLOR+set}" ]; then[0m
+2026-09-22T22:50:40.5718889Z [36;1m  echo CARGO_TERM_COLOR=always >> $GITHUB_ENV[0m
+2026-09-22T22:50:40.5719162Z [36;1mfi[0m
+2026-09-22T22:50:40.5735219Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-09-22T22:50:40.5735603Z env:
+2026-09-22T22:50:40.5735792Z   CARGO_HOME: C:\Users\runneradmin\.cargo
+2026-09-22T22:50:40.5736047Z   CARGO_INCREMENTAL: 0
+2026-09-22T22:50:40.5736237Z ##[endgroup]
+2026-09-22T22:50:40.6148042Z ##[end-action id=__dtolnay_rust-toolchain.__run_7;outcome=success;conclusion=success;duration_ms=56]
+2026-09-22T22:50:40.6150760Z ##[start-action display=Enable Cargo sparse registry;id=__dtolnay_rust-toolchain.__run_8]
+2026-09-22T22:50:40.6290760Z ##[group]Run # implemented in 1.66, stabilized in 1.68, made default in 1.70
+2026-09-22T22:50:40.6291343Z [36;1m# implemented in 1.66, stabilized in 1.68, made default in 1.70[0m
+2026-09-22T22:50:40.6292257Z [36;1mif [ -z "${CARGO_REGISTRIES_CRATES_IO_PROTOCOL+set}" -o -f "D:\a\_temp"/.implicit_cargo_registries_crates_io_protocol ]; then[0m
+2026-09-22T22:50:40.6293149Z [36;1m  if rustc +stable --version --verbose | grep -q '^release: 1\.6[89]\.'; then[0m
+2026-09-22T22:50:40.6293685Z [36;1m    touch "D:\a\_temp"/.implicit_cargo_registries_crates_io_protocol || true[0m
+2026-09-22T22:50:40.6294184Z [36;1m    echo CARGO_REGISTRIES_CRATES_IO_PROTOCOL=sparse >> $GITHUB_ENV[0m
+2026-09-22T22:50:40.6294691Z [36;1m  elif rustc +stable --version --verbose | grep -q '^release: 1\.6[67]\.'; then[0m
+2026-09-22T22:50:40.6295232Z [36;1m    touch "D:\a\_temp"/.implicit_cargo_registries_crates_io_protocol || true[0m
+2026-09-22T22:50:40.6295726Z [36;1m    echo CARGO_REGISTRIES_CRATES_IO_PROTOCOL=git >> $GITHUB_ENV[0m
+2026-09-22T22:50:40.6296077Z [36;1m  fi[0m
+2026-09-22T22:50:40.6296245Z [36;1mfi[0m
+2026-09-22T22:50:40.6311458Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-09-22T22:50:40.6312085Z env:
+2026-09-22T22:50:40.6312351Z   CARGO_HOME: C:\Users\runneradmin\.cargo
+2026-09-22T22:50:40.6312626Z   CARGO_INCREMENTAL: 0
+2026-09-22T22:50:40.6312886Z   CARGO_TERM_COLOR: always
+2026-09-22T22:50:40.6313089Z ##[endgroup]
+2026-09-22T22:50:40.8311412Z ##[end-action id=__dtolnay_rust-toolchain.__run_8;outcome=success;conclusion=success;duration_ms=215]
+2026-09-22T22:50:40.8314631Z ##[start-action display=Work around spurious network errors in curl 8.0;id=__dtolnay_rust-toolchain.__run_9]
+2026-09-22T22:50:40.8456205Z ##[group]Run # https://rust-lang.zulipchat.com/#narrow/stream/246057-t-cargo/topic/timeout.20investigation
+2026-09-22T22:50:40.8457143Z [36;1m# https://rust-lang.zulipchat.com/#narrow/stream/246057-t-cargo/topic/timeout.20investigation[0m
+2026-09-22T22:50:40.8457980Z [36;1mif rustc +stable --version --verbose | grep -q '^release: 1\.7[01]\.'; then[0m
+2026-09-22T22:50:40.8458462Z [36;1m  echo CARGO_HTTP_MULTIPLEXING=false >> $GITHUB_ENV[0m
+2026-09-22T22:50:40.8458767Z [36;1mfi[0m
+2026-09-22T22:50:40.8473736Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-09-22T22:50:40.8474128Z env:
+2026-09-22T22:50:40.8474340Z   CARGO_HOME: C:\Users\runneradmin\.cargo
+2026-09-22T22:50:40.8474603Z   CARGO_INCREMENTAL: 0
+2026-09-22T22:50:40.8474806Z   CARGO_TERM_COLOR: always
+2026-09-22T22:50:40.8475015Z ##[endgroup]
+2026-09-22T22:50:40.9904397Z ##[end-action id=__dtolnay_rust-toolchain.__run_9;outcome=success;conclusion=success;duration_ms=158]
+2026-09-22T22:50:40.9909658Z ##[start-action display=rustc +stable --version --verbose;id=__dtolnay_rust-toolchain.__run_10]
+2026-09-22T22:50:41.0059030Z ##[group]Run rustc +stable --version --verbose
+2026-09-22T22:50:41.0059598Z [36;1mrustc +stable --version --verbose[0m
+2026-09-22T22:50:41.0075862Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-09-22T22:50:41.0076271Z env:
+2026-09-22T22:50:41.0076469Z   CARGO_HOME: C:\Users\runneradmin\.cargo
+2026-09-22T22:50:41.0076733Z   CARGO_INCREMENTAL: 0
+2026-09-22T22:50:41.0076942Z   CARGO_TERM_COLOR: always
+2026-09-22T22:50:41.0077145Z ##[endgroup]
+2026-09-22T22:50:41.0993322Z rustc 1.98.1 (48a229cea 2026-09-01)
+2026-09-22T22:50:41.0993882Z binary: rustc
+2026-09-22T22:50:41.0994370Z commit-hash: 48a229ceaefd4985c50990b14116b6d856af0985
+2026-09-22T22:50:41.0995169Z commit-date: 2026-09-01
+2026-09-22T22:50:41.0995570Z host: x86_64-pc-windows-msvc
+2026-09-22T22:50:41.0995990Z release: 1.98.1
+2026-09-22T22:50:41.0997623Z LLVM version: 22.1.8
+2026-09-22T22:50:41.1140289Z ##[end-action id=__dtolnay_rust-toolchain.__run_10;outcome=success;conclusion=success;duration_ms=122]
+2026-09-22T22:50:41.1334406Z ##[group]Run cargo test --locked --release -p spheres-sim --test bloc_census -- --include-ignored --skip bloc_census
+2026-09-22T22:50:41.1335783Z [36;1mcargo test --locked --release -p spheres-sim --test bloc_census -- --include-ignored --skip bloc_census[0m
+2026-09-22T22:50:41.2133812Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-09-22T22:50:41.2134360Z env:
+2026-09-22T22:50:41.2134662Z   CARGO_HOME: C:\Users\runneradmin\.cargo
+2026-09-22T22:50:41.2135067Z   CARGO_INCREMENTAL: 0
+2026-09-22T22:50:41.2135389Z   CARGO_TERM_COLOR: always
+2026-09-22T22:50:41.2135705Z ##[endgroup]
+2026-09-22T22:50:44.6214242Z [1m[92m    Updating[0m crates.io index
+2026-09-22T22:50:45.1145663Z [1m[92m Downloading[0m crates ...
+2026-09-22T22:50:45.1763562Z [1m[92m  Downloaded[0m itoa v1.0.18
+2026-09-22T22:50:45.2775898Z [1m[92m  Downloaded[0m memchr v2.8.3
+2026-09-22T22:50:45.3401758Z [1m[92m  Downloaded[0m proc-macro2 v1.0.107
+2026-09-22T22:50:45.3811946Z [1m[92m  Downloaded[0m quote v1.0.47
+2026-09-22T22:50:45.4122291Z [1m[92m  Downloaded[0m zmij v1.0.23
+2026-09-22T22:50:45.4306141Z [1m[92m  Downloaded[0m serde_core v1.0.229
+2026-09-22T22:50:45.4584969Z [1m[92m  Downloaded[0m serde v1.0.229
+2026-09-22T22:50:45.4898212Z [1m[92m  Downloaded[0m unicode-ident v1.0.24
+2026-09-22T22:50:45.5195520Z [1m[92m  Downloaded[0m serde_derive v1.0.229
+2026-09-22T22:50:45.5489697Z [1m[92m  Downloaded[0m serde_json v1.0.151
+2026-09-22T22:50:45.6279032Z [1m[92m  Downloaded[0m syn v3.0.3
+2026-09-22T22:50:45.8838592Z [1m[92m   Compiling[0m proc-macro2 v1.0.107
+2026-09-22T22:50:45.8839402Z [1m[92m   Compiling[0m unicode-ident v1.0.24
+2026-09-22T22:50:45.8840046Z [1m[92m   Compiling[0m quote v1.0.47
+2026-09-22T22:50:45.8840603Z [1m[92m   Compiling[0m serde_core v1.0.229
+2026-09-22T22:50:54.2764092Z [1m[92m   Compiling[0m zmij v1.0.23
+2026-09-22T22:50:56.4488025Z [1m[92m   Compiling[0m serde_json v1.0.151
+2026-09-22T22:50:56.4499291Z [1m[92m   Compiling[0m serde v1.0.229
+2026-09-22T22:50:56.9034113Z [1m[92m   Compiling[0m memchr v2.8.3
+2026-09-22T22:50:59.8020756Z [1m[92m   Compiling[0m itoa v1.0.18
+2026-09-22T22:51:00.0555222Z [1m[92m   Compiling[0m syn v3.0.3
+2026-09-22T22:51:02.7322039Z [1m[92m   Compiling[0m serde_derive v1.0.229
+2026-09-22T22:51:06.8777767Z [1m[92m   Compiling[0m spheres-sim v0.5.0 (D:\a\Spheres\Spheres\spheres-sim)
+2026-09-22T22:54:13.8466478Z [1m[92m    Finished[0m `release` profile [optimized] target(s) in 3m 31s
+2026-09-22T22:54:14.6190670Z [1m[92m     Running[0m tests\bloc_census.rs (target\release\deps\bloc_census-369a0aef0a6b290c.exe)
+2026-09-22T22:54:14.6326567Z 
+2026-09-22T22:54:14.6327101Z running 11 tests
+2026-09-22T22:54:43.0466134Z test a2_an_islamist_takeover_without_a_ballot_in_most_seeds_by_2000 ... ok
+2026-09-22T22:54:43.1849764Z test a10_discontent_leads_the_roster_by_a_quarter_before_a_takeover ... ok
+2026-09-22T22:54:43.2378729Z test a1_coups_against_elected_governments_are_spread_not_three_micro_polities ... FAILED
+2026-09-22T22:55:00.2417002Z test a3_a_communist_takeover_without_a_ballot_is_rare ... ok
+2026-09-22T22:55:08.7362788Z test a4_the_democratisation_wave_opens_fifteen_regimes_by_1996 ... ok
+2026-09-22T22:55:08.8237344Z test a5_ex_communists_return_by_ballot_in_most_seeds ... ok
+2026-09-22T22:55:25.8258632Z test a7_ballots_flip_the_ruling_bloc_three_times_as_often_as_takeovers ... ok
+2026-09-22T22:55:25.8263367Z test a_ballot_and_an_uncoloured_collapse_do_not_fabricate_a_movement_takeover ... ok
+2026-09-22T22:55:27.6892588Z test a6_no_road_reaches_a_1990_democracy_in_thirty_five_years ... ok
+2026-09-22T22:55:31.7393986Z test a9_four_coups_in_five_strike_nations_under_8000_a_head ... ok
+2026-09-22T22:56:07.9700202Z test a8_six_of_the_eight_big_regimes_keep_their_bloc_in_most_seeds ... ok
+2026-09-22T22:56:07.9700842Z 
+2026-09-22T22:56:07.9701055Z failures:
+2026-09-22T22:56:07.9701272Z 
+2026-09-22T22:56:07.9706038Z ---- a1_coups_against_elected_governments_are_spread_not_three_micro_polities stdout ----
+2026-09-22T22:56:07.9707000Z A1: median coups 7 top-3 share median 0.59
+2026-09-22T22:56:07.9707905Z s0 coupEl 10 annul 3 regCoup 10 take [0, 0, 13, 1, 0] upr [1, 0, 2, 1, 0, 8] open96 14 a6 0/1 big8 8 poor 23/23 a10 +0.333 top3 0.60
+2026-09-22T22:56:07.9709423Z s1 coupEl 5 annul 2 regCoup 7 take [0, 0, 8, 1, 1] upr [0, 0, 2, 1, 1, 7] open96 13 a6 0/1 big8 8 poor 14/14 a10 +0.331 top3 0.60
+2026-09-22T22:56:07.9710655Z s2 coupEl 7 annul 2 regCoup 7 take [0, 0, 10, 1, 1] upr [0, 0, 2, 1, 1, 4] open96 17 a6 0/1 big8 8 poor 16/16 a10 +0.357 top3 0.71
+2026-09-22T22:56:07.9711937Z s3 coupEl 7 annul 2 regCoup 5 take [0, 0, 9, 0, 1] upr [0, 0, 1, 0, 1, 4] open96 14 a6 0/1 big8 8 poor 14/14 a10 +0.336 top3 0.43
+2026-09-22T22:56:07.9713270Z s4 coupEl 7 annul 3 regCoup 4 take [0, 0, 10, 0, 1] upr [2, 0, 1, 0, 1, 3] open96 15 a6 0/1 big8 8 poor 14/14 a10 +0.336 top3 0.57
+2026-09-22T22:56:07.9714564Z s5 coupEl 8 annul 3 regCoup 6 take [0, 0, 9, 1, 1] upr [2, 0, 0, 1, 1, 8] open96 16 a6 0/1 big8 8 poor 17/17 a10 +0.301 top3 0.62
+2026-09-22T22:56:07.9715826Z s6 coupEl 8 annul 3 regCoup 7 take [0, 0, 13, 1, 0] upr [0, 0, 3, 1, 0, 8] open96 14 a6 0/1 big8 8 poor 18/18 a10 +0.354 top3 0.62
+2026-09-22T22:56:07.9717094Z s7 coupEl 7 annul 3 regCoup 7 take [0, 0, 10, 1, 1] upr [1, 0, 2, 1, 1, 7] open96 16 a6 0/1 big8 8 poor 17/17 a10 +0.310 top3 0.57
+2026-09-22T22:56:07.9717996Z s8 coupEl 7 annul 2 regCoup 4 take [0, 0, 8, 1, 1] upr [0, 0, 1, 1, 1, 3] open96 18 a6 0/1 big8 8 poor 13/13 a10 +0.339 top3 0.43
+2026-09-22T22:56:07.9718735Z s9 coupEl 7 annul 2 regCoup 7 take [0, 0, 9, 0, 1] upr [0, 0, 1, 0, 1, 5] open96 15 a6 0/1 big8 8 poor 16/16 a10 +0.336 top3 0.57
+2026-09-22T22:56:07.9719513Z s10 coupEl 8 annul 2 regCoup 6 take [0, 0, 10, 1, 1] upr [2, 0, 1, 1, 1, 7] open96 17 a6 0/1 big8 8 poor 16/16 a10 +0.336 top3 0.62
+2026-09-22T22:56:07.9720247Z s11 coupEl 6 annul 2 regCoup 7 take [0, 0, 8, 1, 1] upr [0, 0, 1, 1, 1, 7] open96 15 a6 0/1 big8 8 poor 15/15 a10 +0.327 top3 0.50
+2026-09-22T22:56:07.9720660Z 
+2026-09-22T22:56:07.9721181Z thread 'a1_coups_against_elected_governments_are_spread_not_three_micro_polities' (8752) panicked at spheres-sim\tests\bloc_census.rs:992:5:
+2026-09-22T22:56:07.9721856Z three nations hold 0.59 of a seed's coups
+2026-09-22T22:56:07.9722301Z note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-09-22T22:56:07.9723243Z 
+2026-09-22T22:56:07.9723247Z 
+2026-09-22T22:56:07.9723346Z failures:
+2026-09-22T22:56:07.9723761Z     a1_coups_against_elected_governments_are_spread_not_three_micro_polities
+2026-09-22T22:56:07.9724077Z 
+2026-09-22T22:56:07.9724395Z test result: FAILED. 10 passed; 1 failed; 0 ignored; 0 measured; 1 filtered out; finished in 113.34s
+2026-09-22T22:56:07.9724793Z 
+2026-09-22T22:56:09.1789697Z [1m[91merror[0m: test failed, to rerun pass `-p spheres-sim --test bloc_census`
+2026-09-22T22:56:12.7170229Z ##[error]Process completed with exit code 1.
+2026-09-22T22:56:12.7501791Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-22T22:56:12.7504047Z Post job cleanup.
+2026-09-22T22:56:12.9640681Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-09-22T22:56:12.9932882Z git version 2.55.0.windows.5
+2026-09-22T22:56:13.0008512Z Temporarily overriding HOME='D:\a\_temp\2ca3a5c8-a574-4738-986b-bc3f8ce38024' before making global git config changes
+2026-09-22T22:56:13.0009629Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-22T22:56:13.0021022Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\Spheres\Spheres
+2026-09-22T22:56:13.0361848Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-09-22T22:56:13.0688698Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-09-22T22:56:13.7051702Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-22T22:56:13.7360261Z http.https://github.com/.extraheader
+2026-09-22T22:56:13.7421135Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all http.https://github.com/.extraheader
+2026-09-22T22:56:13.7776358Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-09-22T22:56:14.3856627Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-22T22:56:14.4200705Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-09-22T22:56:15.0254017Z Cleaning up orphan processes
+2026-09-22T22:56:15.0984276Z Terminate orphan process: pid (7100) (vctip)
+2026-09-22T22:56:15.1304064Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

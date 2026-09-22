@@ -1,0 +1,110 @@
+{
+  "schema": "spheres-verification-evidence-archive/v1",
+  "created_utc": "2026-09-22T23:22:19.941463+00:00",
+  "candidate": 27,
+  "decision": "REJECTED",
+  "parent_revision": "12278ea4c66863200fd10948350ae69391954cfa",
+  "entries": [
+    {
+      "path": "checkpoint26-confidence120-reassessment-plan.json",
+      "bytes": 9120,
+      "sha256": "c38e8528563f7b2a0737b87f27baeaaec4e00b4e2daddd777f6e1d73fe38fb6e",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\checkpoint26-confidence120-reassessment-plan.json",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "checkpoint26-confidence120-independent-review.json",
+      "bytes": 4159,
+      "sha256": "25792f69d29853561a018b7077ffd5b48b496fe46600822de949129eb54ce635",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\checkpoint26-confidence120-independent-review.json",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "checkpoint26-confidence120-independent-review.md",
+      "bytes": 2119,
+      "sha256": "2e23ee650a258e45f8f6ae15e1c5315609fadd28c6b16c7f3fb7b356b34274d8",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\checkpoint26-confidence120-independent-review.md",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "iteration-27-prospective-application.json",
+      "bytes": 1908,
+      "sha256": "25cc2575a5a7ddc609b5015bc6792e42254fea9b93b846097adfa886c8c732bc",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\iteration-27-prospective-application.json",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "iteration-27-baseline-source-manifest.json",
+      "bytes": 342906,
+      "sha256": "c5b0b5f294c85b9a1fc90fd9344d6d5d8f21cc0c2e3b3ef9502a4f0900e0fa62",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\iteration-27-baseline-source-manifest.json",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "iteration-27-build-receipt.json",
+      "bytes": 1020,
+      "sha256": "e13559faf66de85ab5689273e4161489978f83f3cd4a35523f338396ab17c656",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\iteration-27-build-receipt.json",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "iteration-27-candidate.patch",
+      "bytes": 756,
+      "sha256": "163377b8b84035f9cbb0aaef96e2938826554fadfa1c1be6bf7d02b42625a9bd",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\iteration-27-candidate.patch",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "iteration-27-correctness.log",
+      "bytes": 115763,
+      "sha256": "4b2f1ad8b26da19801736df764faaca856b8825b105cabb66a639c9658dcf7cb",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\iteration-27-correctness.log",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "iteration-27-A1-A10.log",
+      "bytes": 13268,
+      "sha256": "406ffe1ea1520266f62212ccfaf0aac72c18338c5208878e074b5da2b218117c",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\iteration-27-A1-A10.log",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "iteration-27-result.json",
+      "bytes": 3657,
+      "sha256": "bc1a87d2d27a870c1ebc2a3b4cc33f3c6f740c88c8afdb52344d8dc68990226c",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\iteration-27-result.json",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "iteration-27-independent-verification.json",
+      "bytes": 6448,
+      "sha256": "82125a08157b7690369e0d1adc2ca5a38f085636105ce6c1cc1ff095107217ca",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\iteration-27-independent-verification.json",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "verify-iteration-27-independent.py",
+      "bytes": 8814,
+      "sha256": "87ea5096c418ed3d6bf23e8fcaeabc3eb57cf98ab7fde1a62abd77aae9983b18",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\verify-iteration-27-independent.py",
+      "copy": "byte-identical"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3644,
+      "sha256": "a58d307a7251a125af3d94bbe0158b513e1e14af8ea98671c46ace04367a673a",
+      "source": "new archive explanation"
+    }
+  ],
+  "manifest_scope": "All files in this folder except manifest.json itself; originals copied without newline transformation.",
+  "native_input_preservation": {
+    "count": 1932,
+    "unchanged_during_archive": true
+  },
+  "gitattributes": {
+    "appended_rule": "docs/campaign-certification/verification/evidence/2026-09-22-completion/checkpoint27-rejected-model/** -text -whitespace",
+    "original_prefix_preserved": true,
+    "before_sha256": "1371029f4433c0c79b0cce7b063499f775dc0a57b08253b2fcb1f673d9036181",
+    "after_sha256": "2fcb8943236d57de77951cc328f66bb34c06c5f7310309d880bfe2622c951ccb"
+  }
+}
