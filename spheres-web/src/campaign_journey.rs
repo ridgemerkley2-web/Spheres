@@ -197,7 +197,7 @@ mod tests {
         // This is the critical first-day checkpoint, before another government
         // tick could hide incomplete newborn leadership records.
         let restored=storage::decode(&storage::encode(&g).unwrap()).unwrap();
-        assert_eq!(save(&restored.world),save(&g.world));
+        assert!(save(&restored.world)==save(&g.world),"first-day dissolution reload must preserve every world field");
         g
     }
     #[test]
@@ -240,7 +240,7 @@ mod tests {
             let goal=expected.campaign_aims.active.take().unwrap();
             expected.campaign_aims.history.push(campaign_aims::Record{goal,
                 ended_day:spheres_sim::clock::absolute_day(&expected),outcome:"government ended".into()});
-            assert_eq!(save(&g.world),save(&expected),"control and the exact former-country aim record are the only changes");
+            assert!(save(&g.world)==save(&expected),"control and the exact former-country aim record are the only changes");
             assert!(g.world.campaign_aims.active.is_none());
             assert_eq!(g.world.campaign_aims.history[0].goal.nation,from);
             assert_eq!(g.world.campaign_aims.history[0].outcome,"government ended");
