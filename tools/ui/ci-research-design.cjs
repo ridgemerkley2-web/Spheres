@@ -7,6 +7,7 @@ const {chromium}=require('playwright'),integrated=require('./ci-integrated.cjs')
 const audit=require('./supplier-archive-audit.cjs');
 const root=path.resolve(__dirname,'../..'),copy=x=>JSON.parse(JSON.stringify(x));
 const quoted=x=>JSON.stringify(String(x));
+const REQUIRED_PLATFORMS=['tank_standard','tank_heavy','tank_light','tank_destroyer','ground_ifv','ground_apc','ground_recon','ground_artillery','ground_air_defense','air_light_attack','air_tactical_strike','air_fighter'];
 const route=(r,p)=>new URL(r.url()).pathname===p&&r.request().method()==='POST';
 async function freePort(){const s=net.createServer();await new Promise(r=>s.listen(0,'127.0.0.1',r));const p=s.address().port;await new Promise(r=>s.close(r));return p;}
 async function get(page,url,p){const r=await page.request.get(url+p);try{assert(r.ok(),p);return await r.json();}finally{await r.dispose();}}
@@ -107,6 +108,12 @@ async function main(){
     // Declared in the S09 protocol before the first measurement. Sequential
     // full HTTP/JSON reads, no response replacement or cache installation.
     const board=await page.evaluate(()=>JSON.parse(JSON.stringify(EQUIP.data)));
+    assert(Array.isArray(board.presets)&&board.presets.length>0,'Native board must supply starting configurations');
+    const platformIds=board.presets.map(p=>p.platform);
+    assert(platformIds.every(id=>typeof id==='string'&&id.length>0&&id!=='board'),'Every starting configuration needs a platform id');
+    assert.equal(new Set(platformIds).size,platformIds.length,'Starting configurations must cover each platform once');
+    for(const id of REQUIRED_PLATFORMS)assert(platformIds.includes(id),'Missing required CP1 platform: '+id);
+    const expectedReadIds=['board',...platformIds];
     const timings=[],gc=[];const gcObserver=new PerformanceObserver(list=>gc.push(...list.getEntries().map(x=>({start_ms:x.startTime,duration_ms:x.duration}))));
     gcObserver.observe({entryTypes:['gc']});
     for(const item of [{id:'board'},...board.presets.map(p=>({id:p.platform,spec:{platform:p.platform,components:p.components}}))]){
@@ -125,7 +132,9 @@ async function main(){
       row.passed=p95<=row.p95_limit_ms&&max<=row.max_limit_ms;timings.push(row);write('read-performance.json',{warmups:3,samples:21,rows:timings});
     }
     gcObserver.disconnect();write('read-runtime-diagnostics.json',{gc});
-    assert.equal(new Set(timings.map(r=>r.id)).size,12,'Board and all eleven platform reads');
+    assert.equal(timings.filter(r=>r.id==='board').length,1,'Measure the equipment board exactly once');
+    assert.equal(new Set(timings.map(r=>r.id)).size,timings.length,'Each read measurement must be unique');
+    assert.deepEqual(timings.map(r=>r.id).sort(),expectedReadIds.slice().sort(),'Measure the board and every native starting platform');
     assert(timings.every(r=>r.passed),'Read performance exceeded the predeclared S09 limits');e.read_performance=timings.map(({samples_ms,...r})=>r);
     await shot('design-guidance-desktop','[data-equipment-guidance]');
     await page.setViewportSize({width:390,height:844});await withinPanel(page,'#equipmentRoot','Designer mobile');await shot('design-guidance-mobile','[data-equipment-guidance]');

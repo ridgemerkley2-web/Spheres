@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://parliament.gov.to/en/media-centre/latest-news/tongatapu-1-constituency-to-elect-new-mp-next-thursday",
+  "accessed_date": "2026-09-21",
+  "published_date": "2019-11-19",
+  "access_method": "fetched_original_html_and_article_text_read",
+  "source_response_bytes": 54685,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "provenance_note": "Fetched on 2026-09-21 (local) by direct HTTPS request with browser Accept headers (plain requests receive HTTP 406), HTTP 200, 54,685 bytes. Re-fetches the same day returned 55,115 and 55,119 bytes from parliament.gov.to and 54,681 bytes from www.parliament.gov.to, each with a different SHA-256 (per-request form token, live hit counter); the article text was identical. Both hosts serve the article with HTTP 200 and no redirect, and the page's own share links use www.parliament.gov.to; the original response size is closest to the www host's. No response hash is asserted. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_pohiva_death_month_2019",
+      "text": "The Legislative Assembly's article of 19 November 2019 states that 'Akilisi Pohiva, former Member of Parliament for Tongatapu 1 and late Prime Minister, passed away in September of that year.",
+      "locator": "Article body, paragraph 1",
+      "period": {
+        "from": "2019-09-01",
+        "through": "2019-09-30"
+      },
+      "uncertainty": "Death at month precision only; the day is not given. The article concerns a parliamentary seat to be filled, not a party-leadership vacancy, and states no party succession. It is not used as the end of any office term in this packet."
+    },
+    {
+      "id": "to_tongatapu1_byelection_notice_20191119",
+      "text": "The same article states that the Tongatapu 1 by-election to fill his seat is to be held on Thursday 28 November 2019, with two candidates: number one Siaosi Pohiva and number two Dr. Netatua Pelesikoti Taufatofua.",
+      "attested_on": "2019-11-19",
+      "locator": "Article body, paragraphs 1-2; created date in the article details",
+      "uncertainty": "An advance notice dated by its creation date: it does not record that the poll took place or its result. A seat vacancy is not a party office."
+    }
+  ],
+  "scope_note": "Used only for TO-DPFI-06. Joomla news page: each response embeds a per-request form token and shows a live hit counter, so no response hash is asserted. The 'created' date is the page's publication metadata. Both parliament.gov.to and www.parliament.gov.to serve the article.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Article text and the page's created date read; no images reviewed."
+  }
+}

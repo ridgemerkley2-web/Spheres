@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://ago.gov.to/cms/ago-materials/publications/tonga-law-reports.html?download=1560:2006_tlr",
+  "accessed_date": "2026-09-21",
+  "published_date": null,
+  "access_method": "downloaded_original_pdf_text_and_relevant_pages_visually_read",
+  "source_response_bytes": 2053972,
+  "source_response_sha256": "2b4b56d06edd5cdaa65fe74d55b29dff37aa366a162374fb6f3801d3114c3aef",
+  "source_response_checked_in": false,
+  "provenance_note": "Original response downloaded (curl -L) and hashed before extraction on 2026-09-21 (local). This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_crown_princess_regent_opening_20060601_court",
+      "text": "In Lasike v Noble Tu'iha'angana (Webster CJ; heard 17 June, decided 19 June 2006) the Supreme Court records that the Legislative Assembly was opened on 1 June 2006 by HRH Princess Salote Mafile'o Pilolevu Tuita as Princess Regent, in the absence of the King abroad in Auckland; the Chief Justice was an eyewitness. The court treats clause 43 as the provision under which the Princess Regent was appointed, construes its words 'Prince Regent who shall administer the affairs of the Kingdom during his [The King's] absence', and holds the Opening lawful.",
+      "attested_on": "2006-06-01",
+      "locator": "[2006] Tonga LR 139 (headnote), 140 (Preliminary), 142 (Clause 43) and 144 (Conclusion); PDF pages 165, 166, 168 and 170",
+      "uncertainty": "The court took her due appointment as given for the purposes of the case and did not adjudicate it; no appointment instrument, appointment date or end date is given. A regency observation, not a reign. Pages 166 and 170 were visually checked; pages 165 and 168 were read from the text layer."
+    },
+    {
+      "id": "to_crown_regent_assent_practice_2006_court",
+      "text": "The same judgment observes that this may have been the first opening of the Assembly by a Regent (at least in recent years), and that in practice the Regent has regularly exercised other weighty powers such as assenting to Acts passed by the Assembly.",
+      "locator": "[2006] Tonga LR 142, lines 216-220; PDF page 168",
+      "uncertainty": "A general judicial observation naming no person and giving no dates. It does not establish that any particular assent was given by a Regent."
+    },
+    {
+      "id": "to_crown_regent_tupouto_a_2004_pleading",
+      "text": "In Flyniu v Ata (ruling of 15 November 2004) the court summarises the plaintiffs' claim that the Privy Council approved the Domestic Civil Aviation Policy dated 30 July 2004 while 'the Regent at the time, HRH Crown Prince Tupouto'a' participated.",
+      "locator": "[2006] Tonga LR 10 (headnote) and 12 (Plaintiffs' claims); PDF pages 36 and 38",
+      "uncertainty": "A party's allegation as restated by the court, not a finding; unconfirmed. The approval date is unstated (on or after the policy's 30 July 2004 date), so no structured date is recorded, and no regency dates are given."
+    }
+  ],
+  "scope_note": "Regency observations only, from two judgments printed in the 2006 volume: Lasike (heard 17 June, decided 19 June 2006) and Flyniu (ruling of 15 November 2004). The volume's publication date is unknown. The Lasike reasoning on section 17 of the Legislative Assembly Act and the Flyniu merits are not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      166,
+      170
+    ],
+    "method": "PDF pages 36, 165, 166 and 170 were rendered in the research dossier; pages 166 and 170 were visually checked against the text layer. Pages 38, 165 and 168 were read from the text layer."
+  }
+}

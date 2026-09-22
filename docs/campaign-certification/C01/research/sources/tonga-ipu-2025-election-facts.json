@@ -2,13 +2,21 @@
   "format": "spheres-c01-derived-factual-table/v1",
   "source_url": "https://data.ipu.org/parliament/TO/TO-LC01/election/TO-LC01-E20251120/",
   "accessed_date": "2026-09-21",
-  "access_method": "fetched_original_html_and_page_text_read",
-  "source_response_bytes": 165854,
+  "published_date": null,
+  "access_method": "browser_fetched_original_html_and_page_text_read",
+  "source_response_bytes": 164916,
   "source_response_sha256": null,
   "source_response_checked_in": false,
-  "provenance_note": "Fetched by direct HTTPS request on 2026-09-21; two fetches returned 165,854 bytes each with different SHA-256 values because the page embeds dynamic tokens, so no response hash is asserted. The independent check re-fetched the same byte count. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "provenance_note": "Fetched in-browser on 2026-09-21 (local): two fetches by the researcher, two by the checker and two for this packet each returned 164,916 bytes, with a different SHA-256 every time because the page embeds per-request markup. No response hash is asserted. The CLAUDE-C01-03 fetch of the same page returned 165,854 bytes, so the byte count also varies between requests; the CLAUDE-C01-04 figure is kept. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
   "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
   "claims": [
+    {
+      "id": "to_ipu_2025_no_party_result",
+      "text": "For the 20 November 2025 election, IPU's Candidates field reads 'Not applicable. There is no party system or candidates stood as independents.' Its 'Number of parties winning seats', 'Percentage of parties winning seats' and 'Percentage of seats won by largest party or coalition' fields also read 'Not applicable'. The 'About the election' narrative names no party and does not mention PTOA or DPFI.",
+      "attested_on": "2025-11-20",
+      "locator": "Background, 'Candidates'; Results, 'About the election' and the three party fields",
+      "uncertainty": "IPU's silence states neither that PTOA won no seats nor that it won any; it supports only that IPU records no party-level result for 2025."
+    },
     {
       "id": "to_ipu_2025_transition",
       "text": "IPU's page for the November 2025 election states that in December 2024 Prime Minister Siaosi Sovaleni resigned ahead of a vote of confidence, that former long-serving finance minister 'Aisake Eke succeeded him in January 2025, and that in the same month King Tupou VI appointed Crown Prince Tupouto'a 'Ulukalala Minister for Foreign Affairs and Minister for His Majesty's Armed Forces.",
@@ -20,10 +28,9 @@
       "uncertainty": "Secondary international database with month precision; corroboration only. 'Vote of confidence' is as printed; the Assembly records call it a motion of no confidence."
     }
   ],
-  "scope_note": "Live Parline page read after the cutoff for its dated December 2024 to January 2025 narrative only; the page shows no revision date, and its November 2025 election content is not imported. Two fetches returned the same byte count with different hashes (dynamic tokens), so no response hash is asserted.",
+  "scope_note": "Live Parline page read after the cutoff for its 2025 election-description fields (CLAUDE-C01-04) and its dated December 2024 to January 2025 narrative (CLAUDE-C01-03) only; the page shows no revision date, and no other November 2025 election content is imported. IPU cites Legislative Assembly communications of 23 November 2025 and 23 January 2026 and news outlets. A direct non-browser request returned HTTP 403. The page's HTML changes between requests, so its response hash cannot be reproduced.",
   "visual_review": {
     "pdf_pages_one_based": [],
-    "facsimile_pages_one_based": [],
-    "method": "Page text read; no images reviewed."
+    "method": "Page text of Background, 'Candidates', 'About the election', the party fields and 'Sources' read in the browser. No images reviewed."
   }
 }

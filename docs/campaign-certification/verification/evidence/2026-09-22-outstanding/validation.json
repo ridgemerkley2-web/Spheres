@@ -1,0 +1,88 @@
+{
+  "captured_utc": "2026-09-22T15:25:38.640236+00:00",
+  "baseline": "5d86fb35507acbd8fa4662ea9dc3f5f566ef93da",
+  "native": {
+    "command": "cargo test --locked --release --workspace --no-fail-fast -- --skip tests::the_resource_pass_stays_under_budget",
+    "exit_code": 0,
+    "targets": 66,
+    "passed": 1774,
+    "failed": 0,
+    "ignored": 90
+  },
+  "resource_timing": {
+    "passed": 1,
+    "failed": 0,
+    "measured_ms_per_month": 0.0607,
+    "assertion_ceiling_ms": 0.15,
+    "aspirational_target_ms": 0.05,
+    "aspirational_target_met": false
+  },
+  "javascript": {
+    "command": "node tools/ui/run-unit.cjs",
+    "exit_code": 0,
+    "passed": 1694,
+    "failed": 0,
+    "skipped": 0
+  },
+  "python_provenance": {
+    "production_self_tests": 8,
+    "census_tests": 7,
+    "production_check": true,
+    "census_check": true,
+    "research_check": true,
+    "changes": "Government source bytes/hash and dependent inventory hash only; no party/art/history rows changed by regeneration."
+  },
+  "art": {
+    "strict_gate_exit_code": 1,
+    "records_current": true,
+    "contract_version": 2,
+    "graded": 245,
+    "pass": 164,
+    "advisory_under": 79,
+    "over": 2,
+    "required_quality_floor_failures": 0,
+    "canonical_exports": 13,
+    "canonical_export_overruns": 0,
+    "legacy_proposal_over": 33,
+    "manifest_assets": 33,
+    "manifest_current": true,
+    "component_pairs_distinct": 191
+  },
+  "optional_politics": {
+    "focused_regressions_passed": 9,
+    "remaining_failed_gates": [
+      "P6",
+      "A1",
+      "A2",
+      "A3",
+      "A4",
+      "A5",
+      "A7"
+    ],
+    "thresholds_changed": false
+  },
+  "raw_local_logs": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\outstanding-native-workspace-20260922.log",
+      "bytes": 193581,
+      "sha256": "25fc743fd75c92ed25d53c61e9db96a10f4d33e8ec823d1dd61b9c6c1bab7699"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\outstanding-js-final-20260922.log",
+      "bytes": 170250,
+      "sha256": "29eab3d0a74b8ad70604a09b83d19db1690a0300506334503c1beec27d097f80"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\outstanding-art-strict-20260922.log",
+      "bytes": 267,
+      "sha256": "6a0082bcf0376e0c3a6e29780ad5b583a2f368fddfe088352593de4337a47ef8"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\outstanding-resource-timing-20260922.log",
+      "bytes": 899,
+      "sha256": "f5843a8b63635fd0bed0895527cb1fa180fbcd4214b320537cf63f125087f73b"
+    }
+  ],
+  "evidence_log_format": "Copied optional-gate logs retain output text with LF and one final newline; raw run logs remain at the paths recorded in the check receipt.",
+  "ci": "The parent commit passed all six Windows/Ubuntu jobs. This repair commit requires its own hosted run."
+}

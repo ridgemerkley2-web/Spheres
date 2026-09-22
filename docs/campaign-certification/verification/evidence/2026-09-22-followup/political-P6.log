@@ -1,0 +1,22 @@
+
+running 1 test
+test blocs::tests::the_1990_census_meets_the_design_brief ... Western 67: ["Angola", "Australia", "Austria", "Bahamas", "Belgium", "Belize", "Bolivia", "Botswana", "Brazil", "Canada", "CapeVerde", "Chile", "Colombia", "CostaRica", "Cyprus", "Czechoslovakia", "Denmark", "DominicanRepublic", "Ecuador", "Fiji", "Finland", "France", "Germany", "Greece", "Guatemala", "Honduras", "Hungary", "Iceland", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Luxembourg", "Malawi", "Malta", "Mauritius", "Mozambique", "Netherlands", "NewZealand", "Norway", "Pakistan", "Panama", "Peru", "Philippines", "Poland", "Portugal", "Samoa", "SaoTome", "Senegal", "Singapore", "SouthAfrica", "SouthKorea", "Spain", "SriLanka", "Suriname", "Sweden", "Switzerland", "Taiwan", "Thailand", "TrinidadTobago", "Turkey", "UK", "USA", "Uruguay", "Vanuatu", "Venezuela"]
+Communist 17: ["Afghanistan", "Albania", "Bulgaria", "Cambodia", "China", "Congo", "Cuba", "Ethiopia", "Laos", "Madagascar", "Mongolia", "Nicaragua", "NorthKorea", "Seychelles", "USSR", "Vietnam", "Yugoslavia"]
+Nationalist 8: ["Algeria", "ElSalvador", "Ghana", "Haiti", "Iraq", "Myanmar", "Nigeria", "Syria"]
+Islamist 2: ["Iran", "Sudan"]
+NonAligned 43: ["Argentina", "Bahrain", "Bangladesh", "Bhutan", "Brunei", "Cameroon", "CentralAfricanRepublic", "Chad", "Comoros", "Egypt", "EquatorialGuinea", "Gabon", "Guyana", "India", "Indonesia", "Jordan", "Kenya", "Kuwait", "Lebanon", "Lesotho", "Libya", "Malaysia", "Maldives", "Mexico", "Morocco", "Nepal", "Oman", "PapuaNewGuinea", "Paraguay", "Qatar", "Romania", "SaudiArabia", "SolomonIslands", "Swaziland", "Tanzania", "Tonga", "Tunisia", "UAE", "Uganda", "Yemen", "Zaire", "Zambia", "Zimbabwe"]
+
+thread 'blocs::tests::the_1990_census_meets_the_design_brief' (15540) panicked at spheres-sim\src\blocs.rs:1469:9:
+the rows disagree with the design brief: [
+    "Communist 17 against the brief's 11-13",
+    "Libya reads Some(NonAligned) against the brief's Nationalist",
+]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+FAILED
+
+failures:
+
+failures:
+    blocs::tests::the_1990_census_meets_the_design_brief
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 915 filtered out; finished in 0.02s

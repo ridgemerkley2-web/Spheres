@@ -1,0 +1,28 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://ago.gov.to/cms/images/LEGISLATION/GAZETTES/2012/2012-0014/GazetteExtraordinaryNo.14of2012.pdf",
+  "accessed_date": "2026-09-21",
+  "published_date": "2012-03-30",
+  "access_method": "downloaded_original_pdf_text_and_relevant_page_visually_read",
+  "source_response_bytes": 650317,
+  "source_response_sha256": "fd66a32fafb8df73fc748d31024030520750f28fe7e4af3b4caf1343bf4cad33",
+  "source_response_checked_in": false,
+  "provenance_note": "Original response downloaded (curl -L) and hashed before extraction on 2026-09-21 (local). This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_crown_gtv_mourning_revised_20120330",
+      "text": "In accordance with King Tupou VI's wishes, Cabinet revokes the State mourning proclaimed on 19 March 2012 and fixes a new official period from Monday 19 March to Saturday 31 March 2012 inclusive; made at Nuku'alofa on 30 March 2012.",
+      "attested_on": "2012-03-30",
+      "locator": "PDF page 1 (gazette page 14/127)",
+      "uncertainty": "A mourning instrument. It attests Tupou VI as King on 30 March 2012 and is not a reign boundary."
+    }
+  ],
+  "scope_note": "Used only for the revised mourning period and the King it names.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "PDF page 1 was rendered in the research dossier and its text layer read."
+  }
+}

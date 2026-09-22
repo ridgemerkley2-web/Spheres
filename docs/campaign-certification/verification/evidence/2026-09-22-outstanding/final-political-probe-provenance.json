@@ -1,0 +1,12 @@
+{
+  "compile_exit": 0,
+  "rlib_sha256": "074295AB162F274DA535C8B6ACBBEEFA7F5FE42F53F79098B30D98B4DA972127",
+  "executable_sha256": "A01B6793BCE95F7511AFB89B4518A1839129996FBFA12D866379597763236939",
+  "finished_utc": "2026-09-22T15:16:15.2491377Z",
+  "probe_source_sha256": "D2BE736AFCEDDEAE6B4391E237EC1C75A2787019BF51E2A948F05B74ACC4D4B7",
+  "mode": "Default headless monthly, seeds1990,0..5, no commands,240months",
+  "retained_executable": false,
+  "run_exit": 0,
+  "compiler_flags": "--edition=2021 -C opt-level=2 -C debuginfo=0 -C strip=symbols -L dependency=integration-target/release/deps --extern spheres_sim=...rlib",
+  "compiler": "rustc1.98.0 x86_64-pc-windows-gnu"
+}

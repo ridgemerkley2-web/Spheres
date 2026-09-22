@@ -1,6 +1,10 @@
 # CLAUDE-C01-03 — Tonga's next succession transition
 
 Owner: Claude. State: **ready_for_review** (submitted 21 September 2026; not complete). Parent: C01 (incomplete).
+Meshed on 22 September 2026: merged integration `9d352f03` (with the accepted CLAUDE-C01-04 and C01-07). The
+shared `to_ipu_2025` source now carries both packets' claims (its C01-04 fetch figure is kept; this packet's
+165,854-byte fetch is noted in the extract), and the exact pins in the C01-03/C01-04/s10g tests now include each
+other's additions. None was loosened.
 Branch `claude/c01-tonga-03`; base `04bc99a6` (current integration); claim `bc48be49`.
 Result commit: the head of `claude/c01-tonga-03` at submission (the separate index commit); to be recorded by the integrator.
 [Report](../../campaign-certification/C01/research/tonga-transition-2024-03.md): TO-TR24-01 (resignation and

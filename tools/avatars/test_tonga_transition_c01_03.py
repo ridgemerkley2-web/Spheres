@@ -46,7 +46,9 @@ PMO = {
 }
 OTHER = {
     'to_gazette_gse22_20241210': (273587, 'f5f830a993c20954a34f1fe806618d03cf81c07239f2b563414429585ec6fa5b'),
-    'to_ipu_2025': (165854, None),
+    # Shared with CLAUDE-C01-04, whose accepted fetch (164,916 bytes) the merged extract keeps; this packet's
+    # own fetch returned 165,854 bytes, which the extract's provenance note records.
+    'to_ipu_2025': (164916, None),
 }
 NEW_SOURCES = set(ASSEMBLY_HTML) | set(MINUTES) | set(PMO) | set(OTHER)
 RESIGNATION = ('to_sovaleni_resignation_statement_20241209', 'to_palace_acceptance_letter_20241209')
@@ -110,14 +112,16 @@ class TongaTransition2024Tests(unittest.TestCase):
         ids = self.validate()
         self.assertLessEqual(NEW_SOURCES, set(ids['sources']))
         self.assertEqual(len(NEW_SOURCES), 17)
-        self.assertEqual({c['id'] for sid in NEW_SOURCES for c in self.sources[sid]['claims']}, NEW_CLAIMS)
+        # to_ipu_2025 is shared with CLAUDE-C01-04, which owns its to_ipu_2025_no_party_result claim.
+        self.assertEqual({c['id'] for sid in NEW_SOURCES for c in self.sources[sid]['claims']},
+                         NEW_CLAIMS | {'to_ipu_2025_no_party_result'})
         self.assertEqual(len(NEW_CLAIMS), 27)
         cited = {cid for e in self.entries.values() for cid in e['claim_ids']}
         self.assertLessEqual(NEW_CLAIMS, cited)
         # Reuse, not new identities: nine entries and the same roles as before this packet.
         self.assertEqual(len(ids['entries']), 9)
         self.assertEqual(set(self.roles), {
-            'to_pdp_leader', 'to_dpfi_leader', 'to_peoples_party_leader', 'to_peoples_party_society_president',
+            'to_pdp_leader', 'to_dpfi_leader', 'to_dpfi_president', 'to_peoples_party_leader', 'to_peoples_party_society_president',
             'to_peoples_party_society_secretary', 'to_king', 'to_pm', 'to_ministers', 'to_deputy_pm',
             'to_privy_councillors', 'to_speaker', 'to_deputy_speaker', 'to_peoples_representatives',
             'to_nobles_representatives'})
@@ -388,7 +392,7 @@ class TongaTransition2024Tests(unittest.TestCase):
             (lambda p: role(p, 'to_deputy_pm')['sources'].remove('to_assembly_minutes_01_20250131'), 'cited source'),
             (lambda p: source(p, 'to_pmo_eke_appointment_20250122')['snapshot'].update(sha256='0' * 64), 'checksum mismatch'),
             (lambda p: source(p, 'to_assembly_minutes_48_20241209')['snapshot'].update(bytes=1), 'checksum mismatch'),
-            (lambda p: source(p, 'to_ipu_2025')['claims'][0]['period'].update(through='2026-09-08'), 'exceeds cutoff'),
+            (lambda p: next(c for c in source(p, 'to_ipu_2025')['claims'] if c['id'] == 'to_ipu_2025_transition')['period'].update(through='2026-09-08'), 'exceeds cutoff'),
         ]
         for change, message in cases:
             with self.subTest(message=message), self.assertRaisesRegex(ValueError, message):

@@ -1,0 +1,47 @@
+{
+  "created_utc": "2026-09-22T13:54:09.4850918Z",
+  "rustc": "rustc 1.98.0 (88d9e12ae 2026-08-18)\r\nbinary: rustc\r\ncommit-hash: 88d9e12ae178fab0fb5cc050a94da85685d449ea\r\ncommit-date: 2026-08-18\r\nhost: x86_64-pc-windows-gnu\r\nrelease: 1.98.0\r\nLLVM version: 22.1.8",
+  "old_library": {
+    "bytes": 92965836,
+    "sha256": "61E4B93900C24266BB97C84AC6D2E19E2AF5345B5F25376FD526FF81E0831D58",
+    "modified_utc": "2026-09-22T11:36:26.6034307Z",
+    "path": "${CAMPAIGN_WORKSPACE}\\s19-review-target\\release\\deps\\libspheres_sim-de80fa3e4f034d8c.rlib",
+    "provenance_limit": "Cached library revision is not inferred from timestamp. Its default initial and 240-month state hashes were asserted against both known old golden values before accepting measurements."
+  },
+  "serde_json_rlib": {
+    "path": "${CAMPAIGN_WORKSPACE}\\s19-review-target\\release\\deps\\libserde_json-019015e08a7ac1fe.rlib",
+    "sha256": "4A575143E9FABA45539FDEA072E29D74E388049F363CAF2982BAFC9C7B82828A"
+  },
+  "source_sha256": "E262DBB20D735E94388DADFB26F30C586809196BBBBDA81FCCAF24786D6B1D76",
+  "compiler_arguments": [
+    "--edition=2021",
+    "--crate-name",
+    "algeria_hash_probe",
+    "-C",
+    "opt-level=2",
+    "-C",
+    "debuginfo=0",
+    "-C",
+    "strip=symbols",
+    "-L",
+    "dependency=${CAMPAIGN_WORKSPACE}\\s19-review-target\\release\\deps",
+    "--extern",
+    "spheres_sim=${CAMPAIGN_WORKSPACE}\\s19-review-target\\release\\deps\\libspheres_sim-de80fa3e4f034d8c.rlib",
+    "--extern",
+    "serde_json=${CAMPAIGN_WORKSPACE}\\s19-review-target\\release\\deps\\libserde_json-019015e08a7ac1fe.rlib",
+    "-o",
+    "${CAMPAIGN_WORKSPACE}\\evidence\\algeria-opening-20260922\\algeria-hash-probe.exe",
+    "${CAMPAIGN_WORKSPACE}\\evidence\\algeria-opening-20260922\\algeria-hash-probe.rs"
+  ],
+  "compatibility_check": "Same command with --emit=metadata, no strip argument, and output .rmeta; exit0.",
+  "compile_exit_code": 0,
+  "execution_exit_code": 0,
+  "transient_executable": {
+    "bytes": 25216000,
+    "sha256": "720143988C3EF506E3B5E12172B1C736AFED6F1AD2FA6F54A7BB6266BFF1EEF3",
+    "retained": false
+  },
+  "scope": "Independent startup field-only overlay against cached pre-fix library, then eight 240-month runs. No Cargo, dependencies downloaded, source edits, save exports, or baseline updates.",
+  "published_path_note": "Local workspace prefix normalized to ${CAMPAIGN_WORKSPACE}; original paths retained in local evidence.",
+  "published_source_sha256_lf": "3c18cc003995fcc3b9cb520fc808991cc92fbd3668732fdc41103e41389e068b"
+}

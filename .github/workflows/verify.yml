@@ -6,7 +6,26 @@ on:
 permissions:
   contents: read
 jobs:
-  verify:
+  javascript:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      # Independent of the native build: both suites must report even when
+      # the other fails, and neither should delay the other's feedback.
+      - run: node tools/ui/run-unit.cjs
+      - name: Enforce current geometry and visible-scene budgets
+        run: node tools/ui/bench_art.cjs --check
+      - name: Verify detailed lake surface bindings
+        run: python -B tools/terrain/test_lake_surfaces.py
+  native:
     strategy:
       fail-fast: false
       matrix:
@@ -21,14 +40,40 @@ jobs:
           node-version: '22'
           cache: npm
           cache-dependency-path: tools/ui/package-lock.json
-      - run: cargo test --locked --release --workspace --no-fail-fast
-      - run: node tools/ui/run-unit.cjs
+      # The absolute resource timing limit is load-sensitive. Keep its original
+      # assertion, but measure it without the parallel simulation suite running.
+      - run: cargo test --locked --release --workspace --no-fail-fast -- --skip tests::the_resource_pass_stays_under_budget
+      - name: Verify resource timing budget in isolation
+        run: cargo test --locked --release -p spheres-sim --lib tests::the_resource_pass_stays_under_budget -- --exact --nocapture --test-threads=1
       - run: cargo build --locked --release -p spheres-web
       - run: npm ci --prefix tools/ui
       - run: npx --prefix tools/ui playwright install --with-deps chromium
       - run: node tools/ui/ci-browser.cjs
+      - name: Verify actual adaptive town submissions and recovery
+        env:
+          SPHERES_BROWSER_CHANNEL: chromium
+          SPHERES_ART_OUTPUT: artifacts/town-scene-browser
+        run: node tools/ui/town-scene-browser.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: browser-evidence-${{ matrix.os }}
-          path: artifacts/browser-ci
+          path: |
+            artifacts/browser-ci
+            artifacts/town-scene-browser
+  # Preserve the original required-check names, each covering both suites.
+  verify:
+    if: always()
+    needs: [javascript, native]
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 5
+    steps:
+      - name: Require every native and JavaScript check to pass
+        env:
+          NATIVE_RESULT: ${{ needs.native.result }}
+          JAVASCRIPT_RESULT: ${{ needs.javascript.result }}
+        run: python -c "import os,sys; results={key:os.environ[key] for key in ('NATIVE_RESULT','JAVASCRIPT_RESULT')}; print(results); sys.exit(0 if all(value=='success' for value in results.values()) else 1)"

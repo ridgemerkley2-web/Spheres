@@ -1,0 +1,43 @@
+{
+  "baseline": "be67c9b8785ec8a6919a8e354e536e8237b6c566",
+  "rows": [
+    {
+      "kind": "row_house",
+      "before": 17904,
+      "after": 16382,
+      "reduction": 1522,
+      "ceiling": 12000,
+      "over": true
+    },
+    {
+      "kind": "university",
+      "before": 19046,
+      "after": 16656,
+      "reduction": 2390,
+      "ceiling": 12000,
+      "over": true
+    },
+    {
+      "district": "mixed",
+      "before": 175277,
+      "after": 163671,
+      "reduction": 11606,
+      "ceiling": 150000,
+      "over": true
+    },
+    {
+      "district": "residential",
+      "before": 184684,
+      "after": 174540,
+      "reduction": 10144,
+      "ceiling": 150000,
+      "over": true
+    }
+  ],
+  "checks": [
+    "23 existing town checks passed",
+    "180766 nearest-surface ray comparisons passed",
+    "8 university width/storey/detail window coverage checks passed",
+    "Row-house and university rear 512px renders are pixel-identical"
+  ]
+}

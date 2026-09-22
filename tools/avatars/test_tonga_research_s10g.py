@@ -34,8 +34,11 @@ class TongaDiscoveryTests(unittest.TestCase):
         ids = self.validate()
         # CLAUDE-C01-01 added three sources and seven claims; test_tonga_reconciliation_c01 owns them.
         # CLAUDE-C01-02 added seven sources and nine claims; test_tonga_transition_c01_02 owns them.
-        # CLAUDE-C01-03 added seventeen sources and 27 claims; test_tonga_transition_c01_03 owns them.
-        self.assertEqual((len(ids['entries']), len(ids['sources']), len(ids['claims'])), (9, 43, 71))
+        # CLAUDE-C01-04 added eleven sources and 22 claims; test_tonga_dpfi_c01_04 owns them.
+        # CLAUDE-C01-07 added 27 sources and 44 claims (seven on reused sources); test_tonga_crown_c01_07 owns them.
+        # CLAUDE-C01-03 added seventeen sources and 27 claims (to_ipu_2025 is shared with C01-04, so sixteen are new);
+        # test_tonga_transition_c01_03 owns them.
+        self.assertEqual((len(ids['entries']), len(ids['sources']), len(ids['claims'])), (9, 80, 137))
         self.assertEqual({e['id'] for e in self.packet['organizations']},
                          {'to_fihrdm', 'to_pdp', 'to_dpfi', 'to_peoples_party'})
         self.assertEqual(len(self.packet['institutions']), 5)
