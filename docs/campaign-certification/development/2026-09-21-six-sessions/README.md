@@ -12,7 +12,7 @@ qualification remain in the canonical pathway.
 | 3 | Clearer province economic activity overview | Complete; S20 independent preparation |
 | 4 | Performance observation improvements | Complete; S22 independent preparation |
 | 5 | Worldwide startup preflight and Congo selection fix | Complete; 137/137 starters pass |
-| 6 | Integrate available handoffs, native build and combined browser review | In progress |
+| 6 | Integrate Claude's submitted guidance/research, native build and combined browser review | Complete; bounded integration, remaining roadmap gates open |
 
 ## Session 1
 
@@ -116,3 +116,56 @@ Five native nation tests and the locked release build pass. The changed UI's
 This is a backend startup preflight, not successor activation, 20-year campaigns,
 137-country browser review, adversarial recovery, historical-content approval or
 S24 certification. Session 6 separately checks Congo through the actual menu.
+
+Post-session 5 fetch found Tonga `b6767837` ready for review and S19 `f3d4f82a`.
+Claude's S19 submission/evidence `7de62539` became available during session 6.
+The earlier candidate pins are retained; the final review explicitly pins that
+submission instead of inferring readiness from an implementation commit.
+
+## Session 6
+
+Accepted and integrated [CLAUDE-C01-02](../../C01/integrations/CLAUDE-C01-02/README.md)
+after primary-source review, matching the four PMO release-image hashes, research
+validation and a nine-country atlas browser check. Two supported appointment
+starts display alongside unknown ends at 1440/390/320px. Original source artwork
+is not copied to Git. C01 stays incomplete; the next research handoff is explicitly
+unclaimed and bounded to the 2024–2025 Tonga transition.
+
+Integrated Claude's submitted S19 guidance at
+`2400800bee73ecbc39bedaebba10bbe573a42ade` after qualifying the combined candidate
+`bf47af2a9752cbd62710af1fcfda6dd3e8396dcc`. **1,672 UI tests pass, one existing skip;
+414 native web tests pass, 21 explicit ignores; the transport regression passes.**
+The locked build succeeds. All 67 submitted evidence blobs and the decompressed
+save match Claude's manifest. The original candidate review remains preserved.
+
+The independent first-hour browser rerun uses an ordinary France start and visible
+controls. Budget, construction funding, design save, completed airbase foundation,
+named save/load/Continue, advice navigation, lesson skip/restart, stale responses,
+later-day identity refusal and a new campaign pass, with zero browser errors.
+The only four commands follow the recorded confirmation controls. Procurement
+correctly remains not achieved; delivery, completed workshop output and actual
+flight-result milestones still need later-campaign browser qualification before
+S19 closure. Native/unit coverage is retained, but is not relabeled as that journey.
+
+The integrated preview is [localhost:7866](http://127.0.0.1:7866/), source
+`2400800bee73`, binary SHA-256
+`5ed6705282cbb748d0ebbf1be3eb31ccf7be6a0cbddcc05f16c062dae7ff75a8`.
+It uses a disposable copy of the France save. Actual served assets pass the combined
+browser review: all nine narrow equipment sections, draft preservation, province
+activity and receipt focus, local timing download, tutorial layout and Congo menu
+selection. A new Congo campaign inherits no France guidance achievements; the
+preview is then restored to France. Old servers and saves remain available.
+
+Candidate and integration have identical committed runtime blobs. Their checkout
+newline forms can differ; each browser run separately verifies the exact compiled
+asset bytes against that checkout, with hashes recorded. Subsequent documentation
+commits do not change the runtime source. These small timing samples test the
+recorder, not performance targets. No G4, S22/S24, content or CP1 gate is granted.
+
+All eight protected original saves and both protected worktree heads are unchanged.
+The [session-06 manifest](session-06/manifest.json) retains build/test logs, raw
+browser results, captures, the compressed named save and local reproduction scripts.
+The scripts retain the recorded session-workspace layout; the committed portable
+guidance driver is `tools/ui/ci-guidance-route.cjs`. Initial local runner setup/path
+issues were corrected without product changes. The [S19 integration review](../../S19/integration/README.md)
+states the remaining qualification explicitly.

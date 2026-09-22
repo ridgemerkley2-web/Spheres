@@ -1,0 +1,546 @@
+{
+  "format": "spheres-six-session-final/v1",
+  "session": 6,
+  "recorded_utc": "2026-09-22T04:17:48.222511+00:00",
+  "qualified_candidate": "bf47af2a9752cbd62710af1fcfda6dd3e8396dcc",
+  "integrated_runtime_source": "2400800bee73ecbc39bedaebba10bbe573a42ade",
+  "runtime_source_equal_between_candidate_and_integration": true,
+  "claude_submission": "7de625393fe6dc214e39ebd084424d04b229614b",
+  "ui_tests": {
+    "passed": 1672,
+    "skipped": 1,
+    "failed": 0
+  },
+  "native_web_tests": {
+    "passed": 414,
+    "ignored": 21,
+    "failed": 0
+  },
+  "transport_test": {
+    "passed": 1
+  },
+  "guidance_browser": {
+    "passed": true,
+    "source": "bf47af2a9752cbd62710af1fcfda6dd3e8396dcc",
+    "save_uncompressed_sha256": "c089a9cf7ab6bc7a376a20c1d77430f307dd8e9bf347c29028720d342ec643d5",
+    "save_uncompressed_bytes": 16277259
+  },
+  "preview": {
+    "url": "http://127.0.0.1:7866",
+    "pid": 28776,
+    "directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-six-sessions-integrated-20260921-211533",
+    "runtime_revision": "2400800bee73ecbc39bedaebba10bbe573a42ade",
+    "executable_sha256": "5ed6705282cbb748d0ebbf1be3eb31ccf7be6a0cbddcc05f16c062dae7ff75a8",
+    "build": {
+      "branch": "codex/campaign-certification",
+      "built_at_unix_seconds": 1790050507,
+      "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+      "distribution": "Local offline game server; source and attribution accompany the release",
+      "revision": "2400800bee73",
+      "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-six-sessions-integrated-20260921-211533",
+      "version": "0.6.0"
+    },
+    "served_assets_sha256": {
+      "index.html": "4f4613d8a4c5c98202215e1a49c1b0b70f81cc8839d85e09cd8856dadacb3c57",
+      "equipment-ui.js": "6129cb5a822ba7957dc4f35f59eb03980961bdea163d67d817f38885b3eb4801",
+      "equipment-ui.css": "257656cd55cefcd1e6f07c6b97814bcf536f31bdc2beec92f6c79d053d236097",
+      "province-economy-ui.js": "bc6a54891adcbecc7fd59c9786dd7f3eff633d74cfb7e373e123994fdc9ad720",
+      "province-economy.css": "ebcf99317b177e0aa64688f3e6d7f4631202b9f829c71e9d2c7849563b2c15c5",
+      "performance-ui.js": "34ede72c98a99a30dc8812b44c20d812eec6fc4b30f8066f219434f22358781e",
+      "guidance-ui.js": "058318a655200aacf3df4eb4c08953a2dbd4b2180b81d1a332c6996a8e3e4717",
+      "advisor-model.js": "bfd85d0340d37bc6edb7044ac3ac866d84916ad96c446bc2a35ec7269cf1da14",
+      "equipment-model.js": "e26a05e28d36f2bf90c464f9ea33697bc95fcb5ca703621ea7d7153a77984f73"
+    },
+    "player": "France",
+    "date": "3 Jan 1990",
+    "save_copy": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-six-sessions-integrated-20260921-211533\\saves\\development-review.json",
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S19-review-01\\candidate-navigation\\server\\saves\\s19-route-review.json",
+      "sha256": "55c81129e05e2db7294219c06db7ec6596e93ec21b476623035be433fe7e5bce"
+    },
+    "scope": "Separate development review runtime. Exact compiled assets; original playsets and saves preserved. No campaign certification."
+  },
+  "scope": "Six bounded development sessions; full campaign, S19 later-outcome browser qualification, content, performance and human-playtest gates remain open.",
+  "files": [
+    {
+      "path": "claude-submission-byte-check.json",
+      "bytes": 14212,
+      "sha256": "6293f993424fc4ac6a64c016fce17769230ccec409cd28e7d5cf70650018af2f"
+    },
+    {
+      "path": "guidance-route/advisors-fresh-desktop.png",
+      "bytes": 355432,
+      "sha256": "48d989318ea96823598c99653fea23492cf00abb8f29d1b0d5c2b291cecc84fc"
+    },
+    {
+      "path": "guidance-route/advisors-route-next-desktop.png",
+      "bytes": 252949,
+      "sha256": "c28aff32f93a310f3cb2ec35e924d7d9f6782ffad47d3d44771e71c62f1f833c"
+    },
+    {
+      "path": "guidance-route/advisors-route-next-landing.png",
+      "bytes": 1314877,
+      "sha256": "7b63b217214955d310f7c6fd33a69e269634a78f649f5f3e71bab61e8d9a9b0f"
+    },
+    {
+      "path": "guidance-route/air-bases-landing-desktop.png",
+      "bytes": 911828,
+      "sha256": "75790649bed54d667f096258f9aa4e43ff8dd7e133578226ca40862626519954"
+    },
+    {
+      "path": "guidance-route/air-foundation-review-desktop.png",
+      "bytes": 284060,
+      "sha256": "61750d7e6d3baee633c6fb1ecc93ed878a6d94140f9d0cae1c9f5ef1000c6d2c"
+    },
+    {
+      "path": "guidance-route/campaigns-from-obstacle.png",
+      "bytes": 1389271,
+      "sha256": "adc70309ebfec763b79f21dc0c845fe594dac5a83696e3c6699cba8acced6129"
+    },
+    {
+      "path": "guidance-route/construction-preview-desktop.png",
+      "bytes": 1128740,
+      "sha256": "41f2da153110abc15d5264fc0e6f3f72d3125d83f9c2eaf9351c99835023a80a"
+    },
+    {
+      "path": "guidance-route/construction-preview-unconfirmed.png",
+      "bytes": 1128740,
+      "sha256": "41f2da153110abc15d5264fc0e6f3f72d3125d83f9c2eaf9351c99835023a80a"
+    },
+    {
+      "path": "guidance-route/designer-saved-desktop.png",
+      "bytes": 552660,
+      "sha256": "47ca9525db006a66c4688410e645ee04ecd13248185def6d6b48c6173c1661a7"
+    },
+    {
+      "path": "guidance-route/guidance-after-budget-lesson.json",
+      "bytes": 23020,
+      "sha256": "f2d26eec50a6f9ed3673f37e758450214c2eff655a0e6b5be44e6dcb0d8a65d6"
+    },
+    {
+      "path": "guidance-route/guidance-after-dialog-race.json",
+      "bytes": 21144,
+      "sha256": "5db152468680fd0c23b3c14f78750f9f08404ef4a0bb95db77bad181e7d6807f"
+    },
+    {
+      "path": "guidance-route/guidance-after-held.json",
+      "bytes": 21137,
+      "sha256": "67b6ae5645c8cccec7d5addd7dfd4e0b764c4ab04160c57d664148fa45473d95"
+    },
+    {
+      "path": "guidance-route/guidance-after-identity-race.json",
+      "bytes": 21130,
+      "sha256": "a6ba56ae853358b9049b36bb71da35f2c086719265366265fdc40dbe5f6ed973"
+    },
+    {
+      "path": "guidance-route/guidance-after-preview.json",
+      "bytes": 22296,
+      "sha256": "d9f37e7b56013c0ad4c6ae8d11df8d92329fef5041d1be4df87a2dd8510a4606"
+    },
+    {
+      "path": "guidance-route/guidance-after-restart.json",
+      "bytes": 20960,
+      "sha256": "6cb8cc05911d3a0d02387a0d481dd7f2529f20256321b3065f7ba01a5859d0ea"
+    },
+    {
+      "path": "guidance-route/guidance-after-skip.json",
+      "bytes": 23046,
+      "sha256": "3afb35d56aadcc2646d20e1bcebb49094ec34dfa14a507e224df12ae0ff11671"
+    },
+    {
+      "path": "guidance-route/guidance-air-force.json",
+      "bytes": 21135,
+      "sha256": "afd31f7e2325b4e8cd137520fb8569275c2ab2c13f54d1cebc33ba95ef589935"
+    },
+    {
+      "path": "guidance-route/guidance-airbase-funded.json",
+      "bytes": 22055,
+      "sha256": "134ed4acd5c9fcc2c1da9c158caade2c061757262a1672fd46405ed8a7ba033b"
+    },
+    {
+      "path": "guidance-route/guidance-airbase-ordered.json",
+      "bytes": 21690,
+      "sha256": "5206d1325cdbac2e49ed26a8cac29b1faa22d63a17a648c15d93789329911ce0"
+    },
+    {
+      "path": "guidance-route/guidance-before-preview.json",
+      "bytes": 22297,
+      "sha256": "ddea48cff1dcdaee23ff46d199dc1acefffb32402561e5f3c41700aab21e6c89"
+    },
+    {
+      "path": "guidance-route/guidance-before-save.json",
+      "bytes": 21122,
+      "sha256": "6525db8bcda8bbe719ab9b1fb1e2ad33d3ae2b2b01c48c722d0e169330efd3d3"
+    },
+    {
+      "path": "guidance-route/guidance-construction.json",
+      "bytes": 21983,
+      "sha256": "484b7e9b2e735fd876e34d9c75d27918865c7acee4c21661fbfff8482bdf5258"
+    },
+    {
+      "path": "guidance-route/guidance-final-desktop.json",
+      "bytes": 21032,
+      "sha256": "d22ad08e408ecb09b75436424cf4eb8fdc86927a88db2c91c33870b9ac6de522"
+    },
+    {
+      "path": "guidance-route/guidance-finances.json",
+      "bytes": 22191,
+      "sha256": "dc479df597db0c7c198309a1831f391582d0e6d8417b6cfe95e2413869ddcf4b"
+    },
+    {
+      "path": "guidance-route/guidance-initial.json",
+      "bytes": 22972,
+      "sha256": "a08405e62eb9763c6b7ba01f1d8b611340b75c01292d40543d581a8e21b6fa8f"
+    },
+    {
+      "path": "guidance-route/guidance-loaded.json",
+      "bytes": 21025,
+      "sha256": "3b02ef260e4d8a99940a2930341452135eb73ffa9822c8853976f0c562eaab67"
+    },
+    {
+      "path": "guidance-route/guidance-narrow.json",
+      "bytes": 21025,
+      "sha256": "ff7e77955e467e6e3a188350535034ae99da8467a1dabc9646b255fda0c2003b"
+    },
+    {
+      "path": "guidance-route/guidance-new-campaign.json",
+      "bytes": 23387,
+      "sha256": "8c9f83befd05dd53c69ffa9d4b379615c732c811a6dc92d6b6188f1c808eaa61"
+    },
+    {
+      "path": "guidance-route/guidance-procurement.json",
+      "bytes": 21137,
+      "sha256": "bbf86a458c1de490217805d575079dea095b62c0559497ad5681fb619d609718"
+    },
+    {
+      "path": "guidance-route/guidance-reload-continue.json",
+      "bytes": 21034,
+      "sha256": "16a138ea8b370c027b6ba408aa1f7cd7d09de590cf9160955f8541d95367119f"
+    },
+    {
+      "path": "guidance-route/guidance-research-design.json",
+      "bytes": 21308,
+      "sha256": "e49ed34f4308d557192bb5ce81997caa6806301d8af0f55459f3c788d4579c16"
+    },
+    {
+      "path": "guidance-route/guidance-saved.json",
+      "bytes": 21599,
+      "sha256": "803e97eeafac0d625015bc779c90600f05eb3feb76ff7451f71e46fc6ff46713"
+    },
+    {
+      "path": "guidance-route/guidance-workshop-queued.json",
+      "bytes": 22657,
+      "sha256": "29957994709ca0ecf67754f057a133a69242e58f0de8eaf196f7dc118875571c"
+    },
+    {
+      "path": "guidance-route/identity-race-refused.png",
+      "bytes": 421924,
+      "sha256": "98c67b206f6cd557e04af0560e1dfe2628a33f728da76db7211e57cce2046cec"
+    },
+    {
+      "path": "guidance-route/identity-race-second-page.png",
+      "bytes": 467232,
+      "sha256": "79c0bea137a5201a994bb041cc580378a1e1fc10ea43242f4fc059b5e8c811f1"
+    },
+    {
+      "path": "guidance-route/identity-race-stale-route.png",
+      "bytes": 157187,
+      "sha256": "30ddff9fc4a053179c196474777ed9f3419d6c7ec5647b36af06f743448e9383"
+    },
+    {
+      "path": "guidance-route/lesson-initial-desktop.png",
+      "bytes": 393561,
+      "sha256": "6c01aab42032cd22fc7fcd8940f4af387a309641b57d838a5783fbc69e357623"
+    },
+    {
+      "path": "guidance-route/lesson-skipped-desktop.png",
+      "bytes": 151484,
+      "sha256": "406dc8b29b721ed21b3148c6d99176c2cf60e05b08aee062e807c7ae6a28f232"
+    },
+    {
+      "path": "guidance-route/narrow-initial-obstacles.png",
+      "bytes": 42976,
+      "sha256": "36cab775efb18c196964e3b75821c9ea89569035e99b3130fe7285d4a5aebd43"
+    },
+    {
+      "path": "guidance-route/narrow-initial-route.png",
+      "bytes": 45789,
+      "sha256": "42bbbbbc97b8f6f0a186eb030dbd3bcc3fa4e83199c2742f157be0b458eb944e"
+    },
+    {
+      "path": "guidance-route/narrow-lesson-actions.png",
+      "bytes": 41290,
+      "sha256": "e27b67fd1eef0cff5c97cfd372c0f2a8e33830c50d53b99ade088ddc606806c4"
+    },
+    {
+      "path": "guidance-route/narrow-lesson-controls.png",
+      "bytes": 54150,
+      "sha256": "e5a412684c5f0fd1a071d05a240ed285cb3d608edc72c0a197665db402ba647c"
+    },
+    {
+      "path": "guidance-route/narrow-lesson-top.png",
+      "bytes": 159609,
+      "sha256": "b14266013f653902371b222f3967dff3132ba0f367b341fd2912c9f9e8de76cd"
+    },
+    {
+      "path": "guidance-route/narrow-route-air-save.png",
+      "bytes": 50750,
+      "sha256": "fd1e381e09fd91447e3acad554272db4669769ef95b1836953560c04c16da9e7"
+    },
+    {
+      "path": "guidance-route/narrow-route-panel.png",
+      "bytes": 50194,
+      "sha256": "dc2aea02a7fbff01345530c26b3064d1fd77617ee41e9211ffbbb84e3a3b2927"
+    },
+    {
+      "path": "guidance-route/procurement-companies-desktop.png",
+      "bytes": 905160,
+      "sha256": "3035c1515a86c5ff7134e43d1fd3d697263a4c69403a4d49239eb0b25713621a"
+    },
+    {
+      "path": "guidance-route/progress.jsonl",
+      "bytes": 10860,
+      "sha256": "895cd8d2701cab53f811a55001d9d6e9eae0e7b1f990ac26c204086640be7d30"
+    },
+    {
+      "path": "guidance-route/reading-vs-result-desktop.png",
+      "bytes": 150537,
+      "sha256": "9de5bd539c780c22143c6064a25e20503eff4e3ad276265e0433ebb730c29118"
+    },
+    {
+      "path": "guidance-route/result.json",
+      "bytes": 364314,
+      "sha256": "0d80b214aade6978fb92afc34d7caf0183d5f1fd803b170620ccccff97ccc990"
+    },
+    {
+      "path": "guidance-route/route-after-restart.png",
+      "bytes": 146488,
+      "sha256": "f2a5c644e260b9b775872792cb7cd073c60ec90a97cddf9c8fa3e1a4600f9968"
+    },
+    {
+      "path": "guidance-route/route-after-stale-desktop.png",
+      "bytes": 154364,
+      "sha256": "5e437bcd212d35e4e78803afd5c93681c165f3b716584e10c386a319a32e27ba"
+    },
+    {
+      "path": "guidance-route/route-air-desktop.png",
+      "bytes": 152676,
+      "sha256": "be3bdcb8f8f23de5ee52afa6081903987c753129cc675b0cc648cde2b4a5b6ab"
+    },
+    {
+      "path": "guidance-route/route-airbase-funded.png",
+      "bytes": 152788,
+      "sha256": "8486ef13a47dfaa958b2ab11f85aa5d3d53c236c8b2a33e6fb7543cea06d6df9"
+    },
+    {
+      "path": "guidance-route/route-airbase-ordered.png",
+      "bytes": 144245,
+      "sha256": "d9da2ebcb9646635a4f478b5c4119bd7a37b7be809110e23c93da9cb28cff9ff"
+    },
+    {
+      "path": "guidance-route/route-construction-desktop.png",
+      "bytes": 141186,
+      "sha256": "18dc451ccb1424db86686613252b3a74db7db65ed72268778b975d7acf478ae9"
+    },
+    {
+      "path": "guidance-route/route-final-desktop-steps.png",
+      "bytes": 147811,
+      "sha256": "6e5aeb05a10a98d97368be86a1efeac7c04017fef77cabc51a2ceea0f7f709cd"
+    },
+    {
+      "path": "guidance-route/route-final-desktop.png",
+      "bytes": 149817,
+      "sha256": "47ec9bb024dfe283483a18379f96b7136eaa03ee4c31faf45eb999cf502bcd94"
+    },
+    {
+      "path": "guidance-route/route-finances-desktop.png",
+      "bytes": 148174,
+      "sha256": "478ecc60787a29a921dda018823db4e852ade183f1086ab0f17f9c1258436df3"
+    },
+    {
+      "path": "guidance-route/route-initial-desktop.png",
+      "bytes": 140037,
+      "sha256": "d78f5465ddafa0f899b7e9880b7bb2693a2339e51f74fcf0797950a520bcc763"
+    },
+    {
+      "path": "guidance-route/route-loaded-desktop.png",
+      "bytes": 149862,
+      "sha256": "74bdf7c8df04ded3cf35faa84f0ea0cf2688099531a8d425d7dfdc27f077f769"
+    },
+    {
+      "path": "guidance-route/route-new-campaign.png",
+      "bytes": 140132,
+      "sha256": "d7a60bc77619e404c7b4a94307c82b72a394612b56c4e8a4e033ac7672f3561c"
+    },
+    {
+      "path": "guidance-route/route-research-desktop.png",
+      "bytes": 144903,
+      "sha256": "d8c76f59d066c7fe3a857b256a9b66c857fd21aa943ec9317924d758209a99d8"
+    },
+    {
+      "path": "guidance-route/route-saved-desktop.png",
+      "bytes": 159684,
+      "sha256": "2a93780ce716944d043eccdb44429cc194bb6690454d92e12bade8ca038d0fe3"
+    },
+    {
+      "path": "guidance-route/route-workshop-queued.png",
+      "bytes": 149468,
+      "sha256": "55bc2ffe978e3b65f0aef99f061ec402a9ed57756701fb1dd32eac926ad35f4d"
+    },
+    {
+      "path": "guidance-route/s19-first-hour.json.gz",
+      "bytes": 3150638,
+      "sha256": "2ee05c4ded698e12660b6444f672b41d34f38dd73fffaa530c0cfd49c7a5f810"
+    },
+    {
+      "path": "guidance-route/server.log",
+      "bytes": 78,
+      "sha256": "aa3732405e4e1245b14dbf8090f45c34157c6c9dedd6b879faa343d7280c9d75"
+    },
+    {
+      "path": "launch-six-session-review.py",
+      "bytes": 2869,
+      "sha256": "e150f39583a3b3dc3e5550388899918a05e35b3d9ee0d34d86deb3c038e1d3b9"
+    },
+    {
+      "path": "review-combined-native.cjs",
+      "bytes": 7577,
+      "sha256": "ad41d0ee24a35e3b82f05807f8f7aeb8ad7a971f59416ae3ed9b6190b0d70117"
+    },
+    {
+      "path": "six-session-06-integrated-build.log",
+      "bytes": 1069,
+      "sha256": "fc3f743517d9ac92401cef30dab809a9752a9e1e423d02132cebe5948dde911c"
+    },
+    {
+      "path": "six-session-06-preservation.json",
+      "bytes": 3137,
+      "sha256": "8515925ecdab039a9a616943a155f99e359dbb7c517d88b569e6d1af0b5ae956"
+    },
+    {
+      "path": "six-session-06-s19-final-build.log",
+      "bytes": 911,
+      "sha256": "29b77267cab9e8d12067cf7dd90bdd85f1660888b1bfd5a9da2c77d8ab8cacf5"
+    },
+    {
+      "path": "six-session-06-s19-full-native.log",
+      "bytes": 44305,
+      "sha256": "b3a26165885901b6c399ff4cf6d0a71dde00f2a42562df35c55a28aab359f750"
+    },
+    {
+      "path": "six-session-06-s19-full-ui.log",
+      "bytes": 167816,
+      "sha256": "818f7b9cb45f79d641f539caea5e79067e283ea7f04ffa952c627a760a953382"
+    },
+    {
+      "path": "six-session-06-s19-route.log",
+      "bytes": 859,
+      "sha256": "5b8dd6cc1fec8cdc0c69476966a25d3beae3aba3ecab51d8cbac49ea6cb63d90"
+    },
+    {
+      "path": "six-sessions-integrated-launch.json",
+      "bytes": 2524,
+      "sha256": "0504d51eb8a6fb382a724668da45a7edefac6b065c873623aaef775a77ec3f10"
+    },
+    {
+      "path": "six-sessions-integrated-native/bases-390.png",
+      "bytes": 246175,
+      "sha256": "bb9fc0a74aa8f9a95ddedc9fa8948d93d6945c4c2aff3455ca1161c318671116"
+    },
+    {
+      "path": "six-sessions-integrated-native/map-desktop.png",
+      "bytes": 911572,
+      "sha256": "19c10798f69a5c6f8bf019457e0258653cfba9d5fcb7c123f95c60f965ab559c"
+    },
+    {
+      "path": "six-sessions-integrated-native/province-receipts-390.png",
+      "bytes": 155093,
+      "sha256": "8c39ba032a93b67d2c6980d55aeda6636c08ed03078293f12f6b9f3bddbc8a4b"
+    },
+    {
+      "path": "six-sessions-integrated-native/result.json",
+      "bytes": 21289,
+      "sha256": "6c9191d33e91545369161f001247e99f6e9a6007b36c39ab3b64b7419044ab51"
+    },
+    {
+      "path": "six-sessions-integrated-native/timing-report.json",
+      "bytes": 2302,
+      "sha256": "daf7359eeb547777a9009da8907a098f6d8555962bf0be4f2af3119e94525144"
+    },
+    {
+      "path": "six-sessions-integrated-native/tutorial-390.png",
+      "bytes": 131699,
+      "sha256": "de0cbea1ae12c367eb9ba4c7f1c4299f33d830b33885e84333785f5393d990ca"
+    },
+    {
+      "path": "six-sessions-main-launch.json",
+      "bytes": 2506,
+      "sha256": "1db82db4492e4212427b6bebfa46b93e55b283fb17a73338131899bb6be8d41c"
+    },
+    {
+      "path": "six-sessions-main-native/bases-390.png",
+      "bytes": 246153,
+      "sha256": "b165476461f4255aec15aa7042c0bdc1790eb22a7e00b113508dfce1a5bdc31c"
+    },
+    {
+      "path": "six-sessions-main-native/map-desktop.png",
+      "bytes": 911042,
+      "sha256": "0dde3260096c04df3231c8a03d01923f45b709d9a742eb88d4b99f6f719600cd"
+    },
+    {
+      "path": "six-sessions-main-native/province-receipts-390.png",
+      "bytes": 155052,
+      "sha256": "2b6457c594764e1c0d3ce385b7b9c536314739d65cb641928a573ea2397175d6"
+    },
+    {
+      "path": "six-sessions-main-native/result.json",
+      "bytes": 3990,
+      "sha256": "401178eb081dca2d1e9e958df456acfcd0837cd8aab4eb659bc8a04c25077252"
+    },
+    {
+      "path": "six-sessions-main-native/timing-report.json",
+      "bytes": 2244,
+      "sha256": "5399fd27f131776b1d1760e67057b74b13f788ee3a9812b8a2639687acb97e3d"
+    },
+    {
+      "path": "six-sessions-main-native/tutorial-390.png",
+      "bytes": 130987,
+      "sha256": "9b269327d674939115e3a8c9828a92291c6fbedea3698ebd0b9385ebec0b6d4a"
+    },
+    {
+      "path": "six-sessions-s19-launch.json",
+      "bytes": 2493,
+      "sha256": "9c4c71d085344a4a801124d587c10aa0117d117b96e74c0d7b951bf5a51896ad"
+    },
+    {
+      "path": "six-sessions-s19-native/bases-390.png",
+      "bytes": 246175,
+      "sha256": "bb9fc0a74aa8f9a95ddedc9fa8948d93d6945c4c2aff3455ca1161c318671116"
+    },
+    {
+      "path": "six-sessions-s19-native/map-desktop.png",
+      "bytes": 911563,
+      "sha256": "2a77df939238adf7ea5ded776f01b7ed86a247eaace97a2d2d34830911e050b0"
+    },
+    {
+      "path": "six-sessions-s19-native/province-receipts-390.png",
+      "bytes": 155029,
+      "sha256": "8b3b01ad7e74af29b3e73f92624f7a3cf89aa6f49cf7f6a8b017be69f805ea0b"
+    },
+    {
+      "path": "six-sessions-s19-native/result.json",
+      "bytes": 21331,
+      "sha256": "89c6a9e97f724c103dd97ae486279d0d7f7a69273c7f3144d7fd9f435c1b7da4"
+    },
+    {
+      "path": "six-sessions-s19-native/timing-report.json",
+      "bytes": 2346,
+      "sha256": "800e7e21497cd2d7752adb9a409ce435430fea150866be2c148d0eab0d93736f"
+    },
+    {
+      "path": "six-sessions-s19-native/tutorial-390.png",
+      "bytes": 44969,
+      "sha256": "0fb336071986617e160fe8677cfc633d8330f44df6ad794bb3cb42d2c9c52da2"
+    }
+  ]
+}

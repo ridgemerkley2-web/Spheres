@@ -1,0 +1,35 @@
+{
+  "url": "http://127.0.0.1:7865",
+  "pid": 2836,
+  "directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-six-sessions-s19-20260921-210701",
+  "runtime_revision": "be514cf30c4b7933da8844316b44d8c60e3300dc",
+  "executable_sha256": "de7036842b7b84609c7dc87f63910af7a6e495878dc40f376f52277aba757507",
+  "build": {
+    "branch": "codex/s19-review-01",
+    "built_at_unix_seconds": 1790049815,
+    "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+    "distribution": "Local offline game server; source and attribution accompany the release",
+    "revision": "be514cf30c4b",
+    "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-six-sessions-s19-20260921-210701",
+    "version": "0.6.0"
+  },
+  "served_assets_sha256": {
+    "index.html": "4f4613d8a4c5c98202215e1a49c1b0b70f81cc8839d85e09cd8856dadacb3c57",
+    "equipment-ui.js": "ce6d547a470d595d7ef747d9ad7d968da8ce05dd1b7a17bb0f931aa5e9dbe289",
+    "equipment-ui.css": "499339cfed200373bfcfffd7c1c7a181bbfda84e0919f4da615eec351c3e164a",
+    "province-economy-ui.js": "93f6f65f45a18ffb38e69f01d8f7ef9beb3b214122c0fe6f55a324d8c1571b07",
+    "province-economy.css": "2233cff940c8c0fbe320a45809a56046075831ed2da6c6067207ed26b405016c",
+    "performance-ui.js": "8200dcbcdaf1bcdd75eb2fcf19183e55e67e6cdc54480baed0a60a8683dc8739",
+    "guidance-ui.js": "058318a655200aacf3df4eb4c08953a2dbd4b2180b81d1a332c6996a8e3e4717",
+    "advisor-model.js": "bfd85d0340d37bc6edb7044ac3ac866d84916ad96c446bc2a35ec7269cf1da14",
+    "equipment-model.js": "e2619f51afa85d25c4ebff086973d2e83a8c23bcda32168db328cfe777388899"
+  },
+  "player": "France",
+  "date": "3 Jan 1990",
+  "save_copy": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-six-sessions-s19-20260921-210701\\saves\\development-review.json",
+    "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S19-review-01\\candidate-navigation\\server\\saves\\s19-route-review.json",
+    "sha256": "55c81129e05e2db7294219c06db7ec6596e93ec21b476623035be433fe7e5bce"
+  },
+  "scope": "Separate development review runtime. Exact compiled assets; original playsets and saves preserved. No campaign certification."
+}
