@@ -24,7 +24,7 @@ avatar. The parent scope (C01, C06, S23, WC1 and CP1) remains open.
 | SA-EXEC-03 | Sultan's death, Nayef's selection (A/224), Nayef's death | **Accepted:** deaths on 22 Oct 2011 and 16 Jun 2012 end both terms; A/224 dated 27 Oct 2011 |
 | SA-EXEC-04 | Salman chosen Crown Prince (A/139) | **Accepted:** order of 18 Jun 2012; the term ends at his own accession (SA-EXEC-05) |
 | SA-EXEC-05 | Abdullah's death; Salman's and Muqrin's pledges | **Accepted:** all on 23 Jan 2015; the Arabic dateline of 22 Jan is a filing artefact |
-| SA-EXEC-06 | April 2015: Muqrin relieved, Mohammed bin Nayef chosen, Deputy Crown Prince | **Accepted:** A/159 and A/160 of 29 Apr 2015; pledge called and held that evening |
+| SA-EXEC-06 | April 2015: Muqrin relieved, Mohammed bin Nayef chosen, Deputy Crown Prince | **Accepted:** A/159 and A/160 of 29 Apr 2015; pledge called that morning (06:33) for after Isha, and held that evening |
 | SA-EXEC-07 | 21 June 2017: Mohammed bin Nayef relieved, Mohammed bin Salman chosen | **Accepted** on the Arabic original A/255; the 10/6/1436 recital is an error in the order text |
 | SA-EXEC-08 | Consistency with the 2022 prime-minister exception; latest pre-cutoff observation | **Accepted:** consistent; 13 Aug 2026 observation added; no continuity inferred |
 
@@ -96,8 +96,9 @@ claims are added the same way: `sa_salman_king_obs_20260813` on `sa_king`, and
 Evidence:
 
 - U.S. Public Papers, address of 8 August 1990 (`sa_fahd_king_obs_19900808`). The President
-  says that, after consulting with King Fahd, he sent the Secretary of Defense to Saudi
-  Arabia. The editorial note identifies "King Fahd bin `Abd al-`Aziz Al Sa`ud of Saudi Arabia".
+  says that, after consulting with King Fahd, he sent the Secretary of Defense to discuss
+  cooperative measures. The editorial note identifies
+  "King Fahd bin `Abd al-`Aziz Al Sa`ud of Saudi Arabia".
 - Arabic Royal Court statement, dateline Riyadh 26 Jumada II 1426 / 1 August 2005, filed
   11:04 Makkah time (`sa_fahd_death_announced_20050801`). It mourns King Fahd in the name of
   Crown Prince Abdullah, the family and the nation, says death came to him after an illness,
@@ -219,8 +220,8 @@ Evidence, all dated 10/7/1436 AH (Wednesday 29 April 2015):
 - `sa_pledge_call_20150429`: the Royal Court called for the pledge after Isha that day
   (filed 06:33 Makkah time).
 - `sa_pledge_held_20150429`: SPA reports, filed 21:45, that Muqrin pledged allegiance that
-  evening at Qasr al-Hukm to both, followed by princes, the Grand Mufti, scholars, ministers,
-  officials and citizens.
+  evening at Qasr al-Hukm to both, and that princes, the Grand Mufti, scholars, ministers,
+  officials and citizens also gave the pledge.
 
 Decision: accepted. Order, relief, call and held ceremony are five separate claims. Muqrin's
 holder ends on 2015-04-29 (relief). Mohammed bin Nayef's holder is observed on the order
@@ -290,7 +291,8 @@ the 2017, 2022 and 2026 observations, or through 7 September 2026. The Arabic ve
 An independent checker re-downloaded all 17 dossier sources on 21 September 2026. The
 bush41library page matched its recorded hash. Every SPA page matched its recorded byte count
 and article-content hash but not its response hash. The checker verified all 29 claims it
-reviewed and located six further SPA items. Its defects were handled as follows.
+reviewed and downloaded six further SPA items (one, 5766455156, a researcher lead). Its
+defects were handled as follows.
 
 | Defect | Severity | Handling |
 |---|---|---|
