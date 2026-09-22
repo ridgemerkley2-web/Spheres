@@ -411,6 +411,113 @@
         "sha256": "454108973d3f4abc9a9e48bcec2a41d61f8ba0df2f8cbca8768810e52e8c0f12",
         "kind": "derived_factual_extract"
       }
+    },
+    {
+      "id": "to_sc_kiu_v_tuionetoa_20220429",
+      "title": "Kelekolio Kiu v Pohiva Tu'i'onetoa, CV 75 of 2021: Judgement (Supreme Court, Electoral Jurisdiction)",
+      "url": "https://ago.gov.to/cms/judgements/supreme-court-civil/category/206-cv-2022.html?download=2386%3Akelekolio-kiu-v-pohiva-tuionetoa-cv-75-21-tosc-29-apr-2022-cooper-j-judgement",
+      "publisher": "Supreme Court of Tonga; published by Tonga's Attorney General's Office",
+      "accessed_date": "2026-09-21",
+      "published_date": "2022-04-29",
+      "source_type": "primary_court_record",
+      "access_method": "downloaded_original_pdf_text_and_relevant_pages_visually_read",
+      "claims": [
+        {
+          "id": "to_paati_a_e_kakai_name_20211001",
+          "text": "The trial judgment lists Tu'i'onetoa among the guests at the 1 October 2021 Niutao event as the then Prime Minister and Minister for Public Enterprises and leader of the Paati 'a e Kakai; the People's Party.",
+          "attested_on": "2021-10-01",
+          "locator": "PDF page 2, paragraphs 7-8",
+          "uncertainty": "A judicial description of the event's guests, not a party instrument. 'Leader' is used descriptively here and is not an appointment record or term boundary."
+        },
+        {
+          "id": "to_peoples_party_incorporated_society_2022",
+          "text": "A Ministry for Trade and Economic Development officer whose work includes registering incorporated societies testified that the People's Party is an incorporated society with 35 members, including Tu'i'onetoa as president and Tevita Lavemaau as secretary, and that it has a constitution and stated aims.",
+          "locator": "PDF page 4, paragraphs 33-35 (witness Poini Paongo); trial dates on PDF page 1",
+          "period": {
+            "from": "2022-04-19",
+            "through": "2022-04-21"
+          },
+          "uncertainty": "Testimony summarised from the 19-21 April 2022 trial. No registration date, society number, registered name or register extract is given. The member count and officers are those reported at trial, not a founding roster or continuous term. Incorporation as a society is not a statutory party registration."
+        },
+        {
+          "id": "to_speech_transcript_ptoa_20211001",
+          "text": "The trial judgment quotes the translated transcript of Tu'i'onetoa's 1 October 2021 Niutao speech (Exhibit 1(b)): he says he started with PTOA until it changed course, and that he left to start a new vision. The transcript spells the label PTOA.",
+          "attested_on": "2021-10-01",
+          "locator": "PDF pages 33-34, paragraph 324 and footnote 5 (Exhibit 1(b), paragraph 5, page 4)",
+          "uncertainty": "A speaker's translated self-description. It gives no joining or departure date and does not expand the acronym."
+        }
+      ],
+      "scope_note": "Party-identity evidence only. The Court of Appeal allowed the appeal from this judgment and set aside its declarations and costs order (AC 8 of 2022, 9 August 2022, paragraph 44). This intake imports no allegation, finding, declaration, penalty or office exclusion; only background descriptions and testimony that the appeal did not concern are used.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-sc-cv75-20220429-facts.json",
+        "bytes": 3945,
+        "sha256": "5f121f9e4f6d50fca049f96a07f29c414b8e192cb0047e75dc6b0f3fd234f71e",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_ipu_2021",
+      "title": "Tonga Legislative Assembly November 2021 Election",
+      "url": "https://data.ipu.org/parliament/TO/TO-LC01/election/TO-LC01-E20211118/",
+      "publisher": "Inter-Parliamentary Union (IPU Parline)",
+      "accessed_date": "2026-09-21",
+      "source_type": "interparliamentary_election_record",
+      "access_method": "browser_fetched_original_html_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_ipu_2021_ptoa_expansion",
+          "text": "IPU states that, although Tonga has no political parties, some 2021 candidates ran under the banners of two political groups: the Democratic Party of the Friendly Islands (PTOA) and the Tonga People's Party (TPP). It reports three members elected on PTOA tickets.",
+          "attested_on": "2021-11-18",
+          "locator": "'About the election', first paragraph",
+          "uncertainty": "An interparliamentary summary, not a registration record. It expands the acronym but does not establish a legal identity, statute or continuity with earlier observations."
+        },
+        {
+          "id": "to_ipu_2021_tuionetoa_tpp",
+          "text": "IPU states that Prime Minister Pohiva Tu'i'onetoa was elected under the TPP banner at the 18 November 2021 election.",
+          "attested_on": "2021-11-18",
+          "locator": "'About the election', first paragraph",
+          "uncertainty": "An electoral-banner observation. Candidates formally stood as independents; this is not a party-office appointment."
+        },
+        {
+          "id": "to_ipu_2021_sovaleni_assembly_selection",
+          "text": "IPU states that on 15 December 2021 the newly elected Assembly held its first session and elected Siaosi Sovaleni (independent) as the new Prime Minister, defeating 'Aisake Eke (independent), whom the outgoing Prime Minister Tu'i'onetoa backed. The same page describes the process led by the interim Speaker as electing a Prime Minister Designate.",
+          "attested_on": "2021-12-15",
+          "locator": "'About the election', second paragraph; 'Other notes on the elections'",
+          "uncertainty": "IPU's 'elected as Prime Minister' describes the Assembly's selection. The royal appointment instrument and its effective date are not in this source and are not inferred."
+        }
+      ],
+      "scope_note": "Live Parline page read after the cutoff for its dated 2021 narrative only; the page shows no revision date. IPU cites Legislative Assembly communications of 10, 20 and 29 December 2021 and news outlets. A direct non-browser request returned HTTP 403. The page's HTML changes between requests, so its response hash cannot be reproduced.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-ipu-2021-election-facts.json",
+        "bytes": 3285,
+        "sha256": "fcbccaabc88aee97e19f2450b216cf2fb199f7330b2f197b1c9c5cfded413632",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_ipu_2017",
+      "title": "Tonga Legislative Assembly November 2017 Election",
+      "url": "https://data.ipu.org/parliament/TO/TO-LC01/election/TO-LC01-E20171116/",
+      "publisher": "Inter-Parliamentary Union (IPU Parline)",
+      "accessed_date": "2026-09-21",
+      "source_type": "interparliamentary_election_record",
+      "access_method": "browser_fetched_original_html_and_page_text_read",
+      "claims": [
+        {
+          "id": "to_ipu_2017_dpfi_continuity",
+          "text": "IPU states that all 2017 candidates formally ran as independents and that the 14 elected independents supporting 'Akilisi Pohiva belong to the so-called Democratic Party of the Friendly Islands (DPFI), led by the Prime Minister. It adds that DPFI took eight seats in 2014.",
+          "attested_on": "2017-11-16",
+          "locator": "'About the election', first paragraph and Note 1",
+          "uncertainty": "Continuity evidence for the IPU-described group between the 2010 and 2021 observations; not a registration record. 'Led by the Prime Minister' has no stated reference date and is not imported as a dated leadership term."
+        }
+      ],
+      "scope_note": "Used only to connect the DPFI observations across elections. The page read after the cutoff shows no revision date; its HTML response hash is not reproducible and is not asserted.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-ipu-2017-election-facts.json",
+        "bytes": 1949,
+        "sha256": "0efe15916d9bae924db1e9f18b0acaa49290e93a8bf18962da6de53c256dc337",
+        "kind": "derived_factual_extract"
+      }
     }
   ],
   "organizations": [
@@ -531,10 +638,18 @@
         }
       ],
       "sources": [
-        "to_ipu_2010"
+        "to_ipu_2010",
+        "to_ipu_2017",
+        "to_ipu_2021",
+        "to_court_peoples_party_20220809",
+        "to_sc_kiu_v_tuionetoa_20220429"
       ],
       "claim_ids": [
-        "to_dpfi_pohiva_2010"
+        "to_dpfi_pohiva_2010",
+        "to_ipu_2017_dpfi_continuity",
+        "to_ipu_2021_ptoa_expansion",
+        "to_tuionetoa_prior_party_speech_20211001",
+        "to_speech_transcript_ptoa_20211001"
       ],
       "coverage": {
         "status": "partial",
@@ -545,8 +660,81 @@
         "unresolved": [
           "Obtain founding and amended statutes, registered local-language name, chairs and parliamentary leadership records.",
           "'Akilisi Pohiva is a 2010 leadership observation, not an uninterrupted term through later premiership.",
-          "Research later leadership, factions, minor components and any splits independently."
+          "Research later leadership, factions, minor components and any splits independently.",
+          "Legal identity behind the PTOA label is unverified: obtain the founding statute, registered name and any incorporation record. Tu'i'onetoa's joining and departure dates are unknown.",
+          "IPU's 2021 description of Siaosi Pohiva as 'one of its leaders' is not an office title and is not imported as a holder observation."
         ]
+      },
+      "name_observations": [
+        {
+          "name": "Democratic Party of the Friendly Islands",
+          "attested_on": "2010-11-25",
+          "sources": [
+            "to_ipu_2010"
+          ],
+          "claim_ids": [
+            "to_dpfi_pohiva_2010"
+          ]
+        },
+        {
+          "name": "Democratic Party of the Friendly Islands (DPFI)",
+          "attested_on": "2017-11-16",
+          "sources": [
+            "to_ipu_2017"
+          ],
+          "claim_ids": [
+            "to_ipu_2017_dpfi_continuity"
+          ]
+        },
+        {
+          "name": "PTOA",
+          "attested_on": "2021-10-01",
+          "sources": [
+            "to_sc_kiu_v_tuionetoa_20220429",
+            "to_court_peoples_party_20220809"
+          ],
+          "claim_ids": [
+            "to_speech_transcript_ptoa_20211001",
+            "to_tuionetoa_prior_party_speech_20211001"
+          ],
+          "note": "Speech transcript quoted by the trial court (paragraph 324) and Court of Appeal paragraph 32."
+        },
+        {
+          "name": "PATOA",
+          "attested_on": "2021-10-01",
+          "sources": [
+            "to_court_peoples_party_20220809"
+          ],
+          "claim_ids": [
+            "to_tuionetoa_prior_party_speech_20211001"
+          ],
+          "variant_of": "PTOA",
+          "note": "Court of Appeal paragraph 21 only. The same speech passage reads PTOA in paragraph 32 and in the transcript quoted by the trial court."
+        },
+        {
+          "name": "Democratic Party of the Friendly Islands (PTOA)",
+          "attested_on": "2021-11-18",
+          "sources": [
+            "to_ipu_2021"
+          ],
+          "claim_ids": [
+            "to_ipu_2021_ptoa_expansion"
+          ]
+        }
+      ],
+      "identity_reconciliation": {
+        "status": "provisional_observation_grouping",
+        "reconciled_organization_id": null,
+        "automatic_merge": false,
+        "record": "docs/campaign-certification/C01/research/tonga-reconciliation-01.md",
+        "observations": [
+          "TO-REC-01",
+          "TO-REC-02",
+          "TO-REC-03",
+          "TO-REC-04",
+          "TO-REC-05"
+        ],
+        "note": "PATOA is accepted as a variant printing of PTOA; IPU expands PTOA as the Democratic Party of the Friendly Islands. The 2010, 2017 and 2021 IPU observations are grouped through the same English name and Pohiva leadership links, not by name alone. This is a research grouping, not a legal identity, statute or registration finding. The People's Democratic Party and the ambiguous 2010 'Democratic party' label stay separate."
       }
     },
     {
@@ -559,7 +747,7 @@
         "from": null,
         "until": null,
         "precision": "unknown",
-        "note": "May and October 2021 attestations do not establish a founding date or continuous existence between observations or through the historical cutoff."
+        "note": "May and October 2021 attestations do not establish a founding date or continuous existence between observations or through the historical cutoff. April 2022 trial testimony attests incorporated-society status without a registration date."
       },
       "roles": [
         {
@@ -587,16 +775,85 @@
               "uncertainty": "Event-host title observation only; party appointment instrument and full leadership interval are unknown."
             }
           ]
+        },
+        {
+          "id": "to_peoples_party_society_president",
+          "title": "President (incorporated-society officer reported at trial)",
+          "kind": "other",
+          "sources": [
+            "to_sc_kiu_v_tuionetoa_20220429"
+          ],
+          "claim_ids": [
+            "to_peoples_party_incorporated_society_2022"
+          ],
+          "holder_claims": [
+            {
+              "name": "Pohiva Tu'i'onetoa",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "attested_period": {
+                "from": "2022-04-19",
+                "through": "2022-04-21"
+              },
+              "sources": [
+                "to_sc_kiu_v_tuionetoa_20220429"
+              ],
+              "claim_ids": [
+                "to_peoples_party_incorporated_society_2022"
+              ],
+              "note": "Reported in testimony at the 19-21 April 2022 trial; appointment date and term unknown.",
+              "uncertainty": "Not reconciled with the 'Leader' title. Whether Leader and society President are one office is unresolved."
+            }
+          ]
+        },
+        {
+          "id": "to_peoples_party_society_secretary",
+          "title": "Secretary (incorporated-society officer reported at trial)",
+          "kind": "other",
+          "sources": [
+            "to_sc_kiu_v_tuionetoa_20220429"
+          ],
+          "claim_ids": [
+            "to_peoples_party_incorporated_society_2022"
+          ],
+          "holder_claims": [
+            {
+              "name": "Tevita Lavemaau",
+              "attested_on": null,
+              "from": null,
+              "until": null,
+              "attested_period": {
+                "from": "2022-04-19",
+                "through": "2022-04-21"
+              },
+              "sources": [
+                "to_sc_kiu_v_tuionetoa_20220429"
+              ],
+              "claim_ids": [
+                "to_peoples_party_incorporated_society_2022"
+              ],
+              "note": "Reported in testimony at the 19-21 April 2022 trial; appointment date and term unknown.",
+              "uncertainty": "A society officer observation, not a Cabinet office or party leadership term."
+            }
+          ]
         }
       ],
       "sources": [
         "to_idcpc_dialogue_20210528",
-        "to_court_peoples_party_20220809"
+        "to_court_peoples_party_20220809",
+        "to_sc_kiu_v_tuionetoa_20220429",
+        "to_ipu_2021"
       ],
       "claim_ids": [
         "to_peoples_party_leader_20210528",
         "to_peoples_party_niutao_20211001",
-        "to_tuionetoa_prior_party_speech_20211001"
+        "to_tuionetoa_prior_party_speech_20211001",
+        "to_paati_a_e_kakai_name_20211001",
+        "to_speech_transcript_ptoa_20211001",
+        "to_peoples_party_incorporated_society_2022",
+        "to_ipu_2021_ptoa_expansion",
+        "to_ipu_2021_tuionetoa_tpp"
       ],
       "name_observations": [
         {
@@ -618,13 +875,41 @@
           "claim_ids": [
             "to_peoples_party_niutao_20211001"
           ]
+        },
+        {
+          "name": "Paati 'a e Kakai; the People's Party",
+          "attested_on": "2021-10-01",
+          "sources": [
+            "to_sc_kiu_v_tuionetoa_20220429"
+          ],
+          "claim_ids": [
+            "to_paati_a_e_kakai_name_20211001"
+          ]
+        },
+        {
+          "name": "Tonga People's Party (TPP)",
+          "attested_on": "2021-11-18",
+          "sources": [
+            "to_ipu_2021"
+          ],
+          "claim_ids": [
+            "to_ipu_2021_ptoa_expansion",
+            "to_ipu_2021_tuionetoa_tpp"
+          ]
         }
       ],
       "identity_reconciliation": {
         "status": "provisional_observation_grouping",
         "reconciled_organization_id": null,
         "automatic_merge": false,
-        "note": "The two accounts connect their party label to Tu'i'onetoa; this is a provisional research grouping, not a legal identity determination. The People's Democratic Party remains a separate entry. PATOA/PTOA spelling is not automatically mapped to DPFI."
+        "note": "The IDCPC, court and IPU accounts connect their party labels to Tu'i'onetoa; this is a provisional research grouping, not a legal identity determination. The People's Democratic Party remains a separate entry. The PATOA/PTOA prior-party label is grouped with DPFI only as a research observation (TO-REC-01 to TO-REC-03); no legal split, merger or successor relationship is created.",
+        "record": "docs/campaign-certification/C01/research/tonga-reconciliation-01.md",
+        "observations": [
+          "TO-REC-06",
+          "TO-REC-07",
+          "TO-REC-08",
+          "TO-REC-09"
+        ]
       },
       "coverage": {
         "status": "partial",
@@ -633,10 +918,10 @@
           "through": "2026-09-07"
         },
         "unresolved": [
-          "Retrieve founding statutes, registration instruments, original-language names and dated amendments; no exact formation or registered status is established here.",
-          "Verify whether Leader, chair and parliamentary leader are distinct offices; research appointment rules, acting officers and all leadership boundaries and successors.",
-          "Reconcile the two observed names and PATOA/PTOA references with original party records; a reported departure does not establish a legal split or full membership list.",
-          "Establish continuation, inactivity, dissolution and minor components through the cutoff; the 2021 observations do not fill other years."
+          "Retrieve the incorporated-society register entry, society number, registration date, registered name and constitution; April 2022 testimony attests incorporation but no formation date.",
+          "Leader (IDCPC, May 2021) and President (society register testimony, April 2022) remain separate roles until the constitution shows whether they are one office; research appointment rules, acting officers, leadership boundaries and successors.",
+          "The observed names (Tonga People's Party, People's Party, Paati 'a e Kakai, TPP) are grouped provisionally; unverified acronyms and a 2019 founding date seen only in tertiary summaries are not imported.",
+          "Establish continuation, inactivity, dissolution and minor components through the cutoff; the 2021-2022 observations do not fill other years."
         ]
       }
     }
@@ -716,14 +1001,16 @@
             "to_constitution_2020",
             "to_pm_appointment_2025",
             "to_pm_august_2026",
-            "to_pm_appointment_20191008"
+            "to_pm_appointment_20191008",
+            "to_ipu_2021"
           ],
           "claim_ids": [
             "to_constitution_pm_cabinet",
             "to_fakafanua_appointment",
             "to_fakafanua_august",
             "to_tuionetoa_assembly_recommendation_20190927",
-            "to_tuionetoa_royal_appointment_20191008"
+            "to_tuionetoa_royal_appointment_20191008",
+            "to_ipu_2021_sovaleni_assembly_selection"
           ],
           "holder_claims": [
             "to_fakafanua_appointment",
@@ -751,7 +1038,8 @@
         "to_reform_procedure_2010",
         "to_pm_appointment_2025",
         "to_pm_august_2026",
-        "to_pm_appointment_20191008"
+        "to_pm_appointment_20191008",
+        "to_ipu_2021"
       ],
       "claim_ids": [
         "to_constitution_pm_cabinet",
@@ -761,7 +1049,8 @@
         "to_fakafanua_appointment",
         "to_fakafanua_august",
         "to_tuionetoa_assembly_recommendation_20190927",
-        "to_tuionetoa_royal_appointment_20191008"
+        "to_tuionetoa_royal_appointment_20191008",
+        "to_ipu_2021_sovaleni_assembly_selection"
       ],
       "coverage": {
         "status": "partial",
@@ -773,7 +1062,8 @@
           "Complete prime minister, caretaker, interim and acting terms from 1990 through cutoff.",
           "Keep Assembly nomination/election, royal appointment and actual effective date separate.",
           "Pre-reform appointment rules cannot be replaced retrospectively by the post-2010 procedure.",
-          "The 2019 appointment observation does not supply the end of that premiership, caretaker service, temporary absences or any party leadership term."
+          "The 2019 appointment observation does not supply the end of that premiership, caretaker service, temporary absences or any party leadership term.",
+          "2021 transition: IPU records the Assembly's 15 December selection of Siaosi Sovaleni; the royal appointment instrument and effective date are unsourced here and no holder observation is added (TO-REC-10)."
         ]
       }
     },
@@ -999,7 +1289,8 @@
       "Full leader/chair/parliamentary-role intervals, constitutional effective dates and 1990 opening office holders still require source-by-source verification.",
       "The last verified observations are not automatic extensions to the 7 September 2026 cutoff; unknown gaps remain unknown.",
       "No future candidate, fictional successor, portrait likeness or avatar completion is certified by this research packet. Fiction begins only after the preserved historical cutoff under the separate policy.",
-      "The added 2021 People's Party and Leader observations close only a missing sourced observation. No country census or discovery batch is complete; the 2019 national appointment supplies no party office or campaign eligibility."
+      "The added 2021 People's Party and Leader observations close only a missing sourced observation. No country census or discovery batch is complete; the 2019 national appointment supplies no party office or campaign eligibility.",
+      "Reconciliation packet 01 (tonga-reconciliation-01.md) groups the PATOA/PTOA label with DPFI and adds People's Party names, incorporated-society testimony and a 2021 Assembly selection. It resolves no complete leadership term, lifespan or game mapping."
     ]
   }
 }

@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://data.ipu.org/parliament/TO/TO-LC01/election/TO-LC01-E20211118/",
+  "accessed_date": "2026-09-21",
+  "access_method": "browser_fetched_original_html_and_page_text_read",
+  "source_response_bytes": 162654,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "provenance_note": "Fetched twice in-browser on 2026-09-22 UTC (2026-09-21 local). Both responses were 162,654 bytes, but their SHA-256 values differed (fb339e92... and 1270d7c0...) because the page embeds per-request markup. No response hash is asserted. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_ipu_2021_ptoa_expansion",
+      "text": "IPU states that, although Tonga has no political parties, some 2021 candidates ran under the banners of two political groups: the Democratic Party of the Friendly Islands (PTOA) and the Tonga People's Party (TPP). It reports three members elected on PTOA tickets.",
+      "attested_on": "2021-11-18",
+      "locator": "'About the election', first paragraph",
+      "uncertainty": "An interparliamentary summary, not a registration record. It expands the acronym but does not establish a legal identity, statute or continuity with earlier observations."
+    },
+    {
+      "id": "to_ipu_2021_tuionetoa_tpp",
+      "text": "IPU states that Prime Minister Pohiva Tu'i'onetoa was elected under the TPP banner at the 18 November 2021 election.",
+      "attested_on": "2021-11-18",
+      "locator": "'About the election', first paragraph",
+      "uncertainty": "An electoral-banner observation. Candidates formally stood as independents; this is not a party-office appointment."
+    },
+    {
+      "id": "to_ipu_2021_sovaleni_assembly_selection",
+      "text": "IPU states that on 15 December 2021 the newly elected Assembly held its first session and elected Siaosi Sovaleni (independent) as the new Prime Minister, defeating 'Aisake Eke (independent), whom the outgoing Prime Minister Tu'i'onetoa backed. The same page describes the process led by the interim Speaker as electing a Prime Minister Designate.",
+      "attested_on": "2021-12-15",
+      "locator": "'About the election', second paragraph; 'Other notes on the elections'",
+      "uncertainty": "IPU's 'elected as Prime Minister' describes the Assembly's selection. The royal appointment instrument and its effective date are not in this source and are not inferred."
+    }
+  ],
+  "scope_note": "Live Parline page read after the cutoff for its dated 2021 narrative only; the page shows no revision date. IPU cites Legislative Assembly communications of 10, 20 and 29 December 2021 and news outlets. A direct non-browser request returned HTTP 403. The page's HTML changes between requests, so its response hash cannot be reproduced.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Page text of 'About the election', 'Other notes on the elections' and 'Sources' read. No images reviewed."
+  }
+}
