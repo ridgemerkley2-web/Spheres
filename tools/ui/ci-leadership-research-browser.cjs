@@ -57,6 +57,7 @@ async function main(){
   await page.locator('#atlas-country').selectOption('Tonga');await ready(page,'Tonga');
   await page.locator('#atlas-search').fill("Tu'i'onetoa");assert((await page.locator('.entry').count())>0);
   const society=page.locator('.entry[data-research-id="to_peoples_party"]');await society.locator(':scope > summary').click();
+  await society.locator('.role').first().waitFor();
   assert.equal(await society.locator('.role').count(),3);
   for(const name of ['President','Secretary']){
     const role=society.locator('.role').filter({has:page.locator('h4',{hasText:name+' ('})});
