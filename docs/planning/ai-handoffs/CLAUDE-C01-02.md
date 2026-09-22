@@ -1,10 +1,12 @@
 # CLAUDE-C01-02 — Tonga's 2021 appointment transition
 
-Owner: Claude. State: **ready_for_review** (submitted 21 September 2026; not complete). Parent: C01 (incomplete).
+Owner: Claude. State: **accepted and integrated** as bounded research, 21 September 2026. Parent: C01 (incomplete).
+Submission `b6767837b8080cae133e073ffb9ecb6f9371ee5f`; integration `2d5ffffe`.
+[Codex review and validation](../../campaign-certification/C01/integrations/CLAUDE-C01-02/README.md).
 Predecessor: [CLAUDE-C01-01](CLAUDE-C01-01.md), integrated and qualified at `fdb6d2c`.
 Branch `claude/c01-tonga-02`; base `5b46e40a` (current integration); claim `852510d3`.
-Result commit: the head of `claude/c01-tonga-02` at submission (the separate index commit); to be recorded by the integrator.
-Reviewer/integrator: Codex. Separate from the ready S19 gameplay packet.
+Result commit: `b6767837b8080cae133e073ffb9ecb6f9371ee5f` (separate regenerated index).
+Reviewer/integrator: Codex. Separate from the S19 gameplay packet.
 [Report](../../campaign-certification/C01/research/tonga-transition-2021-02.md): TO-TR21-01, 02, 03 and 06
 accepted; TO-TR21-04 (warrant signature and presentation) and TO-TR21-05 (end of
 Tu'i'onetoa's premiership) unresolved with sources attempted.
