@@ -5,7 +5,8 @@ Origin: self-proposed follow-up packet authorized by the user's 21 September 202
 autonomous sessions; pending Codex acceptance. It is not yet registered in `docs/planning/ai-workstreams.json`.
 Predecessor: [CLAUDE-C01-02](CLAUDE-C01-02.md), ready for review and not yet integrated.
 Branch `claude/c01-tonga-04`; base `b6767837` (head of `claude/c01-tonga-02`, itself based on integration
-`5b46e40a`). **Stacked:** merge CLAUDE-C01-02 first; against `b6767837` this branch contains CLAUDE-C01-04 only.
+`5b46e40a`). CLAUDE-C01-02 is now accepted, and the branch has merged current integration
+(`04bc99a6`), so it applies directly; against integration it contains CLAUDE-C01-04 only.
 Result commit: the head of `claude/c01-tonga-04` at submission (the separate index commit); to be recorded by the integrator.
 Reviewer/integrator: Codex. Separate from the ready S19 gameplay packet.
 [Report](../../campaign-certification/C01/research/tonga-dpfi-04.md): TO-DPFI-01, 02, 05 and 06 accepted;
