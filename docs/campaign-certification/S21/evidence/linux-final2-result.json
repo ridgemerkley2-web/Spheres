@@ -1,0 +1,108 @@
+{
+  "format": "spheres-s21-linux/v1",
+  "revision": "5b92fbb425ff18cd178b4020f3bdc8ea632c457e",
+  "started_utc": "2026-09-22T01:56:41.800564+00:00",
+  "status": "passed",
+  "scope": "S21 native web and Node qualification. Authored boundary scenarios do not establish a full elapsed 1990-2035 campaign. Simulation source is unchanged.",
+  "runner_sha256": "cc9ade0b2ce912bfca085a9a3afa76ec02ba5b19d5170e1cfff396b28c324b4b",
+  "derived_from": {
+    "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/run-s10-final-linux.py",
+    "sha256": "a27a4149a6e70f656118236ff97a4613e429279ae628a65134b585989f1209da"
+  },
+  "source_verification": "Windows git.exe on the same complete NTFS checkout; test and compile processes use the existing Linux toolchain and target directory.",
+  "environment": {
+    "GIT_DIR": "/mnt/c/Users/ridge/Spheres/.git/worktrees/integration",
+    "GIT_WORK_TREE": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+    "GIT_OPTIONAL_LOCKS": "0",
+    "CARGO_BUILD_JOBS": "4",
+    "GIT_CONFIG_COUNT": "1",
+    "GIT_CONFIG_KEY_0": "core.autocrlf",
+    "GIT_CONFIG_VALUE_0": "true",
+    "CARGO_HOME": "/home/ridge/.cache/spheres-s05-tools/cargo",
+    "RUSTUP_HOME": "/home/ridge/.cache/spheres-s05-tools/rustup",
+    "CARGO_TARGET_DIR": "/home/ridge/.cache/spheres-s05-target",
+    "CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER": "/home/ridge/.cache/spheres-s05-tools/bin/cc",
+    "CC": "/home/ridge/.cache/spheres-s05-tools/bin/cc",
+    "TMPDIR": "/home/ridge/.cache/spheres-s05-runs/tmp"
+  },
+  "checks": [
+    {
+      "name": "web",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--release",
+        "-p",
+        "spheres-web",
+        "--no-fail-fast"
+      ],
+      "started_utc": "2026-09-22T01:56:43.024876+00:00",
+      "finished_utc": "2026-09-22T01:58:25.637791+00:00",
+      "elapsed_seconds": 102.61291058399999,
+      "exit_code": 0,
+      "log": "web.log",
+      "log_sha256": "b1330cb1cdfeddaa4dcfcedf8b5f41be1c914521422b51eadb713188323d1640",
+      "totals": {
+        "passed": 404,
+        "failed": 0,
+        "ignored": 21,
+        "completed_targets": 2
+      },
+      "source_before": {
+        "head": "5b92fbb425ff18cd178b4020f3bdc8ea632c457e",
+        "status": ""
+      },
+      "source_after": {
+        "head": "5b92fbb425ff18cd178b4020f3bdc8ea632c457e",
+        "status": ""
+      },
+      "passed": true,
+      "test_binary": {
+        "path": "/home/ridge/.cache/spheres-s05-target/release/deps/spheres_web-20279169217b1e37",
+        "bytes": 349419584,
+        "sha256": "d5ad46213fdccda0447feb2a8e0cf06e5406537ad5974c6c120be1a029a60b01"
+      }
+    },
+    {
+      "name": "node",
+      "command": [
+        "node",
+        "tools/ui/run-unit.cjs"
+      ],
+      "started_utc": "2026-09-22T01:58:26.102988+00:00",
+      "finished_utc": "2026-09-22T02:00:44.878725+00:00",
+      "elapsed_seconds": 138.775733535,
+      "exit_code": 0,
+      "log": "node.log",
+      "log_sha256": "36e9f4a24acd5430fcc7f0f479e207010e79ce98f00aa9a67088651b6251b4bc",
+      "totals": {
+        "tests": 1604,
+        "passed": 1603,
+        "failed": 0,
+        "skipped": 1
+      },
+      "source_before": {
+        "head": "5b92fbb425ff18cd178b4020f3bdc8ea632c457e",
+        "status": ""
+      },
+      "source_after": {
+        "head": "5b92fbb425ff18cd178b4020f3bdc8ea632c457e",
+        "status": ""
+      },
+      "passed": true
+    }
+  ],
+  "source_before": {
+    "head": "5b92fbb425ff18cd178b4020f3bdc8ea632c457e",
+    "status": ""
+  },
+  "toolchain_sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801",
+  "source_after": {
+    "head": "5b92fbb425ff18cd178b4020f3bdc8ea632c457e",
+    "status": ""
+  },
+  "runner_sha256_after": "cc9ade0b2ce912bfca085a9a3afa76ec02ba5b19d5170e1cfff396b28c324b4b",
+  "passed": true,
+  "finished_utc": "2026-09-22T02:00:45.105154+00:00"
+}

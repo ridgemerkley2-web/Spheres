@@ -46,6 +46,19 @@ test('date wording retains unknown, month precision and observation versus inter
   assert.match(review.observationDate({attested_on:'2021-05-28'}),/^Observed on/);
   assert.match(review.observationDate({name:'Example'}),/not established/);
 });
+
+test('society testimony dates are displayed as observations without inventing officer terms',()=>{
+  const party=packet.organizations.find(e=>e.id==='to_peoples_party'),before=clone(party);
+  for(const role of party.roles.filter(r=>r.kind==='other')){
+    const holder=role.holder_claims[0],label=review.observationDate(holder);
+    assert.match(label,/Observed between 2022-04-19 and 2022-04-21/);
+    assert.match(label,/office term not established/);
+    assert.doesNotMatch(label,/Reported interval/);
+  }
+  assert.deepEqual(party,before);
+  assert.match(review.observationDate({attested_period:{from:'2022-04-19',through:null}}),/and Not established; office term not established/);
+  assert.match(review.observationDate({attested_period:{from:'2022-04-19',through:'2022-04-21'},from:'2021-01-01',until:null}),/reported office interval: 2021-01-01 → Not established/);
+});
 test('source navigation rejects script URLs, credentials and filesystem traversal',()=>{
   assert.equal(review.publicURL('https://example.org/report'),'https://example.org/report');
   for(const value of ['javascript:alert(1)','file:///secret','https://name:pass@example.org','http://example.org'])assert.equal(review.publicURL(value),null);

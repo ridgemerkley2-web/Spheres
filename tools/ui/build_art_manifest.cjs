@@ -22,6 +22,7 @@ const ui = (f) => path.join(ROOT, "spheres-web", "ui", f);
 const EquipmentMesh = require(ui("equipment-mesh.js"));
 const SiteMesh = require(ui("site-mesh.js"));
 const TownMesh = require(ui("town-mesh.js"));
+const {measureMesh} = require('./mesh-accounting.cjs');
 
 const CONVENTION = { units: "metres", axes: "+X right, +Y up, +Z forward", handedness: "right" };
 
@@ -42,14 +43,18 @@ const GLB = {
   ground_recon: "spheres-ground-recon.glb", ground_artillery: "spheres-ground-artillery.glb",
   ground_air_defense: "spheres-ground-air-defense.glb",
   air_light_attack: "spheres-air-light-attack.glb", air_tactical_strike: "spheres-air-tactical-strike.glb",
+  air_fighter: 'spheres-air-fighter.glb',
 };
 const vehicles = Object.keys(GLB).map((platform) => {
   const m = EquipmentMesh.build({ platform });
   const aviation = platform.startsWith("air_");
   const lod = { LOD0: m.triangleCount };
-  // Aircraft currently expose inspection geometry only; do not report copies
-  // at ignored LOD settings as lower-detail aircraft assets.
-  if (!aviation) for (const level of [1, 2]) lod[`LOD${level}`] = EquipmentMesh.build({ platform, lod: level }).triangleCount;
+  const payloads = {LOD0: measureMesh(m, platform)};
+  for (const level of [1, 2]) {
+    const mesh = EquipmentMesh.build({platform, lod: level});
+    lod[`LOD${level}`] = mesh.triangleCount;
+    payloads[`LOD${level}`] = measureMesh(mesh, `${platform} LOD${level}`);
+  }
   const file = path.join(ROOT, "spheres-web", "ui", "equipment-models", GLB[platform]);
   return {
     asset_id: `${aviation ? "aviation" : "ground"}.${platform}.baseline.v1`,
@@ -58,14 +63,15 @@ const vehicles = Object.keys(GLB).map((platform) => {
     game_id: platform,
     source: "spheres-web/ui/equipment-mesh.js",
     generator: "EquipmentMesh.build({platform})",
-    runtime: "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
+    runtime: "spheres-web/ui/equipment-model.js (WebGL viewer, selectable parts)",
     glb: `spheres-web/ui/equipment-models/${GLB[platform]}`,
     glb_bytes: fs.existsSync(file) ? fs.statSync(file).size : null,
     regenerate: "node tools/ui/build_equipment_models.cjs",
     lod,
+    payloads,
     parts: m.parts.length,
     slots: Object.keys(m.specification.components).sort(),
-    materials: 1,
+    materials: aviation ? 'opaque/glass surface ranges; shared renderer textures' : 'authored vertex palette and material classes; shared renderer textures',
     pivot: aviation ? "airframe centreline, parked landing-gear contact at Y=0" : "hull centreline, ground contact at Y=0",
     bounds: bounds(m),
     basis: "fictional — original game art, not a named real vehicle",
@@ -176,9 +182,9 @@ ${rows.map((r) => `| \`${r[0]}\` | \`${r[1]}\` | ${r[2]} | ${r[3]} | ${r[4]} | $
 
 ${placeholders.length ? `${placeholders.length} of the ${sites.length} construction kinds remain placeholder massing: ${placeholders.map(s => `\`${s.game_id}\``).join(", ")}.` : `All ${sites.length} construction kinds have authored compositions; none is marked as placeholder massing.`}
 Placeholder status comes from each generator's metadata and is also retained in the JSON.
-Ground equipment has three authored detail levels. Tactical aircraft currently
-have inspection geometry only. A missing level is shown as a dash, not as a
-duplicate lower-detail asset. These counts do not certify runtime frame rates;
+All nine ground platforms and three CP1 aircraft have three authored detail levels.
+CPU mesh bytes and base attribute payloads are retained in the JSON; they do not
+include derived renderer attributes, textures or shadow targets. These counts do not certify runtime frame rates;
 measured budget limits and remaining overruns are recorded in P0_BUDGETS.md.
 `;
 const outMd = path.join(ROOT, "docs", "art", "P0_MANIFEST.md");

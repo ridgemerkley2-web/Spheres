@@ -1,0 +1,19 @@
+{
+  "revision": "2c959cd7c4f61d09a77d5859b1cbee24aa509b10",
+  "lane": "manifest",
+  "command": [
+    "node",
+    "tools/ui/build_art_manifest.cjs",
+    "--check"
+  ],
+  "started_utc": "2026-09-22T02:53:52.104807+00:00",
+  "clean_before": true,
+  "runner_sha256": "f010cde732a21c8cc454ecd0aaa325ba7fe0994dae87ae28bbc55971de0c9f06",
+  "expected_exit_code": 0,
+  "exit_code": 0,
+  "finished_utc": "2026-09-22T02:53:56.723056+00:00",
+  "clean_after": true,
+  "revision_after": "2c959cd7c4f61d09a77d5859b1cbee24aa509b10",
+  "log_sha256": "0cd9f5728cdd3c6eeba3b61f250b5b387c13ceace2cc7c33150cfd711d6853a5",
+  "passed": true
+}

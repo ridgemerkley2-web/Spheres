@@ -1,0 +1,81 @@
+{
+  "passed": true,
+  "revision": "4ac849a4f5a636a0e573e5cfdad03e05c7133566",
+  "binary_sha256": "454fa9ba8d4c110ae2fb2dedbd904441685badcd20b2a7ab2580dad034bf6fb8",
+  "scope": "Authored France 1990/2035 and USSR dissolution scenarios; not a full 1990–2035 campaign.",
+  "commands": [
+    {
+      "player_context": "France",
+      "commands": [
+        {
+          "action": "beyond_2035",
+          "date": "1 Jan 2036",
+          "kind": "continue_campaign",
+          "player": "France",
+          "target": null
+        }
+      ],
+      "session_id": "14372-1790043178095657200-2",
+      "client_id": "d0bd2c2a-9a69-4d12-9486-e6638871d389",
+      "request_seq": 2
+    },
+    {
+      "player_context": "USSR",
+      "commands": [
+        {
+          "action": "successor",
+          "date": "2 Jan 1990",
+          "kind": "continue_campaign",
+          "player": "USSR",
+          "target": "Russia"
+        }
+      ],
+      "session_id": "14372-1790043188490457400-4",
+      "client_id": "d0bd2c2a-9a69-4d12-9486-e6638871d389",
+      "request_seq": 4
+    }
+  ],
+  "advances": [
+    {
+      "player_context": "France",
+      "days": 1,
+      "commands": [],
+      "session_id": "14372-1790043178095657200-2",
+      "client_id": "d0bd2c2a-9a69-4d12-9486-e6638871d389",
+      "request_seq": 1
+    },
+    {
+      "player_context": "France",
+      "days": 1,
+      "commands": [],
+      "session_id": "14372-1790043187046732000-3",
+      "client_id": "d0bd2c2a-9a69-4d12-9486-e6638871d389",
+      "request_seq": 3
+    }
+  ],
+  "errors": [],
+  "screenshots": [
+    "overview-desktop.png",
+    "goals-desktop.png",
+    "goals-390.png",
+    "history-390.png",
+    "endpoint-desktop.png",
+    "succession-390.png",
+    "successor-resumed-390.png"
+  ],
+  "checks": [
+    "Overview, goals and filtered history inspection preserve world, archive and continuation metadata; Escape restores focus.",
+    "31 December settles; sandbox continuation changes no simulation fields.",
+    "Russia retains exact existing simulation state except player control/manual-rate ownership and the explicitly verified former-country aim record.",
+    "Read failure has a working retry; no stale continuation control is exposed."
+  ],
+  "build": {
+    "branch": "codex/campaign-certification",
+    "built_at_unix_seconds": 1790042965,
+    "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+    "distribution": "Local offline game server; source and attribution accompany the release",
+    "revision": "4ac849a4f5a6",
+    "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S21-browser-final4\\server",
+    "version": "0.6.0"
+  }
+}

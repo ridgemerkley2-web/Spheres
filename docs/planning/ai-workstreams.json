@@ -37,7 +37,7 @@
         "S20",
         "S21"
       ],
-      "next": "S18 complete. Integrate Claude S19 before shared-shell changes for S20; S21 remains planned."
+      "next": "S18 and S21 complete. S20 waits for Claude S19 integration. Campaign continuation evidence: docs/campaign-certification/S21/README.md; G4 remains open."
     },
     {
       "id": "guidance",
@@ -46,7 +46,7 @@
         "S19"
       ],
       "handoff": "docs/planning/ai-handoffs/CLAUDE-S19-01.md",
-      "next": "CLAUDE-S19-01 is dependency-ready after S18; claim one bounded packet when instructed."
+      "next": "CLAUDE-S19-01 claimed by Claude on claude/s19-guidance-01 at 97d126d from base 939e8f9. In progress, not ready for review; continue the existing claim."
     },
     {
       "id": "characters",
@@ -61,8 +61,8 @@
         "C07",
         "S23"
       ],
-      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-01.md",
-      "next": "CLAUDE-C01-01 received at origin/claude/c01-tonga-01 (426f0dd), ready_for_review by Codex; not integrated or accepted. C01 remains incomplete; do not repeat the submitted packet."
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-02.md",
+      "next": "CLAUDE-C01-01 accepted and qualified at fdb6d2c; evidence: docs/campaign-certification/C01/integrations/CLAUDE-C01-01/README.md. C01 remains incomplete. Next optional packet: CLAUDE-C01-02 (2021 Tonga appointment transition). Claude has separately claimed S19 gameplay work."
     },
     {
       "id": "qualification",
@@ -76,7 +76,7 @@
         "S29",
         "S30"
       ],
-      "next": "Wait for each canonical dependency and qualify the exact integrated source."
+      "next": "CODEX-S22-PREP-01 complete at 2c959cd: repaired art accounting and equipment self-shadows. S22 remains planned after S20; 42 art budget overruns and full campaign performance qualification remain open. Evidence: docs/campaign-certification/S22/preparation/README.md."
     },
     {
       "id": "human-playtests",

@@ -1,0 +1,1688 @@
+{
+  "passed": true,
+  "source_revision": "7a13135e2a26a007eaf161b799ffc9e2f582a43d",
+  "source_dirty": true,
+  "measured_at": "2026-09-22T02:49:57.645Z",
+  "platform": "win32",
+  "os": "10.0.26200",
+  "node": "v24.12.0",
+  "method": "Isolated actual EquipmentModel WebGL buffers queried via BUFFER_SIZE. Controlled redraw intervals count API submissions, including repeat passes. No FPS or driver VRAM claim. Textures, renderbuffers, default framebuffer, CPU heap and driver overhead excluded from buffer totals.",
+  "source_sha256": {
+    "spheres-web/ui/equipment-mesh.js": "e020e51300436a3f86b7789dc3429fd3537035e0a24ddfa49984d83ce37b4625",
+    "spheres-web/ui/tank-surface.js": "46ba00dd7297395507fd8e8a9f4333d69a00fb4d284d4d6f1bcddf3c16deb5c5",
+    "spheres-web/ui/military-surface.js": "a31de975d03d0ea76f6df9dba712fbb9210f0ad76a0354b61dcd3160dc9e1493",
+    "spheres-web/ui/equipment-export.js": "f73e322a577f95b23968c4166a4d4338de12736e652e33e2bf9aa81cacb192fd",
+    "spheres-web/ui/equipment-model.js": "355f0130b620946e0889a4042b4fdb67c14968438506286f1609aeb4dd50d1e1",
+    "tools/ui/webgl-measurement.js": "406114d7d5f4fabea0ef9c12a5ee73cb0b442f4897d1e12a4a3fa6682c6b2812",
+    "tools/ui/art-memory-browser.cjs": "c745e900d617d133fb08bf524086f0538f7aedf2165fe650318643c4c541e56e",
+    "tools/ui/mesh-accounting.cjs": "8e6f18892e89b31a0d032051939913157c96e68a17457e71f2cb465c0a0a109b"
+  },
+  "cases": [
+    {
+      "platform": "tank_standard",
+      "gpu": {
+        "vendor": "WebKit",
+        "renderer": "WebKit WebGL",
+        "unmasked": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 (0x00002F04) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "stored_model_triangles": 68872,
+          "expected_buffer_payload_bytes": 10744248,
+          "current": {
+            "resident_buffer_payload_bytes": 10744248,
+            "peak_buffer_payload_bytes": 10744248,
+            "live_buffers": 7,
+            "buffer_data_calls": 8,
+            "buffer_data_payload_bytes": 10744320,
+            "draw_calls": 15,
+            "submitted_triangles": 688730,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 10744248,
+            "peak_buffer_payload_bytes": 10744248,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 137746,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 1,
+          "stored_model_triangles": 8050,
+          "expected_buffer_payload_bytes": 1256016,
+          "current": {
+            "resident_buffer_payload_bytes": 1256016,
+            "peak_buffer_payload_bytes": 10744248,
+            "live_buffers": 7,
+            "buffer_data_calls": 13,
+            "buffer_data_payload_bytes": 12000192,
+            "draw_calls": 21,
+            "submitted_triangles": 842578,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 1256016,
+            "peak_buffer_payload_bytes": 10744248,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 16102,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 2,
+          "stored_model_triangles": 1168,
+          "expected_buffer_payload_bytes": 182424,
+          "current": {
+            "resident_buffer_payload_bytes": 182424,
+            "peak_buffer_payload_bytes": 10744248,
+            "live_buffers": 7,
+            "buffer_data_calls": 18,
+            "buffer_data_payload_bytes": 12182472,
+            "draw_calls": 27,
+            "submitted_triangles": 861018,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 182424,
+            "peak_buffer_payload_bytes": 10744248,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 2338,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 0,
+          "stored_model_triangles": 68872,
+          "expected_buffer_payload_bytes": 10744248,
+          "current": {
+            "resident_buffer_payload_bytes": 10744248,
+            "peak_buffer_payload_bytes": 10744248,
+            "live_buffers": 7,
+            "buffer_data_calls": 23,
+            "buffer_data_payload_bytes": 22926576,
+            "draw_calls": 33,
+            "submitted_triangles": 1001102,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 10744248,
+            "peak_buffer_payload_bytes": 10744248,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 137746,
+            "offscreen_submitted_triangles": 0
+          }
+        }
+      ],
+      "paint_and_selection": {
+        "resident_buffer_payload_bytes": 10744248,
+        "peak_buffer_payload_bytes": 10744248,
+        "live_buffers": 7,
+        "buffer_data_calls": 24,
+        "buffer_data_payload_bytes": 25405968,
+        "draw_calls": 40,
+        "submitted_triangles": 1279094,
+        "offscreen_submitted_triangles": 0,
+        "context_losses": 0
+      },
+      "shader_diagnostics": [
+        "getShaderInfoLog: ERROR: 0:14: 'packed' : Illegal use of reserved word\nERROR: 0:14: 'packed' : syntax error\n"
+      ],
+      "lost": {
+        "resident_buffer_payload_bytes": 0,
+        "peak_buffer_payload_bytes": 10744248,
+        "live_buffers": 0,
+        "buffer_data_calls": 24,
+        "buffer_data_payload_bytes": 25405968,
+        "draw_calls": 40,
+        "submitted_triangles": 1279094,
+        "offscreen_submitted_triangles": 0,
+        "context_losses": 1
+      },
+      "restored": {
+        "resident_buffer_payload_bytes": 10744248,
+        "peak_buffer_payload_bytes": 10744248,
+        "live_buffers": 7,
+        "buffer_data_calls": 32,
+        "buffer_data_payload_bytes": 36150288,
+        "draw_calls": 48,
+        "submitted_triangles": 1559586,
+        "offscreen_submitted_triangles": 0,
+        "context_losses": 1
+      },
+      "disposed": {
+        "resident_buffer_payload_bytes": 0,
+        "peak_buffer_payload_bytes": 10744248,
+        "live_buffers": 0,
+        "buffer_data_calls": 32,
+        "buffer_data_payload_bytes": 36150288,
+        "draw_calls": 48,
+        "submitted_triangles": 1559586,
+        "offscreen_submitted_triangles": 0,
+        "context_losses": 1
+      }
+    },
+    {
+      "platform": "tank_heavy",
+      "gpu": {
+        "vendor": "WebKit",
+        "renderer": "WebKit WebGL",
+        "unmasked": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 (0x00002F04) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "stored_model_triangles": 74144,
+          "expected_buffer_payload_bytes": 11566680,
+          "current": {
+            "resident_buffer_payload_bytes": 11566680,
+            "peak_buffer_payload_bytes": 11566680,
+            "live_buffers": 7,
+            "buffer_data_calls": 8,
+            "buffer_data_payload_bytes": 11566752,
+            "draw_calls": 9,
+            "submitted_triangles": 444870,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 11566680,
+            "peak_buffer_payload_bytes": 11566680,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 148290,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 1,
+          "stored_model_triangles": 5834,
+          "expected_buffer_payload_bytes": 910320,
+          "current": {
+            "resident_buffer_payload_bytes": 910320,
+            "peak_buffer_payload_bytes": 11566680,
+            "live_buffers": 7,
+            "buffer_data_calls": 13,
+            "buffer_data_payload_bytes": 12476928,
+            "draw_calls": 15,
+            "submitted_triangles": 604830,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 910320,
+            "peak_buffer_payload_bytes": 11566680,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 11670,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 2,
+          "stored_model_triangles": 1204,
+          "expected_buffer_payload_bytes": 188040,
+          "current": {
+            "resident_buffer_payload_bytes": 188040,
+            "peak_buffer_payload_bytes": 11566680,
+            "live_buffers": 7,
+            "buffer_data_calls": 18,
+            "buffer_data_payload_bytes": 12664824,
+            "draw_calls": 21,
+            "submitted_triangles": 618910,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 188040,
+            "peak_buffer_payload_bytes": 11566680,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 2410,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 0,
+          "stored_model_triangles": 74144,
+          "expected_buffer_payload_bytes": 11566680,
+          "current": {
+            "resident_buffer_payload_bytes": 11566680,
+            "peak_buffer_payload_bytes": 11566680,
+            "live_buffers": 7,
+            "buffer_data_calls": 23,
+            "buffer_data_payload_bytes": 24231360,
+            "draw_calls": 27,
+            "submitted_triangles": 769610,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 11566680,
+            "peak_buffer_payload_bytes": 11566680,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 148290,
+            "offscreen_submitted_triangles": 0
+          }
+        }
+      ],
+      "paint_and_selection": {
+        "resident_buffer_payload_bytes": 11566680,
+        "peak_buffer_payload_bytes": 11566680,
+        "live_buffers": 7,
+        "buffer_data_calls": 24,
+        "buffer_data_payload_bytes": 26900544,
+        "draw_calls": 34,
+        "submitted_triangles": 1068714,
+        "offscreen_submitted_triangles": 0,
+        "context_losses": 0
+      },
+      "shader_diagnostics": [
+        "getShaderInfoLog: ERROR: 0:14: 'packed' : Illegal use of reserved word\nERROR: 0:14: 'packed' : syntax error\n"
+      ],
+      "disposed": {
+        "resident_buffer_payload_bytes": 0,
+        "peak_buffer_payload_bytes": 11566680,
+        "live_buffers": 0,
+        "buffer_data_calls": 24,
+        "buffer_data_payload_bytes": 26900544,
+        "draw_calls": 34,
+        "submitted_triangles": 1068714,
+        "offscreen_submitted_triangles": 0,
+        "context_losses": 0
+      }
+    },
+    {
+      "platform": "tank_light",
+      "gpu": {
+        "vendor": "WebKit",
+        "renderer": "WebKit WebGL",
+        "unmasked": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 (0x00002F04) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "stored_model_triangles": 68872,
+          "expected_buffer_payload_bytes": 10744248,
+          "current": {
+            "resident_buffer_payload_bytes": 10744248,
+            "peak_buffer_payload_bytes": 10744248,
+            "live_buffers": 7,
+            "buffer_data_calls": 8,
+            "buffer_data_payload_bytes": 10744320,
+            "draw_calls": 12,
+            "submitted_triangles": 550984,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 10744248,
+            "peak_buffer_payload_bytes": 10744248,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 137746,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 1,
+          "stored_model_triangles": 8050,
+          "expected_buffer_payload_bytes": 1256016,
+          "current": {
+            "resident_buffer_payload_bytes": 1256016,
+            "peak_buffer_payload_bytes": 10744248,
+            "live_buffers": 7,
+            "buffer_data_calls": 13,
+            "buffer_data_payload_bytes": 12000192,
+            "draw_calls": 18,
+            "submitted_triangles": 704832,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 1256016,
+            "peak_buffer_payload_bytes": 10744248,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 16102,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 2,
+          "stored_model_triangles": 1168,
+          "expected_buffer_payload_bytes": 182424,
+          "current": {
+            "resident_buffer_payload_bytes": 182424,
+            "peak_buffer_payload_bytes": 10744248,
+            "live_buffers": 7,
+            "buffer_data_calls": 18,
+            "buffer_data_payload_bytes": 12182472,
+            "draw_calls": 24,
+            "submitted_triangles": 723272,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 182424,
+            "peak_buffer_payload_bytes": 10744248,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 2338,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 0,
+          "stored_model_triangles": 68872,
+          "expected_buffer_payload_bytes": 10744248,
+          "current": {
+            "resident_buffer_payload_bytes": 10744248,
+            "peak_buffer_payload_bytes": 10744248,
+            "live_buffers": 7,
+            "buffer_data_calls": 23,
+            "buffer_data_payload_bytes": 22926576,
+            "draw_calls": 30,
+            "submitted_triangles": 863356,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 10744248,
+            "peak_buffer_payload_bytes": 10744248,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 137746,
+            "offscreen_submitted_triangles": 0
+          }
+        }
+      ],
+      "paint_and_selection": {
+        "resident_buffer_payload_bytes": 10744248,
+        "peak_buffer_payload_bytes": 10744248,
+        "live_buffers": 7,
+        "buffer_data_calls": 24,
+        "buffer_data_payload_bytes": 25405968,
+        "draw_calls": 37,
+        "submitted_triangles": 1141348,
+        "offscreen_submitted_triangles": 0,
+        "context_losses": 0
+      },
+      "shader_diagnostics": [
+        "getShaderInfoLog: ERROR: 0:14: 'packed' : Illegal use of reserved word\nERROR: 0:14: 'packed' : syntax error\n"
+      ],
+      "disposed": {
+        "resident_buffer_payload_bytes": 0,
+        "peak_buffer_payload_bytes": 10744248,
+        "live_buffers": 0,
+        "buffer_data_calls": 24,
+        "buffer_data_payload_bytes": 25405968,
+        "draw_calls": 37,
+        "submitted_triangles": 1141348,
+        "offscreen_submitted_triangles": 0,
+        "context_losses": 0
+      }
+    },
+    {
+      "platform": "tank_destroyer",
+      "gpu": {
+        "vendor": "WebKit",
+        "renderer": "WebKit WebGL",
+        "unmasked": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 (0x00002F04) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "stored_model_triangles": 68872,
+          "expected_buffer_payload_bytes": 10744248,
+          "current": {
+            "resident_buffer_payload_bytes": 10744248,
+            "peak_buffer_payload_bytes": 10744248,
+            "live_buffers": 7,
+            "buffer_data_calls": 8,
+            "buffer_data_payload_bytes": 10744320,
+            "draw_calls": 9,
+            "submitted_triangles": 413238,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 10744248,
+            "peak_buffer_payload_bytes": 10744248,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 137746,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 1,
+          "stored_model_triangles": 8050,
+          "expected_buffer_payload_bytes": 1256016,
+          "current": {
+            "resident_buffer_payload_bytes": 1256016,
+            "peak_buffer_payload_bytes": 10744248,
+            "live_buffers": 7,
+            "buffer_data_calls": 13,
+            "buffer_data_payload_bytes": 12000192,
+            "draw_calls": 15,
+            "submitted_triangles": 567086,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 1256016,
+            "peak_buffer_payload_bytes": 10744248,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 16102,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 2,
+          "stored_model_triangles": 1168,
+          "expected_buffer_payload_bytes": 182424,
+          "current": {
+            "resident_buffer_payload_bytes": 182424,
+            "peak_buffer_payload_bytes": 10744248,
+            "live_buffers": 7,
+            "buffer_data_calls": 18,
+            "buffer_data_payload_bytes": 12182472,
+            "draw_calls": 21,
+            "submitted_triangles": 585526,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 182424,
+            "peak_buffer_payload_bytes": 10744248,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 2338,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 0,
+          "stored_model_triangles": 68872,
+          "expected_buffer_payload_bytes": 10744248,
+          "current": {
+            "resident_buffer_payload_bytes": 10744248,
+            "peak_buffer_payload_bytes": 10744248,
+            "live_buffers": 7,
+            "buffer_data_calls": 23,
+            "buffer_data_payload_bytes": 22926576,
+            "draw_calls": 27,
+            "submitted_triangles": 725610,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 10744248,
+            "peak_buffer_payload_bytes": 10744248,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 137746,
+            "offscreen_submitted_triangles": 0
+          }
+        }
+      ],
+      "paint_and_selection": {
+        "resident_buffer_payload_bytes": 10744248,
+        "peak_buffer_payload_bytes": 10744248,
+        "live_buffers": 7,
+        "buffer_data_calls": 24,
+        "buffer_data_payload_bytes": 25405968,
+        "draw_calls": 34,
+        "submitted_triangles": 1003602,
+        "offscreen_submitted_triangles": 0,
+        "context_losses": 0
+      },
+      "shader_diagnostics": [
+        "getShaderInfoLog: ERROR: 0:14: 'packed' : Illegal use of reserved word\nERROR: 0:14: 'packed' : syntax error\n"
+      ],
+      "disposed": {
+        "resident_buffer_payload_bytes": 0,
+        "peak_buffer_payload_bytes": 10744248,
+        "live_buffers": 0,
+        "buffer_data_calls": 24,
+        "buffer_data_payload_bytes": 25405968,
+        "draw_calls": 34,
+        "submitted_triangles": 1003602,
+        "offscreen_submitted_triangles": 0,
+        "context_losses": 0
+      }
+    },
+    {
+      "platform": "ground_ifv",
+      "gpu": {
+        "vendor": "WebKit",
+        "renderer": "WebKit WebGL",
+        "unmasked": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 (0x00002F04) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "stored_model_triangles": 44222,
+          "expected_buffer_payload_bytes": 6898848,
+          "current": {
+            "resident_buffer_payload_bytes": 6898848,
+            "peak_buffer_payload_bytes": 6898848,
+            "live_buffers": 7,
+            "buffer_data_calls": 8,
+            "buffer_data_payload_bytes": 6898920,
+            "draw_calls": 9,
+            "submitted_triangles": 265338,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 6898848,
+            "peak_buffer_payload_bytes": 6898848,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 88446,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 1,
+          "stored_model_triangles": 5862,
+          "expected_buffer_payload_bytes": 914688,
+          "current": {
+            "resident_buffer_payload_bytes": 914688,
+            "peak_buffer_payload_bytes": 6898848,
+            "live_buffers": 7,
+            "buffer_data_calls": 13,
+            "buffer_data_payload_bytes": 7813464,
+            "draw_calls": 15,
+            "submitted_triangles": 365510,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 914688,
+            "peak_buffer_payload_bytes": 6898848,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 11726,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 2,
+          "stored_model_triangles": 1144,
+          "expected_buffer_payload_bytes": 178680,
+          "current": {
+            "resident_buffer_payload_bytes": 178680,
+            "peak_buffer_payload_bytes": 6898848,
+            "live_buffers": 7,
+            "buffer_data_calls": 18,
+            "buffer_data_payload_bytes": 7992000,
+            "draw_calls": 21,
+            "submitted_triangles": 379526,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 178680,
+            "peak_buffer_payload_bytes": 6898848,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 2290,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 0,
+          "stored_model_triangles": 44222,
+          "expected_buffer_payload_bytes": 6898848,
+          "current": {
+            "resident_buffer_payload_bytes": 6898848,
+            "peak_buffer_payload_bytes": 6898848,
+            "live_buffers": 7,
+            "buffer_data_calls": 23,
+            "buffer_data_payload_bytes": 14890704,
+            "draw_calls": 27,
+            "submitted_triangles": 470262,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 6898848,
+            "peak_buffer_payload_bytes": 6898848,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 88446,
+            "offscreen_submitted_triangles": 0
+          }
+        }
+      ],
+      "paint_and_selection": {
+        "resident_buffer_payload_bytes": 6898848,
+        "peak_buffer_payload_bytes": 6898848,
+        "live_buffers": 7,
+        "buffer_data_calls": 24,
+        "buffer_data_payload_bytes": 16482696,
+        "draw_calls": 34,
+        "submitted_triangles": 650522,
+        "offscreen_submitted_triangles": 0,
+        "context_losses": 0
+      },
+      "shader_diagnostics": [
+        "getShaderInfoLog: ERROR: 0:14: 'packed' : Illegal use of reserved word\nERROR: 0:14: 'packed' : syntax error\n"
+      ],
+      "disposed": {
+        "resident_buffer_payload_bytes": 0,
+        "peak_buffer_payload_bytes": 6898848,
+        "live_buffers": 0,
+        "buffer_data_calls": 24,
+        "buffer_data_payload_bytes": 16482696,
+        "draw_calls": 34,
+        "submitted_triangles": 650522,
+        "offscreen_submitted_triangles": 0,
+        "context_losses": 0
+      }
+    },
+    {
+      "platform": "ground_apc",
+      "gpu": {
+        "vendor": "WebKit",
+        "renderer": "WebKit WebGL",
+        "unmasked": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 (0x00002F04) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "stored_model_triangles": 26746,
+          "expected_buffer_payload_bytes": 4172592,
+          "current": {
+            "resident_buffer_payload_bytes": 4172592,
+            "peak_buffer_payload_bytes": 4172592,
+            "live_buffers": 7,
+            "buffer_data_calls": 8,
+            "buffer_data_payload_bytes": 4172664,
+            "draw_calls": 9,
+            "submitted_triangles": 160482,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 4172592,
+            "peak_buffer_payload_bytes": 4172592,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 53494,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 1,
+          "stored_model_triangles": 4197,
+          "expected_buffer_payload_bytes": 654948,
+          "current": {
+            "resident_buffer_payload_bytes": 654948,
+            "peak_buffer_payload_bytes": 4172592,
+            "live_buffers": 7,
+            "buffer_data_calls": 13,
+            "buffer_data_payload_bytes": 4827468,
+            "draw_calls": 15,
+            "submitted_triangles": 222372,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 654948,
+            "peak_buffer_payload_bytes": 4172592,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 8396,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 2,
+          "stored_model_triangles": 982,
+          "expected_buffer_payload_bytes": 153408,
+          "current": {
+            "resident_buffer_payload_bytes": 153408,
+            "peak_buffer_payload_bytes": 4172592,
+            "live_buffers": 7,
+            "buffer_data_calls": 18,
+            "buffer_data_payload_bytes": 4980732,
+            "draw_calls": 21,
+            "submitted_triangles": 232734,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 153408,
+            "peak_buffer_payload_bytes": 4172592,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 1966,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 0,
+          "stored_model_triangles": 26746,
+          "expected_buffer_payload_bytes": 4172592,
+          "current": {
+            "resident_buffer_payload_bytes": 4172592,
+            "peak_buffer_payload_bytes": 4172592,
+            "live_buffers": 7,
+            "buffer_data_calls": 23,
+            "buffer_data_payload_bytes": 9153180,
+            "draw_calls": 27,
+            "submitted_triangles": 288194,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 4172592,
+            "peak_buffer_payload_bytes": 4172592,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 53494,
+            "offscreen_submitted_triangles": 0
+          }
+        }
+      ],
+      "paint_and_selection": {
+        "resident_buffer_payload_bytes": 4172592,
+        "peak_buffer_payload_bytes": 4172592,
+        "live_buffers": 7,
+        "buffer_data_calls": 24,
+        "buffer_data_payload_bytes": 10116036,
+        "draw_calls": 34,
+        "submitted_triangles": 398550,
+        "offscreen_submitted_triangles": 0,
+        "context_losses": 0
+      },
+      "shader_diagnostics": [
+        "getShaderInfoLog: ERROR: 0:14: 'packed' : Illegal use of reserved word\nERROR: 0:14: 'packed' : syntax error\n"
+      ],
+      "disposed": {
+        "resident_buffer_payload_bytes": 0,
+        "peak_buffer_payload_bytes": 4172592,
+        "live_buffers": 0,
+        "buffer_data_calls": 24,
+        "buffer_data_payload_bytes": 10116036,
+        "draw_calls": 34,
+        "submitted_triangles": 398550,
+        "offscreen_submitted_triangles": 0,
+        "context_losses": 0
+      }
+    },
+    {
+      "platform": "ground_recon",
+      "gpu": {
+        "vendor": "WebKit",
+        "renderer": "WebKit WebGL",
+        "unmasked": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 (0x00002F04) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "stored_model_triangles": 23726,
+          "expected_buffer_payload_bytes": 3701472,
+          "current": {
+            "resident_buffer_payload_bytes": 3701472,
+            "peak_buffer_payload_bytes": 3701472,
+            "live_buffers": 7,
+            "buffer_data_calls": 8,
+            "buffer_data_payload_bytes": 3701544,
+            "draw_calls": 9,
+            "submitted_triangles": 142362,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 3701472,
+            "peak_buffer_payload_bytes": 3701472,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 47454,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 1,
+          "stored_model_triangles": 4476,
+          "expected_buffer_payload_bytes": 698472,
+          "current": {
+            "resident_buffer_payload_bytes": 698472,
+            "peak_buffer_payload_bytes": 3701472,
+            "live_buffers": 7,
+            "buffer_data_calls": 13,
+            "buffer_data_payload_bytes": 4399872,
+            "draw_calls": 15,
+            "submitted_triangles": 198770,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 698472,
+            "peak_buffer_payload_bytes": 3701472,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 8954,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 2,
+          "stored_model_triangles": 944,
+          "expected_buffer_payload_bytes": 147480,
+          "current": {
+            "resident_buffer_payload_bytes": 147480,
+            "peak_buffer_payload_bytes": 3701472,
+            "live_buffers": 7,
+            "buffer_data_calls": 18,
+            "buffer_data_payload_bytes": 4547208,
+            "draw_calls": 21,
+            "submitted_triangles": 209614,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 147480,
+            "peak_buffer_payload_bytes": 3701472,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 1890,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 0,
+          "stored_model_triangles": 23726,
+          "expected_buffer_payload_bytes": 3701472,
+          "current": {
+            "resident_buffer_payload_bytes": 3701472,
+            "peak_buffer_payload_bytes": 3701472,
+            "live_buffers": 7,
+            "buffer_data_calls": 23,
+            "buffer_data_payload_bytes": 8248536,
+            "draw_calls": 27,
+            "submitted_triangles": 258958,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 3701472,
+            "peak_buffer_payload_bytes": 3701472,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 47454,
+            "offscreen_submitted_triangles": 0
+          }
+        }
+      ],
+      "paint_and_selection": {
+        "resident_buffer_payload_bytes": 3701472,
+        "peak_buffer_payload_bytes": 3701472,
+        "live_buffers": 7,
+        "buffer_data_calls": 24,
+        "buffer_data_payload_bytes": 9102672,
+        "draw_calls": 34,
+        "submitted_triangles": 357234,
+        "offscreen_submitted_triangles": 0,
+        "context_losses": 0
+      },
+      "shader_diagnostics": [
+        "getShaderInfoLog: ERROR: 0:14: 'packed' : Illegal use of reserved word\nERROR: 0:14: 'packed' : syntax error\n"
+      ],
+      "disposed": {
+        "resident_buffer_payload_bytes": 0,
+        "peak_buffer_payload_bytes": 3701472,
+        "live_buffers": 0,
+        "buffer_data_calls": 24,
+        "buffer_data_payload_bytes": 9102672,
+        "draw_calls": 34,
+        "submitted_triangles": 357234,
+        "offscreen_submitted_triangles": 0,
+        "context_losses": 0
+      }
+    },
+    {
+      "platform": "ground_artillery",
+      "gpu": {
+        "vendor": "WebKit",
+        "renderer": "WebKit WebGL",
+        "unmasked": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 (0x00002F04) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "stored_model_triangles": 45330,
+          "expected_buffer_payload_bytes": 7071696,
+          "current": {
+            "resident_buffer_payload_bytes": 7071696,
+            "peak_buffer_payload_bytes": 7071696,
+            "live_buffers": 7,
+            "buffer_data_calls": 8,
+            "buffer_data_payload_bytes": 7071768,
+            "draw_calls": 9,
+            "submitted_triangles": 271986,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 7071696,
+            "peak_buffer_payload_bytes": 7071696,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 90662,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 1,
+          "stored_model_triangles": 5182,
+          "expected_buffer_payload_bytes": 808608,
+          "current": {
+            "resident_buffer_payload_bytes": 808608,
+            "peak_buffer_payload_bytes": 7071696,
+            "live_buffers": 7,
+            "buffer_data_calls": 13,
+            "buffer_data_payload_bytes": 7880232,
+            "draw_calls": 15,
+            "submitted_triangles": 373014,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 808608,
+            "peak_buffer_payload_bytes": 7071696,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 10366,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 2,
+          "stored_model_triangles": 1144,
+          "expected_buffer_payload_bytes": 178680,
+          "current": {
+            "resident_buffer_payload_bytes": 178680,
+            "peak_buffer_payload_bytes": 7071696,
+            "live_buffers": 7,
+            "buffer_data_calls": 18,
+            "buffer_data_payload_bytes": 8058768,
+            "draw_calls": 21,
+            "submitted_triangles": 385670,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 178680,
+            "peak_buffer_payload_bytes": 7071696,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 2290,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 0,
+          "stored_model_triangles": 45330,
+          "expected_buffer_payload_bytes": 7071696,
+          "current": {
+            "resident_buffer_payload_bytes": 7071696,
+            "peak_buffer_payload_bytes": 7071696,
+            "live_buffers": 7,
+            "buffer_data_calls": 23,
+            "buffer_data_payload_bytes": 15130320,
+            "draw_calls": 27,
+            "submitted_triangles": 478622,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 7071696,
+            "peak_buffer_payload_bytes": 7071696,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 90662,
+            "offscreen_submitted_triangles": 0
+          }
+        }
+      ],
+      "paint_and_selection": {
+        "resident_buffer_payload_bytes": 7071696,
+        "peak_buffer_payload_bytes": 7071696,
+        "live_buffers": 7,
+        "buffer_data_calls": 24,
+        "buffer_data_payload_bytes": 16762200,
+        "draw_calls": 34,
+        "submitted_triangles": 663314,
+        "offscreen_submitted_triangles": 0,
+        "context_losses": 0
+      },
+      "shader_diagnostics": [
+        "getShaderInfoLog: ERROR: 0:14: 'packed' : Illegal use of reserved word\nERROR: 0:14: 'packed' : syntax error\n"
+      ],
+      "disposed": {
+        "resident_buffer_payload_bytes": 0,
+        "peak_buffer_payload_bytes": 7071696,
+        "live_buffers": 0,
+        "buffer_data_calls": 24,
+        "buffer_data_payload_bytes": 16762200,
+        "draw_calls": 34,
+        "submitted_triangles": 663314,
+        "offscreen_submitted_triangles": 0,
+        "context_losses": 0
+      }
+    },
+    {
+      "platform": "ground_air_defense",
+      "gpu": {
+        "vendor": "WebKit",
+        "renderer": "WebKit WebGL",
+        "unmasked": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 (0x00002F04) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "stored_model_triangles": 41178,
+          "expected_buffer_payload_bytes": 6423984,
+          "current": {
+            "resident_buffer_payload_bytes": 6423984,
+            "peak_buffer_payload_bytes": 6423984,
+            "live_buffers": 7,
+            "buffer_data_calls": 8,
+            "buffer_data_payload_bytes": 6424056,
+            "draw_calls": 9,
+            "submitted_triangles": 247074,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 6423984,
+            "peak_buffer_payload_bytes": 6423984,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 82358,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 1,
+          "stored_model_triangles": 5632,
+          "expected_buffer_payload_bytes": 878808,
+          "current": {
+            "resident_buffer_payload_bytes": 878808,
+            "peak_buffer_payload_bytes": 6423984,
+            "live_buffers": 7,
+            "buffer_data_calls": 13,
+            "buffer_data_payload_bytes": 7302720,
+            "draw_calls": 15,
+            "submitted_triangles": 340698,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 878808,
+            "peak_buffer_payload_bytes": 6423984,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 11266,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 2,
+          "stored_model_triangles": 1112,
+          "expected_buffer_payload_bytes": 173688,
+          "current": {
+            "resident_buffer_payload_bytes": 173688,
+            "peak_buffer_payload_bytes": 6423984,
+            "live_buffers": 7,
+            "buffer_data_calls": 18,
+            "buffer_data_payload_bytes": 7476264,
+            "draw_calls": 21,
+            "submitted_triangles": 354190,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 173688,
+            "peak_buffer_payload_bytes": 6423984,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 2226,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 0,
+          "stored_model_triangles": 41178,
+          "expected_buffer_payload_bytes": 6423984,
+          "current": {
+            "resident_buffer_payload_bytes": 6423984,
+            "peak_buffer_payload_bytes": 6423984,
+            "live_buffers": 7,
+            "buffer_data_calls": 23,
+            "buffer_data_payload_bytes": 13900104,
+            "draw_calls": 27,
+            "submitted_triangles": 438774,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 6423984,
+            "peak_buffer_payload_bytes": 6423984,
+            "live_buffers": 7,
+            "buffer_data_calls": 0,
+            "draw_calls": 3,
+            "submitted_triangles": 82358,
+            "offscreen_submitted_triangles": 0
+          }
+        }
+      ],
+      "paint_and_selection": {
+        "resident_buffer_payload_bytes": 6423984,
+        "peak_buffer_payload_bytes": 6423984,
+        "live_buffers": 7,
+        "buffer_data_calls": 24,
+        "buffer_data_payload_bytes": 15382512,
+        "draw_calls": 34,
+        "submitted_triangles": 606858,
+        "offscreen_submitted_triangles": 0,
+        "context_losses": 0
+      },
+      "shader_diagnostics": [
+        "getShaderInfoLog: ERROR: 0:14: 'packed' : Illegal use of reserved word\nERROR: 0:14: 'packed' : syntax error\n"
+      ],
+      "disposed": {
+        "resident_buffer_payload_bytes": 0,
+        "peak_buffer_payload_bytes": 6423984,
+        "live_buffers": 0,
+        "buffer_data_calls": 24,
+        "buffer_data_payload_bytes": 15382512,
+        "draw_calls": 34,
+        "submitted_triangles": 606858,
+        "offscreen_submitted_triangles": 0,
+        "context_losses": 0
+      }
+    },
+    {
+      "platform": "air_fighter",
+      "gpu": {
+        "vendor": "WebKit",
+        "renderer": "WebKit WebGL",
+        "unmasked": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 (0x00002F04) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "stored_model_triangles": 200446,
+          "expected_buffer_payload_bytes": 21648384,
+          "current": {
+            "resident_buffer_payload_bytes": 21648384,
+            "peak_buffer_payload_bytes": 21648384,
+            "live_buffers": 6,
+            "buffer_data_calls": 7,
+            "buffer_data_payload_bytes": 21648456,
+            "draw_calls": 28,
+            "submitted_triangles": 1603576,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 21648384,
+            "peak_buffer_payload_bytes": 21648384,
+            "live_buffers": 6,
+            "buffer_data_calls": 0,
+            "draw_calls": 7,
+            "submitted_triangles": 400894,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 1,
+          "stored_model_triangles": 11594,
+          "expected_buffer_payload_bytes": 1252368,
+          "current": {
+            "resident_buffer_payload_bytes": 1252368,
+            "peak_buffer_payload_bytes": 21648384,
+            "live_buffers": 6,
+            "buffer_data_calls": 11,
+            "buffer_data_payload_bytes": 22900680,
+            "draw_calls": 42,
+            "submitted_triangles": 2027660,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 1252368,
+            "peak_buffer_payload_bytes": 21648384,
+            "live_buffers": 6,
+            "buffer_data_calls": 0,
+            "draw_calls": 7,
+            "submitted_triangles": 23190,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 2,
+          "stored_model_triangles": 1296,
+          "expected_buffer_payload_bytes": 140184,
+          "current": {
+            "resident_buffer_payload_bytes": 140184,
+            "peak_buffer_payload_bytes": 21648384,
+            "live_buffers": 6,
+            "buffer_data_calls": 15,
+            "buffer_data_payload_bytes": 23040720,
+            "draw_calls": 56,
+            "submitted_triangles": 2053444,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 140184,
+            "peak_buffer_payload_bytes": 21648384,
+            "live_buffers": 6,
+            "buffer_data_calls": 0,
+            "draw_calls": 7,
+            "submitted_triangles": 2594,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 0,
+          "stored_model_triangles": 200446,
+          "expected_buffer_payload_bytes": 21648384,
+          "current": {
+            "resident_buffer_payload_bytes": 21648384,
+            "peak_buffer_payload_bytes": 21648384,
+            "live_buffers": 6,
+            "buffer_data_calls": 19,
+            "buffer_data_payload_bytes": 44688960,
+            "draw_calls": 70,
+            "submitted_triangles": 2456932,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 21648384,
+            "peak_buffer_payload_bytes": 21648384,
+            "live_buffers": 6,
+            "buffer_data_calls": 0,
+            "draw_calls": 7,
+            "submitted_triangles": 400894,
+            "offscreen_submitted_triangles": 0
+          }
+        }
+      ],
+      "paint_and_selection": {
+        "resident_buffer_payload_bytes": 21648384,
+        "peak_buffer_payload_bytes": 21648384,
+        "live_buffers": 6,
+        "buffer_data_calls": 20,
+        "buffer_data_payload_bytes": 51905016,
+        "draw_calls": 85,
+        "submitted_triangles": 3330632,
+        "offscreen_submitted_triangles": 0,
+        "context_losses": 0
+      },
+      "shader_diagnostics": [
+        "getShaderInfoLog: ERROR: 0:14: 'packed' : Illegal use of reserved word\nERROR: 0:14: 'packed' : syntax error\n"
+      ],
+      "lost": {
+        "resident_buffer_payload_bytes": 0,
+        "peak_buffer_payload_bytes": 21648384,
+        "live_buffers": 0,
+        "buffer_data_calls": 20,
+        "buffer_data_payload_bytes": 51905016,
+        "draw_calls": 85,
+        "submitted_triangles": 3330632,
+        "offscreen_submitted_triangles": 0,
+        "context_losses": 1
+      },
+      "restored": {
+        "resident_buffer_payload_bytes": 21648384,
+        "peak_buffer_payload_bytes": 21648384,
+        "live_buffers": 6,
+        "buffer_data_calls": 27,
+        "buffer_data_payload_bytes": 73553472,
+        "draw_calls": 101,
+        "submitted_triangles": 4276244,
+        "offscreen_submitted_triangles": 0,
+        "context_losses": 1
+      },
+      "disposed": {
+        "resident_buffer_payload_bytes": 0,
+        "peak_buffer_payload_bytes": 21648384,
+        "live_buffers": 0,
+        "buffer_data_calls": 27,
+        "buffer_data_payload_bytes": 73553472,
+        "draw_calls": 109,
+        "submitted_triangles": 4749050,
+        "offscreen_submitted_triangles": 0,
+        "context_losses": 1
+      }
+    },
+    {
+      "platform": "air_light_attack",
+      "gpu": {
+        "vendor": "WebKit",
+        "renderer": "WebKit WebGL",
+        "unmasked": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 (0x00002F04) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "stored_model_triangles": 199326,
+          "expected_buffer_payload_bytes": 21527424,
+          "current": {
+            "resident_buffer_payload_bytes": 21527424,
+            "peak_buffer_payload_bytes": 21527424,
+            "live_buffers": 6,
+            "buffer_data_calls": 7,
+            "buffer_data_payload_bytes": 21527496,
+            "draw_calls": 21,
+            "submitted_triangles": 1195962,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 21527424,
+            "peak_buffer_payload_bytes": 21527424,
+            "live_buffers": 6,
+            "buffer_data_calls": 0,
+            "draw_calls": 7,
+            "submitted_triangles": 398654,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 1,
+          "stored_model_triangles": 11474,
+          "expected_buffer_payload_bytes": 1239408,
+          "current": {
+            "resident_buffer_payload_bytes": 1239408,
+            "peak_buffer_payload_bytes": 21527424,
+            "live_buffers": 6,
+            "buffer_data_calls": 11,
+            "buffer_data_payload_bytes": 22766760,
+            "draw_calls": 35,
+            "submitted_triangles": 1617566,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 1239408,
+            "peak_buffer_payload_bytes": 21527424,
+            "live_buffers": 6,
+            "buffer_data_calls": 0,
+            "draw_calls": 7,
+            "submitted_triangles": 22950,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 2,
+          "stored_model_triangles": 1252,
+          "expected_buffer_payload_bytes": 135432,
+          "current": {
+            "resident_buffer_payload_bytes": 135432,
+            "peak_buffer_payload_bytes": 21527424,
+            "live_buffers": 6,
+            "buffer_data_calls": 15,
+            "buffer_data_payload_bytes": 22902048,
+            "draw_calls": 49,
+            "submitted_triangles": 1643022,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 135432,
+            "peak_buffer_payload_bytes": 21527424,
+            "live_buffers": 6,
+            "buffer_data_calls": 0,
+            "draw_calls": 7,
+            "submitted_triangles": 2506,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 0,
+          "stored_model_triangles": 199326,
+          "expected_buffer_payload_bytes": 21527424,
+          "current": {
+            "resident_buffer_payload_bytes": 21527424,
+            "peak_buffer_payload_bytes": 21527424,
+            "live_buffers": 6,
+            "buffer_data_calls": 19,
+            "buffer_data_payload_bytes": 44429328,
+            "draw_calls": 63,
+            "submitted_triangles": 2044182,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 21527424,
+            "peak_buffer_payload_bytes": 21527424,
+            "live_buffers": 6,
+            "buffer_data_calls": 0,
+            "draw_calls": 7,
+            "submitted_triangles": 398654,
+            "offscreen_submitted_triangles": 0
+          }
+        }
+      ],
+      "paint_and_selection": {
+        "resident_buffer_payload_bytes": 21527424,
+        "peak_buffer_payload_bytes": 21527424,
+        "live_buffers": 6,
+        "buffer_data_calls": 20,
+        "buffer_data_payload_bytes": 51605064,
+        "draw_calls": 78,
+        "submitted_triangles": 2912922,
+        "offscreen_submitted_triangles": 0,
+        "context_losses": 0
+      },
+      "shader_diagnostics": [
+        "getShaderInfoLog: ERROR: 0:14: 'packed' : Illegal use of reserved word\nERROR: 0:14: 'packed' : syntax error\n"
+      ],
+      "disposed": {
+        "resident_buffer_payload_bytes": 0,
+        "peak_buffer_payload_bytes": 21527424,
+        "live_buffers": 0,
+        "buffer_data_calls": 20,
+        "buffer_data_payload_bytes": 51605064,
+        "draw_calls": 78,
+        "submitted_triangles": 2912922,
+        "offscreen_submitted_triangles": 0,
+        "context_losses": 0
+      }
+    },
+    {
+      "platform": "air_tactical_strike",
+      "gpu": {
+        "vendor": "WebKit",
+        "renderer": "WebKit WebGL",
+        "unmasked": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 (0x00002F04) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "stored_model_triangles": 228640,
+          "expected_buffer_payload_bytes": 24693336,
+          "current": {
+            "resident_buffer_payload_bytes": 24693336,
+            "peak_buffer_payload_bytes": 24693336,
+            "live_buffers": 6,
+            "buffer_data_calls": 7,
+            "buffer_data_payload_bytes": 24693408,
+            "draw_calls": 28,
+            "submitted_triangles": 1829128,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 24693336,
+            "peak_buffer_payload_bytes": 24693336,
+            "live_buffers": 6,
+            "buffer_data_calls": 0,
+            "draw_calls": 7,
+            "submitted_triangles": 457282,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 1,
+          "stored_model_triangles": 14904,
+          "expected_buffer_payload_bytes": 1609848,
+          "current": {
+            "resident_buffer_payload_bytes": 1609848,
+            "peak_buffer_payload_bytes": 24693336,
+            "live_buffers": 6,
+            "buffer_data_calls": 11,
+            "buffer_data_payload_bytes": 26303112,
+            "draw_calls": 42,
+            "submitted_triangles": 2316220,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 1609848,
+            "peak_buffer_payload_bytes": 24693336,
+            "live_buffers": 6,
+            "buffer_data_calls": 0,
+            "draw_calls": 7,
+            "submitted_triangles": 29810,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 2,
+          "stored_model_triangles": 1696,
+          "expected_buffer_payload_bytes": 183384,
+          "current": {
+            "resident_buffer_payload_bytes": 183384,
+            "peak_buffer_payload_bytes": 24693336,
+            "live_buffers": 6,
+            "buffer_data_calls": 15,
+            "buffer_data_payload_bytes": 26486352,
+            "draw_calls": 56,
+            "submitted_triangles": 2349424,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 183384,
+            "peak_buffer_payload_bytes": 24693336,
+            "live_buffers": 6,
+            "buffer_data_calls": 0,
+            "draw_calls": 7,
+            "submitted_triangles": 3394,
+            "offscreen_submitted_triangles": 0
+          }
+        },
+        {
+          "lod": 0,
+          "stored_model_triangles": 228640,
+          "expected_buffer_payload_bytes": 24693336,
+          "current": {
+            "resident_buffer_payload_bytes": 24693336,
+            "peak_buffer_payload_bytes": 24693336,
+            "live_buffers": 6,
+            "buffer_data_calls": 19,
+            "buffer_data_payload_bytes": 51179544,
+            "draw_calls": 70,
+            "submitted_triangles": 2810100,
+            "offscreen_submitted_triangles": 0,
+            "context_losses": 0
+          },
+          "orbit_interval": {
+            "resident_buffer_payload_bytes": 24693336,
+            "peak_buffer_payload_bytes": 24693336,
+            "live_buffers": 6,
+            "buffer_data_calls": 0,
+            "draw_calls": 7,
+            "submitted_triangles": 457282,
+            "offscreen_submitted_triangles": 0
+          }
+        }
+      ],
+      "paint_and_selection": {
+        "resident_buffer_payload_bytes": 24693336,
+        "peak_buffer_payload_bytes": 24693336,
+        "live_buffers": 6,
+        "buffer_data_calls": 20,
+        "buffer_data_payload_bytes": 59410584,
+        "draw_calls": 85,
+        "submitted_triangles": 3803348,
+        "offscreen_submitted_triangles": 0,
+        "context_losses": 0
+      },
+      "shader_diagnostics": [
+        "getShaderInfoLog: ERROR: 0:14: 'packed' : Illegal use of reserved word\nERROR: 0:14: 'packed' : syntax error\n"
+      ],
+      "disposed": {
+        "resident_buffer_payload_bytes": 0,
+        "peak_buffer_payload_bytes": 24693336,
+        "live_buffers": 0,
+        "buffer_data_calls": 20,
+        "buffer_data_payload_bytes": 59410584,
+        "draw_calls": 85,
+        "submitted_triangles": 3803348,
+        "offscreen_submitted_triangles": 0,
+        "context_losses": 0
+      }
+    }
+  ],
+  "errors": [],
+  "browser": "153.0.8010.53"
+}

@@ -1,0 +1,19 @@
+{
+  "revision": "4ac849a4f5a636a0e573e5cfdad03e05c7133566",
+  "lane": "browser",
+  "command": [
+    "node",
+    "tools/ui/ci-campaign-journey.cjs"
+  ],
+  "started_utc": "2026-09-22T02:12:50.758656+00:00",
+  "clean_before": true,
+  "runner_sha256": "15560a50f3439c85f3e651217ab116a46a73c5275dfd185df942e03a80f9070b",
+  "binary_before": "454fa9ba8d4c110ae2fb2dedbd904441685badcd20b2a7ab2580dad034bf6fb8",
+  "exit_code": 0,
+  "finished_utc": "2026-09-22T02:13:23.401428+00:00",
+  "clean_after": true,
+  "revision_after": "4ac849a4f5a636a0e573e5cfdad03e05c7133566",
+  "log_sha256": "107de343f6463e4393cd014310c3603d9752a91a701405937612e7ae4b451bd7",
+  "binary_sha256": "454fa9ba8d4c110ae2fb2dedbd904441685badcd20b2a7ab2580dad034bf6fb8",
+  "passed": true
+}

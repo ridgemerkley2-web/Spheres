@@ -1,0 +1,356 @@
+{
+  "format": "spheres-research-integration/v1",
+  "packet": "CLAUDE-C01-01",
+  "status": "accepted_and_integrated",
+  "submitted_commit": "426f0ddb17a93c3d8b9a809c0129b441b29d3fe6",
+  "merge_commit": "e759e69c5b8220a531c4842ea59e319bdc47f230",
+  "qualified_source": "fdb6d2c79209f3c441b8886a44f8e205c608452a",
+  "review": {
+    "reviewer": "Codex",
+    "reviewed_utc": "2026-09-22T01:27:20.663880+00:00",
+    "sources": [
+      {
+        "id": "to_sc_kiu_v_tuionetoa_20220429",
+        "url": "https://ago.gov.to/cms/judgements/supreme-court-civil/category/206-cv-2022.html?download=2386%3Akelekolio-kiu-v-pohiva-tuionetoa-cv-75-21-tosc-29-apr-2022-cooper-j-judgement",
+        "bytes": 602620,
+        "sha256": "57fb2ac33421699958da3267e9d0540fa533ff2f944c36c022d5535aa3012372",
+        "rendered_pages_one_based": [
+          1,
+          2,
+          4,
+          33,
+          34
+        ],
+        "original_response_checked_in": false
+      },
+      {
+        "id": "to_court_peoples_party_20220809",
+        "url": "https://ago.gov.to/cms/judgements/court-of-appeal/category/205-ac-2022.html?download=2457%3Arev-dr-pohiva-tuionetoa-v-taniela-kelekolio-kiu-ac-8-22-toca-9-aug-2022-blanchard-j-white-j-eastcourt-j-de-jersey-j-judgement",
+        "bytes": 307617,
+        "sha256": "ff8af75772e2f6dd0f3eaaa0b300239bc2925a867dff8f9926142299dee90973",
+        "rendered_pages_one_based": [
+          9,
+          12,
+          16
+        ],
+        "original_response_checked_in": false
+      }
+    ],
+    "visual_pages_one_based": {
+      "trial": [
+        1,
+        2,
+        4,
+        33,
+        34
+      ],
+      "appeal": [
+        9,
+        12,
+        15
+      ]
+    },
+    "html_sources_checked": [
+      "https://data.ipu.org/parliament/TO/TO-LC01/election/TO-LC01-E20171116/",
+      "https://data.ipu.org/parliament/TO/TO-LC01/election/TO-LC01-E20211118/"
+    ],
+    "html_method": "Web tool text retrieval and relevant election narratives read; no new original-response hash claimed.",
+    "screenshots_visually_read": [
+      "tonga-society-1440.png",
+      "tonga-society-390.png",
+      "tonga-society-320.png"
+    ],
+    "decision": "Accept the bounded dated observations and provisional grouping; retain all unresolved legal identities, full leadership terms and appointment dates.",
+    "scope": "Research and atlas only; no country, character-coverage or campaign certificate completion."
+  },
+  "validation": {
+    "source_revision": "fdb6d2c79209f3c441b8886a44f8e205c608452a",
+    "started_utc": "2026-09-22T01:22:56.769311+00:00",
+    "clean_before": true,
+    "runner_sha256": "2f0db151a68edf354107136d67650ba0c686b8f3008e27228b2866f3897c6d30",
+    "scope": "Tonga research intake and standalone read-only atlas. No campaign runtime changes.",
+    "checks": [
+      {
+        "name": "index",
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-X",
+          "utf8",
+          "tools/avatars/campaign_research.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "log": "index.log",
+        "sha256": "4b32491b562fd561370fda3fd65263fb77747a04f3730dc66c2f89e94b6779d8",
+        "passed": true
+      },
+      {
+        "name": "tonga",
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_tonga_*.py"
+        ],
+        "exit_code": 0,
+        "log": "tonga.log",
+        "sha256": "2fe6f3a9bb762f79d25014eb57d1e847c223da5795cdc86141ee85915e2dd1a2",
+        "passed": true
+      },
+      {
+        "name": "campaign",
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_campaign*.py"
+        ],
+        "exit_code": 0,
+        "log": "campaign.log",
+        "sha256": "8e777f24da802427399b0ce51e7325ed94f4c6257b6a93a3bed0ad410034b690",
+        "passed": true
+      },
+      {
+        "name": "atlas-unit",
+        "command": [
+          "node",
+          "--test",
+          "tools/ui/check_leadership_research_review.cjs"
+        ],
+        "exit_code": 0,
+        "log": "atlas-unit.log",
+        "sha256": "ea917860be7c50bacf85c84d229f2bfbc64337ab3a07d70e7190992966226340",
+        "passed": true
+      },
+      {
+        "name": "atlas-browser",
+        "command": [
+          "node",
+          "tools/ui/ci-leadership-research-browser.cjs"
+        ],
+        "exit_code": 0,
+        "log": "atlas-browser.log",
+        "sha256": "d19b846ebf934f8e1db9fd70201592fa3d8104721927e2276dbd53783c8d746d",
+        "passed": true
+      },
+      {
+        "name": "workboard",
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-X",
+          "utf8",
+          "tools/planning/workboard.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "log": "workboard.log",
+        "sha256": "6cc71a3c645534f8525319dc992aaa9aafa512dab30b47fc6c1c7a998c1f30b6",
+        "passed": true
+      }
+    ],
+    "finished_utc": "2026-09-22T01:23:00.952015+00:00",
+    "revision_after": "fdb6d2c79209f3c441b8886a44f8e205c608452a",
+    "clean_after": true,
+    "passed": true,
+    "runtime_and_roadmap_unchanged_since": "939e8f9b3467ffc1666fea19fd4670257ea1e612"
+  },
+  "counts": {
+    "tonga_tests": 18,
+    "campaign_research_tests": 16,
+    "atlas_node_tests": 11,
+    "browser_countries": 9,
+    "widths": [
+      1440,
+      390,
+      320
+    ]
+  },
+  "runtime_unchanged_since": "939e8f9b3467ffc1666fea19fd4670257ea1e612",
+  "parent_c01_complete": false,
+  "cp1_earned": false,
+  "source_and_test_files": {
+    "tools/ui/leadership-research-review.html": "9607eec1a1228503da790f4c0a7b336de32cad3100109766a5429f73c9bccc1c",
+    "tools/ui/leadership-research-review.css": "65c8a20de6bdaaa1210ef862f1fbfd16427c9d7ccbb6912f5ec6603b3d38bef3",
+    "tools/ui/leadership-research-review.js": "cba865542ffb80e3762f1856c803063206c6a1d85ea298c71f6be90a596aa90c",
+    "tools/ui/ci-leadership-research-browser.cjs": "33a6efcebc61a85eddf797745f75670760bcbdc1e82f4682d2dc467a85c89cc4",
+    "docs/campaign-certification/C01/research-index.json": "84a4cda94357218c6b8c7017eabec0f04f8b973d208520eb1f837df4035c94df",
+    "docs/campaign-certification/C01/research/brazil.json": "4709177ebd35439933819a9319a7aca829b217bc7e486280705a7acdbf89ef66",
+    "docs/campaign-certification/C01/research/france.json": "6ac88df4bfc04728352b644ec419355bec519bb3ee8932dcf1df25b2964b112c",
+    "docs/campaign-certification/C01/research/india.json": "25e00e7364722357290cb785502abad018e60d512221cadd7fa5785f7569a4ae",
+    "docs/campaign-certification/C01/research/japan.json": "2aaa46d504ee151f5d92ee25849f7773db9c49ce7597f6ac87f5921b753ed573",
+    "docs/campaign-certification/C01/research/russia.json": "3ff8b214e21092420135927b0913e2a51b15baa08687444834d204cbb0fe12a1",
+    "docs/campaign-certification/C01/research/saudi-arabia.json": "8c432b519fd01641e23de609fcfc6c98d893ab177be1038faf7b0d9cb0f45490",
+    "docs/campaign-certification/C01/research/south-africa.json": "ce1d742da90c1765fdacb5627a6808bc88d86dbee62599d50e605f567b92c609",
+    "docs/campaign-certification/C01/research/tonga.json": "5704e94cd1d1614efd04d7924c42211ecc489c688b6451c492995621980bea38",
+    "docs/campaign-certification/C01/research/ussr.json": "7130e97ff0fbfa8224e787b167835395cea2127fa3e567ae75e6604a752c3f57",
+    "tools/avatars/campaign_research.py": "82294ea6e849736551d2688e01e48fade211aed93ca85a2eb674ecee9cbb791b",
+    "tools/avatars/import_cnccfp_census.py": "4a8df4c840e57a40c646d8fce582bf9e0ca54712771759bfc9f1d7843ebe479c",
+    "docs/campaign-certification/C01/countries.json": "3f3ea61354fadbf85d182b6593f5cdf13e13a856d3fe59b64e1f3305c6622ca4",
+    "docs/campaign-certification/C01/represented-organizations.json": "85603b71cc5488937fff54f38dbf36ad18af6124d6dc3a492dbb20760d2c8e66"
+  },
+  "retention": [
+    {
+      "file": "evidence/evidence/C01-tonga-review-20260921/source-fetch.json",
+      "bytes": 1198,
+      "sha256": "3f5fee7067ea63887be29c9e92fe334f64b65ce9e26dea4ccb6beb2e4b777387"
+    },
+    {
+      "file": "evidence/evidence/C01-tonga-review-20260921/qualification/atlas-browser.log",
+      "bytes": 491,
+      "sha256": "e40f5043173850173c0b3249dc4881230886bc73c03af499045fb53280806b32"
+    },
+    {
+      "file": "evidence/evidence/C01-tonga-review-20260921/qualification/atlas-unit.log",
+      "bytes": 1121,
+      "sha256": "5d9f1f85c03aa7e5a6ee645b984ae3a62022fc049bda77de0363f2fd2a3d32ac"
+    },
+    {
+      "file": "evidence/evidence/C01-tonga-review-20260921/qualification/browser/result.json",
+      "bytes": 6706,
+      "sha256": "b4c83e10f85738bf48d0445b522213832ecbf33981eaf75a56acb02c8a0f2848"
+    },
+    {
+      "file": "evidence/evidence/C01-tonga-review-20260921/qualification/campaign.log",
+      "bytes": 120,
+      "sha256": "3b9cdbc599709be70aaa4200d35a4f0476308233cae97d68b7082d27aecc4b84"
+    },
+    {
+      "file": "evidence/evidence/C01-tonga-review-20260921/qualification/index.log",
+      "bytes": 249,
+      "sha256": "4b32491b562fd561370fda3fd65263fb77747a04f3730dc66c2f89e94b6779d8"
+    },
+    {
+      "file": "evidence/evidence/C01-tonga-review-20260921/qualification/result.json",
+      "bytes": 2777,
+      "sha256": "507958ddba32ef1daa0f7b7b7ab92e0a35065d8ff16c2ab259ebf0888f37d6bf"
+    },
+    {
+      "file": "evidence/evidence/C01-tonga-review-20260921/qualification/tonga.log",
+      "bytes": 122,
+      "sha256": "e81deb4b2d9a1a1abb50d116de52befc92a584960d0c7efa7c38a023deb7e399"
+    },
+    {
+      "file": "evidence/evidence/C01-tonga-review-20260921/qualification-final/atlas-browser.log",
+      "bytes": 214,
+      "sha256": "d19b846ebf934f8e1db9fd70201592fa3d8104721927e2276dbd53783c8d746d"
+    },
+    {
+      "file": "evidence/evidence/C01-tonga-review-20260921/qualification-final/atlas-unit.log",
+      "bytes": 1122,
+      "sha256": "ea917860be7c50bacf85c84d229f2bfbc64337ab3a07d70e7190992966226340"
+    },
+    {
+      "file": "evidence/evidence/C01-tonga-review-20260921/qualification-final/browser/atlas-1440.png",
+      "bytes": 146003,
+      "sha256": "ddd36d3d4297545b5cbeb1338470f83b6099f01334ca2f6649c008d90ce8ba2f"
+    },
+    {
+      "file": "evidence/evidence/C01-tonga-review-20260921/qualification-final/browser/atlas-320.png",
+      "bytes": 82087,
+      "sha256": "5d0b3df5962645d12325a9d6ea6d7c8502e660009b918317ba8d50a50cfd46f7"
+    },
+    {
+      "file": "evidence/evidence/C01-tonga-review-20260921/qualification-final/browser/atlas-390.png",
+      "bytes": 80797,
+      "sha256": "d837853cfddfac5c01f81de5ef849541c436fef55f6e5263bea9572b4255c765"
+    },
+    {
+      "file": "evidence/evidence/C01-tonga-review-20260921/qualification-final/browser/atlas-keyboard-focus.png",
+      "bytes": 130822,
+      "sha256": "2e18b9cbc20dd42b777de5d0d63879f17fd84ddbf6b594e53fccc456e4a35c97"
+    },
+    {
+      "file": "evidence/evidence/C01-tonga-review-20260921/qualification-final/browser/atlas-role-1440.png",
+      "bytes": 71558,
+      "sha256": "288e118f7c5777580cd5a3775eedf04fad424fd4d3aa13ee2dea5dfdc57e39fc"
+    },
+    {
+      "file": "evidence/evidence/C01-tonga-review-20260921/qualification-final/browser/atlas-role-320.png",
+      "bytes": 43268,
+      "sha256": "301fac20f8c78e5f538293fae9605a8df6e2ab8159d11f42f477a7c15470048e"
+    },
+    {
+      "file": "evidence/evidence/C01-tonga-review-20260921/qualification-final/browser/atlas-role-390.png",
+      "bytes": 51506,
+      "sha256": "0837c2d4eab39668aa17adfd4fda6c2f3d95478318693751409ef449fee42d4f"
+    },
+    {
+      "file": "evidence/evidence/C01-tonga-review-20260921/qualification-final/browser/result.json",
+      "bytes": 10916,
+      "sha256": "125ceeeff088a73eda447f6cda4f6c13d05636b75bf9bfd914468c6884b91025"
+    },
+    {
+      "file": "evidence/evidence/C01-tonga-review-20260921/qualification-final/browser/tonga-society-1440.png",
+      "bytes": 87368,
+      "sha256": "47264301498c9480c31fb5ceed2c0070e0f516eaa488897d82922d76a6362d68"
+    },
+    {
+      "file": "evidence/evidence/C01-tonga-review-20260921/qualification-final/browser/tonga-society-320.png",
+      "bytes": 43143,
+      "sha256": "23deb5b588e4ec0726ac84dcc076b920b86c8f3b04d8eb254184f8b36620ab2a"
+    },
+    {
+      "file": "evidence/evidence/C01-tonga-review-20260921/qualification-final/browser/tonga-society-390.png",
+      "bytes": 49386,
+      "sha256": "1938d08d0183998084e66e43745b5f1a26d46f0d438e865a38ce7876bdb3e756"
+    },
+    {
+      "file": "evidence/evidence/C01-tonga-review-20260921/qualification-final/campaign.log",
+      "bytes": 120,
+      "sha256": "8e777f24da802427399b0ce51e7325ed94f4c6257b6a93a3bed0ad410034b690"
+    },
+    {
+      "file": "evidence/evidence/C01-tonga-review-20260921/qualification-final/index.log",
+      "bytes": 249,
+      "sha256": "4b32491b562fd561370fda3fd65263fb77747a04f3730dc66c2f89e94b6779d8"
+    },
+    {
+      "file": "evidence/evidence/C01-tonga-review-20260921/qualification-final/result.json",
+      "bytes": 3233,
+      "sha256": "aa55efd0bff60f33cb008deccf4bc6be8f368aabe7bfe468b7ff40e177675738"
+    },
+    {
+      "file": "evidence/evidence/C01-tonga-review-20260921/qualification-final/tonga.log",
+      "bytes": 122,
+      "sha256": "2fe6f3a9bb762f79d25014eb57d1e847c223da5795cdc86141ee85915e2dd1a2"
+    },
+    {
+      "file": "evidence/evidence/C01-tonga-review-20260921/qualification-final/workboard.log",
+      "bytes": 107,
+      "sha256": "6cc71a3c645534f8525319dc992aaa9aafa512dab30b47fc6c1c7a998c1f30b6"
+    },
+    {
+      "file": "evidence/review-c01-tonga-sources.py",
+      "bytes": 1727,
+      "sha256": "f30a13676e168c0d16cbd5189279050963c6438fecd18a84bc3aba770ddc0b7b"
+    },
+    {
+      "file": "evidence/qualify-c01-tonga.py",
+      "bytes": 2778,
+      "sha256": "887ebbbf524ea82129df42f50f7adf8b41076c75c6ff341787af80fac9c10c8f"
+    },
+    {
+      "file": "evidence/qualify-c01-tonga-final.py",
+      "bytes": 2784,
+      "sha256": "2f0db151a68edf354107136d67650ba0c686b8f3008e27228b2866f3897c6d30"
+    },
+    {
+      "file": "evidence/retain-c01-tonga-review.py",
+      "bytes": 4211,
+      "sha256": "3a8ec4d34dbcebf19fec0ae48c17c7946aae23abfdc701ce2a3102f5d786bc98"
+    }
+  ],
+  "excluded": "Source PDF bodies and source-page renders remain local. No source artwork is republished. The evidence includes research UI captures, checksums, logs and scripts only."
+}

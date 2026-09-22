@@ -1,0 +1,264 @@
+{
+  "packet": "CODEX-S22-PREP-01",
+  "status": "complete preparation; S22 qualification pending",
+  "source_revision": "2c959cd7c4f61d09a77d5859b1cbee24aa509b10",
+  "canonical_session_complete": false,
+  "g4_complete": false,
+  "cp1_certified": false,
+  "budget_gate_passed": false,
+  "checks": {
+    "windows_focused": 39,
+    "linux_focused": 39,
+    "manifest_assets": 33,
+    "graded_configurations": 112,
+    "over_budget_configurations": 42,
+    "browser_platforms": 12,
+    "actual_shadow_pass_required": true,
+    "native_embedded_renderer_smoke": true
+  },
+  "limits": [
+    "No new full simulation suite: no native simulation changes. Existing S21 results remain at their own source revision.",
+    "No FPS, driver VRAM, full city-cache, low-profile or early/mid/late campaign performance qualification.",
+    "CPU accounting covers emitted typed arrays and backing allocations, not JS object overhead or all retained generator caches.",
+    "WebGL accounting covers API buffer storage and submissions; textures, renderbuffers, CPU heap, driver overhead and rasterized pixels excluded.",
+    "Initial development probes passed narrower storage assertions while falling back on a shader error. Final browser probe explicitly requires shader compilation and real offscreen draws.",
+    "The first Linux launcher shell command had a PATH quoting error before any tests; corrected runner is retained."
+  ],
+  "runtime": {
+    "url": "http://127.0.0.1:7862",
+    "pid": 13728,
+    "directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S22-prep-20260921-195447",
+    "runtime_revision": "2c959cd7c4f61d09a77d5859b1cbee24aa509b10",
+    "executable_sha256": "7dc2fa515d9be82dcd66aedae15743fd158c4d02b15620ac72fcb115247540f8",
+    "player": "France",
+    "date": "16 Oct 1992",
+    "build": {
+      "branch": "codex/campaign-certification",
+      "built_at_unix_seconds": 1790045568,
+      "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+      "distribution": "Local offline game server; source and attribution accompany the release",
+      "revision": "2c959cd7c4f6",
+      "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S22-prep-20260921-195447",
+      "version": "0.6.0"
+    },
+    "renderer_response_sha256": "e26a05e28d36f2bf90c464f9ea33697bc95fcb5ca703621ea7d7153a77984f73",
+    "save_copy": {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S21-20260921-191353\\saves\\s21-campaign.json",
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S22-prep-20260921-195447\\saves\\s22-art-review.json",
+      "sha256": "1b12d0fe95b8df3858e1fa307b6dd4c1eb97a2806b19acddff3594ab72d059b3"
+    },
+    "scope": "Separate review runtime with repaired equipment shader. Copied S21 France campaign checkpoint; no original saves or review runtimes modified. S22 qualification remains pending."
+  },
+  "files": [
+    {
+      "path": "evidence/browser-final/fighter-narrow.png",
+      "bytes": 44137,
+      "sha256": "6a9bc8af6d2956f8757bd935cc59ec19b28724df6d00feccc0941d00a7c58239"
+    },
+    {
+      "path": "evidence/browser-final/result.json",
+      "bytes": 57958,
+      "sha256": "8831846d5e857ee7d49efa9d13e61dbd82a711c2acc5e9310717ed86298afc2e"
+    },
+    {
+      "path": "evidence/development/buffers-6fhj1R/fighter-narrow.png",
+      "bytes": 41364,
+      "sha256": "7c49d82a6f03c4c242afec2569c13c33c954db5e34a4e8bf303c65a157c2fbae"
+    },
+    {
+      "path": "evidence/development/buffers-6fhj1R/result.json",
+      "bytes": 59191,
+      "sha256": "625012452d61f08453a7fdd3b0b0b2ba55960a2d09ee3f7e8f82312ce84b744a"
+    },
+    {
+      "path": "evidence/development/buffers-6hvzqv/fighter-narrow.png",
+      "bytes": 41364,
+      "sha256": "7c49d82a6f03c4c242afec2569c13c33c954db5e34a4e8bf303c65a157c2fbae"
+    },
+    {
+      "path": "evidence/development/buffers-6hvzqv/result.json",
+      "bytes": 57269,
+      "sha256": "8fa0533ccc7df8f8bdf453544a26bb843b6f21de39011b56b4535fe6726d3d12"
+    },
+    {
+      "path": "evidence/development/buffers-jSSjWC/fighter-narrow.png",
+      "bytes": 44137,
+      "sha256": "6a9bc8af6d2956f8757bd935cc59ec19b28724df6d00feccc0941d00a7c58239"
+    },
+    {
+      "path": "evidence/development/buffers-jSSjWC/result.json",
+      "bytes": 57959,
+      "sha256": "67fade4a50f123af7d0fd3579809079687f9313f39c55f46ed24a6b12e022fb6"
+    },
+    {
+      "path": "evidence/development/S22-prep-art-development.log",
+      "bytes": 5381,
+      "sha256": "87c17d1c66813b3cb4b1e3be0e9a271d496ef614f0f72e9a5d053bed894e09bd"
+    },
+    {
+      "path": "evidence/development/S22-prep-art-development2.log",
+      "bytes": 5384,
+      "sha256": "2027d60989c99bc7f1e65a4eabb8b915f4b3fd902d1e47e1ee4eb9ca182745ee"
+    },
+    {
+      "path": "evidence/development/S22-prep-browser-development.log",
+      "bytes": 982,
+      "sha256": "dcc9dafed99fccf2f469acaf800e77be1a0b9f05d12c9824a17e3a76a1a84a9a"
+    },
+    {
+      "path": "evidence/development/S22-prep-browser-development2.log",
+      "bytes": 982,
+      "sha256": "5b59491dbcc6a65a5dcca7bca369a164aa5567152e1c0400e7031d2f5fa29a3a"
+    },
+    {
+      "path": "evidence/development/S22-prep-browser-development3.log",
+      "bytes": 982,
+      "sha256": "ec954abccfd31189b7a3b0f6751d994bc4ba367523220cebc9a690eb6d360191"
+    },
+    {
+      "path": "evidence/development/S22-prep-unit-development.log",
+      "bytes": 4410,
+      "sha256": "98b0518f095cf7fac2f064de3388e308506ed10cd338fc3b4845515fa72356e4"
+    },
+    {
+      "path": "evidence/native-review/native-equipment-shadows.png",
+      "bytes": 115492,
+      "sha256": "2a59d40c919a085c6981b9fbef67ffc0426040fe2f9ec4743c4a84a5c5c7d6de"
+    },
+    {
+      "path": "evidence/native-review/result.json",
+      "bytes": 683,
+      "sha256": "525c9a86fee3899380000326f045ff000db8f5703a28af8491475361af6b1693"
+    },
+    {
+      "path": "evidence/preservation.json",
+      "bytes": 3137,
+      "sha256": "c4a550ae30d43144414206fe0ef5a313711e3e7b91dcdabd89a1edecbd0213de"
+    },
+    {
+      "path": "evidence/qualified/S22-prep-final1-binary.json",
+      "bytes": 750,
+      "sha256": "6d4995612f83ef0dfe90897d21e76d58a857591ef373818d0f14faa4bec0cf52"
+    },
+    {
+      "path": "evidence/qualified/S22-prep-final1-binary.log",
+      "bytes": 1044,
+      "sha256": "79ab8e682915710848ac8f08ec952a7d66f1e7fabcf2495e0d687b6e02ec8c7c"
+    },
+    {
+      "path": "evidence/qualified/S22-prep-final1-browser.json",
+      "bytes": 622,
+      "sha256": "fc393ea312ccb993e76e7683e90f48a5eae3ad70638e9b68f6b6d6d26e964084"
+    },
+    {
+      "path": "evidence/qualified/S22-prep-final1-browser.log",
+      "bytes": 977,
+      "sha256": "254508c22463a8814572fc5840b4844e22c804bce932401ef59704de25c12d67"
+    },
+    {
+      "path": "evidence/qualified/S22-prep-final1-budget-guard.json",
+      "bytes": 703,
+      "sha256": "8adb27680c1abe5e94552b5201390829c9d340d48434226da149c5dd54acc4b4"
+    },
+    {
+      "path": "evidence/qualified/S22-prep-final1-budget-guard.log",
+      "bytes": 5683,
+      "sha256": "5c22e651740ca0b252d310dc186e9e048d973d302df925f9a911d812ab9cbd54"
+    },
+    {
+      "path": "evidence/qualified/S22-prep-final1-focused.json",
+      "bytes": 790,
+      "sha256": "1f1198fdcd759e16a8f57a041422b7a7314826deea7b9fd889228a89c57ed19a"
+    },
+    {
+      "path": "evidence/qualified/S22-prep-final1-focused.log",
+      "bytes": 4360,
+      "sha256": "ddf2f1f865c9f0dbcfff1abb2dbf6dc0998bb86e40004993cf796f04f4fef85a"
+    },
+    {
+      "path": "evidence/qualified/S22-prep-final1-manifest.json",
+      "bytes": 639,
+      "sha256": "5e68c23336019239b648a6fcb97e5e8e8fc6072c9a65fc78087f30741b45b049"
+    },
+    {
+      "path": "evidence/qualified/S22-prep-final1-manifest.log",
+      "bytes": 28,
+      "sha256": "0cd9f5728cdd3c6eeba3b61f250b5b387c13ceace2cc7c33150cfd711d6853a5"
+    },
+    {
+      "path": "evidence/qualified/S22-prep-final1-records.json",
+      "bytes": 637,
+      "sha256": "71a74e045c0a3dbd76cc227fb339fadc328b610d42947f9d6f0a815dfa037027"
+    },
+    {
+      "path": "evidence/qualified/S22-prep-final1-records.log",
+      "bytes": 5769,
+      "sha256": "c234b012e3f54cbecde3f2bfa5849fb1a4547d17ba158949f712c0125afb62fd"
+    },
+    {
+      "path": "evidence/qualified/S22-prep-linux1-focused.json",
+      "bytes": 835,
+      "sha256": "692047e2c11974da80d0ad7f6793738febd60179714f8740531dddd8b9e3ff8f"
+    },
+    {
+      "path": "evidence/qualified/S22-prep-linux1-focused.log",
+      "bytes": 10170,
+      "sha256": "cf9ac75538209bd117ac9eeceb492785839ed2bb084e8b6272e462124d342ed8"
+    },
+    {
+      "path": "evidence/qualified/S22-prep-linux1-manifest.json",
+      "bytes": 620,
+      "sha256": "c1d53a8f0c6f9217d00beaea1c504779c5d9166d6ebed788976907464a40a433"
+    },
+    {
+      "path": "evidence/qualified/S22-prep-linux1-manifest.log",
+      "bytes": 28,
+      "sha256": "0cd9f5728cdd3c6eeba3b61f250b5b387c13ceace2cc7c33150cfd711d6853a5"
+    },
+    {
+      "path": "evidence/qualified/S22-prep-linux1-records.json",
+      "bytes": 618,
+      "sha256": "6d8f0241912dba123974c0eb12096b47ee8b359d21b7e5802316741fbcfafcc1"
+    },
+    {
+      "path": "evidence/qualified/S22-prep-linux1-records.log",
+      "bytes": 5769,
+      "sha256": "c234b012e3f54cbecde3f2bfa5849fb1a4547d17ba158949f712c0125afb62fd"
+    },
+    {
+      "path": "evidence/review-launch.json",
+      "bytes": 1720,
+      "sha256": "e0f604e68d299f9ee8db0709f38890e7e16ede75010a9dfe6038464d09dff811"
+    },
+    {
+      "path": "evidence/runners/collect-s22-prep.py",
+      "bytes": 9530,
+      "sha256": "d73a75848347acda478f8ff6c97018b56179aeb528193457bba20ad788ed796c"
+    },
+    {
+      "path": "evidence/runners/launch-s22-prep-review.py",
+      "bytes": 2763,
+      "sha256": "cb834016b3252485c6b6c6ffb7572baf1c4661c5829a523a6d4d5892278c4e9d"
+    },
+    {
+      "path": "evidence/runners/linux-git-adapter.sh",
+      "bytes": 206,
+      "sha256": "028715c5988c962b72644e3e56afc182eee37c7a7e1bc486054b4662bb2da963"
+    },
+    {
+      "path": "evidence/runners/run-s22-prep-check.py",
+      "bytes": 2655,
+      "sha256": "f010cde732a21c8cc454ecd0aaa325ba7fe0994dae87ae28bbc55971de0c9f06"
+    },
+    {
+      "path": "evidence/runners/run-s22-prep-linux.sh",
+      "bytes": 375,
+      "sha256": "05a1f1af2f449382864d42e5f334785eef2de80367e8c8a2c29ddc1813fe83a7"
+    },
+    {
+      "path": "evidence/runners/s22-native-review.cjs",
+      "bytes": 2753,
+      "sha256": "ea1e331a7afef28be7933abd2e331c92f23452ea6e75f4f110bff5260aba9a36"
+    }
+  ]
+}

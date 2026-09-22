@@ -22,6 +22,7 @@ use std::sync::Mutex;
 use tiny_http::{Header, Method, Response, Server};
 
 mod history;
+mod campaign_journey;
 mod portrait_assets;
 mod person_portraits;
 mod page_art_assets;
@@ -251,6 +252,7 @@ const MAX_LOG: usize = 4000;
 
 struct Game {
     world: WorldState,
+    journey: campaign_journey::Journey,
     // Derived nominal searches belong to this live campaign, not its saved
     // world or command trials. New/load constructors deliberately start cold.
     freight_routes: logistics::NominalRoutePool,
@@ -303,7 +305,7 @@ impl Game {
         // board reads the ledger on the setup screen's first month. Never
         // serialized, never hashed; the tick would build the same bytes.
         resources::warm(&mut world);
-        let mut g = Game { world, freight_routes: Default::default(), log: vec![], history: vec![], history_epoch:0, autosaved_month:0, storage_notice:None, session_id: fresh_session_id(), advance_receipts: Default::default(), command_receipts:Default::default() };
+        let mut g = Game { world, journey: Default::default(), freight_routes: Default::default(), log: vec![], history: vec![], history_epoch:0, autosaved_month:0, storage_notice:None, session_id: fresh_session_id(), advance_receipts: Default::default(), command_receipts:Default::default() };
         g.snapshot();
         g
     }
@@ -339,6 +341,7 @@ impl Game {
         let already_gone = self.world.player.is_some_and(|me| gone(self, me));
         let mut queued = commands;
         for i in 0..days {
+            if let Some(reason) = campaign_journey::pause_reason(self) { return (true, Some(reason)); }
             let cmds = std::mem::take(&mut queued);
             let event_t = month_index(self.world.year, self.world.month);
             let event_date = self.world.date_str();
@@ -350,6 +353,7 @@ impl Game {
             if self.world.rules.daily_simulation || (self.world.year, self.world.month) != before_month {
                 self.snapshot();
             }
+            if let Some(reason) = campaign_journey::pause_reason(self) { return (i + 1 < days, Some(reason)); }
             if !already_gone {
                 if let Some(me) = self.world.player {
                     if gone(self, me) {
@@ -384,7 +388,7 @@ impl Game {
                 let remaining = spheres_sim::world::days_in_month(self.world.year, self.world.month)
                     .saturating_sub(self.world.day.max(1)) + 1;
                 let outcome = self.advance_days(remaining as usize, std::mem::take(&mut commands));
-                if outcome.0 { return outcome; }
+                if outcome.0 || outcome.1.is_some() { return outcome; }
             }
             return (false, None);
         }
@@ -393,6 +397,7 @@ impl Game {
         let already_gone = self.world.player.is_some_and(|me| gone(self, me));
         let mut queued = commands;
         for i in 0..months {
+            if let Some(reason) = campaign_journey::pause_reason(self) { return (true, Some(reason)); }
             let cmds = std::mem::take(&mut queued);
             let event_t = month_index(self.world.year, self.world.month);
             let event_date = self.world.date_str();
@@ -401,6 +406,7 @@ impl Game {
                 self.record_at(event_t, event_date.clone(), h.clone());
             }
             self.snapshot();
+            if let Some(reason) = campaign_journey::pause_reason(self) { return (i + 1 < months, Some(reason)); }
             if !already_gone {
                 if let Some(me) = self.world.player {
                     if gone(self, me) {
@@ -5710,6 +5716,7 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         "domination": w.player.map(|p| domination_json(w, p)),
         "agency": w.player.map(|p| decision_review::agency_view(w, p)),
         "campaign_aims": w.player.map(|p| spheres_sim::campaign_aims::view(w, p)),
+        "campaign_journey": campaign_journey::summary(g),
         "policy": w.player.map(|p| policy_json(w, p)),
         // The budget card (stage 4): the ten dials' named arms, sampled by
         // the sim over the range a dial can hold, and the money block.
@@ -7157,7 +7164,7 @@ mod s05_fresh_startup_tests;
 /// manufacturing before warming a save. Connected economy flags and dated
 /// accounts remain exactly as loaded; this path never adopts the S02 upgrade.
 fn loaded_play_game(w: WorldState) -> Game {
-    let mut g = Game { world: w, freight_routes: Default::default(), log: vec![], history: vec![], history_epoch:0, autosaved_month:0, storage_notice:None, session_id: fresh_session_id(), advance_receipts: Default::default(),command_receipts:Default::default() };
+    let mut g = Game { world: w, journey: Default::default(), freight_routes: Default::default(), log: vec![], history: vec![], history_epoch:0, autosaved_month:0, storage_notice:None, session_id: fresh_session_id(), advance_receipts: Default::default(),command_receipts:Default::default() };
     play_rules(&mut g);
     resources::warm(&mut g.world);
     g.snapshot();
@@ -7363,6 +7370,10 @@ fn main() {
                 Response::from_string(if url_path == "/campaign-ui.js" {CAMPAIGN_UI_JS}else{CAMPAIGN_TRANSPORT_JS})
                     .with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap())
             }
+            (Method::Get, "/campaign-journey.js") => Response::from_string(include_str!("../ui/campaign-journey.js"))
+                .with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/campaign-journey.css") => Response::from_string(include_str!("../ui/campaign-journey.css"))
+                .with_header(Header::from_bytes("Content-Type", "text/css; charset=utf-8").unwrap()),
             (Method::Get, "/world.js") => {
                 let r = Response::from_string(WORLD_JS).with_header(
                     Header::from_bytes(
@@ -7954,6 +7965,12 @@ fn main() {
             (Method::Get, "/api/history") => {
                 let g = game.lock().unwrap();
                 json_response(history::request(&g,request.url()))
+            }
+            (Method::Get, "/api/campaign-journey") => {
+                let g = game.lock().unwrap();
+                if exchange_session_matches(&Method::Get, request.url(), &serde_json::Value::Null, &g.session_id) {
+                    json_response(campaign_journey::view(&g, request.url()))
+                } else { json_error(409, serde_json::json!({"error":"This campaign changed. Refresh before reviewing its history."})) }
             }
             // The resource board's three cards for one line (`?com=iron`) or
             // the dossier's twelve words for one nation (`?nation=Chile`).
@@ -11087,6 +11104,14 @@ mod tests {
             "precondition: the player's nation is gone"
         );
 
+        // S21 makes observer continuation explicit. Before choosing it, the
+        // result stays paused; afterwards the original no-repeated-death bar holds.
+        let frozen = save(&g.world);
+        assert!(g.advance(12, vec![]).0);
+        assert_eq!(save(&g.world), frozen);
+        let observe = serde_json::json!({"session_id":g.session_id,"commands":[{
+            "kind":"continue_campaign","action":"observe","player":g.world.player,"date":g.world.date_str()}]});
+        transport::immediate_request(&mut g, &observe).unwrap();
         // From here the player is a spectator, and a spectator can still watch.
         // Twelve asked for is twelve delivered — unless some OTHER major event
         // interrupts, which is the ordinary behaviour and not this defect, so

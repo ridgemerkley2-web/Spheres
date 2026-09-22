@@ -43,11 +43,19 @@ obtained, so no original-response checksum or registry-as-of claim is made.
 S10.g extends the [Tonga packet](research/tonga.json) with three sources and
 five claims. It adds the People's Party as a fourth provisional organization
 and one event-host observation of Pohiva Tu'i'onetoa as Leader on 28 May 2021.
-The court's PATOA/PTOA spelling discrepancy remains unreconciled. The PMO's
+At that increment the court's PATOA/PTOA spelling discrepancy remained unreconciled. The PMO's
 27 September 2019 Assembly selection and 8 October royal appointment remain
 separate events, without inferred leadership terms or game eligibility.
 Downloaded response hashes and checked-in factual-extract hashes are distinct;
 the relevant court and appointment PDF pages were visually reviewed.
+
+On 21 September 2026, Claude's [Tonga reconciliation packet](research/tonga-reconciliation-01.md)
+was [reviewed and integrated](integrations/CLAUDE-C01-01/README.md). Three sources
+and seven claims resolve the printed acronym discrepancy as a provisional research
+grouping, add separate society-officer observations and preserve the distinction
+between Assembly selection and royal appointment. Full terms, legal identity and
+game eligibility remain unresolved. The atlas now displays observation windows and
+uncertainty without treating them as leadership terms.
 
 S10.h adds three bounded packets. [USSR](research/ussr.json) separates one CPSU
 observation from the Presidency, Congress and Supreme Soviet; the Presidency's
@@ -66,7 +74,7 @@ source claims and unresolved questions beside each observation. It is a research
 reference and does not load or change a campaign.
 
 The discovery index now totals nine country packets, 841 organization and 27
-institution observations, 58 sources, 1,606 claims and 92 open work batches.
+institution observations, 61 sources, 1,613 claims and 92 open work batches.
 All nine certification identity IDs have partial packets; 151 other identities
 still have none. No exhaustive country census is closed; the research cutoff
 remains unchanged.

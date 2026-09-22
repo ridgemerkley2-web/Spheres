@@ -1,0 +1,25 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://data.ipu.org/parliament/TO/TO-LC01/election/TO-LC01-E20171116/",
+  "accessed_date": "2026-09-21",
+  "access_method": "browser_fetched_original_html_and_page_text_read",
+  "source_response_bytes": 166618,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "provenance_note": "Fetched in-browser on 2026-09-22 UTC (2026-09-21 local) at 166,618 bytes. The Parline page embeds per-request markup (demonstrated on the 2021 page), so no response hash is asserted. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_ipu_2017_dpfi_continuity",
+      "text": "IPU states that all 2017 candidates formally ran as independents and that the 14 elected independents supporting 'Akilisi Pohiva belong to the so-called Democratic Party of the Friendly Islands (DPFI), led by the Prime Minister. It adds that DPFI took eight seats in 2014.",
+      "attested_on": "2017-11-16",
+      "locator": "'About the election', first paragraph and Note 1",
+      "uncertainty": "Continuity evidence for the IPU-described group between the 2010 and 2021 observations; not a registration record. 'Led by the Prime Minister' has no stated reference date and is not imported as a dated leadership term."
+    }
+  ],
+  "scope_note": "Used only to connect the DPFI observations across elections. The page read after the cutoff shows no revision date; its HTML response hash is not reproducible and is not asserted.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Page text of 'About the election', Note 1 and 'Sources' read. No images reviewed."
+  }
+}

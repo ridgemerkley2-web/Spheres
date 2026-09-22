@@ -32,7 +32,8 @@ class TongaDiscoveryTests(unittest.TestCase):
 
     def test_new_observation_does_not_close_country_or_relabel_other_parties(self):
         ids = self.validate()
-        self.assertEqual((len(ids['entries']), len(ids['sources']), len(ids['claims'])), (9, 16, 28))
+        # CLAUDE-C01-01 added three sources and seven claims; test_tonga_reconciliation_c01 owns them.
+        self.assertEqual((len(ids['entries']), len(ids['sources']), len(ids['claims'])), (9, 19, 35))
         self.assertEqual({e['id'] for e in self.packet['organizations']},
                          {'to_fihrdm', 'to_pdp', 'to_dpfi', 'to_peoples_party'})
         self.assertEqual(len(self.packet['institutions']), 5)
@@ -45,8 +46,8 @@ class TongaDiscoveryTests(unittest.TestCase):
 
     def test_event_host_title_is_a_dated_leader_observation_only(self):
         party = self.entries['to_peoples_party']
-        self.assertEqual(len(party['roles']), 1)
-        role = party['roles'][0]
+        # Society President/Secretary roles are separate 'other' offices, never a second leader.
+        role, = [r for r in party['roles'] if r['kind'] == 'party_leader']
         self.assertEqual((role['title'], role['kind']), ('Leader', 'party_leader'))
         self.assertEqual(role['sources'], ['to_idcpc_dialogue_20210528'])
         holder, = role['holder_claims']
@@ -90,7 +91,8 @@ class TongaDiscoveryTests(unittest.TestCase):
     def test_dated_labels_do_not_create_a_lifespan_or_merge_peoples_democratic_party(self):
         party = self.entries['to_peoples_party']
         self.assertEqual([(n['name'], n['attested_on']) for n in party['name_observations']], [
-            ("Tonga People's Party", '2021-05-28'), ("People's Party", '2021-10-01')])
+            ("Tonga People's Party", '2021-05-28'), ("People's Party", '2021-10-01'),
+            ("Paati 'a e Kakai; the People's Party", '2021-10-01'), ("Tonga People's Party (TPP)", '2021-11-18')])
         self.assertIsNone(party['lifecycle']['from'])
         self.assertIsNone(party['lifecycle']['until'])
         self.assertIn('do not establish a founding date', party['lifecycle']['note'])

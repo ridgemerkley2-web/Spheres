@@ -1,0 +1,244 @@
+TAP version 13
+# Subtest: perspective views contain a complete tank at normal zoom without clipping across aspect ratios
+ok 1 - perspective views contain a complete tank at normal zoom without clipping across aspect ratios
+  ---
+  duration_ms: 3.687252
+  type: 'test'
+  ...
+# Subtest: model identity follows configuration rather than display names or property insertion order
+ok 2 - model identity follows configuration rather than display names or property insertion order
+  ---
+  duration_ms: 0.279023
+  type: 'test'
+  ...
+# Subtest: cosmetic paint preserves unpainted materials and never mutates original colors
+ok 3 - cosmetic paint preserves unpainted materials and never mutates original colors
+  ---
+  duration_ms: 0.824601
+  type: 'test'
+  ...
+# Subtest: changing detail level replaces the displayed and exported geometry; equivalent detail reuses it
+ok 4 - changing detail level replaces the displayed and exported geometry; equivalent detail reuses it
+  ---
+  duration_ms: 12.659861
+  type: 'test'
+  ...
+# Subtest: material readiness redraws the designer and paint/geometry updates reuse its texture pack
+ok 5 - material readiness redraws the designer and paint/geometry updates reuse its texture pack
+  ---
+  duration_ms: 33.188465
+  type: 'test'
+  ...
+# Subtest: designer context loss abandons old material handles and restoration owns a fresh pack
+ok 6 - designer context loss abandons old material handles and restoration owns a fresh pack
+  ---
+  duration_ms: 1.693676
+  type: 'test'
+  ...
+# Subtest: repainting/name edits reuse geometry, a component edit replaces buffers, disposal releases all GPU resources and listeners
+ok 7 - repainting/name edits reuse geometry, a component edit replaces buffers, disposal releases all GPU resources and listeners
+  ---
+  duration_ms: 1.639585
+  type: 'test'
+  ...
+# Subtest: idle preview is demand-rendered and rotation suspends while hidden or outside the viewport
+ok 8 - idle preview is demand-rendered and rotation suspends while hidden or outside the viewport
+  ---
+  duration_ms: 1.659374
+  type: 'test'
+  ...
+# Subtest: WebGL loss pauses rendering and restores current geometry, rather than creating a second renderer
+ok 9 - WebGL loss pauses rendering and restores current geometry, rather than creating a second renderer
+  ---
+  duration_ms: 1.568011
+  type: 'test'
+  ...
+# Subtest: partial context restoration releases GPU allocations while preserving the selected part and downloadable finish
+ok 10 - partial context restoration releases GPU allocations while preserving the selected part and downloadable finish
+  ---
+  duration_ms: 15.991625
+  type: 'test'
+  ...
+# Subtest: unavailable graphics retain a clear fallback and a downloadable actual mesh
+ok 11 - unavailable graphics retain a clear fallback and a downloadable actual mesh
+  ---
+  duration_ms: 1.319178
+  type: 'test'
+  ...
+# Subtest: downloads follow the selected finish even when WebGL is unavailable
+ok 12 - downloads follow the selected finish even when WebGL is unavailable
+  ---
+  duration_ms: 0.952804
+  type: 'test'
+  ...
+# Subtest: changing finish during context loss updates downloads and the restored GPU colors
+ok 13 - changing finish during context loss updates downloads and the restored GPU colors
+  ---
+  duration_ms: 9.656235
+  type: 'test'
+  ...
+# Subtest: failed rebuild clears stale imagery and exports, releases model buffers, and allows the same specification to retry
+ok 14 - failed rebuild clears stale imagery and exports, releases model buffers, and allows the same specification to retry
+  ---
+  duration_ms: 1.937694
+  type: 'test'
+  ...
+# Subtest: a partial GPU upload failure releases newly allocated model buffers and can recover
+ok 15 - a partial GPU upload failure releases newly allocated model buffers and can recover
+  ---
+  duration_ms: 2.04011
+  type: 'test'
+  ...
+# Subtest: ray picking returns the nearest actual triangle and respects empty space and occlusion
+ok 16 - ray picking returns the nearest actual triangle and respects empty space and occlusion
+  ---
+  duration_ms: 0.55268
+  type: 'test'
+  ...
+# Subtest: a canvas click picks visible geometry, bubbles its slot, and preserves camera and exported finish
+ok 17 - a canvas click picks visible geometry, bubbles its slot, and preserves camera and exported finish
+  ---
+  duration_ms: 11.920777
+  type: 'test'
+  ...
+# Subtest: orbit drags, cancelled gestures and two-pointer gestures do not select parts
+ok 18 - orbit drags, cancelled gestures and two-pointer gestures do not select parts
+  ---
+  duration_ms: 5.491442
+  type: 'test'
+  ...
+# Subtest: all specialist hulls, tall radar and extended barrels fit the unchanged camera views
+ok 19 - all specialist hulls, tall radar and extended barrels fit the unchanged camera views
+  ---
+  duration_ms: 853.134966
+  type: 'test'
+  ...
+# Subtest: projected visible mission installations and weapons ray-pick their true specification slots
+ok 20 - projected visible mission installations and weapons ray-pick their true specification slots
+  ---
+  duration_ms: 686.3742
+  type: 'test'
+  ...
+# Subtest: native keyboard part selection works without graphics and selection survives context restoration
+ok 21 - native keyboard part selection works without graphics and selection survives context restoration
+  ---
+  duration_ms: 9.634836
+  type: 'test'
+  ...
+# Subtest: aircraft fit all camera views and expose each specification through visible triangle picking
+ok 22 - aircraft fit all camera views and expose each specification through visible triangle picking
+  ---
+  duration_ms: 1656.623011
+  type: 'test'
+  ...
+# Subtest: named views preserve an explicit user zoom while Reset returns to the complete-model fit
+ok 23 - named views preserve an explicit user zoom while Reset returns to the complete-model fit
+  ---
+  duration_ms: 3.256138
+  type: 'test'
+  ...
+# Subtest: one RGBA depth target renders actual mesh once and replaces projected floor shadow
+ok 24 - one RGBA depth target renders actual mesh once and replaces projected floor shadow
+  ---
+  duration_ms: 12.225232
+  type: 'test'
+  ...
+# Subtest: camera, paint, name and selection reuse light depth; geometry changes invalidate it without allocating another target
+ok 25 - camera, paint, name and selection reuse light depth; geometry changes invalidate it without allocating another target
+  ---
+  duration_ms: 5.601616
+  type: 'test'
+  ...
+# Subtest: 512 targets work on smaller devices while missing capabilities use the unchanged projected-shadow path
+ok 26 - 512 targets work on smaller devices while missing capabilities use the unchanged projected-shadow path
+  ---
+  duration_ms: 6.525409
+  type: 'test'
+  ...
+# Subtest: every partial shadow allocation, shader and link failure releases resources and leaves a functioning fallback
+ok 27 - every partial shadow allocation, shader and link failure releases resources and leaves a functioning fallback
+  ---
+  duration_ms: 19.793624
+  type: 'test'
+  ...
+# Subtest: a failing optional depth draw returns to the default framebuffer and replaces its sampling shader
+ok 28 - a failing optional depth draw returns to the default framebuffer and replaces its sampling shader
+  ---
+  duration_ms: 8.753891
+  type: 'test'
+  ...
+# Subtest: context loss discards shadow handles without GL calls and restores the latest geometry on the same canvas
+ok 29 - context loss discards shadow handles without GL calls and restores the latest geometry on the same canvas
+  ---
+  duration_ms: 2.651404
+  type: 'test'
+  ...
+# Subtest: failed context restoration cleans both renderer and shadow resources before a successful retry
+ok 30 - failed context restoration cleans both renderer and shadow resources before a successful retry
+  ---
+  duration_ms: 1.671189
+  type: 'test'
+  ...
+# Subtest: mesh corners and their ground projections fit a stable light volume across vehicle sizes
+ok 31 - mesh corners and their ground projections fit a stable light volume across vehicle sizes
+  ---
+  duration_ms: 2.312151
+  type: 'test'
+  ...
+# Subtest: packed depth preserves ordering and receiver shaders share the correct precision and material visibility
+ok 32 - packed depth preserves ordering and receiver shaders share the correct precision and material visibility
+  ---
+  duration_ms: 4.06707
+  type: 'test'
+  ...
+# Subtest: CPU material tags are counted without being mistaken for an uploaded float attribute
+ok 33 - CPU material tags are counted without being mistaken for an uploaded float attribute
+  ---
+  duration_ms: 1.616786
+  type: 'test'
+  ...
+# Subtest: shared backing allocation is counted once, while each GPU attribute upload has its own payload
+ok 34 - shared backing allocation is counted once, while each GPU attribute upload has its own payload
+  ---
+  duration_ms: 0.253116
+  type: 'test'
+  ...
+# Subtest: changed or corrupt layouts refuse measurement rather than silently excluding bytes
+ok 35 - changed or corrupt layouts refuse measurement rather than silently excluding bytes
+  ---
+  duration_ms: 1.305898
+  type: 'test'
+  ...
+# Subtest: inventory totals sum measured payloads without assuming one byte rate per triangle
+ok 36 - inventory totals sum measured payloads without assuming one byte rate per triangle
+  ---
+  duration_ms: 0.700812
+  type: 'test'
+  ...
+# Subtest: buffer replacement and deletion count residency; repeated passes count submissions without inventing storage
+ok 37 - buffer replacement and deletion count residency; repeated passes count submissions without inventing storage
+  ---
+  duration_ms: 3.673357
+  type: 'test'
+  ...
+# Subtest: WebGL2 ranged uploads use actual BUFFER_SIZE; indexed and instanced calls count submitted primitives
+ok 38 - WebGL2 ranged uploads use actual BUFFER_SIZE; indexed and instanced calls count submitted primitives
+  ---
+  duration_ms: 0.357611
+  type: 'test'
+  ...
+# Subtest: context loss drops live buffers and restore starts from zero, preserving a cumulative peak
+ok 39 - context loss drops live buffers and restore starts from zero, preserving a cumulative peak
+  ---
+  duration_ms: 0.223441
+  type: 'test'
+  ...
+1..39
+# tests 39
+# suites 0
+# pass 39
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3626.713698

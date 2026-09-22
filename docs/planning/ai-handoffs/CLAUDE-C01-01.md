@@ -1,12 +1,17 @@
 # CLAUDE-C01-01 — one Tonga census reconciliation packet
 
-Owner: Claude. State: **ready_for_review; received, not yet integrated or accepted**.
+Owner: Claude. State: **accepted and integrated; bounded packet complete, parent C01 incomplete**.
 Parent: C01 (in progress, incomplete). Dependency: S01 (complete).
 Branch: `claude/c01-tonga-01`. Base: `3d422daf936a30219d37f4b6930f558c9facba86`.
 Received result: `426f0ddb17a93c3d8b9a809c0129b441b29d3fe6` (21 September 2026).
 Packet: `8e94a3b`; separate generated-index patch: `8b9b7e6`.
-Research and tests remain on that branch pending Codex review; this receipt does not
-validate its claims or alter installed content. Do not start this packet again.
+Touched paths: `tonga.json`, `tonga-reconciliation-01.md`, three new
+`research/sources/tonga-*-facts.json` extracts, `test_tonga_research_s10g.py`
+(pins updated, none loosened) and new `test_tonga_reconciliation_c01.py`. Next checkpoint:
+Qualified at `fdb6d2c79209f3c441b8886a44f8e205c608452a` after merge `e759e69`.
+[Review and exact evidence](../../campaign-certification/C01/integrations/CLAUDE-C01-01/README.md).
+Next optional research packet: [CLAUDE-C01-02](CLAUDE-C01-02.md).
+Do not start this packet again. No installed character or campaign state changes.
 Integrator and reviewer: Codex. Runs independently of S18.
 
 Read `docs/campaign-certification/C01/README.md`, `research/README.md`,

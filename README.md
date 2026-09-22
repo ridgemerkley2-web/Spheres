@@ -7,7 +7,7 @@ The browser advances by **calendar day**, with pause, five speeds and one-day st
 The command-line historical runner retains its separate monthly calibration mode.
 
 **Active build: `codex/campaign-certification` · 21 September 2026.**
-S01–S18 are complete; S19 is next and assigned to Claude. Economy, government, companies and
+S01–S18 are complete; S19 is in progress with Claude. Economy, government, companies and
 ground/air operations are integrated on this branch. Full campaign certification
 and worldwide character coverage remain unfinished.
 

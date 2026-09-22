@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "revision": "2c959cd7c4f61d09a77d5859b1cbee24aa509b10",
+  "url": "http://127.0.0.1:7862",
+  "scope": "Native embedded-asset smoke test through existing equipment entry function; not a first-hour usability or campaign qualification.",
+  "commands": [],
+  "errors": [],
+  "graphics": {
+    "metrics": {
+      "resident_buffer_payload_bytes": 10879032,
+      "peak_buffer_payload_bytes": 10879032,
+      "live_buffers": 7,
+      "buffer_data_calls": 8,
+      "buffer_data_payload_bytes": 10879104,
+      "draw_calls": 9,
+      "submitted_triangles": 348688,
+      "offscreen_submitted_triangles": 69736,
+      "context_losses": 0
+    },
+    "diagnostics": []
+  }
+}

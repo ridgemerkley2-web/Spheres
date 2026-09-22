@@ -30,7 +30,7 @@ if args.check:
 if args.session and args.session not in sessions:
     sys.exit('Unknown session: '+args.session)
 print('Integration branch: '+board['integration_branch'])
-print('Completed through '+plan['last_completed_session']+'; next canonical session '+plan['next_session'])
+print('Most recently completed: '+plan['last_completed_session']+'; next canonical session '+plan['next_session'])
 for sid, session in sessions.items():
     stream = owners[sid]
     if args.owner and stream['owner'] != args.owner: continue

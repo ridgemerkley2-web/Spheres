@@ -1,6 +1,7 @@
 # Source-backed discovery intake
 
-This is additional research for S10.b through S10.h, separate from the C01
+This is additional research begun in S10.b through S10.h and continued in bounded
+Claude/Codex handoffs, separate from the C01
 recount of the playable catalogue. These packets record discoveries and
 explicit gaps; they do not change game parties, leader eligibility or artwork.
 The historical cutoff stays **7 September 2026**. Research access dates can be
@@ -56,7 +57,7 @@ identities and five institutions. S10.g adds three primary sources and five
 claims: the [dialogue organizer's account](https://www.idcpc.org.cn/english2023/bzhd/202105/t20210531_160418.html)
 identifies Pohiva Tu'i'onetoa as Leader of Tonga People's Party on 28 May 2021;
 the Court of Appeal describes People's Party campaigning at a 1 October 2021
-event. The court's PATOA/PTOA spellings remain explicit and unreconciled. These
+event. At that increment the court's PATOA/PTOA spellings remained explicit and unreconciled. These
 observations establish neither a party's founding date nor a continuous
 leadership term, and do not merge it with the People's Democratic Party.
 
@@ -69,6 +70,13 @@ are not checked in. The extracts have their own checked-in checksums. No source
 artwork is reused. Access on 13 September 2026 leaves the fixed historical
 cutoff unchanged; party histories, game mappings and Tonga's discovery batch
 remain open.
+
+The [first Tonga reconciliation](tonga-reconciliation-01.md) is now accepted through
+the [Codex integration review](../integrations/CLAUDE-C01-01/README.md). It adds three
+sources and seven claims while keeping the four organizations and five institutions.
+The printed PATOA/PTOA variants are reconciled provisionally; society offices remain
+separate from party leadership, and Assembly selection remains separate from royal
+appointment. No full term, installed leader, avatar or country completion is added.
 
 [Saudi Arabia](saudi-arabia.json) adds six differently classified organizations
 and six institutions. The Saudi organizations include a self-declared party, a
@@ -186,7 +194,7 @@ extracts. No source artwork, game mapping, complete term or portrait eligibility
 is added. Access on 14 September 2026 leaves the historical cutoff unchanged.
 
 Together the nine packets contain 841 organization observations and 27
-institution observations, supported by 1,606 claims across 58 cited sources.
+institution observations, supported by 1,613 claims across 61 cited sources.
 The index assigns them to 92 open research batches. All nine certification
 identity IDs now have partial discovery packets: the eight campaign cases
 include a USSR → Russia transition with two separate jurisdictions. None
