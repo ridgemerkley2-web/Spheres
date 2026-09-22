@@ -1,0 +1,31 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://ago.gov.to/cms/judgements/supreme-court-civil/category/247-cv-2026.html?download=3028:uhilamoelangi-fasi-v-semis-kioa-lafu-sika-cv-49-2025-tosc-6-may-2026-j-garlick-kc-judgement-and-reasons",
+  "accessed_date": "2026-09-21",
+  "published_date": "2026-05-18",
+  "access_method": "downloaded_original_pdf_and_relevant_pages_visually_read",
+  "source_response_bytes": 5984803,
+  "source_response_sha256": "8b8a29bcc418d2aab2ac4637956e63e8ae4d398544f3fd769cf0689063c8f2d9",
+  "source_response_checked_in": false,
+  "provenance_note": "Original response bytes were downloaded (curl -L) on 2026-09-21 and hashed before extraction; an independent re-download the same day matched the byte count and SHA-256. The PDF is an image-only scan with no text layer, so it was read from rendered page images. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_fasi_v_sika_poll_result_20251120",
+      "text": "The judgment's introduction states that the petitioner, 'Uhilamoelangi Fasi, and the respondent, Semisi Kioa Lafu Sika, were candidates in the election held on 20 November 2025, and that the respondent was the successful candidate.",
+      "attested_on": "2025-11-20",
+      "locator": "PDF page 1, 'Introduction'",
+      "uncertainty": "Corroborates the poll result only. Page 1 does not name the constituency; the two names match the only two Tongatapu 2 candidates in the Commission's table (to_tec_2025_tongatapu2). The judgment's determination on the validity of that election is not imported, so no seat status after the poll is asserted."
+    }
+  ],
+  "scope_note": "Poll-result corroboration only. The document is the expanded judgment and reasons, signed on 18 May 2026 (page 13); the shortened judgment was delivered on 6 May 2026 (page 1). It ends with a determination on the validity of the 20 November 2025 election, to be conveyed to the Speaker (pages 12-13). That determination, the petition's allegations and the court's findings are not imported, and whether any appeal followed was not checked. The judgment contains no reference to PTOA, DPFI or any party.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2,
+      12,
+      13
+    ],
+    "method": "All 13 pages were rendered and read by the researcher for party references (none). Pages 1, 12 and 13 were read again by the checker, and pages 1, 2, 12 and 13 for this packet. Only the page 1 introduction is imported."
+  }
+}
