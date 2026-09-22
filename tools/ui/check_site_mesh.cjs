@@ -19,17 +19,18 @@ const STAGES=['site','foundation','frame','enclosed','complete'];
 const LEGACY_KINDS=['infrastructure','civilian_industry','power_grid','research_center','arms_plant',
   'machinery_works','generation','processing_plant','freight_terminal','warehouse','automation','efficiency','starter_industry'];
 
-// S02 adds three facilities without changing any existing construction art.
-// Pin all prior geometry buffers, semantic ranges and bounds across stages,
-// levels and both LODs, including a stopped pose. Recorded from 038fe0b.
-test('the original thirteen facility meshes keep their exact geometry and semantics',()=>{
+// Pin the reviewed facility geometry, semantic ranges and bounds across
+// stages, levels and both LODs, including a stopped pose. The 038fe0b baseline
+// was deliberately refreshed after merging coplanar rafter spans and removing
+// four coincident perimeter posts; separate tests retain the original map bytes.
+test('the original thirteen facility meshes keep their reviewed geometry and semantics',()=>{
   const hash=crypto.createHash('sha256');
   for(const key of LEGACY_KINDS)for(const stage of STAGES)for(const lod of [0,1])for(let level=1;level<=5;level++)for(const status of ['building','paused']){
     const mesh=site.build(key,stage,{lod,level,status,variant:11});
     hash.update(JSON.stringify([key,stage,lod,level,status,mesh.bounds,mesh.parts,mesh.shading]));
     for(const buffer of [mesh.positions,mesh.normals,mesh.colors])hash.update(Buffer.from(buffer.buffer,buffer.byteOffset,buffer.byteLength));
   }
-  assert.equal(hash.digest('hex'),'2dcd7ea75ab815aa937fae5e5119580579fd0e2fb4b9db044076aa0df4db3557');
+  assert.equal(hash.digest('hex'),'e01e2ef84f08b6cf7ed4aca985574537d75031b3e0dd92f8c5c92c4e25540936');
 });
 
 // BUDGET, and what moved. LOD1 is unchanged and is the hard one: sites are drawn

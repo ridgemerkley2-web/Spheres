@@ -95,26 +95,26 @@ remain open design/performance decisions rather than being hidden by measurement
 | `aviation.air_fighter.baseline.v1` | baseline LOD0 | 200,446 | 60,000 | 140,446 (234.1%) |
 | `aviation.air_light_attack.baseline.v1` | baseline LOD0 | 199,326 | 60,000 | 139,326 (232.2%) |
 | `aviation.air_tactical_strike.baseline.v1` | baseline LOD0 | 228,640 | 60,000 | 168,640 (281.1%) |
-| `site.infrastructure.v1` | near complete/L5/building | 30,756 | 12,000 | 18,756 (156.3%) |
-| `site.civilian_industry.v1` | near complete/L5/building | 39,302 | 12,000 | 27,302 (227.5%) |
-| `site.power_grid.v1` | near complete/L5/building | 38,552 | 12,000 | 26,552 (221.3%) |
-| `site.research_center.v1` | near complete/L5/building | 32,780 | 12,000 | 20,780 (173.2%) |
-| `site.arms_plant.v1` | near complete/L5/building | 35,636 | 12,000 | 23,636 (197.0%) |
-| `site.machinery_works.v1` | near complete/L5/building | 37,728 | 12,000 | 25,728 (214.4%) |
-| `site.generation.v1` | near complete/L5/building | 39,020 | 12,000 | 27,020 (225.2%) |
-| `site.processing_plant.v1` | near complete/L5/building | 34,770 | 12,000 | 22,770 (189.8%) |
-| `site.freight_terminal.v1` | near complete/L5/building | 36,430 | 12,000 | 24,430 (203.6%) |
-| `site.warehouse.v1` | near complete/L5/building | 34,006 | 12,000 | 22,006 (183.4%) |
-| `site.automation.v1` | near complete/L5/building | 33,316 | 12,000 | 21,316 (177.6%) |
-| `site.efficiency.v1` | near complete/L5/building | 33,056 | 12,000 | 21,056 (175.5%) |
-| `site.starter_industry.v1` | near complete/L5/building | 30,164 | 12,000 | 18,164 (151.4%) |
-| `site.office_district.v1` | near complete/L5/building | 32,350 | 12,000 | 20,350 (169.6%) |
-| `site.shipyard.v1` | near complete/L5/building | 30,324 | 12,000 | 18,324 (152.7%) |
-| `site.advanced_industry.v1` | near complete/L5/building | 30,328 | 12,000 | 18,328 (152.7%) |
-| `town.temperate.mixed.v1` | close id 1997 | 175,277 | 150,000 | 25,277 (16.9%) |
-| `town.temperate.residential.v1` | close id 1994 | 184,684 | 150,000 | 34,684 (23.1%) |
-| `town.kit.row_house` | close, maximum size | 17,904 | 12,000 | 5,904 (49.2%) |
-| `town.kit.university` | close, maximum size | 19,046 | 12,000 | 7,046 (58.7%) |
+| `site.infrastructure.v1` | near complete/L5/building | 30,420 | 12,000 | 18,420 (153.5%) |
+| `site.civilian_industry.v1` | near complete/L5/building | 38,646 | 12,000 | 26,646 (222.0%) |
+| `site.power_grid.v1` | near complete/L5/building | 38,216 | 12,000 | 26,216 (218.5%) |
+| `site.research_center.v1` | near complete/L5/building | 32,444 | 12,000 | 20,444 (170.4%) |
+| `site.arms_plant.v1` | near complete/L5/building | 35,300 | 12,000 | 23,300 (194.2%) |
+| `site.machinery_works.v1` | near complete/L5/building | 37,232 | 12,000 | 25,232 (210.3%) |
+| `site.generation.v1` | near complete/L5/building | 38,524 | 12,000 | 26,524 (221.0%) |
+| `site.processing_plant.v1` | near complete/L5/building | 34,434 | 12,000 | 22,434 (186.9%) |
+| `site.freight_terminal.v1` | near complete/L5/building | 36,094 | 12,000 | 24,094 (200.8%) |
+| `site.warehouse.v1` | near complete/L5/building | 33,670 | 12,000 | 21,670 (180.6%) |
+| `site.automation.v1` | near complete/L5/building | 32,980 | 12,000 | 20,980 (174.8%) |
+| `site.efficiency.v1` | near complete/L5/building | 32,720 | 12,000 | 20,720 (172.7%) |
+| `site.starter_industry.v1` | near complete/L5/building | 29,828 | 12,000 | 17,828 (148.6%) |
+| `site.office_district.v1` | near complete/L5/building | 32,014 | 12,000 | 20,014 (166.8%) |
+| `site.shipyard.v1` | near complete/L5/building | 29,988 | 12,000 | 17,988 (149.9%) |
+| `site.advanced_industry.v1` | near complete/L5/building | 29,992 | 12,000 | 17,992 (149.9%) |
+| `town.temperate.mixed.v1` | close id 1997 | 163,671 | 150,000 | 13,671 (9.1%) |
+| `town.temperate.residential.v1` | close id 1994 | 174,540 | 150,000 | 24,540 (16.4%) |
+| `town.kit.row_house` | close, maximum size | 16,382 | 12,000 | 4,382 (36.5%) |
+| `town.kit.university` | close, maximum size | 16,656 | 12,000 | 4,656 (38.8%) |
 
 Widening the roadmap budget to make this table empty is the one repair
 this harness exists to forbid. Either the mesh loses the triangles, or
@@ -209,22 +209,22 @@ across that whole sweep, so `max` is the worst case the sim can ask for.
 
 | asset | near min | near max | near verdict | far min | far max | far verdict | worst-case near bytes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `site.infrastructure.v1` | 8,846 | 30,756 | **OVER by 18,756 (156.3%)** | 244 | 756 | PASS | 3,321,648 |
-| `site.civilian_industry.v1` | 8,066 | 39,302 | **OVER by 27,302 (227.5%)** | 180 | 594 | PASS | 4,244,616 |
-| `site.power_grid.v1` | 9,390 | 38,552 | **OVER by 26,552 (221.3%)** | 276 | 712 | PASS | 4,163,616 |
-| `site.research_center.v1` | 8,066 | 32,780 | **OVER by 20,780 (173.2%)** | 180 | 580 | PASS | 3,540,240 |
-| `site.arms_plant.v1` | 8,202 | 35,636 | **OVER by 23,636 (197.0%)** | 180 | 470 | PASS | 3,848,688 |
-| `site.machinery_works.v1` | 9,366 | 37,728 | **OVER by 25,728 (214.4%)** | 204 | 630 | PASS | 4,074,624 |
-| `site.generation.v1` | 8,394 | 39,020 | **OVER by 27,020 (225.2%)** | 196 | 696 | PASS | 4,214,160 |
-| `site.processing_plant.v1` | 8,746 | 34,770 | **OVER by 22,770 (189.8%)** | 220 | 688 | PASS | 3,755,160 |
-| `site.freight_terminal.v1` | 8,802 | 36,430 | **OVER by 24,430 (203.6%)** | 198 | 722 | PASS | 3,934,440 |
-| `site.warehouse.v1` | 8,560 | 34,006 | **OVER by 22,006 (183.4%)** | 188 | 614 | PASS | 3,672,648 |
-| `site.automation.v1` | 9,044 | 33,316 | **OVER by 21,316 (177.6%)** | 220 | 658 | PASS | 3,598,128 |
-| `site.efficiency.v1` | 8,882 | 33,056 | **OVER by 21,056 (175.5%)** | 208 | 730 | PASS | 3,570,048 |
-| `site.starter_industry.v1` | 7,250 | 30,164 | **OVER by 18,164 (151.4%)** | 164 | 542 | PASS | 3,257,712 |
-| `site.office_district.v1` | 8,066 | 32,350 | **OVER by 20,350 (169.6%)** | 180 | 598 | PASS | 3,493,800 |
-| `site.shipyard.v1` | 8,474 | 30,324 | **OVER by 18,324 (152.7%)** | 188 | 642 | PASS | 3,274,992 |
-| `site.advanced_industry.v1` | 8,202 | 30,328 | **OVER by 18,328 (152.7%)** | 180 | 654 | PASS | 3,275,424 |
+| `site.infrastructure.v1` | 8,846 | 30,420 | **OVER by 18,420 (153.5%)** | 244 | 756 | PASS | 3,285,360 |
+| `site.civilian_industry.v1` | 8,066 | 38,646 | **OVER by 26,646 (222.0%)** | 180 | 594 | PASS | 4,173,768 |
+| `site.power_grid.v1` | 9,390 | 38,216 | **OVER by 26,216 (218.5%)** | 276 | 712 | PASS | 4,127,328 |
+| `site.research_center.v1` | 8,066 | 32,444 | **OVER by 20,444 (170.4%)** | 180 | 580 | PASS | 3,503,952 |
+| `site.arms_plant.v1` | 8,202 | 35,300 | **OVER by 23,300 (194.2%)** | 180 | 470 | PASS | 3,812,400 |
+| `site.machinery_works.v1` | 9,366 | 37,232 | **OVER by 25,232 (210.3%)** | 204 | 630 | PASS | 4,021,056 |
+| `site.generation.v1` | 8,394 | 38,524 | **OVER by 26,524 (221.0%)** | 196 | 696 | PASS | 4,160,592 |
+| `site.processing_plant.v1` | 8,746 | 34,434 | **OVER by 22,434 (186.9%)** | 220 | 688 | PASS | 3,718,872 |
+| `site.freight_terminal.v1` | 8,802 | 36,094 | **OVER by 24,094 (200.8%)** | 198 | 722 | PASS | 3,898,152 |
+| `site.warehouse.v1` | 8,560 | 33,670 | **OVER by 21,670 (180.6%)** | 188 | 614 | PASS | 3,636,360 |
+| `site.automation.v1` | 9,044 | 32,980 | **OVER by 20,980 (174.8%)** | 220 | 658 | PASS | 3,561,840 |
+| `site.efficiency.v1` | 8,882 | 32,720 | **OVER by 20,720 (172.7%)** | 208 | 730 | PASS | 3,533,760 |
+| `site.starter_industry.v1` | 7,250 | 29,828 | **OVER by 17,828 (148.6%)** | 164 | 542 | PASS | 3,221,424 |
+| `site.office_district.v1` | 8,066 | 32,014 | **OVER by 20,014 (166.8%)** | 180 | 598 | PASS | 3,457,512 |
+| `site.shipyard.v1` | 8,474 | 29,988 | **OVER by 17,988 (149.9%)** | 188 | 642 | PASS | 3,238,704 |
+| `site.advanced_industry.v1` | 8,202 | 29,992 | **OVER by 17,992 (149.9%)** | 180 | 654 | PASS | 3,239,136 |
 
 Which configuration is the worst case, and how many selectable parts it carries:
 
@@ -256,10 +256,10 @@ building.
 
 | asset | close min | close max | close verdict | map min | map max | worst close bytes | lots |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `town.temperate.mixed.v1` | 157,625 | 175,277 | **OVER by 25,277 (16.9%)** | 3,302 | 3,878 | 18,929,916 | 16 |
-| `town.temperate.residential.v1` | 158,227 | 184,684 | **OVER by 34,684 (23.1%)** | 3,250 | 4,098 | 19,945,872 | 20 |
-| `town.temperate.commercial.v1` | 100,742 | 129,734 | PASS | 3,012 | 3,680 | 14,011,272 | 18 |
-| `town.temperate.civic.v1` | 89,829 | 135,157 | PASS | 3,026 | 3,766 | 14,596,956 | 17 |
+| `town.temperate.mixed.v1` | 149,019 | 163,671 | **OVER by 13,671 (9.1%)** | 3,302 | 3,878 | 17,676,468 | 16 |
+| `town.temperate.residential.v1` | 149,907 | 174,540 | **OVER by 24,540 (16.4%)** | 3,250 | 4,098 | 18,850,320 | 20 |
+| `town.temperate.commercial.v1` | 98,486 | 125,494 | PASS | 3,012 | 3,680 | 13,553,352 | 18 |
+| `town.temperate.civic.v1` | 87,961 | 128,377 | PASS | 3,026 | 3,766 | 13,864,716 | 17 |
 | `town.temperate.industrial.v1` | 73,866 | 84,250 | PASS | 2,444 | 3,124 | 9,099,000 | 13 |
 
 The map LOD has no roadmap row of its own — section 4 budgets a scene assembly
@@ -281,18 +281,18 @@ same triangles twice.
 
 | kind | worst case | close tris | close verdict | map tris | map verdict |
 | --- | --- | --- | --- | --- | --- |
-| `house` | 11.8 x 20 m, 3 storeys | 6,379 | PASS | 152 | PASS |
-| `row_house` | 35.4 x 17 m, 3 storeys | 17,904 | **OVER by 5,904 (49.2%)** | 188 | PASS |
-| `low_apartment` | 22 x 21 m, 4 storeys | 8,448 | PASS | 164 | PASS |
-| `mid_apartment` | 27 x 24 m, 7 storeys | 11,768 | PASS | 172 | PASS |
-| `high_apartment` | 26 x 34 m, 16 storeys | 9,500 | PASS | 222 | PASS |
+| `house` | 11.8 x 20 m, 3 storeys | 6,059 | PASS | 152 | PASS |
+| `row_house` | 35.4 x 17 m, 3 storeys | 16,382 | **OVER by 4,382 (36.5%)** | 188 | PASS |
+| `low_apartment` | 22 x 21 m, 4 storeys | 7,968 | PASS | 164 | PASS |
+| `mid_apartment` | 27 x 24 m, 7 storeys | 11,600 | PASS | 172 | PASS |
+| `high_apartment` | 26 x 34 m, 16 storeys | 9,308 | PASS | 222 | PASS |
 | `office` | 32 x 24 m, 6 storeys | 6,178 | PASS | 172 | PASS |
-| `shop` | 16 x 18 m, 3 storeys | 5,910 | PASS | 152 | PASS |
+| `shop` | 16 x 18 m, 3 storeys | 5,510 | PASS | 152 | PASS |
 | `warehouse` | 32 x 30 m, 1 storey | 5,706 | PASS | 116 | PASS |
-| `civic` | 30 x 30 m, 3 storeys | 10,445 | PASS | 228 | PASS |
+| `civic` | 30 x 30 m, 3 storeys | 9,761 | PASS | 228 | PASS |
 | `school` | 44 x 34 m, 2 storeys | 6,540 | PASS | 230 | PASS |
 | `hospital` | 40 x 42 m, 6 storeys | 6,858 | PASS | 246 | PASS |
-| `university` | 42 x 40 m, 4 storeys | 19,046 | **OVER by 7,046 (58.7%)** | 308 | PASS |
+| `university` | 42 x 40 m, 4 storeys | 16,656 | **OVER by 4,656 (38.8%)** | 308 | PASS |
 | `stadium` | 178 x 140 m, 1 storey | 5,102 | PASS | 214 | PASS |
 | `park` | 46 x 30 m, 1 storey | 6,920 | PASS | 346 | PASS |
 | `utility` | 17 x 15 m, 1 storey | 4,448 | PASS | 200 | PASS |
@@ -307,7 +307,7 @@ failure; this is where the next art pass will push something over.
 | asset | configuration | triangles | ceiling | of ceiling |
 | --- | --- | --- | --- | --- |
 | `ground.ground_ifv.baseline.v1` | baseline | 44,222 | 45,000 | 98.3% |
-| `town.kit.mid_apartment` | close, maximum size | 11,768 | 12,000 | 98.1% |
+| `town.kit.mid_apartment` | close, maximum size | 11,600 | 12,000 | 96.7% |
 | `aviation.air_fighter.baseline.v1` | baseline LOD1 | 11,594 | 12,000 | 96.6% |
 | `aviation.air_light_attack.baseline.v1` | baseline LOD1 | 11,474 | 12,000 | 95.6% |
 | `site.infrastructure.v1` | far complete/L5/building | 756 | 800 | 94.5% |
@@ -321,9 +321,9 @@ added here. CPU backing bytes and per-attribute layouts are in P0_MEASUREMENTS.j
 | set | assets | stored triangles | base upload payload bytes |
 | --- | --- | --- | --- |
 | Ground vehicles, heaviest specification | 9 | 496,720 | 53,645,760 |
-| Construction sites, worst case near | 16 | 548,518 | 59,239,944 |
-| Town blocks, worst case close | 5 | 709,102 | 76,583,016 |
-| **Measured set, close detail** | **30** | **1,754,340** | **189,468,720** (180.69 MiB) |
+| Construction sites, worst case near | 16 | 542,502 | 58,590,216 |
+| Town blocks, worst case close | 5 | 676,332 | 73,043,856 |
+| **Measured set, close detail** | **30** | **1,715,554** | **185,279,832** (176.70 MiB) |
 | Sites/towns coarse; ground vehicles retained at LOD0 for comparison | 30 | 525,552 | 56,759,616 (54.13 MiB) |
 
 The comparison row deliberately retains the measured vehicles at LOD0:
@@ -351,12 +351,12 @@ compression/headers, renderer, stylesheet and other page costs are not included.
 | file | bytes | |
 | --- | --- | --- |
 | `spheres-web/ui/equipment-mesh.js` | 180,384 | 176.2 KiB |
-| `spheres-web/ui/site-mesh.js` | 304,159 | 297.0 KiB |
-| `spheres-web/ui/town-mesh.js` | 170,337 | 166.3 KiB |
-| **total** | **654,880** | **639.5 KiB** |
+| `spheres-web/ui/site-mesh.js` | 304,444 | 297.3 KiB |
+| `spheres-web/ui/town-mesh.js` | 171,386 | 167.4 KiB |
+| **total** | **656,214** | **640.8 KiB** |
 
-654,880 bytes of source produce 1,754,340 triangles of
-geometry — 289x its own weight in vertex data. That ratio is not fixed
+656,214 bytes of source produce 1,715,554 triangles of
+geometry — 282x its own weight in vertex data. That ratio is not fixed
 at authoring time either: it grows with every extra seed, stage, level and
 district asked of the same source.
 
@@ -365,7 +365,7 @@ totalling 125,594,104 bytes (119.78 MiB). They are the
 portable deliverable roadmap section 4 asks for, not a runtime download — the game
 never fetches them — and they are the comparison that settles the argument:
 13 equipment exports (3 aircraft and 10 ground-vehicle configurations) as binary assets weigh
-191.8x the entire generator source
+191.4x the entire generator source
 that builds every vehicle, every site at every stage and every town block.
 
 ## Method

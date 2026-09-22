@@ -1047,7 +1047,9 @@
   /// steel and not a length of timber, and it is only three primitives.
   function portal(m, cz, span, depth, eaves, ridge, col) {
     const hw = span / 2, t = 0.22, fl = 0.055, dep = 0.34;
-    const steps = 3;
+    // The four rafter faces are planar with constant material. A single span
+    // preserves their outline and lighting without redundant coplanar seams.
+    const steps = 1;
     for (const s of [-1, 1]) {
       m.save();
       if (s < 0) m.scale(-1, 1, 1);
@@ -1071,7 +1073,7 @@
       for (const zs of [-1, 1]) {
         m.bar(hw - t, hw + t - fl, eaves - 0.5, eaves, cz + zs * 0.14 - 0.02, cz + zs * 0.14 + 0.02, shade(col, 1.06));
       }
-      // Rafter, stepped from eaves to ridge. Four faces per step: the underside
+      // Rafter, spanning eaves to ridge. Four faces: the underside
       // used to be left open, and a rafter you can see the inside of is a
       // rafter that is not there.
       for (let i = 0; i < steps; i += 1) {
@@ -1281,7 +1283,9 @@
     for (const [a, b] of [[[-hw, hd], [hw, hd]], [[hw, -hd], [-hw, -hd]], [[hw, hd], [hw, -hd]], [[-hw, -hd], [-hw, hd]]]) {
       const dx = b[0] - a[0], dz = b[1] - a[1], len = Math.hypot(dx, dz);
       const n = Math.max(2, Math.round(len / step));
-      for (let i = 0; i <= n; i += 1) {
+      // Each run owns its starting corner; the next run owns its end.
+      // Drawing both produced four exactly coincident chamfered posts.
+      for (let i = 0; i < n; i += 1) {
         const x = a[0] + (dx * i) / n, z = a[1] + (dz * i) / n;
         if (d0.fine) m.beam(x - 0.1, x + 0.1, GRADE, GRADE + h + 0.16, z - 0.1, z + 0.1, P.galv, 0.018);
         else m.bar(x - 0.1, x + 0.1, GRADE, GRADE + h, z - 0.1, z + 0.1, P.galv);

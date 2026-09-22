@@ -2548,16 +2548,20 @@ pub const POLITIES: &[Polity] = &[
     // 12 June 1990: FIS 54.2%, FLN 28.1%, RCD 2.1%, PNSD 1.6%, PSD 1.1%, PRA
     // 0.8%, PAGS 0.3%, independents 11.7%, on a 65.2% turnout.
     //
-    // Algeria sits BELOW the 0.60 electoral ceiling on purpose. In January 1990
-    // this was a state whose government could be removed by a vote — thirty-odd
-    // parties were legal under the constitution of 23 February 1989 — and five
-    // months later a vote removed it from more than half the country's
-    // communes. The legislative election that followed was called for 1991,
-    // postponed, and held on 26 December 1991; the army cancelled the second
-    // round on 11 January 1992 and the war began. Nothing here schedules any of
-    // that. What is stated is an electorate, a scheduled election, and an army
-    // that is a pillar of the regime rather than a servant of the chamber, and
-    // the model is left to do what it does with the three of them together.
+    // These are retained SUPPORT PROXIES, normalized over the represented
+    // parties, not measured January popularity or national parliamentary seats.
+    // The opening national chamber is seated separately by opening_seats:
+    // FLN won all 295 seats in February 1987 and remained the only represented
+    // party throughout 1990. FIS was legal by late 1989, so it belongs in the
+    // support model without being installed as the opening government.
+    // https://data.ipu.org/election-summary/PDF/ALGERIA_1987_E.PDF
+    // https://www.ecoi.net/en/document/1280981.html (US State Department, 1989)
+    // https://www.ecoi.net/en/document/1324300.html (US State Department, 1990)
+    //
+    // Algeria remains below the electoral ceiling, allowing a later vote to
+    // change the government. December 1991 is the model's existing historical
+    // election timing, not a date already announced in January 1990. The
+    // chamber override does not prescribe an election winner or army response.
     // https://en.wikipedia.org/wiki/1990_Algerian_local_elections
     Polity {
         nation: NationId::Algeria,
@@ -5998,6 +6002,20 @@ fn normalise(v: &mut [(String, f64)]) {
     }
 }
 
+/// Last elected national chamber, distinct from the modeled electorate. This
+/// override is only for a missing government on the exact campaign start date;
+/// it never rewrites an existing save or invents a chamber for a later date.
+fn opening_seats(w: &WorldState, pol: &Polity, support: &[(String, f64)]) -> Vec<(String, f64)> {
+    if pol.nation == NationId::Algeria && (w.year, w.month, w.day) == (1990, 1, 1) {
+        // IPU, 26 February 1987: FLN 295 of 295 national Assembly seats.
+        // https://data.ipu.org/election-summary/PDF/ALGERIA_1987_E.PDF
+        // The 1989/1990 State Department reports confirm FLN-only national
+        // representation despite legal opposition and the June local election.
+        return support.iter().map(|(id, _)| (id.clone(), if id == "dz_fln" { 1.0 } else { 0.0 })).collect();
+    }
+    seats_from(support, pol.system)
+}
+
 /// Seat a government from the transcribed table. Called lazily so that a save
 /// written before this module existed still loads and simply grows one.
 pub fn ensure(w: &mut WorldState, id: NationId) {
@@ -6033,10 +6051,7 @@ pub fn ensure(w: &mut WorldState, id: NationId) {
         banned: vec![],
         regime_bloc: None,
     };
-    // Seats at the opening are the last real result read through this system's
-    // own machinery, so that January 1990 and January 1994 are described the
-    // same way.
-    g.seats = seats_from(&g.support, pol.system);
+    g.seats = opening_seats(w, pol, &g.support);
     w.governments.states.push(g);
     if is_electoral(w, id) {
         form_government(w, id, false);
@@ -8885,6 +8900,90 @@ mod tests {
     }
 
     #[test]
+    fn algeria_opens_with_its_national_chamber_and_separate_opposition_support() {
+        for daily in [false, true] {
+            let w = world_1990(GameRules {
+                daily_simulation: daily,
+                historical_party_leadership: daily,
+                ..GameRules::default()
+            });
+            let g = state(&w, NationId::Algeria).unwrap();
+            let pol = polity_in(&w, NationId::Algeria).unwrap();
+            let mut expected: Vec<_> = pol.parties.iter()
+                .map(|p| (p.id.to_string(), p.start.max(0.001))).collect();
+            normalise(&mut expected);
+            assert_eq!(g.support, expected, "seats must not overwrite popularity proxies");
+            assert_eq!(g.seats.len(), pol.parties.len());
+            for (id, seats) in &g.seats {
+                assert_eq!(*seats, if id == "dz_fln" { 1.0 } else { 0.0 });
+            }
+            assert_eq!(g.leader(), Some("dz_fln"));
+            assert_eq!(g.government_seats(), 1.0);
+            assert!(!g.elected);
+            assert!(g.banned.is_empty());
+            assert_eq!(g.next_election, (1991, 12));
+            assert!(w.headlines.is_empty(), "initialization is not an election or succession");
+            for other in &w.governments.states {
+                if other.nation != NationId::Algeria {
+                    let pol = polity_in(&w, other.nation).unwrap();
+                    assert_eq!(other.seats, seats_from(&other.support, pol.system));
+                }
+            }
+        }
+    }
+
+    #[test]
+    fn algerian_opening_seats_preserve_saved_governments_and_later_date_fallbacks() {
+        let id = NationId::Algeria;
+        for date in [(1990, 1, 1), (1990, 1, 2), (1990, 2, 1), (1994, 1, 1)] {
+            let mut w = w1990();
+            (w.year, w.month, w.day) = date;
+            // A populated save may contain a player's divergent January result.
+            // Preserve that result as well as ordinary later campaign state.
+            let pol = polity_in(&w, id).unwrap();
+            let g = state_mut(&mut w, id).unwrap();
+            g.seats = seats_from(&g.support, pol.system);
+            g.coalition = vec!["dz_fis".to_string()];
+            g.elected = true;
+            g.months_in_office = 3;
+            let before = serde_json::to_string(state(&w, id).unwrap()).unwrap();
+            let mut resumed = crate::load(&crate::save(&w)).unwrap();
+            ensure_all(&mut resumed);
+            ensure_all(&mut resumed);
+            assert_eq!(serde_json::to_string(state(&resumed, id).unwrap()).unwrap(), before);
+
+            if date != (1990, 1, 1) {
+                resumed.governments.states.retain(|g| g.nation != id);
+                ensure(&mut resumed, id);
+                let g = state(&resumed, id).unwrap();
+                assert_eq!(g.seats, seats_from(&g.support, pol.system), "date {date:?}");
+                assert_eq!(g.leader(), Some("dz_fis"), "later fallback remains unchanged");
+            }
+        }
+        let mut w = w1990();
+        let before = crate::state_hash(&w);
+        ensure_all(&mut w);
+        assert_eq!(crate::state_hash(&w), before);
+        let resumed = crate::load(&crate::save(&w)).unwrap();
+        assert_eq!(crate::state_hash(&resumed), before);
+    }
+
+    #[test]
+    fn an_actual_algerian_election_replaces_the_opening_chamber() {
+        let id = NationId::Algeria;
+        let mut w = w1990();
+        assert_eq!(state(&w, id).unwrap().leader(), Some("dz_fln"));
+        let support = state(&w, id).unwrap().support.clone();
+        let expected = seats_from(&support, polity_in(&w, id).unwrap().system);
+        hold_election(&mut w, id);
+        let g = state(&w, id).unwrap();
+        assert_eq!(g.support, support);
+        assert_eq!(g.seats, expected);
+        assert_eq!(g.leader(), Some("dz_fis"));
+        assert!(g.elected);
+    }
+
+    #[test]
     fn daily_government_age_and_support_do_not_jump_a_month_per_day() {
         let mut w = world_1990(GameRules { daily_simulation: true, ..GameRules::default() });
         let id = NationId::USA;
@@ -10692,9 +10791,8 @@ mod tests {
         let g = state(&w, dz).unwrap();
         assert_eq!(g.regime_bloc, Some(Bloc::Nationalist));
         assert_eq!(g.banned, vec!["dz_fis".to_string()], "every party of the winner's bloc is banned");
-        // The table's opening seating already has the FIS leading (its share
-        // is the 1991 result, entered as the last vote before 1990), so the
-        // dormant record is the cabinet that sat before the annulled vote.
+        // The dormant record retains the cabinet that sat before the
+        // annulled vote, rather than installing the rejected winner.
         assert!(!dormant.is_empty());
         assert_eq!(g.coalition, dormant, "the cabinet that sat before the vote is the dormant record");
         assert_eq!(g.loyalty(Pillar::Army), 0.90);
@@ -10828,6 +10926,11 @@ mod tests {
             let mut w = world_1990(roads_rules(7));
             w.nation_mut(dz).stability = 40.0;
             w.nation_mut(dz).inflation = 0.167;
+            // This test inspects annulment of a completed FIS-winning vote,
+            // not the FLN-only chamber inherited at the campaign start.
+            let system = polity_in(&w, dz).unwrap().system;
+            let g = state_mut(&mut w, dz).unwrap();
+            g.seats = seats_from(&g.support, system);
             w
         };
         let army = |w: &mut WorldState, v: f64| {

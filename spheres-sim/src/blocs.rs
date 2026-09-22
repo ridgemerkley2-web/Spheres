@@ -1045,7 +1045,7 @@ mod tests {
     /// read 0x7781f46d31e8a5d0).
     #[test]
     fn the_bloc_layer_is_inert_at_1990() {
-        const START_ACTUAL: u64 = 0xe26e4bf8d6c60066;
+        const START_ACTUAL: u64 = 0x6fc47dff64344b17;
         assert!(!GameRules::default().ideology_blocs);
         assert!(!GameRules::default().ideology_takeover);
         let w = world_1990(GameRules::default());
@@ -1148,13 +1148,16 @@ mod tests {
     /// so the clause is reached only in that month; it stands as ruled.
     #[test]
     fn the_bloc_layer_is_inert_over_time() {
+        // 2026-09-22: measured with Algeria's sourced FLN-only opening chamber.
+        // Independent seat-only overlays of the previous library reproduce
+        // these six timelines; see the remaining-failures verification report.
         const BASE: [u64; 6] = [
-            0x8834ad709d4bf805,
-            0xbd3f3e335fb6161c,
-            0x9120a2ff805b184f,
-            0xde17f4fdef2c0d7f,
-            0xeb92ae6a6418b12e,
-            0xef75c8dcbe4335b5,
+            0x95e5fe35215c4fc9,
+            0x7bbec62d113c034b,
+            0xb3e5a927a2f9e509,
+            0x75c7ea1b2a4b46f8,
+            0x9a08dffbeab9da85,
+            0xa9a05daae84bd1bb,
         ];
         for seed in 0..6u64 {
             let mut w = world_1990(GameRules { seed, ..GameRules::default() });
@@ -1346,11 +1349,13 @@ mod tests {
 
     /// The 1990 census over the full leader table, integrated 2026-09-05 and
     /// MEASURED on that tree: Western 67, Communist 17, Nationalist 7,
-    /// Islamist 3, Non-Aligned 43, summing to the 137 nations of the roster.
+    /// Islamist 3, Non-Aligned 43. The 2026-09-22 correction seats Algeria's
+    /// 1987 national chamber, moving one from Islamist to Nationalist:
+    /// [67, 17, 8, 2, 43], still summing to the 137 nations of the roster.
     /// The counts are pinned as transcribed data is pinned elsewhere in this
     /// suite — a change here is a change to a sourced row or to the pillar map,
     /// and it is meant to be noticed. The bars of the design brief that the
-    /// rows AGREE with are asserted here; the three they disagree with live in
+    /// rows AGREE with are asserted here; the remaining disagreements live in
     /// `the_1990_census_meets_the_design_brief`, which is red until Ridge
     /// decides. Watched red by dropping Solidarity's Western override: Poland
     /// read Some(NonAligned) against Some(Western), and the Western count fell
@@ -1363,7 +1368,9 @@ mod tests {
         let (census, who) = census_1990(&w);
         assert_eq!(census.iter().sum::<usize>(), alive(&w).len());
         assert!(census.iter().all(|c| *c > 0), "every bloc rules somewhere in 1990: {census:?}");
-        assert_eq!(census, [67, 17, 7, 3, 43], "the census as transcribed on 2026-09-05");
+        assert_eq!(census, [67, 17, 8, 2, 43], "the census after Algeria's sourced opening chamber correction");
+        assert_eq!(ruling_bloc(&w, NationId::Algeria), Some(Bloc::Nationalist));
+        assert_eq!(who[Bloc::Islamist as usize], ["Iran", "Sudan"]);
         // The decided cases (design D1-D6) as the table alone settles them.
         assert_eq!(ruling_bloc(&w, NationId::Poland), Some(Bloc::Western), "Solidarity's umbrella");
         assert_eq!(leader_bloc(&w, NationId::Poland), Some(Bloc::Western));
@@ -1414,7 +1421,7 @@ mod tests {
         }
     }
 
-    /// The three bars of the design brief (2026-09-05) that the transcribed
+    /// The remaining bars of the design brief (2026-09-05) that the transcribed
     /// rows DISAGREE with, kept as written — not bent (iron rule 5) — and
     /// PARKED under `#[ignore]` with the disagreement filed as BUGS.md P-6
     /// until Ridge rules on the rows or the bars. It was red on the tree from
@@ -1433,18 +1440,16 @@ mod tests {
     ///   Nguesso, cg_pct), Madagascar (Ratsiraka, mg_arema) and Seychelles
     ///   (Rene, sc_sppf) — every one the Communist family of its own
     ///   transcribed party.
-    /// * Islamist exactly Iran and Sudan — the rows read Iran, Sudan AND
-    ///   Algeria: Algeria is electoral at authoritarianism 0.55 and the party
-    ///   table seats the June 1990 local result, FIS 0.542, so the chamber
-    ///   leader is the FIS whatever Bendjedid's own FLN tie says. That is the
-    ///   pre-existing table's transcription, not the leader row's.
+    /// * Islamist exactly Iran and Sudan — fixed on 2026-09-22 by separating
+    ///   Algeria's actual FLN-only national chamber from its support proxies.
+    ///   This assertion remains here; the other two disagreements remain red.
     /// * Nationalist includes Libya — the rows read Libya Non-Aligned: Gaddafi
     ///   is tied to the Party pillar (the Revolutionary Committees Movement),
     ///   which the D3 pillar map installs as Non-Aligned in a non-Communist
     ///   regime, and no fetched source gave the row a bloc_override the way
     ///   Sudan's did.
     #[test]
-    #[ignore = "RED BY DESIGN and filed as BUGS.md P-6: the transcribed rows disagree with three bars of the brief (Communist 17 vs 11-13; Islamist adds Algeria; Libya Non-Aligned); Ridge rules on the rows or the bars"]
+    #[ignore = "RED BY DESIGN and filed as BUGS.md P-6: two disagreements remain (Communist 17 vs 11-13; Libya Non-Aligned); Algeria's opening chamber is corrected"]
     fn the_1990_census_meets_the_design_brief() {
         let w = world_1990(on(1990));
         let (census, who) = census_1990(&w);

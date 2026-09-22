@@ -2939,6 +2939,18 @@ Ridge approved "The Political Arm of SPHERES", revision 2, on 2026-09-05, quoted
 
 ### P-6 — the 1990 census disagrees with three bars of the design brief, and the bar is parked under `#[ignore]`
 
+**Update, 2026-09-22:** Algeria's opening chamber now uses the FLN's 295/295
+national seats from the [IPU's 1987 election report](https://data.ipu.org/election-summary/PDF/ALGERIA_1987_E.PDF).
+The [1989](https://www.ecoi.net/en/document/1280981.html) and
+[1990](https://www.ecoi.net/en/document/1324300.html) US State Department reports
+confirm FLN-only national representation. This corrects the Islamist subcase:
+the opening census is **[67, 17, 8, 2, 43]**, with only Iran and Sudan Islamist.
+The later local-election support proxies remain separate; existing governments
+in saved games are preserved. The Communist-count and Libya disagreements
+remain, and the original P-6 assertions are unchanged. The original finding
+below is retained as history. See
+[the follow-up verification](docs/campaign-certification/verification/2026-09-22-remaining-failures.md).
+
 `spheres-sim/src/blocs.rs`, `the_1990_census_meets_the_design_brief`. The brief asked Communist 11-13, Islamist exactly Iran and Sudan, and Libya Nationalist. The transcribed table reads, on the full 137-row table (measured, and pinned in `the_1990_ruling_bloc_census`): **Western 67, Communist 17, Nationalist 7, Islamist 3, Non-Aligned 43.** The three misses:
 
 * **Communist 17** — the eleven the brief expects plus Yugoslavia (Markovic, `yu_skj`), Bulgaria (Mladenov, `bg_bsp`, electoral at authoritarianism 0.40 with the BSP leading the chamber), Nicaragua (Ortega, `ni_fsln`, electoral at 0.50), Congo (`cg_pct`), Madagascar (`mg_arema`) and Seychelles (`sc_sppf`) — each the Communist family of its own transcribed party.

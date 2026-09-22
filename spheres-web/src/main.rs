@@ -17603,8 +17603,10 @@ mod tests {
         assert_eq!(tally["Western"], 67);
         assert_eq!(tally["NonAligned"], 43);
         assert_eq!(tally["Communist"], 17);
-        assert_eq!(tally["Nationalist"], 7);
-        assert_eq!(tally["Islamist"], 3);
+        // Algeria opens with the FLN-only 1987 national chamber, separately
+        // from support proxies drawn from the later June 1990 local vote.
+        assert_eq!(tally["Nationalist"], 8);
+        assert_eq!(tally["Islamist"], 2);
         // A loaded save is played with the lens on too.
         let loaded = loaded_play_game(Game::new(7, Some(NationId::Poland)).world);
         assert!(loaded.world.rules.ideology_blocs && !loaded.world.rules.ideology_takeover);

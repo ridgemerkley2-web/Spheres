@@ -693,6 +693,15 @@
     return b;
   }
 
+  /// The cill and lintel cover a jamb's ends, and the wall covers its rear.
+  /// Both projecting sides remain: they are visible along an oblique facade.
+  function sashJamb(b, x0, x1, y0, y1, z0, z1) {
+    b.quad([x1, y0, z0], [x1, y1, z0], [x1, y1, z1], [x1, y0, z1], SLOT.TRIM, 0.98);
+    b.quad([x0, y0, z0], [x0, y0, z1], [x0, y1, z1], [x0, y1, z0], SLOT.TRIM, 0.98);
+    b.quad([x0, y0, z1], [x1, y0, z1], [x1, y1, z1], [x0, y1, z1], SLOT.TRIM, 0.98);
+    return b;
+  }
+
   /// One opening on the +Z wall plane at z = zf, centred on cx. Authored only
   /// for +Z; the other three elevations get it by pushing a cardinal yaw, so
   /// there is one of this function and not four.
@@ -720,8 +729,8 @@
       b.box(cx - hw - 0.14, cx + hw + 0.14, y0 - 0.1, y0 + 0.01, zf - 0.02, zf + 0.07, SLOT.TRIM, 1.04);
       b.box(cx - hw - 0.14, cx + hw + 0.14, y1 - 0.01, y1 + 0.14, zf - 0.02, zf + 0.05, SLOT.TRIM, 1.0);
     }
-    b.box(cx - hw - 0.13, cx - hw, y0, y1, zf - 0.02, zf + 0.05, SLOT.TRIM, 0.98);                        // jambs
-    b.box(cx + hw, cx + hw + 0.13, y0, y1, zf - 0.02, zf + 0.05, SLOT.TRIM, 0.98);
+    sashJamb(b, cx - hw - 0.13, cx - hw, y0, y1, zf - 0.02, zf + 0.05);
+    sashJamb(b, cx + hw, cx + hw + 0.13, y0, y1, zf - 0.02, zf + 0.05);
     b.opening(cx - hw, cx + hw, y0, y1, zf);
     // Reveal: four inward-facing quads from the wall plane back to the glass.
     b.quad([cx - hw, y0, zf], [cx + hw, y0, zf], [cx + hw, y0, zf - dep], [cx - hw, y0, zf - dep], SLOT.WALL, 0.72);
@@ -1023,7 +1032,7 @@
   /// A stack with a corbelled head, lead flashing at the roof line and clay
   /// pots. Chimneys are the single cheapest thing that says "temperate, and
   /// not new": the kit puts one on every pitched roof and one per party wall
-  /// on a terrace. The pots are smoothed and have a rim and a hollow throat,
+  /// on a terrace. The pots are smoothed and have a projecting rim,
   /// because a pot is the most obviously round object on the skyline and a
   /// hexagonal one gives the whole roof away.
   function chimney(b, cx, cz, base, top, w, d, pots) {
@@ -1038,10 +1047,12 @@
     const n = pots || 2;
     for (let i = 0; i < n; i += 1) {
       const x = cx + (n === 1 ? 0 : (i / (n - 1) - 0.5) * (w - 0.4));
-      tube(b, x, cz, top, top + 0.58, 0.145, 0.125, b.segs(9, 6, 4), SLOT.ROOF, 1.1);
+      // At close range the corbel seals the base and the wider, capped rim
+      // seals the top. Separate barrel caps and an inner throat enclosed by
+      // those opaque surfaces add no visible geometry.
+      tube(b, x, cz, top, top + 0.58, 0.145, 0.125, b.segs(9, 6, 4), SLOT.ROOF, 1.1, b.detail < 2);
       if (b.detail >= 2) {
         tube(b, x, cz, top + 0.58, top + 0.66, 0.155, 0.15, 9, SLOT.ROOF, 1.14);   // rim
-        tube(b, x, cz, top + 0.5, top + 0.62, 0.09, 0.09, 9, SLOT.DARK, 0.7);      // throat
       }
     }
     return b;
@@ -2121,6 +2132,7 @@
     close(b, p) {
       const hw = p.w / 2, hd = 7.0, h = TALL_STOREY + (p.storeys - 1) * 3.5;
       const zc = -p.d / 2 + 24.0 + hd;
+      const wingH = TALL_STOREY + 3.5, wd = 8.0;
       grass(b, -hw, hw, -p.d / 2, p.d / 2);
       // A U around a courtyard: main range at the rear, two wings coming
       // forward. It costs three volumes and it is the shape that says campus.
@@ -2148,11 +2160,20 @@
       }
       b.push(2, 0, 0, 0);
       for (let s = 0; s < p.storeys; s += 1) {
-        for (let i = 0; i < 6; i += 1) sash(b, -hw + (p.w * (i + 0.5)) / 6, (s === 0 ? 0 : TALL_STOREY + (s - 1) * 3.5) + 1.1, 1.35, 1.9, hd, 2, 3, false);
+        for (let i = 0; i < 6; i += 1) {
+          const x = -hw + (p.w * (i + 0.5)) / 6;
+          const y = (s === 0 ? 0 : TALL_STOREY + (s - 1) * 3.5) + 1.1;
+          // The attached wings seal these lower rear openings completely.
+          // Include the whole cill/lintel extents in the containment test;
+          // courtyard-facing and upper-storey windows remain unchanged.
+          const halfTrim = 1.35 / 2 + 0.14;
+          const withinWing = Math.abs(x) - halfTrim >= hw - 12 && Math.abs(x) + halfTrim <= hw
+            && y - 0.1 >= 0 && y + 1.9 + 0.14 <= wingH;
+          if (!withinWing) sash(b, x, y, 1.35, 1.9, hd, 2, 3, false);
+        }
       }
       b.pop();
       b.pop();
-      const wingH = TALL_STOREY + 3.5, wd = 8.0;
       for (const sx of [-1, 1]) {
         const cx = sx * (hw - 6.0);
         b.push(0, cx, 0, zc - hd - wd);

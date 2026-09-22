@@ -13,8 +13,8 @@ const exportLine = "    block, building, kinds, kindInfo,";
 assert.ok(source.includes(exportLine));
 const context = vm.createContext({});
 vm.runInContext(source.replace(exportLine,
-  exportLine + " _test: { Builder, glazingBar, sash, railing },"), context);
-const { Builder, glazingBar, sash, railing } = context.TownMesh._test;
+  exportLine + " _test: { Builder, glazingBar, sash, railing, chimney, tube, KINDS, SLOT, TALL_STOREY },"), context);
+const { Builder, glazingBar, sash, railing, chimney, tube, KINDS, SLOT, TALL_STOREY } = context.TownMesh._test;
 
 function triangles(b) {
   const out = [];
@@ -100,4 +100,53 @@ function railFixture(trimmed) {
 }
 sameExterior("covered baluster caps and retained end caps", railFixture(false), railFixture(true), [-2.1, -0.1, 0], [2.1, 1.1],
   [[0, 3, 4], [4, 2, 0.5], [-4, 2, 0.5], [0, -2, 2], [0, 3, -4]]);
-console.log("3 town surface optimizations preserve nearest exterior geometry across " + rays + " ray samples");
+
+function jambFixture(closed, dress) {
+  const b = new Builder(2);
+  b.wall(-4, 4, 0, 5, -2, 0, SLOT.WALL, 1);
+  sash(b, 0, 1, 1.5, 2, 0, 2, 3, dress);
+  if (closed) {
+    // Restore the full old boxes. Their exposed sides coincide exactly; any
+    // wrongly omitted cap or rear face would become the nearest hit here.
+    b.box(-0.88, -0.75, 1, 3, -0.02, 0.05, SLOT.TRIM, 0.98);
+    b.box(0.75, 0.88, 1, 3, -0.02, 0.05, SLOT.TRIM, 0.98);
+  }
+  b.flushFaces();
+  return b;
+}
+for (const dress of [true, false]) sameExterior("jamb ends under " + (dress ? "beveled" : "plain") + " dressings",
+  jambFixture(true, dress), jambFixture(false, dress), [-0.95, 0.85, -0.14], [1, 3.2], cameras);
+
+function chimneyFixture(closed) {
+  const b = new Builder(2);
+  chimney(b, 0, 0, 0, 3, 1, 0.8, 2);
+  if (closed) for (const x of [-0.3, 0.3]) {
+    tube(b, x, 0, 3, 3.58, 0.145, 0.125, 9, SLOT.ROOF, 1.1);
+    tube(b, x, 0, 3.5, 3.62, 0.09, 0.09, 9, SLOT.DARK, 0.7);
+  }
+  return b;
+}
+sameExterior("opaque chimney rims enclose their interior", chimneyFixture(true), chimneyFixture(false), [-0.7, -0.1, 0], [0.7, 3.8],
+  [[0, 5, 6], [6, 3, 1], [-6, 3, -1], [0, 10, 0], [0, -4, 1]]);
+
+// Count the actual glass triangles on the rear range, not source strings or
+// the building's total. The two lower courtyard bays and every upper bay
+// remain; only bays completely inside an attached wing disappear.
+for (const detail of [1, 2]) for (const width of [36, 42]) for (const storeys of [3, 4]) {
+  const b = new Builder(detail), wingH = TALL_STOREY + 3.5;
+  KINDS.university.close(b, { w: width, d: 40, storeys });
+  b.flushFaces();
+  let exposed = 0, buried = 0;
+  for (let i = 0; i < b.pos.length; i += 9) {
+    if (b.slot[i / 3] !== SLOT.GLASS) continue;
+    if (![2, 5, 8].every(j => Math.abs(b.pos[i + j] - 4.17) < 1e-7)) continue;
+    const x = (b.pos[i] + b.pos[i + 3] + b.pos[i + 6]) / 3;
+    const y = (b.pos[i + 1] + b.pos[i + 4] + b.pos[i + 7]) / 3;
+    if (Math.abs(x) >= width / 2 - 12 && y <= wingH) buried += 1;
+    else exposed += 1;
+  }
+  assert.equal(buried, 0, "no glass enclosed by an attached wing");
+  assert.equal(exposed, (2 * 2 + (storeys - 2) * 6) * 2, "retain courtyard and upper rear windows");
+}
+console.log("6 town surface optimizations preserve nearest exterior geometry across " + rays
+  + " ray samples; all 8 university width/storey/detail cases retain their exposed rear windows");
