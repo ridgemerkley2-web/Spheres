@@ -1,0 +1,27 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://parliament.gov.to/en/media-centre/latest-news/appointment-of-interim-speaker-lord-tangi",
+  "accessed_date": "2026-09-21",
+  "published_date": "2021-11-22",
+  "access_method": "fetched_original_html_and_article_text_read",
+  "source_response_bytes": 55949,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "provenance_note": "Fetched twice on 2026-09-22 UTC (2026-09-21 local) by direct HTTPS request, HTTP 200. Both responses were 55,949 bytes but their SHA-256 values differed (b9e28731... and d510875e...) because each response embeds a per-request form token; the page also displays a live hit counter. No response hash is asserted. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_interim_speaker_tangi_20211120",
+      "text": "The Assembly reports that King Tupou VI appointed Lord Tangi Interim Speaker of the Legislative Assembly effective Saturday 20 November 2021, to preside over and lead the constitutional process to elect the Prime Minister Designate from the representatives elected at the 18 November 2021 general election. It states that the writ of election must be returned by 2 December 2021; that invitations to nominate follow within 10 days of its return and nominations must be received within 14 days of it; and that a secret-ballot meeting of the elected representatives follows within 3 days of the close of nominations.",
+      "attested_on": "2021-11-20",
+      "locator": "News item created 22 November 2021, paragraphs 1-7",
+      "uncertainty": "A procedural notice issued before the selection. It records no result and no appointment or effective date for a Prime Minister. The interim Speaker appointment is not imported as a Speaker holder observation."
+    }
+  ],
+  "scope_note": "Used only for the 2021 Prime Minister selection procedure (TO-TR21-01). Joomla news page: each response embeds a per-request form token and shows a live hit counter, so no response hash is asserted. The 'created' date is the page's publication metadata.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Article text and the page's created date read; no images reviewed."
+  }
+}

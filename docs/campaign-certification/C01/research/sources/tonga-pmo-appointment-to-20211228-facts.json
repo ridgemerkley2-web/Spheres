@@ -1,0 +1,49 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://pmo.gov.to/fakanofo-e-he-ene-afio-a-hon-siaosi-ofakivahafolau-sovaleni-ko-e-palemia-o-tonga/",
+  "accessed_date": "2026-09-21",
+  "published_date": "2021-12-28",
+  "access_method": "browser_fetched_page_and_downloaded_original_release_image_visually_read",
+  "source_response_url": "https://pmo.gov.to/wp-content/uploads/2021/12/newprimeminister2.jpg",
+  "source_response_bytes": 208565,
+  "source_response_sha256": "28af517a9264f5334b1eea3153380291eb83b3213d7f1d2de8fd95f1e38c92e2",
+  "source_response_checked_in": false,
+  "release_image_responses": [
+    {
+      "image": 1,
+      "url": "https://pmo.gov.to/wp-content/uploads/2021/12/newprimeminister2.jpg",
+      "bytes": 208565,
+      "sha256": "28af517a9264f5334b1eea3153380291eb83b3213d7f1d2de8fd95f1e38c92e2",
+      "content_type": "image/jpeg",
+      "pixels": [
+        1275,
+        1650
+      ]
+    }
+  ],
+  "page_response": {
+    "bytes": 76399,
+    "sha256": null,
+    "method": "browser_fetch",
+    "note": "WordPress page carrying the release image(s). A direct non-browser request returned HTTP 403, so the page was read in a browser; its HTML hash is not asserted as reproducible."
+  },
+  "provenance_note": "The release is published as JPEG image(s) embedded in a WordPress page. The image bytes were downloaded directly (HTTP 200) and hashed before extraction; they are the original response identity recorded here. The page HTML was read in a browser because a direct non-browser request returned HTTP 403; its byte count is recorded and its hash is not asserted as reproducible. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_sovaleni_royal_appointment_to_20211227",
+      "text": "The PMO's Tongan-language release dated 'Aho 28 'o Tisema 2021 states that King Tupou VI appointed Hon. Siaosi 'Ofakivahafolau Sovaleni (Hu'akavameiliku) as Palēmia (Prime Minister) of Tonga, as recommended by the Fale Alea, under clause (kupu) 50A of the Constitution. It states that the premiership is reckoned from the day of appointment, which it gives as 27 Tisema 2021.",
+      "attested_on": "2021-12-27",
+      "locator": "Release image, date line under 'ONGOONGO TUKUATU' and first and second body paragraphs",
+      "uncertainty": "The English rendering is this packet's reading, not an official translation. Hu'akavameiliku is printed in parentheses as a name form; no chiefly-title grant, date or rank is inferred. Read with the English release's 'with effect from', 27 Tisema is the effective date; neither release records the warrant's signature or presentation as a separate event."
+    }
+  ],
+  "scope_note": "Tongan-language counterpart of the English release, published on its own PMO page as one JPEG image (newprimeminister2.jpg). Its third paragraph expects the Cabinet announcement 'apongipongi (tomorrow), Pulelulu 29 Tisema 2021, consistent with issue on 28 December; that forecast is not imported. A direct non-browser request for the page returned HTTP 403; the page HTML hash is not asserted.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [
+      1
+    ],
+    "method": "The 1275x1650 release image was viewed at full size: the 'Aho 28 'o Tisema 2021 date line, the kupu 50A appointment on the Fale Alea's recommendation, the name form Hu'akavameiliku, the 27 Tisema starting day and the 29 Tisema Cabinet forecast. The coat of arms was not used."
+  }
+}

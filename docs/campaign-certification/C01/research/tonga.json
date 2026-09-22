@@ -518,6 +518,208 @@
         "sha256": "0efe15916d9bae924db1e9f18b0acaa49290e93a8bf18962da6de53c256dc337",
         "kind": "derived_factual_extract"
       }
+    },
+    {
+      "id": "to_assembly_interim_speaker_20211122",
+      "title": "Appointment of Interim Speaker Lord Tangi",
+      "url": "https://parliament.gov.to/en/media-centre/latest-news/appointment-of-interim-speaker-lord-tangi",
+      "publisher": "Legislative Assembly of Tonga",
+      "accessed_date": "2026-09-21",
+      "published_date": "2021-11-22",
+      "source_type": "primary_legislature_news_notice",
+      "access_method": "fetched_original_html_and_article_text_read",
+      "claims": [
+        {
+          "id": "to_interim_speaker_tangi_20211120",
+          "text": "The Assembly reports that King Tupou VI appointed Lord Tangi Interim Speaker of the Legislative Assembly effective Saturday 20 November 2021, to preside over and lead the constitutional process to elect the Prime Minister Designate from the representatives elected at the 18 November 2021 general election. It states that the writ of election must be returned by 2 December 2021; that invitations to nominate follow within 10 days of its return and nominations must be received within 14 days of it; and that a secret-ballot meeting of the elected representatives follows within 3 days of the close of nominations.",
+          "attested_on": "2021-11-20",
+          "locator": "News item created 22 November 2021, paragraphs 1-7",
+          "uncertainty": "A procedural notice issued before the selection. It records no result and no appointment or effective date for a Prime Minister. The interim Speaker appointment is not imported as a Speaker holder observation."
+        }
+      ],
+      "scope_note": "Used only for the 2021 Prime Minister selection procedure (TO-TR21-01). Joomla news page: each response embeds a per-request form token and shows a live hit counter, so no response hash is asserted. The 'created' date is the page's publication metadata.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-interim-speaker-20211122-facts.json",
+        "bytes": 2635,
+        "sha256": "6d8044d7243624b7dc6cc58a653f5878e1862e7049f9acab92da01ee013556f5",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_assembly_pm_nominations_20211201",
+      "title": "Period for nomination of candidates for Prime Minister now open",
+      "url": "https://parliament.gov.to/en/media-centre/latest-news/period-for-nomination-of-candidates-for-prime-minister-now-open",
+      "publisher": "Legislative Assembly of Tonga",
+      "accessed_date": "2026-09-21",
+      "published_date": "2021-12-01",
+      "source_type": "primary_legislature_news_notice",
+      "access_method": "fetched_original_html_and_article_text_read",
+      "claims": [
+        {
+          "id": "to_pm_nominations_invited_20211130",
+          "text": "The Assembly reports that Interim Speaker Lord Tangi issued invitations to all Elected Representatives to nominate a candidate for Prime Minister Designate, following the return of the writ of election from the Electoral Commission to the King on Tuesday 30 November 2021. It states that nominations close at 4.30pm on Tuesday 14 December 2021.",
+          "locator": "News item created 01 December 2021, paragraphs 1-2",
+          "period": {
+            "from": "2021-11-30",
+            "through": "2021-12-14"
+          },
+          "uncertainty": "The invitations are dated only by the notice's 'today' and its 1 December creation date. A procedural notice: it names no candidate and records no result."
+        }
+      ],
+      "scope_note": "Used only for the 2021 Prime Minister selection procedure (TO-TR21-01). Joomla news page: each response embeds a per-request form token and shows a live hit counter, so no response hash is asserted. The 'created' date is the page's publication metadata.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-pm-nominations-20211201-facts.json",
+        "bytes": 2387,
+        "sha256": "7baa782b9e5131aa04b0667c09dd632fff779712590f5a13f3d7a3db791936e8",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_assembly_pm_meeting_20211213",
+      "title": "Meeting to elect the Prime Minister to be held on Wednesday 15 December",
+      "url": "https://parliament.gov.to/en/media-centre/latest-news/meeting-to-elect-the-prime-minister-to-be-held-on-wednesday-15-december",
+      "publisher": "Legislative Assembly of Tonga",
+      "accessed_date": "2026-09-21",
+      "published_date": "2021-12-13",
+      "source_type": "primary_legislature_news_notice",
+      "access_method": "fetched_original_html_and_article_text_read",
+      "claims": [
+        {
+          "id": "to_pm_election_meeting_notice_20211213",
+          "text": "The Assembly reports that Interim Speaker Lord Tangi confirmed that the meeting of the Elected Representatives to elect the Prime Minister would be held on Wednesday 15 December 2021 at 10am, and that one nomination had so far been received, on Monday 13 December 2021. It states that the Speaker and Deputy Speaker would be elected at the same meeting after the Prime Minister election result is declared.",
+          "locator": "News item created 13 December 2021, paragraphs 1-3",
+          "period": {
+            "from": "2021-12-13",
+            "through": "2021-12-15"
+          },
+          "uncertainty": "An advance notice. It does not record that the meeting took place or its result, and names no candidate."
+        }
+      ],
+      "scope_note": "Used only for the 2021 Prime Minister selection procedure (TO-TR21-01). Joomla news page: each response embeds a per-request form token and shows a live hit counter, so no response hash is asserted. The 'created' date is the page's publication metadata.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-pm-meeting-20211213-facts.json",
+        "bytes": 2411,
+        "sha256": "fb923b27d01bfcf802ac882faa97958692cb0312a6acca405e8f95e5200c5564",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_assembly_pm_nominations_20211214",
+      "title": "Two Prime Minister candidate nominations received",
+      "url": "https://parliament.gov.to/en/media-centre/latest-news/two-prime-minister-candidate-nominations-received",
+      "publisher": "Legislative Assembly of Tonga",
+      "accessed_date": "2026-09-21",
+      "published_date": "2021-12-14",
+      "source_type": "primary_legislature_news_notice",
+      "access_method": "fetched_original_html_and_article_text_read",
+      "claims": [
+        {
+          "id": "to_pm_two_nominations_20211214",
+          "text": "The Assembly reports that when nominations closed at 4.30pm 'today', two nominations for Prime Minister had been received, the first on Monday 13 December and the second that day, and that the candidates would be revealed at the meeting to elect the Prime Minister Designate 'tomorrow, Wednesday 15 December at 10am'.",
+          "attested_on": "2021-12-14",
+          "locator": "News item created 14 December 2021, paragraph 1",
+          "uncertainty": "Candidates are not named. In the Assembly's news sequence the next notice was created on 4 January 2022; no Assembly notice of the 15 December result was found."
+        }
+      ],
+      "scope_note": "Used only for the 2021 Prime Minister selection procedure (TO-TR21-01, TO-TR21-02). Joomla news page: each response embeds a per-request form token and shows a live hit counter, so no response hash is asserted. The 'created' date is the page's publication metadata.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-assembly-pm-nominations-20211214-facts.json",
+        "bytes": 2320,
+        "sha256": "12b90556f2b06c413c00dc3418932c911de8e35dac87307bb0fd27b756f6f044",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_sovaleni_appointment_20211228",
+      "title": "King appoints Prime Minister Hon. Siaosi 'Ofakivahafolau Sovaleni",
+      "url": "https://pmo.gov.to/king-appoints-prime-minister-hon-siaosi-ofakivahafolau-sovaleni/",
+      "publisher": "Prime Minister's Office, Government of Tonga",
+      "accessed_date": "2026-09-21",
+      "published_date": "2021-12-28",
+      "source_type": "primary_government_appointment_announcement",
+      "access_method": "browser_fetched_page_and_downloaded_original_release_image_visually_read",
+      "claims": [
+        {
+          "id": "to_sovaleni_royal_appointment_en_20211227",
+          "text": "The PMO's English release dated 28 December 2021 states that, in accordance with Clause 50A of the Constitution, King Tupou VI appointed the Prime Minister-Designate, Hon. Siaosi 'Ofakivahafolau Sovaleni, as Prime Minister of Tonga with effect from 27 December 2021.",
+          "attested_on": "2021-12-27",
+          "locator": "Release image, date line under 'MEDIA RELEASE' and first body paragraph",
+          "uncertainty": "The stated effective date only. The release does not give the date on which the Royal Warrant was signed or presented, and its own 28 December date is not read as either. No end date, term length or caretaker arrangement is stated or inferred."
+        },
+        {
+          "id": "to_sovaleni_assembly_election_pmo_20211215",
+          "text": "The same release states that Sovaleni was elected as Prime Minister by the Legislative Assembly on 15 December, following the 2021 General Election. The printed sentence begins 'Prior to being elected' and ends by saying he will be the 18th Prime Minister of Tonga.",
+          "attested_on": "2021-12-15",
+          "locator": "Release image, second body paragraph",
+          "uncertainty": "Only the dated Assembly election is used; it is the Assembly's selection, not the royal appointment. The sentence is recorded as printed, and its ordinal is not used to number or complete a succession."
+        }
+      ],
+      "scope_note": "English media release dated 28 December 2021, published on the PMO page as one JPEG image (NewPrimeMinister2021.jpg). The release date is publication, not the warrant's signature or presentation date, which the release does not give. Its undated remark on the Prime Minister's earlier portfolios and its forecast of a 29 December Cabinet announcement are not imported. A direct non-browser request for the page returned HTTP 403; the page HTML hash is not asserted.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-appointment-20211228-facts.json",
+        "bytes": 4285,
+        "sha256": "01ed192cc9d0a2d7b99252b77f168c9635438404ce2f6cde269a47c30f84468f",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_sovaleni_appointment_to_20211228",
+      "title": "Fakanofo 'e he 'Ene 'Afio 'a Hon. Siaosi 'Ofakivahafolau Sovaleni ko e Palēmia 'o Tonga",
+      "url": "https://pmo.gov.to/fakanofo-e-he-ene-afio-a-hon-siaosi-ofakivahafolau-sovaleni-ko-e-palemia-o-tonga/",
+      "publisher": "Prime Minister's Office, Government of Tonga (Pule'anga Tonga)",
+      "accessed_date": "2026-09-21",
+      "published_date": "2021-12-28",
+      "source_type": "primary_government_appointment_announcement",
+      "access_method": "browser_fetched_page_and_downloaded_original_release_image_visually_read",
+      "claims": [
+        {
+          "id": "to_sovaleni_royal_appointment_to_20211227",
+          "text": "The PMO's Tongan-language release dated 'Aho 28 'o Tisema 2021 states that King Tupou VI appointed Hon. Siaosi 'Ofakivahafolau Sovaleni (Hu'akavameiliku) as Palēmia (Prime Minister) of Tonga, as recommended by the Fale Alea, under clause (kupu) 50A of the Constitution. It states that the premiership is reckoned from the day of appointment, which it gives as 27 Tisema 2021.",
+          "attested_on": "2021-12-27",
+          "locator": "Release image, date line under 'ONGOONGO TUKUATU' and first and second body paragraphs",
+          "uncertainty": "The English rendering is this packet's reading, not an official translation. Hu'akavameiliku is printed in parentheses as a name form; no chiefly-title grant, date or rank is inferred. Read with the English release's 'with effect from', 27 Tisema is the effective date; neither release records the warrant's signature or presentation as a separate event."
+        }
+      ],
+      "scope_note": "Tongan-language counterpart of the English release, published on its own PMO page as one JPEG image (newprimeminister2.jpg). Its third paragraph expects the Cabinet announcement 'apongipongi (tomorrow), Pulelulu 29 Tisema 2021, consistent with issue on 28 December; that forecast is not imported. A direct non-browser request for the page returned HTTP 403; the page HTML hash is not asserted.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-appointment-to-20211228-facts.json",
+        "bytes": 3837,
+        "sha256": "17a55fc7503b06d1e25b6011613f5e018900df7dd2a7e1fb5ba59d4c27014915",
+        "kind": "derived_factual_extract"
+      }
+    },
+    {
+      "id": "to_pmo_cabinet_20211229",
+      "title": "Prime Minister, Hon. Siaosi 'Ofakivahafolau Sovaleni announces new Cabinet Ministers",
+      "url": "https://pmo.gov.to/prime-minister-hon-siaosi-ofakivahafolau-sovaleni-announces-new-cabinet-ministers/",
+      "publisher": "Prime Minister's Office, Government of Tonga",
+      "accessed_date": "2026-09-21",
+      "published_date": "2021-12-29",
+      "source_type": "primary_government_appointment_announcement",
+      "access_method": "browser_fetched_page_and_downloaded_original_release_images_visually_read",
+      "claims": [
+        {
+          "id": "to_sovaleni_cabinet_effective_20211228",
+          "text": "The PMO's release dated 29 December 2021 states that King Tupou VI, on the Prime Minister's recommendations, appointed the new Ministers of Government with effect from 28 December 2021. Its numbered list of twelve Cabinet members gives (1) Hon. Siaosi 'Ofakivahafolau Sovaleni as Prime Minister and Minister for Education and Training, for Police, Fire Services and Emergency Services, and for His Majesty's Armed Forces, and (2) Hon. Poasi Mataele Tei as Deputy Prime Minister, Minister for MEIDECC and Minister for Public Enterprises.",
+          "attested_on": "2021-12-28",
+          "locator": "Release image 1 (page 1): first paragraph and list items 1-2; the list ends at item 12 on image 2",
+          "uncertainty": "The stated effective date of the ministerial appointments, not the date letters were presented or oaths taken. It is not read as a second start date for the premiership, which the 28 December releases give as 27 December. Items 3-12 are not imported as holder observations, and the list is not asserted to remain unchanged."
+        },
+        {
+          "id": "to_sovaleni_cabinet_letters_oath_20211229",
+          "text": "The same release states that the Prime Minister presented the letters of appointment to all of the Cabinet Ministers, including the Governor of Ha'apai, 'today, Wednesday 29th December, 2021', that the first Cabinet meeting was convened that day, and that all of the Cabinet Ministers took their Ministerial oath.",
+          "attested_on": "2021-12-29",
+          "locator": "Release image 2 (page 2): the three paragraphs after list item 12",
+          "uncertainty": "The oath sentence follows two sentences dated 'today' and carries no date of its own; it is read as part of the 29 December report. Letter presentation and oath are separate from the 28 December effective date. Ministers' letters of appointment are not the Royal Warrant appointing the Prime Minister."
+        }
+      ],
+      "scope_note": "Published on the PMO page as two JPEG page images (primeminister-2021.jpg and primeminister-2021-1-1.jpg). The group photograph on image 2 is not used for identification, likeness or portrait work. The Governor of Ha'apai is mentioned, not named, and is not imported. A direct non-browser request for the page returned HTTP 403; the page HTML hash is not asserted.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/tonga-pmo-cabinet-20211229-facts.json",
+        "bytes": 5239,
+        "sha256": "3e6c0c5feefd4f88535e20af7c62c9a025b926ce579a22a56afa6be918709a51",
+        "kind": "derived_factual_extract"
+      }
     }
   ],
   "organizations": [
@@ -1002,7 +1204,13 @@
             "to_pm_appointment_2025",
             "to_pm_august_2026",
             "to_pm_appointment_20191008",
-            "to_ipu_2021"
+            "to_ipu_2021",
+            "to_assembly_interim_speaker_20211122",
+            "to_assembly_pm_nominations_20211201",
+            "to_assembly_pm_meeting_20211213",
+            "to_assembly_pm_nominations_20211214",
+            "to_pmo_sovaleni_appointment_20211228",
+            "to_pmo_sovaleni_appointment_to_20211228"
           ],
           "claim_ids": [
             "to_constitution_pm_cabinet",
@@ -1010,7 +1218,14 @@
             "to_fakafanua_august",
             "to_tuionetoa_assembly_recommendation_20190927",
             "to_tuionetoa_royal_appointment_20191008",
-            "to_ipu_2021_sovaleni_assembly_selection"
+            "to_ipu_2021_sovaleni_assembly_selection",
+            "to_interim_speaker_tangi_20211120",
+            "to_pm_nominations_invited_20211130",
+            "to_pm_election_meeting_notice_20211213",
+            "to_pm_two_nominations_20211214",
+            "to_sovaleni_assembly_election_pmo_20211215",
+            "to_sovaleni_royal_appointment_en_20211227",
+            "to_sovaleni_royal_appointment_to_20211227"
           ],
           "holder_claims": [
             "to_fakafanua_appointment",
@@ -1027,6 +1242,22 @@
                 "to_tuionetoa_royal_appointment_20191008"
               ],
               "uncertainty": "Royal appointment event only. The earlier Assembly recommendation is retained separately and is not a holder observation."
+            },
+            {
+              "name": "Siaosi 'Ofakivahafolau Sovaleni",
+              "attested_on": null,
+              "from": "2021-12-27",
+              "until": null,
+              "sources": [
+                "to_pmo_sovaleni_appointment_20211228",
+                "to_pmo_sovaleni_appointment_to_20211228"
+              ],
+              "claim_ids": [
+                "to_sovaleni_royal_appointment_en_20211227",
+                "to_sovaleni_royal_appointment_to_20211227"
+              ],
+              "note": "Royal appointment under Clause 50A with effect from 27 December 2021 (TO-TR21-03); both PMO releases are dated 28 December. The Tongan release prints the name form Hu'akavameiliku in parentheses.",
+              "uncertainty": "The start is the stated effective date. The warrant's signature and presentation dates are not recorded in these releases (TO-TR21-04). The 15 December Assembly selection is a separate claim, not the start of office. No end date or term is inferred."
             }
           ]
         }
@@ -1039,7 +1270,13 @@
         "to_pm_appointment_2025",
         "to_pm_august_2026",
         "to_pm_appointment_20191008",
-        "to_ipu_2021"
+        "to_ipu_2021",
+        "to_assembly_interim_speaker_20211122",
+        "to_assembly_pm_nominations_20211201",
+        "to_assembly_pm_meeting_20211213",
+        "to_assembly_pm_nominations_20211214",
+        "to_pmo_sovaleni_appointment_20211228",
+        "to_pmo_sovaleni_appointment_to_20211228"
       ],
       "claim_ids": [
         "to_constitution_pm_cabinet",
@@ -1050,7 +1287,14 @@
         "to_fakafanua_august",
         "to_tuionetoa_assembly_recommendation_20190927",
         "to_tuionetoa_royal_appointment_20191008",
-        "to_ipu_2021_sovaleni_assembly_selection"
+        "to_ipu_2021_sovaleni_assembly_selection",
+        "to_interim_speaker_tangi_20211120",
+        "to_pm_nominations_invited_20211130",
+        "to_pm_election_meeting_notice_20211213",
+        "to_pm_two_nominations_20211214",
+        "to_sovaleni_assembly_election_pmo_20211215",
+        "to_sovaleni_royal_appointment_en_20211227",
+        "to_sovaleni_royal_appointment_to_20211227"
       ],
       "coverage": {
         "status": "partial",
@@ -1063,7 +1307,9 @@
           "Keep Assembly nomination/election, royal appointment and actual effective date separate.",
           "Pre-reform appointment rules cannot be replaced retrospectively by the post-2010 procedure.",
           "The 2019 appointment observation does not supply the end of that premiership, caretaker service, temporary absences or any party leadership term.",
-          "2021 transition: IPU records the Assembly's 15 December selection of Siaosi Sovaleni; the royal appointment instrument and effective date are unsourced here and no holder observation is added (TO-REC-10)."
+          "2021 transition (TO-REC-10; tonga-transition-2021-02.md): the Assembly procedure and 15 December selection, the royal appointment effective 27 December (PMO releases dated 28 December) and the Cabinet effective 28 December are separately sourced (TO-TR21-01 to TO-TR21-03, TO-TR21-06); none of these dates is merged into another.",
+          "TO-TR21-04: the signature and presentation dates of the Royal Warrant appointing Siaosi Sovaleni are not recorded in any retrieved primary source; the 28 December release date is not a signature date. A secondary news account of a 28 December presentation is a search lead only.",
+          "TO-TR21-05: the end of Pohiva Tu'i'onetoa's premiership and any caretaker or interim boundary before 27 December 2021 are unsourced; no end date is inferred from Sovaleni's effective start. PMO site search, the Assembly news archive, press releases and Hansard index were checked; no online Government Gazette was located."
         ]
       }
     },
@@ -1097,13 +1343,30 @@
           "title": "Deputy Prime Minister",
           "kind": "institutional_office",
           "sources": [
-            "to_cabinet_2026"
+            "to_cabinet_2026",
+            "to_pmo_cabinet_20211229"
           ],
           "claim_ids": [
-            "to_cabinet_appointment"
+            "to_cabinet_appointment",
+            "to_sovaleni_cabinet_effective_20211228",
+            "to_sovaleni_cabinet_letters_oath_20211229"
           ],
           "holder_claims": [
-            "to_cabinet_appointment"
+            "to_cabinet_appointment",
+            {
+              "name": "Poasi Mataele Tei",
+              "attested_on": null,
+              "from": "2021-12-28",
+              "until": null,
+              "sources": [
+                "to_pmo_cabinet_20211229"
+              ],
+              "claim_ids": [
+                "to_sovaleni_cabinet_effective_20211228"
+              ],
+              "note": "Appointed Deputy Prime Minister, with MEIDECC and Public Enterprises, with effect from 28 December 2021 (TO-TR21-06).",
+              "uncertainty": "The start is the stated effective date of the ministerial appointments. The letter of appointment was presented and the oath taken on 29 December, recorded as a separate claim. No end date or term is inferred."
+            }
           ]
         }
       ],
@@ -1111,12 +1374,15 @@
         "to_constitution_2020",
         "to_constitution_older",
         "to_reform_act_2010",
-        "to_cabinet_2026"
+        "to_cabinet_2026",
+        "to_pmo_cabinet_20211229"
       ],
       "claim_ids": [
         "to_constitution_pm_cabinet",
         "to_older_ministers",
-        "to_cabinet_appointment"
+        "to_cabinet_appointment",
+        "to_sovaleni_cabinet_effective_20211228",
+        "to_sovaleni_cabinet_letters_oath_20211229"
       ],
       "coverage": {
         "status": "partial",
@@ -1125,8 +1391,9 @@
           "through": "2026-09-07"
         },
         "unresolved": [
-          "Build dated Cabinet and acting-minister membership; January 2026 appointments are only one observation.",
-          "Cabinet collective executive authority must not become a single party portrait or a claim that the King lacks reserved powers."
+          "Build dated Cabinet and acting-minister membership; the December 2021 and January 2026 appointments are only two observations.",
+          "Cabinet collective executive authority must not become a single party portrait or a claim that the King lacks reserved powers.",
+          "TO-TR21-06: the PMO's 29 December 2021 release lists twelve Cabinet members appointed with effect from 28 December 2021, with letters of appointment presented and oaths taken on 29 December. Only the Deputy Prime Minister is imported as a holder observation; the other 2021 portfolios, later changes and acting ministers remain to be researched."
         ]
       }
     },
@@ -1290,7 +1557,8 @@
       "The last verified observations are not automatic extensions to the 7 September 2026 cutoff; unknown gaps remain unknown.",
       "No future candidate, fictional successor, portrait likeness or avatar completion is certified by this research packet. Fiction begins only after the preserved historical cutoff under the separate policy.",
       "The added 2021 People's Party and Leader observations close only a missing sourced observation. No country census or discovery batch is complete; the 2019 national appointment supplies no party office or campaign eligibility.",
-      "Reconciliation packet 01 (tonga-reconciliation-01.md) groups the PATOA/PTOA label with DPFI and adds People's Party names, incorporated-society testimony and a 2021 Assembly selection. It resolves no complete leadership term, lifespan or game mapping."
+      "Reconciliation packet 01 (tonga-reconciliation-01.md) groups the PATOA/PTOA label with DPFI and adds People's Party names, incorporated-society testimony and a 2021 Assembly selection. It resolves no complete leadership term, lifespan or game mapping.",
+      "Transition packet 02 (tonga-transition-2021-02.md) adds the 2021 Assembly procedure notices, the royal appointment of Siaosi Sovaleni effective 27 December 2021 and the Cabinet effective 28 December 2021, with two holder observations. The warrant's signature and presentation and the end of the previous premiership remain unresolved; no complete leadership term is claimed."
     ]
   }
 }

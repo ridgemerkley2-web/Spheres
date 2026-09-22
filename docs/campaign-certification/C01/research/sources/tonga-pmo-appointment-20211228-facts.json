@@ -1,0 +1,56 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://pmo.gov.to/king-appoints-prime-minister-hon-siaosi-ofakivahafolau-sovaleni/",
+  "accessed_date": "2026-09-21",
+  "published_date": "2021-12-28",
+  "access_method": "browser_fetched_page_and_downloaded_original_release_image_visually_read",
+  "source_response_url": "https://pmo.gov.to/wp-content/uploads/2021/12/NewPrimeMinister2021.jpg",
+  "source_response_bytes": 228292,
+  "source_response_sha256": "877ef23c5938d223205d5ba4e55cab764e07cad5696aea530f418ebf7fcb61f2",
+  "source_response_checked_in": false,
+  "release_image_responses": [
+    {
+      "image": 1,
+      "url": "https://pmo.gov.to/wp-content/uploads/2021/12/NewPrimeMinister2021.jpg",
+      "bytes": 228292,
+      "sha256": "877ef23c5938d223205d5ba4e55cab764e07cad5696aea530f418ebf7fcb61f2",
+      "content_type": "image/jpeg",
+      "pixels": [
+        1275,
+        1650
+      ]
+    }
+  ],
+  "page_response": {
+    "bytes": 76329,
+    "sha256": null,
+    "method": "browser_fetch",
+    "note": "WordPress page carrying the release image(s). A direct non-browser request returned HTTP 403, so the page was read in a browser; its HTML hash is not asserted as reproducible."
+  },
+  "provenance_note": "The release is published as JPEG image(s) embedded in a WordPress page. The image bytes were downloaded directly (HTTP 200) and hashed before extraction; they are the original response identity recorded here. The page HTML was read in a browser because a direct non-browser request returned HTTP 403; its byte count is recorded and its hash is not asserted as reproducible. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_sovaleni_royal_appointment_en_20211227",
+      "text": "The PMO's English release dated 28 December 2021 states that, in accordance with Clause 50A of the Constitution, King Tupou VI appointed the Prime Minister-Designate, Hon. Siaosi 'Ofakivahafolau Sovaleni, as Prime Minister of Tonga with effect from 27 December 2021.",
+      "attested_on": "2021-12-27",
+      "locator": "Release image, date line under 'MEDIA RELEASE' and first body paragraph",
+      "uncertainty": "The stated effective date only. The release does not give the date on which the Royal Warrant was signed or presented, and its own 28 December date is not read as either. No end date, term length or caretaker arrangement is stated or inferred."
+    },
+    {
+      "id": "to_sovaleni_assembly_election_pmo_20211215",
+      "text": "The same release states that Sovaleni was elected as Prime Minister by the Legislative Assembly on 15 December, following the 2021 General Election. The printed sentence begins 'Prior to being elected' and ends by saying he will be the 18th Prime Minister of Tonga.",
+      "attested_on": "2021-12-15",
+      "locator": "Release image, second body paragraph",
+      "uncertainty": "Only the dated Assembly election is used; it is the Assembly's selection, not the royal appointment. The sentence is recorded as printed, and its ordinal is not used to number or complete a succession."
+    }
+  ],
+  "scope_note": "English media release dated 28 December 2021, published on the PMO page as one JPEG image (NewPrimeMinister2021.jpg). The release date is publication, not the warrant's signature or presentation date, which the release does not give. Its undated remark on the Prime Minister's earlier portfolios and its forecast of a 29 December Cabinet announcement are not imported. A direct non-browser request for the page returned HTTP 403; the page HTML hash is not asserted.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [
+      1
+    ],
+    "method": "The 1275x1650 release image was viewed at full size: the 28 December release date, the Clause 50A appointment with effect from 27 December, and the separate 15 December Assembly election sentence. The coat of arms was not used."
+  }
+}
