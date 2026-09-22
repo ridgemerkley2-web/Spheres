@@ -32,7 +32,8 @@ another.
 | Date (2021) | Event | Claim or field |
 |---|---|---|
 | 20 Nov | Lord Tangi's appointment as interim Speaker takes effect | `to_interim_speaker_tangi_20211120` |
-| 30 Nov | Writ of election returned to the King; nominations invited | `to_pm_nominations_invited_20211130` |
+| 30 Nov | Writ of election returned to the King | `to_pm_nominations_invited_20211130` (period `from`) |
+| 1 Dec (the notice's "today") | Nominations invited by the interim Speaker | `to_pm_nominations_invited_20211130` |
 | 13 Dec | First nomination received; meeting notice issued | `to_pm_election_meeting_notice_20211213` |
 | 14 Dec, 4.30pm | Nominations close with two received | `to_pm_two_nominations_20211214` |
 | 15 Dec | Assembly selects Sovaleni | `to_ipu_2021_sovaleni_assembly_selection`, `to_sovaleni_assembly_election_pmo_20211215` |
@@ -165,7 +166,7 @@ Evidence: the PMO release dated 29 December 2021 (two page images):
   Training; Police, Fire Services and Emergency Services; His Majesty's Armed Forces).
   Item 2 is Hon. Poasi Mataele Tei (Deputy Prime Minister; MEIDECC; Public Enterprises).
 - `to_sovaleni_cabinet_letters_oath_20211229`: the Prime Minister presented the letters
-  of appointment to all Cabinet Ministers, and to the Governor of Ha'apai, "today,
+  of appointment to all Cabinet Ministers, including the Governor of Ha'apai, "today,
   Wednesday 29th December, 2021". The first Cabinet meeting was held that day, and all
   Cabinet Ministers took their Ministerial oath.
 
