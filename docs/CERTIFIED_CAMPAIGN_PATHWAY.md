@@ -1,6 +1,6 @@
 # Spheres — pathway to a certified campaign
 
-**Approved pathway · 10 September 2026 · S01–S18 complete; S19 in progress with Claude; S20–S30 planned.**
+**Approved pathway · 10 September 2026 · S01–S18 and S21 complete; S19 in progress with Claude; S20 and S22–S30 planned.**
 
 Work allocation: [Codex / Claude workboard](AI_WORKSTREAMS.md), with separate
 handoff packets, file boundaries and owner-filtered status queries. Active
@@ -67,7 +67,7 @@ deliverables as finished.
 | Marker | Meaning |
 | --- | --- |
 | `S00` | Complete: user approved beginning S01 on 10 September 2026. |
-| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S18 are complete; S19 is in progress with Claude; S20–S30 remain planned. |
+| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S18 and S21 are complete; S19 is in progress with Claude; S20 and S22–S30 remain planned. |
 | `C01`–`C07` | Character-production workstreams, with uniquely numbered country batches below. |
 | `E01`–`E06` | Retained expansion work after the first certified release. |
 | `G0`–`G5` | Evidence gates joining groups of sessions. |
@@ -730,14 +730,16 @@ is not yet ready for review. A claim does not satisfy any completion criterion.
 
 #### S21 — Finish campaign goals, history and late-game continuation
 
-**Status:** Planned · **Requires:** S10, S15
+**Status:** Complete · **Requires:** S10, S15
 
 **Completion marker:** G4: a coherent journey from choosing a nation to pursuing goals and understanding later outcomes.
 
-- [ ] Peaceful and military aims expose progress and blockers without granting invented completion rewards.
-- [ ] History explains significant economic, government and military changes and survives save/load.
-- [ ] Success, defeat, collapse and successor transition each have a valid continuation or clear terminal result; the full 2035 endpoint is supported.
+- [x] Peaceful and military aims expose progress and blockers without granting invented completion rewards.
+- [x] History explains significant economic, government and military changes and survives save/load.
+- [x] Success, defeat, collapse and successor transition each have a valid continuation or clear terminal result; the full 2035 endpoint is supported.
 
+
+**Evidence:** [S21 qualification and continuation review](campaign-certification/S21/README.md). G4 remains open until S19 and S20 are complete.
 
 ### 5 · Prove the campaign
 
@@ -1029,3 +1031,5 @@ On 14 September 2026, “continue” authorized S16. S16 is complete on the exac
 On 21 September 2026, “next'” authorized S17. S17 is complete on its [recorded runtime and evidence](campaign-certification/S17/README.md). Autonomous staff use ordinary paid acquisition, supplier development, support, basing and supported air commands. Execution stops after S17, with S18 awaiting a new instruction. G4 and CP1 remain open.
 
 The following “next” authorized S18. It is now complete on its [recorded runtime and evidence](campaign-certification/S18/README.md): campaign flight pages use native state and the three CP1 aircraft families have inspected/exportable assets. Execution stops after S18. The subsequent request to split the roadmap assigns S19 and bounded historical research to Claude through the [AI workboard](AI_WORKSTREAMS.md); neither packet is claimed automatically. G4 and CP1 remain open.
+
+The subsequent “Next” authorized independently ready Codex-owned S21 while Claude continued its S19 claim. S21 is complete on its exact recorded runtime and evidence. S20 still waits for S19 integration; G4 and CP1 are not earned. Execution stops after this S21 work.

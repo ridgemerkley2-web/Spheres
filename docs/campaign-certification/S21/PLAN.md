@@ -1,6 +1,6 @@
 # S21 · Campaign goals, history and continuation
 
-Owner: Codex. Status: in progress. Base: `624d35df53404e74f8ed6c3b44ec39c206ae1e0a`.
+Owner: Codex. Status: complete; see [qualification](README.md). Planning base: `624d35df53404e74f8ed6c3b44ec39c206ae1e0a`.
 
 S19 remains Claude's claimed tutorial/advisor work. S20 waits for that integration.
 S21's canonical prerequisites S10 and S15 are complete. This session does not

@@ -1,0 +1,34 @@
+{
+  "revision": "bab4d7173dc664fc14530175c6f1851d34d5cf84",
+  "lane": "web",
+  "command": [
+    "cargo",
+    "test",
+    "--locked",
+    "--release",
+    "-p",
+    "spheres-web",
+    "--no-fail-fast"
+  ],
+  "started_utc": "2026-09-22T02:03:50.806221+00:00",
+  "clean_before": true,
+  "runner_sha256": "15560a50f3439c85f3e651217ab116a46a73c5275dfd185df942e03a80f9070b",
+  "exit_code": 101,
+  "finished_utc": "2026-09-22T02:07:11.300709+00:00",
+  "clean_after": true,
+  "revision_after": "bab4d7173dc664fc14530175c6f1851d34d5cf84",
+  "log_sha256": "4223a45b04e85d93e448bd7320af1513b8542fdf7290a14ac072f984ee4164a4",
+  "counts": [
+    [
+      "401",
+      "2",
+      "21"
+    ],
+    [
+      "1",
+      "0",
+      "0"
+    ]
+  ],
+  "passed": false
+}

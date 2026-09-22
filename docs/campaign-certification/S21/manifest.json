@@ -1,0 +1,840 @@
+{
+  "format": "spheres-s21-closure/v1",
+  "session": "S21",
+  "status": "complete",
+  "candidate_revision": "4ac849a4f5a636a0e573e5cfdad03e05c7133566",
+  "completed_utc": "2026-09-22T02:20:05.172340+00:00",
+  "g4_earned": false,
+  "cp1_earned": false,
+  "qualification": {
+    "windows": {
+      "web": {
+        "revision": "4ac849a4f5a636a0e573e5cfdad03e05c7133566",
+        "lane": "web",
+        "command": [
+          "cargo",
+          "test",
+          "--locked",
+          "--release",
+          "-p",
+          "spheres-web",
+          "--no-fail-fast"
+        ],
+        "started_utc": "2026-09-22T02:09:25.609242+00:00",
+        "clean_before": true,
+        "runner_sha256": "15560a50f3439c85f3e651217ab116a46a73c5275dfd185df942e03a80f9070b",
+        "exit_code": 0,
+        "finished_utc": "2026-09-22T02:12:47.636588+00:00",
+        "clean_after": true,
+        "revision_after": "4ac849a4f5a636a0e573e5cfdad03e05c7133566",
+        "log_sha256": "a793463d47612c810293aa07d29fba08ce1f6e7ce457ecdcc2805fb8d5474695",
+        "counts": [
+          [
+            "403",
+            "0",
+            "21"
+          ],
+          [
+            "1",
+            "0",
+            "0"
+          ]
+        ],
+        "passed": true
+      },
+      "fixture": {
+        "revision": "4ac849a4f5a636a0e573e5cfdad03e05c7133566",
+        "lane": "fixture",
+        "command": [
+          "cargo",
+          "test",
+          "--locked",
+          "--release",
+          "-p",
+          "spheres-web",
+          "s21_export_review_fixtures",
+          "--",
+          "--ignored",
+          "--nocapture"
+        ],
+        "started_utc": "2026-09-22T02:12:48.148857+00:00",
+        "clean_before": true,
+        "runner_sha256": "15560a50f3439c85f3e651217ab116a46a73c5275dfd185df942e03a80f9070b",
+        "exit_code": 0,
+        "finished_utc": "2026-09-22T02:12:49.881822+00:00",
+        "clean_after": true,
+        "revision_after": "4ac849a4f5a636a0e573e5cfdad03e05c7133566",
+        "log_sha256": "e3b51bf8b3bde44253d64b88ccbb8700108ac2e5158eccf5f22833b9d5a6e8db",
+        "counts": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "passed": true
+      },
+      "binary": {
+        "revision": "4ac849a4f5a636a0e573e5cfdad03e05c7133566",
+        "lane": "binary",
+        "command": [
+          "cargo",
+          "build",
+          "--locked",
+          "--release",
+          "-p",
+          "spheres-web"
+        ],
+        "started_utc": "2026-09-22T02:12:50.162092+00:00",
+        "clean_before": true,
+        "runner_sha256": "15560a50f3439c85f3e651217ab116a46a73c5275dfd185df942e03a80f9070b",
+        "exit_code": 0,
+        "finished_utc": "2026-09-22T02:12:50.299005+00:00",
+        "clean_after": true,
+        "revision_after": "4ac849a4f5a636a0e573e5cfdad03e05c7133566",
+        "log_sha256": "df0e7ec342f8669fa8c243d18f5c4854e4d372c5619c70e36a92115b038c0d41",
+        "binary_sha256": "454fa9ba8d4c110ae2fb2dedbd904441685badcd20b2a7ab2580dad034bf6fb8",
+        "passed": true
+      },
+      "browser": {
+        "revision": "4ac849a4f5a636a0e573e5cfdad03e05c7133566",
+        "lane": "browser",
+        "command": [
+          "node",
+          "tools/ui/ci-campaign-journey.cjs"
+        ],
+        "started_utc": "2026-09-22T02:12:50.758656+00:00",
+        "clean_before": true,
+        "runner_sha256": "15560a50f3439c85f3e651217ab116a46a73c5275dfd185df942e03a80f9070b",
+        "binary_before": "454fa9ba8d4c110ae2fb2dedbd904441685badcd20b2a7ab2580dad034bf6fb8",
+        "exit_code": 0,
+        "finished_utc": "2026-09-22T02:13:23.401428+00:00",
+        "clean_after": true,
+        "revision_after": "4ac849a4f5a636a0e573e5cfdad03e05c7133566",
+        "log_sha256": "107de343f6463e4393cd014310c3603d9752a91a701405937612e7ae4b451bd7",
+        "binary_sha256": "454fa9ba8d4c110ae2fb2dedbd904441685badcd20b2a7ab2580dad034bf6fb8",
+        "passed": true
+      },
+      "sim": {
+        "revision": "4ac849a4f5a636a0e573e5cfdad03e05c7133566",
+        "lane": "sim",
+        "command": [
+          "cargo",
+          "test",
+          "--locked",
+          "--release",
+          "-p",
+          "spheres-sim",
+          "--lib",
+          "--no-fail-fast"
+        ],
+        "started_utc": "2026-09-22T02:13:24.078445+00:00",
+        "clean_before": true,
+        "runner_sha256": "b4d0cfa06e7f9c1b4654f30c1654bb28b07cff7ad1dac809ffe42fe54aac9ac0",
+        "exit_code": 0,
+        "finished_utc": "2026-09-22T02:18:19.414135+00:00",
+        "clean_after": true,
+        "revision_after": "4ac849a4f5a636a0e573e5cfdad03e05c7133566",
+        "log_sha256": "8ad9931ab7cac74a34547daf58b310dab4e19dd8b85f0a5511975c8684f2cefe",
+        "counts": [
+          [
+            "886",
+            "0",
+            "26"
+          ]
+        ],
+        "passed": true
+      }
+    },
+    "linux": {
+      "format": "spheres-s21-linux/v1",
+      "revision": "4ac849a4f5a636a0e573e5cfdad03e05c7133566",
+      "started_utc": "2026-09-22T02:09:38.982371+00:00",
+      "status": "passed",
+      "scope": "S21 final native web and full simulation library qualification after first-day dissolution leadership repair. Authored boundary scenarios do not establish a full elapsed 1990-2035 campaign. Node evidence is inherited from unchanged UI/unit-test sources at 5b92fbb.",
+      "runner_sha256": "2b8db02d2e6a0a2bc05e547ad39562efda753a73870da520738386866d5c4cf8",
+      "derived_from": {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/run-s10-final-linux.py",
+        "sha256": "a27a4149a6e70f656118236ff97a4613e429279ae628a65134b585989f1209da"
+      },
+      "source_verification": "Windows git.exe on the same complete NTFS checkout; test and compile processes use the existing Linux toolchain and target directory.",
+      "environment": {
+        "GIT_DIR": "/mnt/c/Users/ridge/Spheres/.git/worktrees/integration",
+        "GIT_WORK_TREE": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+        "GIT_OPTIONAL_LOCKS": "0",
+        "CARGO_BUILD_JOBS": "4",
+        "GIT_CONFIG_COUNT": "1",
+        "GIT_CONFIG_KEY_0": "core.autocrlf",
+        "GIT_CONFIG_VALUE_0": "true",
+        "CARGO_HOME": "/home/ridge/.cache/spheres-s05-tools/cargo",
+        "RUSTUP_HOME": "/home/ridge/.cache/spheres-s05-tools/rustup",
+        "CARGO_TARGET_DIR": "/home/ridge/.cache/spheres-s05-target",
+        "CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER": "/home/ridge/.cache/spheres-s05-tools/bin/cc",
+        "CC": "/home/ridge/.cache/spheres-s05-tools/bin/cc",
+        "TMPDIR": "/home/ridge/.cache/spheres-s05-runs/tmp"
+      },
+      "checks": [
+        {
+          "name": "web",
+          "command": [
+            "cargo",
+            "test",
+            "--locked",
+            "--release",
+            "-p",
+            "spheres-web",
+            "--no-fail-fast"
+          ],
+          "started_utc": "2026-09-22T02:09:39.780905+00:00",
+          "finished_utc": "2026-09-22T02:12:33.984844+00:00",
+          "elapsed_seconds": 174.203937551,
+          "exit_code": 0,
+          "log": "web.log",
+          "log_sha256": "7432216314cf83444070e169849f09a334e79ec5e4587d455ec3dea659f8ed2d",
+          "totals": {
+            "passed": 404,
+            "failed": 0,
+            "ignored": 21,
+            "completed_targets": 2
+          },
+          "source_before": {
+            "head": "4ac849a4f5a636a0e573e5cfdad03e05c7133566",
+            "status": ""
+          },
+          "source_after": {
+            "head": "4ac849a4f5a636a0e573e5cfdad03e05c7133566",
+            "status": ""
+          },
+          "passed": true,
+          "test_binary": {
+            "path": "/home/ridge/.cache/spheres-s05-target/release/deps/spheres_web-20279169217b1e37",
+            "bytes": 349577848,
+            "sha256": "56642ffb3d8a17825c7a7923cae0b9aae721ed12e874ce920119262f4e941643"
+          }
+        },
+        {
+          "name": "sim",
+          "command": [
+            "cargo",
+            "test",
+            "--locked",
+            "--release",
+            "-p",
+            "spheres-sim",
+            "--lib",
+            "--no-fail-fast"
+          ],
+          "started_utc": "2026-09-22T02:12:34.372834+00:00",
+          "finished_utc": "2026-09-22T02:17:19.077130+00:00",
+          "elapsed_seconds": 284.704296091,
+          "exit_code": 0,
+          "log": "sim.log",
+          "log_sha256": "9ec04c6a999fda1fdc8dc8eb4e7b99df39d4005944eee845075c35b96559ac41",
+          "totals": {
+            "passed": 886,
+            "failed": 0,
+            "ignored": 26,
+            "completed_targets": 1
+          },
+          "source_before": {
+            "head": "4ac849a4f5a636a0e573e5cfdad03e05c7133566",
+            "status": ""
+          },
+          "source_after": {
+            "head": "4ac849a4f5a636a0e573e5cfdad03e05c7133566",
+            "status": ""
+          },
+          "passed": true
+        }
+      ],
+      "source_before": {
+        "head": "4ac849a4f5a636a0e573e5cfdad03e05c7133566",
+        "status": ""
+      },
+      "toolchain_sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801",
+      "source_after": {
+        "head": "4ac849a4f5a636a0e573e5cfdad03e05c7133566",
+        "status": ""
+      },
+      "runner_sha256_after": "2b8db02d2e6a0a2bc05e547ad39562efda753a73870da520738386866d5c4cf8",
+      "passed": true,
+      "finished_utc": "2026-09-22T02:17:19.296156+00:00"
+    },
+    "browser": {
+      "passed": true,
+      "revision": "4ac849a4f5a636a0e573e5cfdad03e05c7133566",
+      "binary_sha256": "454fa9ba8d4c110ae2fb2dedbd904441685badcd20b2a7ab2580dad034bf6fb8",
+      "scope": "Authored France 1990/2035 and USSR dissolution scenarios; not a full 1990\u20132035 campaign.",
+      "commands": [
+        {
+          "player_context": "France",
+          "commands": [
+            {
+              "action": "beyond_2035",
+              "date": "1 Jan 2036",
+              "kind": "continue_campaign",
+              "player": "France",
+              "target": null
+            }
+          ],
+          "session_id": "14372-1790043178095657200-2",
+          "client_id": "d0bd2c2a-9a69-4d12-9486-e6638871d389",
+          "request_seq": 2
+        },
+        {
+          "player_context": "USSR",
+          "commands": [
+            {
+              "action": "successor",
+              "date": "2 Jan 1990",
+              "kind": "continue_campaign",
+              "player": "USSR",
+              "target": "Russia"
+            }
+          ],
+          "session_id": "14372-1790043188490457400-4",
+          "client_id": "d0bd2c2a-9a69-4d12-9486-e6638871d389",
+          "request_seq": 4
+        }
+      ],
+      "advances": [
+        {
+          "player_context": "France",
+          "days": 1,
+          "commands": [],
+          "session_id": "14372-1790043178095657200-2",
+          "client_id": "d0bd2c2a-9a69-4d12-9486-e6638871d389",
+          "request_seq": 1
+        },
+        {
+          "player_context": "France",
+          "days": 1,
+          "commands": [],
+          "session_id": "14372-1790043187046732000-3",
+          "client_id": "d0bd2c2a-9a69-4d12-9486-e6638871d389",
+          "request_seq": 3
+        }
+      ],
+      "errors": [],
+      "screenshots": [
+        "overview-desktop.png",
+        "goals-desktop.png",
+        "goals-390.png",
+        "history-390.png",
+        "endpoint-desktop.png",
+        "succession-390.png",
+        "successor-resumed-390.png"
+      ],
+      "checks": [
+        "Overview, goals and filtered history inspection preserve world, archive and continuation metadata; Escape restores focus.",
+        "31 December settles; sandbox continuation changes no simulation fields.",
+        "Russia retains exact existing simulation state except player control/manual-rate ownership and the explicitly verified former-country aim record.",
+        "Read failure has a working retry; no stale continuation control is exposed."
+      ],
+      "build": {
+        "branch": "codex/campaign-certification",
+        "built_at_unix_seconds": 1790042965,
+        "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+        "distribution": "Local offline game server; source and attribution accompany the release",
+        "revision": "4ac849a4f5a6",
+        "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S21-browser-final4\\server",
+        "version": "0.6.0"
+      }
+    },
+    "node_inheritance": {
+      "revision": "5b92fbb425ff18cd178b4020f3bdc8ea632c457e",
+      "unchanged_ui_and_unit_sources": true,
+      "only_changed_paths": [
+        "spheres-sim/src/politics.rs",
+        "spheres-web/src/campaign_journey.rs",
+        "tools/ui/ci-campaign-journey.cjs"
+      ],
+      "windows_counts": {
+        "tests": 1604,
+        "pass": 1603,
+        "fail": 0,
+        "skipped": 1
+      },
+      "linux_counts": {
+        "tests": 1604,
+        "passed": 1603,
+        "failed": 0,
+        "skipped": 1
+      }
+    }
+  },
+  "fixtures": [
+    {
+      "name": "active.json",
+      "sha256": "8af060643d2484aa7dfe915773c06485bfd0ce6067966b6c90f2f5cb8fe6b853",
+      "bytes": 13149393
+    },
+    {
+      "name": "endpoint.json",
+      "sha256": "7c0e9b37c72b5de2bd8d186040b83f1bdb4c04033ea086517728fc5107527f90",
+      "bytes": 13149420
+    },
+    {
+      "name": "succession.json",
+      "sha256": "5319c020b7c0ca5ae15f3902116794eeb9fac212a9a5dda54c2b39e2cb8f1f0b",
+      "bytes": 13598965
+    }
+  ],
+  "scope": "Campaign overview/goals/history; explicit loss, successor and post-2035 continuation; immediate newborn-government save repair. Boundary fixtures are authored. No full-period, historical-content, G4 or CP1 certification claim.",
+  "initial_failures": "Initial integration caught the Exchange receipt guard and host line endings. Browser then caught incomplete newborn leadership; exact save comparison exposed missing newborn government state. All final checks use the completed birth initialization. Failed and aborted runs are retained.",
+  "files": [
+    {
+      "path": "evidence/S21-final1-web.json",
+      "sha256": "33f5a7cb9e5afb51e43f654021c475b04066a68bc71a92eebf7c81fca2e42613",
+      "bytes": 779,
+      "original_sha256": "33f5a7cb9e5afb51e43f654021c475b04066a68bc71a92eebf7c81fca2e42613",
+      "original_bytes": 779
+    },
+    {
+      "path": "evidence/S21-final1-web.log",
+      "sha256": "deada250849ec585501eccfb92e38a5e72b3c239e507e98a655bb337d9e63364",
+      "bytes": 43552,
+      "original_sha256": "deada250849ec585501eccfb92e38a5e72b3c239e507e98a655bb337d9e63364",
+      "original_bytes": 43552
+    },
+    {
+      "path": "evidence/S21-final1-node.json",
+      "sha256": "1b568f78de018e1329c6ca8664bb2ad493507a832c5aea2c5f51a831c99c50b1",
+      "bytes": 599,
+      "original_sha256": "1b568f78de018e1329c6ca8664bb2ad493507a832c5aea2c5f51a831c99c50b1",
+      "original_bytes": 599
+    },
+    {
+      "path": "evidence/S21-final1-node.log",
+      "sha256": "405e1714b15d8c2bc35289c7eb3a735cc59f9932d9a041bdfc5cdb0afa9fd744",
+      "bytes": 164998,
+      "original_sha256": "405e1714b15d8c2bc35289c7eb3a735cc59f9932d9a041bdfc5cdb0afa9fd744",
+      "original_bytes": 164998
+    },
+    {
+      "path": "evidence/S21-final2-web.json",
+      "sha256": "a8e08042b4ebbc342dca0e76784baaac2b43e890f046067708378274356504b0",
+      "bytes": 776,
+      "original_sha256": "a8e08042b4ebbc342dca0e76784baaac2b43e890f046067708378274356504b0",
+      "original_bytes": 776
+    },
+    {
+      "path": "evidence/S21-final2-web.log",
+      "sha256": "3412234584c20ca1b758f622ad4e20edd0dd52ba571cb889e31c3a6a8dc438fb",
+      "bytes": 42888,
+      "original_sha256": "3412234584c20ca1b758f622ad4e20edd0dd52ba571cb889e31c3a6a8dc438fb",
+      "original_bytes": 42888
+    },
+    {
+      "path": "evidence/S21-final2-node.json",
+      "sha256": "ad28c5bcbcc3e475e8ef9a470155acd4d9b95592dbfbcfdba43de4a866f62f22",
+      "bytes": 598,
+      "original_sha256": "ad28c5bcbcc3e475e8ef9a470155acd4d9b95592dbfbcfdba43de4a866f62f22",
+      "original_bytes": 598
+    },
+    {
+      "path": "evidence/S21-final2-node.log",
+      "sha256": "f628c25f363cc5fe8435fb949a64e1e1880729d5e1392e4304c378498196ce82",
+      "bytes": 159634,
+      "original_sha256": "f628c25f363cc5fe8435fb949a64e1e1880729d5e1392e4304c378498196ce82",
+      "original_bytes": 159634
+    },
+    {
+      "path": "evidence/S21-final2-binary.json",
+      "sha256": "dd13154f594f7730c7181cc31b191b466306dd67352db4cbc18cf8d8b6cf3207",
+      "bytes": 722,
+      "original_sha256": "dd13154f594f7730c7181cc31b191b466306dd67352db4cbc18cf8d8b6cf3207",
+      "original_bytes": 722
+    },
+    {
+      "path": "evidence/S21-final2-binary.log",
+      "sha256": "f376628f3f08923a0558f5d06988b4e8012e51d15723d1c28a997dc84b2e4452",
+      "bytes": 1044,
+      "original_sha256": "f376628f3f08923a0558f5d06988b4e8012e51d15723d1c28a997dc84b2e4452",
+      "original_bytes": 1044
+    },
+    {
+      "path": "evidence/S21-final2-fixture.json",
+      "sha256": "fed93bee0335825cdf35458f1c1e8317f07b592027bef4afa0add5ec62d587fd",
+      "bytes": 838,
+      "original_sha256": "fed93bee0335825cdf35458f1c1e8317f07b592027bef4afa0add5ec62d587fd",
+      "original_bytes": 838
+    },
+    {
+      "path": "evidence/S21-final2-fixture.log",
+      "sha256": "539645bf2cb9221813e9f778af75852531d210056f3983c093ffd7a6f29124a3",
+      "bytes": 2260,
+      "original_sha256": "539645bf2cb9221813e9f778af75852531d210056f3983c093ffd7a6f29124a3",
+      "original_bytes": 2260
+    },
+    {
+      "path": "evidence/S21-final2-browser.json",
+      "sha256": "31877aa822013e54b07d71943d11adc2c450c8c62ae3763e0d283f44d5ac1d9e",
+      "bytes": 772,
+      "original_sha256": "31877aa822013e54b07d71943d11adc2c450c8c62ae3763e0d283f44d5ac1d9e",
+      "original_bytes": 772
+    },
+    {
+      "path": "evidence/S21-final2-browser.log",
+      "sha256": "f96c0113e14fc3532d1eb6e260c8c444558aea59024823d67a8c8f4adf276871",
+      "bytes": 688,
+      "original_sha256": "f96c0113e14fc3532d1eb6e260c8c444558aea59024823d67a8c8f4adf276871",
+      "original_bytes": 688
+    },
+    {
+      "path": "evidence/S21-final3-web.json",
+      "sha256": "2cfedc11de7578ae0ac7c60e4e9e8fb588d1f4a9599e6943cc21b0bf5ed8f3ec",
+      "bytes": 779,
+      "original_sha256": "2cfedc11de7578ae0ac7c60e4e9e8fb588d1f4a9599e6943cc21b0bf5ed8f3ec",
+      "original_bytes": 779
+    },
+    {
+      "path": "evidence/S21-final3-web.log.gz",
+      "sha256": "9488e94e837ae9c78b70d5699eeada30f527e9a276c5f7fbb88502b00624782a",
+      "bytes": 9388696,
+      "original_sha256": "4223a45b04e85d93e448bd7320af1513b8542fdf7290a14ac072f984ee4164a4",
+      "original_bytes": 109966221
+    },
+    {
+      "path": "evidence/S21-final4-web.json",
+      "sha256": "57ddd8bf312115ff101a30a435afa024ab3da1d61506387ac509a0a2468d497d",
+      "bytes": 776,
+      "original_sha256": "57ddd8bf312115ff101a30a435afa024ab3da1d61506387ac509a0a2468d497d",
+      "original_bytes": 776
+    },
+    {
+      "path": "evidence/S21-final4-web.log",
+      "sha256": "a793463d47612c810293aa07d29fba08ce1f6e7ce457ecdcc2805fb8d5474695",
+      "bytes": 43044,
+      "original_sha256": "a793463d47612c810293aa07d29fba08ce1f6e7ce457ecdcc2805fb8d5474695",
+      "original_bytes": 43044
+    },
+    {
+      "path": "evidence/S21-final4-fixture.json",
+      "sha256": "53021da3db6bb64ef384da388bd12987d1b6f349f7356e2e56880bb462adba02",
+      "bytes": 838,
+      "original_sha256": "53021da3db6bb64ef384da388bd12987d1b6f349f7356e2e56880bb462adba02",
+      "original_bytes": 838
+    },
+    {
+      "path": "evidence/S21-final4-fixture.log",
+      "sha256": "e3b51bf8b3bde44253d64b88ccbb8700108ac2e5158eccf5f22833b9d5a6e8db",
+      "bytes": 2103,
+      "original_sha256": "e3b51bf8b3bde44253d64b88ccbb8700108ac2e5158eccf5f22833b9d5a6e8db",
+      "original_bytes": 2103
+    },
+    {
+      "path": "evidence/S21-final4-binary.json",
+      "sha256": "b60cb5ce30a0391a17261b296949732c05b296ed513fb837be9198d4aa0ada59",
+      "bytes": 722,
+      "original_sha256": "b60cb5ce30a0391a17261b296949732c05b296ed513fb837be9198d4aa0ada59",
+      "original_bytes": 722
+    },
+    {
+      "path": "evidence/S21-final4-binary.log",
+      "sha256": "df0e7ec342f8669fa8c243d18f5c4854e4d372c5619c70e36a92115b038c0d41",
+      "bytes": 887,
+      "original_sha256": "df0e7ec342f8669fa8c243d18f5c4854e4d372c5619c70e36a92115b038c0d41",
+      "original_bytes": 887
+    },
+    {
+      "path": "evidence/S21-final4-browser.json",
+      "sha256": "60bdb9e7fe128251b6230c7a761ff89c07d2abdb96ddf47f0213404160a7fda6",
+      "bytes": 771,
+      "original_sha256": "60bdb9e7fe128251b6230c7a761ff89c07d2abdb96ddf47f0213404160a7fda6",
+      "original_bytes": 771
+    },
+    {
+      "path": "evidence/S21-final4-browser.log",
+      "sha256": "107de343f6463e4393cd014310c3603d9752a91a701405937612e7ae4b451bd7",
+      "bytes": 176,
+      "original_sha256": "107de343f6463e4393cd014310c3603d9752a91a701405937612e7ae4b451bd7",
+      "original_bytes": 176
+    },
+    {
+      "path": "evidence/S21-final4-sim.json",
+      "sha256": "27803b8d2283067ff56c64444c1cc9f7dca4111d15c60c85e39c5f36bc500798",
+      "bytes": 740,
+      "original_sha256": "27803b8d2283067ff56c64444c1cc9f7dca4111d15c60c85e39c5f36bc500798",
+      "original_bytes": 740
+    },
+    {
+      "path": "evidence/S21-final4-sim.log",
+      "sha256": "8ad9931ab7cac74a34547daf58b310dab4e19dd8b85f0a5511975c8684f2cefe",
+      "bytes": 86000,
+      "original_sha256": "8ad9931ab7cac74a34547daf58b310dab4e19dd8b85f0a5511975c8684f2cefe",
+      "original_bytes": 86000
+    },
+    {
+      "path": "evidence/linux-final1-aborted.json",
+      "sha256": "c704a852874d62b6e698b5744e8f70d5ddb60bdc6d4b02371ce5cf42dc1ef559",
+      "bytes": 357,
+      "original_sha256": "c704a852874d62b6e698b5744e8f70d5ddb60bdc6d4b02371ce5cf42dc1ef559",
+      "original_bytes": 357
+    },
+    {
+      "path": "evidence/linux-final1-result.json",
+      "sha256": "3d54d3fa90df1436977559ac07d362e32251016214dde2ed6f3125274abbd1ab",
+      "bytes": 1843,
+      "original_sha256": "3d54d3fa90df1436977559ac07d362e32251016214dde2ed6f3125274abbd1ab",
+      "original_bytes": 1843
+    },
+    {
+      "path": "evidence/linux-final1-toolchain.json",
+      "sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801",
+      "bytes": 1181,
+      "original_sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801",
+      "original_bytes": 1181
+    },
+    {
+      "path": "evidence/linux-final1-web.log",
+      "sha256": "7b0374479ebf62a28597c731eef88ba2b1fb309e40b793a89c81449b96a7cabe",
+      "bytes": 753,
+      "original_sha256": "7b0374479ebf62a28597c731eef88ba2b1fb309e40b793a89c81449b96a7cabe",
+      "original_bytes": 753
+    },
+    {
+      "path": "evidence/linux-final2-node.log",
+      "sha256": "36e9f4a24acd5430fcc7f0f479e207010e79ce98f00aa9a67088651b6251b4bc",
+      "bytes": 378963,
+      "original_sha256": "36e9f4a24acd5430fcc7f0f479e207010e79ce98f00aa9a67088651b6251b4bc",
+      "original_bytes": 378963
+    },
+    {
+      "path": "evidence/linux-final2-result.json",
+      "sha256": "7428d931e7143d0fccff501862100c394fb957cc633b8dc5f59f67e217528b7b",
+      "bytes": 3985,
+      "original_sha256": "7428d931e7143d0fccff501862100c394fb957cc633b8dc5f59f67e217528b7b",
+      "original_bytes": 3985
+    },
+    {
+      "path": "evidence/linux-final2-toolchain.json",
+      "sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801",
+      "bytes": 1181,
+      "original_sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801",
+      "original_bytes": 1181
+    },
+    {
+      "path": "evidence/linux-final2-web.log",
+      "sha256": "b1330cb1cdfeddaa4dcfcedf8b5f41be1c914521422b51eadb713188323d1640",
+      "bytes": 42340,
+      "original_sha256": "b1330cb1cdfeddaa4dcfcedf8b5f41be1c914521422b51eadb713188323d1640",
+      "original_bytes": 42340
+    },
+    {
+      "path": "evidence/linux-final3-result.json",
+      "sha256": "52ba8a5804fd9937f483684fe4f3502c70dfb4a679aa39297c52f11dec010b18",
+      "bytes": 3336,
+      "original_sha256": "52ba8a5804fd9937f483684fe4f3502c70dfb4a679aa39297c52f11dec010b18",
+      "original_bytes": 3336
+    },
+    {
+      "path": "evidence/linux-final3-toolchain.json",
+      "sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801",
+      "bytes": 1181,
+      "original_sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801",
+      "original_bytes": 1181
+    },
+    {
+      "path": "evidence/linux-final3-web.log.gz",
+      "sha256": "fa8f7c294c7123e0549c73b5b13622832b04a77bf43a50aef80c086b40595cc7",
+      "bytes": 9388469,
+      "original_sha256": "f2dc78faff2a22e386cc8dafa7ed6f0ceb75792be958268129fac2cd9157722c",
+      "original_bytes": 109965674
+    },
+    {
+      "path": "evidence/linux-final4-result.json",
+      "sha256": "4b21c2386d808614502c963a09cd409d348d7ce78a13f3f7f25d009eaa56ae26",
+      "bytes": 4206,
+      "original_sha256": "4b21c2386d808614502c963a09cd409d348d7ce78a13f3f7f25d009eaa56ae26",
+      "original_bytes": 4206
+    },
+    {
+      "path": "evidence/linux-final4-sim.log",
+      "sha256": "9ec04c6a999fda1fdc8dc8eb4e7b99df39d4005944eee845075c35b96559ac41",
+      "bytes": 85991,
+      "original_sha256": "9ec04c6a999fda1fdc8dc8eb4e7b99df39d4005944eee845075c35b96559ac41",
+      "original_bytes": 85991
+    },
+    {
+      "path": "evidence/linux-final4-toolchain.json",
+      "sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801",
+      "bytes": 1181,
+      "original_sha256": "e0b85248cbdb2773223e79300043f219ceed54e5f619cdb360f959d119673801",
+      "original_bytes": 1181
+    },
+    {
+      "path": "evidence/linux-final4-web.log",
+      "sha256": "7432216314cf83444070e169849f09a334e79ec5e4587d455ec3dea659f8ed2d",
+      "bytes": 42500,
+      "original_sha256": "7432216314cf83444070e169849f09a334e79ec5e4587d455ec3dea659f8ed2d",
+      "original_bytes": 42500
+    },
+    {
+      "path": "evidence/browser-final2-endpoint-desktop.png",
+      "sha256": "e12a06960da2a46829ac8ceb2f5b232e7a412f71e6fc41613da13a1d16322ac7",
+      "bytes": 236732,
+      "original_sha256": "e12a06960da2a46829ac8ceb2f5b232e7a412f71e6fc41613da13a1d16322ac7",
+      "original_bytes": 236732
+    },
+    {
+      "path": "evidence/browser-final2-failure.png",
+      "sha256": "277cf2ce0b9dcae4b3b84fd278a9e53d1a39a83f54f331d64c746dc90a774c82",
+      "bytes": 959329,
+      "original_sha256": "277cf2ce0b9dcae4b3b84fd278a9e53d1a39a83f54f331d64c746dc90a774c82",
+      "original_bytes": 959329
+    },
+    {
+      "path": "evidence/browser-final2-goals-390.png",
+      "sha256": "cf158fcece91ca4b908ab790478dc5acddb5b32e3cb591358ef721b39d68cd2f",
+      "bytes": 99362,
+      "original_sha256": "cf158fcece91ca4b908ab790478dc5acddb5b32e3cb591358ef721b39d68cd2f",
+      "original_bytes": 99362
+    },
+    {
+      "path": "evidence/browser-final2-goals-desktop.png",
+      "sha256": "1506af46005b4eeb168c5e937cbed6891b0a1748b3d2069881f8248a0af9b5d9",
+      "bytes": 267312,
+      "original_sha256": "1506af46005b4eeb168c5e937cbed6891b0a1748b3d2069881f8248a0af9b5d9",
+      "original_bytes": 267312
+    },
+    {
+      "path": "evidence/browser-final2-history-390.png",
+      "sha256": "3b4693ec61483816d8deeccd850c5af6185275d244dd9fdba097afc81f906e66",
+      "bytes": 113742,
+      "original_sha256": "3b4693ec61483816d8deeccd850c5af6185275d244dd9fdba097afc81f906e66",
+      "original_bytes": 113742
+    },
+    {
+      "path": "evidence/browser-final2-overview-desktop.png",
+      "sha256": "40d76d780b4ca579d9e302916751dfaf3ea74e64d9a5c7cbc69c3b4c88ac7a5a",
+      "bytes": 237846,
+      "original_sha256": "40d76d780b4ca579d9e302916751dfaf3ea74e64d9a5c7cbc69c3b4c88ac7a5a",
+      "original_bytes": 237846
+    },
+    {
+      "path": "evidence/browser-final2-result.json",
+      "sha256": "2df42903471444c00ebebf6cd7bf3587791a9bd9f69205ef72aea6c2e13fec43",
+      "bytes": 2676,
+      "original_sha256": "2df42903471444c00ebebf6cd7bf3587791a9bd9f69205ef72aea6c2e13fec43",
+      "original_bytes": 2676
+    },
+    {
+      "path": "evidence/browser-final2-server.log",
+      "sha256": "830f681ce49e7f3884a6ad9149f9c6a4a9ccf5fccccd76cab5805a86c810a8dc",
+      "bytes": 78,
+      "original_sha256": "830f681ce49e7f3884a6ad9149f9c6a4a9ccf5fccccd76cab5805a86c810a8dc",
+      "original_bytes": 78
+    },
+    {
+      "path": "evidence/browser-final4-endpoint-desktop.png",
+      "sha256": "97e0283afef4cfff3ce5767867040fab4d24be0d1d11daf938d90fe32be1333b",
+      "bytes": 236704,
+      "original_sha256": "97e0283afef4cfff3ce5767867040fab4d24be0d1d11daf938d90fe32be1333b",
+      "original_bytes": 236704
+    },
+    {
+      "path": "evidence/browser-final4-goals-390.png",
+      "sha256": "208d2bc91ceb8a8ef8f74b7f6e671f7bce6618258cf3e9732d8172e5b652a227",
+      "bytes": 99205,
+      "original_sha256": "208d2bc91ceb8a8ef8f74b7f6e671f7bce6618258cf3e9732d8172e5b652a227",
+      "original_bytes": 99205
+    },
+    {
+      "path": "evidence/browser-final4-goals-desktop.png",
+      "sha256": "104c090611999ac45cea8b48c7ad266feddc9114fa631b8870c7785d33e7a8c2",
+      "bytes": 267332,
+      "original_sha256": "104c090611999ac45cea8b48c7ad266feddc9114fa631b8870c7785d33e7a8c2",
+      "original_bytes": 267332
+    },
+    {
+      "path": "evidence/browser-final4-history-390.png",
+      "sha256": "3b4693ec61483816d8deeccd850c5af6185275d244dd9fdba097afc81f906e66",
+      "bytes": 113742,
+      "original_sha256": "3b4693ec61483816d8deeccd850c5af6185275d244dd9fdba097afc81f906e66",
+      "original_bytes": 113742
+    },
+    {
+      "path": "evidence/browser-final4-overview-desktop.png",
+      "sha256": "b8d694822093993b70c3729896826ded0ec1a284fa463fe2fcd1463ddbd6f080",
+      "bytes": 238382,
+      "original_sha256": "b8d694822093993b70c3729896826ded0ec1a284fa463fe2fcd1463ddbd6f080",
+      "original_bytes": 238382
+    },
+    {
+      "path": "evidence/browser-final4-result.json",
+      "sha256": "59c9ee9abe80654eaf5dd808596c528b2c0165b8728438bfc0926fb2730d5920",
+      "bytes": 2748,
+      "original_sha256": "59c9ee9abe80654eaf5dd808596c528b2c0165b8728438bfc0926fb2730d5920",
+      "original_bytes": 2748
+    },
+    {
+      "path": "evidence/browser-final4-server.log",
+      "sha256": "df65fe59cd0065d85a5b598894a89a997cc095c1ce45927ce2e158fdaf06c081",
+      "bytes": 78,
+      "original_sha256": "df65fe59cd0065d85a5b598894a89a997cc095c1ce45927ce2e158fdaf06c081",
+      "original_bytes": 78
+    },
+    {
+      "path": "evidence/browser-final4-succession-390.png",
+      "sha256": "3f041034256f2deae61ea7262eb798874cd2aa35a0cf41c30277d4d4bdf9664e",
+      "bytes": 94505,
+      "original_sha256": "3f041034256f2deae61ea7262eb798874cd2aa35a0cf41c30277d4d4bdf9664e",
+      "original_bytes": 94505
+    },
+    {
+      "path": "evidence/browser-final4-successor-resumed-390.png",
+      "sha256": "445d37a46859cef72d417c8a04bf14d0e6eab44fbefeb78c8f6cf2cc3c07c8cd",
+      "bytes": 94510,
+      "original_sha256": "445d37a46859cef72d417c8a04bf14d0e6eab44fbefeb78c8f6cf2cc3c07c8cd",
+      "original_bytes": 94510
+    },
+    {
+      "path": "evidence/run-s21-check.py",
+      "sha256": "15560a50f3439c85f3e651217ab116a46a73c5275dfd185df942e03a80f9070b",
+      "bytes": 2627,
+      "original_sha256": "15560a50f3439c85f3e651217ab116a46a73c5275dfd185df942e03a80f9070b",
+      "original_bytes": 2627
+    },
+    {
+      "path": "evidence/run-s21-sim.py",
+      "sha256": "b4d0cfa06e7f9c1b4654f30c1654bb28b07cff7ad1dac809ffe42fe54aac9ac0",
+      "bytes": 2748,
+      "original_sha256": "b4d0cfa06e7f9c1b4654f30c1654bb28b07cff7ad1dac809ffe42fe54aac9ac0",
+      "original_bytes": 2748
+    },
+    {
+      "path": "evidence/run-s21-linux-final4.py",
+      "sha256": "2b8db02d2e6a0a2bc05e547ad39562efda753a73870da520738386866d5c4cf8",
+      "bytes": 7409,
+      "original_sha256": "2b8db02d2e6a0a2bc05e547ad39562efda753a73870da520738386866d5c4cf8",
+      "original_bytes": 7409
+    },
+    {
+      "path": "evidence/launch-s21-review.py",
+      "sha256": "4bb29a94bc759e190fe5396cccb0be0d02584c5b519262a820ad5f19573c4f8a",
+      "bytes": 2560,
+      "original_sha256": "4bb29a94bc759e190fe5396cccb0be0d02584c5b519262a820ad5f19573c4f8a",
+      "original_bytes": 2560
+    },
+    {
+      "path": "evidence/S21-preservation.json",
+      "sha256": "08b63679fda7cd53d15b0716d9144a772a8568a3017144c625b5ec4012bcca80",
+      "bytes": 3137,
+      "original_sha256": "08b63679fda7cd53d15b0716d9144a772a8568a3017144c625b5ec4012bcca80",
+      "original_bytes": 3137
+    },
+    {
+      "path": "evidence/S21-review-launch.json",
+      "sha256": "af16c241a31f9227a54444bc69ef30f5af58fd02a50cfa0dad000b1461ab90c0",
+      "bytes": 1586,
+      "original_sha256": "af16c241a31f9227a54444bc69ef30f5af58fd02a50cfa0dad000b1461ab90c0",
+      "original_bytes": 1586
+    }
+  ]
+}

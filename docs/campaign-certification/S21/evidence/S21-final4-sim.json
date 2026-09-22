@@ -1,0 +1,30 @@
+{
+  "revision": "4ac849a4f5a636a0e573e5cfdad03e05c7133566",
+  "lane": "sim",
+  "command": [
+    "cargo",
+    "test",
+    "--locked",
+    "--release",
+    "-p",
+    "spheres-sim",
+    "--lib",
+    "--no-fail-fast"
+  ],
+  "started_utc": "2026-09-22T02:13:24.078445+00:00",
+  "clean_before": true,
+  "runner_sha256": "b4d0cfa06e7f9c1b4654f30c1654bb28b07cff7ad1dac809ffe42fe54aac9ac0",
+  "exit_code": 0,
+  "finished_utc": "2026-09-22T02:18:19.414135+00:00",
+  "clean_after": true,
+  "revision_after": "4ac849a4f5a636a0e573e5cfdad03e05c7133566",
+  "log_sha256": "8ad9931ab7cac74a34547daf58b310dab4e19dd8b85f0a5511975c8684f2cefe",
+  "counts": [
+    [
+      "886",
+      "0",
+      "26"
+    ]
+  ],
+  "passed": true
+}

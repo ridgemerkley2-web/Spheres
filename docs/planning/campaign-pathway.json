@@ -550,8 +550,12 @@
       "id": "S21",
       "phase": "experience",
       "title": "Finish campaign goals, history and late-game continuation",
-      "status": "in_progress",
-      "claim": {"owner":"Codex","base":"624d35df53404e74f8ed6c3b44ec39c206ae1e0a","plan":"docs/campaign-certification/S21/PLAN.md"},
+      "status": "complete",
+      "claim": {
+        "owner": "Codex",
+        "base": "624d35df53404e74f8ed6c3b44ec39c206ae1e0a",
+        "plan": "docs/campaign-certification/S21/PLAN.md"
+      },
       "depends": [
         "S10",
         "S15"
@@ -561,7 +565,15 @@
         "Peaceful and military aims expose progress and blockers without granting invented completion rewards.",
         "History explains significant economic, government and military changes and survives save/load.",
         "Success, defeat, collapse and successor transition each have a valid continuation or clear terminal result; the full 2035 endpoint is supported."
-      ]
+      ],
+      "completed_date": "2026-09-21",
+      "evidence": "../campaign-certification/S21/README.md",
+      "closure": {
+        "evidence": "docs/campaign-certification/S21/manifest.json",
+        "candidate_revision": "4ac849a4f5a636a0e573e5cfdad03e05c7133566",
+        "completed_utc": "2026-09-22T02:20:05.172340+00:00",
+        "g4_earned": false
+      }
     },
     {
       "id": "S22",
@@ -950,14 +962,14 @@
       }
     ]
   },
-  "last_completed_session": "S18",
+  "last_completed_session": "S21",
   "next_session": "S19",
   "execution": {
-    "authorized_through": "S18",
-    "stop_boundary": "S18",
+    "authorized_through": "S21",
+    "stop_boundary": "S21",
     "status": "stopped",
-    "previous_stop": "S17",
-    "instruction": "next",
+    "previous_stop": "S18",
+    "instruction": "Next: independently ready Codex-owned S21 while Claude works on S19; S20 remains waiting",
     "instruction_date": "2026-09-21",
     "next_session_requires_instruction": true
   },

@@ -1,0 +1,63 @@
+{
+  "passed": false,
+  "revision": "5b92fbb425ff18cd178b4020f3bdc8ea632c457e",
+  "binary_sha256": "efbfabca544cf46487fa2616d35f87a54dc7fe2a354c0e44cbece194672c6ba9",
+  "scope": "Authored France 1990/2035 and USSR dissolution scenarios; not a full 1990–2035 campaign.",
+  "commands": [
+    {
+      "player_context": "France",
+      "commands": [
+        {
+          "action": "beyond_2035",
+          "date": "1 Jan 2036",
+          "kind": "continue_campaign",
+          "player": "France",
+          "target": null
+        }
+      ],
+      "session_id": "26764-1790042454244072900-2",
+      "client_id": "e8b7cfd7-6dcc-4f75-b2cc-756523f4a34d",
+      "request_seq": 2
+    }
+  ],
+  "advances": [
+    {
+      "player_context": "France",
+      "days": 1,
+      "commands": [],
+      "session_id": "26764-1790042454244072900-2",
+      "client_id": "e8b7cfd7-6dcc-4f75-b2cc-756523f4a34d",
+      "request_seq": 1
+    },
+    {
+      "player_context": "France",
+      "days": 1,
+      "commands": [],
+      "session_id": "26764-1790042462072820200-3",
+      "client_id": "e8b7cfd7-6dcc-4f75-b2cc-756523f4a34d",
+      "request_seq": 3
+    }
+  ],
+  "errors": [],
+  "screenshots": [
+    "overview-desktop.png",
+    "goals-desktop.png",
+    "goals-390.png",
+    "history-390.png",
+    "endpoint-desktop.png"
+  ],
+  "checks": [
+    "Overview, goals and filtered history inspection preserve world, archive and continuation metadata; Escape restores focus.",
+    "31 December settles; sandbox continuation changes no simulation fields."
+  ],
+  "build": {
+    "branch": "codex/campaign-certification",
+    "built_at_unix_seconds": 1790042331,
+    "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+    "distribution": "Local offline game server; source and attribution accompany the release",
+    "revision": "5b92fbb425ff",
+    "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S21-browser-final2\\server",
+    "version": "0.6.0"
+  },
+  "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert((await response).ok())\n\n    at load (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-campaign-journey.cjs:31:109)\n    at runNextTicks (node:internal/process/task_queues:64:5)\n    at process.processImmediate (node:internal/timers:472:9)\n    at async main (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-campaign-journey.cjs:45:3)"
+}

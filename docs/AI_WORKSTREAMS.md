@@ -1,7 +1,7 @@
 # Spheres — Codex and Claude workboard
 
 Updated 21 September 2026. **Integration branch: `codex/campaign-certification`.**
-Start from this branch, not `master` or an older Claude branch. S01–S18 are complete;
+Start from this branch, not `master` or an older Claude branch. S01–S18 and S21 are complete;
 Claude has claimed S19 on `claude/s19-guidance-01`; implementation is in progress.
 CP1 certification and worldwide character coverage remain open.
 
@@ -15,7 +15,7 @@ handoff plan, not a claim that Claude has started work or permission to run ever
 
 | Workstream | Owner | Session markers | Boundary and next step |
 |---|---|---|---|
-| Flight and player journey | Codex | S18, S20, S21 | S18 complete. Navigation follows the S19 handoff; campaign goals remain planned. |
+| Flight and player journey | Codex | S18, S20, S21 | S18 and S21 complete. S20 navigation follows the S19 handoff. |
 | Tutorial and advisors | Claude | S19 | Claimed on `claude/s19-guidance-01` at `97d126d`; in progress, not ready for review. |
 | Historical characters and cartoons | Claude | C01–C07, S23 | First Tonga packet integrated and checked. CLAUDE-C01-02 is the next bounded research packet. |
 | Integration, performance and qualification | Codex | S22, S24, S25, S27–S30 | Integrate reviewed work and run exact-build checks. Neither a content batch nor a unit-test pass earns CP1. |
@@ -99,3 +99,5 @@ To ask either assistant for a status check:
 When scope or ownership changes, update this workboard and the relevant packet,
 then run `workboard.py --check`. All markers continue to refer to the same original
 campaign pathway; this is a work split, not a replacement roadmap.
+
+Codex completed the independently ready [S21 campaign journey](campaign-certification/S21/README.md) while S19 remained claimed. It adds campaign goals/history/continuation and repairs first-day successor saves. Fetch this integration base before bringing S19 shared-shell changes forward. G4 still requires S19 and S20.
