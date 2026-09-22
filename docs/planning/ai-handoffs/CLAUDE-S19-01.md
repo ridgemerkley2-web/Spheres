@@ -1,8 +1,11 @@
 # CLAUDE-S19-01 — outcome-aware first-hour guidance
 
-Owner: Claude. State: **dependency-ready after S18; not yet claimed**. Parent: S19.
+Owner: Claude. State: **claimed 21 September 2026; in progress** (not ready for review). Parent: S19.
 Canonical dependencies: S06, S07, S10, S18. Reviewer/integrator: Codex.
-Branch / base commit / result commit: record when claimed / submitted.
+Branch `claude/s19-guidance-01`; base `939e8f9`; result commit: recorded at submission.
+Planned paths: the four guidance modules, focused `tools/ui` checks and new S19 docs/evidence;
+any `main.rs`/`index.html` change will be a small explicit patch listed here for Codex.
+Next checkpoint: design note, then implementation against a disposable campaign.
 
 Read S19's exact acceptance criteria through
 `python tools/planning/workboard.py --session S19`, then inspect the current code.
