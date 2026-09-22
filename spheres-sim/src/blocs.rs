@@ -1279,13 +1279,16 @@ mod tests {
         // default political timelines deliberately move. See
         // 2026-09-22-completion.md. The bloc
         // feature's on/off assertions below remain unchanged.
+        // Iteration23 also repairs fiscal direction and empty paid cards. These
+        // measured default paths change; startup and every bloc on/off clause
+        // remain exact. Receipt: completion/fiscal-policy/default-pin-migration.json.
         const BASE: [u64; 6] = [
-            0xc1dfdfb98af7814d,
-            0x42d4e809cef4b37e,
-            0x9eb28e1c90ea1a5b,
-            0xeba41ea64d148369,
-            0x024e2aa38c3862b0,
-            0x1bf19fc09e88834a,
+            0xeabfcd1db4ab2531,
+            0x78f6fe1e19c4f78d,
+            0x79a26b7f7c54df9e,
+            0x99bad6515ceef0b9,
+            0x2eb5ad8c382fef67,
+            0x2832ddd1228c284a,
         ];
         for seed in 0..6u64 {
             let mut w = world_1990(GameRules { seed, ..GameRules::default() });

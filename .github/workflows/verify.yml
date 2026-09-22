@@ -29,6 +29,10 @@ jobs:
         run: python -B tools/politics/build_army_authority.py --source tools/politics/fixtures/vdem-v16-1989-military-authority.json --nations spheres-sim/data/nations --output spheres-sim/data/army_authority_1989.json --check
       - name: Verify military authority source controls
         run: python -B -m unittest discover -s tools/politics -p "test_*.py"
+      - name: Verify bounded resource coverage metadata
+        run: python -B tools/resources/resource_coverage.py --check
+      - name: Verify source-backed resource coverage controls
+        run: python -B -m unittest discover -s tools/resources -p "test_coverage.py"
   native:
     strategy:
       fail-fast: false

@@ -1,0 +1,31 @@
+
+running 3 tests
+
+thread 'an_unowned_program_consolidation_is_refused_before_any_effect' (33616) panicked at ..\evidence\political-calibration-20260922\fiscal-card-original21-witness.rs:128:9:
+assertion failed: crate::apply_command(&mut w,
+        &crate::Command::EnactStratagem {
+                nation: id,
+                id: "austerity".into(),
+            }).is_err()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test an_unowned_program_consolidation_is_refused_before_any_effect ... FAILED
+
+thread 'the_paid_consolidation_card_cuts_without_inventing_minimum_spending' (20908) panicked at ..\evidence\political-calibration-20260922\fiscal-card-original21-witness.rs:41:17:
+assertion failed: (n.mil_spend_gdp - expected_mil).abs() < 1e-12
+test the_paid_consolidation_card_cuts_without_inventing_minimum_spending ... FAILED
+
+thread 'the_paid_consolidation_card_updates_owned_plans_and_charges_once' (31868) panicked at ..\evidence\political-calibration-20260922\fiscal-card-original21-witness.rs:104:17:
+assertion `left == right` failed
+  left: 0.032
+ right: 0.04
+test the_paid_consolidation_card_updates_owned_plans_and_charges_once ... FAILED
+
+failures:
+
+failures:
+    an_unowned_program_consolidation_is_refused_before_any_effect
+    the_paid_consolidation_card_cuts_without_inventing_minimum_spending
+    the_paid_consolidation_card_updates_owned_plans_and_charges_once
+
+test result: FAILED. 0 passed; 3 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+

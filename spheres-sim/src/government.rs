@@ -8226,6 +8226,18 @@ pub fn lever_effects(w: &WorldState, c: &crate::Command) -> Option<Vec<String>> 
     })
 }
 
+/// Public demand does not give a pillar-led executive a party to contest an
+/// opening. This pure AI preference reads the actual office, not its dormant
+/// cabinet or a pillar's generic ideological affinity. Player legality is
+/// separate, and the existing weak-armed AI route does not require this tie.
+/// Eligibility is for the promised ballot: the opening itself lifts bans.
+fn ai_party_can_contest_opening(w: &WorldState, id: NationId) -> bool {
+    if !w.rules.ideology_blocs || state(w, id).is_none() { return false; }
+    let Some(crate::data::Tie::Party(party)) =
+        crate::blocs::leader_row(w, id).and_then(|row| row.tie_now()) else { return false; };
+    polity_in(w, id).is_some_and(|pol| pol.parties.iter().any(|p| p.id == party))
+}
+
 /// The lever an AI government would reach for this month, or `None` — pure,
 /// and `None` before reading anything while `rules.ideology_blocs` is off.
 /// The four rules and their lines are the design's (S3, INVENTED): a
@@ -8235,7 +8247,9 @@ pub fn lever_effects(w: &WorldState, c: &crate::Command) -> Option<Vec<String>> 
 /// authoritarianism at or over 0.40 and 60 held; a programme toward the
 /// strongest pillar's colour when the ruling movement is under 0.30 and 70
 /// held; an affordable, legally available round table when the armed pillars'
-/// mean loyalty is under 0.50. The action's own discontent and movement
+/// mean loyalty is under 0.50, or an actual party-led executive can contest
+/// the promised ballot and excluded civilian demand reaches its quorum.
+/// The action's own discontent and movement
 /// requirements apply, and its actual standing bill is used. Each is asked
 /// its own refusal, so the AI never asks for what the
 /// world would refuse. The draw that decides whether the government acts on
@@ -8312,7 +8326,9 @@ pub fn ai_lever(w: &WorldState, id: NationId) -> Option<crate::Command> {
             .collect();
         let armed_mean =
             if armed.is_empty() { 1.0 } else { armed.iter().sum::<f64>() / armed.len() as f64 };
-        if (armed_mean < 0.50 || franchise_demand(w, id) >= ROUND_TABLE_FRANCHISE_QUORUM)
+        let voluntary_party_opening = ai_party_can_contest_opening(w, id)
+            && franchise_demand(w, id) >= ROUND_TABLE_FRANCHISE_QUORUM;
+        if (armed_mean < 0.50 || voluntary_party_opening)
             && round_table_refusal(w, id).is_none()
         {
             return Some(round_table);
@@ -9284,6 +9300,7 @@ fn regime_break(w: &mut WorldState, id: NationId, b: Break) {
         let n = w.nation_mut(id);
         n.stability = (n.stability - 16.0).max(5.0);
         n.gdp *= 0.97;
+        crate::economy::refresh_debt_ratio(n);
         n.authoritarianism = b.auth_after;
         n.political_capital = crate::politics::seated_political_capital(
             n.stability, n.inflation, n.authoritarianism,
@@ -9336,7 +9353,7 @@ fn regime_break(w: &mut WorldState, id: NationId, b: Break) {
 pub fn ai_army_funding_floor(w: &WorldState, id: NationId) -> Option<f64> {
     if !w.rules.ideology_blocs || Some(id) == w.player { return None; }
     let n = w.nation_opt(id).filter(|n| n.alive)?;
-    if n.on_the_books() || crate::programs::enrolled(w, id)
+    if n.on_the_books() || n.annual_budget.is_some() || crate::programs::enrolled(w, id)
         || crate::fiscal_recovery::enabled(w) || !n.gdp.is_finite() || n.gdp <= 0.0
         || !n.population.is_finite() || n.population <= 0.0
     { return None; }
@@ -15462,5 +15479,293 @@ mod tests {
         assert!(g.government_seats() < seats_before);
         assert_eq!(g.banned, vec!["pl_psl".to_string()]);
         assert!(!ban_effects(&w, pl, "pl_sd").iter().any(|e| e.contains("cabinet")));
+    }
+
+    /// A change of government changes output, not the state's dollar debt or
+    /// treasury. Every actual caller shares the same settlement invariant.
+    #[test]
+    fn coups_refresh_open_book_debt_ratios_without_rewriting_legacy_debt() {
+        for route in 0..4 {
+            for books in [false, true] {
+                let id = match route {
+                    0 => NationId::Pakistan,
+                    2 => NationId::Jordan,
+                    _ => NationId::China,
+                };
+                let rules = if route == 3 {
+                    GameRules { seed: 7, ..GameRules::default() }
+                } else { roads_rules(7) };
+                let mut w = world_1990(rules);
+                w.player = Some(id);
+                if books {
+                    let allocations = w.nation(id).budget_for(w.year).allocations;
+                    crate::apply_command(&mut w, &crate::Command::SetAnnualBudget {
+                        nation: id, fiscal_year: 1990, allocations,
+                    }).unwrap();
+                }
+                {
+                    let n = w.nation_mut(id);
+                    n.stability = 25.0;
+                    n.inflation = 0.03;
+                    n.growth_last = 0.01;
+                    n.war_exhaustion = 0.0;
+                    n.separatism = 0.0;
+                    n.debt_gdp = 0.65;
+                    if books {
+                        n.debt_bn = Some(n.gdp * 0.65);
+                        n.treasury_bn = Some(4.0);
+                        crate::economy::refresh_debt_ratio(n);
+                    }
+                    if route == 2 { n.authoritarianism = 0.38; }
+                }
+                {
+                    let g = state_mut(&mut w, id).unwrap();
+                    g.months_in_office = 48;
+                    g.coup_pressure = 5.0;
+                    for (pillar, loyalty) in &mut g.pillars {
+                        *loyalty = if *pillar == Pillar::Army { 0.20 } else { 0.80 };
+                    }
+                }
+                assert_eq!(w.nation(id).on_the_books(), books);
+                let before = w.nation(id);
+                let output = before.gdp;
+                let debt = before.debt_bn;
+                let cash = before.treasury_bn;
+                let legacy_ratio = before.debt_gdp;
+                let rng = w.rng.clone();
+                match route {
+                    0 => {
+                        assert!(maybe_electoral_coup(&mut w, id));
+                        assert!(w.headlines.iter().any(|h| h.contains("removes the elected government")));
+                    }
+                    2 => {
+                        assert_eq!(annulment_check(&w, id).as_deref(), Some("jo_ikhwan"));
+                        hold_election(&mut w, id);
+                        assert!(w.headlines.iter().any(|h| h.contains("the army annuls the election")));
+                        assert!(state(&w, id).unwrap().banned.contains(&"jo_ikhwan".to_string()));
+                    }
+                    _ => {
+                        maybe_coup(&mut w, id);
+                        assert!(w.headlines.iter().any(|h| h.contains("removes the government")));
+                    }
+                }
+                let after = w.nation(id);
+                assert_eq!(after.gdp.to_bits(), (output * 0.97).to_bits(), "route {route}");
+                assert_eq!(after.debt_bn, debt, "a coup does not discharge dollar debt");
+                assert_eq!(after.treasury_bn, cash, "a coup does not change cash");
+                let expected = if books { debt.unwrap() / after.gdp } else { legacy_ratio };
+                assert_eq!(after.debt_gdp.to_bits(), expected.to_bits(), "route {route}, books {books}");
+                assert_eq!(w.rng, rng, "account synchronization never consumes a draw");
+                let saved = crate::save(&w);
+                let resumed = crate::load(&saved).unwrap();
+                assert!(crate::save(&resumed) == saved,
+                    "loading must not silently repair debt after route {route}, books {books}");
+            }
+        }
+    }
+
+    #[test]
+    fn a_coup_tick_has_identical_fiscal_state_with_and_without_a_save_boundary() {
+        let id = NationId::Pakistan;
+        for books in [false, true] {
+            let mut w = world_1990(roads_rules(7));
+            w.player = Some(id);
+            if books {
+                let allocations = w.nation(id).budget_for(w.year).allocations;
+                crate::apply_command(&mut w, &crate::Command::SetAnnualBudget {
+                    nation: id, fiscal_year: 1990, allocations,
+                }).unwrap();
+            }
+            {
+                let n = w.nation_mut(id);
+                n.stability = 25.0;
+                n.inflation = 0.03;
+                n.growth_last = 0.01;
+                n.war_exhaustion = 0.0;
+                n.separatism = 0.0;
+                let g = state_mut(&mut w, id).unwrap();
+                g.months_in_office = 48;
+                g.coup_pressure = 5.0;
+                for (pillar, loyalty) in &mut g.pillars {
+                    *loyalty = if *pillar == Pillar::Army { 0.20 } else { 0.80 };
+                }
+            }
+            let debt = w.nation(id).debt_bn;
+            let cash = w.nation(id).treasury_bn;
+            let output = w.nation(id).gdp;
+            let legacy_ratio = w.nation(id).debt_gdp;
+            tick(&mut w);
+            assert!(w.headlines.iter().any(|h| h.starts_with("COUP IN PAKISTAN:")
+                && h.contains("removes the elected government")));
+            assert_eq!(w.nation(id).gdp.to_bits(), (output * 0.97).to_bits());
+            assert_eq!(w.nation(id).debt_bn, debt);
+            assert_eq!(w.nation(id).treasury_bn, cash);
+            let expected = if books { debt.unwrap() / w.nation(id).gdp } else { legacy_ratio };
+            assert_eq!(w.nation(id).debt_gdp.to_bits(), expected.to_bits());
+            let saved = crate::save(&w);
+            let mut resumed = crate::load(&saved).unwrap();
+            assert!(crate::save(&resumed) == saved, "books {books}");
+            for _ in 0..2 {
+                let uninterrupted_news = crate::tick_month(&mut w, &[]);
+                let resumed_news = crate::tick_month(&mut resumed, &[]);
+                assert_eq!(uninterrupted_news, resumed_news);
+                assert_eq!(crate::state_hash(&w), crate::state_hash(&resumed),
+                    "the load boundary changed the campaign, books {books}");
+            }
+        }
+    }
+
+    #[test]
+    fn ai_voluntary_opening_requires_a_live_eligible_party() {
+        use crate::{Command, data::Tie};
+        let id = NationId::Albania;
+        let mut w = world_1990(on_rules(7));
+        let n = w.nation_mut(id);
+        n.stability = 85.0;
+        n.inflation = 0.02;
+        n.growth_last = 0.03;
+        n.war_exhaustion = 0.0;
+        n.separatism = 0.0;
+        n.political_capital = ROUND_TABLE_PC;
+        for (_, loyalty) in &mut state_mut(&mut w, id).unwrap().pillars { *loyalty = 0.85; }
+        let command = Command::ConveneRoundTable { nation: id };
+        assert!(ai_party_can_contest_opening(&w, id));
+        assert!(franchise_demand(&w, id) >= ROUND_TABLE_FRANCHISE_QUORUM);
+        let before = crate::save(&w);
+        let rng = w.rng.clone();
+        assert_eq!(ai_lever(&w, id), Some(command.clone()));
+        assert!(crate::save(&w) == before);
+        assert_eq!(w.rng, rng);
+        let loaded = crate::load(&before).unwrap();
+        assert_eq!(ai_lever(&loaded, id), Some(command.clone()));
+        // A live successor through the same party remains eligible too.
+        let mut successor = w.clone();
+        seat_office(&mut successor, id, &Succession::Death);
+        assert!(crate::blocs::leader_row(&successor,id).unwrap().emergent.is_some());
+        assert_eq!(crate::blocs::leader_row(&successor,id).unwrap().tie_now(), Some(Tie::Party("al_ppsh".into())));
+        assert_eq!(ai_lever(&successor, id), Some(command.clone()));
+        let mut banned = w.clone();
+        state_mut(&mut banned,id).unwrap().banned.push("al_ppsh".into());
+        assert!(ai_party_can_contest_opening(&banned,id));
+        assert_eq!(round_table_refusal(&banned,id),None);
+        assert_eq!(ai_lever(&banned,id),Some(command.clone()),
+            "the promised opening lifts bans and lets the actual governing party compete");
+        crate::apply_command(&mut banned,&command).unwrap();
+        assert!(state(&banned,id).unwrap().banned.is_empty());
+        assert_eq!(banned.nation(id).political_capital,0.0);
+        for case in 0..6 {
+            let mut trial = w.clone();
+            match case {
+                0 => trial.leadership = None,
+                1 => trial.leadership.as_mut().unwrap().retain(|row| row.nation != id),
+                2 => trial.leadership.as_mut().unwrap().iter_mut().find(|row|row.nation==id).unwrap().tie = None,
+                3 => trial.leadership.as_mut().unwrap().iter_mut().find(|row|row.nation==id).unwrap().tie = Some(Tie::Party("unknown_party".into())),
+                4 => trial.leadership.as_mut().unwrap().iter_mut().find(|row|row.nation==id).unwrap().tie = Some(Tie::Pillar(Pillar::Party)),
+                _ => trial.rules.ideology_blocs = false,
+            }
+            let frozen = crate::save(&trial);
+            assert!(!ai_party_can_contest_opening(&trial,id), "case {case}");
+            assert_eq!(ai_lever(&trial,id), None, "case {case}");
+            assert!(crate::save(&trial) == frozen, "case {case} wrote state");
+            assert_eq!(trial.rng,rng);
+        }
+    }
+
+    #[test]
+    fn a_fresh_military_government_keeps_its_choice_without_blocking_paid_openings() {
+        use crate::{Command, data::Tie};
+        let id = NationId::Pakistan;
+        let mut w = world_1990(roads_rules(7));
+        w.nation_mut(id).stability = 25.0;
+        let dormant = state(&w,id).unwrap().coalition.clone();
+        assert!(!dormant.is_empty());
+        let g = state_mut(&mut w,id).unwrap();
+        g.months_in_office = 48;
+        g.coup_pressure = 5.0;
+        for (p,loyalty) in &mut g.pillars { *loyalty = if *p == Pillar::Army {0.20} else {0.80}; }
+        assert!(maybe_electoral_coup(&mut w,id), "stage an actual takeover");
+        assert_eq!(state(&w,id).unwrap().coalition,dormant);
+        assert_eq!(crate::blocs::leader_row(&w,id).unwrap().tie_now(),Some(Tie::Pillar(Pillar::Army)));
+        let n = w.nation_mut(id);
+        n.stability = 85.0;
+        n.inflation = 0.02;
+        n.growth_last = 0.03;
+        n.war_exhaustion = 0.0;
+        n.separatism = 0.0;
+        n.political_capital = ROUND_TABLE_PC;
+        assert!(state(&w,id).unwrap().pillars.iter().all(|(_,loyalty)| *loyalty >= 0.72));
+        let command = Command::ConveneRoundTable { nation:id };
+        assert!(franchise_demand(&w,id) >= ROUND_TABLE_FRANCHISE_QUORUM);
+        assert_eq!(round_table_refusal(&w,id),None);
+        let frozen = crate::save(&w);
+        assert_eq!(ai_lever(&w,id),None,"dormant civilian cabinet does not represent the new military executive");
+        assert!(crate::save(&w) == frozen);
+        let restored = crate::load(&frozen).unwrap();
+        assert_eq!(ai_lever(&restored,id),None);
+        assert!(crate::save(&restored) == frozen);
+        for loyalty in [0.50,0.40] {
+            let mut weak = w.clone();
+            for (_,v) in &mut state_mut(&mut weak,id).unwrap().pillars { *v = loyalty; }
+            assert_eq!(ai_lever(&weak,id),if loyalty < 0.50 {Some(command.clone())} else {None});
+            weak.nation_mut(id).political_capital = ROUND_TABLE_PC - 1.0;
+            assert_eq!(ai_lever(&weak,id),None,"the weak-armed route still needs real funding");
+        }
+        // Player choice retains exactly the same legal action and bill.
+        w.player = Some(id);
+        let rng = w.rng.clone();
+        crate::apply_command(&mut w,&command).unwrap();
+        assert_eq!(w.nation(id).political_capital,0.0);
+        assert!(is_electoral(&w,id));
+        assert_eq!(state(&w,id).unwrap().next_election,add_months(w.year,w.month,6));
+        assert_eq!(w.rng,rng);
+    }
+
+    #[test]
+    fn an_explicit_legacy_plan_does_not_let_the_army_ai_erase_its_owner() {
+        let id = NationId::Pakistan;
+        let mut legacy = world_1990(roads_rules(7));
+        legacy.player = None;
+        let n = legacy.nation_mut(id);
+        n.mil_spend_gdp = 0.001;
+        n.state_invest_gdp = 0.02;
+        n.social_spend_gdp = Some(0.08);
+        n.tax_rate = 0.55;
+        n.political_capital = 100.0;
+        n.stability = 85.0;
+        n.inflation = 0.02;
+        n.growth_last = 0.03;
+        n.war_exhaustion = 0.0;
+        n.separatism = 0.0;
+        n.annual_budget = None;
+        n.treasury_bn = None;
+        n.debt_bn = None;
+        let g = state_mut(&mut legacy,id).unwrap();
+        for (p,loyalty) in &mut g.pillars { *loyalty = if *p == Pillar::Army {0.20} else {0.80}; }
+        let floor = ai_army_funding_floor(&legacy,id).unwrap();
+        assert!(floor >= legacy.nation(id).mil_spend_gdp + 0.001);
+        assert!(crate::affordable(&legacy,&crate::Command::SetMilSpend {nation:id,share:floor}));
+        let plan = legacy.nation(id).budget_for(legacy.year);
+        let mut planned = legacy.clone();
+        planned.nation_mut(id).annual_budget = Some(plan.clone());
+        assert!(!planned.nation(id).on_the_books(), "valid legacy plan, before dollar stocks existed");
+        let saved = crate::save(&planned);
+        let loaded = crate::load(&saved).unwrap();
+        for mut w in [planned,loaded] {
+            let before_floor = ai_army_funding_floor(&w,id);
+            tick(&mut w);
+            assert_eq!(w.nation(id).annual_budget,Some(plan.clone()),
+                "the public government tick must not erase another fiscal owner's plan");
+            assert_eq!(w.nation(id).mil_spend_gdp,0.001);
+            assert_eq!(w.nation(id).treasury_bn,None);
+            assert_eq!(w.nation(id).debt_bn,None);
+            assert_eq!(before_floor,None,"no legacy appropriation policy for an explicit plan");
+        }
+        // The same actual resource problem still buys an affordable increase
+        // when there is no explicit fiscal owner. This is not a disabled AI.
+        let standing = legacy.nation(id).political_capital;
+        tick(&mut legacy);
+        assert!(legacy.nation(id).mil_spend_gdp > 0.001);
+        assert!(legacy.nation(id).political_capital < standing);
+        assert!(legacy.nation(id).annual_budget.is_none());
     }
 }

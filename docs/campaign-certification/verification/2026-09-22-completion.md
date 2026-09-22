@@ -193,16 +193,30 @@ calibration thresholds, which remain unchanged.
   passes **111/111 focused checks**. Preserving real accountability while
   scheduling successor elections repairs A5 in both unchanged cohorts:
   **12/12 original and 200/200 development**. A1 is still the sole outcome
-  failure, at **8.5/.62 original and 8/.62 development**. This later source
-  has not yet received a new full-workspace or independent-cohort certification.
+  failure, at **8.5/.62 original and 8/.62 development**. A later exact
+  [restored-21 workspace run](evidence/2026-09-22-completion/political-calibration/iteration-21-restored-workspace-result.json)
+  passes **1,866 tests, zero failed, 89 ignored and one resource timing check
+  filtered**. It does not certify subsequent repairs or independent outcomes.
 - [Iteration 22 was rejected](evidence/2026-09-22-completion/political-calibration/iteration-22-calibration-summary.json):
   **113/114 focused checks** and eight of ten original outcome gates pass.
   Original A1 is **12.5/.52**, original A2 **6/12**, and development A1
   **13/.50**, still outside the strict concentration bar. The three new
   severe-crisis controls pass, but do not override those failures. Exact
   iteration 21 government source was restored; all candidate evidence and
-  its failing Algeria scenario are preserved. Current target executables
-  remain candidate 22 until rebuilt and cannot certify the restored source.
+  its failing Algeria scenario are preserved. Its target executables were
+  subsequently replaced by the explicitly recorded restored-21 build.
+- [Iteration 23](evidence/2026-09-22-completion/political-calibration/iteration-23-calibration-summary.json)
+  passes **128/128 focused checks**, including actual fiscal ownership/bounds,
+  paid-card effects, coup debt accounting and live-executive AI choice. Nine
+  of ten original outcome gates and the attribution guard pass. A1 remains
+  **7/.59 original and 7/.57 development**. The original A4 median is 15 and
+  the fixed development median 16; A5 stays 12/12 and 200/200. All other measured
+  development bars pass within their stated horizons. The complete pooled
+  coup distribution still concentrates 835 of 1,498 events in Guatemala, Sao Tome
+  and Myanmar. No exact first/repeat decomposition is printed by this diagnostic.
+  Fresh source capture records 1,963 inputs and 468 native source bodies; the
+  copied binaries are tied to those hashes. Full-workspace verification of
+  these later changes and independent validation remain separate work.
 - Earlier local JavaScript suite: **1,701 passed, zero failed or skipped**.
   The hosted `9d352f03` checkpoint measured **1,700 passed, zero failed, one
   skipped** on both operating systems because the archived advisor API file
@@ -225,3 +239,10 @@ calibration thresholds, which remain unchanged.
   town-job repair at `78cd39bb` has passed all eight hosted jobs, including
   both native and independent town lanes. Neither checkpoint
   certifies the subsequent uncommitted political calibration changes.
+
+The next narrow correction protects an existing annual budget in legacy saves
+that lack dollar stocks. An [original-23 compiled-library witness](evidence/2026-09-22-completion/political-calibration/army-plan-owner-original23-witness-result.json)
+reproduces its erasure through the public government tick. The independent plan
+ownership guard and positive/save-load regression are applied but await the
+iteration-24 build. This is not evidence of an A1 repair; its original and
+development concentration failures remain open.

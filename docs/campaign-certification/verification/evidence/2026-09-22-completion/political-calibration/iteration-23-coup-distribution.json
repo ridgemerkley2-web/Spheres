@@ -1,0 +1,3075 @@
+{
+  "iteration": 23,
+  "source_log_sha256": "b7041db3259e5dc2dea9e63e659fceb9508b5706bc744b606137a976a28fe71a",
+  "source_manifest": "iteration-23-source-input-manifest.json",
+  "seeds": "0..199",
+  "months": 252,
+  "scope": "Extraction only, no new native simulation or trajectory",
+  "total_elected_coups": 1498,
+  "distinct_coup_nations": 9,
+  "pooled_top3_share": 0.5574098798397864,
+  "pooled_country_counts_complete": true,
+  "pooled_country_counts": [
+    {
+      "country": "Guatemala",
+      "events": 327
+    },
+    {
+      "country": "Sao Tome and Principe",
+      "events": 276
+    },
+    {
+      "country": "Myanmar",
+      "events": 232
+    },
+    {
+      "country": "Guyana",
+      "events": 222
+    },
+    {
+      "country": "Ecuador",
+      "events": 200
+    },
+    {
+      "country": "Comoros",
+      "events": 199
+    },
+    {
+      "country": "Mozambique",
+      "events": 26
+    },
+    {
+      "country": "Chad",
+      "events": 9
+    },
+    {
+      "country": "Cambodia",
+      "events": 7
+    }
+  ],
+  "median_per_seed_coups": 7.0,
+  "median_per_seed_top3_from_rounded_printed_values": 0.57,
+  "a4_openings": {
+    "median": 16.0,
+    "minimum": 11,
+    "maximum": 20,
+    "seeds_below_15": 45,
+    "note": "A4 constrains the median, not every individual campaign."
+  },
+  "first_and_repeat_coups": null,
+  "first_repeat_limit": "Existing diagnostic prints only top-five country names per seed, with no per-country event counts; exact first/repeat decomposition is not recoverable. No additional trajectory was launched.",
+  "country_top5_appearances": {
+    "Guatemala": 200,
+    "Ecuador": 196,
+    "Comoros": 194,
+    "Guyana": 178,
+    "Myanmar": 124,
+    "Sao Tome and Principe": 79,
+    "Mozambique": 13,
+    "Chad": 9,
+    "Cambodia": 7
+  },
+  "country_rank_limit": "Top-five list is truncated; appearances are not complete country participation counts or event counts.",
+  "per_seed": [
+    {
+      "seed": 0,
+      "elected_coups": 10,
+      "annulments": 3,
+      "regime_coups": 10,
+      "a4_opened_1996": 14,
+      "top3_share_printed": 0.6,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros"
+      ]
+    },
+    {
+      "seed": 1,
+      "elected_coups": 5,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 13,
+      "top3_share_printed": 0.6,
+      "reported_top5_coup_country_names": [
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe"
+      ]
+    },
+    {
+      "seed": 2,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.71,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 3,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 14,
+      "top3_share_printed": 0.43,
+      "reported_top5_coup_country_names": [
+        "Cambodia",
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 4,
+      "elected_coups": 7,
+      "annulments": 3,
+      "regime_coups": 4,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 5,
+      "elected_coups": 8,
+      "annulments": 3,
+      "regime_coups": 6,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Myanmar",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 6,
+      "elected_coups": 8,
+      "annulments": 3,
+      "regime_coups": 7,
+      "a4_opened_1996": 14,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Guyana",
+        "Comoros",
+        "Ecuador",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 7,
+      "elected_coups": 7,
+      "annulments": 3,
+      "regime_coups": 7,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 8,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 4,
+      "a4_opened_1996": 18,
+      "top3_share_printed": 0.43,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Mozambique"
+      ]
+    },
+    {
+      "seed": 9,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 10,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Myanmar",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 11,
+      "elected_coups": 6,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 12,
+      "elected_coups": 9,
+      "annulments": 2,
+      "regime_coups": 4,
+      "a4_opened_1996": 18,
+      "top3_share_printed": 0.67,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador"
+      ]
+    },
+    {
+      "seed": 13,
+      "elected_coups": 9,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.67,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador"
+      ]
+    },
+    {
+      "seed": 14,
+      "elected_coups": 9,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.56,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 15,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 18,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Mozambique"
+      ]
+    },
+    {
+      "seed": 16,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.43,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Mozambique"
+      ]
+    },
+    {
+      "seed": 17,
+      "elected_coups": 9,
+      "annulments": 4,
+      "regime_coups": 8,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.56,
+      "reported_top5_coup_country_names": [
+        "Guyana",
+        "Myanmar",
+        "Comoros",
+        "Ecuador",
+        "Guatemala"
+      ]
+    },
+    {
+      "seed": 18,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 19,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 20,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Ecuador",
+        "Guyana",
+        "Mozambique"
+      ]
+    },
+    {
+      "seed": 21,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Sao Tome and Principe",
+        "Cambodia",
+        "Comoros",
+        "Ecuador",
+        "Guatemala"
+      ]
+    },
+    {
+      "seed": 22,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Sao Tome and Principe",
+        "Chad",
+        "Comoros",
+        "Ecuador",
+        "Guatemala"
+      ]
+    },
+    {
+      "seed": 23,
+      "elected_coups": 6,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 24,
+      "elected_coups": 7,
+      "annulments": 3,
+      "regime_coups": 9,
+      "a4_opened_1996": 11,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 25,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 9,
+      "a4_opened_1996": 14,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 26,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 27,
+      "elected_coups": 7,
+      "annulments": 3,
+      "regime_coups": 8,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.43,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Mozambique"
+      ]
+    },
+    {
+      "seed": 28,
+      "elected_coups": 7,
+      "annulments": 3,
+      "regime_coups": 7,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 29,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Myanmar",
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 30,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 8,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 31,
+      "elected_coups": 9,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.56,
+      "reported_top5_coup_country_names": [
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guatemala"
+      ]
+    },
+    {
+      "seed": 32,
+      "elected_coups": 12,
+      "annulments": 2,
+      "regime_coups": 8,
+      "a4_opened_1996": 20,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Cambodia"
+      ]
+    },
+    {
+      "seed": 33,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 12,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Guyana",
+        "Comoros",
+        "Ecuador",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 34,
+      "elected_coups": 8,
+      "annulments": 3,
+      "regime_coups": 8,
+      "a4_opened_1996": 13,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Myanmar",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 35,
+      "elected_coups": 6,
+      "annulments": 3,
+      "regime_coups": 7,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 36,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guatemala"
+      ]
+    },
+    {
+      "seed": 37,
+      "elected_coups": 7,
+      "annulments": 3,
+      "regime_coups": 5,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.43,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Mozambique"
+      ]
+    },
+    {
+      "seed": 38,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 18,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 39,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Sao Tome and Principe",
+        "Chad",
+        "Comoros",
+        "Ecuador",
+        "Guatemala"
+      ]
+    },
+    {
+      "seed": 40,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 41,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 42,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 43,
+      "elected_coups": 9,
+      "annulments": 3,
+      "regime_coups": 9,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.67,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador"
+      ]
+    },
+    {
+      "seed": 44,
+      "elected_coups": 6,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 45,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 46,
+      "elected_coups": 6,
+      "annulments": 1,
+      "regime_coups": 4,
+      "a4_opened_1996": 18,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 47,
+      "elected_coups": 9,
+      "annulments": 3,
+      "regime_coups": 5,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.67,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Guyana",
+        "Myanmar",
+        "Comoros",
+        "Ecuador"
+      ]
+    },
+    {
+      "seed": 48,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 14,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Myanmar",
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 49,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 4,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 50,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 51,
+      "elected_coups": 9,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 13,
+      "top3_share_printed": 0.67,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador"
+      ]
+    },
+    {
+      "seed": 52,
+      "elected_coups": 8,
+      "annulments": 3,
+      "regime_coups": 4,
+      "a4_opened_1996": 19,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guyana",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guatemala"
+      ]
+    },
+    {
+      "seed": 53,
+      "elected_coups": 6,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 18,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 54,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 4,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 55,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 56,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.43,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Mozambique"
+      ]
+    },
+    {
+      "seed": 57,
+      "elected_coups": 9,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.56,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Cambodia",
+        "Comoros",
+        "Ecuador"
+      ]
+    },
+    {
+      "seed": 58,
+      "elected_coups": 10,
+      "annulments": 2,
+      "regime_coups": 3,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.6,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Chad",
+        "Comoros"
+      ]
+    },
+    {
+      "seed": 59,
+      "elected_coups": 8,
+      "annulments": 3,
+      "regime_coups": 5,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Mozambique"
+      ]
+    },
+    {
+      "seed": 60,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.71,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 61,
+      "elected_coups": 8,
+      "annulments": 3,
+      "regime_coups": 5,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Guyana",
+        "Comoros",
+        "Ecuador",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 62,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 63,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 64,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 65,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 18,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 66,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 13,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 67,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 4,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Myanmar",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 68,
+      "elected_coups": 6,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 14,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 69,
+      "elected_coups": 9,
+      "annulments": 3,
+      "regime_coups": 7,
+      "a4_opened_1996": 13,
+      "top3_share_printed": 0.67,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador"
+      ]
+    },
+    {
+      "seed": 70,
+      "elected_coups": 6,
+      "annulments": 3,
+      "regime_coups": 7,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 71,
+      "elected_coups": 6,
+      "annulments": 2,
+      "regime_coups": 3,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.67,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Ecuador",
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe"
+      ]
+    },
+    {
+      "seed": 72,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 73,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 4,
+      "a4_opened_1996": 18,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 74,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 8,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 75,
+      "elected_coups": 10,
+      "annulments": 3,
+      "regime_coups": 6,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.6,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador"
+      ]
+    },
+    {
+      "seed": 76,
+      "elected_coups": 6,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 14,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 77,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 12,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 78,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 8,
+      "a4_opened_1996": 14,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 79,
+      "elected_coups": 6,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 80,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 13,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Myanmar",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 81,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 8,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 82,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 8,
+      "a4_opened_1996": 14,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 83,
+      "elected_coups": 10,
+      "annulments": 3,
+      "regime_coups": 5,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.6,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 84,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 85,
+      "elected_coups": 7,
+      "annulments": 3,
+      "regime_coups": 8,
+      "a4_opened_1996": 14,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guyana",
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 86,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 87,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 4,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 88,
+      "elected_coups": 9,
+      "annulments": 2,
+      "regime_coups": 9,
+      "a4_opened_1996": 14,
+      "top3_share_printed": 0.67,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador"
+      ]
+    },
+    {
+      "seed": 89,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 12,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 90,
+      "elected_coups": 7,
+      "annulments": 3,
+      "regime_coups": 4,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guyana",
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 91,
+      "elected_coups": 9,
+      "annulments": 2,
+      "regime_coups": 4,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.56,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Chad",
+        "Comoros",
+        "Ecuador"
+      ]
+    },
+    {
+      "seed": 92,
+      "elected_coups": 6,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 93,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 4,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 94,
+      "elected_coups": 6,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 95,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 96,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 9,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 97,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 8,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Mozambique"
+      ]
+    },
+    {
+      "seed": 98,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 99,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Myanmar",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 100,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Myanmar",
+        "Cambodia",
+        "Comoros",
+        "Ecuador",
+        "Guatemala"
+      ]
+    },
+    {
+      "seed": 101,
+      "elected_coups": 6,
+      "annulments": 2,
+      "regime_coups": 4,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 102,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 14,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 103,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 8,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 104,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 105,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 8,
+      "a4_opened_1996": 14,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 106,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 107,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 12,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 108,
+      "elected_coups": 6,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 109,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 110,
+      "elected_coups": 9,
+      "annulments": 2,
+      "regime_coups": 8,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.67,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador"
+      ]
+    },
+    {
+      "seed": 111,
+      "elected_coups": 7,
+      "annulments": 3,
+      "regime_coups": 9,
+      "a4_opened_1996": 14,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 112,
+      "elected_coups": 6,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 113,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 114,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 8,
+      "a4_opened_1996": 12,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Myanmar",
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 115,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 116,
+      "elected_coups": 7,
+      "annulments": 3,
+      "regime_coups": 5,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 117,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 118,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 119,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 120,
+      "elected_coups": 6,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 121,
+      "elected_coups": 9,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 14,
+      "top3_share_printed": 0.67,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador"
+      ]
+    },
+    {
+      "seed": 122,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 8,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 123,
+      "elected_coups": 7,
+      "annulments": 3,
+      "regime_coups": 3,
+      "a4_opened_1996": 19,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 124,
+      "elected_coups": 10,
+      "annulments": 3,
+      "regime_coups": 8,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.6,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador"
+      ]
+    },
+    {
+      "seed": 125,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 126,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 127,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 13,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Myanmar",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 128,
+      "elected_coups": 8,
+      "annulments": 3,
+      "regime_coups": 7,
+      "a4_opened_1996": 13,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 129,
+      "elected_coups": 10,
+      "annulments": 2,
+      "regime_coups": 3,
+      "a4_opened_1996": 18,
+      "top3_share_printed": 0.6,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Chad",
+        "Comoros"
+      ]
+    },
+    {
+      "seed": 130,
+      "elected_coups": 6,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 131,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 132,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 133,
+      "elected_coups": 7,
+      "annulments": 3,
+      "regime_coups": 7,
+      "a4_opened_1996": 14,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 134,
+      "elected_coups": 9,
+      "annulments": 3,
+      "regime_coups": 6,
+      "a4_opened_1996": 14,
+      "top3_share_printed": 0.56,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Guyana",
+        "Comoros",
+        "Ecuador",
+        "Mozambique"
+      ]
+    },
+    {
+      "seed": 135,
+      "elected_coups": 9,
+      "annulments": 2,
+      "regime_coups": 10,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.67,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador"
+      ]
+    },
+    {
+      "seed": 136,
+      "elected_coups": 6,
+      "annulments": 2,
+      "regime_coups": 8,
+      "a4_opened_1996": 13,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 137,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 9,
+      "a4_opened_1996": 14,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 138,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Mozambique"
+      ]
+    },
+    {
+      "seed": 139,
+      "elected_coups": 6,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.67,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Sao Tome and Principe"
+      ]
+    },
+    {
+      "seed": 140,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 141,
+      "elected_coups": 6,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 142,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 143,
+      "elected_coups": 9,
+      "annulments": 3,
+      "regime_coups": 7,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.56,
+      "reported_top5_coup_country_names": [
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guatemala"
+      ]
+    },
+    {
+      "seed": 144,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Myanmar",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 145,
+      "elected_coups": 7,
+      "annulments": 4,
+      "regime_coups": 5,
+      "a4_opened_1996": 14,
+      "top3_share_printed": 0.43,
+      "reported_top5_coup_country_names": [
+        "Cambodia",
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 146,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 147,
+      "elected_coups": 6,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 148,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 4,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.43,
+      "reported_top5_coup_country_names": [
+        "Chad",
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 149,
+      "elected_coups": 9,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.67,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador"
+      ]
+    },
+    {
+      "seed": 150,
+      "elected_coups": 7,
+      "annulments": 3,
+      "regime_coups": 8,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guyana",
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 151,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 12,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guatemala"
+      ]
+    },
+    {
+      "seed": 152,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 8,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Guyana",
+        "Comoros",
+        "Ecuador",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 153,
+      "elected_coups": 6,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 154,
+      "elected_coups": 6,
+      "annulments": 3,
+      "regime_coups": 8,
+      "a4_opened_1996": 11,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 155,
+      "elected_coups": 8,
+      "annulments": 3,
+      "regime_coups": 7,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Myanmar",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 156,
+      "elected_coups": 8,
+      "annulments": 4,
+      "regime_coups": 7,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guyana",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guatemala"
+      ]
+    },
+    {
+      "seed": 157,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 158,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Mozambique"
+      ]
+    },
+    {
+      "seed": 159,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 160,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 161,
+      "elected_coups": 9,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 12,
+      "top3_share_printed": 0.56,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Chad",
+        "Comoros",
+        "Ecuador"
+      ]
+    },
+    {
+      "seed": 162,
+      "elected_coups": 6,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 163,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 164,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 14,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 165,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 166,
+      "elected_coups": 6,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 167,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 168,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 3,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 169,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 18,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Myanmar",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 170,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 171,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 172,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Myanmar",
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 173,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 174,
+      "elected_coups": 9,
+      "annulments": 2,
+      "regime_coups": 9,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.67,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador"
+      ]
+    },
+    {
+      "seed": 175,
+      "elected_coups": 8,
+      "annulments": 3,
+      "regime_coups": 4,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 176,
+      "elected_coups": 7,
+      "annulments": 4,
+      "regime_coups": 5,
+      "a4_opened_1996": 12,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 177,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Cambodia",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 178,
+      "elected_coups": 9,
+      "annulments": 2,
+      "regime_coups": 4,
+      "a4_opened_1996": 18,
+      "top3_share_printed": 0.56,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 179,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Chad",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 180,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 14,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 181,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.71,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 182,
+      "elected_coups": 8,
+      "annulments": 3,
+      "regime_coups": 7,
+      "a4_opened_1996": 14,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Guyana",
+        "Comoros",
+        "Ecuador",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 183,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 184,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 185,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Mozambique"
+      ]
+    },
+    {
+      "seed": 186,
+      "elected_coups": 6,
+      "annulments": 2,
+      "regime_coups": 9,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.67,
+      "reported_top5_coup_country_names": [
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 187,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 18,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Myanmar",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 188,
+      "elected_coups": 9,
+      "annulments": 3,
+      "regime_coups": 8,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.67,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 189,
+      "elected_coups": 7,
+      "annulments": 3,
+      "regime_coups": 7,
+      "a4_opened_1996": 14,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 190,
+      "elected_coups": 8,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Guyana",
+        "Comoros",
+        "Ecuador",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 191,
+      "elected_coups": 6,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 17,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 192,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 5,
+      "a4_opened_1996": 18,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 193,
+      "elected_coups": 8,
+      "annulments": 3,
+      "regime_coups": 5,
+      "a4_opened_1996": 12,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 194,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 195,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 16,
+      "top3_share_printed": 0.57,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Comoros",
+        "Ecuador",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 196,
+      "elected_coups": 7,
+      "annulments": 2,
+      "regime_coups": 6,
+      "a4_opened_1996": 13,
+      "top3_share_printed": 0.43,
+      "reported_top5_coup_country_names": [
+        "Chad",
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana"
+      ]
+    },
+    {
+      "seed": 197,
+      "elected_coups": 6,
+      "annulments": 2,
+      "regime_coups": 8,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.5,
+      "reported_top5_coup_country_names": [
+        "Comoros",
+        "Ecuador",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ]
+    },
+    {
+      "seed": 198,
+      "elected_coups": 9,
+      "annulments": 2,
+      "regime_coups": 7,
+      "a4_opened_1996": 15,
+      "top3_share_printed": 0.67,
+      "reported_top5_coup_country_names": [
+        "Guatemala",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador"
+      ]
+    },
+    {
+      "seed": 199,
+      "elected_coups": 8,
+      "annulments": 3,
+      "regime_coups": 7,
+      "a4_opened_1996": 13,
+      "top3_share_printed": 0.62,
+      "reported_top5_coup_country_names": [
+        "Guyana",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Ecuador",
+        "Guatemala"
+      ]
+    }
+  ]
+}

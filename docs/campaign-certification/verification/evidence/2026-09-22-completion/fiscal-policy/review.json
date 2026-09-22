@@ -1,0 +1,43 @@
+{
+  "status": "Before-fix witness archived; corrected native validation pending",
+  "base_commit": "90fce9475d20049741589de0e5c5e1c1668a26f6",
+  "baseline_workspace": {
+    "passed": 1866,
+    "failed": 0,
+    "scope": "restored21 before fiscal repairs"
+  },
+  "original_policy_raw_sha256": "68215324a4babb38cb2819dfd7d8bf1e5105a53c64fda8a7f712a1d40130043c",
+  "witness": {
+    "base_receipt": "restored21-workspace-result.json",
+    "wrapper_sha256": "14bdce01aecc80f50c856657df79a96437e12c8234a69bf41ae8427bcbb19245",
+    "tests_sha256": "744483ea8536f4cfeea8c966af32a00744f5b695736c8acc024ea36c495ac6b2",
+    "rlib_sha256": "a78225a6c101337244267784b7b02cfcad4d82ed3b1124105e40f803cbd15c1e",
+    "note": "New public-entry regression tests linked to the exact retained21 library, before fixes; no Cargo rebuild.",
+    "passed": 1,
+    "failed": 6,
+    "ignored": 0
+  },
+  "intent_sources": [
+    "SPEC.md:55",
+    "spheres-sim/src/lib.rs:4101 the_fiscal_ai_arrests_a_debt_spiral",
+    "spheres-sim/src/politics.rs:170 Army floor comment",
+    "spheres-sim/src/world.rs:307 annual budget ownership",
+    "spheres-sim/src/government.rs:14407 explicit open-book ownership guard fixture"
+  ],
+  "scope_limits": [
+    "No Cargo run by reviewer. Parent supplied exact retained21 witness receipts.",
+    "No political thresholds or country-specific behavior changes.",
+    "Original A1 remains outstanding; budget repair is not asserted to resolve it.",
+    "Fixed native tests, broader regressions and exact-output attribution pending."
+  ],
+  "card_witness": {
+    "base_receipt": "restored21-workspace-result.json",
+    "wrapper_sha256": "08ebf1fead35d81dffb8957f6f9ce6e0aa06591b258618b38ce0805546972b66",
+    "tests_sha256": "ddd87fe8762de8366ab10fbc1123f7fd1e7b0cbbe4aa6e47f8c655838b9e7ded",
+    "rlib_sha256": "a78225a6c101337244267784b7b02cfcad4d82ed3b1124105e40f803cbd15c1e",
+    "passed": 0,
+    "failed": 3,
+    "ignored": 0,
+    "scope": "First three card tests before stock-only/no-op/single-lever additions"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "post_run_observed_source_sha256": [
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\src\\government.rs",
+      "Hash": "CD3A201A85ABB1FD9349FA11218DCC03B257D158AEA73559B49B2FBB85E780AE"
+    },
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\src\\blocs.rs",
+      "Hash": "3CDCB1CA4620E81D91F26288F39362DA86A440E21610A569B4AD4E7C1640FF51"
+    },
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\src\\statecraft.rs",
+      "Hash": "EAE2D88EF1D2A7AA33AD78AC65714C3B53C06E3EA592B6C319F9E1533D76FBDF"
+    }
+  ],
+  "binary_sha256": [
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\iteration-23-native-snapshot\\spheres_sim-de8a2e7790f15db6.exe",
+      "Hash": "07869E056686DA9BAC2953990D718E3023CC397FD55E0065F323C430AF61A3CD"
+    },
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\iteration-23-native-snapshot\\bloc_census-b35be4d742aae476.exe",
+      "Hash": "CC02C88628B3BD8D37C830C398B3A95DCAE5FE1CAD8905477D764B8A16D5815C"
+    }
+  ],
+  "focused_total": 128,
+  "gates_exit": 101,
+  "iteration": 23,
+  "focused_passed": 128,
+  "gates_command": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\iteration-23-native-snapshot\\bloc_census-b35be4d742aae476.exe --include-ignored --skip bloc_census --nocapture --test-threads=4",
+  "gates_log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\iteration-23-A1-A10.log",
+  "finished_utc": "2026-09-22T21:33:55.2251523Z",
+  "source_manifest": "iteration-23-source-input-manifest.json"
+}

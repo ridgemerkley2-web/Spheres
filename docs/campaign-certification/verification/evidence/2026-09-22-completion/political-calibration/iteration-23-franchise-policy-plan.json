@@ -1,0 +1,10 @@
+{
+  "status": "prospective; recorded before implementation or measurement",
+  "base_government_sha256": "b4d396947e1c7ae844f5f79594dc9901807ebdaff71a31b9fa73e190edc4afd0",
+  "problem": "Civilian exclusion describes demand for an opening, not an armed executive's willingness to relinquish office. A pillar-led executive currently inherits the franchise-only voluntary AI route even without a party able to contest the ballot.",
+  "bounded_change": "Only the franchise-only AI route requires an actual live party tie and membership in this polity's party table. Eligibility is prospective: the chosen action lifts bans, so a currently banned but represented party can compete in the promised ballot. Missing, unknown, pillar-only and dormant-cabinet identities cannot supply it.",
+  "preimplementation_review_revision": "Parent originally suggested current-not-banned eligibility. Independent action-semantics review noted ConveneRoundTable clears all bans. Parent explicitly revised this before any implementation or outcome measurement; no current-ban blocker is introduced.",
+  "preserved": ["public franchise demand", "player command and its legal refusal", "weak-armed AI route", "prices", "all numeric thresholds", "Army authority", "default-off behavior", "A1-A10 definitions and cohorts"],
+  "controls": ["party-led positive", "live emergent party positive", "banned party remains eligible because the action lifts bans", "unknown/missing/pillar ties", "actual electoral coup retains dormant cabinet but changes real office", "strong Army declines this AI preference", "weak Army keeps original AI route", "explicit player action still legal and paid", "pure reads/RNG", "save/load", "lens off"],
+  "claim_limit": "Conservative gameplay strategy inference, not an assertion that military governments cannot negotiate. No forecast or promise of A1 improvement. No new cohort or coefficient authorized."
+}

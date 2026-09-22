@@ -1,0 +1,160 @@
+{
+  "status": "applied_and_checked",
+  "commands": [
+    {
+      "name": "coverage-write",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "tools/resources/resource_coverage.py",
+        "--write"
+      ],
+      "exit_code": 0,
+      "log_sha256": "99ec18bb4e754916cab1c669a63d1327c840c6f34d6ebc4a4b7f14a3b4a81918"
+    },
+    {
+      "name": "simulation-provenance",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "tools/resources/make_resources_1990.py"
+      ],
+      "exit_code": 0,
+      "log_sha256": "e125841dbc16df08ed5462e78e2eecc4332c06d820cd9966e24ee506d5977910"
+    },
+    {
+      "name": "coverage-unit",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/resources",
+        "-p",
+        "test_coverage.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log_sha256": "ff8a71398c8a099b46e15b6d83eafad31f8baccc3b5028eb844d01ba7b76fc59"
+    },
+    {
+      "name": "coverage-check",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "tools/resources/resource_coverage.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log_sha256": "99ec18bb4e754916cab1c669a63d1327c840c6f34d6ebc4a4b7f14a3b4a81918"
+    },
+    {
+      "name": "resources-1990",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "tools/resources/check_resources_1990.py"
+      ],
+      "exit_code": 0,
+      "log_sha256": "3f2e7db3c6c7d7e973f048595c3fc7682c07ba7ffabc70e14bbade17b2aca411"
+    }
+  ],
+  "source_and_simulation_match_prepared_bytes": true,
+  "preservation": {
+    "revision": "90fce9475d20049741589de0e5c5e1c1668a26f6",
+    "status": "staged_only_waiting_for_native_build_clearance",
+    "district_before_sha256": "e81f0dc3b31e9c165832f48f4ab7b27d1ca8e34f97bfee2c8de779482ce41b78",
+    "district_after_sha256": "7ce1c3de0eb1684c89edc0efeb2538f6c3e3c7c5ff547307af864e72074c4cb5",
+    "district_owned_changes": [
+      "unrostered_producers.bauxite",
+      "meta.unrostered_producer_coverage"
+    ],
+    "district_all_previous_values_unchanged": true,
+    "simulation_only_changed_path": "meta.source_sha256.district_resources.json",
+    "simulation_all_other_values_unchanged": true,
+    "simulation_before_sha256": "2e4520ef2d23f479e87eac79c2cf33e001d841f73ea0786d961f1d6d71770d6e",
+    "simulation_after_sha256": "d8682405afddcfc04f4dfbfb4d16d5195ed352df09120a678d3d5d3ef9573073",
+    "fixture_sha256": "0d8ae069552229b306ce4795a29704d7eb7c859346cfb1058ecddf1e9d268214",
+    "omissions": [
+      {
+        "nation": "Guinea",
+        "source_label": "Guinea",
+        "year": 1990,
+        "value": 15800000.0,
+        "units": "metric tons",
+        "source": "ds896_bauxite",
+        "basis": "outside_district_roster",
+        "reason": "Reported producer outside the district roster; no modeled nation or district receives this production."
+      },
+      {
+        "nation": "Sierra Leone",
+        "source_label": "Sierra Leone",
+        "year": 1990,
+        "value": 1430000.0,
+        "units": "metric tons",
+        "source": "ds896_bauxite",
+        "basis": "outside_district_roster",
+        "reason": "Reported producer outside the district roster; no modeled nation or district receives this production."
+      }
+    ]
+  },
+  "scope": "Working-tree reporting-only repair on checkpoint90fce; no native or browser execution. Full geography regeneration not performed.",
+  "source_url": "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/mineral-pubs/historical-statistics/global/ds896-aluminum.xlsx",
+  "retrieved_from": "https://www.usgs.gov/centers/nmic/historical-global-statistics-mineral-and-material-commodities",
+  "created_utc": "2026-09-22T21:20:44.077477+00:00",
+  "raw_ground_truth": {
+    "command": [
+      "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+      "-B",
+      "tools/resources/check.py",
+      "--fast"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 3.1565205000224523,
+    "log_sha256": "12c422e78c3546f945e4f2a82b3ed299f3fa23eb269f07d27bb6107b8155b0aa",
+    "scope": "Raw MRDS/minfac and shipped artifact validation; full geographic regeneration remains skipped by --fast."
+  },
+  "results": {
+    "original_regression": {
+      "passed": 7,
+      "failed": 1,
+      "cause": "missing marker before repair"
+    },
+    "focused": {
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0
+    },
+    "runtime_resource_checks": {
+      "passed": 63,
+      "failed": 0,
+      "byte_regeneration": true
+    },
+    "ground_truth_fast": {
+      "passed": 99,
+      "failed": 0,
+      "warnings": 9,
+      "full_regeneration_skipped": true
+    }
+  },
+  "working_input_sha256": {
+    ".github/workflows/verify.yml": "38f846e92d20ff8cf5c5ebb84a4452c93c542c82a0e5066f18255cfbee60b99b",
+    "spheres-web/data/district_resources.json": "7ce1c3de0eb1684c89edc0efeb2538f6c3e3c7c5ff547307af864e72074c4cb5",
+    "spheres-sim/data/resources_1990.json": "d8682405afddcfc04f4dfbfb4d16d5195ed352df09120a678d3d5d3ef9573073",
+    "tools/resources/resource_coverage.py": "534d2d08e647a2a08d5cef55a254d53919636522ed01dc35b78a03017601b0b9",
+    "tools/resources/test_coverage.py": "72f140e43951dc7fc285a9081808148b7dd1b80ec901ed5cceee2e26f60474f6",
+    "tools/resources/make_resources.py": "f1b8883a30a429a6ac809af83f724ab52d2231a943bfc545c33ff540525e7e85",
+    "tools/resources/check.py": "27dd8c359abbbf67c0aac98b37251c014579c0fc0312edd707936e55c8c374af",
+    "tools/resources/check_resources.py": "f37ec0a1bda16e94678c5f6da64d7350150ad5c6a42460e3b37e89a19ca6657e",
+    "tools/resources/fixtures/ds896-aluminum.xlsx": "0d8ae069552229b306ce4795a29704d7eb7c859346cfb1058ecddf1e9d268214"
+  },
+  "archived_log_sha256": {
+    "coverage-check.log": "99ec18bb4e754916cab1c669a63d1327c840c6f34d6ebc4a4b7f14a3b4a81918",
+    "coverage-unit.log": "ff8a71398c8a099b46e15b6d83eafad31f8baccc3b5028eb844d01ba7b76fc59",
+    "ground-truth-fast.log": "12c422e78c3546f945e4f2a82b3ed299f3fa23eb269f07d27bb6107b8155b0aa",
+    "original-missing-marker.log": "ce280e2e8b2c66aff10a2dba495222657d23f1bbce15d7344450440c2b3b89fd",
+    "resources-1990.log": "3f2e7db3c6c7d7e973f048595c3fc7682c07ba7ffabc70e14bbade17b2aca411"
+  }
+}

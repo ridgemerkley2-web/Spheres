@@ -5324,7 +5324,10 @@ mod tests {
         // before/after in 2026-09-22-outstanding-repairs.md.
         // Term-long memory and bounded, constituency-weighted vote transfers
         // intentionally change elections. See 2026-09-22-completion.md.
-        const GOLDEN: u64 = 0x5fb453966efb6602;
+        // Fiscal direction/ownership and no-op card repairs deliberately change
+        // closed-book timelines; all startup hashes remain fixed. Independent
+        // iteration23 probe and original failures: completion/fiscal-policy.
+        const GOLDEN: u64 = 0xaaab48b954b08a0b;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);
@@ -5437,7 +5440,9 @@ mod tests {
         // This constant tracks the tree's ACTUAL by construction, so moving it
         // is not a golden re-pin; the two real goldens above stay where they are.
         // Updated with the approved E-3 semantic/schema baseline; resource invariance is still tested on/off.
-        const RUN_ACTUAL: u64 = 0x5fb453966efb6602;
+        // Iteration23 fiscal direction/card epoch; exact on/off comparisons stay.
+        // See completion/fiscal-policy for old/new probe and original failures.
+        const RUN_ACTUAL: u64 = 0xaaab48b954b08a0b;
         let mut w = world_1990(GameRules::default());
         run_months(&mut w, 12 * 20);
         let h = state_hash(&w);
@@ -5743,7 +5748,9 @@ mod tests {
         // This constant tracks the tree's ACTUAL by construction, so moving it
         // is not a golden re-pin; the two real goldens above stay where they are.
         // Updated with the approved E-3 semantic/schema baseline; resource invariance is still tested on/off.
-        const RUN_ACTUAL: u64 = 0x5fb453966efb6602;
+        // Iteration23 fiscal direction/card epoch; exact on/off comparisons stay.
+        // See completion/fiscal-policy for old/new probe and original failures.
+        const RUN_ACTUAL: u64 = 0xaaab48b954b08a0b;
         assert!(!GameRules::default().resource_market, "the suite's default must be off");
         let w = world_1990(GameRules::default());
         let off_text = save(&w);

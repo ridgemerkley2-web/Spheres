@@ -119,3 +119,25 @@ were run by this verification task.
 The JSON receipts record exact commands, durations, return codes and log hashes.
 `artifact-hashes.json` covers the installed evidence bytes. Raw log line endings
 are preserved; generated JSON and this README use LF.
+
+## Selected fiscal repair source: iteration23 final provenance
+
+The seven commands in `iteration23-final/leadership-provenance-result.json` pass
+against government source `4453a90a9949090337e3bafe4b211ccedc0755efdf50022888acb2f748fb7cff`,
+including the independent annual-plan Army funding guard and measured default
+fingerprint updates. Production self-tests pass 8/8 and census tests pass 7/7.
+Every protected input retained both its bytes and modification time. The wrapper
+refuses non-LF runtime input instead of rewriting it during a native build.
+
+Exactly four provenance fields changed: the government hash in production and
+census, its census byte count, and the downstream production hash. The five other
+generated census/research outputs are byte-identical. The production record is
+`74f24fc9e9a612e3e6ef7fcc64372486d70d558b5b5838f2d5053e8cf8a24438`; census is
+`e54f7e230608cda0d93464b0cf5bd571d7707ddc8cdcf2b327b8a2debaf01d97`.
+
+Historical coverage remains 624 simulated party rows, 590 known people, 393 terms,
+and 58 validated cartoon assets. No country has completed all-party history;
+research indexing covers nine country packets with zero exhaustive censuses.
+C01 remains incomplete. No historical claim, artwork or runtime input changed
+in this regeneration. These tooling results do not establish political A1
+acceptance or a final native/hosted-CI pass. Earlier receipts remain intact.

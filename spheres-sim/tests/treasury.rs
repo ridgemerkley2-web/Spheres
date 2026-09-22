@@ -44,7 +44,10 @@ const START_ACTUAL: u64 = 0x6fc47dff64344b17;
 // HEADLESS_BASELINE_2026-09-04.md records the semantic and schema assessment.
 // Subsequently measured after term-long political memory and bounded vote
 // transfers; see 2026-09-22-completion.md. Treasury invariants are unchanged.
-const RUN_ACTUAL: u64 = 0x5fb453966efb6602;
+// Iteration23 fiscal direction and empty-card repairs change closed-book policy;
+// startup and treasury on/off/absent-key assertions are retained unchanged.
+// Independent old/new measurements: completion/fiscal-policy/default-pin-migration.json.
+const RUN_ACTUAL: u64 = 0xaaab48b954b08a0b;
 
 /// With no budget seated anywhere — which is the default board, every AI
 /// nation, and every save written before the treasury existed — a 240-month

@@ -662,6 +662,67 @@ The candidate was rejected under its prospective joint criteria. The
 records exact restoration of iteration 21 government source, retaining the
 successor-calendar and sourced-authority repairs. Candidate fixtures,
 source/binary manifests and every failed measurement remain archived. The
-ordinary target executables still represent candidate 22 until a fresh build;
-they must not be attributed to the restored source. No additional coefficient
-candidate follows automatically from this result.
+ordinary target executables still represented candidate 22 at that rejection;
+they were not attributed to the restored source. A subsequent exact restored-21
+workspace build passed 1,866 tests, zero failed, 89 ignored and one resource
+timing check filtered, as recorded in the separate restored-workspace receipt.
+No additional coefficient candidate follows automatically from this result.
+
+## Iteration 23: accounting corrections and actual executive choice
+
+Fiscal consolidation now moves toward its bounds without increasing a low
+budget or lowering an already high tax rate. Legacy policy respects explicit
+stock, annual-plan, player, program and recovery ownership. The paid card
+retains its real bill and updates the actual fiscal owner. Coups synchronize
+open-book debt-to-GDP after their existing output loss, preserving dollar debt,
+cash and the independent legacy ratio. An exact original-21 public-tick witness
+fails the booked-ratio assertion; both corrected debt regressions pass.
+
+The voluntary franchise-only AI route now requires the actual executive to
+have a party in the promised ballot. A dormant civilian cabinet does not give
+a fresh military executive that preference. Existing bans are not a blocker,
+because this action lifts them. Public demand, the legal player command, its
+price and the weak-armed AI route remain unchanged. This is an explicit
+strategy correction, not a claim that military rulers cannot negotiate.
+
+All [128 focused checks](../campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-focused-receipt.json)
+pass. The [unchanged original gates](../campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-calibration-summary.json)
+still pass only nine of ten outcome bars: A1 is **7 coups/.59 concentration**.
+A2 is 8/12, A3 1/20, A4 median 15, A5 12/12; A6-A10 pass their original scopes.
+The fixed 200-seed development cohort also fails only A1 at **7/.57**. It reads
+A2 133/200 by end-2000, A3 1/200, A4 median 16 and A5 200/200. Its zero A6 events
+cover 252 months; the original separate twelve-seed check covers 420 months.
+
+The [pooled distribution](../campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-coup-distribution.json)
+contains 1,498 elected coups in nine countries: Guatemala 327, Sao Tome 276,
+Myanmar 232, Guyana 222, Ecuador 200, Comoros 199, Mozambique 26, Chad 9 and Cambodia 7.
+The pooled top-three share is .5574; it is distinct from the median per-seed
+measure used by A1. Existing logs truncate each seed's country names at five,
+so they do not establish an exact first-versus-repeat count. No additional
+trajectory was run to fill that gap. No cohort, threshold or authority
+coefficient changed, and the independent 1000-series cohort remains untouched.
+
+Source capture now enumerates current tracked inputs directly, including newly
+committed modules, data, tests, vendor/build inputs and all tracked web UI
+assets. The receipt contains 1,963 raw/canonical input hashes, 468 byte-exact
+native source bodies and both copied test binaries. Earlier limited manifests
+remain unchanged rather than being retroactively expanded.
+
+## Iteration 24: explicit annual-plan ownership boundary
+
+A remaining partial-save boundary allowed the Army funding fallback to overwrite
+an explicit annual plan when treasury and debt stocks were absent. The fallback
+now independently checks annual-plan ownership, matching the fiscal policy
+boundary already repaired in iteration 23. It does not change the ordinary
+planless simulation, military coefficients or outcome gates.
+
+The [original-23 library witness](../campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/army-plan-owner-original23-witness-result.json)
+compiles and fails at the public government tick: the existing annual plan
+becomes `None`. Its initial wrapper import error is retained separately as a
+compile preflight, followed by the corrected wrapper and genuine failing test.
+The earlier application receipt hashes that preflight wrapper; the witness
+result hashes the corrected one. The source regression covers an unchanged
+plan across direct and save/load paths, plus actual paid funding when no other
+owner exists. The corrected regression awaits the iteration-24 build; no pass
+is claimed here. No evidence links this partial-save defect to A1's remaining
+concentration, and the existing failed outcome readings remain authoritative.

@@ -63,6 +63,7 @@ if HERE not in sys.path:
 
 import crosswalk as X                                   # noqa: E402
 import sources as S                                     # noqa: E402
+from resource_coverage import apply_report               # noqa: E402
 from geo import (                                       # noqa: E402
     CENTROID_KM,
     DATA,
@@ -2309,6 +2310,10 @@ def main():
                                      key=lambda p: (p["name"], p["code"])),
         "districts": out_districts,
     }
+
+    # Coverage metadata only: reviewed out-of-roster producers remain excluded
+    # from all national and district quantities. Other commodities stay unaudited.
+    apply_report(artifact, GAME)
 
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(artifact, f, indent=1, sort_keys=True, ensure_ascii=False)

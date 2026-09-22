@@ -920,6 +920,7 @@ national             1990 production by nation — NEVER divided among districts
 provinces            every WEP province: volume, how much lies inside any district,
                      whether it is offshore, and the zero-volume ones by name
 unlocated_producers  produced it in 1990, nothing located — marked, never faked
+unrostered_producers reviewed source production excluded by roster, reporting only
 unplaced_provinces   petroleum provinces overlapping no district, volumes preserved
 districts            { district_id: { commodity: evidence } }
 ```
@@ -1089,35 +1090,41 @@ Also carried in the artifact's `meta.known_gaps`.
   Yearbook reports at whatever resolution its correspondent had, and China is
   eleven province rollups in minfac — which is why china2014 is carried beside
   it rather than instead of it.
-- **Guinea — the world's #2 bauxite producer — is absent, and the artifact does
-  not say so.** Found by `check.py`'s ground-truth pass on 2026-08-31; NOT yet
-  fixed, and named here rather than quietly carried. DS896 records Guinea at
-  **15,800,000 t** of 1990 bauxite: 14.0% of the 113,000,000 t world total,
-  rank 2 behind Australia and half again Jamaica's 10.9 Mt. MRDS locates ten of
-  its mines correctly and by name — Boké-Sangarédi, Sangarédi, Kindia, Kindia
-  Débélé, Kindia-Friguiagbé, Friguia, Fria, CBG Boké, and two `Bauxite -
-  Guinea` grid points — at real Guinean coordinates (10068650 sits at
-  11.1675N 13.74859W, which is Sangarédi).
+- **Guinea and Sierra Leone remain outside the roster, and their production is now reported.**
+  The 2026-08-31 audit found that the crosswalk dropped Guinea's sourced bauxite
+  figure without any coverage marker. The bounded reporting repair on 2026-09-22
+  closes that silence, not the geographic gap. The unchanged, hash-pinned DS896
+  Bauxite worksheet reports **15,800,000 metric tons** for Guinea and
+  **1,430,000 metric tons** for Sierra Leone in its **1990** column. Both positive
+  producers excluded by this worksheet's country crosswalk now appear in
+  `unrostered_producers.bauxite`, with year, units, source label and the explicit
+  `outside_district_roster` reason. Its World aggregate is not a producer.
 
-  All eleven data points are dropped, and **not because of any defect in the
-  sources**: the district roster in `spheres-sim/data/districts.json` models 160
-  nations and Guinea is not one of them, so there is no polygon for the mines to
-  fall inside, and `crosswalk.IGNORE` lists `"Guinea"` among the "sovereign
-  states outside the 160-nation roster" so the production figure is skipped
-  before `national` is built. The IGNORE decision is defensible on its own
-  terms. **The silence is not.** The doctrine is absence *plus an explicit
-  unlocated marker*, and there is no marker: Guinea appears in neither
-  `national.bauxite` (24 nations) nor `unlocated_producers.bauxite` (Romania and
-  Albania only), and the string never reaches the shipped file.
+  Neither country is added to the game or to `national.bauxite`, and none of
+  their production is allocated to another country or district. The existing
+  Romanian and Albanian `unlocated_producers.bauxite` rows remain unchanged:
+  those are modeled countries without located deposits, a different limitation.
+  Guinea's ten admitted MRDS extraction records remain unassigned, with no
+  fabricated mines or attribution. Every earlier resource value and limitation
+  is retained. The downstream simulation artifact changes only its input hash.
 
-  The fix is not in this directory. Either the roster gains Guinea — which is
-  the other swarm's territory — or `make_resources.py` learns to emit an
-  `unrostered_producers` block so the crosswalk's own drop list becomes visible
-  in the artifact instead of living only in the generator source. Until one of
-  those happens, `check.py` asserts every component of the hole (roster has no
-  Guinea; MRDS holds exactly 10 admitted records; none is cited; the name is in
-  neither national block) so that it cannot change size without the checker
-  noticing, and WARNs with the numbers on every run.
+  This is **bauxite-only** coverage. Other commodities' crosswalk omissions have
+  not been audited by this pass, and the metadata says so explicitly. The old
+  missing-marker warning is replaced by source-backed assertions and a continuing
+  coverage-limit warning; it is not silently removed. The pinned 67,751-byte
+  public-domain [source fixture](fixtures/README.md) matches the workbook hash
+  already published in the artifact. The normal generator includes the same
+  metadata; a metadata-only reproduction needs no geographic source caches:
+
+  ```sh
+  python -B tools/resources/resource_coverage.py --check
+  python -B -m unittest discover -s tools/resources -p "test_coverage.py"
+  ```
+
+  `--write` updates only the two owned reporting keys; after such an update run
+  `make_resources_1990.py` to refresh the downstream provenance hash, followed by
+  `check_resources_1990.py`. A full resource regeneration remains a separate
+  check requiring the original complete source set.
 
 - **`n` still counts records, not sites — but nothing bands on it any more.**
   Ruling 4 moved the band to `confidence.distinct_coordinates` and `n` is now
