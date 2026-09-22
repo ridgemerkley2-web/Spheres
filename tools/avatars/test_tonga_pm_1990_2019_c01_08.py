@@ -274,7 +274,7 @@ class TongaPrimeMinisterTests(unittest.TestCase):
         self.assertIn('not the date of the holder observation', timeline)
         self.assertEqual(self.sources['to_pmo_timeline_2006_en']['source_type'],
                          'government_hosted_retrospective_timeline_archived')
-        # Tongan wording is quoted as printed, with the normalised spelling in brackets.
+        # Tongan wording is quoted as printed (cp1252 glottal stops kept, macrons absent), with the macron spelling in brackets.
         tongan = self.claims['to_lavaka_ata_resignation_accepted_20060211_to']['text']
         for printed in ("'malolo' as printed [mālōlō]", "'Palemia Le'ole'o' as printed [Palēmia Le'ole'o]"):
             self.assertIn(printed, tongan)
