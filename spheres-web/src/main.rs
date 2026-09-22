@@ -11114,47 +11114,38 @@ mod tests {
         let observe = serde_json::json!({"session_id":g.session_id,"commands":[{
             "kind":"continue_campaign","action":"observe","player":g.world.player,"date":g.world.date_str()}]});
         transport::immediate_request(&mut g, &observe).unwrap();
-        // From here the player is a spectator, and a spectator can still watch.
-        // Twelve asked for is twelve delivered — unless some OTHER major event
-        // interrupts, which is the ordinary behaviour and not this defect, so
-        // the bar is that the clock moves by more than the single month the
-        // repeated interrupt used to allow.
-        let before = month_index(g.world.year, g.world.month);
-        let (_, why) = g.advance(12, vec![]);
-        let moved = month_index(g.world.year, g.world.month) - before;
-        assert!(
-            why.as_deref().is_none_or(|w| !w.contains("no longer exists")),
-            "the death must not be re-announced on every later advance: {:?}",
-            why
-        );
-        assert!(
-            moved > 1,
-            "asked for 12 months after the player died and got {}",
-            moved
-        );
-
-        // Ten more advances, and the death is never the reason any of them
-        // stops. What DOES stop them is the ordinary major-event interrupt —
-        // measured here as revolutions in Tajikistan and Georgia and half a
-        // dozen escalations across 1994 — which is that interrupt working, not
-        // this defect. The bar is therefore the shape of the defect and not the
-        // pace of the world: before the fix ten advances delivered exactly ten
-        // months, one per call, and no world event could change that number.
-        let before = month_index(g.world.year, g.world.month);
-        for _ in 0..10 {
-            let (_, why) = g.advance(120, vec![]);
+        // Independently settle the same world one month at a time. A legitimate
+        // major event can occur in the very first month, so a minimum elapsed
+        // span confuses that event with the repeated-death defect. Compare the
+        // exact event, calendar and complete world instead: the old death latch
+        // fails even when both paths happen to stop after one month.
+        // Eleven requests of twelve months keep this dissolution regression
+        // separate from the independently tested 2035 campaign horizon.
+        for _ in 0..11 {
+            let mut expected = g.world.clone();
+            let mut expected_reason = None;
+            let before = month_index(expected.year, expected.month);
+            let mut settled = 0;
+            for month in 0..12 {
+                let headlines = tick_month(&mut expected, &[]);
+                settled += 1;
+                // The compatibility monthly API interrupts only when some of
+                // the requested span remains; a last-month event is in the log.
+                if month < 11 {
+                    expected_reason = headlines.into_iter().find(|h| is_major(h, expected.player));
+                    if expected_reason.is_some() { break; }
+                }
+            }
+            let (stopped_early, why) = g.advance(12, vec![]);
             assert!(
                 why.as_deref().is_none_or(|w| !w.contains("no longer exists")),
-                "a spectator was told again that their nation is gone: {:?}",
-                why
+                "a spectator was told again that their nation is gone: {:?}", why
             );
+            assert_eq!(why, expected_reason, "only an actual major event may interrupt the spectator");
+            assert_eq!(stopped_early, settled < 12);
+            assert_eq!(month_index(g.world.year, g.world.month) - before, settled);
+            assert_eq!(save(&g.world), save(&expected), "spectating must settle every promised month exactly once");
         }
-        let moved = month_index(g.world.year, g.world.month) - before;
-        assert!(
-            moved > 10,
-            "ten advances after the player died moved {} months — one per call              is the signature of the interrupt firing every time",
-            moved
-        );
     }
 
     #[test]
@@ -14144,10 +14135,57 @@ mod tests {
     /// unchanged, which is the line between a view fix and a model change.
     #[test]
     fn a_dissolved_state_is_not_served_as_a_live_belligerent() {
+        // Guarantee the two original failure shapes instead of depending on
+        // seed 1 still choosing a particular war years into a changing model.
+        // Quarrels and participation use paid public commands. Only the
+        // union's separateness is staged; the real politics phase dissolves it.
+        let mut fixture = Game::new(1, None);
+        for id in [NationId::USSR, NationId::Iraq] {
+            fixture.world.nation_mut(id).political_capital = 500.0;
+        }
+        apply_command(&mut fixture.world, &Command::OpenConflict {
+            opener: NationId::USSR, target: NationId::China, theatre: TheatreId::EastAsia,
+        }).expect("the union can open a two-party quarrel");
+        let two_party = fixture.world.conflict_between(NationId::USSR, NationId::China).unwrap().id;
+        apply_command(&mut fixture.world, &Command::OpenConflict {
+            opener: NationId::Iraq, target: NationId::Israel, theatre: TheatreId::Levant,
+        }).expect("Iraq can open the surviving quarrel");
+        let three_party = fixture.world.conflict_between(NationId::Iraq, NationId::Israel).unwrap().id;
+        apply_command(&mut fixture.world, &Command::JoinConflict {
+            conflict: three_party, nation: NationId::USSR, side_a: true, objective: Objective::Deny,
+        }).expect("the union can take Iraq's side through the normal command");
+        let before = state_json(&fixture, None);
+        for (id, participants) in [(two_party, 2), (three_party, 3)] {
+            let war = before["wars"].as_array().unwrap().iter().find(|w| w["id"] == id).unwrap();
+            assert_eq!(war["posture"].as_array().unwrap().len(), participants);
+        }
+        fixture.world.nation_mut(NationId::USSR).separatism = 1.0;
+        spheres_sim::politics::tick(&mut fixture.world);
+        assert!(fixture.world.has_flag("ussr_dissolved"));
+        assert!(!fixture.world.nation(NationId::USSR).alive);
+        for id in [two_party, three_party] {
+            assert!(fixture.world.conflict(id).unwrap().posture.iter().any(|b| b.nation == NationId::USSR),
+                "the real dissolution must leave the dead row for the view to filter");
+        }
+        let untouched = save(&fixture.world);
+        let after = state_json(&fixture, None);
+        assert_eq!(save(&fixture.world), untouched, "serving a view must not prune the model");
+        assert!(after["dead"].as_array().unwrap().iter().any(|n| n["id"] == "USSR"));
+        let wars = after["wars"].as_array().unwrap();
+        assert!(!wars.iter().any(|w| w["id"] == two_party), "a conflict with an empty living side is not served");
+        let survivor = wars.iter().find(|w| w["id"] == three_party).expect("the living two-sided conflict remains visible");
+        let rows = survivor["posture"].as_array().unwrap();
+        assert_eq!(rows.len(), 2);
+        assert!(rows.iter().any(|b| b["id"] == "Iraq" && b["side_a"] == true));
+        assert!(rows.iter().any(|b| b["id"] == "Israel" && b["side_a"] == false));
+        assert!(!rows.iter().any(|b| b["id"] == "USSR"));
+
+        // Retain the complete 360-month payload invariant sweep. Its random
+        // occurrence quota is superseded by the guaranteed real-event fixture
+        // above; no particular ambient war history is a rendering contract.
         let mut g = Game::new(1, None);
         let mut checked = 0;
         let mut wars_seen = 0;
-        let mut sim_held_a_dead_belligerent = 0;
         for _ in 0..(30 * 12) {
             tick_month(&mut g.world, &[]);
             g.snapshot();
@@ -14184,28 +14222,11 @@ mod tests {
                     war["id"]
                 );
             }
-            // What the sim is holding underneath, this same month. Seed 1 is
-            // one of the three measured worlds, so this counter must not be
-            // zero — if it were, the loop above would be proving nothing and
-            // the test would pass on a world where the defect cannot occur.
-            if g
-                .world
-                .conflicts
-                .iter()
-                .flat_map(|c| c.posture.iter())
-                .any(|b| !g.world.nation_opt(b.nation).is_some_and(|n| n.alive))
-            {
-                sim_held_a_dead_belligerent += 1;
-            }
             checked += 1;
         }
         assert_eq!(checked, 360);
         assert!(wars_seen > 0, "thirty years produced no conflicts to check");
-        assert!(
-            sim_held_a_dead_belligerent > 0,
-            "the sim never held a dead belligerent in this world, so the filter \
-             above was never exercised and the assertions in it mean nothing"
-        );
+
     }
 
     /// TRIAGE F-19 — the conflict sheet priced four rungs the world will never

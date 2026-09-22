@@ -1,0 +1,10 @@
+{
+  "change": "Move only cfg(test) fixtures into the standard child test module; retain the complete production-source treasury audit unchanged.",
+  "before_sha256": "10493241d716514902cfc1310baf0bbe8c8da76c6a8229c2fa637c0d2ff36e0d",
+  "production_sha256": "a756149de98b6633a57b8fd3b3c7fcc2c0f5c3a25ccb721ff924c7d62364d8bb",
+  "test_module_sha256": "afea9489a5903ef3067d7e21f6899a8f72c6a3d7a8d0b71ba5f84ab7157d6566",
+  "tests_preserved": 7,
+  "runtime_prefix_byte_identical": true,
+  "original_failure_log": "completion-checkpoint24-workspace-20260922.log",
+  "verification": "pending rebuild"
+}

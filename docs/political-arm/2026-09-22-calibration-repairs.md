@@ -723,6 +723,33 @@ compile preflight, followed by the corrected wrapper and genuine failing test.
 The earlier application receipt hashes that preflight wrapper; the witness
 result hashes the corrected one. The source regression covers an unchanged
 plan across direct and save/load paths, plus actual paid funding when no other
-owner exists. The corrected regression awaits the iteration-24 build; no pass
-is claimed here. No evidence links this partial-save defect to A1's remaining
-concentration, and the existing failed outcome readings remain authoritative.
+owner exists. The corrected regression passes in checkpoint 24's 1,005-test
+simulation library run. The broader workspace still fails three separate
+checks, as recorded below. No evidence links this partial-save defect to A1's
+remaining concentration; the existing failed outcome readings remain authoritative.
+
+The [checkpoint-24 workspace receipt](../campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-24-workspace-result.json)
+retains **1,881 passed, three failed, 89 ignored and one timing check filtered**
+across 66 targets. The treasury source audit sees a `debt_gdp` assignment in
+new test fixture code. Moving that unchanged `cfg(test)` module to its own file
+keeps the production audit intact. The two web failures concern advancing time
+after the player's country disappears and a scenario that did not exercise a
+dead belligerent. Follow-up test changes await checkpoint 25; none converts the
+failed checkpoint-24 result into a pass.
+
+The [fixed seed-0 diagnostic](../campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-24-seed0-trace-analysis.md)
+records ten elected coups: six first and four repeats. Nine preceding monthly
+snapshots cannot afford the desired Army funding under the existing policy;
+Myanmar's later repeat retains low actual loyalty while its target is already
+recovering toward .40. Four small increases below the AI spending threshold
+would change targets already above .397 to .400, so they do not demonstrate a
+blocked target rescue. An additional read-only emitter reproduced every
+original output record and the same final state/RNG. The six-country authority
+review found no erroneous zero or weighting and no source-supported reason to
+reset authority at a first civilian ballot. No further mechanics change follows.
+
+Compact source/plans, all actual coup-case readings, the four hysteresis cases,
+and executable/library/log hashes are archived. The two approximately 6 MB raw
+trace files remain external and are identified by the receipt; no binaries or
+redundant full logs were added to Git. A1 remains open, and the reserved
+independent cohort remains uninspected.

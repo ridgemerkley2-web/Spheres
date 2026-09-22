@@ -1,0 +1,10 @@
+# Checkpoint24 web test repair
+
+Original source checkpoint: `b51b7333b862d60fc3357b6d54d2ca5960b1543c`.
+
+The full workspace web executable reported 412 passed, two failed, 21 ignored. Both failures came from incidental trajectory assumptions in tests; the corresponding production assertions had already passed.
+
+- `the_clock_still_moves_after_your_nation_is_gone` passed its no-repeated-death reason assertion, then failed the elapsed-month minimum because another major event interrupted the first month. The test now compares eleven requests of twelve months to an independently ticked world: exact interrupt reason, early-stop flag, calendar delta and complete serialized world must agree. The death announcement, paused ending and explicit real observer command remain. A repeated-death-latch defect still fails the direct no-death assertion and exact reason comparison even if both paths stop after one month. The arbitrary minimum elapsed spans are superseded by exact settlement assertions, not widened.
+- `a_dissolved_state_is_not_served_as_a_live_belligerent` passed all 360 monthly payload invariants, but seed1 no longer created the originally observed dead-party conflict. A guaranteed fixture now uses real OpenConflict and JoinConflict commands to establish both a two-party and a three-party quarrel. An explicitly staged separation crisis invokes the real politics phase to dissolve the USSR. The view must hide the empty-sided quarrel, retain the other quarrel with exactly the two correct living sides, list the USSR as dead, and leave the complete underlying world unchanged. All 360 long-run monthly invariants remain; their random occurrence quota is superseded by the guaranteed case.
+
+Only these two test bodies changed in spheres-web/src/main.rs. No runtime production, political coefficients, or rendering filters changed. UTF-8 and LF were preserved. git diff --check passed. A standalone rustc probe against the captured b51 rlib confirmed the real commands and dissolution fixture; this is not a claim that the newly edited web tests have run. Parent owns the subsequent native rebuild and suite.

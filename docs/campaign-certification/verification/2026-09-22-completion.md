@@ -243,6 +243,20 @@ calibration thresholds, which remain unchanged.
 The next narrow correction protects an existing annual budget in legacy saves
 that lack dollar stocks. An [original-23 compiled-library witness](evidence/2026-09-22-completion/political-calibration/army-plan-owner-original23-witness-result.json)
 reproduces its erasure through the public government tick. The independent plan
-ownership guard and positive/save-load regression are applied but await the
-iteration-24 build. This is not evidence of an A1 repair; its original and
-development concentration failures remain open.
+ownership guard and positive/save-load regression pass checkpoint 24's
+1,005-test simulation library. This is not evidence of an A1 repair; its
+original and development concentration failures remain open.
+
+The [full checkpoint-24 workspace run](evidence/2026-09-22-completion/political-calibration/iteration-24-workspace-result.json)
+records **1,881 passed, three failed, 89 ignored and one timing check filtered**.
+Failures are the treasury source audit encountering a test-fixture debt write,
+the web clock scenario after country disappearance, and the dead-belligerent
+scenario failing to create its required state. Their follow-up corrections
+await checkpoint 25; the original failing log is retained.
+
+A [fixed seed-0 trace](evidence/2026-09-22-completion/political-calibration/iteration-24-seed0-trace-analysis.md)
+finds six first and four repeated elected coups. No additional funding-threshold
+or authority-reset defect is supported: the four affordable sub-threshold
+increases already target loyalty above .397. The prospective plan, compact
+case evidence and exact binary/library/log receipts are archived. This
+diagnostic does not certify A1 or replace its failed ensemble result.

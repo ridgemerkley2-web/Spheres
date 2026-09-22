@@ -1,0 +1,99 @@
+{
+  "schema": 1,
+  "recorded_utc": "2026-09-22T22:07:17.288803+00:00",
+  "source_commit": "b51b7333b862d60fc3357b6d54d2ca5960b1543c",
+  "source_plan": "iteration-24-seed0-trace-plan.json",
+  "source_scope": "Prospective 348-input manifest recorded before root execution; later test-only edits are not attributed to this binary.",
+  "original_execution": {
+    "build_exit": 0,
+    "run_exit": 0,
+    "authority": "Reported by parent root; complete seed receipt independently parsed; empty compiler log retained"
+  },
+  "followup_execution": {
+    "recorded_utc": "2026-09-22T22:04:11.9949911Z",
+    "started_utc": "2026-09-22T22:04:08.6860555Z",
+    "build_exit": 0,
+    "run_exit": 0,
+    "elapsed_seconds": 3.3047104,
+    "rlib_sha256_before": "e507e7efc8649e7171d3f8787ec9926b47b065b07c9577e07bd90ab089320e85",
+    "rlib_sha256_after": "e507e7efc8649e7171d3f8787ec9926b47b065b07c9577e07bd90ab089320e85",
+    "source_sha256": "8e261d1eee974a7f94622998e47a13061dd33d50f9a330f8bcb4f3d5e3183e8f",
+    "exe_sha256": "6d0109839abc58bdc2291e81692f2120311fae7fddfe5057a5ae06079fd84718",
+    "log_sha256": "133fb75f8375ea1d3ca6a30b5c4ff8d916bd9f6f6f0743cb7c99788b190473d4",
+    "interpretation": "Diagnostic completion, not test acceptance; identical fixed world expected"
+  },
+  "link_inputs": [
+    {
+      "path": "integration-target/release/deps/libspheres_sim-de80fa3e4f034d8c.rlib",
+      "sha256": "e507e7efc8649e7171d3f8787ec9926b47b065b07c9577e07bd90ab089320e85"
+    },
+    {
+      "path": "integration-target/release/deps/libserde_json-019015e08a7ac1fe.rlib",
+      "sha256": "61f181ea73dfdeaf1e51c2355a919581074c1cc5152691c0937322690a0e5a34"
+    }
+  ],
+  "files": [
+    {
+      "path": "iteration-24-seed0-trace.rs",
+      "bytes": 17924,
+      "sha256": "4085e978bfcd0be2319f0ba99e3b5e0f12b97127192e5add68369733f4a7279f"
+    },
+    {
+      "path": "iteration-24-seed0-trace-plan.json",
+      "bytes": 98110,
+      "sha256": "27f85d61ce5bef003a98cba391b767cbe056486d7efe287b45dd2cebaba59dfa"
+    },
+    {
+      "path": "iteration-24-seed0-trace.exe",
+      "bytes": 34752719,
+      "sha256": "bdecf516e00a3ed0586aa6218e416aa53abb7e850871f88a263df90c9fb5aaab"
+    },
+    {
+      "path": "iteration-24-seed0-trace-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "iteration-24-seed0-trace.jsonl",
+      "bytes": 6026891,
+      "sha256": "25583ee6515526d868f96649ad2c4526c7be6f69f8603c606c8fd899a11ff483"
+    },
+    {
+      "path": "iteration-24-seed0-trace-hysteresis.rs",
+      "bytes": 18136,
+      "sha256": "8e261d1eee974a7f94622998e47a13061dd33d50f9a330f8bcb4f3d5e3183e8f"
+    },
+    {
+      "path": "iteration-24-seed0-trace-hysteresis-plan.json",
+      "bytes": 850,
+      "sha256": "fad269de26a205e68a9388e5c74bc0817f08d4548903afbab0bb85094a418ce4"
+    },
+    {
+      "path": "iteration-24-seed0-trace-hysteresis.exe",
+      "bytes": 34763577,
+      "sha256": "6d0109839abc58bdc2291e81692f2120311fae7fddfe5057a5ae06079fd84718"
+    },
+    {
+      "path": "iteration-24-seed0-trace-hysteresis-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "iteration-24-seed0-trace-hysteresis.jsonl",
+      "bytes": 6032741,
+      "sha256": "133fb75f8375ea1d3ca6a30b5c4ff8d916bd9f6f6f0743cb7c99788b190473d4"
+    },
+    {
+      "path": "iteration-24-seed0-trace-hysteresis-result.json",
+      "bytes": 719,
+      "sha256": "ffacef69d07438fce4572baf0510594de54451bff3c6ba0b72f944b3116818a6"
+    },
+    {
+      "path": "iteration-24-seed0-trace-analysis.json",
+      "bytes": 16114,
+      "sha256": "f945fb7267d774b27d9ce43409aaf08923ecafcafb4b1b88f8cae8d4215d2a0f"
+    }
+  ],
+  "read_only_confirmation": "Every original parsed output record is identical after removing four new emitter rows; both final state and RNG hashes match.",
+  "status": "Diagnostic complete; remaining A1 failure not repaired or waived"
+}
