@@ -139,9 +139,9 @@ Limits: **unresolved.** No instrument or start date for the acting premiership w
 January 2025. The 31 January listing is an upper bound on his deputy premiership, not an
 end date. The forecast revocation of the Sovaleni-era ministers is undated, and the
 promised commencement announcement was not identified. When Vaipulu became Deputy Prime
-Minister, replacing the 2021 holder Poasi Mataele Tei, is unknown; Tei's observation
-gains no end. The Government Act was not retrieved; section 18(2) is taken only as read
-into the minutes.
+Minister, and whether anyone held the office between Poasi Mataele Tei (2021) and him,
+is unknown; Tei's observation gains no end. The Government Act was not retrieved;
+section 18(2) is taken only as read into the minutes.
 
 Sources attempted: PMO WordPress search ("caretaker", "commencement", "new government",
 "Public Announcement", "Acting Prime Minister"). The live PMO post list from 20 January
@@ -228,7 +228,7 @@ Sources attempted: the Attorney General's Office "Gazettes by year" listings for
 and 2025 (fetched by POST). These are selective: their numbering has gaps and they list
 mostly legislation, so the absence of an appointment notice there rules nothing out.
 palace.gov.to does not resolve. archive.ph has no capture of the release. News accounts
-disagree on the date (see Leads not imported) and are not used.
+(see Leads not imported) are leads only and are not used.
 
 ### TO-TR24-06 — First Eke Cabinet
 
@@ -268,12 +268,12 @@ January, and neither is the end of Vaipulu's deputy premiership.
 | `to_assembly_two_nominations_20241223` | [Lord Speaker's release](https://parliament.gov.to/en/media-centre/press-releases/a-total-of-two-prime-minister-candidate-nominations-received-by-the-office-of-the-lord-speaker-of-parliament), issued 23 Dec 2024 | Direct fetch, 56,838 bytes; no hash asserted |
 | `to_assembly_minutes_pm_election_20241224` | [Minutes of the PM election](https://parliament.gov.to/en/parliament-business/hansards-debates/3-2024/132-miniti-fili-palemia-aho-24-o-tisema-2024), 24 Dec 2024 | PDF 412,540 bytes, `d798e123…85443347`, reproduced; pp.3, 7-9, 11-13, 52, 53, 55 rendered, pp.19 and 47 text layer only |
 | `to_assembly_eke_elected_news_20241224` | [Assembly news notice](https://parliament.gov.to/en/media-centre/latest-news/parliament-elects-hon-dr-aisake-valu-eke-as-tonga-s-new-prime-minister-designate), created 24 Dec 2024 | Direct fetch, 60,909 bytes; no hash asserted |
-| `to_pmo_caretaker_announcement_20250106` | [PMO Public Announcement](https://pmo.gov.to/14107-2/) (post now 404), 6 Jan 2025 | Image 1 (English) 137,870 bytes, `db9c580d…25d9d7d250`; image 2 (Tongan) 160,214 bytes, `682a45b5…6088fa488`; both viewed. Post page from Wayback `20250126154340id_`, 69,871 bytes, `7fce529e…f25f91163` |
+| `to_pmo_caretaker_announcement_20250106` | [PMO Public Announcement](https://pmo.gov.to/14107-2/) (post now 404), 6 Jan 2025 | Image 1 (English) 137,870 bytes, `db9c580d…4ed9d7d250`; image 2 (Tongan) 160,214 bytes, `682a45b5…6088fa488`; both viewed. Post page from Wayback `20250126154340id_`, 69,871 bytes, `7fce529e…f25f91163` |
 | `to_pmo_eke_appointment_20250122` | [PMO appointment release](https://pmo.gov.to/his-majesty-king-tupou-vi-appoints-hon-dr-aisake-valu-eke-as-prime-minister-of-tonga/) (post now 404), dated 22 Jan 2025 | Wayback `20250123155100id_`, 66,444 bytes, `ed2e113e…2690354a`, reproduced; second capture `20250217164854id_`, 75,048 bytes, `a4212306…23837df8` |
 | `to_pmo_pif_joint_release_20250124` | [PMO joint media release](https://pmo.gov.to/pacific-islands-forum-secretary-general-meets-new-prime-minister-of-tonga/), 24 Jan 2025 | Page 71,411 bytes, `be3dff70…13c30d76`, same bytes on two in-browser requests; REST record 7,313 bytes; non-browser requests get HTTP 403 |
 | `to_pmo_eke_cabinet_20250128` | [PMO Cabinet release](https://pmo.gov.to/prime-minister-hon-dr-aisake-valu-eke-announces-new-cabinet-ministers/), 28 Jan 2025 | PDF 396,595 bytes, `ad766e4d…a318ae134`, reproduced ('-1.pdf' identical); both pages rendered; page HTML 82,136 bytes (browser), no hash asserted |
 | `to_assembly_oath_sitting_notice_20250129` | [Assembly news notice](https://parliament.gov.to/en/media-centre/latest-news/parliament-to-sit-of-friday-31st-january), created 29 Jan 2025 | Direct fetch, 54,109 bytes; no hash asserted |
-| `to_assembly_minutes_01_20250131` | [Minutes No. 1 of 2025](https://parliament.gov.to/en/parliament-business/hansards-debates/2-2025/111-miniti-fika-01-aho-31-o-sanuali-2025), 31 Jan 2025 | PDF 410,718 bytes, `3ef9f082…a42023c27d5`, reproduced; pp.2, 7-9, 17 rendered, pp.18 and 23 text layer only |
+| `to_assembly_minutes_01_20250131` | [Minutes No. 1 of 2025](https://parliament.gov.to/en/parliament-business/hansards-debates/2-2025/111-miniti-fika-01-aho-31-o-sanuali-2025), 31 Jan 2025 | PDF 410,718 bytes, `3ef9f082…38cd320c`, reproduced; pp.2, 7-9, 17 rendered, pp.18 and 23 text layer only |
 | `to_assembly_oath_news_20250203` | [Assembly news notice](https://parliament.gov.to/en/media-centre/latest-news/tonga-prime-minister-and-cabinet-ministers-take-oath-of-office-in-parliament), created 3 Feb 2025 | Direct fetch, 70,501 bytes; no hash asserted |
 | `to_ipu_2025` | [IPU Parline, November 2025 election](https://data.ipu.org/parliament/TO/TO-LC01/election/TO-LC01-E20251120/) | Direct fetch, 165,854 bytes twice with different hashes (dynamic tokens); no hash asserted; corroboration only |
 
@@ -299,8 +299,8 @@ reproduced on 21 September 2026.
   reports the appointment at the Royal Palace at 9:53am on 22 January. News; the time
   of day is not imported.
 - RNZ, [Tonga PM officially appointed](https://www.rnz.co.nz/news/pacific/539609/tonga-pm-officially-appointed):
-  gives the appointment as 23 January 2025, which conflicts with the PMO's 22 January
-  and may reflect the posting date. News; not imported.
+  published 23 January 2025 (10:07am); reports the appointment without dating it, so its
+  publication date is not an appointment date. News; not imported.
 - US News (Reuters wire), 21 January 2025 (US dateline),
   [tongas-king-appoints-eke-prime-minister-after-predecessor-quit](https://www.usnews.com/news/world/articles/2025-01-21/tongas-king-appoints-eke-prime-minister-after-predecessor-quit):
   wire news; not fetched.
