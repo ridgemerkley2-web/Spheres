@@ -507,7 +507,7 @@
       "id": "S19",
       "phase": "experience",
       "title": "Build outcome-aware tutorial and advisor guidance",
-      "status": "planned",
+      "status": "in_progress",
       "depends": [
         "S06",
         "S07",
@@ -519,7 +519,15 @@
         "Detect actual budget enactment, useful project progress/output, purchase/service and mission results instead of only lessons read.",
         "Advice explains why, opens the relevant real control and never enacts an order on its own.",
         "Skipping, returning, stale readings, reloads and later campaigns preserve useful progress without false completions."
-      ]
+      ],
+      "claim": {
+        "owner": "Claude",
+        "branch": "claude/s19-guidance-01",
+        "base": "939e8f9b3467ffc1666fea19fd4670257ea1e612",
+        "claim_commit": "97d126d6bc2314e91baa7edd3655864745c74455",
+        "handoff": "docs/planning/ai-handoffs/CLAUDE-S19-01.md",
+        "ready_for_review": false
+      }
     },
     {
       "id": "S20",

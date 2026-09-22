@@ -1,6 +1,6 @@
 # Spheres — pathway to a certified campaign
 
-**Approved pathway · 10 September 2026 · S01–S18 complete; S19–S30 planned.**
+**Approved pathway · 10 September 2026 · S01–S18 complete; S19 in progress with Claude; S20–S30 planned.**
 
 Work allocation: [Codex / Claude workboard](AI_WORKSTREAMS.md), with separate
 handoff packets, file boundaries and owner-filtered status queries. Active
@@ -67,7 +67,7 @@ deliverables as finished.
 | Marker | Meaning |
 | --- | --- |
 | `S00` | Complete: user approved beginning S01 on 10 September 2026. |
-| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S18 are complete; S19–S30 remain planned. |
+| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S18 are complete; S19 is in progress with Claude; S20–S30 remain planned. |
 | `C01`–`C07` | Character-production workstreams, with uniquely numbered country batches below. |
 | `E01`–`E06` | Retained expansion work after the first certified release. |
 | `G0`–`G5` | Evidence gates joining groups of sessions. |
@@ -703,7 +703,10 @@ The [S11 work record](campaign-certification/S11/README.md) records the qualifie
 
 #### S19 — Build outcome-aware tutorial and advisor guidance
 
-**Status:** Planned · **Requires:** S06, S07, S10, S18
+**Status:** In progress with Claude · **Requires:** S06, S07, S10, S18
+
+Claim recorded at `97d126d` on `claude/s19-guidance-01`; the [handoff](planning/ai-handoffs/CLAUDE-S19-01.md)
+is not yet ready for review. A claim does not satisfy any completion criterion.
 
 **Completion marker:** An optional first-hour route that recognizes successful campaign outcomes, plus concise current advice.
 
