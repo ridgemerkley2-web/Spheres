@@ -190,6 +190,87 @@ HOLDER_KINDS = {'in_office_signature_as_state_president', 'oath_of_office', 'oat
 NEVER_HOLDER_DATE = {'1989-08-15', '1989-09-13', '1989-09-20', '1994-05-04', '1994-05-09', '1999-06-08', '1999-06-14',
                      '2004-04-23', '2008-09-20', '2008-09-21', '2008-09-22', '2008-09-23', '2008-09-24', '2009-05-06',
                      '2014-05-21', '2019-05-22'}
+# Every new claim's (attested_on, event_kind), exactly: distinct dated events are never re-dated or relabelled.
+EVENTS = {
+    'za_botha_vacated_state_presidency_19890815': ('1989-08-15', 'vacated_office'),
+    'za_de_klerk_acting_state_president_designated_19890815': ('1989-08-15', 'acting_service_start'),
+    'za_de_klerk_acting_state_president_proclamation_167_19890913': ('1989-09-13', 'acting_service'),
+    'za_de_klerk_state_president_proclamation_177_19890928': ('1989-09-28', 'in_office_signature_as_state_president'),
+    'za_de_klerk_state_president_proclamation_r16_19900202': ('1990-02-02', 'in_office_signature_as_state_president'),
+    'za_de_klerk_post_inauguration_address_19890920': ('1989-09-20', 'post_inauguration_address'),
+    'za_presidency_list_state_president_de_klerk_19890815_19940510': (None, 'retrospective_list_row'),
+    'za_presidency_list_president_mandela_19940510_19990616': (None, 'retrospective_list_row'),
+    'za_presidency_list_president_mbeki_19990616_20080924': (None, 'retrospective_list_row'),
+    'za_presidency_list_president_motlanthe_20080925_20090509': (None, 'retrospective_list_row'),
+    'za_cj_fixes_president_election_sitting_19940504': ('1994-05-04', 'national_assembly_sitting_scheduled'),
+    'za_de_klerk_state_president_proclamation_98_19940509': ('1994-05-09', 'in_office_signature_as_state_president'),
+    'za_mandela_na_nomination_19940509': ('1994-05-09', 'national_assembly_nomination'),
+    'za_mandela_oath_of_office_19940510': ('1994-05-10', 'oath_of_office'),
+    'za_mandela_inauguration_ceremony_19940510': ('1994-05-10', 'inauguration_ceremony'),
+    'za_ccpresident_fixes_president_election_sitting_19990608': ('1999-06-08', 'national_assembly_sitting_scheduled'),
+    'za_mbeki_election_acceptance_speech_19990614': ('1999-06-14', 'election_acceptance_statement'),
+    'za_dfa_index_mbeki_election_speech_19990614': ('1999-06-14', 'speech_index_entry'),
+    'za_dfa_index_mbeki_inauguration_speech_19990616': ('1999-06-16', 'speech_index_entry'),
+    'za_mbeki_na_convened_elected_president_19990614': ('1999-06-14', 'election_reference_retrospective'),
+    'za_mbeki_inauguration_ceremony_19990616': ('1999-06-16', 'inauguration_ceremony'),
+    'za_mandela_presidency_ended_morning_19990616': ('1999-06-16', 'end_of_term_statement'),
+    'za_mbeki_styled_president_farewell_19990616': ('1999-06-16', 'in_office_attestation'),
+    'za_mbeki_na_elected_president_20040423': ('2004-04-23', 'national_assembly_election'),
+    'za_mbeki_inauguration_announced_20040423': ('2004-04-23', 'inauguration_announced_prospective'),
+    'za_mbeki_election_acceptance_statement_20040423': ('2004-04-23', 'election_acceptance_statement'),
+    'za_mbeki_inauguration_ceremony_20040427': ('2004-04-27', 'inauguration_ceremony'),
+    'za_mbeki_resignation_intention_announced_20080920': ('2008-09-20', 'resignation_intention_announced'),
+    'za_mbeki_resignation_announcement_20080921': ('2008-09-21', 'resignation_announcement'),
+    'za_mbeki_in_office_after_tender_20080922': ('2008-09-22', 'in_office_after_tender'),
+    'za_mbeki_resignation_letter_read_20080922': ('2008-09-22', 'resignation_letter_announced'),
+    'za_mbeki_oath_of_office_20040427': ('2004-04-27', 'oath_of_office'),
+    'za_mbeki_resignation_effective_motion_deferred_20080922': ('2008-09-22', 'resignation_effective_date_motion_deferred'),
+    'za_mbeki_resignation_submitted_20080921': ('2008-09-21', 'resignation_letter_submitted'),
+    'za_na_resolves_mbeki_resignation_effective_20080923': ('2008-09-23', 'resignation_effective_date_resolution'),
+    'za_cj_vacancy_election_convened_20080923': ('2008-09-23', 'vacancy_election_convened'),
+    'za_new_president_swearing_in_scheduled_20080924': ('2008-09-24', 'oath_scheduled_prospective'),
+    'za_motlanthe_na_elected_president_20080925': ('2008-09-25', 'national_assembly_election'),
+    'za_motlanthe_swearing_in_recess_20080925': ('2008-09-25', 'oath_of_office_context'),
+    'za_mbeki_outgoing_president_20080925': ('2008-09-25', 'predecessor_reference'),
+    'za_motlanthe_president_cabinet_list_20080925': ('2008-09-25', 'in_office_attestation'),
+    'za_motlanthe_sworn_in_president_20080925': ('2008-09-25', 'oath_of_office'),
+    'za_presidency_context_motlanthe_succeeded_mbeki_20080925': ('2008-09-25', 'succession_statement_retrospective'),
+    'za_presidency_context_zuma_inaugurated_20090509': ('2009-05-09', 'inauguration_ceremony'),
+    'za_govza_directory_motlanthe_term_span': (None, 'retrospective_term_span'),
+    'za_govza_directory_zuma_term_span': (None, 'retrospective_term_span'),
+    'za_zuma_na_elected_president_20090506': ('2009-05-06', 'national_assembly_election'),
+    'za_motlanthe_outgoing_president_20090506': ('2009-05-06', 'in_office_attestation'),
+    'za_zuma_na_elected_president_minutes_20090506': ('2009-05-06', 'national_assembly_election'),
+    'za_mandela_oath_recalled_zuma_address_20090509': ('1994-05-10', 'oath_of_office'),
+    'za_mbeki_oath_june_1999_zuma_address_20090509': (None, 'oath_of_office'),
+    'za_zuma_inauguration_ceremony_20090509': ('2009-05-09', 'inauguration_ceremony'),
+    'za_zuma_oath_of_office_20090509': ('2009-05-09', 'oath_of_office'),
+    'za_motlanthe_thanked_by_successor_20090509': ('2009-05-09', 'predecessor_reference'),
+    'za_zuma_na_elected_president_20140521': ('2014-05-21', 'national_assembly_election'),
+    'za_zuma_inauguration_ceremony_20140524': ('2014-05-24', 'inauguration_ceremony'),
+    'za_zuma_inaugurated_first_term_20090509': ('2009-05-09', 'inauguration_ceremony'),
+    'za_zuma_second_term_assumed_20140524': ('2014-05-24', 'assumption_of_office'),
+    'za_zuma_resignation_tendered_20180214': ('2018-02-14', 'resignation_tendered'),
+    'za_zuma_resignation_announcement_20180214': ('2018-02-14', 'resignation_announcement'),
+    'za_zuma_resignation_effective_20180214': ('2018-02-14', 'resignation_effective'),
+    'za_zuma_resignation_letter_tabled_20180215': ('2018-02-15', 'resignation_letter_tabled'),
+    'za_zuma_resignation_letter_received_20180215': ('2018-02-15', 'resignation_letter_received'),
+    'za_gcis_zuma_resignation_vacancy_20180214': ('2018-02-14', 'resignation_effective'),
+    'za_ramaphosa_acting_president_20180215': ('2018-02-15', 'acting_service'),
+    'za_zuma_resignation_announced_to_na_20180215': ('2018-02-15', 'resignation_letter_announced'),
+    'za_ramaphosa_na_elected_president_20180215': ('2018-02-15', 'national_assembly_election'),
+    'za_pd25_zuma_resignation_announced_20180214': ('2018-02-14', 'resignation_announcement'),
+    'za_pd25_zuma_resignation_effective_20180214': ('2018-02-14', 'resignation_effective'),
+    'za_ramaphosa_oath_of_office_20180215': ('2018-02-15', 'oath_of_office'),
+    'za_presidency_ramaphosa_sworn_in_20180215': ('2018-02-15', 'oath_of_office'),
+    'za_ramaphosa_na_elected_president_20190522': ('2019-05-22', 'national_assembly_election'),
+    'za_parliament_ramaphosa_elected_president_20190522': ('2019-05-22', 'national_assembly_election'),
+    'za_parliament_ramaphosa_first_elected_20180215': ('2018-02-15', 'election_reference_retrospective'),
+    'za_ramaphosa_inauguration_ceremony_20190525': ('2019-05-25', 'inauguration_ceremony'),
+    'za_ramaphosa_oath_of_office_20190525': ('2019-05-25', 'oath_of_office'),
+    'za_ramaphosa_oath_of_office_20240619': ('2024-06-19', 'oath_of_office'),
+    'za_ramaphosa_inauguration_ceremony_20240619': ('2024-06-19', 'inauguration_ceremony'),
+}
 STARTS = [('Jacob Zuma', '2014-05-24')]
 ENDS = [('Nelson Mandela', '1999-06-16'), ('Thabo Mbeki', '2008-09-25'), ('Jacob Zuma', '2018-02-14')]
 SURNAMES = {'F. W. de Klerk': 'de Klerk', 'Nelson Mandela': 'Mandela', 'Thabo Mbeki': 'Mbeki',
@@ -424,6 +505,7 @@ class SouthAfricaHeadsOfStateTests(unittest.TestCase):
                 self.assertIn(sid, self.roles[row['role_id']]['sources'])
                 self.assertTrue(row['role_title'].endswith(('President of the Republic of South Africa',
                                                             'State President of the Republic of South Africa')))
+        self.assertEqual({cid: (row['attested_on'], row['event_kind']) for cid, row in self.rows.items()}, EVENTS)
         for sid, stamp in ARCHIVED.items():
             source, extract = self.sources[sid], self.extracts[sid]
             url = urlsplit(source['url'])
@@ -555,7 +637,7 @@ class SouthAfricaHeadsOfStateTests(unittest.TestCase):
                      '09': 'Accepted', '10': 'Accepted'}
         for number, decision in decisions.items():
             row, = [line for line in table.splitlines() if line.startswith(f'| ZA-HOS-{number} ')]
-            self.assertIn(f'**{decision}', row)
+            self.assertIn(f'**{decision}:**', row)
         defects = self.section('Checker defects')
         rows = [line for line in defects.splitlines() if re.match(r'\| [ABC]\d+ ', line)]
         self.assertEqual([re.match(r'\| ([ABC]\d+) ', r).group(1) for r in rows],

@@ -172,7 +172,7 @@ speech on accepting election, dated 14 June 1999 in the National Assembly, is at
 referred to the Assembly that "elected the President of the Republic" on 14 June
 (`za_mbeki_na_convened_elected_president_19990614`). The Office of the President issued his inauguration speech of
 16 June 1999 at the Union Buildings (`za_mbeki_inauguration_ceremony_19990616`,
-`za_dfa_index_mbeki_inauguration_speech_19990616`). At the farewell banquet that evening Mandela welcomed "the new
+`za_dfa_index_mbeki_inauguration_speech_19990616`). At the farewell banquet that day Mandela welcomed "the new
 status I have occupied since this morning" (`za_mandela_presidency_ended_morning_19990616`), in a release headed as
 hosted by President Thabo Mbeki (`za_mbeki_styled_president_farewell_19990616`). The 2009 address says Mbeki took
 the oath "In June 1999" (`za_mbeki_oath_june_1999_zuma_address_20090509`).
