@@ -65,7 +65,7 @@ RESPONSES = {
     'br_camara_dcd_20160418':
         (2515996, '266a43a0b416c4504b2a87f2672f36c22c5bb5a718546add200a9b0d554a37c2'),
     'br_senado_dsf64_20160512_p166_171':
-        (1850793, 'f61b82681fc245da09b7574cd1beb52bc1a3804933e2bfd920bb246e94acf30c'),
+        (27973809, 'c98dafbbdf9a07852d01da0c7f933275a12b6a1758f33020532d2771967b8c5d'),
     'br_agsen_20160512_senado_abre_processo':
         (121960, '61689374fc4b3aab66b0f6541fed5ce0d4c481b2bb34f75b6d3674a10a13b0be'),
     'br_senado_rousseff_contrafe_20160512':
@@ -89,7 +89,7 @@ RESPONSES = {
     'br_cn_dcn15_20160901':
         (8585228, '60e2c85c00bf0215c934de795ca0c98a107ab9fc6bfe8ec29128032241824195'),
     'br_cn_dcn1_20190102_p5_11':
-        (1391446, 'a451cff11f8757a8edb9cd80d1b88446da64ce403f95c3c2d07de28a903142bd'),
+        (49257639, '2d8a63d500ff5ffc82d690a1dc27c3239e25ece96511550e5a82398fc90b24eb'),
     'br_cn_dcn1_20190102_full':
         (49257639, '2d8a63d500ff5ffc82d690a1dc27c3239e25ece96511550e5a82398fc90b24eb'),
     'br_planalto_mpv870_20190101':
@@ -101,9 +101,9 @@ RESPONSES = {
     'br_planalto_d11324_20221231':
         (15704, 'b791adf5b078361eb6e2aab7fdf042382d4f07f05229134e3b1d3e21c9f3bd16'),
     'br_cn_dcn1_20230102_p1_8':
-        (4301947, '1e7d89ee1e340a6febcdfeda5071d42e23e09391701b45b1aaea97c084d8b9f5'),
+        (24950218, 'd6c9c275da00f4d8b73a3127fa98c53a7723f7779445d6a33e93131d7ec854ee'),
     'br_cn_dcn1_20230102_p18_19':
-        (7747700, '5258ec4d18bc2ffeadfd5bda8b23e358e9c4cca49e2439cbd168ebcc731c4e9d'),
+        (24950218, 'd6c9c275da00f4d8b73a3127fa98c53a7723f7779445d6a33e93131d7ec854ee'),
     'br_planalto_mpv1154_20230101':
         (314530, '61b3b64182304109f5941e493ec1ff44843f8ebd8e049ab542bca90410ea1315'),
     'br_planalto_mpv1388_20260824':
@@ -146,17 +146,17 @@ PDF_PAGES = {
     'br_dcn_1_2011_posse_20110101': [1, 4, 8, 9],
     'br_dcn_1_2015_posse_20150101': [1, 4, 6, 7, 10, 11],
     'br_camara_dcd_20160418': [1, 120],
-    'br_senado_dsf64_20160512_p166_171': [2, 3],
+    'br_senado_dsf64_20160512_p166_171': [167, 168],
     'br_senado_den1_2016_vote_loss_of_office': [1, 3],
     'br_senado_den1_2016_vote_disqualification': [1, 3],
     'br_senado_den1_2016_resolucao35': [1],
     'br_senado_den1_2016_dou_20160831_extra': [1, 2],
     'br_senado_den1_2016_mensagem144': [1, 2],
     'br_cn_dcn15_20160901': [4, 6],
-    'br_cn_dcn1_20190102_p5_11': [2, 3],
+    'br_cn_dcn1_20190102_p5_11': [6, 7],
     'br_cn_dcn1_20190102_full': [14, 20],
     'br_cn_dcn1_20230102_p1_8': [1, 6, 7],
-    'br_cn_dcn1_20230102_p18_19': [1, 2],
+    'br_cn_dcn1_20230102_p18_19': [18, 19],
 }
 EVENTS = {
     'br_sarney_signs_decreto_98797_19900105': ('1990-01-05', 'in_office_attestation'),
@@ -684,6 +684,8 @@ class BrazilPresidentsTests(unittest.TestCase):
         for sid in others:
             self.assertNotIn('original_url', self.sources[sid])
             self.assertNotIn('archive_capture_utc', self.extracts[sid])
+            # The diary viewer's page-range form is rebuilt on request and is never a recorded identity.
+            self.assertNotIn('seqPagina', self.sources[sid]['url'], sid)
 
     def test_secondary_and_unimported_leads_stay_out_of_the_packet(self):
         for source in self.packet['sources']:

@@ -147,7 +147,7 @@ class BrazilDiscoveryTests(unittest.TestCase):
                 self.assertRegex(extract['source_response_sha256'], r'^[0-9a-f]{64}$')
                 self.assertNotEqual(extract['source_response_sha256'], source['snapshot']['sha256'])
                 self.assertIs(extract['source_response_checked_in'], False)
-            found ={row['claim_id'] for row in extract['rows']} if 'rows' in extract else {claim['id'] for claim in extract['claims']}
+            found = {row['claim_id'] for row in extract['rows']} if 'rows' in extract else {claim['id'] for claim in extract['claims']}
             self.assertEqual(found, {claim['id'] for claim in source['claims']})
         self.assertEqual([s['id'] for s in self.packet['sources']][:5], list(ORIGINAL_SOURCES))
         self.assertEqual(len(self.packet['sources']), len(ORIGINAL_SOURCES) + C01_10_SOURCE_COUNT)

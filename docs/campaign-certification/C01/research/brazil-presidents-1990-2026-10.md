@@ -369,7 +369,7 @@ nothing.
 | `br_dcn_1_2015_posse_20150101` | DCN nº 1/2015: Rousseff's second posse (1 Jan 2015) | 8,131,269 bytes, `8f588186…861787`; Senate file; PDF pages 1, 4, 6, 7, 10, 11 viewed |
 | `br_planalto_dilma_parlatorio_20150101` | Portal Planalto: Rousseff's Parlatório address (1 Jan 2015) | 63,136 bytes, `2cbd5e75…25947a`; capture 2015-01-11 |
 | `br_camara_dcd_20160418` | Diário da Câmara nº 56/2016: the Chamber's 367-137 vote of 17 Apr 2016 | 2,515,996 bytes, `266a43a0…4a37c2`; Chamber file; PDF pages 1, 120 viewed |
-| `br_senado_dsf64_20160512_p166_171` | DSF nº 64/2016, pp. 166-171: admission 55-22 and the Mandado de Intimação (12 May 2016) | 1,850,793 bytes, `f61b8268…acf30c`; Senate file; PDF pages 2, 3 viewed |
+| `br_senado_dsf64_20160512_p166_171` | DSF nº 64/2016 (complete issue; pp. 166-171): admission 55-22 and the Mandado de Intimação (12 May 2016) | 27,973,809 bytes, `c98dafbb…7b8c5d`; Senate file; PDF pages 167, 168 viewed |
 | `br_agsen_20160512_senado_abre_processo` | Agência Senado: the Senate opens the process (12 May 2016) | 121,960 bytes, `61689374…13b0be`; capture 2016-05-13 |
 | `br_senado_rousseff_contrafe_20160512` | Senate: Rousseff's signed contrafé of the intimation (12 May 2016) | 311,449 bytes, `41f9c9d8…a41b97`; Senate file; located by the check |
 | `br_radio_senado_notifications_20160512` | Rádio Senado: notifications served on 12 May 2016 | 103,027 bytes, `8fa440b7…0f86dd`; capture 2016-05-13; located by the check |
@@ -381,14 +381,14 @@ nothing.
 | `br_senado_den1_2016_dou_20160831_extra` | DOU extra edition 168-A of 31 Aug 2016 (Senate's filed copy): Resolution 35 and the sentence | 192,778 bytes, `0096f80f…a24dd8`; Senate file; PDF pages 1, 2 viewed |
 | `br_senado_den1_2016_mensagem144` | Senate: Ofício 1.117 and Mensagem 144 to the Vice-President in exercise (31 Aug 2016) | 61,472 bytes, `ad1913ec…3f0535`; Senate file; PDF pages 1, 2 viewed |
 | `br_cn_dcn15_20160901` | DCN nº 15/2016: Temer's posse (31 Aug 2016) | 8,585,228 bytes, `60e2c85c…824195`; Senate file; PDF pages 4, 6 viewed |
-| `br_cn_dcn1_20190102_p5_11` | DCN nº 1/2019, pp. 5-11: Bolsonaro's posse (1 Jan 2019) | 1,391,446 bytes, `a451cff1…3142bd`; Senate file; PDF pages 2, 3 viewed |
+| `br_cn_dcn1_20190102_p5_11` | DCN nº 1/2019 (complete issue; pp. 5-11): Bolsonaro's posse (1 Jan 2019) | 49,257,639 bytes, `2d8a63d5…0b24eb`; Senate file (same response as the complete-issue row); PDF pages 6, 7 viewed |
 | `br_cn_dcn1_20190102_full` | DCN nº 1/2019, complete issue: TSE diploma and signed termo de posse | 49,257,639 bytes, `2d8a63d5…0b24eb`; Senate file; PDF pages 14, 20 viewed |
 | `br_planalto_mpv870_20190101` | Planalto: MP 870, signed by Bolsonaro (1 Jan 2019) | 241,409 bytes, `98d89a08…00103e`; capture 2019-01-03 |
 | `br_planalto_bolsonaro_sash_speech_20190101` | Planalto: Bolsonaro's address at the sash ceremony (1 Jan 2019) | 192,253 bytes, `7e6995ac…2fa19d`; capture 2022-03-05; located by the check |
 | `br_planalto_d11322_20221230` | Planalto: Decree No. 11.322, signed by the Vice-President in exercise (30 Dec 2022) | 16,059 bytes, `582e464c…f44e34`; capture 2022-12-31 |
 | `br_planalto_d11324_20221231` | Planalto: Decree No. 11.324, signed by the Vice-President in exercise (31 Dec 2022) | 15,704 bytes, `b791adf5…f3bd16`; capture 2023-01-01 |
-| `br_cn_dcn1_20230102_p1_8` | DCN nº 1/2023, pp. 1-8: Lula's posse (1 Jan 2023) | 4,301,947 bytes, `1e7d89ee…d8b9f5`; Senate file; PDF pages 1, 6, 7 viewed |
-| `br_cn_dcn1_20230102_p18_19` | DCN nº 1/2023, pp. 18-19: Lula's TSE diploma (12 Dec 2022) | 7,747,700 bytes, `5258ec4d…1c4e9d`; Senate file; PDF pages 1, 2 viewed; located by the check |
+| `br_cn_dcn1_20230102_p1_8` | DCN nº 1/2023 (complete issue; pp. 1-8): Lula's posse (1 Jan 2023) | 24,950,218 bytes, `d6c9c275…c854ee`; Senate file; PDF pages 1, 6, 7 viewed |
+| `br_cn_dcn1_20230102_p18_19` | DCN nº 1/2023 (complete issue; pp. 18-19): Lula's TSE diploma (12 Dec 2022) | 24,950,218 bytes, `d6c9c275…c854ee`; Senate file (same response as the row above); PDF pages 18, 19 viewed; located by the check |
 | `br_planalto_mpv1154_20230101` | Planalto: MP 1.154, signed by Lula (1 Jan 2023) | 314,530 bytes, `61b3b641…ea1315`; capture 2023-01-02 |
 | `br_planalto_mpv1388_20260824` | Planalto: MP 1.388, signed by Lula (24 Aug 2026) | 45,429 bytes, `8b9eeda3…6ed3f5`; capture 2026-08-26 |
 
@@ -396,14 +396,14 @@ Nineteen sources are raw Internet Archive captures (`id_` form) made before the 
 `url`, the address inside it (without `:80`) as `original_url` and the capture time in its extract. Twenty-nine are
 official files: Diário do Congresso Nacional, Senate and Chamber diaries and Senate case documents from the Senate's
 diary store and document service (`legis.senado.leg.br`) and the Chamber's image server (`imagem.camara.leg.br`), two
-TSE digital-library responses and the Senate's published contrafé image (`www12.senado.leg.br`). Four Senate responses
-are page ranges produced by the diary viewer's own endpoint (DSF 64/2016 pp. 166-171; DCN 1/2019 pp. 5-11; DCN 1/2023
-pp. 1-8 and 18-19). Each response was downloaded twice on 23 September 2026 with the same byte count and SHA-256 by the
-researcher or by the independent check, and again by the check where the researcher found it; 46 kept copies were
-re-hashed for this packet with the same result, and the two responses with no kept copy (the complete DCN 1/2019 and
-DCN 1/2023 pp. 18-19) were downloaded once more for this packet with the same identity. The Suplemento Único to DSF 223
-came back 1,390 bytes short on the check's first transfer; the next two transfers were identical and are the recorded
-identity.
+TSE digital-library responses and the Senate's published contrafé image (`www12.senado.leg.br`). The Senate diary
+viewer's page-range form (seqPaginaInicial/seqPaginaFinal) is rebuilt by Aspose.PDF on every request with a new
+CreationDate and document /ID, so the four records first taken as page ranges (DSF 64/2016 pp. 166-171; DCN 1/2019 pp.
+5-11; DCN 1/2023 pp. 1-8 and 18-19) record the complete stored issue (download=true) instead, whose PDF page numbers
+equal the printed ones; the DCN 1/2019 record shares the identity of `br_cn_dcn1_20190102_full`, and the two DCN 1/2023
+records share one identity. All 48 recorded identities were re-downloaded and matched by the source verification on 23
+September 2026. The Suplemento Único to DSF 223 came back 1,390 bytes short on the check's first transfer; the next two
+transfers were identical and are the recorded identity.
 
 Each new source has a derived factual extract under [sources/](sources/) in the packet's format
 (`spheres-c01-derived-factual-table/v1`): one row per claim, keyed by `claim_id`, with `observation_id`
@@ -460,9 +460,9 @@ Source types: `primary_presidency_legislation_page_archived`, `primary_presidenc
   presidential agenda (prospective).
 - Agência Senado, 12 May 2016 07h11 (https://web.archive.org/web/20160513113821id_/http://www12.senado.leg.br/noticias/materias/2016/05/12/vicentinho-alves-levara-mandado-de-intimacao-a-dilma-rousseff;
   109,975 bytes, `a09acf0c…dad3b`): a prospective account of the intimation.
-- The whole DSF nº 64/2016 (27,973,809 bytes), its Supplement A (codDiario=20398; 4,973,871 bytes, `7c2646ee…fe58a`),
-  DSF nº 65/2016 pp. 1-8 (codDiario=20405) and the sentence as a separate scan (dm=4654044): replaced by the page range,
-  about the Senate's own organization, or duplicated by the DOU copy.
+- DSF nº 64/2016's Supplement A (codDiario=20398; 4,973,871 bytes, `7c2646ee…fe58a`), DSF nº 65/2016 pp. 1-8
+  (codDiario=20405) and the sentence as a separate scan (dm=4654044): about the Senate's own organization or duplicated
+  by the DOU copy.
 - The earlier capture of the Planalto sash-ceremony page (20190903092728; 47,704 bytes, `1a5a583b…d8e2`): same text,
   no publication stamp.
 - Planalto, "Discurso do presidente Lula no Parlatório do Palácio do Planalto" (published 6 January 2023; capture
@@ -500,6 +500,10 @@ Source types: `primary_presidency_legislation_page_archived`, `primary_presidenc
   20698 is misfiled; the old search endpoint returned 404; one 2016 download timed out part-way and later succeeded.
 - DCN 1/2019 page 14 alone: the `seqPaginaInicial=14&seqPaginaFinal=14` form broke with a chunked-encoding error; the
   complete issue is the recorded identity.
+- Senate diary viewer page ranges (`seqPaginaInicial`/`seqPaginaFinal`: DSF 64/2016 pp. 166-171, DCN 1/2019 pp. 5-11,
+  DCN 1/2023 pp. 1-8 and 18-19): the PDF is rebuilt by Aspose.PDF with a new /CreationDate, /ModDate and /ID each time
+  the server generates it (a cached copy may be served in between), so a later download keeps the byte count but not the
+  SHA-256. Not used as identities; the complete issues (`download=true`) are recorded.
 - TSE digital library: no minutes or resolution of the 30 December 1989 diplomação session; only photograph items.
 - Internet Archive CDX searches found no Planalto statement on 12 May 2016, no Planalto news item on Lula's 2023 posse
   or sash ceremony, and nothing relevant under the 2019 and December 2022 Planalto prefixes.
