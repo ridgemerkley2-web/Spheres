@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_infogov_mbeki_inauguration_19990616",
+  "source_url": "https://web.archive.org/web/20101204114051id_/http://www.info.gov.za/speeches/1999/990617935a1002.htm",
+  "original_url": "http://www.info.gov.za/speeches/1999/990617935a1002.htm",
+  "archive_capture_utc": "2010-12-04T11:40:51Z",
+  "accessed_date": "2026-09-22",
+  "published_date": "1999-06-16",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 15897,
+  "source_response_sha256": "f8bfd381431f19ada9e35affa4a132b7245e5108f655ed2fbb71204fc55aba6a",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2010-12-04T11:40:51Z; that form replays the archived bytes unchanged and is used in place of the live page. The researcher downloaded it on 22 September 2026 and the independent check downloaded it again the same day; both copies matched the byte count and SHA-256 recorded here, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Office of the President release on the government information site (captured December 2010).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_mbeki_inauguration_ceremony_19990616",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-03",
+      "role_id": "za_president_election",
+      "holder_name": "Thabo Mbeki",
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "inauguration_ceremony",
+      "attested_on": "1999-06-16",
+      "text": "The Office of the President issued the 'Speech of President Thabo Mbeki at his inauguration as President of the Republic of South Africa: Union Buildings, Pretoria, 16 June 1999'. He describes the occasion as 'the solemn act of the inauguration of the President of our Republic' and refers to 'our outgoing President, Nelson Mandela'.",
+      "locator": {
+        "section": "Heading; body paragraphs 1, 5 and 6 after the salutation (beginning 'I am honoured', 'For us, as South Africans' and 'I speak of the generation'); closing 'Issued by the Office of the President,16 June 1999'"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-09 only. Election, oath, inauguration, resignation announcement, resignation effect and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy presidents, ministers and party offices are excluded."
+}

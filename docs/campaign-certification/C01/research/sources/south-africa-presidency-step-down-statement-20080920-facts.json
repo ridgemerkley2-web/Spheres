@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_presidency_statement_step_down_20080920",
+  "source_url": "https://web.archive.org/web/20080925143849id_/http://www.thepresidency.gov.za:80/show.asp?type=pr&include=president/pr/2008/pr09201513.htm",
+  "original_url": "http://www.thepresidency.gov.za/show.asp?type=pr&include=president/pr/2008/pr09201513.htm",
+  "archive_capture_utc": "2008-09-25T14:38:49Z",
+  "accessed_date": "2026-09-22",
+  "published_date": "2008-09-20",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 27701,
+  "source_response_sha256": "d05a8ed46d9d47142794a63744172583fa9237295329f2a0e5fbd0745fcfda48",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2008-09-25T14:38:49Z; that form replays the archived bytes unchanged and is used in place of the live page. Located by the independent check, which downloaded it twice on 22 September 2026 with identical bytes the byte count and SHA-256 recorded here, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Presidency press statement on the Presidency's own 2008 site (raw capture of September or October 2008). Located by the independent check.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_mbeki_resignation_intention_announced_20080920",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-05",
+      "role_id": "za_president_election",
+      "holder_name": "Thabo Mbeki",
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "resignation_intention_announced",
+      "attested_on": "2008-09-20",
+      "text": "The Presidency's statement of 20 September 2008 says that, following the decision of the ANC National Executive Committee to recall President Thabo Mbeki, 'the President has obliged and will step down after all constitutional requirements have been met'.",
+      "locator": {
+        "section": "Statement body (single paragraph); issued by The Presidency"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-09 only. Election, oath, inauguration, resignation announcement, resignation effect and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy presidents, ministers and party offices are excluded."
+}

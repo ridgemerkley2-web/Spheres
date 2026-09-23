@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_presidency_mbeki_address_to_nation_20080921",
+  "source_url": "https://web.archive.org/web/20080925002649id_/http://www.info.gov.za:80/speeches/2008/08092208451002.htm",
+  "original_url": "http://www.info.gov.za/speeches/2008/08092208451002.htm",
+  "archive_capture_utc": "2008-09-25T00:26:49Z",
+  "accessed_date": "2026-09-22",
+  "published_date": "2008-09-21",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 18021,
+  "source_response_sha256": "6b09cbf2a05402d861bb980716cda1631d2090b97f8e1a0d493edaccff46f86c",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2008-09-25T00:26:49Z; that form replays the archived bytes unchanged and is used in place of the live page. The researcher downloaded it on 22 September 2026 and the independent check downloaded it again the same day; both copies matched the byte count and SHA-256 recorded here, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Presidency address on the government information site (captured September 2008). The Presidency's own copy (sp0921210) was located by the independent check but not hashed, so this copy is used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_mbeki_resignation_announcement_20080921",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-05",
+      "role_id": "za_president_election",
+      "holder_name": "Thabo Mbeki",
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "resignation_announcement",
+      "attested_on": "2008-09-21",
+      "text": "In an address to the nation dated 21 September 2008 and issued by the Presidency, Mbeki says that he had that day handed the Speaker, Baleka Mbete, a letter tendering his resignation as President 'effective from the day that will be determined by the National Assembly', following the ANC National Executive Committee's announcement of the day before.",
+      "locator": {
+        "section": "opening paragraphs"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-09 only. Election, oath, inauguration, resignation announcement, resignation effect and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy presidents, ministers and party offices are excluded."
+}

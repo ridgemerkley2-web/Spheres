@@ -1,0 +1,55 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_parliament_atc14_20180215",
+  "source_url": "https://www.parliament.gov.za/storage/app/media/Docs/atc/5c4c10a9-152d-4f33-95c2-b371774c81f9.pdf",
+  "accessed_date": "2026-09-22",
+  "published_date": "2018-02-15",
+  "access_method": "downloaded_original_pdf_from_parliament_document_store_text_read_and_pages_rendered",
+  "source_response_bytes": 4678819,
+  "source_response_sha256": "e12e46e1181ba8f471b6afcb3db23bed4a8c62e3e8608b3159b6db3fa3f81894",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file from Parliament's document store, served as a static file (Last-Modified 2 March 2026, before the historical cutoff); fetch it with GET, because the server rejects HEAD. The researcher downloaded it on 22 September 2026 and the independent check downloaded it again the same day; both copies matched the byte count and SHA-256 recorded here, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official PDF from Parliament's document store, located through the site's own paper index (https://www.parliament.gov.za/docsjson/ATC?queries[search]=<date>); a static file with Last-Modified 2 March 2026, before the historical cutoff. Use GET: a HEAD request to the same host returned HTTP 500. Internet Archive capture 20221218060947 has the same payload (CDX SHA-1 digest Q2VERL4KZTNFMXJIBWB47BTLLQQ22PKU). Page 6 reproduces the Chief Justice's letter fixing the 15 February 2018 election; it is typed 14 February 2018 with a handwritten '(15/02/2018)' and is kept as context, not a claim. No seal or signature is republished.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      3,
+      4,
+      6
+    ],
+    "method": "Pages 3, 4 and 6 rendered and read (pages 4 and 6 are scans with no text layer); pages 1-2, 5 and 7 read as text. Pages 8-18 (election rules) not reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_zuma_resignation_effective_20180214",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-08",
+      "role_id": "za_president_election",
+      "holder_name": "Jacob Zuma",
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "resignation_effective",
+      "attested_on": "2018-02-14",
+      "text": "Reproduced 'President Act No. 24': 'I, Jacob Gedleyihlekisa Zuma, hereby resign as President of the Republic of South Africa with immediate effect', recorded under section 101(1) of the Constitution and given under his hand at Pretoria on the 14th day of February 2018.",
+      "locator": {
+        "pdf_page": 4,
+        "section": "Scanned 'President Act No. 24' (reference 81/172488(Z 19E)); handwritten place and day"
+      }
+    },
+    {
+      "claim_id": "za_zuma_resignation_letter_tabled_20180215",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-08",
+      "role_id": "za_president_election",
+      "holder_name": "Jacob Zuma",
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "resignation_letter_tabled",
+      "attested_on": "2018-02-15",
+      "text": "The Speaker's announcement in the paper of 15 February 2018 records receipt of Zuma's letter dated 14 February 2018 informing members that he had tendered his resignation with immediate effect as per President Act No. 24; the covering letter to Speaker Mbete is reproduced.",
+      "locator": {
+        "pdf_page": 3,
+        "section": "National Assembly - The Speaker - 1. Resignation of the President of the Republic; scanned covering letter"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-09 only. Election, oath, inauguration, resignation announcement, resignation effect and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy presidents, ministers and party offices are excluded."
+}

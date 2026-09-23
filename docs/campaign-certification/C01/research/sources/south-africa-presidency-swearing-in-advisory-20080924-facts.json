@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_presidency_swearing_in_advisory_20080924",
+  "source_url": "https://web.archive.org/web/20080926140147id_/http://www.info.gov.za:80/speeches/2008/08092415451001.htm",
+  "original_url": "http://www.info.gov.za/speeches/2008/08092415451001.htm",
+  "archive_capture_utc": "2008-09-26T14:01:47Z",
+  "accessed_date": "2026-09-22",
+  "published_date": "2008-09-24",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 7014,
+  "source_response_sha256": "b6eeadd6fce3c0b0058d11ba807960f10820ad354d7adfc93e43b6bb20c51da9",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2008-09-26T14:01:47Z; that form replays the archived bytes unchanged and is used in place of the live page. The researcher downloaded it on 22 September 2026 and the independent check downloaded it again the same day; both copies matched the byte count and SHA-256 recorded here, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Prospective media advisory (captured September 2008). Media-liaison names and telephone numbers are not copied.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_new_president_swearing_in_scheduled_20080924",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-05",
+      "role_id": "za_president_election",
+      "holder_name": null,
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "oath_scheduled_prospective",
+      "attested_on": "2008-09-24",
+      "text": "A Presidency media advisory says the swearing-in of the new President will follow Parliament's election of a President in Cape Town on 25 September 2008, and schedules the ceremony for 14h30 at Tuynhuys, Cape Town.",
+      "locator": {
+        "section": "advisory body"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-09 only. Election, oath, inauguration, resignation announcement, resignation effect and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy presidents, ministers and party offices are excluded."
+}

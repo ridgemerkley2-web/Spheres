@@ -1,0 +1,38 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_govza_directory_motlanthe",
+  "source_url": "https://web.archive.org/web/20260624042057id_/https://www.gov.za/about-government/contact-directory/kgalema-petrus-motlanthe-mr",
+  "original_url": "https://www.gov.za/about-government/contact-directory/kgalema-petrus-motlanthe-mr",
+  "archive_capture_utc": "2026-06-24T04:20:57Z",
+  "accessed_date": "2026-09-22",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 35579,
+  "source_response_sha256": "88436ae8795b20d8c1e3cfc38b0a677a0e80a5855eee285214a51c2783c3780e",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2026-06-24T04:20:57Z; that form replays the archived bytes unchanged and is used in place of the live page. Located by the independent check, which downloaded it twice on 22 September 2026 with identical bytes the byte count and SHA-256 recorded here, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Retrospective directory biography (captured June 2026; the live Drupal page is dynamic). Located by the independent check. Its spans are recorded as printed and never used as boundaries. The deputy-presidency line is out of scope.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_govza_directory_motlanthe_term_span",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-06",
+      "role_id": "za_president_election",
+      "holder_name": "Kgalema Motlanthe",
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "printed_range": "from 25 September 2008 to 9 May 2009",
+      "text": "The South African Government's contact directory says 'Mr Kgalema Petrus Motlanthe was the President of the Republic of South Africa from 25 September 2008 to 9 May 2009'.",
+      "locator": {
+        "section": "Biography, second paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-09 only. Election, oath, inauguration, resignation announcement, resignation effect and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy presidents, ministers and party offices are excluded."
+}

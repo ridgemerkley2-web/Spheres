@@ -1,0 +1,55 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_gazette_12059_19890816",
+  "source_url": "https://archive.gazettes.africa/archive/za/1989/za-government-gazette-dated-1989-08-16-no-12059.pdf",
+  "accessed_date": "2026-09-22",
+  "published_date": "1989-08-16",
+  "access_method": "downloaded_archived_government_gazette_pdf_and_page_rendered_for_visual_review",
+  "source_response_bytes": 389884,
+  "source_response_sha256": "13e0e473355303672ed304743d1fab06a86746fd4f878675b484a3dfda01e310",
+  "source_response_checked_in": false,
+  "provenance_note": "Scanned Government Gazette PDF, a static file on the gazettes.africa archive host. Located by the independent check, which downloaded it twice on 22 September 2026 with identical bytes the byte count and SHA-256 recorded here, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Scanned Government Gazette on the gazettes.africa public archive host (a static file; the server ETag equals the MD5 of the downloaded bytes where checked). The gazettes.africa document landing pages returned a Cloudflare JavaScript and cookie challenge, which was not bypassed; only the public archive PDF was fetched. Located by the independent check. The PDF text layer is unreliable on this page, so page 1 was rendered and read.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "Page 1 rendered and read (English and Afrikaans columns); the text layer was not relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "za_botha_vacated_state_presidency_19890815",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-01",
+      "role_id": "za_state_president",
+      "holder_name": "P. W. Botha",
+      "role_title": "State President of the Republic of South Africa",
+      "event_kind": "vacated_office",
+      "attested_on": "1989-08-15",
+      "text": "Government Notice No. 1820 of 16 August 1989 (State President's Office) notifies that Pieter Willem Botha vacated the office of State President of the Republic of South Africa with effect from 15 August 1989.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "Government Notice No. 1820, first paragraph (English left column; Afrikaans right)",
+        "gazette_no": 12059
+      }
+    },
+    {
+      "claim_id": "za_de_klerk_acting_state_president_designated_19890815",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-01",
+      "role_id": "za_state_president",
+      "holder_name": "F. W. de Klerk",
+      "role_title": "Acting State President of the Republic of South Africa",
+      "event_kind": "acting_service_start",
+      "attested_on": "1989-08-15",
+      "text": "The same notice states that the remaining members of the Cabinet designated Frederik Willem de Klerk as Acting State President on 15 August 1989 under section 10(2)(c) of the Republic of South Africa Constitution Act, 1983, and that he made and subscribed the oath of office of Acting State President and assumed that office, with all its powers, duties and functions, on 15 August 1989.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "Government Notice No. 1820, both paragraphs (English left column; Afrikaans right)",
+        "gazette_no": 12059
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-09 only. Election, oath, inauguration, resignation announcement, resignation effect and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy presidents, ministers and party offices are excluded."
+}

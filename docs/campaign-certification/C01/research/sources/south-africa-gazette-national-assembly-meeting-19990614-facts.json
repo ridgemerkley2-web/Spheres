@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_gazette_20215_19990614",
+  "source_url": "https://archive.gazettes.africa/archive/za/1999/za-government-gazette-dated-1999-06-14-no-20215.pdf",
+  "accessed_date": "2026-09-22",
+  "published_date": "1999-06-14",
+  "access_method": "downloaded_archived_government_gazette_pdf_and_page_rendered_for_visual_review",
+  "source_response_bytes": 537340,
+  "source_response_sha256": "b3c1e0ac91b03d174e806803a4ff982bfad315ab5c6a894173a33cf0acfe438b",
+  "source_response_checked_in": false,
+  "provenance_note": "Scanned Government Gazette PDF, a static file on the gazettes.africa archive host. Located by the independent check, which downloaded it twice on 22 September 2026 with identical bytes the byte count and SHA-256 recorded here, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Scanned Government Gazette on the gazettes.africa public archive host (a static file; the server ETag equals the MD5 of the downloaded bytes where checked). The gazettes.africa document landing pages returned a Cloudflare JavaScript and cookie challenge, which was not bypassed; only the public archive PDF was fetched. Located by the independent check. A prospective procedural notice only; it supersedes Notice 1151 in Gazette No. 20191 of 11 June 1999 (538,332 bytes, SHA-256 186da48cdd6df5e766bd9b1af4f5c78f51f9c2990169a8aec965de4fc7552cfa), which gives the same dates and times and is not imported separately.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "Page 1 rendered and read; its text layer agrees."
+  },
+  "rows": [
+    {
+      "claim_id": "za_ccpresident_fixes_president_election_sitting_19990608",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-03",
+      "role_id": "za_president_election",
+      "holder_name": null,
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "national_assembly_sitting_scheduled",
+      "attested_on": "1999-06-08",
+      "text": "General Notice 1330 of 1999, which supersedes Notice 1151 of 11 June 1999: the President of the Constitutional Court, A. Chaskalson, signing at Johannesburg on 8 June 1999, fixed Monday 14 June 1999 at 10:30, in the Chamber of Parliament, Cape Town, for the nomination and election of the Speaker and Deputy Speaker of the National Assembly, and 14:30 for the nomination and election of the President of the Republic.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "Notice 1330 of 1999",
+        "gazette_no": 20215
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-09 only. Election, oath, inauguration, resignation announcement, resignation effect and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy presidents, ministers and party offices are excluded."
+}

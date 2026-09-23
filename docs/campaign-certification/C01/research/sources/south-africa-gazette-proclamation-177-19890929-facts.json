@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_gazette_12128_19890929",
+  "source_url": "https://archive.gazettes.africa/archive/za/1989/za-government-gazette-dated-1989-09-29-no-12128.pdf",
+  "accessed_date": "2026-09-22",
+  "published_date": "1989-09-29",
+  "access_method": "downloaded_archived_government_gazette_pdf_and_page_rendered_for_visual_review",
+  "source_response_bytes": 354362,
+  "source_response_sha256": "e1ce9e84b56c6806943f10fec535bbdd5e3622b760b01f57fc003d69df76c7fc",
+  "source_response_checked_in": false,
+  "provenance_note": "Scanned Government Gazette PDF, a static file on the gazettes.africa archive host. Located by the independent check, which downloaded it twice on 22 September 2026 with identical bytes the byte count and SHA-256 recorded here, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Scanned Government Gazette on the gazettes.africa public archive host (a static file; the server ETag equals the MD5 of the downloaded bytes where checked). The gazettes.africa document landing pages returned a Cloudflare JavaScript and cookie challenge, which was not bypassed; only the public archive PDF was fetched. Located by the independent check.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "Page 1 rendered and read; its text layer agrees."
+  },
+  "rows": [
+    {
+      "claim_id": "za_de_klerk_state_president_proclamation_177_19890928",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-01",
+      "role_id": "za_state_president",
+      "holder_name": "F. W. de Klerk",
+      "role_title": "State President of the Republic of South Africa",
+      "event_kind": "in_office_signature_as_state_president",
+      "attested_on": "1989-09-28",
+      "text": "Proclamation No. 177, 1989, fixing 1 October 1989 for the commencement of the Police Third Amendment Act, 1989, was given at Pretoria on 28 September 1989 and signed by F. W. de Klerk as State President, no longer Acting, by order of the State President-in-Cabinet (countersigned A. J. Vlok).",
+      "locator": {
+        "pdf_page": 1,
+        "item": "Proclamation No. 177, 1989 (English left column; Afrikaans right column)",
+        "gazette_no": 12128
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-09 only. Election, oath, inauguration, resignation announcement, resignation effect and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy presidents, ministers and party offices are excluded."
+}

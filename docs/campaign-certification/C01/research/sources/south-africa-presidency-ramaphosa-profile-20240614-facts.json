@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_presidency_ramaphosa_profile",
+  "source_url": "https://web.archive.org/web/20240614050310id_/https://www.thepresidency.gov.za/node/197",
+  "original_url": "https://www.thepresidency.gov.za/node/197",
+  "archive_capture_utc": "2024-06-14T05:03:10Z",
+  "accessed_date": "2026-09-22",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 68987,
+  "source_response_sha256": "eb3fcd856a66a20fb654e75e8f63a7703caf7df41f5f573052d30ed2164cb1c5",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2024-06-14T05:03:10Z; that form replays the archived bytes unchanged and is used in place of the live page. The researcher downloaded it on 22 September 2026 and the independent check downloaded it again the same day; both copies matched the byte count and SHA-256 recorded here, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Undated official profile (captured on the morning of 14 June 2024, before that day's election, so it has no 2024 line; this capture replays without Content-Encoding). Party-office lines are out of scope.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_presidency_ramaphosa_sworn_in_20180215",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-08",
+      "role_id": "za_president_election",
+      "holder_name": "Cyril Ramaphosa",
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "oath_of_office",
+      "attested_on": "2018-02-15",
+      "text": "The Presidency says 'President Cyril Ramaphosa was sworn in as President of the Republic of South Africa on Thursday 15 February 2018 following the resignation of President Jacob Zuma'.",
+      "locator": {
+        "section": "Profile body, paragraph beginning 'President Cyril Ramaphosa was sworn in'"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-09 only. Election, oath, inauguration, resignation announcement, resignation effect and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy presidents, ministers and party offices are excluded."
+}

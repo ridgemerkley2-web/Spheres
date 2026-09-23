@@ -1,0 +1,54 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_parliament_na_minutes_20180215",
+  "source_url": "https://www.parliament.gov.za/storage/app/media/Docs/min/5b55b7e7-12c9-45db-9248-a3ef9aa935ad.pdf",
+  "accessed_date": "2026-09-22",
+  "published_date": "2018-02-15",
+  "access_method": "downloaded_original_pdf_from_parliament_document_store_text_read_and_pages_rendered",
+  "source_response_bytes": 98236,
+  "source_response_sha256": "70fc3ce1a88aad550038eeaf3819b2fb6c8888f75fc1dbfc4a81b39e40cfcee9",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file from Parliament's document store, served as a static file (Last-Modified 2 March 2026, before the historical cutoff); fetch it with GET, because the server rejects HEAD. The researcher downloaded it on 22 September 2026 and the independent check downloaded it again the same day; both copies matched the byte count and SHA-256 recorded here, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official PDF from Parliament's document store, located through the site's own paper index (https://www.parliament.gov.za/docsjson/ATC?queries[search]=<date>); a static file with Last-Modified 2 March 2026, before the historical cutoff. Use GET: a HEAD request to the same host returned HTTP 500. No Internet Archive capture exists (CDX empty).",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "Both pages rendered and read."
+  },
+  "rows": [
+    {
+      "claim_id": "za_zuma_resignation_announced_to_na_20180215",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-08",
+      "role_id": "za_president_election",
+      "holder_name": "Jacob Zuma",
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "resignation_letter_announced",
+      "attested_on": "2018-02-15",
+      "text": "At the start of the sitting of 15 February 2018 the Speaker announced that she had received a resignation letter dated 14 February 2018 to the effect that Mr J G Zuma, President of the Republic, had resigned with immediate effect.",
+      "locator": {
+        "pdf_page": 1,
+        "item": 4
+      }
+    },
+    {
+      "claim_id": "za_ramaphosa_na_elected_president_20180215",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-08",
+      "role_id": "za_president_election",
+      "holder_name": "Cyril Ramaphosa",
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "national_assembly_election",
+      "attested_on": "2018-02-15",
+      "text": "With Chief Justice Mogoeng Mogoeng presiding, the Chief Justice called for nominations at 14:24; Mr M C Ramaphosa was nominated, there were no further nominations, and he was accordingly elected President of the Republic. At 14:39 the Speaker took the Chair and gave parties and the President-elect the floor; the House adjourned at 15:17.",
+      "locator": {
+        "pdf_page": 2,
+        "items": "8-14"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-09 only. Election, oath, inauguration, resignation announcement, resignation effect and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy presidents, ministers and party offices are excluded."
+}

@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_parliament_na_minutes_20190522",
+  "source_url": "https://www.parliament.gov.za/storage/app/media/Docs/min/dccf6e8c-2227-4780-ba81-ad3c4d37157e.pdf",
+  "accessed_date": "2026-09-22",
+  "published_date": null,
+  "access_method": "downloaded_original_pdf_from_parliament_document_store_text_read_and_pages_rendered",
+  "source_response_bytes": 134623,
+  "source_response_sha256": "2de55070fece09c4c5f4af2f44bb96d3fe61f3390ee16d2a3f2120dbfe64243d",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file from Parliament's document store, served as a static file (Last-Modified 2 March 2026, before the historical cutoff); fetch it with GET, because the server rejects HEAD. The researcher downloaded it on 22 September 2026 and the independent check downloaded it again the same day; both copies matched the byte count and SHA-256 recorded here, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official PDF from Parliament's document store, located through the site's own paper index (https://www.parliament.gov.za/docsjson/ATC?queries[search]=<date>); a static file with Last-Modified 2 March 2026, before the historical cutoff. Use GET: a HEAD request to the same host returned HTTP 500. The reprint has no Internet Archive capture. The original issue (min/55cebf39-1e2f-4e03-bf15-abb4a061483e.pdf, 130,768 bytes, SHA-256 155fe3c8fc0c472b5e1be1b4a7d423e914c3f97905b93e22ca39002568bdf9c0) has identical items 35-46, as the independent check found.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      6
+    ],
+    "method": "Pages 1 and 6 rendered and read; page 5 read as text."
+  },
+  "rows": [
+    {
+      "claim_id": "za_ramaphosa_na_elected_president_20190522",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-09",
+      "role_id": "za_president_election",
+      "holder_name": "Cyril Ramaphosa",
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "national_assembly_election",
+      "attested_on": "2019-05-22",
+      "text": "At the first sitting of the Sixth Parliament, with the Chief Justice presiding under section 86(2), Matamela Cyril Ramaphosa was nominated and, 'There being no further nominations', the Chief Justice declared him duly elected President of the Republic of South Africa.",
+      "locator": {
+        "pdf_page": "5-6",
+        "items": "35-45",
+        "clock": "item 35 at 16:15; parties and the President-elect addressed the House from 16:30"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-09 only. Election, oath, inauguration, resignation announcement, resignation effect and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy presidents, ministers and party offices are excluded."
+}

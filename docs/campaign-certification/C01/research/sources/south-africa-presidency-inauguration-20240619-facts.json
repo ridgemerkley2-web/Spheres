@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_presidency_inauguration_address_20240619",
+  "source_url": "https://web.archive.org/web/20240619161128id_/https://www.thepresidency.gov.za/address-president-cyril-ramaphosa-occasion-presidential-inauguration-union-buildings-tshwane",
+  "original_url": "https://www.thepresidency.gov.za/address-president-cyril-ramaphosa-occasion-presidential-inauguration-union-buildings-tshwane",
+  "archive_capture_utc": "2024-06-19T16:11:28Z",
+  "accessed_date": "2026-09-22",
+  "published_date": "2024-06-19",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 74794,
+  "source_response_sha256": "aa6f1b35ad4fbf539712be8b3229337b454aa93fe7e3edded50da3eeaec67cc7",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2024-06-19T16:11:28Z; that form replays the archived bytes unchanged and is used in place of the live page. The researcher downloaded it on 22 September 2026 and the independent check downloaded it again the same day; both copies matched the byte count and SHA-256 recorded here, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Same-day capture (19 June 2024, 16:11 UTC). Copies on gov.za and DIRCO duplicate it and are not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_ramaphosa_inauguration_ceremony_20240619",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-10",
+      "role_id": "za_president_election",
+      "holder_name": "Cyril Ramaphosa",
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "inauguration_ceremony",
+      "attested_on": "2024-06-19",
+      "text": "The Presidency dates to Wednesday 19 June 2024 Ramaphosa's address on the occasion of the Presidential Inauguration at the Union Buildings, Tshwane, in which he says 'On this day, we assert by solemn oath the will of the people of this land'.",
+      "locator": {
+        "section": "Title; date line (Wednesday, 19 June 2024); opening paragraphs"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-09 only. Election, oath, inauguration, resignation announcement, resignation effect and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy presidents, ministers and party offices are excluded."
+}

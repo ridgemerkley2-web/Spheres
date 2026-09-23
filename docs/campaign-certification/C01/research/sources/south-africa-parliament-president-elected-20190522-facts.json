@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_parliament_na_elects_president_20190522",
+  "source_url": "https://web.archive.org/web/20210617084528id_/https://www.parliament.gov.za/press-releases/national-assembly-elects-cyril-ramaphosa-president-thandi-modise-national-assembly-speaker-lechesa-tsenoli-deputy-speaker",
+  "original_url": "https://www.parliament.gov.za/press-releases/national-assembly-elects-cyril-ramaphosa-president-thandi-modise-national-assembly-speaker-lechesa-tsenoli-deputy-speaker",
+  "archive_capture_utc": "2021-06-17T08:45:28Z",
+  "accessed_date": "2026-09-22",
+  "published_date": "2019-05-22",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 53984,
+  "source_response_sha256": "b2684e604136ed8ee4ed0d0cb909a8275c5a3b60e9cd54ad39f34093b2768f00",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2021-06-17T08:45:28Z; that form replays the archived bytes unchanged and is used in place of the live page. Located by the independent check, which downloaded it twice on 22 September 2026 with identical bytes the byte count and SHA-256 recorded here, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Parliament release (raw capture of June 2021; the live page is dynamic). The independent check selected this capture, which carries the same release text as the earliest capture used in the dossier (20190612201135, 21,766 bytes, SHA-256 b64d42aacdc4d60d57509c41059a9df660e13ea1f5598edce0bfd029c7200960). Speaker and Deputy Speaker elections are out of scope.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_parliament_ramaphosa_elected_president_20190522",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-09",
+      "role_id": "za_president_election",
+      "holder_name": "Cyril Ramaphosa",
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "national_assembly_election",
+      "attested_on": "2019-05-22",
+      "text": "Parliament's release dated Wednesday 22 May 2019 says the National Assembly 'today elected' Mr Matamela Cyril Ramaphosa as President of the Republic and that 'he will now be inaugurated as President of the Republic of South Africa on Saturday'.",
+      "locator": {
+        "section": "Dated first paragraph and second paragraph"
+      }
+    },
+    {
+      "claim_id": "za_parliament_ramaphosa_first_elected_20180215",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-08",
+      "role_id": "za_president_election",
+      "holder_name": "Cyril Ramaphosa",
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "election_reference_retrospective",
+      "attested_on": "2018-02-15",
+      "text": "The same release states that 'Mr Ramaphosa was first elected, unanimously, as President on 15 February 2018'.",
+      "locator": {
+        "section": "Second paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-09 only. Election, oath, inauguration, resignation announcement, resignation effect and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy presidents, ministers and party offices are excluded."
+}

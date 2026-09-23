@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_presidency_statement_security_services_20080922",
+  "source_url": "https://web.archive.org/web/20080925143854id_/http://www.thepresidency.gov.za:80/show.asp?type=pr&include=president/pr/2008/pr09221550.htm",
+  "original_url": "http://www.thepresidency.gov.za/show.asp?type=pr&include=president/pr/2008/pr09221550.htm",
+  "archive_capture_utc": "2008-09-25T14:38:54Z",
+  "accessed_date": "2026-09-22",
+  "published_date": "2008-09-22",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 28188,
+  "source_response_sha256": "f495dcfa277a3b9796b4a968bba095d616acea5b662f76ba67651501fe8eec1f",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2008-09-25T14:38:54Z; that form replays the archived bytes unchanged and is used in place of the live page. Located by the independent check, which downloaded it twice on 22 September 2026 with identical bytes the byte count and SHA-256 recorded here, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Presidency press statement on the Presidency's own 2008 site (raw capture of September or October 2008). Located by the independent check.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_mbeki_in_office_after_tender_20080922",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-05",
+      "role_id": "za_president_election",
+      "holder_name": "Thabo Mbeki",
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "in_office_after_tender",
+      "attested_on": "2008-09-22",
+      "text": "The Presidency's statement of 22 September 2008 says that 'Following his resignation as President of the Republic of South Africa yesterday, President Thabo Mbeki has today, 22 September 2008, met with the leadership of the Security Services', which he met as Commander-in-Chief.",
+      "locator": {
+        "section": "Statement body, paragraphs 1 and 3; issued by the Presidency on 22 September 2008"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-09 only. Election, oath, inauguration, resignation announcement, resignation effect and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy presidents, ministers and party offices are excluded."
+}

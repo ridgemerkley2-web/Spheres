@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_govza_mbeki_closing_debate_19990630",
+  "source_url": "https://web.archive.org/web/20260622025941id_/https://www.gov.za/news/speeches/president-thabo-mbeki-closing-debate-opening-parliament-30-jun-1999",
+  "original_url": "https://www.gov.za/news/speeches/president-thabo-mbeki-closing-debate-opening-parliament-30-jun-1999",
+  "archive_capture_utc": "2026-06-22T02:59:41Z",
+  "accessed_date": "2026-09-22",
+  "published_date": "1999-06-30",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 61446,
+  "source_response_sha256": "30da93234f9d4e0e9cea59278055f606258e640c3ca54fa3063afe28625b9c9d",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2026-06-22T02:59:41Z; that form replays the archived bytes unchanged and is used in place of the live page. The researcher downloaded it on 22 September 2026 and the independent check downloaded it again the same day; both copies matched the byte count and SHA-256 recorded here, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "gov.za's current platform republishing a 1999 speech (raw capture of June 2026; the live Drupal page is dynamic). Only the reference to the 14 June 1999 sitting is used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_mbeki_na_convened_elected_president_19990614",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-03",
+      "role_id": "za_president_election",
+      "holder_name": "Thabo Mbeki",
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "election_reference_retrospective",
+      "attested_on": "1999-06-14",
+      "text": "Closing the debate at the opening of Parliament on 30 June 1999, President Thabo Mbeki refers members to remarks made 'when the Assembly convened on June 14th and, among other things, elected the President of the Republic', and to members having been 'sworn in less than a fortnight ago'.",
+      "locator": {
+        "section": "Speech heading and dateline (30 Jun 1999); third paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-09 only. Election, oath, inauguration, resignation announcement, resignation effect and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy presidents, ministers and party offices are excluded."
+}

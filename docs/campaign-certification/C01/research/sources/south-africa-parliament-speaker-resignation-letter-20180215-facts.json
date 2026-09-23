@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_parliament_speaker_receives_resignation_20180215",
+  "source_url": "https://web.archive.org/web/20220302184735id_/https://www.parliament.gov.za/press-releases/speaker-receives-letter-resignation-president-zuma",
+  "original_url": "https://www.parliament.gov.za/press-releases/speaker-receives-letter-resignation-president-zuma",
+  "archive_capture_utc": "2022-03-02T18:47:35Z",
+  "accessed_date": "2026-09-22",
+  "published_date": "2018-02-15",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 52572,
+  "source_response_sha256": "10e486a9f46528db97bac1277e49a2d738aa867874c6b94329e17acac74b7969",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2022-03-02T18:47:35Z; that form replays the archived bytes unchanged and is used in place of the live page. Located by the independent check, which downloaded it twice on 22 September 2026 with identical bytes the byte count and SHA-256 recorded here, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Parliament release (raw capture of March 2022; the live page is dynamic). The independent check selected this capture, which carries the same release text as the earliest capture used in the dossier (20190514093223, 20,238 bytes, SHA-256 909274bb52ed9bd59e0f102edfce318c820671d8a60701983027500e6d1f7c80).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_zuma_resignation_letter_received_20180215",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-08",
+      "role_id": "za_president_election",
+      "holder_name": "Jacob Zuma",
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "resignation_letter_received",
+      "attested_on": "2018-02-15",
+      "text": "Parliament's release dated Thursday 15 February 2018 says the Speaker 'has today, 15 February, received a letter from President Jacob Zuma informing her of his resignation', that 'The resignation of the President is effective immediately', and that the Chief Justice's availability moved the election of the President from Friday 16 February 2018 to 14:00 that day, in place of the proposed no-confidence motion.",
+      "locator": {
+        "section": "Dated first paragraph; second and third paragraphs; schedule item for 14.00 on Thursday, 15 February"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-09 only. Election, oath, inauguration, resignation announcement, resignation effect and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy presidents, ministers and party offices are excluded."
+}

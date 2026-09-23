@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_presidency_political_context",
+  "source_url": "https://web.archive.org/web/20260510105155id_/https://www.thepresidency.gov.za/political-context",
+  "original_url": "https://www.thepresidency.gov.za/political-context",
+  "archive_capture_utc": "2026-05-10T10:51:55Z",
+  "accessed_date": "2026-09-22",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 66159,
+  "source_response_sha256": "412ffa5ab46c630ab46d49cb427b63864b0089d29b67c918d0376676bd0670df",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2026-05-10T10:51:55Z; that form replays the archived bytes unchanged and is used in place of the live page. Located by the independent check, which downloaded it twice on 22 September 2026 with identical bytes the byte count and SHA-256 recorded here, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Retrospective, undated Presidency page (captured May 2026). Located by the independent check. It conflates the party recall with the office; the recall is context only.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_presidency_context_motlanthe_succeeded_mbeki_20080925",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-05",
+      "role_id": "za_president_election",
+      "holder_name": "Kgalema Motlanthe",
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "succession_statement_retrospective",
+      "attested_on": "2008-09-25",
+      "text": "The Presidency's 'Political Context' page says Mbeki remained President for a second term 'until September 2008, when he was recalled by the ruling party (ANC)', and that 'President Mbeki was succeeded by President Kgalema Motlanthe on 25 September 2008'.",
+      "locator": {
+        "section": "Page body, second paragraph"
+      }
+    },
+    {
+      "claim_id": "za_presidency_context_zuma_inaugurated_20090509",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-06",
+      "role_id": "za_president_election",
+      "holder_name": "Jacob Zuma",
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "inauguration_ceremony",
+      "attested_on": "2009-05-09",
+      "text": "The same page says 'Jacob Zuma, who was inaugurated as President of South Africa on 9 May 2009, is the fourth President of the democratic South Africa'.",
+      "locator": {
+        "section": "Page body, second paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-09 only. Election, oath, inauguration, resignation announcement, resignation effect and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy presidents, ministers and party offices are excluded."
+}
