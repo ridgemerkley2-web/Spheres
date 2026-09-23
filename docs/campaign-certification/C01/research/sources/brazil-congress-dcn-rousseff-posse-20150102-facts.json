@@ -1,0 +1,108 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_dcn_1_2015_posse_20150101",
+  "source_url": "https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=19242&download=true",
+  "accessed_date": "2026-09-23",
+  "published_date": "2015-01-02",
+  "access_method": "downloaded_official_pdf_and_pages_rendered_for_visual_review",
+  "source_response_bytes": 8131269,
+  "source_response_sha256": "8f588186c81de17bd8c7009f6ad37322edfc295eda788e33b4afd579fb861787",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file from the Senate's document service, a static response. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Born-digital Diário do Congresso Nacional issue from the Senate's diary store (viewer https://legis.senado.leg.br/diarios/ver/19242) with colour facsimiles of the diplomas and the signed termo; PDF page numbers equal printed page numbers. The cover's text layer is garbled, so the cover was read visually.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      4,
+      6,
+      7,
+      10,
+      11
+    ],
+    "method": "PDF pages 1, 4, 6, 7, 10 and 11 rendered and read (cover, diplomas, their signature page, the termo and its signed facsimile); the declaration (page 9) read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "br_dilma_reelected_20141026",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-06",
+      "role_id": "br_president",
+      "holder_name": "Dilma Rousseff",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "popular_election",
+      "attested_on": "2014-10-26",
+      "text": "The Congress record states that Rousseff and Temer were elected on 26 October 2014; the reproduced TSE diploma says Dilma Vana Rousseff, candidate of the Com a Força do Povo coalition, was elected President of the Republic by the will expressed at the polls on 26 October 2014.",
+      "locator": {
+        "pdf_page": 3,
+        "printed_page": 3,
+        "section": "Opening declaration by Renan Calheiros; diploma on p. 4"
+      }
+    },
+    {
+      "claim_id": "br_dilma_diplomada_tse_20141218",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-06",
+      "role_id": "br_president",
+      "holder_name": "Dilma Rousseff",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "diplomacao",
+      "attested_on": "2014-12-18",
+      "text": "The reproduced TSE diploma, dated Brasília 18 December 2014 and signed by Minister José Antonio Dias Toffoli as President of the Court, qualifies her for investiture in the office before the National Congress on 1 January 2015; the opening and termo date the diplomação to 18 December 2014.",
+      "locator": {
+        "pdf_page": 4,
+        "printed_page": 4,
+        "section": "Facsimile of the TSE diploma (printed sideways): \"Brasília, dezoito de dezembro de dois mil e quatorze\""
+      }
+    },
+    {
+      "claim_id": "br_dilma_oath_before_congress_20150101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-06",
+      "role_id": "br_president",
+      "holder_name": "Dilma Rousseff",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "oath_of_office",
+      "attested_on": "2015-01-01",
+      "text": "At the solemn joint session of 1 January 2015 (15:19-16:32), Renan Calheiros invited the President of the Republic to take the constitutional commitment, and Dilma Rousseff recited it.",
+      "locator": {
+        "pdf_page": 8,
+        "printed_page": 8,
+        "section": "\"A SRª DILMA ROUSSEFF - Prometo manter, defender e cumprir a Constituição...\""
+      }
+    },
+    {
+      "claim_id": "br_dilma_posse_declared_20150101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-06",
+      "role_id": "br_president",
+      "holder_name": "Dilma Rousseff",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "posse_declared",
+      "attested_on": "2015-01-01",
+      "text": "Renan Calheiros, \"with the powers granted by the Federal Constitution\", declared Dilma Rousseff and Michel Temer empossados as President and Vice-President of the Republic for the period 1 January 2015 to 31 December 2018; the session was opened to give posse to the two, diplomados for the period beginning on that date.",
+      "locator": {
+        "pdf_page": 9,
+        "printed_page": 9,
+        "section": "\"declaro empossados nos cargos de Presidenta e Vice-Presidente da República ... para o período de 1º de janeiro de 2015 a 31 de dezembro de 2018\"; opening on p. 3"
+      }
+    },
+    {
+      "claim_id": "br_dilma_termo_de_posse_20150101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-06",
+      "role_id": "br_president",
+      "holder_name": "Dilma Rousseff",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "posse_record",
+      "attested_on": "2015-01-01",
+      "text": "The termo de posse records that at 15:00 on 1 January 2015, before the National Congress in joint session in the Chamber plenary, Dilma Rousseff was solemnly empossada as President of the Republic under article 78 of the Constitution, elected on 26 October 2014 and diplomada by the TSE on 18 December 2014, for the period 1 January 2015 to 31 December 2018.",
+      "locator": {
+        "pdf_page": 10,
+        "printed_page": 10,
+        "section": "Termo read; signed facsimile on p. 11"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+}

@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_planalto_d11324_20221231",
+  "source_url": "https://web.archive.org/web/20230101180620id_/http://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/decreto/D11324.htm",
+  "original_url": "http://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/decreto/D11324.htm",
+  "archive_capture_utc": "2023-01-01T18:06:20Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "2022-12-31",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 15704,
+  "source_response_sha256": "b791adf5b078361eb6e2aab7fdf042382d4f07f05229134e3b1d3e21c9f3bd16",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2023-01-01T18:06:20Z; that form replays the archived bytes unchanged and is used in place of the live page. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Presidency's consolidated legislation page, captured 1 January 2023; the page notes the DOU of 31 December 2022 (extra edition).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML preamble and signature block read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "br_mourao_vp_in_exercise_d11324_20221231",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-09",
+      "role_id": "br_president",
+      "holder_name": "Hamilton Mourão",
+      "role_title": "Vice-President of the Republic in exercise of the office of President",
+      "event_kind": "vice_president_exercising_office",
+      "attested_on": "2022-12-31",
+      "text": "Decree No. 11.324 of 31 December 2022 (extending official mourning for Pope Emeritus Benedict XVI) is issued by 'O VICE-PRESIDENTE DA REPÚBLICA, no exercício do cargo de Presidente da República' and signed at Brasília on 31 December 2022 by Antônio Hamilton Martins Mourão.",
+      "locator": {
+        "section": "Preamble; closing date line and signature"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+}

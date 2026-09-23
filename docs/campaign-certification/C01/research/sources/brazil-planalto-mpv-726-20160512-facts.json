@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_planalto_mpv726_20160512",
+  "source_url": "https://web.archive.org/web/20160517063546id_/http://www.planalto.gov.br:80/CCIVIL_03/_Ato2015-2018/2016/Mpv/mpv726.htm",
+  "original_url": "http://www.planalto.gov.br/CCIVIL_03/_Ato2015-2018/2016/Mpv/mpv726.htm",
+  "archive_capture_utc": "2016-05-17T06:35:46Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "2016-05-12",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 144547,
+  "source_response_sha256": "32c843c5ff8fa6dbe0351a2331cddf4381f254afc7854c8b700678f802876c84",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2016-05-17T06:35:46Z; that form replays the archived bytes unchanged and is used in place of the live page. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Presidency's consolidated legislation page in its earliest raw capture (17 May 2016); the live page carries later annotations. The page notes the DOU of 12 May 2016 (extra edition). Windows-1252 text.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML preamble and signature block read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "br_temer_vp_in_exercise_mpv726_20160512",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-07",
+      "role_id": "br_president",
+      "holder_name": "Michel Temer",
+      "role_title": "Vice-President of the Republic in exercise of the office of President",
+      "event_kind": "vice_president_exercising_office",
+      "attested_on": "2016-05-12",
+      "text": "Medida Provisória No. 726 of 12 May 2016 is adopted by 'O VICE-PRESIDENTE DA REPÚBLICA, no exercício do cargo de Presidente da República', citing arts. 79 and 62 of the Constitution, and signed at Brasília on 12 May 2016 by Michel Temer; published in the DOU of 12 May 2016 (extra edition).",
+      "locator": {
+        "section": "Preamble; closing 'Brasília, 12 de maio de 2016' and signature 'MICHEL TEMER'"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+}

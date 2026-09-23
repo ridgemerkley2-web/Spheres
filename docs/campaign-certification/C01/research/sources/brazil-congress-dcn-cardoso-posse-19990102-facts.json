@@ -1,0 +1,123 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_dcn_1_1999_posse_19990101",
+  "source_url": "https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=14239&download=true",
+  "accessed_date": "2026-09-23",
+  "published_date": "1999-01-02",
+  "access_method": "downloaded_official_pdf_and_pages_rendered_for_visual_review",
+  "source_response_bytes": 939787,
+  "source_response_sha256": "b7c0283e5691a42520189f974b743c548c2dd8db56d6a9a090b8e20e4a2f2abb",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file from the Senate's document service, a static response. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Scanned Diário do Congresso Nacional issue from the Senate's diary store (viewer https://legis.senado.leg.br/diarios/ver/14239); the TSE diplomas are reproduced as facsimiles on printed pages 00004-00005.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      3,
+      4,
+      6,
+      9,
+      13
+    ],
+    "method": "PDF pages 3, 4, 6, 9 and the upper half of 13 rendered and read (opening, the TSE diploma, oath and termo, declaration of posse, the Congress President's address); page 5 read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "br_fhc_reelected_first_round_19981004",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-04",
+      "role_id": "br_president",
+      "holder_name": "Fernando Henrique Cardoso",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "popular_election",
+      "attested_on": "1998-10-04",
+      "text": "The Congress record states that Cardoso and Maciel were re-elected in the first round on 4 October 1998; the reproduced TSE diploma says the will of the people was expressed at the polls on 4 October 1998 and that Cardoso was re-elected President of the Republic.",
+      "locator": {
+        "pdf_page": 3,
+        "printed_page": "00003",
+        "section": "Summary and opening declaration by Antonio Carlos Magalhães; diploma on pdf p. 4 (printed 00004)"
+      }
+    },
+    {
+      "claim_id": "br_fhc_diplomado_tse_19981212",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-04",
+      "role_id": "br_president",
+      "holder_name": "Fernando Henrique Cardoso",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "diplomacao",
+      "attested_on": "1998-12-12",
+      "text": "The record reproduces the Superior Electoral Court diploma, dated Brasília 12 December 1998, stating that Fernando Henrique Cardoso was re-elected President of the Republic and qualifying him for a new investiture in the office before the National Congress on 1 January 1999; the opening and the termo date the diplomação to 12 December 1998.",
+      "locator": {
+        "pdf_page": 4,
+        "printed_page": "00004",
+        "section": "Facsimile of the TSE diploma (\"Brasília, aos 12 de dezembro de 1998\"); opening on pdf p. 3; termo on pdf p. 6"
+      }
+    },
+    {
+      "claim_id": "br_fhc_oath_before_congress_19990101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-04",
+      "role_id": "br_president",
+      "holder_name": "Fernando Henrique Cardoso",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "oath_of_office",
+      "attested_on": "1999-01-01",
+      "text": "At the solemn joint session of 1 January 1999 (opened 17:00), invited by the Congress President Antonio Carlos Magalhães, Cardoso stood and recited the constitutional commitment, followed by the Vice-President.",
+      "locator": {
+        "pdf_page": 6,
+        "printed_page": "00006",
+        "section": "Left column: invitation and \"O SR. FERNANDO HENRIQUE CARDOSO - Prometo manter, defender e cumprir a Constituição...\""
+      }
+    },
+    {
+      "claim_id": "br_fhc_posse_declared_19990101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-04",
+      "role_id": "br_president",
+      "holder_name": "Fernando Henrique Cardoso",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "posse_declared",
+      "attested_on": "1999-01-01",
+      "text": "After the termo was signed, Antonio Carlos Magalhães declared Fernando Henrique Cardoso and Marco Antonio de Oliveira Maciel empossados as President and Vice-President of the Federative Republic of Brazil for the period 1 January 1999 to 31 December 2002; the session was opened to give posse to the two, diplomados \"for the period beginning on this date\".",
+      "locator": {
+        "pdf_page": 9,
+        "printed_page": "00009",
+        "section": "Left column: \"Declaro empossados ... para o período de 1º de janeiro de 1999 até 31 de dezembro de 2002\"; opening on pdf p. 3 (\"para o período a iniciar-se nesta data\")"
+      }
+    },
+    {
+      "claim_id": "br_fhc_termo_de_posse_19990101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-04",
+      "role_id": "br_president",
+      "holder_name": "Fernando Henrique Cardoso",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "posse_record",
+      "attested_on": "1999-01-01",
+      "text": "The termo de posse records that at 17:00 on 1 January 1999, before the National Congress in joint session, Cardoso was solemnly empossado as President of the Republic, re-elected in the first round on 4 October 1998 and diplomado by the TSE on 12 December 1998, for the period 1 January 1999 to 31 December 2002; it was signed by him, the Vice-President and the Mesa.",
+      "locator": {
+        "pdf_page": 6,
+        "printed_page": "00006",
+        "section": "Termo de posse (both columns); signatories listed on pdf p. 9"
+      }
+    },
+    {
+      "claim_id": "br_fhc_second_mandate_assumed_acm_address_19990101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-04",
+      "role_id": "br_president",
+      "holder_name": "Fernando Henrique Cardoso",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "assumption_statement",
+      "attested_on": "1999-01-01",
+      "text": "Addressing Cardoso at the end of the session, the Congress President says he speaks at the moment in which Cardoso assumes the second mandate as President of the Republic, and refers to \"the mandate that has ended\" and to \"this one that begins today\".",
+      "locator": {
+        "pdf_page": 13,
+        "printed_page": "00013",
+        "section": "Address of Antonio Carlos Magalhães, left column (\"no momento em que assume o segundo mandato\"; \"no mandato que se findou ... neste que hoje se inicia\")"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+}

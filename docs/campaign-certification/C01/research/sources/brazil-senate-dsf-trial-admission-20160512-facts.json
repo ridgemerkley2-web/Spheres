@@ -1,0 +1,53 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_senado_dsf64_20160512_p166_171",
+  "source_url": "https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=20397&seqPaginaInicial=166&seqPaginaFinal=171",
+  "accessed_date": "2026-09-23",
+  "published_date": "2016-05-12",
+  "access_method": "downloaded_official_pdf_page_range_and_pages_rendered_for_visual_review",
+  "source_response_bytes": 1850793,
+  "source_response_sha256": "f61b82681fc245da09b7574cd1beb52bc1a3804933e2bfd920bb246e94acf30c",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file from the Senate's document service, a static response. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Page-range response (printed pages 166-171) from the Senate diary viewer's own endpoint for DSF nº 64/2016 (viewer https://legis.senado.leg.br/diarios/ver/20397; dataSessao 2016-05-11, dataPublicacao 2016-05-12); PDF pages 1-6 of the response are printed pages 166-171. The whole 304-page issue (27,973,809 bytes, SHA-256 c98dafbbdf9a07852d01da0c7f933275a12b6a1758f33020532d2771967b8c5d, downloaded once) is not the recorded identity.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      2,
+      3
+    ],
+    "method": "Response pages 2 and 3 (printed 167 and 168) rendered and read; printed 166 and 169-171 (vote list headers and totals) read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "br_senate_admits_denuncia_rousseff_20160512",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-07",
+      "role_id": "br_president",
+      "holder_name": "Dilma Rousseff",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "senate_trial_admission",
+      "attested_on": "2016-05-12",
+      "text": "The Senate plenary approved Opinion No. 475/2016 of the Special Impeachment Committee, which concluded for admitting Denúncia No. 1/2016 and the consequent institution of the impeachment process against President Dilma Rousseff: yes 55, no 22 (President 1, total 78). The electronic vote ran from 06:30:42 to 06:33:26 on 12 May 2016 in the 71st extraordinary deliberative session opened on 11 May 2016 at 10:00; the session rose at 06:38 on 12 May.",
+      "locator": {
+        "printed_pages": "167 (proclamation 'SIM, 55; NÃO, 22'), 168 (closing time), 169-171 (vote list header and totals)"
+      }
+    },
+    {
+      "claim_id": "br_senate_intimation_order_suspension_terms_20160512",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-07",
+      "role_id": "br_president",
+      "holder_name": "Dilma Rousseff",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "summons_issued",
+      "attested_on": "2016-05-12",
+      "text": "After the vote the President of the Senate read the Mandado de Intimação: from the President's receipt of it the impeachment process is instituted and she is suspended from the functions of President under art. 86, §1, II of the Constitution until the Senate's judgment or the 180-day limit, keeping residence, security, health care, transport, pay and personal staff. He announced that the First Secretary (Senator Vicentinho Alves) would serve it during the morning of Thursday 12 May and then notify the Vice-President.",
+      "locator": {
+        "printed_pages": "167-168",
+        "passage": "'Comunico, ainda, que a Senhora Presidente da República será intimada' through the end of the mandado text"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+}

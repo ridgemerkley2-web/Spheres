@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_planalto_library_dilma_parlatorio_20110101",
+  "source_url": "https://web.archive.org/web/20260123082728id_/http://www.biblioteca.presidencia.gov.br/presidencia/ex-presidentes/dilma-rousseff/discursos/discursos-da-presidenta/pronunciamento-a-nacao-da-presidenta-da-republica-dilma-rousseff-no-parlatorio",
+  "original_url": "http://www.biblioteca.presidencia.gov.br/presidencia/ex-presidentes/dilma-rousseff/discursos/discursos-da-presidenta/pronunciamento-a-nacao-da-presidenta-da-republica-dilma-rousseff-no-parlatorio",
+  "archive_capture_utc": "2026-01-23T08:27:28Z",
+  "accessed_date": "2026-09-23",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 37635,
+  "source_response_sha256": "3476ba0719dfa0e8a2e19ed4dd0dcc3221a258ba0825fa62f8b7be90bd94272a",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2026-01-23T08:27:28Z; that form replays the archived bytes unchanged and is used in place of the live page. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Presidency Library's text of Rousseff's 2011 Parlatório address, captured 23 January 2026 (before the cutoff); the page shows no publication date of its own. No contemporaneous Portal Planalto capture of this address exists, the only earlier Library capture (26 May 2023) was not used, and the live Library showed a maintenance page on 23 September 2026.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (title, dateline, speech); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "br_dilma_assumes_government_parlatorio_20110101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-06",
+      "role_id": "br_president",
+      "holder_name": "Dilma Rousseff",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "assumption_statement",
+      "attested_on": "2011-01-01",
+      "text": "The Presidency Library's text of Rousseff's address to the nation from the Parlatório of the Palácio do Planalto, datelined 1 January 2011, has her say that she and Michel Temer are \"here assuming the Presidency and the Vice-Presidency\" and that \"I assume today the government of my country\".",
+      "locator": {
+        "section": "Dateline \"Palácio do Planalto, 1º de janeiro de 2011\"; first paragraph (\"estamos aqui assumindo a Presidência\"); later paragraph (\"eu assumo hoje o governo do meu país\")"
+      }
+    },
+    {
+      "claim_id": "br_lula_leaves_government_dilma_parlatorio_20110101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-05",
+      "role_id": "br_president",
+      "holder_name": "Luiz Inácio Lula da Silva",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "predecessor_departure_statement",
+      "attested_on": "2011-01-01",
+      "text": "In the same address Rousseff speaks of the close of her predecessor's mandate and says \"today President Lula leaves the government after eight years\".",
+      "locator": {
+        "section": "Counted from the salutation 'Queridas brasileiras, queridos brasileiros': paragraph 2 ('pelo encerramento do mandato'); paragraph 3 ('A alegria que sinto pela minha posse como presidenta se mistura com a emoção da sua despedida'); paragraph 5 ('Hoje o presidente Lula deixa o governo depois de oito anos')"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+}

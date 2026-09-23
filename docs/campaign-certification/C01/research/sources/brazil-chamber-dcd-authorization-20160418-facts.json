@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_camara_dcd_20160418",
+  "source_url": "https://imagem.camara.leg.br/Imagem/d/pdf/DCD0020160418000560000.PDF",
+  "accessed_date": "2026-09-23",
+  "published_date": "2016-04-18",
+  "access_method": "downloaded_official_pdf_and_pages_rendered_for_visual_review",
+  "source_response_bytes": 2515996,
+  "source_response_sha256": "266a43a0b416c4504b2a87f2672f36c22c5bb5a718546add200a9b0d554a37c2",
+  "source_response_checked_in": false,
+  "provenance_note": "Official PDF from the Chamber of Deputies' image server, a static file. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Diário da Câmara dos Deputados PDF with a text layer from the Chamber's image server, located through the Chamber's diary index (the gov.br address redirects here); printed page numbers equal PDF page numbers.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      120
+    ],
+    "method": "PDF pages 1 (masthead) and 120 (result and declaration) rendered and read; pages 3, 8 and 124 read from the text layer (summary, session heading, closing time)."
+  },
+  "rows": [
+    {
+      "claim_id": "br_camara_authorizes_senate_trial_rousseff_20160417",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-07",
+      "role_id": "br_president",
+      "holder_name": "Dilma Rousseff",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "chamber_authorization",
+      "attested_on": "2016-04-17",
+      "text": "At the 91st extraordinary deliberative session of 17 April 2016 the Chamber voted on the special committee's opinion (admissibility of the accusation against the President and authorization for the Senate to institute proceedings for a crime of responsibility): yes 367, no 137, abstentions 7, absent 2, total 511. The presiding officer (Eduardo Cunha) declared the institution of proceedings against the President authorized and said the decision would be communicated to the President of the Senate under art. 52, I of the Constitution.",
+      "locator": {
+        "pdf_page": 120,
+        "printed_page": 120,
+        "passage": "'Resultado da votação' through 'A decisão será comunicada ao Sr. Presidente do Senado Federal'"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+}

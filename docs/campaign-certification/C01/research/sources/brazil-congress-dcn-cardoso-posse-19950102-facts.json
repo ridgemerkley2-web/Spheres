@@ -1,0 +1,138 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_dcn_1_1995_posse_19950101",
+  "source_url": "https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=14474&download=true",
+  "accessed_date": "2026-09-23",
+  "published_date": "1995-01-02",
+  "access_method": "downloaded_official_pdf_and_pages_rendered_for_visual_review",
+  "source_response_bytes": 845143,
+  "source_response_sha256": "fb7ff24416c6bcf6eb0d66ed6d6316fb6ce7ca1ed278eaacea1a0f92f3abc5c5",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file from the Senate's document service, a static response. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Scanned Diário do Congresso Nacional issue from the Senate's diary store (viewer https://legis.senado.leg.br/diarios/ver/14474; filename DCN-1-1995.pdf). The header prints the session as the 3rd joint session of the '11ª' [as printed] extraordinary legislative session of the 49th Legislature. No TSE diploma is reproduced. The Chamber's copy on imagem.camara.leg.br returned HTTP 403 and was not used.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      5,
+      6,
+      7
+    ],
+    "method": "PDF pages 1, 5, 6 and 7 (printed 1, 3, 4, 5) rendered and read: cover, opening, oath, declaration of posse, termo de posse and the address passages; the closing (PDF page 9) read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "br_fhc_elected_first_round_19941003",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-04",
+      "role_id": "br_president",
+      "holder_name": "Fernando Henrique Cardoso",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "popular_election",
+      "attested_on": "1994-10-03",
+      "text": "The Congress record states that Fernando Henrique Cardoso and Marco Maciel were elected President and Vice-President in the first round on 3 October 1994.",
+      "locator": {
+        "pdf_page": 5,
+        "printed_page": 3,
+        "section": "Opening declaration by the presiding Senate President Humberto Lucena; repeated in the termo de posse (pdf p. 6, printed p. 4)"
+      }
+    },
+    {
+      "claim_id": "br_fhc_diplomado_tse_19941217",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-04",
+      "role_id": "br_president",
+      "holder_name": "Fernando Henrique Cardoso",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "diplomacao",
+      "attested_on": "1994-12-17",
+      "text": "The termo de posse states that the two were certified (diplomados) by the Superior Electoral Court on 17 December 1994 for the period 1 January 1995 to 31 December 1998.",
+      "locator": {
+        "pdf_page": 6,
+        "printed_page": 4,
+        "section": "Termo de posse, first paragraph (\"diplomados, pelo Tribunal Superior Eleitoral, a dezessete de dezembro do mesmo ano\")"
+      }
+    },
+    {
+      "claim_id": "br_fhc_oath_before_congress_19950101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-04",
+      "role_id": "br_president",
+      "holder_name": "Fernando Henrique Cardoso",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "oath_of_office",
+      "attested_on": "1995-01-01",
+      "text": "At the solemn joint session of the National Congress on 1 January 1995 (opened 16:30, suspended 16:32-16:36 to await the President- and Vice-President-elect), Fernando Henrique Cardoso stood and recited the constitutional commitment (compromisso) as President of the Republic.",
+      "locator": {
+        "pdf_page": 6,
+        "printed_page": 4,
+        "section": "Left column: suspension note; \"O SR. PRESIDENTE DA REPÚBLICA (Fernando Henrique Cardoso) - Prometo manter, defender e cumprir a Constituição...\""
+      }
+    },
+    {
+      "claim_id": "br_fhc_posse_declared_19950101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-04",
+      "role_id": "br_president",
+      "holder_name": "Fernando Henrique Cardoso",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "posse_declared",
+      "attested_on": "1995-01-01",
+      "text": "Immediately after the oaths, Humberto Lucena declared Fernando Henrique Cardoso and Marco Antônio de Oliveira Maciel empossados as President and Vice-President of the Federative Republic of Brazil for the period 1 January 1995 to 31 December 1998; the session had been opened to give posse to the two, diplomados for that period.",
+      "locator": {
+        "pdf_page": 6,
+        "printed_page": 4,
+        "section": "Left column: \"Declaro empossados, para o período de 1º de janeiro de 1995 a 31 de dezembro de 1998...\"; opening on pdf p. 5 (printed p. 3)"
+      }
+    },
+    {
+      "claim_id": "br_fhc_termo_de_posse_19950101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-04",
+      "role_id": "br_president",
+      "holder_name": "Fernando Henrique Cardoso",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "posse_record",
+      "attested_on": "1995-01-01",
+      "text": "The termo de posse, read by the First Secretary and signed in the session, records that at 16:30 on 1 January 1995, before the National Congress in joint session in the plenary of the Chamber of Deputies, Fernando Henrique Cardoso was solemnly empossado as President of the Republic under article 78 of the Constitution, for the period 1 January 1995 to 31 December 1998, and recited the commitment.",
+      "locator": {
+        "pdf_page": 6,
+        "printed_page": 4,
+        "section": "Termo de posse (both columns); signing note \"(Procede-se à assinatura do termo de posse.)\""
+      }
+    },
+    {
+      "claim_id": "br_fhc_assumes_position_today_19950101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-04",
+      "role_id": "br_president",
+      "holder_name": "Fernando Henrique Cardoso",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "assumption_statement",
+      "attested_on": "1995-01-01",
+      "text": "In his address to the session Cardoso speaks of the position that he assumes today (\"a posição que assumo hoje\") and closes by thanking the Congress which, in this ceremony and with the Electoral Court's proclamation, empossa him as President of the Republic.",
+      "locator": {
+        "pdf_page": 7,
+        "printed_page": 5,
+        "section": "Address, left column (\"na posição que assumo hoje\"); closing on pdf p. 9, printed p. 7 (\"me empossa como Presidente da República\")"
+      }
+    },
+    {
+      "claim_id": "br_itamar_leaves_government_fhc_address_19950101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-04",
+      "role_id": "br_president",
+      "holder_name": "Itamar Franco",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "predecessor_departure_statement",
+      "attested_on": "1995-01-01",
+      "text": "In the same address Cardoso thanks President Itamar Franco on behalf of the Nation \"at the moment when he leaves the Government\" (\"No momento em que deixa o Governo\").",
+      "locator": {
+        "pdf_page": 7,
+        "printed_page": 5,
+        "section": "Address, foot of left column into right column (\"No momento em que deixa o Governo cercado da estima que fez por merecer, agradeço em nome da Nação a Itamar Franco\")"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+}

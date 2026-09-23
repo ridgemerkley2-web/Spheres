@@ -1,0 +1,105 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_dcn_08_19900316",
+  "source_url": "https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=14789&download=true",
+  "accessed_date": "2026-09-23",
+  "published_date": "1990-03-16",
+  "access_method": "downloaded_official_pdf_and_pages_rendered_for_visual_review",
+  "source_response_bytes": 1255764,
+  "source_response_sha256": "838abf03a2ef59781aabc66121dd9fd938ed78ebd15df36a6f0c02c70c7b6645",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file from the Senate's document service, a static response. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Scanned Diário do Congresso Nacional issue from the Senate's diary store (viewer https://legis.senado.leg.br/diarios/ver/14789).",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      3,
+      4
+    ],
+    "method": "PDF pages 1 (masthead and summary), 3 (opening and oath) and 4 (declaration, termo de posse and the President's address) rendered and read; the address passage was also read in the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "br_collor_posse_declared_congress_19900315",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-02",
+      "role_id": "br_president",
+      "holder_name": "Fernando Collor de Mello",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "posse_declared",
+      "attested_on": "1990-03-15",
+      "text": "At the solemn joint session of 15 March 1990, after the constitutional oath, the President of the National Congress, Senator Nelson Carneiro, declared Fernando Affonso Collor de Mello and Itamar Augusto Cautiero Franco invested ('empossados') as President and Vice-President of the Federative Republic of Brazil for the period 15 March 1990 to 1 January 1995.",
+      "locator": {
+        "pdf_page": 4,
+        "printed_page": 302,
+        "item": "O SR. PRESIDENTE (Nelson Carneiro) - Declaro empossados ..."
+      }
+    },
+    {
+      "claim_id": "br_collor_termo_de_posse_19900315",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-02",
+      "role_id": "br_president",
+      "holder_name": "Fernando Collor de Mello",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "posse_record",
+      "attested_on": "1990-03-15",
+      "text": "The termo de posse read and signed at the session records that at 10:00 on 15 March 1990, before the National Congress in joint session in the Chamber's plenary, Collor and Itamar Franco were solemnly invested under Article 78 of the Constitution in the offices of President and Vice-President for the period from 15 March 1990 to 1 January 1995, and took the prescribed oath.",
+      "locator": {
+        "pdf_page": 4,
+        "printed_page": 302,
+        "item": "Termo de posse, first paragraph"
+      }
+    },
+    {
+      "claim_id": "br_collor_assumes_presidency_statement_19900315",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-02",
+      "role_id": "br_president",
+      "holder_name": "Fernando Collor de Mello",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "assumption_statement",
+      "attested_on": "1990-03-15",
+      "text": "In his address to the joint session of 15 March 1990 Fernando Collor brings to the Legislative Power, before which, following the Constitution, he 'acabo de assumir a Presidência da República' (has just assumed the Presidency of the Republic), his esteem and homage.",
+      "locator": {
+        "pdf_page": 4,
+        "printed_page": 302,
+        "item": "Collor's address: 'Venho trazer ao Poder Legislativo, ante o qual, seguindo o preceito da Constituição, acabo de assumir a Presidência da República'"
+      }
+    },
+    {
+      "claim_id": "br_collor_diplomacao_recited_19891230",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-02",
+      "role_id": "br_president",
+      "holder_name": "Fernando Collor de Mello",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "diplomacao",
+      "attested_on": "1989-12-30",
+      "text": "The same termo recites that they had been elected in the second round on 17 December of the previous year and certified ('diplomados') by the Superior Electoral Court on 30 December of that year.",
+      "locator": {
+        "pdf_page": 4,
+        "printed_page": 302,
+        "item": "Termo de posse, 'diplomados, pelo Tribunal Superior Eleitoral, a trinta de dezembro do mesmo ano'"
+      }
+    },
+    {
+      "claim_id": "br_collor_second_round_recited_19891217",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-02",
+      "role_id": "br_president",
+      "holder_name": "Fernando Collor de Mello",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "popular_election",
+      "attested_on": "1989-12-17",
+      "text": "The session was opened to give posse to the President and Vice-President elected in the second round on 17 December 1989 and certified by the TSE for the period 15 March 1990 to 1 January 1995.",
+      "locator": {
+        "pdf_page": 3,
+        "printed_page": 301,
+        "item": "opening statement of the President of Congress"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+}

@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_planalto_mpv1388_20260824",
+  "source_url": "https://web.archive.org/web/20260826144228id_/https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/mpv/mpv1388.htm",
+  "original_url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/mpv/mpv1388.htm",
+  "archive_capture_utc": "2026-08-26T14:42:28Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "2026-08-24",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 45429,
+  "source_response_sha256": "8b9eeda35e902ba5e558d4c1834f533d41e01041a0ff2243bcf9f704916ed3f5",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2026-08-26T14:42:28Z; that form replays the archived bytes unchanged and is used in place of the live page. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Presidency's consolidated legislation page, captured 26 August 2026 (before the cutoff); the page notes the DOU of 25 August 2026. Found by listing Internet Archive captures of 2026 Planalto acts made between 25 August and 6 September 2026.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML preamble and signature block read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "br_lula_signs_as_president_mpv1388_20260824",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-10",
+      "role_id": "br_president",
+      "holder_name": "Luiz Inácio Lula da Silva",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2026-08-24",
+      "text": "Medida Provisória No. 1.388 of 24 August 2026 (an extraordinary credit for the Ministry of Mines and Energy) is adopted by 'O PRESIDENTE DA REPÚBLICA' and signed at Brasília on 24 August 2026 by Luiz Inácio Lula da Silva; published in the DOU of 25 August 2026.",
+      "locator": {
+        "section": "Preamble; closing 'Brasília, 24 de agosto de 2026' and signature"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+}

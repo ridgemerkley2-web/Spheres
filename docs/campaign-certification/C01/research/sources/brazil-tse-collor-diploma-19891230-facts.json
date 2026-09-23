@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_tse_diploma_collor_19891230",
+  "source_url": "https://bibliotecadigital.tse.jus.br/server/api/core/bitstreams/4d2e6c2e-baed-4e5d-8e04-57d6fa172af3/content",
+  "accessed_date": "2026-09-23",
+  "published_date": "1989-12-30",
+  "access_method": "downloaded_repository_image_and_viewed",
+  "source_response_bytes": 3529917,
+  "source_response_sha256": "9db4c926dd93fd9d27535de2287c2ebfac084fafc77d4031aa5ca52f73a75427",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file from the TSE digital library's repository service, a static response. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Photograph (JPEG, 1420x1969) of the diploma in the TSE digital library, item bdtse/1942 (http://bibliotecadigital.tse.jus.br/handle/bdtse/1942); a static bitstream whose ETag equals the MD5 of the bytes (Last-Modified 12 February 2016). The item's catalogue record (https://bibliotecadigital.tse.jus.br/server/api/core/items/25131fb9-9676-49e2-81fc-fadd43f3a79a; 6,656 bytes, SHA-256 5f2621f2e0ff3a11b418902655abc43dafafaaa7f2f451b8537dcf1b7156ac52, stable across two downloads) describes the pictured signed exemplar as an object of the TSE's memory collection acquired by collection ('Coleta') in 1995 and lists unsigned photographic models among related material: it is the TSE's collection exemplar, and nothing here shows it is the exemplar handed to Collor. published_date is the date printed on the diploma.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "The whole image viewed and the diploma text read from it; not a PDF. The coat of arms and signatures are not reproduced."
+  },
+  "rows": [
+    {
+      "claim_id": "br_collor_tse_diploma_issued_19891230",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-02",
+      "role_id": "br_president",
+      "holder_name": "Fernando Collor de Mello",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "diplomacao",
+      "attested_on": "1989-12-30",
+      "text": "The Superior Electoral Court's diploma, dated Brasília 30 December 1989 and signed by its President, Minister Francisco Rezek, and the other ministers, certifies that Fernando Collor was elected President of the Republic and qualifies him for investiture in the office before the National Congress on 15 March 1990 under the Constitution.",
+      "locator": {
+        "document": "diploma",
+        "lines": "dating line 'Brasília, aos 30 de dezembro de 1989'; body text"
+      }
+    },
+    {
+      "claim_id": "br_collor_elected_ballots_19891217",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-02",
+      "role_id": "br_president",
+      "holder_name": "Fernando Collor de Mello",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "popular_election",
+      "attested_on": "1989-12-17",
+      "text": "The diploma states that the will of the Brazilian people was expressed at the ballots of 15 November and 17 December 1989, by which Fernando Collor was elected President of the Republic.",
+      "locator": {
+        "document": "diploma",
+        "lines": "opening lines"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+}

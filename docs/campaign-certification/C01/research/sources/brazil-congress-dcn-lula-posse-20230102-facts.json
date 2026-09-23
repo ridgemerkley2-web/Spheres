@@ -1,0 +1,67 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_cn_dcn1_20230102_p1_8",
+  "source_url": "https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=111711&seqPaginaInicial=1&seqPaginaFinal=8",
+  "accessed_date": "2026-09-23",
+  "published_date": "2023-01-02",
+  "access_method": "downloaded_official_pdf_page_range_and_pages_rendered_for_visual_review",
+  "source_response_bytes": 4301947,
+  "source_response_sha256": "1e7d89ee1e340a6febcdfeda5071d42e23e09391701b45b1aaea97c084d8b9f5",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file from the Senate's document service, a static response. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Page-range response (pages 1-8 of the 59-page extraordinary issue) from the Senate diary viewer's endpoint for DCN nº 1/2023 (viewer https://legis.senado.leg.br/diarios/ver/111711; dataSessao 2023-01-01, dataPublicacao 2023-01-02; verification code E08D962B004C6AB2); PDF page numbers equal printed page numbers.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      6,
+      7
+    ],
+    "method": "PDF pages 1, 6 and 7 rendered and read; page 5 read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "br_lula_posse_declared_20230101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-09",
+      "role_id": "br_president",
+      "holder_name": "Luiz Inácio Lula da Silva",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "posse_declared",
+      "attested_on": "2023-01-01",
+      "text": "In the joint solemn session of 1 January 2023 (14:55-16:04) Luiz Inácio Lula da Silva took the constitutional oath and the President of the National Congress (Rodrigo Pacheco) declared him empossado as President 'para o período de 1º de janeiro de 2023 a 4 de janeiro de 2027'; the Termo de Posse read into the record states that at 15:00 on 1 January 2023 he was solemnly given office.",
+      "locator": {
+        "pdf_pages": "5 (session times), 6 ('declaro empossados'), 7 (Termo de Posse)"
+      }
+    },
+    {
+      "claim_id": "br_lula_elected_20221030",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-09",
+      "role_id": "br_president",
+      "holder_name": "Luiz Inácio Lula da Silva",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "popular_election",
+      "attested_on": "2022-10-30",
+      "text": "The ata and the Termo de Posse state that Lula was elected on 30 October 2022.",
+      "locator": {
+        "pdf_pages": "6 (opening declaration), 7 (Termo de Posse)"
+      }
+    },
+    {
+      "claim_id": "br_lula_diplomacao_recited_20221212",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-09",
+      "role_id": "br_president",
+      "holder_name": "Luiz Inácio Lula da Silva",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "diplomacao",
+      "attested_on": "2022-12-12",
+      "text": "The ata and the Termo de Posse state that Lula was certified (diplomado) by the Superior Electoral Court on 12 December 2022; the diplomas were handed to the Mesa for publication.",
+      "locator": {
+        "pdf_pages": "6, 7"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+}

@@ -1,0 +1,138 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_dcn_1_2011_posse_20110101",
+  "source_url": "https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=3422&download=true",
+  "accessed_date": "2026-09-23",
+  "published_date": "2011-01-01",
+  "access_method": "downloaded_official_pdf_and_pages_rendered_for_visual_review",
+  "source_response_bytes": 506362,
+  "source_response_sha256": "b75d4e990a0cc00e27e570bf7ed8658194c4c78a241382e4b27ccb75c0baccbb",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file from the Senate's document service, a static response. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Born-digital Diário do Congresso Nacional issue from the Senate's diary store (viewer https://legis.senado.leg.br/diarios/ver/3422; PDF page 3 is printed page 1). The cover and running heads print Saturday 1 January 2011 (used as published_date), while the Senate's metadata gives 2 January 2011; the opening misspells the name 'Dilma Roussef'.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      4,
+      8,
+      9
+    ],
+    "method": "PDF pages 1, 4, 8 and 9 rendered and read (cover, the TSE diploma, declaration and termo, the signed termo); Rousseff's and Sarney's addresses (PDF pages 10-15) read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "br_dilma_elected_20101031",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-06",
+      "role_id": "br_president",
+      "holder_name": "Dilma Rousseff",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "popular_election",
+      "attested_on": "2010-10-31",
+      "text": "The Congress record states that Dilma Rousseff and Michel Temer were elected on 31 October 2010; the reproduced TSE diploma says Dilma Vana Rousseff, candidate of the Para o Brasil Seguir Mudando coalition, was elected President of the Federative Republic of Brazil by the will expressed at the polls on 31 October 2010.",
+      "locator": {
+        "pdf_page": 3,
+        "printed_page": 1,
+        "section": "Opening declaration by José Sarney; diploma on pdf p. 4 (printed p. 2)"
+      }
+    },
+    {
+      "claim_id": "br_dilma_diplomada_tse_20101217",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-06",
+      "role_id": "br_president",
+      "holder_name": "Dilma Rousseff",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "diplomacao",
+      "attested_on": "2010-12-17",
+      "text": "The reproduced TSE diploma, dated Brasília 17 December 2010 and signed by Minister Ricardo Lewandowski as President of the Court, qualifies her for investiture in the office before the National Congress on 1 January 2011; the opening and termo date the diplomação to 17 December 2010.",
+      "locator": {
+        "pdf_page": 4,
+        "printed_page": 2,
+        "section": "Facsimile of the TSE diploma (printed sideways)"
+      }
+    },
+    {
+      "claim_id": "br_dilma_oath_before_congress_20110101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-06",
+      "role_id": "br_president",
+      "holder_name": "Dilma Rousseff",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "oath_of_office",
+      "attested_on": "2011-01-01",
+      "text": "At the solemn joint session of 1 January 2011 (14:47-15:55), José Sarney invited the President of the Republic to take the constitutional commitment, and Dilma Rousseff recited it.",
+      "locator": {
+        "pdf_page": 6,
+        "printed_page": 4,
+        "section": "\"A SRª DILMA ROUSSEFF - Prometo manter, defender e cumprir a Constituição...\"; compromisso facsimile follows"
+      }
+    },
+    {
+      "claim_id": "br_dilma_posse_declared_20110101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-06",
+      "role_id": "br_president",
+      "holder_name": "Dilma Rousseff",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "posse_declared",
+      "attested_on": "2011-01-01",
+      "text": "José Sarney, \"with the powers conferred on me by the Constitution\", declared Dilma Rousseff and Michel Temer empossados as President and Vice-President of the Federative Republic of Brazil for the period 1 January 2011 to 31 December 2014; the session was opened to give posse to the two, diplomados for the period beginning on that date.",
+      "locator": {
+        "pdf_page": 8,
+        "printed_page": 6,
+        "section": "Left column: \"declaro empossados ... para o período de 1º de janeiro de 2011 a 31 de dezembro de 2014\"; opening on pdf p. 3 (printed p. 1)"
+      }
+    },
+    {
+      "claim_id": "br_dilma_termo_de_posse_20110101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-06",
+      "role_id": "br_president",
+      "holder_name": "Dilma Rousseff",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "posse_record",
+      "attested_on": "2011-01-01",
+      "text": "The termo de posse records that at 14:30 on 1 January 2011, before the National Congress in joint session in the Chamber plenary, Dilma Rousseff was solemnly empossada as President of the Republic under article 78 of the Constitution, elected on 31 October 2010 and diplomada on 17 December 2010, for the period 1 January 2011 to 31 December 2014.",
+      "locator": {
+        "pdf_page": 8,
+        "printed_page": 6,
+        "section": "Termo read (both columns); signed facsimile on pdf p. 9 (printed p. 7)"
+      }
+    },
+    {
+      "claim_id": "br_dilma_sash_announced_congress_address_20110101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-06",
+      "role_id": "br_president",
+      "holder_name": "Dilma Rousseff",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "sash_transfer_prospective",
+      "attested_on": "2011-01-01",
+      "text": "In her address to the session Rousseff says that \"today\" the presidential sash will for the first time be placed on a woman's shoulder.",
+      "locator": {
+        "pdf_page": 10,
+        "printed_page": 8,
+        "section": "Opening of Dilma Rousseff's address (\"hoje será a primeira vez que a faixa presidencial cingirá o ombro de uma mulher\")"
+      }
+    },
+    {
+      "claim_id": "br_dilma_assumes_responsibility_sarney_address_20110101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-06",
+      "role_id": "br_president",
+      "holder_name": "Dilma Rousseff",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "assumption_statement",
+      "attested_on": "2011-01-01",
+      "text": "In his closing address to the session the President of Congress, José Sarney, tells Dilma Rousseff that 'here, at this moment', she accepts the responsibility of governing the country, and that through this commitment 'a Presidente eleita assume a responsabilidade que a Constituição lhe impõe'.",
+      "locator": {
+        "pdf_page": 15,
+        "printed_page": 13,
+        "section": "Sarney's address ('Aqui, neste momento, Vossa Excelência aceita a responsabilidade de governar o País'; 'através deste compromisso a Presidente eleita assume a responsabilidade que a Constituição lhe impõe')"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+}

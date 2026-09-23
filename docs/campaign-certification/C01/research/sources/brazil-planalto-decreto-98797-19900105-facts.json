@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_planalto_decreto_98797_19900105",
+  "source_url": "https://web.archive.org/web/20120624014148id_/http://www.planalto.gov.br/ccivil_03/decreto/1990-1994/D98797.htm",
+  "original_url": "http://www.planalto.gov.br/ccivil_03/decreto/1990-1994/D98797.htm",
+  "archive_capture_utc": "2012-06-24T01:41:48Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "1990-01-08",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 4920,
+  "source_response_sha256": "d87cf71bfe8c916ae8cc1cf428a5eb66e9ed312dd76d05a018684de5ae8d62d8",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2012-06-24T01:41:48Z; that form replays the archived bytes unchanged and is used in place of the live page. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Presidency's consolidated legislation page for the decree, captured by the Internet Archive on 24 June 2012; the page states that it does not replace the DOU publication of 8 January 1990. The 2021 capture of Decree No. 98.785 of 4 January 1990 is a bot-check page, so this is the earliest 1990 act of Sarney pinned to a byte-stable response. Live Planalto pages carry a per-request script token and are not byte-stable.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (heading, preamble, signature block and DOU note); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "br_sarney_signs_decreto_98797_19900105",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-01",
+      "role_id": "br_president",
+      "holder_name": "José Sarney",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1990-01-05",
+      "text": "Decree No. 98.797 of 5 January 1990, issued by the President of the Republic under Article 84(IV) of the Constitution to revise the values fixed in Decree-Law No. 2.300 of 1986, is dated Brasília 5 January 1990 and signed José Sarney (countersigned João Batista de Abreu); the page notes publication in the DOU of 8 January 1990.",
+      "locator": {
+        "item": "heading; preamble 'O PRESIDENTE DA REPÚBLICA'; signature block; note 'Este texto não substitui o publicado no D.O.U. de 8.1.1990'"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+}

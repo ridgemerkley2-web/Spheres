@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_dsf_164_19921002",
+  "source_url": "https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=6430&download=true",
+  "accessed_date": "2026-09-23",
+  "published_date": "1992-10-02",
+  "access_method": "downloaded_official_pdf_and_pages_rendered_for_visual_review",
+  "source_response_bytes": 4417869,
+  "source_response_sha256": "3df141471b58bda113e1cbe251cba681bb133b1a2a0c2378c274fb51e63d89c7",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file from the Senate's document service, a static response. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Scanned Senate section of the Diário do Congresso Nacional from the Senate's diary store (viewer https://legis.senado.leg.br/diarios/ver/6430).",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      15
+    ],
+    "method": "PDF page 15 (vote on Parecer nº 302) rendered and read; pages 1 and 16 read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "br_senate_approves_process_opening_opinion_19921001",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-03",
+      "role_id": "br_president",
+      "holder_name": "Fernando Collor de Mello",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "senate_trial_admission",
+      "attested_on": "1992-10-01",
+      "text": "At the Senate's session of 1 October 1992 the Senate approved urgency request nº 732/92 and then the opinion (Parecer nº 302, de 1992, dated 30 September) of its Special Committee concluding that the process for crime of responsibility against President Collor should be instituted and that he should be summoned to present his defence; the President of the Senate announced that the Mesa would meet to serve notice on the President and to communicate with the Vice-President, with the President of the Supreme Federal Court to preside over the process.",
+      "locator": {
+        "pdf_page": 15,
+        "printed_page": 7901,
+        "item": "Requerimento nº 732/92; Parecer nº 302, de 1992; continuation on printed page 7902"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+}

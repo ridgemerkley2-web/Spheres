@@ -1,0 +1,38 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_bibpr_sarney_page_2016",
+  "source_url": "https://web.archive.org/web/20160814001316id_/http://www.biblioteca.presidencia.gov.br/presidencia/ex-presidentes/jose-sarney",
+  "original_url": "http://www.biblioteca.presidencia.gov.br/presidencia/ex-presidentes/jose-sarney",
+  "archive_capture_utc": "2016-08-14T00:13:16Z",
+  "accessed_date": "2026-09-23",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 45127,
+  "source_response_sha256": "4f1f6d9613741b59871f922d66f63f9f51e5728443e5bf3aa8a48d97f7b0b34d",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2016-08-14T00:13:16Z; that form replays the archived bytes unchanged and is used in place of the live page. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Presidency Library's gallery page for José Sarney, captured 14 August 2016. A retrospective summary with no publication date of its own; used only for a claim with no structured date, never a boundary.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read ('Resumo do Governo' block); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "br_bibpr_sarney_government_period_19850315_19900315",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-01",
+      "role_id": "br_president",
+      "holder_name": "José Sarney",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The Presidency Library's retrospective summary gives Sarney's period of government (the 23rd republican period) as 15.03.1985 to 15.03.1990.",
+      "locator": {
+        "section": "Resumo do Governo",
+        "field": "Período de Governo"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+}

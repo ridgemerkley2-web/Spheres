@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_planalto_decreto_663_19921001",
+  "source_url": "https://web.archive.org/web/20081026122235id_/http://www.planalto.gov.br/ccivil_03/decreto/1990-1994/D0663.htm",
+  "original_url": "http://www.planalto.gov.br/ccivil_03/decreto/1990-1994/D0663.htm",
+  "archive_capture_utc": "2008-10-26T12:22:35Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "1992-10-02",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 14428,
+  "source_response_sha256": "9da119b4fa18a10924cd7a85be1d03202c582d50fef0ec74be3132586846147e",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2008-10-26T12:22:35Z; that form replays the archived bytes unchanged and is used in place of the live page. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Presidency's consolidated legislation page, captured 26 October 2008; the page notes the DOU of 2 October 1992. The last act of Collor found before he received the summons; archived decrees 664-666 of the same day are also his.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read (heading, preamble and signature block); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "br_collor_signs_decreto_663_19921001",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-03",
+      "role_id": "br_president",
+      "holder_name": "Fernando Collor de Mello",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1992-10-01",
+      "text": "Decree No. 663 of 1 October 1992, issued by the President of the Republic under Article 84(IV) to consolidate the regulation of the National Treasury Note (Law No. 8.249 of 1991), is dated Brasília 1 October 1992 and signed Fernando Collor (countersigned Marcílio Marques Moreira); the page notes publication in the DOU of 2 October 1992.",
+      "locator": {
+        "item": "heading; preamble 'O PRESIDENTE DA REPÚBLICA'; signature block"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+}

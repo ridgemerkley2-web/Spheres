@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_planalto_bolsonaro_sash_speech_20190101",
+  "source_url": "https://web.archive.org/web/20220305142422id_/https://www.gov.br/planalto/pt-br/acompanhe-o-planalto/discursos/2019/discurso-do-presidente-da-republica-jair-bolsonaro-durante-cerimonia-de-recebimento-da-faixa-presidencial",
+  "original_url": "https://www.gov.br/planalto/pt-br/acompanhe-o-planalto/discursos/2019/discurso-do-presidente-da-republica-jair-bolsonaro-durante-cerimonia-de-recebimento-da-faixa-presidencial",
+  "archive_capture_utc": "2022-03-05T14:24:22Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "2019-01-01",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 192253,
+  "source_response_sha256": "7e6995acfc8bcc5968b85a59b13aafa07581057f26a7996a5ab700c43b2fa19d",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2022-03-05T14:24:22Z; that form replays the archived bytes unchanged and is used in place of the live page. Located by the independent check, which downloaded it twice on 23 September 2026 with identical bytes matching the byte count and SHA-256 recorded here. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Presidency's page (gov.br/planalto) for Bolsonaro's address at the sash ceremony, 'Publicado em 01/01/2019 16h45', captured 5 March 2022. An earlier capture of 3 September 2019 (47,704 bytes, SHA-256 1a5a583b56faa8e963fe6c501ae987dd7dcd75989d02d567dcbb5dedb409d8e2) has the same text and misprinted dateline but no publication stamp, and the www2.planalto.gov.br captures of January-June 2019 are bot-challenge pages. Located by the independent check.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML title, publication stamp, dateline and opening paragraphs read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "br_bolsonaro_sash_ceremony_speech_20190101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-08",
+      "role_id": "br_president",
+      "holder_name": "Jair Bolsonaro",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "sash_ceremony",
+      "attested_on": "2019-01-01",
+      "text": "The Presidency's page 'Discurso do Presidente da República, Jair Bolsonaro, durante cerimônia de Recebimento da Faixa Presidencial', published on 1 January 2019 at 16h45 (updated 16h46), carries his address at the Palácio do Planalto, in which he speaks to the nation 'como Presidente do Brasil'; its dateline is printed 'Palácio do Planalto, 01 de janeiro de 2018'.",
+      "locator": {
+        "section": "title; 'Publicado em 01/01/2019 16h45'; dateline; opening paragraphs"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+}

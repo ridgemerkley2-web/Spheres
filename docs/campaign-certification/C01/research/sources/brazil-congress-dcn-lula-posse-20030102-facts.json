@@ -1,0 +1,123 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_dcn_1_2003_posse_20030101",
+  "source_url": "https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=14088&download=true",
+  "accessed_date": "2026-09-23",
+  "published_date": "2003-01-02",
+  "access_method": "downloaded_official_pdf_and_pages_rendered_for_visual_review",
+  "source_response_bytes": 1212635,
+  "source_response_sha256": "86f2d3923f091eda17f7eada3e081b00f5a12cdbfb385774ba7265bc6cbca32d",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file from the Senate's document service, a static response. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Scanned Diário do Congresso Nacional issue from the Senate's diary store (viewer https://legis.senado.leg.br/diarios/ver/14088); the session is on PDF pages 3-14. The record does not name Fernando Henrique Cardoso, so it states nothing about his end.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      3,
+      4,
+      6,
+      7,
+      13
+    ],
+    "method": "PDF pages 3, 4, 6, 7 and the upper half of 13 rendered and read (opening, the TSE diploma, oath, declaration and termo, the signed termo facsimile, closing addresses); page 5 read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "br_lula_elected_20021027",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-05",
+      "role_id": "br_president",
+      "holder_name": "Luiz Inácio Lula da Silva",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "popular_election",
+      "attested_on": "2002-10-27",
+      "text": "The Congress record and the reproduced TSE diploma state that Luiz Inácio Lula da Silva was elected President of the Republic by the will of the people expressed at the polls on 27 October 2002.",
+      "locator": {
+        "pdf_page": 3,
+        "printed_page": "000003",
+        "section": "Opening declaration by Ramez Tebet; diploma on pdf p. 4; termo on pdf p. 6"
+      }
+    },
+    {
+      "claim_id": "br_lula_diplomado_tse_20021214",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-05",
+      "role_id": "br_president",
+      "holder_name": "Luiz Inácio Lula da Silva",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "diplomacao",
+      "attested_on": "2002-12-14",
+      "text": "The record reproduces the TSE diploma, dated Brasília 14 December 2002 and signed by Minister Nelson Jobim as President of the Court, with the other members of the Court, stating that Lula was elected President of the Republic and qualifying him for investiture in the office before the National Congress on 1 January 2003; the opening and termo date the diplomação to 14 December 2002.",
+      "locator": {
+        "pdf_page": 4,
+        "printed_page": "000004",
+        "section": "Facsimile of the TSE diploma (\"Brasília, aos 14 de dezembro de 2002\")"
+      }
+    },
+    {
+      "claim_id": "br_lula_oath_before_congress_20030101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-05",
+      "role_id": "br_president",
+      "holder_name": "Luiz Inácio Lula da Silva",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "oath_of_office",
+      "attested_on": "2003-01-01",
+      "text": "At the solemn joint session of 1 January 2003 (opened 15:05 in the Chamber plenary), Ramez Tebet invited Lula, \"President of the Republic elect\", to take the constitutional commitment standing, and Lula recited it.",
+      "locator": {
+        "pdf_page": 6,
+        "printed_page": "000006",
+        "section": "Left column: invitation and \"O SR. LUIZ INÁCIO LULA DA SILVA - Prometo manter, defender e cumprir a Constituição...\""
+      }
+    },
+    {
+      "claim_id": "br_lula_posse_declared_20030101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-05",
+      "role_id": "br_president",
+      "holder_name": "Luiz Inácio Lula da Silva",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "posse_declared",
+      "attested_on": "2003-01-01",
+      "text": "Ramez Tebet then declared Luiz Inácio Lula da Silva and José Alencar Gomes da Silva empossados as President and Vice-President of the Federative Republic of Brazil for the period 1 January 2003 to 31 December 2006; the session was opened to give posse to the two, diplomados for the period beginning on that date.",
+      "locator": {
+        "pdf_page": 6,
+        "printed_page": "000006",
+        "section": "Left column: \"Declaro empossados ... para o período de 1º de janeiro de 2003 a 31 de dezembro de 2006\"; opening on pdf p. 3 (\"para o período a iniciar-se nesta data\")"
+      }
+    },
+    {
+      "claim_id": "br_lula_termo_de_posse_20030101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-05",
+      "role_id": "br_president",
+      "holder_name": "Luiz Inácio Lula da Silva",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "posse_record",
+      "attested_on": "2003-01-01",
+      "text": "The termo de posse, read in the session and reproduced with its signatures, records that at 15:00 on 1 January 2003, before the National Congress in joint session, Lula was solemnly empossado as President of the Republic under article 78 of the Constitution, elected on 27 October 2002 and diplomado by the TSE on 14 December 2002, for the period 1 January 2003 to 31 December 2006.",
+      "locator": {
+        "pdf_page": 6,
+        "printed_page": "000006",
+        "section": "Termo read (both columns); signed facsimile on pdf p. 7 (printed 000007)"
+      }
+    },
+    {
+      "claim_id": "br_lula_assumes_presidency_first_secretary_20030101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-05",
+      "role_id": "br_president",
+      "holder_name": "Luiz Inácio Lula da Silva",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "assumption_statement",
+      "attested_on": "2003-01-01",
+      "text": "Before the termo was signed, the First Secretary of the Mesa, Deputy Severino Cavalcanti, said in the session that Lula \"today assumes the Presidency of the Republic\"; in his address Lula describes himself as the man who \"now assumes the post\" of supreme magistrate of the nation.",
+      "locator": {
+        "pdf_page": 6,
+        "printed_page": "000006",
+        "section": "Right column, Severino Cavalcanti (\"hoje assume a Presidência da República\"); Lula's address on pdf p. 12 (\"que agora assume o posto de Supremo Mandatário da Nação\")"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+}

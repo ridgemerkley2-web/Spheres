@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_planalto_dilma_parlatorio_20150101",
+  "source_url": "https://web.archive.org/web/20150111173546id_/http://www2.planalto.gov.br:80/acompanhe-o-planalto/discursos/discursos-da-presidenta/pronunciamento-a-nacao-da-presidenta-da-republica-dilma-rousseff-no-parlatorio-1",
+  "original_url": "http://www2.planalto.gov.br/acompanhe-o-planalto/discursos/discursos-da-presidenta/pronunciamento-a-nacao-da-presidenta-da-republica-dilma-rousseff-no-parlatorio-1",
+  "archive_capture_utc": "2015-01-11T17:35:46Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "2015-01-01",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 63136,
+  "source_response_sha256": "2cbd5e75e8d55355bacb34dc5b4fec182cb326e64ac050be82e8fafbbf25947a",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2015-01-11T17:35:46Z; that form replays the archived bytes unchanged and is used in place of the live page. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Contemporaneous Portal Planalto page ('publicado 01/01/2015 17h40, última modificação 01/01/2015 20h03'), captured 11 January 2015. The Presidency Library's copy (captured 31 March 2024) is a JavaScript challenge page and was not used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (title, publication line, dateline, speech); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "br_dilma_assumes_second_mandate_parlatorio_20150101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-06",
+      "role_id": "br_president",
+      "holder_name": "Dilma Rousseff",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "assumption_statement",
+      "attested_on": "2015-01-01",
+      "text": "Portal Planalto publishes on 1 January 2015 (17:40) Rousseff's address from the Parlatório, datelined Palácio do Planalto 1 January 2015, in which she says she was re-elected and \"I assume my second mandate with more hope than I assumed the first\".",
+      "locator": {
+        "section": "Publication line; dateline; paragraph beginning \"Assumo meu segundo mandato\""
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+}

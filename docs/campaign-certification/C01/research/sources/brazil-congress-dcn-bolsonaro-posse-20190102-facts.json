@@ -1,0 +1,67 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_cn_dcn1_20190102_p5_11",
+  "source_url": "https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=21600&seqPaginaInicial=5&seqPaginaFinal=11",
+  "accessed_date": "2026-09-23",
+  "published_date": "2019-01-02",
+  "access_method": "downloaded_official_pdf_page_range_and_pages_rendered_for_visual_review",
+  "source_response_bytes": 1391446,
+  "source_response_sha256": "a451cff11f8757a8edb9cd80d1b88446da64ce403f95c3c2d07de28a903142bd",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file from the Senate's document service, a static response. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Page-range response (printed pages 5-11) from the Senate diary viewer's endpoint for DCN nº 1/2019 (viewer https://legis.senado.leg.br/diarios/ver/21600; dataSessao 2019-01-01, dataPublicacao 2019-01-03); PDF pages 1-7 of the response are printed pages 5-11. Scanned pages with an OCR layer.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      2,
+      3
+    ],
+    "method": "Response pages 2 and 3 (printed 6 and 7) rendered and read; printed pages 5 and 11 read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "br_bolsonaro_posse_declared_20190101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-08",
+      "role_id": "br_president",
+      "holder_name": "Jair Bolsonaro",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "posse_declared",
+      "attested_on": "2019-01-01",
+      "text": "In the joint solemn session of 1 January 2019 (15:02-15:42) Jair Messias Bolsonaro took the constitutional oath and the President of the National Congress (Eunício Oliveira) declared him empossado as President 'para o período de 1º de janeiro de 2019 a 31 de dezembro de 2022'; the Termo de Posse read into the record states that at 15:00 on 1 January 2019 he was solemnly given office.",
+      "locator": {
+        "printed_pages": "5 (session times), 6 ('declaro empossados'), 7 (Termo de Posse)"
+      }
+    },
+    {
+      "claim_id": "br_bolsonaro_elected_20181028",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-08",
+      "role_id": "br_president",
+      "holder_name": "Jair Bolsonaro",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "popular_election",
+      "attested_on": "2018-10-28",
+      "text": "The minutes and the termo de posse read into the record state that Jair Bolsonaro was elected President of the Republic on 28 October 2018.",
+      "locator": {
+        "printed_pages": "6 (opening declaration), 7 (termo de posse)"
+      }
+    },
+    {
+      "claim_id": "br_temer_styled_ex_president_20190101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-08",
+      "role_id": "br_president",
+      "holder_name": "Michel Temer",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "styled_former_president",
+      "attested_on": "2019-01-01",
+      "text": "In his address at the same session of 1 January 2019, after the posse, the President of the National Congress referred to 'o ex-Presidente Michel Temer'.",
+      "locator": {
+        "printed_page": 11,
+        "passage": "'não posso deixar de registrar a perseverança política e pessoal do ex-Presidente Michel Temer'"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+}

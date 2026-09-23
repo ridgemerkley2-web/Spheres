@@ -1,0 +1,120 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_dcn_70_19921230",
+  "source_url": "https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=14742&download=true",
+  "accessed_date": "2026-09-23",
+  "published_date": "1992-12-30",
+  "access_method": "downloaded_official_pdf_and_pages_rendered_for_visual_review",
+  "source_response_bytes": 397945,
+  "source_response_sha256": "dfe8e27ab3045795d36504ed15aa4ef85a914cebe42682756e1a0cd2ba020d33",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file from the Senate's document service, a static response. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Scanned Diário do Congresso Nacional issue from the Senate's diary store (viewer https://legis.senado.leg.br/diarios/ver/14742). The special edition of 29 December 1992 that first printed the letter is not in the archive.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      3,
+      6
+    ],
+    "method": "PDF pages 3 (the handwritten resignation letter) and 6 (the handwritten declaration and the termo de posse) rendered and read at high zoom; pages 1, 4 and 5 read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "br_collor_resignation_letter_read_congress_19921229",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-03",
+      "role_id": "br_president",
+      "holder_name": "Fernando Collor de Mello",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "resignation_letter_read",
+      "attested_on": "1992-12-29",
+      "text": "At the 2nd joint session of 29 December 1992 (opened at 11:30), the President of Congress, Senator Mauro Benevides, stated that at the start of that day's Senate impeachment session defence counsel José Moura Rocha had handed Minister Sydney Sanches a letter by which Collor resigned the mandate, and had the letter read: addressed to the President of the National Congress, dated Brasília 29 December 1992 and signed 'F. Collor', it states that on that date and by that instrument he resigns the mandate of President of the Republic to which he was elected at the ballots of 15 November and 17 December 1989.",
+      "locator": {
+        "pdf_page": 3,
+        "printed_page": 4811,
+        "item": "É LIDA A SEGUINTE CARTA (handwritten facsimile)"
+      }
+    },
+    {
+      "claim_id": "br_presidency_vacancy_declared_19921229",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-03",
+      "role_id": "br_president",
+      "holder_name": "Fernando Collor de Mello",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "vacancy_declared",
+      "attested_on": "1992-12-29",
+      "text": "Immediately after the reading of Collor's letter, the President of Congress ordered its immediate publication in a special edition of the Diário do Congresso Nacional and declared the office of President of the Republic vacant, convening a solemn session for 12:30 that day for the Vice-President's oath; the session rose at 11:50.",
+      "locator": {
+        "pdf_page": 3,
+        "printed_page": 4811,
+        "item": "O SR. PRESIDENTE (Mauro Benevides) - ... declaro vago o cargo de Presidente da República"
+      }
+    },
+    {
+      "claim_id": "br_itamar_posse_declared_congress_19921229",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-03",
+      "role_id": "br_president",
+      "holder_name": "Itamar Franco",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "posse_declared",
+      "attested_on": "1992-12-29",
+      "text": "At the solemn 3rd joint session of 29 December 1992 (opened at 12:30), after Itamar Franco took the constitutional oath, the President of Congress declared Itamar Augusto Cautiero Franco invested ('empossado') as President of the Federative Republic of Brazil for the period 29 December 1992 to 1 January 1995.",
+      "locator": {
+        "pdf_page": 6,
+        "printed_page": 4814,
+        "item": "O SR. PRESIDENTE (Mauro Benevides) - Declaro, com profunda emoção, empossado ..."
+      }
+    },
+    {
+      "claim_id": "br_itamar_termo_de_posse_19921229",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-03",
+      "role_id": "br_president",
+      "holder_name": "Itamar Franco",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "posse_record",
+      "attested_on": "1992-12-29",
+      "text": "The termo de posse records that at 12:30 on 29 December 1992, before the National Congress in joint session, Vice-President Itamar Augusto Cautiero Franco, elected in the second round of 17 December 1989, appeared to be invested under Article 79 of the Constitution in the office of President of the Republic by virtue of the resignation of Fernando Affonso Collor de Mello 'ocorrida nesta data' (which occurred on that date), and took the oath under Article 78.",
+      "locator": {
+        "pdf_page": 6,
+        "printed_page": 4814,
+        "item": "Termo de posse do Exmº Sr. Itamar Augusto Cautiero Franco"
+      }
+    },
+    {
+      "claim_id": "br_collor_resignation_occurred_19921229",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-03",
+      "role_id": "br_president",
+      "holder_name": "Fernando Collor de Mello",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "resignation",
+      "attested_on": "1992-12-29",
+      "text": "The same termo states that the office was filled by virtue of Fernando Affonso Collor de Mello's resignation, which occurred on 29 December 1992.",
+      "locator": {
+        "pdf_page": 6,
+        "printed_page": 4814,
+        "item": "Termo de posse, 'em virtude da renúncia ... ocorrida nesta data'"
+      }
+    },
+    {
+      "claim_id": "br_itamar_states_exercise_from_19921002",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-03",
+      "role_id": "br_president",
+      "holder_name": "Itamar Franco",
+      "role_title": "Vice-President of the Republic in exercise of the office of President",
+      "event_kind": "vice_president_exercise_start",
+      "attested_on": "1992-10-02",
+      "text": "Itamar Franco's handwritten declaration to the President of Congress, dated Brasília 29 December 1992 and published in the minutes, states that his declaration of assets that day is the same one he presented on 2 October of that year, when he assumed, as Vice-President, the exercise of the office of President of the Republic.",
+      "locator": {
+        "pdf_page": 6,
+        "printed_page": 4814,
+        "item": "É a seguinte a declaração recebida (handwritten)"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+}

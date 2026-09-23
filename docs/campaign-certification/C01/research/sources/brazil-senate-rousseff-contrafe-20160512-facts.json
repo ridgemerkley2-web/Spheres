@@ -1,0 +1,36 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_senado_rousseff_contrafe_20160512",
+  "source_url": "https://www12.senado.leg.br/noticias/infograficos/2016/05/comprovante-de-recebimento-de-dilma/dilma2.jpg",
+  "accessed_date": "2026-09-23",
+  "published_date": null,
+  "access_method": "downloaded_official_image_and_viewed",
+  "source_response_bytes": 311449,
+  "source_response_sha256": "41f9c9d8791458ec54b6f5488d13c6dfcc0a242ee9155a9053743910f8a41b97",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file from the Senate's document service, a static response. Located by the independent check, which downloaded it twice on 23 September 2026 with identical bytes matching the byte count and SHA-256 recorded here. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Senate's published photograph of the contrafé Dilma Rousseff signed on receiving the Mandado de Intimação, linked as 'Comprovante de recebimento de Dilma' from the Senate's news pages of 12 May 2016 (the wrapper page https://www12.senado.leg.br/noticias/infograficos/2016/05/comprovante-de-recebimento-de-dilma, dated 12/05/2016 15h21, is dynamic and is not the recorded identity). A static image with no Internet Archive capture before the cutoff; it carries no publication date of its own. Located by the independent check.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "The whole photograph viewed and read; text from the reverse of the sheet shows through faintly and is not read as part of the document. The signature is not reproduced."
+  },
+  "rows": [
+    {
+      "claim_id": "br_rousseff_receives_intimation_suspended_20160512",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-07",
+      "role_id": "br_president",
+      "holder_name": "Dilma Rousseff",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "suspension",
+      "attested_on": "2016-05-12",
+      "text": "The Senate's published image of the contrafé reads that Dilma Vana Rousseff received 'nesta data' the Mandado de Intimação signed by the President of the Senate, with a digitized copy of the Chamber's process and of Denúncia nº 1 de 2016, delivered by Senator Vicentinho Alves, First Secretary of the Senate; it is dated Brasília/DF, 12 May 2016 and signed above her printed name.",
+      "locator": {
+        "image": "whole photograph",
+        "item": "'CONTRAFÉ' heading, receipt paragraph and dating line 'Brasília/DF, em 12 de maio de 2016'"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+}
