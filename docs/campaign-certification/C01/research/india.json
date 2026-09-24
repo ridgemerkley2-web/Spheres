@@ -1905,8 +1905,8 @@
       "scope_note": "The Lok Sabha Secretariat's online English debate text for the 11th and 12th Lok Sabha on parliamentofindia.nic.in, recorded as a raw Internet Archive capture; the printed debates on eparlib could not be reached directly.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/india-loksabha-pm-introduction-19970421-facts.json",
-        "bytes": 3985,
-        "sha256": "2d029d1d87acb42ccb7cef0f0f90a1299e1b46d9174864824dd9b852dd90de70"
+        "bytes": 3994,
+        "sha256": "ff217ae54359c47f8310132503f53d3526a014485763bf97239c1f22363b02c0"
       },
       "claims": [
         {
@@ -1922,7 +1922,7 @@
         },
         {
           "id": "in_gujral_introduced_as_pm_19970421",
-          "text": "When the House reassembled at 11:31 on 21 April 1997 the Speaker introduced the Prime Minister of India, I. K. Gujral, who then introduced his Council of Ministers.",
+          "text": "When the House reassembled at 11:31 on 21 April 1997 the Speaker introduced the Prime Minister of India, I. K. Gujral, and invited him to introduce his Council of Ministers.",
           "attested_on": "1997-04-21",
           "locator": {
             "time": "1131 hours",
@@ -3154,18 +3154,18 @@
       "scope_note": "A press communique on the President's 2019 website (President Ram Nath Kovind), recorded as a raw Internet Archive capture made in 2019, as the HTML rule prefers. The copy at ramnathkovind.nic.in/pr260519.html carries this heading but the body of the 25 May dissolution release, so it is a defective page and not used. The capture's form fields and visitor counter are fixed in the archived response.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/india-president-oath-schedule-20190526-facts.json",
-        "bytes": 3299,
-        "sha256": "d8eda487f6e23fd2f6ed3da7ec58cdc19b095814f295f0bb9a4a2b55566ca11a"
+        "bytes": 3240,
+        "sha256": "c57c2a3e6225b9f2dfc3c2d736a02cf7e88d2166544497e9fd1520741dd9c9dc"
       },
       "claims": [
         {
           "id": "in_modi_oath_announced_20190526",
-          "text": "The communique dated 26 May 2019 announces that the President will administer the oath of office and secrecy to the Prime Minister and other members of the Union Council of Ministers on 30 May 2019 at 7.00 p.m. at Rashtrapati Bhavan; Narendra Modi had been appointed Prime Minister on 25 May.",
+          "text": "The communique dated 26 May 2019 announces that the President will administer the oath of office and secrecy to the Prime Minister and other members of the Union Council of Ministers on 30 May 2019 at 7.00 p.m. at Rashtrapati Bhavan.",
           "attested_on": "2019-05-26",
           "locator": {
             "section": "Headline and communique text"
           },
-          "uncertainty": "Prospective announcement, dated by its issue; the oath itself is recorded separately on 30 May 2019."
+          "uncertainty": "Prospective announcement, dated by its issue; the oath itself is recorded separately on 30 May 2019. The communique does not name the Prime Minister; the holder name rests on the appointment of 25 May 2019 (in_kovind_appoints_modi_pm_20190525)."
         }
       ]
     },
