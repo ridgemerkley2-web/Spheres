@@ -8,9 +8,9 @@
     "country_packets": 9,
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 841,
-    "institution_observations": 27,
-    "sources": 161,
-    "source_claims": 1762,
+    "institution_observations": 28,
+    "sources": 231,
+    "source_claims": 1874,
     "discovery_batches": 92,
     "exhaustive_country_censuses": 0
   },
@@ -189,10 +189,10 @@
       "nation": "India",
       "packet": "docs/campaign-certification/C01/research/india.json",
       "organization_observations": 82,
-      "institution_observations": 0,
-      "role_observations": 0,
-      "source_claims": 82,
-      "mapping_pending": 82,
+      "institution_observations": 1,
+      "role_observations": 1,
+      "source_claims": 194,
+      "mapping_pending": 83,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
       "coverage": {
@@ -229,7 +229,8 @@
           "National and state recognition can change; inspect subsequent notifications before claiming status on any later date.",
           "Preserve frozen-name and pending-court-order qualifications; no inferred successor or resolution is granted.",
           "Research separately dated party leaders, chairs, parliamentary roles and executive offices before adding characters or portraits.",
-          "All game mappings, lifecycle intervals and leadership terms remain unknown. Fictional successor eligibility and portrait reuse rights have not been researched."
+          "All game mappings, lifecycle intervals and leadership terms remain unknown. Fictional successor eligibility and portrait reuse rights have not been researched.",
+          "Prime ministers 1990-2026 (CLAUDE-C01-11): the packet now holds one institution, in_prime_minister, with one role, in_pm, and thirteen dated holder observations (stated starts for Rao, Vajpayee in 1996, 1998 and 1999 and Gujral; stated ends for Chandra Shekhar, Rao, Deve Gowda and Vajpayee's 1998 term). Still open for the prime-ministership: V. P. Singh's end, Chandra Shekhar's and Deve Gowda's starts, the end of every continuation that no Gazette acceptance fixes, the President's 1990-1999 communiques in the PIB archive and the 2004-2024 Gazette notifications. Deputy prime ministers, ministers, the President, party offices and all other institutions remain outside this intake. No game identity or portrait permission is granted."
         ]
       }
     },
@@ -2290,7 +2291,8 @@
       ],
       "members": [
         "in_eci_20240323_sp_26_01",
-        "in_eci_20240323_sp_26_02"
+        "in_eci_20240323_sp_26_02",
+        "in_prime_minister"
       ],
       "maximum_reviewed_records": 10,
       "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
@@ -2639,8 +2641,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/india.json",
-      "bytes": 183777,
-      "sha256": "25e00e7364722357290cb785502abad018e60d512221cadd7fa5785f7569a4ae"
+      "bytes": 415482,
+      "sha256": "07d793a390c1e102d2f903106a0d3109dc75eb014986075d1fee9987d2fc84bd"
     },
     {
       "path": "docs/campaign-certification/C01/research/japan.json",
