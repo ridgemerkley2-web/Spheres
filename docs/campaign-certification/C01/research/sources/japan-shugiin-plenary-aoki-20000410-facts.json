@@ -1,0 +1,116 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_shugiin_honkaigi_20000410_aoki",
+  "source_url": "https://kokkai.ndl.go.jp/api/speech?issueID=114705254X02220000410&speechNumber=5&recordPacking=json",
+  "diet_record": {
+    "issueID": "114705254X02220000410",
+    "house": "衆議院",
+    "meeting": "本会議",
+    "issue": "第22号",
+    "sitting_date": "2000-04-10",
+    "response": "single speech",
+    "speech_ids": [
+      "114705254X02220000410_005"
+    ],
+    "record_page_url": "https://kokkai.ndl.go.jp/txt/114705254X02220000410"
+  },
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "official_diet_minutes_api_json_download_and_read",
+  "source_response_bytes": 9073,
+  "source_response_sha256": "1eec231c38f4e8827225ad84eed08fbad440b9265cc958db3692e0876cbc74e6",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "UTF-8 JSON (the Content-Type header declares application/json;charset=UTF-8)",
+  "source_response_checked_in": false,
+  "provenance_note": "Official response of the National Diet Library's Diet minutes API (JSON, UTF-8), served with Cache-Control: no-cache, no-store; the JSON carries no timestamp, session token or request echo, so it is not generated per request. Downloaded on 24 September 2026 by the researcher at 18:28:17Z, 18:32:49Z (cache-busting query) and 19:10:33Z; by the independent check at 19:13:33Z, 19:15:24Z (cache-busting query) and 19:42:17Z; by this packet at 20:19:58Z, 20:40:24Z (cache-busting query) and 20:54:20Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Diet minutes API's JSON for one speech record of the 衆議院 本会議 第22号 (2000-04-10), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/114705254X02220000410. The printed page images, served through a JavaScript viewer, were not viewed.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Machine-readable minute text read in full for the cited speeches; the printed page images were not viewed."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_obuchi_hospitalised_and_comatose_20000402",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-08",
+      "role_id": "jp_pm",
+      "holder_name": "小渕恵三",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "prime_minister_incapacity_reported",
+      "attested_on": "2000-04-02",
+      "text": "Aoki told the House that Prime Minister Obuchi (小渕総理) had been admitted to Juntendo Hospital about 01:00 on 2 April 2000 for overwork, that before 21:00 that day he was told that Obuchi had been moved to intensive care, and that Obuchi fell into a coma about 23:30.",
+      "locator": {
+        "issueID": "114705254X02220000410",
+        "speechOrder": 5,
+        "speaker": "青木幹雄 (内閣官房長官)",
+        "part": "paragraphs on 2 April (02:00 report, 21:00 intensive care, 23:30 coma)"
+      }
+    },
+    {
+      "claim_id": "jp_obuchi_instruction_to_aoki_1900_20000402",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-08",
+      "role_id": "jp_pm",
+      "holder_name": null,
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "acting_prime_minister_instruction_reported",
+      "attested_on": "2000-04-02",
+      "text": "Aoki told the House that when he saw Prime Minister Obuchi (小渕総理) at the hospital about 19:00 on 2 April 2000, Obuchi, mindful of the Usu volcano, instructed him to take care of everything if anything happened (何かあれば万事よろしく頼む), and that before the 23:30 press conference he told 宮澤 that he would serve as acting prime minister (臨時代理) as needed under that instruction.",
+      "locator": {
+        "issueID": "114705254X02220000410",
+        "speechOrder": 5,
+        "part": "paragraph beginning 午後六時ごろ, and the paragraph on the telephone call to 宮澤大蔵大臣"
+      }
+    },
+    {
+      "claim_id": "jp_aoki_acting_pm_from_0900_announced_20000403",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-08",
+      "role_id": "jp_pm",
+      "holder_name": null,
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "acting_prime_minister_assumed",
+      "attested_on": "2000-04-03",
+      "text": "Aoki (青木幹雄) stated that at the regular 11:00 press conference on 3 April 2000 he announced that, weighing the Usu volcano response and other urgent matters, he had accepted the acting prime ministership (臨時代理) at 09:00.",
+      "locator": {
+        "issueID": "114705254X02220000410",
+        "speechOrder": 5,
+        "part": "paragraph beginning この会見で"
+      }
+    },
+    {
+      "claim_id": "jp_aoki_reports_acting_designation_notified_20000403",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-08",
+      "role_id": "jp_pm",
+      "holder_name": null,
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "acting_prime_minister_designation_notified",
+      "attested_on": "2000-04-03",
+      "text": "Aoki (青木幹雄) stated that at the 12:40 extraordinary cabinet meeting on 3 April 2000 he reported the Prime Minister's condition and the acting designation (臨時代理指定), notified the Speakers of both Houses and had it published in the Official Gazette (官報公告).",
+      "locator": {
+        "issueID": "114705254X02220000410",
+        "speechOrder": 5,
+        "part": "paragraph beginning また、同日午後十二時四十分の臨時閣議で"
+      }
+    },
+    {
+      "claim_id": "jp_obuchi_cabinet_resignation_decided_20000404",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-08",
+      "role_id": "jp_pm",
+      "holder_name": "小渕恵三",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "cabinet_resignation_decided",
+      "attested_on": "2000-04-04",
+      "text": "Aoki stated that after hearing the doctors at 14:30 on 4 April 2000 he judged Prime Minister Obuchi's (小渕総理) condition to be a case where the Prime Minister is 'lacking' (欠けたとき) under Constitution art. 70, and that an extraordinary cabinet meeting at 19:00 that day decided the cabinet's resignation en masse.",
+      "locator": {
+        "issueID": "114705254X02220000410",
+        "speechOrder": 5,
+        "part": "paragraphs on 4 April"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-12 only. Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, a cabinet's formation, its resignation en masse, any continued performance of duties and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role in this packet: an unnamed statement, agenda or ceremony record, an acting prime minister, the House of Councillors' 1998 designee or the successor at the closing boundary. Ministers, deputy prime ministers and party offices are excluded."
+}

@@ -1,0 +1,52 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_hr_plenary_19900302",
+  "source_url": "https://kokkai.ndl.go.jp/api/meeting?issueID=111805254X00319900302&recordPacking=json",
+  "diet_record": {
+    "issueID": "111805254X00319900302",
+    "house": "衆議院",
+    "meeting": "本会議",
+    "issue": "第3号",
+    "sitting_date": "1990-03-02",
+    "response": "whole meeting record",
+    "speeches_in_response": 13,
+    "record_page_url": "https://kokkai.ndl.go.jp/txt/111805254X00319900302"
+  },
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "official_diet_minutes_api_json_download_and_read",
+  "source_response_bytes": 104570,
+  "source_response_sha256": "22eb38e54c6411cd4d4ee78f5180acf090274e6b6b485b7b1bcc79c3a476bfda",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "UTF-8 JSON (the Content-Type header declares application/json;charset=UTF-8)",
+  "source_response_checked_in": false,
+  "provenance_note": "Official response of the National Diet Library's Diet minutes API (JSON, UTF-8), served with Cache-Control: no-cache, no-store; the JSON carries no timestamp, session token or request echo, so it is not generated per request. Downloaded on 24 September 2026 by the researcher at 18:07:54Z, 18:25:38Z, 18:57:12Z and 18:57:54Z (cache-busting query); by the independent check at 18:59:53Z, 19:00:41Z (cache-busting query) and 19:29:12Z; by this packet at 20:18:02Z, 20:38:37Z (cache-busting query) and 20:53:23Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Diet minutes API's JSON for the whole meeting record of the 衆議院 本会議 第3号 (1990-03-02), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/111805254X00319900302. The printed page images, served through a JavaScript viewer, were not viewed.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Machine-readable minute text read in full for the cited speeches; the printed page images were not viewed."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_kaifu_policy_speech_states_reappointment_19900302",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-01",
+      "role_id": "jp_pm",
+      "holder_name": "海部俊樹",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1990-03-02",
+      "text": "Called by the Speaker as 内閣総理大臣海部俊樹君, Kaifu delivers the policy speech to the House of Representatives on 2 March 1990, opening with the statement that after the general election he had been appointed Prime Minister again (再び内閣総理大臣に任命され).",
+      "locator": {
+        "speech_order": [
+          2,
+          3
+        ],
+        "speech_id": "111805254X00319900302_003",
+        "item": "国務大臣の演説 (施政方針演説), first sentence"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-12 only. Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, a cabinet's formation, its resignation en masse, any continued performance of duties and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role in this packet: an unnamed statement, agenda or ceremony record, an acting prime minister, the House of Councillors' 1998 designee or the successor at the closing boundary. Ministers, deputy prime ministers and party offices are excluded."
+}

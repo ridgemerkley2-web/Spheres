@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_hr_written_answer_19900123",
+  "source_url": "https://www.shugiin.go.jp/internet/itdb_shitsumona_pdf_t.nsf/html/shitsumon/pdfT/b117002.pdf/$File/b117002.pdf",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "official_pdf_download_and_rendered_page_review",
+  "source_response_bytes": 89159,
+  "source_response_sha256": "e3980687d4802935623ec9bb28acbcd6427dc60ad87cbd7759b4bd40eb92a7e6",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "PDF (binary)",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the House's own host: a static PDF with a fixed Last-Modified (Wed, 10 Mar 2021 05:54:26 GMT) and ETag (W/\"MTAtMDAwMi0wLTQ5MjU4Njk0MDAyMDcyRDMtM0E5RTIyOTA0QjkwRkQ2RTQ5MjU3Q0E1MDAwRjQ5MDA=\"); its CreationDate is years before access, so it is not generated per request. Downloaded on 24 September 2026 by the researcher at 18:22:41Z, 18:25:31Z, 18:57:05Z and 18:57:48Z (cache-busting query); by the independent check at 18:59:47Z, 19:00:35Z (cache-busting query) and 19:29:05Z; by this packet at 20:17:58Z, 20:38:32Z (cache-busting query) and 20:53:19Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The House of Representatives' written-question database reproduces the Cabinet's answer as a typeset PDF. The House was dissolved the next day, which does not end the Prime Minister's office.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "PDF page 1 rendered and read: 内閣衆質一一七第二号, 平成二年一月二十三日, signature 内閣総理大臣 海部俊樹, addressee 衆議院議長 田村元殿; margin note 平成二年一月二十三日受領 答弁第二号."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_kaifu_signs_hr_written_answer_as_pm_19900123",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-01",
+      "role_id": "jp_pm",
+      "holder_name": "海部俊樹",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1990-01-23",
+      "text": "The Cabinet's written answer No. 2 of the 117th session (内閣衆質一一七第二号), dated and received on 23 January 1990, is sent to Speaker 田村元 under the signature 内閣総理大臣 海部俊樹.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "date line and signature block"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-12 only. Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, a cabinet's formation, its resignation en masse, any continued performance of duties and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role in this packet: an unnamed statement, agenda or ceremony record, an acting prime minister, the House of Councillors' 1998 designee or the successor at the closing boundary. Ministers, deputy prime ministers and party offices are excluded."
+}

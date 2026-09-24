@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_kunaicho_schedule_h12_q2",
+  "source_url": "https://web.archive.org/web/20010306203428id_/http://www.kunaicho.go.jp:80/gonitei/gonitei-h12-02.html",
+  "original_url": "http://www.kunaicho.go.jp/gonitei/gonitei-h12-02.html",
+  "archive_capture_utc": "2001-03-06T20:34:28Z",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 18043,
+  "source_response_sha256": "de92452f2eb2dbcd7b79fd6b9b3748bea274ef9db552260bde58b996ffd64bc8",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "Shift_JIS (no charset is declared in the page or the archived Content-Type header; the bytes decode cleanly as Shift_JIS)",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2001-03-06T20:34:28Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The archived original's Last-Modified header is Fri, 13 Oct 2000 08:07:03 GMT. The SHA-1 of these bytes (XOQFTGF3MSS5OLDA6C3R3LQVDMBUBFSP) equals the Internet Archive's CDX digest for the capture, compared by this packet on 24 September 2026. Downloaded on 24 September 2026 by the independent check at 19:37:14Z and 20:08:31Z; by this packet at 20:21:21Z, 20:41:49Z and 20:55:49Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Imperial Household Agency's own record of the Emperor's engagements, recorded as a raw Internet Archive capture made before the cutoff and linked from the agency's schedule index (gonitei/gonitei-00.html). A schedule row names the ceremony (親任式・認証官任命式) but not the appointee unless the photo page does. No photograph is reused.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded and read in full; no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_kunaicho_ceremony_20000405",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-08",
+      "role_id": "jp_pm",
+      "holder_name": null,
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "imperial_appointment_ceremony",
+      "attested_on": "2000-04-05",
+      "text": "The Imperial Household Agency's schedule of the Emperor and Empress for April-June 2000 lists for Wednesday 5 April 2000: 天皇陛下 親任式・認証官任命式（19名）（宮殿）.",
+      "locator": {
+        "section": "４月５日(水)",
+        "row": "天皇陛下 親任式・認証官任命式（19名）（宮殿）"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-12 only. Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, a cabinet's formation, its resignation en masse, any continued performance of duties and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role in this packet: an unnamed statement, agenda or ceremony record, an acting prime minister, the House of Councillors' 1998 designee or the successor at the closing boundary. Ministers, deputy prime ministers and party offices are excluded."
+}

@@ -1,0 +1,65 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_sangiin_honkaigi_20000405",
+  "source_url": "https://kokkai.ndl.go.jp/api/meeting?issueID=114715254X01220000405&recordPacking=json",
+  "diet_record": {
+    "issueID": "114715254X01220000405",
+    "house": "参議院",
+    "meeting": "本会議",
+    "issue": "第12号",
+    "sitting_date": "2000-04-05",
+    "response": "whole meeting record",
+    "speeches_in_response": 7,
+    "record_page_url": "https://kokkai.ndl.go.jp/txt/114715254X01220000405"
+  },
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "official_diet_minutes_api_json_download_and_read",
+  "source_response_bytes": 5985,
+  "source_response_sha256": "ca76c989b80482b3d558313b8f4bb7f39a4daf334ba2e469191e0d5e5094a8ac",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "UTF-8 JSON (the Content-Type header declares application/json;charset=UTF-8)",
+  "source_response_checked_in": false,
+  "provenance_note": "Official response of the National Diet Library's Diet minutes API (JSON, UTF-8), served with Cache-Control: no-cache, no-store; the JSON carries no timestamp, session token or request echo, so it is not generated per request. Downloaded on 24 September 2026 by the researcher at 18:28:13Z, 18:32:45Z (cache-busting query) and 19:10:28Z; by the independent check at 19:13:42Z, 19:15:34Z (cache-busting query) and 19:42:26Z; by this packet at 20:20:02Z, 20:40:27Z (cache-busting query) and 20:54:24Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Diet minutes API's JSON for the whole meeting record of the 参議院 本会議 第12号 (2000-04-05), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/114715254X01220000405. The printed page images, served through a JavaScript viewer, were not viewed.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Machine-readable minute text read in full for the cited speeches; the printed page images were not viewed."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_sangiin_notice_cabinet_resigns_art70_20000404",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-08",
+      "role_id": "jp_pm",
+      "holder_name": null,
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "cabinet_resignation_notice",
+      "attested_on": "2000-04-04",
+      "text": "The President read the notice received the previous day from the acting Prime Minister (青木内閣総理大臣臨時代理): the cabinet had decided under Constitution art. 70 to resign en masse that day (4 April 2000), notified under Diet Law art. 64.",
+      "locator": {
+        "issueID": "114715254X01220000405",
+        "speechOrder": 1,
+        "speaker": "斎藤十朗 (議長)"
+      }
+    },
+    {
+      "claim_id": "jp_sangiin_designates_mori_20000405",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-08",
+      "role_id": "jp_pm",
+      "holder_name": "森喜朗",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "designation_vote_house_of_councillors",
+      "attested_on": "2000-04-05",
+      "text": "By roll-call ballot, the House of Councillors designated 森喜朗 as Prime Minister on 5 April 2000: 137 of 244 votes (majority 123); 鳩山由紀夫 56, 不破哲三 23, 土井たか子 14, 椎名素夫 7, 小沢一郎 5, 武村正義 2.",
+      "locator": {
+        "issueID": "114715254X01220000405",
+        "speechOrder": 5,
+        "speaker": "斎藤十朗 (議長)"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-12 only. Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, a cabinet's formation, its resignation en masse, any continued performance of duties and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role in this packet: an unnamed statement, agenda or ceremony record, an acting prime minister, the House of Councillors' 1998 designee or the successor at the closing boundary. Ministers, deputy prime ministers and party offices are excluded."
+}

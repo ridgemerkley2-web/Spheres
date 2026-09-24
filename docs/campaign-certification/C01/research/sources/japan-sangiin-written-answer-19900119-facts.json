@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_hc_written_answer_19900119",
+  "source_url": "https://www.sangiin.go.jp/japanese/joho1/kousei/syuisyo/117/toup/t117001.pdf",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "official_pdf_download_and_rendered_page_review",
+  "source_response_bytes": 23985,
+  "source_response_sha256": "66623a6ed289d4fcfb1e8a0f1c46f722c2cc47665ce047380f53ea04f8399f24",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "PDF (binary)",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the House's own host: a static PDF with a fixed Last-Modified (Mon, 02 Sep 2024 12:53:20 GMT) and ETag (\"5db1-621226ceb1d45\"); its CreationDate is years before access, so it is not generated per request. Downloaded on 24 September 2026 by the researcher at 18:24:10Z, 18:25:29Z, 18:57:03Z and 18:57:46Z (cache-busting query); by the independent check at 18:59:45Z, 19:00:33Z (cache-busting query) and 19:29:03Z; by this packet at 20:17:56Z, 20:38:30Z (cache-busting query) and 20:53:17Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The House of Councillors' written-question database stores the Cabinet's answer as scanned page images without a text layer; page 1 was rendered and read.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "PDF page 1 rendered and read: 答弁書第一号, 内閣参質一一七第一号, 平成二年一月十九日, signature 内閣総理大臣 海部俊樹, addressee 参議院議長 土屋義彦殿. The HTML version (touh/t117001.htm) prints the same header."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_kaifu_signs_hc_written_answer_as_pm_19900119",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-01",
+      "role_id": "jp_pm",
+      "holder_name": "海部俊樹",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1990-01-19",
+      "text": "The Cabinet's written answer No. 1 of the 117th session (内閣参質一一七第一号), dated 19 January 1990, is sent to the President of the House of Councillors 土屋義彦 under the signature 内閣総理大臣 海部俊樹.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "date line and signature block"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-12 only. Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, a cabinet's formation, its resignation en masse, any continued performance of duties and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role in this packet: an unnamed statement, agenda or ceremony record, an acting prime minister, the House of Councillors' 1998 designee or the successor at the closing boundary. Ministers, deputy prime ministers and party offices are excluded."
+}

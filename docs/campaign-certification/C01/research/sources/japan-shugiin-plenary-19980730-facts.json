@@ -1,0 +1,102 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_hr_plenary_19980730",
+  "source_url": "https://kokkai.ndl.go.jp/api/meeting?issueID=114305254X00119980730&recordPacking=json",
+  "diet_record": {
+    "issueID": "114305254X00119980730",
+    "house": "衆議院",
+    "meeting": "本会議",
+    "issue": "第1号",
+    "sitting_date": "1998-07-30",
+    "response": "whole meeting record",
+    "speeches_in_response": 28,
+    "record_page_url": "https://kokkai.ndl.go.jp/txt/114305254X00119980730"
+  },
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "official_diet_minutes_api_json_download_and_read",
+  "source_response_bytes": 20854,
+  "source_response_sha256": "e947da3919d5ee9fd27881718445d2565b191b4a1383b0973680aa286032a4b7",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "UTF-8 JSON (the Content-Type header declares application/json;charset=UTF-8)",
+  "source_response_checked_in": false,
+  "provenance_note": "Official response of the National Diet Library's Diet minutes API (JSON, UTF-8), served with Cache-Control: no-cache, no-store; the JSON carries no timestamp, session token or request echo, so it is not generated per request. Downloaded on 24 September 2026 by the researcher at 18:07:30Z and 19:01:03Z; by the independent check at 19:03:27Z (cache-busting query) and 19:33:18Z; by this packet at 20:19:36Z, 20:40:11Z (cache-busting query) and 20:54:09Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Diet minutes API's JSON for the whole meeting record of the 衆議院 本会議 第1号 (1998-07-30), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/114305254X00119980730. The printed page images, served through a JavaScript viewer, were not viewed.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Machine-readable minute text read in full for the cited speeches; the printed page images were not viewed."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_hr_receives_hashimoto_cabinet_resignation_notice_19980730",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-07",
+      "role_id": "jp_pm",
+      "holder_name": "橋本龍太郎",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "cabinet_resignation_notice",
+      "attested_on": "1998-07-30",
+      "text": "Speaker Ito reports that on that day he received from Prime Minister Hashimoto (橋本内閣総理大臣) a notice that the cabinet had decided to resign en masse.",
+      "locator": {
+        "speechID": "114305254X00119980730_011",
+        "speechOrder": 11,
+        "printed_page": 1,
+        "printed": "橋本内閣総理大臣"
+      }
+    },
+    {
+      "claim_id": "jp_hr_designates_obuchi_19980730",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-07",
+      "role_id": "jp_pm",
+      "holder_name": "小渕恵三",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "designation_vote_house_of_representatives",
+      "attested_on": "1998-07-30",
+      "text": "Recorded ballot: 497 votes, majority 249; 小渕恵三 268, 菅直人 164, 神崎武法 37, 土井たか子 14, 小沢辰男 9, 武村正義 2, 3 invalid. The House designates 小渕恵三 under HR Rules art. 18(2) (recess 13:41).",
+      "locator": {
+        "speechID": [
+          "114305254X00119980730_014",
+          "114305254X00119980730_015"
+        ],
+        "printed_page": 1
+      }
+    },
+    {
+      "claim_id": "jp_hr_joint_committee_requested_19980730",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-07",
+      "role_id": "jp_pm",
+      "holder_name": null,
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "joint_committee_requested",
+      "attested_on": "1998-07-30",
+      "text": "At 15:33 the Speaker reports that the House of Councillors has notified its designation of 菅直人 and, the two Houses' decisions differing, has requested a joint committee; the House's ten committee members are named by the Speaker.",
+      "locator": {
+        "speechID": "114305254X00119980730_018",
+        "speechOrder": 18,
+        "printed_page": 3
+      }
+    },
+    {
+      "claim_id": "jp_hr_resolution_prevails_obuchi_19980730",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-07",
+      "role_id": "jp_pm",
+      "holder_name": "小渕恵三",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "house_of_representatives_resolution_prevails",
+      "attested_on": "1998-07-30",
+      "text": "The chairman of the House's joint-committee members (中川秀直) reports that neither the House of Councillors' designation of 菅直人 nor the House of Representatives' designation of 小渕恵三 won two-thirds of the members present, so no agreed plan was reached; the Speaker declares that under Constitution art. 67(2) the House's designation has become the Diet's resolution and will be reported to the Emperor forthwith under Diet Act art. 65(2).",
+      "locator": {
+        "speechID": [
+          "114305254X00119980730_025",
+          "114305254X00119980730_026"
+        ],
+        "printed_page": 4
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-12 only. Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, a cabinet's formation, its resignation en masse, any continued performance of duties and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role in this packet: an unnamed statement, agenda or ceremony record, an acting prime minister, the House of Councillors' 1998 designee or the successor at the closing boundary. Ministers, deputy prime ministers and party offices are excluded."
+}
