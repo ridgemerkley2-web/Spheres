@@ -8,9 +8,9 @@
     "country_packets": 9,
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 841,
-    "institution_observations": 27,
-    "sources": 161,
-    "source_claims": 1762,
+    "institution_observations": 28,
+    "sources": 280,
+    "source_claims": 1936,
     "discovery_batches": 92,
     "exhaustive_country_censuses": 0
   },
@@ -237,10 +237,10 @@
       "nation": "Japan",
       "packet": "docs/campaign-certification/C01/research/japan.json",
       "organization_observations": 16,
-      "institution_observations": 7,
-      "role_observations": 4,
-      "source_claims": 29,
-      "mapping_pending": 23,
+      "institution_observations": 8,
+      "role_observations": 5,
+      "source_claims": 203,
+      "mapping_pending": 24,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
       "coverage": {
@@ -276,7 +276,8 @@
           "Only four independently titled party offices and five dated holder observations across three organizations were reviewed. These are not full office terms, biography records, campaign eligibility or portrait authorization.",
           "Election candidates and independent-member aggregates are not silently promoted into party leaders or fabricated organizations.",
           "The live upper-house English strength page was dated 13 September 2026 when accessed and was excluded because it exceeds the fixed 7 September cutoff. Search-cache dates were not substituted for the current page.",
-          "Neither the 2025 election nor the February 2026 group list establishes a complete present-day September roster. No observations after the cutoff or fictional successors are populated here."
+          "Neither the 2025 election nor the February 2026 group list establishes a complete present-day September roster. No observations after the cutoff or fictional successors are populated here.",
+          "Prime ministers 1990-2006 (CLAUDE-C01-12): the packet now holds one executive institution, jp_prime_minister, with one role, jp_pm, and fourteen dated holder observations (stated starts for 橋本龍太郎 in January 1996, 森喜朗 in April and July 2000 and 小泉純一郎 in 2001, 2003 and 2005; no stated end). Still open for the prime-ministership: the 1990-1998 appointment ceremonies, every end of office, any continued performance of duties under art. 71, the Official Gazette record, and all holders from 26 September 2006 to the cutoff. Ministers, deputy prime ministers and party offices remain outside this intake. No game identity or portrait permission is granted."
         ]
       }
     },
@@ -2355,7 +2356,8 @@
       "members": [
         "jp_shugiin_group_20260218_050",
         "jp_shugiin_group_20260218_060",
-        "jp_shugiin_group_20260218_070"
+        "jp_shugiin_group_20260218_070",
+        "jp_prime_minister"
       ],
       "maximum_reviewed_records": 10,
       "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
@@ -2644,8 +2646,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/japan.json",
-      "bytes": 60293,
-      "sha256": "2aaa46d504ee151f5d92ee25849f7773db9c49ce7597f6ac87f5921b753ed573"
+      "bytes": 438094,
+      "sha256": "cf1ddcda2e626c329c3beda099425c22d3ef5b970b905f1174980c1fc8db8dcd"
     },
     {
       "path": "docs/campaign-certification/C01/research/russia.json",
