@@ -161588,6 +161588,18 @@
   },
   "province_figures": "`provinces[].known` is the WHOLE province's assessed volume, repeated on every district the province covers and marked `shared: true`. It is not this district's share and must not be summed across districts.",
   "province_geometry": "`intersection_sqkm`, `area_frac_district` and `area_frac_province` are MEASURED AREAS: the exact GEOS intersection of the province polygon with the district polygon, the fraction of this district lying inside the province, and the fraction of the province lying inside this district. They are what tells Al-Basrah — which the Mesopotamian Foredeep covers whole — from Al-Anbar, which it clips.",
+  "unrostered_producer_coverage": {
+   "meaning": "Positive national production excluded because the country is outside the district roster. Reporting only; these values are not added to national production or allocated to districts.",
+   "reviewed_commodities": [
+    "bauxite"
+   ],
+   "source": "ds896_bauxite",
+   "source_sha256": "0d8ae069552229b306ce4795a29704d7eb7c859346cfb1058ecddf1e9d268214",
+   "units": "metric tons",
+   "unreviewed_commodities": "All other commodities remain unaudited for crosswalk omissions by this bounded reporting pass; no marker does not establish complete coverage.",
+   "worksheet": "Bauxite",
+   "year": 1990
+  },
   "vintage": 1990
  },
  "national": {
@@ -172028,5 +172040,29 @@
    "o_g": "Gas",
    "reason": "province polygon overlaps no district (offshore or outside the roster)"
   }
- ]
+ ],
+ "unrostered_producers": {
+  "bauxite": [
+   {
+    "basis": "outside_district_roster",
+    "nation": "Guinea",
+    "reason": "Reported producer outside the district roster; no modeled nation or district receives this production.",
+    "source": "ds896_bauxite",
+    "source_label": "Guinea",
+    "units": "metric tons",
+    "value": 15800000.0,
+    "year": 1990
+   },
+   {
+    "basis": "outside_district_roster",
+    "nation": "Sierra Leone",
+    "reason": "Reported producer outside the district roster; no modeled nation or district receives this production.",
+    "source": "ds896_bauxite",
+    "source_label": "Sierra Leone",
+    "units": "metric tons",
+    "value": 1430000.0,
+    "year": 1990
+   }
+  ]
+ }
 }

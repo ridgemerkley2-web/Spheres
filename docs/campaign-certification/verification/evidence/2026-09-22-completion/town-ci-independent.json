@@ -1,0 +1,40 @@
+{
+  "run_id": 35761708980,
+  "run_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/35761708980",
+  "revision": "78cd39bb3b2ee2a7d4fe1d43b18702a51fbfbdbc",
+  "command": "node tools/ui/town-scene-browser.cjs",
+  "browser_channel": "chromium",
+  "installed_browser": "Chrome for Testing 145.0.7632.6 (Playwright chromium v1208)",
+  "scope": "Independent town browser job results only. Native jobs were still running when recorded; this is not whole-workflow or later political-source certification.",
+  "evidence_method": "GitHub job summaries and completed decoded logs independently read. Checkout revision, successful command completion and published artifact identities verified; artifact archives were not downloaded in this pass.",
+  "jobs": [
+    {
+      "os": "ubuntu-latest",
+      "id": 106861081311,
+      "conclusion": "success",
+      "started_utc": "2026-09-22T17:45:50.3194069Z",
+      "result_written_utc": "2026-09-22T17:48:02.4590418Z",
+      "elapsed_seconds": 132.139635,
+      "artifact": {
+        "id": 10711300937,
+        "bytes": 645282,
+        "sha256": "b63f4d6173709f2d9f6d7cc57bac90e84387e73a7b1d54dc507c88fb5c63fdd1",
+        "url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/35761708980/artifacts/10711300937"
+      }
+    },
+    {
+      "os": "windows-latest",
+      "id": 106861081404,
+      "conclusion": "success",
+      "started_utc": "2026-09-22T17:50:26.8549684Z",
+      "result_written_utc": "2026-09-22T17:52:59.3363751Z",
+      "elapsed_seconds": 152.481407,
+      "artifact": {
+        "id": 10711451483,
+        "bytes": 645515,
+        "sha256": "1e5115638e244fc4ea5f549ec6967cd37433b9b0fc2258b83a2c12bdf0d582f3",
+        "url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/35761708980/artifacts/10711451483"
+      }
+    }
+  ]
+}

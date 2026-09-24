@@ -1,0 +1,31 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://web.archive.org/web/20100824203123id_/https://www.pmo.gov.to/ourconstitution/2000-january-prince-ulukalala-lavaka-ata-appointed-prime-minister.html",
+  "original_url": "https://www.pmo.gov.to/ourconstitution/2000-january-prince-ulukalala-lavaka-ata-appointed-prime-minister.html",
+  "archive_capture_utc": "2010-08-24T20:31:23Z",
+  "accessed_date": "2026-09-22",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 19908,
+  "source_response_sha256": "16f6e16d1c7c73538a0aec6570f2df4a1ff240981874551682d3a025ce9ea6f0",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original PMO page, captured at 2010-08-24T20:31:23Z; the capture is used in place of the live page. The researcher downloaded and hashed the capture bytes before extraction on 2026-09-22 (local); the independent check re-downloaded it the same day and matched the bytes and SHA-256, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_pmo_timeline_lavaka_ata_appointed_200001",
+      "text": "The PMO-hosted timeline entry reads '2000 January - Prince 'Ulukalala Lavaka Ata, appointed prime minister.'",
+      "period": {
+        "from": "2000-01-01",
+        "through": "2000-01-31"
+      },
+      "locator": "Timeline entry title and body",
+      "uncertainty": "A retrospective civic-education timeline (footer '© Our Constitution - Copyright 2009'). Month precision; corroborates to_pmo_lavaka_ata_commencement_20000103."
+    }
+  ],
+  "scope_note": "Archived entry of the 'Our Constitution' citizen-education timeline hosted on www.pmo.gov.to (raw Internet Archive capture of 24 August 2010; footer 'Copyright 2009'). Retrospective and unattributed within government; month-precision corroboration only.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  }
+}

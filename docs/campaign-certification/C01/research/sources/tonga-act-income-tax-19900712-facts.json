@@ -1,0 +1,29 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://ago.gov.to/cms/images/LEGISLATION/AMENDING/1990/1990-0004/IncomeTaxAmendmentAct1990.pdf",
+  "accessed_date": "2026-09-21",
+  "published_date": null,
+  "document_date": "1990-07-12",
+  "access_method": "downloaded_original_pdf_text_and_relevant_page_visually_read",
+  "source_response_bytes": 35041,
+  "source_response_sha256": "25d2c916b3fb7e2187d7e5ae0350651ea453de3e1a4ba84caa786f90c485c419",
+  "source_response_checked_in": false,
+  "provenance_note": "Original response downloaded (curl -L) and hashed before extraction on 2026-09-21 (local). This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_crown_assent_tupou_iv_19900712",
+      "text": "The assent block reads 'I assent, TAUFA'AHAU TUPOU IV, 12th July 1990'; the Act records its passage by the Legislative Assembly on 14 June 1990.",
+      "attested_on": "1990-07-12",
+      "locator": "PDF page 1, assent block and passage line",
+      "uncertainty": "A dated attestation of Tupou IV exercising the royal assent. It dates neither the start of his reign nor its continuity. The file is a re-typeset reproduction by the Attorney General's Office, not a facsimile of the gazetted print."
+    }
+  ],
+  "scope_note": "Used only for the assent attestation (TO-CROWN-01). The assent date is recorded as document_date; the reproduction's own publication date is unknown. The Act's substance is not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "PDF page 1 was rendered and visually checked in the research dossier; the assent block matches the text layer."
+  }
+}

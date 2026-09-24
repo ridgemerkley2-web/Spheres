@@ -1,0 +1,45 @@
+[
+  {
+    "source": "mrds",
+    "url": "https://mrdata.usgs.gov/mrds/mrds-csv.zip",
+    "destination": "spheres-web/data/mrds-csv.zip",
+    "expected_sha256": "31be4baaa86b082787bc74989146183db21badf7157db39b3f0a6fe0b38a5477",
+    "expected_bytes": 25791223,
+    "response_url": "https://mrdata.usgs.gov/mrds/mrds-csv.zip",
+    "content_type": "application/zip",
+    "last_modified": "Tue, 23 Aug 2022 21:10:12 GMT",
+    "retrieval": "official_download",
+    "bytes": 25791223,
+    "sha256": "31be4baaa86b082787bc74989146183db21badf7157db39b3f0a6fe0b38a5477",
+    "exact_pinned": true
+  },
+  {
+    "source": "minfac",
+    "url": "https://mrdata.usgs.gov/mineral-operations/minfac-csv.zip",
+    "destination": "spheres-web/data/minfac-csv.zip",
+    "expected_sha256": "f52cb88cf058168c8ed91dd208d4ceffb2cf99dbc350ba86e3c0d972b126ab85",
+    "expected_bytes": 297647,
+    "response_url": "https://mrdata.usgs.gov/mineral-operations/minfac-csv.zip",
+    "content_type": "application/zip",
+    "last_modified": "Thu, 14 Apr 2011 13:42:27 GMT",
+    "retrieval": "official_download",
+    "bytes": 297647,
+    "sha256": "f52cb88cf058168c8ed91dd208d4ceffb2cf99dbc350ba86e3c0d972b126ab85",
+    "exact_pinned": true
+  },
+  {
+    "source": "wep_prva",
+    "url": "https://www.sciencebase.gov/catalog/file/get/60ad2fa1d34e4043c850ed98",
+    "destination": "spheres-web/data/wep_prva.zip",
+    "expected_sha256": "a3baad0c7a8b8689f3ea811c772e9740b8012667582520929e4c9cb8fb4de630",
+    "expected_bytes": 1511529,
+    "response_url": "https://www.sciencebase.gov/catalog/file/get/60ad2fa1d34e4043c850ed98",
+    "content_type": "application/zip",
+    "last_modified": null,
+    "retrieval": "official_download",
+    "bytes": 1511529,
+    "sha256": "5c8540657585d213cf82c324d9af19948d9b3470394b57330ade6c30b7ed1918",
+    "exact_pinned": false,
+    "unaccepted_cache": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\final-tooling-20260922\\retrieved-wep_prva.zip"
+  }
+]

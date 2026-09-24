@@ -1,0 +1,15 @@
+{
+  "utc": "2026-09-22T23:18:09.145282+00:00",
+  "revision": "12278ea4c66863200fd10948350ae69391954cfa",
+  "scope": "Dirty source3-line optimization only; all tests, gates, other native inputs identical to26; not politicalcertification",
+  "baseline_manifest": "iteration-27-baseline-source-manifest.json",
+  "checked_native_inputs": 1932,
+  "only_native_change": [
+    {
+      "path": "spheres-sim/src/dyads.rs",
+      "before": "710a8121c1f93c3516b05e99ee37a3fd4323aa42be7023d6947c227076fe295f",
+      "after": "a9bc6689a343d1957130a3b38af4f020e2d22b4d8c2c9dfe77db4b3f89c2a98b"
+    }
+  ],
+  "all_native_tests_unchanged": true
+}

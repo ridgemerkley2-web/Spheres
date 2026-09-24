@@ -1,0 +1,49 @@
+{
+  "revision": "14f01c5a8bcd003723a1f122a32f11b684bc878e",
+  "base": "9d352f037ecf779258533554345d67a886aef006",
+  "source_method": "isolated git-show blobs; no checkout or merge",
+  "tests": [
+    {
+      "command": "python -X utf8 -m unittest discover -s tools/avatars -p 'test_tonga*.py'",
+      "passed": 58,
+      "failed": 0,
+      "log": "tonga-tests-final.log"
+    },
+    {
+      "command": "python -X utf8 -m unittest discover -s tools/avatars -p 'test_*research*.py'",
+      "passed": 79,
+      "failed": 0,
+      "overlaps_tonga_suite": true,
+      "log": "research-tests-final.log"
+    },
+    {
+      "command": "node --test tools/ui/check_leadership_research_review.cjs",
+      "passed": 11,
+      "failed": 0,
+      "log": "atlas-tests-final.log"
+    },
+    {
+      "command": "python -X utf8 tools/avatars/campaign_research.py --check",
+      "passed": true,
+      "log": "index-check.log"
+    },
+    {
+      "command": "git diff --check 9d352f03...14f01c5a",
+      "passed": true
+    }
+  ],
+  "fixture_correction": "Initial isolated fixture omitted predecessor handoffs02/04/07; added their exact unchanged branch blobs and reran; no source correction.",
+  "not_run": [
+    "full campaign census",
+    "full game suites"
+  ],
+  "artifact_sha256": {
+    "atlas-tests-final.log": "c14601523378f9485daf396966a6839453119fb638b7174806e7573c500dcb3a",
+    "branch-provenance.json": "328dd2eef7cb9ce27f0da36328d3313a3a1309d9565a96fffd60d20bf2ccb752",
+    "index-check.log": "cf762baf34aef48e31c02d1d05a6c04c09b5f8945c92618b5f46a619851f0a37",
+    "README.md": "d4e1ed7afb4cbec5153c1373792bd6b98ba6fc414df1efc2518fc68dfc9e4e38",
+    "research-tests-final.log": "e3dd11243c4d29cd1f1893b1b5d2593068f712f0f0fa84b38b34819bdf6074a4",
+    "source-fetch.json": "bcd66063a8d78f8552888ee7885b06c01a83c214492af549a232b97c86767dd0",
+    "tonga-tests-final.log": "cf0861443e047c14f1dc670f68764598bfe45b418ab09529cc99f42c98f874cd"
+  }
+}

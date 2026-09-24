@@ -1,0 +1,35 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://web.archive.org/web/20080807055636id_/http://www.pmo.gov.to:80/index.php?option=com_content&task=view&id=235&Itemid=29",
+  "original_url": "http://www.pmo.gov.to/index.php?option=com_content&task=view&id=235&Itemid=29",
+  "archive_capture_utc": "2008-08-07T05:56:36Z",
+  "accessed_date": "2026-09-21",
+  "published_date": "2008-07-30",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 27576,
+  "source_response_sha256": "8fa1b7c092d03dbf48aa4d6a5075f22f3ce2bfc7352c7a13a3f706217ba64e75",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original PMO page, captured at 2008-08-07T05:56:36Z; the original official page is no longer served. The capture bytes were downloaded and hashed before extraction on 2026-09-21 (local); a second download for this packet matched. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_crown_gtv_taumafa_kava_held_20080730",
+      "text": "The release datelined 'From the Office of thr Primer Minister, Nuku'alofa, 30 Jul 2008' [as printed] says that the King's traditional installation at the taumafa kava ceremony 'took place today (July 30th)' at Pangai Lahi, near the royal palace. It is issued by Tu'ivanuavou, Keeper of the Palace Records and Master of the Royal Household, on 30 July 2008.",
+      "attested_on": "2008-07-30",
+      "locator": "Dateline and first paragraph; issuing line at the end",
+      "uncertainty": "Post-event occurrence record for the traditional installation. The venue is named Pangai Lahi here and Mala'e Pangai in the programme (to_crown_gtv_taumafa_kava_scheduled_20080730); both names are kept as printed."
+    },
+    {
+      "id": "to_crown_gtv_taumafa_kava_declaration_20080730",
+      "text": "The same release reports that the talking chief Motu'apuaka declared at the ceremony that from that moment His Majesty became King of Tonga, and it says that to Tongans the taumafa kava was King George's true coronation.",
+      "attested_on": "2008-07-30",
+      "locator": "Paragraph 2 and the paragraph before the closing acclamation",
+      "uncertainty": "A customary declaration and a cultural characterisation, reported by the palace. They are not the constitutional accession, which followed from the devolution of the Crown on 11 September 2006 (TO-CROWN-04), nor the church coronation of 1 August 2008, and they are not used as a start date."
+    }
+  ],
+  "scope_note": "Palace release carried on the PMO website (raw Internet Archive capture of 7 August 2008, 05:56:36 UTC). Located by the independent check among files downloaded but not imported by the researcher. Only the occurrence, the venue and the reported declaration are imported; the ceremonial detail, participants and regalia are not.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  }
+}

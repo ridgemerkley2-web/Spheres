@@ -21,6 +21,10 @@ TARGET = ROOT / 'spheres-web/ui/lake-surfaces.json'
 SOURCE_SHA = '587df22034639230899498775d6272966c93adcfbda831fc704bb36b6cc9d681'
 LAKES = {'Lake Baikal': 11, 'Lake Erie': 9, 'Lake Huron': 8,
          'Lake Michigan': 6, 'Lake Ontario': 7, 'Lake Superior': 5}
+# The detailed lakes integrated in S04 came from 541a6b11's make_lake_rings.py:
+# 0.012 canvas units (about 200 m at the equator), not the river bake's 0.4.
+# Both use the same Robinson projection, Douglas-Peucker and two-decimal paths.
+SHORELINE_EPS = 0.012
 
 
 def sha(data):
@@ -32,6 +36,39 @@ def fnv(text):
     for byte in text.encode('ascii'):
         value = ((value ^ byte) * 16777619) & 0xffffffff
     return value
+
+
+def surface_records(features, rows, paths):
+    # Reuse projection helpers without executing the river/simulation bake.
+    helper = ROOT / 'tools/terrain/make_rivers.py'
+    namespace = {'__file__': str(helper)}
+    exec(helper.read_text(encoding='utf-8').split('# --- rivers ')[0], namespace)
+    result, seen = [], set()
+    for feature in features:
+        name = feature['properties'].get('name')
+        if name not in LAKES:
+            continue
+        if name in seen:
+            raise ValueError(f'{name} appears more than once in Natural Earth')
+        seen.add(name)
+        geometry = feature['geometry']
+        if geometry['type'] not in ('Polygon', 'MultiPolygon'):
+            raise ValueError(f'{name} has no polygon shoreline')
+        polygons = geometry['coordinates'] if geometry['type'] == 'MultiPolygon' else [geometry['coordinates']]
+        rings = [[point[:2] for point in polygon[0]] for polygon in polygons if polygon and len(polygon[0]) >= 4]
+        path = namespace['path_closed']([
+            namespace['project_part'](ring, eps=SHORELINE_EPS) for ring in rings])
+        if not path or paths.count(path) != 1:
+            raise ValueError(f'{name} no longer matches exactly one shipped shoreline')
+        record = rows[LAKES[name]]
+        result.append({'name': name, 'lake_index': paths.index(path), 'path_fnv1a': fnv(path),
+                       'path_sha256': sha(path.encode('ascii')), 'surface_metres': int(record['Elevation']),
+                       'hydrolakes_id': LAKES[name], 'hydrolakes_name': record['Lake_name'],
+                       'hydrolakes_elevation_field': record['Elevation']})
+    if seen != set(LAKES):
+        raise ValueError('A reviewed lake is absent from Natural Earth')
+    result.sort(key=lambda lake: lake['lake_index'])
+    return result
 
 
 def build(args):
@@ -59,34 +96,11 @@ def build(args):
             break
     if len(rows) != len(LAKES):
         raise ValueError('A reviewed lake is absent from HydroLAKES')
-    # Reuse the exact existing projection/simplification functions without
-    # executing make_rivers.py's independent generation/write pipeline.
-    helper = ROOT / 'tools/terrain/make_rivers.py'
-    namespace = {'__file__': str(helper)}
-    exec(helper.read_text(encoding='utf-8').split('# --- rivers ')[0], namespace)
     rivers = (ROOT / 'spheres-web/ui/rivers.js').read_text(encoding='utf-8')
     paths = json.loads(re.search(r'lakes:(\[.*\])};', rivers, re.S)[1])
     natural_earth_bytes = Path(args.natural_earth).read_bytes()
     features = json.loads(natural_earth_bytes)['features']
-    result = []
-    for feature in features:
-        name = feature['properties'].get('name')
-        if name not in LAKES:
-            continue
-        geometry = feature['geometry']
-        polygons = geometry['coordinates'] if geometry['type'] == 'MultiPolygon' else [geometry['coordinates']]
-        rings = [[point[:2] for point in polygon[0]] for polygon in polygons if polygon and len(polygon[0]) >= 4]
-        path = namespace['path_closed']([namespace['project_part'](ring) for ring in rings])
-        if paths.count(path) != 1:
-            raise ValueError(f'{name} no longer matches exactly one shipped shoreline')
-        record = rows[LAKES[name]]
-        result.append({'name': name, 'lake_index': paths.index(path), 'path_fnv1a': fnv(path),
-                       'path_sha256': sha(path.encode('ascii')), 'surface_metres': int(record['Elevation']),
-                       'hydrolakes_id': LAKES[name], 'hydrolakes_name': record['Lake_name'],
-                       'hydrolakes_elevation_field': record['Elevation']})
-    if len(result) != len(LAKES):
-        raise ValueError('A reviewed lake is absent from Natural Earth')
-    result.sort(key=lambda lake: lake['lake_index'])
+    result = surface_records(features, rows, paths)
     return {'product': 'Water-surface correction for the six rendered ETOPO bed lakes',
             'scope': 'Visual terrain and picking only; no simulation or historical water-level model.',
             'method': 'Transcribe HydroLAKES v1 Elevation. Apply only inside the exact existing RIVERS.lakes path, verified against the original Natural Earth projection pipeline. Other lake and land elevations remain NOAA ETOPO.',

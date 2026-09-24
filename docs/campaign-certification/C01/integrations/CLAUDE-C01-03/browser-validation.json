@@ -1,0 +1,258 @@
+{
+  "format": "spheres-s10h-research-browser/v1",
+  "revision": "5a63d7b6060d07c15b2069c611f1b0716a488bfe",
+  "clean_before": false,
+  "started_utc": "2026-09-22T18:17:33.386Z",
+  "scope": "Static research references only. No game server, campaign save, command or elapsed campaign time.",
+  "errors": [],
+  "countries": [
+    {
+      "nation": "Brazil",
+      "organization_observations": 31,
+      "institution_observations": 0,
+      "roles_filter": 0,
+      "first_claim_exact": true
+    },
+    {
+      "nation": "France",
+      "organization_observations": 635,
+      "institution_observations": 0,
+      "roles_filter": 0,
+      "first_claim_exact": true
+    },
+    {
+      "nation": "India",
+      "organization_observations": 82,
+      "institution_observations": 0,
+      "roles_filter": 0,
+      "first_claim_exact": true
+    },
+    {
+      "nation": "Japan",
+      "organization_observations": 16,
+      "institution_observations": 7,
+      "roles_filter": 3,
+      "first_claim_exact": true
+    },
+    {
+      "nation": "Russia",
+      "organization_observations": 14,
+      "institution_observations": 5,
+      "roles_filter": 5,
+      "first_claim_exact": true
+    },
+    {
+      "nation": "SaudiArabia",
+      "organization_observations": 6,
+      "institution_observations": 6,
+      "roles_filter": 6,
+      "first_claim_exact": true
+    },
+    {
+      "nation": "SouthAfrica",
+      "organization_observations": 52,
+      "institution_observations": 1,
+      "roles_filter": 2,
+      "first_claim_exact": true
+    },
+    {
+      "nation": "Tonga",
+      "organization_observations": 4,
+      "institution_observations": 5,
+      "roles_filter": 8,
+      "first_claim_exact": true
+    },
+    {
+      "nation": "USSR",
+      "organization_observations": 1,
+      "institution_observations": 3,
+      "roles_filter": 4,
+      "first_claim_exact": true
+    }
+  ],
+  "source_files": {
+    "tools/ui/leadership-research-review.html": "9607eec1a1228503da790f4c0a7b336de32cad3100109766a5429f73c9bccc1c",
+    "tools/ui/leadership-research-review.css": "65c8a20de6bdaaa1210ef862f1fbfd16427c9d7ccbb6912f5ec6603b3d38bef3",
+    "tools/ui/leadership-research-review.js": "cba865542ffb80e3762f1856c803063206c6a1d85ea298c71f6be90a596aa90c",
+    "tools/ui/ci-leadership-research-browser.cjs": "30f0ca129f9caba207a8fc0dc96437481e88f15f6bbe5cf798b126e4b6365763",
+    "docs/campaign-certification/C01/research-index.json": "37df1997e1e4b1acf5f6d9dffc2445c8c7edd2f137394ad7e352a75f2bbfe9ba",
+    "docs/campaign-certification/C01/research/brazil.json": "4709177ebd35439933819a9319a7aca829b217bc7e486280705a7acdbf89ef66",
+    "docs/campaign-certification/C01/research/france.json": "6ac88df4bfc04728352b644ec419355bec519bb3ee8932dcf1df25b2964b112c",
+    "docs/campaign-certification/C01/research/india.json": "25e00e7364722357290cb785502abad018e60d512221cadd7fa5785f7569a4ae",
+    "docs/campaign-certification/C01/research/japan.json": "2aaa46d504ee151f5d92ee25849f7773db9c49ce7597f6ac87f5921b753ed573",
+    "docs/campaign-certification/C01/research/russia.json": "3ff8b214e21092420135927b0913e2a51b15baa08687444834d204cbb0fe12a1",
+    "docs/campaign-certification/C01/research/saudi-arabia.json": "8c432b519fd01641e23de609fcfc6c98d893ab177be1038faf7b0d9cb0f45490",
+    "docs/campaign-certification/C01/research/south-africa.json": "ce1d742da90c1765fdacb5627a6808bc88d86dbee62599d50e605f567b92c609",
+    "docs/campaign-certification/C01/research/tonga.json": "ba51c2f077887ea6d8791b82c210fe3259066b08b3cf4a5f2ecb6ef91d44ac69",
+    "docs/campaign-certification/C01/research/ussr.json": "7130e97ff0fbfa8224e787b167835395cea2127fa3e567ae75e6604a752c3f57",
+    "tools/avatars/campaign_research.py": "82294ea6e849736551d2688e01e48fade211aed93ca85a2eb674ecee9cbb791b",
+    "tools/avatars/import_cnccfp_census.py": "4a8df4c840e57a40c646d8fce582bf9e0ca54712771759bfc9f1d7843ebe479c",
+    "docs/campaign-certification/C01/countries.json": "3f3ea61354fadbf85d182b6593f5cdf13e13a856d3fe59b64e1f3305c6622ca4",
+    "docs/campaign-certification/C01/represented-organizations.json": "85603b71cc5488937fff54f38dbf36ad18af6124d6dc3a492dbb20760d2c8e66"
+  },
+  "appointment_effectiveness": [
+    {
+      "entry": "to_prime_minister",
+      "name": "Siaosi 'Ofakivahafolau Sovaleni",
+      "from": "2021-12-27",
+      "until": "2024-12-09",
+      "end_claim_ids": [
+        "to_sovaleni_resignation_statement_20241209",
+        "to_palace_acceptance_letter_20241209"
+      ],
+      "end_not_inferred": true,
+      "end_basis": "explicit_resignation_and_acceptance"
+    },
+    {
+      "entry": "to_cabinet",
+      "name": "Poasi Mataele Tei",
+      "from": "2021-12-28",
+      "until": null,
+      "end_not_inferred": true,
+      "end_basis": "not_established"
+    },
+    {
+      "entry": "to_cabinet",
+      "name": "Taniela Likuohihifo Fusimalohi",
+      "from": "2025-01-28",
+      "until": null,
+      "end_not_inferred": true,
+      "end_basis": "not_established"
+    }
+  ],
+  "society_observations": {
+    "separate_offices": 3,
+    "observation_period": [
+      "2022-04-19",
+      "2022-04-21"
+    ],
+    "terms_not_inferred": true,
+    "uncertainty_visible": true
+  },
+  "pagination": {
+    "first_page": 25,
+    "next_page": 50,
+    "opened_evidence_preserved": true
+  },
+  "empty_country": {
+    "nation": "UK",
+    "existing_game_party_rows": 4,
+    "party_count_matches_inventory": true,
+    "undiscovered_organization_count": "Unknown",
+    "no_stale_observations": true
+  },
+  "keyboard": {
+    "summary_reached_with_tab": true,
+    "opened_with_enter": true,
+    "focus_outline": {
+      "focused": true,
+      "offset": "-4px",
+      "width": "3px"
+    }
+  },
+  "layouts": [
+    {
+      "width": 1440,
+      "scroll_width": 1440,
+      "viewport": 1440,
+      "overflow": []
+    },
+    {
+      "width": 1440,
+      "scroll_width": 1440,
+      "viewport": 1440,
+      "overflow": []
+    },
+    {
+      "width": 390,
+      "scroll_width": 390,
+      "viewport": 390,
+      "overflow": []
+    },
+    {
+      "width": 390,
+      "scroll_width": 390,
+      "viewport": 390,
+      "overflow": []
+    },
+    {
+      "width": 320,
+      "scroll_width": 320,
+      "viewport": 320,
+      "overflow": []
+    },
+    {
+      "width": 320,
+      "scroll_width": 320,
+      "viewport": 320,
+      "overflow": []
+    }
+  ],
+  "authored_error_cases": [
+    {
+      "kind": "tampered_packet_bytes",
+      "rejected": true,
+      "old_data_absent": true
+    },
+    {
+      "kind": "superseded_country_request",
+      "latest_country": "Japan",
+      "old_data_absent": true
+    }
+  ],
+  "deep_link_reload": {
+    "country": "Tonga",
+    "preserved": true
+  },
+  "revision_after": "5a63d7b6060d07c15b2069c611f1b0716a488bfe",
+  "clean_after": false,
+  "source_files_unchanged": true,
+  "passed": true,
+  "finished_utc": "2026-09-22T18:17:36.954Z",
+  "full_result_sha256": "01b99568e8e8df9f1bdab62e5c938c804b914034ef7e47f48848b8640cb983a2",
+  "full_result_bytes": 12202,
+  "request_count": 37,
+  "screenshots": [
+    "to_prime_minister-appointment-2021-12-27-1440.png",
+    "to_prime_minister-appointment-2021-12-27-390.png",
+    "to_prime_minister-appointment-2021-12-27-320.png",
+    "to_cabinet-appointment-2021-12-28-1440.png",
+    "to_cabinet-appointment-2021-12-28-390.png",
+    "to_cabinet-appointment-2021-12-28-320.png",
+    "to_cabinet-appointment-2025-01-28-1440.png",
+    "to_cabinet-appointment-2025-01-28-390.png",
+    "to_cabinet-appointment-2025-01-28-320.png",
+    "tonga-society-1440.png",
+    "tonga-society-390.png",
+    "tonga-society-320.png",
+    "atlas-keyboard-focus.png",
+    "atlas-1440.png",
+    "atlas-role-1440.png",
+    "atlas-390.png",
+    "atlas-role-390.png",
+    "atlas-320.png",
+    "atlas-role-320.png"
+  ],
+  "screenshot_hashes": {
+    "to_prime_minister-appointment-2021-12-27-1440.png": "b52ca48ae235a53dd42249cd8cc768465b26d3d75968246e4c40311fad099205",
+    "to_prime_minister-appointment-2021-12-27-390.png": "248b4c7be7f2185810175ed3feed123d1c8a7e6aa135587206555c81c0cdb463",
+    "to_prime_minister-appointment-2021-12-27-320.png": "f8919b6f0de08fced3cc606ec4b78404226b5abdbf92618774820f9dc6d06797",
+    "to_cabinet-appointment-2021-12-28-1440.png": "19060ebe3e089fcd0b10f4b11d9e87b31eeef69fd14c4b516ea1d547c4a68efe",
+    "to_cabinet-appointment-2021-12-28-390.png": "03512bbc322b1c32617c5bf61592f60d080311cc887824049ae7bb9d029d2e42",
+    "to_cabinet-appointment-2021-12-28-320.png": "925d5bbd968abee4e77ab9f6b9e22dbd3d5cea1389aa6e1e21e7f3111ab644a1",
+    "to_cabinet-appointment-2025-01-28-1440.png": "b4fb89a1ecca945339e67d3c96bc43111a15d4aff45c13fbb1b94f9b241765df",
+    "to_cabinet-appointment-2025-01-28-390.png": "8805977adaa2bca7e3ed1b0582b6d8eefa100679dd821d43597e0d87e0088fb8",
+    "to_cabinet-appointment-2025-01-28-320.png": "aa94aa87b0503aed7a20771e4e2827e2c6d5785232f8224b4cdc90301ad6ca96",
+    "tonga-society-1440.png": "47264301498c9480c31fb5ceed2c0070e0f516eaa488897d82922d76a6362d68",
+    "tonga-society-390.png": "1938d08d0183998084e66e43745b5f1a26d46f0d438e865a38ce7876bdb3e756",
+    "tonga-society-320.png": "23deb5b588e4ec0726ac84dcc076b920b86c8f3b04d8eb254184f8b36620ab2a",
+    "atlas-keyboard-focus.png": "2e18b9cbc20dd42b777de5d0d63879f17fd84ddbf6b594e53fccc456e4a35c97",
+    "atlas-1440.png": "ddd36d3d4297545b5cbeb1338470f83b6099f01334ca2f6649c008d90ce8ba2f",
+    "atlas-role-1440.png": "288e118f7c5777580cd5a3775eedf04fad424fd4d3aa13ee2dea5dfdc57e39fc",
+    "atlas-390.png": "d837853cfddfac5c01f81de5ef849541c436fef55f6e5263bea9572b4255c765",
+    "atlas-role-390.png": "0837c2d4eab39668aa17adfd4fda6c2f3d95478318693751409ef449fee42d4f",
+    "atlas-320.png": "5d0b3df5962645d12325a9d6ea6d7c8502e660009b918317ba8d50a50cfd46f7",
+    "atlas-role-320.png": "301fac20f8c78e5f538293fae9605a8df6e2ab8159d11f42f477a7c15470048e"
+  },
+  "screenshot_storage": "Local evidence/claude-c01-03-integrated-browser-20260922; no images copied into repository"
+}

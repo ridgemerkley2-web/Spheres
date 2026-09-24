@@ -1,0 +1,35 @@
+{
+  "reviewer": "verify_linux_ci",
+  "mode": "read-only byte reconstruction",
+  "counts": [
+    {
+      "observed": 431,
+      "recorded": 431
+    },
+    {
+      "observed": 29,
+      "recorded": 29
+    },
+    {
+      "observed": 24,
+      "recorded": 24
+    },
+    {
+      "observed": 13,
+      "recorded": 13
+    },
+    {
+      "observed": 1,
+      "recorded": 1
+    },
+    {
+      "observed": 3,
+      "recorded": 3
+    }
+  ],
+  "total_sequences": 501.0,
+  "independent_restored_sha256": "6dc3b30e5fa4c967d5122d8d0b07e49650e29f5179e09a8ec4f80c3bf9a8ac98",
+  "current_source_sha256": "6dc3b30e5fa4c967d5122d8d0b07e49650e29f5179e09a8ec4f80c3bf9a8ac98",
+  "all_exact": true,
+  "scope": "All recorded replacements independently reproduce current source bytes. Corrupted build was not measured. This audit does not replace the corrected native build and tests."
+}

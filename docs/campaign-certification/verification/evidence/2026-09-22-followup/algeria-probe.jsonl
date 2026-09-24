@@ -1,0 +1,9 @@
+{"algeria_government_index":59,"all_json_field_differences":[{"new":"dz_fln","old":"dz_fis","path":"/governments/states/59/coalition/0"},{"new":0.0,"old":0.788152122878798,"path":"/governments/states/59/seats/0/1"},{"new":1.0,"old":0.21184787712120196,"path":"/governments/states/59/seats/1/1"}],"diff_scope_assertion":"passed","new_start":"0x6fc47dff64344b17","old_start":"0xe26e4bf8d6c60066","phase":"startup"}
+{"date":[2010,1,1],"new_hash":"0x4d2b187b81788c76","old_control_assertion":"passed","old_hash":"0x0cbd02497c30957c","phase":"default_240_months","seed":1990}
+{"date":[2010,1,1],"new_hash":"0x95e5fe35215c4fc9","phase":"seed_240_months","seed":0}
+{"date":[2010,1,1],"new_hash":"0x7bbec62d113c034b","phase":"seed_240_months","seed":1}
+{"date":[2010,1,1],"new_hash":"0xb3e5a927a2f9e509","phase":"seed_240_months","seed":2}
+{"date":[2010,1,1],"new_hash":"0x75c7ea1b2a4b46f8","phase":"seed_240_months","seed":3}
+{"date":[2010,1,1],"new_hash":"0x9a08dffbeab9da85","phase":"seed_240_months","seed":4}
+{"date":[2010,1,1],"new_hash":"0xa9a05daae84bd1bb","phase":"seed_240_months","seed":5}
+{"default_control_checks":2,"phase":"complete","seed_runs":6,"simulation_mode":"default headless monthly, no commands; only opening Algeria seat shares and coalition overlaid"}

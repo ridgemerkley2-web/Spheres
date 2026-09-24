@@ -1,0 +1,15 @@
+
+running 1 test
+
+thread 'tests::a_pact_drags_a_great_power_into_a_war_it_did_not_start' (21300) panicked at spheres-sim\src\lib.rs:8098:9:
+pacts pulled a great power into someone else's war in 2/12 runs
+test tests::a_pact_drags_a_great_power_into_a_war_it_did_not_start ... FAILED
+
+failures:
+
+failures:
+    tests::a_pact_drags_a_great_power_into_a_war_it_did_not_start
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 939 filtered out; finished in 5.62s
+

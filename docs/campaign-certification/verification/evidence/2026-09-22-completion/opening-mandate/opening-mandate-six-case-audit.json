@@ -1,0 +1,450 @@
+{
+  "format": "spheres-opening-mandate-audit/v1",
+  "as_of": "2026-09-22",
+  "scope": "Read-onlysixcasesrequestedforinitialmandatesemantics; no gameplay,data,flags,testsoracceptancechanges. Notcompleterostereligibilityaudit.",
+  "source_files": {
+    "spheres-sim\\src\\government.rs": "362c7768dcdc3a8e611ed3cf05c3a8bf31f1b67d3331ea52baa26d2881fd3d90",
+    "spheres-sim\\data\\leaders_1990.json": "cdc868e9c60ad7df6ca92d4d8a30e1b355cab953df46108f1328d7dc6ab46008"
+  },
+  "common_semantics": "ensureuniversallysetsbothelectedandunrestricted_mandatefalse. civilian_public_mandate returns0untiltheseflagschange; established_civilian_record canactivateafter6months. Nomodeledelectiondoesnotprovenohistoricalpopularmandate. Initialcoalitiontraceisoldercandidate11butparty/formationsourceunchangedforlistedcases; nosimulationrunbythisaudit.",
+  "cases": [
+    {
+      "nation": "Suriname",
+      "table_ballot_date": "1987-11-25",
+      "table_precedes_opening": true,
+      "assessment": "prior_competitive_ballot_with_military_constraints",
+      "current_code": {
+        "electoral_system": "Proportional",
+        "term_months": 60,
+        "next_election": [
+          1992,
+          11
+        ],
+        "transcribed_authoritarianism": 0.45,
+        "initial_elected": false,
+        "initial_unrestricted_mandate": false,
+        "initial_awaiting_first_election": false,
+        "current_initial_mandate_readout": 0,
+        "party_starts": [
+          {
+            "party": "sr_fdo",
+            "start": 0.855,
+            "normalized_start": 0.8715596330275229
+          },
+          {
+            "party": "sr_ndp",
+            "start": 0.093,
+            "normalized_start": 0.09480122324159021
+          },
+          {
+            "party": "sr_palu",
+            "start": 0.017,
+            "normalized_start": 0.017329255861365956
+          },
+          {
+            "party": "sr_pl",
+            "start": 0.016,
+            "normalized_start": 0.0163098878695209
+          }
+        ],
+        "leader": "Ramsewak Shankar",
+        "office": "President of the Republic",
+        "since": "1988-01-25",
+        "tie": {
+          "party": "sr_fdo"
+        },
+        "initial_coalition_from_existing_trace_or_regime_branch": [
+          "sr_fdo"
+        ]
+      },
+      "historically_supported_governing_party_ids": [
+        "sr_fdo"
+      ],
+      "sources": [
+        "dna_history",
+        "iachr_suriname",
+        "cia1990"
+      ],
+      "findings": "The National Assembly itself dates free secret general elections to 25 November 1987. IACHR records Front victory, 40 seats and Shankar inauguration on 25 January 1988, but constitutional Army/Council of State powers limited civilian sovereignty. This verifies a prior popular mandate, not unrestricted civilian control. Exact85.5% in code was not independently confirmed from a primary tally: the official result PDF was inaccessible and CIA1990 prints a coarse80%.",
+      "recommendation": "Positive provenance for a separate dated prior-ballot record; preserve military autonomy and existing vote values. Do not claim the precise historical share was reverified."
+    },
+    {
+      "nation": "Guatemala",
+      "table_ballot_date": "1985-11-03",
+      "table_precedes_opening": true,
+      "assessment": "prior_competitive_ballot_with_party_exclusion",
+      "current_code": {
+        "electoral_system": "Proportional",
+        "term_months": 60,
+        "next_election": [
+          1990,
+          11
+        ],
+        "transcribed_authoritarianism": 0.45,
+        "initial_elected": false,
+        "initial_unrestricted_mandate": false,
+        "initial_awaiting_first_election": false,
+        "current_initial_mandate_readout": 0,
+        "party_starts": [
+          {
+            "party": "gt_dcg",
+            "start": 0.3864,
+            "normalized_start": 0.3940042826552463
+          },
+          {
+            "party": "gt_ucn",
+            "start": 0.2023,
+            "normalized_start": 0.20628122769450394
+          },
+          {
+            "party": "gt_pdcn",
+            "start": 0.1378,
+            "normalized_start": 0.14051187926990924
+          },
+          {
+            "party": "gt_mln",
+            "start": 0.1256,
+            "normalized_start": 0.12807178545936573
+          },
+          {
+            "party": "gt_can",
+            "start": 0.0629,
+            "normalized_start": 0.06413786071173651
+          },
+          {
+            "party": "gt_psd",
+            "start": 0.0342,
+            "normalized_start": 0.03487304986234323
+          },
+          {
+            "party": "gt_pnr",
+            "start": 0.0315,
+            "normalized_start": 0.032119914346895075
+          }
+        ],
+        "leader": "Vinicio Cerezo",
+        "office": "President of the Republic",
+        "since": "1986-01-14",
+        "tie": {
+          "party": "gt_dcg"
+        },
+        "initial_coalition_from_existing_trace_or_regime_branch": [
+          "gt_dcg",
+          "gt_ucn"
+        ]
+      },
+      "historically_supported_governing_party_ids": [
+        "gt_dcg"
+      ],
+      "sources": [
+        "ipu_guatemala",
+        "iachr_guatemala",
+        "cia1990"
+      ],
+      "findings": "IPU confirms 3 November 1985 election, DCG38.7% and51of100seats, then Cerezo inauguration on14January1986. The code uses national-list38.64% but recomputes seats and forms DCG+UCN; UCN was the rival party, not proved part of the inherited administration. IACHR describes constitutional democratic government while reporting PGT legally outlawed and serious rights abuses.",
+      "recommendation": "Prior mandate belongs to Cerezo/DCG. Do not turn synthetic DCG+UCN coalition or presidential-runoff68.37% into one historical parliamentary popular share; do not certify every faction unrestricted."
+    },
+    {
+      "nation": "Guyana",
+      "table_ballot_date": "1985-12-09",
+      "table_precedes_opening": true,
+      "assessment": "declared_prior_result_with_fraud_allegations",
+      "current_code": {
+        "electoral_system": "Proportional",
+        "term_months": 60,
+        "next_election": [
+          1990,
+          12
+        ],
+        "transcribed_authoritarianism": 0.55,
+        "initial_elected": false,
+        "initial_unrestricted_mandate": false,
+        "initial_awaiting_first_election": false,
+        "current_initial_mandate_readout": 0,
+        "party_starts": [
+          {
+            "party": "gy_pnc",
+            "start": 0.785,
+            "normalized_start": 0.7921291624621595
+          },
+          {
+            "party": "gy_ppp",
+            "start": 0.158,
+            "normalized_start": 0.15943491422805248
+          },
+          {
+            "party": "gy_uf",
+            "start": 0.034,
+            "normalized_start": 0.0343087790110999
+          },
+          {
+            "party": "gy_wpa",
+            "start": 0.014,
+            "normalized_start": 0.014127144298688193
+          }
+        ],
+        "leader": "Desmond Hoyte",
+        "office": "President of Guyana",
+        "since": "1985-08-06",
+        "tie": {
+          "party": "gy_pnc"
+        },
+        "initial_coalition_from_existing_trace_or_regime_branch": [
+          "gy_pnc"
+        ]
+      },
+      "historically_supported_governing_party_ids": [
+        "gy_pnc"
+      ],
+      "sources": [
+        "ipu_guyana",
+        "cia1990"
+      ],
+      "findings": "IPU confirms9December1985, Hoyte/PNC, declared78.5% and42of53directlyelectedseats, but records opposition fraud/electoral-malpractice allegations and PPP withdrawal. The officeparty matches, but the published total is not evidence of freely expressed public consent.",
+      "recommendation": "Do not import as an unrestricted or quantified popular mandate without a distinct reliability model; preserve declared historical result as such."
+    },
+    {
+      "nation": "Comoros",
+      "table_ballot_date": "1990-03-11",
+      "table_precedes_opening": false,
+      "assessment": "future_result_interim_incumbent",
+      "current_code": {
+        "electoral_system": "TwoRound",
+        "term_months": 72,
+        "next_election": [
+          1990,
+          3
+        ],
+        "transcribed_authoritarianism": 0.58,
+        "initial_elected": false,
+        "initial_unrestricted_mandate": false,
+        "initial_awaiting_first_election": false,
+        "current_initial_mandate_readout": 0,
+        "party_starts": [
+          {
+            "party": "km_udzima",
+            "start": 0.551,
+            "normalized_start": 0.551
+          },
+          {
+            "party": "km_undc",
+            "start": 0.449,
+            "normalized_start": 0.449
+          }
+        ],
+        "leader": null,
+        "office": "Interim President of the Republic (former president of the Supreme Court, installed after Abdallah's assassination)",
+        "since": "1989-11-27",
+        "tie": null,
+        "initial_coalition_from_existing_trace_or_regime_branch": [
+          "km_udzima"
+        ]
+      },
+      "historically_supported_governing_party_ids": [],
+      "sources": [
+        "un_comoros_index",
+        "cia1990"
+      ],
+      "findings": "The current table expressly uses the future4/11March1990presidentialresult. The leader row refuses a preopeningparty tie and records the interim presidency afterAbdallahassassination. UN indexedprimaryreport records Djohar actingPresident inDecember1989 and winning11March1990; CIA1990 politicalupdatesalso carrythatlaterdate.",
+      "recommendation": "No inherited ballot mandate for January1990. Do not infer km_udzima affiliation backward from March results; await actual game ballot."
+    },
+    {
+      "nation": "SaoTome",
+      "table_ballot_date": "1991-01-20",
+      "table_precedes_opening": false,
+      "assessment": "future_result_one_party_regime",
+      "current_code": {
+        "electoral_system": "Proportional",
+        "term_months": 48,
+        "next_election": [
+          0,
+          0
+        ],
+        "transcribed_authoritarianism": 0.62,
+        "initial_elected": false,
+        "initial_unrestricted_mandate": false,
+        "initial_awaiting_first_election": false,
+        "current_initial_mandate_readout": 0,
+        "party_starts": [
+          {
+            "party": "st_pcd",
+            "start": 0.5933,
+            "normalized_start": 0.5933
+          },
+          {
+            "party": "st_mlstp",
+            "start": 0.3331,
+            "normalized_start": 0.3331
+          },
+          {
+            "party": "st_codo",
+            "start": 0.0571,
+            "normalized_start": 0.0571
+          },
+          {
+            "party": "st_fcd",
+            "start": 0.0165,
+            "normalized_start": 0.0165
+          }
+        ],
+        "leader": "Manuel Pinto da Costa",
+        "office": "President of the Republic and Secretary-General of the MLSTP",
+        "since": "1975-07-12",
+        "tie": {
+          "party": "st_mlstp"
+        },
+        "initial_coalition_from_existing_trace_or_regime_branch": []
+      },
+      "historically_supported_governing_party_ids": [
+        "st_mlstp"
+      ],
+      "sources": [
+        "stp_parliament",
+        "ipu_saotome",
+        "cia1990"
+      ],
+      "findings": "The national parliament dates abolition of onepartybases to1990constitutionalreform and firstmultipartyballot20January1991. January1990incumbentPintodaCosta/MLSTP wasnot the futurePCDwinninggovernment. The codefuturevalidpartypercentages normalize the IPUprintedrawpercentages, so the different denominators are not evidenceof a newopeningballot.",
+      "recommendation": "No January1990competitiveballotmandate. Dormantfutureparties cannot confer it; actualopeningregimeprogramme remainsCommunist."
+    },
+    {
+      "nation": "Myanmar",
+      "table_ballot_date": "1990-05-27",
+      "table_precedes_opening": false,
+      "assessment": "future_result_military_regime",
+      "current_code": {
+        "electoral_system": "FirstPastThePost",
+        "term_months": 60,
+        "next_election": [
+          0,
+          0
+        ],
+        "transcribed_authoritarianism": 0.9,
+        "initial_elected": false,
+        "initial_unrestricted_mandate": false,
+        "initial_awaiting_first_election": false,
+        "current_initial_mandate_readout": 0,
+        "party_starts": [
+          {
+            "party": "mm_nld",
+            "start": 0.599,
+            "normalized_start": 0.693287037037037
+          },
+          {
+            "party": "mm_nup",
+            "start": 0.212,
+            "normalized_start": 0.24537037037037038
+          },
+          {
+            "party": "mm_snld",
+            "start": 0.017,
+            "normalized_start": 0.019675925925925927
+          },
+          {
+            "party": "mm_ald",
+            "start": 0.012,
+            "normalized_start": 0.01388888888888889
+          },
+          {
+            "party": "mm_mndf",
+            "start": 0.011,
+            "normalized_start": 0.01273148148148148
+          },
+          {
+            "party": "mm_pnd",
+            "start": 0.006,
+            "normalized_start": 0.006944444444444445
+          },
+          {
+            "party": "mm_cnld",
+            "start": 0.004,
+            "normalized_start": 0.004629629629629629
+          },
+          {
+            "party": "mm_upno",
+            "start": 0.003,
+            "normalized_start": 0.0034722222222222225
+          }
+        ],
+        "leader": "Saw Maung",
+        "office": "Chairman of the State Law and Order Restoration Council",
+        "since": "1988-09-18",
+        "tie": {
+          "pillar": "Army"
+        },
+        "initial_coalition_from_existing_trace_or_regime_branch": []
+      },
+      "historically_supported_governing_party_ids": [],
+      "sources": [
+        "un_myanmar_index",
+        "cia1990"
+      ],
+      "findings": "CIA1990records SawMaung/SLORCmilitarygovernment, constitution suspended and legislature dissolved sinceSeptember1988, withMay1990electionstillforthcoming. UN indexedreport recordsNLD392seats in27May1990election; this cannot establish a January1990mandate forArmy-tiedSawMaung. The table itself identifies its futuredate.",
+      "recommendation": "No inheritedcivilianballotmandate. A futureNLDresultneverretroactively legitimizes incumbentmilitaryoffice."
+    }
+  ],
+  "sources": {
+    "dna_history": {
+      "url": "https://www.dna.sr/achtergrond-info/geschiedenis-dna/een-korte-geschiedenis/",
+      "status": "full_page_read",
+      "locator": "1987transitionparagraph; generalfreeandsecretelections25November1987"
+    },
+    "iachr_suriname": {
+      "url": "https://cidh.oas.org/annualrep/87.88eng/chap4e.htm",
+      "status": "full_page_read",
+      "locator": "Constitutionarticle177/CouncilofState; electionandinaugurationparagraph",
+      "date_conflict": "OneparagraphsaysNovember15; laterparagraphsaysNovember25. Officialparliamenthistoryconfirms25. Noimportofinconsistentday."
+    },
+    "ipu_guatemala": {
+      "url": "https://data.ipu.org/election-summary/PDF/GUATEMALA_1985_E.PDF",
+      "status": "full_pdf_text_read",
+      "locator": "ChronicleXX(1985–1986)pp79–81; electiondatep79, resultandgovernmentp80"
+    },
+    "iachr_guatemala": {
+      "url": "https://cidh.oas.org/annualrep/87.88eng/chap4b.htm",
+      "status": "full_page_read",
+      "locator": "democraticconstitutionalgovernment; sectionmunicipalelections24April1988, PGToutlawed",
+      "date_conflict": "ReportusesJanuary16inaugurationwhileIPUandcurrentleaderrecorduseJanuary14; do notrepinleaderdatefromthisreport."
+    },
+    "ipu_guyana": {
+      "url": "https://data.ipu.org/election-summary/PDF/GUYANA_1985_E.PDF",
+      "status": "full_pdf_text_read",
+      "locator": "ChronicleXX(1985–1986)pp83–84; p84conduct/electiontable"
+    },
+    "un_comoros_index": {
+      "url": "https://digitallibrary.un.org/nanna/record/105269/files/E_CN.4_1991_14-EN.pdf?registerDownload=1&version=1&withMetadata=0&withWatermark=0",
+      "status": "indexed_primary_text_only; directopen403",
+      "locator": "E/CN.4/1991/14p19paras70–73",
+      "limitation": "Searchindextextread, fullPDFnotfetched."
+    },
+    "stp_parliament": {
+      "url": "https://www2.camara.leg.br/saotomeeprincipe/parlamento/historial",
+      "status": "full_page_read",
+      "locator": "IIIlegislature1985–1991; constitutionalreformandfirstmultipartyballot"
+    },
+    "ipu_saotome": {
+      "url": "https://data.ipu.org/election-summary/HTML/2275_91.htm",
+      "status": "full_page_read",
+      "locator": "20January1991background/resultstable"
+    },
+    "un_myanmar_index": {
+      "url": "https://digitallibrary.un.org/record/228428/files/E_CN.4_1996_65-EN.pdf",
+      "status": "indexed_primary_text_only; directopen403",
+      "locator": "E/CN.4/1996/65backgroundon27May1990ballot",
+      "limitation": "No newseatdenominatorclaim: indexedUN485vs code492 requires separateauditifused; notneededtoexcludeJanuarymandate."
+    },
+    "cia1990": {
+      "url": "https://www.gutenberg.org/cache/epub/14/pg14-images.html",
+      "status": "existing_complete_verified_primary_publication_text_read",
+      "cache": "cia1990-823bfd2f.html",
+      "sha256": "823bfd2f5b6e1b15cea46697ba2c8615c4d39789024ba91e874bb1576793517e",
+      "locator": "sixcountriesGovernment/Leaders/Electionssections",
+      "edition_note": "GeneralinformationJan1withpoliticalupdatesMar30; explicitlycheckelectiondatesratherthanassumeallcontentpreopening."
+    },
+    "suriname_official_tally_unavailable": {
+      "url": "https://verkiezingen.gov.sr/storage/pdf/verslagen/1987/uitslag-verkiezingen-25-november-1987-okb.pdf",
+      "status": "indexedtitlelocated; webopenfailed; directread403",
+      "limitation": "Exactvotepercentagesnotindependentlyread."
+    }
+  },
+  "summary": "SurinameandGuatemalasupportdatedpriorpopularmandatefactswithrestrictions; Guyanaresultdisputed; Comoros/SaoTome/Myanmartablespostdateopening. Eligibility,strength,restrictionandmodeledelectioncompletionmustremaindistinct."
+}

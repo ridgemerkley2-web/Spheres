@@ -1,0 +1,27 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://parliament.gov.to/en/media-centre/latest-news/parliament-to-sit-of-friday-31st-january",
+  "accessed_date": "2026-09-21",
+  "published_date": "2025-01-29",
+  "access_method": "fetched_original_html_and_article_text_read",
+  "source_response_bytes": 54109,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "provenance_note": "Fetched by direct HTTPS request on 2026-09-22 UTC (2026-09-21 local), HTTP 200, 54,109 bytes. The independent check re-fetched it the same day with a cache-busting query and read the same article text and metadata; its byte count differed by a few bytes. Each response embeds a per-request form token and the page displays a live hit counter, so no response hash is asserted. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_oath_sitting_notice_20250129",
+      "text": "The Assembly notice created 29 January 2025 states that the Legislative Assembly will convene on Friday 31 January 2025 at 11:00am, that Cabinet members appointed by His Majesty will take their oaths of office in Parliament at that sitting, and that selection of Standing Committee members is also on the agenda.",
+      "attested_on": "2025-01-29",
+      "locator": "Article body",
+      "uncertainty": "Notice of a forthcoming sitting."
+    }
+  ],
+  "scope_note": "Assembly news notice created 29 January 2025 at 08:05 (+13:00) and last updated 8 February 2025; the title is recorded as printed. The 'created' date is the page's publication metadata. Joomla page: each response embeds a per-request form token and the page shows a live hit counter, so no response hash is asserted.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Article text, its created or issue date and its page metadata read; no images reviewed."
+  }
+}

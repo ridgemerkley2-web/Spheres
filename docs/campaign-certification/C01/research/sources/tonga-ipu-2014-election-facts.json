@@ -1,0 +1,52 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://data.ipu.org/election-summary/HTML/2317_14.htm",
+  "accessed_date": "2026-09-21",
+  "published_date": null,
+  "access_method": "browser_fetched_original_html_and_page_text_read",
+  "source_response_bytes": 15787,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "normalized_response": {
+    "bytes": 14849,
+    "sha256": "c3b08924ed7547489f2dd744e5f69c1f28370f61f6095a5f602178d4ca0620d7",
+    "rule": "Remove from the raw response bytes the single injected element that begins '<script>(function(){function c(){' and ends at its '</script>' (938 bytes, immediately before '</body>'), then hash the remaining bytes. No other byte is changed.",
+    "note": "The researcher recorded 14,849 bytes and this SHA-256 from two in-browser fetches earlier on 2026-09-21 (local). On recheck the same day, raw in-browser fetches returned 15,787 bytes with a different SHA-256 each time because of the injected script; after the rule, two fetches each gave exactly the recorded bytes and SHA-256 (checker, and again for this packet)."
+  },
+  "provenance_note": "Read in a browser tab and fetched in-page on 2026-09-21 (local); a direct non-browser request returned HTTP 403. The raw response is 15,787 bytes but embeds a per-request Cloudflare challenge script, so no raw response hash is asserted; normalized_response gives the reproducible hash and its rule. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_ipu_2014_dpfi_pohiva_leader",
+      "text": "IPU states that the Democratic Party of the Friendly Islands (DPFI), led by the veteran pro-democracy MP 'Akilisi Pohiva, took eight of the 17 directly elected seats at the 27 November 2014 election, and that two of the independents who won seats joined the DPFI after the elections. It calls Pohiva the DPFI leader during the election campaign, and its summary fields give two parties contesting and one winning seats.",
+      "attested_on": "2014-11-27",
+      "locator": "'Purpose of elections', paragraphs 1-2; summary fields 'Number of parties contesting the election' and 'Number of parties winning seats'",
+      "uncertainty": "IPU-only: an interparliamentary summary citing Legislative Assembly communications, not a Legislative Assembly, registry or court record. A leader attestation at the election, not a leadership start or term. The two independents' joining dates are not given. IPU's 2014 party counts differ in approach from its later pages: 2017 says candidates formally ran as independents, 2021 says Tonga has no political parties although some candidates ran under group banners, and 2025 reads 'no party system or candidates stood as independents'; the eight-seat figure is IPU's statement and is not used as a party seat total."
+    },
+    {
+      "id": "to_ipu_2014_pohiva_assembly_selection_20141229",
+      "text": "IPU states that on 29 December 2014 the new Legislative Assembly elected DPFI leader Pohiva as the new Prime Minister; its summary gives 29 December 2014 as the date of the new parliament's first session.",
+      "attested_on": "2014-12-29",
+      "locator": "'Purpose of elections', paragraph 3; 'Date of the first session of the new parliament'",
+      "uncertainty": "The Assembly's selection, not the royal appointment. No appointment instrument or effective date is in this source, and no to_pm holder is created from it."
+    },
+    {
+      "id": "to_ipu_2014_royal_endorsement_following_day",
+      "text": "IPU states that the endorsement of King Tupou VI was received 'the following day' after the 29 December 2014 Assembly selection, in the sentence reporting that the new Cabinet took office on 19 January 2015.",
+      "locator": "'Purpose of elections', paragraph 3",
+      "uncertainty": "No structured date is recorded: the day is given only relatively, and 30 December 2014 would be derived from that wording. The sentence joins the endorsement to the Cabinet's taking office, so whether the endorsement was of Pohiva's premiership or of the Cabinet is not explicit. No royal instrument was seen; this is not an appointment date."
+    },
+    {
+      "id": "to_ipu_2014_cabinet_took_office_20150119",
+      "text": "IPU states that the new 12-member Cabinet, comprising five DPFI members, one noble and six independent members, took office on 19 January 2015, and lists the Democratic Party of the Friendly Islands (DPFI) as the one party in government.",
+      "attested_on": "2015-01-19",
+      "locator": "'Purpose of elections', paragraph 3; 'Number of parties in government'; 'Names of parties in government'",
+      "uncertainty": "A Cabinet taking office, separate from the Assembly selection and the endorsement. No minister is named and no to_ministers or to_pm holder is created."
+    }
+  ],
+  "scope_note": "Legacy PARLINE summary read after the cutoff for its dated 2014 narrative and summary fields only. Publication date unknown: the server's Last-Modified is 22 April 2024 and the footer reads 'Copyright 1996-2016'. IPU cites Legislative Assembly communications of 3 December 2014, 21 January 2015 and 1 January 2017. Interparliamentary record, not a registration record. A direct non-browser request returned HTTP 403. The raw response carries a per-request Cloudflare script, so its hash is not reproducible; the extract records a normalised hash and its rule.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Page text of 'Purpose of elections', the summary fields and 'Comments' read in the browser. No images reviewed."
+  }
+}

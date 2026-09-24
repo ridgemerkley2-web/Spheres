@@ -1,0 +1,28 @@
+==============================================================================
+1. STRUCTURE
+  PASS  all 1471 districts in the artifact exist in the roster
+  PASS  meta.districts_with_any_resource (1471) equals the districts block (1471)
+  PASS  meta.districts_total (2610) equals the roster (2610 distinct ids)
+        coverage 1471/2610 = 56.36%
+        3524 district-commodity entries (1909 mineral, 1615 petroleum)
+  PASS  no mineral entry carries a magnitude key (keys seen: ['bands', 'confidence', 'field_level', 'fields', 'n', 'sites', 'src'])
+  PASS  no coal-field attachment carries a tonnage key (481 attachments, keys allowed: ['age', 'area_frac_district', 'area_frac_field', 'dep_age', 'intersection_sqkm', 'name', 'note', 'polygons', 'province', 'rank', 'sqkm_field_total', 'src'])
+  PASS  every coal-field attachment says in the artifact that it carries no tonnage
+  PASS  all 1615 petroleum entries flag their apportionment DERIVED
+  PASS  every cited province volume is flagged `shared`
+  PASS  meta.apportionment warns against reading the derived split as production
+
+==============================================================================
+2. THE PLANT GUARD  (re-derived from raw mrds.csv, not from sources.py)
+        4512 distinct cited MRDS site ids, 5018 (site, commodity) pairs
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\resources\check.py", line 990, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\resources\check.py", line 293, in main
+    with zipfile.ZipFile(MRDS) as z, z.open("mrds.csv") as fh:
+         ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\zipfile\__init__.py", line 1383, in __init__
+    self.fp = io.open(file, filemode)
+              ~~~~~~~^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-web\\data\\mrds-csv.zip'

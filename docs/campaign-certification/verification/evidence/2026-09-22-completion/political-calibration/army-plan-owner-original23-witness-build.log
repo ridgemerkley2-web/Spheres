@@ -1,0 +1,39 @@
+error[E0603]: struct `GameRules` is private
+  --> ..\evidence\political-calibration-20260922\army-plan-owner-original23-witness.rs:1:19
+   |
+ 1 | use spheres_sim::{GameRules, WorldState, NationId, init::world_1990};
+   |                   ^^^^^^^^^ private struct
+   |
+note: the struct `GameRules` is defined here
+  --> spheres-sim\src\lib.rs:74:5
+   |
+74 | use world::*;
+   |     ^^^^^
+
+error[E0603]: struct `WorldState` is private
+  --> ..\evidence\political-calibration-20260922\army-plan-owner-original23-witness.rs:1:30
+   |
+ 1 | use spheres_sim::{GameRules, WorldState, NationId, init::world_1990};
+   |                              ^^^^^^^^^^ private struct
+   |
+note: the struct `WorldState` is defined here
+  --> spheres-sim\src\lib.rs:74:5
+   |
+74 | use world::*;
+   |     ^^^^^
+
+error[E0603]: struct `NationId` is private
+  --> ..\evidence\political-calibration-20260922\army-plan-owner-original23-witness.rs:1:42
+   |
+ 1 | use spheres_sim::{GameRules, WorldState, NationId, init::world_1990};
+   |                                          ^^^^^^^^ private struct
+   |
+note: the struct `NationId` is defined here
+  --> spheres-sim\src\lib.rs:74:5
+   |
+74 | use world::*;
+   |     ^^^^^
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0603`.

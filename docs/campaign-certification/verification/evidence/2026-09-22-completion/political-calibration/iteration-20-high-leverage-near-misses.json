@@ -1,0 +1,1815 @@
+{
+  "iteration": 20,
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "months": 252,
+  "source_log_sha256": "d03c0b24144ff6b0ed0263c1f4e8e434da4441eb760e30b23449c7ee5890224c",
+  "first_coups": 75,
+  "repeat_coups": 28,
+  "events": 103,
+  "countries": [
+    {
+      "country": "Algeria",
+      "events": 0,
+      "source_high_electoral_months": 2614,
+      "source_high_crisis_months": 1612,
+      "max_confidence_penalty": 0.2531839975261661,
+      "min_political_only_full_provision_target": 0.5968160024738338,
+      "observed_funding_increases": 0,
+      "needed_unaffordable_electoral_months": 2566,
+      "example_seed": 0,
+      "closest_pre_first": {
+        "date": [
+          1995,
+          1,
+          1
+        ],
+        "authoritarianism": 0.55,
+        "army_authority": {
+          "current_leverage": 1.0,
+          "source": {
+            "assessment": 0.75,
+            "hog_removal": 0.75,
+            "hog_weight": 0.0,
+            "hos_removal": 0.75,
+            "hos_weight": 1.0,
+            "nation": "Algeria",
+            "source_key": "vdem-v16-1989-DZA",
+            "source_year": 1989
+          },
+          "updated_on": [
+            1991,
+            12,
+            1
+          ]
+        },
+        "record": {
+          "government": "party:dz_fis",
+          "months": 21.0,
+          "performance": -0.1669767094967023
+        },
+        "settled_months": 21,
+        "discontent": 0.29533934789820426,
+        "loyalty": 0.6237653856706911,
+        "effective_loyalty": 0.6237653856706911,
+        "coup_pressure": 0.0,
+        "confidence_penalty": 0.055345213889598906,
+        "political_only_full_provisions_target": 0.7946547861104011,
+        "actual_resource_target": 0.6219341001849935,
+        "resources_per_member": 9771.13777104419,
+        "useful_resources_per_member_cap": 13307.175408373365,
+        "fiscally_affordable_share": 0.0,
+        "military_share": 0.015,
+        "army_funding_floor": 0.0,
+        "funding_command_affordable": true,
+        "needed_unaffordable": true,
+        "eligible_public_mandate_proxy": 0.6316524959705485,
+        "opening_mandate": null
+      }
+    },
+    {
+      "country": "Angola",
+      "events": 0,
+      "source_high_electoral_months": 2098,
+      "source_high_crisis_months": 2098,
+      "max_confidence_penalty": 0.16741245578032504,
+      "min_political_only_full_provision_target": 0.6825875442196749,
+      "observed_funding_increases": 0,
+      "needed_unaffordable_electoral_months": 0,
+      "example_seed": 4,
+      "closest_pre_first": {
+        "date": [
+          2000,
+          6,
+          1
+        ],
+        "authoritarianism": 0.5999999999999998,
+        "army_authority": {
+          "current_leverage": 0.714,
+          "source": {
+            "assessment": 0.714,
+            "hog_removal": null,
+            "hog_weight": 0.0,
+            "hos_removal": 0.714,
+            "hos_weight": 1.0,
+            "nation": "Angola",
+            "source_key": "vdem-v16-1989-AGO",
+            "source_year": 1989
+          },
+          "updated_on": [
+            1990,
+            1,
+            1
+          ]
+        },
+        "record": {
+          "government": "regime:Communist",
+          "months": 125.0,
+          "performance": -0.4991048809818655
+        },
+        "settled_months": 125,
+        "discontent": 0.433826518815964,
+        "loyalty": 0.8493669304226968,
+        "effective_loyalty": 0.8493669304226968,
+        "coup_pressure": 0.6471584724835857,
+        "confidence_penalty": 0.0,
+        "political_only_full_provisions_target": 0.85,
+        "actual_resource_target": 0.8500000000000001,
+        "resources_per_member": 15922.88849771228,
+        "useful_resources_per_member_cap": 7480.074719114486,
+        "fiscally_affordable_share": 0.1789113893887485,
+        "military_share": 0.13150844761615033,
+        "army_funding_floor": 0.01900878560405747,
+        "funding_command_affordable": true,
+        "needed_unaffordable": false,
+        "eligible_public_mandate_proxy": 0.0,
+        "opening_mandate": null
+      }
+    },
+    {
+      "country": "Bangladesh",
+      "events": 0,
+      "source_high_electoral_months": 358,
+      "source_high_crisis_months": 0,
+      "max_confidence_penalty": 0.0,
+      "min_political_only_full_provision_target": 0.85,
+      "observed_funding_increases": 0,
+      "needed_unaffordable_electoral_months": 0,
+      "example_seed": 4,
+      "closest_pre_first": {
+        "date": [
+          2007,
+          7,
+          1
+        ],
+        "authoritarianism": 0.47000000000000003,
+        "army_authority": {
+          "current_leverage": 0.833,
+          "source": {
+            "assessment": 0.833,
+            "hog_removal": null,
+            "hog_weight": 0.0,
+            "hos_removal": 0.833,
+            "hos_weight": 1.0,
+            "nation": "Bangladesh",
+            "source_key": "vdem-v16-1989-BGD",
+            "source_year": 1989
+          },
+          "updated_on": [
+            1990,
+            1,
+            1
+          ]
+        },
+        "record": {
+          "government": "party:bd_jp",
+          "months": 210.0,
+          "performance": -0.0034477333460136202
+        },
+        "settled_months": 0,
+        "discontent": 0.1460000000000001,
+        "loyalty": 0.8427630830699864,
+        "effective_loyalty": 0.8427630830699864,
+        "coup_pressure": 0.0,
+        "confidence_penalty": 0.0,
+        "political_only_full_provisions_target": 0.85,
+        "actual_resource_target": 0.8500000000000001,
+        "resources_per_member": 9037.826401816159,
+        "useful_resources_per_member_cap": 6671.605417607843,
+        "fiscally_affordable_share": 0.019920805417356323,
+        "military_share": 0.01,
+        "army_funding_floor": 0.0022713444313820275,
+        "funding_command_affordable": true,
+        "needed_unaffordable": false,
+        "eligible_public_mandate_proxy": 0.0,
+        "opening_mandate": null
+      }
+    },
+    {
+      "country": "Cameroon",
+      "events": 0,
+      "source_high_electoral_months": 2188,
+      "source_high_crisis_months": 0,
+      "max_confidence_penalty": 0.0,
+      "min_political_only_full_provision_target": 0.85,
+      "observed_funding_increases": 0,
+      "needed_unaffordable_electoral_months": 1069,
+      "example_seed": 1,
+      "closest_pre_first": {
+        "date": [
+          1990,
+          2,
+          1
+        ],
+        "authoritarianism": 0.55,
+        "army_authority": {
+          "current_leverage": 0.714,
+          "source": {
+            "assessment": 0.714,
+            "hog_removal": null,
+            "hog_weight": 0.0,
+            "hos_removal": 0.714,
+            "hos_weight": 1.0,
+            "nation": "Cameroon",
+            "source_key": "vdem-v16-1989-CMR",
+            "source_year": 1989
+          },
+          "updated_on": [
+            1990,
+            1,
+            1
+          ]
+        },
+        "record": {
+          "government": "party:cm_cpdm",
+          "months": 1.0,
+          "performance": 0.0971248757542264
+        },
+        "settled_months": 0,
+        "discontent": 0.07996762025446894,
+        "loyalty": 0.6581645027850873,
+        "effective_loyalty": 0.6581645027850873,
+        "coup_pressure": 0.0,
+        "confidence_penalty": 0.0,
+        "political_only_full_provisions_target": 0.85,
+        "actual_resource_target": 0.8314333952241624,
+        "resources_per_member": 8021.161387087909,
+        "useful_resources_per_member_cap": 8257.014819047114,
+        "fiscally_affordable_share": 0.0,
+        "military_share": 0.015,
+        "army_funding_floor": 0.0,
+        "funding_command_affordable": true,
+        "needed_unaffordable": true,
+        "eligible_public_mandate_proxy": 0.0,
+        "opening_mandate": null
+      }
+    },
+    {
+      "country": "CentralAfricanRepublic",
+      "events": 0,
+      "source_high_electoral_months": 2717,
+      "source_high_crisis_months": 1751,
+      "max_confidence_penalty": 0.05386912952316754,
+      "min_political_only_full_provision_target": 0.7961308704768324,
+      "observed_funding_increases": 0,
+      "needed_unaffordable_electoral_months": 884,
+      "example_seed": 1,
+      "closest_pre_first": {
+        "date": [
+          2002,
+          3,
+          1
+        ],
+        "authoritarianism": 0.5499999999999997,
+        "army_authority": {
+          "current_leverage": 0.475,
+          "source": {
+            "assessment": 0.6,
+            "hog_removal": null,
+            "hog_weight": 0.0,
+            "hos_removal": 0.6,
+            "hos_weight": 1.0,
+            "nation": "CentralAfricanRepublic",
+            "source_key": "vdem-v16-1989-CAF",
+            "source_year": 1989
+          },
+          "updated_on": [
+            2000,
+            1,
+            1
+          ]
+        },
+        "record": {
+          "government": "party:cf_mlpc",
+          "months": 25.0,
+          "performance": -0.2236760724433146
+        },
+        "settled_months": 25,
+        "discontent": 0.3115256177629755,
+        "loyalty": 0.5799604371138672,
+        "effective_loyalty": 0.5799604371138672,
+        "coup_pressure": 0.0,
+        "confidence_penalty": 0.05194181918716462,
+        "political_only_full_provisions_target": 0.7980581808128353,
+        "actual_resource_target": 0.5797980817848336,
+        "resources_per_member": 4326.540563104479,
+        "useful_resources_per_member_cap": 6513.76293848807,
+        "fiscally_affordable_share": 0.08716973617967598,
+        "military_share": 0.01,
+        "army_funding_floor": 0.005835499999419909,
+        "funding_command_affordable": true,
+        "needed_unaffordable": false,
+        "eligible_public_mandate_proxy": 0.3713300393834483,
+        "opening_mandate": null
+      }
+    },
+    {
+      "country": "Comoros",
+      "events": 13,
+      "source_high_electoral_months": 2315,
+      "source_high_crisis_months": 2315,
+      "max_confidence_penalty": 0.17428858640734515,
+      "min_political_only_full_provision_target": 0.6757114135926549,
+      "observed_funding_increases": 23,
+      "needed_unaffordable_electoral_months": 942,
+      "example_seed": 11,
+      "closest_pre_first": {
+        "date": [
+          1995,
+          11,
+          1
+        ],
+        "authoritarianism": 0.58,
+        "army_authority": {
+          "current_leverage": 0.571,
+          "source": {
+            "assessment": 0.571,
+            "hog_removal": null,
+            "hog_weight": 0.0,
+            "hos_removal": 0.571,
+            "hos_weight": 1.0,
+            "nation": "Comoros",
+            "source_key": "vdem-v16-1989-COM",
+            "source_year": 1989
+          },
+          "updated_on": [
+            1990,
+            1,
+            1
+          ]
+        },
+        "record": {
+          "government": "party:km_undc",
+          "months": 55.0,
+          "performance": -0.24116650309774187
+        },
+        "settled_months": 55,
+        "discontent": 0.35743572491071884,
+        "loyalty": 0.32811881050855957,
+        "effective_loyalty": 0.32811881050855957,
+        "coup_pressure": 0.9963973666246004,
+        "confidence_penalty": 0.06802828982053871,
+        "political_only_full_provisions_target": 0.7819717101794612,
+        "actual_resource_target": 0.3197804655311524,
+        "resources_per_member": 2389.646405359355,
+        "useful_resources_per_member_cap": 8270.488564683385,
+        "fiscally_affordable_share": 0.0,
+        "military_share": 0.010119661632610005,
+        "army_funding_floor": 0.0,
+        "funding_command_affordable": true,
+        "needed_unaffordable": true,
+        "eligible_public_mandate_proxy": 0.3876048323271384,
+        "opening_mandate": null
+      }
+    },
+    {
+      "country": "Ecuador",
+      "events": 12,
+      "source_high_electoral_months": 2622,
+      "source_high_crisis_months": 2590,
+      "max_confidence_penalty": 0.30371998343828777,
+      "min_political_only_full_provision_target": 0.5462800165617122,
+      "observed_funding_increases": 0,
+      "needed_unaffordable_electoral_months": 601,
+      "example_seed": 6,
+      "closest_pre_first": {
+        "date": [
+          1993,
+          5,
+          1
+        ],
+        "authoritarianism": 0.22,
+        "army_authority": {
+          "current_leverage": 1.0,
+          "source": {
+            "assessment": 1.0,
+            "hog_removal": null,
+            "hog_weight": 0.0,
+            "hos_removal": 1.0,
+            "hos_weight": 1.0,
+            "nation": "Ecuador",
+            "source_key": "vdem-v16-1989-ECU",
+            "source_year": 1989
+          },
+          "updated_on": [
+            1990,
+            1,
+            1
+          ]
+        },
+        "record": {
+          "government": "party:ec_id",
+          "months": 40.0,
+          "performance": -0.8170660502753104
+        },
+        "settled_months": 40,
+        "discontent": 0.2620647441387908,
+        "loyalty": 0.28430702247101447,
+        "effective_loyalty": 0.28430702247101447,
+        "coup_pressure": 0.9939623908651375,
+        "confidence_penalty": 0.25728742219335593,
+        "political_only_full_provisions_target": 0.592712577806644,
+        "actual_resource_target": 0.28488675601355745,
+        "resources_per_member": 4632.185544594524,
+        "useful_resources_per_member_cap": 8799.379952527368,
+        "fiscally_affordable_share": 0.0,
+        "military_share": 0.017016152823943677,
+        "army_funding_floor": 0.0,
+        "funding_command_affordable": true,
+        "needed_unaffordable": true,
+        "eligible_public_mandate_proxy": 0.26639698278779583,
+        "opening_mandate": null
+      }
+    },
+    {
+      "country": "Egypt",
+      "events": 0,
+      "source_high_electoral_months": 363,
+      "source_high_crisis_months": 0,
+      "max_confidence_penalty": 0.0,
+      "min_political_only_full_provision_target": 0.85,
+      "observed_funding_increases": 0,
+      "needed_unaffordable_electoral_months": 112,
+      "example_seed": 9,
+      "closest_pre_first": {
+        "date": [
+          2004,
+          7,
+          1
+        ],
+        "authoritarianism": 0.5700000000000001,
+        "army_authority": {
+          "current_leverage": 0.75,
+          "source": {
+            "assessment": 0.75,
+            "hog_removal": 0.667,
+            "hog_weight": 0.5,
+            "hos_removal": 0.833,
+            "hos_weight": 0.5,
+            "nation": "Egypt",
+            "source_key": "vdem-v16-1989-EGY",
+            "source_year": 1989
+          },
+          "updated_on": [
+            1990,
+            1,
+            1
+          ]
+        },
+        "record": {
+          "government": "party:eg_ndp",
+          "months": 174.0,
+          "performance": 0.28965941335464085
+        },
+        "settled_months": 0,
+        "discontent": 0.024,
+        "loyalty": 0.8189211518469632,
+        "effective_loyalty": 0.8189211518469632,
+        "coup_pressure": 0.0,
+        "confidence_penalty": 0.0,
+        "political_only_full_provisions_target": 0.85,
+        "actual_resource_target": 0.8500000000000001,
+        "resources_per_member": 11877.316453200516,
+        "useful_resources_per_member_cap": 10827.92613637062,
+        "fiscally_affordable_share": 0.026115288240009225,
+        "military_share": 0.029813065086012145,
+        "army_funding_floor": 0.008362771374962783,
+        "funding_command_affordable": true,
+        "needed_unaffordable": false,
+        "eligible_public_mandate_proxy": 0.0,
+        "opening_mandate": null
+      }
+    },
+    {
+      "country": "ElSalvador",
+      "events": 0,
+      "source_high_electoral_months": 3024,
+      "source_high_crisis_months": 1041,
+      "max_confidence_penalty": 0.2961850131850849,
+      "min_political_only_full_provision_target": 0.5538149868149151,
+      "observed_funding_increases": 1,
+      "needed_unaffordable_electoral_months": 1272,
+      "example_seed": 3,
+      "closest_pre_first": {
+        "date": [
+          1993,
+          1,
+          1
+        ],
+        "authoritarianism": 0.4033333333333333,
+        "army_authority": {
+          "current_leverage": 0.5583333333333333,
+          "source": {
+            "assessment": 0.6,
+            "hog_removal": null,
+            "hog_weight": 0.0,
+            "hos_removal": 0.6,
+            "hos_weight": 1.0,
+            "nation": "ElSalvador",
+            "source_key": "vdem-v16-1989-SLV",
+            "source_year": 1989
+          },
+          "updated_on": [
+            1991,
+            12,
+            1
+          ]
+        },
+        "record": {
+          "government": "party:sv_arena",
+          "months": 12.0,
+          "performance": -0.5519562667396049
+        },
+        "settled_months": 12,
+        "discontent": 0.286347355653929,
+        "loyalty": 0.3612478547778561,
+        "effective_loyalty": 0.3612478547778561,
+        "coup_pressure": 0.0,
+        "confidence_penalty": 0.06331040771118722,
+        "political_only_full_provisions_target": 0.7866895922888127,
+        "actual_resource_target": 0.3829966874873936,
+        "resources_per_member": 2805.5277923556996,
+        "useful_resources_per_member_cap": 7403.737450441549,
+        "fiscally_affordable_share": 0.0,
+        "military_share": 0.03332508302125,
+        "army_funding_floor": 0.0,
+        "funding_command_affordable": true,
+        "needed_unaffordable": true,
+        "eligible_public_mandate_proxy": 0.5838050082017778,
+        "opening_mandate": null
+      }
+    },
+    {
+      "country": "Fiji",
+      "events": 0,
+      "source_high_electoral_months": 2381,
+      "source_high_crisis_months": 0,
+      "max_confidence_penalty": 0.0,
+      "min_political_only_full_provision_target": 0.85,
+      "observed_funding_increases": 0,
+      "needed_unaffordable_electoral_months": 2381,
+      "example_seed": 2,
+      "closest_pre_first": {
+        "date": [
+          1992,
+          3,
+          1
+        ],
+        "authoritarianism": 0.37,
+        "army_authority": {
+          "current_leverage": 0.5,
+          "source": {
+            "assessment": 0.5,
+            "hog_removal": 0.5,
+            "hog_weight": 1.0,
+            "hos_removal": 0.5,
+            "hos_weight": 0.0,
+            "nation": "Fiji",
+            "source_key": "vdem-v16-1989-FJI",
+            "source_year": 1989
+          },
+          "updated_on": [
+            1990,
+            1,
+            1
+          ]
+        },
+        "record": {
+          "government": "party:fj_alliance",
+          "months": 26.0,
+          "performance": -0.15298505348466002
+        },
+        "settled_months": 26,
+        "discontent": 0.08395108775615345,
+        "loyalty": 0.5653657286193003,
+        "effective_loyalty": 0.5653657286193003,
+        "coup_pressure": 0.0,
+        "confidence_penalty": 0.0,
+        "political_only_full_provisions_target": 0.85,
+        "actual_resource_target": 0.5647166273760456,
+        "resources_per_member": 5976.440281009844,
+        "useful_resources_per_member_cap": 10651.24507924078,
+        "fiscally_affordable_share": 0.0,
+        "military_share": 0.021,
+        "army_funding_floor": 0.0,
+        "funding_command_affordable": true,
+        "needed_unaffordable": true,
+        "eligible_public_mandate_proxy": 0.4926803269972457,
+        "opening_mandate": null
+      }
+    },
+    {
+      "country": "Gabon",
+      "events": 0,
+      "source_high_electoral_months": 2562,
+      "source_high_crisis_months": 0,
+      "max_confidence_penalty": 0.0,
+      "min_political_only_full_provision_target": 0.85,
+      "observed_funding_increases": 2,
+      "needed_unaffordable_electoral_months": 0,
+      "example_seed": 9,
+      "closest_pre_first": {
+        "date": [
+          1990,
+          4,
+          1
+        ],
+        "authoritarianism": 0.53,
+        "army_authority": {
+          "current_leverage": 0.833,
+          "source": {
+            "assessment": 0.833,
+            "hog_removal": 0.333,
+            "hog_weight": 0.0,
+            "hos_removal": 0.833,
+            "hos_weight": 1.0,
+            "nation": "Gabon",
+            "source_key": "vdem-v16-1989-GAB",
+            "source_year": 1989
+          },
+          "updated_on": [
+            1990,
+            1,
+            1
+          ]
+        },
+        "record": {
+          "government": "party:ga_pdg",
+          "months": 3.0,
+          "performance": -0.28579536833088026
+        },
+        "settled_months": 0,
+        "discontent": 0.13476904170409043,
+        "loyalty": 0.6505036300232276,
+        "effective_loyalty": 0.6505036300232276,
+        "coup_pressure": 0.0,
+        "confidence_penalty": 0.0,
+        "political_only_full_provisions_target": 0.85,
+        "actual_resource_target": 0.6549814110394909,
+        "resources_per_member": 16682.103809138986,
+        "useful_resources_per_member_cap": 23832.550545673108,
+        "fiscally_affordable_share": 0.03150000000000001,
+        "military_share": 0.025,
+        "army_funding_floor": 0.010989459961840102,
+        "funding_command_affordable": true,
+        "needed_unaffordable": false,
+        "eligible_public_mandate_proxy": 0.0,
+        "opening_mandate": null
+      }
+    },
+    {
+      "country": "Ghana",
+      "events": 0,
+      "source_high_electoral_months": 2739,
+      "source_high_crisis_months": 0,
+      "max_confidence_penalty": 0.0,
+      "min_political_only_full_provision_target": 0.85,
+      "observed_funding_increases": 12,
+      "needed_unaffordable_electoral_months": 768,
+      "example_seed": 4,
+      "closest_pre_first": {
+        "date": [
+          1992,
+          5,
+          1
+        ],
+        "authoritarianism": 0.5999999999999999,
+        "army_authority": {
+          "current_leverage": 1.0,
+          "source": {
+            "assessment": 1.0,
+            "hog_removal": null,
+            "hog_weight": 0.0,
+            "hos_removal": 1.0,
+            "hos_weight": 1.0,
+            "nation": "Ghana",
+            "source_key": "vdem-v16-1989-GHA",
+            "source_year": 1989
+          },
+          "updated_on": [
+            1990,
+            1,
+            1
+          ]
+        },
+        "record": {
+          "government": "regime:Nationalist",
+          "months": 28.0,
+          "performance": -0.5332867493269097
+        },
+        "settled_months": 0,
+        "discontent": 0.10432143708510484,
+        "loyalty": 0.42002999881874264,
+        "effective_loyalty": 0.42002999881874264,
+        "coup_pressure": 0.0,
+        "confidence_penalty": 0.0,
+        "political_only_full_provisions_target": 0.85,
+        "actual_resource_target": 0.8500000000000001,
+        "resources_per_member": 6501.434122636381,
+        "useful_resources_per_member_cap": 6079.456879989182,
+        "fiscally_affordable_share": 0.0,
+        "military_share": 0.01,
+        "army_funding_floor": 0.0,
+        "funding_command_affordable": true,
+        "needed_unaffordable": true,
+        "eligible_public_mandate_proxy": 0.0,
+        "opening_mandate": null
+      }
+    },
+    {
+      "country": "Guatemala",
+      "events": 22,
+      "source_high_electoral_months": 2016,
+      "source_high_crisis_months": 2016,
+      "max_confidence_penalty": 0.3952590643679574,
+      "min_political_only_full_provision_target": 0.4547409356320426,
+      "observed_funding_increases": 13,
+      "needed_unaffordable_electoral_months": 776,
+      "example_seed": 3,
+      "closest_pre_first": {
+        "date": [
+          1991,
+          9,
+          1
+        ],
+        "authoritarianism": 0.45,
+        "army_authority": {
+          "current_leverage": 0.8,
+          "source": {
+            "assessment": 0.8,
+            "hog_removal": null,
+            "hog_weight": 0.0,
+            "hos_removal": 0.8,
+            "hos_weight": 1.0,
+            "nation": "Guatemala",
+            "source_key": "vdem-v16-1989-GTM",
+            "source_year": 1989
+          },
+          "updated_on": [
+            1990,
+            1,
+            1
+          ]
+        },
+        "record": {
+          "government": "party:gt_dcg",
+          "months": 20.0,
+          "performance": -1.0928649717915466
+        },
+        "settled_months": 20,
+        "discontent": 0.45149018057829937,
+        "loyalty": 0.2683584785567369,
+        "effective_loyalty": 0.2683584785567369,
+        "coup_pressure": 0.9300925545506067,
+        "confidence_penalty": 0.23581854762606588,
+        "political_only_full_provisions_target": 0.6141814523739341,
+        "actual_resource_target": 0.2137201423418261,
+        "resources_per_member": 2772.8296309792827,
+        "useful_resources_per_member_cap": 7222.684628056836,
+        "fiscally_affordable_share": 0.0,
+        "military_share": 0.017,
+        "army_funding_floor": 0.0,
+        "funding_command_affordable": true,
+        "needed_unaffordable": true,
+        "eligible_public_mandate_proxy": 0.3751287979192221,
+        "opening_mandate": null
+      }
+    },
+    {
+      "country": "Guyana",
+      "events": 14,
+      "source_high_electoral_months": 1466,
+      "source_high_crisis_months": 1070,
+      "max_confidence_penalty": 0.310682658527857,
+      "min_political_only_full_provision_target": 0.539317341472143,
+      "observed_funding_increases": 116,
+      "needed_unaffordable_electoral_months": 371,
+      "example_seed": 5,
+      "closest_pre_first": {
+        "date": [
+          1991,
+          9,
+          1
+        ],
+        "authoritarianism": 0.55,
+        "army_authority": {
+          "current_leverage": 0.5,
+          "source": {
+            "assessment": 0.5,
+            "hog_removal": null,
+            "hog_weight": 0.0,
+            "hos_removal": 0.5,
+            "hos_weight": 1.0,
+            "nation": "Guyana",
+            "source_key": "vdem-v16-1989-GUY",
+            "source_year": 1989
+          },
+          "updated_on": [
+            1990,
+            1,
+            1
+          ]
+        },
+        "record": {
+          "government": "party:gy_pnc",
+          "months": 20.0,
+          "performance": -0.9323730681460123
+        },
+        "settled_months": 20,
+        "discontent": 0.451821638406399,
+        "loyalty": 0.27344408885535876,
+        "effective_loyalty": 0.27344408885535876,
+        "coup_pressure": 0.9431866148111968,
+        "confidence_penalty": 0.10887439405633151,
+        "political_only_full_provisions_target": 0.7411256059436685,
+        "actual_resource_target": 0.23109287703366319,
+        "resources_per_member": 1687.175539834898,
+        "useful_resources_per_member_cap": 7835.146690740024,
+        "fiscally_affordable_share": 0.0,
+        "military_share": 0.01,
+        "army_funding_floor": 0.0,
+        "funding_command_affordable": true,
+        "needed_unaffordable": true,
+        "eligible_public_mandate_proxy": 0.5159667437360501,
+        "opening_mandate": null
+      }
+    },
+    {
+      "country": "Haiti",
+      "events": 0,
+      "source_high_electoral_months": 2544,
+      "source_high_crisis_months": 23,
+      "max_confidence_penalty": 0.0,
+      "min_political_only_full_provision_target": 0.85,
+      "observed_funding_increases": 0,
+      "needed_unaffordable_electoral_months": 991,
+      "example_seed": 7,
+      "closest_pre_first": {
+        "date": [
+          1992,
+          3,
+          1
+        ],
+        "authoritarianism": 0.53,
+        "army_authority": {
+          "current_leverage": 0.5,
+          "source": {
+            "assessment": 0.5,
+            "hog_removal": null,
+            "hog_weight": 0.0,
+            "hos_removal": 0.5,
+            "hos_weight": 1.0,
+            "nation": "Haiti",
+            "source_key": "vdem-v16-1989-HTI",
+            "source_year": 1989
+          },
+          "updated_on": [
+            1990,
+            1,
+            1
+          ]
+        },
+        "record": {
+          "government": "regime:Nationalist",
+          "months": 26.0,
+          "performance": -0.8641902726471246
+        },
+        "settled_months": 0,
+        "discontent": 0.25731487770395256,
+        "loyalty": 0.6427668383897034,
+        "effective_loyalty": 0.6427668383897034,
+        "coup_pressure": 0.0,
+        "confidence_penalty": 0.0,
+        "political_only_full_provisions_target": 0.85,
+        "actual_resource_target": 0.643763062023508,
+        "resources_per_member": 4310.32452050826,
+        "useful_resources_per_member_cap": 6313.528948432286,
+        "fiscally_affordable_share": 0.0,
+        "military_share": 0.011,
+        "army_funding_floor": 0.0,
+        "funding_command_affordable": true,
+        "needed_unaffordable": true,
+        "eligible_public_mandate_proxy": 0.0,
+        "opening_mandate": null
+      }
+    },
+    {
+      "country": "Honduras",
+      "events": 0,
+      "source_high_electoral_months": 3024,
+      "source_high_crisis_months": 48,
+      "max_confidence_penalty": 0.0,
+      "min_political_only_full_provision_target": 0.85,
+      "observed_funding_increases": 0,
+      "needed_unaffordable_electoral_months": 829,
+      "example_seed": 0,
+      "closest_pre_first": {
+        "date": [
+          1990,
+          1,
+          1
+        ],
+        "authoritarianism": 0.28,
+        "army_authority": {
+          "current_leverage": 0.6,
+          "source": {
+            "assessment": 0.6,
+            "hog_removal": null,
+            "hog_weight": 0.0,
+            "hos_removal": 0.6,
+            "hos_weight": 1.0,
+            "nation": "Honduras",
+            "source_key": "vdem-v16-1989-HND",
+            "source_year": 1989
+          },
+          "updated_on": [
+            1990,
+            1,
+            1
+          ]
+        },
+        "record": null,
+        "settled_months": 0,
+        "discontent": 0.31066666666666665,
+        "loyalty": 0.65,
+        "effective_loyalty": 0.65,
+        "coup_pressure": 0.0,
+        "confidence_penalty": 0.0,
+        "political_only_full_provisions_target": 0.85,
+        "actual_resource_target": 0.6908008068582954,
+        "resources_per_member": 6013.333333333332,
+        "useful_resources_per_member_cap": 7963.855421686747,
+        "fiscally_affordable_share": 0.0,
+        "military_share": 0.022,
+        "army_funding_floor": 0.0,
+        "funding_command_affordable": true,
+        "needed_unaffordable": true,
+        "eligible_public_mandate_proxy": 0.0,
+        "opening_mandate": null
+      }
+    },
+    {
+      "country": "Lesotho",
+      "events": 0,
+      "source_high_electoral_months": 2790,
+      "source_high_crisis_months": 111,
+      "max_confidence_penalty": 0.06463832722305364,
+      "min_political_only_full_provision_target": 0.7853616727769464,
+      "observed_funding_increases": 0,
+      "needed_unaffordable_electoral_months": 1253,
+      "example_seed": 10,
+      "closest_pre_first": {
+        "date": [
+          2006,
+          7,
+          1
+        ],
+        "authoritarianism": 0.5999999999999999,
+        "army_authority": {
+          "current_leverage": 0.75,
+          "source": {
+            "assessment": 0.75,
+            "hog_removal": null,
+            "hog_weight": 0.0,
+            "hos_removal": 0.75,
+            "hos_weight": 1.0,
+            "nation": "Lesotho",
+            "source_key": "vdem-v16-1989-LSO",
+            "source_year": 1989
+          },
+          "updated_on": [
+            1990,
+            1,
+            1
+          ]
+        },
+        "record": {
+          "government": "party:ls_bcp",
+          "months": 154.0,
+          "performance": -0.14204043134991814
+        },
+        "settled_months": 154,
+        "discontent": 0.27454591041126947,
+        "loyalty": 0.7859067445493846,
+        "effective_loyalty": 0.7859067445493846,
+        "coup_pressure": 0.0,
+        "confidence_penalty": 0.0641359330538324,
+        "political_only_full_provisions_target": 0.7858640669461676,
+        "actual_resource_target": 0.7858640669461677,
+        "resources_per_member": 30842.61841352269,
+        "useful_resources_per_member_cap": 6925.271539414686,
+        "fiscally_affordable_share": 0.018497377776436306,
+        "military_share": 0.036,
+        "army_funding_floor": 0.0032847490576345356,
+        "funding_command_affordable": true,
+        "needed_unaffordable": false,
+        "eligible_public_mandate_proxy": 0.36838597367662973,
+        "opening_mandate": null
+      }
+    },
+    {
+      "country": "Myanmar",
+      "events": 22,
+      "source_high_electoral_months": 2083,
+      "source_high_crisis_months": 1913,
+      "max_confidence_penalty": 0.21561849425153737,
+      "min_political_only_full_provision_target": 0.6343815057484626,
+      "observed_funding_increases": 102,
+      "needed_unaffordable_electoral_months": 928,
+      "example_seed": 2,
+      "closest_pre_first": {
+        "date": [
+          1997,
+          2,
+          1
+        ],
+        "authoritarianism": 0.3699999999999998,
+        "army_authority": {
+          "current_leverage": 0.667,
+          "source": {
+            "assessment": 0.667,
+            "hog_removal": null,
+            "hog_weight": 0.0,
+            "hos_removal": 0.667,
+            "hos_weight": 1.0,
+            "nation": "Myanmar",
+            "source_key": "vdem-v16-1989-MMR",
+            "source_year": 1989
+          },
+          "updated_on": [
+            1990,
+            1,
+            1
+          ]
+        },
+        "record": {
+          "government": "party:mm_nld",
+          "months": 46.0,
+          "performance": -0.14500966891357797
+        },
+        "settled_months": 46,
+        "discontent": 0.2930102224834045,
+        "loyalty": 0.302114597570313,
+        "effective_loyalty": 0.302114597570313,
+        "coup_pressure": 0.9961403445937147,
+        "confidence_penalty": 0.05327700559359261,
+        "political_only_full_provisions_target": 0.7967229944064074,
+        "actual_resource_target": 0.29352904825941145,
+        "resources_per_member": 1312.8005451687304,
+        "useful_resources_per_member_cap": 5812.569250135276,
+        "fiscally_affordable_share": 0.0,
+        "military_share": 0.024669257872632702,
+        "army_funding_floor": 0.0,
+        "funding_command_affordable": true,
+        "needed_unaffordable": true,
+        "eligible_public_mandate_proxy": 0.4389045079817078,
+        "opening_mandate": null
+      }
+    },
+    {
+      "country": "Nigeria",
+      "events": 0,
+      "source_high_electoral_months": 2122,
+      "source_high_crisis_months": 332,
+      "max_confidence_penalty": 0.04648869443316769,
+      "min_political_only_full_provision_target": 0.8035113055668323,
+      "observed_funding_increases": 12,
+      "needed_unaffordable_electoral_months": 2010,
+      "example_seed": 1,
+      "closest_pre_first": {
+        "date": [
+          1994,
+          1,
+          1
+        ],
+        "authoritarianism": 0.59,
+        "army_authority": {
+          "current_leverage": 0.5,
+          "source": {
+            "assessment": 0.5,
+            "hog_removal": null,
+            "hog_weight": 0.0,
+            "hos_removal": 0.5,
+            "hos_weight": 1.0,
+            "nation": "Nigeria",
+            "source_key": "vdem-v16-1989-NGA",
+            "source_year": 1989
+          },
+          "updated_on": [
+            1990,
+            1,
+            1
+          ]
+        },
+        "record": {
+          "government": "party:ng_sdp",
+          "months": 28.0,
+          "performance": -0.07194676893961012
+        },
+        "settled_months": 28,
+        "discontent": 0.25468015087882706,
+        "loyalty": 0.6721209434696426,
+        "effective_loyalty": 0.6721209434696426,
+        "coup_pressure": 0.0,
+        "confidence_penalty": 0.034791818569333506,
+        "political_only_full_provisions_target": 0.8152081814306664,
+        "actual_resource_target": 0.6719010393944976,
+        "resources_per_member": 5221.274792400105,
+        "useful_resources_per_member_cap": 6697.999708735439,
+        "fiscally_affordable_share": 0.0,
+        "military_share": 0.008,
+        "army_funding_floor": 0.0,
+        "funding_command_affordable": true,
+        "needed_unaffordable": true,
+        "eligible_public_mandate_proxy": 0.3445013686954511,
+        "opening_mandate": null
+      }
+    },
+    {
+      "country": "Pakistan",
+      "events": 0,
+      "source_high_electoral_months": 3024,
+      "source_high_crisis_months": 0,
+      "max_confidence_penalty": 0.0,
+      "min_political_only_full_provision_target": 0.85,
+      "observed_funding_increases": 0,
+      "needed_unaffordable_electoral_months": 1092,
+      "example_seed": 0,
+      "closest_pre_first": {
+        "date": [
+          1990,
+          1,
+          1
+        ],
+        "authoritarianism": 0.55,
+        "army_authority": {
+          "current_leverage": 0.8,
+          "source": {
+            "assessment": 0.8,
+            "hog_removal": 0.8,
+            "hog_weight": 1.0,
+            "hos_removal": 0.8,
+            "hos_weight": 0.0,
+            "nation": "Pakistan",
+            "source_key": "vdem-v16-1989-PAK",
+            "source_year": 1989
+          },
+          "updated_on": [
+            1990,
+            1,
+            1
+          ]
+        },
+        "record": null,
+        "settled_months": 0,
+        "discontent": 0.2106666666666667,
+        "loyalty": 0.65,
+        "effective_loyalty": 0.65,
+        "coup_pressure": 0.0,
+        "confidence_penalty": 0.0,
+        "political_only_full_provisions_target": 0.85,
+        "actual_resource_target": 0.679603305785124,
+        "resources_per_member": 4509.090909090909,
+        "useful_resources_per_member_cap": 6111.111111111111,
+        "fiscally_affordable_share": 0.0,
+        "military_share": 0.062,
+        "army_funding_floor": 0.0,
+        "funding_command_affordable": true,
+        "needed_unaffordable": true,
+        "eligible_public_mandate_proxy": 0.0,
+        "opening_mandate": null
+      }
+    },
+    {
+      "country": "PapuaNewGuinea",
+      "events": 0,
+      "source_high_electoral_months": 3024,
+      "source_high_crisis_months": 1873,
+      "max_confidence_penalty": 0.08802198840972658,
+      "min_political_only_full_provision_target": 0.7619780115902735,
+      "observed_funding_increases": 0,
+      "needed_unaffordable_electoral_months": 3024,
+      "example_seed": 8,
+      "closest_pre_first": {
+        "date": [
+          1992,
+          7,
+          1
+        ],
+        "authoritarianism": 0.15,
+        "army_authority": {
+          "current_leverage": 0.5,
+          "source": {
+            "assessment": 0.5,
+            "hog_removal": 0.5,
+            "hog_weight": 1.0,
+            "hos_removal": 0.0,
+            "hos_weight": 0.0,
+            "nation": "PapuaNewGuinea",
+            "source_key": "vdem-v16-1989-PNG",
+            "source_year": 1989
+          },
+          "updated_on": [
+            1990,
+            1,
+            1
+          ]
+        },
+        "record": {
+          "government": "party:pg_ind",
+          "months": 30.0,
+          "performance": -0.268189185267795
+        },
+        "settled_months": 30,
+        "discontent": 0.25627825466418364,
+        "loyalty": 0.76764786945913,
+        "effective_loyalty": 0.76764786945913,
+        "coup_pressure": 0.0,
+        "confidence_penalty": 0.054352603797334184,
+        "political_only_full_provisions_target": 0.7956473962026658,
+        "actual_resource_target": 0.7956473962026659,
+        "resources_per_member": 11106.446722897967,
+        "useful_resources_per_member_cap": 7233.213752042391,
+        "fiscally_affordable_share": 0.0,
+        "military_share": 0.012227881344355415,
+        "army_funding_floor": 0.0,
+        "funding_command_affordable": true,
+        "needed_unaffordable": true,
+        "eligible_public_mandate_proxy": 0.3622529515404631,
+        "opening_mandate": null
+      }
+    },
+    {
+      "country": "Paraguay",
+      "events": 0,
+      "source_high_electoral_months": 3024,
+      "source_high_crisis_months": 96,
+      "max_confidence_penalty": 0.25669584126312767,
+      "min_political_only_full_provision_target": 0.5933041587368724,
+      "observed_funding_increases": 0,
+      "needed_unaffordable_electoral_months": 1159,
+      "example_seed": 7,
+      "closest_pre_first": {
+        "date": [
+          1990,
+          8,
+          1
+        ],
+        "authoritarianism": 0.38,
+        "army_authority": {
+          "current_leverage": 0.8,
+          "source": {
+            "assessment": 0.8,
+            "hog_removal": null,
+            "hog_weight": 0.0,
+            "hos_removal": 0.8,
+            "hos_weight": 1.0,
+            "nation": "Paraguay",
+            "source_key": "vdem-v16-1989-PRY",
+            "source_year": 1989
+          },
+          "updated_on": [
+            1990,
+            1,
+            1
+          ]
+        },
+        "record": {
+          "government": "party:py_anr",
+          "months": 7.0,
+          "performance": -0.7035058768845379
+        },
+        "settled_months": 7,
+        "discontent": 0.2625489570457735,
+        "loyalty": 0.6162674421699963,
+        "effective_loyalty": 0.6162674421699963,
+        "coup_pressure": 0.0,
+        "confidence_penalty": 0.251174256821881,
+        "political_only_full_provisions_target": 0.598825743178119,
+        "actual_resource_target": 0.43984844503777143,
+        "resources_per_member": 6493.040848738231,
+        "useful_resources_per_member_cap": 8595.277847023408,
+        "fiscally_affordable_share": 0.0,
+        "military_share": 0.021,
+        "army_funding_floor": 0.0,
+        "funding_command_affordable": true,
+        "needed_unaffordable": true,
+        "eligible_public_mandate_proxy": 0.0,
+        "opening_mandate": null
+      }
+    },
+    {
+      "country": "Peru",
+      "events": 0,
+      "source_high_electoral_months": 3024,
+      "source_high_crisis_months": 2922,
+      "max_confidence_penalty": 0.17645725332444137,
+      "min_political_only_full_provision_target": 0.6735427466755586,
+      "observed_funding_increases": 0,
+      "needed_unaffordable_electoral_months": 1667,
+      "example_seed": 6,
+      "closest_pre_first": {
+        "date": [
+          1997,
+          4,
+          1
+        ],
+        "authoritarianism": 0.3272512323186877,
+        "army_authority": {
+          "current_leverage": 0.475,
+          "source": {
+            "assessment": 0.5,
+            "hog_removal": null,
+            "hog_weight": 0.0,
+            "hos_removal": 0.5,
+            "hos_weight": 1.0,
+            "nation": "Peru",
+            "source_key": "vdem-v16-1989-PER",
+            "source_year": 1989
+          },
+          "updated_on": [
+            1992,
+            4,
+            1
+          ]
+        },
+        "record": {
+          "government": "party:pe_ppc",
+          "months": 59.0,
+          "performance": -1.0324621338436415
+        },
+        "settled_months": 59,
+        "discontent": 0.27317995604830414,
+        "loyalty": 0.37351529512785897,
+        "effective_loyalty": 0.37351529512785897,
+        "coup_pressure": 0.0,
+        "confidence_penalty": 0.16441089897796635,
+        "political_only_full_provisions_target": 0.6855891010220336,
+        "actual_resource_target": 0.35854876406456027,
+        "resources_per_member": 3833.644471478366,
+        "useful_resources_per_member_cap": 7715.727973535862,
+        "fiscally_affordable_share": 0.0,
+        "military_share": 0.020291065587822427,
+        "army_funding_floor": 0.0,
+        "funding_command_affordable": true,
+        "needed_unaffordable": true,
+        "eligible_public_mandate_proxy": 0.16350405387497086,
+        "opening_mandate": null
+      }
+    },
+    {
+      "country": "Philippines",
+      "events": 0,
+      "source_high_electoral_months": 3024,
+      "source_high_crisis_months": 2240,
+      "max_confidence_penalty": 0.22946747291075273,
+      "min_political_only_full_provision_target": 0.6205325270892472,
+      "observed_funding_increases": 0,
+      "needed_unaffordable_electoral_months": 3024,
+      "example_seed": 7,
+      "closest_pre_first": {
+        "date": [
+          1991,
+          6,
+          1
+        ],
+        "authoritarianism": 0.24,
+        "army_authority": {
+          "current_leverage": 0.714,
+          "source": {
+            "assessment": 0.714,
+            "hog_removal": null,
+            "hog_weight": 0.0,
+            "hos_removal": 0.714,
+            "hos_weight": 1.0,
+            "nation": "Philippines",
+            "source_key": "vdem-v16-1989-PHL",
+            "source_year": 1989
+          },
+          "updated_on": [
+            1990,
+            1,
+            1
+          ]
+        },
+        "record": {
+          "government": "party:ph_ldp",
+          "months": 17.0,
+          "performance": -0.5542372854203951
+        },
+        "settled_months": 17,
+        "discontent": 0.27730245238642853,
+        "loyalty": 0.657156362107107,
+        "effective_loyalty": 0.657156362107107,
+        "coup_pressure": 0.0,
+        "confidence_penalty": 0.19295879615807343,
+        "political_only_full_provisions_target": 0.6570412038419265,
+        "actual_resource_target": 0.6570412038419267,
+        "resources_per_member": 10463.031945684415,
+        "useful_resources_per_member_cap": 7380.7773032790365,
+        "fiscally_affordable_share": 0.0,
+        "military_share": 0.022,
+        "army_funding_floor": 0.0,
+        "funding_command_affordable": true,
+        "needed_unaffordable": true,
+        "eligible_public_mandate_proxy": 0.0,
+        "opening_mandate": null
+      }
+    },
+    {
+      "country": "Romania",
+      "events": 0,
+      "source_high_electoral_months": 3024,
+      "source_high_crisis_months": 2330,
+      "max_confidence_penalty": 0.05047025581591952,
+      "min_political_only_full_provision_target": 0.7995297441840805,
+      "observed_funding_increases": 0,
+      "needed_unaffordable_electoral_months": 2442,
+      "example_seed": 7,
+      "closest_pre_first": {
+        "date": [
+          2002,
+          6,
+          1
+        ],
+        "authoritarianism": 0.42,
+        "army_authority": {
+          "current_leverage": 0.5,
+          "source": {
+            "assessment": 0.5,
+            "hog_removal": 0.5,
+            "hog_weight": 1.0,
+            "hos_removal": 0.0,
+            "hos_weight": 0.0,
+            "nation": "Romania",
+            "source_key": "vdem-v16-1989-ROU",
+            "source_year": 1989
+          },
+          "updated_on": [
+            1990,
+            1,
+            1
+          ]
+        },
+        "record": {
+          "government": "party:ro_fsn",
+          "months": 149.0,
+          "performance": -0.24684897247300502
+        },
+        "settled_months": 149,
+        "discontent": 0.32244262603981266,
+        "loyalty": 0.8007596702284348,
+        "effective_loyalty": 0.8007596702284348,
+        "coup_pressure": 0.0,
+        "confidence_penalty": 0.03960860696956765,
+        "political_only_full_provisions_target": 0.8103913930304323,
+        "actual_resource_target": 0.8103913930304324,
+        "resources_per_member": 17301.753464482194,
+        "useful_resources_per_member_cap": 12578.904526163149,
+        "fiscally_affordable_share": 0.0,
+        "military_share": 0.035,
+        "army_funding_floor": 0.0,
+        "funding_command_affordable": true,
+        "needed_unaffordable": true,
+        "eligible_public_mandate_proxy": 0.5718445972228943,
+        "opening_mandate": null
+      }
+    },
+    {
+      "country": "SouthKorea",
+      "events": 0,
+      "source_high_electoral_months": 3024,
+      "source_high_crisis_months": 0,
+      "max_confidence_penalty": 0.0,
+      "min_political_only_full_provision_target": 0.85,
+      "observed_funding_increases": 8,
+      "needed_unaffordable_electoral_months": 2450,
+      "example_seed": 1,
+      "closest_pre_first": {
+        "date": [
+          2005,
+          10,
+          1
+        ],
+        "authoritarianism": 0.35,
+        "army_authority": {
+          "current_leverage": 0.5,
+          "source": {
+            "assessment": 0.5,
+            "hog_removal": null,
+            "hog_weight": 0.0,
+            "hos_removal": 0.5,
+            "hos_weight": 1.0,
+            "nation": "SouthKorea",
+            "source_key": "vdem-v16-1989-KOR",
+            "source_year": 1989
+          },
+          "updated_on": [
+            1990,
+            1,
+            1
+          ]
+        },
+        "record": {
+          "government": "party:kr_djp",
+          "months": 189.0,
+          "performance": 0.3433666030084346
+        },
+        "settled_months": 189,
+        "discontent": 0.0,
+        "loyalty": 0.6183246350058245,
+        "effective_loyalty": 0.6183246350058245,
+        "coup_pressure": 0.0,
+        "confidence_penalty": 0.0,
+        "political_only_full_provisions_target": 0.85,
+        "actual_resource_target": 0.6182767700408773,
+        "resources_per_member": 44600.633096933445,
+        "useful_resources_per_member_cap": 69309.159842115,
+        "fiscally_affordable_share": 0.06225827836443569,
+        "military_share": 0.02856257629701452,
+        "army_funding_floor": 0.01365726157549852,
+        "funding_command_affordable": true,
+        "needed_unaffordable": false,
+        "eligible_public_mandate_proxy": 0.5145960687212332,
+        "opening_mandate": null
+      }
+    },
+    {
+      "country": "Sudan",
+      "events": 0,
+      "source_high_electoral_months": 2068,
+      "source_high_crisis_months": 2068,
+      "max_confidence_penalty": 0.22321821816761794,
+      "min_political_only_full_provision_target": 0.626781781832382,
+      "observed_funding_increases": 0,
+      "needed_unaffordable_electoral_months": 410,
+      "example_seed": 2,
+      "closest_pre_first": {
+        "date": [
+          2002,
+          10,
+          1
+        ],
+        "authoritarianism": 0.48999999999999994,
+        "army_authority": {
+          "current_leverage": 0.75,
+          "source": {
+            "assessment": 1.0,
+            "hog_removal": 0.0,
+            "hog_weight": 0.0,
+            "hos_removal": 1.0,
+            "hos_weight": 1.0,
+            "nation": "Sudan",
+            "source_key": "vdem-v16-1989-SDN",
+            "source_year": 1989
+          },
+          "updated_on": [
+            2001,
+            5,
+            1
+          ]
+        },
+        "record": {
+          "government": "party:sd_snp",
+          "months": 16.0,
+          "performance": -0.49568589809555397
+        },
+        "settled_months": 16,
+        "discontent": 0.4008817187288724,
+        "loyalty": 0.6183280694765482,
+        "effective_loyalty": 0.6183280694765482,
+        "coup_pressure": 0.0,
+        "confidence_penalty": 0.16875245460446917,
+        "political_only_full_provisions_target": 0.6812475453955308,
+        "actual_resource_target": 0.6164573206283549,
+        "resources_per_member": 19222.75587407739,
+        "useful_resources_per_member_cap": 9488.383870363232,
+        "fiscally_affordable_share": 0.09850000000000017,
+        "military_share": 0.02737954842019899,
+        "army_funding_floor": 0.009014079366960585,
+        "funding_command_affordable": true,
+        "needed_unaffordable": false,
+        "eligible_public_mandate_proxy": 0.22781310691098805,
+        "opening_mandate": null
+      }
+    },
+    {
+      "country": "Thailand",
+      "events": 0,
+      "source_high_electoral_months": 3024,
+      "source_high_crisis_months": 0,
+      "max_confidence_penalty": 0.0,
+      "min_political_only_full_provision_target": 0.85,
+      "observed_funding_increases": 4,
+      "needed_unaffordable_electoral_months": 3024,
+      "example_seed": 0,
+      "closest_pre_first": {
+        "date": [
+          1990,
+          1,
+          1
+        ],
+        "authoritarianism": 0.35,
+        "army_authority": {
+          "current_leverage": 0.833,
+          "source": {
+            "assessment": 0.833,
+            "hog_removal": 0.833,
+            "hog_weight": 1.0,
+            "hos_removal": 0.143,
+            "hos_weight": 0.0,
+            "nation": "Thailand",
+            "source_key": "vdem-v16-1989-THA",
+            "source_year": 1989
+          },
+          "updated_on": [
+            1990,
+            1,
+            1
+          ]
+        },
+        "record": null,
+        "settled_months": 0,
+        "discontent": 0.18200000000000002,
+        "loyalty": 0.65,
+        "effective_loyalty": 0.65,
+        "coup_pressure": 0.0,
+        "confidence_penalty": 0.0,
+        "political_only_full_provisions_target": 0.85,
+        "actual_resource_target": 0.7263234129977132,
+        "resources_per_member": 7836.749116607773,
+        "useful_resources_per_member_cap": 9678.244972577697,
+        "fiscally_affordable_share": 0.0,
+        "military_share": 0.026,
+        "army_funding_floor": 0.0,
+        "funding_command_affordable": true,
+        "needed_unaffordable": true,
+        "eligible_public_mandate_proxy": 0.0,
+        "opening_mandate": null
+      }
+    },
+    {
+      "country": "Turkey",
+      "events": 0,
+      "source_high_electoral_months": 3024,
+      "source_high_crisis_months": 156,
+      "max_confidence_penalty": 0.17263649358848634,
+      "min_political_only_full_provision_target": 0.6773635064115137,
+      "observed_funding_increases": 0,
+      "needed_unaffordable_electoral_months": 1623,
+      "example_seed": 4,
+      "closest_pre_first": {
+        "date": [
+          1991,
+          1,
+          1
+        ],
+        "authoritarianism": 0.35,
+        "army_authority": {
+          "current_leverage": 0.5,
+          "source": {
+            "assessment": 0.5,
+            "hog_removal": 0.5,
+            "hog_weight": 1.0,
+            "hos_removal": 0.5,
+            "hos_weight": 0.0,
+            "nation": "Turkey",
+            "source_key": "vdem-v16-1989-TUR",
+            "source_year": 1989
+          },
+          "updated_on": [
+            1990,
+            1,
+            1
+          ]
+        },
+        "record": {
+          "government": "party:tr_anap",
+          "months": 12.0,
+          "performance": -0.7359857419064548
+        },
+        "settled_months": 12,
+        "discontent": 0.2634079170612613,
+        "loyalty": 0.48859375105534836,
+        "effective_loyalty": 0.48859375105534836,
+        "coup_pressure": 0.0,
+        "confidence_penalty": 0.16240146958225388,
+        "political_only_full_provisions_target": 0.6875985304177461,
+        "actual_resource_target": 0.386420661819621,
+        "resources_per_member": 7034.198203512041,
+        "useful_resources_per_member_cap": 13107.622540770506,
+        "fiscally_affordable_share": 0.0,
+        "military_share": 0.035,
+        "army_funding_floor": 0.0,
+        "funding_command_affordable": true,
+        "needed_unaffordable": true,
+        "eligible_public_mandate_proxy": 0.0,
+        "opening_mandate": null
+      }
+    },
+    {
+      "country": "Uruguay",
+      "events": 0,
+      "source_high_electoral_months": 3024,
+      "source_high_crisis_months": 120,
+      "max_confidence_penalty": 0.2229205467656656,
+      "min_political_only_full_provision_target": 0.6270794532343343,
+      "observed_funding_increases": 0,
+      "needed_unaffordable_electoral_months": 120,
+      "example_seed": 1,
+      "closest_pre_first": {
+        "date": [
+          1991,
+          6,
+          1
+        ],
+        "authoritarianism": 0.12,
+        "army_authority": {
+          "current_leverage": 0.6,
+          "source": {
+            "assessment": 0.6,
+            "hog_removal": null,
+            "hog_weight": 0.0,
+            "hos_removal": 0.6,
+            "hos_weight": 1.0,
+            "nation": "Uruguay",
+            "source_key": "vdem-v16-1989-URY",
+            "source_year": 1989
+          },
+          "updated_on": [
+            1990,
+            1,
+            1
+          ]
+        },
+        "record": {
+          "government": "party:uy_pn",
+          "months": 17.0,
+          "performance": -0.7503522115294257
+        },
+        "settled_months": 17,
+        "discontent": 0.2567218098563508,
+        "loyalty": 0.46965256327175914,
+        "effective_loyalty": 0.46965256327175914,
+        "coup_pressure": 0.0,
+        "confidence_penalty": 0.19637943417022644,
+        "political_only_full_provisions_target": 0.6536205658297736,
+        "actual_resource_target": 0.3932359214499971,
+        "resources_per_member": 7894.917034915833,
+        "useful_resources_per_member_cap": 13171.185372111971,
+        "fiscally_affordable_share": 0.015999999999999993,
+        "military_share": 0.023,
+        "army_funding_floor": 0.015999999999999993,
+        "funding_command_affordable": true,
+        "needed_unaffordable": true,
+        "eligible_public_mandate_proxy": 0.0,
+        "opening_mandate": null
+      }
+    }
+  ],
+  "high_source_without_coups": [
+    "ElSalvador",
+    "Paraguay",
+    "Algeria",
+    "Philippines",
+    "Sudan",
+    "Uruguay",
+    "Peru",
+    "Turkey",
+    "Angola",
+    "PapuaNewGuinea",
+    "Lesotho",
+    "CentralAfricanRepublic",
+    "Romania",
+    "Nigeria",
+    "Bangladesh",
+    "Cameroon",
+    "Egypt",
+    "Fiji",
+    "Gabon",
+    "Ghana",
+    "Haiti",
+    "Honduras",
+    "Pakistan",
+    "SouthKorea",
+    "Thailand"
+  ],
+  "limitations": [
+    "High source means opening expert-response proxy >=.5; live leverage may subsequently change.",
+    "Closest snapshot prioritizes settled electoral crisis, then pressure, then low effective loyalty, before first coup in that country. It is before the full monthly tick, not the exact internal event instant.",
+    "Maximum confidence penalty is across all observed months; full-provision target removes war and material shortage by algebra only, without rerunning a counterfactual.",
+    "This is the existing development seed block, not independent validation."
+  ]
+}

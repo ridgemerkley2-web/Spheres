@@ -1,0 +1,115 @@
+
+running 11 tests
+A10: median discontent lead 0.337 over 12 seeds ([0.3401979804503408, 0.36523447873857756, 0.32993728554138274, 0.35813668127290876, 0.3416090980971754, 0.34503098928776754, 0.33196814125861807, 0.32526592777490126, 0.3116707132067447, 0.31612125067599806, 0.3338531105169207, 0.3680328207736876])
+test a10_discontent_leads_the_roster_by_a_quarter_before_a_takeover ... ok
+A2: 9/12 seeds; Algeria Islamist 0/12 annulled 12/12
+s0 coupEl 9 annul 2 regCoup 5 take [0, 0, 9, 0, 1] upr [0, 0, 1, 0, 1, 5] open96 19 a6 0/1 big8 8 poor 16/16 a10 +0.340 top3 0.56
+s1 coupEl 9 annul 4 regCoup 5 take [0, 0, 13, 1, 1] upr [0, 0, 2, 1, 1, 7] open96 19 a6 0/1 big8 8 poor 18/18 a10 +0.365 top3 0.67
+s2 coupEl 8 annul 4 regCoup 6 take [0, 0, 13, 1, 0] upr [0, 0, 2, 1, 0, 8] open96 20 a6 0/1 big8 8 poor 18/18 a10 +0.330 top3 0.62
+s3 coupEl 8 annul 4 regCoup 5 take [0, 0, 13, 0, 0] upr [0, 0, 2, 0, 0, 5] open96 22 a6 0/1 big8 8 poor 17/17 a10 +0.358 top3 0.62
+s4 coupEl 9 annul 3 regCoup 6 take [0, 0, 13, 1, 1] upr [0, 0, 2, 1, 1, 3] open96 19 a6 0/1 big8 8 poor 18/18 a10 +0.342 top3 0.67
+s5 coupEl 6 annul 2 regCoup 5 take [0, 0, 9, 0, 1] upr [0, 0, 2, 0, 1, 4] open96 21 a6 0/1 big8 8 poor 13/13 a10 +0.345 top3 0.50
+s6 coupEl 6 annul 3 regCoup 6 take [0, 0, 10, 1, 1] upr [1, 0, 2, 1, 1, 7] open96 19 a6 0/1 big8 8 poor 15/15 a10 +0.332 top3 0.50
+s7 coupEl 11 annul 4 regCoup 3 take [0, 0, 15, 1, 0] upr [0, 0, 1, 1, 0, 8] open96 18 a6 0/1 big8 8 poor 18/18 a10 +0.325 top3 0.55
+s8 coupEl 9 annul 3 regCoup 6 take [0, 0, 12, 1, 0] upr [0, 0, 2, 1, 0, 8] open96 17 a6 0/1 big8 8 poor 18/18 a10 +0.312 top3 0.67
+s9 coupEl 8 annul 2 regCoup 7 take [0, 0, 11, 1, 1] upr [0, 0, 2, 1, 1, 8] open96 17 a6 0/1 big8 8 poor 17/17 a10 +0.316 top3 0.62
+s10 coupEl 8 annul 2 regCoup 5 take [0, 0, 10, 1, 1] upr [0, 0, 1, 1, 1, 8] open96 20 a6 0/1 big8 8 poor 15/15 a10 +0.334 top3 0.62
+s11 coupEl 10 annul 2 regCoup 4 take [0, 0, 12, 1, 1] upr [1, 0, 2, 1, 1, 4] open96 19 a6 0/1 big8 8 poor 16/16 a10 +0.368 top3 0.60
+test a2_an_islamist_takeover_without_a_ballot_in_most_seeds_by_2000 ... ok
+A1: median coups 8.5 top-3 share median 0.62
+s0 coupEl 9 annul 2 regCoup 5 take [0, 0, 9, 0, 1] upr [0, 0, 1, 0, 1, 5] open96 19 a6 0/1 big8 8 poor 16/16 a10 +0.340 top3 0.56
+s1 coupEl 9 annul 4 regCoup 5 take [0, 0, 13, 1, 1] upr [0, 0, 2, 1, 1, 7] open96 19 a6 0/1 big8 8 poor 18/18 a10 +0.365 top3 0.67
+s2 coupEl 8 annul 4 regCoup 6 take [0, 0, 13, 1, 0] upr [0, 0, 2, 1, 0, 8] open96 20 a6 0/1 big8 8 poor 18/18 a10 +0.330 top3 0.62
+s3 coupEl 8 annul 4 regCoup 5 take [0, 0, 13, 0, 0] upr [0, 0, 2, 0, 0, 5] open96 22 a6 0/1 big8 8 poor 17/17 a10 +0.358 top3 0.62
+s4 coupEl 9 annul 3 regCoup 6 take [0, 0, 13, 1, 1] upr [0, 0, 2, 1, 1, 3] open96 19 a6 0/1 big8 8 poor 18/18 a10 +0.342 top3 0.67
+s5 coupEl 6 annul 2 regCoup 5 take [0, 0, 9, 0, 1] upr [0, 0, 2, 0, 1, 4] open96 21 a6 0/1 big8 8 poor 13/13 a10 +0.345 top3 0.50
+s6 coupEl 6 annul 3 regCoup 6 take [0, 0, 10, 1, 1] upr [1, 0, 2, 1, 1, 7] open96 19 a6 0/1 big8 8 poor 15/15 a10 +0.332 top3 0.50
+s7 coupEl 11 annul 4 regCoup 3 take [0, 0, 15, 1, 0] upr [0, 0, 1, 1, 0, 8] open96 18 a6 0/1 big8 8 poor 18/18 a10 +0.325 top3 0.55
+s8 coupEl 9 annul 3 regCoup 6 take [0, 0, 12, 1, 0] upr [0, 0, 2, 1, 0, 8] open96 17 a6 0/1 big8 8 poor 18/18 a10 +0.312 top3 0.67
+s9 coupEl 8 annul 2 regCoup 7 take [0, 0, 11, 1, 1] upr [0, 0, 2, 1, 1, 8] open96 17 a6 0/1 big8 8 poor 17/17 a10 +0.316 top3 0.62
+s10 coupEl 8 annul 2 regCoup 5 take [0, 0, 10, 1, 1] upr [0, 0, 1, 1, 1, 8] open96 20 a6 0/1 big8 8 poor 15/15 a10 +0.334 top3 0.62
+s11 coupEl 10 annul 2 regCoup 4 take [0, 0, 12, 1, 1] upr [1, 0, 2, 1, 1, 4] open96 19 a6 0/1 big8 8 poor 16/16 a10 +0.368 top3 0.60
+
+thread 'a1_coups_against_elected_governments_are_spread_not_three_micro_polities' (22800) panicked at spheres-sim\tests\bloc_census.rs:992:5:
+three nations hold 0.62 of a seed's coups
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test a1_coups_against_elected_governments_are_spread_not_three_micro_polities ... FAILED
+A3: 0/20 seeds with a Communist non-ballot takeover
+s0 coupEl 9 annul 2 regCoup 5 take [0, 0, 9, 0, 1] upr [0, 0, 1, 0, 1, 5] open96 19 a6 0/1 big8 8 poor 16/16 a10 +0.340 top3 0.56
+s1 coupEl 9 annul 4 regCoup 5 take [0, 0, 13, 1, 1] upr [0, 0, 2, 1, 1, 7] open96 19 a6 0/1 big8 8 poor 18/18 a10 +0.365 top3 0.67
+s2 coupEl 8 annul 4 regCoup 6 take [0, 0, 13, 1, 0] upr [0, 0, 2, 1, 0, 8] open96 20 a6 0/1 big8 8 poor 18/18 a10 +0.330 top3 0.62
+s3 coupEl 8 annul 4 regCoup 5 take [0, 0, 13, 0, 0] upr [0, 0, 2, 0, 0, 5] open96 22 a6 0/1 big8 8 poor 17/17 a10 +0.358 top3 0.62
+s4 coupEl 9 annul 3 regCoup 6 take [0, 0, 13, 1, 1] upr [0, 0, 2, 1, 1, 3] open96 19 a6 0/1 big8 8 poor 18/18 a10 +0.342 top3 0.67
+s5 coupEl 6 annul 2 regCoup 5 take [0, 0, 9, 0, 1] upr [0, 0, 2, 0, 1, 4] open96 21 a6 0/1 big8 8 poor 13/13 a10 +0.345 top3 0.50
+s6 coupEl 6 annul 3 regCoup 6 take [0, 0, 10, 1, 1] upr [1, 0, 2, 1, 1, 7] open96 19 a6 0/1 big8 8 poor 15/15 a10 +0.332 top3 0.50
+s7 coupEl 11 annul 4 regCoup 3 take [0, 0, 15, 1, 0] upr [0, 0, 1, 1, 0, 8] open96 18 a6 0/1 big8 8 poor 18/18 a10 +0.325 top3 0.55
+s8 coupEl 9 annul 3 regCoup 6 take [0, 0, 12, 1, 0] upr [0, 0, 2, 1, 0, 8] open96 17 a6 0/1 big8 8 poor 18/18 a10 +0.312 top3 0.67
+s9 coupEl 8 annul 2 regCoup 7 take [0, 0, 11, 1, 1] upr [0, 0, 2, 1, 1, 8] open96 17 a6 0/1 big8 8 poor 17/17 a10 +0.316 top3 0.62
+s10 coupEl 8 annul 2 regCoup 5 take [0, 0, 10, 1, 1] upr [0, 0, 1, 1, 1, 8] open96 20 a6 0/1 big8 8 poor 15/15 a10 +0.334 top3 0.62
+s11 coupEl 10 annul 2 regCoup 4 take [0, 0, 12, 1, 1] upr [1, 0, 2, 1, 1, 4] open96 19 a6 0/1 big8 8 poor 16/16 a10 +0.368 top3 0.60
+s12 coupEl 7 annul 3 regCoup 5 take [0, 0, 11, 1, 1] upr [1, 0, 2, 1, 1, 3] open96 20 a6 0/1 big8 8 poor 15/15 a10 +0.366 top3 0.57
+s13 coupEl 7 annul 4 regCoup 6 take [0, 0, 11, 0, 0] upr [1, 0, 1, 0, 0, 5] open96 22 a6 0/1 big8 8 poor 17/17 a10 +0.336 top3 0.57
+s14 coupEl 6 annul 3 regCoup 4 take [0, 0, 10, 0, 1] upr [1, 0, 2, 0, 1, 4] open96 22 a6 0/1 big8 8 poor 13/13 a10 +0.316 top3 0.50
+s15 coupEl 8 annul 2 regCoup 4 take [0, 0, 10, 1, 1] upr [1, 0, 1, 0, 1, 4] open96 17 a6 0/1 big8 8 poor 14/14 a10 +0.323 top3 0.62
+s16 coupEl 8 annul 2 regCoup 6 take [0, 0, 11, 1, 1] upr [0, 0, 2, 1, 1, 8] open96 17 a6 0/1 big8 8 poor 16/16 a10 +0.326 top3 0.62
+s17 coupEl 7 annul 3 regCoup 8 take [0, 0, 10, 0, 0] upr [0, 0, 1, 0, 0, 6] open96 18 a6 0/1 big8 8 poor 18/18 a10 +0.340 top3 0.57
+s18 coupEl 6 annul 2 regCoup 4 take [0, 0, 9, 0, 1] upr [1, 0, 2, 0, 1, 3] open96 21 a6 0/1 big8 8 poor 12/12 a10 +0.364 top3 0.67
+s19 coupEl 8 annul 3 regCoup 7 take [0, 0, 12, 1, 1] upr [1, 0, 2, 1, 1, 7] open96 19 a6 0/1 big8 8 poor 18/18 a10 +0.304 top3 0.62
+test a3_a_communist_takeover_without_a_ballot_is_rare ... ok
+A5: 12/12 seeds with a flagged successor party led back into government by ballot in >= 3 ex-communist states by 1996
+s0 coupEl 9 annul 2 regCoup 5 take [0, 0, 9, 0, 1] upr [0, 0, 1, 0, 1, 5] open96 19 a6 0/1 big8 8 poor 16/16 a10 +0.340 top3 0.56
+s1 coupEl 9 annul 4 regCoup 5 take [0, 0, 13, 1, 1] upr [0, 0, 2, 1, 1, 7] open96 19 a6 0/1 big8 8 poor 18/18 a10 +0.365 top3 0.67
+s2 coupEl 8 annul 4 regCoup 6 take [0, 0, 13, 1, 0] upr [0, 0, 2, 1, 0, 8] open96 20 a6 0/1 big8 8 poor 18/18 a10 +0.330 top3 0.62
+s3 coupEl 8 annul 4 regCoup 5 take [0, 0, 13, 0, 0] upr [0, 0, 2, 0, 0, 5] open96 22 a6 0/1 big8 8 poor 17/17 a10 +0.358 top3 0.62
+s4 coupEl 9 annul 3 regCoup 6 take [0, 0, 13, 1, 1] upr [0, 0, 2, 1, 1, 3] open96 19 a6 0/1 big8 8 poor 18/18 a10 +0.342 top3 0.67
+s5 coupEl 6 annul 2 regCoup 5 take [0, 0, 9, 0, 1] upr [0, 0, 2, 0, 1, 4] open96 21 a6 0/1 big8 8 poor 13/13 a10 +0.345 top3 0.50
+s6 coupEl 6 annul 3 regCoup 6 take [0, 0, 10, 1, 1] upr [1, 0, 2, 1, 1, 7] open96 19 a6 0/1 big8 8 poor 15/15 a10 +0.332 top3 0.50
+s7 coupEl 11 annul 4 regCoup 3 take [0, 0, 15, 1, 0] upr [0, 0, 1, 1, 0, 8] open96 18 a6 0/1 big8 8 poor 18/18 a10 +0.325 top3 0.55
+s8 coupEl 9 annul 3 regCoup 6 take [0, 0, 12, 1, 0] upr [0, 0, 2, 1, 0, 8] open96 17 a6 0/1 big8 8 poor 18/18 a10 +0.312 top3 0.67
+s9 coupEl 8 annul 2 regCoup 7 take [0, 0, 11, 1, 1] upr [0, 0, 2, 1, 1, 8] open96 17 a6 0/1 big8 8 poor 17/17 a10 +0.316 top3 0.62
+s10 coupEl 8 annul 2 regCoup 5 take [0, 0, 10, 1, 1] upr [0, 0, 1, 1, 1, 8] open96 20 a6 0/1 big8 8 poor 15/15 a10 +0.334 top3 0.62
+s11 coupEl 10 annul 2 regCoup 4 take [0, 0, 12, 1, 1] upr [1, 0, 2, 1, 1, 4] open96 19 a6 0/1 big8 8 poor 16/16 a10 +0.368 top3 0.60
+test a5_ex_communists_return_by_ballot_in_most_seeds ... ok
+A4: median 1990 regimes electoral at end-1996 19
+s0 coupEl 9 annul 2 regCoup 5 take [0, 0, 9, 0, 1] upr [0, 0, 1, 0, 1, 5] open96 19 a6 0/1 big8 8 poor 16/16 a10 +0.340 top3 0.56
+s1 coupEl 9 annul 4 regCoup 5 take [0, 0, 13, 1, 1] upr [0, 0, 2, 1, 1, 7] open96 19 a6 0/1 big8 8 poor 18/18 a10 +0.365 top3 0.67
+s2 coupEl 8 annul 4 regCoup 6 take [0, 0, 13, 1, 0] upr [0, 0, 2, 1, 0, 8] open96 20 a6 0/1 big8 8 poor 18/18 a10 +0.330 top3 0.62
+s3 coupEl 8 annul 4 regCoup 5 take [0, 0, 13, 0, 0] upr [0, 0, 2, 0, 0, 5] open96 22 a6 0/1 big8 8 poor 17/17 a10 +0.358 top3 0.62
+s4 coupEl 9 annul 3 regCoup 6 take [0, 0, 13, 1, 1] upr [0, 0, 2, 1, 1, 3] open96 19 a6 0/1 big8 8 poor 18/18 a10 +0.342 top3 0.67
+s5 coupEl 6 annul 2 regCoup 5 take [0, 0, 9, 0, 1] upr [0, 0, 2, 0, 1, 4] open96 21 a6 0/1 big8 8 poor 13/13 a10 +0.345 top3 0.50
+s6 coupEl 6 annul 3 regCoup 6 take [0, 0, 10, 1, 1] upr [1, 0, 2, 1, 1, 7] open96 19 a6 0/1 big8 8 poor 15/15 a10 +0.332 top3 0.50
+s7 coupEl 11 annul 4 regCoup 3 take [0, 0, 15, 1, 0] upr [0, 0, 1, 1, 0, 8] open96 18 a6 0/1 big8 8 poor 18/18 a10 +0.325 top3 0.55
+s8 coupEl 9 annul 3 regCoup 6 take [0, 0, 12, 1, 0] upr [0, 0, 2, 1, 0, 8] open96 17 a6 0/1 big8 8 poor 18/18 a10 +0.312 top3 0.67
+s9 coupEl 8 annul 2 regCoup 7 take [0, 0, 11, 1, 1] upr [0, 0, 2, 1, 1, 8] open96 17 a6 0/1 big8 8 poor 17/17 a10 +0.316 top3 0.62
+s10 coupEl 8 annul 2 regCoup 5 take [0, 0, 10, 1, 1] upr [0, 0, 1, 1, 1, 8] open96 20 a6 0/1 big8 8 poor 15/15 a10 +0.334 top3 0.62
+s11 coupEl 10 annul 2 regCoup 4 take [0, 0, 12, 1, 1] upr [1, 0, 2, 1, 1, 4] open96 19 a6 0/1 big8 8 poor 16/16 a10 +0.368 top3 0.60
+test a4_the_democratisation_wave_opens_fifteen_regimes_by_1996 ... ok
+A7: median ballot-flips / takeovers 8.156 ([7.8, 8.0, 9.0, 6.769230769230769, 4.733333333333333, 7.5, 9.75, 8.3125, 9.615384615384615, 10.615384615384615, 10.666666666666666, 6.0])
+s0 coupEl 9 annul 2 regCoup 5 take [0, 0, 9, 0, 1] upr [0, 0, 1, 0, 1, 5] open96 19 a6 0/1 big8 8 poor 16/16 a10 +0.340 top3 0.56
+s1 coupEl 9 annul 4 regCoup 5 take [0, 0, 13, 1, 1] upr [0, 0, 2, 1, 1, 7] open96 19 a6 0/1 big8 8 poor 18/18 a10 +0.365 top3 0.67
+s2 coupEl 8 annul 4 regCoup 6 take [0, 0, 13, 1, 0] upr [0, 0, 2, 1, 0, 8] open96 20 a6 0/1 big8 8 poor 18/18 a10 +0.330 top3 0.62
+s3 coupEl 8 annul 4 regCoup 5 take [0, 0, 13, 0, 0] upr [0, 0, 2, 0, 0, 5] open96 22 a6 0/1 big8 8 poor 17/17 a10 +0.358 top3 0.62
+s4 coupEl 9 annul 3 regCoup 6 take [0, 0, 13, 1, 1] upr [0, 0, 2, 1, 1, 3] open96 19 a6 0/1 big8 8 poor 18/18 a10 +0.342 top3 0.67
+s5 coupEl 6 annul 2 regCoup 5 take [0, 0, 9, 0, 1] upr [0, 0, 2, 0, 1, 4] open96 21 a6 0/1 big8 8 poor 13/13 a10 +0.345 top3 0.50
+s6 coupEl 6 annul 3 regCoup 6 take [0, 0, 10, 1, 1] upr [1, 0, 2, 1, 1, 7] open96 19 a6 0/1 big8 8 poor 15/15 a10 +0.332 top3 0.50
+s7 coupEl 11 annul 4 regCoup 3 take [0, 0, 15, 1, 0] upr [0, 0, 1, 1, 0, 8] open96 18 a6 0/1 big8 8 poor 18/18 a10 +0.325 top3 0.55
+s8 coupEl 9 annul 3 regCoup 6 take [0, 0, 12, 1, 0] upr [0, 0, 2, 1, 0, 8] open96 17 a6 0/1 big8 8 poor 18/18 a10 +0.312 top3 0.67
+s9 coupEl 8 annul 2 regCoup 7 take [0, 0, 11, 1, 1] upr [0, 0, 2, 1, 1, 8] open96 17 a6 0/1 big8 8 poor 17/17 a10 +0.316 top3 0.62
+s10 coupEl 8 annul 2 regCoup 5 take [0, 0, 10, 1, 1] upr [0, 0, 1, 1, 1, 8] open96 20 a6 0/1 big8 8 poor 15/15 a10 +0.334 top3 0.62
+s11 coupEl 10 annul 2 regCoup 4 take [0, 0, 12, 1, 1] upr [1, 0, 2, 1, 1, 4] open96 19 a6 0/1 big8 8 poor 16/16 a10 +0.368 top3 0.60
+test a7_ballots_flip_the_ruling_bloc_three_times_as_often_as_takeovers ... ok
+test a_ballot_and_an_uncoloured_collapse_do_not_fabricate_a_movement_takeover ... ok
+A6 at 420 months: route events 0 in 12/12 seeds; pre-existing collapses beside [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+test a6_no_road_reaches_a_1990_democracy_in_thirty_five_years ... ok
+A9: 199/199 = 1.000 of coups in nations under $8,000 a head
+test a9_four_coups_in_five_strike_nations_under_8000_a_head ... ok
+A8: 40/40 seeds keep >= 6 of 8; per seed [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]
+test a8_six_of_the_eight_big_regimes_keep_their_bloc_in_most_seeds ... ok
+
+failures:
+
+failures:
+    a1_coups_against_elected_governments_are_spread_not_three_micro_polities
+
+test result: FAILED. 10 passed; 1 failed; 0 ignored; 0 measured; 1 filtered out; finished in 47.01s
+

@@ -1,0 +1,28 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://web.archive.org/web/20181031091602id_/http://www.mic.gov.to/news-today/press-releases/7033-interim-speaker-of-parliament-",
+  "original_url": "http://www.mic.gov.to/news-today/press-releases/7033-interim-speaker-of-parliament-",
+  "archive_capture_utc": "2018-10-31T09:16:02Z",
+  "accessed_date": "2026-09-22",
+  "published_date": "2017-11-20",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 32141,
+  "source_response_sha256": "ba0ac1467d8a353ecea7d4dc44b0a93eedd02cd9cf1ef32d9c85c11852a885e6",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original government portal page, captured at 2018-10-31T09:16:02Z; the capture is used in place of the live page. The researcher downloaded and hashed the capture bytes before extraction on 2026-09-22 (local); the independent check re-downloaded it the same day and matched the bytes and SHA-256, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_interim_speaker_tangi_20171117",
+      "text": "The release states that the King appointed Lord Tangi as Interim Speaker of the Legislative Assembly 'effective as of today, Friday 17th of November 2017' under Clause 61, to invite nominations for Prime Minister Designate and to convene the secret-ballot meeting. The writ was to be returned on or before 30 November 2017.",
+      "attested_on": "2017-11-17",
+      "locator": "Body paragraphs 1-3",
+      "uncertainty": "Procedural. The page is dated 20 November 2017 while the text says 'today, Friday 17th'; both are recorded as printed."
+    }
+  ],
+  "scope_note": "Release from the Office of the Interim Speaker on the government portal, page dated 20 November 2017 (raw Internet Archive capture of 31 October 2018). Procedural.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  }
+}

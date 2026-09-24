@@ -1,0 +1,21 @@
+{
+  "build": "iteration5",
+  "full_suite_passed": 927,
+  "full_suite_failed": 5,
+  "ignored_diagnostics": 25,
+  "resource_timing_filtered": 1,
+  "seconds": 170.11,
+  "log_sha256": "631f7d04dafad5162ce75d5ab6e08274e27d339a19f683c92705f8c854d78c97",
+  "test_executable_sha256": "57965116f6becacdef6efd551307efc5d802b4f742ff1ad1bff7b6e7ea758707",
+  "owned_checks": [
+    "government::tests::every_succession_rule_seats_the_right_description_and_never_a_name",
+    "tests::mature_economies_do_not_run_hot",
+    "tests::great_power_pacts_answer_real_defensive_obligations",
+    "tests::guarantees_are_usually_but_not_always_honoured"
+  ],
+  "owned_checks_passed": 4,
+  "term_limit_recompiled_test": "passed",
+  "other_failures": "4 stale fingerprints plus armed_security unaffordable-review preflight; owned by parent/other agent",
+  "scope": "Iteration5 includes a later political-memory production model. Its default timeline differs from iteration4. This is not a final all-green build receipt.",
+  "subsequent_test_only_change": "Corrected full-term memory test now covers UK60 and USA48 months; external extracted harness passed, recompiled final test pending"
+}

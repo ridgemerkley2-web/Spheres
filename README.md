@@ -95,7 +95,8 @@ different campaign invalidates old session receipts.
 ## Development and verification
 
 ```sh
-cargo test --locked --release --workspace --no-fail-fast
+cargo test --locked --release --workspace --no-fail-fast -- --skip tests::the_resource_pass_stays_under_budget
+cargo test --locked --release -p spheres-sim --lib tests::the_resource_pass_stays_under_budget -- --exact --nocapture --test-threads=1
 node tools/ui/run-unit.cjs
 cargo build --locked --release -p spheres-web
 ```
@@ -106,6 +107,12 @@ disposable server. Never point recovery tests at a campaign you want to keep.
 Windows and Linux CI cover the locked Rust build, simulation/accounting tests,
 UI tests, lost-response recovery, saves and narrow-screen rendering. The
 workflow must run on GitHub before a remote CI result can be claimed.
+
+The resource timing assertion runs separately after the other Rust tests because
+its absolute wall-clock budget is sensitive to concurrent simulation work. Both
+commands are required: the second retains the same 0.15 ms/month limit and fails
+CI if it is exceeded. Do not run the timing check alongside compilation or other
+CPU-heavy suites. Ordinary tests remain parallel; no assertion is disabled.
 
 Daily calibration is separate from the legacy monthly report:
 

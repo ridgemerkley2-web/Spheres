@@ -1,0 +1,58 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://ago.gov.to/cms/judgements/supreme-court-civil/category/206-cv-2022.html?download=2491:fatai-helu-and-paula-piveni-piukala-v-electoral-commission-the-election-of-lord-nuku-cv-55-22-tosc-29-aug-2022-whitten-qc-cj-ruling",
+  "accessed_date": "2026-09-21",
+  "published_date": "2022-08-29",
+  "access_method": "downloaded_original_pdf_text_and_relevant_pages_visually_read",
+  "source_response_bytes": 348680,
+  "source_response_sha256": "a5f84dcfa45b40af7cc2a5db28ccd47eff6d3d43f5581c9c733e8876cc8681c9",
+  "source_response_checked_in": false,
+  "provenance_note": "Original response bytes were downloaded (curl -L) on 2026-09-21 and hashed before extraction; an independent re-download the same day matched the byte count and SHA-256. The PDF is a page scan with an OCR text layer, so every imported label was checked against rendered page images. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_ptoa_tongan_name_20220829",
+      "text": "The ruling refers to the PTOA party, also known as the Democratic Party; footnote 3 expands PTOA as Paati Temokalati 'a e 'Otu Motu 'Anga'ofa.",
+      "attested_on": "2022-08-29",
+      "locator": "PDF page 1, paragraph 3 and footnote 3",
+      "uncertainty": "A judicial background description, not a register entry. The court does not use the English form 'Democratic Party of the Friendly Islands' and states no registered name, founding date or legal form."
+    },
+    {
+      "id": "to_ptoa_2021_candidates_20211118",
+      "text": "The ruling states that the PTOA party fielded candidates for the people's representatives of a number of constituencies at the general election for which writs were issued on 2 September 2021, to be held on 18 November 2021, and that Paula Piukala was one of the candidates for Tongatapu 7.",
+      "attested_on": "2021-11-18",
+      "locator": "PDF page 1, paragraphs 2-3; poll date also in paragraph 9 (page 2)",
+      "uncertainty": "attested_on is the poll date the ruling refers to; the ruling itself is dated 29 August 2022 (published_date), following this packet's convention of dating a court's event narrative by the event. Candidates formally stood as individuals; no PTOA candidate list, count or result is given."
+    },
+    {
+      "id": "to_ptoa_president_helu_20220829",
+      "text": "The ruling's background states in the present tense that Fatai Helu is the President of the party (PTOA) and that Paula Piukala is an executive member.",
+      "attested_on": "2022-08-29",
+      "locator": "PDF page 1, paragraph 3",
+      "uncertainty": "A judicial background recital in a leave ruling, not a court finding: the party's officers were not in issue and no basis is given. It was probably drawn from the applicants' own filings (Piukala, named as an executive member, was an applicant), so it carries the weight of party self-description relayed by the court. No selection or appointment date, term, constitution or successor is given. Whether 'President' is the same office as party 'Leader' is not stated. 'Executive member' is not a named office."
+    },
+    {
+      "id": "to_ptoa_self_described_objective_20220829",
+      "text": "Self-description: the ruling relays Paula Piukala's affidavit, which supports the application filed on 17 August 2022, as stating that the objective of the PTOA is to promote the principle of equality before the law in the Kingdom. The court adds that, as evident from its mandate, the party is concerned with the election of people's representatives, and records counsel as equivocal about whether its membership includes any nobles.",
+      "attested_on": "2022-08-29",
+      "locator": "PDF page 3, paragraphs 12-13; page 10, paragraph 42",
+      "uncertainty": "Dated by the ruling that relays it. The affidavit's own date is not given; the ruling says only that the application filed on 17 August 2022 is supported by it. The objective is a party member's own statement, labelled here as self-description; the mandate remark is the court's characterisation, not a quoted constitution."
+    },
+    {
+      "id": "to_ptoa_applicants_individuals_20220829",
+      "text": "The proceeding is brought in the names of two individual applicants, Fatai Helu and Paula Piveni Piukala. PTOA is not named as an applicant or party, and the ruling does not describe PTOA as incorporated or registered.",
+      "attested_on": "2022-08-29",
+      "locator": "PDF page 1, title block; whole ruling (text layer searched)",
+      "uncertainty": "The absence of a legal-form statement is not evidence that PTOA lacks legal personality."
+    }
+  ],
+  "scope_note": "Party-identity and background statements only. The application for leave was dismissed (paragraph 83), and the dismissal was upheld on appeal (AC 22 of 2022, 6 April 2023). No argument, interpretation or ruling on clause 65, and nothing about the judgment debt recited in paragraphs 1 and 4, is imported. The Attorney General's Office stamp on page 1 (28/09/22) is publication handling, not the ruling date.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      3,
+      10
+    ],
+    "method": "Pages 1, 3 and 10 rendered with PDFium and visually read (title block, paragraphs 1-4 with footnote 3, paragraphs 11-16 and 40-43), once by the researcher and again by the checker. Paragraph 83 (page 20, result) and paragraph 9 (page 2) were read from the text layer. The Tongan expansion in footnote 3 was checked against the page image."
+  }
+}

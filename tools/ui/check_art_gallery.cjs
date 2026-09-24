@@ -11,10 +11,10 @@
 //      the card's own string and passes `{id: "1990"}`, and town-mesh seeds a
 //      number and a string differently. Civic read 131,586 against the 106,789
 //      actually on screen — 23% wrong.
-//   2. Four of its nine budget bands were LOOSER than the roadmap section 4 they
-//      claimed to grade against (vehicles 150,000 against 45,000; sites and
-//      stages 40,000 against 12,000; town 400,000 against 150,000), so art that
-//      is over budget displayed as passing.
+//   2. Its budget bands differed from the roadmap rows they claimed to grade.
+//      Contract revision 2 now distinguishes tank/specialist inspection and
+//      complete compounds from their individual physical buildings. This test
+//      binds exact bands to the current benchmark and retains full mesh counts.
 //
 // This runs the page's OWN script against the real mesh modules — it does not
 // re-implement the views — and asserts the caption equals what the provider
@@ -76,16 +76,19 @@ function runGallery() {
   const click = els.bar.listeners.click;
   assert.ok(typeof click === "function", "the view bar lost its click handler");
 
-  const views = new Map();
+  const views = new Map(), renderedHtml = new Map();
   for (const name of names) {
     click({ target: { closest: (sel) => (sel === "button[data-v]" ? { dataset: { v: name } } : null) } });
     const html2 = els.grid.innerHTML;
     assert.ok(!/failed to build/.test(html2), `${name} failed to build: ${html2.slice(0, 200)}`);
     const cards = [...html2.matchAll(/data-kit3d="([^"]*)"[\s\S]*?<em[^>]*>([\d,]+) triangles([^<]*)</g)]
       .map((m) => ({ id: m[1], caption: Number(m[2].replace(/,/g, "")), note: m[3] }));
+    for(const m of html2.matchAll(/data-town-scene="([^"]*)"[\s\S]*?<em>([\d,]+) full-close stored triangles/g))
+      cards.push({id:'town-scene:'+m[1],caption:Number(m[2].replace(/,/g,'')),scene:true});
     views.set(name, cards);
+    renderedHtml.set(name, html2);
   }
-  return { views, providers, names };
+  return { views, providers, names, renderedHtml };
 }
 
 const G = runGallery();
@@ -97,7 +100,7 @@ test("the bench renders every view, and every view has cards", () => {
   }
   // The kits that ship must all be represented somewhere.
   const all = [...G.views.values()].flat().map((c) => c.id).join(" ");
-  for (const [kit, marker] of [["equipment", "veh:"], ["sites", "site:"], ["town", "town:"],
+  for (const [kit, marker] of [["equipment", "veh:"], ["sites", "site:"], ["town", "town-scene:"],
     ["roads", "road:"], ["props", "prop:"], ["scatter", "scatter:"]]) {
     assert.ok(all.includes(marker), `no ${kit} card on the bench (looked for "${marker}")`);
   }
@@ -110,6 +113,12 @@ test("every caption is the count of the mesh that card actually draws", () => {
   const wrong = [];
   for (const [view, cards] of G.views) {
     for (const c of cards) {
+      if(c.scene){
+        const [id,district,numeric]=c.id.slice('town-scene:'.length).split('/');
+        const scene=require(ui('town-mesh.js')).scene({id:numeric?Number(id):id,district});
+        assert.equal(c.caption,scene.rawCloseTriangles,'raw storage is explicitly distinguished from live submissions');
+        continue;
+      }
       const colon = c.id.indexOf(":");
       let mesh;
       if (colon < 0) {
@@ -146,10 +155,13 @@ test("no band on the bench is looser than the roadmap section 4 row it cites", (
   const page = fs.readFileSync(PAGE, "utf8");
   const rows = [...page.matchAll(/^\s{4}(\w+): \[(\d+), (\d+), "([^"]+)"\],/gm)];
   assert.ok(rows.length >= 6, `only ${rows.length} section 4 bands found on the bench`);
+  const {BUDGETS}=require('./bench_art.cjs');
   for (const [, key, min, max, row] of rows) {
     assert.ok(cells.has(row),
       `the bench cites a section 4 row that no longer exists: "${row}" (${key})`);
     const cell = cells.get(row);
+    if(BUDGETS[key])assert.deepEqual([Number(min),Number(max),row],
+      [BUDGETS[key].min||0,BUDGETS[key].max,BUDGETS[key].row],`${key}: exact benchmark contract`);
     // The numbers the page carries must appear in the roadmap cell it names, so
     // a cell edit is caught here rather than silently tolerated.
     const digits = cell.replace(/[^\d]/g, "");
@@ -159,6 +171,34 @@ test("no band on the bench is looser than the roadmap section 4 row it cites", (
     assert.ok(digits.includes(shrink(max)) || digits.includes(String(max)),
       `${key}: ceiling ${max} is not in the section 4 cell "${cell}" for row "${row}"`);
   }
+});
+
+test('town cards expose real focus controls and report draw-plan counts after each redraw',()=>{
+  assert.equal(G.views.get('Town').length,require(ui('town-mesh.js')).districts().length);
+  assert.equal(G.views.get('Town budget cases').length,2);
+  const page=fs.readFileSync(PAGE,'utf8');
+  assert.match(page,/Arsenal3D\.mountScene\(canvas, scene/);
+  assert.match(page,/num\(plan\.triangles\).*submitted triangles/);
+  assert.match(page,/controller\.focus\(select\.value/);
+  assert.match(page,/controller\.reset\(\)/);
+  assert.match(page,/controller\.dispose\(\)/);
+  for(const view of ['Town','Town budget cases'])assert.match(G.renderedHtml.get(view),/data-town-lot/);
+});
+
+test("inspection cards distinguish tanks and specialists while compound cards retain complete scene counts",()=>{
+  const cards=G.views.get('Vehicles LOD0');
+  assert.equal(cards.length,9);
+  for(const c of cards)assert.match(c.note,c.id.startsWith('veh:tank_')
+    ? /20,000–150,000 \(Tank inspection LOD0\)/
+    : /8,000–48,000 \(Armoured specialist inspection LOD0\)/,c.id);
+  for(const view of ['Sites complete','Arms plant stages']){
+    for(const c of G.views.get(view))assert.match(c.note,/0–150,000 \(Scene assembly\)/,c.id);
+    const html=G.renderedHtml.get(view);
+    assert.equal((html.match(/#physical-building-accounting/g)||[]).length,G.views.get(view).length);
+    assert.equal((html.match(/physical structures/g)||[]).length,G.views.get(view).length);
+  }
+  for(const view of ['Vehicles LOD1','Vehicles LOD2'])for(const c of G.views.get(view))
+    assert.match(c.note,view.endsWith('1')?/4,000–12,000/:/300–1,500/);
 });
 
 test("art with no section 4 row says so instead of inventing a bar", () => {

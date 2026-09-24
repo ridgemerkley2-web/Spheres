@@ -1,0 +1,104 @@
+{
+  "lake_source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\terrain-source\\ne_10m_lakes.geojson",
+  "lake_source_sha256": "2d036f53dedec578001c5c30c2959ee7d4eebc1306900fa4367c49929ec8f2d9",
+  "lake_source_pinned": true,
+  "temporary_lake_cache_removed": true,
+  "checks": [
+    {
+      "name": "terrain-staged-lakes",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/terrain/check.py"
+      ],
+      "exit_code": 0,
+      "seconds": 13.02,
+      "log_sha256": "8becf74ef39f388c8aa2028d1aa70fd1f1a5013f9eb50c8d4a152a2d820b0266",
+      "log_bytes": 22196,
+      "limitations": [
+        "WARN  Gobi: MN-064 (Gov\u012d-S\u00fcmber): t=mountain f='Hentiyn Mts.' [expect desert/highland; judged NE fuzzy-blob quirk]",
+        "WARN  make_relief + make_occlusion: byte-identity SKIPPED, source absent (spheres-web/data/etopo_60s.nc)",
+        "WARN  make_cover: byte-identity SKIPPED, source absent (spheres-web/data/NE1_50M_SR_W.zip)",
+        "WARN [famous] Gobi: MN-064 (Gov\u012d-S\u00fcmber): t=mountain f='Hentiyn Mts.' [expect desert/highland; judged NE fuzzy-blob quirk]",
+        "WARN [gltex] make_relief + make_occlusion: byte-identity SKIPPED, source absent (spheres-web/data/etopo_60s.nc)",
+        "WARN [gltex] make_cover: byte-identity SKIPPED, source absent (spheres-web/data/NE1_50M_SR_W.zip)"
+      ]
+    },
+    {
+      "name": "resource-rules-restored-fast",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/resources/check_resources.py",
+        "--fast"
+      ],
+      "exit_code": 1,
+      "seconds": 0.13,
+      "log_sha256": "c49a1fa592dcf6d89c226e64fb34cd2e596215b7e7d891ddf48fd8cf6b1aa8f5",
+      "log_bytes": 6625,
+      "limitations": []
+    },
+    {
+      "name": "resource-ground-truth-restored-fast",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/resources/check.py",
+        "--fast"
+      ],
+      "exit_code": 0,
+      "seconds": 3.031,
+      "log_sha256": "d0a9d4a7a36570a2bb4aa085358bce663adbdd78df96874fe54cf381f13d801b",
+      "log_bytes": 18629,
+      "limitations": [
+        "WARN  Germany carries bauxite in 1 district(s): DE-TH Th\u00fcringen (single, n=1) \u2014 NOT zero; the surviving evidence is DE-TH Vogelsberg Mountain",
+        "WARN  France carries bauxite in 3 district(s): FRA_provence-alpes-c-te-d-azur Provence-Alpes-C\u00f4te-d'Azur (strong, n=13), FRA_centre-val-de-loire Centre-Val de Loire (single, n=6), FRA_auvergne-rh-ne-alpes Auvergne-Rh\u00f4ne-Alpes (single, n=1) \u2014 NOT zero; the surviving evidence is the Var bauxite field",
+        "WARN  Al-Basrah is Iraq's #3 oil district, not #1 \u2014 IQ-SD Sala ad-Din leads at 17,965 MMBO. WEP publishes one volume for the whole Mesopotamian Foredeep and holds no field geometry, so Rumaila and West Qurna cannot be placed.",
+        "WARN  coverage is NOT uniform: Oceania at 27.2% against SouthAmerica at 73.7%. Reading district count as endowment inverts the real 1990 map.",
+        "WARN  80 entries have NO unflagged coordinate at all: every point under them is a filing centroid, so they are located to an administrative unit and no further. The band cannot say that on its own \u2014 `confidence.unflagged_coordinates` is the number to read.",
+        "WARN  OPEN HOLE: Guinea produced 15,800,000 t of bauxite in 1990 (USGS DS896 sheet 2) \u2014 14.0% of the 113,000,000 t world total and rank 2 behind Australia. MRDS locates 10 of its mines correctly. Both are dropped because the roster has no Guinea, and the shipped artifact says so NOWHERE: crosswalk.IGNORE swallows the name and the drop is not recorded in unlocated_producers. Doctrine requires absence PLUS an explicit unlocated marker; the marker is missing.",
+        "WARN  1. NO PER-DISTRICT MAGNITUDE for any mineral. Districts carry presence and a citation count only; 1990 production is national and undivided.",
+        "WARN  2. NO LOCATED US PETROLEUM. 0 US districts carry oil or gas; the USA's 7,355.32 kb/d sits in unlocated_producers.",
+        "WARN  3. COAL IS LOCATED BUT NOT AT 1990. 328 districts carry coal from four USGS sources dated 2001-2012; 14 nations produced coal in 1990 and still have none located. The Ruhr shows the nine collieries open in 2006, not the twenty-odd working in 1990, and British coal shows the twenty pits left in 2007. The hole that remains is VINTAGE, not absence, and it understates 1990.",
+        "SKIP  (--fast)",
+        "WARN [no-bauxite] Germany carries bauxite in 1 district(s): DE-TH Th\u00fcringen (single, n=1) \u2014 NOT zero; the surviving evidence is DE-TH Vogelsberg Mountain",
+        "WARN [no-bauxite] France carries bauxite in 3 district(s): FRA_provence-alpes-c-te-d-azur Provence-Alpes-C\u00f4te-d'Azur (strong, n=13), FRA_centre-val-de-loire Centre-Val de Loire (single, n=6), FRA_auvergne-rh-ne-alpes Auvergne-Rh\u00f4ne-Alpes (single, n=1) \u2014 NOT zero; the surviving evidence is the Var bauxite field",
+        "WARN [apportion] Al-Basrah is Iraq's #3 oil district, not #1 \u2014 IQ-SD Sala ad-Din leads at 17,965 MMBO. WEP publishes one volume for the whole Mesopotamian Foredeep and holds no field geometry, so Rumaila and West Qurna cannot be placed.",
+        "WARN [limits] coverage is NOT uniform: Oceania at 27.2% against SouthAmerica at 73.7%. Reading district count as endowment inverts the real 1990 map.",
+        "WARN [limits] 80 entries have NO unflagged coordinate at all: every point under them is a filing centroid, so they are located to an administrative unit and no further. The band cannot say that on its own \u2014 `confidence.unflagged_coordinates` is the number to read.",
+        "WARN [guinea] OPEN HOLE: Guinea produced 15,800,000 t of bauxite in 1990 (USGS DS896 sheet 2) \u2014 14.0% of the 113,000,000 t world total and rank 2 behind Australia. MRDS locates 10 of its mines correctly. Both are dropped because the roster has no Guinea, and the shipped artifact says so NOWHERE: crosswalk.IGNORE swallows the name and the drop is not recorded in unlocated_producers. Doctrine requires absence PLUS an explicit unlocated marker; the marker is missing.",
+        "WARN [holes] 1. NO PER-DISTRICT MAGNITUDE for any mineral. Districts carry presence and a citation count only; 1990 production is national and undivided.",
+        "WARN [holes] 2. NO LOCATED US PETROLEUM. 0 US districts carry oil or gas; the USA's 7,355.32 kb/d sits in unlocated_producers.",
+        "WARN [holes] 3. COAL IS LOCATED BUT NOT AT 1990. 328 districts carry coal from four USGS sources dated 2001-2012; 14 nations produced coal in 1990 and still have none located. The Ruhr shows the nine collieries open in 2006, not the twenty-odd working in 1990, and British coal shows the twenty pits left in 2007. The hole that remains is VINTAGE, not absence, and it understates 1990."
+      ]
+    },
+    {
+      "name": "lake-surfaces-strict",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/terrain/make_lake_surfaces.py",
+        "--hydrolakes",
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\terrain-source\\HydroLAKES_points_v10_shp.zip",
+        "--natural-earth",
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\terrain-source\\ne_10m_lakes.geojson",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.704,
+      "log_sha256": "b80c42eecab9ed609af5e95c4b7cdb25490de059715902317128274a3fbb7d04",
+      "log_bytes": 247,
+      "limitations": []
+    }
+  ],
+  "tracked_artifacts_checked": 1626,
+  "shipped_artifacts_changed": []
+}

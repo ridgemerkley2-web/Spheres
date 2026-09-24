@@ -1,0 +1,59 @@
+{
+  "format": "spheres-completed-node-suite/v1",
+  "recorded_on": "2026-09-22",
+  "command": "node tools/ui/run-unit.cjs",
+  "base_head": "bd24d5776f6798d19c64846f9602aa5be2ad13b0",
+  "source_scope": "Integration working tree with the uncommitted mandatory advisor fixture repair. This is not a clean-commit or hosted result; ongoing native political changes are not certified by this JavaScript run.",
+  "runtime": {
+    "node": "v24.12.0",
+    "platform": "win32",
+    "architecture": "x64"
+  },
+  "exit_code": 0,
+  "counts": {
+    "tests": 1701,
+    "suites": 0,
+    "pass": 1701,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "duration_ms": 107389.4932
+  },
+  "log": {
+    "path_hint": "../evidence/final-advisor-full-js.log",
+    "bytes": 170902,
+    "sha256": "9d873cb92f49b90ca94f487871365d880495c809275c3a04c8288e6b83efb4f1"
+  },
+  "source_files": [
+    {
+      "path": "tools/ui/run-unit.cjs",
+      "bytes": 400,
+      "sha256": "56e6d2c1fd5af752446516463c1d7fdf6f4d2f2623bd845bb937c8d950e73424",
+      "canonical_lf_sha256": "0c4445cd40eac54650ba5c80ef26b1e35f233ae287480a8be96d69e7f58a08cd"
+    },
+    {
+      "path": "tools/ui/check_advisor_model.cjs",
+      "bytes": 20924,
+      "sha256": "e17293e7211b656efee66bde16d986202aa66a97d526e66b2fe85bc5232bd377",
+      "canonical_lf_sha256": "bc25cb4e51c93e2fe3b28f2e2c12f523e52dc6f431451158b4c71ac39bec995d"
+    },
+    {
+      "path": "tools/ui/fixtures/advisor-archive.json",
+      "bytes": 32618,
+      "sha256": "f2f404914bcc9ee2ce9e690012e5b29b964dfef261f92f5da7201486403d6c02",
+      "canonical_lf_sha256": "f2f404914bcc9ee2ce9e690012e5b29b964dfef261f92f5da7201486403d6c02"
+    },
+    {
+      "path": "tools/ui/fixtures/advisor-archive.provenance.json",
+      "bytes": 2173,
+      "sha256": "e772d8b706467f1571324a2966209cc29a426236eb5dce23cc9572b79d853794",
+      "canonical_lf_sha256": "1fe8e9f0ee931953e710141ed7e480ca0d4b5ded08a79621f89f037540051364"
+    }
+  ],
+  "fixture_limit": "Archived real API projection; original capture command and engine revision are unknown. Complete advisor output equivalence is recorded separately in the fixture provenance.",
+  "limitations": [
+    "Does not replace the pending current-source Rust build/tests or political census.",
+    "Does not assert a hosted zero-skip result for older checkpoints."
+  ]
+}

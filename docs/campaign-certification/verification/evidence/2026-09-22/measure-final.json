@@ -1,0 +1,172 @@
+{
+  "revision": "ca00e02b59fa87b408d482d8f105dce5b047c0c0",
+  "changes": [
+    {
+      "preset": "default",
+      "lod": 0,
+      "before": 228640,
+      "after": 228640,
+      "boundsUnchanged": true,
+      "specsUnchanged": true,
+      "highDetailIdentical": true
+    },
+    {
+      "preset": "default",
+      "lod": 1,
+      "before": 14904,
+      "after": 10936,
+      "boundsUnchanged": true,
+      "specsUnchanged": true
+    },
+    {
+      "preset": "default",
+      "lod": 2,
+      "before": 1696,
+      "after": 1392,
+      "boundsUnchanged": true,
+      "specsUnchanged": true
+    },
+    {
+      "preset": "loaded",
+      "lod": 0,
+      "before": 226164,
+      "after": 226164,
+      "boundsUnchanged": true,
+      "specsUnchanged": true,
+      "highDetailIdentical": true
+    },
+    {
+      "preset": "loaded",
+      "lod": 1,
+      "before": 15704,
+      "after": 10896,
+      "boundsUnchanged": true,
+      "specsUnchanged": true
+    },
+    {
+      "preset": "loaded",
+      "lod": 2,
+      "before": 1908,
+      "after": 1420,
+      "boundsUnchanged": true,
+      "specsUnchanged": true
+    },
+    {
+      "preset": "loaded-twin",
+      "lod": 0,
+      "before": 237140,
+      "after": 237140,
+      "boundsUnchanged": true,
+      "specsUnchanged": true,
+      "highDetailIdentical": true
+    },
+    {
+      "preset": "loaded-twin",
+      "lod": 1,
+      "before": 16828,
+      "after": 11900,
+      "boundsUnchanged": true,
+      "specsUnchanged": true
+    },
+    {
+      "preset": "loaded-twin",
+      "lod": 2,
+      "before": 1984,
+      "after": 1488,
+      "boundsUnchanged": true,
+      "specsUnchanged": true
+    }
+  ],
+  "unchangedAircraft": [
+    {
+      "platform": "air_light_attack",
+      "lod": 0,
+      "preset": "default"
+    },
+    {
+      "platform": "air_light_attack",
+      "lod": 1,
+      "preset": "default"
+    },
+    {
+      "platform": "air_light_attack",
+      "lod": 2,
+      "preset": "default"
+    },
+    {
+      "platform": "air_light_attack",
+      "lod": 0,
+      "preset": "loaded"
+    },
+    {
+      "platform": "air_light_attack",
+      "lod": 1,
+      "preset": "loaded"
+    },
+    {
+      "platform": "air_light_attack",
+      "lod": 2,
+      "preset": "loaded"
+    },
+    {
+      "platform": "air_fighter",
+      "lod": 0,
+      "preset": "default"
+    },
+    {
+      "platform": "air_fighter",
+      "lod": 1,
+      "preset": "default"
+    },
+    {
+      "platform": "air_fighter",
+      "lod": 2,
+      "preset": "default"
+    },
+    {
+      "platform": "air_fighter",
+      "lod": 0,
+      "preset": "loaded"
+    },
+    {
+      "platform": "air_fighter",
+      "lod": 1,
+      "preset": "loaded"
+    },
+    {
+      "platform": "air_fighter",
+      "lod": 2,
+      "preset": "loaded"
+    }
+  ],
+  "checkedCombinations": 1152,
+  "max": {
+    "1": {
+      "triangles": 11932,
+      "components": {
+        "air_engine": "air_engine_twin",
+        "air_wing": "air_wing_stable",
+        "air_radar": "air_radar_mapping",
+        "air_avionics": "air_avionics_analog",
+        "air_countermeasures": "air_countermeasures_ecm",
+        "air_hardpoints": "air_hardpoints_heavy",
+        "air_payload": "air_payload_guided",
+        "air_fuel": "air_fuel_extended"
+      }
+    },
+    "2": {
+      "triangles": 1488,
+      "components": {
+        "air_engine": "air_engine_twin",
+        "air_wing": "air_wing_straight",
+        "air_radar": "air_radar_mapping",
+        "air_avionics": "air_avionics_digital",
+        "air_countermeasures": "air_countermeasures_ecm",
+        "air_hardpoints": "air_hardpoints_heavy",
+        "air_payload": "air_payload_unguided",
+        "air_fuel": "air_fuel_extended"
+      }
+    }
+  },
+  "passed": true
+}

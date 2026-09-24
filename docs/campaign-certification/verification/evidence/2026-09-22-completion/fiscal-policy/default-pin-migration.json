@@ -1,0 +1,173 @@
+{
+  "status": "Measured fingerprint migration; recompiled post-pin verification pending",
+  "baseline_commit": "90fce9475d20049741589de0e5c5e1c1668a26f6",
+  "entries": [
+    {
+      "seed": 1990,
+      "months": 240,
+      "old_startup_hash": "0x6fc47dff64344b17",
+      "old_end_hash": "0x5fb453966efb6602",
+      "new_end_hash": "0xaaab48b954b08a0b",
+      "occurrences": [
+        {
+          "path": "spheres-sim/src/lib.rs",
+          "line": 5327,
+          "test": "golden_hash_of_a_known_run",
+          "constant": "const GOLDEN: u64 = 0x5fb453966efb6602;"
+        },
+        {
+          "path": "spheres-sim/src/lib.rs",
+          "line": 5440,
+          "test": "the_resource_layer_is_inert_over_time",
+          "constant": "const RUN_ACTUAL: u64 = 0x5fb453966efb6602;"
+        },
+        {
+          "path": "spheres-sim/src/lib.rs",
+          "line": 5746,
+          "test": "the_market_switch_is_off_for_the_suite_and_deterministic_when_on",
+          "constant": "const RUN_ACTUAL: u64 = 0x5fb453966efb6602;"
+        },
+        {
+          "path": "spheres-sim/tests/treasury.rs",
+          "line": 47,
+          "test": "the_treasury_is_inert_while_the_books_are_closed (module constant)",
+          "constant": "const RUN_ACTUAL: u64 = 0x5fb453966efb6602;"
+        }
+      ]
+    },
+    {
+      "seed": 0,
+      "months": 240,
+      "old_startup_hash": "0x9ca649d1064923a9",
+      "old_end_hash": "0xc1dfdfb98af7814d",
+      "new_end_hash": "0xeabfcd1db4ab2531",
+      "occurrences": [
+        {
+          "path": "spheres-sim/src/blocs.rs",
+          "line": 1283,
+          "test": "the_bloc_layer_is_inert_over_time",
+          "constant": "0xc1dfdfb98af7814d,"
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "months": 240,
+      "old_startup_hash": "0x04f10cca9a2a8379",
+      "old_end_hash": "0x42d4e809cef4b37e",
+      "new_end_hash": "0x78f6fe1e19c4f78d",
+      "occurrences": [
+        {
+          "path": "spheres-sim/src/blocs.rs",
+          "line": 1284,
+          "test": "the_bloc_layer_is_inert_over_time",
+          "constant": "0x42d4e809cef4b37e,"
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "months": 240,
+      "old_startup_hash": "0x82c1573ed3296f0d",
+      "old_end_hash": "0x9eb28e1c90ea1a5b",
+      "new_end_hash": "0x79a26b7f7c54df9e",
+      "occurrences": [
+        {
+          "path": "spheres-sim/src/blocs.rs",
+          "line": 1285,
+          "test": "the_bloc_layer_is_inert_over_time",
+          "constant": "0x9eb28e1c90ea1a5b,"
+        }
+      ]
+    },
+    {
+      "seed": 3,
+      "months": 240,
+      "old_startup_hash": "0xab73c247327e6175",
+      "old_end_hash": "0xeba41ea64d148369",
+      "new_end_hash": "0x99bad6515ceef0b9",
+      "occurrences": [
+        {
+          "path": "spheres-sim/src/blocs.rs",
+          "line": 1286,
+          "test": "the_bloc_layer_is_inert_over_time",
+          "constant": "0xeba41ea64d148369,"
+        }
+      ]
+    },
+    {
+      "seed": 4,
+      "months": 240,
+      "old_startup_hash": "0x4f067cdcfc705989",
+      "old_end_hash": "0x024e2aa38c3862b0",
+      "new_end_hash": "0x2eb5ad8c382fef67",
+      "occurrences": [
+        {
+          "path": "spheres-sim/src/blocs.rs",
+          "line": 1287,
+          "test": "the_bloc_layer_is_inert_over_time",
+          "constant": "0x024e2aa38c3862b0,"
+        }
+      ]
+    },
+    {
+      "seed": 5,
+      "months": 240,
+      "old_startup_hash": "0x2895e269f58e3bc9",
+      "old_end_hash": "0x1bf19fc09e88834a",
+      "new_end_hash": "0x2832ddd1228c284a",
+      "occurrences": [
+        {
+          "path": "spheres-sim/src/blocs.rs",
+          "line": 1288,
+          "test": "the_bloc_layer_is_inert_over_time",
+          "constant": "0x1bf19fc09e88834a,"
+        }
+      ]
+    }
+  ],
+  "active_occurrence_count": 10,
+  "all_seven_startup_hashes_unchanged": true,
+  "source_files": {
+    "spheres-sim/src/blocs.rs": {
+      "before_sha256": "3cdcb1ca4620e81d91f26288f39362da86a440e21610a569b4ad4e7c1640ff51",
+      "after_sha256": "47d1d456576b638d8bfb9a18f9c7564b62c2f5fb97acec978b207210c6d09fbb"
+    },
+    "spheres-sim/src/lib.rs": {
+      "before_sha256": "fd9f346dafa9a23b6098ac5edef61cde328adb685308758c57ac8a7efbc13047",
+      "after_sha256": "f2852dfc40d213f74d04647ccedd4d674c9e00e08d1bc5f79ff6de20624eef82"
+    },
+    "spheres-sim/tests/treasury.rs": {
+      "before_sha256": "7e008c3161887de70440911fe50c51287c59de6bfbadf470a7cd509773f1bb3e",
+      "after_sha256": "980d8247afc804a2bb2b5436be42542e77b8d5852310cfe44abd349b80318bc8"
+    }
+  },
+  "before_pin_simlib": {
+    "passed": 1000,
+    "failed": 4,
+    "ignored": 25,
+    "filtered_out": 1,
+    "failure_scope": "Only four exact timeline fingerprints; archived original log"
+  },
+  "default_path_attribution": {
+    "politics": "Closed-book default nations use the repaired directional bounds. Ownership guards remain inactive because no explicit/program fiscal plan is seeded. Army-specific floor still returns None with ideology_blocs=false.",
+    "stratagems": "Default legacy package corrects below-floor raises and excludes financial no-op austerity offers. This can change offered cards, subsequent RNG draws and downstream economics, and is intentionally not claimed to be inert. Owned-row dispatch is absent without explicit plans.",
+    "government": "New ai_party_can_contest_opening is behind ai_lever ideology_blocs early return; refresh_debt_ratio returns immediately for closed books. New tests have no runtime effect.",
+    "resources": "Only upstream reporting fields and one resources_1990 meta.source_sha256 change; actual production, locations, prices, quality and population quantities are unchanged."
+  },
+  "political_acceptance": "A1 remains outstanding; no gate, simulation coefficient, startup pin, or on/off assertion changed",
+  "probe_receipts": {
+    "default-hashes-original21.log": {
+      "bytes": 808,
+      "sha256": "21ff2d769d14f9972b971beec061c4ab932a41db5ea4468bdc03510de7bbe4aa"
+    },
+    "default-hashes-iteration23.log": {
+      "bytes": 808,
+      "sha256": "68339faa2922dd31faae75902746d0279daceea2a3728c60a02021b89edaa5a8"
+    },
+    "iteration23-simlib-original-pins.log": {
+      "bytes": 100255,
+      "sha256": "5dc609760008fa017cdb54d180d97a3ee29af1b6c233d6298e4c6bbbcf7c5de8"
+    }
+  }
+}

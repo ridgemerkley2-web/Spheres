@@ -1,0 +1,57 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://pmo.gov.to/his-majesty-king-tupou-vi-appoints-hon-dr-aisake-valu-eke-as-prime-minister-of-tonga/",
+  "accessed_date": "2026-09-21",
+  "published_date": "2025-01-22",
+  "access_method": "wayback_capture_of_original_html_read",
+  "source_response_url": "https://web.archive.org/web/20250123155100id_/https://pmo.gov.to/his-majesty-king-tupou-vi-appoints-hon-dr-aisake-valu-eke-as-prime-minister-of-tonga/",
+  "source_response_bytes": 66444,
+  "source_response_sha256": "ed2e113eef3a7e54aee258e55f65558dca88c715036ef957a61fb4592690354a",
+  "source_response_checked_in": false,
+  "archive_captures": [
+    {
+      "url": "https://web.archive.org/web/20250123155100id_/https://pmo.gov.to/his-majesty-king-tupou-vi-appoints-hon-dr-aisake-valu-eke-as-prime-minister-of-tonga/",
+      "memento_datetime": "2025-01-23T15:51:00Z",
+      "bytes": 66444,
+      "sha256": "ed2e113eef3a7e54aee258e55f65558dca88c715036ef957a61fb4592690354a",
+      "post_category": "Uncategorized"
+    },
+    {
+      "url": "https://web.archive.org/web/20250217164854id_/https://pmo.gov.to/his-majesty-king-tupou-vi-appoints-hon-dr-aisake-valu-eke-as-prime-minister-of-tonga/",
+      "memento_datetime": "2025-02-17T16:48:54Z",
+      "bytes": 75048,
+      "sha256": "a4212306121f066b6e298230c30cceed32510a9a293c0c2c127fd01c23837df8",
+      "post_category": "News in English"
+    }
+  ],
+  "live_response": {
+    "url": "https://pmo.gov.to/his-majesty-king-tupou-vi-appoints-hon-dr-aisake-valu-eke-as-prime-minister-of-tonga/",
+    "status": 404,
+    "checked_date": "2026-09-21",
+    "note": "nginx 404 in a browser; the post (WordPress id 14117) has been removed."
+  },
+  "provenance_note": "The original PMO post is no longer served. The original response identity recorded here is the raw Wayback id_ capture named in source_response_url, which differs from source_url; its hash was reproduced on re-request by the independent check. A second capture (17 February 2025) carries the same release text; between the captures the post's category changed from 'Uncategorized' to 'News in English'. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_eke_royal_appointment_20250122",
+      "text": "The PMO release datelined 'Nuku'alofa, 22 January, 2025' states that King Tupou VI, 'today, Wednesday 22 January 2025, at the Royal Palace, Nuku'alofa', appointed Honourable Dr. 'Aisake Valu Eke 'as the Prime Minister Tonga' (as printed; the title reads 'Prime Minister of Tonga') in accordance with Clause 50A (1) of the Act of the Constitution of Tonga, and describes him as the 19th Prime Minister.",
+      "attested_on": "2025-01-22",
+      "locator": "Archived page, release paragraph 1",
+      "uncertainty": "An appointment event. The release gives no separate 'with effect from' date, no warrant signature or presentation, no time and no instrument number. The ordinal is recorded as printed and is not used to number a succession."
+    },
+    {
+      "id": "to_eke_assembly_designate_pmo_20250122",
+      "text": "The same release states that Eke was elected Prime Minister Designate at the Legislative Assembly of Tonga on 24 December 2024 and is the Member of Parliament for Tongatapu No. 5.",
+      "attested_on": "2024-12-24",
+      "locator": "Archived page, release paragraph 2",
+      "uncertainty": "Independent PMO corroboration of the Assembly selection; it is not the appointment. The release's biography (birth date, career, family) is not imported."
+    }
+  ],
+  "scope_note": "The live post returns HTTP 404 (a Wayback capture of 18 January 2026 also records a 404). The release text was read in two Wayback captures of the original page (23 January and 17 February 2025), which carry the same text. The release is datelined 22 January 2025; the post was published on the PMO site on 23 January 2025 local time: the 23 January capture (15:51 UTC) shows '12 hours ago', placing publication at about 03:20-04:20 UTC (16:20-17:20 local, UTC+13), and the WordPress media record of the post's portrait image is dated 2025-01-23T15:42:27 local (02:42:27 UTC). This posting date is a derived observation, not a claim. The page's photographs were not used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Release text read as HTML in both captures. The three embedded photographs (a portrait and two uncaptioned photographs at the Palace) were not used."
+  }
+}

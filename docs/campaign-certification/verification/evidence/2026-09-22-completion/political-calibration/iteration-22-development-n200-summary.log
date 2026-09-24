@@ -1,0 +1,38 @@
+SUMMARY over 200 seeds
+A1 coups against elected governments per seed: min 8.00 med 13.00 max 19.00 mean 13.550 sd 1.869
+   band 4..14 on the median: P(median outside | n=200) by bootstrap = 0.0000
+   top-3 nation share of a seed's coups: min 0.38 med 0.50 max 0.67 mean 0.500 sd 0.054
+   annulments per seed: min 1.00 med 2.00 max 5.00 mean 2.345 sd 1.035
+   regime coups by a pillar per seed: min 2.00 med 5.00 max 10.00 mean 5.395 sd 1.476
+A2 seeds with >= 1 Islamist non-ballot takeover by end-2000: 125/200 = 0.625 (over the run: 137/200); Algeria Islamist 0/200 annulled 200/200
+   Islamist uprisings per seed: min 0.00 med 1.00 max 1.00 mean 0.675 sd 0.470; max Islamist influence (winnable, non-ruling): min 0.69 med 0.69 max 0.69 mean 0.691 sd 0.000
+A3 seeds with >= 1 Communist non-ballot takeover over the run: 10/200 = 0.050; Communist takeovers per seed: min 0.00 med 0.00 max 1.00 mean 0.050 sd 0.218; Communist-won uprisings per seed: min 0.00 med 0.00 max 1.00 mean 0.050 sd 0.218
+A4 1990 regimes electoral at end-1996 per seed: min 14.00 med 19.00 max 24.00 mean 19.085 sd 2.007; band 15..40 on the median: P(outside) = 0.0000
+   openings over the run by attribution drift/uprising/lever/card: min 3.00 med 8.00 max 13.00 mean 8.040 sd 1.904 / min 0.00 med 0.00 max 2.00 mean 0.225 sd 0.442 / min 19.00 med 25.00 max 31.00 mean 24.715 sd 1.911 / min 0.00 med 3.00 max 6.00 mean 2.860 sd 1.326
+A5 successor party led back into government by ballot (distinct nations): seeds with >= 1 by end-1996 200/200 = 1.000; >= 3 by end-1996 200/200 (the bar); >= 1 over the run 200/200; nations per seed by 1996 min 3.00 med 6.00 max 7.00 mean 4.620 sd 1.568
+A6 route events in 1990 auth <= 0.20 nations per seed: min 0.00 med 0.00 max 0.00 mean 0.000 sd 0.000 (pre-existing stability<12 collapses beside: min 0.00 med 1.00 max 1.00 mean 0.995 sd 0.071); seeds with zero route events 200/200
+A7 ballot BLOC flips per seed min 56.00 med 106.50 max 142.00 mean 98.325 sd 24.366; ballot PARTY flips per seed min 92.00 med 140.00 max 184.00 mean 134.025 sd 25.056; non-ballot takeovers (bloc changes) per seed min 14.00 med 18.00 max 24.00 mean 17.840 sd 2.195
+   ratio bloc-flips/takeovers per seed min 2.95 med 5.55 max 9.47 mean 5.551 sd 1.389; ratio party-flips/takeovers per seed min 4.38 med 7.50 max 12.20 mean 7.595 sd 1.564 (bar: median >= 3)
+A8 seeds with >= 6 of the big eight keeping their 1990 bloc to end-2010: 200/200 = 1.000; per seed min 8.00 med 8.00 max 8.00 mean 8.000 sd 0.000
+A9 coups (all kinds) in nations under $8,000 per head: 4258/4258 = 1.000
+A10 per-seed median of (D in the year before a non-ballot takeover - roster median): min 0.32 med 0.35 max 0.39 mean 0.349 sd 0.012 (bar >= 0.25; seeds with data 200)
+deaths in office per seed min 23.00 med 34.00 max 47.00 mean 33.390 sd 4.426; round-table levers min 23.00 med 31.00 max 39.00 mean 30.595 sd 2.971; suspensions min 0.00 med 0.00 max 0.00 mean 0.000 sd 0.000; programmes min 0.00 med 0.00 max 1.00 mean 0.020 sd 0.140
+uprisings by winner W/C/N/I/NA/none: min 0.00 med 0.00 max 3.00 mean 0.590 sd 0.689 / min 0.00 med 0.00 max 1.00 mean 0.050 sd 0.218 / min 0.00 med 2.00 max 4.00 mean 2.025 sd 0.888 / min 0.00 med 1.00 max 1.00 mean 0.675 sd 0.470 / min 0.00 med 1.00 max 2.00 mean 0.705 sd 0.468 / min 3.00 med 7.50 max 12.00 mean 7.000 sd 2.389
+uprising clause stab12/movement/both/none: min 2.00 med 6.50 max 11.00 mean 6.265 sd 2.276 / min 0.00 med 3.00 max 6.00 mean 2.685 sd 1.226 / min 0.00 med 0.00 max 1.00 mean 0.005 sd 0.071 / min 0.00 med 2.00 max 6.00 mean 2.090 sd 1.304
+crowned uprisings the pre-tick flag did not see (armed inside the tick, S7-1): min 0.00 med 1.00 max 4.00 mean 1.360 sd 0.941 (total 272 of 809 crowns)
+
+BY NATION over all seeds (top 14 each)
+  a6_collapse    total  199 distinct   1: [("Argentina", 199)]
+  annul          total  469 distinct   7: [("Algeria", 200), ("Yemen", 107), ("Guyana", 97), ("Georgia", 42), ("Sudan", 9), ("Cambodia", 7), ("Peru", 7)]
+  communist_take total   10 distinct   2: [("Georgia", 7), ("Guyana", 3)]
+  crown_unarmed_pre total  272 distinct   9: [("Afghanistan", 135), ("El Salvador", 34), ("Mozambique", 33), ("Cambodia", 21), ("Azerbaijan", 14), ("Guyana", 14), ("Sao Tome and Principe", 12), ("Myanmar", 5), ("Chad", 4)]
+  elcoup         total 2710 distinct  16: [("Guatemala", 434), ("Myanmar", 387), ("Sao Tome and Principe", 362), ("Peru", 302), ("Comoros", 289), ("Guyana", 285), ("Ecuador", 225), ("Yemen", 202), ("El Salvador", 154), ("Mozambique", 34), ("Armenia", 14), ("Azerbaijan", 8), ("Chad", 5), ("Cambodia", 4)]
+  excomm_1996    total  924 distinct   7: [("Bulgaria", 200), ("Croatia", 200), ("Poland", 200), ("Lithuania", 105), ("Ukraine", 105), ("Russia", 102), ("Tajikistan", 12)]
+  excomm_run     total 1484 distinct  13: [("Bulgaria", 200), ("Croatia", 200), ("Poland", 200), ("Angola", 150), ("Sao Tome and Principe", 132), ("Belarus", 105), ("Lithuania", 105), ("Russia", 105), ("Ukraine", 105), ("Bosnia", 93), ("Tajikistan", 87), ("Macedonia", 1), ("Mongolia", 1)]
+  islamist_take  total  139 distinct   2: [("Afghanistan", 135), ("Lebanon", 4)]
+  opened_1996    total 4100 distinct  27: [("Central African Republic", 200), ("Congo-Brazzaville", 200), ("Ghana", 200), ("Lesotho", 200), ("Morocco", 200), ("Myanmar", 200), ("Sao Tome and Principe", 200), ("Zambia", 200), ("Kuwait", 187), ("Cameroon", 171), ("Fiji", 169), ("Cape Verde", 167), ("Gabon", 164), ("Nepal", 161)]
+  regcoup        total 1079 distinct  12: [("Vietnam", 201), ("Cambodia", 184), ("Chad", 153), ("Laos", 152), ("Afghanistan", 136), ("Kazakhstan", 74), ("Sao Tome and Principe", 50), ("Guyana", 43), ("Yemen", 43), ("Iraq", 40), ("Angola", 2), ("Ethiopia", 1)]
+ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 11 filtered out; finished in 140.29s
+

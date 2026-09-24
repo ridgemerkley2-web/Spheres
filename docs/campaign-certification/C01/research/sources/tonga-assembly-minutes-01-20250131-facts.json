@@ -1,0 +1,46 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://parliament.gov.to/en/parliament-business/hansards-debates/2-2025/111-miniti-fika-01-aho-31-o-sanuali-2025",
+  "accessed_date": "2026-09-21",
+  "published_date": "2025-02-06",
+  "access_method": "downloaded_original_pdf_text_and_relevant_pages_visually_read",
+  "source_response_url": "https://parliament.gov.to/en/parliament-business/hansards-debates/2-2025/111-miniti-fika-01-aho-31-o-sanuali-2025",
+  "source_response_request": "HTTP POST of the Phoca Download form (download=111) on the file page; response Content-Type application/pdf, Content-Disposition filename 'Miniti Fika 01 Fale Alea 31012025.pdf'",
+  "source_response_bytes": 410718,
+  "source_response_sha256": "3ef9f082c60a3bd580ba7e66f399d19ed25c675b724eeb1039e84dff38cd320c",
+  "source_response_checked_in": false,
+  "provenance_note": "Downloaded on 2026-09-21 and hashed before extraction; the independent check re-downloaded the same 410,718 bytes and SHA-256 the same day. source_response_url is the file page to which the download form is posted. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_eke_oath_20250131",
+      "text": "The minutes of sitting No. 1 of 2025 (Friday 31 January 2025, from 11:00am) record the Chief Clerk administering to the Prime Minister, 'Aisake Valu Eke, the oath 'i he 'ao 'o e Fale Alea 'o Tongá' under clause 83 of the Constitution, taken as 'Palēmia 'o Tonga ka ko e Minisitā Pa'anga, Minisitā ki he Toutaí, Minisitā ki he Pilīsoné' (Prime Minister, Minister of Finance, of Fisheries and of Prisons); he kissed the Bible and signed the oath, which Speaker Lord Fakafanua countersigned. Eke then introduced his Cabinet, and the ministers took the oath, among them Deputy Prime Minister Taniela Liku'ohihifo Fusimālohi and the Crown Prince. The members' list prints Eke as ''Eiki Palēmia' with Finance, Fisheries and Prisons, and Fusimālohi as ''Eiki Tokoni Palēmia' with Infrastructure and MEIDECC.",
+      "attested_on": "2025-01-31",
+      "locator": "PDF p.2 (members' list); pp.7-8 (Prime Minister's oath); p.9 (introduction of ministers); pp.17-18 (Deputy Prime Minister's oath)",
+      "uncertainty": "The oath before the Assembly is a separate event, not the start of office (appointment 22 January; ministers effective 28 January). The Tongan-versus-English oath dispute at the same sitting is not imported."
+    },
+    {
+      "id": "to_vaipulu_peoples_rep_listed_20250131",
+      "text": "The members' list printed with the same minutes prints 'Fakafofonga Kakai 15, Vava'u' against Samiu Vaipulu among the People's Representatives, not in the Cabinet list, where Taniela Liku'ohihifo Fusimālohi is ''Eiki Tokoni Palēmia'; in the transcript the Speaker calls on him as 'Vava'u 15'.",
+      "attested_on": "2025-01-31",
+      "locator": "PDF p.2 (members' list, rendered); p.23 ('Me'a mai 'e Vava'u 15')",
+      "uncertainty": "An upper bound only: by 31 January 2025 Vaipulu is listed outside the Cabinet. It gives no date on which his deputy premiership or acting service ended, and none is inferred from the 22 or 28 January appointments. Page 23 was read from the text layer only."
+    }
+  ],
+  "scope_note": "Tongan-language verbatim minutes (52-page PDF, created 6 February 2025) of the first sitting of 2025, downloaded through the Phoca Download button on the file page. The 6 February 2025 listing date is the upload date. English renderings are this packet's reading, not an official translation.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      2,
+      7,
+      8,
+      9,
+      17
+    ],
+    "facsimile_pages_one_based": [],
+    "text_layer_only_pages_one_based": [
+      18,
+      23
+    ],
+    "method": "Listed pages rendered with pypdfium2 and read. Pages 18 (end of the Deputy Prime Minister's oath) and 23 were read from the pypdfium2 text layer only."
+  }
+}

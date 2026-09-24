@@ -931,14 +931,25 @@ def main():
     up_bx = {u["nation"] for u in art["unlocated_producers"].get("bauxite", ())}
     check("guinea", "Guinea" not in up_bx,
           f"Guinea is absent from unlocated_producers.bauxite ({sorted(up_bx)})")
-    warn("guinea",
-         "OPEN HOLE: Guinea produced 15,800,000 t of bauxite in 1990 (USGS DS896 "
-         "sheet 2) — 14.0% of the 113,000,000 t world total and rank 2 behind "
-         "Australia. MRDS locates 10 of its mines correctly. Both are dropped "
-         "because the roster has no Guinea, and the shipped artifact says so "
-         "NOWHERE: crosswalk.IGNORE swallows the name and the drop is not "
-         "recorded in unlocated_producers. Doctrine requires absence PLUS an "
-         "explicit unlocated marker; the marker is missing.")
+    # An unrostered country cannot join the runtime national/located tables.
+    # Its positive production must instead remain explicit in coverage metadata.
+    omitted = art.get("unrostered_producers", {}).get("bauxite", [])
+    by_name = {row["nation"]: row for row in omitted}
+    check("guinea", len(by_name) == len(omitted) and set(by_name) == {"Guinea", "Sierra Leone"},
+          "both out-of-roster 1990 bauxite producers are explicitly reported, with no aggregate")
+    for name, value in (("Guinea", 15800000.0), ("Sierra Leone", 1430000.0)):
+        row = by_name.get(name, {})
+        check("guinea", row.get("value") == value and row.get("units") == "metric tons"
+              and row.get("year") == 1990 and row.get("source") == "ds896_bauxite"
+              and row.get("basis") == "outside_district_roster",
+              f"{name}: {value:,.0f} metric tons in 1990, reported only as outside the roster")
+    coverage = art["meta"].get("unrostered_producer_coverage", {})
+    check("guinea", coverage.get("reviewed_commodities") == ["bauxite"]
+          and "unaudited" in coverage.get("unreviewed_commodities", ""),
+          "coverage review is explicitly bauxite-only; other commodity omissions remain unaudited")
+    warn("guinea", "COVERAGE LIMIT: Guinea and Sierra Leone remain outside the district roster. "
+         "Their sourced 1990 bauxite production is now explicit in unrostered_producers; "
+         "no production or mines were assigned to a modeled country. Other commodities remain unaudited.")
 
     print()
     print("  -- the three structural holes")

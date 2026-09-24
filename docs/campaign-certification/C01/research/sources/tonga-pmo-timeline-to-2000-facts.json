@@ -1,0 +1,31 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://web.archive.org/web/20100824231826id_/https://www.pmo.gov.to/ourconstitution/2000-sanuali-fakanofo-a-pilinisi-ulukalala-lavaka-ata-ko-e-palemia.html",
+  "original_url": "https://www.pmo.gov.to/ourconstitution/2000-sanuali-fakanofo-a-pilinisi-ulukalala-lavaka-ata-ko-e-palemia.html",
+  "archive_capture_utc": "2010-08-24T23:18:26Z",
+  "accessed_date": "2026-09-22",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 28854,
+  "source_response_sha256": "6155930ad11be3c998a8f16495c9b7d4aa80eb13ebf162e7b9e1f11fbe118e02",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original PMO page, captured at 2010-08-24T23:18:26Z; the capture is used in place of the live page. The researcher downloaded and hashed the capture bytes before extraction on 2026-09-22 (local); the independent check re-downloaded it the same day and matched the bytes and SHA-256, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_pmo_timeline_lavaka_ata_appointed_200001_to",
+      "text": "The Tongan timeline entry is titled '2000 Sanuali: Fakanofo 'a Pilinisi 'Ulukalala Lavaka 'Ata ko e Palemia 'o Tonga' (January 2000: appointment of Prince 'Ulukalala Lavaka 'Ata as Prime Minister of Tonga; the English is this packet's reading).",
+      "period": {
+        "from": "2000-01-01",
+        "through": "2000-01-31"
+      },
+      "locator": "Page title and timeline list",
+      "uncertainty": "Same retrospective timeline as the English entry; month precision."
+    }
+  ],
+  "scope_note": "Tongan entry of the same 'Our Constitution' timeline (raw Internet Archive capture of 24 August 2010). Retrospective; month-precision corroboration only.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  }
+}

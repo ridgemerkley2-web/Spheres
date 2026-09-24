@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://parliament.gov.to/en/media-centre/latest-news/siaosi-pohiva-sworn-in-as-tongatapu-1-mp",
+  "accessed_date": "2026-09-21",
+  "published_date": "2020-05-11",
+  "access_method": "fetched_original_html_and_article_text_read",
+  "source_response_bytes": 54069,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "provenance_note": "Fetched on 2026-09-21 (local) by direct HTTPS request with browser Accept headers, HTTP 200, 54,069 bytes. Re-fetches the same day returned 54,471 and 54,475 bytes from parliament.gov.to and 54,061 bytes from www.parliament.gov.to, each with a different SHA-256 (per-request form token, live hit counter); the article text was identical. Both hosts serve the article with HTTP 200 and no redirect, and the page's own share links use www.parliament.gov.to; the original response size is closest to the www host's. No response hash is asserted. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_siaosi_pohiva_byelection_win_201911",
+      "text": "The Legislative Assembly's article of 11 May 2020 states that Siaosi Pohiva won the Tongatapu 1 by-election in November of the previous year, 16 votes ahead of his opponent, printed as Dr. Netatua Prescott, and that he replaces his late father, former Prime Minister 'Akilisi Pohiva.",
+      "locator": "Article body, paragraph 2",
+      "period": {
+        "from": "2019-11-01",
+        "through": "2019-11-30"
+      },
+      "uncertainty": "Month precision as printed. The 28 November date in the 19 November 2019 notice is not substituted for it, because that notice predates the poll. The opponent's name differs from that notice (Dr. Netatua Pelesikoti Taufatofua); the variants are not reconciled. No Electoral Commission result record was seen."
+    },
+    {
+      "id": "to_siaosi_pohiva_oath_20200511",
+      "text": "The same article reports that Siaosi Pohiva has been sworn in as People's Representative for Tongatapu 1, taking his oath to abide by the Constitution and the law of Tonga.",
+      "attested_on": "2020-05-11",
+      "locator": "Article title and body, paragraph 1; created date in the article details",
+      "uncertainty": "The article date is the attestation: he had been sworn in by 11 May 2020, but the oath day is not given. A seat oath is not a party office."
+    }
+  ],
+  "scope_note": "Used only for TO-DPFI-06. Joomla news page: each response embeds a per-request form token and shows a live hit counter, so no response hash is asserted. The 'created' date is the page's publication metadata. Both parliament.gov.to and www.parliament.gov.to serve the article.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Article text and the page's created date read; no images reviewed."
+  }
+}

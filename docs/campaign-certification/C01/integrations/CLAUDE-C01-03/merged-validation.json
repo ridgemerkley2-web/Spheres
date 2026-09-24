@@ -1,0 +1,133 @@
+{
+  "format": "spheres-c01-03-merged-validation/v1",
+  "checked_at_utc": "2026-09-22T18:19:28.806298+00:00",
+  "revision": "5a63d7b6060d07c15b2069c611f1b0716a488bfe",
+  "clean_worktree": false,
+  "scope": "Merged bounded research plus source-backed browser assertions; unrelated political changes remain in progress.",
+  "commands": [
+    {
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_tonga*.py",
+        "-v"
+      ],
+      "exit": 0,
+      "duration_seconds": 1.745,
+      "log": "merged-tonga.log",
+      "sha256": "b304d4acb7cf7b249ec286759cb640da42e612f89ddb27495cbffeeaedc7debb"
+    },
+    {
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_campaign*.py",
+        "-v"
+      ],
+      "exit": 0,
+      "duration_seconds": 0.62,
+      "log": "merged-campaign.log",
+      "sha256": "46640e6abe283d1d8b1ce7b584f60d151111245d8529aa66454f98b6ac349e2f"
+    },
+    {
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py",
+        "--check"
+      ],
+      "exit": 0,
+      "duration_seconds": 0.184,
+      "log": "merged-research.log",
+      "sha256": "bbdaaa6498ffb2ad3aaa7e42442256e05602572192e967e2f66991ed3837c709"
+    },
+    {
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_census.py",
+        "--check"
+      ],
+      "exit": 1,
+      "duration_seconds": 0.178,
+      "log": "merged-census.log",
+      "sha256": "4a78eb4b6b362567ed328ec5830993809a027e3b18524fc6aec34bda0c4ef8e7"
+    },
+    {
+      "command": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/planning/workboard.py",
+        "--check"
+      ],
+      "exit": 0,
+      "duration_seconds": 0.065,
+      "log": "merged-workboard.log",
+      "sha256": "6cc71a3c645534f8525319dc992aaa9aafa512dab30b47fc6c1c7a998c1f30b6"
+    },
+    {
+      "command": [
+        "node",
+        "--test",
+        "tools/ui/check_leadership_research_review.cjs"
+      ],
+      "exit": 0,
+      "duration_seconds": 0.136,
+      "log": "merged-atlas-node.log",
+      "sha256": "4df99be0175f311036d628948a97df619a4ed681e8343213647b7bacb13237ef"
+    }
+  ],
+  "passed_tests": {
+    "tonga_python": 69,
+    "campaign_python": 16,
+    "atlas_node": 11
+  },
+  "research_index_check": "PASS",
+  "workboard_check": "PASS;44markers",
+  "browser": {
+    "passed": true,
+    "record": "browser-validation.json",
+    "countries": 9,
+    "widths": [
+      1440,
+      390,
+      320
+    ],
+    "source_files_unchanged": true,
+    "read_only_static_server": true
+  },
+  "known_nonpass": {
+    "campaign_census_check": "FAIL: shared political-source provenance has not been regenerated",
+    "different_top_level_fields": [
+      "production_snapshot",
+      "source_files"
+    ],
+    "different_direct_source_paths": [
+      "spheres-sim/src/government.rs"
+    ],
+    "action": "Integrator will regenerate after political source freeze; isolated exact3291facf census check passed. No repinning performed by this review."
+  },
+  "protected_scope": "Only browser validation, handoffs/workboards and review/mechanics documentation edited by this integration follow-up; no runtime source/data/art/save change."
+}

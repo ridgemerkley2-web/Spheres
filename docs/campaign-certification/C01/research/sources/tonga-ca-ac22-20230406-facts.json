@@ -1,0 +1,28 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://ago.gov.to/cms/judgements/court-of-appeal/category/223-ac-2023.html?download=2575:1-fatai-helu-2-paula-piveni-piukala-v-1-the-electoral-commission-2-lord-nuku-ac-22-22-toca-6-apr-2023-randerson-j-white-j-morrison-j-judgment-of-the-court",
+  "accessed_date": "2026-09-21",
+  "published_date": "2023-04-06",
+  "access_method": "downloaded_original_pdf_text_and_relevant_pages_visually_read",
+  "source_response_bytes": 246435,
+  "source_response_sha256": "4148871de69a8a13f240554579e692e25712b3f6d0f0f2789556d4b3adbdfa65",
+  "source_response_checked_in": false,
+  "provenance_note": "Original response bytes were downloaded (curl -L) on 2026-09-21 and hashed before extraction; an independent re-download the same day matched the byte count and SHA-256. The PDF is a page scan with an OCR text layer; the imported sentence was checked against the rendered page image. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_ptoa_democratic_party_20230406",
+      "text": "Paragraph [1] states that the parties who challenged Lord Nuku's election after the 2021 election 'are associated with a political party known as PTOA or the Democratic Party'. The printed word for them is 'respondents', although the title names Fatai Helu and Paula Piveni Piukala as appellants and the Electoral Commission and Lord Nuku as respondents.",
+      "attested_on": "2023-04-06",
+      "locator": "PDF page 1, title block and paragraph [1]",
+      "uncertainty": "The printed 'respondents' conflicts with the title and with the rest of the sentence; it is kept as printed, not corrected. The same paragraph dates the election 16 November 2021, while CV 55/2022 (paragraphs 2 and 9) and IPU give 18 November 2021; the discrepancy is not reconciled. 'Associated with' is not an office or membership record."
+    }
+  ],
+  "scope_note": "Name-association statement only. The appeal was dismissed (paragraph [16]); no clause 65 reasoning is imported. Hearing 30 March 2023; judgment 6 April 2023.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "Page 1 rendered with PDFium and visually read (title block, hearing and judgment dates, paragraph [1]) by the researcher and the checker. Paragraph [16] (page 8, appeal dismissed) was read from the text layer."
+  }
+}

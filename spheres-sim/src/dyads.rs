@@ -156,6 +156,9 @@ pub fn last_resort_with(
     stalled: &[bool; 12],
 ) -> Option<crate::resources::Aim> {
     use crate::resources as res;
+    if stalled.iter().all(|value| !*value) {
+        return None;
+    }
     w.resources.cover.binary_search_by_key(&a, |r| r.nation).ok()?;
     for k in res::ALL.iter().copied().filter(|k| k.tracked()) {
         if !stalled[k.idx()] {

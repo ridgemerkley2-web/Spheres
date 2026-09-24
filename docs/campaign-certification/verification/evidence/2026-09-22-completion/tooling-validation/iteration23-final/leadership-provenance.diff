@@ -1,0 +1,37 @@
+diff --git a/docs/campaign-certification/C01/census.json b/docs/campaign-certification/C01/census.json
+index 6f102434..f8a2a82f 100644
+--- a/docs/campaign-certification/C01/census.json
++++ b/docs/campaign-certification/C01/census.json
+@@ -91,8 +91,8 @@
+     },
+     {
+       "path": "spheres-sim/src/government.rs",
+-      "bytes": 833242,
+-      "sha256": "3254020ea00ec763eb95dabe0c03b79e33b861d4144d6de7307627c03de4e51c"
++      "bytes": 848824,
++      "sha256": "4453a90a9949090337e3bafe4b211ccedc0755efdf50022888acb2f748fb7cff"
+     },
+     {
+       "path": "spheres-sim/data/party_leaders.json",
+@@ -142,7 +142,7 @@
+     {
+       "path": "spheres-web/data/leadership_production_2035.json",
+       "bytes": 5984743,
+-      "sha256": "2d0147f3dbcfc6f9d311556760ed5773aea900f9f82a276051e519d5d9a9e6db"
++      "sha256": "74f24fc9e9a612e3e6ef7fcc64372486d70d558b5b5838f2d5053e8cf8a24438"
+     },
+     {
+       "path": "tools/avatars/leadership_production.py",
+diff --git a/spheres-web/data/leadership_production_2035.json b/spheres-web/data/leadership_production_2035.json
+index bbd2f8a8..60ce59c6 100644
+--- a/spheres-web/data/leadership_production_2035.json
++++ b/spheres-web/data/leadership_production_2035.json
+@@ -23,7 +23,7 @@
+   },
+   "input_hashes": {
+     "spheres-sim/src/nations.rs": "8b847b6a843e6a41a82f80446c41ef0e2abccbb6172cc956207859cf71edab08",
+-    "spheres-sim/src/government.rs": "3254020ea00ec763eb95dabe0c03b79e33b861d4144d6de7307627c03de4e51c",
++    "spheres-sim/src/government.rs": "4453a90a9949090337e3bafe4b211ccedc0755efdf50022888acb2f748fb7cff",
+     "spheres-sim/data/party_leaders.json": "18774ffa08a226e1a9c6b9608d6a4e8adfbab43928092ed925d3c44803cd2494",
+     "spheres-web/data/person_portraits.json": "1a73390a88cfd5603d8e5aa3a1fbec5cbe713ce46ec5a3573f7ebb1512fc305d",
+     "spheres-web/data/fictional_portraits.json": "54a16634b77cb60d4945b541d64504c8c354610d406e3baff00da5b186235d0c"

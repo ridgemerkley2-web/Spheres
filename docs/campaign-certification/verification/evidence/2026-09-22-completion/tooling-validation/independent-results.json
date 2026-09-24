@@ -1,0 +1,341 @@
+{
+  "scope": "Independent tooling checks; leadership provenance regeneration intentionally held pending runtime source freeze. Native and browser outcomes belong to separate receipts.",
+  "checks": [
+    {
+      "name": "avatar-unit",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 3.946,
+      "log_sha256": "4b5ba2b607706232fbe307e0b6ee6c2f8756fe7d2e66175a0cc18a1cc4a9caab",
+      "log_bytes": 28717,
+      "unittest_count": 162
+    },
+    {
+      "name": "terrain-unit",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/terrain",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 0.862,
+      "log_sha256": "c5fcb48fb21079f727ceda36c0e220967810b5293311dd4d6bfabccbf0f3446f",
+      "log_bytes": 3897,
+      "unittest_count": 25
+    },
+    {
+      "name": "ui-export-unit",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/ui",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 0.116,
+      "log_sha256": "7308a46eb4e572cb2de50d8dffa34c237b9ff3ff4e4f18c9998036c49b4fb059",
+      "log_bytes": 689,
+      "unittest_count": 3
+    },
+    {
+      "name": "workboard",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/planning/workboard.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.064,
+      "log_sha256": "6cc71a3c645534f8525319dc992aaa9aafa512dab30b47fc6c1c7a998c1f30b6",
+      "log_bytes": 107
+    },
+    {
+      "name": "campaign-research",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.172,
+      "log_sha256": "bbdaaa6498ffb2ad3aaa7e42442256e05602572192e967e2f66991ed3837c709",
+      "log_bytes": 250
+    },
+    {
+      "name": "avatar-assets",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/check_assets.py"
+      ],
+      "exit_code": 0,
+      "seconds": 5.714,
+      "log_sha256": "069a3a92b3f8e5e63bdf315dbbf631e7435f8fc914a2c1d573cdd674fb112cac",
+      "log_bytes": 164
+    },
+    {
+      "name": "person-art-self-test",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/person_art_pipeline.py",
+        "self-test"
+      ],
+      "exit_code": 0,
+      "seconds": 0.497,
+      "log_sha256": "025856376bcd09d6648eee534726fbf6e84625df3eff741229687e0ffeb137fa",
+      "log_bytes": 2078,
+      "unittest_count": 16
+    },
+    {
+      "name": "person-art-validate",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/person_art_pipeline.py",
+        "validate"
+      ],
+      "exit_code": 0,
+      "seconds": 0.271,
+      "log_sha256": "e72fea8bada7395f20f70629759e5b1cc6590ad1bdcaac5546f97d07d2e87db5",
+      "log_bytes": 142719
+    },
+    {
+      "name": "fictional-art-self-test",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/fictional_art_pipeline.py",
+        "self-test"
+      ],
+      "exit_code": 0,
+      "seconds": 0.198,
+      "log_sha256": "3afc09de337f1033c3773d7468448f58ebf9f8f62cccdcb52c4d731f2b605958",
+      "log_bytes": 1098,
+      "unittest_count": 7
+    },
+    {
+      "name": "fictional-art-validate",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/fictional_art_pipeline.py",
+        "validate"
+      ],
+      "exit_code": 0,
+      "seconds": 0.144,
+      "log_sha256": "d1427ece176d9f286a943a9368d1b4640270603ae6d3db88a5a63fe071aa074e",
+      "log_bytes": 112
+    },
+    {
+      "name": "leadership-production-self-test",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/leadership_production.py",
+        "self-test"
+      ],
+      "exit_code": 0,
+      "seconds": 1.033,
+      "log_sha256": "4ac4f6a59232d0f3573ebddcf1b5e98af294553416ce8c5d5ed1639b47c8310c",
+      "log_bytes": 1317,
+      "unittest_count": 8
+    },
+    {
+      "name": "person-avatar-generated",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/build_person_avatar_assets.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.336,
+      "log_sha256": "fe83b07963d5578e258e3145936198c50445a1a9eec113db8d92b924377e770a",
+      "log_bytes": 49
+    },
+    {
+      "name": "historical-import-self-test",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/import_historical_people.py",
+        "--self-test"
+      ],
+      "exit_code": 0,
+      "seconds": 0.103,
+      "log_sha256": "cdb1958c89a0b68821f74faab647cdcf47eeb7fcddd23db9f0e89f21e011ad3c",
+      "log_bytes": 820,
+      "unittest_count": 5
+    },
+    {
+      "name": "party-import-self-test",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/import_party_terms.py",
+        "--self-test"
+      ],
+      "exit_code": 0,
+      "seconds": 0.107,
+      "log_sha256": "fdcc1745dfb4067ec07e9755a414cca50b39711ba4fca32dc5cb33c75dc3742e",
+      "log_bytes": 989,
+      "unittest_count": 6
+    },
+    {
+      "name": "calibration-self-test",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/calibration/aggregate.py",
+        "--self-test"
+      ],
+      "exit_code": 0,
+      "seconds": 0.193,
+      "log_sha256": "db2765d3650bfba3ef1d23feb1eb5a39e1a13b84345efb5f24409ea2d00565b6",
+      "log_bytes": 715,
+      "unittest_count": 5
+    },
+    {
+      "name": "resources-1990",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/resources/check_resources_1990.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.922,
+      "log_sha256": "3f2e7db3c6c7d7e973f048595c3fc7682c07ba7ffabc70e14bbade17b2aca411",
+      "log_bytes": 4062
+    },
+    {
+      "name": "industry-1990",
+      "command": [
+        "node",
+        "tools/industry/check_industry_1990.cjs"
+      ],
+      "exit_code": 0,
+      "seconds": 0.075,
+      "log_sha256": "2d44a77b9751b8fef902eee1cc8592aac351c04ec583474f88e00b977511bdd4",
+      "log_bytes": 1129
+    },
+    {
+      "name": "art-manifest",
+      "command": [
+        "node",
+        "tools/ui/build_art_manifest.cjs",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 1.768,
+      "log_sha256": "0cd9f5728cdd3c6eeba3b61f250b5b387c13ceace2cc7c33150cfd711d6853a5",
+      "log_bytes": 28
+    },
+    {
+      "name": "component-coverage",
+      "command": [
+        "node",
+        "tools/ui/build_component_coverage.cjs",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 16.875,
+      "log_sha256": "1e35b83bda49100f908f97af053d615a9a804bca7719ffc36328a16129fb2c64",
+      "log_bytes": 62
+    },
+    {
+      "name": "equipment-model-assets",
+      "command": [
+        "node",
+        "tools/ui/build_equipment_models.cjs",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 1.093,
+      "log_sha256": "516e2a0b689a66f9714cedcfc95ef0d96994beeb159426af22ce2aca6a384403",
+      "log_bytes": 335
+    },
+    {
+      "name": "person-model-assets",
+      "command": [
+        "node",
+        "tools/ui/build_person_models.cjs",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 1.112,
+      "log_sha256": "e60eb360bebbc9554058354e40d4faa8e63090c703e4651c3ddfc0d9725ec3e5",
+      "log_bytes": 229
+    },
+    {
+      "name": "art-budget",
+      "command": [
+        "node",
+        "tools/ui/bench_art.cjs",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 62.201,
+      "log_sha256": "c98654ddc5a43118d93e9a6b4d59a9e2b4824c868ac0365b8d4b36694d304c86",
+      "log_bytes": 130
+    }
+  ]
+}

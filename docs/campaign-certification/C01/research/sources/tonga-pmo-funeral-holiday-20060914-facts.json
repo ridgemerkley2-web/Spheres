@@ -1,0 +1,30 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://web.archive.org/web/20061017154738id_/http://www.pmo.gov.to:80/artman/publish/article_173.shtml",
+  "original_url": "http://www.pmo.gov.to/artman/publish/article_173.shtml",
+  "archive_capture_utc": "2006-10-17T15:47:38Z",
+  "article_timestamp": "Sep 14, 2006, 09:00",
+  "accessed_date": "2026-09-21",
+  "published_date": "2006-09-14",
+  "document_date": "2006-09-13",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 13615,
+  "source_response_sha256": "9947f7776dd84d2f27fce159ba67214b868ff78d69a9d7bb84608edddb8a9001",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original PMO page, captured at 2006-10-17T15:47:38Z; the original official page is no longer served. The capture bytes were downloaded and hashed before extraction on 2026-09-21 (local). This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_crown_tupou_iv_state_funeral_holiday_20060919",
+      "text": "The Chief Secretary and Secretary to Cabinet announces that, under the Public Holidays Act and in honour of the State Funeral of King Taufa'ahau Tupou IV, 19 September 2006 has been appointed a public holiday. The Tongan notice (FANONGONONGO) is dated 13/09/06.",
+      "attested_on": "2006-09-19",
+      "locator": "Tongan FANONGONONGO heading and English 'Announcement of Public Holiday'; article timestamp Sep 14, 2006, 09:00",
+      "uncertainty": "The funeral day as appointed in advance; the burial is reported separately (to_crown_tupou_iv_burial_reported_20060920). The Tongan notice is dated 13 September (document_date) and the PMO article 14 September (published_date); the English text carries no date of its own."
+    }
+  ],
+  "scope_note": "Archived PMO article (raw Internet Archive capture of 17 October 2006, 15:47:38 UTC); the original page is no longer served. Used only for the appointed State Funeral holiday.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  }
+}

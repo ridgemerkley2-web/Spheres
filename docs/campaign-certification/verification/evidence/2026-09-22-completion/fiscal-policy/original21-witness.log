@@ -1,0 +1,47 @@
+
+running 7 tests
+
+thread 'an_explicit_annual_plan_keeps_one_fiscal_owner_after_player_handoff' (33636) panicked at ..\evidence\political-calibration-20260922\fiscal-boundaries-original21-witness.rs:176:17:
+assertion `left == right` failed
+  left: (0.222, 0.06368, 0.0995)
+ right: (0.22, 0.064, 0.1)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test an_explicit_annual_plan_keeps_one_fiscal_owner_after_player_handoff ... FAILED
+
+thread 'daily_fiscal_boundaries_preserve_calendar_scaled_rates' (33700) panicked at ..\evidence\political-calibration-20260922\fiscal-boundaries-original21-witness.rs:75:29:
+assertion `left == right` failed
+  left: 0.01
+ right: 0.008
+test daily_fiscal_boundaries_preserve_calendar_scaled_rates ... FAILED
+
+thread 'fiscal_consolidation_never_increases_spending_or_reduces_tax' (32128) panicked at ..\evidence\political-calibration-20260922\fiscal-boundaries-original21-witness.rs:47:17:
+assertion failed: n.mil_spend_gdp <= mil && n.state_invest_gdp <= investment
+test fiscal_consolidation_never_increases_spending_or_reduces_tax ... FAILED
+
+thread 'fiscal_recovery_moves_toward_bounds_without_reversing_direction' (19820) panicked at ..\evidence\political-calibration-20260922\fiscal-boundaries-original21-witness.rs:110:21:
+assertion failed: w.nation(id).state_invest_gdp >= before
+test fiscal_recovery_moves_toward_bounds_without_reversing_direction ... FAILED
+test legacy_fiscal_policy_respects_player_program_and_recovery_owners ... ok
+
+thread 'legacy_fiscal_policy_respects_stock_and_plan_ownership_independently' (15736) panicked at ..\evidence\political-calibration-20260922\fiscal-boundaries-original21-witness.rs:233:13:
+assertion `left == right` failed
+  left: (0.222, 0.059699999999999996, 0.0995)
+ right: (0.22, 0.06, 0.1)
+test legacy_fiscal_policy_respects_stock_and_plan_ownership_independently ... FAILED
+
+thread 'opening_low_budget_nations_are_not_given_unvoted_spending' (13860) panicked at ..\evidence\political-calibration-20260922\fiscal-boundaries-original21-witness.rs:197:13:
+Guyana received unvoted defence
+test opening_low_budget_nations_are_not_given_unvoted_spending ... FAILED
+
+failures:
+
+failures:
+    an_explicit_annual_plan_keeps_one_fiscal_owner_after_player_handoff
+    daily_fiscal_boundaries_preserve_calendar_scaled_rates
+    fiscal_consolidation_never_increases_spending_or_reduces_tax
+    fiscal_recovery_moves_toward_bounds_without_reversing_direction
+    legacy_fiscal_policy_respects_stock_and_plan_ownership_independently
+    opening_low_budget_nations_are_not_given_unvoted_spending
+
+test result: FAILED. 1 passed; 6 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+

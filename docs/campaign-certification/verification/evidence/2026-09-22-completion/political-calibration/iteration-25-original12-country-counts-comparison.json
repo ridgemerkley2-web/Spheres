@@ -1,0 +1,479 @@
+{
+  "schema": 1,
+  "scope": "Existing original A1 seeds0..11 over252months; no new sample",
+  "source_log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\iteration-25-original12-country-counts.log",
+  "source_log_sha256": "db0ccd73ee0cbfaea8927722a69e1fe6d0aa7709f3c372427726e3d9112dd460",
+  "original_A1_diagnostic": [
+    "A1: median coups 7 top-3 share median 0.59"
+  ],
+  "source_test_failure_preserved": true,
+  "rows": [
+    {
+      "country_counts": [
+        [
+          "Guatemala",
+          2
+        ],
+        [
+          "Guyana",
+          2
+        ],
+        [
+          "Myanmar",
+          2
+        ],
+        [
+          "Sao Tome and Principe",
+          2
+        ],
+        [
+          "Comoros",
+          1
+        ],
+        [
+          "Ecuador",
+          1
+        ]
+      ],
+      "elected_coups": 10,
+      "months": 252,
+      "seed": 0,
+      "top_three_exact": "3/5",
+      "top_three": 0.6,
+      "HHI_exact": "9/50",
+      "effective_countries_exact": "50/9",
+      "effective_countries": 5.555555555555555,
+      "original_per_seed_top_three_under_half": false,
+      "proposed_per_seed_effective_at_least_four": true
+    },
+    {
+      "country_counts": [
+        [
+          "Ecuador",
+          1
+        ],
+        [
+          "Guatemala",
+          1
+        ],
+        [
+          "Guyana",
+          1
+        ],
+        [
+          "Myanmar",
+          1
+        ],
+        [
+          "Sao Tome and Principe",
+          1
+        ]
+      ],
+      "elected_coups": 5,
+      "months": 252,
+      "seed": 1,
+      "top_three_exact": "3/5",
+      "top_three": 0.6,
+      "HHI_exact": "1/5",
+      "effective_countries_exact": "5",
+      "effective_countries": 5.0,
+      "original_per_seed_top_three_under_half": false,
+      "proposed_per_seed_effective_at_least_four": true
+    },
+    {
+      "country_counts": [
+        [
+          "Guatemala",
+          2
+        ],
+        [
+          "Sao Tome and Principe",
+          2
+        ],
+        [
+          "Ecuador",
+          1
+        ],
+        [
+          "Guyana",
+          1
+        ],
+        [
+          "Myanmar",
+          1
+        ]
+      ],
+      "elected_coups": 7,
+      "months": 252,
+      "seed": 2,
+      "top_three_exact": "5/7",
+      "top_three": 0.7142857142857143,
+      "HHI_exact": "11/49",
+      "effective_countries_exact": "49/11",
+      "effective_countries": 4.454545454545454,
+      "original_per_seed_top_three_under_half": false,
+      "proposed_per_seed_effective_at_least_four": true
+    },
+    {
+      "country_counts": [
+        [
+          "Cambodia",
+          1
+        ],
+        [
+          "Comoros",
+          1
+        ],
+        [
+          "Ecuador",
+          1
+        ],
+        [
+          "Guatemala",
+          1
+        ],
+        [
+          "Guyana",
+          1
+        ],
+        [
+          "Myanmar",
+          1
+        ],
+        [
+          "Sao Tome and Principe",
+          1
+        ]
+      ],
+      "elected_coups": 7,
+      "months": 252,
+      "seed": 3,
+      "top_three_exact": "3/7",
+      "top_three": 0.42857142857142855,
+      "HHI_exact": "1/7",
+      "effective_countries_exact": "7",
+      "effective_countries": 7.0,
+      "original_per_seed_top_three_under_half": true,
+      "proposed_per_seed_effective_at_least_four": true
+    },
+    {
+      "country_counts": [
+        [
+          "Guatemala",
+          2
+        ],
+        [
+          "Comoros",
+          1
+        ],
+        [
+          "Ecuador",
+          1
+        ],
+        [
+          "Guyana",
+          1
+        ],
+        [
+          "Myanmar",
+          1
+        ],
+        [
+          "Sao Tome and Principe",
+          1
+        ]
+      ],
+      "elected_coups": 7,
+      "months": 252,
+      "seed": 4,
+      "top_three_exact": "4/7",
+      "top_three": 0.5714285714285714,
+      "HHI_exact": "9/49",
+      "effective_countries_exact": "49/9",
+      "effective_countries": 5.444444444444445,
+      "original_per_seed_top_three_under_half": false,
+      "proposed_per_seed_effective_at_least_four": true
+    },
+    {
+      "country_counts": [
+        [
+          "Guatemala",
+          2
+        ],
+        [
+          "Myanmar",
+          2
+        ],
+        [
+          "Comoros",
+          1
+        ],
+        [
+          "Ecuador",
+          1
+        ],
+        [
+          "Guyana",
+          1
+        ],
+        [
+          "Sao Tome and Principe",
+          1
+        ]
+      ],
+      "elected_coups": 8,
+      "months": 252,
+      "seed": 5,
+      "top_three_exact": "5/8",
+      "top_three": 0.625,
+      "HHI_exact": "3/16",
+      "effective_countries_exact": "16/3",
+      "effective_countries": 5.333333333333333,
+      "original_per_seed_top_three_under_half": false,
+      "proposed_per_seed_effective_at_least_four": true
+    },
+    {
+      "country_counts": [
+        [
+          "Guatemala",
+          2
+        ],
+        [
+          "Guyana",
+          2
+        ],
+        [
+          "Comoros",
+          1
+        ],
+        [
+          "Ecuador",
+          1
+        ],
+        [
+          "Myanmar",
+          1
+        ],
+        [
+          "Sao Tome and Principe",
+          1
+        ]
+      ],
+      "elected_coups": 8,
+      "months": 252,
+      "seed": 6,
+      "top_three_exact": "5/8",
+      "top_three": 0.625,
+      "HHI_exact": "3/16",
+      "effective_countries_exact": "16/3",
+      "effective_countries": 5.333333333333333,
+      "original_per_seed_top_three_under_half": false,
+      "proposed_per_seed_effective_at_least_four": true
+    },
+    {
+      "country_counts": [
+        [
+          "Guatemala",
+          2
+        ],
+        [
+          "Comoros",
+          1
+        ],
+        [
+          "Ecuador",
+          1
+        ],
+        [
+          "Guyana",
+          1
+        ],
+        [
+          "Myanmar",
+          1
+        ],
+        [
+          "Sao Tome and Principe",
+          1
+        ]
+      ],
+      "elected_coups": 7,
+      "months": 252,
+      "seed": 7,
+      "top_three_exact": "4/7",
+      "top_three": 0.5714285714285714,
+      "HHI_exact": "9/49",
+      "effective_countries_exact": "49/9",
+      "effective_countries": 5.444444444444445,
+      "original_per_seed_top_three_under_half": false,
+      "proposed_per_seed_effective_at_least_four": true
+    },
+    {
+      "country_counts": [
+        [
+          "Comoros",
+          1
+        ],
+        [
+          "Ecuador",
+          1
+        ],
+        [
+          "Guatemala",
+          1
+        ],
+        [
+          "Guyana",
+          1
+        ],
+        [
+          "Mozambique",
+          1
+        ],
+        [
+          "Myanmar",
+          1
+        ],
+        [
+          "Sao Tome and Principe",
+          1
+        ]
+      ],
+      "elected_coups": 7,
+      "months": 252,
+      "seed": 8,
+      "top_three_exact": "3/7",
+      "top_three": 0.42857142857142855,
+      "HHI_exact": "1/7",
+      "effective_countries_exact": "7",
+      "effective_countries": 7.0,
+      "original_per_seed_top_three_under_half": true,
+      "proposed_per_seed_effective_at_least_four": true
+    },
+    {
+      "country_counts": [
+        [
+          "Guatemala",
+          2
+        ],
+        [
+          "Comoros",
+          1
+        ],
+        [
+          "Ecuador",
+          1
+        ],
+        [
+          "Guyana",
+          1
+        ],
+        [
+          "Myanmar",
+          1
+        ],
+        [
+          "Sao Tome and Principe",
+          1
+        ]
+      ],
+      "elected_coups": 7,
+      "months": 252,
+      "seed": 9,
+      "top_three_exact": "4/7",
+      "top_three": 0.5714285714285714,
+      "HHI_exact": "9/49",
+      "effective_countries_exact": "49/9",
+      "effective_countries": 5.444444444444445,
+      "original_per_seed_top_three_under_half": false,
+      "proposed_per_seed_effective_at_least_four": true
+    },
+    {
+      "country_counts": [
+        [
+          "Guatemala",
+          2
+        ],
+        [
+          "Myanmar",
+          2
+        ],
+        [
+          "Comoros",
+          1
+        ],
+        [
+          "Ecuador",
+          1
+        ],
+        [
+          "Guyana",
+          1
+        ],
+        [
+          "Sao Tome and Principe",
+          1
+        ]
+      ],
+      "elected_coups": 8,
+      "months": 252,
+      "seed": 10,
+      "top_three_exact": "5/8",
+      "top_three": 0.625,
+      "HHI_exact": "3/16",
+      "effective_countries_exact": "16/3",
+      "effective_countries": 5.333333333333333,
+      "original_per_seed_top_three_under_half": false,
+      "proposed_per_seed_effective_at_least_four": true
+    },
+    {
+      "country_counts": [
+        [
+          "Comoros",
+          1
+        ],
+        [
+          "Ecuador",
+          1
+        ],
+        [
+          "Guatemala",
+          1
+        ],
+        [
+          "Guyana",
+          1
+        ],
+        [
+          "Myanmar",
+          1
+        ],
+        [
+          "Sao Tome and Principe",
+          1
+        ]
+      ],
+      "elected_coups": 6,
+      "months": 252,
+      "seed": 11,
+      "top_three_exact": "1/2",
+      "top_three": 0.5,
+      "HHI_exact": "1/6",
+      "effective_countries_exact": "6",
+      "effective_countries": 6.0,
+      "original_per_seed_top_three_under_half": false,
+      "proposed_per_seed_effective_at_least_four": true
+    }
+  ],
+  "median_coups": 7.0,
+  "median_top_three_exact": "41/70",
+  "median_top_three": 0.5857142857142857,
+  "original_count_band_pass": true,
+  "original_concentration_pass": false,
+  "median_effective_exact": "49/9",
+  "median_effective": 5.444444444444445,
+  "proposed_median_effective_at_least_four": true,
+  "per_seed_old_rule_passes": 2,
+  "per_seed_proposed_rule_passes": 12,
+  "interpretation": "Comparison only. A new diversity criterion is not approved or implemented; original gate and failed exit remain unchanged. Per-seed pass counts are explanatory, not additional assertions."
+}

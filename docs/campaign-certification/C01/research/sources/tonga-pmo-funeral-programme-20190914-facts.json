@@ -1,0 +1,36 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://pmo.gov.to/wp-content/uploads/2019/09/Media-Release_14_09_2019_State-funeral-Programme-for-the-late-Hon.-Samuela-Akilisi-Pohiva-Prime-Minister-of-Tonga.pdf",
+  "accessed_date": "2026-09-22",
+  "published_date": "2019-09-14",
+  "access_method": "downloaded_original_pdf_text_and_relevant_page_visually_read",
+  "source_response_bytes": 502596,
+  "source_response_sha256": "020d23f8fe799f8d5d38f2a618f0fff7e2ad99c4ec8202bba699b500fbbb35cf",
+  "source_response_checked_in": false,
+  "provenance_note": "Original response downloaded and hashed before extraction on 2026-09-22 (local); the independent check re-downloaded it the same day and matched the bytes and SHA-256, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_pohiva_late_pm_state_funeral_20190914",
+      "text": "The PMO media release dated 14 September 2019 sets out the State Funeral of 'Honourable Samuela 'Akilisi Pohiva, Prime Minister, Kingdom of Tonga (12 -19 September 2019)' and calls him 'the late' Prime Minister. Its first item, headed 'AUCKLAND, NEW ZEALAND' and dated the 12th of September 2019, reads 'Hon. Prime Minister rests at the Davis Funeral Directors Funeral Parlour in Auckland, New Zealand'.",
+      "attested_on": "2019-09-14",
+      "locator": "PDF page 1, title block and item 1",
+      "uncertainty": "attested_on is the release date, on which the programme calls him 'the late' Prime Minister. Because its first item already has the Prime Minister resting at an Auckland funeral parlour on the 12th, he died on or before that day (Auckland date); the release does not state the date, time or place of death, and no day of death is recorded. The funeral arrangements are not a boundary of office."
+    },
+    {
+      "id": "to_sika_acting_pm_20190914_programme",
+      "text": "The same programme, published on 14 September 2019, lists in advance 'Acting Prime Minister (Hon. Semisi Sika)' at the head of the receiving party scheduled for the arrival of the Prime Minister's casket at Fua'amotu at 3:30pm on Tuesday 17 September 2019, and 'Hon. Acting PM and Government Ministers' in the order of procession.",
+      "attested_on": "2019-09-14",
+      "locator": "PDF page 2, items 7a and 8e",
+      "uncertainty": "A prospective programme listing: it styles Sika Acting Prime Minister as of its publication on 14 September and for the planned ceremony, and does not record the ceremony taking place. His acting appointment date and instrument are not given. Acting service is a claim on the role, not a holder."
+    }
+  ],
+  "scope_note": "PMO media release of 14 September 2019 (the PMO media library holds five byte-identical uploads). Read on 2026-09-22, after the 7 September 2026 historical cutoff; the file is the dated historical document and no later content is used. It does not state the date, time or place of death; the programme's names other than the Acting Prime Minister are not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "PDF pages 1 and 2 were rendered and visually checked in the research dossier; pages 3-4 were read as text."
+  }
+}

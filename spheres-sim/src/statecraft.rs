@@ -352,6 +352,14 @@ fn backing_cools(w: &mut WorldState) {
     if !w.rules.ideology_blocs || w.statecraft.backing.is_empty() {
         return;
     }
+    // An older save may have qualifying stock but no organization record yet.
+    // Remember it before decay can cross the presence threshold.
+    let mut targets: Vec<NationId> = w.statecraft.backing.iter().map(|b| b.target).collect();
+    targets.sort();
+    targets.dedup();
+    for target in targets {
+        crate::government::remember_established_movements(w, target);
+    }
     let dt = crate::clock::month_fraction(w);
     for b in w.statecraft.backing.iter_mut() {
         b.weight -= BACKING_DECAY * dt;
@@ -411,6 +419,7 @@ pub fn add_backing(w: &mut WorldState, sponsor: NationId, target: NationId, bloc
         None => w.statecraft.backing.push(Backing { sponsor, target, bloc, weight: room, exposed: false }),
     }
     w.statecraft.backing.sort_by_key(|b| (b.sponsor, b.target, b.bloc));
+    crate::government::remember_established_movements(w, target);
     room
 }
 
@@ -420,6 +429,7 @@ pub fn add_backing(w: &mut WorldState, sponsor: NationId, target: NationId, bloc
 /// support — in an electoral target off its parties in proportion to their
 /// size, in a regime off `movements[bloc]` — then renormalised. Draws no RNG.
 pub fn expose_backing(w: &mut WorldState, sponsor: NationId, target: NationId, bloc: crate::government::Bloc) {
+    crate::government::remember_established_movements(w, target);
     for b in w.statecraft.backing.iter_mut() {
         if b.sponsor == sponsor && b.target == target {
             b.weight *= 0.5;
@@ -440,6 +450,7 @@ pub fn halve_foreign_backing(w: &mut WorldState, id: NationId) {
     if !w.rules.ideology_blocs || w.statecraft.backing.is_empty() {
         return;
     }
+    crate::government::remember_established_movements(w, id);
     let ruling = crate::blocs::ruling_bloc(w, id);
     for b in w.statecraft.backing.iter_mut() {
         if b.target == id && Some(b.bloc) != ruling {

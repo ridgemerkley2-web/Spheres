@@ -1,0 +1,28 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://web.archive.org/web/20180113055859id_/http://www.mic.gov.to:80/news-today/press-releases/7065-king-appoints-prime-minister-hon-samuela-akilisi-pohiva",
+  "original_url": "http://www.mic.gov.to/news-today/press-releases/7065-king-appoints-prime-minister-hon-samuela-akilisi-pohiva",
+  "archive_capture_utc": "2018-01-13T05:58:59Z",
+  "accessed_date": "2026-09-22",
+  "published_date": "2018-01-04",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 31574,
+  "source_response_sha256": "a6021ca934fd05804f521992f15f275ef78379abfb04b03e269b3fc1ee5e97e3",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original government portal page, captured at 2018-01-13T05:58:59Z; the capture is used in place of the live page. The researcher downloaded and hashed the capture bytes before extraction on 2026-09-22 (local); the independent check re-downloaded it the same day and matched the bytes and SHA-256, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_pohiva_royal_appointment_20180102",
+      "text": "The PMO release states: 'In accordance with Clause 50A of the Constitution of Tonga, His Majesty King Tupou VI has appointed the Prime Minister-Designate, Honourable Samuela 'Akilisi Pohiva, as the Prime Minister of Tonga, with effect from 2 January, 2018.'",
+      "attested_on": "2018-01-02",
+      "locator": "Body paragraph 1; issued by the Prime Minister's Office",
+      "uncertainty": "The effective date is stated. The release carries the dateline '04th January, 2017', a misprint beside the page date of Thursday 04 January 2018. The signature or presentation date of the warrant is not given. The same release says he 'served as the 16th Prime Minister from 2015-2017' and 'will serve his second term in office from 2018-2021, as the 17th Prime Minister'; these spans and ordinals are recorded as printed and are not used as boundaries: they neither end his 2014 appointment in 2017 nor define a term."
+    }
+  ],
+  "scope_note": "PMO release on the government portal, page dated Thursday 04 January 2018 (raw Internet Archive capture of 13 January 2018); the PMO's own site showed a hosting placeholder in its only 2018 capture.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  }
+}

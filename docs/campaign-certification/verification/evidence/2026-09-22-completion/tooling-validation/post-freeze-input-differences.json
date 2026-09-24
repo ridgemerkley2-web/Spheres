@@ -1,0 +1,31 @@
+{
+  "changed_since_independent_batch": [
+    "spheres-sim/src/government.rs",
+    "docs/campaign-certification/C01/census.json",
+    "spheres-sim/src/blocs.rs",
+    "spheres-web/data/leadership_production_2035.json"
+  ],
+  "current_records": {
+    "spheres-sim/src/government.rs": {
+      "bytes": 812741,
+      "sha256": "33c9c466ed9ba9771b51bffad6d23acd22018eb988c43344e892825a41e5a75c",
+      "lf_sha256": "33c9c466ed9ba9771b51bffad6d23acd22018eb988c43344e892825a41e5a75c"
+    },
+    "docs/campaign-certification/C01/census.json": {
+      "bytes": 6105,
+      "sha256": "43284930e888589345c5249d53e4b2fa85d58605e04a25caf0ef1a8cc925d42b",
+      "lf_sha256": "43284930e888589345c5249d53e4b2fa85d58605e04a25caf0ef1a8cc925d42b"
+    },
+    "spheres-sim/src/blocs.rs": {
+      "bytes": 133955,
+      "sha256": "3cdcb1ca4620e81d91f26288f39362da86a440e21610a569b4ad4e7c1640ff51",
+      "lf_sha256": "9d81bf8d6e55a44bf6d266ef8654214e96db54e7c543ab2f66c3231d5e6410b3"
+    },
+    "spheres-web/data/leadership_production_2035.json": {
+      "bytes": 5984743,
+      "sha256": "a83fdd318b53b9b68284d8f72f982b86f9fbb0a155473b0edee7021917e91ba6",
+      "lf_sha256": "a83fdd318b53b9b68284d8f72f982b86f9fbb0a155473b0edee7021917e91ba6"
+    }
+  },
+  "scope": "Runtime changes are covered by separate native checks. Leadership tests and generated provenance were rerun after these changes; unchanged geometry checks retain their original source identity."
+}

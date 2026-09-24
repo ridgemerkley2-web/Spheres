@@ -1,0 +1,258 @@
+{
+  "revision": "12278ea4c66863200fd10948350ae69391954cfa",
+  "python": "3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]",
+  "scope": "Checkpoint28 pure empty-stall-mask dyads optimization provenance validation; metadata coherence only, not campaign certification or expanded historical coverage. Parent reverted rejected candidate27 before this source freeze.",
+  "government_crlf_pairs_removed": 0,
+  "government_file_written": false,
+  "commands": [
+    {
+      "name": "production-build",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/leadership_production.py",
+        "build"
+      ],
+      "exit_code": 0,
+      "seconds": 0.375,
+      "log_sha256": "ede01baeaf00d1291e7980acaf67ee41fdc7281b8c9eb0b633122423d2ccea17"
+    },
+    {
+      "name": "production-check",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/leadership_production.py",
+        "check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.365,
+      "log_sha256": "ede01baeaf00d1291e7980acaf67ee41fdc7281b8c9eb0b633122423d2ccea17"
+    },
+    {
+      "name": "production-self-test",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/leadership_production.py",
+        "self-test"
+      ],
+      "exit_code": 0,
+      "seconds": 1.008,
+      "log_sha256": "99cba3035af450cce8fec4a90a7e6e5038cfef263d5698006d4a829dbc8f01f0"
+    },
+    {
+      "name": "census-build",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_census.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.181,
+      "log_sha256": "627b0f8dee139e3f4f02f7880585c8857db6005114aabe495e7e64a1d8d0aee3"
+    },
+    {
+      "name": "census-check",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_census.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.206,
+      "log_sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+    },
+    {
+      "name": "census-unit",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_campaign_census.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 0.394,
+      "log_sha256": "b976c2c9fcbf6128d6d3dd9e1989c2106496d0bab0cb03497b1da1be3f24df4d"
+    },
+    {
+      "name": "research-check",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.18,
+      "log_sha256": "bbdaaa6498ffb2ad3aaa7e42442256e05602572192e967e2f66991ed3837c709"
+    }
+  ],
+  "source_inputs_before": {
+    "spheres-sim/src/government.rs": "0e2dbdefe5ed1909804b81d43b736c94315be647d615bda85e62e1fe78a2b73f",
+    "spheres-sim/src/nations.rs": "8b847b6a843e6a41a82f80446c41ef0e2abccbb6172cc956207859cf71edab08",
+    "tools/avatars/leadership_production.py": "f05b765d013f697a773a2f1f4eea872e7114ba9233538d87d7f551700a1387af",
+    "tools/avatars/campaign_census.py": "4eda2d0bf01a10d7770f79f9dad964dffc01d5b884d90ea226730e254626207b",
+    "tools/avatars/campaign_research.py": "82294ea6e849736551d2688e01e48fade211aed93ca85a2eb674ecee9cbb791b",
+    "spheres-sim/src/opening_mandates.rs": "1c12d70b6992f89af17f8d861c364e3eac32a340905be2638484495c88bef22b",
+    "spheres-sim/data/opening_mandates_1990.json": "bc403a209d829dbd225e2df89611bc0bcbed0c27d5a8aa127325baf652a19384",
+    "spheres-sim/src/army_institutions.rs": "918beb1e980db551dd6c076d6b4b15a23f878402eafbf90bb06a4689130abb06",
+    "spheres-sim/data/army_institutions_1990.json": "9d5df834998c535e7bc8039d8352ecaf0ddcfdd8e4662830eaba2b2de26c25af",
+    "spheres-sim/data/army_institution_coverage_1990.json": "836075908f6e86638f159f5b57a1048e41e847243ece75697ca2bd6b538afd52",
+    "spheres-sim/src/army_authority.rs": "7c2d4bd867f434221490dc9cecac53eb18eef701f7a6d9a97011a4cf3a5c2053",
+    "spheres-sim/data/army_authority_1989.json": "35e99445235348ded56a45cdd912892f0cd810c92a29121fbd66c8f911dc6d38",
+    "tools/politics/build_army_authority.py": "1d7de3d66f1ad8ac19f76c41f314ead9b4422b1474589069e220161c159c401d",
+    "tools/politics/extract_army_authority.py": "e2dc18e47e401c4cffacca7d29e11def17604adf61355e6c81f9542dd86c6eb4",
+    "tools/politics/fixtures/vdem-v16-1989-military-authority.json": "362db5c52447501a1403ac31d3abf59fd474768e9301b06042b35cdf1e136894",
+    "spheres-sim/src/lib.rs": "f2852dfc40d213f74d04647ccedd4d674c9e00e08d1bc5f79ff6de20624eef82",
+    "spheres-sim/src/blocs.rs": "47d1d456576b638d8bfb9a18f9c7564b62c2f5fb97acec978b207210c6d09fbb",
+    "spheres-sim/src/politics.rs": "990e675157008bbcf80944840d7946b961bff7863ea6584a998c13a9d4119995",
+    "spheres-sim/src/stratagems.rs": "a756149de98b6633a57b8fd3b3c7fcc2c0f5c3a25ccb721ff924c7d62364d8bb",
+    "spheres-sim/src/world.rs": "b83d0a5d33526824082f2b1446a8f843fc4ed85f90a25d76d5256231b9c9c354",
+    "spheres-sim/src/economy.rs": "2c9b9f3b0caf9bc349a66dc13ab681b2932fda82ab2ea88b469ecd24b1459701",
+    "spheres-sim/src/init.rs": "aac78736219da05727956be0cfc680d9b8223bc3010cac6f9474c34985b9c567",
+    "spheres-sim/tests/treasury.rs": "980d8247afc804a2bb2b5436be42542e77b8d5852310cfe44abd349b80318bc8",
+    "spheres-sim/data/resources_1990.json": "d8682405afddcfc04f4dfbfb4d16d5195ed352df09120a678d3d5d3ef9573073",
+    "spheres-web/data/district_resources.json": "7ce1c3de0eb1684c89edc0efeb2538f6c3e3c7c5ff547307af864e72074c4cb5",
+    "tools/resources/resource_coverage.py": "534d2d08e647a2a08d5cef55a254d53919636522ed01dc35b78a03017601b0b9",
+    "tools/resources/make_resources.py": "f1b8883a30a429a6ac809af83f724ab52d2231a943bfc545c33ff540525e7e85",
+    "tools/resources/check.py": "27dd8c359abbbf67c0aac98b37251c014579c0fc0312edd707936e55c8c374af",
+    "tools/resources/check_resources.py": "f37ec0a1bda16e94678c5f6da64d7350150ad5c6a42460e3b37e89a19ca6657e",
+    "spheres-sim/data/party_leaders.json": "18774ffa08a226e1a9c6b9608d6a4e8adfbab43928092ed925d3c44803cd2494",
+    "spheres-sim/data/party_executive_eligibility.json": "d4fbdbff29956f5251fc97dc2021b31b4a2a8b423fd6a89e2ce34397b409510d",
+    "spheres-sim/data/future_party_leadership.json": "96e724b21f59ff7278f1a64625bbf1620b3dca24d3ed7d7f3116684a0a0fec26",
+    "spheres-sim/data/future_party_leadership_seats.json": "cbf74d65ccd193a3cc86ef686d11ddb2b7f3281b98675d0c7b842e8bea92cd08",
+    "spheres-sim/data/future_party_continuation.json": "cec3e9d9f49cd27a97229b9741a325952df24f259acbbde092150f4032d24176",
+    "spheres-web/data/nation_figures.json": "f2fbd1a1a138fb94f55c33a6d058958fa51564bbc60cb7012ab5a27674351962",
+    "spheres-web/data/future_candidates_2035.json": "75afd1f5ef49b82b0569feacf025a786f7daf49ca9da7436b6acc677fbedc492",
+    "spheres-web/data/person_portraits.json": "1a73390a88cfd5603d8e5aa3a1fbec5cbe713ce46ec5a3573f7ebb1512fc305d",
+    "spheres-web/data/fictional_portraits.json": "54a16634b77cb60d4945b541d64504c8c354610d406e3baff00da5b186235d0c",
+    "tools/avatars/person_art_pipeline.py": "6afa236683c311ca9e70779ab4666063be18b12969286c8de5fe8b1556833947",
+    "tools/avatars/fictional_art_pipeline.py": "3c9c413c355ead18960ade226773e7f5df3506442dd2687fb9a78bcbbc21d826",
+    "spheres-web/src/main.rs": "f954638dbdc4db92d838c8aeaa0bd471a029b9ebe662256f327d685ac6876709",
+    "spheres-sim/src/stratagems/tests.rs": "afea9489a5903ef3067d7e21f6899a8f72c6a3d7a8d0b71ba5f84ab7157d6566",
+    "spheres-sim/src/dyads.rs": "a9bc6689a343d1957130a3b38af4f020e2d22b4d8c2c9dfe77db4b3f89c2a98b"
+  },
+  "initial_status": "M spheres-sim/src/dyads.rs",
+  "files": [
+    {
+      "path": "spheres-web/data/leadership_production_2035.json",
+      "before_sha256": "f98cbae966b91bbcccc3ce6a76f0d15f52a59fd11ce53d0063b8effd55acded8",
+      "after_sha256": "f98cbae966b91bbcccc3ce6a76f0d15f52a59fd11ce53d0063b8effd55acded8",
+      "byte_identical": true,
+      "differences": []
+    },
+    {
+      "path": "docs/campaign-certification/C01/census.json",
+      "before_sha256": "3bd35544f2cc363e9a45ef317169b461d3d98a9ef3841a7e8fb5f3f127e87244",
+      "after_sha256": "3bd35544f2cc363e9a45ef317169b461d3d98a9ef3841a7e8fb5f3f127e87244",
+      "byte_identical": true,
+      "differences": []
+    },
+    {
+      "path": "docs/campaign-certification/C01/countries.json",
+      "before_sha256": "3f3ea61354fadbf85d182b6593f5cdf13e13a856d3fe59b64e1f3305c6622ca4",
+      "after_sha256": "3f3ea61354fadbf85d182b6593f5cdf13e13a856d3fe59b64e1f3305c6622ca4",
+      "byte_identical": true,
+      "differences": []
+    },
+    {
+      "path": "docs/campaign-certification/C01/represented-organizations.json",
+      "before_sha256": "85603b71cc5488937fff54f38dbf36ad18af6124d6dc3a492dbb20760d2c8e66",
+      "after_sha256": "85603b71cc5488937fff54f38dbf36ad18af6124d6dc3a492dbb20760d2c8e66",
+      "byte_identical": true,
+      "differences": []
+    },
+    {
+      "path": "docs/campaign-certification/C01/roles-and-lifecycle.json",
+      "before_sha256": "17c8a72eae1b6f309d9b8bd2a7fe2531996116c23fbafab2d3ebbd8517b39625",
+      "after_sha256": "17c8a72eae1b6f309d9b8bd2a7fe2531996116c23fbafab2d3ebbd8517b39625",
+      "byte_identical": true,
+      "differences": []
+    },
+    {
+      "path": "docs/campaign-certification/C01/work-orders.json",
+      "before_sha256": "ac94a794e315be810eb5c77fe65aaea9727c4f654b31d35810c0929fc8bc784d",
+      "after_sha256": "ac94a794e315be810eb5c77fe65aaea9727c4f654b31d35810c0929fc8bc784d",
+      "byte_identical": true,
+      "differences": []
+    },
+    {
+      "path": "docs/campaign-certification/C01/research-index.json",
+      "before_sha256": "37df1997e1e4b1acf5f6d9dffc2445c8c7edd2f137394ad7e352a75f2bbfe9ba",
+      "after_sha256": "37df1997e1e4b1acf5f6d9dffc2445c8c7edd2f137394ad7e352a75f2bbfe9ba",
+      "byte_identical": true,
+      "differences": []
+    }
+  ],
+  "source_inputs_after": {
+    "spheres-sim/src/government.rs": "0e2dbdefe5ed1909804b81d43b736c94315be647d615bda85e62e1fe78a2b73f",
+    "spheres-sim/src/nations.rs": "8b847b6a843e6a41a82f80446c41ef0e2abccbb6172cc956207859cf71edab08",
+    "tools/avatars/leadership_production.py": "f05b765d013f697a773a2f1f4eea872e7114ba9233538d87d7f551700a1387af",
+    "tools/avatars/campaign_census.py": "4eda2d0bf01a10d7770f79f9dad964dffc01d5b884d90ea226730e254626207b",
+    "tools/avatars/campaign_research.py": "82294ea6e849736551d2688e01e48fade211aed93ca85a2eb674ecee9cbb791b",
+    "spheres-sim/src/opening_mandates.rs": "1c12d70b6992f89af17f8d861c364e3eac32a340905be2638484495c88bef22b",
+    "spheres-sim/data/opening_mandates_1990.json": "bc403a209d829dbd225e2df89611bc0bcbed0c27d5a8aa127325baf652a19384",
+    "spheres-sim/src/army_institutions.rs": "918beb1e980db551dd6c076d6b4b15a23f878402eafbf90bb06a4689130abb06",
+    "spheres-sim/data/army_institutions_1990.json": "9d5df834998c535e7bc8039d8352ecaf0ddcfdd8e4662830eaba2b2de26c25af",
+    "spheres-sim/data/army_institution_coverage_1990.json": "836075908f6e86638f159f5b57a1048e41e847243ece75697ca2bd6b538afd52",
+    "spheres-sim/src/army_authority.rs": "7c2d4bd867f434221490dc9cecac53eb18eef701f7a6d9a97011a4cf3a5c2053",
+    "spheres-sim/data/army_authority_1989.json": "35e99445235348ded56a45cdd912892f0cd810c92a29121fbd66c8f911dc6d38",
+    "tools/politics/build_army_authority.py": "1d7de3d66f1ad8ac19f76c41f314ead9b4422b1474589069e220161c159c401d",
+    "tools/politics/extract_army_authority.py": "e2dc18e47e401c4cffacca7d29e11def17604adf61355e6c81f9542dd86c6eb4",
+    "tools/politics/fixtures/vdem-v16-1989-military-authority.json": "362db5c52447501a1403ac31d3abf59fd474768e9301b06042b35cdf1e136894",
+    "spheres-sim/src/lib.rs": "f2852dfc40d213f74d04647ccedd4d674c9e00e08d1bc5f79ff6de20624eef82",
+    "spheres-sim/src/blocs.rs": "47d1d456576b638d8bfb9a18f9c7564b62c2f5fb97acec978b207210c6d09fbb",
+    "spheres-sim/src/politics.rs": "990e675157008bbcf80944840d7946b961bff7863ea6584a998c13a9d4119995",
+    "spheres-sim/src/stratagems.rs": "a756149de98b6633a57b8fd3b3c7fcc2c0f5c3a25ccb721ff924c7d62364d8bb",
+    "spheres-sim/src/world.rs": "b83d0a5d33526824082f2b1446a8f843fc4ed85f90a25d76d5256231b9c9c354",
+    "spheres-sim/src/economy.rs": "2c9b9f3b0caf9bc349a66dc13ab681b2932fda82ab2ea88b469ecd24b1459701",
+    "spheres-sim/src/init.rs": "aac78736219da05727956be0cfc680d9b8223bc3010cac6f9474c34985b9c567",
+    "spheres-sim/tests/treasury.rs": "980d8247afc804a2bb2b5436be42542e77b8d5852310cfe44abd349b80318bc8",
+    "spheres-sim/data/resources_1990.json": "d8682405afddcfc04f4dfbfb4d16d5195ed352df09120a678d3d5d3ef9573073",
+    "spheres-web/data/district_resources.json": "7ce1c3de0eb1684c89edc0efeb2538f6c3e3c7c5ff547307af864e72074c4cb5",
+    "tools/resources/resource_coverage.py": "534d2d08e647a2a08d5cef55a254d53919636522ed01dc35b78a03017601b0b9",
+    "tools/resources/make_resources.py": "f1b8883a30a429a6ac809af83f724ab52d2231a943bfc545c33ff540525e7e85",
+    "tools/resources/check.py": "27dd8c359abbbf67c0aac98b37251c014579c0fc0312edd707936e55c8c374af",
+    "tools/resources/check_resources.py": "f37ec0a1bda16e94678c5f6da64d7350150ad5c6a42460e3b37e89a19ca6657e",
+    "spheres-sim/data/party_leaders.json": "18774ffa08a226e1a9c6b9608d6a4e8adfbab43928092ed925d3c44803cd2494",
+    "spheres-sim/data/party_executive_eligibility.json": "d4fbdbff29956f5251fc97dc2021b31b4a2a8b423fd6a89e2ce34397b409510d",
+    "spheres-sim/data/future_party_leadership.json": "96e724b21f59ff7278f1a64625bbf1620b3dca24d3ed7d7f3116684a0a0fec26",
+    "spheres-sim/data/future_party_leadership_seats.json": "cbf74d65ccd193a3cc86ef686d11ddb2b7f3281b98675d0c7b842e8bea92cd08",
+    "spheres-sim/data/future_party_continuation.json": "cec3e9d9f49cd27a97229b9741a325952df24f259acbbde092150f4032d24176",
+    "spheres-web/data/nation_figures.json": "f2fbd1a1a138fb94f55c33a6d058958fa51564bbc60cb7012ab5a27674351962",
+    "spheres-web/data/future_candidates_2035.json": "75afd1f5ef49b82b0569feacf025a786f7daf49ca9da7436b6acc677fbedc492",
+    "spheres-web/data/person_portraits.json": "1a73390a88cfd5603d8e5aa3a1fbec5cbe713ce46ec5a3573f7ebb1512fc305d",
+    "spheres-web/data/fictional_portraits.json": "54a16634b77cb60d4945b541d64504c8c354610d406e3baff00da5b186235d0c",
+    "tools/avatars/person_art_pipeline.py": "6afa236683c311ca9e70779ab4666063be18b12969286c8de5fe8b1556833947",
+    "tools/avatars/fictional_art_pipeline.py": "3c9c413c355ead18960ade226773e7f5df3506442dd2687fb9a78bcbbc21d826",
+    "spheres-web/src/main.rs": "f954638dbdc4db92d838c8aeaa0bd471a029b9ebe662256f327d685ac6876709",
+    "spheres-sim/src/stratagems/tests.rs": "afea9489a5903ef3067d7e21f6899a8f72c6a3d7a8d0b71ba5f84ab7157d6566",
+    "spheres-sim/src/dyads.rs": "a9bc6689a343d1957130a3b38af4f020e2d22b4d8c2c9dfe77db4b3f89c2a98b"
+  },
+  "sources_unchanged_during_run": true,
+  "source_input_mtimes_unchanged": true,
+  "passed": true,
+  "final_status": "M spheres-sim/src/dyads.rs"
+}

@@ -1,0 +1,9 @@
+
+running 1 test
+test decision_review::tests::mature_review_latency ... S10_REVIEW_LATENCY {"kind":"decisions","max_limit_ms":750,"max_ms":14.4049,"p95_limit_ms":300,"p95_ms":13.9524,"samples_ms":[11.6387,14.4049,13.9524,12.9369,12.2903,12.0759,11.3626,11.4909,12.0408,12.757100000000001,11.947799999999999,11.773499999999999,11.1839,12.2447,12.779399999999999,11.4786,11.0524,11.0785,10.9398,11.2667,11.1152]}
+S10_REVIEW_LATENCY {"kind":"government","max_limit_ms":750,"max_ms":11.6136,"p95_limit_ms":300,"p95_ms":11.6118,"samples_ms":[11.5185,11.5797,11.4437,11.4332,11.5434,11.4956,11.517700000000001,11.6118,11.397499999999999,11.2616,11.2644,11.3516,11.282399999999999,11.2372,11.279000000000002,11.121799999999999,11.2509,11.219899999999999,11.2486,11.6136,11.3551]}
+S10_REVIEW_CONTEXT {"date":"1 Feb 2000","nation":"USA","pure":true,"rows":[{"kind":"decisions","max_limit_ms":750,"max_ms":14.4049,"p95_limit_ms":300,"p95_ms":13.9524,"samples_ms":[11.6387,14.4049,13.9524,12.9369,12.2903,12.0759,11.3626,11.4909,12.0408,12.757100000000001,11.947799999999999,11.773499999999999,11.1839,12.2447,12.779399999999999,11.4786,11.0524,11.0785,10.9398,11.2667,11.1152]},{"kind":"government","max_limit_ms":750,"max_ms":11.6136,"p95_limit_ms":300,"p95_ms":11.6118,"samples_ms":[11.5185,11.5797,11.4437,11.4332,11.5434,11.4956,11.517700000000001,11.6118,11.397499999999999,11.2616,11.2644,11.3516,11.282399999999999,11.2372,11.279000000000002,11.121799999999999,11.2509,11.219899999999999,11.2486,11.6136,11.3551]}],"samples":21,"scope":"native preview generation including cloned command and complete-world token; excludes HTTP and browser","source":"C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\lifetime-legacy\\saves\\profile-idle_human-10.json","warmups":3}
+ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 436 filtered out; finished in 0.98s
+

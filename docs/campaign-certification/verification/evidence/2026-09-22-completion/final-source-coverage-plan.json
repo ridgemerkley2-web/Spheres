@@ -1,0 +1,56 @@
+{
+  "format": "spheres-final-source-coverage-plan/v1",
+  "status": "pending_final_source_freeze",
+  "purpose": "Extend source identity beyond the 15-file political diagnostic subset; prior iteration manifests remain historical evidence, not whole-workspace receipts.",
+  "baseline": "f40f9216452f446db460ee3ca0622163d8123e7a",
+  "must_include_changed_runtime_inputs": [
+    "spheres-sim/src/government.rs",
+    "spheres-sim/src/blocs.rs",
+    "spheres-sim/src/politics.rs",
+    "spheres-sim/src/stratagems.rs",
+    "spheres-sim/src/armed_security.rs",
+    "spheres-sim/src/army_institutions.rs",
+    "spheres-sim/src/army_authority.rs",
+    "spheres-sim/src/opening_mandates.rs",
+    "spheres-sim/src/data/mod.rs",
+    "spheres-sim/src/data/movements.rs",
+    "spheres-sim/src/init.rs",
+    "spheres-sim/src/lib.rs",
+    "spheres-sim/data/leaders_1990.json",
+    "spheres-sim/data/armed_security_1990.json",
+    "spheres-sim/data/army_institutions_1990.json",
+    "spheres-sim/data/army_institution_coverage_1990.json",
+    "spheres-sim/data/army_authority_1989.json",
+    "spheres-sim/data/opening_mandates_1990.json",
+    "spheres-sim/data/movements_1990.json",
+    "spheres-sim/tests/bloc_census.rs",
+    "spheres-sim/tests/treasury.rs",
+    "spheres-web/src/main.rs",
+    "tools/politics/build_army_authority.py",
+    "tools/politics/extract_army_authority.py",
+    "tools/politics/test_army_authority.py",
+    "tools/politics/fixtures/vdem-v16-1989-military-authority.json"
+  ],
+  "also_cover": [
+    "Workspace and crate Cargo.toml files, Cargo.lock and relevant build.rs/.cargo configuration.",
+    "Every other final changed tracked source/input and intentional untracked source, discovered with git diff against baseline and git ls-files --others --exclude-standard.",
+    "Final generated leadership production/census/research records and strict art records, after their dependency checks pass.",
+    "Final affected JavaScript tests, advisor fixture/provenance, atlas browser harness and workflow configuration.",
+    "Full final committed Git object ID and tree ID, with clean status for post-commit/hosted claims; dirty local runs retain their exact working-tree manifest and limitation."
+  ],
+  "hash_policy": [
+    "Record original bytes and SHA-256 used by each actual compiled/tested run.",
+    "Also record canonical-LF SHA-256 for text whose checkout convention can differ; never replace the historical raw-byte identity with a normalized digest.",
+    "All JSON plus government.rs/nations.rs and C01 byte-hashed readers already have LF attributes; verify this before generating new hash-based records.",
+    "An old raw hash mismatch resolved only by LF normalization is an encoding equivalence, not an exact raw-byte match.",
+    "Never carry an earlier passing outcome across changed source by updating only its hash; rerun affected checks or record explicit source equivalence."
+  ],
+  "other_final_checks": [
+    "Execute the four prepared opt-in archive correctness tests against final binaries.",
+    "Run leadership production build/check/self-test, campaign census generation/check and relevant Python tests only after source freeze; do not normalize thresholds or approve missing historical claims.",
+    "Run read-only original-save/worktree preservation audit after final tests.",
+    "Keep optional diagnostics/export generators distinct from unrun correctness assertions; P-6 is now active, so the old90ignored inventory has89ignore attributes before any subsequent changes."
+  ],
+  "leadership_dependency_review": "The production inventory reads authored party tables, historical people and portrait catalogues. The opening-mandate module/data and Army-presence overlay affect runtime institutional behavior, not leadership identities, terms or art eligibility, so they are covered by the whole-runtime source manifest rather than added as purported historical-catalogue dependencies. Government source bytes remain a direct inventory input and require regeneration after any final edit.",
+  "out_of_scope": "No source mutation, fixture regeneration, native build or test execution is performed by this plan."
+}

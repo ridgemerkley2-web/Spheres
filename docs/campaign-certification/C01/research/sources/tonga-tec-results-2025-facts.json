@@ -1,0 +1,43 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://elections.gov.to/wp-content/uploads/2025/11/Tonga-General-Elections-Results-revised-20251.pdf",
+  "accessed_date": "2026-09-21",
+  "published_date": null,
+  "access_method": "downloaded_original_pdf_and_relevant_pages_visually_read",
+  "source_response_bytes": 8171403,
+  "source_response_sha256": "fe27cd3c700ca2e4ca5f11c6ab22c9a8c4d87882aaf471f55f741b5145381f88",
+  "source_response_checked_in": false,
+  "provenance_note": "Original response bytes were downloaded (curl -L) on 2026-09-21 and hashed before extraction; an independent re-download the same day matched the byte count and SHA-256. The PDF has no text layer, so every imported figure was read from rendered page images. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_tec_2025_tongatapu1",
+      "text": "The Commission's final-results box for Tongatapu 1 (2025 General Election) gives Tevita Fatafehi Puloka 1,343 votes (62.58%, order of election 1), Siaosi Vailahi Pohiva 758 (35.32%, order 2) and Eliesa Fifita 45 (2.10%, order 3).",
+      "attested_on": "2025-11-20",
+      "locator": "PDF page 1, 'Final results for Tongatapu 1 - 2025 General Election'",
+      "uncertainty": "Personal results only; the table records no party affiliation. The document is undated and labelled revised. The Commission document gives only '2025 General Election'; the day in attested_on is taken from IPU 2025 and CV 49/2025 (to_ipu_2025_no_party_result, to_fasi_v_sika_poll_result_20251120), not from this source."
+    },
+    {
+      "id": "to_tec_2025_tongatapu2",
+      "text": "The Commission's final-results box for Tongatapu 2 (2025 General Election) gives Semisi Kioa Lafu Sika 951 votes (55.45%, order of election 1) and 'Uhilamoelangi Fasi 764 (44.55%, order 2).",
+      "attested_on": "2025-11-20",
+      "locator": "PDF page 2, 'Final results for Tongatapu 2 - 2025 General Election'",
+      "uncertainty": "A poll result, not a record of seat status after the poll: the election was the subject of petition CV 49/2025 (to_sc_fasi_v_sika_20260518), whose determination is not imported, and no seat holding at the cutoff is asserted. No party affiliation is recorded. The Commission document gives only '2025 General Election'; the day in attested_on is taken from IPU 2025 and CV 49/2025 (to_ipu_2025_no_party_result, to_fasi_v_sika_poll_result_20251120), not from this source."
+    },
+    {
+      "id": "to_tec_2025_no_party_column",
+      "text": "The constituency tables list number, candidate name, village and votes by polling place, with no party or affiliation column.",
+      "attested_on": "2025-11-20",
+      "locator": "PDF pages 1-2 (read); pages 3-17 (same layout on thumbnail review)",
+      "uncertainty": "A structural observation; the figures on pages 3-17 were not transcribed. The Commission document gives only '2025 General Election'; the day in attested_on is taken from IPU 2025 and CV 49/2025 (to_ipu_2025_no_party_result, to_fasi_v_sika_poll_result_20251120), not from this source."
+    }
+  ],
+  "scope_note": "Undated 17-page image-only scan labelled 'revised'; the month (November 2025) comes only from the upload path, so no published_date is recorded. It is the Commission's tabulation of the poll, not a record of later petitions or seat changes.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "Pages 1 (Tongatapu 1) and 2 (Tongatapu 2) rendered with PDFium and read in full by the researcher, by the checker and again for this packet. Pages 3-17 were rendered as thumbnails only, for a structural check of the table columns."
+  }
+}

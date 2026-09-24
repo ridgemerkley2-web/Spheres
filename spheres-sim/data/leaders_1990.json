@@ -70,15 +70,16 @@
       "since": "1979-09-21",
       "born": "1942-08-28",
       "tie": { "party": "ao_mpla" },
-      "bloc_override": null,
+      "bloc_override": "Communist",
       "heir": null,
       "must_leave_by": null,
       "also": [],
       "sources": [
         "https://www.worldstatesmen.org/Angola.html",
+        "https://www.ecoi.net/en/document/1119700.html",
         "https://en.wikipedia.org/wiki/Jos%C3%A9_Eduardo_dos_Santos"
       ],
-      "note": "worldstatesmen lists 20 Sep 1979, Wikipedia says he took office 21 Sep 1979; the inauguration date is used. No prime minister (post abolished 1978-1991)."
+      "note": "worldstatesmen lists 20 Sep 1979, Wikipedia says he took office 21 Sep 1979; the inauguration date is used. No prime minister (post abolished 1978-1991). The 1990 US Department of State report identifies the governing MPLA-PT as Marxist-Leninist. The opening Communist override describes that government, not the later multiparty MPLA row used by the dormant election table. See docs/political-arm/1990-census-reconciliation.md."
     },
     {
       "nation": "Argentina",
@@ -1349,7 +1350,7 @@
       "since": "1979-03-02",
       "born": null,
       "tie": { "pillar": "Party" },
-      "bloc_override": null,
+      "bloc_override": "Nationalist",
       "heir": null,
       "must_leave_by": null,
       "also": [
@@ -1359,9 +1360,13 @@
       "sources": [
         "https://en.wikipedia.org/wiki/Muammar_Gaddafi",
         "https://www.worldstatesmen.org/Libya.htm",
-        "https://rulers.org/rull.html"
+        "https://rulers.org/rull.html",
+        "https://countrystudies.us/libya/32.htm",
+        "https://countrystudies.us/libya/77.htm",
+        "https://countrystudies.us/libya/78.htm",
+        "https://countrystudies.us/libya/74.htm"
       ],
-      "note": "born is null on purpose: Wikipedia's infobox gives only 'c. 1942' and worldstatesmen/rulers.org give 'b. 1942'; no fetched source carries a day. De facto chief since 1 Sep 1969 (rulers.org); the formal title dates from 2 Mar 1979 when he gave up the GPC secretaryship (Wikipedia). Tied to the Revolutionary Committees Movement (Party pillar), his personal instrument of rule."
+      "note": "born is null on purpose: Wikipedia's infobox gives only 'c. 1942' and worldstatesmen/rulers.org give 'b. 1942'; no fetched source carries a day. De facto chief since 1 Sep 1969 (rulers.org); the formal title dates from 2 Mar 1979 when he gave up the GPC secretaryship (Wikipedia). Tied to the Revolutionary Committees Movement (Party pillar), his personal instrument of rule. Nationalist override: the US Library of Congress country study (Helen Chapin Metz, ed., GPO, 1987), chapters 'Libya and Arab Unity' and 'The Revolutionary Committees', describes his Arab-nationalist ideology and personal command of the committees. This maps governing ideology to the game's Nationalist bloc; it does not deny Libya's diplomatic nonalignment or change the generic Party-pillar mapping."
     },
     {
       "nation": "Luxembourg",
@@ -1972,7 +1977,7 @@
       "since": "1975-07-12",
       "born": "1937-08-05",
       "tie": { "party": "st_mlstp" },
-      "bloc_override": null,
+      "bloc_override": "Communist",
       "heir": null,
       "must_leave_by": null,
       "also": [
@@ -1980,10 +1985,12 @@
       ],
       "sources": [
         "https://www.worldstatesmen.org/Sao_Tome.html",
+        "https://digitallibrary.un.org/record/3956850/files/CEDAW_C_STP_1-5-EN.pdf",
+        "https://data.ipu.org/election-summary/HTML/2275_91.htm",
         "https://en.wikipedia.org/wiki/Manuel_Pinto_da_Costa",
         "https://en.wikipedia.org/wiki/Celestino_Rocha_da_Costa"
       ],
-      "note": "One-party state on 1 Jan 1990; the polity's party table is the Jan 1991 result and lies dormant. Pinto da Costa was MLSTP secretary-general 1972-Oct 1990 per worldstatesmen (post abolished 10 Sep 1990); the party tie is to the dormant MLSTP row, which the Party pillar (MLSTP Comite Central) also names."
+      "note": "One-party state on 1 Jan 1990; the polity's party table is the Jan 1991 result and lies dormant. Pinto da Costa was MLSTP secretary-general 1972-Oct 1990 per worldstatesmen (post abolished 10 Sep 1990); the party tie is to the dormant MLSTP row, which the Party pillar (MLSTP Comite Central) also names. Sao Tome's government report CEDAW/C/STP/1-5 paragraphs 143-144 describes the 1975-1990 system as Marxist; IPU dates the multiparty constitutional referendum to August 1990 and the MLSTP-PSD election result to January 1991. Communist applies to the opening government, leaving the later party's social-democratic family unchanged."
     },
     {
       "nation": "SaudiArabia",

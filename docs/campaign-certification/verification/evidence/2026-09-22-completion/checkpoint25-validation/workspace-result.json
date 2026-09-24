@@ -1,0 +1,28 @@
+{
+  "revision": "7b8a3dbb90f191ee5520705a8233409274d9d752",
+  "command": [
+    "cargo",
+    "test",
+    "--locked",
+    "--release",
+    "--workspace",
+    "--no-fail-fast",
+    "--",
+    "--skip",
+    "tests::the_resource_pass_stays_under_budget"
+  ],
+  "exit_code": 0,
+  "targets": 66,
+  "totals": {
+    "passed": 1884,
+    "failed": 0,
+    "ignored": 89,
+    "measured": 0,
+    "filtered": 1
+  },
+  "log": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\completion-checkpoint25-workspace-20260922.log",
+    "sha256": "cca87ca58bff03ada78bf9cb92c630697d34fc9dfee2b30e028502d636f7cf58"
+  },
+  "scope": "Ordinary workspace tests; A1 political gate is separate and still failing."
+}

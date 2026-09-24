@@ -1,0 +1,11 @@
+
+running 1 test
+test tests::the_resource_pass_stays_under_budget ...     resources       0.0334 ms/month  (market on, best of 3, 1200 months, 137 living at start)
+    buy pass        0.0079 ms/month  (market on, best of 3, 1200 months, 137 living at start)
+    appetite term   0.0160 ms/month  (market on, best of 3, 1200 months, 137 living at start)
+    total           0.0573 ms/month  (market on, best of 3, 1200 months, 137 living at start)
+    budget 0.05 ms/month NOT met on this reading (a loaded machine?); bar 0.15
+ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 1030 filtered out; finished in 7.93s
+

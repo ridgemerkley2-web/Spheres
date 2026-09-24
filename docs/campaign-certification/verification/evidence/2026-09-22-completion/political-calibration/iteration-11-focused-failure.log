@@ -1,0 +1,17 @@
+
+running 1 test
+test government::tests::a_regime_s_movements_move_with_the_pains_and_revert ... quiet: settled 0.671030 step 1.573e-5
+ruin: fallen 0.041954 movements [(Western, 0.3541492658589932), (Communist, 0.04195417333135568), (Nationalist, 0.3950000225316586), (Islamist, 0.0019999999600002418), (NonAligned, 0.20689653831799218)]
+
+thread 'government::tests::a_regime_s_movements_move_with_the_pains_and_revert' (29144) panicked at spheres-sim\src\government.rs:11028:9:
+the ruined equilibrium reads 0.04195417333135568
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+FAILED
+
+failures:
+
+failures:
+    government::tests::a_regime_s_movements_move_with_the_pains_and_revert
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 988 filtered out; finished in 0.02s
+

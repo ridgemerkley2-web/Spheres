@@ -1,0 +1,13 @@
+diff --git a/spheres-sim/src/government.rs b/spheres-sim/src/government.rs
+index 5582c536..45345c77 100644
+--- a/spheres-sim/src/government.rs
++++ b/spheres-sim/src/government.rs
+@@ -8495,7 +8495,7 @@ pub fn army_resource_loyalty_target(resources: f64, income_per_head: f64, exhaus
+ /// losing confidence in sustained civilian crisis; they are not coup estimates.
+ /// Known historical leverage replaces the old authoritarianism proxy only in
+ /// this political channel. Unknown assessments retain the original proxy.
+-pub const ARMY_CRISIS_CONFIDENCE_WEIGHT: f64 = 0.65;
++pub const ARMY_CRISIS_CONFIDENCE_WEIGHT: f64 = 1.20;
+ pub const ARMY_PROGRAMME_VETO_WEIGHT: f64 = 0.45;
+ 
+ fn civilian_army_executive_leverage(w: &WorldState, id: NationId) -> f64 {

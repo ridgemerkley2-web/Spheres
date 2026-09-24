@@ -59,8 +59,11 @@ async function main(){
   // announcement or a complete office term. Review the new dated holders too.
   await page.locator('#atlas-kind').selectOption('roles');
   const appointmentChecks=[
-    {entry:'to_prime_minister',name:"Siaosi 'Ofakivahafolau Sovaleni",from:'2021-12-27'},
-    {entry:'to_cabinet',name:'Poasi Mataele Tei',from:'2021-12-28'},
+    // C01-03: the 9 December minutes explicitly state immediate resignation
+    // and record Palace acceptance that day; this end is not successor-derived.
+    {entry:'to_prime_minister',name:"Siaosi 'Ofakivahafolau Sovaleni",from:'2021-12-27',until:'2024-12-09',end_claim_ids:['to_sovaleni_resignation_statement_20241209','to_palace_acceptance_letter_20241209']},
+    {entry:'to_cabinet',name:'Poasi Mataele Tei',from:'2021-12-28',until:null},
+    {entry:'to_cabinet',name:'Taniela Likuohihifo Fusimalohi',from:'2025-01-28',until:null},
   ];
   proof.appointment_effectiveness=[];
   for(const check of appointmentChecks){
@@ -68,12 +71,21 @@ async function main(){
     const entry=page.locator('.entry[data-research-id="'+check.entry+'"]');
     await entry.locator(':scope > summary').click();await entry.locator('.role').first().waitFor();
     const holder=entry.locator('.role p').filter({hasText:check.name}).first();
-    assert((await holder.textContent()).includes('Reported interval: '+check.from+' → Not established'));
+    assert((await holder.textContent()).includes('Reported interval: '+check.from+' → '+(check.until||'Not established')));
+    if(check.end_claim_ids){
+      const packet=read('docs/campaign-certification/C01/research/tonga.json');
+      const record=packet.institutions.find(e=>e.id===check.entry).roles.flatMap(r=>r.holder_claims).find(h=>h.name===check.name);
+      assert.equal(record.until,check.until);
+      for(const id of check.end_claim_ids){
+        assert(record.claim_ids.includes(id));
+        assert.equal(packet.sources.flatMap(s=>s.claims).find(c=>c.id===id).attested_on,check.until);
+      }
+    }
     for(const width of [1440,390,320]){
       await page.setViewportSize({width,height:1000});await holder.scrollIntoViewIfNeeded();await layout(page);
-      await shot(page,check.entry+'-appointment-'+width+'.png');
+      await shot(page,check.entry+'-appointment-'+check.from+'-'+width+'.png');
     }
-    proof.appointment_effectiveness.push({...check,end_not_inferred:true});
+    proof.appointment_effectiveness.push({...check,end_not_inferred:true,end_basis:check.until?'explicit_resignation_and_acceptance':'not_established'});
   }
   await page.setViewportSize({width:1440,height:1000});await page.locator('#atlas-search').fill('');
   await page.locator('#atlas-kind').selectOption('all');

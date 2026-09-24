@@ -1,0 +1,26 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://elections.gov.to/",
+  "accessed_date": "2026-09-21",
+  "published_date": null,
+  "access_method": "downloaded_original_html_and_page_text_read",
+  "source_response_bytes": 410934,
+  "source_response_sha256": "dcbbc7eae13f81b7f7808183d86b459a434609956b856fd7a7a834cf39678677",
+  "source_response_checked_in": false,
+  "provenance_note": "Original response bytes were downloaded (curl -L) on 2026-09-21 and hashed before extraction; an independent re-download the same day matched the byte count and SHA-256. It is a live page, so later responses may differ. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_tec_2025_candidate_list_no_party",
+      "text": "The Commission's 2025 'Candidates - People's Representatives' table gives constituency, candidate and village or area only, with no party label. For example, the Tongatapu 1 rows list three candidates and the Tongatapu 2 rows two, each with a village or area and no party.",
+      "attested_on": "2025-11-20",
+      "locator": "Section 'Candidates - People's Representatives' (Constituency / Candidate / Village/Area table)",
+      "uncertainty": "The page is undated; the table is taken to be the 2025 candidate list from the 2025 Election Updates section it sits in. The absence of party labels reflects the Commission's format, not an absence of party campaigning. The Commission document gives only '2025 General Election'; the day in attested_on is taken from IPU 2025 and CV 49/2025 (to_ipu_2025_no_party_result, to_fasi_v_sika_poll_result_20251120), not from this source."
+    }
+  ],
+  "scope_note": "Live, undated WordPress home page read after the cutoff; used only for the layout of its 2025 people's-representative candidate list. An independent re-download the same day reproduced the response hash exactly, but a live page may change.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "HTML text of the candidate table extracted and read; no images reviewed."
+  }
+}

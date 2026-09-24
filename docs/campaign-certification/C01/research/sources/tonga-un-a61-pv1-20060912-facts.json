@@ -1,0 +1,36 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://documents.un.org/doc/undoc/gen/n06/520/19/pdf/n0652019.pdf",
+  "accessed_date": "2026-09-21",
+  "published_date": null,
+  "document_date": "2006-09-12",
+  "access_method": "downloaded_original_pdf_text_and_relevant_page_visually_read",
+  "source_response_bytes": 56229,
+  "source_response_sha256": "36a4903f5b55ef362f6daa70d8de272d6467f1dd9de6f91117b697be9ee23b8e",
+  "source_response_checked_in": false,
+  "provenance_note": "Original response downloaded (curl -L) and hashed before extraction on 2026-09-21 (local). This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_crown_tupou_iv_death_20060910_un",
+      "text": "The President of the General Assembly pays tribute to King Taufa'ahau Tupou IV, who 'passed away on Sunday, 10 September 2006'; Iran's representative adds that he passed away the previous Sunday in a hospital in New Zealand.",
+      "attested_on": "2006-09-10",
+      "locator": "Page 1, 'Tribute to the memory of His Majesty King Taufa'ahau Tupou IV'",
+      "uncertainty": "Corroboration only: an intergovernmental record, not a Tongan one. It gives no time. Its 10 September is the New Zealand calendar date printed in Gazette No. 20 (to_crown_tupou_iv_death_20060911), where the death fell at 00:34 on 11 September, Tongan time."
+    },
+    {
+      "id": "to_crown_gtv_king_20060912_un",
+      "text": "Tonga's representative speaks on behalf of King George Tupou V, and the United States representative conveys condolences to King George Tupou V, 'who has succeeded his father'. Tonga's representative also says Tupou IV became King in 1965 and reigned for 41 years.",
+      "attested_on": "2006-09-12",
+      "locator": "Pages 2-3 (statements of Mr Wolff and Mrs 'Utoikamanu)",
+      "uncertainty": "A dated attestation of George Tupou V as King. The 1965 accession is year-level context outside the 1990 period and is not structured."
+    }
+  ],
+  "scope_note": "Verbatim record of the meeting of 12 September 2006 (document_date); the record's issue date is not used. Only the tribute statements are imported. Request URL: https://documents.un.org/api/symbol/access?s=A/61/PV.1&l=en&t=pdf.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "PDF page 1 was rendered and visually checked in the research dossier; pages 2-3 were read from the text layer."
+  }
+}

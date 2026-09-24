@@ -1,0 +1,28 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://web.archive.org/web/20110131121132id_/http://www.mic.gov.to:80/people/324-tongan-cabinet-ministers/2036-tongan-prime-ministers.html",
+  "original_url": "http://www.mic.gov.to/people/324-tongan-cabinet-ministers/2036-tongan-prime-ministers.html",
+  "archive_capture_utc": "2011-01-31T12:11:32Z",
+  "accessed_date": "2026-09-22",
+  "published_date": "2009-01-16",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 30099,
+  "source_response_sha256": "91c22bf205096ec2e7ddf24d2369ed707036e71d933e9616e7bb82307064989a",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original government portal page, captured at 2011-01-31T12:11:32Z; the capture is used in place of the live page. The researcher downloaded and hashed the capture bytes before extraction on 2026-09-22 (local); the independent check re-downloaded it the same day and matched the bytes and SHA-256, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_mic_pm_list_2011_list",
+      "text": "The MIC list gives 'HRH Prince Tu'i Pelehake (Fatafehi) CBE (1965-1991)', 'Baron Vaea of Houma (1991-2000)', 'HRH 'Aho'eitu 'Unuaki'otonga Tuku'aho (Lavaka Ata 'Ulukālala) (2000-2006)', 'Dr. Feleti Sevele (2006-2010)' and 'Lord Tu'ivakano (2010-present)'.",
+      "attested_on": "2011-01-18",
+      "locator": "'PRIME MINISTERS YEAR' list",
+      "uncertainty": "A retrospective list with year precision only. The page header is dated Friday 16 January 2009, but it was 'Last Updated ( Tuesday, 18 January 2011 11:06 )' and already names Tu'ivakano. It prints CBE where the PMO lists print K.B.E. Captured 31 January 2011."
+    }
+  ],
+  "scope_note": "Archived Ministry of Information and Communications list of Prime Ministers (raw Internet Archive capture of 31 January 2011; page dated 16 January 2009, last updated 18 January 2011). Year precision only.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  }
+}

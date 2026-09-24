@@ -887,7 +887,7 @@ mod tests {
         assert_eq!(before, crate::save(&w));
         assert!(!before.contains("province_economy"));
         assert!(!before.contains("province_investment_reference"));
-        assert_eq!(crate::state_hash(&w), 0xe26e4bf8d6c60066);
+        assert_eq!(crate::state_hash(&w), 0x6fc47dff64344b17);
         let mut daily = prepared();
         let before = crate::save(&daily);
         begin_day(&mut daily);

@@ -1,0 +1,382 @@
+[
+  {
+    "observed_at": "2026-09-22T23:01:40.405Z",
+    "jobs": [
+      {
+        "id": 106969960546,
+        "name": "javascript (ubuntu-latest)",
+        "status": "completed",
+        "conclusion": "success",
+        "active_step": null
+      },
+      {
+        "id": 106969960681,
+        "name": "javascript (windows-latest)",
+        "status": "completed",
+        "conclusion": "success",
+        "active_step": null
+      },
+      {
+        "id": 106969960682,
+        "name": "town-browser (ubuntu-latest)",
+        "status": "completed",
+        "conclusion": "success",
+        "active_step": null
+      },
+      {
+        "id": 106969960700,
+        "name": "native (ubuntu-latest)",
+        "status": "in_progress",
+        "conclusion": null,
+        "active_step": "Run cargo test --locked --release --workspace --no-fail-fast -- --skip tests::the_resource_pass_stays_under_budget"
+      },
+      {
+        "id": 106969960707,
+        "name": "political-calibration (ubuntu-latest)",
+        "status": "completed",
+        "conclusion": "failure",
+        "active_step": null
+      },
+      {
+        "id": 106969960777,
+        "name": "town-browser (windows-latest)",
+        "status": "completed",
+        "conclusion": "success",
+        "active_step": null
+      },
+      {
+        "id": 106969960846,
+        "name": "political-calibration (windows-latest)",
+        "status": "completed",
+        "conclusion": "failure",
+        "active_step": null
+      },
+      {
+        "id": 106969960957,
+        "name": "native (windows-latest)",
+        "status": "in_progress",
+        "conclusion": null,
+        "active_step": "Run cargo test --locked --release --workspace --no-fail-fast -- --skip tests::the_resource_pass_stays_under_budget"
+      }
+    ]
+  },
+  {
+    "observed_at": "2026-09-22T23:10:42.582Z",
+    "jobs": [
+      {
+        "id": 106969960546,
+        "name": "javascript (ubuntu-latest)",
+        "status": "completed",
+        "conclusion": "success",
+        "active_step": null
+      },
+      {
+        "id": 106969960681,
+        "name": "javascript (windows-latest)",
+        "status": "completed",
+        "conclusion": "success",
+        "active_step": null
+      },
+      {
+        "id": 106969960682,
+        "name": "town-browser (ubuntu-latest)",
+        "status": "completed",
+        "conclusion": "success",
+        "active_step": null
+      },
+      {
+        "id": 106969960700,
+        "name": "native (ubuntu-latest)",
+        "status": "in_progress",
+        "conclusion": null,
+        "active_step": "Run cargo build --locked --release -p spheres-web"
+      },
+      {
+        "id": 106969960707,
+        "name": "political-calibration (ubuntu-latest)",
+        "status": "completed",
+        "conclusion": "failure",
+        "active_step": null
+      },
+      {
+        "id": 106969960777,
+        "name": "town-browser (windows-latest)",
+        "status": "completed",
+        "conclusion": "success",
+        "active_step": null
+      },
+      {
+        "id": 106969960846,
+        "name": "political-calibration (windows-latest)",
+        "status": "completed",
+        "conclusion": "failure",
+        "active_step": null
+      },
+      {
+        "id": 106969960957,
+        "name": "native (windows-latest)",
+        "status": "in_progress",
+        "conclusion": null,
+        "active_step": "Run cargo test --locked --release --workspace --no-fail-fast -- --skip tests::the_resource_pass_stays_under_budget"
+      }
+    ]
+  },
+  {
+    "observed_at": "2026-09-22T23:13:08.292Z",
+    "jobs": [
+      {
+        "id": 106969960546,
+        "name": "javascript (ubuntu-latest)",
+        "status": "completed",
+        "conclusion": "success",
+        "active_step": null
+      },
+      {
+        "id": 106969960681,
+        "name": "javascript (windows-latest)",
+        "status": "completed",
+        "conclusion": "success",
+        "active_step": null
+      },
+      {
+        "id": 106969960682,
+        "name": "town-browser (ubuntu-latest)",
+        "status": "completed",
+        "conclusion": "success",
+        "active_step": null
+      },
+      {
+        "id": 106969960700,
+        "name": "native (ubuntu-latest)",
+        "status": "completed",
+        "conclusion": "success",
+        "active_step": null
+      },
+      {
+        "id": 106969960707,
+        "name": "political-calibration (ubuntu-latest)",
+        "status": "completed",
+        "conclusion": "failure",
+        "active_step": null
+      },
+      {
+        "id": 106969960777,
+        "name": "town-browser (windows-latest)",
+        "status": "completed",
+        "conclusion": "success",
+        "active_step": null
+      },
+      {
+        "id": 106969960846,
+        "name": "political-calibration (windows-latest)",
+        "status": "completed",
+        "conclusion": "failure",
+        "active_step": null
+      },
+      {
+        "id": 106969960957,
+        "name": "native (windows-latest)",
+        "status": "in_progress",
+        "conclusion": null,
+        "active_step": "Run cargo test --locked --release --workspace --no-fail-fast -- --skip tests::the_resource_pass_stays_under_budget"
+      }
+    ]
+  },
+  {
+    "observed_at": "2026-09-22T23:25:09.121Z",
+    "jobs": [
+      {
+        "id": 106969960546,
+        "name": "javascript (ubuntu-latest)",
+        "status": "completed",
+        "conclusion": "success",
+        "active_step": null
+      },
+      {
+        "id": 106969960681,
+        "name": "javascript (windows-latest)",
+        "status": "completed",
+        "conclusion": "success",
+        "active_step": null
+      },
+      {
+        "id": 106969960682,
+        "name": "town-browser (ubuntu-latest)",
+        "status": "completed",
+        "conclusion": "success",
+        "active_step": null
+      },
+      {
+        "id": 106969960700,
+        "name": "native (ubuntu-latest)",
+        "status": "completed",
+        "conclusion": "success",
+        "active_step": null
+      },
+      {
+        "id": 106969960707,
+        "name": "political-calibration (ubuntu-latest)",
+        "status": "completed",
+        "conclusion": "failure",
+        "active_step": null
+      },
+      {
+        "id": 106969960777,
+        "name": "town-browser (windows-latest)",
+        "status": "completed",
+        "conclusion": "success",
+        "active_step": null
+      },
+      {
+        "id": 106969960846,
+        "name": "political-calibration (windows-latest)",
+        "status": "completed",
+        "conclusion": "failure",
+        "active_step": null
+      },
+      {
+        "id": 106969960957,
+        "name": "native (windows-latest)",
+        "status": "in_progress",
+        "conclusion": null,
+        "active_step": "Run npx --prefix tools/ui playwright install --with-deps chromium"
+      }
+    ]
+  },
+  {
+    "observed_at": "2026-09-22T23:29:40.652Z",
+    "jobs": [
+      {
+        "id": 106969960546,
+        "name": "javascript (ubuntu-latest)",
+        "status": "completed",
+        "conclusion": "success",
+        "active_step": null
+      },
+      {
+        "id": 106969960681,
+        "name": "javascript (windows-latest)",
+        "status": "completed",
+        "conclusion": "success",
+        "active_step": null
+      },
+      {
+        "id": 106969960682,
+        "name": "town-browser (ubuntu-latest)",
+        "status": "completed",
+        "conclusion": "success",
+        "active_step": null
+      },
+      {
+        "id": 106969960700,
+        "name": "native (ubuntu-latest)",
+        "status": "completed",
+        "conclusion": "success",
+        "active_step": null
+      },
+      {
+        "id": 106969960707,
+        "name": "political-calibration (ubuntu-latest)",
+        "status": "completed",
+        "conclusion": "failure",
+        "active_step": null
+      },
+      {
+        "id": 106969960777,
+        "name": "town-browser (windows-latest)",
+        "status": "completed",
+        "conclusion": "success",
+        "active_step": null
+      },
+      {
+        "id": 106969960846,
+        "name": "political-calibration (windows-latest)",
+        "status": "completed",
+        "conclusion": "failure",
+        "active_step": null
+      },
+      {
+        "id": 106969960957,
+        "name": "native (windows-latest)",
+        "status": "in_progress",
+        "conclusion": null,
+        "active_step": "Run node tools/ui/ci-browser.cjs"
+      }
+    ]
+  },
+  {
+    "observed_at": "2026-09-22T23:31:58.048Z",
+    "jobs": [
+      {
+        "id": 106969960546,
+        "name": "javascript (ubuntu-latest)",
+        "status": "completed",
+        "conclusion": "success",
+        "active_step": null
+      },
+      {
+        "id": 106969960681,
+        "name": "javascript (windows-latest)",
+        "status": "completed",
+        "conclusion": "success",
+        "active_step": null
+      },
+      {
+        "id": 106969960682,
+        "name": "town-browser (ubuntu-latest)",
+        "status": "completed",
+        "conclusion": "success",
+        "active_step": null
+      },
+      {
+        "id": 106969960700,
+        "name": "native (ubuntu-latest)",
+        "status": "completed",
+        "conclusion": "success",
+        "active_step": null
+      },
+      {
+        "id": 106969960707,
+        "name": "political-calibration (ubuntu-latest)",
+        "status": "completed",
+        "conclusion": "failure",
+        "active_step": null
+      },
+      {
+        "id": 106969960777,
+        "name": "town-browser (windows-latest)",
+        "status": "completed",
+        "conclusion": "success",
+        "active_step": null
+      },
+      {
+        "id": 106969960846,
+        "name": "political-calibration (windows-latest)",
+        "status": "completed",
+        "conclusion": "failure",
+        "active_step": null
+      },
+      {
+        "id": 106969960957,
+        "name": "native (windows-latest)",
+        "status": "completed",
+        "conclusion": "success",
+        "active_step": null
+      },
+      {
+        "id": 106980703274,
+        "name": "verify (windows-latest)",
+        "status": "completed",
+        "conclusion": "failure",
+        "active_step": null
+      },
+      {
+        "id": 106980703300,
+        "name": "verify (ubuntu-latest)",
+        "status": "completed",
+        "conclusion": "failure",
+        "active_step": null
+      }
+    ]
+  }
+]

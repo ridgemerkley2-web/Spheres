@@ -1,0 +1,59 @@
+{
+  "declared_utc": "2026-09-22T20:34:45.7951712Z",
+  "proposed_iteration": 22,
+  "status": "Prospective plan; candidate has not been implemented or measured.",
+  "prerequisite": "Measure and retain iteration 21 lifecycle baseline before assessing candidate 22. Record exact source and binary snapshots for both. No additional production differences beyond the declared response and independently specified tests.",
+  "design_requirement": "A fully provisioned military with substantial observed executive-removal leverage can become politically disloyal under prolonged severe civilian crisis, without war exhaustion or foreign backing. This is an explicit new gameplay requirement, not a V-Dem coefficient estimate or an A1 quota guarantee.",
+  "base_coefficients": {
+    "adverse_record_response": 0.024,
+    "army_programme_veto_weight": 0.45,
+    "army_crisis_confidence_weight": 0.65
+  },
+  "single_candidate": {
+    "army_crisis_confidence_weight": 1.2,
+    "other_coefficients": "Unchanged",
+    "old_grid": "The old .65/.90/1.20 grid on its former authority proxy remains rejected. Selection of one previously bounded value on a corrected input model does not relabel old outcomes as successes."
+  },
+  "causal_fixture": {
+    "full_resource_loyalty_target": 0.85,
+    "removal_leverage": 0.8,
+    "sustained_crisis": 0.75,
+    "public_consent": 0.25,
+    "war_exhaustion": 0,
+    "foreign_backing": 0,
+    "political_factor": 0.45,
+    "current_target": 0.5575,
+    "existing_coup_loyalty_threshold": 0.35,
+    "minimum_response_to_reach_threshold": 1.111111111111111,
+    "candidate_target": 0.31,
+    "interpretation": "Necessary target reachability, not instant coup success; real elapsed record, smoothing, discontent, settled time and pressure rules remain."
+  },
+  "required_controls": [
+    "Real production penalty and delayed government tick establish the causal positive fixture",
+    "Fully funded quiet and recovered governments remain protected; current discontent below .25 and record younger than six months retain exemptions",
+    "Low leverage and strong public consent resist political disloyalty",
+    "Source zero remains distinct from unknown; unknown old-save fallback behavior is explicit",
+    "No free loyalty or money, unchanged paid AI command cost, affordability and useful-resource cap",
+    "Document maximum penalty reaching the zero clamp and amplified existing discontent eligibility step",
+    "No new dates, nation-specific triggers, RNG shocks, party classifications or forced historical winners"
+  ],
+  "unchanged_acceptance": {
+    "original_gates": "All original A1-A10 outcome definitions, thresholds and fixed seed counts unchanged, plus attribution guard",
+    "development": {
+      "seed_start": 0,
+      "seed_count": 200,
+      "months": 252,
+      "purpose": "Same fixed development population; not independent validation or replacement for original failed gates"
+    },
+    "long_horizon": "Original A6 at 420 months remains separate from the 252-month diagnostic",
+    "independent": "Seeds 1000..1059 remain uninspected until a final frozen model passes the original gates; then predeclared 60-seed 252-month and 12-seed 420-month checks apply."
+  },
+  "evidence": [
+    "Preserve all iteration 21 and 22 focused, gate and development outcomes, including failures",
+    "Report first and repeat coup distribution, high-leverage near misses, actual resource affordability, budget changes and unreachable funded targets",
+    "Record all source data and raw/canonical source hashes; never measure the superseded corrupt iteration 20 preflight"
+  ],
+  "stop_rule": "No automatic coefficient-grid extension if this single candidate fails. Diagnose the mechanism and obtain a separately justified prospective plan. No sample enlargement, threshold relaxation or outcome selection to turn a failure green.",
+  "reviewer": "verify_linux_ci",
+  "authorization": "Parent accepted the bounded single-candidate rationale; parent owns implementation after baseline measurement."
+}

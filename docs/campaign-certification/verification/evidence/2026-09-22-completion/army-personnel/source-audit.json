@@ -1,0 +1,214 @@
+{
+  "format": "spheres-personnel-reference-audit/v1",
+  "reviewed_on": "2026-09-22",
+  "base_head": "bd24d5776f6798d19c64846f9602aa5be2ad13b0",
+  "scope": "Current working-tree personnel baseline semantics and bounded 1988-1992 data audit; no nation data changed.",
+  "world_bank": [
+    {
+      "url": "https://api.worldbank.org/v2/country/COM/indicator/MS.MIL.TOTL.P1?date=1988:1992&format=json",
+      "status": 200,
+      "bytes": 1125,
+      "sha256": "303587139a3bb295b52862c5992eba34da0c9db06573095071bf7423308dc752",
+      "lastupdated": "2026-07-13",
+      "observations": [
+        {
+          "year": 1992,
+          "value": null
+        },
+        {
+          "year": 1991,
+          "value": null
+        },
+        {
+          "year": 1990,
+          "value": null
+        },
+        {
+          "year": 1989,
+          "value": null
+        },
+        {
+          "year": 1988,
+          "value": null
+        }
+      ]
+    },
+    {
+      "url": "https://api.worldbank.org/v2/country/STP/indicator/MS.MIL.TOTL.P1?date=1988:1992&format=json",
+      "status": 200,
+      "bytes": 1195,
+      "sha256": "8e6cee5b26b0e4a3ebfe8697601547e496f3fa2400d1750360bfa734489210ae",
+      "lastupdated": "2026-07-13",
+      "observations": [
+        {
+          "year": 1992,
+          "value": 1000
+        },
+        {
+          "year": 1991,
+          "value": 1000
+        },
+        {
+          "year": 1990,
+          "value": 1000
+        },
+        {
+          "year": 1989,
+          "value": 1000
+        },
+        {
+          "year": 1988,
+          "value": null
+        }
+      ]
+    }
+  ],
+  "world_bank_metadata": {
+    "url": "https://databank.worldbank.org/metadataglossary/world-development-indicators/series/MS.MIL.TOTL.P1",
+    "meaning": "Active full-time armed services plus qualifying active paramilitary; not reservists, military-age population, land army alone, or a salary count."
+  },
+  "cia1990": {
+    "url": "https://libsysdigi.library.illinois.edu/oca/Books2007-06/worldfactbook/worldfactbook90natiilli/worldfactbook90natiilli.pdf",
+    "bytes": 39382151,
+    "sha256": "0ccd18a22ff9091344af4a9048b939a844a8324c677eef6630e5107242d4edd0",
+    "visual_review": [
+      {
+        "printed_page": 70,
+        "pdf_page": 86,
+        "nation": "Comoros",
+        "males_15_49": 97504,
+        "fit_for_service": 58274,
+        "serving_strength_reported": false
+      },
+      {
+        "printed_page": 273,
+        "pdf_page": 289,
+        "nation": "SaoTome",
+        "males_15_49": 27805,
+        "fit_for_service": 14662,
+        "serving_strength_reported": false
+      }
+    ]
+  },
+  "cow_v7": {
+    "url": "https://correlatesofwar.org/wp-content/uploads/NMCv7.zip",
+    "archive_sha256": "07b7396cbf0a06a3a57d97dfb56e316c5720b6feeab06db4578bcb6447be51a9",
+    "supplemental_csv_sha256": "b42998f249c01c32c22fcdeb26d44022b6f18e5ffa8f286be9b8c8b4ef804b18",
+    "rows": [
+      {
+        "stateabb": "STP",
+        "ccode": "403",
+        "year": "1988",
+        "milper": "1",
+        "milpersource": "ACDA, 1998, p. 101",
+        "milpernote": ""
+      },
+      {
+        "stateabb": "STP",
+        "ccode": "403",
+        "year": "1989",
+        "milper": "1",
+        "milpersource": "ACDA, 1998, p. 101",
+        "milpernote": ""
+      },
+      {
+        "stateabb": "STP",
+        "ccode": "403",
+        "year": "1990",
+        "milper": "1",
+        "milpersource": "ACDA, 1998, p. 101",
+        "milpernote": ""
+      },
+      {
+        "stateabb": "STP",
+        "ccode": "403",
+        "year": "1991",
+        "milper": "1",
+        "milpersource": "ACDA, 1998, p. 101",
+        "milpernote": ""
+      },
+      {
+        "stateabb": "STP",
+        "ccode": "403",
+        "year": "1992",
+        "milper": "1",
+        "milpersource": "ACDA, 1998, p. 101",
+        "milpernote": ""
+      },
+      {
+        "stateabb": "COM",
+        "ccode": "581",
+        "year": "1988",
+        "milper": "1",
+        "milpersource": "",
+        "milpernote": "Not in ACDA, 1998"
+      },
+      {
+        "stateabb": "COM",
+        "ccode": "581",
+        "year": "1989",
+        "milper": "1",
+        "milpersource": "",
+        "milpernote": "Not in ACDA, 1998"
+      },
+      {
+        "stateabb": "COM",
+        "ccode": "581",
+        "year": "1990",
+        "milper": "1",
+        "milpersource": "",
+        "milpernote": "Not in ACDA, 1998"
+      },
+      {
+        "stateabb": "COM",
+        "ccode": "581",
+        "year": "1991",
+        "milper": "1",
+        "milpersource": "",
+        "milpernote": "Not in ACDA, 1998"
+      },
+      {
+        "stateabb": "COM",
+        "ccode": "581",
+        "year": "1992",
+        "milper": "1",
+        "milpersource": "",
+        "milpernote": "Not in ACDA, 1998"
+      }
+    ],
+    "unit": "thousands of personnel",
+    "admissibility": "Comoros has no individual source and an explicit Not in ACDA, 1998 note; the count is not admitted as a verified 1990 headcount. COW generally excludes irregular internal-security units, unlike WDI inclusion of qualifying paramilitary, so definitions are not interchangeable."
+  },
+  "unverified_primary_document": {
+    "url": "https://tile.loc.gov/storage-services/master/frd/frdcstdy/in/indianoceanfivei00metz_0/indianoceanfivei00metz_0.pdf",
+    "status": 403,
+    "limitation": "Search-index excerpts mention 700-800 regular troops but the original scan was not fetched. Published 1995, research completed August 1994: no exact 1990 total inferred."
+  },
+  "opening_model": {
+    "sourced_positive_population_pairs": 125,
+    "median_force_population_fraction": 0.005431034482758621,
+    "Comoros": {
+      "sourced_personnel": null,
+      "population_m": 0.412,
+      "estimated_members": 2237.5862068965516,
+      "basis": "ModelEstimate"
+    },
+    "SaoTome": {
+      "sourced_personnel": 1000,
+      "population_m": 0.119,
+      "basis": "Sourced1990"
+    }
+  },
+  "repair": {
+    "file": "spheres-sim/src/government.rs",
+    "meaning": "Apply the unchanged fallback fraction to embedded opening population, not live population. Both sourced and estimated assessments now remain at their common 1990 reference; source None and ModelEstimate provenance persist. No recruitment dynamics inferred.",
+    "regression": "unsourced_army_size_is_an_explicit_model_estimate_without_rewriting_history",
+    "checks": [
+      "Doubled actual live population leaves both Comoros and Pakistan assessments and resources unchanged.",
+      "Exact save/load round-trip preserves both assessments.",
+      "Missing historical count remains None.",
+      "Invalid inputs and lens-off guards remain."
+    ],
+    "validation_status": "git diff --check passed; no Cargo run by this agent. Parent coordinates next native compilation and regression execution."
+  }
+}

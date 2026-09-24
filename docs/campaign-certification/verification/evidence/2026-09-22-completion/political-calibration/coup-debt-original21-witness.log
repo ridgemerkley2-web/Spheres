@@ -1,0 +1,17 @@
+
+running 1 test
+
+thread 'a_coup_tick_has_identical_fiscal_state_with_and_without_a_save_boundary' (12540) panicked at ..\evidence\political-calibration-20260922\coup-debt-original21-witness.rs:44:13:
+assertion `left == right` failed
+  left: 4602678819172646912
+ right: 4602818105759060433
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test a_coup_tick_has_identical_fiscal_state_with_and_without_a_save_boundary ... FAILED
+
+failures:
+
+failures:
+    a_coup_tick_has_identical_fiscal_state_with_and_without_a_save_boundary
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+

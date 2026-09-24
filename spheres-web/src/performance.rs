@@ -349,7 +349,7 @@ fn establish_profile_stress(g: &mut Game) -> serde_json::Value {
 #[test]
 fn aged_checkpoint_stress_uses_priced_commands_and_preserves_the_archive() {
     for missing_gulf_pair in [false, true] {
-        let mut g = Game::new(1990, Some(NationId::USA));
+        let mut g = Game::new_fresh(1990, Some(NationId::USA));
         fresh_play_rules(&mut g).unwrap();
         g.history.clear();
         g.snapshot();
@@ -520,7 +520,7 @@ fn campaign_lifetime_profile() {
                     .unwrap_or_else(|e| panic!("Cannot resume {slot}: {e}")),
             )
         } else {
-            let mut g = Game::new(1990, Some(NationId::USA));
+            let mut g = Game::new_fresh(1990, Some(NationId::USA));
             fresh_play_rules(&mut g).unwrap();
             g.history.clear();
             g.snapshot();

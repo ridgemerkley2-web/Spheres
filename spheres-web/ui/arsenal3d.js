@@ -27,10 +27,10 @@
 
   const VERT = `#version 300 es
   in vec3 aPos; in vec3 aNrm; in vec3 aCol;
-  uniform mat4 uMVP;
+  uniform mat4 uMVP; uniform vec3 uWorldOffset;
   out vec3 vNrm; out vec3 vCol; out vec3 vPos;
   void main() {
-    vNrm = aNrm; vCol = aCol; vPos = aPos;
+    vNrm = aNrm; vCol = aCol; vPos = aPos + uWorldOffset;
     gl_Position = uMVP * vec4(aPos, 1.0);
   }`;
 
@@ -120,7 +120,7 @@
     .replace("__MILITARY__", root.MilitarySurface?.glsl || "")
     .replace("__MILITARY_LIGHTING__", root.MilitarySurface ? "if(uMilitary>.5){outColor=vec4(militaryLighting(vCol,N,vPos,V,1.,uHeight),1.);return;}" : ""); }
 
-  let gl = null, prog = null, uMVP = null, uEye = null, uHeight = null, uCharacter = null, uMilitary = null, glCanvas = null;
+  let gl = null, prog = null, uMVP = null, uEye = null, uHeight = null, uCharacter = null, uMilitary = null, uWorldOffset = null, glCanvas = null;
   const militaryIds = new Set(root.ArsenalModels?.ids?.() || []);
   let material = null, materialTried = false;
   let lost = false;
@@ -168,6 +168,7 @@
     uHeight = gl.getUniformLocation(prog, "uHeight");
     uCharacter = gl.getUniformLocation(prog, "uCharacter");
     uMilitary = gl.getUniformLocation(prog, "uMilitary");
+    uWorldOffset = gl.getUniformLocation(prog, "uWorldOffset");
     gl.enable(gl.DEPTH_TEST);
     // No back-face culling, deliberately. Three parts of the deck are open
     // shells — a dish is a paraboloid with no back, a rotodome is a disc, a
@@ -202,6 +203,7 @@
         lost = false;
         if (!setupGl()) { available = false; return; }
         mounted.forEach((state, canvas) => { if (canvas.isConnected) { state.aspect = null; paint(canvas, state); } });
+        sceneMounted.forEach((controller, canvas) => { if (canvas.isConnected) controller.repaint(); else controller.dispose(); });
       }, false);
       if (!setupGl()) return available;
       available = true;
@@ -276,9 +278,9 @@
     }
   }
 
-  function bufferFor(id, cls) {
+  function bufferFor(id, cls, supplied) {
     if (vaos.has(id)) { const hit = vaos.get(id); touch(hit); return hit; }
-    const geom = resolveMesh(id, cls);
+    const geom = supplied ? supplied() : resolveMesh(id, cls);
     if (!geom || !geom.positions || !geom.positions.length) return null;
     const key = geom.id || id;
     if (vaos.has(key)) {
@@ -287,6 +289,14 @@
       vaos.set(id, hit);
       touch(hit);
       return hit;
+    }
+    // Reserve before uploading. Otherwise a shared town browsing session can
+    // briefly hold the whole cache plus the next mesh on the GPU, even though
+    // the post-upload accounting appears within the cap.
+    const count = typeof geom.count === "number" ? geom.count : geom.positions.length / 3;
+    for (const candidate of [...vaos.values()]) {
+      if (cachedTriangles + count / 3 <= CACHE_TRIANGLES) break;
+      if (vaos.has(candidate.keys[0])) release(candidate);
     }
     const vao = gl.createVertexArray();
     const bufs = [];
@@ -304,7 +314,6 @@
     // equipment/site/town generators carry `bounds` and `triangleCount`. Neither
     // is wrong, so read whichever is present rather than making four generators
     // agree on a field name after the fact.
-    const count = typeof geom.count === "number" ? geom.count : geom.positions.length / 3;
     const centre = geom.centre || (geom.bounds
       ? [(geom.bounds.min[0] + geom.bounds.max[0]) / 2,
         (geom.bounds.min[1] + geom.bounds.max[1]) / 2,
@@ -539,6 +548,7 @@
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     gl.useProgram(prog);
     gl.uniformMatrix4fv(uMVP, false, mvp);
+    gl.uniform3f(uWorldOffset, 0, 0, 0);
     gl.uniform3f(uEye, eye[0] + at[0], eye[1] + at[1], eye[2] + at[2]);
     gl.uniform1f(uHeight, entry.geom.bounds ? (entry.geom.bounds.max[1] - entry.geom.bounds.min[1])
       : (entry.geom.max ? entry.geom.max[1] - entry.geom.min[1] : 2.0));
@@ -555,6 +565,169 @@
     gl.bindVertexArray(null);
     gl.disable(gl.SCISSOR_TEST);
     return { w, h, top: glCanvas.height - h };
+  }
+
+  // ------------------------------------------------------ composed scenes
+  // The budget counts submitted triangles, not storage or an average divided
+  // by lots. Every frustum-visible lot stays in the draw list. Only its existing
+  // mesh tier changes, with the selected building retaining its close mesh.
+  const SCENE_BUDGET = 150000;
+  const sceneMounted = new Map();
+  function boxCorners(bounds) {
+    const result = [];
+    for (const x of [bounds.min[0], bounds.max[0]])
+      for (const y of [bounds.min[1], bounds.max[1]])
+        for (const z of [bounds.min[2], bounds.max[2]]) result.push([x, y, z]);
+    return result;
+  }
+  function projectBox(bounds, mvp, width, height) {
+    const clips = boxCorners(bounds).map((p) => [0, 1, 2, 3].map((r) =>
+      mvp[r] * p[0] + mvp[4 + r] * p[1] + mvp[8 + r] * p[2] + mvp[12 + r]));
+    // Conservative homogeneous six-plane rejection also handles boxes crossing
+    // the near plane; dividing a negative w first would wrongly discard them.
+    for (let axis = 0; axis < 3; axis++) for (const sign of [-1, 1])
+      if (clips.every((p) => sign * p[axis] > p[3])) return null;
+    if (clips.some((p) => p[3] <= 0 || p[2] < -p[3]))
+      return { pixels: Math.max(width, height), rect: [0, 0, width, height], depth: 0 };
+    const points = clips.map((p) => [(p[0] / p[3] + 1) * width / 2,
+      (1 - p[1] / p[3]) * height / 2, p[2] / p[3]]);
+    const x0 = Math.min(...points.map(p => p[0])), x1 = Math.max(...points.map(p => p[0]));
+    const y0 = Math.min(...points.map(p => p[1])), y1 = Math.max(...points.map(p => p[1]));
+    return { pixels: Math.max(x1 - x0, y1 - y0), rect: [x0, y0, x1, y1],
+      depth: Math.min(...points.map(p => p[2])) };
+  }
+  function sceneTier(pixels, previous) {
+    // Device pixels: a high-DPI screen earns more detail. Separate enter/exit
+    // thresholds keep a roof from flickering between meshes while zooming.
+    if (pixels >= (previous === "close" ? 210 : 260)) return "close";
+    if (pixels >= (previous === "map" ? 48 : 36)) return "mid";
+    return "map";
+  }
+  function scenePlan(scene, opts, previous) {
+    const o = opts || {}, width = Math.max(8, o.width || 640), height = Math.max(8, o.height || 400);
+    const yaw = Number.isFinite(o.yaw) ? o.yaw : REST_YAW;
+    const pitch = Math.max(8, Math.min(75, Number.isFinite(o.pitch) ? o.pitch : 35));
+    const zoom = Math.max(.5, Math.min(6, Number.isFinite(o.zoom) ? o.zoom : 1));
+    const selected = scene.lots.find(lot => lot.id === o.selected) || null;
+    const frameBounds = selected ? selected.closeBounds || selected.bounds : scene.bounds;
+    const frameMesh = { bounds: frameBounds, positions: new Float32Array(boxCorners(frameBounds).flat()) };
+    const fit = frameOf(frameMesh, width / height, pitch, null);
+    const at = fit.pivot, d = fit.d / zoom;
+    const ry = yaw * Math.PI / 180, rp = pitch * Math.PI / 180;
+    const eye = [Math.sin(ry) * Math.cos(rp) * d, Math.sin(rp) * d, Math.cos(ry) * Math.cos(rp) * d];
+    const radius = Math.hypot(...scene.bounds.max.map((v, i) => v - scene.bounds.min[i]));
+    const mvp = mul4(mul4(perspective(FOV, width / height, Math.max(.01, d * .002), d + radius * 2),
+      lookAt(eye, [0, 0, 0], [0, 1, 0])), translate(at.map(v => -v)));
+    const history = {}, draws = [], culled = [];
+    for (const lot of scene.lots) {
+      const projection = projectBox(lot.bounds, mvp, width, height);
+      if (!projection) { culled.push(lot.id); continue; }
+      const tier = lot === selected ? "close" : sceneTier(projection.pixels, previous && previous[lot.id]);
+      history[lot.id] = tier;
+      draws.push({ id: lot.id, lot, tier, ...projection });
+    }
+    let triangles = scene.background.triangleCount + draws.reduce((n, item) => n + item.lot.triangles[item.tier], 0);
+    // Projected size is the priority, never seed/order. This is a draw budget,
+    // not permission to erase a lot: demote smallest unselected detail first.
+    const priority = draws.filter(item => item.lot !== selected).sort((a, b) => a.pixels - b.pixels || a.id.localeCompare(b.id));
+    let demotions = 0;
+    for (const tier of ["close", "mid"]) for (const item of priority) {
+      if (triangles <= SCENE_BUDGET) break;
+      if (item.tier !== tier) continue;
+      const next = tier === "close" ? "mid" : "map";
+      triangles += item.lot.triangles[next] - item.lot.triangles[tier];
+      item.tier = next; demotions++;
+    }
+    if (triangles > SCENE_BUDGET) throw new Error("Town scene cannot fit its draw budget while retaining every visible lot");
+    return { width, height, yaw, pitch, zoom, selected: selected && selected.id,
+      mvp, eye: eye.map((v, i) => v + at[i]), draws, culled, history, triangles,
+      camera: { distance: d, pivot: at.slice() },
+      backgroundTriangles: scene.background.triangleCount, rawCloseTriangles: scene.rawCloseTriangles,
+      drawCalls: draws.length + 1, demotions, budget: SCENE_BUDGET };
+  }
+  function drawScene(canvas, scene, opts, previous) {
+    if (!canvas || !init() || lost) return null;
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width <= 0 || rect.height <= 0) return null;
+    const dpr = Math.min(MAX_DPR, root.devicePixelRatio || 1);
+    const w = Math.max(8, Math.min(2048, Math.round(rect.width * dpr)));
+    const h = Math.max(8, Math.min(2048, Math.round(rect.height * dpr)));
+    const plan = scenePlan(scene, { ...(opts || {}), width: w, height: h }, previous);
+    if (canvas.width !== w) canvas.width = w;
+    if (canvas.height !== h) canvas.height = h;
+    if (glCanvas.width < w) glCanvas.width = w;
+    if (glCanvas.height < h) glCanvas.height = h;
+    gl.viewport(0, 0, w, h); gl.enable(gl.SCISSOR_TEST); gl.scissor(0, 0, w, h);
+    gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+    gl.useProgram(prog);
+    gl.uniform3f(uEye, ...plan.eye);
+    gl.uniform1f(uHeight, scene.bounds.max[1] - scene.bounds.min[1]);
+    gl.uniform1f(uCharacter, 0); gl.uniform1f(uMilitary, 0);
+    const submit = (key, mesh, offset) => {
+      // Resolve lazily after the shared LRU miss. Never retain VAOs across an
+      // allocation which might evict them, including during context restore.
+      const entry = bufferFor(key, "", mesh);
+      if (!entry) throw new Error("Missing town scene mesh: " + key);
+      gl.uniform3f(uWorldOffset, ...offset);
+      gl.uniformMatrix4fv(uMVP, false, mul4(plan.mvp, translate(offset)));
+      gl.bindVertexArray(entry.vao); gl.drawArrays(gl.TRIANGLES, 0, entry.count);
+    };
+    submit(scene.background.id, () => scene.background, [0, 0, 0]);
+    for (const item of plan.draws) submit(item.lot.meshKey(item.tier), () => item.lot.mesh(item.tier), item.lot.offset);
+    gl.bindVertexArray(null); gl.disable(gl.SCISSOR_TEST);
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return null;
+    ctx.clearRect(0, 0, w, h);
+    ctx.drawImage(glCanvas, 0, glCanvas.height - h, w, h, 0, 0, w, h);
+    return plan;
+  }
+  function mountScene(canvas, scene, opts) {
+    if (!canvas || !init()) return null;
+    sceneMounted.get(canvas)?.dispose();
+    for (const [old, controller] of sceneMounted) if (!old.isConnected) controller.dispose();
+    const state = { yaw: REST_YAW, pitch: 35, zoom: 1, selected: null, ...(opts || {}) };
+    const listeners = [], add = (name, fn, options) => { canvas.addEventListener(name, fn, options); listeners.push([name, fn, options]); };
+    let history = {}, plan = null, disposed = false, drag = null;
+    const controller = {
+      get plan() { return plan; }, get scene() { return scene; },
+      repaint() {
+        if (disposed) return null;
+        plan = drawScene(canvas, scene, state, history);
+        if (plan) { history = plan.history; if (typeof state.onDraw === "function") state.onDraw(plan); }
+        return plan;
+      },
+      set(next) { Object.assign(state, next); return controller.repaint(); },
+      focus(id) { history = {}; return controller.set({ selected: id, zoom: 1 }); },
+      reset() { history = {}; return controller.set({ selected: null, zoom: 1, yaw: REST_YAW, pitch: 35 }); },
+      dispose() {
+        if (disposed) return; disposed = true;
+        for (const args of listeners) canvas.removeEventListener(...args);
+        resize?.disconnect(); sceneMounted.delete(canvas);
+        history = {}; plan = null;
+      },
+    };
+    canvas.tabIndex = 0; canvas.setAttribute("role", "img");
+    canvas.setAttribute("aria-label", "Town model. Drag or use arrow keys to rotate, plus and minus to zoom, Escape to reset. Select a building below to inspect it.");
+    add("wheel", e => { e.preventDefault(); controller.set({ zoom: Math.max(.5, Math.min(6, state.zoom * Math.exp(-e.deltaY * .0015))) }); }, { passive: false });
+    add("keydown", e => {
+      const edits = { ArrowLeft: { yaw: state.yaw - 15 }, ArrowRight: { yaw: state.yaw + 15 },
+        ArrowUp: { pitch: Math.min(75, state.pitch + 5) }, ArrowDown: { pitch: Math.max(8, state.pitch - 5) },
+        "+": { zoom: Math.min(6, state.zoom * 1.2) }, "=": { zoom: Math.min(6, state.zoom * 1.2) }, "-": { zoom: Math.max(.5, state.zoom / 1.2) } };
+      if (e.key === "Escape") { e.preventDefault(); controller.reset(); }
+      else if (edits[e.key]) { e.preventDefault(); controller.set(edits[e.key]); }
+    });
+    add("pointerdown", e => { if (e.button !== 0) return; drag = [e.clientX, e.clientY]; canvas.setPointerCapture?.(e.pointerId); });
+    add("pointermove", e => {
+      if (!drag) return;
+      const dx = e.clientX - drag[0], dy = e.clientY - drag[1]; drag = [e.clientX, e.clientY];
+      controller.set({ yaw: state.yaw + dx * .5, pitch: Math.max(8, Math.min(75, state.pitch + dy * .3)) });
+    });
+    add("pointerup", () => { drag = null; }); add("pointercancel", () => { drag = null; });
+    add("lostpointercapture", () => { drag = null; });
+    const resize = typeof ResizeObserver === "function" ? new ResizeObserver(() => controller.repaint()) : null;
+    resize?.observe(canvas); sceneMounted.set(canvas, controller); controller.repaint();
+    // Explicit user input only: no orbit animation, including reduced motion.
+    return controller;
   }
 
   // ------------------------------------------------------------ the cards
@@ -799,7 +972,9 @@
     uCharacter = gl.getUniformLocation(prog, "uCharacter");
     uMilitary = gl.getUniformLocation(prog, "uMilitary");
     sprites.clear();
+    uWorldOffset = gl.getUniformLocation(prog, "uWorldOffset");
     mounted.forEach((state, canvas) => { if (canvas.isConnected) paint(canvas, state); });
+    sceneMounted.forEach((controller, canvas) => { if (canvas.isConnected) controller.repaint(); else controller.dispose(); });
     return true;
   }
 
@@ -908,6 +1083,7 @@
         models: seen.size, keys: vaos.size };
     },
     mount, scan, dataURL, renderTo, sprite, setSurface, frameOf, draw,
+    scenePlan, sceneTier, projectBox, drawScene, mountScene,
     REST_YAW, REST_PITCH, FOV,
     get available() { return init(); },
     register,

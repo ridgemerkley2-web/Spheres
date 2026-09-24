@@ -1,0 +1,35 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://web.archive.org/web/20080731092343id_/http://www.pmo.gov.to:80/index.php?option=com_content&task=view&id=204&Itemid=30",
+  "original_url": "http://www.pmo.gov.to/index.php?option=com_content&task=view&id=204&Itemid=30",
+  "archive_capture_utc": "2008-07-31T09:23:43Z",
+  "accessed_date": "2026-09-21",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 25085,
+  "source_response_sha256": "c574845d509dd4d3c065c8f798e0c5f1eb10be94cc88e5dd50b3f04500bd053b",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original PMO page, captured at 2008-07-31T09:23:43Z; the original official page is no longer served. The capture bytes were downloaded and hashed before extraction on 2026-09-21 (local). This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_crown_gtv_taumafa_kava_scheduled_20080730",
+      "text": "The programme schedules the 'Traditional Installation Ceremony of His Majesty King George Tupou V - Taumafa Kava' at Mala'e Pangai at 10:00 on Wednesday 30 July 2008.",
+      "attested_on": "2008-07-30",
+      "locator": "Programme, Wednesday 30 July 2008",
+      "uncertainty": "A prospective schedule, not a post-event report; the installation's occurrence is recorded by to_crown_gtv_taumafa_kava_held_20080730, which names the venue Pangai Lahi. The traditional installation is distinct from the 2006 accession and from the church coronation."
+    },
+    {
+      "id": "to_crown_gtv_coronation_scheduled_20080801",
+      "text": "The programme schedules 'THE CORONATION OF HIS MAJESTY KING GEORGE TUPOU V' at the Free Wesleyan Centenary Church, Kolomotu'a, at 10:00 on Friday 1 August 2008, followed at 13:00 by a Royal Luncheon hosted by the Prime Minister.",
+      "attested_on": "2008-08-01",
+      "locator": "Programme, Friday 1 August 2008",
+      "uncertainty": "A prospective schedule; occurrence is corroborated by to_crown_gtv_coronation_day_address_20080801 and to_crown_gtv_coronation_guests_20080801. The coronation is not the start of the reign."
+    }
+  ],
+  "scope_note": "Archived PMO programme page (raw Internet Archive capture of 31 July 2008, 09:23:43 UTC); the page carries no date of its own, so no published_date is recorded. Only the installation and coronation entries are imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  }
+}

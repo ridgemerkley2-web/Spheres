@@ -1,0 +1,28 @@
+{
+  "declared_utc": "2026-09-22T23:07:44.201121+00:00",
+  "status": "Parent authorized one candidate; no measurement yet",
+  "revision": "12278ea4c66863200fd10948350ae69391954cfa",
+  "runtime_baseline": "9f7faed5f541e14545e01caf1616ba08c6ad8ff9",
+  "plan_sha256": "c38e8528563f7b2a0737b87f27baeaaec4e00b4e2daddd777f6e1d73fe38fb6e",
+  "plan": "checkpoint26-confidence120-reassessment-plan.json",
+  "source_manifest": "iteration-27-baseline-source-manifest.json",
+  "source_manifest_sha256": "c5b0b5f294c85b9a1fc90fd9344d6d5d8f21cc0c2e3b3ef9502a4f0900e0fa62",
+  "baseline_binaries": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_sim-de8a2e7790f15db6.exe",
+      "bytes": 48845439,
+      "sha256": "9c160e2886ae945df4ebdd0896ebee2db12282b6d23c3eee550cd8bab2655b1d",
+      "scope": "Baseline only; rebuild will replace path, bytes not duplicated"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\bloc_census-b35be4d742aae476.exe",
+      "bytes": 31613247,
+      "sha256": "a72651fb7d7eb36c38a95461c3d7772bf6871d2bc6c6a85c3ced14a10b09af29",
+      "scope": "Baseline only; rebuild will replace path, bytes not duplicated"
+    }
+  ],
+  "only_edit": "spheres-sim\\src\\government.rs",
+  "baseline_sha256": "0e2dbdefe5ed1909804b81d43b736c94315be647d615bda85e62e1fe78a2b73f",
+  "candidate_sha256": "2826b999790fd24a851dd307fadd4ea6adcb2eda2fade43a133d9eb369af7501",
+  "decision_rules": "All existing1005 sim tests unchanged; complete original political suite even if correctness rejects. Any correctness failure rejects before N200. No fixture changes, grids or altered acceptance. Holdout untouched unless original and N200 jointly pass."
+}

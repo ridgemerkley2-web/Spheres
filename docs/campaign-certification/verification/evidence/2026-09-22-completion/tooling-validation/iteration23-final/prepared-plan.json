@@ -1,0 +1,120 @@
+{
+  "status": "Prepared only; not executed",
+  "wrapper": "verify-leadership-provenance.py",
+  "wrapper_sha256": "39a3d853091fd8ae395b5463620f19299a974b70339bf5cc3eef6ad6d9f25bf5",
+  "invocation": "python -B -X utf8 ../evidence/final-tooling-20260922/iteration23-final/verify-leadership-provenance.py --run-after-source-freeze",
+  "commands": [
+    [
+      "python",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/leadership_production.py",
+      "build"
+    ],
+    [
+      "python",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/leadership_production.py",
+      "check"
+    ],
+    [
+      "python",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/leadership_production.py",
+      "self-test"
+    ],
+    [
+      "python",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/campaign_census.py"
+    ],
+    [
+      "python",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/campaign_census.py",
+      "--check"
+    ],
+    [
+      "python",
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_campaign_census.py",
+      "-v"
+    ],
+    [
+      "python",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/campaign_research.py",
+      "--check"
+    ]
+  ],
+  "source_write_policy": "Never write runtime source. Fail if government is not LF; compare source byte hashes and mtimes before/after.",
+  "expected_changed_output_fields": {
+    "spheres-web/data/leadership_production_2035.json": [
+      "/input_hashes/spheres-sim/src/government.rs"
+    ],
+    "docs/campaign-certification/C01/census.json": [
+      "/source_files/1/bytes",
+      "/source_files/1/sha256",
+      "/source_files/11/sha256"
+    ]
+  },
+  "expected_other_outputs_byte_identical": [
+    "countries.json",
+    "represented-organizations.json",
+    "roles-and-lifecycle.json",
+    "work-orders.json",
+    "research-index.json"
+  ],
+  "historical_scope": "No new portraits, party terms or completed research; C01 remains incomplete.",
+  "additional_inputs": [
+    "spheres-sim/src/lib.rs",
+    "spheres-sim/src/blocs.rs",
+    "spheres-sim/src/politics.rs",
+    "spheres-sim/src/stratagems.rs",
+    "spheres-sim/src/world.rs",
+    "spheres-sim/src/economy.rs",
+    "spheres-sim/src/init.rs",
+    "spheres-sim/tests/treasury.rs",
+    "spheres-sim/data/resources_1990.json",
+    "spheres-web/data/district_resources.json",
+    "tools/resources/resource_coverage.py",
+    "tools/resources/make_resources.py",
+    "tools/resources/check.py",
+    "tools/resources/check_resources.py",
+    "spheres-sim/src/nations.rs",
+    "spheres-sim/src/government.rs",
+    "spheres-sim/data/party_leaders.json",
+    "spheres-sim/data/party_executive_eligibility.json",
+    "spheres-sim/data/future_party_leadership.json",
+    "spheres-sim/data/future_party_leadership_seats.json",
+    "spheres-sim/data/future_party_continuation.json",
+    "spheres-web/data/nation_figures.json",
+    "spheres-web/data/future_candidates_2035.json",
+    "spheres-web/data/person_portraits.json",
+    "spheres-web/data/fictional_portraits.json",
+    "tools/avatars/leadership_production.py",
+    "tools/avatars/person_art_pipeline.py",
+    "tools/avatars/fictional_art_pipeline.py",
+    "tools/avatars/campaign_census.py"
+  ],
+  "generated_input_policy": "The production board is an input to census but an intended generated output; it is compared in the seven-output field-diff report, excluded from immutable source hash/mtime checks."
+}

@@ -1,0 +1,50 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://ago.gov.to/cms/images/LEGISLATION/GAZETTES/2012/2012-0008/GazetteExtraordinaryNo.8of2012.pdf",
+  "accessed_date": "2026-09-21",
+  "published_date": "2012-03-19",
+  "access_method": "downloaded_original_pdf_text_and_relevant_page_visually_read",
+  "source_response_bytes": 659563,
+  "source_response_sha256": "ec50ad5d05fbf90ec52ea6dce7913178b4e4bf04456e5c78e8e619c98eef0b6b",
+  "source_response_checked_in": false,
+  "provenance_note": "Original response downloaded (curl -L) and hashed before extraction on 2026-09-21 (local). This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_crown_gtv_death_20120318",
+      "text": "Prime Minister Lord Tu'ivakano announces that King George Tupou V died in Hong Kong, China, at 15:58 (Hong Kong, China time), which was 20:58 (Tonga time), on 18 March 2012.",
+      "attested_on": "2012-03-18",
+      "printed_times": [
+        {
+          "zone": "Hong Kong, China time",
+          "date": "2012-03-18",
+          "time": "15:58"
+        },
+        {
+          "zone": "Tonga time",
+          "date": "2012-03-18",
+          "time": "20:58"
+        }
+      ],
+      "locator": "PDF page 1 (gazette page 8/113), English and Tongan notices",
+      "uncertainty": "Official death notice. The mourning it declares is a separate claim (to_crown_gtv_mourning_declared_20120319)."
+    },
+    {
+      "id": "to_crown_gtv_mourning_declared_20120319",
+      "text": "The same notice declares State mourning for three months from 19 March 2012, ending 19 June 2012, with flags at half-mast throughout the Kingdom.",
+      "locator": "PDF page 1 (gazette page 8/113), second paragraph",
+      "period": {
+        "from": "2012-03-19",
+        "through": "2012-06-19"
+      },
+      "uncertainty": "A mourning instrument, later revoked and replaced (to_crown_gtv_mourning_revised_20120330); not a reign boundary."
+    }
+  ],
+  "scope_note": "Bilingual gazette; the Tongan-language link returns a byte-identical file. Used for the death notice and the mourning it declares.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "PDF page 1 was rendered and visually checked in the research dossier; the English and Tongan times and dates match the text layer."
+  }
+}

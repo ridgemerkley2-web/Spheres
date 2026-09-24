@@ -1,0 +1,14 @@
+{
+  "scope": "Iteration21 successor election lifecycle only; native execution pending parent build",
+  "government_sha256": "3254020ea00ec763eb95dabe0c03b79e33b861d4144d6de7307627c03de4e51c",
+  "utf8": true,
+  "replacement_characters": 0,
+  "mojibake_u00e2": 0,
+  "tests": [
+    "government::tests::scheduling_a_new_electoral_successor_preserves_its_real_governing_record",
+    "government::tests::a_successor_calendar_keeps_the_eighteen_month_deadline_without_claiming_a_ballot",
+    "government::tests::successor_calendar_dates_and_accountability_survive_daily_and_legacy_saves",
+    "government::tests::missing_calendars_do_not_erase_real_regime_interims_or_change_the_lens_off_path"
+  ],
+  "control_review": "Supersedes initial guard without explicit live Office tie check. Added real opening Jordan(.55, regimeNone) and explicit Army office with missing old regime metadata. Both preserve original protected path. Staged court liberalisation also retained."
+}

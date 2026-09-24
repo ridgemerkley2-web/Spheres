@@ -1,0 +1,279 @@
+{
+  "iteration": 20,
+  "completed_utc": "2026-09-22T20:34:29.452059+00:00",
+  "command": "cargo test --locked --release --workspace --no-fail-fast -- --skip tests::the_resource_pass_stays_under_budget",
+  "exit_code": 0,
+  "counts": {
+    "passed": 1862,
+    "failed": 0,
+    "ignored": 89,
+    "measured": 0,
+    "filtered_out": 1
+  },
+  "targets": 66,
+  "source": "corrected iteration20 frozen source manifest; iteration21 source was edited only after all20 executables had compiled and tests were running",
+  "log_sha256": "1e258518e87dd9181a86392d83ebe01dc12e1f87641f267f0e7fbc29898f99d3",
+  "binaries": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_cli-5f49f29ff8ac500c.exe",
+      "sha256": "0ff0cc744dcad74de02fc731f1dc43145ca8dc04631f2baea14ac4d87c10d493"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_sim-de8a2e7790f15db6.exe",
+      "sha256": "5899c286c4b75b9a4b88eb4fac0b4ca8af890512f6a92a5c23c6fd038b217bb0"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\agency-a3a8c9a157e8ccc4.exe",
+      "sha256": "52893530752e427671e121d937ec44e428ce1d29ac7cab0e403e06846000b7b7"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\ammunition_reserves-3b21317465587fd0.exe",
+      "sha256": "d02930e650e1cef328e79906f23315b0bf84f5b6318b8649ab4fdf47569f4101"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\aviation_ammunition-60f253769cc7a907.exe",
+      "sha256": "06b1a9290b5728e86796c9979fb60910812f0b1971bba16f18fca96d474f8ead"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\bloc_census-b35be4d742aae476.exe",
+      "sha256": "51ac8eedf659a5987f263fbd96a3202cae5abfa6ec60d04676f3bac04f817280"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\campaign_aims-2be19e47a88ff554.exe",
+      "sha256": "0b0934ef805247160dadc6fa766774a6144106e1014374097bc1ca86bb14817f"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\campaign_identity-0966ffdf9a4be971.exe",
+      "sha256": "e3313cf7cd632d277853bdc24b99c4c88dcddee628845df0c9fb2f0bce41e90a"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\campaign_movement_audit-b4f77a617ddb3a6b.exe",
+      "sha256": "e94e4be0b6ba1ccfe98a38bb1a9b4b0b3768587cddc6b65e2b73e47c785b5fa8"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\campaign_operations-b8e5a9d3c1f42d71.exe",
+      "sha256": "be01a46b722bbde12d29f99d2954d540aaea9d9dc96a458fb84615ef994db913"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\campaign_peace-173c85cd2d91706a.exe",
+      "sha256": "ec6d32f6f99e4d61f0ce5b9645f33121d0467d822ddee4f258d38d89eb1404fb"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\campaign_peace_audit-453b48c35ba3626f.exe",
+      "sha256": "5355365d7326176da3ddb5ac0bd210bd49087c9dba2fd2b47db38ced506b338c"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\campaign_population-55dc9aa0af33f98a.exe",
+      "sha256": "02f937841266d4100e1ce4a00870a0b2c0ca3ec742654aec3e21c643c5a1212f"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\capital_damage_audit-5a4f2806f5fd2509.exe",
+      "sha256": "294eaa25c7ef39658e3077381d7fd737cb38c5ce8e1ad5a3e7ad643c8623aaff"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\companies_integration-b294d37d0a85b120.exe",
+      "sha256": "96d10be9c33c0648cdedfb1e1c69cf13f37f9dfe6f3a1e0119ec25c8497d3af3"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\company_ammunition-1bf48242777f9167.exe",
+      "sha256": "f85b5c9847972f62307973529b9c627743b0b90d43c843425542c46bf30ae1d7"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\company_refits-63b8194ed38c206a.exe",
+      "sha256": "29683b3609cb2ddbea0c471422a7dba8075d9ee8d4193b7f55a34903c9bfb168"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\daily-928f866bbd1ec015.exe",
+      "sha256": "0e131919b7be979613b2fa95189e838cd4e04a44b895c8b37170e9529980491d"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\daily_balance-25927ce9b4edb6c4.exe",
+      "sha256": "cb4efc119d85d76d8103e4d3bf44ea0494354363437ef30a0dc4a47732a1581a"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\economic_ai_supply-a9527e9cd276d171.exe",
+      "sha256": "6d5163c912fe8e7dbecbbb23830f0936f9924cf22b89c4fa8e77d2dbbf87a3da"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\economic_competition-9a74937bbf658ef8.exe",
+      "sha256": "b5032d8c96e2742090fb7f22ae362b9fe7ae6f5e02b3065c7fb380c0c1e2acf5"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\economic_sovereignty-bcfdd3bb9f7d99b3.exe",
+      "sha256": "80d7c48c6eb2a213249acce5b7fc3b63d2e55d8c1fc16b93077b9335c5351407"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\economic_sphere_intervention-e2f04fc665d7a877.exe",
+      "sha256": "b4a3f20685d6b9fc1ad85ce45fb2e35d777fa4e6a55c722c1dcfc3bd61e71e7d"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\endowment_channel_probe-e27348ab24ae1963.exe",
+      "sha256": "a140c65d0aa1ddcf570d825f5787e28b55a6866fc15a35a7c2d36d6c40d7e3ec"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\endowment_margin_probe-488fbc7e5941f1ce.exe",
+      "sha256": "9d723f7642c7c11dc7601a4f3ef6bfc0ac80c02029bea6c37cc3a32b3e43726f"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\equipment_integration-000a867ef2a8afc0.exe",
+      "sha256": "8eae9c49120a78376a5c7e3b2e12ad0b5b754d98886013eff93fdeda23d28274"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\equipment_supply_automation-3c9e371ffd8bfaa5.exe",
+      "sha256": "48dc63b716863fecdf66c5588b32de50a81b7ed2eaf0e9d002955b0edc134120"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\ground_equipment_integration-c54337aa7a4381ac.exe",
+      "sha256": "a125b562a1f008cbf72de058631546fe3ed8edd4d7f3549d8f2102ba70b2f595"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\growth_decomposition-28aebc30560859e1.exe",
+      "sha256": "1f8cbc967e152c54bd5a4eb761bb60f3b5e2ab4d1eb0412b09ed8b2d1bc21504"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\industry_planning-af3421fc92732ad0.exe",
+      "sha256": "983d06ac12d30603cb90f0dbb7e950023b9cf472e82e05e29d157bbe108940ae"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\materials-b069f1a00077503a.exe",
+      "sha256": "a26222f336f97b2ee72bc3ca138e372d90a7f75f462e9de3f846753e7f2b10cf"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\materials_accounting-10d9daa8956f91cd.exe",
+      "sha256": "cec173fa37fea3a325864d428616f7d613de08b3ede0076eb78dc62932edb922"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\materials_ai_bootstrap-91eefffad94fb461.exe",
+      "sha256": "f81a605fcd1d5baf5df287a491aac2fcc7013303b2c6499d964ba7828d42ba2b"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\materials_ai_timing-7bd75d32cbd8413a.exe",
+      "sha256": "bd8bce2f2fb8a97776e551519cfb246cd27be8dc9d6791306a961aa41a57ccf5"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\materials_ai_warehouse-5fde6aee6983f189.exe",
+      "sha256": "a2d3ee294014eb6615d6fb74ca3dfd6ebc34a8c45d0413b034d1d48e8ea87f90"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\materials_planning-87bfa331f849c626.exe",
+      "sha256": "6fe9d33a176d72660d250d99a517887b46a8e3dceee18636cb1a0ae4f069d1c0"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\military_operations-30db56be7c17a0dc.exe",
+      "sha256": "d231a5424a78dda8c2d268eabe524e67ba06ebd0ced146ac0950f5cd62bf16a8"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\ministries-11cf09cc663b3986.exe",
+      "sha256": "dc5ccf41c42a740d1edbd74fadfc14af9ce723aa817c4569d6998f6ba6d5b119"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\research-290821f29a7ed850.exe",
+      "sha256": "f73375093ec3cb6e7290d4a2f0e6535245540fbbe265ccb4543a23bc4c3bf4ff"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\research_centers-265720260bb38e3d.exe",
+      "sha256": "23a5da02eed00084d0f790a66de0733fcd6e8fb436c52f44495ffdfc93da2376"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\s02_entitlements-f560c6e762c86022.exe",
+      "sha256": "582418c76bd66a47c23001fd8bdee8fd409e52450f2703033aff23d67d87c61c"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\s02_fiscal-6f8cc425dedc70c9.exe",
+      "sha256": "98e42dfe8b80d9fb30520d4c74f83dd9c0d116553794ebb5c7af0ade0090543b"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\s02_industry-a9523e9a56a0f0e0.exe",
+      "sha256": "1e0796e8038b5f48636d6fc04fcee0746cfd4877b6cb5b8afe05505dce062d28"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\s02_integration-f4a3ea4c718394b0.exe",
+      "sha256": "4a809250ba3378e915a53f7ed8bcae5e6ca34502ee603dcd0236f9a858790ebc"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\s02_population-291e33abbb7c36b5.exe",
+      "sha256": "ac680d49b4a116a6656ad806cf4da90e4f74b1980415ce204ed003ad3a20e057"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\s02_succession-38cec10ea73ae792.exe",
+      "sha256": "8314229dbc6f1d73c98b8c4f1a1f7d9d6c0b18efb2d2a8db3d720ab7ea020cc7"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\s03_integration-112960696656434a.exe",
+      "sha256": "2d00fb29a6ce538f9e696b75ae5310a9a4195f055bd92cb253ef5169f5cf238a"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\s03_supplier_operations-55b159e94df0414a.exe",
+      "sha256": "c35f371e4fa0d8f6aeaf1e0b5a142031014aa02b25d9006edec6c23a8f62c9a3"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\s04_integration-8a825a18c3e02c46.exe",
+      "sha256": "3f8e2fbcfe56e8ff421eda4d1ebf2cc13272ce359c014ce8460f758e6f622b73"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\s04_peace_boundaries-f1dd253f304e7815.exe",
+      "sha256": "f49f197440696fa7dfb743946bf261fe20e2715188b7c73e9caf22cd4178ba24"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\s05_master_fiscal-0e6ba7122416bd50.exe",
+      "sha256": "5c56c0b3a22ca350a6e9979a2d762fcb9ff2640b5ceda9d295199ab1c43cd782"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\s06_money_journal-7f3b2e72085e9b56.exe",
+      "sha256": "72f7eb6c9b37db6944377bc2ccdd3535a2a3423c35ae1c722bc17adc2b064c14"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\s07_construction_operations-aace449c529ecf98.exe",
+      "sha256": "aa71cd03e8bc2648c24343ca2810a25f8843c659e840c811592fb1e22aa6e7fe"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\s08_supplier_catalogue-13c4e9c062328d0f.exe",
+      "sha256": "6f0cf97c97e8c164abc3ab269ecddb93c372fdde92f484582863dcde845d3ed7"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\s08_supplier_lifecycle-7dac88676a2dc052.exe",
+      "sha256": "6656a550570549019b92710b613efc4d84a71d8dabcd77719469e83cfac6ec6c"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\sample_size_audit-d292f348eb8d20d4.exe",
+      "sha256": "573571b7d00f419935f61540d16f3e6118cdfc1e574c5f270b86541a12ac8177"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\sector_profiles-366adc4735173778.exe",
+      "sha256": "3ec1df680381c01ce6e6dfa2df9b71940aa7a94ce633763e5a83aef53bcb8578"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\small_country_modules-253d11de2bf01184.exe",
+      "sha256": "6009a8ec12d68ba36a85c01f6a7c1be663482ff5036e042f167168815d46b34b"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\starting_industry-d4ea265ce4461bca.exe",
+      "sha256": "beb00ef6f0c6f87d9558aff1e7718634eee83994d01d05bd564e75e06d094018"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\starting_industry_planning-bef8a055eb400e0b.exe",
+      "sha256": "03196a94bd19bd49c4479d65948c3b4bfdfcba45494e80707599d855c0423b63"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\starting_industry_priority-0db4f80fa1587b37.exe",
+      "sha256": "9a65aa110c9f7409b7a441271da8aa4da8a719967954526849347c1705326f69"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\strategic_raw_supply-4ff13bf138af2e37.exe",
+      "sha256": "82615df58fd1d1bd9ce97f08c015b8849ce31a28ba63a133832e95e5684ba996"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\treasury-99e44355339c4fd9.exe",
+      "sha256": "8ca4092ba4a3f9bcfbbaf9324cccefef7cf9bd34360ddfe92cdcca5edcc71348"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+      "sha256": "46d4191d1613edf9e99afe7ebafbd511fa0c887dd19c83452e1d6e438c1ab6bf"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\http_connections-8051dd677c5ff060.exe",
+      "sha256": "cf86190fe07d67f45c9f9159b803f5d37a4d74d2e0d6447b85270b0b28495859"
+    }
+  ],
+  "scope": "Full default workspace tests; existing opt-in/expensive ignored tests are not claimed here. Original A1\u2013A10 are measured separately; resource timing remains pending isolated final run."
+}

@@ -1,0 +1,26 @@
+{
+  "baseline": "ca00e02b",
+  "method": "Existing Arsenal3D WebGL renderer; 512px identical camera pairs. Temporary isolated headless Chrome; no game server or campaign data.",
+  "cases": [
+    {
+      "name": "row-house",
+      "before": 21222,
+      "after": 17904,
+      "changedPixels": 40,
+      "totalPixels": 262144,
+      "maxChannelDifference": 14,
+      "meanAbsoluteChannelDifference": 0.00023174285888671875
+    },
+    {
+      "name": "residential-block",
+      "before": 214044,
+      "after": 184684,
+      "changedPixels": 20,
+      "totalPixels": 262144,
+      "maxChannelDifference": 26,
+      "meanAbsoluteChannelDifference": 0.00019741058349609375
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

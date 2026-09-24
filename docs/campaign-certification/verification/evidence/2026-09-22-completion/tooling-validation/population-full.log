@@ -1,0 +1,24 @@
+1  COVERAGE
+  PASS  (nation, district) pairs match districts.json  2985 pairs
+  PASS  counts covers exactly the roster ids  2610 ids
+  PASS  2,610 unique districts  2610
+  PASS  2,985 (nation, district) pairs  2985
+  PASS  no district lacks a head count
+2  SHARE SUMS
+  PASS  every nation's shares sum to 1  max |sum-1| = 4.441e-16 (Bulgaria)
+3  HEAD COUNT SUMS (exact, not a tolerance)
+  PASS  head counts sum exactly to the transcribed total  131 nations exact
+4  DOUBLE MEMBERSHIP (the flat-map trap)
+  PASS  375 ids belong to two nations  375
+  PASS  dual-held ids differ under each holder, except uninhabited ones  374/375 differ; identical only for ['RUS_rus-99'] (all zero-population)
+  PASS  the identical ones are identically ZERO, not identically collapsed
+  PASS  RU-MOS weighs more in Russia than in the USSR  0.0594 vs 0.0309
+5  RASTERIZER — area reconstructed from the same coverage masks
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\population\check.py", line 264, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\population\check.py", line 183, in main
+    with open(PREFIX + ".json", encoding="utf-8") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\population\\raster/ghspop1990.json'

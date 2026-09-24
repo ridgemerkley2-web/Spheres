@@ -1,0 +1,89 @@
+{
+  "phase": "Final: shared order accountability, current coup trigger guards, persistent established covert-funded organizations, sourced Libya override",
+  "focused_tests": {
+    "passed": 9,
+    "failed": 0,
+    "new_persistence_regressions": 3,
+    "previous_mechanics_regressions": 4,
+    "existing_controls": 2
+  },
+  "optional_gates": {
+    "passed": 0,
+    "A3": {
+      "seeds": 20,
+      "communist_nonballot": 12
+    },
+    "failed": 7,
+    "A1": {
+      "top3_share": 1.0,
+      "median_coups": 5
+    },
+    "A5": {
+      "seeds": 12,
+      "qualifying_successor_returns": 0
+    },
+    "A2": {
+      "islamist_nonballot": 0,
+      "seeds": 12,
+      "algeria_islamist": 0,
+      "algeria_annulled": 5
+    },
+    "A4": {
+      "median_democratizations": 1
+    },
+    "A7": {
+      "median": 0.4495192307692308,
+      "seed_ratios": [
+        0.38461538461538464,
+        0.4375,
+        0.3076923076923077,
+        0.5384615384615384,
+        0.21428571428571427,
+        0.5833333333333334,
+        0.46153846153846156,
+        0.6428571428571429,
+        0.7857142857142857,
+        0.35714285714285715,
+        0.75,
+        0.26666666666666666
+      ]
+    },
+    "P6_remaining": "Communist count17 versus target11..13 only"
+  },
+  "measured_no_order_control": {
+    "quiet_equilibrium": 0.713159,
+    "monthly_step": "2.756e-5",
+    "unchanged_from_previous_model": true
+  },
+  "measured_order_crisis_control": {
+    "equilibrium": 0.13864950059783246,
+    "previous_equilibrium": 0.15839,
+    "existing_bound": "0.05..0.30 unchanged"
+  },
+  "caveat": "Calibration frequencies remain out of bounds. No assertion thresholds, initial-party tables, or political census definitions changed by this mechanics pass. Current daily browser mode still differs from the legacy monthly takeover test mode.",
+  "persistence": {
+    "foreign_stock_threshold_unchanged": 0.05,
+    "records_before": [
+      "decay",
+      "exposure",
+      "crackdown"
+    ],
+    "old_save_omitted_field_supported": true,
+    "missing_government_lazy_initialization": true,
+    "direct_votes_money_rng_bonus": false,
+    "default_off_hashes_unchanged_from_previous_mechanics": true,
+    "aggregate_dynamic_gates_unchanged_from_previous_mechanics": true,
+    "first_focused_attempt": "3passed/1failed at missing bloc_can_win routing, corrected; retained separately",
+    "final_focused_attempt": "9passed/0failed",
+    "additional_model_tuning_performed": false
+  },
+  "evidence": [
+    "persistence-final-checks-result.json",
+    "persistence-final-focus-result.json",
+    "persistence-final-P6.log",
+    "persistence-final-A1-A5-A7.log",
+    "final-political-hashes.jsonl",
+    "final-political-probe-provenance.json",
+    "run-political-final-checks.ps1"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://web.archive.org/web/20061005234019id_/http://www.pmo.gov.to/artman/publish/article_183.shtml",
+  "original_url": "http://www.pmo.gov.to/artman/publish/article_183.shtml",
+  "archive_capture_utc": "2006-10-05T23:40:19Z",
+  "article_timestamp": "Sep 28, 2006, 11:10",
+  "accessed_date": "2026-09-21",
+  "published_date": "2006-09-28",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 12821,
+  "source_response_sha256": "4db64e8e4fa052db1c5c483e1b7d4227c2dd284f0edd1fef9988e96d0518b68a",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original PMO page, captured at 2006-10-05T23:40:19Z; the original official page is no longer served. The capture bytes were downloaded and hashed before extraction on 2026-09-21 (local). This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_crown_crown_prince_tupouto_a_lavaka_2006",
+      "text": "The PMO article of 28 September 2006 reports that the title of Crown Prince was vested 'yesterday' on the former Prince 'Ulukalala Lavaka Ata, in a ceremony at his residence, and that King Siaosi Tupou V also bestowed on him the noble title Tupouto'a; he is henceforth known as His Royal Highness Crown Prince Tupouto'a Lavaka, the heir apparent.",
+      "locator": "Paragraphs 1-2; article timestamp Sep 28, 2006, 11:10",
+      "uncertainty": "No structured date: the vesting is dated only 'yesterday' relative to the article, and 27 September 2006 would be derived. An identity observation linking the 2012 proclamation's 'Crown Prince Tupouto'a Lavaka' to his earlier name; not an accession or a to_king holder observation."
+    }
+  ],
+  "scope_note": "Archived PMO article (raw Internet Archive capture of 5 October 2006, 23:40:19 UTC); the original page is no longer served. Used only for the Crown Prince title and name; the other titles and estates it lists are not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  }
+}

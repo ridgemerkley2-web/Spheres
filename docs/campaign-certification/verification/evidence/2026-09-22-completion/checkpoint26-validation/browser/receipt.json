@@ -1,0 +1,99 @@
+{
+  "revision": "9f7faed5f541e14545e01caf1616ba08c6ad8ff9",
+  "exit_code": 0,
+  "passed": true,
+  "observed_utc": "2026-09-22T22:51:57.620897+00:00",
+  "command": [
+    "node",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s05-installed-browser.cjs"
+  ],
+  "wrapper_sha256": "68815cca04aa2c20cec67e8d719641695e9b93ea94121b28aa7517c88f211758",
+  "node": "v24.12.0",
+  "browser_channel": "chrome",
+  "scope": "Unchanged committed browser CI assertions via installed-Chrome launch wrapper; isolated fresh campaign and dynamic port, disposed own server. Not the hosted Chromium environment.",
+  "log": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\completion-checkpoint26-browser-20260922.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "server_log_sha256": "33c0975081ffeb240eb04d468b61b3be9f9f72f6457608f4813bf4846a91f308",
+  "captured_files": [
+    {
+      "path": "companies-desktop.png",
+      "bytes": 874022,
+      "sha256": "339a64d9a967f4576f8ff2b3f12fc7fbc3faaecfe0a5dc7e5aaa237f57cfd9c7"
+    },
+    {
+      "path": "companies-mobile.png",
+      "bytes": 199665,
+      "sha256": "3e981a27374cb0592c77e8097af08cfcd69cc2f4829a9ae09e81b9f13e7e7918"
+    },
+    {
+      "path": "construction-preview-desktop.png",
+      "bytes": 1147268,
+      "sha256": "56462a2b4b84277afccaee9c0fcdb4e5b96647ea8a1aa6e09d0d934dd69431ef"
+    },
+    {
+      "path": "construction-preview-mobile.png",
+      "bytes": 236418,
+      "sha256": "1efbd290883f605a4803f6189e050a155e49640f1ab2bfd448ca178193f653b9"
+    },
+    {
+      "path": "government-desktop.png",
+      "bytes": 766723,
+      "sha256": "9ea2d681ee22272027e706c0dae71fd4201ab677f2c25b42705ed977f530d24d"
+    },
+    {
+      "path": "government-mobile.png",
+      "bytes": 86509,
+      "sha256": "ddc8df233a9d7516c53ed1171b5f7b85c15c7c8174c0cb614392946ee2a6b8ed"
+    },
+    {
+      "path": "government-review-desktop.png",
+      "bytes": 283500,
+      "sha256": "e5f3d3f05d97fe9e6538bcc9a9af0d5fc8635b814e8de125f715b8722a406159"
+    },
+    {
+      "path": "government-review-mobile.png",
+      "bytes": 84972,
+      "sha256": "85581190094a1ee6ad42073d22639ebd54d68425f39b569e3bb99460d31721e2"
+    },
+    {
+      "path": "research-desktop.png",
+      "bytes": 464419,
+      "sha256": "57e4268c51e23278d89f6bae99cf00e0dff559cd28c3e7066e9eb44d8da718c3"
+    },
+    {
+      "path": "research-mobile.png",
+      "bytes": 298093,
+      "sha256": "fcf9ba27ceb866f9e412c1d22e6919ac5fd0fabe8af27f15b232bcba40520da7"
+    },
+    {
+      "path": "result.json",
+      "bytes": 18947,
+      "sha256": "c6ca9c0c608d126a6ee3c5342bc9330d72f5844c2b148c3e8fad41131e1a5036"
+    },
+    {
+      "path": "tutorial-budget-destination.png",
+      "bytes": 1332923,
+      "sha256": "228867161de19c0928d9a36cede48e66ef5006eb3f1c0617c773dc0ac52897bb"
+    }
+  ],
+  "assets_verified": 22,
+  "result_keys": [
+    "passed",
+    "build",
+    "build_evidence",
+    "integrated",
+    "loaded_capabilities",
+    "delayed_boot_navigation_preserved",
+    "lost_committed_response_recovered",
+    "pending_receipt_reload_recovered",
+    "identical_retry_requests",
+    "visible_named_load",
+    "save_history_roundtrip"
+  ],
+  "source_clean_after": true,
+  "playwright_version": "1.62.1",
+  "installed_chrome_file_version": "153.0.8010.53",
+  "browser_version_basis": "Installed chrome.exe file metadata observed after the supported Chrome-channel run."
+}

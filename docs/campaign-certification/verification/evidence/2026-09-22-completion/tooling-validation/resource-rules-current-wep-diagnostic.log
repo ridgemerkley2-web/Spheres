@@ -1,0 +1,186 @@
+CHECK 1: structure and provenance
+  PASS  every district id exists in the roster
+  PASS  roster is 2610 districts
+  PASS  every district entry cites a declared source
+  PASS  source 'china2014' carries title/url/licence/role/bytes
+  PASS  source 'china2014' digests every staged file (1)
+  PASS  source 'ds896_bauxite' carries title/url/licence/role/bytes
+  PASS  source 'ds896_bauxite' digests every staged file (1)
+  PASS  source 'ds896_copper' carries title/url/licence/role/bytes
+  PASS  source 'ds896_copper' digests every staged file (1)
+  PASS  source 'ds896_iron' carries title/url/licence/role/bytes
+  PASS  source 'ds896_iron' digests every staged file (1)
+  PASS  source 'eia_intl' carries title/url/licence/role/bytes
+  PASS  source 'eia_intl' digests every staged file (1)
+  PASS  source 'fsucoal' carries title/url/licence/role/bytes
+  PASS  source 'fsucoal' digests every staged file (2)
+  PASS  source 'minfac' carries title/url/licence/role/bytes
+  PASS  source 'minfac' digests every staged file (1)
+  PASS  source 'mrds' carries title/url/licence/role/bytes
+  PASS  source 'mrds' digests every staged file (1)
+  PASS  source 'pp1802' carries title/url/licence/role/bytes
+  PASS  source 'pp1802' digests every staged file (1)
+  PASS  source 'uscoalfields' carries title/url/licence/role/bytes
+  PASS  source 'uscoalfields' digests every staged file (1)
+  PASS  source 'usda_psd' carries title/url/licence/role/bytes
+  PASS  source 'usda_psd' digests every staged file (1)
+  PASS  source 'wep_prva' carries title/url/licence/role/bytes
+  PASS  source 'wep_prva' digests every staged file (1)
+  PASS  NO district carries a tonnage/grade/production field
+  PASS  every province figure is flagged shared
+  PASS  meta district count matches the file
+  PASS  EVERY district-commodity entry carries a confidence block
+  PASS  every confidence band is one of the four declared values
+  PASS  every point-sourced entry states its distinct supporting record count
+  PASS  every coal-field entry states how many fields and how much of the district
+  PASS  no entry exists without sites, fields or a province
+  PASS  every province attachment carries measured area fractions in [0,1]
+
+CHECK 2: ground truth — named 1990 regions land where history puts them
+  PASS  Katanga / the Copperbelt carries copper
+  PASS  Katanga carries cobalt
+  PASS  Zambian Copperbelt (Central) carries copper
+  PASS  Witwatersrand / Gauteng carries gold
+  PASS  Bushveld / North West carries PGE
+  PASS  Bushveld / Limpopo carries PGE
+  PASS  Krivoy Rog / Dnipropetrovsk carries iron
+  PASS  Antofagasta / Chuquicamata carries copper
+  PASS  Pilbara / Western Australia carries iron
+  PASS  Weipa / Queensland carries bauxite
+  PASS  Darling Range / Western Australia carries bauxite
+  PASS  Saudi Eastern Province carries oil
+  PASS  Basra carries oil
+  PASS  Kuwait carries oil
+  PASS  Moroccan phosphate belt carries phosphate
+  PASS  Carajas / Para carries iron
+  PASS  Ontario carries gold
+
+  Persian Gulf oil, per nation:
+  PASS  SaudiArabia has >=1 oil district
+  PASS  Iraq has >=1 oil district
+  PASS  Kuwait has >=1 oil district
+  PASS  Iran has >=1 oil district
+  PASS  UAE has >=1 oil district
+  PASS  Qatar has >=1 oil district
+
+CHECK 2b: the 2026-08-31 contamination stays gone
+  PASS  NO-12 Hordaland carries no bauxite (Tyssedal is an aluminium SMELTER)
+  PASS  NO-18 Nordland carries no bauxite (Mosjoen is an aluminium SMELTER)
+  PASS  Norway carries no bauxite anywhere (it has no bauxite ore geology)
+  PASS  Japan carries no bauxite anywhere (it has no bauxite ore geology)
+  PASS  Steep Rock Iron Mine (10157857) no longer files under any commodity
+  PASS  Ontario carries no bauxite
+  PASS  Ontario still carries iron from its real iron mines
+  PASS  Dsc Warri (10304733), the Delta Steel PLANT, is not an iron deposit
+  PASS  Al-Basrah's measured oil-province coverage exceeds Al-Anbar's
+  PASS  Delta State's measured oil-province coverage exceeds Cross River's
+  PASS  Al-Basrah out-ranks Al-Anbar on apportioned oil, not just on area
+  PASS  Delta State out-ranks Cross River on apportioned oil
+  PASS  Delta State is Nigeria's leading oil district
+  PASS  both read the Foredeep as their lead province, but by measured share
+  PASS  Al-Basrah's Foredeep share is the larger one
+  PASS  the Mesopotamian Foredeep covers Al-Basrah and only clips Al-Anbar
+  PASS  every apportioned figure is exactly `known` x `area_frac_province`
+  PASS  no province's apportioned volume exceeds its own assessed total (213 provinces summed)
+  PASS  the measured district areas reproduce districts.json area_sqkm (1377 compared)
+  PASS  the USA is marked as an UNLOCATED oil producer, not as an empty one
+  PASS  Norway is marked as an UNLOCATED oil producer (its fields are offshore)
+  PASS  no US district was invented to fill the oil or gas hole
+  PASS  Alberta Basin x Montana is recorded as a dropped boundary ribbon
+  PASS  Williston Basin x North Dakota is recorded as a dropped boundary ribbon
+  PASS  Mackenzie Foldbelt x Alaska is recorded as a dropped boundary ribbon
+  PASS  every dropped ribbon is negligible in BOTH polygons (13 dropped)
+  PASS  every unlocated petroleum producer states WHICH kind of hole it is
+
+CHECK 3: fabrication guards
+  PASS  every national figure carries units and a source
+  PASS  every province volume equals its WEP source record (2109 checked)
+  PASS  every cited MRDS site is an admitted extraction record for its commodity (5018 checked)
+  PASS  artifact enumerates the MRDS oper_type and dev_stat vocabularies
+  PASS  every enumerated vocabulary value carries a count, a decision and a reason
+  PASS  oper_type 'Processing Plant' is declared NOT admitted
+  PASS  commod3 is declared NOT admitted
+  PASS  artifact records the correction pass, its rules and what they removed
+  PASS  artifact carries the do-not-rank warning
+  PASS  artifact declares the area apportionment DERIVED, not transcribed
+  PASS  artifact says national 1990 production is still never divided
+  PASS  artifact records the sources examined and rejected
+  PASS  coal is LOCATED — the national-only hole is filled
+  PASS  coal declares all four location sources
+  PASS  coal is placed BOTH from mine points and from named coal fields
+  PASS  coal states that none of its location sources is a 1990 census
+  PASS  the coke-plant token is declared NOT admitted — coke is not mined coal
+  PASS  minfac fac_type 'Plant' is declared NOT admitted
+  PASS  both coal admission rules removed something, and the artifact says how much
+  PASS  coal states in the artifact what it cannot support
+  PASS  every 1990 coal producer is either located or explicitly unlocated
+  PASS  45 of the 59 1990 coal producers now carry located coal
+  PASS  meta.coal and unlocated_producers.coal name the same unlocated nations
+  PASS  the 1990 coal power China carries located coal
+  PASS  the 1990 coal power USA carries located coal
+  PASS  the 1990 coal power USSR carries located coal
+  PASS  the 1990 coal power Germany carries located coal
+  PASS  the 1990 coal power Poland carries located coal
+  PASS  the 1990 coal power India carries located coal
+  PASS  the 1990 coal power Australia carries located coal
+  PASS  the 1990 coal power SouthAfrica carries located coal
+  PASS  the 1990 coal power UK carries located coal
+  PASS  the 1990 coal power Czechoslovakia carries located coal
+  PASS  wheat is national-only, with no district claimed
+  PASS  rice is national-only, with no district claimed
+
+CHECK 3b: ruling 4 — banding on distinct sites
+  PASS  every cited MRDS site is a row of the published source (5018 coordinates checked)
+  PASS  NO PUBLISHED COORDINATE MOVED: every cited point is the one its source published, to five decimals
+  PASS  every band is recomputed here from the DISTINCT COORDINATE count and agrees (1770 point entries)
+  PASS  every coal band_on_fields is recomputed from the measured area share and agrees
+  PASS  unflagged + centroid coordinates == distinct coordinates
+  PASS  records >= distinct_coordinates in every entry
+  PASS  an untruncated sites array reproduces both its record count and its coordinate count
+  PASS  the site metric only ever SHRINKS an evidence claim: no points-only entry bands above its superseded record band
+  PASS  FRA_centre-val-de-loire bauxite: 6 records on 1 coordinate(s), strong -> single
+  PASS  FRA_centre-val-de-loire iron: 17 records on 2 coordinate(s), strong -> sparse
+  PASS  FRA_centre-val-de-loire uranium: 5 records on 1 coordinate(s), moderate -> single
+  PASS  MA-12 phosphate: 5 records on 2 coordinate(s), moderate -> sparse
+  PASS  AU-NT bauxite: 3 records on 3 coordinate(s), moderate -> moderate
+  PASS  AU-QLD bauxite: 6 records on 3 coordinate(s), strong -> moderate
+  PASS  ESP_madrid iron: 6 records on 1 coordinate(s), strong -> single
+  PASS  ITA_umbria copper: 8 records on 1 coordinate(s), strong -> single
+  PASS  SE-Y copper: 14 records on 1 coordinate(s), strong -> single
+  PASS  the FRA defect is closed by counting, not by deletion: all 6 records still ship, all on the published point, all flagged at_centroid
+  PASS  control: ZM-08 copper is unflagged and still bands strong
+  PASS  the filing-centroid flag is selective: 258 of 1770 point entries touch one, 80 rest on nothing else
+  PASS  no entry whose every point is a filing centroid bands above `sparse`
+  PASS  the artifact states the ruling, the flag rule AND what the flag cannot see
+
+CHECK 3c: the named coal regions
+  PASS  the RUHR (Nordrhein-Westfalen) (DE-NW) carries coal as points — strong, 10 named mine(s) on 10 coordinate(s)
+  PASS  UPPER SILESIA (Slaskie) (PL-SL) carries coal as points — single, 7 named mine(s) on 1 coordinate(s)
+  PASS  the DONBAS (Donets'ka) (UA-14) carries coal as fields — moderate, 1 named mine(s) on 1 coordinate(s); 4 named field(s)
+  PASS  the Donbas (Luhans'ka) (UA-09) carries coal as fields — moderate, 1 named mine(s) on 1 coordinate(s); 3 named field(s)
+  PASS  the KUZBASS (Kemerovo) (RU-KEM) carries coal as fields — moderate, 6 named field(s)
+  PASS  KARAGANDA (KZ-KAR) carries coal as fields — single, 1 named mine(s) on 1 coordinate(s); 5 named field(s)
+  PASS  EKIBASTUZ (Pavlodar) (KZ-PAV) carries coal as fields — sparse, 2 named mine(s) on 2 coordinate(s); 6 named field(s)
+  PASS  the PECHORA (Komi) (RU-KO) carries coal as fields — sparse, 1 named mine(s) on 1 coordinate(s); 7 named field(s)
+  PASS  SHANXI (CN-SX) carries coal as points — strong, 243 named mine(s) on 169 coordinate(s)
+  PASS  APPALACHIA (West Virginia) (US-WV) carries coal as fields — strong, 2 named field(s)
+  PASS  Appalachia (Pennsylvania) (US-PA) carries coal as fields — moderate, 4 named field(s)
+  PASS  Appalachia (Kentucky) (US-KY) carries coal as fields — moderate, 3 named field(s)
+  PASS  the British pits (Notts: Thoresby, Welbeck) (GBR_east-midlands) carries coal as points — sparse, 2 named mine(s) on 2 coordinate(s)
+  PASS  the British pits (Yorks: Kellingley, Maltby) (GBR_yorkshire-and-the-humber) carries coal as points — sparse, 2 named mine(s) on 2 coordinate(s)
+  PASS  the South Wales pits (Tower Colliery) (GBR_east-wales) carries coal as points — moderate, 3 named mine(s) on 3 coordinate(s)
+  PASS  the Ruhr earns `strong` on named collieries at their own pitheads (Prosper-Haniel among them), none of them a filing centroid
+  PASS  Upper Silesia is the ruling in one district: 7 rollup rows on ONE published point, all still shipped, all flagged — `strong` on records, `single` on sites
+  PASS  US-PA: the Appalachian Region is ONE aggregated named field at area_frac ~0.304, not its largest fragment
+  PASS  US-WV: the Appalachian Region is ONE aggregated named field at area_frac ~0.696, not its largest fragment
+  PASS  no coal entry has more coordinates than records (the china2014 per-province IDNum key defect)
+  PASS  Shanxi's mines did not collapse onto a shared key: 243 records on 169 coordinates
+  PASS  the coal admission rules re-derive from raw minfac.csv: 380 candidates, 21 removed, 359 admitted
+  PASS  the Ruhr's pitside coking plants are among the rows the rules remove
+  PASS  no removed coke or plant row is cited by any district
+  PASS  no coal field or coal mine carries a tonnage, capacity or reserve figure
+
+CHECK 4: determinism
+  SKIP  (--fast)
+
+168 checks, 0 failed

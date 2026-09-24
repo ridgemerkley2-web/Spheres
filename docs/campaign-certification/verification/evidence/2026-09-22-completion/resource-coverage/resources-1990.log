@@ -1,0 +1,74 @@
+CHECK 1: the join
+  PASS  twelve commodities, alphabetical
+  PASS  twelve tracked lines
+  PASS  six lines from the artifact, six from the transcription file
+  PASS  national_1990 and located are keyed by the tracked lines
+  PASS  every national_1990 key is a 1990 start nation
+  PASS  dropped_keys is exactly [Namibia]
+  PASS  every dropped key is a roster seat that is not a 1990 start nation
+  PASS  the dropped keys are exactly the inputs' non-start keys
+  PASS  no start nation's positive figure was dropped
+  PASS  no zero row is carried
+  PASS  every artifact-line figure and source is the artifact's, verbatim
+  PASS  every transcribed-line figure, source and flag list is the transcription's, verbatim
+  PASS  every transcribed row cites a 1990 table
+  PASS  every transcribed table reconciles: seated + dropped + unmapped + zero == printed total
+  PASS  a producer named without a figure is a start nation with no row and a stated reason
+  PASS  137 start nations on the roster
+
+CHECK 2: shares
+  PASS  every located nation has a national figure
+  PASS  no located list is empty
+  PASS  every located list sums to 1 within 1e-9
+  PASS  every located share is at least 0.001
+  PASS  every located list is sorted share desc then id
+  PASS  no district is listed twice in one list
+  PASS  every located district belongs to that nation in 1990
+  PASS  no Soviet coal district under 0.001 survives (63 located, 48 pruned)
+  PASS  the Soviet coalfield tail was actually pruned (count above is non-zero)
+  PASS  meta.counts describe the file
+  PASS  unlocated_producers is exactly national minus located, per line
+
+CHECK 3: the transcription guards
+  PASS  USSR iron is 236,000,000 exactly (DS-896)
+  PASS  USSR iron cites ds896_iron
+  PASS  USA has no located.oil entry (0 located)
+  PASS  USA keeps its national oil figure (unlocated)
+  PASS  USA has no national_1990.bauxite entry
+  PASS  USA is listed as an unlocated oil producer
+  PASS  the USSR holds its 14,000 tU of uranium as an unlocated producer (SPEC 7.3's named assertion)
+  PASS  no Soviet district carries a uranium presence bit (the survey hole is real)
+  PASS  France's cobalt (New Caledonia, territory->sovereign) is seated unlocated
+  PASS  France's gold is the merged row (3,600 + French Guiana 550) and says so
+  PASS  every transcribed price is the transcription's figure and source, in the sim's unit
+  PASS  oil has no price row (the sim prices it at w.oil_price)
+  PASS  every mined line is either priced or named in prices_omitted, never both
+  PASS  every price row carries a positive figure, as_printed, conversion and source
+  PASS  units name the sim's unit per tracked line
+  PASS  presence has 1,471 keys
+  PASS  quality is keyed exactly like presence
+  PASS  presence keys are exactly the artifact's districts
+  PASS  every presence mask is a non-empty 12-bit mask
+  PASS  quality is 0 exactly where the presence bit is 0, and 1..3 where it is set
+  PASS  every presence district is a roster district
+  PASS  pop_share and pop_1990 cover exactly the districts held in 1990
+  PASS  every pop_share is in 0..=1
+  PASS  each 1990 owner's pop_share sums to 1 within 1e-6
+  PASS  every located district carries a presence bit
+
+CHECK 4: provenance
+  PASS  source_sha256[district_resources.json] matches the file on disk
+  PASS  source_sha256[district_population.json] matches the file on disk
+  PASS  source_sha256[districts.json] matches the file on disk
+  PASS  source_sha256[transcribed_1990_six_lines.json] matches the file on disk
+  PASS  upstream generator and vintage are the artifact's own
+  PASS  every cited national source is described in upstream.sources with the artifact's URL
+  PASS  meta.generator names this tool
+  PASS  meta.transcription names the transcription file and its two sources
+
+CHECK 5: determinism
+  PASS  two regenerations are byte-identical
+  PASS  regeneration reproduces the committed file byte-for-byte
+  PASS  the committed file uses LF newlines only
+
+63 checks, 0 failed

@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "purpose": "Assess unchanged historical frequency targets on the development cohort after the next mechanics freeze; this is not the predeclared independent cohort.",
+  "seeds": {
+    "first": 0,
+    "count": 200,
+    "months": 252
+  },
+  "uninspected_independent_cohort": "predeclared-independent-cohort.json, seeds1000..1059 and1000..1011",
+  "original_gate_rule": "Retain and report every original12-seed failure. Do not substitute a favorable subset or alter an outcome definition.",
+  "bernoulli_sizing": {
+    "z": 2.326,
+    "formula": "ceil(z^2 * p * (1-p) / min(p-lower,upper-p)^2), rounded up to the next20 seeds; never below current cohort size",
+    "condition": "Only when estimated p lies strictly within the existing target interval. Otherwise the mechanic remains outside target; larger n is not a repair. Report estimates and uncertainty honestly; the plug-in formula is a sizing approximation, not a guaranteed confidence bound."
+  },
+  "a2_targets": {
+    "lower_exclusive": 0.5,
+    "upper_inclusive": 0.9,
+    "algeria_islamist_upper_exclusive": 0.5,
+    "algeria_annulment_lower_inclusive": 0.1
+  },
+  "a1_targets": "Unchanged median4..14 successful coups against elected governments, median top3 share below0.5. No frequency quota widening or same-coup reclassification.",
+  "validation": "A revised sample size, if justified by the existing test specification, must be documented and executed; then the untouched independent cohort validates the frozen mechanics. Never inspect independent data to select sample size or parameters."
+}

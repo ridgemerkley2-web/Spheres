@@ -1,0 +1,219 @@
+{
+  "reviewed_at_utc": "2026-09-22T18:12:46.969071+00:00",
+  "base": "14f01c5a8bcd003723a1f122a32f11b684bc878e",
+  "head": "3291facf7f304959614d67741a2497449fa9398d",
+  "c01_03_tip": "387e45266cd9f7ad79170c7beb391dc2305891f0",
+  "review_checkout": "isolated sparse detached checkout at reviewed head",
+  "recommendation": "accepted_as_bounded_research",
+  "changed_paths": [
+    "docs/campaign-certification/C01/research-index.json",
+    "docs/campaign-certification/C01/research/sources/tonga-assembly-eke-elected-news-20241224-facts.json",
+    "docs/campaign-certification/C01/research/sources/tonga-assembly-first-nomination-20241220-facts.json",
+    "docs/campaign-certification/C01/research/sources/tonga-assembly-minutes-01-20250131-facts.json",
+    "docs/campaign-certification/C01/research/sources/tonga-assembly-minutes-48-20241209-facts.json",
+    "docs/campaign-certification/C01/research/sources/tonga-assembly-minutes-pm-election-20241224-facts.json",
+    "docs/campaign-certification/C01/research/sources/tonga-assembly-oath-news-20250203-facts.json",
+    "docs/campaign-certification/C01/research/sources/tonga-assembly-oath-sitting-notice-20250129-facts.json",
+    "docs/campaign-certification/C01/research/sources/tonga-assembly-pm-nominations-open-20241210-facts.json",
+    "docs/campaign-certification/C01/research/sources/tonga-assembly-resignation-news-20241209-facts.json",
+    "docs/campaign-certification/C01/research/sources/tonga-assembly-two-nominations-20241223-facts.json",
+    "docs/campaign-certification/C01/research/sources/tonga-assembly-vonc-notice-20241125-facts.json",
+    "docs/campaign-certification/C01/research/sources/tonga-gazette-gse22-20241210-facts.json",
+    "docs/campaign-certification/C01/research/sources/tonga-ipu-2025-election-facts.json",
+    "docs/campaign-certification/C01/research/sources/tonga-pmo-appointment-20250122-facts.json",
+    "docs/campaign-certification/C01/research/sources/tonga-pmo-cabinet-20250128-facts.json",
+    "docs/campaign-certification/C01/research/sources/tonga-pmo-caretaker-announcement-20250106-facts.json",
+    "docs/campaign-certification/C01/research/sources/tonga-pmo-pif-joint-release-20250124-facts.json",
+    "docs/campaign-certification/C01/research/tonga-transition-2024-03.md",
+    "docs/campaign-certification/C01/research/tonga.json",
+    "docs/planning/ai-handoffs/CLAUDE-C01-03.md",
+    "docs/planning/ai-handoffs/CLAUDE-C01-08.md",
+    "tools/avatars/test_tonga_dpfi_c01_04.py",
+    "tools/avatars/test_tonga_pm_1990_2019_c01_08.py",
+    "tools/avatars/test_tonga_research_s10g.py",
+    "tools/avatars/test_tonga_transition_c01_02.py",
+    "tools/avatars/test_tonga_transition_c01_03.py"
+  ],
+  "changed_paths_count": 27,
+  "protected_paths_identical": {
+    "spheres-sim/src": true,
+    "spheres-sim/data": true,
+    "spheres-web/src": true,
+    "spheres-web/static": true,
+    "spheres-web/data": true,
+    "docs/planning/campaign-pathway.json": true,
+    "docs/planning/ai-workstreams.json": true
+  },
+  "claims": {
+    "old": 157,
+    "new": 184,
+    "removed": [],
+    "modified": []
+  },
+  "sources": {
+    "old": 103,
+    "new": 119,
+    "added": [
+      "to_assembly_eke_elected_news_20241224",
+      "to_assembly_first_nomination_20241220",
+      "to_assembly_minutes_01_20250131",
+      "to_assembly_minutes_48_20241209",
+      "to_assembly_minutes_pm_election_20241224",
+      "to_assembly_oath_news_20250203",
+      "to_assembly_oath_sitting_notice_20250129",
+      "to_assembly_pm_nominations_open_20241210",
+      "to_assembly_resignation_news_20241209",
+      "to_assembly_two_nominations_20241223",
+      "to_assembly_vonc_notice_20241125",
+      "to_gazette_gse22_20241210",
+      "to_pmo_caretaker_announcement_20250106",
+      "to_pmo_eke_appointment_20250122",
+      "to_pmo_eke_cabinet_20250128",
+      "to_pmo_pif_joint_release_20250124"
+    ],
+    "removed": [],
+    "modified": [
+      "to_ipu_2025"
+    ]
+  },
+  "tests": {
+    "tonga": {
+      "count": 69,
+      "passed": 69,
+      "command": "python -B -X utf8 -m unittest discover -s tools/avatars -p 'test_tonga*.py' -v"
+    },
+    "campaign": {
+      "count": 16,
+      "passed": 16,
+      "command": "python -B -X utf8 -m unittest discover -s tools/avatars -p 'test_campaign*.py' -v"
+    },
+    "research_check": "PASS",
+    "census_check": "PASS",
+    "workboard_check": 0,
+    "diff_check": 0
+  },
+  "independent_originals": [
+    {
+      "extract": "tonga-pmo-appointment-20250122-facts.json",
+      "url": "https://web.archive.org/web/20250123155100id_/https://pmo.gov.to/his-majesty-king-tupou-vi-appoints-hon-dr-aisake-valu-eke-as-prime-minister-of-tonga/",
+      "checked_at": "2026-09-22T18:07:40.945477+00:00",
+      "status": 200,
+      "bytes": 66444,
+      "sha256": "ed2e113eef3a7e54aee258e55f65558dca88c715036ef957a61fb4592690354a",
+      "content_type": "text/html; charset=UTF-8",
+      "exact_producer_bytes": true
+    },
+    {
+      "extract": "tonga-pmo-cabinet-20250128-facts.json",
+      "url": "https://pmo.gov.to/wp-content/uploads/2025/01/Media-Release_28_01_2025_Prime-Minister-Hon.Dr_.Aisake-Valu-Eke-announces-new-Cabinet-Ministers.pdf",
+      "checked_at": "2026-09-22T18:07:40.945976+00:00",
+      "status": 200,
+      "bytes": 396595,
+      "sha256": "ad766e4ddce9bd50442776e2a23237cf40c57722a6d959c671f89a4a318ae134",
+      "content_type": "application/pdf",
+      "exact_producer_bytes": true
+    },
+    {
+      "extract": "tonga-pmo-caretaker-announcement-20250106-facts.json",
+      "url": "https://pmo.gov.to/wp-content/uploads/2025/01/1.jpg",
+      "checked_at": "2026-09-22T18:07:40.946152+00:00",
+      "status": 200,
+      "bytes": 137870,
+      "sha256": "db9c580da9fe40f160f89b658f1830dda59726145a28f57d307d994ed9d7d250",
+      "content_type": "image/jpeg",
+      "exact_producer_bytes": true
+    },
+    {
+      "extract": "tonga-gazette-gse22-20241210-facts.json",
+      "url": "https://ago.gov.to/cms/images/LEGISLATION/GAZETTES/2024/2024-0047/GazetteSupplementExtraordinaryNo.222024.pdf",
+      "checked_at": "2026-09-22T18:07:40.946515+00:00",
+      "status": 200,
+      "bytes": 273587,
+      "sha256": "f5f830a993c20954a34f1fe806618d03cf81c07239f2b563414429585ec6fa5b",
+      "content_type": "application/pdf",
+      "exact_producer_bytes": true
+    },
+    {
+      "extract": "tonga-assembly-minutes-48-20241209-facts.json",
+      "url": "https://parliament.gov.to/en/parliament-business/hansards-debates/3-2024/131-miniti-fika-48-aho-09-o-tisema-2024",
+      "request_note": "Fresh public form GET with cache-buster, then ordinary download POST; earlier cached form returned HTML, not PDF.",
+      "status": 200,
+      "content_type": "application/pdf",
+      "response_url": "https://parliament.gov.to/en/parliament-business/hansards-debates/3-2024/131-miniti-fika-48-aho-09-o-tisema-2024?review=1790100607323522900",
+      "bytes": 404595,
+      "sha256": "9e9cf1dd8d5833fc4b2f9b1c4ccf3df01cf7471686a5e7768f00aa42023c27d5",
+      "exact_producer_bytes": true
+    },
+    {
+      "extract": "tonga-assembly-minutes-pm-election-20241224-facts.json",
+      "url": "https://parliament.gov.to/en/parliament-business/hansards-debates/3-2024/132-miniti-fili-palemia-aho-24-o-tisema-2024",
+      "request_note": "Fresh public form GET with cache-buster, then ordinary download POST; earlier cached form returned HTML, not PDF.",
+      "status": 200,
+      "content_type": "application/pdf",
+      "response_url": "https://parliament.gov.to/en/parliament-business/hansards-debates/3-2024/132-miniti-fili-palemia-aho-24-o-tisema-2024?review=1790100607323301600",
+      "bytes": 412540,
+      "sha256": "d798e1237d660f3cb4a5b207fa8ca17b6ccf18d8fee45065c9327dda85443347",
+      "exact_producer_bytes": true
+    },
+    {
+      "extract": "tonga-assembly-minutes-01-20250131-facts.json",
+      "url": "https://parliament.gov.to/en/parliament-business/hansards-debates/2-2025/111-miniti-fika-01-aho-31-o-sanuali-2025",
+      "request_note": "Fresh public form GET with cache-buster, then ordinary download POST; earlier cached form returned HTML, not PDF.",
+      "status": 200,
+      "content_type": "application/pdf",
+      "response_url": "https://parliament.gov.to/en/parliament-business/hansards-debates/2-2025/111-miniti-fika-01-aho-31-o-sanuali-2025?review=1790100607319961900",
+      "bytes": 410718,
+      "sha256": "3ef9f082c60a3bd580ba7e66f399d19ed25c675b724eeb1039e84dff38cd320c",
+      "exact_producer_bytes": true
+    }
+  ],
+  "rendered_review": [
+    "cabinet pp1-2",
+    "resignation minutes pp2,41,42",
+    "selection minutes p52",
+    "caretaker English announcement image"
+  ],
+  "text_layer_review": [
+    "resignation minutes pp3,40-42",
+    "selection minutes pp47,52-53",
+    "oath minutes pp2,7-9",
+    "Gazette pp1-2",
+    "archived appointment HTML"
+  ],
+  "limitations": [
+    "Live PMO appointment page not usable through web tool; exact original archived capture independently retrieved instead.",
+    "Initial cached Parliament form POSTs returned HTML; fresh public forms returned exact original PDFs.",
+    "Government Act original and Royal Warrant not independently located; packet keeps these unresolved.",
+    "Other ancillary dynamic HTML sources were not all independently refetched.",
+    "No browser or native/Cargo run in this isolated Python/research review."
+  ],
+  "checkout_clean": true,
+  "logs": {
+    "isolated-campaign.log": {
+      "bytes": 2544,
+      "sha256": "a00a2cc62b99d1aab50cc7fa6fcb048964f5053a938012b81f93e429982dfe99"
+    },
+    "isolated-census.log": {
+      "bytes": 1462,
+      "sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+    },
+    "isolated-diff-check.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "isolated-research.log": {
+      "bytes": 250,
+      "sha256": "bbdaaa6498ffb2ad3aaa7e42442256e05602572192e967e2f66991ed3837c709"
+    },
+    "isolated-tonga.log": {
+      "bytes": 12027,
+      "sha256": "47a717ac5c9e6513e5dacee939e7226b212add0c2acd25eaa7c9afbc6423c626"
+    },
+    "isolated-workboard.log": {
+      "bytes": 107,
+      "sha256": "6cc71a3c645534f8525319dc992aaa9aafa512dab30b47fc6c1c7a998c1f30b6"
+    }
+  },
+  "integration_merge": "5a63d7b6060d07c15b2069c611f1b0716a488bfe",
+  "original_response_storage": "Original documents and rendered images remain local review evidence; this repository stores identities and bounded factual findings only."
+}

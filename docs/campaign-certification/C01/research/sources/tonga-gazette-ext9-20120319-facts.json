@@ -1,0 +1,28 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://ago.gov.to/cms/images/LEGISLATION/GAZETTES/2012/2012-0009/GazetteExtraordinaryNo.9of2012.pdf",
+  "accessed_date": "2026-09-21",
+  "published_date": "2012-03-19",
+  "access_method": "downloaded_original_pdf_text_and_relevant_page_visually_read",
+  "source_response_bytes": 662692,
+  "source_response_sha256": "773fd96d13b46e8fbba1e943e1f85d7b6d406cbc65937b313c3631f5b294d3e9",
+  "source_response_checked_in": false,
+  "provenance_note": "Original response downloaded (curl -L) and hashed before extraction on 2026-09-21 (local). This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_crown_tupou_vi_devolution_proclamation_20120319",
+      "text": "Gazette Extraordinary No. 9 of Monday 19 March 2012 carries a proclamation in the name of His Majesty Tupou VI, by Prime Minister Lord Tu'ivakano, stating that by the decease of His Late Majesty King George Tupou V the Crown of the Kingdom of Tonga devolves upon Crown Prince Tupouto'a Lavaka. The Cabinet Ministers, Speaker Lasike and Chief Justice Michael Dishington Scott proclaim that Crown Prince Tupouto'a Lavaka has now become King of the Kingdom of Tonga, as King Tupou VI. It is given at Nuku'alofa on 19 March 2012, with a Tongan FANONGONONGO to the same effect.",
+      "attested_on": "2012-03-19",
+      "locator": "PDF page 1 (gazette 9/115), English; page 2 (9/116), Tongan",
+      "uncertainty": "The proclamation is its own event, dated 19 March 2012, and prints no accession time. The accession date (18 March 2012) rests on its statement that the Crown devolves by the decease, with the death date and time from Gazette Extraordinary No. 8; the proclamation date is not used as the start."
+    }
+  ],
+  "scope_note": "The Tongan-language link returns a byte-identical file. Used only for the proclamation.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "PDF page 1 (English proclamation) was rendered and visually checked in the research dossier; the page 2 Tongan text was read from the text layer."
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "iteration": 23,
+  "configuration": "Selected .024 adverse/.65 confidence/.45 veto unchanged. Correct actual fiscal ownership/bounds/card behavior and coup debt synchronization; separate actual-party AI willingness from public franchise demand. No Army authority or outcome threshold changes.",
+  "focused": {
+    "passed": 128,
+    "total": 128
+  },
+  "original": {
+    "passed_outcome_gates": 9,
+    "total_outcome_gates": 10,
+    "failed": [
+      "A1"
+    ],
+    "attribution_guard": "pass",
+    "A1": {
+      "median_coups": 7,
+      "median_top3": 0.59
+    },
+    "A2": {
+      "hits": 8,
+      "seeds": 12
+    },
+    "A3": {
+      "hits": 1,
+      "seeds": 20
+    },
+    "A4": 15,
+    "A5": {
+      "hits": 12,
+      "seeds": 12
+    },
+    "A6": "zero route events in12seeds at420months",
+    "A7": 7.893,
+    "A8": "40/40 keep8",
+    "A9": "193/193",
+    "A10": 0.336
+  },
+  "development": {
+    "seeds": "0..199",
+    "months": 252,
+    "failed": [
+      "A1"
+    ],
+    "A1": {
+      "median_coups": 7,
+      "median_top3": 0.57
+    },
+    "A2": {
+      "hits_by_2000": 133,
+      "hits_over_run": 140,
+      "seeds": 200
+    },
+    "A3": {
+      "hits": 1,
+      "seeds": 200
+    },
+    "A4": 16,
+    "A5": {
+      "hits": 200,
+      "seeds": 200,
+      "universal_return_countries": [
+        "Bulgaria",
+        "Croatia",
+        "Poland"
+      ]
+    },
+    "A6": "zero route events in200seeds at252months; not the35year check",
+    "A7": 8.42,
+    "A8": "200/200 keep8",
+    "A9": "3177/3177",
+    "A10": 0.34
+  },
+  "distribution": "iteration-23-coup-distribution.json; complete pooled event counts, reported per-seed top5 lists, no inferred first/repeat counts",
+  "source_coverage": {
+    "manifest": "iteration-23-source-input-manifest.json",
+    "current_inputs": 1963,
+    "copied_native_source_bodies": 468,
+    "fresh_enumeration": true
+  },
+  "independent_validation": "Not run; seeds1000..1059 remain untouched",
+  "status": "Incomplete calibration: original and development A1 fail. All128 focused checks and other original/development outcome bars pass within their stated horizons. No claim of full workspace certification for iteration23."
+}

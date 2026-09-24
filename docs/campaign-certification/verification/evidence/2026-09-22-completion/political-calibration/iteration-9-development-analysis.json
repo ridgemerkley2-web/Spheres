@@ -1,0 +1,36 @@
+{
+  "source_log": {
+    "path_hint": "../evidence/political-calibration-20260922/iteration-9-development-n200.log",
+    "bytes": 55416,
+    "sha256": "8bb113c60b852bec76e065524cb6c358bf13432556024c6ebaa50d63717ccd02"
+  },
+  "scope": "Development seeds0..199 only. Instrument exit0 means diagnostic completion, not acceptance. Original small-cohort outcomes retained. Held-out1000block not inspected.",
+  "a1": {
+    "median_coups": 14,
+    "median_top3_share": 0.64,
+    "concentration_target": "<0.5",
+    "meets_both_targets": false
+  },
+  "a2": {
+    "by_2000": 99,
+    "seeds": 200,
+    "rate": 0.495,
+    "target": ">0.5 and <=0.9",
+    "within_target": false,
+    "original_gate": "8/12 PASS"
+  },
+  "a3": {
+    "non_ballot_communist": 34,
+    "seeds": 200,
+    "rate": 0.17,
+    "target": "<=0.10",
+    "within_target": false,
+    "original_gate": "1/20 PASS"
+  },
+  "a5": {
+    "seeds_with_3_returns_by_1996": 0,
+    "seeds": 200,
+    "within_target": false,
+    "original_gate": "0/12 FAIL"
+  }
+}

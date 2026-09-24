@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "algorithm": "sha256",
+  "scope": "all accompanying files, manifest excluded",
+  "artifacts": [
+    {
+      "path": "audit.md",
+      "bytes": 9013,
+      "sha256": "f1de485e7905c7fc9aa9173914932bec0272cf96096da6f72d4344e477d8fec4"
+    },
+    {
+      "path": "dataset-window-summary.json",
+      "bytes": 22515,
+      "sha256": "bf62f420db6fec6e22b083d278301068fe418dea370426ddd06ddf2d609028d1"
+    },
+    {
+      "path": "pakistan-primary-retrieval.json",
+      "bytes": 379,
+      "sha256": "0933d828d0c3411deeb4a10f4d799ec83b2a3a3c0d15c7ce28b959a20bd1c4a6"
+    },
+    {
+      "path": "pt_20260829.csv",
+      "bytes": 20089,
+      "sha256": "1e8f933b22f4b9a77d0ba5eb59bf0d8158adcaab27746adcf345195be87a9012"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1495,
+      "sha256": "01b82a04dcea4360e8bf4ccbbdc45734ff83d1c529882a958624235a8a597e5f"
+    },
+    {
+      "path": "research-receipts.json",
+      "bytes": 2507,
+      "sha256": "f865d3a6b03a85d0b96dd46e9f0a9481503fc0053fbb837ab4b20fb647bf3be6"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "format": "spheres-confidence-calibration-plan/v1",
+  "declared_before_candidate_measurement": true,
+  "base": "Final accepted accountability candidate on iteration12 correctness base, with independently reviewed first-ballot parliamentary-office repair applied equally to baseline and all candidates",
+  "parameter": "ARMY_CRISIS_CONFIDENCE_WEIGHT",
+  "candidates_in_order": [0.65, 0.90, 1.20],
+  "rationale": "Bounded game-design calibration of an existing distinction between actual military resources and political confidence. Fully provisioned autonomous armies may still reject a sustained civilian crisis with weak public consent. The coefficients are assumptions, not empirical estimates.",
+  "fixed": ["All A1-A10 outcome definitions and acceptance thresholds", "Same opening institutional/headcount data", "Same operating basket, loyalty lag, pressure and coup thresholds", "Same paid AI funding inverse, affordability/useful-resource caps and review timing", "Same accountability response and total monthly support-change cap", "Same public-mandate, prior-term, crisis and civilian-control guards"],
+  "cohorts": {"primary": "Original A1-A10 fixed samples and all focused correctness checks", "development": "0..199 at252months", "independent": "1000..1059 at252months and1000..1011 at420months remain untouched until selection and full source freeze"},
+  "controls": ["Quiet, fresh, strongly supported and civilian-controlled governments resist this political channel", "Actual underfunding and war remain separate", "AI pays actual affordable appropriations with no pressure reset, immediate loyalty gift or spending past useful resources", "Inspect appropriations and first/repeat events, not merely coup totals", "No country/year/winner bonuses and no extra RNG"],
+  "selection": "Prefer the smallest candidate that satisfies the joint campaign objectives and controls, with development uncertainty reported. Reject a candidate if controls fail or distribution is improved only by fictitious spending. If all candidates fail, diagnose rather than extending this grid solely to satisfy A1.",
+  "interpretation": "Development cohort is calibration data, not independent proof. Preserve every candidate result, including failures. No holdout is used for selection."
+}

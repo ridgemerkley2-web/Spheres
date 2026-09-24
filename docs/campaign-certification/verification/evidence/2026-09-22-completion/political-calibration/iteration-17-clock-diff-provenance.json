@@ -1,0 +1,25 @@
+{
+  "scope": "Read-only exact iteration17 rlib probe, mirrors existing24-month political legacy-clock test through first mismatch; no repository/source/state mutations",
+  "rustc": "rustc 1.98.0 (88d9e12ae 2026-08-18)",
+  "source_manifest": "iteration-17-source-input-manifest.json",
+  "files": [
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\iteration-17-clock-diff.rs",
+      "Hash": "7B7C0D89C528E21BC9D0004910256C297C299A8DC9C39D146DDD5CEA16AC06E9"
+    },
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\iteration-17-clock-diff.exe",
+      "Hash": "85A8CFD53B82F3799BE3BB48B72ED633B0FFAE76107BBD9130CFED7245737F9D"
+    },
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\libspheres_sim-de80fa3e4f034d8c.rlib",
+      "Hash": "6009EAC5CBF2BDBE08BBDF7F58EFE07A88282CF5950AF71C4124C3C9BA8B4493"
+    },
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\libserde_json-019015e08a7ac1fe.rlib",
+      "Hash": "61F181EA73DFDEAF1E51C2355A919581074C1CC5152691C0937322690A0E5A34"
+    }
+  ],
+  "result": "iteration-17-clock-diff.json",
+  "diagnosis": "Only six successor reference-date days differ at month23: legacy tick_month stores1; legacy tick_day month-end stores31. True daily simulation must retain actual calendar day."
+}

@@ -1,0 +1,8 @@
+{
+  "declared_utc": "2026-09-22T23:27:38.478334+00:00",
+  "stage": 2,
+  "before_sha256": "a9bc6689a343d1957130a3b38af4f020e2d22b4d8c2c9dfe77db4b3f89c2a98b",
+  "after_sha256": "76bcc8dfdbe03939962a297d17e15d81ce0d03d6d3733ce7f2922495ee8529a8",
+  "rationale": "Skip immutable commodity-table reads for nonstalled entries; Boolean membership and iteration order remain identical. Empty mask shortcut remains. No simulation, RNG, fixtures or acceptance changes.",
+  "decision": "Retain only if unchanged correctness checks pass; run existing isolated timing once after suite. No further optimization assumed."
+}

@@ -23,6 +23,9 @@ pub fn world_1990(rules: GameRules) -> WorldState {
     // tick, so that a player choosing a nation in January 1990 can see their
     // parliament rather than an empty chamber that fills in in February.
     crate::government::ensure_all(&mut w);
+    crate::army_authority::prepare_opening(&mut w);
+    crate::opening_mandates::prepare_opening(&mut w);
+    crate::armed_security::prepare_opening(&mut w);
     crate::fiscal_recovery::prepare(&mut w);
     w
 }
