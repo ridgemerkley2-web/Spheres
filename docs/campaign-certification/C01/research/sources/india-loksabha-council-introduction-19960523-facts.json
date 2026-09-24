@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_ls_debates_19960523_council_introduction",
+  "source_url": "https://web.archive.org/web/20060517033808id_/http://parliamentofindia.nic.in:80/ls/lsdeb/ls11/ses1/05230596.htm",
+  "original_url": "http://parliamentofindia.nic.in/ls/lsdeb/ls11/ses1/05230596.htm",
+  "archive_capture_utc": "2006-05-17T03:38:08Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "1996-05-23",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 3769,
+  "source_response_sha256": "f4c261b43f1ba3a3a94d7e2d7871731ec43d2ef85f4bd49f74d7c2a194265f9e",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2006-05-17T03:38:08Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The researcher downloaded it 2 times on 23 September 2026 (local times, PDT, 09:59, 10:44; first and last 45 minutes apart) with identical bytes, and the independent check downloaded it again at 11:39 PDT (with no-cache request headers, more than 50 minutes after the researcher's last download) with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Lok Sabha Secretariat's online English debate text for the 11th and 12th Lok Sabha on parliamentofindia.nic.in, recorded as a raw Internet Archive capture; the printed debates on eparlib could not be reached directly. Hindi passages use a legacy font encoding and were not read.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Complete HTML response read as text (tags stripped); no images. Hindi passages on this page are encoded for a legacy Devanagari display font and are unreadable as text; only the English passages were used."
+  },
+  "rows": [
+    {
+      "claim_id": "in_vajpayee_introduces_council_as_pm_19960523",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-04",
+      "role_id": "in_pm",
+      "holder_name": "Atal Bihari Vajpayee",
+      "role_title": "Prime Minister of India",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1996-05-23",
+      "text": "At 13:20 on 23 May 1996 the Speaker asked the Prime Minister to introduce his Council of Ministers, and Atal Bihari Vajpayee, recorded as THE PRIME MINISTER, introduced his colleagues to the House.",
+      "locator": {
+        "page_heading": "XI Lok Sabha Debates, Session I, Thursday, May 23, 1996",
+        "item": "Introduction of Ministers",
+        "time": "1320 hours"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

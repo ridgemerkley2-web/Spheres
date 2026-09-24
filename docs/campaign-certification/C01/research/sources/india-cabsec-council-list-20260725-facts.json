@@ -1,0 +1,38 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_cabsec_council_list_20260725",
+  "source_url": "https://cabsec.gov.in/writereaddata/councilofministers/english/1_Upload_4255.pdf",
+  "accessed_date": "2026-09-24",
+  "published_date": "2026-07-25",
+  "access_method": "downloaded_official_pdf_and_rendered_page_review",
+  "source_response_bytes": 2037089,
+  "source_response_sha256": "9b3ea4fc75cfe3c814afce5e11641697062a912b0f484cc0abad1380f8811371",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host. The check downloaded it at 12:20:47Z with a cache-busting query and at 12:59:51Z on 24 September 2026 (39 minutes apart) and this packet again at 2026-09-24T13:36:21Z, each with the same byte count and SHA-256; the file was then deleted from scratch. Served with a fixed Last-Modified of 25 July 2026 16:56:22 GMT and identical bytes across 75 minutes including a cache-busting request, so it is not generated per request. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The latest Cabinet Secretariat council list before the cutoff on cabsec.gov.in (Council of Ministers listing ajax_page_data.php?page_id=18). A scanned PDF with no text layer (Adobe Scan, empty CreationDate). Located by the Part C check; the list as on 24 July 2026 (1_Upload_4252.pdf, 1,826,391 bytes) is not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "PDF page 1 rendered and read (heading and first entry)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_cabsec_lists_modi_pm_20260725",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-10",
+      "role_id": "in_pm",
+      "holder_name": "Narendra Modi",
+      "role_title": "Prime Minister of India",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2026-07-25",
+      "text": "The Cabinet Secretariat's list of the Council of Ministers with portfolios as on 25 July 2026 opens with Shri Narendra Modi as Prime Minister, also in charge of the Ministry of Personnel, Public Grievances and Pensions, the Departments of Atomic Energy and Space, all important policy issues and all portfolios not allocated to any Minister.",
+      "locator": {
+        "pdf_page": 1,
+        "section": "heading and first entry"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rs_debates_19910306",
+  "source_url": "https://bucketapi.rajyasabha.digital/public-bucket/rsdebate/assetstore/36/13/46/3613460637656438185565469281900452330?response-content-type=application%2Fpdf&response-content-disposition=inline%3B+filename%3D%22ID_157_06031991_01_p183-186_1.pdf%22",
+  "accessed_date": "2026-09-23",
+  "published_date": null,
+  "access_method": "official_pdf_download_and_text_layer_read",
+  "source_response_bytes": 82642,
+  "source_response_sha256": "b5dce7e89d67c14a01190ede9e48ac91f1eed05921265ccab2d6ba57b9f1c11f",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host. The check downloaded it at 17:35:06Z and 18:07:20Z on 23 September 2026 and this packet again at 2026-09-24T13:36:04Z, each with the same byte count and SHA-256. PDF metadata: CreationDate 6 January 2007, ModDate 26 February 2010 (static). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Rajya Sabha Secretariat's debates store (handle 123456789/242236); a static object (MD5 equals ETag; Last-Modified 29 July 2026). Located by the Part A check.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "Both PDF pages read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "in_rs_leader_announces_pm_resignation_19910306",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-02",
+      "role_id": "in_pm",
+      "holder_name": "Chandra Shekhar",
+      "role_title": "Prime Minister of India",
+      "event_kind": "resignation_announced",
+      "attested_on": "1991-03-06",
+      "text": "In the Rajya Sabha on 6 March 1991, under 'Announcement about Prime Minister's resignation', the Leader of the House, Shri Yashwant Sinha, informs the House that the Prime Minister has announced in the other House that he is calling on the President to tender the resignation of his Government, and that the Prime Minister is on his way to Rashtrapati Bhavan to tender his own resignation and that of the Council of Ministers; the House adjourns at 14.36 until 11.00 on 7 March.",
+      "locator": {
+        "pdf_page": 2,
+        "printed_pages": "185-186",
+        "item": "Announcement about Prime Minister's resignation"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

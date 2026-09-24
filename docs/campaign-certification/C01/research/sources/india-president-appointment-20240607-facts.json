@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rb_murmu_appoints_modi_20240607",
+  "source_url": "https://web.archive.org/web/20240704043120id_/https://www.presidentofindia.gov.in/press_releases/press-communique-15",
+  "original_url": "https://www.presidentofindia.gov.in/press_releases/press-communique-15",
+  "archive_capture_utc": "2024-07-04T04:31:20Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "2024-06-07",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 43211,
+  "source_response_sha256": "c2ce4bd3f6e6481e626d84734e75118640b7e58bc13ab3ad9e309c2409b25cc4",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2024-07-04T04:31:20Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The researcher downloaded it at 2026-09-23T16:17:45Z and again at 2026-09-23T17:14:37Z with identical bytes (at least 30 minutes apart), and the independent check downloaded it again at 2026-09-24T12:26:55Z with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Current President's website (Drupal). Live pages there are regenerated per request, so the raw Internet Archive capture made in 2024 is pinned instead.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_murmu_appoints_modi_pm_20240607",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-10",
+      "role_id": "in_pm",
+      "holder_name": "Narendra Modi",
+      "role_title": "Prime Minister of India",
+      "event_kind": "appointment",
+      "attested_on": "2024-06-07",
+      "text": "The communique dated 7 June 2024 states that an NDA delegation called on the President at 2.30 pm with a letter that Modi had been elected leader of the BJP Parliamentary Party and letters of support, and that the President, satisfied that the BJP-led NDA could command majority support in the 18th Lok Sabha, appointed Narendra Modi as the Prime Minister of India under Article 75(1) and asked him to indicate the date and time of the swearing-in and the names of other ministers.",
+      "locator": {
+        "section": "Communique, first and closing paragraphs"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

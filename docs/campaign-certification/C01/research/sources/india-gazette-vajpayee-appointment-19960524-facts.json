@@ -1,0 +1,42 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_gazette_ext_p1s2_no13_19960524",
+  "source_url": "https://egazette.gov.in/WriteReadData/1996/E-0299-1996-0013-10611.pdf",
+  "accessed_date": "2026-09-24",
+  "published_date": "1996-05-24",
+  "access_method": "official_egazette_pdf_download_and_complete_visual_page_review",
+  "source_response_bytes": 50883,
+  "source_response_sha256": "735caffcde49208ca63d3429e71f5ad98cd2a34eb054a529e3dc5c8497f2080c",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host. The check downloaded the byte-identical Internet Archive copy twice on 23 September 2026 (10:58-11:08 PDT and 11:28 PDT with a cache-busting query); this packet downloaded this egazette.gov.in file at 2026-09-24T13:35:41Z and again at 2026-09-24T14:06:00Z, 30 minutes later, with a cache-busting query (two earlier cache-busting downloads at 14:04:33Z and 14:05:35Z matched as well), each with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official eGazette file (Last-Modified 12 March 2013, fixed ETag; iText PDF with CreationDate in 2013 and no ModDate). Found by the Part B check as the stored original in the Internet Archive item in.gazette.central.e.1996-05-24.10611 (Public.Resource.Org copy of egazette.nic.in; SHA-1 d35d086197f20c2299944116e433fbf9e395ec1d); the egazette.gov.in file is byte-identical. The issuing ministry in 1991-1999 is Home Affairs (M&G section), not the Cabinet Secretariat.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "PDF page 1 (Hindi and English notification) rendered by the check and read; page 2 read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "in_vajpayee_appointed_pm_wef_19960516",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-04",
+      "role_id": "in_pm",
+      "holder_name": "Atal Bihari Vajpayee",
+      "role_title": "Prime Minister of India",
+      "event_kind": "appointment_with_effect",
+      "attested_on": "1996-05-16",
+      "text": "Ministry of Home Affairs notification No. 10/5/96-M&G of 24 May 1996: the President has been pleased to appoint Shri Atal Bihari Vajpayee to be the Prime Minister with effect from 12 P.M. (noon) of 16 May 1996; the next paragraph appoints the members of the Council of Ministers, on the advice of the Prime Minister, from the same time.",
+      "locator": {
+        "pdf_page": [
+          1,
+          2
+        ],
+        "item": "Ministry of Home Affairs Notification No. 10/5/96-M & G, New Delhi, the 24th May, 1996 (Hindi and English on page 1); signed V. K. Malhotra, Jt. Secy. (page 2)"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

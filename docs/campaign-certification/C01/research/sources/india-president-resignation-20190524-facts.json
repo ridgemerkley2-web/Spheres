@@ -1,0 +1,65 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rb_kovind_pm_resignation_20190524",
+  "source_url": "https://web.archive.org/web/20190529132506id_/https://presidentofindia.nic.in/press-release-detail.htm?1610",
+  "original_url": "https://presidentofindia.nic.in/press-release-detail.htm?1610",
+  "archive_capture_utc": "2019-05-29T13:25:06Z",
+  "accessed_date": "2026-09-24",
+  "published_date": "2019-05-24",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 60746,
+  "source_response_sha256": "fcf4df3d1c5eed8ea7766a4840dbcb3691639a4b5ac35df96177050697031224",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2019-05-29T13:25:06Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The check downloaded it at 12:52:46Z and 13:26:11Z on 24 September 2026 (34 minutes apart) with the same byte count and SHA-256; the stored copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A press communique on the President's 2019 website (President Ram Nath Kovind), recorded as a raw Internet Archive capture made in 2019, as the HTML rule prefers. The same text is served as a static page at ramnathkovind.nic.in/pr240519.html (2,056 bytes, SHA-256 d8cee7b2f05f0b079df65585060411b227b5cad2650addfd3e0ee443d1b05e94, byte-stable on 23 and 24 September 2026), which the research first recorded. The capture's form fields and visitor counter are fixed in the archived response.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_modi_tenders_resignation_20190524",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-09",
+      "role_id": "in_pm",
+      "holder_name": "Narendra Modi",
+      "role_title": "Prime Minister of India",
+      "event_kind": "resignation_tendered",
+      "attested_on": "2019-05-24",
+      "text": "The release dated 24 May 2019 states that Prime Minister Narendra Modi met the President that day and tendered his resignation along with the Council of Ministers.",
+      "locator": {
+        "section": "Release body, first paragraph"
+      }
+    },
+    {
+      "claim_id": "in_kovind_accepts_modi_resignation_20190524",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-09",
+      "role_id": "in_pm",
+      "holder_name": "Narendra Modi",
+      "role_title": "Prime Minister of India",
+      "event_kind": "resignation_accepted",
+      "attested_on": "2019-05-24",
+      "text": "The same release states that the President has accepted the resignation.",
+      "locator": {
+        "section": "Release body, second paragraph"
+      }
+    },
+    {
+      "claim_id": "in_modi_requested_to_continue_20190524",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-09",
+      "role_id": "in_pm",
+      "holder_name": "Narendra Modi",
+      "role_title": "Prime Minister of India",
+      "event_kind": "continuation_requested",
+      "attested_on": "2019-05-24",
+      "text": "The same release states that the President requested Modi and the Council of Ministers to continue till the new Government assumes office.",
+      "locator": {
+        "section": "Release body, second paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

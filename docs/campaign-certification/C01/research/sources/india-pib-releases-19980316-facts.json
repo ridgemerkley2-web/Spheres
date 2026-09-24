@@ -1,0 +1,52 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_pib_19980316_releases",
+  "source_url": "https://web.archive.org/web/20010306071634id_/http://pib.nic.in:80/archieve/lreleng/lyr98/l0398/PIBR160398.html",
+  "original_url": "http://pib.nic.in/archieve/lreleng/lyr98/l0398/PIBR160398.html",
+  "archive_capture_utc": "2001-03-06T07:16:34Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "1998-03-16",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 10956,
+  "source_response_sha256": "ed540ddb523cc2d275911967efb4dca700a1a298b9e85649503bad71b8631c0c",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2001-03-06T07:16:34Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The researcher downloaded it 2 times on 23 September 2026 (local times, PDT, 10:11, 10:46; first and last 35 minutes apart) with identical bytes, and the independent check downloaded it again at 11:46 PDT (with no-cache request headers, more than 50 minutes after the researcher's last download) with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "PIB's daily English releases for 16 March 1998 in its old archive on pib.nic.in, recorded as a raw Internet Archive capture.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Complete HTML response read as text (tags stripped); no images."
+  },
+  "rows": [
+    {
+      "claim_id": "in_president_invites_vajpayee_to_form_government_19980316",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-06",
+      "role_id": "in_pm",
+      "holder_name": "Atal Bihari Vajpayee",
+      "role_title": "Prime Minister of India",
+      "event_kind": "invitation_to_form_government",
+      "attested_on": "1998-03-16",
+      "text": "PIB's profile released on 16 March 1998 says Vajpayee has been invited by the President, K. R. Narayanan, to form the next government and will be sworn in on 19 March 1998.",
+      "locator": {
+        "item": "ATAL BIHARI VAJPAYEE - A PROFILE",
+        "date_basis": "PIB archive file l0398/PIBR160398 (16 March 1998); the page prints no date"
+      }
+    },
+    {
+      "claim_id": "in_pib_profile_vajpayee_1996_span_19980316",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-04",
+      "role_id": "in_pm",
+      "holder_name": "Atal Bihari Vajpayee",
+      "role_title": "Prime Minister of India",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The same profile says that in 1996 he was sworn in as Prime Minister, an office he held from May 16 to May 31, 1996.",
+      "locator": {
+        "item": "ATAL BIHARI VAJPAYEE - A PROFILE, paragraph beginning 'After the constitution of the 11th Lok Sabha'"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

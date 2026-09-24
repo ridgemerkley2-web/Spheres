@@ -1,0 +1,59 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_gazette_ext_p1s2_no6_19980406",
+  "source_url": "https://archive.org/download/in.gazette.central.e.1998-04-06.5771/5771.pdf",
+  "mirror_of": "egazette.nic.in (Gazette of India, Extraordinary, 6 April 1998, CSL file 5771)",
+  "accessed_date": "2026-09-23",
+  "published_date": "1998-04-06",
+  "access_method": "downloaded_internet_archive_stored_gazette_pdf_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 125176,
+  "source_response_sha256": "48f8a0c2857614970232c1582ed31f7a28efbef27b7dab86bd688fea91d898b5",
+  "source_response_checked_in": false,
+  "provenance_note": "Stored file in an Internet Archive item that mirrors the official document; archive.org redirects the download URL to a storage node and the final response body is the recorded identity. The check downloaded it twice on 23 September 2026 (10:58-11:08 PDT and 11:28 PDT with a cache-busting query) with the same byte count and SHA-256, and its SHA-1 equals archive.org's recorded file SHA-1; the stored copy was re-hashed for this packet with the same result. PDF CreationDate 12 March 2013 (iText, no ModDate). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The stored original in the Internet Archive's Gazette of India collection (item in.gazette.central.e.1998-04-06.5771, a Public.Resource.Org copy of the egazette.nic.in file, uploaded 5 August 2018; archive.org SHA-1 f9d44f9335121adea4595996da30d1c4e40d4af4). The egazette.nic.in host no longer resolves and the file name on egazette.gov.in is not known. Located by the Part B check.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2,
+      3
+    ],
+    "method": "PDF pages 1-3 rendered by the check and read; the text layer of pages 2-3 read by this packet."
+  },
+  "rows": [
+    {
+      "claim_id": "in_gujral_resignation_accepted_wef_superseded_19980406",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-05",
+      "role_id": "in_pm",
+      "holder_name": "I. K. Gujral",
+      "role_title": "Prime Minister of India",
+      "event_kind": "resignation_accepted_with_effect_superseded",
+      "attested_on": null,
+      "text": "Ministry of Home Affairs notification No. 10/1/98-M&G of 6 April 1998, as first printed: the President has been pleased to accept the resignation of Shri I. K. Gujral of his office of Prime Minister and of the listed members of the Council of Ministers 'with effect from 19th March, 1998'.",
+      "locator": {
+        "pdf_page": 2,
+        "item": "Notification No. 10/1/98-M&G, New Delhi, the 6th April, 1998 (first four lines)"
+      }
+    },
+    {
+      "claim_id": "in_vajpayee_appointed_pm_wef_19980319",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-06",
+      "role_id": "in_pm",
+      "holder_name": "Atal Bihari Vajpayee",
+      "role_title": "Prime Minister of India",
+      "event_kind": "appointment_with_effect",
+      "attested_on": "1998-03-19",
+      "text": "Notification No. 10/1/98-M&G(i) of 6 April 1998: the President has been pleased to appoint Shri Atal Bihari Vajpayee to be the Prime Minister with effect from 0930 hours of 19 March 1998; the members of the Council of Ministers are appointed, on his advice, from the same time.",
+      "locator": {
+        "pdf_page": [
+          2,
+          3
+        ],
+        "item": "Notification No. 10/1/98-M & G (i), New Delhi, the 6th April, 1998 (English on page 3; Hindi on page 2)"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

@@ -1,0 +1,62 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_ls_debates_19960528_confidence_debate_close",
+  "source_url": "https://web.archive.org/web/20090411041412id_/http://parliamentofindia.nic.in/ls/lsdeb/ls11/ses1/0528059612.htm",
+  "original_url": "http://parliamentofindia.nic.in/ls/lsdeb/ls11/ses1/0528059612.htm",
+  "archive_capture_utc": "2009-04-11T04:14:12Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "1996-05-28",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 17497,
+  "source_response_sha256": "805dac2b04212814de1fd408a9745314e1f0511a52ed6e37fad993beebd7e654",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2009-04-11T04:14:12Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The researcher downloaded it 2 times on 23 September 2026 (local times, PDT, 09:19, 10:00; first and last 41 minutes apart) with identical bytes, and the independent check downloaded it again at 11:40 PDT (with no-cache request headers, more than 50 minutes after the researcher's last download) with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Lok Sabha Secretariat's online English debate text for the 11th and 12th Lok Sabha on parliamentofindia.nic.in, recorded as a raw Internet Archive capture; the printed debates on eparlib could not be reached directly. An undated continuation page dated by its file name and the 28 May 1996 contents page recorded as its date anchor; Hindi passages, including Vajpayee's own statement, use a legacy font encoding and were not read.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Complete HTML response read as text (tags stripped); no images. Hindi passages on this page are encoded for a legacy Devanagari display font and are unreadable as text; only the English passages were used."
+  },
+  "date_anchor": {
+    "url": "https://web.archive.org/web/20041122171832id_/http://parliamentofindia.nic.in:80/ls/lsdeb/ls11/ses1/c280596.htm",
+    "original_url": "http://parliamentofindia.nic.in/ls/lsdeb/ls11/ses1/c280596.htm",
+    "archive_capture_utc": "2004-11-22T17:18:32Z",
+    "source_response_bytes": 3095,
+    "source_response_sha256": "31c017d830fbf23d2382d5f082ac0888d2777c5dff27685c98f95e65950742be",
+    "note": "Contents page for Tuesday 28 May 1996: the further discussion on the Motion of Confidence moved by Vajpayee, contd.-concluded, with Vajpayee the last participant; its links lead to the 0528059601-12 pages. Used only to date the undated continuation page. The researcher downloaded it 2 times on 23 September 2026 (local times, PDT, 09:18, 10:43; first and last 85 minutes apart) with identical bytes; the check matched it again at 11:41 PDT."
+  },
+  "rows": [
+    {
+      "claim_id": "in_vajpayee_resignation_announced_in_house_19960528",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-04",
+      "role_id": "in_pm",
+      "holder_name": "Atal Bihari Vajpayee",
+      "role_title": "Prime Minister of India",
+      "event_kind": "resignation_announced",
+      "attested_on": "1996-05-28",
+      "text": "At 17:05 on 28 May 1996 the Speaker referred to the resignation announced by the Prime Minister on the floor of the House, held that putting the Motion of Confidence to the vote had become infructuous and adjourned the House sine die (17:06).",
+      "locator": {
+        "page": "0528059612 (item 05, 28-05-96, part 12)",
+        "time": "1705-1706 hours",
+        "speaker": "Mr. Speaker"
+      }
+    },
+    {
+      "claim_id": "in_vajpayee_confidence_motion_not_put_to_vote_19960528",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-04",
+      "role_id": "in_pm",
+      "holder_name": "Atal Bihari Vajpayee",
+      "role_title": "Prime Minister of India",
+      "event_kind": "confidence_motion_not_put_to_vote",
+      "attested_on": "1996-05-28",
+      "text": "The Speaker ruled on 28 May 1996 that, in view of the announced resignation, the Motion of Confidence moved by Vajpayee would not be put to the vote; no division took place.",
+      "locator": {
+        "page": "0528059612",
+        "time": "1705 hours"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

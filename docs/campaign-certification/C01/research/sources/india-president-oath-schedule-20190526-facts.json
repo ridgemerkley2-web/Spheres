@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rb_kovind_oath_schedule_20190526",
+  "source_url": "https://web.archive.org/web/20190716082852id_/https://presidentofindia.nic.in/press-release-detail.htm?1614",
+  "original_url": "https://presidentofindia.nic.in/press-release-detail.htm?1614",
+  "archive_capture_utc": "2019-07-16T08:28:52Z",
+  "accessed_date": "2026-09-24",
+  "published_date": "2019-05-26",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 60735,
+  "source_response_sha256": "cadbecef6609fd23e6d25d538213bbbb63f0b04e3df0b42dc3cbaff86a88c38c",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2019-07-16T08:28:52Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The check downloaded it at 12:54:32Z and 13:26:54Z on 24 September 2026 and this packet again at 2026-09-24T13:37:02Z, each with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A press communique on the President's 2019 website (President Ram Nath Kovind), recorded as a raw Internet Archive capture made in 2019, as the HTML rule prefers. The copy at ramnathkovind.nic.in/pr260519.html carries this heading but the body of the 25 May dissolution release, so it is a defective page and not used. The capture's form fields and visitor counter are fixed in the archived response.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_modi_oath_announced_20190526",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-09",
+      "role_id": "in_pm",
+      "holder_name": "Narendra Modi",
+      "role_title": "Prime Minister of India",
+      "event_kind": "oath_scheduled",
+      "attested_on": "2019-05-26",
+      "text": "The communique dated 26 May 2019 announces that the President will administer the oath of office and secrecy to the Prime Minister and other members of the Union Council of Ministers on 30 May 2019 at 7.00 p.m. at Rashtrapati Bhavan; Narendra Modi had been appointed Prime Minister on 25 May.",
+      "locator": {
+        "section": "Headline and communique text"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

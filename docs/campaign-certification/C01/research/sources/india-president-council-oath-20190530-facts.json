@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rb_kovind_council_oath_20190530",
+  "source_url": "https://web.archive.org/web/20190716082409id_/https://presidentofindia.nic.in/press-release-detail.htm?1615",
+  "original_url": "https://presidentofindia.nic.in/press-release-detail.htm?1615",
+  "archive_capture_utc": "2019-07-16T08:24:09Z",
+  "accessed_date": "2026-09-24",
+  "published_date": "2019-05-30",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 77506,
+  "source_response_sha256": "423f780579d52ceb3d7ec3584d264f71bd7a1538da5e8a2f6e6084f920da73fb",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2019-07-16T08:24:09Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The check downloaded it at 12:54:50Z and 13:27:14Z on 24 September 2026 and this packet again at 2026-09-24T13:37:11Z, each with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A press communique on the President's 2019 website (President Ram Nath Kovind), recorded as a raw Internet Archive capture made in 2019, as the HTML rule prefers. The same text is served as a static page at ramnathkovind.nic.in/pr300519.html (4,825 bytes, SHA-256 ff61d478ed4df787541ed5005f94c073f43a912da581d34dad28ded7e7363c2f, byte-stable on 23 and 24 September 2026), which the research first recorded. The capture's form fields and visitor counter are fixed in the archived response.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_modi_appointed_pm_communique_20190530",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-09",
+      "role_id": "in_pm",
+      "holder_name": "Narendra Modi",
+      "role_title": "Prime Minister of India",
+      "event_kind": "appointment_communique",
+      "attested_on": "2019-05-30",
+      "text": "The release dated 30 May 2019 states that the President of India has appointed Shri Narendra Damodardas Modi to be the Prime Minister of India, and lists the ministers appointed on his advice.",
+      "locator": {
+        "section": "Release body, opening sentence"
+      }
+    },
+    {
+      "claim_id": "in_modi_oath_administered_20190530",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-09",
+      "role_id": "in_pm",
+      "holder_name": "Narendra Modi",
+      "role_title": "Prime Minister of India",
+      "event_kind": "oath_of_office",
+      "attested_on": "2019-05-30",
+      "text": "The same communique is headed 'President administers oath of office and secrecy to Prime Minister and other members of Union Council of Ministers' and states that the President administered the oaths of office and secrecy to the above members of the Council of Ministers, headed by Narendra Modi's appointment as Prime Minister, at a ceremony in Rashtrapati Bhavan 'today (30.05.2019)'.",
+      "locator": {
+        "section": "Headline; paragraph 2"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

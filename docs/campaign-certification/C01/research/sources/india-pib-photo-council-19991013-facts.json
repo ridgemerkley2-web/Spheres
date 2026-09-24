@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_pib_photo_19991013_council",
+  "source_url": "https://web.archive.org/web/20020401114524id_/http://pib.nic.in:80/archieve/phtgalry/pg1099/pg13oc99/1310991.html",
+  "original_url": "http://pib.nic.in/archieve/phtgalry/pg1099/pg13oc99/1310991.html",
+  "archive_capture_utc": "2002-04-01T11:45:24Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "1999-10-13",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 1863,
+  "source_response_sha256": "27dbd01e28d5088deee161d2af9eed2a8b7d880c4760b3aa278b35345ad941cc",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2002-04-01T11:45:24Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The check downloaded it at 12:04:40 PDT and again at 12:41:37 PDT on 23 September 2026 with the same byte count and SHA-256; the stored copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A PIB photo-gallery caption page (caption only), recorded as a raw Internet Archive capture. The researcher's download of this page was a 620-byte block page and was not retried; the Part B check fetched the archived caption.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Caption text read; the photograph itself was not retrieved or reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_vajpayee_with_new_council_19991013",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-06",
+      "role_id": "in_pm",
+      "holder_name": "Atal Bihari Vajpayee",
+      "role_title": "Prime Minister of India",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1999-10-13",
+      "text": "PIB's caption shows the President, K. R. Narayanan, and the Prime Minister, Atal Bihari Vajpayee, with the new Council of Ministers after the swearing-in ceremony in the forecourt of Rashtrapati Bhawan on 13 October 1999.",
+      "locator": {
+        "element": "caption"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

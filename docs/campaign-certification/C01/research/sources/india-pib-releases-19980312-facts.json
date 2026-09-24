@@ -1,0 +1,38 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_pib_19980312_releases",
+  "source_url": "https://web.archive.org/web/20020311012706id_/http://pib.nic.in:80/archieve/lreleng/lyr98/l0398/PIBR120398.html",
+  "original_url": "http://pib.nic.in/archieve/lreleng/lyr98/l0398/PIBR120398.html",
+  "archive_capture_utc": "2002-03-11T01:27:06Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "1998-03-12",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 7178,
+  "source_response_sha256": "76e2c5de2ada163f0a16665f787fcda6631dc1bb315f313a5b62d59d861b3598",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2002-03-11T01:27:06Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The researcher downloaded it 3 times on 23 September 2026 (local times, PDT, 09:36, 10:05, 10:46; first and last 70 minutes apart) with identical bytes, and the independent check downloaded it again at 11:46 PDT (with no-cache request headers, more than 50 minutes after the researcher's last download) with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "PIB's daily English releases for 12 March 1998 in its old archive on pib.nic.in, recorded as a raw Internet Archive capture.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Complete HTML response read as text (tags stripped); no images."
+  },
+  "rows": [
+    {
+      "claim_id": "in_gujral_styled_pm_holi_greetings_19980312",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-05",
+      "role_id": "in_pm",
+      "holder_name": "I. K. Gujral",
+      "role_title": "Prime Minister of India",
+      "event_kind": "continuation_in_office_attestation",
+      "attested_on": "1998-03-12",
+      "text": "PIB's release of 12 March 1998 reports that the President, K. R. Narayanan, and the Prime Minister, I. K. Gujral, greeted the people on Holi.",
+      "locator": {
+        "item": "PRESIDENT, PM GREET PEOPLE ON HOLI",
+        "date_basis": "PIB archive file l0398/PIBR120398 (12 March 1998); the page prints no date"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

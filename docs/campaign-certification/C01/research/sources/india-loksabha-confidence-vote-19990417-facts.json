@@ -1,0 +1,47 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_ls_debates_19990417_confidence_vote",
+  "source_url": "https://web.archive.org/web/20041123180823id_/http://parliamentofindia.nic.in:80/ls/lsdeb/ls12/ses4/02170499.htm",
+  "original_url": "http://parliamentofindia.nic.in/ls/lsdeb/ls12/ses4/02170499.htm",
+  "archive_capture_utc": "2004-11-23T18:08:23Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "1999-04-17",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 5436,
+  "source_response_sha256": "1e2e509fb84117abe9a94cb87978800e3512d3198bc2ba494ad65527e5c9bbf5",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2004-11-23T18:08:23Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The researcher downloaded it 2 times on 23 September 2026 (local times, PDT, 09:23, 10:02; first and last 39 minutes apart) with identical bytes, and the independent check downloaded it again at 11:51 PDT (with no-cache request headers, more than 50 minutes after the researcher's last download) with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Lok Sabha Secretariat's online English debate text for the 11th and 12th Lok Sabha on parliamentofindia.nic.in, recorded as a raw Internet Archive capture; the printed debates on eparlib could not be reached directly. The mover is named on the 17 April 1999 contents page recorded as its date anchor.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Complete HTML response read as text (tags stripped); no images."
+  },
+  "date_anchor": {
+    "url": "https://web.archive.org/web/20041028165646id_/http://parliamentofindia.nic.in:80/ls/lsdeb/ls12/ses4/c170499.htm",
+    "original_url": "http://parliamentofindia.nic.in/ls/lsdeb/ls12/ses4/c170499.htm",
+    "archive_capture_utc": "2004-10-28T16:56:46Z",
+    "source_response_bytes": 937,
+    "source_response_sha256": "4b1c1bb87d50b29c2c3d29ef7a6b7c36068ec84975b9e6379540ca68e5dc0b81",
+    "note": "Contents page for Saturday 17 April 1999 (heading misprints 'SESSION III'): discussion on the motion of confidence in the Council of Ministers moved by Atal Bihari Vajpayee, contd.-concluded, followed by the Chair's observation on the vote. The researcher downloaded it 2 times on 23 September 2026 (local times, PDT, 09:23, 10:17; first and last 54 minutes apart) with identical bytes; the check matched it again at 11:52 PDT."
+  },
+  "rows": [
+    {
+      "claim_id": "in_vajpayee_confidence_motion_negatived_19990417",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-06",
+      "role_id": "in_pm",
+      "holder_name": "Atal Bihari Vajpayee",
+      "role_title": "Prime Minister of India",
+      "event_kind": "confidence_vote_lost",
+      "attested_on": "1999-04-17",
+      "text": "On Saturday 17 April 1999 the Lok Sabha divided on the motion that the House expresses its confidence in the Council of Ministers; the Speaker announced Ayes 269, Noes 270, the motion was negatived, and the House adjourned at 14:08.",
+      "locator": {
+        "page_heading": "XII Lok Sabha Debates, Session IV (Budget), Saturday, April 17, 1999",
+        "item": "Observation by the Chair; division",
+        "time": "1408 hours adjournment"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

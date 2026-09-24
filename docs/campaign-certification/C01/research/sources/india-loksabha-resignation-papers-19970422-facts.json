@@ -1,0 +1,65 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_ls_debates_19970422_resignation_papers",
+  "source_url": "https://web.archive.org/web/20041105025819id_/http://parliamentofindia.nic.in:80/ls/lsdeb/ls11/ses4/03220497.htm",
+  "original_url": "http://parliamentofindia.nic.in/ls/lsdeb/ls11/ses4/03220497.htm",
+  "archive_capture_utc": "2004-11-05T02:58:19Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "1997-04-22",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 770,
+  "source_response_sha256": "578786535c6ae1900be9d6370dc93f451d9e37159b1cc92c68eb158b85d04bf6",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2004-11-05T02:58:19Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The researcher downloaded it 2 times on 23 September 2026 (local times, PDT, 09:26, 10:01; first and last 35 minutes apart) with identical bytes, and the independent check downloaded it again at 11:45 PDT (with no-cache request headers, more than 50 minutes after the researcher's last download) with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Lok Sabha Secretariat's online English debate text for the 11th and 12th Lok Sabha on parliamentofindia.nic.in, recorded as a raw Internet Archive capture; the printed debates on eparlib could not be reached directly.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Complete HTML response read as text (tags stripped); no images."
+  },
+  "rows": [
+    {
+      "claim_id": "in_deve_gowda_resignation_tendered_19970411",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-05",
+      "role_id": "in_pm",
+      "holder_name": "H. D. Deve Gowda",
+      "role_title": "Prime Minister of India",
+      "event_kind": "resignation_tendered",
+      "attested_on": "1997-04-11",
+      "text": "The Secretary-General laid on the Table on 22 April 1997 the Prime Minister's (H. D. Deve Gowda's) letter dated 11 April 1997 to the President tendering his own resignation and that of his Council of Ministers.",
+      "locator": {
+        "line": "22.04.97, RESIGNATION OF COUNCIL OF MINISTERS, paper (1)"
+      }
+    },
+    {
+      "claim_id": "in_president_accepts_deve_gowda_resignation_19970412",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-05",
+      "role_id": "in_pm",
+      "holder_name": "H. D. Deve Gowda",
+      "role_title": "Prime Minister of India",
+      "event_kind": "resignation_accepted",
+      "attested_on": "1997-04-12",
+      "text": "The papers laid include the President's letter dated 12 April 1997 to Deve Gowda accepting his resignation and that of his colleagues.",
+      "locator": {
+        "line": "paper (2)"
+      }
+    },
+    {
+      "claim_id": "in_deve_gowda_requested_to_continue_19970412",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-05",
+      "role_id": "in_pm",
+      "holder_name": "H. D. Deve Gowda",
+      "role_title": "Prime Minister of India",
+      "event_kind": "continuation_requested",
+      "attested_on": "1997-04-12",
+      "text": "The same letter of 12 April 1997 requests Deve Gowda to continue in office till alternative arrangements are made.",
+      "locator": {
+        "line": "paper (2)"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

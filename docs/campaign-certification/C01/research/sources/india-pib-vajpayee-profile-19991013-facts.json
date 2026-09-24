@@ -1,0 +1,66 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_pib_19991013_vajpayee_profile",
+  "source_url": "https://web.archive.org/web/20020316161744id_/http://pib.nic.in:80/archieve/lreleng/l1099/r131099.html",
+  "original_url": "http://pib.nic.in/archieve/lreleng/l1099/r131099.html",
+  "archive_capture_utc": "2002-03-16T16:17:44Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "1999-10-13",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 16058,
+  "source_response_sha256": "19b0426323fb7084006e78608ac21fafb3609b730c5b6730e3326bf3727b4c01",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2002-03-16T16:17:44Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The check downloaded it at 12:03:22 PDT and again at 12:41:11 PDT on 23 September 2026 with the same byte count and SHA-256; the stored copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "PIB's 1999 English releases are archived under pib.nic.in/archieve/lreleng/lMMYY/ (no lyr99 level), a path the research did not search; the Part B check found this capture. The releases of 17 and 19 April and 12 October 1999 at the same path say nothing about the Prime Minister's resignation, acceptance or continuation.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_vajpayee_sworn_in_19991013",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-06",
+      "role_id": "in_pm",
+      "holder_name": "Atal Bihari Vajpayee",
+      "role_title": "Prime Minister of India",
+      "event_kind": "oath_of_office",
+      "attested_on": "1999-10-13",
+      "text": "PIB's release of 13 October 1999 ('Shri Atal Bihari Vajpayee - a profile') reports that Vajpayee has been sworn in as the Prime Minister of India, the President, K. R. Narayanan, having administered the oath of office and secrecy in the forecourt of Rashtrapati Bhawan 'here today'.",
+      "locator": {
+        "item": "SHRI ATAL BIHARI VAJPAYEE - A PROFILE, first paragraph",
+        "date_basis": "'here today' in the release filed as l1099/r131099 (13 October 1999)"
+      }
+    },
+    {
+      "claim_id": "in_vajpayee_assumes_office_statement_19991013",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-06",
+      "role_id": "in_pm",
+      "holder_name": "Atal Bihari Vajpayee",
+      "role_title": "Prime Minister of India",
+      "event_kind": "assumption_statement",
+      "attested_on": "1999-10-13",
+      "text": "The same release says Vajpayee 'has assumed the august office of the Prime Minister of India for the third time'.",
+      "locator": {
+        "item": "SHRI ATAL BIHARI VAJPAYEE - A PROFILE, first paragraph"
+      }
+    },
+    {
+      "claim_id": "in_pib_profile_vajpayee_spans_19991013",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-06",
+      "role_id": "in_pm",
+      "holder_name": "Atal Bihari Vajpayee",
+      "role_title": "Prime Minister of India",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The same release says Vajpayee was earlier Prime Minister of India 'from May 16-31, 1996 and a second time from March 19, 1998 till date'.",
+      "locator": {
+        "item": "SHRI ATAL BIHARI VAJPAYEE - A PROFILE, first paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

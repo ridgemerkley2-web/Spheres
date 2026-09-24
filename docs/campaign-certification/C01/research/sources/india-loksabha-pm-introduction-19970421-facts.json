@@ -1,0 +1,54 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_ls_debates_19970421_pm_introduction",
+  "source_url": "https://web.archive.org/web/20090411022014id_/http://parliamentofindia.nic.in/ls/lsdeb/ls11/ses4/01210497.htm",
+  "original_url": "http://parliamentofindia.nic.in/ls/lsdeb/ls11/ses4/01210497.htm",
+  "archive_capture_utc": "2009-04-11T02:20:14Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "1997-04-21",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 1710,
+  "source_response_sha256": "14a2eb14897b1d09b4d1c56d3dfd7aecada42ca99373b94b4216869a976e2ed2",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2009-04-11T02:20:14Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The researcher downloaded it 2 times on 23 September 2026 (local times, PDT, 09:25, 10:01; first and last 36 minutes apart) with identical bytes, and the independent check downloaded it again at 11:44 PDT (with no-cache request headers, more than 50 minutes after the researcher's last download) with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Lok Sabha Secretariat's online English debate text for the 11th and 12th Lok Sabha on parliamentofindia.nic.in, recorded as a raw Internet Archive capture; the printed debates on eparlib could not be reached directly.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Complete HTML response read as text (tags stripped); no images."
+  },
+  "rows": [
+    {
+      "claim_id": "in_gujral_swearing_in_concluded_19970421",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-05",
+      "role_id": "in_pm",
+      "holder_name": "I. K. Gujral",
+      "role_title": "Prime Minister of India",
+      "event_kind": "swearing_in_ceremony_reported",
+      "attested_on": "1997-04-21",
+      "text": "At 11:04 on Monday 21 April 1997 the Speaker told the House that the swearing-in ceremony had just concluded and that the Prime Minister and ministers needed time to arrive, and adjourned to 11:30.",
+      "locator": {
+        "page_heading": "XI Lok Sabha Debates, Session IV (Budget), Monday, April 21, 1997",
+        "time": "1104-1106 hours",
+        "speaker": "Mr. Speaker"
+      }
+    },
+    {
+      "claim_id": "in_gujral_introduced_as_pm_19970421",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-05",
+      "role_id": "in_pm",
+      "holder_name": "I. K. Gujral",
+      "role_title": "Prime Minister of India",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1997-04-21",
+      "text": "When the House reassembled at 11:31 on 21 April 1997 the Speaker introduced the Prime Minister of India, I. K. Gujral, who then introduced his Council of Ministers.",
+      "locator": {
+        "time": "1131 hours",
+        "item": "Introduction of the Prime Minister"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

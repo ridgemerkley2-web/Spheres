@@ -1,0 +1,66 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_pib_19980319_releases",
+  "source_url": "https://web.archive.org/web/20020627214656id_/http://pib.nic.in:80/archieve/lreleng/lyr98/l0398/PIBR190398.html",
+  "original_url": "http://pib.nic.in/archieve/lreleng/lyr98/l0398/PIBR190398.html",
+  "archive_capture_utc": "2002-06-27T21:46:56Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "1998-03-19",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 10344,
+  "source_response_sha256": "bf038a4d633de34c7410204c4d3847954aac210bc2d847fc86f2ea0d874c4bb7",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2002-06-27T21:46:56Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The researcher downloaded it 2 times on 23 September 2026 (local times, PDT, 09:15, 10:05; first and last 50 minutes apart) with identical bytes, and the independent check downloaded it again at 11:47 PDT (with no-cache request headers, more than 50 minutes after the researcher's last download) with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "PIB's daily English releases for 19 March 1998 in its old archive on pib.nic.in, recorded as a raw Internet Archive capture.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Complete HTML response read as text (tags stripped); no images."
+  },
+  "rows": [
+    {
+      "claim_id": "in_vajpayee_sworn_in_19980319",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-06",
+      "role_id": "in_pm",
+      "holder_name": "Atal Bihari Vajpayee",
+      "role_title": "Prime Minister of India",
+      "event_kind": "oath_of_office",
+      "attested_on": "1998-03-19",
+      "text": "PIB's profile of 19 March 1998 opens by reporting that Atal Bihari Vajpayee has been sworn in as Prime Minister of India, 'here today'.",
+      "locator": {
+        "item": "ATAL BIHARI VAJPAYEE - A PROFILE, first sentence",
+        "date_basis": "'here today' in the release filed as l0398/PIBR190398 (19 March 1998)"
+      }
+    },
+    {
+      "claim_id": "in_vajpayee_heads_council_list_19980319",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-06",
+      "role_id": "in_pm",
+      "holder_name": "Atal Bihari Vajpayee",
+      "role_title": "Prime Minister of India",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1998-03-19",
+      "text": "PIB's list of the Council of Ministers as on 19 March 1998 names Atal Bihari Vajpayee as Prime Minister, followed by 21 Cabinet ministers and 21 ministers of state.",
+      "locator": {
+        "item": "LIST OF COUNCIL OF MINISTERS (As on 19th March, 1998)"
+      }
+    },
+    {
+      "claim_id": "in_pib_profile_vajpayee_1996_span_19980319",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-04",
+      "role_id": "in_pm",
+      "holder_name": "Atal Bihari Vajpayee",
+      "role_title": "Prime Minister of India",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The 19 March 1998 profile repeats that he held the office of Prime Minister from May 16 to May 31, 1996.",
+      "locator": {
+        "item": "ATAL BIHARI VAJPAYEE - A PROFILE, paragraph beginning 'After the constitution of the 11th Lok Sabha'"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

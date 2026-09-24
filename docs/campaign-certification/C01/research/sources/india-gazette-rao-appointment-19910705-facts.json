@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_gazette_ext_p1s2_no17_19910705",
+  "source_url": "https://egazette.gov.in/WriteReadData/1991/E-0540-1991-0017-23098.pdf",
+  "accessed_date": "2026-09-23",
+  "published_date": "1991-07-05",
+  "access_method": "official_egazette_pdf_download_and_visual_page_review",
+  "source_response_bytes": 100967,
+  "source_response_sha256": "4f7497fb3613d0344ebe1acfa483b43578562c93b4aa7f35ac8c5066f3b7246d",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host. The researcher downloaded it twice on 23 September 2026 (the second time more than 30 minutes later, with a cache-busting query) and the independent check three more times that day (17:26Z to 18:04Z, each with a cache-busting query), all with the same byte count and SHA-256. The file is a static egazette.gov.in object (Last-Modified 12 March 2013, fixed ETag; PDF CreationDate in 2013, no per-request /ID or ModDate), so it is not generated per request. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official eGazette file. MD5 ffee058d21c15c8c1e1bc6db4f8586b8 and SHA-1 1d0aa02e4ee72d584a4d3fd8b3e2b0acd34734b2 equal the copy in the Internet Archive item in.gazette.central.e.1991-07-05.23098 (uploaded 2018); another mirror holds a different 141,250-byte rendering and is not used.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "PDF pages 1 and 2 rendered and read; pages 3-4 (lists of Ministers) read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "in_rao_appointed_pm_wef_19910621",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-03",
+      "role_id": "in_pm",
+      "holder_name": "P. V. Narasimha Rao",
+      "role_title": "Prime Minister of India",
+      "event_kind": "appointment_with_effect",
+      "attested_on": "1991-06-21",
+      "text": "Ministry of Home Affairs notification of 5 July 1991: the President has been pleased to appoint Shri P. V. Narasimha Rao to be the Prime Minister with effect from 12.50 P.M. of 21 June 1991; the next paragraph appoints the members of the Council of Ministers, on the advice of the Prime Minister, with effect from the same time.",
+      "locator": {
+        "pdf_page": 2,
+        "item": "Ministry of Home Affairs Notification No. 10/4/91-M&G(ii), New Delhi, the 5th July, 1991 (Hindi text on page 1)"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

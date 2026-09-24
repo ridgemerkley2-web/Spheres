@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rb_murmu_council_oath_20240609",
+  "source_url": "https://web.archive.org/web/20240609192532id_/https://www.presidentofindia.gov.in/press_releases/press-communique-17",
+  "original_url": "https://www.presidentofindia.gov.in/press_releases/press-communique-17",
+  "archive_capture_utc": "2024-06-09T19:25:32Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "2024-06-09",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 43520,
+  "source_response_sha256": "0210454a3b5317f7780eefc6e73807225d4952b2fcd704704374a9799f7352d3",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2024-06-09T19:25:32Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The researcher downloaded it at 2026-09-23T16:17:50Z and again at 2026-09-23T17:17:41Z with identical bytes (at least 30 minutes apart), and the independent check downloaded it again at 2026-09-24T12:28:57Z with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Current President's website (Drupal). Live pages there are regenerated per request, so the raw Internet Archive capture made in 2024 is pinned instead. This capture was made on the evening of 9 June 2024 (UTC).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_modi_appointed_pm_communique_20240609",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-10",
+      "role_id": "in_pm",
+      "holder_name": "Narendra Modi",
+      "role_title": "Prime Minister of India",
+      "event_kind": "appointment_communique",
+      "attested_on": "2024-06-09",
+      "text": "The communique dated 9 June 2024 states that the President of India has appointed Shri Narendra Damodardas Modi as the Prime Minister of India, and lists the members of the Council of Ministers appointed on his advice.",
+      "locator": {
+        "section": "Communique, opening sentence"
+      }
+    },
+    {
+      "claim_id": "in_council_oath_administered_20240609",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-10",
+      "role_id": "in_pm",
+      "holder_name": null,
+      "role_title": "Prime Minister of India",
+      "event_kind": "council_oath_administered",
+      "attested_on": "2024-06-09",
+      "text": "The same communique states that the President administered the oaths of office and secrecy to 'the above Members of the Council of Ministers' at a ceremony in Rashtrapati Bhavan 'today (09.06.2024)'.",
+      "locator": {
+        "section": "Communique, paragraph 2"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

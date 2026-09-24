@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_ls_debates_19960527_confidence_debate",
+  "source_url": "https://web.archive.org/web/20060518161238id_/http://parliamentofindia.nic.in:80/ls/lsdeb/ls11/ses1/1527059611.htm",
+  "original_url": "http://parliamentofindia.nic.in/ls/lsdeb/ls11/ses1/1527059611.htm",
+  "archive_capture_utc": "2006-05-18T16:12:38Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "1996-05-27",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 20037,
+  "source_response_sha256": "ff6efff9ed3a28a81d4a82763c6cb56bd8c617b7cb4202554730e52517242344",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2006-05-18T16:12:38Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The researcher downloaded it 2 times on 23 September 2026 (local times, PDT, 09:29, 10:00; first and last 31 minutes apart) with identical bytes, and the independent check downloaded it again at 11:40 PDT (with no-cache request headers, more than 50 minutes after the researcher's last download) with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Lok Sabha Secretariat's online English debate text for the 11th and 12th Lok Sabha on parliamentofindia.nic.in, recorded as a raw Internet Archive capture; the printed debates on eparlib could not be reached directly. An undated continuation page dated by its file name and the 27 May 1996 contents (in_ls_contents_19960527).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Complete HTML response read as text (tags stripped); no images."
+  },
+  "rows": [
+    {
+      "claim_id": "in_vajpayee_swearing_in_recalled_in_house_19960516",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-04",
+      "role_id": "in_pm",
+      "holder_name": "Atal Bihari Vajpayee",
+      "role_title": "Prime Minister of India",
+      "event_kind": "swearing_in_recalled_in_debate",
+      "attested_on": "1996-05-16",
+      "text": "In the confidence debate of 27 May 1996 Somnath Chatterjee (Bolpur) told the House that the Vajpayee Government came to be sworn in on the 16th, the day of the debate being the 27th.",
+      "locator": {
+        "page": "1527059611 (item 15, 27-05-96, part 11)",
+        "speaker": "Shri Somnath Chatterjee (Bolpur)",
+        "date_basis": "file name 1527059611 and the 27 May 1996 contents (in_ls_contents_19960527), which list the continuing confidence debate"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

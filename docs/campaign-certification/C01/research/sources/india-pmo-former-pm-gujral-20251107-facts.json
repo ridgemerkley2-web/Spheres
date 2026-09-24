@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_pmo_former_pm_gujral",
+  "source_url": "https://web.archive.org/web/20251107114706id_/https://www.pmindia.gov.in/en/former_pm/shri-inder-kumar-gujral/",
+  "original_url": "https://www.pmindia.gov.in/en/former_pm/shri-inder-kumar-gujral/",
+  "archive_capture_utc": "2025-11-07T11:47:06Z",
+  "accessed_date": "2026-09-23",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 52144,
+  "source_response_sha256": "7e4774192ffbf2bd547083193a12ad2f0c2ab557b43f7c59ad92315b37d04263",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2025-11-07T11:47:06Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The researcher downloaded it 2 times on 23 September 2026 (local times, PDT, 10:14, 10:45; first and last 31 minutes apart) with identical bytes, and the independent check downloaded it again at 11:46 PDT (with no-cache request headers, more than 50 minutes after the researcher's last download) with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Retrospective former-prime-minister page captured by the Internet Archive; it embeds a WordPress nonce generated when the capture was made, which is fixed in the archived response and does not change between replays. The live page was not used as the identity. Claims only, never a boundary.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Complete HTML response read as text (tags stripped); no images."
+  },
+  "rows": [
+    {
+      "claim_id": "in_pmo_gujral_swearing_in_recalled_19970421",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-05",
+      "role_id": "in_pm",
+      "holder_name": "I. K. Gujral",
+      "role_title": "Prime Minister of India",
+      "event_kind": "swearing_in_recalled_retrospective",
+      "attested_on": "1997-04-21",
+      "text": "The PMO page says Gujral was sworn in as Prime Minister on Monday, 21 April 1997.",
+      "locator": {
+        "element": "first paragraph"
+      }
+    },
+    {
+      "claim_id": "in_pmo_span_gujral_19970421_19980319",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-05",
+      "role_id": "in_pm",
+      "holder_name": "I. K. Gujral",
+      "role_title": "Prime Minister of India",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The PMO page heads Gujral's entry 'April 21, 1997 - March 19, 1998'.",
+      "locator": {
+        "element": "page heading"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

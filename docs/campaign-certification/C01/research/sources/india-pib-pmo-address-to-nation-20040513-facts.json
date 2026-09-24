@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_pib_pmo_vajpayee_address_to_nation_20040513",
+  "source_url": "https://web.archive.org/web/20040819231551id_/http://pib.nic.in:80/release/release.asp?relid=1705",
+  "original_url": "http://pib.nic.in/release/release.asp?relid=1705",
+  "archive_capture_utc": "2004-08-19T23:15:51Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "2004-05-13",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 25343,
+  "source_response_sha256": "dd194bbe7ba79271510b93dab3fc90326548c58a40d4a26cd1e69b2e977cd6ca",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2004-08-19T23:15:51Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The researcher downloaded it at 2026-09-23T16:25:14Z and again at 2026-09-23T17:42:23Z with identical bytes (at least 30 minutes apart), and the independent check downloaded it again at 2026-09-24T12:16:46Z with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "PIB release list of 2004 located by listing Internet Archive captures of pib.nic.in/release/release.asp and reading relids 1693-1743. Relid 1704 (the President's communique of 19:30 IST) is captured only in PIB's newer newsite form (in_pib_president_communique_vajpayee_20040513); relids 1730 and 1736 are captured, and relid 1734 (the President's appointment of Dr. Manmohan Singh on 19 May 2004) is readable live but not byte-stable and has no capture.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_vajpayee_states_resignation_submitted_20040513",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-07",
+      "role_id": "in_pm",
+      "holder_name": "Atal Bihari Vajpayee",
+      "role_title": "Prime Minister of India",
+      "event_kind": "resignation_statement",
+      "attested_on": "2004-05-13",
+      "text": "In the text of his address to the nation released by PIB for the PMO on 13 May 2004, Vajpayee says that he submitted his resignation to the President that evening ('This evening, I submitted my resignation').",
+      "locator": {
+        "section": "Address text, first paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}
