@@ -8,9 +8,9 @@
     "country_packets": 9,
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 841,
-    "institution_observations": 28,
-    "sources": 231,
-    "source_claims": 1874,
+    "institution_observations": 29,
+    "sources": 287,
+    "source_claims": 1958,
     "discovery_batches": 92,
     "exhaustive_country_censuses": 0
   },
@@ -189,10 +189,10 @@
       "nation": "India",
       "packet": "docs/campaign-certification/C01/research/india.json",
       "organization_observations": 82,
-      "institution_observations": 1,
-      "role_observations": 1,
-      "source_claims": 194,
-      "mapping_pending": 83,
+      "institution_observations": 2,
+      "role_observations": 2,
+      "source_claims": 278,
+      "mapping_pending": 84,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
       "coverage": {
@@ -230,7 +230,8 @@
           "Preserve frozen-name and pending-court-order qualifications; no inferred successor or resolution is granted.",
           "Research separately dated party leaders, chairs, parliamentary roles and executive offices before adding characters or portraits.",
           "All game mappings, lifecycle intervals and leadership terms remain unknown. Fictional successor eligibility and portrait reuse rights have not been researched.",
-          "Prime ministers 1990-2026 (CLAUDE-C01-11): the packet now holds one institution, in_prime_minister, with one role, in_pm, and thirteen dated holder observations (stated starts for Rao, Vajpayee in 1996, 1998 and 1999 and Gujral; stated ends for Chandra Shekhar, Rao, Deve Gowda and Vajpayee's 1998 term). Still open for the prime-ministership: V. P. Singh's end, Chandra Shekhar's and Deve Gowda's starts, the end of every continuation that no Gazette acceptance fixes, the President's 1990-1999 communiques in the PIB archive and the 2004-2024 Gazette notifications. Deputy prime ministers, ministers, the President, party offices and all other institutions remain outside this intake. No game identity or portrait permission is granted."
+          "Prime ministers 1990-2026 (CLAUDE-C01-11): the packet now holds one institution, in_prime_minister, with one role, in_pm, and thirteen dated holder observations (stated starts for Rao, Vajpayee in 1996, 1998 and 1999 and Gujral; stated ends for Chandra Shekhar, Rao, Deve Gowda and Vajpayee's 1998 term). Still open for the prime-ministership: V. P. Singh's end, Chandra Shekhar's and Deve Gowda's starts, the end of every continuation that no Gazette acceptance fixes, the President's 1990-1999 communiques in the PIB archive and the 2004-2024 Gazette notifications. Deputy prime ministers, ministers, the President, party offices and all other institutions remain outside this intake. No game identity or portrait permission is granted.",
+          "Presidents 1990-2026 (CLAUDE-C01-15): the packet now holds a second institution, in_presidency, with one role, in_president, and eight dated holder observations (R. Venkataraman observed on 13 January 1990, and stated starts on 25 July 1992, 1997, 2002, 2007, 2012, 2017 and 2022 for his seven successors). No primary source reviewed states the day any President's office ended, so no holder has an end. Still open for the presidency: every end, the text of the 2002 notification of assumption, the names of the Chief Justices who administered the 1997, 2002, 2007 and 2012 oaths, and the Election Commission's own result records. Vice-presidents, acting arrangements, party offices and all other institutions remain outside this intake. No game identity or portrait permission is granted."
         ]
       }
     },
@@ -2292,7 +2293,8 @@
       "members": [
         "in_eci_20240323_sp_26_01",
         "in_eci_20240323_sp_26_02",
-        "in_prime_minister"
+        "in_prime_minister",
+        "in_presidency"
       ],
       "maximum_reviewed_records": 10,
       "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
@@ -2641,8 +2643,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/india.json",
-      "bytes": 415576,
-      "sha256": "6fea4914ca8ced801f596c27f7fe277be8c2fb0415e642fb61686769ea40c3ba"
+      "bytes": 602075,
+      "sha256": "25fe4fdd95edab98fbb49c033cdd6465299407723296104c27abb98c5c70dde3"
     },
     {
       "path": "docs/campaign-certification/C01/research/japan.json",
