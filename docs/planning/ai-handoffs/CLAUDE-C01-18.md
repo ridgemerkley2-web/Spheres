@@ -59,7 +59,7 @@ Touched paths (all inside this record's allowed files):
 
 - `docs/planning/ai-handoffs/CLAUDE-C01-18.md` (this record);
 - `docs/campaign-certification/C01/research/japan-ldp-presidents-1990-2009-18.md` (new report);
-- `docs/campaign-certification/C01/research/japan.json` (additions only: 81 sources and 189 claims appended after CLAUDE-C01-13's;
+- `docs/campaign-certification/C01/research/japan.json` (additions only: 81 sources and 192 claims appended after CLAUDE-C01-13's;
   on the 自由民主党 organization observation `jp_sangiin_pr_2025_13`, its `sources` and `claim_ids` and the `jp_ldp_party_president`
   role's `sources` and `claim_ids` extended, fourteen holders inserted before the unchanged 2024 and 2025 holders, a sentence appended
   to the role's `scope_note`, one organization coverage note and one packet coverage note appended; no existing text changed);
@@ -113,7 +113,7 @@ Checks run on 25 September 2026 in this sparse worktree (`docs/campaign-certific
 `tools/planning`, `tools/ui`; not widened), with `PYTHONDONTWRITEBYTECODE=1`:
 
 - `python -X utf8 tools/avatars/campaign_research.py` then `--check`: exact regeneration passes; 9 packets, 841 organization and 28
-  institution observations, 572 sources, 2,418 claims, 92 open batches (Japan: 418 sources, 685 claims).
+  institution observations, 572 sources, 2,421 claims, 92 open batches (Japan: 418 sources, 688 claims).
 - Japan tests (`-p "test_japan*.py"`): 35 pass (9 in the new `test_japan_ldp_presidents_c01_18.py`, whose mutation test rejects 39
   rule mutations, 8 validator mutations, 4 row mutations and 4 event re-datings; 9 in `test_japan_prime_ministers_c01_13.py`, 9 in
   `test_japan_prime_ministers_c01_12.py` and 8 in `test_japan_research_s10d.py`).

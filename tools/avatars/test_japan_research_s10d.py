@@ -9,7 +9,7 @@ import campaign_research as research
 # 174 claims for the jp_prime_minister institution, whose response identities are pinned exactly (bytes and SHA-256) in
 # test_japan_prime_ministers_c01_12.py; CLAUDE-C01-13 (stacked on it) adds 211 sources and 293 claims to the same
 # institution and role, pinned in test_japan_prime_ministers_c01_13.py; CLAUDE-C01-18 (stacked on CLAUDE-C01-13) adds 81
-# sources and 189 claims to the existing LDP presidency role, pinned in test_japan_ldp_presidents_c01_18.py.
+# sources and 192 claims to the existing LDP presidency role, pinned in test_japan_ldp_presidents_c01_18.py.
 ORIGINAL_SOURCES = ('jp_tokyo_pr_2025', 'jp_shugiin_groups_20260218', 'jp_shugiin_group_definition',
                     'jp_ldp_ishiba_elected_2024', 'jp_ldp_takaichi_elected_2025', 'jp_jcp_chairs_2024',
                     'jp_dpfp_tamaki_elected_2026')
@@ -22,7 +22,7 @@ C01_12_CLAIM_COUNT = 174
 C01_13_SOURCE_COUNT = 211
 C01_13_CLAIM_COUNT = 293
 C01_18_SOURCE_COUNT = 81
-C01_18_CLAIM_COUNT = 189
+C01_18_CLAIM_COUNT = 192
 # The LDP presidency's holder observations: CLAUDE-C01-18's fourteen (1990-2009), then the original 2024 and 2025 ones.
 LDP_ATTESTED = ['1990-05-14', '1992-11-30', '1994-11-25', '1995-10-02', '1998-07-24', '1999-09-22', None, '2001-04-24',
                 '2001-08-10', '2003-09-20', '2006-09-20', '2007-09-23', '2008-09-22', '2009-09-28', '2024-09-27', '2025-10-04']
@@ -39,9 +39,9 @@ class JapanDiscoveryTests(unittest.TestCase):
     def test_two_official_universes_remain_bounded_and_valid(self):
         ids = self.validate()
         # 23 original observations plus the CLAUDE-C01-12 prime-ministership (119 sources, 174 claims, one role), extended by
-        # CLAUDE-C01-13 (211 sources, 293 claims) and by CLAUDE-C01-18's LDP presidents (81 sources, 189 claims on the existing
+        # CLAUDE-C01-13 (211 sources, 293 claims) and by CLAUDE-C01-18's LDP presidents (81 sources, 192 claims on the existing
         # party role), with no new entry or role.
-        self.assertEqual((len(ids['entries']), len(ids['sources']), len(ids['claims']), len(ids['roles'])), (24, 418, 685, 5))
+        self.assertEqual((len(ids['entries']), len(ids['sources']), len(ids['claims']), len(ids['roles'])), (24, 418, 688, 5))
         self.assertEqual((len(self.packet['organizations']), len(self.packet['institutions'])), (16, 8))
         self.assertEqual([s['id'] for s in self.packet['sources']][:7], list(ORIGINAL_SOURCES))
         self.assertEqual(sum(len(s['claims']) for s in self.packet['sources'] if s['id'] in ORIGINAL_SOURCES), 29)

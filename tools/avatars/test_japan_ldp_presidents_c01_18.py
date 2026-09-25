@@ -526,6 +526,7 @@ EVENTS = {
     'jp_ldp_ayumi_chronology_57th_convention_19930930': (None, 'retrospective_convention_record', 'LDP-PRES-03'),
     'jp_ldp_ayumi_chronology_hashimoto_elected_19950922': (None, 'retrospective_election_record', 'LDP-PRES-04'),
     'jp_ldp_ayumi_chronology_hashimoto_selected_convention_19950925': (None, 'retrospective_convention_record', 'LDP-PRES-04'),
+    'jp_ldphist_hashimoto_resignation_announced_1998': (None, 'retrospective_resignation_intent_reference', 'LDP-PRES-04'),
     'jp_ldphist_obuchi_elected_18th_president_19980724': (None, 'retrospective_election_record', 'LDP-PRES-05'),
     'jp_ldphist_obuchi_inherited_term_election_announced_19990909': (None, 'retrospective_election_notice_record', 'LDP-PRES-05'),
     'jp_ldphist_obuchi_reelected_19990921': (None, 'retrospective_election_record', 'LDP-PRES-05'),
@@ -650,6 +651,8 @@ EVENTS = {
     'jp_ldp_sousai09_tanigaki_first_press_conference_20090928': ('2009-09-28', 'in_office_attestation', 'LDP-PRES-10'),
     'jp_ldp_tanigaki_president_visits_yamba_20091002': ('2009-10-02', 'in_office_continuation_attestation', 'LDP-PRES-10'),
     'jp_ldp_history_tanigaki_era_election_narrative': (None, 'retrospective_election_narrative', 'LDP-PRES-10'),
+    'jp_ldp_tanigaki_era_assumption_reference': (None, 'retrospective_assumption_reference', 'LDP-PRES-10'),
+    'jp_ldp_tanigaki_era_aso_stepped_down_reference': (None, 'retrospective_resignation_reference', 'LDP-PRES-10'),
 }
 # The holder name each extract row carries; None where the source names no holder of this office.
 ROW_HOLDERS = {
@@ -718,8 +721,9 @@ ROW_HOLDERS = {
     'jp_ldp_ayumi_chronology_57th_convention_19930930': None,
     'jp_ldp_ayumi_chronology_hashimoto_elected_19950922': '橋本龍太郎',
     'jp_ldp_ayumi_chronology_hashimoto_selected_convention_19950925': '橋本龍太郎',
+    'jp_ldphist_hashimoto_resignation_announced_1998': '橋本龍太郎',
     'jp_ldphist_obuchi_elected_18th_president_19980724': '小渕恵三',
-    'jp_ldphist_obuchi_inherited_term_election_announced_19990909': None,
+    'jp_ldphist_obuchi_inherited_term_election_announced_19990909': '小渕恵三',
     'jp_ldphist_obuchi_reelected_19990921': '小渕恵三',
     'jp_ldphist_65th_extraordinary_congress_held_19990922': None,
     'jp_ldphist_mori_chosen_19th_president_joint_plenary_20000405': '森喜朗',
@@ -825,7 +829,7 @@ ROW_HOLDERS = {
     'jp_ldp_aso_first_press_conference_as_president_20080922': '麻生太郎',
     'jp_ldp_aso_appoints_officers_after_taking_office_20080922': '麻生太郎',
     'jp_ldp_jiyuminshu_aso_23rd_president_20080924': '麻生太郎',
-    'jp_ldp_2009_election_schedule_approved_joint_plenary_20090908': None,
+    'jp_ldp_2009_election_schedule_approved_joint_plenary_20090908': '麻生太郎',
     'jp_ldp_aso_states_will_resign_presidency_with_cabinet_20090908': '麻生太郎',
     'jp_ldp_aso_president_addresses_joint_plenary_20090908': '麻生太郎',
     'jp_ldp_2009_notice_day_proposals_to_candidates_20090918': None,
@@ -842,6 +846,8 @@ ROW_HOLDERS = {
     'jp_ldp_sousai09_tanigaki_first_press_conference_20090928': '谷垣禎一',
     'jp_ldp_tanigaki_president_visits_yamba_20091002': '谷垣禎一',
     'jp_ldp_history_tanigaki_era_election_narrative': '谷垣禎一',
+    'jp_ldp_tanigaki_era_assumption_reference': '谷垣禎一',
+    'jp_ldp_tanigaki_era_aso_stepped_down_reference': '麻生太郎',
 }
 
 NEW_SOURCES = list(RESPONSES)
@@ -941,9 +947,9 @@ CONTINUATION = tuple(cid for cid, (_d, kind, _o) in EVENTS.items() if kind in CO
 RETROSPECTIVE = tuple(cid for cid, (_d, kind, _o) in EVENTS.items() if kind in RETROSPECTIVE_KINDS)
 UNDATED = tuple(cid for cid, (_d, kind, _o) in EVENTS.items() if kind in UNDATED_KINDS)
 COUNTS = {
-    'sources_claims': (81, 189),
-    'holder_never': (23, 166),
-    'categories': (51, 8, 23, 84, 98),
+    'sources_claims': (81, 192),
+    'holder_never': (23, 169),
+    'categories': (51, 8, 23, 87, 101),
     'archived_diet': (59, 22),
 }
 # Dates that are never a holder's attested_on, start or end: elections, notices, candidacies, selections, declarations,

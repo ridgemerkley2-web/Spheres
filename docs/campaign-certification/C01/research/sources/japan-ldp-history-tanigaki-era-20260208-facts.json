@@ -31,9 +31,37 @@
       "role_title": "総裁 — party president",
       "event_kind": "retrospective_election_narrative",
       "attested_on": null,
-      "text": "The LDP's retrospective page 谷垣禎一総裁時代 (headed 平成21年10月1日～平成24年9月30日) says the party held a presidential election on 28 September 2009 to choose a new president in place of 麻生総裁, who had stepped down (退陣した麻生総裁); 谷垣 won 300 votes (120/180) against 河野 144 and 西村 54 and became (就任) the 24th LDP president, then gave a press conference immediately after taking office.",
+      "text": "The LDP's retrospective page 谷垣禎一総裁時代 (headed 平成21年10月1日～平成24年9月30日) says the party held a presidential election on 平成二十一年九月二十八日 (28 September 2009), in which 谷垣氏 won 300 votes (Diet-member votes 120, member-derived votes 180) against 河野氏 144 and 西村氏 54.",
       "locator": {
         "section": "heading; first and second paragraphs"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_tanigaki_era_assumption_reference",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-10",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "谷垣禎一",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_assumption_reference",
+      "attested_on": null,
+      "text": "The same page says 谷垣氏 became the 24th LDP president (第二十四代自民党総裁に就任しました).",
+      "locator": {
+        "section": "second paragraph"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_tanigaki_era_aso_stepped_down_reference",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-10",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "麻生太郎",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_resignation_reference",
+      "attested_on": null,
+      "text": "The same page says the election was held to choose a new president in place of 麻生総裁, who had stepped down (退陣した麻生総裁に代わる新たな総裁を選ぶため).",
+      "locator": {
+        "section": "first paragraph"
       }
     }
   ],

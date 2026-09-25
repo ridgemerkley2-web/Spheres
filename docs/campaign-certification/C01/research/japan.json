@@ -12599,8 +12599,8 @@
       "scope_note": "The party's own printed history (a short history for the 60th anniversary, November 2015), a stored PDF recorded as the raw Internet Archive capture of 8 February 2026, made before the cutoff; a retrospective narrative and chronology. For 1989-1995 only the appended chronology (付録・年表) is imported, because chapters 14-17 repeat the imported web pages; for 1998-2003 chapters 18-20 and the chronology are imported (the web pages for those chapters are not). Every claim is retrospective, with no structured date.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/japan-ldp-ayumi-2015-20260208-facts.json",
-        "bytes": 22823,
-        "sha256": "b827dec2358a9b60c6399a39c207052b3ab15a1d3107019bb77c5d1b246f617c"
+        "bytes": 23620,
+        "sha256": "e714ba25cb7f4c34b76dff679b5ce14bcb1d92b6b41c709d153cf46779f50f79"
       },
       "claims": [
         {
@@ -12684,8 +12684,18 @@
           "uncertainty": "Retrospective party record written long after the event: a claim only, never a holder boundary; no structured date is stored. Prints 橋本総裁 (surname and title) in this entry; the full name is in the preceding entry. The web list calls the same convention a report (報告)."
         },
         {
+          "id": "jp_ldphist_hashimoto_resignation_announced_1998",
+          "text": "The party history says that, in the light of the July 1998 upper-house election result (これを踏まえて), 橋本龍太郎総裁（首相） announced his resignation (辞任を表明).",
+          "locator": {
+            "pdf_page_one_based": 96,
+            "printed_page": "90",
+            "section": "第十八章 小渕恵三総裁時代, first paragraph, sentence beginning これを踏まえて"
+          },
+          "uncertainty": "Retrospective party record written long after the event: a claim only, never a holder boundary; no structured date is stored. An announcement with no stated day, kept apart from the election as on the 河野 page; never an until for 橋本龍太郎, and no end is inferred from the successor's election. The printed （首相） is a prime-ministerial title and is not imported."
+        },
+        {
           "id": "jp_ldphist_obuchi_elected_18th_president_19980724",
-          "text": "The party history says that after 橋本龍太郎総裁 announced his resignation following the July 1998 upper-house election, the election of the 18th president was held on 24 July 1998 between 小渕恵三, 小泉純一郎 and 梶山静六; in a vote of all LDP members of both Houses and prefectural representatives 小渕 won a majority of 225 on the first ballot and was chosen as the new president. The chronology lists 総裁選で小渕恵三外相を選出（七・二四） under 平成十年.",
+          "text": "The party history says that on 24 July 1998 (七月二十四日) the election to choose the 18th president (第十八代総裁を決める総裁選) was held between 小渕恵三, 小泉純一郎 and 梶山静六; in a vote of all LDP members of both Houses and prefectural representatives 小渕 won a majority of 225 on the first ballot and was chosen as the new president. The chronology lists 総裁選で小渕恵三外相を選出（七・二四） under 平成十年.",
           "locator": {
             "pdf_page_one_based": [
               96,
@@ -12697,7 +12707,7 @@
             ],
             "section": "第十八章 小渕恵三総裁時代, first paragraph; 付録・年表 平成十年（一九九八年） entry (七・二四)"
           },
-          "uncertainty": "Retrospective party record written long after the event: a claim only, never a holder boundary; no structured date is stored. 橋本龍太郎総裁's announced resignation is undated here and is never an until."
+          "uncertainty": "Retrospective party record written long after the event: a claim only, never a holder boundary; no structured date is stored. 橋本龍太郎総裁's announced resignation, in the preceding sentence, is a separate claim."
         },
         {
           "id": "jp_ldphist_obuchi_inherited_term_election_announced_19990909",
@@ -12707,7 +12717,7 @@
             "printed_page": "93",
             "section": "第十八章, paragraph beginning 小渕総裁は前総裁の任期を引き継いだ"
           },
-          "uncertainty": "Retrospective party record written long after the event: a claim only, never a holder boundary; no structured date is stored. A notice names no holder of the office, so the row carries no holder name; the statement that the 1998 presidency ran on the predecessor's remaining term gives no end."
+          "uncertainty": "Retrospective party record written long after the event: a claim only, never a holder boundary; no structured date is stored. It names 小渕恵三総裁 as the incumbent standing as a candidate; a notice is never a holder date, and the statement that the 1998 presidency ran on the predecessor's remaining term gives no end."
         },
         {
           "id": "jp_ldphist_obuchi_reelected_19990921",
@@ -13593,18 +13603,18 @@
       "scope_note": "The party's 1999 presidential election page, recorded as a raw Internet Archive capture (Last-Modified 13 April 2000).",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/japan-ldp-sousai99-index-20000605-facts.json",
-        "bytes": 5116,
-        "sha256": "35141853095bb0357cb833c679922b1f2343048ec6f6561dff47ee6a6878d432"
+        "bytes": 4989,
+        "sha256": "6a4e946ccf980a1956030b71ff632b3e73dcfdba304d901c148df062d01786ee"
       },
       "claims": [
         {
           "id": "jp_ldp99idx_result_table_19990921",
-          "text": "The party's 1999 presidential election page gives the count (開票結果): 小渕恵三 Diet-member votes 253, member-derived votes 97, total 350; 加藤紘一 85, 28, 113; 山崎拓 33, 18, 51. Its event list places the count of member ballots at 09:00 and of Diet-member ballots at 16:00 on 21 September, the extraordinary party convention at 13:00 on 22 September and the new president's press conference at 14:30 on 22 September.",
+          "text": "The party's 1999 presidential election page gives the count (開票結果): 小渕恵三 Diet-member votes 253, member-derived votes 97, total 350; 加藤紘一 85, 28, 113; 山崎拓 33, 18, 51. Its event list places the count of member ballots at 09:00 and of Diet-member ballots at 16:00 on 21 September.",
           "attested_on": "1999-09-21",
           "locator": {
             "section": "開票結果 table; 総裁選挙インターネット中継情報 list"
           },
-          "uncertainty": "The result table is undated; the date comes from the page's list of counting sessions (21 September) and the heading 平成11年総裁選挙情報. A vote and count, never a holder."
+          "uncertainty": "The result table is undated; the date comes from the page's list of counting sessions (21 September) and the heading 平成11年総裁選挙情報. A vote and count, never a holder. The same list's entries for 22 September (the extraordinary convention and the new president's press conference) belong to that day and are recorded from their own pages."
         }
       ]
     },
@@ -15070,8 +15080,8 @@
       "scope_note": "A party news item (www.jimin.jp/jimin/daily/), recorded as a raw Internet Archive capture made before the cutoff; the page's own date line gives the day. Its month list of other items is part of the archived bytes and is not used.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/japan-ldp-news-joint-plenary-schedule-20090908-facts.json",
-        "bytes": 6094,
-        "sha256": "e0b91fa9617b0636818900091e0720fae16efeb5b8d44b940595a810cdb64ac4"
+        "bytes": 6104,
+        "sha256": "8f883dcbd54f794371f9890183f3e1b3e9d12d616b8db3a11e27ad14bfd44ecf"
       },
       "claims": [
         {
@@ -15081,7 +15091,7 @@
           "locator": {
             "section": "date line 【平成２１年 ９月 ８日】; headline; first paragraph"
           },
-          "uncertainty": "A prospective schedule; procedure only. Names no holder; never a holder."
+          "uncertainty": "A prospective schedule; procedure only. It names 麻生太郎総裁 only as the president whose successor is to be chosen; never a holder date and never a boundary."
         },
         {
           "id": "jp_ldp_aso_states_will_resign_presidency_with_cabinet_20090908",
@@ -15374,17 +15384,33 @@
       "scope_note": "A retrospective narrative page of the party's history, recorded as a raw Internet Archive capture of 8 February 2026, made before the cutoff.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/japan-ldp-history-tanigaki-era-20260208-facts.json",
-        "bytes": 4611,
-        "sha256": "aad970c8d195c8def4ecf1d2b0bf7921aa4da7871037cb9b79a870f57b662369"
+        "bytes": 5735,
+        "sha256": "19c7cf4e31fd5137d76118c044bac0cbea531e50e80dfcd8e683fa468b41e0ca"
       },
       "claims": [
         {
           "id": "jp_ldp_history_tanigaki_era_election_narrative",
-          "text": "The LDP's retrospective page 谷垣禎一総裁時代 (headed 平成21年10月1日～平成24年9月30日) says the party held a presidential election on 28 September 2009 to choose a new president in place of 麻生総裁, who had stepped down (退陣した麻生総裁); 谷垣 won 300 votes (120/180) against 河野 144 and 西村 54 and became (就任) the 24th LDP president, then gave a press conference immediately after taking office.",
+          "text": "The LDP's retrospective page 谷垣禎一総裁時代 (headed 平成21年10月1日～平成24年9月30日) says the party held a presidential election on 平成二十一年九月二十八日 (28 September 2009), in which 谷垣氏 won 300 votes (Diet-member votes 120, member-derived votes 180) against 河野氏 144 and 西村氏 54.",
           "locator": {
             "section": "heading; first and second paragraphs"
           },
-          "uncertainty": "Retrospective party record written long after the event: a claim only, never a holder boundary; no structured date is stored. It gives no separate day for 就任 or for 麻生's departure, and feeds no holder."
+          "uncertainty": "Retrospective party record written long after the event: a claim only, never a holder boundary; no structured date is stored. The election and its result only; the page's statements that 麻生総裁 had stepped down and that 谷垣氏 took office are separate claims."
+        },
+        {
+          "id": "jp_ldp_tanigaki_era_assumption_reference",
+          "text": "The same page says 谷垣氏 became the 24th LDP president (第二十四代自民党総裁に就任しました).",
+          "locator": {
+            "section": "second paragraph"
+          },
+          "uncertainty": "Retrospective party record written long after the event: a claim only, never a holder boundary; no structured date is stored. A retrospective statement of assumption kept apart from the election, as on the 海部 page; it gives no day for 就任, and under the packet rule a retrospective record is never a from."
+        },
+        {
+          "id": "jp_ldp_tanigaki_era_aso_stepped_down_reference",
+          "text": "The same page says the election was held to choose a new president in place of 麻生総裁, who had stepped down (退陣した麻生総裁に代わる新たな総裁を選ぶため).",
+          "locator": {
+            "section": "first paragraph"
+          },
+          "uncertainty": "Retrospective party record written long after the event: a claim only, never a holder boundary; no structured date is stored. Prints 麻生総裁 (surname and title). The day he stepped down is not stated; never an until for 麻生太郎, and no end is inferred from the successor's election."
         }
       ]
     }
@@ -16110,6 +16136,7 @@
             "jp_ldp_ayumi_chronology_57th_convention_19930930",
             "jp_ldp_ayumi_chronology_hashimoto_elected_19950922",
             "jp_ldp_ayumi_chronology_hashimoto_selected_convention_19950925",
+            "jp_ldphist_hashimoto_resignation_announced_1998",
             "jp_ldphist_obuchi_elected_18th_president_19980724",
             "jp_ldphist_obuchi_inherited_term_election_announced_19990909",
             "jp_ldphist_obuchi_reelected_19990921",
@@ -16233,7 +16260,9 @@
             "jp_ldp_sousai09_aso_called_former_president_20090928",
             "jp_ldp_sousai09_tanigaki_first_press_conference_20090928",
             "jp_ldp_tanigaki_president_visits_yamba_20091002",
-            "jp_ldp_history_tanigaki_era_election_narrative"
+            "jp_ldp_history_tanigaki_era_election_narrative",
+            "jp_ldp_tanigaki_era_assumption_reference",
+            "jp_ldp_tanigaki_era_aso_stepped_down_reference"
           ],
           "holder_claims": [
             {
@@ -16635,6 +16664,7 @@
         "jp_ldp_ayumi_chronology_57th_convention_19930930",
         "jp_ldp_ayumi_chronology_hashimoto_elected_19950922",
         "jp_ldp_ayumi_chronology_hashimoto_selected_convention_19950925",
+        "jp_ldphist_hashimoto_resignation_announced_1998",
         "jp_ldphist_obuchi_elected_18th_president_19980724",
         "jp_ldphist_obuchi_inherited_term_election_announced_19990909",
         "jp_ldphist_obuchi_reelected_19990921",
@@ -16758,7 +16788,9 @@
         "jp_ldp_sousai09_aso_called_former_president_20090928",
         "jp_ldp_sousai09_tanigaki_first_press_conference_20090928",
         "jp_ldp_tanigaki_president_visits_yamba_20091002",
-        "jp_ldp_history_tanigaki_era_election_narrative"
+        "jp_ldp_history_tanigaki_era_election_narrative",
+        "jp_ldp_tanigaki_era_assumption_reference",
+        "jp_ldp_tanigaki_era_aso_stepped_down_reference"
       ],
       "coverage": {
         "status": "partial",
