@@ -9,8 +9,8 @@
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 841,
     "institution_observations": 28,
-    "sources": 280,
-    "source_claims": 1936,
+    "sources": 491,
+    "source_claims": 2229,
     "discovery_batches": 92,
     "exhaustive_country_censuses": 0
   },
@@ -239,7 +239,7 @@
       "organization_observations": 16,
       "institution_observations": 8,
       "role_observations": 5,
-      "source_claims": 203,
+      "source_claims": 496,
       "mapping_pending": 24,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -277,7 +277,8 @@
           "Election candidates and independent-member aggregates are not silently promoted into party leaders or fabricated organizations.",
           "The live upper-house English strength page was dated 13 September 2026 when accessed and was excluded because it exceeds the fixed 7 September cutoff. Search-cache dates were not substituted for the current page.",
           "Neither the 2025 election nor the February 2026 group list establishes a complete present-day September roster. No observations after the cutoff or fictional successors are populated here.",
-          "Prime ministers 1990-2006 (CLAUDE-C01-12): the packet now holds one executive institution, jp_prime_minister, with one role, jp_pm, and fourteen dated holder observations (stated starts for 橋本龍太郎 in January 1996, 森喜朗 in April and July 2000 and 小泉純一郎 in 2001, 2003 and 2005; no stated end). Still open for the prime-ministership: the 1990-1998 appointment ceremonies, every end of office, any continued performance of duties under art. 71, the Official Gazette record, and all holders from 26 September 2006 to the cutoff. Ministers, deputy prime ministers and party offices remain outside this intake. No game identity or portrait permission is granted."
+          "Prime ministers 1990-2006 (CLAUDE-C01-12): the packet now holds one executive institution, jp_prime_minister, with one role, jp_pm, and fourteen dated holder observations (stated starts for 橋本龍太郎 in January 1996, 森喜朗 in April and July 2000 and 小泉純一郎 in 2001, 2003 and 2005; no stated end). Still open for the prime-ministership: the 1990-1998 appointment ceremonies, every end of office, any continued performance of duties under art. 71, the Official Gazette record, and all holders from 26 September 2006 to the cutoff. Ministers, deputy prime ministers and party offices remain outside this intake. No game identity or portrait permission is granted.",
+          "Prime ministers 2006-2026 (CLAUDE-C01-13, stacked on the 1990-2006 packet): jp_pm now has thirty holder observations; the sixteen from 26 September 2006 each have a stated start, and seven have an end stated by the Official Gazette (2020-2026). Still open: the ends of the 2006-2017 appointments (the Gazette of those years is not available without restriction) and the conflicting end of 鳩山由紀夫's office in June 2010. No party office feeds the prime-ministership."
         ]
       }
     },
@@ -2646,8 +2647,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/japan.json",
-      "bytes": 438094,
-      "sha256": "cf1ddcda2e626c329c3beda099425c22d3ef5b970b905f1174980c1fc8db8dcd"
+      "bytes": 1078803,
+      "sha256": "e4228212d3c5fcfdbe8a07cf505dcabc9cdd692842c98d12adb31b98463e8060"
     },
     {
       "path": "docs/campaign-certification/C01/research/russia.json",
