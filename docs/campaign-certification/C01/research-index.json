@@ -9,8 +9,8 @@
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 841,
     "institution_observations": 28,
-    "sources": 181,
-    "source_claims": 1799,
+    "sources": 234,
+    "source_claims": 1893,
     "discovery_batches": 92,
     "exhaustive_country_censuses": 0
   },
@@ -285,8 +285,8 @@
       "packet": "docs/campaign-certification/C01/research/russia.json",
       "organization_observations": 14,
       "institution_observations": 6,
-      "role_observations": 7,
-      "source_claims": 48,
+      "role_observations": 8,
+      "source_claims": 142,
       "mapping_pending": 20,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -325,7 +325,8 @@
           "Russia and USSR organizations, predecessor states, renames, mergers, dissolutions and regional party histories require separate sourced reconciliation; no continuity is assumed.",
           "This packet does not establish a September 2026 current roster, complete country census, succession eligibility or artwork completion. No post-cutoff facts or fictional successors are populated.",
           "CLAUDE-C01-05 adds one institution, ru_rsfsr_presidency, from RSFSR acts of 1991. It is filed here because Law 2094-I renamed the RSFSR the Russian Federation; it is not mapped from, and does not continue, the USSR Presidency in ussr.json.",
-          "The RSFSR Supreme Soviet, its Chairman and the RSFSR Congress of People's Deputies are not institutions in this packet. Yeltsin's 1991 signatures as Supreme Soviet Chairman and his release from that post on 10 July 1991 are recorded as claims only."
+          "The RSFSR Supreme Soviet, its Chairman and the RSFSR Congress of People's Deputies are not institutions in this packet. Yeltsin's 1991 signatures as Supreme Soviet Chairman and his release from that post on 10 July 1991 are recorded as claims only.",
+          "CLAUDE-C01-14 adds the role ru_president (President of the Russian Federation, head_of_state) to ru_rsfsr_presidency, with seven holder observations from 1996 to 2024 drawn from official records of 1992-2026. It does not change the C01-05 holders, does not merge holders across the RSFSR and Russian Federation titles, records acting service (1999-2000) as claims only and establishes no current roster, succession eligibility or artwork claim."
         ]
       }
     },
@@ -2653,8 +2654,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/russia.json",
-      "bytes": 101739,
-      "sha256": "3f364b43b02f185e4a280afe711ef9c4b15b1e066b2b4b264fd4a14bfe61e367"
+      "bytes": 274485,
+      "sha256": "351b3dd1d8f3b810fa94e3d535f19e9f63284bf0e689c50d62292378d1eb4234"
     },
     {
       "path": "docs/campaign-certification/C01/research/saudi-arabia.json",
