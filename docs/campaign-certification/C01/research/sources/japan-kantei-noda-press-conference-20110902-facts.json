@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_kantei_noda_kaiken_20110902",
+  "source_url": "https://web.archive.org/web/20110908020055id_/http://www.kantei.go.jp/jp/noda/statement/201109/02kaiken.html",
+  "original_url": "http://www.kantei.go.jp/jp/noda/statement/201109/02kaiken.html",
+  "archive_capture_utc": "2011-09-08T02:00:55Z",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 36456,
+  "source_response_sha256": "135937c14e0065fd0eed2e63ba5a37b0e4e9b93a9d5db1aaf73963d73d37d808",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "Shift_JIS (the page's meta tag declares Shift_JIS; the bytes decode cleanly as Shift_JIS)",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2011-09-08T02:00:55Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The archived original's Last-Modified header is Tue, 06 Sep 2011 04:36:50 GMT. The SHA-1 of these bytes (3BEPY3FVBS3DEOY73VZ74XCDCTRHMDKL) equals the Internet Archive's CDX digest for the capture, as compared by the researcher and the independent check and this packet (2026-09-25T03:19:08Z). Researcher (part B): Downloaded 2 times on 24 September 2026 UTC at 22:13:43Z, 23:14:31Z, each time with the same byte count and SHA-256; the first and last downloads are at least 30 minutes apart. Raw Internet Archive capture (id_ form, made before the cutoff), which replays the archived bytes unchanged; the SHA-1 of the bytes (3BEPY3FVBS3DEOY73VZ74XCDCTRHMDKL) equals the Internet Archive's CDX digest for this capture. The part B check downloaded it again from about 23:35Z on 24 September 2026 (the Diet API also with its parameters reordered, the Imperial Household Agency's pages also with a cache-busting query), each time with the same byte count and SHA-256. Downloaded on 25 September 2026 (UTC) by this packet at 01:34:27Z, 02:15:49Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A contemporaneous Kantei page, recorded as a raw Internet Archive capture made before the cutoff; the archived original's Last-Modified header is given in the extract. No photograph is reused.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded and read in full; no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_noda_states_assumed_office_today_20110902",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM06-06",
+      "role_id": "jp_pm",
+      "holder_name": "野田佳彦",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "assumption_statement",
+      "attested_on": "2011-09-02",
+      "text": "In the opening remarks of the press conference titled 野田内閣総理大臣記者会見 and dated 2 September 2011, 野田佳彦 said that he had that day, having received the Emperor's appointment, formally taken office as Prime Minister (本日、天皇陛下の親任を頂きまして、正式に内閣総理大臣に就任をさせていただきました).",
+      "locator": {
+        "section": "【野田総理冒頭発言】, first sentence",
+        "date_line": "平成２３年９月２日"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-13 only (stacked on CLAUDE-C01-12). Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, the Official Gazette's appointment and loss-of-office notices, the Cabinet's minutes, a cabinet's formation, its resignation en masse, any continued performance of duties and acting designations stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role: an unnamed statement or schedule row, a House of Councillors designee who never held the office, or a designation of acting ministers. Ministers, deputy prime ministers and party offices are excluded."
+}

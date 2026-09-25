@@ -1,0 +1,68 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_kunaicho_schedule_2014_q4",
+  "source_url": "https://www.kunaicho.go.jp/page/gonittei/show/quarter201404.html",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "downloaded_official_page_html_decoded_and_read",
+  "source_response_bytes": 105206,
+  "source_response_sha256": "344fcb463831777911995284bfdf505421137c6c8927ebf5efff8f1e35ae952e",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "UTF-8 (the page's meta tag declares UTF-8; the bytes decode cleanly as UTF-8)",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the Imperial Household Agency's own host as a stored static page with a fixed Last-Modified (Tue, 13 Jan 2026 16:33:50 GMT), before the cutoff; it carries no per-request token or timestamp, and a cache-busting request returned the same bytes. Researcher (part B): Downloaded 4 times on 24 September 2026 UTC at 22:01:12Z, 22:34:41Z, 22:34:43Z (cache-busting query), 23:08:38Z, each time with the same byte count and SHA-256; the first and last downloads are at least 30 minutes apart. Static file served from S3 through CloudFront with a fixed ETag and Last-Modified Tue, 13 Jan 2026 16:33:50 GMT (before the cutoff); the page carries no per-request token or timestamp. The part B check downloaded it again from about 23:35Z on 24 September 2026 (the Diet API also with its parameters reordered, the Imperial Household Agency's pages also with a cache-busting query), each time with the same byte count and SHA-256. Downloaded on 25 September 2026 (UTC) by this packet at 01:33:30Z, 01:42:07Z (cache-busting query), 02:15:31Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Imperial Household Agency's schedule of the Emperor's engagements, served from the agency's own host as a stored static file; its Last-Modified header, given in the extract, precedes the cutoff. No Internet Archive capture of it was found or reached, so it was downloaded plain and with a cache-busting query, 30 minutes or more apart, with identical bytes. A schedule row names the ceremony and names the appointee only where the page prints the name. No photograph is reused.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Official HTML decoded and read in full for the cited passages; no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_kunaicho_speakers_report_20141224",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM06-07",
+      "role_id": "jp_pm",
+      "holder_name": null,
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "presiding_officers_report_to_emperor",
+      "attested_on": "2014-12-24",
+      "text": "The Imperial Household Agency's schedule for October-December 2014 lists for Wednesday 24 December 2014: 天皇陛下 奏上（衆議院議長・参議院議長）（宮殿）, listed after an audience of the newly elected Speaker and Vice-Speaker of the House of Representatives (the list gives no times).",
+      "locator": {
+        "section": "平成26年12月24日（水）",
+        "row": "天皇陛下 奏上（衆議院議長・参議院議長）（宮殿）"
+      }
+    },
+    {
+      "claim_id": "jp_kunaicho_pm_report_20141224",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM06-07",
+      "role_id": "jp_pm",
+      "holder_name": null,
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "prime_minister_report_to_emperor",
+      "attested_on": "2014-12-24",
+      "text": "The same schedule lists for 24 December 2014: 天皇陛下 内奏（内閣総理大臣）（宮殿）, a report by the Prime Minister, listed before the ceremony row (the list gives no times).",
+      "locator": {
+        "section": "平成26年12月24日（水）",
+        "row": "天皇陛下 内奏（内閣総理大臣）（宮殿）"
+      }
+    },
+    {
+      "claim_id": "jp_kunaicho_ceremony_20141224",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM06-07",
+      "role_id": "jp_pm",
+      "holder_name": null,
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "imperial_appointment_ceremony",
+      "attested_on": "2014-12-24",
+      "text": "The same schedule lists for 24 December 2014: 天皇陛下 親任式・認証官任命式（大臣等21名）（宮殿）, linked to the photo page (photo/10140).",
+      "locator": {
+        "section": "平成26年12月24日（水）",
+        "row": "天皇陛下 親任式・認証官任命式（大臣等21名）（宮殿）"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-13 only (stacked on CLAUDE-C01-12). Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, the Official Gazette's appointment and loss-of-office notices, the Cabinet's minutes, a cabinet's formation, its resignation en masse, any continued performance of duties and acting designations stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role: an unnamed statement or schedule row, a House of Councillors designee who never held the office, or a designation of acting ministers. Ministers, deputy prime ministers and party offices are excluded."
+}

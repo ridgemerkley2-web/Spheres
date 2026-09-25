@@ -1,0 +1,60 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_kantei_kan_sojishoku_20110902",
+  "source_url": "https://web.archive.org/web/20110908015954id_/http://www.kantei.go.jp/jp/kan/actions/201109/02soujisyoku.html",
+  "original_url": "http://www.kantei.go.jp/jp/kan/actions/201109/02soujisyoku.html",
+  "archive_capture_utc": "2011-09-08T01:59:54Z",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 56136,
+  "source_response_sha256": "1392b41c292a1fd3c577e12a144fadbc4ca4db8facd2dc0dd5d4bde25139859d",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "UTF-8 (the page's meta tag declares UTF-8; the body begins with a UTF-8 byte-order mark; the bytes decode cleanly as UTF-8)",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2011-09-08T01:59:54Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The archived original's Last-Modified header is Fri, 02 Sep 2011 08:47:34 GMT. The SHA-1 of these bytes (PE4LRIYHIHVFRK6IYODI6XE5BLLJNITA) equals the Internet Archive's CDX digest for the capture, as compared by the researcher and the independent check and this packet (2026-09-25T02:40:40Z). Researcher (part B): Downloaded 2 times on 24 September 2026 UTC at 22:13:56Z, 23:33:04Z, each time with the same byte count and SHA-256; the first and last downloads are at least 30 minutes apart. Raw Internet Archive capture (id_ form, made before the cutoff), which replays the archived bytes unchanged; the SHA-1 of the bytes (PE4LRIYHIHVFRK6IYODI6XE5BLLJNITA) equals the Internet Archive's CDX digest for this capture. The part B check downloaded it again from about 23:35Z on 24 September 2026 (the Diet API also with its parameters reordered, the Imperial Household Agency's pages also with a cache-busting query), each time with the same byte count and SHA-256. Downloaded on 25 September 2026 (UTC) by this packet at 01:34:32Z, 02:15:53Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A contemporaneous Kantei page, recorded as a raw Internet Archive capture made before the cutoff; the archived original's Last-Modified header is given in the extract. No photograph is reused.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded and read in full; no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_kantei_kan_cabinet_resignation_decided_20110830",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM06-05",
+      "role_id": "jp_pm",
+      "holder_name": "菅直人",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "cabinet_resignation_decided",
+      "attested_on": "2011-08-30",
+      "text": "The Kantei's account 菅内閣総辞職, dated 2 September 2011, says that the Kan cabinet resigned en masse on 30 August 2011: at that day's cabinet meeting the ministers' resignations were gathered and the resignation en masse decided, after which the Prime Minister's statement was issued.",
+      "locator": {
+        "section": "菅総理の動き > 菅総理 > 菅内閣総辞職",
+        "date_line": "平成23年9月2日",
+        "paragraphs": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "claim_id": "jp_kan_leaves_kantei_20110902",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM06-05",
+      "role_id": "jp_pm",
+      "holder_name": "菅直人",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "departure_from_prime_ministers_office_recorded",
+      "attested_on": "2011-09-02",
+      "text": "The same account says that on 2 September 菅総理 left the Prime Minister's Office, seen off by the staff.",
+      "locator": {
+        "section": "菅内閣総辞職",
+        "date_line": "平成23年9月2日",
+        "paragraph": 3
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-13 only (stacked on CLAUDE-C01-12). Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, the Official Gazette's appointment and loss-of-office notices, the Cabinet's minutes, a cabinet's formation, its resignation en masse, any continued performance of duties and acting designations stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role: an unnamed statement or schedule row, a House of Councillors designee who never held the office, or a designation of acting ministers. Ministers, deputy prime ministers and party offices are excluded."
+}

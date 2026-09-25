@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_kantei_noda_siji_20110902",
+  "source_url": "https://web.archive.org/web/20120611203452id_/http://www.kantei.go.jp/jp/noda/discource/20110902siji.html",
+  "original_url": "http://www.kantei.go.jp/jp/noda/discource/20110902siji.html",
+  "archive_capture_utc": "2012-06-11T20:34:52Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 22460,
+  "source_response_sha256": "9ae7737d0810cc10d587a9e0b2f42842f9e06df70f22a8cc5ec872cccf335a71",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "UTF-8 (the page's meta tag declares UTF-8; the body begins with a UTF-8 byte-order mark; the bytes decode cleanly as UTF-8)",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2012-06-11T20:34:52Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The archived original's Last-Modified header is Mon, 04 Jun 2012 09:48:20 GMT. The SHA-1 of these bytes (WUZIEFFRPH26PKY65ANOSOCM3F4GSV7K) equals the Internet Archive's CDX digest for the capture, as compared by the independent check and this packet (2026-09-25T02:45:07Z). Found by the part B check, which downloaded it on 24-25 September 2026 with the same byte count and SHA-256 each time. Downloaded on 25 September 2026 (UTC) by this packet at 01:35:54Z, 01:40:17Z, 02:20:12Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A contemporaneous Kantei page, recorded as a raw Internet Archive capture made before the cutoff; the archived original's Last-Modified header is given in the extract. No photograph is reused.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded and read in full; no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_kantei_first_cabinet_meeting_instruction_20110902",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM06-06",
+      "role_id": "jp_pm",
+      "holder_name": null,
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "first_cabinet_meeting",
+      "attested_on": "2011-09-02",
+      "text": "The Kantei page 内閣総理大臣指示（第３次補正予算編成について）, dated 平成23年9月2日 with the sub-heading 初閣議, records the Prime Minister's instruction at the first cabinet meeting on the third supplementary budget for recovery from the Great East Japan Earthquake.",
+      "locator": {
+        "section": "総理指示・談話など > 平成23年9月2日 内閣総理大臣指示",
+        "heading": "平成23年9月2日 初閣議"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-13 only (stacked on CLAUDE-C01-12). Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, the Official Gazette's appointment and loss-of-office notices, the Cabinet's minutes, a cabinet's formation, its resignation en masse, any continued performance of duties and acting designations stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role: an unnamed statement or schedule row, a House of Councillors designee who never held the office, or a designation of acting ministers. Ministers, deputy prime ministers and party offices are excluded."
+}

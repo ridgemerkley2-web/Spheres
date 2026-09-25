@@ -7,7 +7,8 @@ import campaign_research as research
 
 # The seven sources of the original S10d intake keep every assertion below by id. CLAUDE-C01-12 adds 119 sources and
 # 174 claims for the jp_prime_minister institution, whose response identities are pinned exactly (bytes and SHA-256) in
-# test_japan_prime_ministers_c01_12.py.
+# test_japan_prime_ministers_c01_12.py; CLAUDE-C01-13 (stacked on it) adds 211 sources and 293 claims to the same
+# institution and role, pinned in test_japan_prime_ministers_c01_13.py.
 ORIGINAL_SOURCES = ('jp_tokyo_pr_2025', 'jp_shugiin_groups_20260218', 'jp_shugiin_group_definition',
                     'jp_ldp_ishiba_elected_2024', 'jp_ldp_takaichi_elected_2025', 'jp_jcp_chairs_2024',
                     'jp_dpfp_tamaki_elected_2026')
@@ -17,6 +18,8 @@ GROUP_IDS = ['jp_shugiin_group_20260218_011', 'jp_shugiin_group_20260218_020', '
              'jp_shugiin_group_20260218_070']
 C01_12_SOURCE_COUNT = 119
 C01_12_CLAIM_COUNT = 174
+C01_13_SOURCE_COUNT = 211
+C01_13_CLAIM_COUNT = 293
 
 
 class JapanDiscoveryTests(unittest.TestCase):
@@ -29,13 +32,15 @@ class JapanDiscoveryTests(unittest.TestCase):
 
     def test_two_official_universes_remain_bounded_and_valid(self):
         ids = self.validate()
-        # 23 original observations plus the CLAUDE-C01-12 prime-ministership (119 sources, 174 claims, one role).
-        self.assertEqual((len(ids['entries']), len(ids['sources']), len(ids['claims']), len(ids['roles'])), (24, 126, 203, 5))
+        # 23 original observations plus the CLAUDE-C01-12 prime-ministership (119 sources, 174 claims, one role), extended by
+        # CLAUDE-C01-13 (211 sources, 293 claims) with no new entry or role.
+        self.assertEqual((len(ids['entries']), len(ids['sources']), len(ids['claims']), len(ids['roles'])), (24, 337, 496, 5))
         self.assertEqual((len(self.packet['organizations']), len(self.packet['institutions'])), (16, 8))
         self.assertEqual([s['id'] for s in self.packet['sources']][:7], list(ORIGINAL_SOURCES))
         self.assertEqual(sum(len(s['claims']) for s in self.packet['sources'] if s['id'] in ORIGINAL_SOURCES), 29)
-        self.assertEqual(len(self.packet['sources']) - len(ORIGINAL_SOURCES), C01_12_SOURCE_COUNT)
-        self.assertEqual(len(ids['claims']) - 29, C01_12_CLAIM_COUNT)
+        self.assertEqual(len(self.packet['sources']) - len(ORIGINAL_SOURCES), C01_12_SOURCE_COUNT + C01_13_SOURCE_COUNT)
+        self.assertEqual(len(ids['claims']) - 29, C01_12_CLAIM_COUNT + C01_13_CLAIM_COUNT)
+        self.assertEqual(sum(len(s['claims']) for s in self.packet['sources'][7:7 + C01_12_SOURCE_COUNT]), C01_12_CLAIM_COUNT)
         # Exactly the seven groups and one executive institution, the prime-ministership, with exactly one role.
         self.assertEqual([e['id'] for e in self.packet['institutions']], GROUP_IDS + ['jp_prime_minister'])
         self.assertEqual([r['id'] for r in self.packet['institutions'][-1]['roles']], ['jp_pm'])
@@ -82,8 +87,10 @@ class JapanDiscoveryTests(unittest.TestCase):
         tamaki = next(o for o in p['organizations'] if o['name'] == '国民民主党')['roles'][0]['holder_claims'][0]
         self.assertEqual(tamaki['attested_on'], '2026-09-06')
         self.assertTrue(all(s['accessed_date'] == '2026-09-13' for s in p['sources'] if s['id'] in ORIGINAL_SOURCES))
-        # CLAUDE-C01-12's sources were all accessed on 24 September 2026; no historical date comes from an access date.
-        self.assertEqual({s['accessed_date'] for s in p['sources'] if s['id'] not in ORIGINAL_SOURCES}, {'2026-09-24'})
+        # CLAUDE-C01-12's sources were all accessed on 24 September 2026 and CLAUDE-C01-13's on 24 or 25 September 2026 (each
+        # pinned in its own test); no historical date comes from an access date.
+        self.assertEqual({s['accessed_date'] for s in p['sources'][7:7 + C01_12_SOURCE_COUNT]}, {'2026-09-24'})
+        self.assertEqual({s['accessed_date'] for s in p['sources'][7 + C01_12_SOURCE_COUNT:]}, {'2026-09-24', '2026-09-25'})
         tamaki['attested_on'] = '2026-09-08'
         with self.assertRaisesRegex(ValueError, 'exceeds cutoff'):
             self.validate(p)
@@ -100,8 +107,8 @@ class JapanDiscoveryTests(unittest.TestCase):
 
     def test_offline_factual_extracts_match_each_source_and_detect_byte_change(self):
         snapshots = [s for s in self.packet['sources'] if 'snapshot' in s]
-        # The two original extracts plus one derived extract per CLAUDE-C01-12 source.
-        self.assertEqual(len(snapshots), 2 + C01_12_SOURCE_COUNT)
+        # The two original extracts plus one derived extract per CLAUDE-C01-12 and CLAUDE-C01-13 source.
+        self.assertEqual(len(snapshots), 2 + C01_12_SOURCE_COUNT + C01_13_SOURCE_COUNT)
         self.assertEqual([s['id'] for s in snapshots][:2], ['jp_tokyo_pr_2025', 'jp_shugiin_groups_20260218'])
         for source in snapshots:
             data = json.loads((research.ROOT / source['snapshot']['path']).read_text(encoding='utf-8'))

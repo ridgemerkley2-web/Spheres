@@ -1,0 +1,44 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_kantei_cabinet_minutes_20211110_resignation",
+  "source_url": "https://web.archive.org/web/20220519083624id_/http://www.kantei.go.jp/jp/content/031110_1gijiroku.pdf",
+  "original_url": "http://www.kantei.go.jp/jp/content/031110_1gijiroku.pdf",
+  "archive_capture_utc": "2022-05-19T08:36:24Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_pdf_text_read",
+  "source_response_bytes": 242978,
+  "source_response_sha256": "0370d1ea83556f913e5016727a37d5c42510c809aedd3719af79ebfbc9b91159",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "PDF (binary)",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2022-05-19T08:36:24Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The archived original's Last-Modified header is Sun, 03 Apr 2022 15:14:51 GMT. The SHA-1 of these bytes (M6HTPCIRMUZBDRT7347OFDZSMYKB2KZ3) equals the Internet Archive's CDX digest for the capture, as compared by the independent check and this packet (2026-09-25T02:36:40Z). Found by the part C check, which downloaded it twice on 25 September 2026 (00:17Z-00:58Z and 01:02Z-01:18Z, the live Kantei responses the second time with a cache-busting query) with the same byte count and SHA-256. Downloaded on 25 September 2026 (UTC) by this packet at 01:37:43Z, 01:40:43Z, 02:21:07Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Cabinet's published minutes of a cabinet meeting (閣議議事録), a PDF on the Kantei site recorded as a raw Internet Archive capture made before the cutoff; the cited pages were read from the text layer.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2,
+      3
+    ],
+    "method": "PDF pages 1, 2, 3 read from the text layer; no image copied."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_cabinet_minutes_kishida_cabinet_resignation_decided_20211110",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM06-09",
+      "role_id": "jp_pm",
+      "holder_name": "岸田文雄",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "cabinet_resignation_decided",
+      "attested_on": "2021-11-10",
+      "text": "The minutes of the cabinet meeting of 10 November 2021 (09:01-09:15), attended by 岸田文雄 内閣総理大臣, record the decision that, the special session having been convened that day, the cabinet resigns en masse under Constitution art. 70 (憲法第７０条により，内閣は総辞職する), to be notified to both Houses under Diet Act art. 64.",
+      "locator": {
+        "page": 1,
+        "section": "開催日時; 出席者; 議事内容"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-13 only (stacked on CLAUDE-C01-12). Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, the Official Gazette's appointment and loss-of-office notices, the Cabinet's minutes, a cabinet's formation, its resignation en masse, any continued performance of duties and acting designations stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role: an unnamed statement or schedule row, a House of Councillors designee who never held the office, or a designation of acting ministers. Ministers, deputy prime ministers and party offices are excluded."
+}

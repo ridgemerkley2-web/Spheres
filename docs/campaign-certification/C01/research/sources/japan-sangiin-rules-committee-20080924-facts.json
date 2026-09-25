@@ -1,0 +1,49 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_sangiin_giun_20080924",
+  "source_url": "https://kokkai.ndl.go.jp/api/meeting?issueID=117014024X00120080924&recordPacking=json",
+  "diet_record": {
+    "issueID": "117014024X00120080924",
+    "house": "参議院",
+    "meeting": "議院運営委員会",
+    "issue": "第1号",
+    "sitting_date": "2008-09-24",
+    "response": "whole meeting record",
+    "speeches_in_response": 33,
+    "record_page_url": "https://kokkai.ndl.go.jp/txt/117014024X00120080924"
+  },
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "official_diet_minutes_api_json_download_and_read",
+  "source_response_bytes": 30512,
+  "source_response_sha256": "ae0f5586094f442e80d612cfb9ddbffb39b5d6942c6225cbf376cf211c977189",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "UTF-8 JSON (the Content-Type header declares application/json;charset=UTF-8)",
+  "source_response_checked_in": false,
+  "provenance_note": "Official response of the National Diet Library's Diet minutes API (JSON, UTF-8), served with Cache-Control: no-cache, no-store; the JSON carries no timestamp, session token or request echo, so it is not generated per request. Researcher (part A): Downloaded on 2026-09-24: first download 21:44Z; 21:55Z (cache-busting query, identical); 22:25Z (plain, identical); 22:55Z (plain, identical). Every re-download had the same byte count and SHA-256 as the first; the first and last are 70 minutes apart. Official Diet minutes API JSON served with Cache-Control: no-cache, no-store and X-Cache: Miss from cloudfront; the JSON carries no timestamp, session token or request echo. Bytes are the identity-encoded body requested without Accept-Encoding. The part A check downloaded it again at 23:03Z-23:08Z (plain), at 23:09Z (Diet API responses with a cache-busting query) and at 23:41Z-23:51Z (plain) on 24 September 2026, each time with the same byte count and SHA-256. Downloaded on 25 September 2026 (UTC) by this packet at 01:31:28Z, 01:41:52Z (cache-busting query), 02:14:20Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Diet minutes API's JSON for the whole meeting record of the 参議院 議院運営委員会 第1号 (2008-09-24), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/117014024X00120080924. The printed page images, served through a JavaScript viewer, were not viewed.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Machine-readable minute text read in full for the cited speeches; the printed page images were not viewed."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_sangiin_rules_receives_fukuda_resignation_notice_20080924",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM06-02",
+      "role_id": "jp_pm",
+      "holder_name": "福田康夫",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "cabinet_resignation_notice",
+      "attested_on": "2008-09-24",
+      "text": "The Secretary-General reported that at 09:19 that day the House received from Prime Minister Fukuda (福田内閣総理大臣), addressed to its President, notice that the cabinet had decided to resign en masse that day.",
+      "locator": {
+        "issueID": "117014024X00120080924",
+        "speechOrder": 2,
+        "speaker": "小幡幹雄 (参議院事務総長)"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-13 only (stacked on CLAUDE-C01-12). Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, the Official Gazette's appointment and loss-of-office notices, the Cabinet's minutes, a cabinet's formation, its resignation en masse, any continued performance of duties and acting designations stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role: an unnamed statement or schedule row, a House of Councillors designee who never held the office, or a designation of acting ministers. Ministers, deputy prime ministers and party offices are excluded."
+}

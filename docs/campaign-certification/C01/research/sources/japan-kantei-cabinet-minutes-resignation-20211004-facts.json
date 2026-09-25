@@ -1,0 +1,60 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_kantei_cabinet_minutes_20211004_resignation",
+  "source_url": "https://web.archive.org/web/20220519091808id_/http://www.kantei.go.jp/jp/content/000091690.pdf",
+  "original_url": "http://www.kantei.go.jp/jp/content/000091690.pdf",
+  "archive_capture_utc": "2022-05-19T09:18:08Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_pdf_text_read",
+  "source_response_bytes": 353635,
+  "source_response_sha256": "8b347a6b6367d21eafbbaf70df21724126da9e01a1e15042f4ef292901d7b2af",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "PDF (binary)",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2022-05-19T09:18:08Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The archived original's Last-Modified header is Sun, 03 Apr 2022 15:21:34 GMT. The SHA-1 of these bytes (BJQUV6ULY6HT2FIWK7A2SDCWSUAVTC4V) equals the Internet Archive's CDX digest for the capture, as compared by the independent check and this packet (2026-09-25T02:35:43Z). Found by the part C check, which downloaded it twice on 25 September 2026 (00:17Z-00:58Z and 01:02Z-01:18Z, the live Kantei responses the second time with a cache-busting query) with the same byte count and SHA-256. Downloaded on 25 September 2026 (UTC) by this packet at 01:37:20Z, 01:40:39Z, 02:21:03Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Cabinet's published minutes of a cabinet meeting (閣議議事録), a PDF on the Kantei site recorded as a raw Internet Archive capture made before the cutoff; the cited pages were read from the text layer.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2,
+      3,
+      5
+    ],
+    "method": "PDF pages 1, 2, 3, 5 read from the text layer; no image copied."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_cabinet_minutes_suga_cabinet_resignation_decided_20211004",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM06-08",
+      "role_id": "jp_pm",
+      "holder_name": "菅義偉",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "cabinet_resignation_decided",
+      "attested_on": "2021-10-04",
+      "text": "The minutes of the extraordinary cabinet meeting of 4 October 2021 (09:04-09:20), attended by 菅義偉 内閣総理大臣, record the decision of the resignation en masse (「内閣総辞職」について), to be notified that day to both Houses under Diet Act art. 64, and of the statement 本日，菅内閣は総辞職いたします.",
+      "locator": {
+        "page": 1,
+        "section": "開催日時; 出席者; 議事内容"
+      }
+    },
+    {
+      "claim_id": "jp_cabinet_minutes_suga_cabinet_emergency_arrangement_20211004",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM06-08",
+      "role_id": "jp_pm",
+      "holder_name": "菅義偉",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "continued_performance_of_duties_arranged",
+      "attested_on": "2021-10-04",
+      "text": "The same minutes record the Chief Cabinet Secretary saying that, the Suga cabinet's resignation (菅内閣の総辞職) having just been decided, if an emergency such as an earthquake occurred the present cabinet must respond until the attestation ceremony ended and the new cabinet was launched (認証式が終了し，新内閣が発足するまでの間は，現内閣で対応する必要があります), and asking the ministers concerned to remain ready.",
+      "locator": {
+        "page": 3,
+        "section": "議事内容 (緊急時の対応)"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-13 only (stacked on CLAUDE-C01-12). Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, the Official Gazette's appointment and loss-of-office notices, the Cabinet's minutes, a cabinet's formation, its resignation en masse, any continued performance of duties and acting designations stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role: an unnamed statement or schedule row, a House of Councillors designee who never held the office, or a designation of acting ministers. Ministers, deputy prime ministers and party offices are excluded."
+}

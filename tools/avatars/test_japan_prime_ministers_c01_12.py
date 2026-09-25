@@ -9,6 +9,9 @@ import unittest
 from urllib.parse import urlsplit
 
 import campaign_research as research
+# CLAUDE-C01-13 (stacked on this packet) extends the same institution and role from 26 September 2006; its exact
+# sources, claims and holders are pinned in its own test and appended to this packet's pins below.
+import test_japan_prime_ministers_c01_13 as later
 
 
 # Original response identity recorded in each extract: (bytes, sha256), of the identity-encoded body. Every new source is
@@ -784,6 +787,8 @@ STALE_IDS = ('jp_hc_precedents_118th_designations_19900227', 'jp_hc_precedents_1
              'stated_span', 'retrospective_span"', 'reappointment_recalled_by_holder', 'diet_designation_record',
              'cabinet_resignation_en_masse', 'assumption_of_office_statement', 'reappointment_statement',
              'pm_incapacity_reported', 'acting_pm_assumed', 'cabinet_resignation_notified')
+# This packet's closing boundary: its own holders are all dated before it, and later packets' holders on or after it.
+CLOSING_BOUNDARY = '2006-09-26'
 REPORT = research.RESEARCH / 'japan-prime-ministers-1990-2006-12.md'
 HANDOFF = 'docs/planning/ai-handoffs/CLAUDE-C01-12.md'
 
@@ -791,7 +796,7 @@ HANDOFF = 'docs/planning/ai-handoffs/CLAUDE-C01-12.md'
 def load_rows():
     packet = json.loads((research.ROOT / research.RESEARCH / 'japan.json').read_text(encoding='utf-8'))
     rows = {}
-    for source in packet['sources'][len(ORIGINAL_SOURCES):]:
+    for source in packet['sources'][len(ORIGINAL_SOURCES):len(ORIGINAL_SOURCES) + len(NEW_SOURCES)]:
         extract = json.loads((research.ROOT / source['snapshot']['path']).read_text(encoding='utf-8'))
         rows.update({row['claim_id']: row for row in extract['rows']})
     return rows
@@ -812,12 +817,18 @@ def pm_rules(packet, rows):
     holders = role['holder_claims']
     previous = ''
     for holder in holders:
+        dated = [d for d in (holder['attested_on'], holder['from']) if d]
+        assert len(dated) == 1, (holder['name'], 'a holder is dated by exactly one of attested_on and from')
+        assert dated[0] > previous, (holder['name'], 'holders stay in chronological order')
+        previous = dated[0]
+    # This packet's holders are the ones dated before its closing boundary; a later packet's holder never cites its claims.
+    own = [h for h in holders if (h['attested_on'] or h['from']) < CLOSING_BOUNDARY]
+    assert holders[:len(own)] == own, 'this packet\'s holders come first'
+    for holder in holders[len(own):]:
+        assert not set(holder['claim_ids']) & set(EVENTS), (holder['name'], 'a later holder cites this packet\'s claims')
+    for holder in own:
         name = holder['name']
         assert isinstance(holder, dict) and name in SURNAMES, name
-        dated = [d for d in (holder['attested_on'], holder['from']) if d]
-        assert len(dated) == 1, (name, 'a holder is dated by exactly one of attested_on and from')
-        assert dated[0] > previous, (name, 'holders stay in chronological order')
-        previous = dated[0]
         assert not {holder['attested_on'], holder['from'], holder['until']} & NEVER_HOLDER_DATE, name
         assert not set(holder['claim_ids']) & set(NEVER_HOLDER), name
         kinds = {}
@@ -852,7 +863,7 @@ def pm_rules(packet, rows):
         assert rows[cid]['event_kind'] not in FROM_KINDS or rows[cid]['holder_name'] is None, cid
     for cid in ACTING + BOUNDARY + UNNAMED:
         assert rows[cid]['holder_name'] is None, cid
-    for cid in office['claim_ids']:
+    for cid in (c for c in office['claim_ids'] if c in rows):
         assert not {'period', 'attested_period', 'stated_span'} & set(claims[cid]), cid
         if rows[cid]['event_kind'] in UNDATED_KINDS:
             assert 'attested_on' not in claims[cid], cid
@@ -864,10 +875,10 @@ def pm_invariants(packet, rows):
     role = packet['institutions'][-1]['roles'][0]
     claims = {c['id']: c for s in packet['sources'] for c in s['claims']}
     got = [(h['name'], h['attested_on'], h['from'], h['until']) for h in role['holder_claims']]
-    assert got == HOLDERS, got
-    assert [h['claim_ids'] for h in role['holder_claims']] == HOLDER_CLAIMS
-    assert [(h['name'], h['from']) for h in role['holder_claims'] if h['from']] == STARTS
-    assert not [h for h in role['holder_claims'] if h['until']]
+    assert got == HOLDERS + later.HOLDERS, got
+    assert [h['claim_ids'] for h in role['holder_claims']] == HOLDER_CLAIMS + later.HOLDER_CLAIMS
+    assert [(h['name'], h['from']) for h in role['holder_claims'] if h['from']] == STARTS + later.STARTS
+    assert not [h for h in role['holder_claims'][:len(HOLDERS)] if h['until']]
     # Distinct dated events stay distinct and keep their own days.
     for cid, (day, _kind, _obs) in EVENTS.items():
         assert claims[cid].get('attested_on') == day, cid
@@ -900,7 +911,7 @@ class JapanPrimeMinistersTests(unittest.TestCase):
     def test_new_records_are_bounded_and_every_claim_is_classified(self):
         ids = self.validate()
         self.assertEqual((len(NEW_SOURCES), len(self.new_claims)), (119, 174))
-        self.assertEqual([s['id'] for s in self.packet['sources']], list(ORIGINAL_SOURCES) + NEW_SOURCES)
+        self.assertEqual([s['id'] for s in self.packet['sources']], list(ORIGINAL_SOURCES) + NEW_SOURCES + later.NEW_SOURCES)
         self.assertEqual((len(ids['entries']), len(ids['roles'])), (24, 5))
         self.assertEqual(len(self.packet['organizations']), 16)
         # Every new claim is either a holder claim or a claim that never feeds a holder, never both.
@@ -912,10 +923,10 @@ class JapanPrimeMinistersTests(unittest.TestCase):
         self.assertEqual((len(DESIGNATIONS), len(RESIGNATIONS), len(ACTING), len(CONTINUATION), len(RETROSPECTIVE)),
                          (40, 42, 9, 0, 40))
         # Every new claim and source is cited by the institution and its one role, and by no organization or group.
-        self.assertEqual(self.office['claim_ids'], self.new_claims)
-        self.assertEqual(self.role['claim_ids'], self.new_claims)
-        self.assertEqual(self.office['sources'], NEW_SOURCES)
-        self.assertEqual(self.role['sources'], NEW_SOURCES)
+        self.assertEqual(self.office['claim_ids'], self.new_claims + later.NEW_CLAIMS)
+        self.assertEqual(self.role['claim_ids'], self.new_claims + later.NEW_CLAIMS)
+        self.assertEqual(self.office['sources'], NEW_SOURCES + later.NEW_SOURCES)
+        self.assertEqual(self.role['sources'], NEW_SOURCES + later.NEW_SOURCES)
         for entry in self.packet['organizations'] + self.packet['institutions'][:-1]:
             self.assertFalse(set(self.new_claims) & set(entry['claim_ids']), entry['id'])
             self.assertFalse(set(NEW_SOURCES) & set(entry['sources']), entry['id'])
@@ -940,6 +951,7 @@ class JapanPrimeMinistersTests(unittest.TestCase):
                 if self.claim_source[cid] not in expected_sources:
                     expected_sources.append(self.claim_source[cid])
             self.assertEqual(holder['sources'], expected_sources, holder['name'])
+        for holder in self.role['holder_claims'][:len(HOLDERS)]:
             self.assertTrue(re.match(r'No (start and no )?end', holder['uncertainty']), holder['name'])
             self.assertRegex(holder['uncertainty'], r'No start and no end' if not holder['from'] else r'^No end')
         self.assertIn('earliest 1990 attestation pinned to a byte-stable response', self.role['holder_claims'][0]['note'])
@@ -1004,7 +1016,7 @@ class JapanPrimeMinistersTests(unittest.TestCase):
         self.assertEqual(len(ceremonies), 8)
         self.assertEqual([cid for cid in ceremonies if rows[cid]['holder_name']], ['jp_kunaicho_ceremony_koizumi_20050921'])
         # Holder wording: no end inferred from a successor, a designation or a resignation.
-        for holder in self.role['holder_claims']:
+        for holder in self.role['holder_claims'][:len(HOLDERS)]:
             self.assertIsNone(holder['until'])
             self.assertNotRegex(holder['uncertainty'] + holder['note'], r'(?i)until the \d+ \w+ \d{4} (appointment|ceremony)')
         scope = self.role['scope_note']
@@ -1019,8 +1031,9 @@ class JapanPrimeMinistersTests(unittest.TestCase):
         self.assertTrue(unresolved[-1].startswith('Keep executive office distinct from party leadership'))
         coverage = self.packet['coverage']
         self.assertEqual(sum('CLAUDE-C01-12' in u for u in coverage['unresolved']), 1)
-        self.assertTrue(coverage['unresolved'][-1].startswith('Prime ministers 1990-2006 (CLAUDE-C01-12)'))
-        self.assertEqual(len(coverage['unresolved']), 9)
+        self.assertTrue(coverage['unresolved'][8].startswith('Prime ministers 1990-2006 (CLAUDE-C01-12)'))
+        self.assertTrue(coverage['unresolved'][9].startswith('Prime ministers 2006-2026 (CLAUDE-C01-13'))
+        self.assertEqual(len(coverage['unresolved']), 10)
         self.assertEqual([r['records'] for r in coverage['bounded_registers']], [16, 7])
 
     def test_extracts_match_packet_claims_and_record_original_responses(self):
@@ -1107,14 +1120,26 @@ class JapanPrimeMinistersTests(unittest.TestCase):
             if parts.hostname == 'kokkai.ndl.go.jp':
                 self.assertRegex(url, r'^https://kokkai\.ndl\.go\.jp/api/(meeting\?issueID=\w+|speech\?(speechID=\w+|'
                                       r'issueID=\w+&speechNumber=\d+))&recordPacking=json$')
-        # Kantei and Imperial Household Agency pages are recorded only through fixed archive captures.
-        for source in self.packet['sources']:
+        # This packet's Kantei and Imperial Household Agency pages are recorded only through fixed archive captures; the
+        # later packet's stored official pages are exactly the ones its own test pins.
+        for source in self.packet['sources'][:len(ORIGINAL_SOURCES) + len(NEW_SOURCES)]:
             self.assertNotRegex(source['url'], r'^https://(www\.)?(kantei|kunaicho)\.go\.jp', source['id'])
+        self.assertEqual([s['id'] for s in self.packet['sources']
+                          if re.match(r'^https://(www\.)?(kantei|kunaicho)\.go\.jp', s['url'])], later.LIVE_OFFICIAL)
 
     def test_secondary_and_unimported_leads_stay_out_of_the_packet(self):
-        for source in self.packet['sources']:
+        for source in self.packet['sources'][:len(ORIGINAL_SOURCES) + len(NEW_SOURCES)]:
             for marker in LEAD_URL_MARKERS:
                 self.assertNotIn(marker, source['url'], source['id'])
+        # For the later packet's sources, the generic 'press.html' and 'kanpo' markers are re-expressed as the exact leads
+        # they excluded here (the 2003, 2005 and 2006 press conferences and the Kantei-hosted Gazette contents); the later
+        # packet records other press conferences and 2020-2026 Gazette issues as its own sources.
+        exact = {'press.html': ('2003/11/19press', '2005/09/21press', '2006/09/26press'),
+                 'kanpo': ('/jp/kanpo/',)}
+        for source in self.packet['sources'][len(ORIGINAL_SOURCES) + len(NEW_SOURCES):]:
+            for marker in LEAD_URL_MARKERS:
+                for form in exact.get(marker, (marker,)):
+                    self.assertNotIn(form, source['url'], source['id'])
         lowered = self.raw.lower()
         for marker in ('wikipedia', 'britannica', 'nikkei', 'asahi.com', 'nhk.or.jp'):
             self.assertNotIn(marker, lowered, marker)
