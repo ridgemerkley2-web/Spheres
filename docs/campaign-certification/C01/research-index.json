@@ -9,8 +9,8 @@
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 841,
     "institution_observations": 27,
-    "sources": 265,
-    "source_claims": 1913,
+    "sources": 324,
+    "source_claims": 1995,
     "discovery_batches": 92,
     "exhaustive_country_censuses": 0
   },
@@ -362,8 +362,8 @@
       "packet": "docs/campaign-certification/C01/research/south-africa.json",
       "organization_observations": 52,
       "institution_observations": 1,
-      "role_observations": 6,
-      "source_claims": 260,
+      "role_observations": 7,
+      "source_claims": 342,
       "mapping_pending": 53,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -401,6 +401,7 @@
           "Names containing Alliance, Congress or Movement are retained exactly as electoral reporting names. Organizational form, coalition membership, caucus identity and underlying component parties remain unresolved.",
           "DA offices have dated observations only; their relationships and continuity require further evidence. Presidency election does not establish party leadership or inauguration.",
           "Heads of state 1990-2024 (CLAUDE-C01-09): the State President under the 1983 Constitution and the President of the Republic are separate roles in za_presidency; holder observations are dated from primary records with only stated starts and ends. Deputy presidents, acting presidents during travel, ministers and party offices remain outside this review, and no game identity or portrait permission is granted.",
+          "Deputy Presidents 1994-2026 (CLAUDE-C01-21, ZA-DP-01..10): the Deputy President is a separate role, za_deputy_president, in za_presidency, with twelve holder observations from primary records; only Jacob Zuma's start (17 June 1999) is stated and no holder has a stated end. Announcements, appointments and their notices, scheduled oaths, releases, resignations and their stated effect, Assembly-seat events and retrospective lists are claims only; acting service as President is never a holder; the President's roles and the ANC's party office are unchanged, and no game identity or portrait permission is granted.",
           "ANC Presidents 1990-2026 (CLAUDE-C01-16, ZA-ANC-01..10): the party office is a separate role, za_anc_president, on the AFRICAN NATIONAL CONGRESS observation, with ten holder observations dated by ANC in-office attestations and no start or end; conference elections, result publications, handovers, departures, deputy and chair offices are claims only. No ANC record found states the day any President assumed or left the party office or the day a National Conference declared its result; the only stated election day (18 December 2017, in the ANC's later biography of Ramaphosa) and the 2007 voting and publication days (18 and 19 December 2007) are claims only, never boundaries; the Presidency of the Republic and the party office never feed each other, and no game identity or portrait permission is granted."
         ]
       }
@@ -2661,8 +2662,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/south-africa.json",
-      "bytes": 545725,
-      "sha256": "4c943a79829c6696c70e85aa50e5ebcd5c11fabcf04110dfb25c89adcfc6348d"
+      "bytes": 740240,
+      "sha256": "71e0b72f1ff29ad9d403d28aad6dfafbdbfb87981a424d16fc4f7b5b846669fa"
     },
     {
       "path": "docs/campaign-certification/C01/research/tonga.json",
