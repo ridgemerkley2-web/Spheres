@@ -1,0 +1,71 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_aicc_cea_press_briefing_highlights_20171211",
+  "source_url": "https://res.cloudinary.com/dkplc2mbj/image/upload/v1605677051/PR_111217_MR_790e7aefcc.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": "2017-12-11",
+  "access_method": "party_stored_file_download_pdf_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 76410,
+  "source_response_sha256": "5f1e0a24ca72e60c4a5a4abb00891ac3fd16e6339ba0dfeb943452a47372c783",
+  "source_response_checked_in": false,
+  "provenance_note": "Stored file on the Indian National Congress's own media store (Cloudinary account dkplc2mbj): a versioned upload URL whose ETag equals the MD5 of the body, with Last-Modified at the upload time. Cloudinary's edge answers query-string variants from its cache, so a cache-busting download is not an origin test; stability rests on the ETag match and on downloads at least 30 minutes apart. The researcher downloaded it at 12:12Z and again at 13:16Z on 25 September 2026, the Part B check downloaded it again between 13:28Z and 13:40Z, and this packet downloaded it again at 14:59Z, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A stored file on the Indian National Congress's own media store, found through the INC press release 'Highlights of the press briefing along with YouTube link of Shri Mullapally Ramachandaran'; the live inc.in release pages were used only as finding aids and were not hashed, because they are rebuilt per request. ETag equals the MD5 of the body; Last-Modified Wed, 18 Nov 2020 05:24:12 GMT. PDF created 11 December 2017 (Word 2010) and uploaded in November 2020.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "method": "PDF read by the researcher from the text layer and page 1 rendered."
+  },
+  "rows": [
+    {
+      "claim_id": "in_cea_briefing_rahul_declared_elected_20171211",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-06",
+      "role_id": "in_inc_president",
+      "holder_name": "Rahul Gandhi",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "result_declaration_reported",
+      "attested_on": "2017-12-11",
+      "text": "At the briefing of 11 December 2017 the Central Election Authority chairman said the last time for withdrawals had ended at 3 p.m. that day, that 89 nominations for Shri Rahul Gandhi were valid, and declared him elected President of the Indian National Congress.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "paragraphs 2-4 (withdrawal deadline, nominations, declaration)"
+      }
+    },
+    {
+      "claim_id": "in_cea_briefing_certificate_handover_scheduled_20171211",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-06",
+      "role_id": "in_inc_president",
+      "holder_name": null,
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "certificate_presentation_scheduled",
+      "attested_on": "2017-12-11",
+      "text": "The same briefing says the handing over of the Certificate of Election as Congress President was scheduled for 16 December 2017 at 11 a.m. on the lawns of the AICC office, 24 Akbar Road.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "paragraph beginning 'The handing over of Certificate of Election'"
+      }
+    },
+    {
+      "claim_id": "in_cea_briefing_sonia_styled_congress_president_20171211",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-06",
+      "role_id": "in_inc_president",
+      "holder_name": "Sonia Gandhi",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2017-12-11",
+      "text": "In the same briefing the Central Election Authority chairman thanks the Hon'ble Congress President Smt. Sonia Gandhi and Vice President Shri Rahul Gandhi for their guidance.",
+      "locator": {
+        "pdf_page": 2,
+        "item": "first paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-20 only: the role in_inc_president (President of the Indian National Congress) on the Indian National Congress recognition observation in_eci_20240323_np_05. Working Committee decisions, AICC sessions and ratifications, the Central Election Authority's schedules, notifications and declarations, certificates, handovers, resignations, withdrawals, farewells, interim arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, the Leader of the Opposition, the Congress Parliamentary Party and every other office are excluded."
+}

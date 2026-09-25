@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rs_debate_19910731_budget",
+  "source_url": "https://bucketapi.rajyasabha.digital/public-bucket/rsdebate/assetstore/10/62/76/106276118047708348013242314871289191680?response-content-type=application%2Fpdf&response-content-disposition=inline%3B+filename%3D%22ID_159_31071991_01_p245-342_1.pdf%22",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "official_pdf_download_text_layer_read",
+  "source_response_bytes": 5172112,
+  "source_response_sha256": "1461215dbfad67d3f857f75dd6e5a73263030715e193aec44441bc41551ccff3",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host: the Rajya Sabha Secretariat's debates store (handle 123456789/242104), a static object whose ETag equals the MD5 of the body. The Part A check downloaded it at 14:16Z and 14:36Z on 25 September 2026, and this packet downloaded it again at 14:52Z and 14:59Z, at least 30 minutes after the check's first download, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Rajya Sabha Secretariat's debates store (handle 123456789/242104); a static object (ETag equals the MD5 of the body; Last-Modified 3 August 2026). Located by the Part A check. The passage is the Secretariat's English translation.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      22
+    ],
+    "method": "PDF page 22 (cols 287-288) read from the text layer, including the footnote marking the speech as an English translation of a speech delivered in Bengali."
+  },
+  "rows": [
+    {
+      "claim_id": "in_rs_bhattacharjee_recalls_rao_became_congress_president_1991",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-02",
+      "role_id": "in_inc_president",
+      "holder_name": "P. V. Narasimha Rao",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "selection_recalled_in_debate",
+      "attested_on": null,
+      "text": "In the Rajya Sabha on 31 July 1991, in the Secretariat's English translation of a speech delivered in Bengali, Prof. Sourendra Bhattacharjee (West Bengal) says that 'When Shri P. V. Narasimha Rao became the President of the Congress Party after tha[t] tragic death of Shri Rajiv Gandhi', he said in his first press interview that the Congress stood on the principles laid down by Pandit Jawahar Lal Nehru.",
+      "locator": {
+        "pdf_page": 22,
+        "printed_columns": "287-288",
+        "item": "*PROF. SOURENDRA BHATTACHARJEE (West Bengal); footnote: English translation of the original speech delivered in Bengali"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-20 only: the role in_inc_president (President of the Indian National Congress) on the Indian National Congress recognition observation in_eci_20240323_np_05. Working Committee decisions, AICC sessions and ratifications, the Central Election Authority's schedules, notifications and declarations, certificates, handovers, resignations, withdrawals, farewells, interim arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, the Leader of the Opposition, the Congress Parliamentary Party and every other office are excluded."
+}

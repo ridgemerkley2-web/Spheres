@@ -1,0 +1,64 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_inc_kharge_address_20221026",
+  "source_url": "https://res.cloudinary.com/dkplc2mbj/image/upload/v1666796539/Shri_Mallikarjun_Kharge_26_10_2022_93992b13bc.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": "2022-10-26",
+  "access_method": "party_stored_file_download_pdf_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 483792,
+  "source_response_sha256": "42c3b7196a5f9b041fbc145a8bf49174a6a6fa7d789bb570bd41e2e3a920a10b",
+  "source_response_checked_in": false,
+  "provenance_note": "Stored file on the Indian National Congress's own media store (Cloudinary account dkplc2mbj): a versioned upload URL whose ETag equals the MD5 of the body, with Last-Modified at the upload time. Cloudinary's edge answers query-string variants from its cache, so a cache-busting download is not an origin test; stability rests on the ETag match and on downloads at least 30 minutes apart. The researcher downloaded it at 12:09:17Z and again at 12:56:15Z on 25 September 2026, the Part C check downloaded it again at 13:02-13:03Z and again after 13:33Z, and this packet downloaded it again at 14:59Z, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A stored file on the Indian National Congress's own media store, found through the INC press release of the Congress President's address of 26 October 2022; the live inc.in release pages were used only as finding aids and were not hashed, because they are rebuilt per request. ETag equals the MD5 of the body; Last-Modified Wed, 26 Oct 2022 15:02:20 GMT. Uploaded on 26 October 2022.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "method": "Pages 1-4 rendered and read in the original Hindi and English; page 5 read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "in_kharge_styled_president_inc_20221026",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-08",
+      "role_id": "in_inc_president",
+      "holder_name": "Mallikarjun Kharge",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2022-10-26",
+      "text": "The highlights dated 26 October 2022 are headed 'Shri Mallikarjun Kharge, President Indian National Congress addressed the Congress Leaders and Party Workers at AICC Hdqrs, today'; in the speech he says (Hindi) that as Congress President this is his responsibility, and (English) 'As President, it will be my utmost duty to look after our workers.'",
+      "locator": {
+        "pdf_pages": [
+          1,
+          2,
+          5
+        ],
+        "item": "header; page 2, last paragraph (Hindi); page 5, third paragraph (English)"
+      }
+    },
+    {
+      "claim_id": "in_kharge_says_reached_this_post_today_20221026",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-08",
+      "role_id": "in_inc_president",
+      "holder_name": "Mallikarjun Kharge",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "handover_statement",
+      "attested_on": "2022-10-26",
+      "text": "He says (Hindi) that, having worked up from primary member and block committee, he has today reached this post among them, and thanks the party for electing an ordinary worker Congress president.",
+      "locator": {
+        "pdf_pages": [
+          1,
+          3
+        ],
+        "item": "page 3, first paragraph; page 1, first paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-20 only: the role in_inc_president (President of the Indian National Congress) on the Indian National Congress recognition observation in_eci_20240323_np_05. Working Committee decisions, AICC sessions and ratifications, the Central Election Authority's schedules, notifications and declarations, certificates, handovers, resignations, withdrawals, farewells, interim arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, the Leader of the Opposition, the Congress Parliamentary Party and every other office are excluded."
+}

@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_aicc_certificate_of_election_congress_president_20100903",
+  "source_url": "https://web.archive.org/web/20101207011339id_/http://www.aicc.org.in/new/cpcer.jpg",
+  "original_url": "http://www.aicc.org.in/new/cpcer.jpg",
+  "archive_capture_utc": "2010-12-07T01:13:39Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2010-09-03",
+  "access_method": "downloaded_archived_raw_capture_and_image_viewed",
+  "source_response_bytes": 324847,
+  "source_response_sha256": "b350d70ca8a99c754a37417c88c4598815e75fba6b854035b5198f0718cb8f66",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2010-12-07T01:13:39Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl without --compressed, request header Accept-Encoding: identity). The researcher downloaded it at 12:07Z and again at 13:15Z on 25 September 2026, the Part B check downloaded it again between 13:28Z and 13:40Z, and this packet downloaded it again at 14:59Z, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The signed certificate image, recorded as a raw Internet Archive capture of 7 December 2010. The constitution article it cites is procedure only.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "JPEG image (2399 x 1935 px) viewed in full by the researcher and the check; all printed text read and the signature seen; no image reused."
+  },
+  "rows": [
+    {
+      "claim_id": "in_certificate_sonia_duly_elected_unopposed_20100903",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-05",
+      "role_id": "in_inc_president",
+      "holder_name": "Sonia Gandhi",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "certificate_of_election",
+      "attested_on": "2010-09-03",
+      "text": "The Certificate of Election of Congress President certifies that Smt. Sonia Gandhi has been duly elected unopposed as President of the Indian National Congress on 3 September 2010 under Article XVIII of the Congress Constitution and the Organisational Election Schedule 2010; it is signed by Oscar Fernandes as Returning Officer for Election of Congress President, New Delhi, 03/09/2010.",
+      "locator": {
+        "section": "certificate body and signature block"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-20 only: the role in_inc_president (President of the Indian National Congress) on the Indian National Congress recognition observation in_eci_20240323_np_05. Working Committee decisions, AICC sessions and ratifications, the Central Election Authority's schedules, notifications and declarations, certificates, handovers, resignations, withdrawals, farewells, interim arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, the Leader of the Opposition, the Congress Parliamentary Party and every other office are excluded."
+}

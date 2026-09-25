@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_aicc_timeline_20040606",
+  "source_url": "https://web.archive.org/web/20040606060953id_/http://www.aicc.org.in:80/timeline.htm",
+  "original_url": "http://www.aicc.org.in/timeline.htm",
+  "archive_capture_utc": "2004-06-06T06:09:53Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 166957,
+  "source_response_sha256": "2b9f6e3b9110ae945a78d9fd1b0b01f140c4c54421d82274c1b8b5f093197f7a",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2004-06-06T06:09:53Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl without --compressed, request header Accept-Encoding: identity). The researcher downloaded it at 12:11:49Z and again at 13:24:22Z on 25 September 2026, the Part A check downloaded it again between 13:33Z and 13:42Z, and this packet downloaded it again at 14:58Z, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The AICC's own time line recorded as a raw Internet Archive capture of 6 June 2004 (original Last-Modified 27 March 2004); the domain later passed to an unrelated site, so only early captures are used. Retrospective and year-only; claims only, never a boundary.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "HTML source read for the 'THE INTERIM YEARS' block; windows-1252 text."
+  },
+  "rows": [
+    {
+      "claim_id": "in_aicc_timeline_rao_resigns_presidentship_1996",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-09",
+      "role_id": "in_inc_president",
+      "holder_name": "P. V. Narasimha Rao",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "resignation_recalled_retrospective",
+      "attested_on": null,
+      "text": "The AICC's time line lists, after '1996 Congress loses General Elections', the entry '1996 P.V. Narasimha Rao resigns from Presidentship of Party'.",
+      "locator": {
+        "item": "THE INTERIM YEARS, events column, 1996 entries"
+      }
+    },
+    {
+      "claim_id": "in_aicc_timeline_kesri_chosen_president_1996",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-03",
+      "role_id": "in_inc_president",
+      "holder_name": "Sitaram Kesri",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "selection_recalled_retrospective",
+      "attested_on": null,
+      "text": "The next entry reads '1996 Sitaram Kesri chosen as President'.",
+      "locator": {
+        "item": "THE INTERIM YEARS, events column, 1996 entries"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-20 only: the role in_inc_president (President of the Indian National Congress) on the Indian National Congress recognition observation in_eci_20240323_np_05. Working Committee decisions, AICC sessions and ratifications, the Central Election Authority's schedules, notifications and declarations, certificates, handovers, resignations, withdrawals, farewells, interim arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, the Leader of the Opposition, the Congress Parliamentary Party and every other office are excluded."
+}

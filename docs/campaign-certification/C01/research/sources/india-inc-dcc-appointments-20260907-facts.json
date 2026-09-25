@@ -1,0 +1,38 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_inc_dcc_odisha_release_20260907",
+  "source_url": "https://res.cloudinary.com/dkplc2mbj/image/upload/v1788800085/PR_2_DCC_Odisha_5546af1982.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": "2026-09-07",
+  "access_method": "party_stored_file_download_and_pages_rendered",
+  "source_response_bytes": 195798,
+  "source_response_sha256": "b82a80812d47a8317db5c154b2c7ef660c34a33cc810c9561098eb1731cfce6b",
+  "source_response_checked_in": false,
+  "provenance_note": "Stored file on the Indian National Congress's own media store (Cloudinary account dkplc2mbj): a versioned upload URL whose ETag equals the MD5 of the body, with Last-Modified at the upload time. Cloudinary's edge answers query-string variants from its cache, so a cache-busting download is not an origin test; stability rests on the ETag match and on downloads at least 30 minutes apart. The researcher downloaded it at 12:13:09Z and again at 12:56:17Z on 25 September 2026, the Part C check downloaded it again at 13:02-13:03Z and again after 13:33Z, and this packet downloaded it again at 14:59Z, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A stored file on the Indian National Congress's own media store, found through the INC press release on District Congress Committee Presidents in Odisha of 7 September 2026; the live inc.in release pages were used only as finding aids and were not hashed, because they are rebuilt per request. ETag equals the MD5 of the body; Last-Modified Mon, 07 Sep 2026 16:54:46 GMT. Uploaded on 7 September 2026 (Last-Modified 16:54:46 GMT), the cutoff day.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "The scanned page rendered and read in full; signature seen, not reused."
+  },
+  "rows": [
+    {
+      "claim_id": "in_congress_president_approves_dcc_odisha_20260907",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-10",
+      "role_id": "in_inc_president",
+      "holder_name": null,
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "unnamed_president_act",
+      "attested_on": "2026-09-07",
+      "text": "The release dated 7 September 2026 states that the 'Hon'ble Congress President has approved the proposal for the appointment of the Presidents of the following District Congress Committees in Odisha, under Sangathan Srijan Abhiyan, with immediate effect'.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "release body"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-20 only: the role in_inc_president (President of the Indian National Congress) on the Indian National Congress recognition observation in_eci_20240323_np_05. Working Committee decisions, AICC sessions and ratifications, the Central Election Authority's schedules, notifications and declarations, certificates, handovers, resignations, withdrawals, farewells, interim arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, the Leader of the Opposition, the Congress Parliamentary Party and every other office are excluded."
+}

@@ -1,0 +1,73 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rs_debate_19910603_resolution_demise_rajiv_gandhi",
+  "source_url": "https://bucketapi.rajyasabha.digital/public-bucket/rsdebate/assetstore/54/06/13/54061321462214981035365654602569062760?response-content-type=application%2Fpdf&response-content-disposition=inline%3B+filename%3D%22ID_158_03061991_01_p2-51_1.pdf%22",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "official_pdf_download_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 2225446,
+  "source_response_sha256": "dcead9b072e2b12c44fd177df0be5a2aea4770d42b7ab82b57581c2c03147baf",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host: the Rajya Sabha Secretariat's debates store (handle 123456789/237736), a static object whose ETag equals the MD5 of the body. The Part A check downloaded this store file at 13:56Z and again at 14:34Z on 25 September 2026 (the second with a cache-busting query), and this packet downloaded it at 14:52Z and 14:57Z, each time with the same byte count and SHA-256; the researcher's earlier copy from the Internet Archive (12:54:38Z and 13:26:22Z) had the same bytes. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Rajya Sabha Secretariat's debates store (handle 123456789/237736); a static object (ETag equals the MD5 of the body; Last-Modified 29 July 2026). The researcher first recorded a Wayback capture of 8 August 2025 of the old rsdebate.nic.in bitstream, byte-identical to this file and to Internet Archive item rsdebate.nic.in.237736; the official store file is recorded instead (check A1).",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      5,
+      19
+    ],
+    "method": "PDF pages 1 (cover and the Chairman's resolution), 5 (cols 9-10, the Leader of the House) and 19 (cols 37-38, Sardar Jagjit Singh Arora) rendered and read by the researcher; the Hindi speeches were read only where they bore on the question."
+  },
+  "rows": [
+    {
+      "claim_id": "in_rs_chairman_resolution_demise_rajiv_gandhi_19910521",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-01",
+      "role_id": "in_inc_president",
+      "holder_name": "Rajiv Gandhi",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "death_stated",
+      "attested_on": "1991-05-21",
+      "text": "On 3 June 1991 the Chairman of the Rajya Sabha rose to propose a resolution on the demise of Shri Rajiv Gandhi on 21 May 1991; the resolution mourns his passing and records that he was assassinated.",
+      "locator": {
+        "pdf_page": 1,
+        "printed_columns": "1-2",
+        "item": "Resolution on the demise of Shri Rajiv Gandhi, former Prime Minister; MR. CHAIRMAN"
+      }
+    },
+    {
+      "claim_id": "in_rs_leader_of_house_rajiv_gandhi_president_congress_party_19910603",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-01",
+      "role_id": "in_inc_president",
+      "holder_name": "Rajiv Gandhi",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "posthumous_reference",
+      "attested_on": "1991-06-03",
+      "text": "Speaking on the resolution on 3 June 1991, the Minister of Finance and Leader of the House, Shri Yashwant Sinha, says that Shri Rajiv Gandhi was not only the President of the Congress Party but also a statesman and national leader.",
+      "locator": {
+        "pdf_page": 5,
+        "printed_columns": "9-10",
+        "item": "THE MINISTER OF FINANCE AND LEADER OF THE HOUSE (SHRI YASHWANT SINHA)"
+      }
+    },
+    {
+      "claim_id": "in_rs_arora_rajiv_gandhi_president_inc_i_19910603",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-01",
+      "role_id": "in_inc_president",
+      "holder_name": "Rajiv Gandhi",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "posthumous_reference",
+      "attested_on": "1991-06-03",
+      "text": "Sardar Jagjit Singh Arora (Punjab) expresses sorrow at the death of Shri Rajiv Gandhi, 'our ex-Prime Minister and President of the Indian National Congress (I)'.",
+      "locator": {
+        "pdf_page": 19,
+        "printed_columns": "37-38",
+        "item": "SARDAR JAGJIT SINGH ARORA (Punjab)"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-20 only: the role in_inc_president (President of the Indian National Congress) on the Indian National Congress recognition observation in_eci_20240323_np_05. Working Committee decisions, AICC sessions and ratifications, the Central Election Authority's schedules, notifications and declarations, certificates, handovers, resignations, withdrawals, farewells, interim arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, the Leader of the Opposition, the Congress Parliamentary Party and every other office are excluded."
+}

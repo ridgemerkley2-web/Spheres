@@ -1,0 +1,38 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_inc_cp_speech_rajiv75_20190822",
+  "source_url": "https://res.cloudinary.com/dkplc2mbj/image/upload/v1597317512/Smt_Sonia_Gandhi_22_08_2019_91439fe443.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": "2019-08-22",
+  "access_method": "party_stored_file_download_pdf_text_layer_read",
+  "source_response_bytes": 164283,
+  "source_response_sha256": "83030903d3539cd2db32272623b31db291fac71fc48e1816a198564cd7325c04",
+  "source_response_checked_in": false,
+  "provenance_note": "Stored file on the Indian National Congress's own media store (Cloudinary account dkplc2mbj): a versioned upload URL whose ETag equals the MD5 of the body, with Last-Modified at the upload time. Cloudinary's edge answers query-string variants from its cache, so a cache-busting download is not an origin test; stability rests on the ETag match and on downloads at least 30 minutes apart. The researcher downloaded it at 12:19:39Z and again at 12:56:13Z on 25 September 2026, the Part C check downloaded it again at 13:02-13:03Z and again after 13:33Z, and this packet downloaded it again at 14:59Z, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A stored file on the Indian National Congress's own media store, found through the INC press release of the Congress President's speech of 22 August 2019; the live inc.in release pages were used only as finding aids and were not hashed, because they are rebuilt per request. ETag equals the MD5 of the body; Last-Modified Thu, 13 Aug 2020 11:18:33 GMT. The file is the INC's re-upload of August 2020, not the 2019 attachment: the original on cdn.inc.in no longer resolves and was never archived, and the archived 2019 release page that linked it is a lead.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "Page 1 header and opening read from the text layer (English header, Unicode Hindi speech)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_sonia_gandhi_styled_president_inc_20190822",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-07",
+      "role_id": "in_inc_president",
+      "holder_name": "Sonia Gandhi",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "interim_service_attestation",
+      "attested_on": "2019-08-22",
+      "text": "The Communication Department's highlights dated 22 August 2019 style her 'Smt. Sonia Gandhi, President, Indian National Congress' and call the release a 'CP speech'.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "header"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-20 only: the role in_inc_president (President of the Indian National Congress) on the Indian National Congress recognition observation in_eci_20240323_np_05. Working Committee decisions, AICC sessions and ratifications, the Central Election Authority's schedules, notifications and declarations, certificates, handovers, resignations, withdrawals, farewells, interim arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, the Leader of the Opposition, the Congress Parliamentary Party and every other office are excluded."
+}

@@ -1,0 +1,58 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_inc_cea_chairman_briefing_20221019",
+  "source_url": "https://res.cloudinary.com/dkplc2mbj/image/upload/v1666244178/Shri_Madhusudan_Mistry_19_10_2022_32ee15ebf7.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": "2022-10-19",
+  "access_method": "party_stored_file_download_pdf_text_layer_read",
+  "source_response_bytes": 164451,
+  "source_response_sha256": "dbc069acf2aa41c7b6a990b8c8cdc28b75b8871177809f7ae2f86b6196b14b8b",
+  "source_response_checked_in": false,
+  "provenance_note": "Stored file on the Indian National Congress's own media store (Cloudinary account dkplc2mbj): a versioned upload URL whose ETag equals the MD5 of the body, with Last-Modified at the upload time. Cloudinary's edge answers query-string variants from its cache, so a cache-busting download is not an origin test; stability rests on the ETag match and on downloads at least 30 minutes apart. The researcher downloaded it at 12:08:35Z and again at 12:56:14Z on 25 September 2026, the Part C check downloaded it again at 13:02-13:03Z and again after 13:33Z, and this packet downloaded it again at 14:59Z, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A stored file on the Indian National Congress's own media store, found through the INC press release of the Central Election Authority's briefing of 19 October 2022; the live inc.in release pages were used only as finding aids and were not hashed, because they are rebuilt per request. ETag equals the MD5 of the body; Last-Modified Thu, 20 Oct 2022 05:36:19 GMT. Uploaded on 20 October 2022.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2,
+      3
+    ],
+    "method": "All three pages read from the Unicode text layer (English and Hindi)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_mistry_announces_kharge_elected_briefing_20221019",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-08",
+      "role_id": "in_inc_president",
+      "holder_name": "Mallikarjun Kharge",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "result_declaration_reported",
+      "attested_on": "2022-10-19",
+      "text": "At the AICC briefing of 19 October 2022 the Central Election Authority chairman repeats the tally and declares Mallikarjun Kharge elected as President of Indian National Congress.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "English statement"
+      }
+    },
+    {
+      "claim_id": "in_certificate_to_be_given_20221019",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-08",
+      "role_id": "in_inc_president",
+      "holder_name": "Mallikarjun Kharge",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "certificate_presentation_announced",
+      "attested_on": "2022-10-19",
+      "text": "Answering questions (Hindi), Shri Mistry says the programme would be settled with the President-elect and he hoped it would be like the one held for Rahul Gandhi, and that the certificate would be given to him formally, at a meeting, after his programmes.",
+      "locator": {
+        "pdf_pages": [
+          2,
+          3
+        ],
+        "item": "page 2, first Hindi answer; page 3, last Hindi answer"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-20 only: the role in_inc_president (President of the Indian National Congress) on the Indian National Congress recognition observation in_eci_20240323_np_05. Working Committee decisions, AICC sessions and ratifications, the Central Election Authority's schedules, notifications and declarations, certificates, handovers, resignations, withdrawals, farewells, interim arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, the Leader of the Opposition, the Congress Parliamentary Party and every other office are excluded."
+}

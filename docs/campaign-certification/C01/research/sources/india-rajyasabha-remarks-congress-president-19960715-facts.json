@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rs_debate_19960715_remarks_against_congress_president",
+  "source_url": "https://bucketapi.rajyasabha.digital/public-bucket/rsdebate/assetstore/11/94/26/119426198869876452278659853631896723945?response-content-type=application%2Fpdf&response-content-disposition=inline%3B+filename%3D%22ID_178_15071996_01_p180-202_1.pdf%22",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "official_pdf_download_text_layer_read",
+  "source_response_bytes": 120669,
+  "source_response_sha256": "d9811540716d1ab6deb6f94b2a9aedcdbeef0e45e2be6756eac6cbb881469cd9",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host: the Rajya Sabha Secretariat's debates store (handle 123456789/156812), a static object whose ETag equals the MD5 of the body. The Part A check downloaded it at 14:07Z and 14:34Z on 25 September 2026, and this packet downloaded it again at 14:52Z and 14:59Z, at least 30 minutes after the check's first download, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Rajya Sabha Secretariat's debates store (handle 123456789/156812); a static object (ETag equals the MD5 of the body; Last-Modified 3 August 2026). Located by the Part A check. A second store file of the same item (cols 239-240) is a lead.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2,
+      12
+    ],
+    "method": "PDF pages 1 (item heading), 2 (Shri Vayalar Ravi) and 12 (cols 201-202, the Leader of the House) read from the text layer; the passages are in English."
+  },
+  "rows": [
+    {
+      "claim_id": "in_rs_gujral_rao_president_of_congress_party_19960715",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-02",
+      "role_id": "in_inc_president",
+      "holder_name": "P. V. Narasimha Rao",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1996-07-15",
+      "text": "In the Rajya Sabha on 15 July 1996, on the item headed 'Re. reported remarks made by Home Minister against President of Congress Party', the Leader of the House, Shri Inder Kumar Gujral, says that the Government has 'the highest esteem and respect for the President of the Congress Party, Shri Narasimha Rao'.",
+      "locator": {
+        "pdf_page": 12,
+        "printed_columns": "201-202",
+        "item": "THE LEADER OF THE HOUSE (SHRI INDER KUMAR GUJRAL)"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-20 only: the role in_inc_president (President of the Indian National Congress) on the Indian National Congress recognition observation in_eci_20240323_np_05. Working Committee decisions, AICC sessions and ratifications, the Central Election Authority's schedules, notifications and declarations, certificates, handovers, resignations, withdrawals, farewells, interim arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, the Leader of the Opposition, the Congress Parliamentary Party and every other office are excluded."
+}

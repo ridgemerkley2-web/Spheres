@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_inc_past_president_page_sonia_gandhi_20251230",
+  "source_url": "https://web.archive.org/web/20251230142802id_/https://inc.in/leadership/past-party-presidents/smt-sonia-gandhi",
+  "original_url": "https://inc.in/leadership/past-party-presidents/smt-sonia-gandhi",
+  "archive_capture_utc": "2025-12-30T14:28:02Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_data_read",
+  "source_response_bytes": 12523,
+  "source_response_sha256": "d104e80a0785b5fd5d098ffb033b9ac1f53c9c576c2daf57a764d562f94e604b",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "gzip",
+  "decoded_response_bytes": 67209,
+  "decoded_response_sha256": "feca879777e88427e3182c7ba656c4d3f4affd00e33db0a6d2bb30863f473863",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2025-12-30T14:28:02Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The Internet Archive serves this capture gzip-encoded (Content-Encoding: gzip, as archived), even to a request for identity encoding; source_response_bytes and source_response_sha256 are of the encoded body as transferred (curl without --compressed). The decoded HTML is 67,209 bytes, SHA-256 feca879777e88427e3182c7ba656c4d3f4affd00e33db0a6d2bb30863f473863. The researcher downloaded it at 12:37Z and again at 13:10Z on 25 September 2026, the Part B check downloaded it again between 13:28Z and 13:40Z, and this packet downloaded it again at 14:58Z, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A retrospective party page recorded as a raw Internet Archive capture, which the archive serves gzip-encoded. Claims only, never a boundary.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Decoded HTML and its embedded __NEXT_DATA__ description read in full; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_inc_past_president_page_sonia_became_president_april_1998",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-04",
+      "role_id": "in_inc_president",
+      "holder_name": "Sonia Gandhi",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "selection_recalled_retrospective",
+      "attested_on": null,
+      "text": "The INC's past-president page says Smt. Sonia Gandhi took the primary membership of the party in 1997, entered public life shortly before the 1998 Lok Sabha elections and 'became the President of the Indian National Congress Party in April 1998', and calls her the longest serving President of the party.",
+      "locator": {
+        "section": "objPartyPresident.description, paragraphs 1 and 4"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-20 only: the role in_inc_president (President of the Indian National Congress) on the Indian National Congress recognition observation in_eci_20240323_np_05. Working Committee decisions, AICC sessions and ratifications, the Central Election Authority's schedules, notifications and declarations, certificates, handovers, resignations, withdrawals, farewells, interim arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, the Leader of the Opposition, the Congress Parliamentary Party and every other office are excluded."
+}

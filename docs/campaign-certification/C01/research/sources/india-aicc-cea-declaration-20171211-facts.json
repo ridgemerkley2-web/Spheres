@@ -1,0 +1,35 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_cea_declaration_of_result_rahul_gandhi_20171211",
+  "source_url": "https://res.cloudinary.com/dkplc2mbj/image/upload/v1605677160/INC_Election_Notification_11_12_2017_0d085152c7.jpg",
+  "accessed_date": "2026-09-25",
+  "published_date": "2017-12-11",
+  "access_method": "party_stored_file_download_and_image_viewed",
+  "source_response_bytes": 503514,
+  "source_response_sha256": "24a35772e0392ce0e2d60ca09e4bba6ddb974311f69ec80973d15ea7e6bb794a",
+  "source_response_checked_in": false,
+  "provenance_note": "Stored file on the Indian National Congress's own media store (Cloudinary account dkplc2mbj): a versioned upload URL whose ETag equals the MD5 of the body, with Last-Modified at the upload time. Cloudinary's edge answers query-string variants from its cache, so a cache-busting download is not an origin test; stability rests on the ETag match and on downloads at least 30 minutes apart. The researcher downloaded it at 12:12Z and again at 13:16Z on 25 September 2026, the Part B check downloaded it again between 13:28Z and 13:40Z, and this packet downloaded it again at 14:59Z, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A stored file on the Indian National Congress's own media store, found through the INC press release 'Election notification of the President of Indian National Congress'; the live inc.in release pages were used only as finding aids and were not hashed, because they are rebuilt per request. ETag equals the MD5 of the body; Last-Modified Wed, 18 Nov 2020 05:26:01 GMT. A scan uploaded in November 2020; a second scan of the same declaration under another release is a lead.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "JPEG scan (2326 x 3427 px) viewed in full; text, signature and the Central Election Authority seal seen, not reused."
+  },
+  "rows": [
+    {
+      "claim_id": "in_cea_declares_rahul_gandhi_elected_president_20171211",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-06",
+      "role_id": "in_inc_president",
+      "holder_name": "Rahul Gandhi",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "result_declaration",
+      "attested_on": "2017-12-11",
+      "text": "In a Declaration of Result dated 11 December 2017, Returning Officer and Central Election Authority chairman Mullappally Ramachandran states that 89 nomination papers proposing Shri Rahul Gandhi were received and found valid and that, the withdrawal time being over with only one candidate, he declares Shri Rahul Gandhi elected President of the Indian National Congress under Article XVIII(d) of the party constitution.",
+      "locator": {
+        "item": "declaration text and signature block"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-20 only: the role in_inc_president (President of the Indian National Congress) on the Indian National Congress recognition observation in_eci_20240323_np_05. Working Committee decisions, AICC sessions and ratifications, the Central Election Authority's schedules, notifications and declarations, certificates, handovers, resignations, withdrawals, farewells, interim arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, the Leader of the Opposition, the Congress Parliamentary Party and every other office are excluded."
+}

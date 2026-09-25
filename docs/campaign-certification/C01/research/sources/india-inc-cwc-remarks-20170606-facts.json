@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_inc_cp_remarks_cwc_20170606",
+  "source_url": "https://res.cloudinary.com/dkplc2mbj/image/upload/v1606108603/HON_80355cf00d.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": "2017-06-06",
+  "access_method": "party_stored_file_download_pdf_text_layer_read",
+  "source_response_bytes": 117199,
+  "source_response_sha256": "3d185619a2e6923c0cb9db2b270532c0fd255692e79552c12f23be92377467c3",
+  "source_response_checked_in": false,
+  "provenance_note": "Stored file on the Indian National Congress's own media store (Cloudinary account dkplc2mbj): a versioned upload URL whose ETag equals the MD5 of the body, with Last-Modified at the upload time. Cloudinary's edge answers query-string variants from its cache, so a cache-busting download is not an origin test; stability rests on the ETag match and on downloads at least 30 minutes apart. The Part B check downloaded it at 13:43Z and 13:44Z on 25 September 2026, and this packet downloaded it again at 14:47Z and 14:59Z, at least 30 minutes after the check's first download, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A stored file on the Indian National Congress's own media store, found through the INC press release 'Hon. Congress President's remarks at the CWC meeting 6th June 2017'; the live inc.in release pages were used only as finding aids and were not hashed, because they are rebuilt per request. ETag equals the MD5 of the body; Last-Modified Mon, 23 Nov 2020 05:16:44 GMT. The text was re-keyed when it was uploaded in November 2020 (PDF created 23 November 2020). Located by the Part B check.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2,
+      3
+    ],
+    "method": "All three pages read from the text layer (English)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_congress_president_places_schedule_before_cwc_20170606",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-06",
+      "role_id": "in_inc_president",
+      "holder_name": null,
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "election_schedule_placed_before_working_committee",
+      "attested_on": "2017-06-06",
+      "text": "In remarks headed 'Hon. Congress President's remarks at the CWC meeting 6th June 2017', the Congress President tells the Working Committee that 'The schedule for organizational elections has been determined and will come up before the CWC for approval today.'",
+      "locator": {
+        "pdf_page": 3,
+        "item": "heading (page 1) and the paragraph beginning 'To this end, we must strengthen our organization'"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-20 only: the role in_inc_president (President of the Indian National Congress) on the Indian National Congress recognition observation in_eci_20240323_np_05. Working Committee decisions, AICC sessions and ratifications, the Central Election Authority's schedules, notifications and declarations, certificates, handovers, resignations, withdrawals, farewells, interim arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, the Leader of the Opposition, the Congress Parliamentary Party and every other office are excluded."
+}

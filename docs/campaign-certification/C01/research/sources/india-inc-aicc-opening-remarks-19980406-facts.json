@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_inc_site_sonia_aicc_opening_remarks_19980406",
+  "source_url": "https://web.archive.org/web/20000919174701id_/http://www.indiancongress.org:80/president/speech/meeting_aicc_siri_fort.htm",
+  "original_url": "http://www.indiancongress.org/president/speech/meeting_aicc_siri_fort.htm",
+  "archive_capture_utc": "2000-09-19T17:47:01Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 22666,
+  "source_response_sha256": "4c8dd4d2beafcbceb69488f4fa2d19308a8047129d0d4685f23f1bdaf06777d4",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2000-09-19T17:47:01Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl without --compressed, request header Accept-Encoding: identity). The researcher downloaded it at 12:02Z and again at 13:10Z on 25 September 2026, the Part B check downloaded it again between 13:28Z and 13:40Z, and this packet downloaded it again at 14:58Z, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party website's text of the 6 April 1998 remarks, recorded as a raw Internet Archive capture of 19 September 2000; the page prints no personal name, only 'the Congress President'. The Working Committee's March 1998 decision is not mentioned. Claims only.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full; no images on the page."
+  },
+  "rows": [
+    {
+      "claim_id": "in_aicc_session_remarks_you_have_elected_me_president_19980406",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-04",
+      "role_id": "in_inc_president",
+      "holder_name": null,
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "aicc_session_election_statement",
+      "attested_on": "1998-04-06",
+      "text": "Remarks headed 'Opening remarks by the Congress President' at the meeting of the All India Congress Committee, Sirifort Auditorium, New Delhi, 6 April 1998, tell the members: 'You have elected me President of this great organization.'",
+      "locator": {
+        "section": "heading 'MEETING OF THE ALL INDIA CONGRESS COMMITTEE / SIRIFORT AUDITORIUM, NEW DELHI, 6 APRIL, 1998 / OPENING REMARKS BY THE CONGRESS PRESIDENT' and the first paragraph after the salutation"
+      }
+    },
+    {
+      "claim_id": "in_aicc_session_remarks_accepts_office_19980406",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-04",
+      "role_id": "in_inc_president",
+      "holder_name": null,
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "election_acceptance_statement",
+      "attested_on": "1998-04-06",
+      "text": "In the same remarks the speaker says 'It is with deep humility that I accept this privilege', 'I have come to this office at a critical point in the history of Party' and 'I see it as my primary task as Congress President' to restore the vision of the Congress centenary.",
+      "locator": {
+        "section": "first paragraph after the salutation; paragraphs beginning 'I have come to this office' and 'I see it as my primary task'"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-20 only: the role in_inc_president (President of the Indian National Congress) on the Indian National Congress recognition observation in_eci_20240323_np_05. Working Committee decisions, AICC sessions and ratifications, the Central Election Authority's schedules, notifications and declarations, certificates, handovers, resignations, withdrawals, farewells, interim arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, the Leader of the Opposition, the Congress Parliamentary Party and every other office are excluded."
+}

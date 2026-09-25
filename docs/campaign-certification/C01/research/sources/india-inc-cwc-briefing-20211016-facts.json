@@ -1,0 +1,43 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_inc_cwc_briefing_20211016",
+  "source_url": "https://res.cloudinary.com/dkplc2mbj/image/upload/v1634399761/Shri_Randeep_Singh_Surjewala_16_10_2021_f701a7ca3c.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": "2021-10-16",
+  "access_method": "party_stored_file_download_pdf_text_layer_read",
+  "source_response_bytes": 232932,
+  "source_response_sha256": "de388317ca148b30854f6b9609eb5de2ff93058cd95556bb7d1b8071a683b935",
+  "source_response_checked_in": false,
+  "provenance_note": "Stored file on the Indian National Congress's own media store (Cloudinary account dkplc2mbj): a versioned upload URL whose ETag equals the MD5 of the body, with Last-Modified at the upload time. Cloudinary's edge answers query-string variants from its cache, so a cache-busting download is not an origin test; stability rests on the ETag match and on downloads at least 30 minutes apart. The Part C check downloaded it at 13:12Z and 13:33Z on 25 September 2026, and this packet downloaded it again at 14:47Z and 14:59Z, at least 30 minutes after the check's first download, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A stored file on the Indian National Congress's own media store, found through the INC press release of the Working Committee briefing of 16 October 2021; the live inc.in release pages were used only as finding aids and were not hashed, because they are rebuilt per request. ETag equals the MD5 of the body; Last-Modified Sat, 16 Oct 2021 15:56:02 GMT. Uploaded on 16 October 2021.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2,
+      3
+    ],
+    "method": "Pages 1-3 read from the text layer (English passages)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_cwc_approves_schedule_aicc_president_election_20211016",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-08",
+      "role_id": "in_inc_president",
+      "holder_name": null,
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "working_committee_schedule_approval",
+      "attested_on": "2021-10-16",
+      "text": "At the AICC briefing of 16 October 2021 on the Working Committee meeting 'chaired by Hon'ble Congress President, Smt. Sonia Gandhi', Shri K.C. Venugopal says the Working Committee has approved the organisational election schedule, including 'Election of the AICC President- 21st August, 2022 to 20th September, 2022'.",
+      "locator": {
+        "pdf_pages": [
+          1,
+          2
+        ],
+        "item": "paragraph beginning 'CWC also discussed the organizational election schedule'"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-20 only: the role in_inc_president (President of the Indian National Congress) on the Indian National Congress recognition observation in_eci_20240323_np_05. Working Committee decisions, AICC sessions and ratifications, the Central Election Authority's schedules, notifications and declarations, certificates, handovers, resignations, withdrawals, farewells, interim arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, the Leader of the Opposition, the Congress Parliamentary Party and every other office are excluded."
+}

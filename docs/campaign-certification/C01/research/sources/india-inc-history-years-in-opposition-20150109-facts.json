@@ -1,0 +1,69 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_inc_history_years_in_opposition_2015",
+  "source_url": "https://web.archive.org/web/20150109222022id_/http://www.inc.in:80/about-congress/history/literature/6-Congress-and-the-Making-of--the-Indian-Nation/30-Years-in-Opposition",
+  "original_url": "http://www.inc.in/about-congress/history/literature/6-Congress-and-the-Making-of--the-Indian-Nation/30-Years-in-Opposition",
+  "archive_capture_utc": "2015-01-09T22:20:22Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 75804,
+  "source_response_sha256": "b36e6bd67188882c982b22f3f50b427ce035027cc23d96330159a93b3a1ba958",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2015-01-09T22:20:22Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl without --compressed, request header Accept-Encoding: identity). The researcher downloaded it at 12:34Z and again at 13:10Z on 25 September 2026, the Part B check downloaded it again between 13:28Z and 13:40Z, and this packet downloaded it again at 14:58Z, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party's own history on inc.in, recorded as a raw Internet Archive capture of 9 January 2015. A retrospective account: claims only, never a boundary.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML chapter text read in the sections 'Sonia Gandhi takes Charge' and on the 1999 resignation; some punctuation is double-encoded in the original."
+  },
+  "rows": [
+    {
+      "claim_id": "in_inc_history_sonia_ratified_at_aicc_session_19980406",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-04",
+      "role_id": "in_inc_president",
+      "holder_name": "Sonia Gandhi",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "ratification_recalled_retrospective",
+      "attested_on": "1998-04-06",
+      "text": "The INC's history says Sonia Gandhi was persuaded to take over the party leadership in 1998 and that 'On 6 April 1998, Sonia Gandhi was ratified as the Congress President at the AICC session in New Delhi', where her opening remarks set out her priorities.",
+      "locator": {
+        "section": "subheading 'Sonia Gandhi takes Charge'",
+        "paragraphs": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "claim_id": "in_inc_history_sonia_resigned_after_letter_1999",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-09",
+      "role_id": "in_inc_president",
+      "holder_name": "Sonia Gandhi",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "resignation_recalled_retrospective",
+      "attested_on": null,
+      "text": "The same history says that on 15 May 1999 Sharad Pawar, P.A. Sangma and Tariq Anwar, in a letter to the party president, demanded that only 'natural born' citizens hold the highest offices, and that 'In response to this letter, Sonia Gandhi resigned from the post of party president.'",
+      "locator": {
+        "section": "paragraph on the 1999 campaign ('Sonia Gandhi's projection as PM')"
+      }
+    },
+    {
+      "claim_id": "in_inc_history_cwc_reiterated_faith_1999",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-09",
+      "role_id": "in_inc_president",
+      "holder_name": "Sonia Gandhi",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "working_committee_decision_recalled_retrospective",
+      "attested_on": null,
+      "text": "The same history says 'The CWC disapproved of the claims made by these three leaders and reiterated its faith in her leadership.'",
+      "locator": {
+        "section": "paragraph on the 1999 campaign, sentence after 'In response to this letter'"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-20 only: the role in_inc_president (President of the Indian National Congress) on the Indian National Congress recognition observation in_eci_20240323_np_05. Working Committee decisions, AICC sessions and ratifications, the Central Election Authority's schedules, notifications and declarations, certificates, handovers, resignations, withdrawals, farewells, interim arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, the Leader of the Opposition, the Congress Parliamentary Party and every other office are excluded."
+}

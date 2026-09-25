@@ -11,7 +11,8 @@ import campaign_research as research
 # The two sources of the original S10e intake keep every assertion below by id. CLAUDE-C01-11 adds 70 sources for the
 # in_prime_minister institution whose response identities are pinned exactly (bytes and SHA-256) in
 # test_india_prime_ministers_c01_11.py, and CLAUDE-C01-15 then adds 56 sources for the in_presidency institution, pinned
-# the same way in test_india_presidents_c01_15.py.
+# the same way in test_india_presidents_c01_15.py. CLAUDE-C01-20 then adds 73 sources for one party role, in_inc_president,
+# on the Indian National Congress recognition observation, pinned in test_india_inc_presidents_c01_20.py.
 ORIGINAL_SOURCES = ('in_eci_national_parties_20240323', 'in_eci_state_parties_20240323')
 # CLAUDE-C01-11 sources: raw Internet Archive captures, Internet Archive item copies, and the eGazette, Rajya Sabha and
 # Cabinet Secretariat file hosts, accessed on 2026-09-23 or 2026-09-24.
@@ -23,6 +24,14 @@ C01_11_SOURCE_COUNT = 70
 C01_15_HOSTS = {'web.archive.org', 'archive.org', 'egazette.gov.in', 'cms.rajyasabha.nic.in', 'www.presidentofindia.gov.in'}
 C01_15_ACCESS_DATES = {'2026-09-24'}
 C01_15_SOURCE_COUNT = 56
+# CLAUDE-C01-20 sources: raw Internet Archive captures, the Rajya Sabha debates store and the Indian National Congress's own
+# media store (res.cloudinary.com), all accessed on 2026-09-25; their rows belong to the party role on one recognition
+# observation, which otherwise keeps its identity, lifecycle and empty game mapping.
+C01_20_HOSTS = {'web.archive.org', 'bucketapi.rajyasabha.digital', 'res.cloudinary.com'}
+C01_20_ACCESS_DATES = {'2026-09-25'}
+C01_20_SOURCE_COUNT = 73
+C01_20_ORGANIZATION = 'in_eci_20240323_np_05'
+C01_20_ROLE = 'in_inc_president'
 
 
 class IndiaDiscoveryTests(unittest.TestCase):
@@ -40,8 +49,9 @@ class IndiaDiscoveryTests(unittest.TestCase):
     def test_dated_registers_are_valid_and_partial(self):
         ids = self.validate()
         # 82 organization observations plus the CLAUDE-C01-11 prime-ministership (70 sources, 112 claims, one role) and the
-        # CLAUDE-C01-15 presidency (56 sources, 84 claims, one role).
-        self.assertEqual(tuple(len(ids[k]) for k in ('entries', 'sources', 'claims', 'roles')), (84, 128, 278, 2))
+        # CLAUDE-C01-15 presidency (56 sources, 84 claims, one role); CLAUDE-C01-20 adds no entry, only one party role on
+        # the Indian National Congress recognition observation (73 sources, 113 claims).
+        self.assertEqual(tuple(len(ids[k]) for k in ('entries', 'sources', 'claims', 'roles')), (84, 201, 391, 3))
         self.assertEqual(len(self.packet['organizations']), 82)
         self.assertEqual(sum(len(s['claims']) for s in self.packet['sources'] if s['id'] in ORIGINAL_SOURCES), 82)
         coverage = self.packet['coverage']
@@ -55,6 +65,9 @@ class IndiaDiscoveryTests(unittest.TestCase):
         self.assertEqual([entry['id'] for entry in self.packet['institutions']], ['in_prime_minister', 'in_presidency'])
         self.assertEqual([role['id'] for role in self.packet['institutions'][0]['roles']], ['in_pm'])
         self.assertEqual([role['id'] for role in self.packet['institutions'][1]['roles']], ['in_president'])
+        # Exactly one organization role: the CLAUDE-C01-20 party role on the Indian National Congress observation.
+        self.assertEqual([(entry['id'], role['id'], role['kind']) for entry in self.packet['organizations']
+                          for role in entry['roles']], [(C01_20_ORGANIZATION, C01_20_ROLE, 'party_leader')])
 
     def test_all_source_jurisdiction_rows_are_retained_without_deduplication(self):
         state = self.extracts['in_eci_state_parties_20240323']['rows']
@@ -91,6 +104,8 @@ class IndiaDiscoveryTests(unittest.TestCase):
     def test_access_dates_never_extend_historical_attestations(self):
         c01_15 = set(self.packet['institutions'][1]['sources'])
         self.assertEqual(len(c01_15), C01_15_SOURCE_COUNT)
+        c01_20 = {s for o in self.packet['organizations'] for r in o['roles'] for s in r['sources']}
+        self.assertEqual(len(c01_20), C01_20_SOURCE_COUNT)
         for source in self.packet['sources']:
             if source['id'] in ORIGINAL_SOURCES:
                 self.assertEqual(urlsplit(source['url']).hostname, 'www.ceo.kerala.gov.in')
@@ -98,6 +113,15 @@ class IndiaDiscoveryTests(unittest.TestCase):
                 self.assertEqual(source['accessed_date'], '2026-09-13')
                 self.assertLessEqual(date.fromisoformat(source['published_date']), date.fromisoformat(research.CUTOFF))
                 self.assertEqual({c['attested_on'] for c in source['claims']}, {'2024-03-23'})
+            elif source['id'] in c01_20:
+                self.assertIn(urlsplit(source['url']).hostname, C01_20_HOSTS)
+                self.assertIn(source['accessed_date'], C01_20_ACCESS_DATES)
+                if source['published_date']:
+                    self.assertLessEqual(date.fromisoformat(source['published_date']), date.fromisoformat(research.CUTOFF))
+                # CLAUDE-C01-20's retrospective spans, lists and undated statements carry no structured date at all.
+                for claim in source['claims']:
+                    if claim.get('attested_on'):
+                        self.assertLessEqual(claim['attested_on'], research.CUTOFF)
             elif source['id'] in c01_15:
                 self.assertIn(urlsplit(source['url']).hostname, C01_15_HOSTS)
                 self.assertIn(source['accessed_date'], C01_15_ACCESS_DATES)
@@ -117,8 +141,9 @@ class IndiaDiscoveryTests(unittest.TestCase):
                     if claim.get('attested_on'):
                         self.assertLessEqual(claim['attested_on'], research.CUTOFF)
         self.assertEqual({urlsplit(s['url']).hostname for s in self.packet['sources']},
-                         {'www.ceo.kerala.gov.in'} | C01_11_HOSTS | C01_15_HOSTS)
+                         {'www.ceo.kerala.gov.in'} | C01_11_HOSTS | C01_15_HOSTS | C01_20_HOSTS)
         self.assertEqual({urlsplit(s['url']).hostname for s in self.packet['sources'] if s['id'] in c01_15}, C01_15_HOSTS)
+        self.assertEqual({urlsplit(s['url']).hostname for s in self.packet['sources'] if s['id'] in c01_20}, C01_20_HOSTS)
         p = copy.deepcopy(self.packet)
         p['organizations'][0]['recognition']['attested_on'] = '2026-09-08'
         with self.assertRaisesRegex(ValueError, 'exceeds cutoff'):
@@ -126,7 +151,13 @@ class IndiaDiscoveryTests(unittest.TestCase):
 
     def test_recognition_does_not_grant_roles_lifespans_or_game_identity(self):
         for entry in self.packet['organizations']:
-            self.assertEqual(entry['roles'], [])
+            # Only the CLAUDE-C01-20 party role is added, to one observation; recognition grants no other role.
+            if entry['id'] == C01_20_ORGANIZATION:
+                self.assertEqual([(r['id'], r['kind']) for r in entry['roles']], [(C01_20_ROLE, 'party_leader')])
+                self.assertEqual(entry['name'], 'Indian National Congress')
+                self.assertEqual(entry['lifecycle']['status'], 'unresearched')
+            else:
+                self.assertEqual(entry['roles'], [])
             self.assertEqual(entry['represented_party_ids'], [])
             self.assertEqual(entry['coverage']['status'], 'reporting_identity_only')
             self.assertIsNone(entry['reconciled_organization_id'])
@@ -141,6 +172,7 @@ class IndiaDiscoveryTests(unittest.TestCase):
     def test_factual_extracts_reconcile_every_claim_and_protect_source_bytes(self):
         orgs = {o['id']: o for o in self.packet['organizations']}
         c01_15 = set(self.packet['institutions'][1]['sources'])
+        c01_20 = {s for o in self.packet['organizations'] for r in o['roles'] for s in r['sources']}
         for source in self.packet['sources']:
             data = self.extracts[source['id']]
             self.assertEqual(data['format'], 'spheres-c01-derived-factual-table/v1')
@@ -155,6 +187,16 @@ class IndiaDiscoveryTests(unittest.TestCase):
                     org = orgs[row['observation_id']]
                     self.assertEqual((org['name'], org['jurisdiction']), (row['name'], row['jurisdiction']))
                     self.assertEqual(org['recognition']['source_qualifications'], row['source_qualifications'])
+            elif source['id'] in c01_20:
+                # CLAUDE-C01-20 records every original response identity, pinned in test_india_inc_presidents_c01_20.py;
+                # its rows belong to the party role on the Indian National Congress observation and to no institution.
+                self.assertIsInstance(data['source_response_bytes'], int)
+                self.assertGreater(data['source_response_bytes'], 0)
+                self.assertRegex(data['source_response_sha256'], r'^[0-9a-f]{64}$')
+                self.assertNotEqual(data['source_response_sha256'], source['snapshot']['sha256'])
+                self.assertIs(data['source_response_checked_in'], False)
+                self.assertEqual({(row['observation_id'], row['role_id']) for row in data['rows']},
+                                 {(C01_20_ORGANIZATION, C01_20_ROLE)})
             else:
                 # CLAUDE-C01-11 and CLAUDE-C01-15 record every original response identity; the exact values are pinned in
                 # test_india_prime_ministers_c01_11.py and test_india_presidents_c01_15.py, and the extract's own checksum
@@ -169,10 +211,11 @@ class IndiaDiscoveryTests(unittest.TestCase):
                                  {'in_presidency' if source['id'] in c01_15 else 'in_prime_minister'})
                 self.assertFalse({row['observation_id'] for row in data['rows']} & set(orgs))
         self.assertEqual([s['id'] for s in self.packet['sources']][:2], list(ORIGINAL_SOURCES))
-        self.assertEqual(len(self.packet['sources']), len(ORIGINAL_SOURCES) + C01_11_SOURCE_COUNT + C01_15_SOURCE_COUNT)
+        self.assertEqual(len(self.packet['sources']),
+                         len(ORIGINAL_SOURCES) + C01_11_SOURCE_COUNT + C01_15_SOURCE_COUNT + C01_20_SOURCE_COUNT)
         self.assertEqual([s['id'] for s in self.packet['sources']],
                          list(ORIGINAL_SOURCES) + self.packet['institutions'][0]['sources']
-                         + self.packet['institutions'][1]['sources'])
+                         + self.packet['institutions'][1]['sources'] + orgs[C01_20_ORGANIZATION]['roles'][0]['sources'])
         self.assertEqual((len(self.packet['institutions'][0]['sources']), len(c01_15)),
                          (C01_11_SOURCE_COUNT, C01_15_SOURCE_COUNT))
         p = copy.deepcopy(self.packet)
