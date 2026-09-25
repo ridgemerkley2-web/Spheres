@@ -1,0 +1,55 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_gazette_ext_no1389_so1687e_20120725",
+  "source_url": "https://egazette.gov.in/WriteReadData/2012/E_1389_2012_007.pdf",
+  "accessed_date": "2026-09-24",
+  "published_date": "2012-07-25",
+  "access_method": "downloaded_official_gazette_pdf_and_rendered_page_review",
+  "source_response_bytes": 52566,
+  "source_response_sha256": "b233ae369a5c1bea3d7070e6d4c8f6ec3674cea9eff5e7b55e1ec0a5d2fb10b9",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host. Downloaded 2026-09-24T22:03:58Z; downloaded again at 2026-09-24T22:35:19Z, 2026-09-24T22:35:22Z (more than 30 minutes later), once with a cache-busting query string and once plain: identical byte count and SHA-256 each time. Static file: Last-Modified Thu, 29 Nov 2012 05:33:00 GMT, ETag \"04e8cfef2cdcd1:0\"; byte-identical (MD5) to the Internet Archive Gazette item(s) named in the note. The independent check downloaded it again at 23:17Z and 23:18Z on 24 September 2026, with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official eGazette file (four scanned pages). MD5 9fc397b74aa87379a82ba9ec4a033144 equals the Internet Archive item in.gazette.e.2012.2106.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      3,
+      4
+    ],
+    "method": "Pages 1 (Hindi resolution and proclamation), 3 and 4 (English resolution, proclamation, orders and lists, signed R. K. Singh, Home Secretary) rendered and read; page 2 (continuation of the Hindi distribution list) rendered but not needed for any claim."
+  },
+  "rows": [
+    {
+      "claim_id": "in_pranab_takes_seat_as_president_20120725",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-06",
+      "role_id": "in_president",
+      "holder_name": "Pranab Mukherjee",
+      "role_title": "President of India",
+      "event_kind": "assumption_statement",
+      "attested_on": "2012-07-25",
+      "text": "Resolution S.O. 1687(E), dated New Delhi, 25 July 2012: Shri Pranab Mukherjee, having been elected President of the Republic of India, takes his seat as President of India under a salute of 21 guns.",
+      "locator": {
+        "pdf_page": 3,
+        "item": "MINISTRY OF HOME AFFAIRS RESOLUTION, S.O. 1687(E), first paragraph (Hindi: page 1)"
+      }
+    },
+    {
+      "claim_id": "in_mha_proclaims_pranab_entered_upon_office_20120725",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-06",
+      "role_id": "in_president",
+      "holder_name": "Pranab Mukherjee",
+      "role_title": "President of India",
+      "event_kind": "assumption_proclaimed",
+      "attested_on": "2012-07-25",
+      "text": "The Proclamation ordered by the same resolution notifies that Shri Pranab Mukherjee, having been elected as the President of India, has entered upon the said Office, and orders the information of the assumption of office sent to military stations, missions abroad, 63 ministries and offices and 35 State and Union Territory governments [F. No. 2/3/2012-Public].",
+      "locator": {
+        "pdf_page": 3,
+        "item": "PROCLAMATION and ORDER, lists continuing on page 4 (Hindi: page 1)"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-15 only. The Election Commission's notices, the Returning Officer's declaration of the result and its Gazette publication, the programme for the ceremony of assumption of office, the oath administered by the Chief Justice, the Ministry of Home Affairs resolution and proclamation of the assumption of office, the holder's address on assumption, prospective term-expiry notices, farewells, stylings of a predecessor as former President and retrospective statements stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the Vice-President (including any service as acting President), ministers and party offices are excluded."
+}

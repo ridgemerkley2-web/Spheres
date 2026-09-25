@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rb_pranab_farewell_address_20170724",
+  "source_url": "https://web.archive.org/web/20170724235959id_/http://presidentofindia.nic.in/speeches-detail.htm?639",
+  "original_url": "http://presidentofindia.nic.in/speeches-detail.htm?639",
+  "archive_capture_utc": "2017-07-24T23:59:59Z",
+  "accessed_date": "2026-09-24",
+  "published_date": "2017-07-24",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 94872,
+  "source_response_sha256": "f6cb0331448eb3853382dec8b6f8264222fbc140dac25a1f1e7171b7a0809bfa",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2017-07-24T23:59:59Z; that form replays the archived bytes unchanged and is used in place of the live page or file. Raw Internet Archive capture (id_ form), replayed without Content-Encoding. Downloaded 2026-09-24T21:58:50Z and again at 2026-09-24T23:02:36Z with identical bytes and SHA-256. The independent check downloaded it again at 23:10Z on 24 September 2026, with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The President's website page of the farewell address (speeches-detail.htm?639), recorded as a raw Internet Archive capture made at 23:59:59Z on 24 July 2017.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read (opening paragraphs); the linked PDF not reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_pranab_farewell_address_20170724",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-09",
+      "role_id": "in_president",
+      "holder_name": "Pranab Mukherjee",
+      "role_title": "President of India",
+      "event_kind": "farewell_address",
+      "attested_on": "2017-07-24",
+      "text": "In his farewell address to the nation dated 24.07.2017 President Pranab Mukherjee speaks on the eve of stepping down from office and welcomes Shri Ram Nath Kovind as the President-to-be.",
+      "locator": {
+        "element": "Speeches Detail: heading and paragraphs 1-2"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-15 only. The Election Commission's notices, the Returning Officer's declaration of the result and its Gazette publication, the programme for the ceremony of assumption of office, the oath administered by the Chief Justice, the Ministry of Home Affairs resolution and proclamation of the assumption of office, the holder's address on assumption, prospective term-expiry notices, farewells, stylings of a predecessor as former President and retrospective statements stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the Vice-President (including any service as acting President), ministers and party offices are excluded."
+}

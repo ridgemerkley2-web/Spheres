@@ -385,6 +385,14 @@ ORIGINAL_SOURCES = ('in_eci_national_parties_20240323', 'in_eci_state_parties_20
 PM = 'in_pm'
 T_PM = 'Prime Minister of India'
 OFFICIAL_HOSTS = {'egazette.gov.in', 'bucketapi.rajyasabha.digital', 'cabsec.gov.in'}
+# CLAUDE-C01-15 (stacked on this packet) appends the in_presidency institution after in_prime_minister, with this many
+# sources and claims; its own test pins them. This packet's assertions are unchanged for its own records.
+C01_15_INSTITUTION = 'in_presidency'
+C01_15_COUNTS = (56, 84)
+# The one direct presidentofindia.gov.in identity: CLAUDE-C01-15's static PDF attachment (fixed Last-Modified and ETag),
+# not a per-request Drupal page.
+C01_15_STATIC_PDF = ('in_rb_murmu_independence_day_address_20260814',
+                     r'^https://www\.presidentofindia\.gov\.in/files/\d{4}-\d{2}/[A-Za-z0-9_-]+\.pdf$')
 
 # Exact holder observations of in_pm: (name, attested_on, from, until), in chronological order.
 HOLDERS = [
@@ -529,7 +537,8 @@ def load_rows():
 def pm_rules(packet, rows):
     """Rule-based checks that hold without the pinned holder list; raise AssertionError, KeyError or IndexError."""
     claims = {c['id']: c for s in packet['sources'] for c in s['claims']}
-    assert [i['id'] for i in packet['institutions']] == ['in_prime_minister'], 'exactly one prime-ministership institution'
+    assert [i['id'] for i in packet['institutions']] == ['in_prime_minister', C01_15_INSTITUTION], \
+        'exactly one prime-ministership institution, followed only by the CLAUDE-C01-15 presidency'
     office = packet['institutions'][0]
     assert office['kind'] == 'executive_institution' and office['lifecycle']['status'] == 'unknown'
     assert [r['id'] for r in office['roles']] == [PM], 'exactly one role'
@@ -619,8 +628,11 @@ class IndiaPrimeMinistersTests(unittest.TestCase):
     def test_new_records_are_bounded_and_every_claim_is_classified(self):
         ids = self.validate()
         self.assertEqual((len(NEW_SOURCES), len(self.new_claims)), (70, 112))
-        self.assertEqual([s['id'] for s in self.packet['sources']], list(ORIGINAL_SOURCES) + NEW_SOURCES)
-        self.assertEqual((len(ids['entries']), len(ids['roles'])), (83, 1))
+        later = self.packet['institutions'][1]
+        self.assertEqual((later['id'], len(later['sources']), len(later['claim_ids'])),
+                         (C01_15_INSTITUTION,) + C01_15_COUNTS)
+        self.assertEqual([s['id'] for s in self.packet['sources']], list(ORIGINAL_SOURCES) + NEW_SOURCES + later['sources'])
+        self.assertEqual((len(ids['entries']), len(ids['roles'])), (84, 2))
         self.assertEqual(len(self.packet['organizations']), 82)
         # Every new claim is either a holder claim or a claim that never feeds a holder, never both.
         holder_claims = {cid for ids_ in HOLDER_CLAIMS for cid in ids_}
@@ -640,8 +652,11 @@ class IndiaPrimeMinistersTests(unittest.TestCase):
         # At most ten observations, each reported and each carrying rows.
         observations = re.findall(r'^### (IN-PM-\d\d)\b', self.report, re.M)
         self.assertEqual(observations, [f'IN-PM-{n:02d}' for n in range(1, 11)])
-        self.assertEqual({row['review_observation'] for row in self.rows.values()},
+        self.assertEqual({self.rows[cid]['review_observation'] for cid in self.new_claims},
                          {f'IN-PM-{n:02d}' for n in range(1, 11)})
+        # Every other row belongs to the CLAUDE-C01-15 presidency and to its observations only.
+        self.assertEqual(set(self.rows) - set(self.new_claims), set(later['claim_ids']))
+        self.assertEqual({self.rows[cid]['review_observation'][:8] for cid in later['claim_ids']}, {'IN-PRES-'})
         for stale in STALE_IDS:
             self.assertNotIn(stale, self.raw, stale)
             for extract in self.extracts.values():
@@ -739,8 +754,9 @@ class IndiaPrimeMinistersTests(unittest.TestCase):
         self.assertTrue(unresolved[-1].startswith('Keep executive office distinct from party leadership'))
         coverage = self.packet['coverage']
         self.assertEqual(sum('CLAUDE-C01-11' in u for u in coverage['unresolved']), 1)
-        self.assertTrue(coverage['unresolved'][-1].startswith('Prime ministers 1990-2026 (CLAUDE-C01-11)'))
-        self.assertEqual(len(coverage['unresolved']), 8)
+        self.assertTrue(coverage['unresolved'][7].startswith('Prime ministers 1990-2026 (CLAUDE-C01-11)'))
+        self.assertTrue(coverage['unresolved'][-1].startswith('Presidents 1990-2026 (CLAUDE-C01-15)'))
+        self.assertEqual(len(coverage['unresolved']), 9)
         self.assertEqual([r['records'] for r in coverage['bounded_registers']], [6, 76])
 
     def test_extracts_match_packet_claims_and_record_original_responses(self):
@@ -779,7 +795,7 @@ class IndiaPrimeMinistersTests(unittest.TestCase):
                                              'role_title', 'event_kind', 'attested_on', 'text', 'locator'])
         self.assertEqual(len({self.sources[s]['snapshot']['path'] for s in NEW_SOURCES}), len(NEW_SOURCES))
         self.assertEqual({cid: (row['attested_on'], row['event_kind'], row['review_observation'])
-                          for cid, row in self.rows.items()}, EVENTS)
+                          for cid, row in self.rows.items() if cid in self.new_claims}, EVENTS)
         for sid, stamp in ARCHIVED.items():
             source, extract = self.sources[sid], self.extracts[sid]
             url = urlsplit(source['url'])
@@ -837,8 +853,12 @@ class IndiaPrimeMinistersTests(unittest.TestCase):
             if parts.hostname == 'bucketapi.rajyasabha.digital':
                 self.assertEqual(sorted(k.split('=')[0] for k in parts.query.split('&')),
                                  ['response-content-disposition', 'response-content-type'])
-        # The live, per-request Drupal and ASP.NET pages the research rejected are never recorded identities.
+        # The live, per-request Drupal and ASP.NET pages the research rejected are never recorded identities; the only
+        # exception is one pinned CLAUDE-C01-15 static PDF attachment.
         for source in self.packet['sources']:
+            if re.match(C01_15_STATIC_PDF[1], source['url']):
+                self.assertEqual(source['id'], C01_15_STATIC_PDF[0])
+                continue
             self.assertNotRegex(source['url'], r'^https://(www\.)?(presidentofindia|pmindia|pib|archive\.pib)\.', source['id'])
 
     def test_secondary_and_unimported_leads_stay_out_of_the_packet(self):
@@ -1027,7 +1047,7 @@ class IndiaPrimeMinistersTests(unittest.TestCase):
         country = next(p for p in index['countries'] if p['nation'] == 'India')
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
-        self.assertEqual((country['institution_observations'], country['role_observations']), (1, 1))
+        self.assertEqual((country['institution_observations'], country['role_observations']), (2, 2))
         self.assertEqual({w['status'] for w in index['work_orders'] if w['nation'] == 'India'}, {'open'})
         self.assertFalse(index['c01_complete'])
 

@@ -1,0 +1,65 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_pib_photo_20170725_oath",
+  "source_url": "https://web.archive.org/web/20170726040224id_/http://www.pib.nic.in:80/newsite/photo.aspx",
+  "original_url": "http://www.pib.nic.in/newsite/photo.aspx",
+  "archive_capture_utc": "2017-07-26T04:02:24Z",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 56334,
+  "source_response_sha256": "710516928416ec4934a592e268e65e80b0a8bab2c90e1dd03cc770b7da0eff8f",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2017-07-26T04:02:24Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The Part C check downloaded it at about 23:46Z and at 23:49:02Z on 24 September 2026, and this packet again at 2026-09-25T00:19:32Z, 00:21:47Z and 00:27:05Z (38 minutes after the check's last download), each with the same byte count and SHA-256; served with no Content-Encoding (x-archive-orig-content-length 56334). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "PIB's photo-gallery listing (captions only; no photograph was retrieved or republished), recorded as a raw Internet Archive capture made at 04:02:24Z on 26 July 2017, whose captions are dated July 25, 2017. The per-photo page photo.aspx?photoid=111499 was captured only on 28 July 2017 with later photos and is not used. Located by the Part C check.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML captions read in full; no photograph retrieved or reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_kovind_oath_administered_by_cji_khehar_20170725",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-07",
+      "role_id": "in_president",
+      "holder_name": "Ram Nath Kovind",
+      "role_title": "President of India",
+      "event_kind": "oath_of_office",
+      "attested_on": "2017-07-25",
+      "text": "PIB's photo caption records the Chief Justice of India, Shri Justice J.S. Khehar, administering the oath of the office of the President of India to Shri Ram Nath Kovind at a swearing-in ceremony in the central hall of Parliament, New Delhi, on July 25, 2017.",
+      "locator": {
+        "element": "caption beginning 'The Chief Justice of India, Shri Justice J.S. Khehar administering the oath'"
+      }
+    },
+    {
+      "claim_id": "in_kovind_signs_register_after_swearing_in_20170725",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-07",
+      "role_id": "in_president",
+      "holder_name": "Ram Nath Kovind",
+      "role_title": "President of India",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2017-07-25",
+      "text": "Another caption shows the President, Shri Ram Nath Kovind, signing the register at the President's office at Rashtrapati Bhavan on his arrival from Parliament House after the swearing-in ceremony on July 25, 2017.",
+      "locator": {
+        "element": "caption beginning 'The President, Shri Ram Nath Kovind signing the register'"
+      }
+    },
+    {
+      "claim_id": "in_pranab_styled_former_president_20170725",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-09",
+      "role_id": "in_president",
+      "holder_name": "Pranab Mukherjee",
+      "role_title": "President of India",
+      "event_kind": "styled_former_president",
+      "attested_on": "2017-07-25",
+      "text": "A caption on the same page shows Shri Pranab Mukherjee, 'former President of India', being received at his new residence, 10, Rajaji Marg, New Delhi, on July 25, 2017.",
+      "locator": {
+        "element": "caption beginning 'Shri Pranab Mukherjee, former President of India'"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-15 only. The Election Commission's notices, the Returning Officer's declaration of the result and its Gazette publication, the programme for the ceremony of assumption of office, the oath administered by the Chief Justice, the Ministry of Home Affairs resolution and proclamation of the assumption of office, the holder's address on assumption, prospective term-expiry notices, farewells, stylings of a predecessor as former President and retrospective statements stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the Vice-President (including any service as acting President), ministers and party offices are excluded."
+}

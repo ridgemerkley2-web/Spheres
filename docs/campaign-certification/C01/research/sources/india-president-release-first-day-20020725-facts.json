@@ -1,0 +1,65 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_poi_kalam_first_day_release_20020725",
+  "source_url": "https://web.archive.org/web/20020823091738id_/http://presidentofindia.nic.in:80/S/html/press_release/press-new/pr411.htm",
+  "original_url": "http://presidentofindia.nic.in/S/html/press_release/press-new/pr411.htm",
+  "archive_capture_utc": "2002-08-23T09:17:38Z",
+  "accessed_date": "2026-09-24",
+  "published_date": "2002-07-25",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 7353,
+  "source_response_sha256": "0cb19059457be5f6166b6f3405fc10c5063ccd1fb59857c367f3fb0ed7513a73",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2002-08-23T09:17:38Z; that form replays the archived bytes unchanged and is used in place of the live page or file. Raw id_ capture downloaded 2026-09-24T21:51:15Z via http://web.archive.org (https was refusing connections), and again at 2026-09-24T22:30:35Z via the recorded https URL: identical byte count and SHA-256. The id_ form replays the archived bytes unchanged; no Content-Encoding was applied (Accept-Encoding: identity). The independent check downloaded it again at 23:19Z on 24 September 2026, with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The President's Secretariat's press release of 25 July 2002, titled in its July 2002 index 'First Day's Engagements of the President of India, Dr. A.P.J. Abdul Kalam', recorded as a raw Internet Archive capture; five captures from 23 August 2002 to 22 June 2003 share one Wayback digest.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images reviewed. Original Last-Modified 29 Jul 2002."
+  },
+  "rows": [
+    {
+      "claim_id": "in_kalam_oath_taken_reported_20020725",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-04",
+      "role_id": "in_president",
+      "holder_name": "A. P. J. Abdul Kalam",
+      "role_title": "President of India",
+      "event_kind": "oath_of_office",
+      "attested_on": "2002-07-25",
+      "text": "The press release dated Rashtrapati Bhavan, 25 July 2002 states that after taking oath as the President of India and seeing off the ex-President, K. R. Narayanan, at his Prithviraj Road residence, Dr. A. P. J. Abdul Kalam returned to Rashtrapati Bhavan.",
+      "locator": {
+        "element": "Date line and first sentence"
+      }
+    },
+    {
+      "claim_id": "in_kalam_president_first_day_engagements_20020725",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-04",
+      "role_id": "in_president",
+      "holder_name": "A. P. J. Abdul Kalam",
+      "role_title": "President of India",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2002-07-25",
+      "text": "The same release describes President Kalam's engagements that day, ending with calls on him by the Vice-President, Krishan Kant, and the Prime Minister, A. B. Vajpayee.",
+      "locator": {
+        "element": "Remaining paragraphs"
+      }
+    },
+    {
+      "claim_id": "in_narayanan_styled_ex_president_20020725",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-09",
+      "role_id": "in_president",
+      "holder_name": "K. R. Narayanan",
+      "role_title": "President of India",
+      "event_kind": "styled_former_president",
+      "attested_on": "2002-07-25",
+      "text": "The same release calls K. R. Narayanan the 'ex-President' on 25 July 2002, when the new President saw him off at his Prithviraj Road residence.",
+      "locator": {
+        "element": "Date line and first sentence"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-15 only. The Election Commission's notices, the Returning Officer's declaration of the result and its Gazette publication, the programme for the ceremony of assumption of office, the oath administered by the Chief Justice, the Ministry of Home Affairs resolution and proclamation of the assumption of office, the holder's address on assumption, prospective term-expiry notices, farewells, stylings of a predecessor as former President and retrospective statements stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the Vice-President (including any service as acting President), ministers and party offices are excluded."
+}

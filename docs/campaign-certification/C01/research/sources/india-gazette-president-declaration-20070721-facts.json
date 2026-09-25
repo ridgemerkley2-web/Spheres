@@ -1,0 +1,53 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_gazette_ext_no891_so1193e_20070721",
+  "source_url": "https://egazette.gov.in/WriteReadData/2007/E_891_2011_003.pdf",
+  "accessed_date": "2026-09-24",
+  "published_date": "2007-07-21",
+  "access_method": "downloaded_official_gazette_pdf_and_rendered_page_review",
+  "source_response_bytes": 41704,
+  "source_response_sha256": "e4c73073c7123d4c9d54c1376a7ead7fd3fd72825f613605daf6d053312f8f08",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host. Downloaded 2026-09-24T21:46:51Z; downloaded again at 2026-09-24T22:18:10Z, 2026-09-24T22:18:13Z (more than 30 minutes later), once with a cache-busting query string and once plain: identical byte count and SHA-256 each time. Static file: Last-Modified Wed, 23 Feb 2011 10:24:20 GMT, ETag \"0e2ffd443d3cb1:0\"; byte-identical (MD5) to the Internet Archive Gazette item(s) named in the note. The independent check downloaded it again at 23:17Z and 23:18Z on 24 September 2026, with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official eGazette file (a single scanned page with no text layer). MD5 b6a6b506dd4653c1e7bb9fb004e94e00 equals the Internet Archive items in.gazette.central.e.2007-07-21.11575 and in.gazette.e.2007.2027.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "The single scanned page (no text layer) rendered and read: Hindi and English columns of S.O. 1193(E)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_ro_achary_declares_patil_elected_20070721",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-05",
+      "role_id": "in_president",
+      "holder_name": "Pratibha Devisingh Patil",
+      "role_title": "President of India",
+      "event_kind": "result_declaration",
+      "attested_on": "2007-07-21",
+      "text": "P. D. T. Achary, Returning Officer for the Presidential Election, 2007 and Secretary-General, Lok Sabha, declares under section 11 of the 1952 Act read with rule 35 of the 1974 Rules that Smt. Pratibha Devisingh Patil (57, Congress Nagar, Amaravati) has been duly elected to the Office of President of India; the declaration is dated New Delhi, 21 July 2007.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "DECLARATION (quoted inside S.O. 1193(E)), English and Hindi columns"
+      }
+    },
+    {
+      "claim_id": "in_law_ministry_publishes_patil_declaration_20070721",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-05",
+      "role_id": "in_president",
+      "holder_name": "Pratibha Devisingh Patil",
+      "role_title": "President of India",
+      "event_kind": "result_publication",
+      "attested_on": "2007-07-21",
+      "text": "The Ministry of Law and Justice publishes that declaration under section 12 of the 1952 Act by S.O. 1193(E) of 21 July 2007 [F. No. H-11024(2)/2007-Leg.II], signed by Dr. K. N. Chaturvedi, Secretary.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "Notification S.O. 1193(E), opening paragraph and file number"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-15 only. The Election Commission's notices, the Returning Officer's declaration of the result and its Gazette publication, the programme for the ceremony of assumption of office, the oath administered by the Chief Justice, the Ministry of Home Affairs resolution and proclamation of the assumption of office, the holder's address on assumption, prospective term-expiry notices, farewells, stylings of a predecessor as former President and retrospective statements stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the Vice-President (including any service as acting President), ministers and party offices are excluded."
+}

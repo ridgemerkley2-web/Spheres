@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_poi_kalam_assumption_speech_20020725",
+  "source_url": "https://web.archive.org/web/20020816131338id_/http://presidentofindia.nic.in:80/S/html/speeches/parliament/july25_2002.htm",
+  "original_url": "http://presidentofindia.nic.in/S/html/speeches/parliament/july25_2002.htm",
+  "archive_capture_utc": "2002-08-16T13:13:38Z",
+  "accessed_date": "2026-09-24",
+  "published_date": "2002-07-25",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 13348,
+  "source_response_sha256": "0f7bed08a917f2f338ccbc55d066c6c77a6638f7d6387f999985cbac08492e5b",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2002-08-16T13:13:38Z; that form replays the archived bytes unchanged and is used in place of the live page or file. Raw id_ capture downloaded 2026-09-24T21:49:59Z via http://web.archive.org (https was refusing connections), and again at 2026-09-24T22:27:05Z via the recorded https URL: identical byte count and SHA-256. The id_ form replays the archived bytes unchanged; no Content-Encoding was applied (Accept-Encoding: identity). The independent check downloaded it again at 23:19Z on 24 September 2026, with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The President's Secretariat's page of the speech, recorded as a raw Internet Archive capture; ten captures from 16 August 2002 to 6 December 2003 share the same Wayback digest, and the page returns 404 from February 2004. Found through the Secretariat's July 2002 press-release list.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images reviewed. Original Last-Modified 1 Aug 2002."
+  },
+  "rows": [
+    {
+      "claim_id": "in_kalam_assumption_speech_20020725",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-04",
+      "role_id": "in_president",
+      "holder_name": "A. P. J. Abdul Kalam",
+      "role_title": "President of India",
+      "event_kind": "assumption_statement",
+      "attested_on": "2002-07-25",
+      "text": "The President's Secretariat publishes Dr. A. P. J. Abdul Kalam's speech 'on his assumption of office as President of India', dated New Delhi, 25 July 2002 (3 Sravana 1924); in it he thanks the members of Parliament and State Legislatures for electing him and says 'While I assume the office of the President'.",
+      "locator": {
+        "element": "Page heading, date line, salutation and the second paragraph of the speech body (fourth <p> element)"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-15 only. The Election Commission's notices, the Returning Officer's declaration of the result and its Gazette publication, the programme for the ceremony of assumption of office, the oath administered by the Chief Justice, the Ministry of Home Affairs resolution and proclamation of the assumption of office, the holder's address on assumption, prospective term-expiry notices, farewells, stylings of a predecessor as former President and retrospective statements stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the Vice-President (including any service as acting President), ministers and party offices are excluded."
+}

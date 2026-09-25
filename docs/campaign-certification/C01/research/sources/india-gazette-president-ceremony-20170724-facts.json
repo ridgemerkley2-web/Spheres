@@ -1,0 +1,38 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_gazette_ext_so2309_ceremony_20170724",
+  "source_url": "https://egazette.gov.in/writereaddata/2017/177588.pdf",
+  "accessed_date": "2026-09-24",
+  "published_date": "2017-07-24",
+  "access_method": "official_egazette_pdf_download_text_layer_read_and_page_rendered",
+  "source_response_bytes": 1265680,
+  "source_response_sha256": "27e1ef83a9e7b118aec453620477c0ddeb9608a8dd2b327b874cddcd528ccb64",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host. Official eGazette stored file (Last-Modified Mon, 24 Jul 2017 10:44:26 GMT; fixed ETag; PDF creation date of the publication day, no per-request ID). Downloaded 2026-09-24T21:49:09Z and again with a cache-busting query at 2026-09-24T22:28:55Z with identical bytes and SHA-256. Its MD5 also equals the Internet Archive copy in item in.gazette.central.e.2017-07-24.177588. The independent check downloaded it again at 23:08Z on 24 September 2026 with a cache-busting query, with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official eGazette stored file (Gazette ID 177588); its MD5 equals the Internet Archive copy in item in.gazette.central.e.2017-07-24.177588.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "The single page rendered and read (Hindi and English notification)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_kovind_assumption_ceremony_scheduled_20170724",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-07",
+      "role_id": "in_president",
+      "holder_name": "Ram Nath Kovind",
+      "role_title": "President of India",
+      "event_kind": "assumption_ceremony_scheduled",
+      "attested_on": "2017-07-24",
+      "text": "The Ministry of Home Affairs notifies on 24 July 2017 that the ceremony of assumption of Office of the President by Shri Ramnath Kovind, the President-elect, will take place at 12.15 PM on Tuesday 25 July 2017 in the Central Hall of Parliament House; the oath of office will be taken in the presence of the Chief Justice of India as prescribed under Article 60, a salute of 21 guns fired and an address delivered.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "S.O. 2309(E), paras 1-3"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-15 only. The Election Commission's notices, the Returning Officer's declaration of the result and its Gazette publication, the programme for the ceremony of assumption of office, the oath administered by the Chief Justice, the Ministry of Home Affairs resolution and proclamation of the assumption of office, the holder's address on assumption, prospective term-expiry notices, farewells, stylings of a predecessor as former President and retrospective statements stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the Vice-President (including any service as acting President), ministers and party offices are excluded."
+}

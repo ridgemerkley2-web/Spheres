@@ -1,0 +1,54 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_gazette_ext_eci_on49_19920610",
+  "source_url": "https://egazette.gov.in/WriteReadData/1992/E-0504-1992-0031-20942.pdf",
+  "accessed_date": "2026-09-24",
+  "published_date": "1992-06-10",
+  "access_method": "official_egazette_pdf_download_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 477596,
+  "source_response_sha256": "39d6f0914fa658d0b85a2f13d77980f20dcf9d5b1a96e4e325eafe7108b55f1b",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host. First download 2026-09-24 21:58 UTC. Official eGazette file (Directorate of Printing). Response headers: Content-Type application/pdf, Last-Modified Tue, 12 Mar 2013 06:21:56 GMT, fixed ETag \"09a16e5e91ece1:0\"; no per-request tokens. MD5 66a585c3a5c7320d6583f1d0e09e8ea4 equals the stored original in Internet Archive item in.gazette.central.e.1992-06-10.20942 (uploaded 28 July 2018). Re-downloaded at 2026-09-24 22:44 UTC (with the cache-busting query ?cb=1790289864): identical byte count (477,596) and SHA-256. The independent check downloaded it again between 23:01Z and 23:03Z on 24 September 2026, 54-76 minutes after the researcher's first downloads, with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official eGazette file. MD5 66a585c3a5c7320d6583f1d0e09e8ea4 equals the stored original in the Internet Archive item in.gazette.central.e.1992-06-10.20942 (uploaded 28 July 2018), which the Part C check also downloaded with the same bytes. Pages 3-10 (places of polling, O.N. 50(E)) are outside the claims.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "Pages 1-2 rendered and viewed (page 2 carries the English O.N. 49(E) and the start of O.N. 50(E)); pages 3-10 (places of polling, O.N. 50(E)) read from the text layer only."
+  },
+  "rows": [
+    {
+      "claim_id": "in_eci_venkataraman_term_due_to_expire_19920610",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-01",
+      "role_id": "in_president",
+      "holder_name": "R. Venkataraman",
+      "role_title": "President of India",
+      "event_kind": "term_expiry_scheduled",
+      "attested_on": "1992-06-10",
+      "text": "The Election Commission's notification of 10 June 1992 recites that the term of office of Shri R. Venkataraman, President of India, is due to expire on 24 July 1992, and that the election must be completed in time for the President elected to enter upon his office on 25 July 1992.",
+      "locator": {
+        "pdf_page": 2,
+        "item": "Election Commission of India, Notification, New Delhi, the 10th June, 1992, O.N. 49(E), first and second recitals"
+      }
+    },
+    {
+      "claim_id": "in_eci_appoints_presidential_election_dates_19920610",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-02",
+      "role_id": "in_president",
+      "holder_name": null,
+      "role_title": "President of India",
+      "event_kind": "election_called",
+      "attested_on": "1992-06-10",
+      "text": "By the same notification (No. 479/92) the Election Commission appoints 24 June 1992 as the last date for nominations, 25 June for scrutiny, 27 June for withdrawals and Monday 13 July 1992 as the poll date, if a poll is necessary.",
+      "locator": {
+        "pdf_page": 2,
+        "item": "O.N. 49(E), operative paragraph (a)-(d), signed K.P.G. Kutty, Secretary"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-15 only. The Election Commission's notices, the Returning Officer's declaration of the result and its Gazette publication, the programme for the ceremony of assumption of office, the oath administered by the Chief Justice, the Ministry of Home Affairs resolution and proclamation of the assumption of office, the holder's address on assumption, prospective term-expiry notices, farewells, stylings of a predecessor as former President and retrospective statements stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the Vice-President (including any service as acting President), ministers and party offices are excluded."
+}

@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_gazette_ext_eci_on60_20020611",
+  "source_url": "https://archive.org/download/in.gazette.central.e.2002-06-11.115495/115495.pdf",
+  "mirror_of": "egazette.nic.in (Gazette of India, Extraordinary, 11 June 2002, CSL file 115495)",
+  "accessed_date": "2026-09-24",
+  "published_date": "2002-06-11",
+  "access_method": "internet_archive_stored_gazette_pdf_download_and_pages_rendered",
+  "source_response_bytes": 488037,
+  "source_response_sha256": "8ae25a5c05fffd715ff6666843ce2cda8096ee524c5318c7ccb609d0388df87c",
+  "source_response_checked_in": false,
+  "provenance_note": "Stored file in an Internet Archive item that mirrors the official document; archive.org redirects the download URL to a storage node and the final response body is the recorded identity. Internet Archive stored item file (item public since 2018-08-07, uploaded by Public.Resource.Org; MD5 c3ac25f2cf8b80a14aaeb8c970498640 equals the item's file listing). Downloaded 2026-09-24T22:31:17Z and again at 2026-09-24T23:02:19Z with identical bytes and SHA-256. A byte-identical copy was also downloaded at 22:22Z from a duplicate item added in August-September 2026; that newer item is not recorded. The independent check downloaded it again at 23:10Z on 24 September 2026, with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The stored original in the Internet Archive's Gazette of India collection (item in.gazette.central.e.2002-06-11.115495, a Public.Resource.Org copy public since 7 August 2018; MD5 c3ac25f2cf8b80a14aaeb8c970498640 equals the item's file listing). eGazette IDs 115495 and 153251 have no reachable eGazette file. A byte-identical duplicate item added in August-September 2026 is not recorded.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "PDF page 1 rendered and read; page 2 read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "in_eci_narayanan_term_due_to_expire_20020611",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-09",
+      "role_id": "in_president",
+      "holder_name": "K. R. Narayanan",
+      "role_title": "President of India",
+      "event_kind": "term_expiry_scheduled",
+      "attested_on": "2002-06-11",
+      "text": "The Election Commission states on 11 June 2002 that the term of office of Shri K. R. Narayanan, President of India, is due to expire under Article 56(1) on the 24th day of July, 2002, and fixes the election so that the President elected can enter upon office on 25 July 2002.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "O.N. 60(E), first recital (continued on p. 2)"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-15 only. The Election Commission's notices, the Returning Officer's declaration of the result and its Gazette publication, the programme for the ceremony of assumption of office, the oath administered by the Chief Justice, the Ministry of Home Affairs resolution and proclamation of the assumption of office, the holder's address on assumption, prospective term-expiry notices, farewells, stylings of a predecessor as former President and retrospective statements stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the Vice-President (including any service as acting President), ministers and party offices are excluded."
+}

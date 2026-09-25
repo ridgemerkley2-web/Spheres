@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rb_murmu_assumption_address_20220725",
+  "source_url": "https://web.archive.org/web/20220725075941id_/https://presidentofindia.nic.in/speeches-detail.htm?945",
+  "original_url": "https://presidentofindia.nic.in/speeches-detail.htm?945",
+  "archive_capture_utc": "2022-07-25T07:59:41Z",
+  "accessed_date": "2026-09-24",
+  "published_date": "2022-07-25",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 67544,
+  "source_response_sha256": "deaf87826586768663ec8956efcceab3781492768ccefe4b1c7af26f742ec22f",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2022-07-25T07:59:41Z; that form replays the archived bytes unchanged and is used in place of the live page or file. Raw Internet Archive capture (id_ form), replayed without Content-Encoding. Downloaded 2026-09-24T22:05:03Z and again at 2026-09-24T23:02:50Z with identical bytes and SHA-256. Captured about three hours after the scheduled ceremony (07:59:41Z, 25 July 2022). A PIB copy (PRID 1844557, 12:48 PM) is a lead. The independent check downloaded it again at 23:10Z on 24 September 2026, with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The President's website page of the address (speeches-detail.htm?945), recorded as a raw Internet Archive capture made at 07:59:41Z on 25 July 2022. A PIB copy (PRID 1844557) is a lead.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images or PDF reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_murmu_assumption_address_20220725",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-08",
+      "role_id": "in_president",
+      "holder_name": "Droupadi Murmu",
+      "role_title": "President of India",
+      "event_kind": "assumption_statement",
+      "attested_on": "2022-07-25",
+      "text": "The President's website publishes the address by Smt. Droupadi Murmu on her assumption of office as President of India (New Delhi, 25.07.2022), in which she thanks the members of Parliament and the Legislative Assemblies for electing her.",
+      "locator": {
+        "element": "Speeches Detail: heading, date line, opening paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-15 only. The Election Commission's notices, the Returning Officer's declaration of the result and its Gazette publication, the programme for the ceremony of assumption of office, the oath administered by the Chief Justice, the Ministry of Home Affairs resolution and proclamation of the assumption of office, the holder's address on assumption, prospective term-expiry notices, farewells, stylings of a predecessor as former President and retrospective statements stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the Vice-President (including any service as acting President), ministers and party offices are excluded."
+}

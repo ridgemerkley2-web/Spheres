@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_gazette_ext_p2s3ii_no475_19920724",
+  "source_url": "https://egazette.gov.in/WriteReadData/1992/E-0502-1992-0475-20580.pdf",
+  "accessed_date": "2026-09-24",
+  "published_date": "1992-07-24",
+  "access_method": "official_egazette_pdf_download_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 63461,
+  "source_response_sha256": "9ccccde383954b6e4333ee638d6f95cac5d25c4ebccc9cd67e7d9a22da0e3939",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host. First download 2026-09-24 22:01 UTC. Official eGazette file (Directorate of Printing). Response headers: Content-Type application/pdf, Last-Modified Tue, 12 Mar 2013 06:21:14 GMT, fixed ETag \"0e9dcce91ece1:0\"; no per-request tokens. MD5 2b5827b8193fcdace4fcc1e97744bbc6 equals the stored original in Internet Archive item in.gazette.central.e.1992-07-24.20580 (uploaded 28 July 2018). Re-downloaded at 2026-09-24 22:44 UTC (with the cache-busting query ?cb=1790289873): identical byte count (63,461) and SHA-256. The independent check downloaded it again between 23:01Z and 23:03Z on 24 September 2026, 54-76 minutes after the researcher's first downloads, with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official eGazette file. MD5 2b5827b8193fcdace4fcc1e97744bbc6 equals the stored original in the Internet Archive item in.gazette.central.e.1992-07-24.20580 (uploaded 28 July 2018).",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "Page 2 (English notification) rendered and viewed; page 1 (masthead) read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "in_sharma_assumption_ceremony_notified_19920724",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-02",
+      "role_id": "in_president",
+      "holder_name": "Shankar Dayal Sharma",
+      "role_title": "President of India",
+      "event_kind": "assumption_ceremony_scheduled",
+      "attested_on": "1992-07-24",
+      "text": "The Ministry of Home Affairs notifies on 24 July 1992 that the ceremony of assumption of office of the President by Dr. Shanker Dayal Sharma, the President-elect, will take place at 11.15 A.M. on Saturday 25 July 1992 in the Central Hall of Parliament House; the President-elect will take the oath of office in the presence of the Chief Justice of India, a 21-gun salute will be fired and the President will deliver an address.",
+      "locator": {
+        "pdf_page": 2,
+        "item": "Ministry of Home Affairs Notification S.O. 543(E), New Delhi, the 24th July, 1992 (F. No. 2/3/92-Public, Madhav Godbole, Secretary)"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-15 only. The Election Commission's notices, the Returning Officer's declaration of the result and its Gazette publication, the programme for the ceremony of assumption of office, the oath administered by the Chief Justice, the Ministry of Home Affairs resolution and proclamation of the assumption of office, the holder's address on assumption, prospective term-expiry notices, farewells, stylings of a predecessor as former President and retrospective statements stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the Vice-President (including any service as acting President), ministers and party offices are excluded."
+}

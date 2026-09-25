@@ -1,0 +1,129 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_ls_jpi_199209",
+  "source_url": "https://archive.org/download/eparlib.nic.in.764749/jpi_september_1992.pdf",
+  "mirror_of": "https://eparlib.sansad.in/bitstream/123456789/764749/1/jpi_september_1992.pdf",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "downloaded_internet_archive_item_copy_pdf_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 19494832,
+  "source_response_sha256": "db63276d42ae2cf1b9670c317ec7fbd90fb4142fa9bb9bf7ef79c54d51e919f9",
+  "source_response_checked_in": false,
+  "provenance_note": "Stored file in an Internet Archive item that mirrors the official document; archive.org redirects the download URL to a storage node and the final response body is the recorded identity. First download 2026-09-24 22:04 UTC through the archive.org download redirect to a storage node (Last-Modified Tue, 18 Nov 2025 07:55:57 GMT, ETag \"691c268d-12977b0\"). The Internet Archive item file list gives the same MD5 80b22a17357915b2ea669d5e76370404 and SHA-1 eee3b6f1e1e788ea96fc0bab2ca9cfe98a48e790 for this stored original. Mirror-only provenance: item eparlib.nic.in.764749 is a private upload of 18 November 2025 whose metadata names the eparlib handle page and document URL as its source; eparlib hosts could not be reached and the Internet Archive holds no capture of the eparlib URL, so nothing ties these bytes to the official server. Re-downloaded at 2026-09-24 22:44 UTC (with the cache-busting query ?cb=1790289885): identical byte count (19,494,832) and SHA-256. The independent check downloaded it again between 23:01Z and 23:03Z on 24 September 2026, 54-76 minutes after the researcher's first downloads, with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Mirror-only provenance: the hashed response is a third-party copy of the Lok Sabha Secretariat's Journal of Parliamentary Information (Vol. XXXVIII, No. 3, September 1992) in the Internet Archive item eparlib.nic.in.764749, a private upload of 18 November 2025 whose metadata names the Parliament Digital Library record 123456789/764749 as its source. The eparlib hosts could not be reached and no capture of the eparlib URL exists, so nothing ties these bytes to the official host beyond the item's own MD5 (80b22a17357915b2ea669d5e76370404) and SHA-1 (eee3b6f1e1e788ea96fc0bab2ca9cfe98a48e790). The issue has no single publication day, so none is stored.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2,
+      3,
+      6,
+      9,
+      19,
+      22,
+      23,
+      45,
+      46,
+      50,
+      51,
+      76
+    ],
+    "method": "PDF pages 9, 22, 23 (photo caption only; the photograph is not republished), 46 and 50 rendered and viewed; pages 1-3 (cover and contents), 6 (editorial), 19, 45 (article byline C.K. Jain) and 76 read from the text layer. PDF page numbers are the file's page order (149 pages). PDF page 51 (Table II of results) read by the Part A check."
+  },
+  "rows": [
+    {
+      "claim_id": "in_mps_farewell_to_president_venkataraman_19920721",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-01",
+      "role_id": "in_president",
+      "holder_name": "R. Venkataraman",
+      "role_title": "President of India",
+      "event_kind": "farewell_address",
+      "attested_on": "1992-07-21",
+      "text": "The Lok Sabha Secretariat's journal reports that on 21 July 1992 members of Parliament held a function in the Central Hall to bid farewell to the outgoing President, Shri R. Venkataraman; the Speaker presented a Farewell Address, which speaks of the eve of his laying down the office he had held for five years.",
+      "locator": {
+        "pdf_page": 9,
+        "printed_page": 299,
+        "item": "Addresses, 1: 'Farewell Address presented to Shri R. Venkataraman, President of India, by Members of Parliament on 21 July 1992', editor's note and opening paragraph"
+      }
+    },
+    {
+      "claim_id": "in_jpi_presidential_count_19920716",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-02",
+      "role_id": "in_president",
+      "holder_name": "Shankar Dayal Sharma",
+      "role_title": "President of India",
+      "event_kind": "result_count_reported",
+      "attested_on": "1992-07-16",
+      "text": "The journal's article on the Tenth Presidential Elections (by C.K. Jain) reports polling on 13 July 1992 and counting on 16 July in Parliament House: of 4,451 votes (value 1,043,387), 67 (value 17,199) were invalid; Dr. Shanker Dayal Sharma polled 2,865 votes valued at 675,864, Prof. G.G. Swell 1,502 valued at 346,485, Shri Ram Jethmalani 13 valued at 2,704 and Kaka Joginder Singh 4 valued at 1,135, and Dr. Sharma was declared elected.",
+      "locator": {
+        "pdf_page": [
+          50,
+          51
+        ],
+        "printed_page": [
+          337,
+          338
+        ],
+        "item": "Article 'The Tenth Presidential Elections', C.K. Jain, paragraphs on polling and counting, and Table II"
+      }
+    },
+    {
+      "claim_id": "in_cji_kania_administers_oath_to_sharma_19920725",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-02",
+      "role_id": "in_president",
+      "holder_name": "Shankar Dayal Sharma",
+      "role_title": "President of India",
+      "event_kind": "oath_of_office",
+      "attested_on": "1992-07-25",
+      "text": "The journal reports that Dr. Shanker Dayal Sharma was sworn in as President of India on 25 July 1992 by the Chief Justice of India, Mr. Justice M.H. Kania, at a solemn function in the Central Hall of Parliament; a photograph caption shows the Chief Justice administering the oath of office that day.",
+      "locator": {
+        "pdf_page": [
+          22,
+          23,
+          50
+        ],
+        "printed_page": [
+          310,
+          337
+        ],
+        "item": "Editor's note to 'Address by Dr. Shanker Dayal Sharma on his assumption of office as President of India on 25 July 1992'; photo caption facing page 310; closing paragraph of the article on page 337"
+      }
+    },
+    {
+      "claim_id": "in_sharma_address_on_entering_office_19920725",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-02",
+      "role_id": "in_president",
+      "holder_name": "Shankar Dayal Sharma",
+      "role_title": "President of India",
+      "event_kind": "assumption_statement",
+      "attested_on": "1992-07-25",
+      "text": "The journal reproduces the address Dr. Shanker Dayal Sharma delivered in the Central Hall after the swearing-in, headed as his address on assumption of office as President on 25 July 1992; he opens by saying he has entered upon the office of President and refers to the oath he has made and subscribed.",
+      "locator": {
+        "pdf_page": 22,
+        "printed_page": 310,
+        "item": "Addresses, 3: heading, editor's note and first and fourth paragraphs of the address"
+      }
+    },
+    {
+      "claim_id": "in_jpi_span_venkataraman_19870725_19920725",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-01",
+      "role_id": "in_president",
+      "holder_name": "R. Venkataraman",
+      "role_title": "President of India",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The same article says that Shri R. Venkataraman assumed office on 25 July 1987 and remained in office till 25 July 1992, and that Dr. Shanker Dayal Sharma was sworn in as the ninth President on 25 July 1992.",
+      "locator": {
+        "pdf_page": 46,
+        "printed_page": 333,
+        "item": "Article 'The Tenth Presidential Elections', paragraph listing past Presidents"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-15 only. The Election Commission's notices, the Returning Officer's declaration of the result and its Gazette publication, the programme for the ceremony of assumption of office, the oath administered by the Chief Justice, the Ministry of Home Affairs resolution and proclamation of the assumption of office, the holder's address on assumption, prospective term-expiry notices, farewells, stylings of a predecessor as former President and retrospective statements stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the Vice-President (including any service as acting President), ministers and party offices are excluded."
+}

@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rb_photo_gallery_20220725",
+  "source_url": "https://web.archive.org/web/20220725133207id_/https://presidentofindia.nic.in/photo-gallery.htm",
+  "original_url": "https://presidentofindia.nic.in/photo-gallery.htm",
+  "archive_capture_utc": "2022-07-25T13:32:07Z",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 72793,
+  "source_response_sha256": "956acf2c17783230a2560bf713b5703294866659ef64f7dadf1736da067f118d",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2022-07-25T13:32:07Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The Part C check downloaded it at about 23:50Z and at 23:51:05Z on 24 September 2026, and this packet again at 2026-09-25T00:19:33Z, 00:21:48Z and 00:27:08Z (36 minutes after the check's last download), each with the same byte count and SHA-256; served with no Content-Encoding (x-archive-orig-content-length 72793). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The President's website photo gallery (captions only; no photograph was retrieved or republished), recorded as a raw Internet Archive capture made at 13:32:07Z on 25 July 2022. The 2022 album capture of 15 August 2022 repeats the oath caption and is not recorded. Located by the Part C check.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML captions read in full; no photograph retrieved or reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_murmu_oath_administered_by_cji_ramana_20220725",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-08",
+      "role_id": "in_president",
+      "holder_name": "Droupadi Murmu",
+      "role_title": "President of India",
+      "event_kind": "oath_of_office",
+      "attested_on": "2022-07-25",
+      "text": "The President's Secretariat's photo gallery captions the Chief Justice of India, Shri Justice N.V. Ramana, administering the oath of the office of the President of India to Smt. Droupadi Murmu at a swearing-in ceremony in the central hall of Parliament, New Delhi, on July 25, 2022.",
+      "locator": {
+        "element": "caption beginning 'The Chief Justice of India, Shri Justice N.V. Ramana administering the oath'"
+      }
+    },
+    {
+      "claim_id": "in_kovind_styled_former_president_20220725",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-09",
+      "role_id": "in_president",
+      "holder_name": "Ram Nath Kovind",
+      "role_title": "President of India",
+      "event_kind": "styled_former_president",
+      "attested_on": "2022-07-25",
+      "text": "Another caption shows the President of India, Smt Droupadi Murmu, with 'former President Shri Ram Nath Kovind' after her assumption of office at Rashtrapati Bhavan on July 25, 2022.",
+      "locator": {
+        "element": "caption beginning 'The President of India, Smt Droupadi Murmu with former President'"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-15 only. The Election Commission's notices, the Returning Officer's declaration of the result and its Gazette publication, the programme for the ceremony of assumption of office, the oath administered by the Chief Justice, the Ministry of Home Affairs resolution and proclamation of the assumption of office, the holder's address on assumption, prospective term-expiry notices, farewells, stylings of a predecessor as former President and retrospective statements stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the Vice-President (including any service as acting President), ministers and party offices are excluded."
+}

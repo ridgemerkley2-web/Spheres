@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rb_murmu_mozambique_delegation_20220729",
+  "source_url": "https://web.archive.org/web/20220815221305id_/https://presidentofindia.nic.in/press-release-detail.htm?2191",
+  "original_url": "https://presidentofindia.nic.in/press-release-detail.htm?2191",
+  "archive_capture_utc": "2022-08-15T22:13:05Z",
+  "accessed_date": "2026-09-24",
+  "published_date": "2022-07-29",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 42823,
+  "source_response_sha256": "f281a1c5540a18c168bef6cb407f1da6652c4913e41cc7a23c973f460544eff1",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2022-08-15T22:13:05Z; that form replays the archived bytes unchanged and is used in place of the live page or file. Raw Internet Archive capture (id_ form), replayed without Content-Encoding. Downloaded 2026-09-24T22:23:36Z and again at 2026-09-24T23:02:57Z with identical bytes and SHA-256. The earlier capture 20220731175528 is redirected by the archive to a 503 capture of 19 July 2022 and is not used. The independent check downloaded it again at 23:10Z on 24 September 2026, with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The President's website press release of 29 July 2022 (press-release-detail.htm?2191), recorded as a raw Internet Archive capture of 15 August 2022; the earlier capture of 31 July 2022 is redirected by the archive to a 503 capture and is not used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_rb_murmu_assumption_recalled_20220725",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-08",
+      "role_id": "in_president",
+      "holder_name": "Droupadi Murmu",
+      "role_title": "President of India",
+      "event_kind": "assumption_recalled_retrospective",
+      "attested_on": "2022-07-25",
+      "text": "The President's Secretariat release of 29 July 2022 says the President received the Mozambican delegation as the first international delegation after her assumption of the office on 25 July 2022.",
+      "locator": {
+        "element": "second paragraph"
+      }
+    },
+    {
+      "claim_id": "in_murmu_receives_mozambique_delegation_20220729",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-08",
+      "role_id": "in_president",
+      "holder_name": "Droupadi Murmu",
+      "role_title": "President of India",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2022-07-29",
+      "text": "A parliamentary delegation from Mozambique called on the President of India, Smt Droupadi Murmu, at Rashtrapati Bhavan on 29 July 2022.",
+      "locator": {
+        "element": "first paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-15 only. The Election Commission's notices, the Returning Officer's declaration of the result and its Gazette publication, the programme for the ceremony of assumption of office, the oath administered by the Chief Justice, the Ministry of Home Affairs resolution and proclamation of the assumption of office, the holder's address on assumption, prospective term-expiry notices, farewells, stylings of a predecessor as former President and retrospective statements stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the Vice-President (including any service as acting President), ministers and party offices are excluded."
+}

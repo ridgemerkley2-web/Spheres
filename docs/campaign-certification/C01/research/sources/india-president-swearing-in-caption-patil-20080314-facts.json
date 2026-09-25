@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_poi_swearing_in_page_patil",
+  "source_url": "https://web.archive.org/web/20080314145026id_/http://presidentofindia.nic.in:80/swearing.html",
+  "original_url": "http://presidentofindia.nic.in/swearing.html",
+  "archive_capture_utc": "2008-03-14T14:50:26Z",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 2904,
+  "source_response_sha256": "e7f97344f841ad19ab2c36cbc000642f006da9d30a35680003877667852a410e",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2008-03-14T14:50:26Z; that form replays the archived bytes unchanged and is used in place of the live page or file. Raw id_ capture downloaded 2026-09-24T22:30:59Z via the recorded https URL, and again at 2026-09-24T23:15:25Z via http://web.archive.org (https was then refusing connections; thirteen paced https retries between 23:02Z and 23:15Z failed): identical byte count and SHA-256. The id_ form replays the archived bytes unchanged. The independent check downloaded it again at 23:19Z on 24 September 2026, with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The President's Secretariat's 'Swearing in of The President' page (caption only; the photograph was not retrieved or republished), last modified 23 February 2008 and recorded as a raw Internet Archive capture; the same digest covers captures from 14 March 2008 to 11 May 2012. A later caption, so its claim is a recollection, never a boundary.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; the photograph itself was not downloaded or reviewed. Original Last-Modified 23 Feb 2008."
+  },
+  "rows": [
+    {
+      "claim_id": "in_patil_swearing_in_recalled_caption_20070725",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-05",
+      "role_id": "in_president",
+      "holder_name": "Pratibha Devisingh Patil",
+      "role_title": "President of India",
+      "event_kind": "swearing_in_recalled_retrospective",
+      "attested_on": "2007-07-25",
+      "text": "The Secretariat's 'Swearing in of The President' page captions a photograph: the President, Smt. Pratibha Devisingh Patil, being sworn in as the President of India by the Chief Justice of India, in the Central Hall of Parliament on 25.07.2007.",
+      "locator": {
+        "element": "Caption under 'Swearing in of The President'"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-15 only. The Election Commission's notices, the Returning Officer's declaration of the result and its Gazette publication, the programme for the ceremony of assumption of office, the oath administered by the Chief Justice, the Ministry of Home Affairs resolution and proclamation of the assumption of office, the holder's address on assumption, prospective term-expiry notices, farewells, stylings of a predecessor as former President and retrospective statements stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the Vice-President (including any service as acting President), ministers and party offices are excluded."
+}
