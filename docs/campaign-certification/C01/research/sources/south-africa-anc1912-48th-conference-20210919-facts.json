@@ -1,0 +1,42 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_anc1912_48th_conference_page",
+  "source_url": "https://web.archive.org/web/20210919035856id_/https://www.anc1912.org.za/48th-national-conference-1991/",
+  "original_url": "https://www.anc1912.org.za/48th-national-conference-1991/",
+  "archive_capture_utc": "2021-09-19T03:58:56Z",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 156498,
+  "source_response_sha256": "a958ee3c7d20c617e98bfdd7138b48d8f04c3792bb5c76ce2d07b9ea39c4a502",
+  "source_response_sha1_base32": "VZP3PILQRMUDBZMMX4AIP43TBKNQBJWR",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Located by the independent check, which downloaded it at 2026-09-24T23:08:43Z and again at 23:46:14Z with the same byte count and SHA-256; the check's kept copy was re-hashed for this packet with the same result.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the ANC's original page, captured at 2021-09-19T03:58:56Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the old www.anc.org.za pages are no longer served, and the ANC's current anc1912.org.za site regenerates its HTML pages per request). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture made 19 September 2021 of the ANC's conference page for 1991; served without content encoding (text/html; charset=UTF-8). A retrospective page; the live page is regenerated per request, so the capture is used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_anc1912_48th_conference_mandela_elected_president",
+      "observation_id": "za_iec_n2024_014",
+      "review_observation": "ZA-ANC-02",
+      "role_id": "za_anc_president",
+      "holder_name": "Nelson Mandela",
+      "role_title": "President of the African National Congress",
+      "event_kind": "election_reference_retrospective",
+      "attested_on": null,
+      "printed_range": "2 - 6 July 1991",
+      "text": "The ANC's anc1912.org.za page for the 48th National Conference (captured 19 September 2021) gives '2 - 6 July 1991' at Durban, calls it the first National Conference held in South Africa after the unbanning of the ANC, and says 'Nelson Mandela was elected President of the ANC'.",
+      "locator": {
+        "section": "Page header block (dates and venue) and introductory sentence"
+      }
+    }
+  ],
+  "bounded_scope": "ANC President observations for CLAUDE-C01-16 only (role za_anc_president on the AFRICAN NATIONAL CONGRESS observation). Conference election, publication of results, acceptance, handover speeches, departure statements, deputy and chair offices and in-office attestations stay separate rows; holder observations are decided in the packet, not by any row. The Presidency of the Republic (za_presidency) is excluded and no row feeds it."
+}

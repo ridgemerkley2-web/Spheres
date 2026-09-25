@@ -1,0 +1,55 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_anc_statement_zuma_congratulates_ramaphosa_20171220",
+  "source_url": "https://web.archive.org/web/20171224043428id_/http://www.anc.org.za:80/content/president-zuma-congratulates-president-ramaphosa-new-anc-president",
+  "original_url": "http://www.anc.org.za/content/president-zuma-congratulates-president-ramaphosa-new-anc-president",
+  "archive_capture_utc": "2017-12-24T04:34:28Z",
+  "accessed_date": "2026-09-24",
+  "published_date": "2017-12-20",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 47085,
+  "source_response_sha256": "ec7a959adfd91b8f36e8584f6facd720fca56a9bdbbfd139584de4a7a9f144ec",
+  "source_response_sha1_base32": "B3RNCURB6MPLMTUX663EBKNPV2CNXJ5B",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Raw Internet Archive id_ replay of a fixed WARC record. First downloaded on 2026-09-24 at about 22:03Z and again at 22:31-22:33Z for the kept copy; re-downloaded at 2026-09-24T23:09Z, at least 30 minutes after the first, with matching byte count and SHA-256 (47085 bytes). The independent check downloaded it again at 2026-09-24T23:22-23:31Z with plain curl (no Accept-Encoding, no decoding), at least 49 minutes after the kept copy, with the same byte count and SHA-256; the base32 SHA-1 of the bytes equals the Internet Archive's CDX digest for the capture. The researcher's kept copy was re-hashed for this packet with the same result.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the ANC's original page, captured at 2017-12-24T04:34:28Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the old www.anc.org.za pages are no longer served, and the ANC's current anc1912.org.za site regenerates its HTML pages per request). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw capture of 24 December 2017; statement dated 20 December 2017 and signed \"Issued by the African National Congress\". Served without content encoding.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_anc_ramaphosa_new_anc_president_statement_20171220",
+      "observation_id": "za_iec_n2024_014",
+      "review_observation": "ZA-ANC-08",
+      "role_id": "za_anc_president",
+      "holder_name": "Cyril Ramaphosa",
+      "role_title": "President of the African National Congress",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2017-12-20",
+      "text": "An ANC statement dated 20 December 2017 reports that Jacob Zuma congratulated \"the new President of the African National Congress, Comrade President Cyril Ramaphosa\" and the NEC and Officials \"as elected by the 54th National Conference\" at Nasrec, and names the other five officials the conference elected.",
+      "locator": {
+        "section": "Heading; date line; paragraphs 1-3; \"Issued by the African National Congress\""
+      }
+    },
+    {
+      "claim_id": "za_anc_zuma_former_anc_president_20171220",
+      "observation_id": "za_iec_n2024_014",
+      "review_observation": "ZA-ANC-08",
+      "role_id": "za_anc_president",
+      "holder_name": "Jacob Zuma",
+      "role_title": "President of the African National Congress",
+      "event_kind": "predecessor_reference",
+      "attested_on": "2017-12-20",
+      "text": "The same statement calls Zuma \"Former ANC President Zuma\".",
+      "locator": {
+        "section": "Paragraph 4"
+      }
+    }
+  ],
+  "bounded_scope": "ANC President observations for CLAUDE-C01-16 only (role za_anc_president on the AFRICAN NATIONAL CONGRESS observation). Conference election, publication of results, acceptance, handover speeches, departure statements, deputy and chair offices and in-office attestations stay separate rows; holder observations are decided in the packet, not by any row. The Presidency of the Republic (za_presidency) is excluded and no row feeds it."
+}

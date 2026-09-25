@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_anc_mandela_49th_closing_19941222",
+  "source_url": "https://web.archive.org/web/19971017205545id_/http://www.anc.org.za/ancdocs/history/mandela/sp941222.html",
+  "original_url": "http://www.anc.org.za/ancdocs/history/mandela/sp941222.html",
+  "archive_capture_utc": "1997-10-17T20:55:45Z",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 21566,
+  "source_response_sha256": "967eb375580293bba746f6f06db82353fd604b3a12d3537f9774b382809935da",
+  "source_response_sha1_base32": "IJH7ADGW2JJEBUEPZ2B2NHJC4ZA7KCM3",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded at 2026-09-24T22:03:34Z and again at 2026-09-24T22:41:40Z (38 minutes later) from the same exact id_ URL; both responses were 21566 bytes with SHA-256 967eb375580293bba746f6f06db82353fd604b3a12d3537f9774b382809935da. The raw id_ form replays the stored capture rather than generating a page per request. The independent check downloaded it twice more on 24 September 2026 (22:44-22:55Z and 23:15-23:24Z) with the same byte count and SHA-256, and the researcher's kept copy was re-hashed for this packet with the same result.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the ANC's original page, captured at 1997-10-17T20:55:45Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the old www.anc.org.za pages are no longer served, and the ANC's current anc1912.org.za site regenerates its HTML pages per request). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture made 17 October 1997; archived Last-Modified Sat, 11 Jan 1997 19:38:32 GMT. Dateline 22 December 1994 is the address's own date. Served without content encoding; plain ASCII, no charset declared.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "HTML page; the full archived text was read. No images, photographs or scans were reviewed or needed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_anc_mandela_leads_incoming_nec_19941222",
+      "observation_id": "za_iec_n2024_014",
+      "review_observation": "ZA-ANC-03",
+      "role_id": "za_anc_president",
+      "holder_name": "Nelson Mandela",
+      "role_title": "President of the African National Congress",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1994-12-22",
+      "text": "In the closing address dated Bloemfontein, 22 December 1994, Mandela says four top officials were returned unopposed and the other two elected with massive majorities, congratulates the incoming National Executive and says he is proud to lead its members, and calls Thabo Mbeki 'the now Deputy President of this organisation'.",
+      "locator": {
+        "section": "Heading and dateline; paragraph on the conference's unity; final paragraphs (congratulations to the incoming NEC; Deputy President)"
+      }
+    }
+  ],
+  "bounded_scope": "ANC President observations for CLAUDE-C01-16 only (role za_anc_president on the AFRICAN NATIONAL CONGRESS observation). Conference election, publication of results, acceptance, handover speeches, departure statements, deputy and chair offices and in-office attestations stay separate rows; holder observations are decided in the packet, not by any row. The Presidency of the Republic (za_presidency) is excluded and no row feeds it."
+}

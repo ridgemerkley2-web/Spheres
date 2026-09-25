@@ -8,6 +8,7 @@ import unittest
 from urllib.parse import urlsplit
 
 import campaign_research as research
+from test_south_africa_anc_presidents_c01_16 import RESPONSES as C01_16_RESPONSES
 
 
 # Original response identity recorded in each extract: (bytes, sha256). Every new source is reproducible.
@@ -362,7 +363,9 @@ class SouthAfricaHeadsOfStateTests(unittest.TestCase):
     def test_new_records_are_bounded_and_every_claim_is_classified(self):
         ids = self.validate()
         self.assertEqual((len(NEW_SOURCES), len(self.new_claims)), (50, 78))
-        self.assertEqual([s['id'] for s in self.packet['sources']], list(ORIGINAL_SOURCES) + NEW_SOURCES)
+        # CLAUDE-C01-16 appends its ANC party-office sources, pinned in test_south_africa_anc_presidents_c01_16.py.
+        self.assertEqual([s['id'] for s in self.packet['sources']],
+                         list(ORIGINAL_SOURCES) + NEW_SOURCES + list(C01_16_RESPONSES))
         self.assertEqual(len(ids['entries']), 53)
         # Every new claim is either a holder claim or a claim that never feeds a holder, never both.
         holder_claims = {cid for role in HOLDER_CLAIMS.values() for ids_ in role for cid in ids_}
@@ -536,9 +539,19 @@ class SouthAfricaHeadsOfStateTests(unittest.TestCase):
             self.assertIn('December 2013', self.sources[sid]['scope_note'])
 
     def test_secondary_and_unimported_leads_stay_out_of_the_packet(self):
+        # CLAUDE-C01-16 imports the ANC's own archived records (anc.org.za, anc1912.org.za) for the party office only.
+        # Those two markers are excused for exactly its sources; every other marker still applies to them, and every
+        # marker still applies to every presidency and other source.
+        anc_markers = ('anc1912', 'anc.org.za')
         for source in self.packet['sources']:
             for marker in LEAD_URL_MARKERS:
+                if marker in anc_markers and source['id'] in C01_16_RESPONSES:
+                    continue
                 self.assertNotIn(marker, source['url'], source['id'])
+        presidency_sources = set(self.presidency['sources']) | {s for r in self.roles.values() for s in r['sources']}
+        self.assertFalse(presidency_sources & set(C01_16_RESPONSES))
+        self.assertFalse([s for s in presidency_sources
+                          if 'anc1912' in self.sources[s]['url'] or 'anc.org.za' in self.sources[s]['url']])
         lowered = self.raw.lower()
         for marker in ('wikipedia', 'sahistory', 'pmg.org.za', 'news24', 'voanews', 'loftus versfeld stadium'):
             self.assertNotIn(marker, lowered, marker)

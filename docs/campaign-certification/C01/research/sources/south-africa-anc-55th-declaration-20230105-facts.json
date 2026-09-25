@@ -1,0 +1,42 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_anc1912_55th_declaration_20230105",
+  "source_url": "https://web.archive.org/web/20230206054451id_/https://www.anc1912.org.za/55th-national-conferencedeclaration/",
+  "original_url": "https://www.anc1912.org.za/55th-national-conferencedeclaration/",
+  "archive_capture_utc": "2023-02-06T05:44:51Z",
+  "accessed_date": "2026-09-24",
+  "published_date": "2023-01-05",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 208104,
+  "source_response_sha256": "7bad5a2cbb57fac85bb8582e5a99def11701b09f78040e0961faba08696ca2fc",
+  "source_response_sha1_base32": "PXRGTNGSLZCK6NPJSEWKVLVBI22VRNVF",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Located by the independent check, which downloaded it at about 2026-09-24T23:49Z and again at 2026-09-25T00:24:15Z with the same byte count and SHA-256; the check's kept copy was re-hashed for this packet with the same result.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the ANC's original page, captured at 2023-02-06T05:44:51Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the old www.anc.org.za pages are no longer served, and the ANC's current anc1912.org.za site regenerates its HTML pages per request). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture made 6 February 2023 (capture 20230106072304 redirects here); served without content encoding (text/html; charset=UTF-8). The Declaration is dated 5 January 2023, Imvelo, Bloemfontein. The live page is regenerated per request, so the capture is used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_anc_55th_declaration_nasrec_and_imvelo_sessions",
+      "observation_id": "za_iec_n2024_014",
+      "review_observation": "ZA-ANC-09",
+      "role_id": "za_anc_president",
+      "holder_name": null,
+      "role_title": "President of the African National Congress",
+      "event_kind": "conference_session_dates",
+      "attested_on": null,
+      "printed_range": "16-20th December 2022 and concluded on 5 January 2023",
+      "text": "The ANC's '55th National Conference Declaration', dated 5 January 2023, Imvelo, Bloemfontein, 'As Presented by Secretary General Fikile Mbalula and Adopted by the 55th ANC National Elective Conference', says the delegates 'gathered at Nasrec in Gauteng on 16-20th December 2022 and concluded on 5 January 2023 at Imvelo Lodge in the Free State', and calls on 'The newly-elected NEC' to act.",
+      "locator": {
+        "section": "Heading block (date, place and 'As Presented by' line); first paragraph; paragraph beginning 'The newly-elected NEC'"
+      }
+    }
+  ],
+  "bounded_scope": "ANC President observations for CLAUDE-C01-16 only (role za_anc_president on the AFRICAN NATIONAL CONGRESS observation). Conference election, publication of results, acceptance, handover speeches, departure statements, deputy and chair offices and in-office attestations stay separate rows; holder observations are decided in the packet, not by any row. The Presidency of the Republic (za_presidency) is excluded and no row feeds it."
+}

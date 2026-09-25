@@ -1,0 +1,49 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_anc_conf51_briefing_200302",
+  "source_url": "https://web.archive.org/web/20030802024112id_/http://www.anc.org.za:80/ancdocs/history/conf/conference51/Conferencebrief.pdf",
+  "original_url": "http://www.anc.org.za/ancdocs/history/conf/conference51/Conferencebrief.pdf",
+  "archive_capture_utc": "2003-08-02T02:41:12Z",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 122638,
+  "source_response_sha256": "a8679d79b2537bef5e482985773a608b7eb3adf8393da96ac2b5b8191315db2b",
+  "source_response_sha1_base32": "76JQXTHWHY6OWRXXCQZV6CO6IW6ER7WX",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Raw Internet Archive id_ capture (archived bytes replayed unchanged). Downloaded on 24 September 2026 at about 15:14:09 PDT and again at 16:24:11 PDT (more than 30 minutes later); both responses were 122638 bytes with the same SHA-256. The independent check downloaded it twice more on 24 September 2026 (16:25-16:37 and 17:31-17:34 PDT, 66 to 107 minutes after the researcher's first download) with the same byte count and SHA-256, and the researcher's kept copy was re-hashed for this packet with the same result.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the ANC's original page, captured at 2003-08-02T02:41:12Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the old www.anc.org.za pages are no longer served, and the ANC's current anc1912.org.za site regenerates its HTML pages per request). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture made 2 August 2003; served without content encoding (PDF 1.2, 16 pages (text layer extracted with pypdfium2; embedded CreationDate 2003-02-27)). The briefing is dated February 2003 (embedded CreationDate 27 February 2003); published_date is left null because the day is not printed.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      16
+    ],
+    "method": "PDF pages 1 and 16 rendered and visually reviewed; the text layer of all 16 pages was read."
+  },
+  "rows": [
+    {
+      "claim_id": "za_anc_conf51_briefing_mbeki_president_as_elected_20021216_20021220",
+      "observation_id": "za_iec_n2024_014",
+      "review_observation": "ZA-ANC-05",
+      "role_id": "za_anc_president",
+      "holder_name": "Thabo Mbeki",
+      "role_title": "President of the African National Congress",
+      "event_kind": "national_conference_election_result_list",
+      "attested_on": null,
+      "printed_range": "16 to 20 December 2002",
+      "text": "The ANC's February 2003 Conference Briefing says the 51st National Conference was held from 16 to 20 December 2002 in Stellenbosch, and its list 'National Executive Committee as elected at 51st National Conference' names under Officials 'President: Mbeki, Thabo'.",
+      "locator": {
+        "pdf_page_one_based": [
+          1,
+          16
+        ],
+        "section": "page 1 lead paragraph; page 16 'National Executive Committee as elected' box, Officials"
+      }
+    }
+  ],
+  "bounded_scope": "ANC President observations for CLAUDE-C01-16 only (role za_anc_president on the AFRICAN NATIONAL CONGRESS observation). Conference election, publication of results, acceptance, handover speeches, departure statements, deputy and chair offices and in-office attestations stay separate rows; holder observations are decided in the packet, not by any row. The Presidency of the Republic (za_presidency) is excluded and no row feeds it."
+}
