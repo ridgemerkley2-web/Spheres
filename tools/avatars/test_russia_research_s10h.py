@@ -33,7 +33,8 @@ class RussiaDiscoveryTests(unittest.TestCase):
     def test_partial_intake_has_fourteen_lists_and_five_distinct_institutions(self):
         ids = self.validate()
         # CLAUDE-C01-05 added 13 sources, 24 claims, one institution and two roles.
-        self.assertEqual(tuple(len(ids[key]) for key in ('entries', 'sources', 'claims', 'roles')), (20, 15, 48, 7))
+        # CLAUDE-C01-14 added 53 sources, 94 claims and one role (ru_president) to that institution; no entry.
+        self.assertEqual(tuple(len(ids[key]) for key in ('entries', 'sources', 'claims', 'roles')), (20, 68, 142, 8))
         self.assertEqual(len(self.packet['organizations']), 14)
         self.assertEqual(len(self.packet['institutions']), 6)
         self.assertEqual({e['kind'] for e in self.packet['organizations']}, {'federal_election_ballot_party_list'})
@@ -137,19 +138,35 @@ class RussiaDiscoveryTests(unittest.TestCase):
 
     def test_sources_and_claims_reconcile_with_factual_snapshots(self):
         # CLAUDE-C01-05 added the legal portal, Rosarkhiv and Presidential Library sources.
+        # CLAUDE-C01-14 added Internet Archive raw captures, the State Duma transcripts server and the official
+        # publication section of the legal portal.
         self.assertEqual({urlsplit(s['url']).hostname for s in self.packet['sources']},
-                         {'www.rcoit.ru', 'duma.gov.ru', 'pravo.gov.ru', 'projects.rusarchives.ru', 'www.prlib.ru'})
+                         {'www.rcoit.ru', 'duma.gov.ru', 'pravo.gov.ru', 'projects.rusarchives.ru', 'www.prlib.ru',
+                          'web.archive.org', 'transcript.duma.gov.ru', 'publication.pravo.gov.ru'})
+        # Access dates are pinned per packet: the two original sources, CLAUDE-C01-05's 13 and CLAUDE-C01-14's 53.
+        original = {'ru_cec_ballot_order_20210816', 'ru_duma_factions_20211012'}
+        c01_05 = {s['id'] for s in self.packet['sources'][2:15]}
+        c01_14 = {s['id'] for s in self.packet['sources'][15:]}
+        self.assertEqual([s['id'] for s in self.packet['sources'][:2]], sorted(original))
+        self.assertEqual((len(c01_05), len(c01_14)), (13, 53))
+        self.assertTrue(all(sid.startswith('ru_rsfsr_') or sid.startswith('ru_garf_') or sid == 'ru_prlib_inauguration_stenogram_19910710'
+                            for sid in c01_05))
+        # Constitution text and one retrospective court statement carry no structured date; every other claim does.
+        undated = {'ru_ks_134o_rsfsr_president_retitled_19981105', 'ru_const1993_entry_into_force_rule',
+                   'ru_const1993_transitional_president_rule', 'ru_const1993_art80_head_of_state',
+                   'ru_const1993_oath_and_term_rules', 'ru_portal_const1993_publication_citation'}
+        self.assertEqual({c['id'] for s in self.packet['sources'] for c in s['claims'] if 'attested_on' not in c}, undated)
         for source in self.packet['sources']:
             extract = self.extracts[source['id']]
             self.assertEqual(extract['source_url'], source['url'])
-            original = source['id'] in {'ru_cec_ballot_order_20210816', 'ru_duma_factions_20211012'}
-            self.assertEqual(source['accessed_date'], '2026-09-13' if original else '2026-09-21')
+            expected = '2026-09-13' if source['id'] in original else '2026-09-21' if source['id'] in c01_05 else '2026-09-24'
+            self.assertEqual(source['accessed_date'], expected)
             self.assertEqual(extract['format'], 'spheres-c01-derived-factual-table/v1')
             if 'claims' in extract:
                 self.assertEqual(extract['claims'], source['claims'])
             else:
                 self.assertEqual({r['claim_id'] for r in extract['rows']}, {c['id'] for c in source['claims']})
-            self.assertTrue(all(c['attested_on'] <= research.CUTOFF for c in source['claims']))
+            self.assertTrue(all(c['attested_on'] <= research.CUTOFF for c in source['claims'] if c['id'] not in undated))
         packet = copy.deepcopy(self.packet)
         packet['sources'][0]['claims'][0]['attested_on'] = '2026-09-08'
         with self.assertRaisesRegex(ValueError, 'exceeds cutoff'):
@@ -172,7 +189,7 @@ class RussiaDiscoveryTests(unittest.TestCase):
         country = next(p for p in index['countries'] if p['nation'] == 'Russia')
         self.assertFalse(country['country_census_complete'])
         self.assertEqual(country['mapping_pending'], 20)
-        self.assertEqual(country['role_observations'], 7)
+        self.assertEqual(country['role_observations'], 8)  # CLAUDE-C01-14 added ru_president
         work = [row for row in index['work_orders'] if row['nation'] == 'Russia']
         self.assertEqual([len(row['members']) for row in work], [10, 10])
         self.assertEqual({member for row in work for member in row['members']}, set(self.validate()['entries']))

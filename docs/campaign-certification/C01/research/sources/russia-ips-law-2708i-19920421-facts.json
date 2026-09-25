@@ -1,0 +1,82 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_rf_law_2708i_19920421",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102015844&page=1&rdk=0",
+  "source_title": "Law of the Russian Federation No. 2708-I of 21 April 1992 'On amendments and additions to the Constitution (Basic Law) of the Russian Soviet Federative Socialist Republic' (original edition)",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "document_date": "1992-04-21",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102015844&page=1&rdk=0",
+  "source_response_bytes": 104315,
+  "source_response_sha256": "0df2faeca1a5fb1d7a1e0248f9e1762c701ffa53c7d77c70e1d7b4ec370306ba",
+  "source_response_encoding": "windows-1251",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded at 2026-09-24T21:48:02Z and again at 2026-09-24T22:36:15Z (at least 28 minutes later); identical 104,315 bytes and SHA-256. Independent check: re-downloaded at 2026-09-24T22:46:25Z-22:47:01Z, 38-58 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T00:31:56Z (104,315 bytes); identical SHA-256.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=2708-I&a8type=1&sort=7&page=firstlast&lstsize=50",
+    "bytes": 9558,
+    "sha256": "89cdc72d2525b87734d4753ea7aaaae9f59e787ea886b986262b81510e242210",
+    "note": "Portal number-search list; the entry for 2708-I gives status \"Утратил силу\" and the Vedomosti 1992 No. 20 art. 1084 citation only (no newspaper publication day)."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 24 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Constitutional amendment text: procedure only, never a date for the office or a holder. The preamble, Section I points 1-4 and 17, Section V point 50, Section VIII points 63-68 and the signature block were read; other amendments were skimmed. The newspaper publication that brought it into force was not inspected (portal citation: Vedomosti 1992 No. 20, art. 1084).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "HTML text (1,265 lines, textCompleted=True) read: the preamble, Section I points 1-4 and 17, Section V point 50, Section VIII points 63-68 and the signature block; the other amendments were skimmed. No facsimile on the portal."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_law_2708i_constitution_renamed_19920421",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-01",
+      "role_id": "ru_president",
+      "holder_name": null,
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "title_renaming",
+      "attested_on": "1992-04-21",
+      "text": "The Congress of People's Deputies of the Russian Federation amends the RSFSR Constitution 'in connection with the change of the state's name' to 'Российская Федерация - Россия': Article 1 is restated (the names Russian Federation and Russia are equivalent); in the Constitution's title and preamble the old name and 'РСФСР' become 'Российской Федерации - России'; and in the headings of listed sections and chapters (including chapters '13-16') and in listed articles (including '102-123', the range holding Articles 121-1 to 121-11 on the President) the old name and 'РСФСР' are replaced by 'Российская Федерация' / 'Российской Федерации'. The office's constitutional title thereby reads 'Президент Российской Федерации'.",
+      "locator": "Preamble; Section I, points 1-2"
+    },
+    {
+      "claim_id": "ru_law_2708i_art121_8_president_rf_19920421",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-01",
+      "role_id": "ru_president",
+      "holder_name": null,
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "procedure",
+      "attested_on": "1992-04-21",
+      "text": "Point 50 restates Article 121-8 in terms of 'Президент Российской Федерации': the President issues decrees and orders on matters within his competence, his decrees are binding throughout the Russian Federation and may not contradict the Constitution and laws, and he may suspend acts of republic executives.",
+      "locator": "Section V, point 50"
+    },
+    {
+      "claim_id": "ru_law_2708i_in_force_on_publication_19920421",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-01",
+      "role_id": "ru_president",
+      "holder_name": null,
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "entry_into_force_rule",
+      "attested_on": "1992-04-21",
+      "text": "Point 63: the Law is put into effect from the day of its publication.",
+      "locator": "Section VIII, point 63"
+    },
+    {
+      "claim_id": "ru_law_2708i_published_signature_19920421",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-01",
+      "role_id": "ru_president",
+      "holder_name": "Борис Николаевич Ельцин",
+      "printed_name": "Б.ЕЛЬЦИН",
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "office_signature_published",
+      "attested_on": "1992-04-21",
+      "text": "The published text ends 'Президент Российской Федерации Б.ЕЛЬЦИН, Москва, Кремль, 21 апреля 1992 года, N 2708-I'.",
+      "locator": "Signature and date block (portal text)"
+    }
+  ],
+  "bounded_scope": "Presidency observations for CLAUDE-C01-14 only. Election calling, voting, result determination, declaration, correction and publication, oath, stated assumption of office, inauguration ceremony, resignation, acting service and outgoing-holder statements stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-05 RSFSR roles and the USSR packet are outside this extract."
+}

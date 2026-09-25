@@ -1,0 +1,48 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_pub_decree_636_20260904",
+  "source_url": "https://publication.pravo.gov.ru/file/pdf?eoNumber=0001202609040002",
+  "source_title": "Decree of the President of the Russian Federation No. 636 of 4 September 2026 \"On the Ambassador Extraordinary and Plenipotentiary of the Russian Federation to the Union of the Comoros\" (official publication PDF)",
+  "accessed_date": "2026-09-24",
+  "published_date": "2026-09-04",
+  "document_date": "2026-09-04",
+  "access_method": "official_publication_portal_pdf_downloaded_over_http",
+  "source_response_url": "http://publication.pravo.gov.ru/file/pdf?eoNumber=0001202609040002",
+  "source_response_bytes": 32911,
+  "source_response_sha256": "986757f81ecc143f0cd0beed083fe5f3f2c0cea99384c77648c759c667269c80",
+  "source_response_encoding": "application/pdf (1 page, image-only scan; ABBYY FineReader Engine 11 producer; CreationDate D:20260904092233Z)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: First retrieved 2026-09-24T21:54Z; re-downloaded 2026-09-24T22:47:38Z (byte-identical: 32911 bytes, same SHA-256). A second download with a cache-busting query at 21:56Z returned identical bytes; the PDF CreationDate is the publication day, not the request day, so it is a stored file. HTTPS to publication.pravo.gov.ru failed (port 443). A further cache-busting re-download (nocache=<epoch>) after 30 minutes returned 32911 bytes, SHA-256 986757f81ecc143f0cd0beed083fe5f3f2c0cea99384c77648c759c667269c80. Independent check: re-downloaded at 2026-09-24T23:04:57Z-23:07:53Z and with a cache-busting query at 23:34Z; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T00:41:53Z (32,911 bytes); identical SHA-256.",
+  "card_response": {
+    "url": "http://publication.pravo.gov.ru/document/0001202609040002",
+    "bytes": 20071,
+    "sha256": "1acd4fc56f14c2962d725adc7d3b1ab3ab38a4ad6f52c83a29e48f87fd10bb90",
+    "note": "Official-publication document card ('Номер опубликования: 0001202609040002', 'Дата опубликования: 04.09.2026'), read over HTTP; identical at 21:53Z (dossier), 23:07Z, 23:37Z with a cache-busting query and 2026-09-25T00:03Z (check), and on this packet's retrieval."
+  },
+  "provenance_note": "The official-publication section refused HTTPS from this environment on 24 September 2026 (port 443), so the PDF was downloaded over HTTP; the packet URL gives the same path on HTTPS, and the bytes and hash recorded here are those of the HTTP response. The PDF's CreationDate is the publication day (2026-09-04), so it is a stored file, not one generated per request; cache-busting downloads returned identical bytes. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "One-page image-only scan (ABBYY FineReader Engine 11; CreationDate 2026-09-04T09:22:33Z, the publication day, so a stored file, not one generated per request). Rendered and viewed. The document card is recorded as a hashed card response for the publication number and date.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "PDF page 1 rendered with pypdfium2 at 1.3x and viewed: coat of arms, \"УКАЗ ПРЕЗИДЕНТА РОССИЙСКОЙ ФЕДЕРАЦИИ\", appointment text, signature block \"Президент Российской Федерации В.Путин\" with the Chancellery stamp, \"Москва, Кремль 4 сентября 2026 года № 636\". No text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_decree_636_putin_signs_as_president_20260904",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-10",
+      "role_id": "ru_president",
+      "holder_name": "Владимир Владимирович Путин",
+      "printed_name": "В.Путин",
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2026-09-04",
+      "text": "Decree No. 636, signed \"President of the Russian Federation V. Putin\", Moscow, Kremlin, 4 September 2026, appoints Vadim Leonidovich Barabanov Ambassador Extraordinary and Plenipotentiary of the Russian Federation to the Union of the Comoros; officially published on the portal on 4 September 2026 (No. 0001202609040002).",
+      "locator": "PDF page 1: title, operative sentence, signature and date block; publication card (card_response): 'Номер опубликования: 0001202609040002', 'Дата опубликования: 04.09.2026'"
+    }
+  ],
+  "bounded_scope": "Presidency observations for CLAUDE-C01-14 only. Election calling, voting, result determination, declaration, correction and publication, oath, stated assumption of office, inauguration ceremony, resignation, acting service and outgoing-holder statements stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-05 RSFSR roles and the USSR packet are outside this extract."
+}

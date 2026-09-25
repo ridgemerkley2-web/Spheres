@@ -1,0 +1,133 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_ks_det_134o_19981105",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102056287&page=1&rdk=0",
+  "source_title": "Determination (Opredelenie) of the Constitutional Court of the Russian Federation No. 134-O of 5 November 1998 on the interpretation of Article 81(3) and point 3 of Section Two 'Final and transitional provisions' of the Constitution",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "document_date": "1998-11-05",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102056287&page=1&rdk=0",
+  "source_response_bytes": 36602,
+  "source_response_sha256": "2c45f919d34688e7547d13235ee52abcdce13619d51cc34880e3cf38715d464f",
+  "source_response_encoding": "windows-1251",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded at 2026-09-24T21:49:24Z and again at 2026-09-24T22:36:20Z (at least 28 minutes later); identical 36,602 bytes and SHA-256. Independent check: re-downloaded at 2026-09-24T22:46:25Z-22:47:01Z, 38-58 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T00:32:37Z (36,602 bytes); identical SHA-256.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=134-%CE&a8type=1&sort=7&page=firstlast&lstsize=200",
+    "bytes": 20681,
+    "sha256": "f056140cee8d9bf7ab3c6df173aee1d0587c1c30a1fda8bee4472b3d918453b4",
+    "note": "Portal number-search list for 134-O; gives the SZ RF 1998 No. 46 art. 5701 and RG 19.11.1998 citations."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 24 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "A primary judicial record written on 5 November 1998: every statement it makes about 1991-1996 is retrospective. Read in full (reasoning paragraphs 1-4, operative points 1-3 and Judge Morshchakova's separate opinion). Its statement of the 1996 assumption of office dates a holder start; its other statements are claims only.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "HTML text (411 lines) read in full: the determination (paragraphs 1-4 and operative points 1-3) and Judge Morshchakova's separate opinion."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_ks_134o_rsfsr_president_retitled_19981105",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-01",
+      "role_id": "ru_president",
+      "holder_name": "Борис Николаевич Ельцин",
+      "printed_name": "Б.Н.Ельцин",
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "retrospective_retitling_statement",
+      "attested_on": null,
+      "text": "The Court recounts that the office of President of the RSFSR was introduced by the RSFSR Law of 24 April 1991 after the referendum of 17 March 1991 and written into the RSFSR Constitution on 24 May 1991 (five-year term, at most two consecutive terms); that on 12 June 1991 the first President of the RSFSR was elected by popular vote - 'Им стал Б.Н.Ельцин'; and that with the adoption of the RSFSR Law of 25 December 1991 on the change of the state's name and the corresponding amendments to the RSFSR Constitution 'Президент РСФСР стал именоваться Президентом Российской Федерации'.",
+      "locator": "Paragraph 2 of the reasoning (установил), first two sub-paragraphs"
+    },
+    {
+      "claim_id": "ru_ks_134o_continuation_new_constitution_19931225",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-02",
+      "role_id": "ru_president",
+      "holder_name": "Борис Николаевич Ельцин",
+      "printed_name": "ранее избранный Президент Российской Федерации (Б.Н.Ельцин in the preceding sub-paragraph)",
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "continuation",
+      "attested_on": "1993-12-25",
+      "text": "The Court states that at the entry into force of the new Constitution '(25 декабря 1993 года)' the previously elected President of the Russian Federation held the office in his first term; from that day, as point 3 of Section Two prescribes, he began to exercise the powers it establishes; popular approval of the Constitution also settled the continued occupation of the office by the same person; he served under the new Constitution until the end of the term for which he was elected in 1991, and that first term was neither interrupted nor restarted.",
+      "locator": "Paragraph 2 of the reasoning, third and fourth sub-paragraphs"
+    },
+    {
+      "claim_id": "ru_ks_134o_cec_declared_second_term_19960709",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-03",
+      "role_id": "ru_president",
+      "holder_name": null,
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "result_declaration",
+      "attested_on": "1996-07-09",
+      "text": "The Court states that by a resolution of the Central Election Commission of 9 July 1996 it was officially announced that the President of the Russian Federation was considered elected to the office for a second term ('Постановлением Центральной избирательной комиссии Российской Федерации от 9 июля 1996 года было официально объявлено, что Президент Российской Федерации считается избранным на эту должность на второй срок').",
+      "locator": "Paragraph 3 of the reasoning, fourth sub-paragraph, first sentence"
+    },
+    {
+      "claim_id": "ru_ks_134o_inauguration_certificate_19960809",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-03",
+      "role_id": "ru_president",
+      "holder_name": null,
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "inauguration_ceremony",
+      "attested_on": "1996-08-09",
+      "text": "The Court states that at the official ceremony of assumption of office of the President of the Russian Federation on 9 August 1996, held under Article 82 in the presence of members of the Federation Council, State Duma deputies and Constitutional Court judges, the Chairman of the Central Election Commission announced that the President had been elected for a second term and handed him the certificate of election as President for the second term (1996-2000).",
+      "locator": "Paragraph 3 of the reasoning, fourth sub-paragraph"
+    },
+    {
+      "claim_id": "ru_ks_134o_oath_of_office_19960809",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-03",
+      "role_id": "ru_president",
+      "holder_name": "Борис Николаевич Ельцин",
+      "printed_name": "избранный Президент Российской Федерации (Б.Н.Ельцин earlier in paragraph 3)",
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "oath_of_office",
+      "attested_on": "1996-08-09",
+      "text": "The Court states that at the official ceremony of assumption of office of 9 August 1996 'избранный Президент Российской Федерации принес присягу народу': the elected President, whom the same paragraph names as the incumbent 'Б.Н.Ельцин', took the oath to the people.",
+      "locator": "Paragraph 3 of the reasoning, fourth sub-paragraph, last sentence"
+    },
+    {
+      "claim_id": "ru_ks_134o_assumption_of_office_19960809",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-03",
+      "role_id": "ru_president",
+      "holder_name": "Борис Николаевич Ельцин",
+      "printed_name": "избранный Президент Российской Федерации (Б.Н.Ельцин earlier in paragraph 3)",
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "assumption_of_office",
+      "attested_on": "1996-08-09",
+      "text": "The Court states that by taking that oath at the ceremony of 9 August 1996 the elected President (Б.Н.Ельцин) 'таким образом, вступил в должность на второй срок подряд': he thereby assumed office for a second consecutive term.",
+      "locator": "Paragraph 3 of the reasoning, fourth sub-paragraph, last sentence"
+    },
+    {
+      "claim_id": "ru_ks_134o_determination_terms_19981105",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-02",
+      "role_id": "ru_president",
+      "holder_name": null,
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "court_determination",
+      "attested_on": "1998-11-05",
+      "text": "Operative point 1: proceedings are terminated for lack of uncertainty, because the President of the Russian Federation exercised his powers for a first term until the June-July 1996 elections and was elected in 1996 for a second consecutive term; the reasoning adds that transitional point 3 was exhausted in June-July 1996.",
+      "locator": "Operative part, point 1; paragraph 4 of the reasoning"
+    },
+    {
+      "claim_id": "ru_ks_134o_dissent_identity_question_19981105",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-01",
+      "role_id": "ru_president",
+      "holder_name": null,
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "separate_opinion",
+      "attested_on": "1998-11-05",
+      "text": "Judge T. G. Morshchakova's separate opinion records that the independent experts disagreed on, among other things, how continued exercise of state functions during a constitutional transition differs from succession, and whether the presidencies under the former and the current constitutions can be treated as identical institutions.",
+      "locator": "Separate opinion of Judge Morshchakova, point 3"
+    }
+  ],
+  "bounded_scope": "Presidency observations for CLAUDE-C01-14 only. Election calling, voting, result determination, declaration, correction and publication, oath, stated assumption of office, inauguration ceremony, resignation, acting service and outgoing-holder statements stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-05 RSFSR roles and the USSR packet are outside this extract."
+}

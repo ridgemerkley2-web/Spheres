@@ -1,0 +1,50 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_kremlin_news_acting_president_20000506",
+  "source_url": "https://web.archive.org/web/20260611174508id_/http://www.kremlin.ru/events/president/news/38128",
+  "original_url": "http://www.kremlin.ru/events/president/news/38128",
+  "archive_capture_utc": "2026-06-11T17:45:08Z",
+  "source_title": "Acting President of Russia Vladimir Putin sent birthday congratulations to UK Prime Minister Tony Blair — kremlin.ru news, 6 May 2000, 18:30",
+  "accessed_date": "2026-09-24",
+  "published_date": "2000-05-06",
+  "document_date": "2000-05-06",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20260611174508id_/http://www.kremlin.ru/events/president/news/38128",
+  "source_response_bytes": 36393,
+  "source_response_sha256": "a579074b5038f3199144890af88c981ad7991b062dd53ad303f62e043266f058",
+  "source_response_encoding": "UTF-8 HTML; served uncompressed",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Raw capture downloaded 22:43 UTC; re-downloaded after 30+ minutes (at 23:18-23:20 UTC, 33-38 minutes later). Live page (36,388 bytes) identical at 22:26 and 22:54 UTC and at the final recheck; article text character-identical to the capture. Independent check: re-downloaded between 2026-09-24T23:22Z and 23:53Z, 35-60 minutes after the first downloads; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T00:34:10Z (36,393 bytes); identical SHA-256.",
+  "alternate_responses": [
+    {
+      "url": "http://kremlin.ru/events/president/news/38128",
+      "bytes": 36388,
+      "sha256": "9317bae91639a6aa6dce64682354af0b11fcaeb262faa57a9e51e540bae4b605",
+      "note": "Live page over HTTP; HTTPS timed out. An alternate live response only, never the recorded identity: it carries a changing site template and may drift; identical on this packet's retrieval at 2026-09-25T00:34:17Z."
+    }
+  ],
+  "provenance_note": "Raw Internet Archive capture (id_ form) of http://www.kremlin.ru/events/president/news/38128, captured at 2026-06-11T17:45:08Z, before the 7 September 2026 cutoff; the id_ form replays the archived bytes unchanged and is used because kremlin.ru refused HTTPS from this environment and its live pages carry a changing site template (footer year, menus, promoted blocks), so the live page is not a stable identity. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Official-site news item stamped 6 May 2000, 18:30; only the headline styling is imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Article text read in full in Russian."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_kremlin_putin_styled_acting_president_20000506",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-04",
+      "role_id": "ru_president",
+      "holder_name": "Владимир Владимирович Путин",
+      "printed_name": "Владимир Путин",
+      "role_title": "Исполняющий обязанности Президента Российской Федерации — Acting President of the Russian Federation",
+      "event_kind": "acting_service_attestation",
+      "attested_on": "2000-05-06",
+      "text": "The site styles Putin 'И. о. Президента России' (Acting President of Russia) in a news item of 6 May 2000.",
+      "locator": "Headline; publication stamp 6 May 2000, 18:30"
+    }
+  ],
+  "bounded_scope": "Presidency observations for CLAUDE-C01-14 only. Election calling, voting, result determination, declaration, correction and publication, oath, stated assumption of office, inauguration ceremony, resignation, acting service and outgoing-holder statements stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-05 RSFSR roles and the USSR packet are outside this extract."
+}

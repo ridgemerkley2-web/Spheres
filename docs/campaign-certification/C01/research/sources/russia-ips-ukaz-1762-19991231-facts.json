@@ -1,0 +1,67 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_pravo_ukaz_1762_19991231",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102063834&page=1&rdk=0",
+  "source_title": "Decree of the President of the Russian Federation No. 1762 of 31 December 1999 'On the temporary exercise of the powers of the President of the Russian Federation' (original edition)",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "document_date": "1999-12-31",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102063834&page=1&rdk=0",
+  "source_response_bytes": 19902,
+  "source_response_sha256": "5612fd3a91cbc0e663b48323776fba5ae2a4b318359ca17a1b6c9ca5efabbdbc",
+  "source_response_encoding": "windows-1251 (HTML, no Content-Encoding)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded 21:47:42 UTC and again 22:24:41 UTC on 2026-09-24 (37 minutes): identical bytes. No pre-cutoff Wayback capture exists for this portal URL (CDX returned none). The portal's HTTPS origin timed out from this environment (port 443), as in CLAUDE-C01-05; the response was read over HTTP and decoded from windows-1251. The same path on https:// is the packet URL form. Independent check: re-downloaded between 2026-09-24T23:22Z and 23:53Z, 35-60 minutes after the first downloads; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T00:33:45Z (19,902 bytes); identical SHA-256.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=1762&a8type=1&a7type=4&a7from=31.12.1999&a7to=31.12.1999&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3214,
+    "sha256": "4788164f2b215c7a0b0bd253de2dbc8dd5d0569c6301b89383c81dab398c44f9",
+    "note": "One-hit card citing Sobranie zakonodatelstva RF 2000 No. 1 art. 110, Rossiyskaya Gazeta 5.1.2000 and Parlamentskaya Gazeta 5.1.2000. Identical bytes on re-download 36 minutes later."
+  },
+  "alternate_responses": [
+    {
+      "url": "http://kremlin.ru/acts/bank/14858",
+      "bytes": 33756,
+      "sha256": "17de3157b6699dd324c438f24831e2b1cb38a860e4b5f2bc8e049577080f1675",
+      "note": "kremlin.ru document bank copy; same text; identical bytes at 21:45 and 22:24 UTC. An alternate live response only, never the recorded identity: it carries a changing site template and may drift; identical on this packet's retrieval at 2026-09-25T00:33:51Z."
+    }
+  ],
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 24 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Read in full. Signed by the Acting President; gazette citations from the portal card only.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Official HTML text read in full in Russian after windows-1251 decoding."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_ukaz_1762_yeltsin_resignation_cited_19991231",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-04",
+      "role_id": "ru_president",
+      "holder_name": "Борис Николаевич Ельцин",
+      "printed_name": "Б.Н.Ельцина (genitive)",
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "resignation_reference",
+      "attested_on": "1999-12-31",
+      "text": "The decree opens 'in connection with the resignation (отставка) of the President of the Russian Federation B. N. Yeltsin'.",
+      "locator": "Preamble"
+    },
+    {
+      "claim_id": "ru_ukaz_1762_putin_begins_acting_19991231",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-04",
+      "role_id": "ru_president",
+      "holder_name": "Владимир Владимирович Путин",
+      "printed_name": "В.Путин",
+      "role_title": "Исполняющий обязанности Президента Российской Федерации — Acting President of the Russian Federation",
+      "event_kind": "acting_service_start",
+      "attested_on": "1999-12-31",
+      "text": "The signatory states that, under Article 92 of the Constitution, he began temporarily exercising the powers of the President of the Russian Federation from 12:00 on 31 December 1999; signed 'Исполняющий обязанности Президента Российской Федерации В.Путин', Moscow, Kremlin, 31 December 1999, No. 1762.",
+      "locator": "Operative sentence; signature and date block"
+    }
+  ],
+  "bounded_scope": "Presidency observations for CLAUDE-C01-14 only. Election calling, voting, result determination, declaration, correction and publication, oath, stated assumption of office, inauguration ceremony, resignation, acting service and outgoing-holder statements stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-05 RSFSR roles and the USSR packet are outside this extract."
+}

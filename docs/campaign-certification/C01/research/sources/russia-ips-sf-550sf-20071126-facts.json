@@ -1,0 +1,45 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_fc_res_550sf_20071126",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102118390&page=1&rdk=0",
+  "source_title": "Resolution of the Federation Council No. 550-SF of 26 November 2007 \"On calling the election of the President of the Russian Federation\" (original edition)",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "document_date": "2007-11-26",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102118390&page=1&rdk=0",
+  "source_response_bytes": 32327,
+  "source_response_sha256": "1d0ca88f17a45eb4aa01581602495b72d32445f925eae1bbc968c954d06e2615",
+  "source_response_encoding": "windows-1251 (HTML frame)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: First retrieved 2026-09-24T21:54Z; re-downloaded 2026-09-24T22:47:26Z (byte-identical: 32327 bytes, same SHA-256). Independent check: re-downloaded at 2026-09-24T23:04:57Z-23:07:53Z and with a cache-busting query at 23:34Z; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T00:36:55Z (32,327 bytes); identical SHA-256.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=550-%D1%D4&a8type=1&sort=7&page=firstlast&lstsize=50",
+    "bytes": 44147,
+    "sha256": "a7f5e26145f76784c3aba83cbaa201ea5e16edb4554f036e806ca79a41e4ae85",
+    "note": "Number search (a8=550-СФ, cp1251-encoded) listing the act with status \"Действует без изменений\" and its publication citations; a search listing, so it can change when acts with the same number are added."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 24 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Read in full. Gazette citations are taken from the portal card only; the gazette pages were not inspected, so published_date is null. The act predates the portal's official-publication section, so no facsimile is expected.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Official HTML text read in full after windows-1251 decoding; the portal offers no facsimile."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_fc_550sf_election_called_20071126",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-07",
+      "role_id": "ru_president",
+      "holder_name": null,
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "election_called",
+      "attested_on": "2007-11-26",
+      "text": "Citing Article 81 and Article 102(1)(d) of the Constitution and Article 5(2) and (7) of the federal law on the election of the President, the Federation Council calls the election of the President of the Russian Federation for 2 March 2008; the resolution enters into force on official publication. Signed S. M. Mironov, Chairman of the Federation Council, Moscow, 26 November 2007, No. 550-SF.",
+      "locator": "Points 1-2; signature and date block"
+    }
+  ],
+  "bounded_scope": "Presidency observations for CLAUDE-C01-14 only. Election calling, voting, result determination, declaration, correction and publication, oath, stated assumption of office, inauguration ceremony, resignation, acting service and outgoing-holder statements stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-05 RSFSR roles and the USSR packet are outside this extract."
+}

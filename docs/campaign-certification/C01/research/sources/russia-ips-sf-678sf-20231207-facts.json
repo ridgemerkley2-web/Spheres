@@ -1,0 +1,58 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_fc_res_678sf_20231207",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=606168232&page=1&rdk=0",
+  "source_title": "Resolution of the Federation Council No. 678-SF of 7 December 2023 \"On calling the election of the President of the Russian Federation\" (original edition)",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "document_date": "2023-12-07",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=606168232&page=1&rdk=0",
+  "source_response_bytes": 24272,
+  "source_response_sha256": "50613a83cbb52563c7ad10426f4996501ac67487acd404bbd08f6a178bdd2915",
+  "source_response_encoding": "windows-1251 (HTML frame)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: First retrieved 2026-09-24T21:54Z; re-downloaded 2026-09-24T22:47:31Z (byte-identical: 24272 bytes, same SHA-256). Independent check: re-downloaded at 2026-09-24T23:04:57Z-23:07:53Z and with a cache-busting query at 23:34Z; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T00:41:37Z (24,272 bytes); identical SHA-256.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=678-%D1%D4&a8type=1&sort=7&page=firstlast&lstsize=50",
+    "bytes": 11992,
+    "sha256": "2ae2edce15034f18ac834a5de6cf25b6a0d0b7c26cdc5307d95d73b6ea0aef71",
+    "note": "Number search listing with status and publication citations."
+  },
+  "facsimile_responses": [
+    {
+      "url": "http://publication.pravo.gov.ru/file/pdf?eoNumber=0001202312070002",
+      "bytes": 123828,
+      "sha256": "37be57dc2de28ebaa6b80e84c4e7fa17ea8aef9d977af397f9a208497de2895b",
+      "note": "One-page PDF (iTextSharp), CreationDate 2023-12-07, a stored file; served over HTTP; rendered and viewed.",
+      "pages_viewed": [
+        1
+      ]
+    }
+  ],
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 24 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Read in full. The official-publication section serves a stored facsimile PDF under publication No. 0001202312070002 (CreationDate 7 December 2023), recorded as a facsimile response and viewed: it shows the signed resolution with the same text, date and number. published_date is left null because the publication date is taken only from the portal card.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [
+      1
+    ],
+    "method": "Official HTML text read in full after windows-1251 decoding. The facsimile recorded in facsimile_responses was rendered and viewed."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_fc_678sf_election_called_20231207",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-10",
+      "role_id": "ru_president",
+      "holder_name": null,
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "election_called",
+      "attested_on": "2023-12-07",
+      "text": "The Federation Council calls the election of the President of the Russian Federation for 17 March 2024; in force on official publication. Signed V. I. Matvienko, Moscow, 7 December 2023, No. 678-SF.",
+      "locator": "Points 1-2; signature and date block"
+    }
+  ],
+  "bounded_scope": "Presidency observations for CLAUDE-C01-14 only. Election calling, voting, result determination, declaration, correction and publication, oath, stated assumption of office, inauguration ceremony, resignation, acting service and outgoing-holder statements stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-05 RSFSR roles and the USSR packet are outside this extract."
+}

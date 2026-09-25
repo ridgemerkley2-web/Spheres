@@ -1,6 +1,6 @@
 # CLAUDE-C01-14: Russian presidents, 1991–2026
 
-Owner: Claude. State: **claimed** (24 September 2026; in progress, not complete). Parent: C01 (incomplete).
+Owner: Claude. State: **ready_for_review** (submitted 24 September 2026; not complete). Parent: C01 (incomplete).
 
 Origin: a self-proposed follow-up packet, started on the user's 24 September 2026 instruction to continue
 development faster with several packets in parallel. It does not repeat accepted C01-01/02/03/04/07/08 or reclaim
@@ -8,7 +8,9 @@ the pending C01-05 (USSR/RSFSR), C01-06 (Saudi Arabia), C01-09 (South Africa), C
 
 Branch: `claude/c01-ru-14`. **Stacked on CLAUDE-C01-05** (`claude/c01-ussr-05` at `1c698ed0`, merged with integration `ffe54b02` at `0c9b5f19`), which is
 ready for review and not yet integrated, because both packets edit `russia.json`: merge CLAUDE-C01-05 first. Claim
-commit: this record's first commit on the branch.
+commit: `9673a99f`, this record's first commit on the branch. `claude/c01-ussr-05` was fetched again before the work
+and had no commits missing from this branch. Result commits: the packet commit and the separate index commit at the
+head of `claude/c01-ru-14` at submission; to be recorded by the integrator. Reviewer/integrator: Codex.
 
 ## Bounded deliverable
 
@@ -47,3 +49,45 @@ Checks: research-index `--check`; the Russia, research and campaign Python tests
 `workboard.py --check`; `git diff --check`.
 
 Mark the packet `ready_for_review` when done. C01 and all parent gates stay open.
+
+## Submission (ready_for_review)
+
+[Report](../../campaign-certification/C01/research/russia-presidents-1991-2026-14.md): `russia-presidents-1991-2026-14.md`.
+Built from three research dossiers (RU-PRES-01 to 03, 04 to 06, 07 to 10) and an independent adversarial check of
+each.
+
+Observation decisions:
+
+- RU-PRES-01 accepted: Law 2708-I (21 April 1992) retitles the office; determination 134-O (1998) ties the retitled
+  office to Yeltsin retrospectively; 1992-1993 records use the new title. Claims only: no `ru_president` holder for
+  1991-1996 and no holder merged across `ru_rsfsr_president` and `ru_president` (integrator decision noted).
+- RU-PRES-02 accepted: Constitution text as undated procedure claims; entry into force on 25 December 1993 and the
+  incumbent's continuation from 134-O (claims only).
+- RU-PRES-03 accepted in part: calling, both rounds and protocols, the 19 July correction, the ceremony, and 134-O's
+  statement of the 9 August 1996 oath and assumption of office (Yeltsin `from` 1996-08-09). The CEC resolution of
+  9 July 1996 and a contemporaneous oath record were not found.
+- RU-PRES-04 accepted: decree 1761 ends Yeltsin's exercise of powers at 12:00 on 31 December 1999 (`until`
+  1999-12-31, on the 1996 observation); acting service from 12:00 is claims only, with no stated end.
+- RU-PRES-05 to 10 accepted: 2000, 2004, 2008 (Medvedev), 2012, 2018 and 2024, each with calling, voting, CEC result
+  and its corrections or publication where found, oath and a same-day statement of assumption of office (`from`); no
+  `until` on any of them (pre-oath farewells are claims). Decree 636 of 4 September 2026 attests Putin in office.
+
+Holders on `ru_president`: Борис Николаевич Ельцин 1996-08-09 to 1999-12-31; Владимир Владимирович Путин from
+2000-05-07 and from 2004-05-07; Дмитрий Анатольевич Медведев from 2008-05-07; Владимир Владимирович Путин from
+2012-05-07, 2018-05-07 and 2024-05-07. The C01-05 holders and `ussr.json` are unchanged.
+
+All 36 checker defects applied (B9 in part, A7 by moving the source to leads). Every missing primary record the
+checks found is imported, except a copy of 4-SF that is not the cited publication and two commercial-database titles.
+
+Touched paths: this record; `research/russia.json` (53 sources, 94 claims, role `ru_president` in
+`ru_rsfsr_presidency` with seven holders, seven institution coverage notes and one packet coverage note);
+53 new `research/sources/russia-*-facts.json` extracts; new `research/russia-presidents-1991-2026-14.md`; new
+`tools/avatars/test_russia_presidents_c01_14.py`; `tools/avatars/test_russia_research_s10h.py` and
+`tools/avatars/test_ussr_russia_transition_c01_05.py` (new exact totals, hosts, access dates, undated claims and role
+sets; one guard re-expressed; none loosened). Separate commit: `docs/campaign-certification/C01/research-index.json`
+only.
+
+Checks (24 September 2026): research-index regeneration and `--check` (234 sources, 1,893 claims); the Russia tests
+(19, 9 of them new) and USSR tests (18); the research tests (79); the campaign tests (9 pass, and
+`test_campaign_census` errors in setup because the sparse worktree has no `spheres-sim/data`; not widened); the atlas
+Node check (11); `workboard.py --check` (44 markers); `git diff --check` on this packet's paths.

@@ -1,0 +1,55 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_rg_cec_res_152_1255_7_20180324",
+  "source_url": "https://web.archive.org/web/20180324135637id_/https://rg.ru/2018/03/23/postanovlenie-site-dok.html",
+  "original_url": "https://rg.ru/2018/03/23/postanovlenie-site-dok.html",
+  "archive_capture_utc": "2018-03-24T13:56:37Z",
+  "source_title": "Resolution of the Central Election Commission No. 152/1255-7 of 23 March 2018 'On the results of the election of the President of the Russian Federation called for 18 March 2018', official publication in Rossiyskaya Gazeta of 24 March 2018",
+  "accessed_date": "2026-09-24",
+  "published_date": "2018-03-24",
+  "document_date": "2018-03-23",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20180324135637id_/https://rg.ru/2018/03/23/postanovlenie-site-dok.html",
+  "source_response_bytes": 143832,
+  "source_response_sha256": "322f1a53086ba885615ff734fb841759d6b85bc561c9643845705f64664f126c",
+  "source_response_encoding": "UTF-8 HTML, served without Content-Encoding",
+  "source_response_checked_in": false,
+  "stability_check": "Found by the independent check: first downloaded at 2026-09-24T23:23Z-00:03Z and re-downloaded at least 30 minutes later (by 2026-09-25T00:03Z); identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T00:43:38Z (143,832 bytes); identical SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of https://rg.ru/2018/03/23/postanovlenie-site-dok.html, captured at 2018-03-24T13:56:37Z, before the 7 September 2026 cutoff; the id_ form replays the archived bytes unchanged and is used because rg.ru answered HTTP 401 (a bot-protection page) to direct requests, which was not bypassed. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The page prints 'Дата подписания 23 марта 2018 г.' and 'Опубликован 24 марта 2018 г.' with the issue number; the text matches the CEC's page (ru_cec_res_152_1255_7_20180323) and the annex matches the CEC's own docx. Editorial links on the page are not used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Archived HTML text of the resolution and its annex read in full."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_rg_152_1255_7_published_20180324",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-09",
+      "role_id": "ru_president",
+      "holder_name": "Владимир Владимирович Путин",
+      "printed_name": "Путина Владимира Владимировича (genitive)",
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "result_publication",
+      "attested_on": "2018-03-24",
+      "text": "Rossiyskaya Gazeta officially publishes CEC resolution No. 152/1255-7 of 23 March 2018 with its annex under 'Дата подписания 23 марта 2018 г. Опубликован 24 марта 2018 г.': 73,578,992 voters took part in the voting, and 'Путина Владимира Владимировича', with 56,430,712 votes (76.69 per cent), is deemed elected President of the Russian Federation.",
+      "locator": "Issue line; signing and publication lines; points 1-3"
+    },
+    {
+      "claim_id": "ru_rg_152_1255_7_candidate_figures_20180323",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-09",
+      "role_id": "ru_president",
+      "holder_name": "Владимир Владимирович Путин",
+      "printed_name": "ПУТИН Владимир Владимирович",
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "result_figures",
+      "attested_on": "2018-03-23",
+      "text": "The annex gives votes per registered candidate (per cent of voters taking part in the voting): Baburin 479,013 (0.65), Grudinin 8,659,206 (11.77), Zhirinovsky 4,154,985 (5.65), Putin 56,430,712 (76.69), Sobchak 1,238,031 (1.68), Suraikin 499,342 (0.68), Titov 556,801 (0.76), Yavlinsky 769,644 (1.05).",
+      "locator": "Annex (Приложение)"
+    }
+  ],
+  "bounded_scope": "Presidency observations for CLAUDE-C01-14 only. Election calling, voting, result determination, declaration, correction and publication, oath, stated assumption of office, inauguration ceremony, resignation, acting service and outgoing-holder statements stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-05 RSFSR roles and the USSR packet are outside this extract."
+}

@@ -1,0 +1,63 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_kremlin_news_73981_20240507",
+  "source_url": "https://web.archive.org/web/20250504092901id_/http://www.kremlin.ru/events/president/news/copy/73981",
+  "original_url": "http://www.kremlin.ru/events/president/news/copy/73981",
+  "archive_capture_utc": "2025-05-04T09:29:01Z",
+  "source_title": "President of Russia website: \"Владимир Путин вступил в должность Президента России\", 7 May 2024, 12:45, with Putin's address (text version)",
+  "accessed_date": "2026-09-24",
+  "published_date": "2024-05-07",
+  "document_date": "2024-05-07",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20250504092901id_/http://www.kremlin.ru/events/president/news/copy/73981",
+  "source_response_bytes": 13029,
+  "source_response_sha256": "a55150b95b758046ce44d6c7896019f7bc7d93c84d45a8b0b7ae554f541af56c",
+  "source_response_encoding": "UTF-8 (served uncompressed)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: First retrieved 2026-09-24T22:28Z; re-downloaded 2026-09-24T22:53:32Z and 2026-09-24T23:01:18Z (byte-identical: 13029 bytes, same SHA-256 each time). Raw capture before the cutoff; fixed bytes. Independent check: re-downloaded at 2026-09-24T23:04:57Z-23:07:53Z and again at 23:39:47Z-23:45:56Z; identical bytes and SHA-256 both times. This packet: re-downloaded at 2026-09-25T00:41:48Z (13,029 bytes); identical SHA-256.",
+  "alternate_responses": [
+    {
+      "url": "http://kremlin.ru/events/president/news/copy/73981",
+      "bytes": 13029,
+      "sha256": "70846b11eedb12a1f00314f4c1fe2eb181909430f110a4d9bb89c68121080cb8",
+      "note": "Live text version (HTTP); differs from the 2025-05-04 capture only in the item_copy.js build hash (10 bytes). The later capture 20250919051819 is served gzip-encoded (5,294 bytes as transferred, sha256 0aa311aba4319974aaf9f1831b2fcfba408fa838311b2ff0ba946fa5d78ccb1b) and decodes to bytes identical to the live text version (13,029 bytes, 70846b11...); it is not the recorded response because clients differ in decoding it. An alternate live response only, never the recorded identity: it carries a changing site template and may drift; identical on this packet's retrieval at 2026-09-25T00:41:50Z."
+    }
+  ],
+  "provenance_note": "Raw Internet Archive capture (id_ form) of http://www.kremlin.ru/events/president/news/copy/73981, captured at 2025-05-04T09:29:01Z, before the 7 September 2026 cutoff; the id_ form replays the archived bytes unchanged and is used because kremlin.ru refused HTTPS from this environment and its live pages carry a changing site template (footer year, menus, promoted blocks), so the live page is not a stable identity. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The text version (/copy/) of the item stamped 7 May 2024, 12:45, with Putin's address, captured 4 May 2025. The later capture 20250919051819 is stored gzip-encoded and is not the recorded identity.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Text read in full."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_kremlin_putin_oath_20240507",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-10",
+      "role_id": "ru_president",
+      "holder_name": "Владимир Владимирович Путин",
+      "printed_name": "Владимир Путин",
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "oath_of_office",
+      "attested_on": "2024-05-07",
+      "text": "In accordance with Article 82 of the Constitution, in the presence of members of the Federation Council, State Duma deputies and Constitutional Court judges, Vladimir Putin took the oath to the people of Russia; in his address he says he has \"just pronounced the words of the presidential oath\".",
+      "locator": "Lead paragraphs 1-3; Putin's address, paragraph 4"
+    },
+    {
+      "claim_id": "ru_kremlin_putin_took_office_20240507",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-10",
+      "role_id": "ru_president",
+      "holder_name": "Владимир Владимирович Путин",
+      "printed_name": "Владимир Путин",
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "assumption_of_office",
+      "attested_on": "2024-05-07",
+      "text": "Headed \"Vladimir Putin took office as President of Russia\", the item states that Constitutional Court Chairman Valery Zorkin announced Putin's assumption of office as President of the Russian Federation, after which the Presidential Regiment was presented to the President and Supreme Commander-in-Chief on the occasion of his taking office.",
+      "locator": "Heading; lead paragraphs 1, 3 and 4"
+    }
+  ],
+  "bounded_scope": "Presidency observations for CLAUDE-C01-14 only. Election calling, voting, result determination, declaration, correction and publication, oath, stated assumption of office, inauguration ceremony, resignation, acting service and outgoing-holder statements stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-05 RSFSR roles and the USSR packet are outside this extract."
+}

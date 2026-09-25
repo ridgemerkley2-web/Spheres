@@ -1,0 +1,58 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_fc_res_528sf_20171215",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102454764&page=1&rdk=0",
+  "source_title": "Resolution of the Federation Council No. 528-SF of 15 December 2017 \"On calling the election of the President of the Russian Federation\" (original edition)",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "document_date": "2017-12-15",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102454764&page=1&rdk=0",
+  "source_response_bytes": 20353,
+  "source_response_sha256": "effab7f8549cfc42bf780e94a14d7fbcd22f5acaef788d110ceab3c46c9f5e3c",
+  "source_response_encoding": "windows-1251 (HTML frame)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: First retrieved 2026-09-24T21:54Z; re-downloaded 2026-09-24T22:47:30Z (byte-identical: 20353 bytes, same SHA-256). Independent check: re-downloaded at 2026-09-24T23:04:57Z-23:07:53Z and with a cache-busting query at 23:34Z; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T00:40:09Z (20,353 bytes); identical SHA-256.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=528-%D1%D4&a8type=1&sort=7&page=firstlast&lstsize=50",
+    "bytes": 46955,
+    "sha256": "6b88f9738262d93c1e0937e2ee5ff5f7014b457d7483eba1faa4f02403249a8a",
+    "note": "Number search listing with status and publication citations."
+  },
+  "facsimile_responses": [
+    {
+      "url": "http://publication.pravo.gov.ru/file/pdf?eoNumber=0001201712180034",
+      "bytes": 65007,
+      "sha256": "2fa290f529eb6e8d37758fe8fee1c1a4f1297fa7f220f1fee730bd03f04fac3f",
+      "note": "One-page PDF (ABBYY FineReader Engine 10), CreationDate 2017-12-18, a stored file; served over HTTP; rendered and viewed.",
+      "pages_viewed": [
+        1
+      ]
+    }
+  ],
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 24 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Read in full. The official-publication section serves a stored facsimile PDF under publication No. 0001201712180034 (CreationDate 18 December 2017), recorded as a facsimile response and viewed: it shows the signed resolution with the same text, date and number. published_date is left null because the publication date is taken only from the portal card.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [
+      1
+    ],
+    "method": "Official HTML text read in full after windows-1251 decoding. The facsimile recorded in facsimile_responses was rendered and viewed."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_fc_528sf_election_called_20171215",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-09",
+      "role_id": "ru_president",
+      "holder_name": null,
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "election_called",
+      "attested_on": "2017-12-15",
+      "text": "The Federation Council calls the election of the President of the Russian Federation for 18 March 2018; in force on official publication. Signed V. I. Matvienko, Moscow, 15 December 2017, No. 528-SF.",
+      "locator": "Points 1-2; signature and date block"
+    }
+  ],
+  "bounded_scope": "Presidency observations for CLAUDE-C01-14 only. Election calling, voting, result determination, declaration, correction and publication, oath, stated assumption of office, inauguration ceremony, resignation, acting service and outgoing-holder statements stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-05 RSFSR roles and the USSR packet are outside this extract."
+}

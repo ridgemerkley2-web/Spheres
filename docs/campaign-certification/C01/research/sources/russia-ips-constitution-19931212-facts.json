@@ -1,0 +1,93 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_const_1993_original",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102027595&page=1&rdk=0",
+  "source_title": "Constitution of the Russian Federation, adopted by popular vote on 12 December 1993 (original edition)",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "document_date": null,
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102027595&page=1&rdk=0",
+  "source_response_bytes": 117303,
+  "source_response_sha256": "5b49db4a3544487690ff68114e1864412c633a4fd12dbf6b7fe7bdf60ed5e5ed",
+  "source_response_encoding": "windows-1251",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded at 2026-09-24T21:51:39Z and again at 2026-09-24T22:36:26Z (at least 28 minutes later); identical 117,303 bytes and SHA-256. Independent check: re-downloaded at 2026-09-24T22:46:25Z-22:47:01Z, 38-58 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T00:32:43Z (117,303 bytes); identical SHA-256.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a7type=1&a7date=12.12.1993&sort=7&page=firstlast&lstsize=200",
+    "bytes": 10151,
+    "sha256": "019a9adf93fbc4a79d28787f4069c9e425aa664a6a897c9675be31a0c847995f",
+    "note": "Portal date-search list for 12.12.1993; the Constitution's entry lists 'Российские вести' and 'Российская газета' of 25.12.1993 and later consolidations."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 24 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Constitution text is procedure only: nothing from it is used as a date, and none of its claims carries a structured date. Read: the heading, Articles 80-82 and 92-93, and Section Two points 1-9. The printed gazette issues of 25 December 1993 were not inspected.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "HTML text read: the heading, Articles 80-82, 92-93 and Section Two points 1-9. No facsimile on the portal."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_const1993_entry_into_force_rule",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-02",
+      "role_id": "ru_president",
+      "holder_name": null,
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "procedure",
+      "attested_on": null,
+      "text": "Section Two, point 1: the Constitution enters into force on the day of its official publication following the popular vote; the day of the popular vote is deemed the day of its adoption; the 1978 Constitution (Basic Law) of the Russian Federation - Russia, as amended, ceases to have effect at the same time.",
+      "locator": "Section Two, point 1"
+    },
+    {
+      "claim_id": "ru_const1993_transitional_president_rule",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-02",
+      "role_id": "ru_president",
+      "holder_name": null,
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "procedure",
+      "attested_on": null,
+      "text": "Section Two, point 3: the President of the Russian Federation elected under the Constitution (Basic Law) of the Russian Federation - Russia exercises, from the day this Constitution enters into force, the powers it establishes until the expiry of the term for which he was elected.",
+      "locator": "Section Two, point 3"
+    },
+    {
+      "claim_id": "ru_const1993_art80_head_of_state",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-02",
+      "role_id": "ru_president",
+      "holder_name": null,
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "procedure",
+      "attested_on": null,
+      "text": "Article 80(1): the President of the Russian Federation is the head of state; Article 80(4) adds that as head of state he represents the Russian Federation at home and abroad.",
+      "locator": "Article 80(1), (4)"
+    },
+    {
+      "claim_id": "ru_const1993_oath_and_term_rules",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-02",
+      "role_id": "ru_president",
+      "holder_name": null,
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "procedure",
+      "attested_on": null,
+      "text": "Article 81: four-year term, not more than two consecutive terms. Article 82: on assuming office the President takes the printed oath to the people, in a solemn setting in the presence of members of the Federation Council, State Duma deputies and Constitutional Court judges. Article 92(1): the President begins to exercise his powers from the moment of taking the oath and ceases when the newly elected President takes the oath; 92(2) early cessation on resignation, persistent incapacity or removal; 92(3) the Chairman of the Government temporarily performs the duties.",
+      "locator": "Articles 81, 82, 92"
+    },
+    {
+      "claim_id": "ru_portal_const1993_publication_citation",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-02",
+      "role_id": "ru_president",
+      "holder_name": null,
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "publication_citation",
+      "attested_on": null,
+      "text": "The portal's list entry for the Constitution cites 'Российские вести' and 'Российская газета' of 25.12.1993 as publications.",
+      "locator": "Portal date-search list, entry 4 (card_response)"
+    }
+  ],
+  "bounded_scope": "Presidency observations for CLAUDE-C01-14 only. Election calling, voting, result determination, declaration, correction and publication, oath, stated assumption of office, inauguration ceremony, resignation, acting service and outgoing-holder statements stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-05 RSFSR roles and the USSR packet are outside this extract."
+}

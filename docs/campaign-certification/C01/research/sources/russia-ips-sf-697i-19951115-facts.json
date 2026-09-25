@@ -1,0 +1,45 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_sf_res_697i_19951115",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102038135&page=1&rdk=0",
+  "source_title": "Resolution of the Federation Council No. 697-I SF of 15 November 1995 'On calling the election of the President of the Russian Federation' (original edition)",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "document_date": "1995-11-15",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102038135&page=1&rdk=0",
+  "source_response_bytes": 7748,
+  "source_response_sha256": "d173929bbf18b58cdc30ed3c207a2dc01f13f317358d132a192e25c4c12a78b5",
+  "source_response_encoding": "windows-1251 HTML, served without Content-Encoding",
+  "source_response_checked_in": false,
+  "stability_check": "Found by the independent check: first downloaded at 2026-09-24T22:51-22:53Z, again with a cache-busting query (&cb=20260924x) at 22:58Z, and re-downloaded at 23:24:59Z (32-34 minutes later); identical bytes and SHA-256 each time. This packet: re-downloaded at 2026-09-25T00:33:18Z (7,748 bytes); identical SHA-256.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a7type=1&a7date=15.11.1995&sort=7&page=firstlast&lstsize=200",
+    "bytes": 135597,
+    "sha256": "ca463b87eb994a086aa975e4fc69fa04ac6a359df95861c4b9965820a46a20aa",
+    "note": "Portal date-search list for 15.11.1995 carrying the card for 697-I SF; identical on the check's two retrievals and on this packet's."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 24 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Read in full (one operative point and the signature block). Cited in determination 134-O. It schedules the vote and attests nothing about the voting or the result.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Official HTML text read in full after windows-1251 decoding; the portal offers no facsimile for 1995 acts."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_sf_697i_election_called_19951115",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-03",
+      "role_id": "ru_president",
+      "holder_name": null,
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "election_called",
+      "attested_on": "1995-11-15",
+      "text": "Citing Article 81 and Article 102(1)(d) of the Constitution and Article 4 of the federal law on the election of the President, the Federation Council calls the election of the President of the Russian Federation for 16 June 1996. Signed V. F. Shumeiko, Chairman of the Federation Council, Moscow, 15 November 1995, No. 697-I SF.",
+      "locator": "Operative point; signature and date block"
+    }
+  ],
+  "bounded_scope": "Presidency observations for CLAUDE-C01-14 only. Election calling, voting, result determination, declaration, correction and publication, oath, stated assumption of office, inauguration ceremony, resignation, acting service and outgoing-holder statements stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-05 RSFSR roles and the USSR packet are outside this extract."
+}

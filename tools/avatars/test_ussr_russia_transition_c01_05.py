@@ -120,9 +120,13 @@ def holders(packet):
 def inference_problems(ussr, russia):
     """Guards this packet adds on top of the validator: no inferred ends, no collapsed start, no mapping."""
     problems = []
+    # Every role of the USSR Presidency and both RSFSR roles this packet added never carry an end. CLAUDE-C01-14 later
+    # added ru_president to ru_rsfsr_presidency, with source-stated ends pinned in test_russia_presidents_c01_14.
     for packet in (ussr, russia):
         for entry, role, holder in holders(packet):
-            if entry['id'] in {'su_presidency', 'ru_rsfsr_presidency'} and holder.get('until') is not None:
+            guarded = entry['id'] == 'su_presidency' or (
+                entry['id'] == 'ru_rsfsr_presidency' and role['id'] in {'ru_rsfsr_president', 'ru_rsfsr_vice_president'})
+            if guarded and holder.get('until') is not None:
                 problems.append(f"inferred end on {role['id']}: {holder['name']}")
     presidency = next(e for e in russia['institutions'] if e['id'] == 'ru_rsfsr_presidency')
     if presidency['lifecycle']['from'] is not None:
@@ -250,8 +254,10 @@ class UssrRussiaTransitionTests(unittest.TestCase):
                          {'su_presidency', 'su_congress_peoples_deputies', 'su_supreme_soviet'})
         self.assertEqual([e['id'] for e in self.russia['institutions'] if not e['id'].startswith('ru_duma_faction_')],
                          ['ru_rsfsr_presidency'])
-        self.assertEqual([r['id'] for r in self.presidency['roles']], ['ru_rsfsr_president', 'ru_rsfsr_vice_president'])
-        self.assertEqual({r['kind'] for r in self.presidency['roles']}, {'institutional_office'})
+        # CLAUDE-C01-14 appended ru_president (head_of_state); the two RSFSR roles stay institutional offices.
+        self.assertEqual([r['id'] for r in self.presidency['roles']], ['ru_rsfsr_president', 'ru_rsfsr_vice_president', 'ru_president'])
+        self.assertEqual({r['kind'] for r in self.presidency['roles'][:2]}, {'institutional_office'})
+        self.assertEqual(self.presidency['roles'][2]['kind'], 'head_of_state')
         # Russia cites only Russia sources; the rename supports the filing, the signed title does not.
         for sid in self.presidency['sources']:
             self.assertTrue(sid.startswith('ru_'), sid)

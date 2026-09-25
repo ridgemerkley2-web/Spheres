@@ -1,0 +1,82 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_kremlin_news_15224_20120507",
+  "source_url": "https://web.archive.org/web/20251012044258id_/http://kremlin.ru/events/president/news/copy/15224",
+  "original_url": "http://kremlin.ru/events/president/news/copy/15224",
+  "archive_capture_utc": "2025-10-12T04:42:58Z",
+  "source_title": "President of Russia website: \"Владимир Путин вступил в должность Президента России\" (Vladimir Putin took office as President of Russia), 7 May 2012, 12:30, with transcript (text version)",
+  "accessed_date": "2026-09-24",
+  "published_date": "2012-05-07",
+  "document_date": "2012-05-07",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20251012044258id_/http://kremlin.ru/events/president/news/copy/15224",
+  "source_response_bytes": 16063,
+  "source_response_sha256": "1c0d7d4e272d4c34aeecbbffe07083531993bcec7b142dadec2839b1996348ef",
+  "source_response_encoding": "UTF-8",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: First retrieved 2026-09-24T22:24Z; re-downloaded 2026-09-24T22:52:21Z and 2026-09-24T23:01:15Z (byte-identical: 16063 bytes, same SHA-256 each time). Raw capture before the cutoff, identical to the live text version. Independent check: re-downloaded at 2026-09-24T23:04:57Z-23:07:53Z and again at 23:39:47Z-23:45:56Z; identical bytes and SHA-256 both times. This packet: re-downloaded at 2026-09-25T00:39:04Z (16,063 bytes); identical SHA-256.",
+  "alternate_responses": [
+    {
+      "url": "http://kremlin.ru/events/president/news/copy/15224",
+      "bytes": 16063,
+      "sha256": "1c0d7d4e272d4c34aeecbbffe07083531993bcec7b142dadec2839b1996348ef",
+      "note": "Live text version (HTTP) on 24 September 2026: byte-identical to the 2025-10-12 capture. An alternate live response only, never the recorded identity: it carries a changing site template and may drift; not reproduced on this packet's retrieval (connection refused or a changed page)."
+    },
+    {
+      "url": "http://kremlin.ru/events/president/news/15224",
+      "bytes": 57968,
+      "sha256": "61bb300b7bd0e85284fabdf99fdcbe65f77772daa72ef95c0706a7a17290bd3f",
+      "note": "Live full page; shows speakers with their current titles (e.g. Medvedev as Deputy Chairman of the Security Council), so not used. An alternate live response only, never the recorded identity: it carries a changing site template and may drift; not reproduced on this packet's retrieval (connection refused or a changed page)."
+    }
+  ],
+  "provenance_note": "Raw Internet Archive capture (id_ form) of http://kremlin.ru/events/president/news/copy/15224, captured at 2025-10-12T04:42:58Z, before the 7 September 2026 cutoff; the id_ form replays the archived bytes unchanged and is used because kremlin.ru refused HTTPS from this environment and its live pages carry a changing site template (footer year, menus, promoted blocks), so the live page is not a stable identity. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The text version (/copy/) of the item stamped 7 May 2012, 12:30, with the ceremony transcript, captured 12 October 2025; the live text version was byte-identical. The live full page shows speakers with current titles and is not used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Text read in full; photographs and video not reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_kremlin_medvedev_concluding_presidency_20120507",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-08",
+      "role_id": "ru_president",
+      "holder_name": "Дмитрий Анатольевич Медведев",
+      "printed_name": "Д.Медведев",
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "outgoing_holder_statement",
+      "attested_on": "2012-05-07",
+      "text": "Speaking first at the ceremony, D. Medvedev says that on \"completing my work in the post of head of state\" he thanks those who supported him, and that \"today Vladimir Vladimirovich Putin will become President\".",
+      "locator": "Transcript after '* * *': Medvedev's address, final paragraphs"
+    },
+    {
+      "claim_id": "ru_kremlin_putin_oath_20120507",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-08",
+      "role_id": "ru_president",
+      "holder_name": "Владимир Владимирович Путин",
+      "printed_name": "Владимир Владимирович Путин",
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "oath_of_office",
+      "attested_on": "2012-05-07",
+      "text": "Citing Article 82(1) of the Constitution, Zorkin asks Vladimir Vladimirovich Putin to take the oath, and Putin recites the presidential oath; the lead says the President-elect took the oath of loyalty to the people of Russia.",
+      "locator": "Lead paragraph 3; transcript: Zorkin's invitation and Putin's oath"
+    },
+    {
+      "claim_id": "ru_kremlin_zorkin_putin_took_office_20120507",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-08",
+      "role_id": "ru_president",
+      "holder_name": "Владимир Владимирович Путин",
+      "printed_name": "Владимир Владимирович Путин",
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "assumption_of_office",
+      "attested_on": "2012-05-07",
+      "text": "After the oath Zorkin declares: \"Vladimir Vladimirovich Putin has taken office as President of Russia\"; the item is headed \"Vladimir Putin took office as President of Russia\" and says Zorkin announced his assumption of office as head of the Russian state. Putin then speaks \"on taking office as President of the Russian Federation\".",
+      "locator": "Heading; lead paragraph 3; transcript: Zorkin's declaration and opening of Putin's address"
+    }
+  ],
+  "bounded_scope": "Presidency observations for CLAUDE-C01-14 only. Election calling, voting, result determination, declaration, correction and publication, oath, stated assumption of office, inauguration ceremony, resignation, acting service and outgoing-holder statements stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-05 RSFSR roles and the USSR packet are outside this extract."
+}
