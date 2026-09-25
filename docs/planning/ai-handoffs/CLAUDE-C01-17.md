@@ -76,7 +76,7 @@ Hamilton Mourão 2019; Geraldo Alckmin 2023. No reviewed primary source states t
 vacancy of the Vice-Presidency, so no end and no vacancy is recorded; the vacancies declared on 29 December 1992 and
 31 August 2016 are the Presidency's. The Vice-President's exercise of the Presidency (1985, 1991, 1992, 2016, 2022,
 2026), his succession to it, elections, diplomações, oaths and retrospective spans are claims only. CLAUDE-C01-10's
-`br_president` role, twelve holders and 112 claims are unchanged; 13 of its claims are cited on the new role.
+`br_president` role, twelve holders and 112 claims are unchanged; 12 of its claims are cited on the new role.
 
 Observation decisions:
 

@@ -46,7 +46,8 @@ RESPONSES = {
 }
 NEW_SOURCES = list(RESPONSES)
 # CLAUDE-C01-10 sources whose recorded response also carries Vice-President claims: the claims are added to the
-# same source record (no second record for the same response), and the identity stays CLAUDE-C01-10's.
+# same source record, and the identity stays CLAUDE-C01-10's. The one new record of an already-recorded response,
+# br_cn_dcn1_20230102_p20_26, covers DCN 1/2023 pages outside CLAUDE-C01-10's two page-scoped records of that issue.
 SHARED = {
     'br_dcn_08_19900316':
         (1255764, '838abf03a2ef59781aabc66121dd9fd938ed78ebd15df36a6f0c02c70c7b6645'),
@@ -255,19 +256,19 @@ C01_17_CLAIMS = list(EVENTS)
 # CLAUDE-C01-10 claims cited on br_vice_president: not duplicated, not re-keyed; their rows stay br_president.
 CITED = ('br_tse_diplomacao_ceremony_catalogued_19891230', 'br_vice_president_instructed_to_assume_19921001',
          'br_itamar_states_exercise_from_19921002', 'br_itamar_exercising_signs_lei_8471_19921007',
-         'br_bibpr_itamar_phase_19921002_period_19921229', 'br_radio_senado_notifications_served_20160512',
+         'br_bibpr_itamar_phase_19921002_period_19921229',
          'br_senate_record_vp_notified_20160512', 'br_temer_vp_in_exercise_mpv726_20160512',
          'br_dou_masthead_temer_vp_in_exercise_20160831', 'br_mensagem144_to_vp_in_exercise_20160831',
          'br_dcn_vp_in_exercise_at_posse_opening_20160831', 'br_mourao_vp_in_exercise_d11322_20221230',
          'br_mourao_vp_in_exercise_d11324_20221231')
 CITED_KINDS = {'diplomacao_ceremony', 'vice_president_notified_to_exercise', 'vice_president_exercise_start',
-               'vice_president_exercising_office', 'retrospective_term_span', 'summons_served_report'}
+               'vice_president_exercising_office', 'retrospective_term_span'}
 VP_SOURCES = [
     'br_tse_catalogue_diplomacao_1989', 'br_dcn_08_19900316', 'br_senado_autos_impeachment_vol1',
     'br_planalto_lei_8471_19921007', 'br_dcn_70_19921230', 'br_bibpr_collor_page_2016', 'br_bibpr_itamar_page_2016',
     'br_dcn_1_1995_posse_19950101', 'br_dcn_1_1999_posse_19990101', 'br_dcn_1_2003_posse_20030101',
     'br_dcn_1_2007_posse_20070101', 'br_dcn_1_2011_posse_20110101', 'br_dcn_1_2015_posse_20150101',
-    'br_radio_senado_notifications_20160512', 'br_senado_den1_2016_materia_20260508', 'br_planalto_mpv726_20160512',
+    'br_senado_den1_2016_materia_20260508', 'br_planalto_mpv726_20160512',
     'br_senado_den1_2016_dou_20160831_extra', 'br_senado_den1_2016_mensagem144', 'br_cn_dcn15_20160901',
     'br_cn_dcn1_20190102_p5_11', 'br_cn_dcn1_20190102_full', 'br_planalto_d11322_20221230',
     'br_planalto_d11324_20221231', 'br_cn_dcn1_20230102_p1_8'] + NEW_SOURCES
@@ -495,7 +496,7 @@ class BrazilVicePresidentsTests(unittest.TestCase):
     def test_new_records_are_bounded_and_every_claim_is_classified(self):
         ids = self.validate()
         self.assertEqual(tuple(len(ids[k]) for k in ('entries', 'sources', 'claims', 'roles')), (32, 64, 231, 2))
-        self.assertEqual((len(NEW_SOURCES), len(C01_17_CLAIMS), len(CITED)), (11, 85, 13))
+        self.assertEqual((len(NEW_SOURCES), len(C01_17_CLAIMS), len(CITED)), (11, 85, 12))
         self.assertEqual([s['id'] for s in self.packet['sources']][-len(NEW_SOURCES):], NEW_SOURCES)
         self.assertEqual(len(self.packet['sources']), ORIGINAL_SOURCE_COUNT + C01_10_SOURCE_COUNT + len(NEW_SOURCES))
         # Claims on responses CLAUDE-C01-10 already records are appended to those source records, after its own.
@@ -517,11 +518,11 @@ class BrazilVicePresidentsTests(unittest.TestCase):
         self.assertEqual(self.presidency['sources'], self.c01_10_sources + NEW_SOURCES)
         self.assertEqual(self.president['claim_ids'], c01_10_claims)
         self.assertEqual(self.president['sources'], self.c01_10_sources)
-        # The Vice-President role cites every new claim and the thirteen CLAUDE-C01-10 claims, in packet order.
+        # The Vice-President role cites every new claim and the twelve CLAUDE-C01-10 claims, in packet order.
         wanted = set(C01_17_CLAIMS) | set(CITED)
         self.assertEqual(self.vice['claim_ids'],
                          [c['id'] for s in self.packet['sources'] for c in s['claims'] if c['id'] in wanted])
-        self.assertEqual(len(self.vice['claim_ids']), 98)
+        self.assertEqual(len(self.vice['claim_ids']), 97)
         self.assertEqual(self.vice['sources'], VP_SOURCES)
         for cid in CITED:
             self.assertIn(cid, c01_10_claims)
@@ -530,7 +531,7 @@ class BrazilVicePresidentsTests(unittest.TestCase):
         # Every Vice-President claim is a holder claim or a claim that never feeds a holder, never both.
         holder_claims = {cid for ids_ in HOLDER_CLAIMS for cid in ids_}
         never = set(self.vice['claim_ids']) - holder_claims
-        self.assertEqual((len(holder_claims), len(never)), (28, 70))
+        self.assertEqual((len(holder_claims), len(never)), (28, 69))
         self.assertTrue(holder_claims <= set(C01_17_CLAIMS))
         for cid in never:
             self.assertIn(self.rows[cid]['event_kind'], CLAIM_ONLY_KINDS | CITED_KINDS, cid)

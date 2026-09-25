@@ -12,7 +12,7 @@ ten observations from 1 January 1990 to the cutoff: the office when the period o
 15 March 1990, his exercise of the Presidency and succession in 1992, the posses of 1995, 1999, 2003, 2007, 2011 and
 2015, Michel Temer's interim exercise and succession in 2016, the posses of 2019 and 2023, and an official attestation
 of the Vice-President in office in 2026. It adds 11 sources and 85 claims (61 of them appended to 13 source records
-whose responses CLAUDE-C01-10 already records), cites 13 CLAUDE-C01-10 claims on the new role, and records nine
+whose responses CLAUDE-C01-10 already records), cites 12 CLAUDE-C01-10 claims on the new role, and records nine
 holder observations, a role scope note, two institution coverage notes and one packet coverage note. CLAUDE-C01-10's
 `br_president` role, its twelve holders and its 112 claims are unchanged; no Vice-President exercising the Presidency
 becomes a holder of either role. It adds no organization, game mapping, lifespan, portrait or avatar. The parent scope
@@ -117,7 +117,7 @@ CLAUDE-C01-10's, cited on this role.
 | 1 Jan 2011 | Oath; posse declared; termo; styled after the posse; Rousseff's tribute to Alencar | `br_temer_vp_oath_before_congress_20110101`, `br_temer_vp_posse_declared_20110101`, `br_temer_vp_termo_de_posse_20110101`, `br_temer_vp_styled_after_posse_20110101`; Temer `from`; `br_alencar_tribute_rousseff_address_20110101` (claim only) |
 | 26 Oct 2014 / 18 Dec 2014 | Temer re-elected; TSE diploma | `br_temer_vp_reelected_20141026`, `br_temer_vp_diplomado_tse_20141218` |
 | 1 Jan 2015 | Oath; posse declared; termo; styled after the posse | `br_temer_vp_oath_before_congress_20150101`, `br_temer_vp_posse_declared_20150101`, `br_temer_vp_termo_de_posse_20150101`, `br_temer_vp_styled_after_posse_20150101`; Temer `from` |
-| 12 May 2016 | Mandado de Notificação; its signed copy filed; notification served (report); MP 726 by the Vice-President in exercise; the matter page's record | `br_temer_notified_to_assume_interim_20160512`, `br_temer_vp_notification_filed_signed_20160512`, `br_radio_senado_notifications_served_20160512` (C01-10), `br_temer_vp_in_exercise_mpv726_20160512` (C01-10), `br_senate_record_vp_notified_20160512` (C01-10) (claims only) |
+| 12 May 2016 | Mandado de Notificação; its signed copy filed; MP 726 by the Vice-President in exercise; the matter page's record | `br_temer_notified_to_assume_interim_20160512`, `br_temer_vp_notification_filed_signed_20160512`, `br_temer_vp_in_exercise_mpv726_20160512` (C01-10), `br_senate_record_vp_notified_20160512` (C01-10) (claims only) |
 | 31 Aug 2016 | DOU masthead, Mensagem 144 and the posse session's opening name the Vice-President in exercise; termo of his posse as President under Article 79 | `br_dou_masthead_temer_vp_in_exercise_20160831`, `br_mensagem144_to_vp_in_exercise_20160831`, `br_dcn_vp_in_exercise_at_posse_opening_20160831` (C01-10), `br_temer_vp_succeeds_art79_termo_20160831` (claims only, never an end) |
 | 28 Oct 2018 / 10 Dec 2018 | Mourão elected; TSE diploma | `br_mourao_elected_20181028`, `br_mourao_diplomado_tse_20181210` |
 | 1 Jan 2019 | Oath and signed termo de compromisso; posse declared; termo read and signed; saluted | `br_mourao_oath_before_congress_20190101`, `br_mourao_termo_de_compromisso_20190101`, `br_mourao_posse_declared_20190101`, `br_mourao_termo_read_20190101`, `br_mourao_signed_termo_de_posse_20190101`, `br_mourao_saluted_vice_president_bolsonaro_address_20190101`; Mourão `from` |
@@ -177,8 +177,9 @@ of the session were not found.
 ### BR-VP-03 — 1991-1992: exercise of the Presidency and succession
 
 Evidence: an unnumbered decree of 11 December 1991 is issued by "O VICE-PRESIDENTE DA REPÚBLICA, no exercício do cargo
-de PRESIDENTE DA REPÚBLICA" and signed Itamar Franco (`br_itamar_vp_exercising_dnn428_19911211`), the only primary act
-found for him between March 1990 and October 1992. In 1992 the Senate's message of 1 October told him to assume the
+de PRESIDENTE DA REPÚBLICA" and signed Itamar Franco (`br_itamar_vp_exercising_dnn428_19911211`), the only such act
+imported for him between March 1990 and October 1992 (Decree No. 363 of 12 December 1991, in the same form, is a lead).
+In 1992 the Senate's message of 1 October told him to assume the
 Presidency immediately (`br_vice_president_instructed_to_assume_19921001`), his own declaration of 29 December dates his
 exercise from 2 October (`br_itamar_states_exercise_from_19921002`), and he signed Law No. 8.469 on 5 October and Law
 No. 8.471 on 7 October as Vice-President in exercise (`br_itamar_vp_exercising_lei_8469_19921005`,
@@ -264,12 +265,13 @@ Evidence: the Senate's complete case file of Denúncia nº 1/2016, volume 48, fi
 the Senate, telling him to assume the Presidency "imediata e interinamente" under Article 79
 (`br_temer_notified_to_assume_interim_20160512`), and the Termo de Juntada of the same day certifying that the copy was
 "assinado por S.Exa. no anverso" (`br_temer_vp_notification_filed_signed_20160512`; check C2). CLAUDE-C01-10's claims
-record the service of the notification, the matter page's entry, MP 726 adopted as Vice-President in exercise, and on
+record the matter page's entry, MP 726 adopted as Vice-President in exercise, and on
 31 August the DOU masthead, Mensagem 144 and the posse session's opening styling him Vice-President in exercise
-(`br_radio_senado_notifications_served_20160512`, `br_senate_record_vp_notified_20160512`,
+(`br_senate_record_vp_notified_20160512`,
 `br_temer_vp_in_exercise_mpv726_20160512`, `br_dou_masthead_temer_vp_in_exercise_20160831`,
 `br_mensagem144_to_vp_in_exercise_20160831`, `br_dcn_vp_in_exercise_at_posse_opening_20160831`); they are cited, not
-duplicated. The termo read into DCN nº 15/2016 records "o Senhor Michel Temer, Vice-Presidente da República" invested as
+duplicated. CLAUDE-C01-10's Rádio Senado report of the notification's service is a news item and a lead here, not cited.
+The termo read into DCN nº 15/2016 records "o Senhor Michel Temer, Vice-Presidente da República" invested as
 President under Article 79 by virtue of the vacancy that occurred on 31 August 2016
 (`br_temer_vp_succeeds_art79_termo_20160831`); in the minutes the declaration of posse as President precedes the reading
 (check C5). The Vice-Presidency's profile gives his span as 01/01/2011 to 31/08/2016 and its chronology draws an
@@ -523,8 +525,8 @@ live Planalto or gov.br page and no cache-busting query is part of any recorded 
 | B6 | Wrong failure reason for vicepresidencia.gov.br | **Applied**: recorded as a DNS failure (curl exit 6) |
 | C1 | BR-VP-10 missed Laws No. 15.435 and 15.436 of 17 June 2026 | **Applied**: Law No. 15.436 imported as the latest attestation; Law No. 15.434's uncertainty, the observation and the method corrected; Law No. 15.435 is a lead (no capture, live page per request) |
 | C2 | The stored case-file copy of the notification was not used | **Applied**: volume 48 imported (fl. 18.146 and the Termo de Juntada at fl. 18.147); the lower signature is identified; the live image is a lead |
-| C3 | A new notification kind duplicating CLAUDE-C01-10's and merging issue and service | **Applied**: the mandado is `vice_president_notified_to_exercise`; the filing is `vice_president_notification_receipt_filed`; the service report is CLAUDE-C01-10's `summons_served_report`, cited |
-| C4 | Rádio Senado claim: a news item, and "removal" for "afastamento" | **Resolved by removal**: the duplicate claim is withdrawn and CLAUDE-C01-10's claim is cited; the same wording in CLAUDE-C01-10's own claim is left to that packet (see Integration notes) |
+| C3 | A new notification kind duplicating CLAUDE-C01-10's and merging issue and service | **Applied**: the mandado is `vice_president_notified_to_exercise`; the filing is `vice_president_notification_receipt_filed`; the service report is CLAUDE-C01-10's `summons_served_report`, a news item not cited on this role (C4) |
+| C4 | Rádio Senado claim: a news item, and "removal" for "afastamento" | **Resolved by removal**: the duplicate claim is withdrawn and CLAUDE-C01-10's news-item claim is not cited on this role (the notification rests on volume 48 and the matter page); the same wording in CLAUDE-C01-10's own claim is left to that packet (see Integration notes) |
 | C5 | Temer's succession claim put the declaration after the termo | **Applied**: the claim records the termo only (pdf pp. 4-5 read, p. 6 signed) and says the declaration preceded it |
 | C6 | Chronology footnote on the wrong page | **Applied**: locators give pdf pp. 6-7 with footnote (1) on p. 7 |
 | C7 | Election claims also stated the diplomação | **Applied**: both trimmed to the election |
@@ -586,10 +588,13 @@ These are proposals for the integrator. They are not created in `work-orders.jso
 - **Stack, base and claim:** `claude/c01-br-17` is stacked on `claude/c01-br-10` at `73e5fd36`; the base branch was
   fetched on 24 September 2026 and had no commits beyond the stack point, so no merge was needed. Claim commit
   `774af12d` holds only the handoff. **Merge CLAUDE-C01-10 first.** This packet extends CLAUDE-C01-10's files:
-  `brazil.json`, thirteen of its extracts, `test_brazil_presidents_c01_10.py` and `test_brazil_research_s10f.py`. Every
-  change to them is additive (claims, rows and array entries appended; one role appended; two institution and one packet
-  coverage notes inserted; snapshot values updated), so a CLAUDE-C01-10 fix made during review can be merged by keeping
-  both sides and re-running the checks.
+  `brazil.json`, thirteen of its extracts, `test_brazil_presidents_c01_10.py` and `test_brazil_research_s10f.py`. The
+  changes to `brazil.json` are additive (claims and array entries appended; one role appended; two institution and one
+  packet coverage notes inserted; snapshot values updated). In the thirteen extracts rows and
+  `c01_17_pdf_pages_one_based` are added and the provenance note and `visual_review.method` are extended, but each
+  `bounded_scope` is rewritten to name both packets' rows (C13); in the two tests the pinned lines listed below are
+  re-expressed. A CLAUDE-C01-10 fix to any of those strings or lines needs a manual merge; otherwise keep both sides and
+  re-run the checks.
 - `research-index.json` is regenerated in a **separate commit**, and it is **the only file shared with other pending
   packets** (the parallel C01 packets touch other countries' packets). New totals against `73e5fd36`: 220 sources and
   1,959 claims (previously 209 and 1,874); 28 institution observations (unchanged); Brazil has one institution, two role
