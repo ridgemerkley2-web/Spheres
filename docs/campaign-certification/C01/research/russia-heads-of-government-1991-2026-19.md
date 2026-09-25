@@ -370,7 +370,7 @@ holder date.
 ## Sources added
 
 102 sources, each with a checked-in derived factual extract under [sources/](sources/) (`russia-*-facts.json`, LF,
-format `spheres-c01-derived-factual-table/v1`, with its own checksum in the packet; 542,598 bytes in all). Each
+format `spheres-c01-derived-factual-table/v1`, with its own checksum in the packet; 542,705 bytes in all). Each
 extract records the original response's URL, byte count and SHA-256, the attached responses, a stability record and one
 row per claim (claim_id, observation, role, `holder_name` and the printed form, role title, event kind, date, text,
 locator). Original pages and PDFs are not checked in; no emblem, seal, signature image or photograph is republished.
@@ -428,7 +428,7 @@ locator). Original pages and PDFs are not checked in; no emblem, seal, signature
 | `ru_ukaz_834_20000507` | [Decree 834, 7 May 2000](https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102065739&page=1&rdk=0) | HTTP, 23,925 bytes, `80c52749…e34d26`; card 3,153 `896f756c` |
 | `ru_ukaz_836_20000507` | [Decree 836, 7 May 2000](https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102065741&page=1&rdk=0) | HTTP, 24,049 bytes, `9a8bab10…d04468`; card 3,201 `4a781f04` |
 | `ru_kremlin_news_38132_20000510` | [Kremlin news 38132, 10 May 2000](https://web.archive.org/web/20260513105913id_/http://kremlin.ru/events/president/news/38132) | IA 20260513105913, 34,798 bytes, `e2f76cc3…719136` |
-| `ru_duma_363iii_20000517` | [State Duma resolution 363-IIi, 17 May 2000](https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102065777&page=1&rdk=0) | HTTP, 8,290 bytes, `9b3b03c3…9d91db`; card 3,197 `09c112d8` |
+| `ru_duma_363iii_20000517` | [State Duma resolution 363-III, 17 May 2000](https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102065777&page=1&rdk=0) | HTTP, 8,290 bytes, `9b3b03c3…9d91db`; card 3,197 `09c112d8` |
 | `ru_ukaz_861_20000517` | [Decree 861, 17 May 2000](https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102065790&page=1&rdk=0) | HTTP, 23,705 bytes, `3ae314db…ebda25`; card 3,128 `864f0b2b` |
 | `ru_kremlin_news_38171_20000517` | [Kremlin news 38171, 17 May 2000](https://web.archive.org/web/20250425232300id_/http://kremlin.ru/events/president/news/38171) | IA 20250425232300, 36,843 bytes, `a2ad8116…f8ce35` |
 | `ru_ukaz_264_20040224` | [Decree 264, 24 Feb 2004](https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102085491&page=1&rdk=0) | HTTP, 20,097 bytes, `e9464945…9d45d4`; card 3,043 `723e3bd4` |

@@ -733,6 +733,12 @@ class RussianHeadsOfGovernmentTests(unittest.TestCase):
                 self.assertEqual(row['role_title'], ROLE_TITLE, cid)
             if kind in BODY_KINDS - {'dismissal_reference', 'resignation_proposed'}:
                 self.assertIsNone(row['holder_name'], cid)
+        # Rows whose source names nobody carry no holder: the body-level kinds and exactly these five context rows.
+        nameless = {'ru_cpd_4063i_secret_ballot_results_approved_19921209', 'ru_cpd_4079i_chairman_selection_procedure_19921212',
+                    'ru_ukaz_1569_chairman_post_vacant_19921215', 'ru_ukaz_287_acting_point_repealed_19980323',
+                    'ru_kremlin_putin_statement_nomination_intention_20040224'}
+        self.assertEqual({cid for cid, row in self.rows.items() if row['holder_name'] is None},
+                         {cid for cid, v in EVENTS.items() if v[1] in BODY_KINDS - {'dismissal_reference', 'resignation_proposed'}} | nameless)
         # One canonical name per person (the C01-14 form for Putin and Medvedev); printed forms kept beside them.
         for row in self.rows.values():
             self.assertIn(row['holder_name'], NAMES | {None}, row['claim_id'])
@@ -874,6 +880,19 @@ class RussianHeadsOfGovernmentTests(unittest.TestCase):
         self.assertEqual((len(data), hashlib.sha256(data).hexdigest()), (source['snapshot']['bytes'], source['snapshot']['sha256']))
         self.assertEqual(data.decode('utf-8'), json.dumps(extract, indent=2, ensure_ascii=False) + '\n')
         self.assertEqual(source['accessed_date'], '2026-09-24')
+        # Removing the two rows and the appended sentences restores the CLAUDE-C01-14 extract byte for byte.
+        base = copy.deepcopy(extract)
+        base['rows'] = rows[:1]
+        base['scope_note'] = base['scope_note'].split(' CLAUDE-C01-19 adds', 1)[0]
+        base['stability_check'] = base['stability_check'].split(' CLAUDE-C01-19: re-downloaded', 1)[0]
+        base['bounded_scope'] = ('Presidency observations for CLAUDE-C01-14 only. Election calling, voting, result determination, '
+                                 'declaration, correction and publication, oath, stated assumption of office, inauguration ceremony, '
+                                 'resignation, acting service and outgoing-holder statements stay separate rows; holder boundaries '
+                                 'are decided in the packet, not by any row. The C01-05 RSFSR roles and the USSR packet are outside '
+                                 'this extract.')
+        original = (json.dumps(base, indent=2, ensure_ascii=False) + '\n').encode('utf-8')
+        self.assertEqual((len(original), hashlib.sha256(original).hexdigest()),
+                         (4123, 'fb7eee63741d0676d52a43c4bc897b6024e92d71f0baccca0a3be6ec68e69ca8'))
 
     def test_secondary_leads_and_volatile_urls_stay_out_of_the_packet(self):
         urls = []

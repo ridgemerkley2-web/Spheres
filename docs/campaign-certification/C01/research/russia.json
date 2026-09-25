@@ -3908,7 +3908,7 @@
       "claims": [
         {
           "id": "ru_kremlin_putin_nominates_kasyanov_20000510",
-          "text": "Item dated 10 May 2000, 14:40: Vladimir Putin sent State Duma Chairman Геннадий Селезнев a letter submitting Mikhail Kasyanov's candidacy for the Duma's consent to his appointment as Chairman of the Government under Article 83 of the Constitution.",
+          "text": "Item dated 10 May 2000, 14:40: Vladimir Putin sent State Duma Chairman Gennady Seleznev (printed 'Геннадию Селезневу', dative) a letter submitting Mikhail Kasyanov's candidacy for the Duma's consent to his appointment as Chairman of the Government under Article 83 of the Constitution.",
           "locator": "Headline, dateline and sole paragraph",
           "attested_on": "2000-05-10",
           "uncertainty": "The Kremlin's report of the submission letter, not the letter itself; the letter's own date and number were not seen."
@@ -3918,8 +3918,8 @@
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/russia-kremlin-news-38132-20000510-facts.json",
         "kind": "derived_factual_extract",
-        "bytes": 4407,
-        "sha256": "e8f77a8ec375bdff5ddb8029264d8fd5d2b74278eebc7e61e9d5b520dbd352ae"
+        "bytes": 4446,
+        "sha256": "f47ba75b7ea5b30709f1ba54377b25e5bca35d15170e30662385399e5bc7e068"
       }
     },
     {
@@ -4348,7 +4348,7 @@
       "claims": [
         {
           "id": "ru_kremlin_putin_nominates_fradkov_20040507",
-          "text": "Item dated 7 May 2004, 15:20: the President sent State Duma Chairman Борис Грызлов a letter submitting Mikhail Fradkov's candidacy for Chairman of the Government to the lower house.",
+          "text": "Item dated 7 May 2004, 15:20: the President sent State Duma Chairman Boris Gryzlov (printed 'Борису Грызлову', dative) a letter submitting Mikhail Fradkov's candidacy for Chairman of the Government to the lower house.",
           "locator": "Headline and dateline (the item has no body text)",
           "attested_on": "2004-05-07",
           "uncertainty": "The Kremlin's report of the letter; the letter itself was not seen."
@@ -4358,8 +4358,8 @@
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/russia-kremlin-news-30892-20040507-facts.json",
         "kind": "derived_factual_extract",
-        "bytes": 4826,
-        "sha256": "3fef6003139a4a6154c702af1f741d874146d098801158c7cfbd4872ca1d7da7"
+        "bytes": 4864,
+        "sha256": "135747ee180fd31526273c5c8ef27feea79b706ce92a28f5b6e0cd0ebd5596c5"
       }
     },
     {
@@ -4490,7 +4490,7 @@
         },
         {
           "id": "ru_ukaz_1184_fradkov_acting_20070912",
-          "text": "Point 2 entrusts the temporary performance of the duties of the Chairman of the Government to Фрадков М.Е. (surname and initials only).",
+          "text": "Point 2 entrusts the temporary performance of the duties of the Chairman of the Government to 'Фрадкова М.Е.' (accusative; surname and initials only).",
           "locator": "Point 2",
           "attested_on": "2007-09-12",
           "uncertainty": "Acting service is a claim only, never a holder; no end is stated here. Surname and initials only."
@@ -4507,8 +4507,8 @@
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/russia-ips-ukaz-1184-20070912-facts.json",
         "kind": "derived_factual_extract",
-        "bytes": 5953,
-        "sha256": "5e3775df5f4a0c9e81ac2c00b4278237ddc550cb5461c33b350779aeaecd0ebc"
+        "bytes": 5969,
+        "sha256": "e05833a7b7e9ceace8b7758c106090f0b119a989aee2981d1dcf6e9a47ec44f2"
       }
     },
     {
@@ -5464,7 +5464,7 @@
       "claims": [
         {
           "id": "ru_kremlin_74009_mishustin_styled_acting_20240510",
-          "text": "The item of 10 May 2024, 12:40, reports that Vladimir Putin met the acting Chairman of the Government (\"исполняющий обязанности Председателя Правительства\"), Mikhail Mishustin.",
+          "text": "The item of 10 May 2024, 12:40, reports that Vladimir Putin met the acting Chairman of the Government (\"исполняющим обязанности Председателя Правительства\", instrumental), Mikhail Mishustin.",
           "locator": "Headline and lead sentence",
           "attested_on": "2024-05-10",
           "uncertainty": "An acting styling on one day: acting service is a claim only, never a holder; no act assigning acting duties was found, and no start or end of acting service is stated."
@@ -5481,8 +5481,8 @@
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/russia-kremlin-news-74009-20240510-facts.json",
         "kind": "derived_factual_extract",
-        "bytes": 5148,
-        "sha256": "6897866fcb3f53155fcca76009ffeb7c84a77925f4bd1b4f16b08cde8d4f639b"
+        "bytes": 5162,
+        "sha256": "5e404cf6af97c26d72d45e2e4c046582aa8725349aeaf2b0df21e06027952fb5"
       }
     },
     {
@@ -5590,7 +5590,7 @@
           "text": "Government resolution No. 1125, dated Moscow, 3 September 2026, is signed \"Председатель Правительства Российской Федерации М.Мишустин\"; officially published on the portal on 4 September 2026 (No. 0001202609040021).",
           "locator": "PDF page 1: heading, date line and signature block",
           "attested_on": "2026-09-03",
-          "uncertainty": "An attestation of Mishustin acting as Chairman four days before the cutoff; not a start, end or term. Printed with an initial only."
+          "uncertainty": "An attestation of Mishustin in office as Chairman (signed as Chairman, not as acting Chairman) four days before the cutoff; not a start, end or term. Printed with an initial only."
         }
       ],
       "scope_note": "Official-publication PDF, rendered and viewed. The official-publication document card (card_response) gives the publication number and date.",

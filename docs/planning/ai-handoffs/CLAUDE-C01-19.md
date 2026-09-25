@@ -97,7 +97,7 @@ Touched paths: this record; `docs/campaign-certification/C01/research/russia.jso
 institution `ru_government` with the role `ru_government_chairman` and fifteen holders, ten institution coverage notes
 and one packet coverage note); 102 new `docs/campaign-certification/C01/research/sources/russia-*-facts.json` extracts;
 **one edited existing extract, `docs/campaign-certification/C01/research/sources/russia-ips-ukaz-1146-19960809-facts.json`**
-(CLAUDE-C01-14; two rows added, scope widened, response identity unchanged); new
+(CLAUDE-C01-14; two rows added, `bounded_scope` widened, one sentence appended to each of `scope_note` and `stability_check`, response identity unchanged); new
 `docs/campaign-certification/C01/research/russia-heads-of-government-1991-2026-19.md`; new
 `tools/avatars/test_russia_heads_of_government_c01_19.py`; `tools/avatars/test_russia_research_s10h.py`,
 `tools/avatars/test_ussr_russia_transition_c01_05.py` and `tools/avatars/test_russia_presidents_c01_14.py` (new exact
