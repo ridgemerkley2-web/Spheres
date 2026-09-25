@@ -8,10 +8,10 @@
     "country_packets": 9,
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 841,
-    "institution_observations": 28,
-    "sources": 234,
-    "source_claims": 1893,
-    "discovery_batches": 92,
+    "institution_observations": 29,
+    "sources": 336,
+    "source_claims": 2046,
+    "discovery_batches": 93,
     "exhaustive_country_censuses": 0
   },
   "interpretation": "Source-backed discovery observations are not verified game parties, complete office histories or permission to create portraits. Reporting years do not establish organization lifespans. Unknown representation is not absence.",
@@ -284,10 +284,10 @@
       "nation": "Russia",
       "packet": "docs/campaign-certification/C01/research/russia.json",
       "organization_observations": 14,
-      "institution_observations": 6,
-      "role_observations": 8,
-      "source_claims": 142,
-      "mapping_pending": 20,
+      "institution_observations": 7,
+      "role_observations": 9,
+      "source_claims": 295,
+      "mapping_pending": 21,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
       "coverage": {
@@ -326,7 +326,8 @@
           "This packet does not establish a September 2026 current roster, complete country census, succession eligibility or artwork completion. No post-cutoff facts or fictional successors are populated.",
           "CLAUDE-C01-05 adds one institution, ru_rsfsr_presidency, from RSFSR acts of 1991. It is filed here because Law 2094-I renamed the RSFSR the Russian Federation; it is not mapped from, and does not continue, the USSR Presidency in ussr.json.",
           "The RSFSR Supreme Soviet, its Chairman and the RSFSR Congress of People's Deputies are not institutions in this packet. Yeltsin's 1991 signatures as Supreme Soviet Chairman and his release from that post on 10 July 1991 are recorded as claims only.",
-          "CLAUDE-C01-14 adds the role ru_president (President of the Russian Federation, head_of_state) to ru_rsfsr_presidency, with seven holder observations from 1996 to 2024 drawn from official records of 1992-2026. It does not change the C01-05 holders, does not merge holders across the RSFSR and Russian Federation titles, records acting service (1999-2000) as claims only and establishes no current roster, succession eligibility or artwork claim."
+          "CLAUDE-C01-14 adds the role ru_president (President of the Russian Federation, head_of_state) to ru_rsfsr_presidency, with seven holder observations from 1996 to 2024 drawn from official records of 1992-2026. It does not change the C01-05 holders, does not merge holders across the RSFSR and Russian Federation titles, records acting service (1999-2000) as claims only and establishes no current roster, succession eligibility or artwork claim.",
+          "CLAUDE-C01-19 adds one institution, ru_government (Government of the Russian Federation), with one role, ru_government_chairman (head_of_government), and fifteen holder observations from 1992 to 2024 drawn from official records of 1991-2026. It does not change the presidency holders, records acting service and the Government's continued duties as claims only, gives no holder an end (no reviewed source states the day a Chairman's office ended) and establishes no current roster, succession eligibility or artwork claim."
         ]
       }
     },
@@ -2413,6 +2414,21 @@
       "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
     },
     {
+      "id": "C01-Russia-DISC-B003",
+      "nation": "Russia",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-Russia-ORG-001",
+        "C01-Russia-ROLE-001"
+      ],
+      "members": [
+        "ru_government"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
       "id": "C01-SaudiArabia-DISC-B001",
       "nation": "SaudiArabia",
       "status": "open",
@@ -2654,8 +2670,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/russia.json",
-      "bytes": 274485,
-      "sha256": "2fdf2dbdac7e476c128214ffba39dadb8e931a1f45665e7df031b9ed190cbb7e"
+      "bytes": 573320,
+      "sha256": "4112e54e00baa71a4360128ad1726385f96bb34e9400430dd8b81d1d814ff6bd"
     },
     {
       "path": "docs/campaign-certification/C01/research/saudi-arabia.json",
