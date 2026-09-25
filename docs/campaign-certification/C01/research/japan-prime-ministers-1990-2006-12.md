@@ -76,7 +76,7 @@ Three refinements apply the same way to every part:
   prints no name, and the only record identifying its speaker is the next day's press conference, so the second
   橋本龍太郎 holder is observed on 8 November 1996 (check B6, the second option). The unnamed statements of 4 July 2000
   and 26 April 2001 and the Imperial Household Agency's schedule rows, which name no appointee, corroborate starts that a
-  named same-day Kantei account already states, and each holder's note cites them.
+  named same-day Kantei account already states; each holder's note cites them, except that the 2005 holder's note cites the agency's named photo page (`jp_kunaicho_ceremony_koizumi_20050921`) rather than the unnamed schedule row (`jp_kunaicho_ceremony_20050921`).
 - **A spoken "today" that its own record contradicts is not an assumption statement.** Obuchi told the press on
   31 July 1998 that "today" he had come to bear responsibility as Prime Minister, and in the same opening remarks that the
   new cabinet was launched the previous day (check B8). The written statements used for starts (11 January 1996, 5 April
@@ -311,7 +311,7 @@ the Kantei's agenda lists the resignation and Hashimoto's statement says the cab
 (`jp_kantei_extraordinary_cabinet_resignation_item_19980730`, `jp_kantei_hashimoto_cabinet_resigned_19980730`). The House of
 Representatives designated 小渕恵三 with 268 of 497 (`jp_hr_designates_obuchi_19980730`); the House of Councillors' first
 ballot gave no majority (小渕恵三 103, 菅直人 98) and the runoff designated 菅直人, 142 to 103
-(`jp_hc_first_ballot_no_majority_19980730`, `jp_hc_designates_kan_runoff_19980730`). The joint committee requested at 15:33
+(`jp_hc_first_ballot_no_majority_19980730`, `jp_hc_designates_kan_runoff_19980730`). The joint committee, whose request the Speaker of the House of Representatives reported on resuming at 15:33,
 voted 9 and 10, neither two-thirds of those present, and reached no agreement (`jp_hr_joint_committee_requested_19980730`,
 `jp_joint_committee_no_agreement_19980730`); both Houses declared that under art. 67(2) the House of Representatives'
 designation became the Diet's resolution, and the Speaker of the House of Representatives alone added that it would be
@@ -838,7 +838,7 @@ Reproducibility traps met and avoided:
 | B9 | The 11 January 1996 page's first cabinet meeting was not recorded | **Applied**: `jp_kantei_first_cabinet_meeting_19960111` added on the role; the page's original Last-Modified (17 January 1996) cited |
 | B10 | The JP-PM-07 summary overstates the report to the Emperor | **Applied**: only the House of Representatives' Speaker announced 奏上; stated in the claim and this report |
 | B11 | Extract phrases the C01-11 tests require | **Applied**: every provenance note carries "not checked into this repository", "derived factual extract", "same byte count and SHA-256" and, for captures, "Raw Internet Archive capture", with the character encoding recorded |
-| C1 | The Imperial Household Agency's dated schedules were missed | **Applied**: eight captures imported as `imperial_appointment_ceremony` claims; the named 2005 photo page is cited by the 2005 Koizumi holder; the unnamed schedule rows and the Abe photo page stay on the role (a holder claim names its holder, check B7) and each holder's note cites them; the "no dated record" statements removed |
+| C1 | The Imperial Household Agency's dated schedules were missed | **Applied**: eight captures imported as `imperial_appointment_ceremony` claims; the named 2005 photo page is cited by the 2005 Koizumi holder; the unnamed schedule rows and the Abe photo page stay on the role (a holder claim names its holder, check B7); the 2000-2003 holders' notes cite their schedule rows, the 2005 note cites the named photo page, and the 2006 records are recorded only as the closing boundary; the "no dated record" statements removed |
 | C2 | Nine claims give a full name the source does not print | **Applied, adapted**: each text now shows the printed form (森内閣総理大臣演説等, 森総理, 小泉総理 and so on) and the uncertainty says where the full name comes from; where a source prints no name at all the row's `holder_name` is null; where it prints a surname the row keeps the holder's single full-name string, as check A4 and the C01-11 rule that every non-null row names a holder require |
 | C3 | The incapacity claim folds in the 19:00 instruction | **Applied**: `jp_obuchi_instruction_to_aoki_1900_20000402` split out (claim only); the intensive-care wording corrected |
 | C4 | Two acting claims each hold two events | **Applied**: the notices of the acting designation split out (`jp_aoki_reports_acting_designation_notified_20000403`, `jp_acting_designation_notice_sent_20000403`) |
