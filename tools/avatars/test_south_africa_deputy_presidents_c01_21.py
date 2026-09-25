@@ -65,7 +65,7 @@ RESPONSES = {
     'za_parliament_atc6_20190612': (67674, 'da17455cd4e2ecf3d29dfcedce97d5cc43d7039f4e962b068e0a33d3c2a9160d'),
     'za_govza_ramaphosa_sona_reply_20230216': (68292, 'ce65860b2115b5bf9a844b91739890a1cf645e5b68ee4dda70e2011433aa314e'),
     'za_parliament_atc25_20230301': (201134, '050a78a2b9f1e1eaeedfcd4b380e6c342ec5b6fe12f70a60c87fe3f722830059'),
-    'za_govza_presidency_mabuza_resignation_20230301': (19307, '4229f719690db02d084ee9376e9bd6fce81fa3c2be20a6e3f15ff93e5b76a570'),
+    'za_govza_presidency_mabuza_resignation_20230301': (54351, '4fd05f78bb777336d51cf24139715171bf5aa2dae816f56a6a1bb6f044b8cefc'),
     'za_parliament_mabuza_assembly_resignation_20230301': (59685, 'b0503c592c9ddde3d14ea6e34e43ad414cafaf447856bac63ca64e2441cc2ee3'),
     'za_govza_directory_mabuza': (34408, '3e10b25f71121198c76594707104253c623c789a32b236772dca70ac7d226ba1'),
     'za_govza_ramaphosa_new_national_executive_20230306': (50649, '740037e6336c7c27b0444cb1fa327a14e9e76ca2c021fb4c9a308b4980ceafb6'),
@@ -113,7 +113,7 @@ ARCHIVED = {
     'za_govza_presidency_swearing_in_advisory_20190530': '20190530105105',
     'za_parliament_sixth_parliament_composition_20190606': '20210617051708',
     'za_govza_ramaphosa_sona_reply_20230216': '20260621183313',
-    'za_govza_presidency_mabuza_resignation_20230301': '20230302084621',
+    'za_govza_presidency_mabuza_resignation_20230301': '20230302084617',
     'za_parliament_mabuza_assembly_resignation_20230301': '20251207005320',
     'za_govza_directory_mabuza': '20260622025611',
     'za_govza_ramaphosa_new_national_executive_20230306': '20260627102206',
@@ -128,7 +128,6 @@ ARCHIVED = {
 }
 # Captures the archive stores and serves gzip-encoded: decoded identity (bytes, sha256), recorded beside the served one.
 GZIP = {
-    'za_govza_presidency_mabuza_resignation_20230301': (54351, '4fd05f78bb777336d51cf24139715171bf5aa2dae816f56a6a1bb6f044b8cefc'),
     'za_presidency_deputy_president_office_appointments_20230411': (63123, '68862c8b23f45584f202130b4bc6488ca60453f584aef0fe7c2c9d52b8312b94'),
     'za_govza_deputy_president_recovering_20260830': (43514, 'ee91981115b82f12ed5eaae159f76429318548b42b6e51f42a1d5e9621bc927e'),
 }

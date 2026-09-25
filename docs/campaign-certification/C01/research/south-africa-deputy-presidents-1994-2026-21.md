@@ -407,7 +407,7 @@ captured on 11 June 2026 is a live page's title and a claim only (C3).
 | `za_parliament_atc6_20190612` | Announcements, Tablings and Committee Reports No 6-2019, Wednesday 12 June 2019 (First Session, Sixth Parliament) | 67,674 bytes, `da17455c…a9160d`; Parliament's document store; located by the check |
 | `za_govza_ramaphosa_sona_reply_20230216` | President Cyril Ramaphosa: Reply to Debate on State of the Nation Address (16 Feb 2023) | 68,292 bytes, `ce65860b…aa314e`; capture 2026-06-21 |
 | `za_parliament_atc25_20230301` | Announcements, Tablings and Committee Reports No 25-2023, Wednesday 1 March 2023 (Fifth Session, Sixth Parliament) | 201,134 bytes, `050a78a2…830059`; Parliament's document store; located by the check |
-| `za_govza_presidency_mabuza_resignation_20230301` | Presidency on resignation of Deputy President David Mabuza (1 Mar 2023) | 19,307 bytes, `4229f719…76a570`, gzip as served (decoded 54,351 bytes, `4fd05f78…b8cefc`); capture 2023-03-02 |
+| `za_govza_presidency_mabuza_resignation_20230301` | Presidency on resignation of Deputy President David Mabuza (1 Mar 2023) | 54,351 bytes, `4fd05f78…b8cefc`; capture 2023-03-02 (08:46:17, the earliest capture, served uncompressed) |
 | `za_parliament_mabuza_assembly_resignation_20230301` | Media Release: Resignation of Deputy President Mabuza as MP (1 March 2023) | 59,685 bytes, `b0503c59…cc2ee3`; capture 2025-12-07 |
 | `za_govza_directory_mabuza` | David Dabede Mabuza, Mr (South African Government contact directory) | 34,408 bytes, `3e10b25f…226ba1`; capture 2026-06-22 |
 | `za_govza_ramaphosa_new_national_executive_20230306` | President Cyril Ramaphosa: New members of National Executive (6 Mar 2023) | 50,649 bytes, `740037e6…ceafb6`; capture 2026-06-27 |
@@ -438,7 +438,7 @@ claim, keyed by `claim_id`, with `observation_id` `za_presidency`, `review_obser
 `za_deputy_president`, `holder_name` (normalised: "F. W. de Klerk" for "FW de Klerk", "Jacob Zuma" for "Mr J. G.
 Zuma", "Baleka Mbete" for "Ms B Mbete", "Kgalema Motlanthe" for "Kgalema Petros/Petrus Motlanthe", "Paul Mashatile" for
 "Mr Shipokosa Paulus Mashatile"; null on the eight rows whose source names nobody), `role_title`, `event_kind` and
-`attested_on`, plus the claim's text and locator and, for undated rows, the printed words as `printed_range`. The
+`attested_on`, plus the claim's text and locator and, for undated rows, the printed words as `printed_range` (the Mashatile profile's current-title row prints no date, so its `printed_range` records the capture instead, "as captured on 11 June 2026"). The
 extract's checksum is in the packet, separate from the response hash. Original pages, PDFs and renders are not checked
 in, and no photograph, seal or signature is republished (the scanned letter in No 31 of 2023 is read, not copied).
 
@@ -448,15 +448,17 @@ Codex re-downloads every recorded response and compares its byte count and SHA-2
 the identity depends on (`fetch_recipe`) and its `source_response_content_encoding`:
 
 - Internet Archive captures: fetch the recorded `url` exactly, with no `Accept-Encoding` header (or `Accept-Encoding:
-  identity`) and no automatic decoding (`curl -s -o FILE URL`, not `--compressed`). Served that way, 39 captures come
+  identity`) and no automatic decoding (`curl -s -o FILE URL`, not `--compressed`). Served that way, 40 captures come
   back uncompressed, and their recorded identity is the uncompressed body. The part A check showed that a request
   accepting gzip receives a different body (2,666 bytes for the 9 May 1996 statement), and the part B check the same
   for the 2026 Mlambo-Ngcuka profile (17,292 bytes).
-- Three captures are stored gzip-encoded and are served with `Content-Encoding: gzip` even to an identity request: the
-  Presidency's statement of 1 March 2023 (every 2023 capture of that page is gzip-encoded), the Presidency's statement
-  of 11 April 2023 and the statement of 30 August 2026. Following the CLAUDE-C01-16 convention, their recorded identity
-  is the gzip body as served, and `decoded_response_bytes` and `decoded_response_sha256` give the decoded HTML (what a
-  decoding client returns); none of them is described as an uncompressed body (check part C integration note).
+- Two captures are stored gzip-encoded and are served with `Content-Encoding: gzip` even to an identity request: the
+  Presidency's statement of 11 April 2023 and the statement of 30 August 2026 (each the only pre-cutoff capture of its
+  page). Following the CLAUDE-C01-16 convention, their recorded identity is the gzip body as served, and
+  `decoded_response_bytes` and `decoded_response_sha256` give the decoded HTML (what a decoding client returns);
+  neither is described as an uncompressed body (check part C integration note). For the statement of 1 March 2023 the
+  earliest capture (20230302084617), served uncompressed, is used instead of the gzip-encoded capture made four
+  seconds later; its body is byte-identical to that capture's decoded body.
 - Parliament's files are static (ETag size part equals the byte count); use GET, since the server rejects HEAD.
 - The gazettes.africa PDFs are static files behind Cloudflare: plain requests were answered from Cloudflare's cache and
   cache-busting requests from the origin, with the same bytes; the ETag equals the MD5 of the bytes.
@@ -471,7 +473,10 @@ records located by the checks were downloaded twice by the checks (part B's Parl
 part C's from 13:19-13:31Z and at 14:02Z; part A's two captures about 10 minutes apart), and each was downloaded again
 for this packet at 14:55Z. All 59 responses were then downloaded once more for this packet at 15:28-15:31Z (all times
 UTC, 25 September 2026), more than 30 minutes after every earlier download; every one matched, and the three
-gzip-encoded captures also matched their decoded size and SHA-256. The bodies were deleted after hashing.
+gzip-encoded captures also matched their decoded size and SHA-256. The independent source verification then
+replaced the 1 March 2023 statement's gzip-encoded capture with the earlier, uncompressed capture 20230302084617
+(54,351 bytes, `4fd05f78…b8cefc`), downloaded at 15:54Z, 15:57Z and 16:25Z with the same identity. The bodies were
+deleted after hashing.
 
 Per-request traps: no recorded URL is a search, listing API, generated PDF or cache-busting address, and the test
 rejects those shapes. Parliament's paper index (`docsjson`) and the gov.za and Presidency site searches were used only

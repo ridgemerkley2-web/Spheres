@@ -111,7 +111,9 @@ Checks run on 25 September 2026 in this sparse worktree (`docs/campaign-certific
 - `python tools/planning/workboard.py --check`: passes (44 canonical markers).
 - `git diff --check`: clean for this packet's paths.
 - Every recorded response was downloaded again for this packet (at 15:28-15:31Z on 25 September 2026), more than 30 minutes after the
-  earlier downloads, and matched its recorded byte count and SHA-256.
+  earlier downloads, and matched its recorded byte count and SHA-256. The independent source verification then
+  replaced the 1 March 2023 statement's gzip-encoded capture with the earlier, uncompressed capture 20230302084617,
+  downloaded at 15:54Z, 15:57Z and 16:25Z with the same identity.
 - The new test rejects hand-made regressions: a successor's start, observation or oath used as an end (Mbeki, Zuma,
   Mlambo-Ngcuka, Mbete, Motlanthe, Ramaphosa, Mabuza) or a reappointment used as one (Mashatile 2023); a retrospective
   list end, a release announcement, an end by reference and an Assembly-seat resignation used as ends; announcements, an

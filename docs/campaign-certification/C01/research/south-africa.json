@@ -5151,13 +5151,13 @@
       "scope_note": "Official file from Parliament's document store, located through the site's own paper index (https://www.parliament.gov.za/docsjson/, called with the paging parameters the site sends; the listing grows over time and is used only to locate files, never as a source). A static file with Last-Modified 2 March 2026, before the historical cutoff, and an ETag whose size part equals the byte count; use GET. Listed as JS140605 (Joint, 2005-06-14). Text read with antiword -w 0; line locators refer to that output. Located by the independent check.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/south-africa-parliament-hansard-joint-sitting-20050614-facts.json",
-        "bytes": 4255,
-        "sha256": "997e8faf0503678fda15ba063a476bf7cbfc9970e08bc5aae3aec8855ff53e42"
+        "bytes": 4365,
+        "sha256": "252d0ff69bca1b67d45d1d1613b38b429ae45582bba969159111a1dc713d1ed4"
       },
       "claims": [
         {
           "id": "za_mbeki_announces_release_of_zuma_joint_sitting_20050614",
-          "text": "At the Joint Sitting of 14 June 2005 (members assembled at 14:02; the sitting rose at 14:19) President Mbeki said he had come to the conclusion that 'it would be best to release hon Jacob Zuma from his responsibilities as Deputy President of the Republic and member of the Cabinet', and that he would in due course announce the changes in the executive to take account of 'the void that the departure of Deputy President Jacob Zuma has created'.",
+          "text": "At the Joint Sitting of 14 June 2005 (members assembled at 14:02; the sitting rose at 14:19) the President of the Republic, printed by title only ('The PRESIDENT OF THE REPUBLIC'; this Hansard does not print his name), said he had come to the conclusion that 'it would be best to release hon Jacob Zuma from his responsibilities as Deputy President of the Republic and member of the Cabinet', and that he would in due course announce the changes in the executive to take account of 'the void that the departure of Deputy President Jacob Zuma has created'.",
           "attested_on": "2005-06-14",
           "locator": {
             "heading": "ADDRESS BY PRESIDENT",
@@ -5983,19 +5983,18 @@
       "scope_note": "Official file from Parliament's document store, located through the site's own paper index (https://www.parliament.gov.za/docsjson/, called with the paging parameters the site sends; the listing grows over time and is used only to locate files, never as a source). A static file with Last-Modified 2 March 2026, before the historical cutoff, and an ETag whose size part equals the byte count; use GET. PDF metadata creation date 5 March 2018. Located by the independent check; it supersedes the Procedural Developments Issue 30 lead.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/south-africa-parliament-atc21-20180305-facts.json",
-        "bytes": 4319,
-        "sha256": "eca2a0b35f771d3e5a8f278eb8883baed67abbecc84593cb9f80ca358b70c189"
+        "bytes": 4100,
+        "sha256": "7d83365e0e45db17a984b2e72ca3b93961fed5430f4e19e0cf850c8a5d367612"
       },
       "claims": [
         {
           "id": "za_mabuza_deputy_president_logb_letter_20180301",
-          "text": "Announcements, Tablings and Committee Reports No 21 of Monday 5 March 2018 record a letter dated 1 March 2018 from the President informing the National Assembly that he has, under section 91(4) of the Constitution, appointed 'the Deputy President of the Republic of South Africa, Mr David Dabede Mabuza', as Leader of Government Business, and a letter dated 2 March 2018 from the Leader of Government Business informing the Speaker of 'the appointment of the Deputy President, Cabinet Members and Deputy Ministers'.",
+          "text": "Announcements, Tablings and Committee Reports No 21 of Monday 5 March 2018 record a letter dated 1 March 2018 from the President informing the National Assembly that he has, under section 91(4) of the Constitution, appointed 'the Deputy President of the Republic of South Africa, Mr David Dabede Mabuza', as Leader of Government Business.",
           "attested_on": "2018-03-01",
           "locator": {
             "pdf_page": 2,
             "printed_page": 2,
-            "section": "Announcements, National Assembly, items 1 and 4",
-            "continued": "pdf page 3"
+            "section": "Announcements, National Assembly, item 1"
           },
           "uncertainty": "A contemporaneous in-office attestation after the 27 February 2018 observation: a continuation claim, never a holder or a start."
         }
@@ -6240,7 +6239,7 @@
     {
       "id": "za_govza_presidency_mabuza_resignation_20230301",
       "title": "Presidency on resignation of Deputy President David Mabuza (1 Mar 2023)",
-      "url": "https://web.archive.org/web/20230302084621id_/https://www.gov.za/speeches/presidency-resignation-deputy-president-david-mabuza-1-mar-2023-0000",
+      "url": "https://web.archive.org/web/20230302084617id_/https://www.gov.za/speeches/presidency-resignation-deputy-president-david-mabuza-1-mar-2023-0000",
       "original_url": "https://www.gov.za/speeches/presidency-resignation-deputy-president-david-mabuza-1-mar-2023-0000",
       "publisher": "South African Government (gov.za, GCIS); issuing department The Presidency",
       "published_date": "2023-03-01",
@@ -6248,11 +6247,11 @@
       "access_method": "downloaded_archived_raw_capture_and_page_text_read",
       "source_type": "primary_presidency_statement_archived",
       "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
-      "scope_note": "Raw capture (2 March 2023) of the gov.za copy of the Presidency's statement; the Presidency's own copy has no capture and its live page is dynamic. Every 2023 capture of this page is a gzip-encoded record; the earliest is recorded. The archive stores this capture gzip-encoded and serves it with Content-Encoding: gzip even to a request with no Accept-Encoding or with Accept-Encoding: identity; the recorded identity is of the gzip-encoded bytes as served, and the decoded identity is recorded in the extract.",
+      "scope_note": "Raw capture (2 March 2023, 08:46:17 UTC, the earliest capture) of the gov.za copy of the Presidency's statement; the Presidency's own copy has no capture and its live page is dynamic. This capture is served uncompressed to a request with no Accept-Encoding or with Accept-Encoding: identity; the captures made four seconds later (20230302084621) and on 6 March 2023 are stored gzip-encoded and are not used.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/south-africa-govza-presidency-mabuza-resignation-20230301-facts.json",
-        "bytes": 6308,
-        "sha256": "1e52c6636dbf929e9316ece5d4dfd2256445e0fd2178b63af5c327b25a77ce3d"
+        "bytes": 6029,
+        "sha256": "aa3715ff7cea037aad47312147bd35677f515c217265da61859bdd2d6eae096e"
       },
       "claims": [
         {
