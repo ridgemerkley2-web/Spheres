@@ -2237,7 +2237,7 @@ class JapanPrimeMinisters2006Tests(unittest.TestCase):
             ('successor start used as an end (Abe 2006)', lambda p: holder(p, abe06).update(until='2007-09-26')),
             ('successor appointment cited as an end (Fukuda)', cite(fukuda, 'jp_aso_shinninshiki_appointed_20080924',
                                                                     until='2008-09-24')),
-            ('successor start used as an end (Takaichi 2026)', lambda p: holder(p, takaichi2).update(until='2026-09-07')),
+            ('cutoff used as an end (Takaichi 2026)', lambda p: holder(p, takaichi2).update(until='2026-09-07')),
             # A resignation, an announcement, a departure or a retrospective span used as an end.
             ('resignation notice cited as an end (Kan)', cite(kan, 'jp_shugiin_honkaigi_kan_resignation_notice_20110830',
                                                               until='2011-08-30')),
@@ -2282,7 +2282,8 @@ class JapanPrimeMinisters2006Tests(unittest.TestCase):
             ('second institution', lambda p: p['institutions'].append(dict(copy.deepcopy(p['institutions'][-1]),
                                                                            id='jp_prime_minister_2'))),
             # Structured dates that are never holder dates, spans given a date, order.
-            ('recollection used as a start (Fukuda)', lambda p: holder(p, fukuda).update({'from': '2007-09-25'})),
+            ('recollection cited as a start (Fukuda)', cite(fukuda, 'jp_fukuda_says_appointed_on_eve_20070925',
+                                                            **{'from': '2007-09-25'})),
             ('span given a structured date', lambda p: claim(p, 'jp_kantei_span_abe_98_20171101_20200916').update(
                 attested_on='2017-11-01')),
             ('span stored as a structured period', lambda p: claim(p, 'jp_kantei_span_kan_94_20100608_20110902').update(

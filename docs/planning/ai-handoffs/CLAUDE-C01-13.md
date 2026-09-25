@@ -8,8 +8,7 @@ the pending C01-05 (USSR/RSFSR), C01-06 (Saudi Arabia), C01-09 (South Africa), C
 
 Branch: `claude/c01-jp-13`. **Stacked on CLAUDE-C01-12** (`claude/c01-jp-12` at `87e1da53`), which is
 ready for review and not yet integrated, because both packets edit `japan.json`: merge CLAUDE-C01-12 first. Claim
-commit: this record's first commit on the branch. The claim commit is `3bcd6e6c`; `claude/c01-jp-12` was merged into this branch again
-at `da358dbf` (its report-only verifier fixes) before the packet was written.
+commit: this record's first commit on the branch. The claim commit is `3bcd6e6c`; `claude/c01-jp-12` up to `da358dbf` (its report-only verifier fixes) was merged into this branch in `b0e3c5b5` before the packet was written.
 
 ## Bounded deliverable
 
@@ -59,8 +58,8 @@ Touched paths (all inside this record's allowed files):
 
 - `docs/planning/ai-handoffs/CLAUDE-C01-13.md` (this record);
 - `docs/campaign-certification/C01/research/japan-prime-ministers-2006-2026-13.md` (new report);
-- `docs/campaign-certification/C01/research/japan.json` (appended: 211 sources, 293 claims, sixteen `jp_pm` holders, a
-  scope-note addition, three institution coverage notes and one packet coverage note; nothing existing changed);
+- `docs/campaign-certification/C01/research/japan.json` (additions only: 211 sources, 293 claims, sixteen `jp_pm` holders, a
+  scope-note addition and one packet coverage note appended, and three institution coverage notes inserted before C01-12's closing 'Keep executive office distinct from party leadership' note, which stays last; no existing text changed);
 - 211 new `docs/campaign-certification/C01/research/sources/japan-*-facts.json` extracts, one per new source;
 - `tools/avatars/test_japan_prime_ministers_c01_13.py` (new);
 - `tools/avatars/test_japan_prime_ministers_c01_12.py` and `tools/avatars/test_japan_research_s10d.py` (pinned counts, exact
@@ -116,7 +115,7 @@ Checks run on 25 September 2026 in this sparse worktree (`docs/campaign-certific
 - `python tools/planning/workboard.py --check`: passes (44 markers).
 - `git diff --check`: clean for this packet's paths.
 - The new test rejects hand-made regressions both by rule and against the pinned list: a successor's start, ceremony or
-  appointment used or cited as an end (麻生太郎, 安倍晋三 2006, 福田康夫, 高市早苗 2026); a resignation notice, a departure, a
+  appointment used or cited as an end (麻生太郎, 安倍晋三 2006, 福田康夫), or the cutoff used as an end (高市早苗 2026); a resignation notice, a departure, a
   retrospective span, the Chief Cabinet Secretary's span or the 'today' remarks used as an end (菅直人, 鳩山由紀夫); a Gazette
   end dropped while the until stays, or an until dropped while the Gazette end stays; a designation date or designation, the
   prevailing resolution, an unnamed statement or an unnamed schedule row used or cited as a start; a named start left off its

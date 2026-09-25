@@ -1,8 +1,7 @@
 # Japanese prime ministers 13: holders and transitions, 2006-2026
 
 Packet: **CLAUDE-C01-13**. State: **ready_for_review** (not complete).
-Owner: Claude. Integrator/reviewer: Codex. Branch `claude/c01-jp-13`, **stacked on CLAUDE-C01-12** (`claude/c01-jp-12`,
-merged into this branch at `da358dbf`), which is based on `codex/campaign-certification` at `ffe54b02`; claim commit
+Owner: Claude. Integrator/reviewer: Codex. Branch `claude/c01-jp-13`, **stacked on CLAUDE-C01-12** (`claude/c01-jp-12` up to `da358dbf`, merged into this branch in `b0e3c5b5`), which is based on `codex/campaign-certification` at `ffe54b02`; claim commit
 `3bcd6e6c`. Research access: 24-25 September 2026 (UTC). The historical cutoff stays **7 September 2026**.
 
 This packet continues CLAUDE-C01-12 on the same institution and role in [japan.json](japan.json): `jp_prime_minister` and
@@ -953,8 +952,8 @@ Reproducibility traps met and avoided:
 - The Kantei's account of 1 September 2026 (https://www.kantei.go.jp/jp/105/actions/202609/01bousai.html; 24,256 bytes, stable):
   the 4 September account is used as the latest attestation. The account 17takaichinaikaku2.html is dated 17 September 2026, after
   the cutoff, and was not read.
-- Budget Committee speech 5 of 27 July 2026 (api/speech?issueID=122105261X01720260727&speechNumber=5; 2,168 bytes): cited only as a
-  locator of the speech-0 attestation.
+- Budget Committee speech 5 of 27 July 2026 (api/speech?issueID=122105261X01720260727&speechNumber=5; 2,168 bytes): not imported; the
+  attestation rests on speech 0 (会議録情報) alone.
 - The Kantei's 歴代内閣 pages for the 99th-105th Prime Ministers (https://www.kantei.go.jp/jp/rekidainaikaku/099.html to 105.html):
   not reviewed; retrospective spans would be claims only (next work).
 - Full-text Diet searches for 職務執行内閣, 第七十一条 and 内閣総理大臣臨時代理 in 2006-2026: discovery only; besides the imported
@@ -1058,7 +1057,7 @@ These are proposals for the integrator. They are not created in `work-orders.jso
 
 - **Stack:** this branch holds the claim commit `3bcd6e6c`, a merge of `claude/c01-jp-12` up to `da358dbf` (the stacked packet's
   report-only verifier fixes), and this packet's two commits. Merge CLAUDE-C01-12 first; `japan.json` and the two Japan tests are
-  shared with it, and this packet only appends to them.
+  shared with it; this packet adds to `japan.json` without changing existing text (its three institution coverage notes sit before C01-12's closing 'Keep executive office distinct from party leadership' note, which stays last) and re-scopes the two tests' pins as listed below.
 - `research-index.json` is regenerated in a **separate commit** and is the only file shared with other pending packets (the
   India, Brazil and South Africa packets add their own sources and claims); regenerate it after they merge. New Japan totals: 337
   sources and 496 claims (C01-12: 126 and 203); institutions, roles, `mapping_pending` (24) and the Japan work orders (10, 10 and
