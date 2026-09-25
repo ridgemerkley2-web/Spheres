@@ -68,7 +68,7 @@ paths (nothing else):
 
 The packet gains 56 sources and 84 claims, one institution (`in_presidency`, `executive_institution`, lifecycle
 `unknown`) with one role (`in_president`, President of India, `head_of_state`) and eight holder observations. The
-thirteen C01-11 prime-minister holders are unchanged. Holders, in order: R. Venkataraman (`attested_on` 13 January 1990,
+thirteen C01-11 prime-minister holders are unchanged. Holders: R. Venkataraman (`attested_on` 13 January 1990,
 his own Order); Shankar Dayal Sharma (`from` 25 July 1992), K. R. Narayanan (`from` 25 July 1997), Pratibha Devisingh
 Patil (`from` 25 July 2007), Pranab Mukherjee (`from` 25 July 2012), Ram Nath Kovind (`from` 25 July 2017) and Droupadi
 Murmu (`from` 25 July 2022), each from the Ministry of Home Affairs resolution that the President takes his or her seat
@@ -86,8 +86,8 @@ Observation decisions:
 | ID | Decision |
 |---|---|
 | IN-PRES-01 | Accepted in part: Venkataraman observed 13 Jan 1990; term due to expire 24 Jul 1992 (prospective); no stated end |
-| IN-PRES-02 | Accepted: poll dates 10 Jun, declaration 16 Jul (published 17 Jul), programme 24 Jul, oath by M.H. Kania and resolution and proclamation 25 Jul 1992 |
-| IN-PRES-03 | Accepted in part: poll dates 9 Jun, declaration 17 Jul (published 22 Jul), programme 24 Jul, resolution and proclamation 25 Jul 1997; the oath itself not recorded |
+| IN-PRES-02 | Accepted: poll dates appointed 10 Jun, declaration 16 Jul (published 17 Jul), programme 24 Jul, oath by M.H. Kania and resolution and proclamation 25 Jul 1992 |
+| IN-PRES-03 | Accepted in part: poll dates appointed 9 Jun, declaration 17 Jul (published 22 Jul), programme 24 Jul, resolution and proclamation 25 Jul 1997; the oath itself not recorded |
 | IN-PRES-04 | Accepted in part: declaration 18 Jul 2002 (89.58 per cent); own address on assumption 25 Jul 2002; S.O. 788(E), the Chief Justice and the hour not found |
 | IN-PRES-05 | Accepted in part: declaration 21 Jul, programme 24 Jul, resolution and proclamation 25 Jul 2007; the oath only in a February 2008 caption |
 | IN-PRES-06 | Accepted: declaration 22 Jul, programme 24 Jul, resolution, proclamation, address and oath caption 25 Jul 2012 |

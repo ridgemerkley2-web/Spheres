@@ -422,7 +422,7 @@ downloaded at least twice, at least 30 minutes apart or with a cache-busting que
 is a page generated per request. How each was established:
 
 - **Part A.** The researcher downloaded each response between 21:47Z and 22:07Z on 24 September and again at 22:44Z (the
-  eGazette files and the journal with a cache-busting query), and the check downloaded all thirteen again between 23:01Z
+  eGazette files and the journal with a cache-busting query), and the check downloaded all twelve recorded here again between 23:01Z
   and 23:03Z, 54-76 minutes after the first downloads. Every byte count and SHA-256 matched.
 - **Part B.** The researcher downloaded each response twice at least 30 minutes apart (the Gazette and Rajya Sabha files
   once with a cache-busting query), and the check downloaded all eighteen again between 23:17Z and 23:20Z, the ten files
