@@ -1,0 +1,42 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_kremlin_news_45963_20040301",
+  "source_url": "https://web.archive.org/web/20260410175830id_/http://kremlin.ru/events/president/news/45963",
+  "original_url": "http://kremlin.ru/events/president/news/45963",
+  "archive_capture_utc": "2026-04-10T17:58:30Z",
+  "source_title": "В ходе консультаций с руководителями парламентского большинства Государственной Думы Президент Владимир Путин предложил Михаила Фрадкова в качестве кандидата на пост Председателя Правительства России (In consultations with the leaders of the State Duma's parliamentary majority, President Vladimir Putin proposed Mikhail Fradkov as candidate for Chairman of the Government), 1 March 2004 — kremlin.ru news",
+  "accessed_date": "2026-09-25",
+  "published_date": "2004-03-01",
+  "document_date": "2004-03-01",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20260410175830id_/http://kremlin.ru/events/president/news/45963",
+  "source_response_bytes": 41738,
+  "source_response_sha256": "8c8daeaa21d225241ff5b773bdaf0189ad98c01114bfc1070237b55531efc34b",
+  "source_response_encoding": "UTF-8 (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Raw capture downloaded at 2026-09-25T12:19:44Z and again at 2026-09-25T13:09:41Z (49 minutes later): identical 41,738 bytes and SHA-256. Independent check: re-downloaded at 2026-09-25T13:14Z-13:24Z and again at 13:47Z-13:55Z (portal URLs with a cache-busting query in the second round), 33-110 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:22:41Z and again at 2026-09-25T14:55:49Z (33 minutes later); identical 41,738 bytes and SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of http://kremlin.ru/events/president/news/45963, captured at 2026-04-10T17:58:30Z, before the 7 September 2026 cutoff; requested without an Accept-Encoding header (curl without --compressed, i.e. identity) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The captured page carries 'Последнее обновление материала 20 марта 2015 года, 17:48', so its headline and styling are not shown to be contemporaneous. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Raw Internet Archive capture 20260410175830 of the official page, made before the cutoff.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Article text read in full in Russian (headline, dateline, body and linked-document list); photographs and video not reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_kremlin_putin_proposes_fradkov_20040301",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-07",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Михаил Ефимович Фрадков",
+      "printed_name": "Михаила Фрадкова (accusative); Михаил Ефимович Фрадков",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "nomination_proposal",
+      "attested_on": "2004-03-01",
+      "text": "Item dated 1 March 2004, 17:17: in consultations with the leaders of the State Duma's parliamentary majority the President proposed Mikhail Fradkov as candidate for Chairman of the Government; later, at a meeting with Government members, he described Михаил Ефимович Фрадков, Russia's representative to the Commission of the European Communities, as a good administrator and hoped the Duma would support the candidacy.",
+      "locator": "Headline, dateline and paragraphs 1-3"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

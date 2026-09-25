@@ -1,0 +1,55 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_kremlin_news_74009_20240510",
+  "source_url": "https://web.archive.org/web/20240512211122id_/http://kremlin.ru/events/president/news/copy/74009",
+  "original_url": "http://kremlin.ru/events/president/news/copy/74009",
+  "archive_capture_utc": "2024-05-12T21:11:22Z",
+  "source_title": "President of Russia website: \"Встреча с исполняющим обязанности Председателя Правительства Михаилом Мишустиным\" (Meeting with Acting Chairman of the Government Mikhail Mishustin), 10 May 2024, 12:40 (text version)",
+  "accessed_date": "2026-09-25",
+  "published_date": "2024-05-10",
+  "document_date": "2024-05-10",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20240512211122id_/http://kremlin.ru/events/president/news/copy/74009",
+  "source_response_bytes": 5947,
+  "source_response_sha256": "16c34183f2cb9a9cb7b19592488ea8301844089bda14595913d1b936ffc423cd",
+  "source_response_encoding": "UTF-8 (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded at 2026-09-25T12:25:45Z, 2026-09-25T12:58:10Z, 2026-09-25T12:58:15Z (UTC): byte-identical each time (5947 bytes, same SHA-256); first and last downloads 32 minutes apart. A raw capture made before the cutoff: fixed bytes. Independent check: re-downloaded at 2026-09-25T13:12Z-13:14Z and again at 13:32Z-13:36Z (publication PDFs with a cache-busting query in the second round), at least 31 minutes after the last dossier download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:24:48Z and again at 2026-09-25T14:58:08Z (33 minutes later); identical 5,947 bytes and SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of http://kremlin.ru/events/president/news/copy/74009, captured at 2024-05-12T21:11:22Z, before the 7 September 2026 cutoff; requested without an Accept-Encoding header (curl without --compressed, i.e. identity) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Raw Internet Archive capture 20240512211122 of the official page, made before the cutoff.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "HTML text read in full; photographs and video not reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_kremlin_74009_mishustin_styled_acting_20240510",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-10",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Михаил Владимирович Мишустин",
+      "printed_name": "Михаилом Мишустиным (instrumental)",
+      "role_title": "Исполняющий обязанности Председателя Правительства — Acting Chairman of the Government",
+      "event_kind": "acting_service_attestation",
+      "attested_on": "2024-05-10",
+      "text": "The item of 10 May 2024, 12:40, reports that Vladimir Putin met the acting Chairman of the Government (\"исполняющий обязанности Председателя Правительства\"), Mikhail Mishustin.",
+      "locator": "Headline and lead sentence"
+    },
+    {
+      "claim_id": "ru_kremlin_74009_nomination_submitted_20240510",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-10",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Михаил Владимирович Мишустин",
+      "printed_name": "addressed as \"Михаил Владимирович\"",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "nomination_reference",
+      "attested_on": "2024-05-10",
+      "text": "Putin told Mishustin that he had submitted to the State Duma a proposal to appoint him Chairman of the Government of the Russian Federation, and hoped the deputies would support it.",
+      "locator": "Transcript, Putin's first intervention"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

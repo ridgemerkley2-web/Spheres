@@ -1,0 +1,46 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_rsfsr_ukaz_172_19911106",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102012988&page=1&rdk=0",
+  "source_title": "Decree of the President of the RSFSR No. 172 of 6 November 1991 'On the organisation of the work of the Government of the RSFSR under the economic reform' (original edition)",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "document_date": "1991-11-06",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102012988&page=1&rdk=0",
+  "source_response_bytes": 36493,
+  "source_response_sha256": "e748a13a873241c870e8026f8bdb70794487aea5cc921f67ad50b04e36e81fca",
+  "source_response_encoding": "windows-1251",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded at 2026-09-25T11:58:28Z and again at 2026-09-25T12:41:13Z (more than 30 minutes later); identical 36,493 bytes and SHA-256. Portal card: Downloaded at 2026-09-25T12:04:13Z and again at 2026-09-25T12:41:40Z (more than 30 minutes later); identical 3,078 bytes and SHA-256. Independent check: re-downloaded at 2026-09-25T13:21Z-13:25Z, at least 40 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:18:35Z and again at 2026-09-25T14:52:13Z (33 minutes later); identical 36,493 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=172&a8type=1&a7type=4&a7from=06.11.1991&a7to=06.11.1991&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3078,
+    "sha256": "2ce25a0cf0a6bfb6e1d3b08d304616312eb543bc092449d27bee0d80c553ec7e",
+    "note": "Date-restricted single-document card (number 172, date 06.11.1991): one hit, status 'Утратил силу'."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 25 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read in full. The date-restricted single-document portal card (portal_card_response) returns only this act.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in full in Russian after windows-1251 decoding."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_ukaz_172_president_heads_government_19911106",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-01",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Борис Николаевич Ельцин",
+      "printed_name": "Б. ЕЛЬЦИН (signature; the provisions name the office)",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "head_of_government_designation",
+      "attested_on": "1991-11-06",
+      "text": "The decree forms the Government of the RSFSR, for the period of the radical economic reform, under the direct leadership of the President of the RSFSR; its listed composition begins with the First Deputy Chairman and the Deputy Chairmen and lists no Chairman (point 1). The President heads the Government, conducts its sittings and signs its decisions (point 4); in his absence the First Deputy Chairman conducts sittings and signs resolutions on his instruction (point 2). The decree takes effect from signing (point 12) and is signed 'Президент РСФСР Б. ЕЛЬЦИН', 6 November 1991, N 172.",
+      "locator": "Points 1, 2, 4 and 12; signature block"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

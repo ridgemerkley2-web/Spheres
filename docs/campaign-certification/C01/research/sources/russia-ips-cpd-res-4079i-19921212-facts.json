@@ -1,0 +1,45 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_cpd_res_4079i_19921212",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102020277&page=1&rdk=0",
+  "source_title": "Resolution of the Congress of People's Deputies of the Russian Federation No. 4079-I of 12 December 1992 'On the stabilisation of the constitutional order of the Russian Federation' (original edition)",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "document_date": "1992-12-12",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102020277&page=1&rdk=0",
+  "source_response_bytes": 11520,
+  "source_response_sha256": "6cca2d3e4eb2ccee6b7f7b6dd4b50c2d727bc84d25d6201c06623504891d5151",
+  "source_response_encoding": "windows-1251",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded at 2026-09-25T12:30:41Z and again at 2026-09-25T13:02:07Z (more than 30 minutes later); identical 11,520 bytes and SHA-256. Portal card: Downloaded at 2026-09-25T12:30:56Z and again at 2026-09-25T13:02:08Z (more than 30 minutes later); identical 3,134 bytes and SHA-256. Independent check: re-downloaded at 2026-09-25T13:21Z-13:25Z, at least 40 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:18:53Z and again at 2026-09-25T14:52:27Z (33 minutes later); identical 11,520 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=4079-I&a8type=1&a7type=4&a7from=12.12.1992&a7to=12.12.1992&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3134,
+    "sha256": "f1cda79e65fd0f3e9968852c42c9fff9bb871d322f277ecc32407f956dbb5916",
+    "note": "Date-restricted single-document card (number 4079-I, date 12.12.1992): one hit, status 'Утратил силу'."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 25 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read in full. The date-restricted single-document portal card (portal_card_response) returns only this act.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in full in Russian after windows-1251 decoding."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_cpd_4079i_chairman_selection_procedure_19921212",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-02",
+      "role_id": "ru_government_chairman",
+      "holder_name": null,
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "selection_procedure_set",
+      "attested_on": "1992-12-12",
+      "text": "Point 7 sets the procedure for the Chairman: after consultations with representatives of the constituent entities and deputies' factions, the President is to submit to the Congress on 14 December 1992 several candidacies for the post of Chairman of the Council of Ministers for a 'soft' rating vote; he then presents for the Seventh Congress's approval one of the three candidates with the most votes; if the candidate is not approved, the President appoints an acting Chairman until the Eighth Congress. Point 9 makes the points inseparable. Signed 'Р.И.ХАСБУЛАТОВ', 12 December 1992, N 4079-I.",
+      "locator": "Points 7 and 9; signature block"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

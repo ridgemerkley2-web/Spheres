@@ -1,0 +1,55 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_duma_steno_ia_19960810",
+  "source_url": "https://web.archive.org/web/20240528152653id_/http://transcript.duma.gov.ru/node/2898/",
+  "original_url": "http://transcript.duma.gov.ru/node/2898/",
+  "archive_capture_utc": "2024-05-28T15:26:53Z",
+  "source_title": "State Duma: stenogram of the sitting of 10 August 1996 (Transcripts database, node 2898), Internet Archive capture 20240528152653",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "document_date": "1996-08-10",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20240528152653id_/http://transcript.duma.gov.ru/node/2898/",
+  "source_response_bytes": 503153,
+  "source_response_sha256": "c2bdcb97b64bcb93694ba8eb8b7fc4e437e1fd89bed0d2c09535c7898a448a31",
+  "source_response_encoding": "UTF-8 (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: downloaded at 2026-09-25T12:42:28Z and again at 13:17Z or later; identical 503,153 bytes and SHA-256 (the dossier used it as the frozen alternate of the live page). Independent check: re-downloaded over HTTP at 2026-09-25T13:25Z and over HTTPS at 13:27:06Z, more than 40 minutes after the first download; identical bytes and SHA-256. The capture differs from the live page recorded by CLAUDE-C01-14 in one byte only: its footer reads 2024 where the live page reads 2026. This packet: re-downloaded at 2026-09-25T14:20:19Z and again at 2026-09-25T14:53:32Z (33 minutes later); identical 503,153 bytes and SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of http://transcript.duma.gov.ru/node/2898/, captured at 2024-05-28T15:26:53Z, before the 7 September 2026 cutoff; requested without an Accept-Encoding header (curl without --compressed, i.e. identity) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Raw Internet Archive capture 20240528152653 of the official page, made before the cutoff. The frozen capture of the sitting recorded live by CLAUDE-C01-14 (ru_duma_steno_19960810); used here so that the two Chairman claims rest on a byte-stable response and the C01-14 extract is not edited.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "HTML (503 KB) searched for 'вношу предложение', 'Не прошло и суток' and 'Результаты голосования'; the opening, the Chairman's presentation of the President's letter, Mizulina's remark, the 16:21:54 vote and Chernomyrdin's reply were read. Not read in full."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_duma_steno_nomination_letter_presented_19960810",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-02",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Виктор Степанович Черномырдин",
+      "printed_name": "Черномырдина Виктора Степановича (genitive)",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "nomination_presented",
+      "attested_on": "1996-08-10",
+      "text": "The presiding Chairman G. N. Seleznev tells the sitting that the President, asked by the Duma Council to present his candidate in person, proposed that the Chairman present V. S. Chernomyrdin, and reads the President's letter: under Article 111 of the Constitution 'вношу предложение о кандидатуре Черномырдина Виктора Степановича на должность Председателя Правительства Российской Федерации и прошу дать согласие на его назначение'. Earlier in the sitting deputy E. B. Mizulina says that less than a day had passed since the President's submission ('Не прошло и суток с момента внесения представления Президентом').",
+      "locator": "Morning session: Mizulina's remarks and the Chairman's presentation of the candidacy (before Chernomyrdin's address)"
+    },
+    {
+      "claim_id": "ru_duma_steno_consent_vote_19960810",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-02",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Виктор Степанович Черномырдин",
+      "printed_name": "Виктора Степановича Черномырдина (genitive)",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "parliamentary_vote",
+      "attested_on": "1996-08-10",
+      "text": "The Chairman puts the question whether to give the President consent to appoint Viktor Stepanovich Chernomyrdin Chairman of the Government, in a secret vote; the electronic result (16:21:54) reads 314 for (69.8%), 85 against (18.9%), 3 abstentions (0.7%), 402 voting, 48 not voting, 'Результат: принято'. Chernomyrdin then thanks the deputies and speaks of what will follow 'после того как будет указ о моем назначении'.",
+      "locator": "Afternoon: ballot formulation, 'Результаты голосования (16 час. 21 мин. 54 сек.)', Chernomyrdin's reply"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

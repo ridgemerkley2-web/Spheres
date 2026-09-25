@@ -1,0 +1,45 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_cpd_res_4063i_19921209",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102020211&page=1&rdk=0",
+  "source_title": "Resolution of the Congress of People's Deputies of the Russian Federation No. 4063-I of 9 December 1992 'On approving the results of the secret ballot on the question of the Chairman of the Council of Ministers (Government) of the Russian Federation' (original edition)",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "document_date": "1992-12-09",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102020211&page=1&rdk=0",
+  "source_response_bytes": 7516,
+  "source_response_sha256": "b2ca2b01dc1df82c002881ee49fd6c44a3d7fa1501bfa644649477b256a626a1",
+  "source_response_encoding": "windows-1251",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded at 2026-09-25T11:59:27Z and again at 2026-09-25T12:41:15Z (more than 30 minutes later); identical 7,516 bytes and SHA-256. Portal card: Downloaded at 2026-09-25T12:04:15Z and again at 2026-09-25T12:41:42Z (more than 30 minutes later); identical 3,213 bytes and SHA-256. Independent check: re-downloaded at 2026-09-25T13:21Z-13:25Z, at least 40 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:18:49Z and again at 2026-09-25T14:52:25Z (33 minutes later); identical 7,516 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=4063-I&a8type=1&a7type=4&a7from=09.12.1992&a7to=09.12.1992&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3213,
+    "sha256": "c553d2578e23809dec3f97f0637407e963393bc363adae2bb56875ce1127a45b",
+    "note": "Date-restricted single-document card (number 4063-I, date 09.12.1992): one hit, status 'Действует без изменений'."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 25 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read in full. The date-restricted single-document portal card (portal_card_response) returns only this act.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in full in Russian after windows-1251 decoding."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_cpd_4063i_secret_ballot_results_approved_19921209",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-02",
+      "role_id": "ru_government_chairman",
+      "holder_name": null,
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "parliamentary_vote_results_approved",
+      "attested_on": "1992-12-09",
+      "text": "On the report of the Counting Commission, the Congress approves the results of the secret ballot on the question of the Chairman of the Council of Ministers (Government) of the Russian Federation. The resolution names no candidate and does not state the result.",
+      "locator": "Title; operative paragraph; signature 'Р. И. ХАСБУЛАТОВ', 9 декабря 1992 года, N 4063-I"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

@@ -1,0 +1,46 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_ukaz_1087_19980911",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102055453&page=1&rdk=0",
+  "source_title": "Decree of the President of the Russian Federation No. 1087 of 11 September 1998 'On the Chairman of the Government of the Russian Federation' (original edition)",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "document_date": "1998-09-11",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102055453&page=1&rdk=0",
+  "source_response_bytes": 23636,
+  "source_response_sha256": "88e46448f1148a24b2ba8b25e76b10f27c46e24b3990e3a48e267ec372d0bfa0",
+  "source_response_encoding": "windows-1251",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded at 2026-09-25T12:01:31Z and again at 2026-09-25T12:41:36Z (more than 30 minutes later); identical 23,636 bytes and SHA-256. Portal card: Downloaded at 2026-09-25T12:05:15Z and again at 2026-09-25T12:42:01Z (more than 30 minutes later); identical 3,059 bytes and SHA-256. Independent check: re-downloaded at 2026-09-25T13:21Z-13:25Z, at least 40 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:20:16Z and again at 2026-09-25T14:53:29Z (33 minutes later); identical 23,636 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a3=102000503&a3type=1&a3value=%D3%EA%E0%E7&a8=1087&a8type=1&a7type=4&a7from=11.09.1998&a7to=11.09.1998&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3059,
+    "sha256": "5003881ff5b13ce6b402300905c4e8b2d2c0929c84c7c4d36a3f268bf1b333f8",
+    "note": "Date-restricted single-document card restricted to act type 'Указ' (a3=102000503), number 1087, date 11.09.1998: one hit, status 'Действует без изменений'. Without the act-type filter the same number and date also match Government resolution 1087."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 25 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read in full. The date-restricted single-document portal card (portal_card_response) returns only this act.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in full in Russian after windows-1251 decoding."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_ukaz_1087_primakov_appointed_19980911",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-04",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Евгений Максимович Примаков",
+      "printed_name": "Примакова Евгения Максимовича (accusative)",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "appointment",
+      "attested_on": "1998-09-11",
+      "text": "Under Article 83(a) of the Constitution the decree appoints Primakov Yevgeny Maksimovich Chairman of the Government of the Russian Federation. Signed 'Президент Российской Федерации Б.Ельцин', 11 September 1998, No. 1087.",
+      "locator": "Sole operative sentence; signature block"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

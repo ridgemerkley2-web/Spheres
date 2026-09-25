@@ -1,0 +1,42 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_kremlin_news_38171_20000517",
+  "source_url": "https://web.archive.org/web/20250425232300id_/http://kremlin.ru/events/president/news/38171",
+  "original_url": "http://kremlin.ru/events/president/news/38171",
+  "archive_capture_utc": "2025-04-25T23:23:00Z",
+  "source_title": "Владимир Путин встретился с Председателем Правительства Михаилом Касьяновым (Vladimir Putin met Chairman of the Government Mikhail Kasyanov), 17 May 2000 — kremlin.ru news",
+  "accessed_date": "2026-09-25",
+  "published_date": "2000-05-17",
+  "document_date": "2000-05-17",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20250425232300id_/http://kremlin.ru/events/president/news/38171",
+  "source_response_bytes": 36843,
+  "source_response_sha256": "a2ad81169fd4010aa369d5253a4f6030da00ff16d0cbd6356ceedfa810f8ce35",
+  "source_response_encoding": "UTF-8 (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Raw capture downloaded at 2026-09-25T12:23:48Z and again at 2026-09-25T13:10:56Z (47 minutes later): identical 36,843 bytes and SHA-256. Independent check: re-downloaded at 2026-09-25T13:14Z-13:24Z and again at 13:47Z-13:55Z (portal URLs with a cache-busting query in the second round), 33-110 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:22:33Z and again at 2026-09-25T14:59:23Z (36 minutes later); identical 36,843 bytes and SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of http://kremlin.ru/events/president/news/38171, captured at 2025-04-25T23:23:00Z, before the 7 September 2026 cutoff; requested without an Accept-Encoding header (curl without --compressed, i.e. identity) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The captured page carries 'Последнее обновление материала 20 марта 2015 года, 17:49', so its headline and styling are not shown to be contemporaneous. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Raw Internet Archive capture 20250425232300 of the official page, made before the cutoff.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Article text read in full in Russian (headline, dateline, body and linked-document list); photographs and video not reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_kremlin_kasyanov_certificate_presented_20000517",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-06",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Михаил Михайлович Касьянов",
+      "printed_name": "Михаилом Касьяновым (instrumental); Михаилу Касьянову (dative)",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "certificate_presentation",
+      "attested_on": "2000-05-17",
+      "text": "Item dated 17 May 2000, 20:15, Moscow, Kremlin: at a meeting with 'Председателем Правительства Михаилом Касьяновым' on the structure and staffing of the new cabinet, the President handed him the Chairman of the Government's certificate; the item notes that the decree appointing him had been signed earlier that day (links decree No. 861).",
+      "locator": "Headline, dateline and both paragraphs"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

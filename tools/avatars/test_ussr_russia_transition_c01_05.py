@@ -252,8 +252,9 @@ class UssrRussiaTransitionTests(unittest.TestCase):
         self.assertEqual((self.presidency['represented_party_ids'], self.presidency['reconciled_organization_id']), ([], None))
         self.assertEqual({e['id'] for e in self.ussr['institutions']},
                          {'su_presidency', 'su_congress_peoples_deputies', 'su_supreme_soviet'})
+        # CLAUDE-C01-19 appended ru_government (head_of_government), pinned in test_russia_heads_of_government_c01_19.
         self.assertEqual([e['id'] for e in self.russia['institutions'] if not e['id'].startswith('ru_duma_faction_')],
-                         ['ru_rsfsr_presidency'])
+                         ['ru_rsfsr_presidency', 'ru_government'])
         # CLAUDE-C01-14 appended ru_president (head_of_state); the two RSFSR roles stay institutional offices.
         self.assertEqual([r['id'] for r in self.presidency['roles']], ['ru_rsfsr_president', 'ru_rsfsr_vice_president', 'ru_president'])
         self.assertEqual({r['kind'] for r in self.presidency['roles'][:2]}, {'institutional_office'})

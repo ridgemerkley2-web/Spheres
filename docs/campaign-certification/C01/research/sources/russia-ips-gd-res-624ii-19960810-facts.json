@@ -1,0 +1,46 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_gd_res_624ii_19960810",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102042901&page=1&rdk=0",
+  "source_title": "Resolution of the State Duma No. 624-II ГД of 10 August 1996 'On giving consent to the President of the Russian Federation for the appointment of Chernomyrdin Viktor Stepanovich as Chairman of the Government of the Russian Federation' (original edition)",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "document_date": "1996-08-10",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102042901&page=1&rdk=0",
+  "source_response_bytes": 8180,
+  "source_response_sha256": "82293a19d66e2cb70d8e1c35c8c8dcaaef13b9ed424caea4aba80355a7ab580d",
+  "source_response_encoding": "windows-1251",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded at 2026-09-25T11:59:53Z and again at 2026-09-25T12:41:22Z (more than 30 minutes later); identical 8,180 bytes and SHA-256. Portal card: Downloaded at 2026-09-25T12:04:21Z and again at 2026-09-25T12:41:48Z (more than 30 minutes later); identical 3,211 bytes and SHA-256. Independent check: re-downloaded at 2026-09-25T13:21Z-13:25Z, at least 40 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:19:10Z and again at 2026-09-25T14:52:43Z (33 minutes later); identical 8,180 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=624-II%20%C3%C4&a8type=1&a7type=4&a7from=10.08.1996&a7to=10.08.1996&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3211,
+    "sha256": "32777fbcb449eeaa3f2c7ee4a0119d6574914d99ada138bc89486fc03e636bc1",
+    "note": "Date-restricted single-document card (number '624-II ГД', date 10.08.1996): one hit, status 'Действует без изменений'."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 25 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read in full. The date-restricted single-document portal card (portal_card_response) returns only this act.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in full in Russian after windows-1251 decoding."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_gd_624ii_consent_chernomyrdin_19960810",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-02",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Виктор Степанович Черномырдин",
+      "printed_name": "Черномырдина Виктора Степановича (genitive)",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "parliamentary_consent",
+      "attested_on": "1996-08-10",
+      "text": "Having considered the candidacy submitted by the President for the post of Chairman of the Government, under Article 103(1)(a) of the Constitution, the State Duma resolves, on the results of a secret ballot, to give the President consent to the appointment of Chernomyrdin Viktor Stepanovich as Chairman of the Government, and to send the resolution to the President. Signed 'Г. Н. Селезнев', Moscow, 10 August 1996, N 624-II ГД.",
+      "locator": "Preamble; points 1-2; signature block"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

@@ -12,7 +12,7 @@
   "source_response_sha256": "82667085b973315be9d941ae90bfd429b9407b82eb126a14ebcf90531553228d",
   "source_response_encoding": "windows-1251",
   "source_response_checked_in": false,
-  "stability_check": "Dossier: Downloaded at 2026-09-24T21:53:35Z and again at 2026-09-24T22:36:52Z (at least 28 minutes later); identical 24,028 bytes and SHA-256. Independent check: re-downloaded at 2026-09-24T22:46:25Z-22:47:01Z, 38-58 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T00:33:07Z (24,028 bytes); identical SHA-256.",
+  "stability_check": "Dossier: Downloaded at 2026-09-24T21:53:35Z and again at 2026-09-24T22:36:52Z (at least 28 minutes later); identical 24,028 bytes and SHA-256. Independent check: re-downloaded at 2026-09-24T22:46:25Z-22:47:01Z, 38-58 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T00:33:07Z (24,028 bytes); identical SHA-256. CLAUDE-C01-19: re-downloaded at 2026-09-25T14:19:07Z and 2026-09-25T14:52:40Z; identical 24,028 bytes and SHA-256.",
   "portal_card_response": {
     "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a7type=1&a7date=09.08.1996&sort=7&page=firstlast&lstsize=200",
     "bytes": 21917,
@@ -21,7 +21,7 @@
   },
   "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 24 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
   "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
-  "scope_note": "Read in full. The portal's date list for 9 August 1996 (portal_card_response) holds nine acts and none on the inauguration itself.",
+  "scope_note": "Read in full. The portal's date list for 9 August 1996 (portal_card_response) holds nine acts and none on the inauguration itself. CLAUDE-C01-19 adds two rows on the Government (point 1: the acceptance of the Government's statement resigning its powers; point 2: continued action until a new Government is formed), cited only by ru_government and ru_government_chairman.",
   "visual_review": {
     "pdf_pages_one_based": [],
     "facsimile_pages_one_based": [],
@@ -40,7 +40,31 @@
       "attested_on": "1996-08-09",
       "text": "Decree No. 1146 of 9 August 1996, citing Article 116 and Article 117(5) of the Constitution, accepts the Government's statement resigning its powers and instructs it to continue acting until a new Government is formed. It is signed 'Президент Российской Федерации Б.Ельцин, Москва, Кремль, 9 августа 1996 года, № 1146'.",
       "locator": "Points 1-2; signature block"
+    },
+    {
+      "claim_id": "ru_ukaz_1146_resignation_statement_accepted_19960809",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-02",
+      "role_id": "ru_government_chairman",
+      "holder_name": null,
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "government_resignation_accepted",
+      "attested_on": "1996-08-09",
+      "text": "Citing Article 116 and Article 117(5) of the Constitution, the decree accepts the statement of the Government of the Russian Federation resigning its powers ('Принять заявление Правительства Российской Федерации о сложении своих полномочий').",
+      "locator": "Point 1"
+    },
+    {
+      "claim_id": "ru_ukaz_1146_government_continues_19960809",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-02",
+      "role_id": "ru_government_chairman",
+      "holder_name": null,
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "continuation_of_duties",
+      "attested_on": "1996-08-09",
+      "text": "The decree instructs the Government to continue acting until a new Government is formed ('продолжить действовать до сформирования нового состава Правительства').",
+      "locator": "Point 2"
     }
   ],
-  "bounded_scope": "Presidency observations for CLAUDE-C01-14 only. Election calling, voting, result determination, declaration, correction and publication, oath, stated assumption of office, inauguration ceremony, resignation, acting service and outgoing-holder statements stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-05 RSFSR roles and the USSR packet are outside this extract."
+  "bounded_scope": "Presidency observations for CLAUDE-C01-14 (the first row) and Chairman of the Government observations for CLAUDE-C01-19 (the last two rows) only. Election calling, voting, result determination, declaration, correction and publication, oath, stated assumption of office, inauguration ceremony, resignation, acting service, outgoing-holder statements, the Government's resignation and its continued action stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-05 RSFSR roles and the USSR packet are outside this extract."
 }

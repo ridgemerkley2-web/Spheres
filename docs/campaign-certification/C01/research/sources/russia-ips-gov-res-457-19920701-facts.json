@@ -1,0 +1,46 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_gov_res_457_19920701",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102017184&page=1&rdk=0",
+  "source_title": "Resolution of the Government of the Russian Federation No. 457 of 1 July 1992 'Questions of the State Committee of the Russian Federation for the socio-economic development of the North' (original edition)",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "document_date": "1992-07-01",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102017184&page=1&rdk=0",
+  "source_response_bytes": 11718,
+  "source_response_sha256": "6e6f7ef11b628d4f382d277f05b351370c24e19acde37c288fe03722bbd6183e",
+  "source_response_encoding": "windows-1251",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded at 2026-09-25T12:08:56Z and again at 2026-09-25T12:42:03Z (more than 30 minutes later); identical 11,718 bytes and SHA-256. Portal card: Downloaded at 2026-09-25T12:09:10Z and again at 2026-09-25T12:42:04Z (more than 30 minutes later); identical 3,120 bytes and SHA-256. Independent check: re-downloaded at 2026-09-25T13:21Z-13:25Z, at least 40 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:18:46Z and again at 2026-09-25T14:52:22Z (33 minutes later); identical 11,718 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=457&a8type=1&a7type=4&a7from=01.07.1992&a7to=01.07.1992&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3120,
+    "sha256": "a889f0d8d66e35c6d9a961a80356901e8f312c36e1449a077e77770b056af0de",
+    "note": "Date-restricted single-document card (number 457, date 01.07.1992): one hit, status 'Утратил силу'."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 25 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read in full. The date-restricted single-document portal card (portal_card_response) returns only this act.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in full in Russian after windows-1251 decoding."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_gov_res_457_signed_gaidar_19920701",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-01",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Егор Тимурович Гайдар",
+      "printed_name": "Е. Гайдар",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "government_act_signature",
+      "attested_on": "1992-07-01",
+      "text": "A resolution issued in the name of the Government of the Russian Federation ('ПРАВИТЕЛЬСТВО РОССИЙСКОЙ ФЕДЕРАЦИИ ... от 1 июля 1992 г. N 457') is signed 'Е. Гайдар'; the portal's text prints no title with the signature.",
+      "locator": "Heading; signature line"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

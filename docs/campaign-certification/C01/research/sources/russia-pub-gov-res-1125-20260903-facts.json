@@ -1,0 +1,48 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_pub_gov_res_1125_20260903",
+  "source_url": "https://publication.pravo.gov.ru/file/pdf?eoNumber=0001202609040021",
+  "source_title": "Resolution of the Government of the Russian Federation No. 1125 of 3 September 2026 \"О внесении изменения в постановление Правительства Российской Федерации от 26 января 2005 г. № 38\" (official publication PDF)",
+  "accessed_date": "2026-09-25",
+  "published_date": "2026-09-04",
+  "document_date": "2026-09-03",
+  "access_method": "official_publication_portal_pdf_downloaded_over_http",
+  "source_response_url": "http://publication.pravo.gov.ru/file/pdf?eoNumber=0001202609040021",
+  "source_response_bytes": 184530,
+  "source_response_sha256": "972865e66b5b6c31111ee868f1f99bf654f727a50c7ebddcca937fb30bcc060d",
+  "source_response_encoding": "application/pdf (1 page, image-only; producer iTextSharp.LGPLv2.Core 1.7.5.0; CreationDate D:20260903190419+03'00')",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded at 2026-09-25T12:06:53Z, 2026-09-25T12:57:24Z, 2026-09-25T12:57:26Z (UTC): byte-identical each time (184530 bytes, same SHA-256); first and last downloads 50 minutes apart. The last of these downloads added a cache-busting query (&nocache=<epoch>), more than 30 minutes after the first, and returned identical bytes; the PDF's internal CreationDate, where present, is a fixed past value (see encoding/visual_review), not the request day, so it is a stored file, not generated per request. Independent check: re-downloaded at 2026-09-25T13:12Z-13:14Z and again at 13:32Z-13:36Z (publication PDFs with a cache-busting query in the second round), at least 31 minutes after the last dossier download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:24:59Z and again at 2026-09-25T14:58:19Z (33 minutes later); identical 184,530 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "card_response": {
+    "url": "http://publication.pravo.gov.ru/document/0001202609040021",
+    "bytes": 20324,
+    "sha256": "f860a58cf6f085c6a258356405f2cfe03b5e78c2467a33bee426509e44bc1593",
+    "note": "Official-publication document card ('Номер опубликования: 0001202609040021', 'Дата опубликования: 04.09.2026'), read over HTTP; added by this packet (the dossier recorded the publication date without a hashed card)."
+  },
+  "provenance_note": "The official-publication PDF was downloaded over HTTP because the official-publication section refused HTTPS from this environment on 25 September 2026 (port 443); the packet URL gives the same path on HTTPS, and the bytes and hash recorded here are those of the HTTP response. The PDF is a stored file, not one generated per request: its CreationDate, where present, is a fixed past value and cache-busting downloads returned identical bytes. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Official-publication PDF, rendered and viewed. The official-publication document card (card_response) gives the publication number and date.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "PDF page 1 rendered with pypdfium2 at 1.3x and viewed: coat of arms, \"ПРАВИТЕЛЬСТВО РОССИЙСКОЙ ФЕДЕРАЦИИ\", \"ПОСТАНОВЛЕНИЕ от 3 сентября 2026 г. № 1125 МОСКВА\", title and operative text (adds item 5 to a list of equipment for federal postal organizations), signature \"Председатель Правительства Российской Федерации М.Мишустин\" with an electronic-signature stamp (\"ДОКУМЕНТ ПОДПИСАН ЭЛЕКТРОННОЙ ПОДПИСЬЮ\", certificate owner Правительство Российской Федерации, valid 26.06.2025 to 19.09.2026)."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_pub_gov_res_1125_mishustin_signs_as_chairman_20260903",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-10",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Михаил Владимирович Мишустин",
+      "printed_name": "М.Мишустин",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2026-09-03",
+      "text": "Government resolution No. 1125, dated Moscow, 3 September 2026, is signed \"Председатель Правительства Российской Федерации М.Мишустин\"; officially published on the portal on 4 September 2026 (No. 0001202609040021).",
+      "locator": "PDF page 1: heading, date line and signature block"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

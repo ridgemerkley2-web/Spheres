@@ -1,0 +1,46 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_gov_res_923_19990810",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102061319&page=1&rdk=0",
+  "source_title": "Resolution of the Government of the Russian Federation No. 923 of 10 August 1999 amending resolution No. 1659 of 30 December 1997 (original edition)",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "document_date": "1999-08-10",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102061319&page=1&rdk=0",
+  "source_response_bytes": 7808,
+  "source_response_sha256": "0a4d7e5ebe41b7cccf62f5f276646eb063687e98928a9ceba054a5c1ad82d635",
+  "source_response_encoding": "windows-1251",
+  "source_response_checked_in": false,
+  "stability_check": "Found by the independent check: document identical at 13:57Z and 14:05Z on 2026-09-25 (HTTP; windows-1251); the date-restricted card returned exactly one hit. This packet: re-downloaded at 2026-09-25T14:23:17Z and again at 2026-09-25T14:56:42Z (33 minutes later); identical 7,808 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=923&a8type=1&a7type=4&a7from=10.08.1999&a7to=10.08.1999&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3110,
+    "sha256": "76d0ce95a87e564e6faff89f791c037828ba15c79bfe4b3ffed941dec536859c",
+    "note": "Date-restricted single-document card (number 923, date 10.08.1999): one hit, status 'Утратил силу'."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 25 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read (heading, operative text and signature block). The date-restricted single-document portal card (portal_card_response) returns only this act. A primary record found by the independent check.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in Russian after windows-1251 decoding (heading, operative text and signature block)."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_gov_res_923_putin_signs_as_acting_19990810",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-05",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Владимир Владимирович Путин",
+      "printed_name": "В.Путин",
+      "role_title": "Исполняющий обязанности Председателя Правительства — Acting Chairman of the Government",
+      "event_kind": "acting_service_attestation",
+      "attested_on": "1999-08-10",
+      "text": "Government resolution No. 923 of 10 August 1999 (amending Government resolution No. 1659 of 30 December 1997) is signed 'И. о. Председателя Правительства Российской Федерации В.Путин'.",
+      "locator": "Heading ('от 10 августа 1999 г. N 923'); signature block"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

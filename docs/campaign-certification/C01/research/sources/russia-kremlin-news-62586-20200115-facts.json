@@ -1,0 +1,42 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_kremlin_news_62586_20200115",
+  "source_url": "https://web.archive.org/web/20230731173211id_/http://kremlin.ru/events/president/news/copy/62586",
+  "original_url": "http://kremlin.ru/events/president/news/copy/62586",
+  "archive_capture_utc": "2023-07-31T17:32:11Z",
+  "source_title": "President of Russia website: \"Президент внёс кандидатуру Михаила Мишустина на должность Председателя Правительства\", 15 January 2020, 19:10 (text version)",
+  "accessed_date": "2026-09-25",
+  "published_date": "2020-01-15",
+  "document_date": "2020-01-15",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20230731173211id_/http://kremlin.ru/events/president/news/copy/62586",
+  "source_response_bytes": 1642,
+  "source_response_sha256": "44e824a1d0cb6690d64cba6cdd41a01b3647afbb50d9135cda654e493073011e",
+  "source_response_encoding": "UTF-8 (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded at 2026-09-25T12:23:47Z, 2026-09-25T12:57:59Z, 2026-09-25T13:00:46Z (UTC): byte-identical each time (1642 bytes, same SHA-256); first and last downloads 36 minutes apart. A raw capture made before the cutoff: fixed bytes. Independent check: re-downloaded at 2026-09-25T13:12Z-13:14Z and again at 13:32Z-13:36Z (publication PDFs with a cache-busting query in the second round), at least 31 minutes after the last dossier download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:24:29Z and again at 2026-09-25T14:57:50Z (33 minutes later); identical 1,642 bytes and SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of http://kremlin.ru/events/president/news/copy/62586, captured at 2023-07-31T17:32:11Z, before the 7 September 2026 cutoff; requested without an Accept-Encoding header (curl without --compressed, i.e. identity) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Raw Internet Archive capture 20230731173211 of the official page, made before the cutoff.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "HTML text read in full; photographs and video not reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_kremlin_62586_mishustin_nominated_20200115",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-10",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Михаил Владимирович Мишустин",
+      "printed_name": "Михаила Мишустина (genitive, headline); М.Мишустина (body)",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "nomination",
+      "attested_on": "2020-01-15",
+      "text": "Putin held a working meeting with the head of the Federal Tax Service, Mikhail Mishustin, proposed that he take the post of Chairman of the Government and, having obtained his agreement, submitted M. Mishustin's candidacy to the State Duma for consideration.",
+      "locator": "Headline, date line (15 January 2020, 19:10) and body"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

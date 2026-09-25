@@ -1,0 +1,68 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_pub_gov_rasp_875r_20180507",
+  "source_url": "https://publication.pravo.gov.ru/file/pdf?eoNumber=0001201805070016",
+  "source_title": "Order of the Government of the Russian Federation No. 875-р of 7 May 2018 (the Government lays down its powers before the newly elected President) (official publication PDF)",
+  "accessed_date": "2026-09-25",
+  "published_date": "2018-05-07",
+  "document_date": "2018-05-07",
+  "access_method": "official_publication_portal_pdf_downloaded_over_http",
+  "source_response_url": "http://publication.pravo.gov.ru/file/pdf?eoNumber=0001201805070016",
+  "source_response_bytes": 24640,
+  "source_response_sha256": "d853a5a2ef00a3a2fa8e4ba673c910c43194f6e23a6c6e99b088bc8e38a98115",
+  "source_response_encoding": "application/pdf (1 page; CreationDate D:20180607104217+04'00')",
+  "source_response_checked_in": false,
+  "stability_check": "Found by the independent check: identical bytes and SHA-256 at 2026-09-25T13:35:09Z via=plain; 2026-09-25T14:06:18Z via=plain; IPS text identical bytes and SHA-256 at 2026-09-25T13:35:04Z via=plain; 2026-09-25T14:06:09Z via=plain; portal card identical bytes and SHA-256 at 2026-09-25T13:35:08Z via=plain; 2026-09-25T14:06:15Z via=plain. This packet: re-downloaded at 2026-09-25T14:25:14Z and again at 2026-09-25T14:58:32Z (33 minutes later); identical 24,640 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=875-%F0&a8type=2&a7type=4&a7from=07.05.2018&a7to=07.05.2018&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3165,
+    "sha256": "4f03448bc3d34a06bedb0e93392485269529420047c8508b68ec7c34a23b2e9c",
+    "note": "Date-restricted single-document card (number 875-р, date 07.05.2018, document type распоряжение): one hit, status 'Действует без изменений'; it cites the portal publication No. 0001201805070016."
+  },
+  "corroborating_responses": [
+    {
+      "url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102468152&page=1&rdk=0",
+      "bytes": 17916,
+      "sha256": "aa4e962d2ff8df6c620ce5f38e972a42e905bc495f9aeea5ee2d6032627b1301",
+      "note": "IPS original-edition text (rdk=0) of the same act, read over HTTP (port 443 refused) and decoded from windows-1251; agrees with the PDF."
+    }
+  ],
+  "provenance_note": "The official-publication PDF was downloaded over HTTP because the official-publication section refused HTTPS from this environment on 25 September 2026 (port 443); the packet URL gives the same path on HTTPS, and the bytes and hash recorded here are those of the HTTP response. The PDF is a stored file, not one generated per request: its CreationDate, where present, is a fixed past value and cache-busting downloads returned identical bytes. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Official-publication PDF, rendered and viewed; the IPS original-edition text of the same act is attached as a corroborating response. The date-restricted single-document portal card (portal_card_response) returns only this act. A primary record found by the independent check.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "PDF page 1 rendered with pypdfium2 at 1.3x and viewed: coat of arms, \"ПРАВИТЕЛЬСТВО РОССИЙСКОЙ ФЕДЕРАЦИИ\", \"РАСПОРЯЖЕНИЕ от 7 мая 2018 г. № 875-р МОСКВА\", the operative sentence and the signature block \"Председатель Правительства Российской Федерации Д.Медведев\" with the seal of the Government Office's records department. Image-only scan (Adobe PDF Library 8.0); CreationDate D:20180607104217+04'00', a fixed past value."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_pub_gov_875r_government_powers_laid_down_20180507",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-09",
+      "role_id": "ru_government_chairman",
+      "holder_name": null,
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "government_powers_laid_down",
+      "attested_on": "2018-05-07",
+      "text": "Under Article 116 of the Constitution and Article 35 of the Federal Constitutional Law 'О Правительстве Российской Федерации', Government order No. 875-r of 7 May 2018 states that the Government of the Russian Federation lays down its powers before the newly elected President ('слагает свои полномочия перед вновь избранным Президентом Российской Федерации').",
+      "locator": "PDF page 1: heading ('от 7 мая 2018 г. № 875-р'); sole operative sentence"
+    },
+    {
+      "claim_id": "ru_pub_gov_875r_medvedev_signs_as_chairman_20180507",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-09",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Дмитрий Анатольевич Медведев",
+      "printed_name": "Д.Медведев",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2018-05-07",
+      "text": "The order is signed 'Председатель Правительства Российской Федерации Д.Медведев', with the seal of the Government Office's records department.",
+      "locator": "PDF page 1: signature block"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

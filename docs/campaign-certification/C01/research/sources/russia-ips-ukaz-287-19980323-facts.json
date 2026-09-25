@@ -1,0 +1,45 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_ukaz_287_19980323",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102052188&page=1&rdk=0",
+  "source_title": "Decree of the President of the Russian Federation No. 287 of 23 March 1998 'On amending Decree of the President of the Russian Federation No. 281 of 23 March 1998' (original edition)",
+  "accessed_date": "2026-09-25",
+  "published_date": "1998-03-25",
+  "document_date": "1998-03-23",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102052188&page=1&rdk=0",
+  "source_response_bytes": 24048,
+  "source_response_sha256": "93a5ac887b5e3fda9704b85525a3a899c6d32b6ba7ede2e69699b868a31be57b",
+  "source_response_encoding": "windows-1251",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded at 2026-09-25T12:00:47Z and again at 2026-09-25T12:41:27Z (more than 30 minutes later); identical 24,048 bytes and SHA-256. Portal card: Downloaded at 2026-09-25T12:04:24Z and again at 2026-09-25T12:41:52Z (more than 30 minutes later); identical 3,164 bytes and SHA-256. Independent check: re-downloaded at 2026-09-25T13:21Z-13:25Z, at least 40 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:19:19Z and again at 2026-09-25T14:52:51Z (33 minutes later); identical 24,048 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=287&a8type=1&a7type=4&a7from=23.03.1998&a7to=23.03.1998&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3164,
+    "sha256": "352dba2dfad52e572ac17adc3fcc1f070da65dc9f8a861d04b8b7426520cda0a",
+    "note": "Date-restricted single-document card (number 287, date 23.03.1998): one hit, status 'Действует без изменений'."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 25 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read in full. The date-restricted single-document portal card (portal_card_response) returns only this act.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in full in Russian after windows-1251 decoding."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_ukaz_287_acting_point_repealed_19980323",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-03",
+      "role_id": "ru_government_chairman",
+      "holder_name": null,
+      "role_title": "Исполняющий обязанности Председателя Правительства — Acting Chairman of the Government",
+      "event_kind": "acting_designation_revoked",
+      "attested_on": "1998-03-23",
+      "text": "The decree declares point 3 of decree 281 of 23 March 1998 (the President's own temporary performance of the Chairman's duties) void, with effect from the moment of signing.",
+      "locator": "Points 1-2"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

@@ -1,0 +1,57 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_pub_duma_res_7565_7_gd_20200116",
+  "source_url": "https://publication.pravo.gov.ru/file/pdf?eoNumber=0001202001160027",
+  "source_title": "Resolution of the State Duma No. 7565-7 GD of 16 January 2020 \"О даче согласия Президенту Российской Федерации на назначение Председателем Правительства Российской Федерации Мишустина Михаила Владимировича\" (official publication PDF)",
+  "accessed_date": "2026-09-25",
+  "published_date": "2020-01-16",
+  "document_date": "2020-01-16",
+  "access_method": "official_publication_portal_pdf_downloaded_over_http",
+  "source_response_url": "http://publication.pravo.gov.ru/file/pdf?eoNumber=0001202001160027",
+  "source_response_bytes": 39429,
+  "source_response_sha256": "09e5c355a38a403705a6a5a74fa6c0c745b5365a9dea210cebab7a1c6a781988",
+  "source_response_encoding": "application/pdf (image-only scan, no text layer)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded at 2026-09-25T12:17:21Z, 2026-09-25T12:57:14Z, 2026-09-25T12:57:15Z (UTC): byte-identical each time (39429 bytes, same SHA-256); first and last downloads 39 minutes apart. The last of these downloads added a cache-busting query (&nocache=<epoch>), more than 30 minutes after the first, and returned identical bytes; the PDF's internal CreationDate, where present, is a fixed past value (see encoding/visual_review), not the request day, so it is a stored file, not generated per request. Independent check: re-downloaded at 2026-09-25T13:12Z-13:14Z and again at 13:32Z-13:36Z (publication PDFs with a cache-busting query in the second round), at least 31 minutes after the last dossier download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:24:31Z and again at 2026-09-25T14:57:53Z (33 minutes later); identical 39,429 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=7565-7%20%C3%C4&a8type=2&a7type=4&a7from=16.01.2020&a7to=16.01.2020&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3340,
+    "sha256": "af2f606c0b9f696d444b13f6a80d7ab07fd9162a42dd2388c458fa7fec103938",
+    "note": "Date-restricted single-document card (number and one-day date range): one hit, status \"Действует без изменений\"; publication citations: portal 16.1.2020 No. 0001202001160027; Собрание законодательства РФ 2020 No. 3 art. 236."
+  },
+  "corroborating_responses": [
+    {
+      "url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102658160&page=1&rdk=0",
+      "bytes": 18306,
+      "sha256": "91e272205fd239d535f0ac370646bd6ebadd546f328e3d85001bf14b23862dae",
+      "note": "IPS original-edition text (rdk=0) of the same act, read over HTTP (port 443 refused) and decoded from windows-1251; read in full and agrees with the PDF. Stability: Downloaded at 2026-09-25T12:02:36Z, 2026-09-25T12:22:36Z, 2026-09-25T12:56:29Z (UTC): byte-identical each time (18306 bytes, same SHA-256); first and last downloads 53 minutes apart."
+    }
+  ],
+  "provenance_note": "The official-publication PDF was downloaded over HTTP because the official-publication section refused HTTPS from this environment on 25 September 2026 (port 443); the packet URL gives the same path on HTTPS, and the bytes and hash recorded here are those of the HTTP response. The PDF is a stored file, not one generated per request: its CreationDate, where present, is a fixed past value and cache-busting downloads returned identical bytes. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Official-publication PDF, rendered and viewed; the IPS original-edition text of the same act is attached as a corroborating response. The date-restricted single-document portal card (portal_card_response) returns only this act.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "PDF pages 1-2 rendered with pypdfium2 and viewed: Duma header (СЕДЬМОГО СОЗЫВА), \"ПОСТАНОВЛЕНИЕ ГОСУДАРСТВЕННОЙ ДУМЫ\", title, preamble and points 1-2 on page 1; point 3, signature \"Председатель Государственной Думы Федерального Собрания Российской Федерации В.В.Володин\" with the Duma office stamp, and \"Москва 16 января 2020 года № 7565-7 ГД\" on page 2. Image-only scan; PDF CreationDate D:20200116114842Z (scanner Xerox AltaLink C8055), the publication day."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_pub_duma_7565_7_consent_mishustin_20200116",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-10",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Михаил Владимирович Мишустин",
+      "printed_name": "Мишустина Михаила Владимировича (genitive)",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "parliamentary_consent",
+      "attested_on": "2020-01-16",
+      "text": "Having considered the candidacy submitted by the President, the State Duma, citing Articles 103(1)(a) and 111 of the Constitution, consents to the President's appointment of Mikhail Vladimirovich Mishustin as Chairman of the Government; in force on adoption. Signed V. V. Volodin, Moscow, 16 January 2020, No. 7565-7 GD.",
+      "locator": "PDF pages 1-2: title, preamble, points 1-3, signature and date block"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

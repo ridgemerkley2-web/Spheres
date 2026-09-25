@@ -1,0 +1,68 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_duma_steno_19980907",
+  "source_url": "https://web.archive.org/web/20220620072458id_/http://transcript.duma.gov.ru/node/2510/",
+  "original_url": "http://transcript.duma.gov.ru/node/2510/",
+  "archive_capture_utc": "2022-06-20T07:24:58Z",
+  "source_title": "State Duma: stenogram of the sitting of 7 September 1998 (Transcripts database, node 2510), Internet Archive capture 20220620072458",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "document_date": "1998-09-07",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20220620072458id_/http://transcript.duma.gov.ru/node/2510/",
+  "source_response_bytes": 227423,
+  "source_response_sha256": "2a7fdbb6e84c12ecc48621e8921fbba3a234dfe03347506820830823a61ff344",
+  "source_response_encoding": "UTF-8 (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded at 2026-09-25T12:27:23Z and again at 2026-09-25T12:59:54Z (more than 30 minutes later); identical 227,423 bytes and SHA-256. Independent check: re-downloaded at 2026-09-25T13:21Z-13:25Z, at least 40 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:20:07Z and again at 2026-09-25T14:53:21Z (33 minutes later); identical 227,423 bytes and SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of http://transcript.duma.gov.ru/node/2510/, captured at 2022-06-20T07:24:58Z, before the 7 September 2026 cutoff; requested without an Accept-Encoding header (curl without --compressed, i.e. identity) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Raw Internet Archive capture 20220620072458 of the official page, made before the cutoff.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "HTML (227 KB) searched for 'Черномырдин', 'внес', 'согласие', 'Результаты голосования'; the opening, the President's representative's presentation, the votes on the form of voting and the consent vote were read. Not read in full."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_duma_steno_chernomyrdin_resubmitted_19980907",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-04",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Виктор Степанович Черномырдин",
+      "printed_name": "Черномырдина Виктора Степановича (genitive)",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "nomination_presented",
+      "attested_on": "1998-09-07",
+      "text": "A. A. Kotenkov, the President's plenipotentiary representative, states that under Article 83(a) and Article 111 of the Constitution the President has again ('повторно') submitted the candidacy of Chernomyrdin Viktor Stepanovich for consent to his appointment as Chairman of the Government.",
+      "locator": "Evening sitting (17:00), statement of Котенков А.А. before the candidate's address"
+    },
+    {
+      "claim_id": "ru_duma_steno_chernomyrdin_styled_acting_19980907",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-04",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Виктор Степанович Черномырдин",
+      "printed_name": "Виктора Степановича Черномырдина (genitive)",
+      "role_title": "Исполняющий обязанности Председателя Правительства — Acting Chairman of the Government",
+      "event_kind": "acting_service_attestation",
+      "attested_on": "1998-09-07",
+      "text": "In the same statement Kotenkov says that on that day the President signed the political agreement already approved by the Federation Council and already signed by 'исполняющего обязанности Председателя Правительства Виктора Степановича Черномырдина'.",
+      "locator": "Statement of Котенков А.А."
+    },
+    {
+      "claim_id": "ru_duma_steno_chernomyrdin_consent_vote_failed_19980907",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-04",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Виктор Степанович Черномырдин",
+      "printed_name": "Виктора Степановича Черномырдина (genitive)",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "parliamentary_vote",
+      "attested_on": "1998-09-07",
+      "text": "The Duma adopts an open roll-call vote (19:14:48: 295 for, 89 against, 3 abstentions); the question 'дать согласие Президенту на утверждение Виктора Степановича Черномырдина Председателем Правительства' then fails (19:16:32: 138 for, 273 against, 1 abstention, 412 voting, 'Результат: не принято').",
+      "locator": "'Результаты голосования (19 час. 14 мин. 48 сек.)' and '(19 час. 16 мин. 32 сек.)'"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

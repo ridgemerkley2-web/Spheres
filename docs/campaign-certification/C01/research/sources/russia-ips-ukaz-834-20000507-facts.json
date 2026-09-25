@@ -1,0 +1,46 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_ukaz_834_20000507",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102065739&page=1&rdk=0",
+  "source_title": "Decree of the President of the Russian Federation No. 834 of 7 May 2000 'On the performance of the duties of the Chairman of the Government of the Russian Federation'",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "document_date": "2000-05-07",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102065739&page=1&rdk=0",
+  "source_response_bytes": 23925,
+  "source_response_sha256": "80c52749cb15b753d0e720ba7c6f5fcb44d1d77fbe16358d171cdba9f7e34d26",
+  "source_response_encoding": "windows-1251",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded over HTTP at 2026-09-25T12:00:01Z and again at 2026-09-25T12:35:14Z (35 minutes later): identical 23,925 bytes and SHA-256. Portal card: Downloaded over HTTP at 2026-09-25T12:41:48Z and again at 2026-09-25T13:12:10Z (30 minutes later): identical 3,153 bytes and SHA-256. Independent check: re-downloaded at 2026-09-25T13:14Z-13:24Z and again at 13:47Z-13:55Z (portal URLs with a cache-busting query in the second round), 33-110 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:21:51Z and again at 2026-09-25T14:54:05Z (32 minutes later); identical 23,925 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=834&a8type=1&a7type=4&a7from=07.05.2000&a7to=07.05.2000&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3153,
+    "sha256": "896f756ce2328a48712883e8105d1bef64d85a6c1d6e76d9c262d62ece5bb22f",
+    "note": "Date-restricted single-document card: a number search limited to the act's own date (a7from = a7to), returning exactly this one act with its title and the publications the portal cites."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 25 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read in full. The date-restricted single-document portal card (portal_card_response) returns only this act.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in full in Russian after windows-1251 decoding."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_ukaz_834_kasyanov_acting_20000507",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-06",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Михаил Михайлович Касьянов",
+      "printed_name": "Касьянова Михаила Михайловича (accusative)",
+      "role_title": "Исполняющий обязанности Председателя Правительства — Acting Chairman of the Government",
+      "event_kind": "acting_service_designation",
+      "attested_on": "2000-05-07",
+      "text": "'В связи с вступлением в должность Президента Российской Федерации', Decree No. 834 entrusts the performance of the duties of the Chairman of the Government to the First Deputy Chairman of the Government and Minister of Finance, Kasyanov Mikhail Mikhailovich; it enters into force from the moment of signature; signed 'Президент Российской Федерации В.Путин', Moscow, Kremlin, 7 May 2000, No. 834.",
+      "locator": "Preamble; points 1-2; signature block"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

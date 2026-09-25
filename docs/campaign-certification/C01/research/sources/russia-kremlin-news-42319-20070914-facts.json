@@ -1,0 +1,68 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_kremlin_news_42319_20070914",
+  "source_url": "https://web.archive.org/web/20251210060946id_/http://kremlin.ru/events/president/news/copy/42319",
+  "original_url": "http://kremlin.ru/events/president/news/copy/42319",
+  "archive_capture_utc": "2025-12-10T06:09:46Z",
+  "source_title": "President of Russia website: \"Президент подписал Указ о назначении Виктора Зубкова Председателем Правительства России\" (The President signed the decree appointing Viktor Zubkov Chairman of the Government), 14 September 2007, 15:00 (text version)",
+  "accessed_date": "2026-09-25",
+  "published_date": "2007-09-14",
+  "document_date": "2007-09-14",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20251210060946id_/http://kremlin.ru/events/president/news/copy/42319",
+  "source_response_bytes": 1600,
+  "source_response_sha256": "576dfbaa83c986d838c6d921c217b21506a20dbe36fe213f9fe86c0f9f643fae",
+  "source_response_encoding": "UTF-8 (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded at 2026-09-25T12:22:12Z, 2026-09-25T12:57:30Z, 2026-09-25T13:00:35Z (UTC): byte-identical each time (1600 bytes, same SHA-256); first and last downloads 38 minutes apart. A raw capture made before the cutoff: fixed bytes. Independent check: re-downloaded at 2026-09-25T13:12Z-13:14Z and again at 13:32Z-13:36Z (publication PDFs with a cache-busting query in the second round), at least 31 minutes after the last dossier download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:23:26Z and again at 2026-09-25T14:56:50Z (33 minutes later); identical 1,600 bytes and SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of http://kremlin.ru/events/president/news/copy/42319, captured at 2025-12-10T06:09:46Z, before the 7 September 2026 cutoff; requested without an Accept-Encoding header (curl without --compressed, i.e. identity) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Raw Internet Archive capture 20251210060946 of the official page, made before the cutoff.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "HTML text read in full; photographs and video not reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_kremlin_42319_zubkov_nominated_20070912",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-08",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Виктор Алексеевич Зубков",
+      "printed_name": "В.Зубкова (genitive; initial and surname)",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "nomination",
+      "attested_on": "2007-09-12",
+      "text": "The Kremlin item of 14 September 2007 states that Zubkov's candidacy was submitted by the head of state to the lower house of parliament on Wednesday, 12 September, after the previous head of the cabinet, M. Fradkov, resigned.",
+      "locator": "Item body, second sentence"
+    },
+    {
+      "claim_id": "ru_kremlin_42319_duma_consent_reported_20070914",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-08",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Виктор Алексеевич Зубков",
+      "printed_name": "В.Зубкова (genitive; initial and surname)",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "parliamentary_consent_reported",
+      "attested_on": "2007-09-14",
+      "text": "The item states that earlier on 14 September 2007 the State Duma consented to Zubkov's appointment as premier.",
+      "locator": "Item body, first sentence"
+    },
+    {
+      "claim_id": "ru_kremlin_42319_appointment_decree_signed_20070914",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-08",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Виктор Алексеевич Зубков",
+      "printed_name": "Виктора Зубкова (genitive)",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "appointment_reported",
+      "attested_on": "2007-09-14",
+      "text": "The item, dated 14 September 2007, 15:00, reports that the President signed the decree appointing Viktor Zubkov Chairman of the Government of Russia.",
+      "locator": "Headline and date line"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

@@ -1,0 +1,58 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_rsfsr_ukaz_171_19911106",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102012981&page=1&rdk=0",
+  "source_title": "Decree of the President of the RSFSR No. 171 of 6 November 1991 'On the reorganisation of the Government of the RSFSR' (original edition)",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "document_date": "1991-11-06",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102012981&page=1&rdk=0",
+  "source_response_bytes": 20304,
+  "source_response_sha256": "9dcc2f762ed44d7d28fb75ef4da94915cff8b82932fee874fbfedfddc3b63b83",
+  "source_response_encoding": "windows-1251",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded at 2026-09-25T11:58:44Z and again at 2026-09-25T12:41:11Z (more than 30 minutes later); identical 20,304 bytes and SHA-256. Portal card: Downloaded at 2026-09-25T12:04:12Z and again at 2026-09-25T12:41:39Z (more than 30 minutes later); identical 2,873 bytes and SHA-256. Independent check: re-downloaded at 2026-09-25T13:21Z-13:25Z, at least 40 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:18:29Z and again at 2026-09-25T14:52:10Z (33 minutes later); identical 20,304 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=171&a8type=1&a7type=4&a7from=06.11.1991&a7to=06.11.1991&sort=7&page=firstlast&lstsize=50",
+    "bytes": 2873,
+    "sha256": "b7ee20522604c42570e493bbac59962383a2fe1a7571f967262b07d5c5a290a8",
+    "note": "Date-restricted single-document card (number 171, date 06.11.1991): one hit, status 'Утратил силу' (no publication citation shown)."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 25 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read in full. The date-restricted single-document portal card (portal_card_response) returns only this act.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in full in Russian after windows-1251 decoding."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_ukaz_171_president_heads_government_19911106",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-01",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Борис Николаевич Ельцин",
+      "printed_name": "Б. ЕЛЬЦИН (signature; point 1 names the office, not a person)",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "head_of_government_designation",
+      "attested_on": "1991-11-06",
+      "text": "Citing Article 121-1 and Article 121-5(6) of the RSFSR Constitution and point 2 of the Congress resolution of 1 November 1991, the decree states that for the period of the economic reform the Government of the RSFSR is headed by the President of the RSFSR ('На период экономической реформы Правительство РСФСР возглавляет Президент РСФСР'). It is signed 'Президент РСФСР Б. ЕЛЬЦИН, Москва, Кремль, 6 ноября 1991 года, N 171'.",
+      "locator": "Preamble; point 1; signature block"
+    },
+    {
+      "claim_id": "ru_ukaz_171_council_of_ministers_continues_19911106",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-01",
+      "role_id": "ru_government_chairman",
+      "holder_name": null,
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "continuation_of_duties",
+      "attested_on": "1991-11-06",
+      "text": "The decree instructs the Council of Ministers of the RSFSR to carry out its duties until the new composition of the Government of the RSFSR is formed, and asks the Vice-President and the State Secretary to submit reorganisation proposals within three days.",
+      "locator": "Points 2-3"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

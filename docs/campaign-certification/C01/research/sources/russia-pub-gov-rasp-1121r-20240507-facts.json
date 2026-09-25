@@ -1,0 +1,68 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_pub_gov_rasp_1121r_20240507",
+  "source_url": "https://publication.pravo.gov.ru/file/pdf?eoNumber=0001202405070002",
+  "source_title": "Order of the Government of the Russian Federation No. 1121-р of 7 May 2024 (the Government lays down its powers before the newly elected President) (official publication PDF)",
+  "accessed_date": "2026-09-25",
+  "published_date": "2024-05-07",
+  "document_date": "2024-05-07",
+  "access_method": "official_publication_portal_pdf_downloaded_over_http",
+  "source_response_url": "http://publication.pravo.gov.ru/file/pdf?eoNumber=0001202405070002",
+  "source_response_bytes": 107660,
+  "source_response_sha256": "5254fddee0cf9f254f6a19ba982e94a9719b1f3fce05704bc8366cd2f1989393",
+  "source_response_encoding": "application/pdf (1 page; CreationDate D:20240507104455+03'00')",
+  "source_response_checked_in": false,
+  "stability_check": "Found by the independent check: identical bytes and SHA-256 at 2026-09-25T13:35:11Z via=plain; 2026-09-25T14:06:21Z via=plain; IPS text identical bytes and SHA-256 at 2026-09-25T13:35:05Z via=plain; 2026-09-25T14:06:10Z via=plain; portal card identical bytes and SHA-256 at 2026-09-25T13:35:09Z via=plain; 2026-09-25T14:06:16Z via=plain. This packet: re-downloaded at 2026-09-25T14:25:16Z and again at 2026-09-25T14:58:34Z (33 minutes later); identical 107,660 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=1121-%F0&a8type=2&a7type=4&a7from=07.05.2024&a7to=07.05.2024&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3166,
+    "sha256": "9918b6d8a16fbae9d2ae840d51d17a6c713ee8de9b576275b016d12c99bca734",
+    "note": "Date-restricted single-document card (number 1121-р, date 07.05.2024, document type распоряжение): one hit, status 'Действует без изменений'; it cites the portal publication No. 0001202405070002."
+  },
+  "corroborating_responses": [
+    {
+      "url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=606911093&page=1&rdk=0",
+      "bytes": 23862,
+      "sha256": "d62d1bcee3df6bbfa2ad46c220043f8723650688b220c2f8b1b8cfdcc6b8fbdc",
+      "note": "IPS original-edition text (rdk=0) of the same act, read over HTTP (port 443 refused) and decoded from windows-1251; agrees with the PDF."
+    }
+  ],
+  "provenance_note": "The official-publication PDF was downloaded over HTTP because the official-publication section refused HTTPS from this environment on 25 September 2026 (port 443); the packet URL gives the same path on HTTPS, and the bytes and hash recorded here are those of the HTTP response. The PDF is a stored file, not one generated per request: its CreationDate, where present, is a fixed past value and cache-busting downloads returned identical bytes. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Official-publication PDF, rendered and viewed; the IPS original-edition text of the same act is attached as a corroborating response. The date-restricted single-document portal card (portal_card_response) returns only this act. A primary record found by the independent check.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "PDF page 1 rendered with pypdfium2 at 1.3x and viewed: coat of arms, \"ПРАВИТЕЛЬСТВО РОССИЙСКОЙ ФЕДЕРАЦИИ\", \"РАСПОРЯЖЕНИЕ от 7 мая 2024 г. № 1121-р МОСКВА\", the operative sentence (Article 34 of the Federal Constitutional Law) and the signature block \"Председатель Правительства Российской Федерации М.Мишустин\" with an electronic-signature stamp (owner Правительство Российской Федерации). CreationDate D:20240507104455+03'00', the publication day."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_pub_gov_1121r_government_powers_laid_down_20240507",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-10",
+      "role_id": "ru_government_chairman",
+      "holder_name": null,
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "government_powers_laid_down",
+      "attested_on": "2024-05-07",
+      "text": "Under Article 116 of the Constitution and Article 34 of the Federal Constitutional Law 'О Правительстве Российской Федерации', Government order No. 1121-r of 7 May 2024 states that the Government of the Russian Federation lays down its powers before the newly elected President ('слагает свои полномочия перед вновь избранным Президентом Российской Федерации').",
+      "locator": "PDF page 1: heading ('от 7 мая 2024 г. № 1121-р'); sole operative sentence"
+    },
+    {
+      "claim_id": "ru_pub_gov_1121r_mishustin_signs_as_chairman_20240507",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-10",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Михаил Владимирович Мишустин",
+      "printed_name": "М.Мишустин",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2024-05-07",
+      "text": "The order is signed 'Председатель Правительства Российской Федерации М.Мишустин', with an electronic-signature stamp ('ДОКУМЕНТ ПОДПИСАН ЭЛЕКТРОННОЙ ПОДПИСЬЮ', owner Правительство Российской Федерации).",
+      "locator": "PDF page 1: signature block"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

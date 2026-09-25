@@ -1,0 +1,42 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_kremlin_news_38132_20000510",
+  "source_url": "https://web.archive.org/web/20260513105913id_/http://kremlin.ru/events/president/news/38132",
+  "original_url": "http://kremlin.ru/events/president/news/38132",
+  "archive_capture_utc": "2026-05-13T10:59:13Z",
+  "source_title": "Президент предложил кандидатуру Михаила Касьянова на пост Председателя Правительства (The President proposed Mikhail Kasyanov's candidacy for Chairman of the Government), 10 May 2000 — kremlin.ru news",
+  "accessed_date": "2026-09-25",
+  "published_date": "2000-05-10",
+  "document_date": "2000-05-10",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20260513105913id_/http://kremlin.ru/events/president/news/38132",
+  "source_response_bytes": 34798,
+  "source_response_sha256": "e2f76cc3a4d4ddc2c8360b9cd07f9053d1e7c142db5e1ad494368abe36719136",
+  "source_response_encoding": "UTF-8 (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Raw capture downloaded at 2026-09-25T12:21:14Z and again at 2026-09-25T13:10:01Z (48 minutes later): identical 34,798 bytes and SHA-256. Independent check: re-downloaded at 2026-09-25T13:14Z-13:24Z and again at 13:47Z-13:55Z (portal URLs with a cache-busting query in the second round), 33-110 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:22:31Z and again at 2026-09-25T14:55:08Z (32 minutes later); identical 34,798 bytes and SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of http://kremlin.ru/events/president/news/38132, captured at 2026-05-13T10:59:13Z, before the 7 September 2026 cutoff; requested without an Accept-Encoding header (curl without --compressed, i.e. identity) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The captured page carries 'Последнее обновление материала 20 марта 2015 года, 17:49', so its headline and styling are not shown to be contemporaneous. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Raw Internet Archive capture 20260513105913 of the official page, made before the cutoff.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Article text read in full in Russian (headline, dateline, body and linked-document list); photographs and video not reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_kremlin_putin_nominates_kasyanov_20000510",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-06",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Михаил Михайлович Касьянов",
+      "printed_name": "Михаила Касьянова (genitive)",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "nomination",
+      "attested_on": "2000-05-10",
+      "text": "Item dated 10 May 2000, 14:40: Vladimir Putin sent State Duma Chairman Геннадий Селезнев a letter submitting Mikhail Kasyanov's candidacy for the Duma's consent to his appointment as Chairman of the Government under Article 83 of the Constitution.",
+      "locator": "Headline, dateline and sole paragraph"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

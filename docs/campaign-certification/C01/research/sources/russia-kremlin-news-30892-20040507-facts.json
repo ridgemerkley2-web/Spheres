@@ -1,0 +1,42 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_kremlin_news_30892_20040507",
+  "source_url": "https://web.archive.org/web/20240510083530id_/http://kremlin.ru/events/president/news/30892/print",
+  "original_url": "http://kremlin.ru/events/president/news/30892/print",
+  "archive_capture_utc": "2024-05-10T08:35:30Z",
+  "source_title": "Президент направил Председателю Государственной Думы Борису Грызлову письмо, в котором внес на рассмотрение нижней палаты парламента кандидатуру Михаила Фрадкова на должность Председателя Правительства (The President sent State Duma Chairman Boris Gryzlov a letter submitting Mikhail Fradkov's candidacy for Chairman of the Government), 7 May 2004 — kremlin.ru news",
+  "accessed_date": "2026-09-25",
+  "published_date": "2004-05-07",
+  "document_date": "2004-05-07",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20240510083530id_/http://kremlin.ru/events/president/news/30892/print",
+  "source_response_bytes": 38383,
+  "source_response_sha256": "9407866e8c7b32cb1e23184e7089c301ae7b2bb2625a230a54b4673e983392b4",
+  "source_response_encoding": "UTF-8 (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Raw capture downloaded at 2026-09-25T12:38:10Z and again at 2026-09-25T13:10:58Z (32 minutes later): identical 38,383 bytes and SHA-256. The capture's headline and dateline ('7 мая 2004 года 15:20') match the live item page's (the item has no body text). Independent check: re-downloaded at 2026-09-25T13:14Z-13:24Z and again at 13:47Z-13:55Z (portal URLs with a cache-busting query in the second round), 33-110 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:22:46Z and again at 2026-09-25T14:56:15Z (33 minutes later); identical 38,383 bytes and SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of http://kremlin.ru/events/president/news/30892/print, captured at 2024-05-10T08:35:30Z, before the 7 September 2026 cutoff; requested without an Accept-Encoding header (curl without --compressed, i.e. identity) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The captured page carries 'Последнее обновление материала 20 марта 2015 года, 17:49', so its headline and styling are not shown to be contemporaneous. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Raw Internet Archive capture 20240510083530 of the official page, made before the cutoff. No capture of the item itself exists, so the print view of the same item is used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Print-view capture read in full in Russian (headline, dateline and publication stamp; the item has no body text)."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_kremlin_putin_nominates_fradkov_20040507",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-07",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Михаил Ефимович Фрадков",
+      "printed_name": "Михаила Фрадкова (genitive)",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "nomination",
+      "attested_on": "2004-05-07",
+      "text": "Item dated 7 May 2004, 15:20: the President sent State Duma Chairman Борис Грызлов a letter submitting Mikhail Fradkov's candidacy for Chairman of the Government to the lower house.",
+      "locator": "Headline and dateline (the item has no body text)"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

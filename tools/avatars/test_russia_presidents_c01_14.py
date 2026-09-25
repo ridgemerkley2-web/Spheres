@@ -349,6 +349,9 @@ LEAD_URL_MARKERS = ('catalog/persons/6/biography', 'rg.ru:80/1993/12/25/konstitu
 # URL fragments that mark a page or file generated per request, or an unresolved capture; never allowed.
 VOLATILE_URL = re.compile(r'(ysclid=|sessid=|PHPSESSID|[?&]cb=|nocache|token=|utm_|fbclid|yclid|form_build_id|/web/\d{4}id_/|/web/\d{14}/)')
 REPORT = research.RESEARCH / 'russia-presidents-1991-2026-14.md'
+# CLAUDE-C01-19 appended exactly these two Government rows to decree 1146's source and extract, cited only by
+# ru_government_chairman and pinned in test_russia_heads_of_government_c01_19; every guard here applies to the rest unchanged.
+C01_19_ROWS_1146 = ('ru_ukaz_1146_resignation_statement_accepted_19960809', 'ru_ukaz_1146_government_continues_19960809')
 HANDOFF = 'docs/planning/ai-handoffs/CLAUDE-C01-14.md'
 
 
@@ -361,7 +364,8 @@ def presidents_invariants(russia, ussr):
     assert list(roles) == [RSFSR, VICE, PR], 'exactly the two C01-05 roles and ru_president'
     heads = [r['id'] for e in russia['organizations'] + russia['institutions'] for r in e['roles'] if r['kind'] == 'head_of_state']
     assert heads == [PR], 'no other head-of-state role'
-    assert [e['id'] for e in russia['institutions'] if not e['id'].startswith('ru_duma_faction_')] == ['ru_rsfsr_presidency']
+    # CLAUDE-C01-19 appended ru_government (head_of_government), pinned in test_russia_heads_of_government_c01_19.
+    assert [e['id'] for e in russia['institutions'] if not e['id'].startswith('ru_duma_faction_')] == ['ru_rsfsr_presidency', 'ru_government']
     # The C01-05 holders are unchanged: one start each, no end.
     for role_id, name in ((RSFSR, YELTSIN), (VICE, 'Александр Владимирович Руцкой')):
         got = [(h['name'], h['attested_on'], h['from'], h['until']) for h in roles[role_id]['holder_claims']]
@@ -435,8 +439,9 @@ class RussianPresidentsTests(unittest.TestCase):
         cls.role = next(r for r in cls.presidency['roles'] if r['id'] == PR)
         cls.extracts = {sid: json.loads((research.ROOT / cls.sources[sid]['snapshot']['path']).read_text(encoding='utf-8'))
                         for sid in NEW_SOURCES}
-        cls.rows = {row['claim_id']: row for sid in NEW_SOURCES for row in cls.extracts[sid]['rows']}
-        cls.new_claims = [c['id'] for sid in NEW_SOURCES for c in cls.sources[sid]['claims']]
+        cls.rows = {row['claim_id']: row for sid in NEW_SOURCES for row in cls.extracts[sid]['rows']
+                    if row['claim_id'] not in C01_19_ROWS_1146}
+        cls.new_claims = [c['id'] for sid in NEW_SOURCES for c in cls.sources[sid]['claims'] if c['id'] not in C01_19_ROWS_1146]
         cls.report = (research.ROOT / REPORT).read_text(encoding='utf-8')
 
     def validate(self, packet=None):
@@ -450,8 +455,10 @@ class RussianPresidentsTests(unittest.TestCase):
     def test_new_records_are_bounded_and_every_claim_is_classified(self):
         ids = self.validate()
         self.assertEqual((len(NEW_SOURCES), len(self.new_claims)), (53, 94))
-        self.assertEqual([s['id'] for s in self.packet['sources'][15:]], NEW_SOURCES)
-        self.assertEqual((len(ids['entries']), len(ids['roles'])), (20, 8))
+        # CLAUDE-C01-19 appended 102 sources after these 53 and one institution with one role.
+        self.assertEqual([s['id'] for s in self.packet['sources'][15:68]], NEW_SOURCES)
+        self.assertEqual((len(ids['entries']), len(ids['roles'])), (21, 9))
+        self.assertEqual([c['id'] for c in self.sources['ru_ukaz_1146_19960809']['claims']][1:], list(C01_19_ROWS_1146))
         self.assertEqual(set(self.new_claims), set(EVENTS))
         holder_claims = {cid for ids_ in HOLDER_CLAIMS for cid in ids_}
         self.assertEqual(len(NEVER_HOLDER), len(set(NEVER_HOLDER)))
@@ -572,7 +579,10 @@ class RussianPresidentsTests(unittest.TestCase):
             self.assertEqual([r['claim_id'] for r in extract['rows']], [c['id'] for c in source['claims']])
             for row, claim in zip(extract['rows'], source['claims']):
                 self.assertEqual((row['text'], row['locator'], row['attested_on']), (claim['text'], claim['locator'], claim.get('attested_on')))
-                self.assertEqual((row['observation_id'], row['role_id']), ('ru_rsfsr_presidency', PR))
+                if row['claim_id'] in C01_19_ROWS_1146:
+                    self.assertEqual((sid, row['observation_id'], row['role_id']), ('ru_ukaz_1146_19960809', 'ru_government', 'ru_government_chairman'))
+                else:
+                    self.assertEqual((row['observation_id'], row['role_id']), ('ru_rsfsr_presidency', PR))
                 self.assertNotIn('name', row)
         self.assertEqual({cid: (row['attested_on'], row['event_kind'], row['review_observation']) for cid, row in self.rows.items()}, EVENTS)
         for sid, stamp in ARCHIVED.items():
@@ -760,7 +770,7 @@ class RussianPresidentsTests(unittest.TestCase):
         country = next(p for p in index['countries'] if p['nation'] == 'Russia')
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
-        self.assertEqual((country['role_observations'], country['source_claims']), (8, 142))
+        self.assertEqual((country['role_observations'], country['source_claims']), (9, 295))  # with CLAUDE-C01-19
         self.assertEqual({w['status'] for w in index['work_orders'] if w['nation'] == 'Russia'}, {'open'})
         self.assertFalse(index['c01_complete'])
 
