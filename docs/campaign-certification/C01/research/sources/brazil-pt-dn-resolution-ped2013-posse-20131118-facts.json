@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_dn_resolution_ped2013_posse_20131118",
+  "source_url": "https://web.archive.org/web/20131122032523id_/http://www.pt.org.br:80/noticias/view/resolucaeo_sobre_posse_de_dirigentes_eleitos_no_ped_2013",
+  "original_url": "http://www.pt.org.br/noticias/view/resolucaeo_sobre_posse_de_dirigentes_eleitos_no_ped_2013",
+  "archive_capture_utc": "2013-11-22T03:25:23Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2013-11-18",
+  "access_method": "downloaded_archived_raw_capture_id_form (curl with its default User-Agent, no Accept-Encoding header, no redirects followed)",
+  "source_response_bytes": 25649,
+  "source_response_sha256": "2e7aea03a84561c953dbbc5f1324579b8738266e7d46793a48eab5835b6c3e30",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-09-25T14:14:15Z and again at 2026-09-25T14:48:02Z from the same exact id_ URL (plain curl, no Accept-Encoding header, no decoding); both responses were 25649 bytes with SHA-256 2e7aea03a84561c953dbbc5f1324579b8738266e7d46793a48eab5835b6c3e30. The raw id_ form replays the stored capture. The independent check downloaded it again between 14:54 and 15:25 UTC on 25 September 2026 with Accept-Encoding: identity, at least 30 minutes after the researcher's last download; the response matched.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2013-11-22T03:25:23Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-09-25T14:14:15Z and again at 2026-09-25T14:48:02Z from the same exact id_ URL (plain curl, no Accept-Encoding header, no decoding); both responses were 25649 bytes with SHA-256 2e7aea03a84561c953dbbc5f1324579b8738266e7d46793a48eab5835b6c3e30. The raw id_ form replays the stored capture. The independent check downloaded it again between 14:54 and 15:25 UTC on 25 September 2026 with Accept-Encoding: identity, at least 30 minutes after the researcher's last download; the response matched. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A Diretório Nacional resolution of 18 November 2013 on the posse of the leaders elected in PED 2013, captured 22 November 2013. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_dn_resolution_posse_window_20131118",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-07",
+      "role_id": "br_pt_president",
+      "holder_name": null,
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "posse_window_resolved",
+      "attested_on": "2013-11-18",
+      "text": "The Diretório Nacional, meeting in São Paulo on 18 November 2013, resolved to hold the posse of the new directorates and their executive committees in the period 28 November to 10 December 2013, so that all leaderships elected in PED 2013 would be registered with the electoral courts and active at the start of 2014.",
+      "locator": {
+        "item": "resolution text, item 1; signed 'São Paulo, 18 de novembro de 2013, Diretório Nacional do Partido dos Trabalhadores'"
+      }
+    }
+  ]
+}

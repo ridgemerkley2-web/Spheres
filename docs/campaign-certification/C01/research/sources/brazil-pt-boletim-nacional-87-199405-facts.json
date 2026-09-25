@@ -1,0 +1,42 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_bn087_199405",
+  "source_url": "https://siac.fpabramo.org.br/uploads/acervo/J_BN_1994_0087.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_original_pdf_text_layer_read_and_pages_rendered_for_visual_review",
+  "source_response_bytes": 2387248,
+  "source_response_sha256": "6ff517df605367a19991138040d7d4708016e906e05a5bb0694c30372187d3b4",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded (a cache-busting query string may be added to reach the origin and is not part of the recorded URL); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "First downloaded about 2026-09-25T12:12Z; re-downloaded with a cache-busting query string (?cb=<unix time>; plain nginx origin, no CDN) at 2026-09-25T12:42:10Z, 2026-09-25T12:59:46Z; every download had the same byte count and SHA-256. Catalogue page https://siac.fpabramo.org.br/searchAcervo/873. The independent check downloaded it again between 13:10 and 13:11 UTC on 25 September 2026, 30 to 68 minutes after the first download (cache-busted for the FPA and SIAC files), with the same byte count and SHA-256.",
+  "provenance_note": "Original file from the party foundation's SIAC digital archive (plain nginx origin, no CDN). First downloaded about 2026-09-25T12:12Z; re-downloaded with a cache-busting query string (?cb=<unix time>; plain nginx origin, no CDN) at 2026-09-25T12:42:10Z, 2026-09-25T12:59:46Z; every download had the same byte count and SHA-256. Catalogue page https://siac.fpabramo.org.br/searchAcervo/873. The independent check downloaded it again between 13:10 and 13:11 UTC on 25 September 2026, 30 to 68 minutes after the first download (cache-busted for the FPA and SIAC files), with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Boletim Nacional nº 87 (second fortnight of May 1994), the organ of the national executive committee (SIAC catalogue searchAcervo/873). The issue prints a fortnight, not a day.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      2
+    ],
+    "method": "7-page scanned bulletin; page 2 (the Opinião page with the editorial 'Unidade confirmada' and the masthead box 'Maio/94 2ª quinzena Nº 87') rendered in full and read."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_bn087_editorial_signed_rui_falcao_presidente_nacional_199405",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-02",
+      "role_id": "br_pt_president",
+      "holder_name": "Rui Falcão",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "in_office_period_attestation",
+      "attested_on": null,
+      "text": "The editorial 'Unidade confirmada', on the 9th Encontro held on 29 and 30 April and 1 May, is signed 'Rui Falcão, Presidente Nacional do PT'.",
+      "locator": {
+        "pdf_page": 2,
+        "printed_page": 2,
+        "item": "EDITORIAL 'Unidade confirmada', signature"
+      }
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_csbh_resumo_7_encontro_1990",
+  "source_url": "https://siac.fpabramo.org.br/uploads/acervo/PTDN-DP_1990_0008-0006.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_original_born_digital_pdf_text_layer_read",
+  "source_response_bytes": 201799,
+  "source_response_sha256": "df83aaa57858f67d760acb02b5f265c5f511a79e387b6f5ffa7fe629e6b8b600",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded (a cache-busting query string may be added to reach the origin and is not part of the recorded URL); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "First downloaded about 2026-09-25T12:21Z; re-downloaded with a cache-busting query string (?cb=<unix time>; plain nginx origin, no CDN) at 2026-09-25T12:42:06Z, 2026-09-25T12:59:41Z; every download had the same byte count and SHA-256. Catalogue page https://siac.fpabramo.org.br/searchAcervo/48 says the summary sheets were produced for the FPA book 'Resoluções de Encontros e Congressos - 1979-1998' (1998). The independent check downloaded it again between 13:10 and 13:11 UTC on 25 September 2026, 30 to 68 minutes after the first download (cache-busted for the FPA and SIAC files), with the same byte count and SHA-256.",
+  "provenance_note": "Original file from the party foundation's SIAC digital archive (plain nginx origin, no CDN). First downloaded about 2026-09-25T12:21Z; re-downloaded with a cache-busting query string (?cb=<unix time>; plain nginx origin, no CDN) at 2026-09-25T12:42:06Z, 2026-09-25T12:59:41Z; every download had the same byte count and SHA-256. Catalogue page https://siac.fpabramo.org.br/searchAcervo/48 says the summary sheets were produced for the FPA book 'Resoluções de Encontros e Congressos - 1979-1998' (1998). The independent check downloaded it again between 13:10 and 13:11 UTC on 25 September 2026, 30 to 68 minutes after the first download (cache-busted for the FPA and SIAC files), with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party foundation archive's summary sheet of the VII Encontro Nacional (CSBH dossier '1990 - Dossiê VII Encontro Nacional do PT'; catalogue searchAcervo/48 says the sheets were produced for the 1998 book 'Resoluções de Encontros e Congressos - 1979-1998'). Retrospective.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "One-page born-digital summary sheet; text layer read."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_csbh_resumo_vii_encontro_elects_5th_dn_19900531_0603",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-01",
+      "role_id": "br_pt_president",
+      "holder_name": null,
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "national_meeting_summary",
+      "attested_on": null,
+      "text": "The summary sheet dates the 7th Encontro 31 May-3 June 1990 (Anhembi), says it elected the 5th Diretório Nacional, and gives the slate results (slate 2, 'Articulação da Luta Socialista', headed by Lula, 56% and 46 DN seats); it reports no separate presidential vote. Its sources include Boletim Nacional nº 51 'de julho de 1990'.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "'7º Encontro Nacional' sheet; 'Elege o 5o Diretório Nacional'; 'Resultado da votação'"
+      }
+    }
+  ]
+}

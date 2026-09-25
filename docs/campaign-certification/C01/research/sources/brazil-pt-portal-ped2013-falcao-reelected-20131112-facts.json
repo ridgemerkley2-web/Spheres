@@ -1,0 +1,68 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_ped2013_falcao_reelected_20131112",
+  "source_url": "https://web.archive.org/web/20131115052616id_/http://www.pt.org.br:80/noticias/view/ped_2013_rui_falcaeo_e_reeleito_presidente_nacional_do_pt_com_mais_de_70_do",
+  "original_url": "http://www.pt.org.br/noticias/view/ped_2013_rui_falcaeo_e_reeleito_presidente_nacional_do_pt_com_mais_de_70_do",
+  "archive_capture_utc": "2013-11-15T05:26:16Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2013-11-12",
+  "access_method": "downloaded_archived_raw_capture_id_form (curl with its default User-Agent, no Accept-Encoding header, no redirects followed)",
+  "source_response_bytes": 26772,
+  "source_response_sha256": "8ec431d6a99bb6f114782ce0374c3bcd0c480efad5b33b7bcce5b2ca0473b9e1",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-09-25T14:14:02Z and again at 2026-09-25T14:47:50Z from the same exact id_ URL (plain curl, no Accept-Encoding header, no decoding); both responses were 26772 bytes with SHA-256 8ec431d6a99bb6f114782ce0374c3bcd0c480efad5b33b7bcce5b2ca0473b9e1. The raw id_ form replays the stored capture. The independent check downloaded it again between 14:54 and 15:25 UTC on 25 September 2026 with Accept-Encoding: identity, at least 30 minutes after the researcher's last download; the response matched.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2013-11-15T05:26:16Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-09-25T14:14:02Z and again at 2026-09-25T14:47:50Z from the same exact id_ URL (plain curl, no Accept-Encoding header, no decoding); both responses were 26772 bytes with SHA-256 8ec431d6a99bb6f114782ce0374c3bcd0c480efad5b33b7bcce5b2ca0473b9e1. The raw id_ form replays the stored capture. The independent check downloaded it again between 14:54 and 15:25 UTC on 25 September 2026 with Accept-Encoding: identity, at least 30 minutes after the researcher's last download; the response matched. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A Portal do PT item of 12 November 2013 (15h12), captured 15 November 2013. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_ped2013_vote_held_20131110",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-07",
+      "role_id": "br_pt_president",
+      "holder_name": null,
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "direct_election_vote",
+      "attested_on": "2013-11-10",
+      "text": "The PT reports that its Processo de Eleições Diretas (PED) 2013 was held across Brazil 'last Sunday (10)', i.e. 10 November 2013.",
+      "locator": {
+        "item": "article dated 12/11/13 15h12, lead paragraph"
+      }
+    },
+    {
+      "claim_id": "br_pt_ped2013_falcao_reelection_announced_20131112",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-07",
+      "role_id": "br_pt_president",
+      "holder_name": "Rui Falcão",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "result_declaration_partial",
+      "attested_on": "2013-11-12",
+      "text": "With most votes counted, the PT announces at its national headquarters in São Paulo that the national President Rui Falcão was re-elected in PED 2013 with more than 70% of valid votes, and says he will serve a four-year mandate.",
+      "locator": {
+        "item": "article dated 12/11/13 15h12, headline, lead and second paragraph"
+      }
+    },
+    {
+      "claim_id": "br_pt_falcao_styled_national_president_20131112",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-07",
+      "role_id": "br_pt_president",
+      "holder_name": "Rui Falcão",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2013-11-12",
+      "text": "The same report calls him 'o presidente nacional do PT, Rui Falcão' before the new term's posse.",
+      "locator": {
+        "item": "article dated 12/11/13 15h12, lead paragraph"
+      }
+    }
+  ]
+}

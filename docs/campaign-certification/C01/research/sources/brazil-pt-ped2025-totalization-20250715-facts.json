@@ -1,0 +1,45 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_ped2025_totalization_20250715",
+  "source_url": "https://web.archive.org/web/20250717145537id_/https://pt.org.br/wp-content/uploads/2025/07/resultado-ped-2025-15jul2025-1.pdf",
+  "original_url": "https://pt.org.br/wp-content/uploads/2025/07/resultado-ped-2025-15jul2025-1.pdf",
+  "archive_capture_utc": "2025-07-17T14:55:37Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2025-07-15",
+  "access_method": "downloaded_archived_raw_capture_id_form (curl, no Accept-Encoding header); live file refused by the site's security check",
+  "source_response_bytes": 263758,
+  "source_response_sha256": "220aaa111e66cb7b93af478fed9e452cd65e0a14b8782e2e5142f07fefbb51fe",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-09-25T14:00:47Z and again at 2026-09-25T14:47:20Z from the same exact id_ URL (plain curl, no Accept-Encoding header, no decoding); both responses were 263758 bytes with SHA-256 220aaa111e66cb7b93af478fed9e452cd65e0a14b8782e2e5142f07fefbb51fe. The raw id_ form replays the stored capture. The independent check downloaded it again between 14:54 and 15:25 UTC on 25 September 2026 with Accept-Encoding: identity, at least 30 minutes after the researcher's last download; the response matched.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2025-07-17T14:55:37Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-09-25T14:00:47Z and again at 2026-09-25T14:47:20Z from the same exact id_ URL (plain curl, no Accept-Encoding header, no decoding); both responses were 263758 bytes with SHA-256 220aaa111e66cb7b93af478fed9e452cd65e0a14b8782e2e5142f07fefbb51fe. The raw id_ form replays the stored capture. The independent check downloaded it again between 14:54 and 15:25 UTC on 25 September 2026 with Accept-Encoding: identity, at least 30 minutes after the researcher's last download; the response matched. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The PT's PED 2025 vote totalization (SORG Nacional), stamped 15/07/2025 13:41 (archived Last-Modified Tue, 15 Jul 2025 17:43:51 GMT; PDF ModDate D:20250715164220Z, Producer iLovePDF, no CreationDate), captured 17 July 2025; the live file is refused by the site's security check. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "4-page born-digital PDF; page 1 rendered and read; pages 2-4 (per-state tables) read from the text layer. No signatures or photographs."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_ped2025_totalization_20250715",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-09",
+      "role_id": "br_pt_president",
+      "holder_name": "Edinho Silva",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "result_totalization",
+      "attested_on": "2025-07-15",
+      "text": "The PT's PED 2025 vote totalization, stamped 15/07/2025 13:41, gives the candidacies as printed '180 EDINHO' 378,009 votes (73.1%), '150 ROMENIO PEREIRA' 58,845 (11.4%), '130 RUI FALCAO' 57,750 (11.2%) and '120 VALTER POMAR' 22,581 (4.4%), with 517,185 valid and 548,897 total votes; it includes Maranhão's results under the national organization secretariat's (SORG) supervision.",
+      "locator": {
+        "pdf_page": [
+          1
+        ],
+        "item": "table 'CANDIDATURAS', totals and footnote; timestamp '15/07/2025 - 13:41'"
+      }
+    }
+  ]
+}

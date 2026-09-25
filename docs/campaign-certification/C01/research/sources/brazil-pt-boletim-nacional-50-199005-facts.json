@@ -1,0 +1,42 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_bn050_199005",
+  "source_url": "https://siac.fpabramo.org.br/uploads/acervo/J_BN_1990_0050.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_original_pdf_text_layer_read_and_pages_rendered_for_visual_review",
+  "source_response_bytes": 8076668,
+  "source_response_sha256": "c91b27e11d85d24fa50356d97a1185b5b020706df17a989ec384461c9b37bfee",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded (a cache-busting query string may be added to reach the origin and is not part of the recorded URL); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "First downloaded about 2026-09-25T12:09Z; re-downloaded with a cache-busting query string (?cb=<unix time>; plain nginx origin, no CDN) at 2026-09-25T12:42:03Z, 2026-09-25T12:59:37Z; every download had the same byte count and SHA-256. Catalogue page https://siac.fpabramo.org.br/searchAcervo/770. The independent check downloaded it again between 13:10 and 13:11 UTC on 25 September 2026, 30 to 68 minutes after the first download (cache-busted for the FPA and SIAC files), with the same byte count and SHA-256.",
+  "provenance_note": "Original file from the party foundation's SIAC digital archive (plain nginx origin, no CDN). First downloaded about 2026-09-25T12:09Z; re-downloaded with a cache-busting query string (?cb=<unix time>; plain nginx origin, no CDN) at 2026-09-25T12:42:03Z, 2026-09-25T12:59:37Z; every download had the same byte count and SHA-256. Catalogue page https://siac.fpabramo.org.br/searchAcervo/770. The independent check downloaded it again between 13:10 and 13:11 UTC on 25 September 2026, 30 to 68 minutes after the first download (cache-busted for the FPA and SIAC files), with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Boletim Nacional nº 50 (May 1990), the organ of the national executive committee (SIAC catalogue searchAcervo/770). The issue prints a month, not a day.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      8
+    ],
+    "method": "16-page scanned newspaper with an OCR text layer; page 8 (header 'Boletim Nacional - maio de 1990') rendered and read; the text layer misreads the name as 'Cushiken'."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_bn050_gushiken_presidente_nacional_theses_199005",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-01",
+      "role_id": "br_pt_president",
+      "holder_name": "Luiz Gushiken",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "in_office_period_attestation",
+      "attested_on": null,
+      "text": "Previewing the VII Encontro, the bulletin quotes 'Luiz Gushiken, presidente Nacional do PT' from his presentation of the special Boletim Nacional edition that publishes the theses; the article says the Encontro should also choose a new national leadership for the next two years.",
+      "locator": {
+        "pdf_page": 8,
+        "printed_page": 8,
+        "item": "article on the VII Encontro, paragraph beginning 'A importância do Encontro, destaca Luiz Gushiken'"
+      }
+    }
+  ]
+}

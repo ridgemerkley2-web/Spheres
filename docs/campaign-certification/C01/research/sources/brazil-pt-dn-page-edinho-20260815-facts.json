@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_dn_page_edinho_20260815",
+  "source_url": "https://web.archive.org/web/20260815061427id_/https://pt.org.br/diretorio-nacional/",
+  "original_url": "https://pt.org.br/diretorio-nacional/",
+  "archive_capture_utc": "2026-08-15T06:14:27Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_id_form (curl with its default User-Agent, no Accept-Encoding header, no redirects followed)",
+  "source_response_bytes": 159613,
+  "source_response_sha256": "37fedb84a70816598fe4cbc19526bc6055b779362390c509e6eb8c57f9c0657b",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-09-25T13:39:24Z and again at 2026-09-25T14:12:54Z from the same exact id_ URL (plain curl, no Accept-Encoding header, no decoding); both responses were 159613 bytes with SHA-256 37fedb84a70816598fe4cbc19526bc6055b779362390c509e6eb8c57f9c0657b. The raw id_ form replays the stored capture. The independent check downloaded it again between 14:54 and 15:25 UTC on 25 September 2026 with Accept-Encoding: identity, at least 30 minutes after the researcher's last download; the response matched.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2026-08-15T06:14:27Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-09-25T13:39:24Z and again at 2026-09-25T14:12:54Z from the same exact id_ URL (plain curl, no Accept-Encoding header, no decoding); both responses were 159613 bytes with SHA-256 37fedb84a70816598fe4cbc19526bc6055b779362390c509e6eb8c57f9c0657b. The raw id_ form replays the stored capture. The independent check downloaded it again between 14:54 and 15:25 UTC on 25 September 2026 with Accept-Encoding: identity, at least 30 minutes after the researcher's last download; the response matched. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The PT's Diretório Nacional page, undated, captured 15 August 2026, before the cutoff. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused. Captured with the site's 2026 template; menus ignored."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_dn_page_edinho_presidente_nacional_20260815",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-10",
+      "role_id": "br_pt_president",
+      "holder_name": "Edinho Silva",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2026-08-15",
+      "text": "The PT's Diretório Nacional page, as archived on 15 August 2026, heads its list 'Presidente Nacional do PT - Edinho Silva - São Paulo', followed by the honorary President (Lula) and the caucus leaders.",
+      "locator": {
+        "item": "first entry under 'Diretório Nacional'"
+      }
+    }
+  ]
+}

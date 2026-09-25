@@ -1,0 +1,54 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_ped2025_press_conference_20250716",
+  "source_url": "https://web.archive.org/web/20260815121147id_/https://pt.org.br/em-coletiva-pt-divulga-balanco-do-processo-de-eleicao-direta-2025/",
+  "original_url": "https://pt.org.br/em-coletiva-pt-divulga-balanco-do-processo-de-eleicao-direta-2025/",
+  "archive_capture_utc": "2026-08-15T12:11:47Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2025-07-16",
+  "access_method": "downloaded_archived_raw_capture_id_form (curl with its default User-Agent, no Accept-Encoding header, no redirects followed)",
+  "source_response_bytes": 125726,
+  "source_response_sha256": "ca88b20c5853ad3c3406f7962682c49d5136e578b14d6a79b5e8d9af83b97e73",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-09-25T14:00:53Z and again at 2026-09-25T14:47:25Z from the same exact id_ URL (plain curl, no Accept-Encoding header, no decoding); both responses were 125726 bytes with SHA-256 ca88b20c5853ad3c3406f7962682c49d5136e578b14d6a79b5e8d9af83b97e73. The raw id_ form replays the stored capture. The independent check downloaded it again between 14:54 and 15:25 UTC on 25 September 2026 with Accept-Encoding: identity, at least 30 minutes after the researcher's last download; the response matched.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2026-08-15T12:11:47Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-09-25T14:00:53Z and again at 2026-09-25T14:47:25Z from the same exact id_ URL (plain curl, no Accept-Encoding header, no decoding); both responses were 125726 bytes with SHA-256 ca88b20c5853ad3c3406f7962682c49d5136e578b14d6a79b5e8d9af83b97e73. The raw id_ form replays the stored capture. The independent check downloaded it again between 14:54 and 15:25 UTC on 25 September 2026 with Accept-Encoding: identity, at least 30 minutes after the researcher's last download; the response matched. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A pt.org.br article published 16 July 2025 (14h11), captured 15 August 2026. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused. Captured with the later site template; only the article block was used."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_edinho_styled_president_elect_20250716",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-09",
+      "role_id": "br_pt_president",
+      "holder_name": "Edinho Silva",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "president_elect_styled",
+      "attested_on": "2025-07-16",
+      "text": "At the PT's press conference of Wednesday 16 July 2025 Edinho Silva is styled 'eleito presidente Nacional com 73,1% dos votos' and, in the caption, 'o presidente eleito'.",
+      "locator": {
+        "item": "article 'Publicado em 16/07/2025 às 14h11', photo caption and second paragraph"
+      }
+    },
+    {
+      "claim_id": "br_pt_humberto_styled_current_president_20250716",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-09",
+      "role_id": "br_pt_president",
+      "holder_name": "Humberto Costa",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2025-07-16",
+      "text": "The press conference was conducted by 'Senator Humberto Costa, atual presidente do PT'.",
+      "locator": {
+        "item": "second paragraph"
+      }
+    }
+  ]
+}

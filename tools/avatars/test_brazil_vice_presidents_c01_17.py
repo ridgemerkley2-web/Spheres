@@ -18,6 +18,9 @@ T_VP_EX = 'Vice-President of the Republic in exercise of the office of President
 ORIGINAL_SOURCE_COUNT = 5
 C01_10_SOURCE_COUNT = 48
 C01_10_CLAIM_COUNT = 112
+# CLAUDE-C01-22 appends 108 sources for the PT party role br_pt_president after this packet's (pinned exactly in
+# test_brazil_pt_presidents_c01_22.py, which imports this module; the count and id prefix are pinned here).
+C01_22_SOURCE_COUNT = 108
 
 # New sources, in packet order, with the original response identity recorded in each extract: (bytes, sha256).
 RESPONSES = {
@@ -495,10 +498,13 @@ class BrazilVicePresidentsTests(unittest.TestCase):
 
     def test_new_records_are_bounded_and_every_claim_is_classified(self):
         ids = self.validate()
-        self.assertEqual(tuple(len(ids[k]) for k in ('entries', 'sources', 'claims', 'roles')), (32, 64, 231, 2))
+        self.assertEqual(tuple(len(ids[k]) for k in ('entries', 'sources', 'claims', 'roles')), (32, 172, 408, 3))
         self.assertEqual((len(NEW_SOURCES), len(C01_17_CLAIMS), len(CITED)), (11, 85, 12))
-        self.assertEqual([s['id'] for s in self.packet['sources']][-len(NEW_SOURCES):], NEW_SOURCES)
-        self.assertEqual(len(self.packet['sources']), ORIGINAL_SOURCE_COUNT + C01_10_SOURCE_COUNT + len(NEW_SOURCES))
+        start = ORIGINAL_SOURCE_COUNT + C01_10_SOURCE_COUNT
+        self.assertEqual([s['id'] for s in self.packet['sources']][start:start + len(NEW_SOURCES)], NEW_SOURCES)
+        self.assertEqual(len(self.packet['sources']),
+                         ORIGINAL_SOURCE_COUNT + C01_10_SOURCE_COUNT + len(NEW_SOURCES) + C01_22_SOURCE_COUNT)
+        self.assertTrue(all(s['id'].startswith('br_pt_') for s in self.packet['sources'][start + len(NEW_SOURCES):]))
         # Claims on responses CLAUDE-C01-10 already records are appended to those source records, after its own.
         self.assertEqual(set(ADDED_TO_C01_10), set(SHARED))
         added = []
@@ -543,8 +549,19 @@ class BrazilVicePresidentsTests(unittest.TestCase):
         self.assertEqual(observations, [f'BR-VP-{n:02d}' for n in range(1, 11)])
         self.assertEqual({self.rows[cid]['review_observation'] for cid in C01_17_CLAIMS},
                          {f'BR-VP-{n:02d}' for n in range(1, 11)})
+        # The ModDate-derived day 20250715 (check A7) must not return on any record before CLAUDE-C01-22; that packet's
+        # PED 2025 totalization of 15 July 2025 legitimately carries the day, and only its own records may.
+        earlier = copy.deepcopy(self.packet)
+        earlier['sources'] = [s for s in earlier['sources'] if not s['id'].startswith('br_pt_')]
+        for entry in earlier['organizations']:
+            entry['roles'] = [r for r in entry['roles'] if r['id'] != 'br_pt_president']
+            entry['claim_ids'] = [c for c in entry['claim_ids'] if not c.startswith('br_pt_')]
+            entry['sources'] = [s for s in entry['sources'] if not s.startswith('br_pt_')]
+        earlier_raw = json.dumps(earlier, ensure_ascii=False)
         for stale in STALE_IDS:
-            self.assertNotIn(stale, self.raw, stale)
+            self.assertNotIn(stale, earlier_raw if stale == '20250715' else self.raw, stale)
+        self.assertEqual({s['id'] for s in self.packet['sources'] if '20250715' in json.dumps(s, ensure_ascii=False)},
+                         {'br_pt_ped2025_totalization_20250715', 'br_pt_edinho_elected_ped_20250707'})
 
     def test_holders_are_exactly_as_intended(self):
         vice_invariants(self.packet, self.rows)
@@ -623,7 +640,9 @@ class BrazilVicePresidentsTests(unittest.TestCase):
         self.assertTrue(unresolved[-2].startswith('Still open for the Vice-Presidency'))
         self.assertTrue(unresolved[-1].startswith('Keep executive office distinct from party leadership'))
         packet_unresolved = self.packet['coverage']['unresolved']
-        self.assertTrue(packet_unresolved[-1].startswith('Vice-presidents 1990-2026 (CLAUDE-C01-17)'))
+        # CLAUDE-C01-22's note on the PT party role follows this packet's note, exactly once.
+        self.assertTrue(packet_unresolved[-2].startswith('Vice-presidents 1990-2026 (CLAUDE-C01-17)'))
+        self.assertTrue(packet_unresolved[-1].startswith('PT national presidents 1990-2026 (CLAUDE-C01-22'))
         self.assertEqual(sum('CLAUDE-C01-17' in u for u in packet_unresolved), 1)
 
     def test_extracts_match_packet_claims_and_record_original_responses(self):
@@ -898,7 +917,7 @@ class BrazilVicePresidentsTests(unittest.TestCase):
         country = next(p for p in index['countries'] if p['nation'] == 'Brazil')
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
-        self.assertEqual((country['institution_observations'], country['role_observations']), (1, 2))
+        self.assertEqual((country['institution_observations'], country['role_observations']), (1, 3))
         self.assertEqual({w['status'] for w in index['work_orders'] if w['nation'] == 'Brazil'}, {'open'})
         self.assertFalse(index['c01_complete'])
 

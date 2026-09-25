@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_portal_genoino_governor_affiliation_20030318",
+  "source_url": "https://web.archive.org/web/20050104165955id_/http://www.pt.org.br:80/site/noticias/noticias_int.asp?cod=10038",
+  "original_url": "http://www.pt.org.br/site/noticias/noticias_int.asp?cod=10038",
+  "archive_capture_utc": "2005-01-04T16:59:55Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2003-03-18",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 22950,
+  "source_response_sha256": "07397ece60fe3c77c326129631f18356bdd7652d15bff49c9a111f0ca008e658",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Located for this packet: downloaded at 16:00:37 UTC and again at 16:31:02 UTC on 25 September 2026 (30 minutes later) without Accept-Encoding; both responses were HTTP 200 without Content-Encoding and had the same byte count and SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2005-01-04T16:59:55Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Located for this packet: downloaded at 16:00:37 UTC and again at 16:31:02 UTC on 25 September 2026 (30 minutes later) without Accept-Encoding; both responses were HTTP 200 without Content-Encoding and had the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A Portal do PT news item of 18 March 2003 (the portal numbers its items; cod=10038 falls in the run dated 17-18 March 2003), served from the portal's news archive as captured on 4 January 2005 (x-archive-orig-date Tue, 04 Jan 2005 16:56:45 GMT). Located for this packet to date José Genoino's presidency after his election by the Diretório Nacional on 15 March 2003. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images reviewed."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_genoino_attends_affiliation_as_pt_president_20030318",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-04",
+      "role_id": "br_pt_president",
+      "holder_name": "José Genoino",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2003-03-18",
+      "text": "A portal item dated 18 March 2003 reports that the governor of Roraima, Flamarion Portela, signed his PT membership form that afternoon in Brasília at a ceremony 'que contou com a presença do presidente do PT, José Genoino', and quotes 'O presidente nacional do PT' calling the affiliation a historic moment.",
+      "locator": {
+        "section": "Item body, headline '18/03/2003 - PT amplia seu quadro de governadores', second and fourth paragraphs"
+      }
+    }
+  ]
+}

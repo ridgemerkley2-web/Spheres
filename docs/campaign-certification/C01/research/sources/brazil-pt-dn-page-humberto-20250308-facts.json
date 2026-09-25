@@ -1,0 +1,70 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_dn_page_humberto_20250308",
+  "source_url": "https://web.archive.org/web/20250308122611id_/https://pt.org.br/diretorio-nacional/",
+  "original_url": "https://pt.org.br/diretorio-nacional/",
+  "archive_capture_utc": "2025-03-08T12:26:11Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_id_form (curl with its default User-Agent, no Accept-Encoding header, no redirects followed)",
+  "source_response_bytes": 46464,
+  "source_response_sha256": "a223ce2bbda0f88740410afec39c5de9ba4782abf4dde3cfd8da15053ec1e77c",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "gzip",
+  "decoded_response_bytes": 209451,
+  "decoded_response_sha256": "d8488fc5216703dd6d5a0ad1abf37a563688dee6e3ef64f703259de3b04d758e",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-09-25T13:39:30Z and again at 2026-09-25T14:13:00Z from the same exact id_ URL (plain curl, no Accept-Encoding header, no decoding); both responses were 46464 bytes with SHA-256 a223ce2bbda0f88740410afec39c5de9ba4782abf4dde3cfd8da15053ec1e77c. The raw id_ form replays the stored capture. The independent check downloaded it again between 14:54 and 15:25 UTC on 25 September 2026 with Accept-Encoding: identity, at least 30 minutes after the researcher's last download; the response matched.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2025-03-08T12:26:11Z; that form replays the archived bytes unchanged and is used in place of the live page. The archive stores this capture gzip-encoded and serves it with Content-Encoding: gzip even when the request carries no Accept-Encoding or Accept-Encoding: identity; the recorded identity is the gzip-encoded body exactly as served (do not let the client decode it); decoded, the HTML is 209451 bytes with SHA-256 d8488fc5216703dd6d5a0ad1abf37a563688dee6e3ef64f703259de3b04d758e. Downloaded at 2026-09-25T13:39:30Z and again at 2026-09-25T14:13:00Z from the same exact id_ URL (plain curl, no Accept-Encoding header, no decoding); both responses were 46464 bytes with SHA-256 a223ce2bbda0f88740410afec39c5de9ba4782abf4dde3cfd8da15053ec1e77c. The raw id_ form replays the stored capture. The independent check downloaded it again between 14:54 and 15:25 UTC on 25 September 2026 with Accept-Encoding: identity, at least 30 minutes after the researcher's last download; the response matched. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The PT's Diretório Nacional page, undated, captured 8 March 2025. The archive stores this capture gzip-encoded and serves it with Content-Encoding: gzip even when uncompressed content is requested. Raw Internet Archive capture (gzip-encoded: the archive stores the capture gzip-compressed and serves it with Content-Encoding: gzip even to a client that asks for uncompressed content; the recorded identity is the gzip body as served).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused. Read from the gzip-decoded body."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_dn_page_gleisi_resignation_referenced",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-08",
+      "role_id": "br_pt_president",
+      "holder_name": "Gleisi Hoffmann",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "resignation_referenced",
+      "attested_on": null,
+      "text": "The Diretório Nacional page, as archived on 8 March 2025, says that on 7 March 2025, owing to the resignation (renúncia) of the national presidenta Gleisi Hoffmann, Senator Humberto Costa was indicated to assume the national presidency temporarily.",
+      "locator": {
+        "item": "biography under the first entry, last paragraph ('Em 07/03/2025, devido à renúncia da presidenta nacional do PT, Gleisi Hoffmann, ...')"
+      }
+    },
+    {
+      "claim_id": "br_pt_dn_page_humberto_temporary_designation_20250307",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-09",
+      "role_id": "br_pt_president",
+      "holder_name": "Humberto Costa",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores em exercício ou interino",
+      "event_kind": "interim_designation",
+      "attested_on": "2025-03-07",
+      "text": "The same paragraph says Humberto Costa was indicated on 7 March 2025 to assume the national presidency temporarily, until the election of the new national leadership in the PED in July 2025.",
+      "locator": {
+        "item": "biography under the first entry, last paragraph"
+      }
+    },
+    {
+      "claim_id": "br_pt_dn_page_humberto_heading_20250308",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-09",
+      "role_id": "br_pt_president",
+      "holder_name": "Humberto Costa",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores em exercício ou interino",
+      "event_kind": "interim_service_attestation",
+      "attested_on": "2025-03-08",
+      "text": "On the page archived on 8 March 2025 the first entry reads 'Presidenta Nacional do PT - Humberto Costa - Pernambuco' (the feminine heading left from the previous entry).",
+      "locator": {
+        "item": "first entry under 'Diretório Nacional'"
+      }
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_dn_guidelines_3rd_congress_20061226",
+  "source_url": "https://web.archive.org/web/20101007190715id_/http://www.pt.org.br/portalpt/documentos/conheca-as-diretrizes-gerais-para-o-regulamento-aprovado-para-o-3o-congresso-152.html",
+  "original_url": "http://www.pt.org.br/portalpt/documentos/conheca-as-diretrizes-gerais-para-o-regulamento-aprovado-para-o-3o-congresso-152.html",
+  "archive_capture_utc": "2010-10-07T19:07:15Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2006-12-26",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 26168,
+  "source_response_sha256": "c42aaf594b0d4ebd3ed9e8b3ede6b073723e35ad445e4fc244f31786543bf657",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Found by the independent check, which downloaded it at 14:12:33 UTC and again at 14:43:25 UTC on 25 September 2026 (at least 30 minutes later) with Accept-Encoding: identity; both downloads had the same byte count and SHA-256 and no Content-Encoding.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2010-10-07T19:07:15Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Found by the independent check, which downloaded it at 14:12:33 UTC and again at 14:43:25 UTC on 25 September 2026 (at least 30 minutes later) with Accept-Encoding: identity; both downloads had the same byte count and SHA-256 and no Content-Encoding. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The guidelines for the III Congresso's regulation approved at the Diretório Nacional meeting of 25-26 November 2006, published on the PT site on 26 December 2006 and served from the migrated document archive as captured on 7 October 2010 (the page template carries placeholder comment text, ignored). Found by the independent check. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full in the original Portuguese; no images reviewed."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_dn_guidelines_name_president_marco_aurelio_garcia_20061226",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-06",
+      "role_id": "br_pt_president",
+      "holder_name": "Marco Aurélio Garcia",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores em exercício ou interino",
+      "event_kind": "interim_service_attestation",
+      "attested_on": "2006-12-26",
+      "text": "The guidelines for the III Congresso, approved at the Diretório Nacional meeting of 25 and 26 November and published on 26 December 2006, say 'A Comissão Organizadora Plena contará com o presidente Marco Aurélio Garcia'.",
+      "locator": {
+        "section": "Introduction ('reunido nos dias 25 e 26 de novembro') and closing paragraph"
+      }
+    }
+  ]
+}

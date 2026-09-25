@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_portal_ped2009_posse_rule_20100111",
+  "source_url": "https://web.archive.org/web/20101007164713id_/http://www.pt.org.br/portalpt/secretarias/-organizacao-12/noticias-121/prazo-para-posse:-cen-aprova-alteracao-no-artigo-47-do-regulamento-do-ped-2009-2627.html",
+  "original_url": "http://www.pt.org.br/portalpt/secretarias/-organizacao-12/noticias-121/prazo-para-posse:-cen-aprova-alteracao-no-artigo-47-do-regulamento-do-ped-2009-2627.html",
+  "archive_capture_utc": "2010-10-07T16:47:13Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2010-01-11",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 20479,
+  "source_response_sha256": "c9cd883d7f2a8afdffef5160eb317456dfe38139abc40f1be582c95c779afa73",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Found by the independent check, which downloaded it at 14:10:22 UTC and again at 14:43:29 UTC on 25 September 2026 (at least 30 minutes later) with Accept-Encoding: identity; both downloads had the same byte count and SHA-256 and no Content-Encoding.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2010-10-07T16:47:13Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Found by the independent check, which downloaded it at 14:10:22 UTC and again at 14:43:29 UTC on 25 September 2026 (at least 30 minutes later) with Accept-Encoding: identity; both downloads had the same byte count and SHA-256 and no Content-Encoding. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A Portal do PT (Secretaria de Organização) item of 11 January 2010 reproducing Article 47 of the PED 2009 regulation as amended, served from the migrated archive as captured on 7 October 2010. Found by the independent check. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full in the original Portuguese; no images reviewed."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_cen_amends_ped2009_posse_rule_20091207",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-06",
+      "role_id": "br_pt_president",
+      "holder_name": null,
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "procedure_rule_amendment",
+      "attested_on": "2009-12-07",
+      "text": "The item reproduces Article 47 of the PED 2009 regulation 'com as alterações aprovadas pela Executiva Nacional em 07 de dezembro de 2009': 'A posse dos membros das direções eleitas acontecerá no dia 20 de fevereiro de 2010', the posse being allowed to be brought forward by the corresponding directorate.",
+      "locator": {
+        "section": "Item body, introduction and 'Art. 47' with its sole paragraph"
+      }
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_noticias_052_19970920",
+  "source_url": "https://siac.fpabramo.org.br/uploads/acervo/J_PT_NOTICIAS_1997_0052.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_original_pdf_text_layer_read_and_pages_rendered_for_visual_review",
+  "source_response_bytes": 11754811,
+  "source_response_sha256": "b673c856ec5ab4fb64d4ac4e6ea02bad72be65ca968a0d695738bcf59c08111d",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded (a cache-busting query string may be added to reach the origin and is not part of the recorded URL); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Found by the independent check, which downloaded it at 13:22:50 UTC and again with a cache-busting query at 13:54:19 UTC on 25 September 2026; this packet downloaded it again with a cache-busting query at 16:01:25 UTC. Every download had the same byte count and SHA-256.",
+  "provenance_note": "Original file from the party foundation's SIAC digital archive (plain nginx origin, no CDN). Found by the independent check, which downloaded it at 13:22:50 UTC and again with a cache-busting query at 13:54:19 UTC on 25 September 2026; this packet downloaded it again with a cache-busting query at 16:01:25 UTC. Every download had the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "PT Notícias nº 52 (20-26 September 1997), the weekly of the Diretório Nacional (SIAC catalogue searchAcervo/661). Found by the independent check.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "4-page scanned newspaper with an OCR text layer; page 1 rendered and read (masthead 'Nº 52 - ano II, 20 a 26 de setembro de 1997' and the MST report); the page 2 masthead read from the text layer."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_ptn052_dirceu_national_president_at_vitoria_meeting_19970917",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-03",
+      "role_id": "br_pt_president",
+      "holder_name": "José Dirceu",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1997-09-17",
+      "text": "Reporting on the case of the MST leader José Rainha, the issue says that 'No dia 17, em Vitória, foi realizada reunião-ato' and that 'Participaram da reunião o presidente nacional do PT, José Dirceu' and the party's national agrarian secretary, Plínio de Arruda Sampaio.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "MST article, paragraph beginning 'No dia 17, em Vitória'"
+      }
+    },
+    {
+      "claim_id": "br_pt_ptn052_masthead_presidente_nacional_dirceu_19970920_26",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-03",
+      "role_id": "br_pt_president",
+      "holder_name": "José Dirceu",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "in_office_period_attestation",
+      "attested_on": null,
+      "text": "The masthead lists 'Presidente Nacional do PT: José Dirceu'.",
+      "locator": {
+        "pdf_page": 2,
+        "item": "masthead box (expediente)"
+      }
+    }
+  ]
+}

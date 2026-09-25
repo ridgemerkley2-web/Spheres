@@ -1,0 +1,56 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_noticias_105_20010720",
+  "source_url": "https://siac.fpabramo.org.br/uploads/acervo/J_PT_NOTICIAS_2001_0105.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_original_pdf_text_layer_read_and_pages_rendered_for_visual_review",
+  "source_response_bytes": 4815117,
+  "source_response_sha256": "9e68759d6a21412c52e3665bc1cb28977be5558f0f0acc45778f9a53fac85f20",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded (a cache-busting query string may be added to reach the origin and is not part of the recorded URL); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Found by the independent check, which downloaded it at 13:17:26 UTC, with a cache-busting query at 13:17:43 UTC and again with a cache-busting query at 13:54:07 UTC on 25 September 2026 (37 minutes later); every download had the same byte count and SHA-256.",
+  "provenance_note": "Original file from the party foundation's SIAC digital archive (plain nginx origin, no CDN). Found by the independent check, which downloaded it at 13:17:26 UTC, with a cache-busting query at 13:17:43 UTC and again with a cache-busting query at 13:54:07 UTC on 25 September 2026 (37 minutes later); every download had the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "PT Notícias nº 105 (20 July - 3 August 2001), organ of the Diretório Nacional. Found by the independent check.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "Scanned newspaper with an OCR text layer; the text layer of pages 1-2 read and page 1 rendered and read by the independent check (the box 'Presidentes do PT licenciam-se para fazer campanha' and the PED launch report)."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_ptn105_dirceu_leave_to_run_for_reelection_20010717",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-03",
+      "role_id": "br_pt_president",
+      "holder_name": "José Dirceu",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "leave_of_absence",
+      "attested_on": "2001-07-17",
+      "text": "A box headed 'Presidentes do PT licenciam-se para fazer campanha' says that 'O deputado federal José Dirceu licenciou-se no dia 17 da presidência nacional do PT para poder disputar a reeleição ao cargo', and that the announcement was made on the afternoon of the launch of the Processo de Eleições Diretas at the Diretório Nacional's headquarters; the same page dates that launch to 13 July.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "box 'Presidentes do PT licenciam-se para fazer campanha'; PED launch report, first paragraph"
+      }
+    },
+    {
+      "claim_id": "br_pt_ptn105_masthead_genoino_em_exercicio_20010720_0803",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-03",
+      "role_id": "br_pt_president",
+      "holder_name": "José Genoino",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores em exercício ou interino",
+      "event_kind": "acting_service",
+      "attested_on": null,
+      "text": "The masthead lists 'PRESIDENTE NACIONAL DO PT / José Genoino (em exercício)'.",
+      "locator": {
+        "pdf_page": 2,
+        "item": "masthead box (expediente)"
+      }
+    }
+  ]
+}

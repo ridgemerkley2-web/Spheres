@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_noticias_ee12_200201",
+  "source_url": "https://siac.fpabramo.org.br/uploads/acervo/J_PT_NOTICIAS_2002_ee_12_encontro_nacional.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_original_pdf_pages_rendered_for_visual_review (no text layer)",
+  "source_response_bytes": 8801111,
+  "source_response_sha256": "52c7550e5f80c7d8b0806a1b90fbbcd6287cee5af827eaf26133a9da107e5e02",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded (a cache-busting query string may be added to reach the origin and is not part of the recorded URL); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "First downloaded 2026-09-25T12:23:16Z; re-downloaded with a cache-busting query string (?cb=<unix time>; plain nginx origin, no CDN) at 2026-09-25T13:00:08Z; every download had the same byte count and SHA-256. The independent check downloaded it again between 13:10 and 13:11 UTC on 25 September 2026, 30 to 68 minutes after the first download (cache-busted for the FPA and SIAC files), with the same byte count and SHA-256.",
+  "provenance_note": "Original file from the party foundation's SIAC digital archive (plain nginx origin, no CDN). First downloaded 2026-09-25T12:23:16Z; re-downloaded with a cache-busting query string (?cb=<unix time>; plain nginx origin, no CDN) at 2026-09-25T13:00:08Z; every download had the same byte count and SHA-256. The independent check downloaded it again between 13:10 and 13:11 UTC on 25 September 2026, 30 to 68 minutes after the first download (cache-busted for the FPA and SIAC files), with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "PT Notícias, ano VI, special edition on the 12th Encontro Nacional (January 2002), organ of the Diretório Nacional (SIAC catalogue searchAcervo/822).",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "6-page scan without a text layer; page 1 rendered, and the box 'Cultura pernambucana abre Encontro do PT' enlarged and read."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_ptn_ee12_dirceu_presidente_nacional_at_cultural_opening_20011213",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-03",
+      "role_id": "br_pt_president",
+      "holder_name": "José Dirceu",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2001-12-13",
+      "text": "More than a thousand people attended, on the night of 13 December, the cultural opening of the 12th Encontro Nacional, watched by party leaders including 'o presidente nacional do partido, deputado José Dirceu (SP)'.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "box 'Cultura pernambucana abre Encontro do PT'"
+      }
+    }
+  ]
+}

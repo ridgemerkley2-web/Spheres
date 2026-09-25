@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_gleisi_reelected_7th_congress_20191124",
+  "source_url": "https://web.archive.org/web/20191221151511id_/https://pt.org.br/assista-gleisi-hoffmann-e-reeleita-presidenta-nacional-do-pt/",
+  "original_url": "https://pt.org.br/assista-gleisi-hoffmann-e-reeleita-presidenta-nacional-do-pt/",
+  "archive_capture_utc": "2019-12-21T15:15:11Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2019-11-24",
+  "access_method": "downloaded_archived_raw_capture_id_form (curl with its default User-Agent, no Accept-Encoding header, no redirects followed)",
+  "source_response_bytes": 62315,
+  "source_response_sha256": "61dd6ddb6c42d356f8375f853ed5ad0d6773b742e990899440ed835da9dbb4c1",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-09-25T13:29:30Z and again at 2026-09-25T14:12:16Z from the same exact id_ URL (plain curl, no Accept-Encoding header, no decoding); both responses were 62315 bytes with SHA-256 61dd6ddb6c42d356f8375f853ed5ad0d6773b742e990899440ed835da9dbb4c1. The raw id_ form replays the stored capture. The independent check downloaded it again between 14:54 and 15:25 UTC on 25 September 2026 with Accept-Encoding: identity, at least 30 minutes after the researcher's last download; the response matched.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2019-12-21T15:15:11Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-09-25T13:29:30Z and again at 2026-09-25T14:12:16Z from the same exact id_ URL (plain curl, no Accept-Encoding header, no decoding); both responses were 62315 bytes with SHA-256 61dd6ddb6c42d356f8375f853ed5ad0d6773b742e990899440ed835da9dbb4c1. The raw id_ form replays the stored capture. The independent check downloaded it again between 14:54 and 15:25 UTC on 25 September 2026 with Accept-Encoding: identity, at least 30 minutes after the researcher's last download; the response matched. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A pt.org.br video page of 24 November 2019 (19h30), captured 21 December 2019. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused. The embedded video was not played."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_gleisi_reelected_7th_congress_20191124",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-08",
+      "role_id": "br_pt_president",
+      "holder_name": "Gleisi Hoffmann",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "congress_reelection",
+      "attested_on": "2019-11-24",
+      "text": "The PT publishes the speech Gleisi Hoffmann gave after her re-election as national President at the 7th National Congress 'this Sunday (24)', i.e. 24 November 2019.",
+      "locator": {
+        "item": "page dated 24/11/2019 19h30, headline and subtitle"
+      }
+    }
+  ]
+}

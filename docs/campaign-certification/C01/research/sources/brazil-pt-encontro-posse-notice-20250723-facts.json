@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_encontro_posse_notice_20250723",
+  "source_url": "https://web.archive.org/web/20251014224334id_/https://pt.org.br/pt-faz-encontro-nacional-e-empossa-nova-direcao-no-inicio-de-agosto/",
+  "original_url": "https://pt.org.br/pt-faz-encontro-nacional-e-empossa-nova-direcao-no-inicio-de-agosto/",
+  "archive_capture_utc": "2025-10-14T22:43:34Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2025-07-23",
+  "access_method": "downloaded_archived_raw_capture_id_form (curl with its default User-Agent, no Accept-Encoding header, no redirects followed)",
+  "source_response_bytes": 91839,
+  "source_response_sha256": "abcdce0ea5298c48bb7ed844733ea24e3543d0f6ec70bde3962a8803daa6bebe",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-09-25T14:00:41Z and again at 2026-09-25T14:47:13Z from the same exact id_ URL (plain curl, no Accept-Encoding header, no decoding); both responses were 91839 bytes with SHA-256 abcdce0ea5298c48bb7ed844733ea24e3543d0f6ec70bde3962a8803daa6bebe. The raw id_ form replays the stored capture. The independent check downloaded it again between 14:54 and 15:25 UTC on 25 September 2026 with Accept-Encoding: identity, at least 30 minutes after the researcher's last download; the response matched.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2025-10-14T22:43:34Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-09-25T14:00:41Z and again at 2026-09-25T14:47:13Z from the same exact id_ URL (plain curl, no Accept-Encoding header, no decoding); both responses were 91839 bytes with SHA-256 abcdce0ea5298c48bb7ed844733ea24e3543d0f6ec70bde3962a8803daa6bebe. The raw id_ form replays the stored capture. The independent check downloaded it again between 14:54 and 15:25 UTC on 25 September 2026 with Accept-Encoding: identity, at least 30 minutes after the researcher's last download; the response matched. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A pt.org.br article of 23 July 2025 (15h39, updated 17h49), captured 14 October 2025. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_posse_scheduled_notice_20250723",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-09",
+      "role_id": "br_pt_president",
+      "holder_name": "Edinho Silva",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "posse_scheduled",
+      "attested_on": "2025-07-23",
+      "text": "The PT announces that its 17th Encontro Nacional will meet in Brasília on 1, 2 and 3 August 2025 and that the posse of the president-elect Edinho Silva and the other Diretório Nacional members will take place on Sunday 3 August (programme: 10h act with President Lula for the posse of the Diretório and the president-elect).",
+      "locator": {
+        "item": "article dated 23/07/2025 15h39 (updated 17h49), subtitle, third paragraph and programme"
+      }
+    }
+  ]
+}

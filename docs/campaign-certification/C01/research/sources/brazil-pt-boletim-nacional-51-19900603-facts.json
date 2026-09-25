@@ -1,0 +1,93 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_bn051_199007",
+  "source_url": "https://siac.fpabramo.org.br/uploads/acervo/J_BN_1990_0051.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_original_pdf_text_layer_read_and_pages_rendered_for_visual_review",
+  "source_response_bytes": 6234294,
+  "source_response_sha256": "1674cdeffb554f9ce742fca4b6e5d29412d3d291896428f725d2bf69ff891c8b",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded (a cache-busting query string may be added to reach the origin and is not part of the recorded URL); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "First downloaded about 2026-09-25T12:10Z; re-downloaded with a cache-busting query string (?cb=<unix time>; plain nginx origin, no CDN) at 2026-09-25T12:42:05Z, 2026-09-25T12:59:39Z; every download had the same byte count and SHA-256. A third download at about 12:44Z (to render the cover) had the same SHA-256. Catalogue page https://siac.fpabramo.org.br/searchAcervo/771. The independent check downloaded it again between 13:10 and 13:11 UTC on 25 September 2026, 30 to 68 minutes after the first download (cache-busted for the FPA and SIAC files), with the same byte count and SHA-256.",
+  "provenance_note": "Original file from the party foundation's SIAC digital archive (plain nginx origin, no CDN). First downloaded about 2026-09-25T12:10Z; re-downloaded with a cache-busting query string (?cb=<unix time>; plain nginx origin, no CDN) at 2026-09-25T12:42:05Z, 2026-09-25T12:59:39Z; every download had the same byte count and SHA-256. A third download at about 12:44Z (to render the cover) had the same SHA-256. Catalogue page https://siac.fpabramo.org.br/searchAcervo/771. The independent check downloaded it again between 13:10 and 13:11 UTC on 25 September 2026, 30 to 68 minutes after the first download (cache-busted for the FPA and SIAC files), with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Boletim Nacional nº 51 (cover 'Julho'; inner page headers 'junho de 1990'), the VII Encontro Nacional special issue of the national executive committee's organ (SIAC catalogue searchAcervo/771); the CSBH summary of the VII Encontro cites it as 'n.º 51, de julho de 1990'.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      5,
+      7,
+      9
+    ],
+    "method": "16-page scanned newspaper with an OCR text layer; the cover masthead ('JULHO Nº 51'), page 5 ('O Encontro da Unidade'), page 7 (heading of Lula's closing speech) and the passages on pages 7 and 9 rendered and read."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_bn051_vii_encontro_reconducts_lula_19900531_0603",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-01",
+      "role_id": "br_pt_president",
+      "holder_name": "Luiz Inácio Lula da Silva",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "national_meeting_election",
+      "attested_on": null,
+      "text": "The VII Encontro Nacional, held on 31 May and 1, 2 and 3 June 1990 at the Anhembi, São Paulo, with 568 delegates, returned ('reconduzir') Lula to the presidency of the party ('Além de reconduzir Lula à presidência do Partido').",
+      "locator": {
+        "pdf_page": 5,
+        "printed_page": 5,
+        "item": "'O Encontro da Unidade', deck and first paragraph"
+      }
+    },
+    {
+      "claim_id": "br_pt_bn051_lula_reconducted_closing_speech_19900603",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-01",
+      "role_id": "br_pt_president",
+      "holder_name": "Luiz Inácio Lula da Silva",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1990-06-03",
+      "text": "The bulletin introduces the full text of the closing speech of the 7th Encontro, given on the night of Sunday the 3rd [June 1990] by Luis Inácio Lula da Silva, 'reconduzido à presidência do PT'.",
+      "locator": {
+        "pdf_page": 7,
+        "printed_page": 7,
+        "item": "standfirst of 'LULA: \"Nosso crescimento se deve à nossa coerência ...\"'"
+      }
+    },
+    {
+      "claim_id": "br_pt_bn051_lula_states_he_assumes_presidency_19900603",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-01",
+      "role_id": "br_pt_president",
+      "holder_name": "Luiz Inácio Lula da Silva",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "stated_assumption_of_office",
+      "attested_on": "1990-06-03",
+      "text": "In the closing speech Lula says 'Volto a assumir a Presidência do Partido dos Trabalhadores' (I return to assume the Presidency of the PT), and credits Olívio Dutra's and Luiz Gushiken's work 'na Presidência do Partido'.",
+      "locator": {
+        "pdf_page": 7,
+        "printed_page": 7,
+        "item": "speech text, paragraphs 'Essa idéia tem como objetivo ...' and 'Volto a assumir a Presidência ...'"
+      }
+    },
+    {
+      "claim_id": "br_pt_bn051_lula_receives_baton_from_gushiken_19900603",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-01",
+      "role_id": "br_pt_president",
+      "holder_name": "Luiz Gushiken",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "handover_statement",
+      "attested_on": "1990-06-03",
+      "text": "In the same speech Lula addresses 'Querido companheiro Luiz Gushiken, de quem eu recebo o bastão hoje' to lead the party at least until the next year, and speaks of the time he spent with Gushiken 'na presidência do partido'.",
+      "locator": {
+        "pdf_page": 9,
+        "printed_page": 9,
+        "item": "speech text, paragraph beginning 'Querido companheiro Luiz Gushiken'"
+      }
+    }
+  ]
+}

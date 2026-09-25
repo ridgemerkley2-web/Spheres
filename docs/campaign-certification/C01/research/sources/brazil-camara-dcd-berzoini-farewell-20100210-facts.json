@@ -1,0 +1,84 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_camara_dcd_berzoini_farewell_20100211",
+  "source_url": "https://imagem.camara.leg.br/Imagem/d/pdf/DCD11FEV2010.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": "2010-02-11",
+  "access_method": "downloaded_official_pdf_text_layer_read",
+  "source_response_bytes": 6444492,
+  "source_response_sha256": "48098bf9bcc91c4db679e84b6434cf8247087ab8d2bfe8618cc9153d521dd9a8",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded (a cache-busting query string may be added to reach the origin and is not part of the recorded URL); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Found by the independent check, which downloaded it at 14:08:01 UTC and again at 14:43:32 UTC on 25 September 2026; this packet downloaded it again with a cache-busting query at 16:07:10 UTC (Content-Length equal to the body). Every download had the same byte count and SHA-256. The Chamber's dc_20b.asp and montaPdf.asp viewers build page PDFs per request and are not recorded.",
+  "provenance_note": "Official stored file from the Chamber of Deputies' image service. Found by the independent check, which downloaded it at 14:08:01 UTC and again at 14:43:32 UTC on 25 September 2026; this packet downloaded it again with a cache-busting query at 16:07:10 UTC (Content-Length equal to the body). Every download had the same byte count and SHA-256. The Chamber's dc_20b.asp and montaPdf.asp viewers build page PDFs per request and are not recorded. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Chamber of Deputies' diary of 11 February 2010, recording the sessions of 10 February 2010; in the Grande Expediente Ricardo Berzoini took leave of the PT national presidency. A Congress record of the party office. The local copy was deleted after hashing and text extraction. Found by the independent check.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "282-page born-digital diary; the text layer of PDF pages 147-148, 154 and 157 (printed pages 02181-02182, 02188 and 02191) read; the session headings of PDF pages 8 and 96 read to date the session (10 February 2010)."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_berzoini_states_last_day_of_mandate_20100210",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-06",
+      "role_id": "br_pt_president",
+      "holder_name": "Ricardo Berzoini",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "term_last_day_statement",
+      "attested_on": "2010-02-10",
+      "text": "In the session of 10 February 2010 Ricardo Berzoini says 'Assomo à tribuna para registrar que hoje é o último dia do meu mandato como Presidente Nacional do Partido dos Trabalhadores', and ends 'ao encerrar meu mandato como Presidente ... desejo ao Presidente José Eduardo Dutra e à nova direção todo o sucesso'.",
+      "locator": {
+        "pdf_page": [
+          147,
+          157
+        ],
+        "printed_page": [
+          "02181",
+          "02191"
+        ],
+        "item": "speech of Mr Ricardo Berzoini, opening and closing paragraphs"
+      }
+    },
+    {
+      "claim_id": "br_pt_berzoini_recalls_leading_first_interim_2005",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-05",
+      "role_id": "br_pt_president",
+      "holder_name": "Ricardo Berzoini",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "retrospective_statement",
+      "attested_on": null,
+      "text": "In the same speech Berzoini recalls that in 2005 'assumimos a tarefa de dirigir o partido, primeiro interinamente, à frente da Secretaria-Geral e depois pela via eleitoral direta', and speaks of 'a eleição que me elegeu pela primeira vez' in 2005.",
+      "locator": {
+        "pdf_page": [
+          148,
+          157
+        ],
+        "printed_page": [
+          "02182",
+          "02191"
+        ],
+        "item": "speech of Mr Ricardo Berzoini"
+      }
+    },
+    {
+      "claim_id": "br_pt_deputy_aparte_berzoini_president_2005_2007_2007_2010",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-06",
+      "role_id": "br_pt_president",
+      "holder_name": "Ricardo Berzoini",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "In an aside, deputy Paulo Teixeira congratulates Berzoini, 'que foi Presidente do PT de 2005 a 2007 e de 2007 a 2010'.",
+      "locator": {
+        "pdf_page": 154,
+        "printed_page": "02188",
+        "item": "aside by Mr Paulo Teixeira"
+      }
+    }
+  ]
+}

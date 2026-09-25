@@ -1,0 +1,54 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_portal_dutra_dn_meeting_20110426",
+  "source_url": "https://web.archive.org/web/20110430124011id_/http://www.pt.org.br:80/portalpt/noticias/geral-8/confirmada-presenca-de-jose-eduardo-dutra-em-reuniao-do-diretorio-nacional-do-pt-57731.html",
+  "original_url": "http://www.pt.org.br/portalpt/noticias/geral-8/confirmada-presenca-de-jose-eduardo-dutra-em-reuniao-do-diretorio-nacional-do-pt-57731.html",
+  "archive_capture_utc": "2011-04-30T12:40:11Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2011-04-26",
+  "access_method": "downloaded_archived_raw_capture_id_form (curl with its default User-Agent, no Accept-Encoding header, no redirects followed)",
+  "source_response_bytes": 23735,
+  "source_response_sha256": "1aea07b6fc1a074236e7778c58cafbea6aa39c49494c484c0ae42bc6343d5c38",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-09-25T14:14:21Z and again at 2026-09-25T14:48:08Z from the same exact id_ URL (plain curl, no Accept-Encoding header, no decoding); both responses were 23735 bytes with SHA-256 1aea07b6fc1a074236e7778c58cafbea6aa39c49494c484c0ae42bc6343d5c38. The raw id_ form replays the stored capture. The independent check downloaded it again between 14:54 and 15:25 UTC on 25 September 2026 with Accept-Encoding: identity, at least 30 minutes after the researcher's last download; the response matched.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2011-04-30T12:40:11Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-09-25T14:14:21Z and again at 2026-09-25T14:48:08Z from the same exact id_ URL (plain curl, no Accept-Encoding header, no decoding); both responses were 23735 bytes with SHA-256 1aea07b6fc1a074236e7778c58cafbea6aa39c49494c484c0ae42bc6343d5c38. The raw id_ form replays the stored capture. The independent check downloaded it again between 14:54 and 15:25 UTC on 25 September 2026 with Accept-Encoding: identity, at least 30 minutes after the researcher's last download; the response matched. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A Portal do PT item of 26 April 2011 (17:15), captured 30 April 2011 (page declares ISO-8859-1). Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused. Reader comments below the article ignored."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_falcao_styled_acting_president_20110426",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-07",
+      "role_id": "br_pt_president",
+      "holder_name": "Rui Falcão",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores em exercício ou interino",
+      "event_kind": "acting_service",
+      "attested_on": "2011-04-26",
+      "text": "The party portal reports that Senator Humberto Costa was asked by José Eduardo Dutra to tell 'the President in exercise of the PT, Deputy Rui Falcão (SP)' that Dutra would attend the Diretório Nacional meeting of 29 April; Rui Falcão is styled acting (em exercício) President on 26 April 2011.",
+      "locator": {
+        "item": "article dated 26/04/2011 17:15, second paragraph, first sentence"
+      }
+    },
+    {
+      "claim_id": "br_pt_dutra_styled_president_pending_decision_20110426",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-07",
+      "role_id": "br_pt_president",
+      "holder_name": "José Eduardo Dutra",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2011-04-26",
+      "text": "The same report calls José Eduardo Dutra 'presidente do PT' during his health recovery and says he would personally tell the Diretório Nacional meeting set for 29 April 2011 his decision about his party functions, subject to medical advice.",
+      "locator": {
+        "item": "article dated 26/04/2011 17:15, first and second paragraphs"
+      }
+    }
+  ]
+}

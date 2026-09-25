@@ -12,6 +12,7 @@ import campaign_research as research
 # these sources; its exact claim, source and event pins live in that packet's test and are reused here, so every
 # guard below stays exact for this packet's 48 sources and 112 claims.
 import test_brazil_vice_presidents_c01_17 as vp
+import test_brazil_pt_presidents_c01_22 as pt
 
 
 # Original response identity recorded in each extract: (bytes, sha256). Every new source is reproducible.
@@ -521,8 +522,11 @@ class BrazilPresidentsTests(unittest.TestCase):
     def test_new_records_are_bounded_and_every_claim_is_classified(self):
         ids = self.validate()
         self.assertEqual((len(NEW_SOURCES), len(self.new_claims)), (48, 112))
-        self.assertEqual([s['id'] for s in self.packet['sources']], list(ORIGINAL_SOURCES) + NEW_SOURCES + vp.NEW_SOURCES)
-        self.assertEqual((len(ids['entries']), len(ids['roles'])), (32, 2))
+        # CLAUDE-C01-17's sources follow this packet's, then CLAUDE-C01-22's (the PT party role), exactly.
+        self.assertEqual([s['id'] for s in self.packet['sources']],
+                         list(ORIGINAL_SOURCES) + NEW_SOURCES + vp.NEW_SOURCES + pt.NEW_SOURCES)
+        # Entries and roles: br_president and br_vice_president on the presidency, br_pt_president on the PT observation.
+        self.assertEqual((len(ids['entries']), len(ids['roles'])), (32, 3))
         # Each source keeps this packet's claims first, followed by exactly CLAUDE-C01-17's appended claims, if any.
         for sid in NEW_SOURCES:
             ids_ = [c['id'] for c in self.sources[sid]['claims']]
@@ -545,7 +549,7 @@ class BrazilPresidentsTests(unittest.TestCase):
         # At most ten observations, each reported and each carrying rows.
         observations = re.findall(r'^### (BR-PRES-\d\d)\b', self.report, re.M)
         self.assertEqual(observations, [f'BR-PRES-{n:02d}' for n in range(1, 11)])
-        self.assertEqual(set(self.rows), set(self.new_claims) | set(vp.C01_17_CLAIMS))
+        self.assertEqual(set(self.rows), set(self.new_claims) | set(vp.C01_17_CLAIMS) | set(pt.NEW_CLAIMS))
         self.assertEqual({self.rows[cid]['review_observation'] for cid in self.new_claims},
                          {f'BR-PRES-{n:02d}' for n in range(1, 11)})
         for stale in STALE_IDS:
@@ -677,8 +681,8 @@ class BrazilPresidentsTests(unittest.TestCase):
                                              'role_title', 'event_kind', 'attested_on', 'text', 'locator'])
         self.assertEqual(len({self.sources[s]['snapshot']['path'] for s in NEW_SOURCES}), len(NEW_SOURCES))
         self.assertEqual({cid: (row['attested_on'], row['event_kind']) for cid, row in self.rows.items()
-                          if cid not in vp.EVENTS}, EVENTS)
-        self.assertEqual(set(self.rows) - set(EVENTS), set(vp.EVENTS))
+                          if cid not in vp.EVENTS and cid not in pt.EVENTS}, EVENTS)
+        self.assertEqual(set(self.rows) - set(EVENTS), set(vp.EVENTS) | set(pt.EVENTS))
         for sid, stamp in ARCHIVED.items():
             source, extract = self.sources[sid], self.extracts[sid]
             url = urlsplit(source['url'])
@@ -854,7 +858,7 @@ class BrazilPresidentsTests(unittest.TestCase):
         country = next(p for p in index['countries'] if p['nation'] == 'Brazil')
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
-        self.assertEqual((country['institution_observations'], country['role_observations']), (1, 2))
+        self.assertEqual((country['institution_observations'], country['role_observations']), (1, 3))
         self.assertEqual({w['status'] for w in index['work_orders'] if w['nation'] == 'Brazil'}, {'open'})
         self.assertFalse(index['c01_complete'])
 

@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_portal_dn_defines_new_cen_20100220",
+  "source_url": "https://web.archive.org/web/20100223074538id_/http://www.pt.org.br:80/portalpt/noticias/institucional-3/dn-reune-e-define-a-nova-comissao-executiva-nacional-do-pt-3249.html",
+  "original_url": "http://www.pt.org.br/portalpt/noticias/institucional-3/dn-reune-e-define-a-nova-comissao-executiva-nacional-do-pt-3249.html",
+  "archive_capture_utc": "2010-02-23T07:45:38Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2010-02-20",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 22646,
+  "source_response_sha256": "41d50b70109f530050fc6001d2ab37a504f0a08cb059746500e4fe13a6d66b6d",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture (20100223074538). First downloaded 2026-09-25T13:25:16Z with a Python urllib client; downloaded again 2026-09-25T13:56:18Z with curl (no --compressed, Accept-Encoding: identity), more than 30 minutes later: 22646 bytes, SHA-256 identical. The independent check downloaded it again at 13:58-14:00 UTC and at 14:31-14:33 UTC on 25 September 2026 (at least 30 minutes after the earlier downloads) with Accept-Encoding: identity; every response had the same byte count and SHA-256 and no Content-Encoding.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2010-02-23T07:45:38Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Raw Internet Archive id_ replay of a fixed capture (20100223074538). First downloaded 2026-09-25T13:25:16Z with a Python urllib client; downloaded again 2026-09-25T13:56:18Z with curl (no --compressed, Accept-Encoding: identity), more than 30 minutes later: 22646 bytes, SHA-256 identical. The independent check downloaded it again at 13:58-14:00 UTC and at 14:31-14:33 UTC on 25 September 2026 (at least 30 minutes after the earlier downloads) with Accept-Encoding: identity; every response had the same byte count and SHA-256 and no Content-Encoding. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A Portal do PT item of 20 February 2010, captured 23 February 2010. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full in the original Portuguese; no images reviewed."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_new_cen_lists_dutra_president_20100220",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-06",
+      "role_id": "br_pt_president",
+      "holder_name": "José Eduardo Dutra",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2010-02-20",
+      "text": "The National Directorate met on the afternoon of Saturday 20 February 2010 to define the new National Executive Committee, listed as 'Presidente: José Eduardo Dutra', with Rui Falcão as first vice-president.",
+      "locator": {
+        "section": "Item body and CEN list"
+      }
+    }
+  ]
+}

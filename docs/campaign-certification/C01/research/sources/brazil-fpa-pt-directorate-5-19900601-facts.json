@@ -1,0 +1,69 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_fpa_dn5_composition",
+  "source_url": "https://fpabramo.org.br/wp-content/uploads/2010/02/5diretorionacional_0.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_original_born_digital_pdf_text_layer_read",
+  "source_response_bytes": 24224,
+  "source_response_sha256": "ac9d36d61967905fd64198011c383ab6f7f61acc6441bee0cdfb1ce1d33b3e0c",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded (a cache-busting query string may be added to reach the origin and is not part of the recorded URL); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "First downloaded 2026-09-25T12:02Z (Cloudflare HIT); re-downloaded 2026-09-25T12:39Z (Cloudflare MISS) with a cache-busting query string (origin fetch) and got the same byte count and SHA-256. The same bytes (checked by SHA-256) are also served as https://siac.fpabramo.org.br/uploads/acervo/PTDN-DP_1990_0008-0005.pdf ('Composição do Diretório e Comissão Executiva Nacional' in the CSBH dossier of the VII Encontro) and at https://fpabramo.org.br/wp-content/uploads/2017/04/3-05-5diretorionacional_0.pdf. The independent check downloaded it again between 13:10 and 13:11 UTC on 25 September 2026, 30 to 68 minutes after the first download (cache-busted for the FPA and SIAC files), with the same byte count and SHA-256.",
+  "provenance_note": "Original born-digital PDF served by the party foundation (Cloudflare in front of the origin). First downloaded 2026-09-25T12:02Z (Cloudflare HIT); re-downloaded 2026-09-25T12:39Z (Cloudflare MISS) with a cache-busting query string (origin fetch) and got the same byte count and SHA-256. The same bytes (checked by SHA-256) are also served as https://siac.fpabramo.org.br/uploads/acervo/PTDN-DP_1990_0008-0005.pdf ('Composição do Diretório e Comissão Executiva Nacional' in the CSBH dossier of the VII Encontro) and at https://fpabramo.org.br/wp-content/uploads/2017/04/3-05-5diretorionacional_0.pdf. The independent check downloaded it again between 13:10 and 13:11 UTC on 25 September 2026, 30 to 68 minutes after the first download (cache-busted for the FPA and SIAC files), with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A later party compilation of the Diretório Nacional and Comissão Executiva Nacional compositions (PT and Fundação Perseu Abramo, digital edition of the party resolutions; Last-Modified 5 April 2017), served from fpabramo.org.br. Retrospective: its rows are claims, never boundaries; a meeting printed as a span of days carries no structured date. The 5th Diretório Nacional and its executive committees (1990-1993). The same bytes are served as the CSBH dossier file PTDN-DP_1990_0008-0005.pdf and at .../2017/04/3-05-5diretorionacional_0.pdf.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Born-digital PDF from the party compilation of directorate compositions; its text layer read in full (no scan). Each page is headed Partido dos Trabalhadores (www.pt.org.br) / Fundação Perseu Abramo. Pages 1-4 read."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_fpa_dn5_elected_7th_encontro_presidente_lula_19900601_03",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-01",
+      "role_id": "br_pt_president",
+      "holder_name": "Luiz Inácio Lula da Silva",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "national_meeting_directorate_election",
+      "attested_on": null,
+      "text": "The 5th Diretório Nacional (83 members), elected at the 7th Encontro Nacional at the Anhembi convention centre, São Paulo, 'entre os dias 01 e 03 de junho de 1990', is headed 'Presidente: Luiz Inácio Lula da Silva'.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "'5º DIRETÓRIO NACIONAL (DN) Eleito no 7º Encontro Nacional ... entre os dias 01 e 03 de junho de 1990'; first row"
+      }
+    },
+    {
+      "claim_id": "br_pt_fpa_cen_elected_presidente_lula_19900715",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-01",
+      "role_id": "br_pt_president",
+      "holder_name": "Luiz Inácio Lula da Silva",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "executive_committee_selection",
+      "attested_on": "1990-07-15",
+      "text": "The national executive committee 'Eleita na reunião do Diretório Nacional, em 15 de julho de 1990' is headed by Presidente Luiz Inácio Lula da Silva, with Luiz Gushiken as 1st vice-president.",
+      "locator": {
+        "pdf_page": 3,
+        "item": "'COMISSÃO EXECUTIVA NACIONAL Eleita na reunião do Diretório Nacional, em 15 de julho de 1990'"
+      }
+    },
+    {
+      "claim_id": "br_pt_fpa_cen_altered_presidente_lula_19920713",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-01",
+      "role_id": "br_pt_president",
+      "holder_name": "Luiz Inácio Lula da Silva",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "executive_committee_change",
+      "attested_on": "1992-07-13",
+      "text": "The 'Nova Comissão Executiva Nacional', altered at the Diretório Nacional meeting of 13 July 1992, is still headed by Presidente Luiz Inácio Lula da Silva.",
+      "locator": {
+        "pdf_page": 4,
+        "item": "'NOVA COMISSÃO EXECUTIVA NACIONAL Alterada em reunião do Diretório Nacional de 13 de julho de 1992'"
+      }
+    }
+  ]
+}

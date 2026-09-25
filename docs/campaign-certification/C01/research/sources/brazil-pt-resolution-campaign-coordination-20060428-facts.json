@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_resolution_campaign_coordination_20060428",
+  "source_url": "https://web.archive.org/web/20101007190733id_/http://www.pt.org.br/portalpt/documentos/resolucao-da-cen-sobre-coordenacao-politica-da-campanha-presidencial-142.html",
+  "original_url": "http://www.pt.org.br/portalpt/documentos/resolucao-da-cen-sobre-coordenacao-politica-da-campanha-presidencial-142.html",
+  "archive_capture_utc": "2010-10-07T19:07:33Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2006-04-28",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 22565,
+  "source_response_sha256": "91223796b8e4be6207e65c7744fb0a0c5e93f950cf15131ea3522f3d042782e0",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture (20101007190733). First downloaded 2026-09-25T13:09:09Z with a Python urllib client; downloaded again 2026-09-25T13:40:31Z with curl (no --compressed, Accept-Encoding: identity), more than 30 minutes later: 22565 bytes, SHA-256 identical. The independent check downloaded it again at 13:58-14:00 UTC and at 14:31-14:33 UTC on 25 September 2026 (at least 30 minutes after the earlier downloads) with Accept-Encoding: identity; every response had the same byte count and SHA-256 and no Content-Encoding.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2010-10-07T19:07:33Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Raw Internet Archive id_ replay of a fixed capture (20101007190733). First downloaded 2026-09-25T13:09:09Z with a Python urllib client; downloaded again 2026-09-25T13:40:31Z with curl (no --compressed, Accept-Encoding: identity), more than 30 minutes later: 22565 bytes, SHA-256 identical. The independent check downloaded it again at 13:58-14:00 UTC and at 14:31-14:33 UTC on 25 September 2026 (at least 30 minutes after the earlier downloads) with Accept-Encoding: identity; every response had the same byte count and SHA-256 and no Content-Encoding. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A PT resolution of 28 April 2006 served from the party's migrated document archive as captured on 7 October 2010. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full in the original Portuguese; no images reviewed."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_berzoini_styled_national_president_20060428",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-06",
+      "role_id": "br_pt_president",
+      "holder_name": "Ricardo Berzoini",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2006-04-28",
+      "text": "A PT resolution dated São Paulo, 28 April 2006, records that the National Meeting ('Encontro Nacional') designated 'nosso presidente nacional, deputado Ricardo Berzoini' as general coordinator of the presidential campaign.",
+      "locator": {
+        "section": "Resolution text, first paragraph, and date line 'São Paulo, 28 de abril de 2006'"
+      }
+    }
+  ]
+}

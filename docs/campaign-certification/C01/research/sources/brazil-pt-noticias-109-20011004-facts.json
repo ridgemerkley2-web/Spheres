@@ -1,0 +1,164 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_noticias_109_20011010",
+  "source_url": "https://siac.fpabramo.org.br/uploads/acervo/J_PT_NOTICIAS_2001_0109.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_original_pdf_text_layer_read_and_pages_rendered_for_visual_review",
+  "source_response_bytes": 5198077,
+  "source_response_sha256": "9710168f531276f812d11fca731e4898699ea22eadf486aea6263be69f51a497",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded (a cache-busting query string may be added to reach the origin and is not part of the recorded URL); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "First downloaded 2026-09-25T12:22:56Z; re-downloaded with a cache-busting query string (?cb=<unix time>; plain nginx origin, no CDN) at 2026-09-25T13:00:05Z; every download had the same byte count and SHA-256. The independent check downloaded it again between 13:10 and 13:11 UTC on 25 September 2026, 30 to 68 minutes after the first download (cache-busted for the FPA and SIAC files), with the same byte count and SHA-256.",
+  "provenance_note": "Original file from the party foundation's SIAC digital archive (plain nginx origin, no CDN). First downloaded 2026-09-25T12:22:56Z; re-downloaded with a cache-busting query string (?cb=<unix time>; plain nginx origin, no CDN) at 2026-09-25T13:00:05Z; every download had the same byte count and SHA-256. The independent check downloaded it again between 13:10 and 13:11 UTC on 25 September 2026, 30 to 68 minutes after the first download (cache-busted for the FPA and SIAC files), with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "PT Notícias nº 109, ano 5 (10-25 October 2001), organ of the Diretório Nacional (SIAC catalogue searchAcervo/801). Its page 2 masthead still lists José Genoino as president in exercise while page 1 says Dirceu resumed on 1 October; the conflict is recorded, not resolved.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2,
+      3,
+      7
+    ],
+    "method": "8-page scanned newspaper with an OCR text layer; the page 1 passages ('concluiu no dia 27 de setembro', 'retomou suas atividades ... no dia 1º de outubro') rendered and read, with the vote tables read from the text layer; pages 2 (masthead and the official note of 10 October), 3 (interview standfirst) and 7 (notes of 4 and 6 October) rendered and read by the independent check."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_ptn109_ped_vote_held_20010916",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-03",
+      "role_id": "br_pt_president",
+      "holder_name": null,
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "direct_election_vote",
+      "attested_on": "2001-09-16",
+      "text": "The PT's first direct election of its leaderships (Processo de Eleições Diretas) was held on 16 September [2001], with more than 221,000 members voting in municipalities that reached quorum.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "'Petistas de todo o país escolhem suas direções', third paragraph"
+      }
+    },
+    {
+      "claim_id": "br_pt_ped_commission_note_totalization_failures_20010920",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-03",
+      "role_id": "br_pt_president",
+      "holder_name": null,
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "result_process_note",
+      "attested_on": "2001-09-20",
+      "text": "A note of the national electoral organisation commission dated São Paulo, 20 September 2001, acknowledged failures in the national totalisation of the ballot reports and promised the official result as soon as possible.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "'Falhas atrasam a totalização dos votos' and 'Nota da Comissão Nacional de Organização Eleitoral'"
+      }
+    },
+    {
+      "claim_id": "br_pt_ptn109_ped_totalization_dirceu_elected_20010927",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-03",
+      "role_id": "br_pt_president",
+      "holder_name": "José Dirceu",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "election_result_declared",
+      "attested_on": "2001-09-27",
+      "text": "The national commission of the Processo de Eleições Diretas concluded the totalisation on 27 September, electing the federal deputy José Dirceu (SP) national president in the first round with 113,713 votes (55.55%); the table gives Raul Pont 35,277, Júlio Quadros 31,062, Tilden Santiago 15,552, Ricardo Berzoini 5,769 and Markus Sokol 3,336, with 204,709 valid and 221,956 total votes.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "'Petistas de todo o país escolhem suas direções', first paragraph; table 'Votação dos candidatos à presidência nacional'"
+      }
+    },
+    {
+      "claim_id": "br_pt_ptn109_dirceu_resumed_party_leadership_20011001",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-03",
+      "role_id": "br_pt_president",
+      "holder_name": "José Dirceu",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "return_from_leave",
+      "attested_on": "2001-10-01",
+      "text": "'Dirceu retomou suas atividades na direção do partido no dia 1º de outubro' (Dirceu resumed his activities in the party leadership on 1 October).",
+      "locator": {
+        "pdf_page": 1,
+        "item": "same article, paragraph beginning 'Para o deputado federal José Dirceu, reeleito presidente nacional'"
+      }
+    },
+    {
+      "claim_id": "br_pt_ptn109_masthead_genoino_em_exercicio_20011010_25",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-03",
+      "role_id": "br_pt_president",
+      "holder_name": "José Genoino",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores em exercício ou interino",
+      "event_kind": "acting_service",
+      "attested_on": null,
+      "text": "The issue's masthead (expediente) still lists 'PRESIDENTE NACIONAL DO PT / José Genoino (em exercício)'.",
+      "locator": {
+        "pdf_page": 2,
+        "item": "masthead box (expediente)"
+      }
+    },
+    {
+      "claim_id": "br_pt_ptn109_interview_dirceu_reassumed_presidency_200110",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-03",
+      "role_id": "br_pt_president",
+      "holder_name": "José Dirceu",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "stated_resumption_of_office",
+      "attested_on": null,
+      "text": "The interview standfirst says 'O deputado federal José Dirceu reassumiu a presidência nacional do PT. Eleito com 113.713 votos (55,55%) para seu quarto mandato'.",
+      "locator": {
+        "pdf_page": 3,
+        "item": "interview standfirst 'PED representa vitória do PT'"
+      }
+    },
+    {
+      "claim_id": "br_pt_ptn109_dirceu_signs_note_as_president_20011004",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-03",
+      "role_id": "br_pt_president",
+      "holder_name": "José Dirceu",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2001-10-04",
+      "text": "An official note denying that a dinner between Luiz Inácio Lula da Silva and Bishop Edir Macedo had been scheduled is dated 'São Paulo, 4 de outubro de 2001' and signed 'Deputado federal José Dirceu (PT-SP), presidente nacional do PT' and the party's leader in the Chamber, Walter Pinheiro.",
+      "locator": {
+        "pdf_page": 7,
+        "item": "'Nota oficial', dateline and signature block"
+      }
+    },
+    {
+      "claim_id": "br_pt_ptn109_dirceu_signs_note_as_president_20011006",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-03",
+      "role_id": "br_pt_president",
+      "holder_name": "José Dirceu",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2001-10-06",
+      "text": "A 'Nota do presidente do PT' criticising a statement by the President of the Republic is signed 'José Dirceu, presidente nacional do PT / São Paulo, 6 de outubro de 2001'.",
+      "locator": {
+        "pdf_page": 7,
+        "item": "'Nota do presidente do PT', signature and dateline"
+      }
+    },
+    {
+      "claim_id": "br_pt_ptn109_dirceu_signs_official_note_as_president_20011010",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-03",
+      "role_id": "br_pt_president",
+      "holder_name": "José Dirceu",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2001-10-10",
+      "text": "The 'Nota do Partido dos Trabalhadores em razão dos ataques ao Afeganistão', dated 'São Paulo, 10 de outubro de 2001', is signed first by 'Deputado José Dirceu, Presidente Nacional do Partido dos Trabalhadores'.",
+      "locator": {
+        "pdf_page": 2,
+        "item": "'NOTA OFICIAL', dateline and signature block"
+      }
+    }
+  ]
+}

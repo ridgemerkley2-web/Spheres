@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_portal_genoino_congress_talks_20030108",
+  "source_url": "https://web.archive.org/web/20050125095249id_/http://www.pt.org.br:80/site/noticias/noticias_int.asp?cod=8205",
+  "original_url": "http://www.pt.org.br/site/noticias/noticias_int.asp?cod=8205",
+  "archive_capture_utc": "2005-01-25T09:52:49Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2003-01-08",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 21287,
+  "source_response_sha256": "8fa5b50f03dda07eb538172447447aa1cec2fc2631ac7ab89602cb56c0026afc",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture (20050125095249). First downloaded 2026-09-25T13:20:44Z with a Python urllib client; downloaded again 2026-09-25T13:52:16Z with curl (no --compressed, Accept-Encoding: identity), more than 30 minutes later: 21287 bytes, SHA-256 identical. The independent check downloaded it again at 13:58-14:00 UTC and at 14:31-14:33 UTC on 25 September 2026 (at least 30 minutes after the earlier downloads) with Accept-Encoding: identity; every response had the same byte count and SHA-256 and no Content-Encoding.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2005-01-25T09:52:49Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Raw Internet Archive id_ replay of a fixed capture (20050125095249). First downloaded 2026-09-25T13:20:44Z with a Python urllib client; downloaded again 2026-09-25T13:52:16Z with curl (no --compressed, Accept-Encoding: identity), more than 30 minutes later: 21287 bytes, SHA-256 identical. The independent check downloaded it again at 13:58-14:00 UTC and at 14:31-14:33 UTC on 25 September 2026 (at least 30 minutes after the earlier downloads) with Accept-Encoding: identity; every response had the same byte count and SHA-256 and no Content-Encoding. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A Portal do PT news item of 8 January 2003, served from the portal's news archive as captured on 25 January 2005 (sidebar items of 21 January 2005). The item date is the portal's. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full in the original Portuguese; no images reviewed."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_genoino_styled_president_interim_period_20030108",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-04",
+      "role_id": "br_pt_president",
+      "holder_name": "José Genoino",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "styled_president_during_interim_period",
+      "attested_on": "2003-01-08",
+      "text": "A PT portal item dated 8 January 2003 says that the PT's national president, deputy José Genoíno, would try that day to contact the presidents of the PMDB, PSDB and PFL about the elections for the presidencies of the Chamber and the Senate; he gave the information after a morning meeting at the Planalto with the Chief of Staff, José Dirceu.",
+      "locator": {
+        "section": "Item body, first paragraph ('O presidente nacional do PT, deputado José Genoíno, vai tentar manter contatos hoje ...')"
+      }
+    }
+  ]
+}

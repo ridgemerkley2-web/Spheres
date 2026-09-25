@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_noticias_106_20010804",
+  "source_url": "https://siac.fpabramo.org.br/uploads/acervo/J_PT_NOTICIAS_2001_0106.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_original_pdf_text_layer_read",
+  "source_response_bytes": 6038454,
+  "source_response_sha256": "3bf47b0f59e5bcda4f9fb80551519c68f498e8640f791293dcbd6ff5dfa57ab0",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded (a cache-busting query string may be added to reach the origin and is not part of the recorded URL); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Found by the independent check, which downloaded it at 13:17:04 UTC and again with a cache-busting query at 13:54:10 UTC on 25 September 2026; both downloads had the same byte count and SHA-256.",
+  "provenance_note": "Original file from the party foundation's SIAC digital archive (plain nginx origin, no CDN). Found by the independent check, which downloaded it at 13:17:04 UTC and again with a cache-busting query at 13:54:10 UTC on 25 September 2026; both downloads had the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "PT Notícias nº 106 (4-18 August 2001), organ of the Diretório Nacional. Found by the independent check.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Scanned newspaper with an OCR text layer; the text layer read (the note on PDF page 6 and the masthead); no page rendered."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_ptn106_genoino_signs_note_as_acting_president_20010803",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-03",
+      "role_id": "br_pt_president",
+      "holder_name": "José Genoino",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores em exercício ou interino",
+      "event_kind": "acting_service",
+      "attested_on": "2001-08-03",
+      "text": "A party note dated 'Brasília, 3 de agosto de 2001' is signed 'José Genoino, presidente em exercício do PT' and 'Walter Pinheiro, líder do PT na Câmara'; the issue's masthead lists 'José Genoino (em exercício)'.",
+      "locator": {
+        "pdf_page": 6,
+        "item": "note signature block; masthead box (expediente)"
+      }
+    }
+  ]
+}

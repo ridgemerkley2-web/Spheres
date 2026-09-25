@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_portal_ped2005_second_round_closed_20051009",
+  "source_url": "https://web.archive.org/web/20051013032429id_/http://www.pt.org.br/site/noticias/noticias_int.asp?cod=39123",
+  "original_url": "http://www.pt.org.br/site/noticias/noticias_int.asp?cod=39123",
+  "archive_capture_utc": "2005-10-13T03:24:29Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2005-10-09",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 23334,
+  "source_response_sha256": "5c0061d8f708d27a6e1eea4fc30c611639f94ae249400c2b2ad88515f892ab32",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Found by the independent check, which downloaded it at 14:11:54 UTC and again at 14:43:20 UTC on 25 September 2026 (at least 30 minutes later) with Accept-Encoding: identity; both downloads had the same byte count and SHA-256 and no Content-Encoding.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2005-10-13T03:24:29Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Found by the independent check, which downloaded it at 14:11:54 UTC and again at 14:43:20 UTC on 25 September 2026 (at least 30 minutes later) with Accept-Encoding: identity; both downloads had the same byte count and SHA-256 and no Content-Encoding. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A Portal do PT item of 9 October 2005 on the close of the PED 2005 second-round vote, captured 13 October 2005. Found by the independent check. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full in the original Portuguese; no images reviewed."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_ped2005_second_round_ballot_20051009",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-05",
+      "role_id": "br_pt_president",
+      "holder_name": null,
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "ped_ballot",
+      "attested_on": "2005-10-09",
+      "text": "The portal reports that voting in the second round 'foi encerrado às 17h deste domingo (9) em todo o Brasil', members voting for the national presidency among other offices, and that no minimum quorum was needed in the second round.",
+      "locator": {
+        "section": "Item body, headline '09/10/2005 - PT encerra votação em todo o Brasil', first and second paragraphs"
+      }
+    }
+  ]
+}
