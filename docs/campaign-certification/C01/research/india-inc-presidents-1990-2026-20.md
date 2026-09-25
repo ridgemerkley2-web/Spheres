@@ -562,8 +562,8 @@ Compressed captures (the recorded identity is the encoded body; decoded identity
   service's 1998 item titles were searched for 'Congress President' or 'Sonia' without a match.
 - Guessed sansad.in member-profile paths: 404 or 500. The Journal of Parliamentary Information has no 1991 issue on the
   Internet Archive.
-- inc.in: the web archive holds no capture of the past-president HTML pages of Rajiv Gandhi, Rao or Kesri (their page-data
-  captures are used), none of the 2015-2016 release PDFs under inc.in/images/Pages/, and none of the 26 October 2022 and
+- inc.in: the web archive holds no capture of the past-president HTML pages of Rajiv Gandhi, Rao or Kesri (the Rao and
+  Kesri page-data captures are used; Rajiv Gandhi's answered 404 on 25 September 2026 and is a lead), none of the 2015-2016 release PDFs under inc.in/images/Pages/, and none of the 26 October 2022 and
   2 and 3 September 2026 release pages before the cutoff. The live release pages are not byte-stable (Cloudflare e-mail
   tokens); one old release slug answered 403. The live release listing, read on 25 September 2026 under build id
   5MH7AH6akrt52ENFFCW-S, holds nothing between its 2013 and 2015 items and the releases of 10 November 2016, so it has no
@@ -595,7 +595,7 @@ No site terms, licences or cookie banners were accepted, no CAPTCHA was met, and
 | A10 | The 4 Jun 1991 locator omitted page 60 | **Applied**: PDF pages 55 and 60 (cols 139-140 and 149-150) |
 | A11 | Kesri's party page gives a lifespan that conflicts with the Rajya Sabha sketch | **Applied**: noted in the source's scope and the claim's uncertainty |
 | B1 | Rahul Gandhi's `from` rested on a 2026 recollection | **Applied**: `from` null; observed on 16 Dec 2017 by the INC's same-day Hindi title; the recollection is `assumption_recalled_retrospective`; INC-PRES-06 is accepted in part |
-| B2 | Sonia Gandhi's 2017 holder and its candidate end | **Resolved by removal**: the holder is dropped; the farewell is `farewell_address`, never an until |
+| B2 | Sonia Gandhi's 2017 holder and its candidate end | **Resolved by removal**: the dossier's holder dated 16 Dec 2017 (the farewell day, with that day as a candidate end) is dropped; the farewell is `farewell_address`, never an until; the 29 Apr 2017 observation comes from B3 and has no end |
 | B3 | Sonia Gandhi's 2000, 2005 and 2010 holders rested on elections | **Applied in part**: 2000 is observed on 26 Nov 2000 (an act in office); no exception is made for 2005 and 2010, whose records stay claims; the 29 Apr 2017 release dates a second observation |
 | B4 | Sonia Gandhi's 1998 holder named her by inference | **Applied**: the 6 Apr 1998 rows are nameless; the observation is dated 15 May 1999 by the INC's heading that names and styles her, as a claim separate from the resignation |
 | B5 | Row shape | **Applied**: `observation_id` `in_eci_20240323_np_05`, `review_observation`, `role_id` and `role_title` in every row |
@@ -683,7 +683,11 @@ These are proposals for the integrator. They are not created in `work-orders.jso
   role, its sources and claim ids and one coverage note; one packet coverage note after the C01-15 note).
   `origin/claude/c01-in-15` had no commits beyond `dd58a610` when this packet was written, so no merge was needed.
 - No existing extract is edited: the 73 extracts under `research/sources/` are new files, and no CLAUDE-C01-11 or
-  CLAUDE-C01-15 source, claim, holder or extract changes.
+  CLAUDE-C01-15 source, claim, holder or extract changes. The verifier fixes edited one claim text in two of these
+  extracts, `sources/india-inc-cea-briefing-20221019-facts.json` (`in_certificate_to_be_given_20221019`) and
+  `sources/india-inc-cwc-opening-remarks-20211016-facts.json`
+  (`in_sonia_gandhi_interim_congress_president_self_description_20211016`), and the same claims and the two snapshots
+  in `india.json`.
 - `research-index.json` is the only file this packet shares with other pending packets. It is regenerated in a
   **separate commit**. New totals against `dd58a610`: 360 sources and 2,071 claims (previously 287 and 1,958); organization
   and institution observations are unchanged (841 and 29). India now has three role observations (previously two), 391

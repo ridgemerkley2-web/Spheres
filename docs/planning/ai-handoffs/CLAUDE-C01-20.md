@@ -62,6 +62,10 @@ merge was needed. Merge CLAUDE-C01-11 and CLAUDE-C01-15 first. Touched paths (no
   Indian National Congress recognition observation `in_eci_20240323_np_05` the role `in_inc_president`, its 73 sources
   and 113 claim ids and one coverage note; one packet coverage note after the C01-15 note);
 - 73 new extracts `docs/campaign-certification/C01/research/sources/india-*-facts.json` (no existing extract edited);
+  the verifier fixes edited one claim text in two of them,
+  `docs/campaign-certification/C01/research/sources/india-inc-cea-briefing-20221019-facts.json` and
+  `docs/campaign-certification/C01/research/sources/india-inc-cwc-opening-remarks-20211016-facts.json`, with the same
+  claims and their snapshots in `india.json`;
 - `tools/avatars/test_india_inc_presidents_c01_20.py` (new), and `tools/avatars/test_india_research_s10e.py`,
   `tools/avatars/test_india_prime_ministers_c01_11.py` and `tools/avatars/test_india_presidents_c01_15.py` (pinned values
   only, none loosened);
@@ -100,7 +104,7 @@ Observation decisions:
 
 All 44 checker defects (A1-A11, B1-B19, C1-C14) have an outcome in the report's Checker defects table: 39 applied, three
 applied in part (A2 and A4: some confirmed Lok Sabha copies declined; B3: no exception for 2005 and 2010) and two resolved
-by removal (B2, the 2017 Sonia Gandhi holder; C3, the post-cutoff page data). Of the 30 confirmed missing primary records,
+by removal (B2, the dossier's Sonia Gandhi holder dated 16 December 2017; C3, the post-cutoff page data). Of the 30 confirmed missing primary records,
 23 are imported (among them the Rajya Sabha store copies that replace the dossier's Internet Archive copies, the English
 Rajya Sabha records that date Rajiv Gandhi and Rao, the Lok Sabha pages that date and recall Kesri, the INC's 2017, 2020,
 2021 and 2022 records and the 85th Plenary resolution) and seven are declined with reasons (Lok Sabha translations or
