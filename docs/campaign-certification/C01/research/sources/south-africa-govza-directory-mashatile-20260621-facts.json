@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_govza_directory_mashatile",
+  "source_url": "https://web.archive.org/web/20260621160552id_/https://www.gov.za/about-government/contact-directory/presidency/paul-shipokosa-mashatile-mr",
+  "original_url": "https://www.gov.za/about-government/contact-directory/presidency/paul-shipokosa-mashatile-mr",
+  "archive_capture_utc": "2026-06-21T16:05:52Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 36842,
+  "source_response_sha256": "e60660747ce4f6eeb1849a1b1fe67c235ab5b384503bf36774b026ff41e805d7",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header, or with Accept-Encoding: identity, and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that accepts gzip can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "First downloaded on 2026-09-25 at 12:31Z by the researcher and downloaded again at 13:08Z; the independent check downloaded it again at 13:14-13:18Z with Accept-Encoding: identity. Every download had the same byte count and SHA-256. Downloaded again for this packet at 2026-09-25T15:31Z (integration pass) with the same byte count and SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2026-06-21T16:05:52Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of the live page. Fetched without Accept-Encoding (curl without --compressed), the archive serves it uncompressed: the recorded byte count and SHA-256 are those of the uncompressed body. The response identity was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw capture (21 June 2026) of a retrospective directory entry; the live Drupal page is dynamic. Its spans are recorded as printed and never used as boundaries. Like other gov.za captures made in 2026, the page carries a site-wide keywords tag naming the 2026 office-holders; that template text is not an attestation and is not used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_govza_directory_mashatile_dp_spans",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-DP-10",
+      "role_id": "za_deputy_president",
+      "holder_name": "Paul Mashatile",
+      "role_title": "Deputy President of the Republic of South Africa",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "printed_range": "from 3 July 2024; from 6 March 2023 to 19 June 2024",
+      "text": "The government contact directory, as captured on 21 June 2026, says Paul Shipokosa Mashatile was appointed as the Deputy President from 3 July 2024 and also held the position from 6 March 2023 to 19 June 2024.",
+      "locator": {
+        "section": "Directory entry, summary line"
+      }
+    }
+  ],
+  "bounded_scope": "Deputy President observations for CLAUDE-C01-21 only (role za_deputy_president in za_presidency). Announcements, stated intentions, appointments and their notices, oaths and their scheduling, stated assumptions, releases, resignations and their stated effect, Assembly-seat events and in-office attestations stay separate rows; holder observations and any start or end are decided in the packet, not by any row. The President's roles (za_president_election, za_state_president) and the ANC's party office are excluded and no row feeds them."
+}

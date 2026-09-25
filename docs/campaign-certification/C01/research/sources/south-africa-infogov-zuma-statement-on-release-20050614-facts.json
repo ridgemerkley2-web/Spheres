@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_infogov_zuma_statement_on_release_20050614",
+  "source_url": "https://web.archive.org/web/20081201082441id_/http://www.info.gov.za/speeches/2005/05061416451001.htm",
+  "original_url": "http://www.info.gov.za/speeches/2005/05061416451001.htm",
+  "archive_capture_utc": "2008-12-01T08:24:41Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2005-06-14",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 11335,
+  "source_response_sha256": "37beb00de39921167fa26182315e39c7d024083879e5747979bd76564b019d40",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header, or with Accept-Encoding: identity, and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that accepts gzip can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "First downloaded on 2026-09-25 at 11:59Z by the researcher and downloaded again at 13:44Z; the independent check downloaded it again at 13:52Z. Every download had the same byte count and SHA-256. Downloaded again for this packet at 2026-09-25T15:28Z (integration pass) with the same byte count and SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2008-12-01T08:24:41Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of the live page. Fetched without Accept-Encoding (curl without --compressed), the archive serves it uncompressed: the recorded byte count and SHA-256 are those of the uncompressed body. The response identity was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw capture (1 December 2008) of the government information site's copy (page last modified 14 June 2005, 16:50) of Zuma's statement issued by the Presidency the same day. The Department of Foreign Affairs copy is a duplicate lead.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_zuma_accepts_release_20050614",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-DP-04",
+      "role_id": "za_deputy_president",
+      "holder_name": "Jacob Zuma",
+      "role_title": "Deputy President of the Republic of South Africa",
+      "event_kind": "release_accepted",
+      "attested_on": "2005-06-14",
+      "text": "Zuma's own statement of 14 June 2005, issued by the Presidency, says the President had taken a decision about his presence in Government and Cabinet, that this was the President's prerogative and that he accepted and respected it; he offered to resign his seat in Parliament and thanked the public for their support during his 'tenure as Deputy President of the Republic'.",
+      "locator": {
+        "section": "opening paragraph and closing thanks",
+        "date_line": "14 June 2005; Issued by: The Presidency 14 June 2005"
+      }
+    }
+  ],
+  "bounded_scope": "Deputy President observations for CLAUDE-C01-21 only (role za_deputy_president in za_presidency). Announcements, stated intentions, appointments and their notices, oaths and their scheduling, stated assumptions, releases, resignations and their stated effect, Assembly-seat events and in-office attestations stay separate rows; holder observations and any start or end are decided in the packet, not by any row. The President's roles (za_president_election, za_state_president) and the ANC's party office are excluded and no row feeds them."
+}

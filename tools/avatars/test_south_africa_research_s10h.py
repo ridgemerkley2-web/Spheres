@@ -10,10 +10,13 @@ import campaign_research as research
 from test_south_africa_heads_of_state_c01_09 import RESPONSES as C01_09_RESPONSES, UNDATED as C01_09_UNDATED
 from test_south_africa_anc_presidents_c01_16 import (HOLDERS as C01_16_HOLDERS, RESPONSES as C01_16_RESPONSES,
                                                      UNDATED as C01_16_UNDATED)
+from test_south_africa_deputy_presidents_c01_21 import (HOLDERS as C01_21_HOLDERS, RESPONSES as C01_21_RESPONSES,
+                                                        UNDATED as C01_21_UNDATED)
 
 # The five sources of the original S10h intake keep every assertion below by id. CLAUDE-C01-09 adds 50 sources whose
 # response identities are pinned exactly (bytes and SHA-256) in test_south_africa_heads_of_state_c01_09.py.
 # CLAUDE-C01-16 adds 54 ANC sources, pinned the same way in test_south_africa_anc_presidents_c01_16.py.
+# CLAUDE-C01-21 adds 59 Deputy President sources, pinned in test_south_africa_deputy_presidents_c01_21.py.
 ORIGINAL_SOURCES = ('za_iec_national_results_20240621', 'za_iec_national_seats_20240606', 'za_da_kzn_leader_20230403',
                     'za_da_leadership_20260412', 'za_parliament_president_elect_20240614')
 # CLAUDE-C01-09: every presidency holder observation, exactly, as (role, name, attested_on, from, until).
@@ -30,6 +33,8 @@ PRESIDENCY_HOLDERS = [
     ('za_president_election', 'Cyril Ramaphosa', '2024-06-19', None, None),
     ('za_state_president', 'F. W. de Klerk', '1990-02-02', None, None),
 ]
+# CLAUDE-C01-21: every Deputy President holder observation, exactly, after the heads of state.
+PRESIDENCY_HOLDERS += [('za_deputy_president',) + holder for holder in C01_21_HOLDERS]
 
 
 class SouthAfricaDiscoveryTests(unittest.TestCase):
@@ -47,8 +52,9 @@ class SouthAfricaDiscoveryTests(unittest.TestCase):
     def test_valid_packet_closes_only_two_bounded_report_scopes(self):
         ids = self.validate()
         # CLAUDE-C01-09 adds 50 sources, 78 claims and one role (za_state_president) and no entry; CLAUDE-C01-16 adds 54
-        # sources, 73 claims and one role (za_anc_president) and no entry.
-        self.assertEqual(tuple(len(ids[k]) for k in ('entries', 'sources', 'claims', 'roles')), (53, 109, 260, 6))
+        # sources, 73 claims and one role (za_anc_president) and no entry; CLAUDE-C01-21 adds 59 sources, 82 claims and one
+        # role (za_deputy_president) and no entry.
+        self.assertEqual(tuple(len(ids[k]) for k in ('entries', 'sources', 'claims', 'roles')), (53, 168, 342, 7))
         coverage = self.packet['coverage']
         self.assertFalse(coverage['exhaustive_organization_register_reviewed'])
         self.assertIsNone(coverage['unrepresented_organization_total'])
@@ -129,9 +135,10 @@ class SouthAfricaDiscoveryTests(unittest.TestCase):
         presidency = self.packet['institutions'][0]
         self.assertEqual(presidency['id'], 'za_presidency')
         # CLAUDE-C01-09 adds the State President (1983 Constitution) as a second head-of-state role, never a holder of
-        # the President's role.
-        self.assertEqual([r['kind'] for r in presidency['roles']], ['head_of_state', 'head_of_state'])
-        self.assertEqual([r['id'] for r in presidency['roles']], ['za_president_election', 'za_state_president'])
+        # the President's role; CLAUDE-C01-21 adds the Deputy President as an institutional office, never a head of state.
+        self.assertEqual([r['kind'] for r in presidency['roles']], ['head_of_state', 'head_of_state', 'institutional_office'])
+        self.assertEqual([r['id'] for r in presidency['roles']],
+                         ['za_president_election', 'za_state_president', 'za_deputy_president'])
         row = self.extracts['za_parliament_president_elect_20240614']['rows'][0]
         self.assertEqual((row['holder_name'], row['event_kind'], row['attested_on']),
                          ('Cyril Ramaphosa', 'election_as_president_elect', '2024-06-14'))
@@ -197,7 +204,7 @@ class SouthAfricaDiscoveryTests(unittest.TestCase):
                 # CLAUDE-C01-09 and CLAUDE-C01-16 archives include pages under 40,000 bytes; each response is pinned
                 # exactly.
                 self.assertEqual((data['source_response_bytes'], data['source_response_sha256']),
-                                 {**C01_09_RESPONSES, **C01_16_RESPONSES}[source['id']])
+                                 {**C01_09_RESPONSES, **C01_16_RESPONSES, **C01_21_RESPONSES}[source['id']])
             self.assertNotEqual(data['source_response_sha256'], source['snapshot']['sha256'])
             self.assertIn('not checked into this repository', data['provenance_note'])
             for row in data['rows']:
@@ -210,7 +217,8 @@ class SouthAfricaDiscoveryTests(unittest.TestCase):
                 self.assertEqual((data['source_response_bytes'], data['source_response_sha256']), pins[source['id']])
                 self.assertEqual(data['reviewed_pdf_pages'], [1, 2])
         self.assertEqual([s['id'] for s in self.packet['sources']],
-                         list(ORIGINAL_SOURCES) + list(C01_09_RESPONSES) + list(C01_16_RESPONSES))
+                         list(ORIGINAL_SOURCES) + list(C01_09_RESPONSES) + list(C01_16_RESPONSES)
+                         + list(C01_21_RESPONSES))
         p = copy.deepcopy(self.packet)
         p['sources'][0]['snapshot']['sha256'] = '0' * 64
         with self.assertRaisesRegex(ValueError, 'checksum mismatch'):
@@ -223,10 +231,16 @@ class SouthAfricaDiscoveryTests(unittest.TestCase):
         c01_09_hosts = {'web.archive.org', 'archive.gazettes.africa', 'www.parliament.gov.za'}
         # CLAUDE-C01-16 sources: raw Internet Archive captures of the ANC's own pages, all accessed on 2026-09-24.
         c01_16_hosts = {'web.archive.org'}
+        # CLAUDE-C01-21 sources: raw Internet Archive captures, the gazettes.africa archive host, Parliament's document
+        # store and the UN Official Document System, all accessed on 2026-09-25.
+        c01_21_hosts = {'web.archive.org', 'archive.gazettes.africa', 'www.parliament.gov.za', 'documents.un.org'}
         for source in self.packet['sources']:
             if source['id'] in ORIGINAL_SOURCES:
                 self.assertIn(urlsplit(source['url']).hostname, hosts)
                 self.assertEqual(source['accessed_date'], '2026-09-14')
+            elif source['id'] in C01_21_RESPONSES:
+                self.assertIn(urlsplit(source['url']).hostname, c01_21_hosts)
+                self.assertEqual(source['accessed_date'], '2026-09-25')
             elif source['id'] in C01_16_RESPONSES:
                 self.assertIn(urlsplit(source['url']).hostname, c01_16_hosts)
                 self.assertEqual(source['accessed_date'], '2026-09-24')
@@ -234,16 +248,16 @@ class SouthAfricaDiscoveryTests(unittest.TestCase):
                 self.assertIn(urlsplit(source['url']).hostname, c01_09_hosts)
                 self.assertEqual(source['accessed_date'], '2026-09-22')
             for claim in source['claims']:
-                if claim['id'] in C01_09_UNDATED or claim['id'] in C01_16_UNDATED:
+                if claim['id'] in C01_09_UNDATED or claim['id'] in C01_16_UNDATED or claim['id'] in C01_21_UNDATED:
                     # Retrospective list and directory spans, month-only and span-only claims and later web-edition
                     # headings carry no structured date at all.
                     self.assertNotIn('attested_on', claim)
                     continue
                 self.assertLessEqual(date.fromisoformat(claim['attested_on']), date.fromisoformat(research.CUTOFF))
         self.assertEqual({urlsplit(s['url']).hostname for s in self.packet['sources']},
-                         hosts | c01_09_hosts | c01_16_hosts)
-        # Seven C01-09 claims and 31 C01-16 claims carry no structured date.
-        self.assertEqual(sum('attested_on' not in c for s in self.packet['sources'] for c in s['claims']), 7 + 31)
+                         hosts | c01_09_hosts | c01_16_hosts | c01_21_hosts)
+        # Seven C01-09 claims, 31 C01-16 claims and 13 C01-21 claims carry no structured date.
+        self.assertEqual(sum('attested_on' not in c for s in self.packet['sources'] for c in s['claims']), 7 + 31 + 13)
         self.assertEqual([s['published_date'] for s in self.packet['sources'][:2]], [None, None])
         self.assertEqual(self.extracts['za_iec_national_results_20240621']['report_as_at'], '2024-06-21T13:51:28')
         self.assertEqual(self.extracts['za_iec_national_seats_20240606']['report_as_at'], '2024-06-06T11:56:55')

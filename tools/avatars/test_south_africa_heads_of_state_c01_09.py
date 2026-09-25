@@ -9,6 +9,7 @@ from urllib.parse import urlsplit
 
 import campaign_research as research
 from test_south_africa_anc_presidents_c01_16 import RESPONSES as C01_16_RESPONSES
+from test_south_africa_deputy_presidents_c01_21 import RESPONSES as C01_21_RESPONSES
 
 
 # Original response identity recorded in each extract: (bytes, sha256). Every new source is reproducible.
@@ -291,7 +292,8 @@ def hos_invariants(packet):
     presidency = packet['institutions'][0]
     assert presidency['id'] == 'za_presidency'
     roles = {r['id']: r for r in presidency['roles']}
-    assert list(roles) == [PR, SP], 'exactly the President and the State President roles'
+    # CLAUDE-C01-21 adds the Deputy President (an institutional office, never a head of state) after these two.
+    assert list(roles) == [PR, SP, 'za_deputy_president'], 'exactly the President, State President and Deputy President roles'
     heads = [r['id'] for e in packet['organizations'] + packet['institutions'] for r in e['roles']
              if r['kind'] == 'head_of_state']
     assert heads == [PR, SP], 'no other head-of-state role'
@@ -363,9 +365,10 @@ class SouthAfricaHeadsOfStateTests(unittest.TestCase):
     def test_new_records_are_bounded_and_every_claim_is_classified(self):
         ids = self.validate()
         self.assertEqual((len(NEW_SOURCES), len(self.new_claims)), (50, 78))
-        # CLAUDE-C01-16 appends its ANC party-office sources, pinned in test_south_africa_anc_presidents_c01_16.py.
+        # CLAUDE-C01-16 appends its ANC party-office sources, pinned in test_south_africa_anc_presidents_c01_16.py, and
+        # CLAUDE-C01-21 its Deputy President sources, pinned in test_south_africa_deputy_presidents_c01_21.py.
         self.assertEqual([s['id'] for s in self.packet['sources']],
-                         list(ORIGINAL_SOURCES) + NEW_SOURCES + list(C01_16_RESPONSES))
+                         list(ORIGINAL_SOURCES) + NEW_SOURCES + list(C01_16_RESPONSES) + list(C01_21_RESPONSES))
         self.assertEqual(len(ids['entries']), 53)
         # Every new claim is either a holder claim or a claim that never feeds a holder, never both.
         holder_claims = {cid for role in HOLDER_CLAIMS.values() for ids_ in role for cid in ids_}
@@ -635,7 +638,7 @@ class SouthAfricaHeadsOfStateTests(unittest.TestCase):
             ('election collapsed into oath', lambda p: claim(p, 'za_mbeki_na_elected_president_20040423').update(
                 attested_on='2004-04-27')),
             ('second presidency institution', lambda p: p['institutions'].append(copy.deepcopy(p['institutions'][0]))),
-            ('State President role removed', lambda p: p['institutions'][0]['roles'].pop()),
+            ('State President role removed', lambda p: p['institutions'][0]['roles'].pop(1)),
         ]
         hos_invariants(self.packet)
         for label, change in invariant_cases:

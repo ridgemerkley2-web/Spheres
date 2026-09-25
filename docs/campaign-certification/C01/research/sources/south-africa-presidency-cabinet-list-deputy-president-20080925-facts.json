@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_presidency_cabinet_list_20080925_deputy_president",
+  "source_url": "https://web.archive.org/web/20081002133337id_/http://www.thepresidency.gov.za:80/show.asp?type=pr&include=president/pr/2008/pr09251750.htm&ID=1420",
+  "original_url": "http://www.thepresidency.gov.za/show.asp?type=pr&include=president/pr/2008/pr09251750.htm&ID=1420",
+  "archive_capture_utc": "2008-10-02T13:33:37Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2008-09-25",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 33333,
+  "source_response_sha256": "14e0bd213098dd9c0ef9f0c076d7611f3eaba82cb2b37e2af4d216a77c015a9f",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header, or with Accept-Encoding: identity, and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that accepts gzip can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded again on 2026-09-25 by the part B researcher and by the part B check (13:52Z), each time with the byte count and SHA-256 recorded for this capture on 22 September 2026. Downloaded again for this packet at 2026-09-25T15:30Z (integration pass) with the same byte count and SHA-256. The response is the one the extract south-africa-presidency-cabinet-list-20080925-facts.json records.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2008-10-02T13:33:37Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of the live page. Fetched without Accept-Encoding (curl without --compressed), the archive serves it uncompressed: the recorded byte count and SHA-256 are those of the uncompressed body. The response identity was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The same raw capture and the same response bytes as the source za_presidency_cabinet_list_20080925, whose extract leaves the Deputy President out of scope; this separate source record carries only the Deputy President row, so that extract is unchanged. A Presidency release on its own 2008 site.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_mbete_deputy_president_cabinet_list_20080925",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-DP-05",
+      "role_id": "za_deputy_president",
+      "holder_name": "Baleka Mbete",
+      "role_title": "Deputy President of the Republic of South Africa",
+      "event_kind": "cabinet_list_as_announced",
+      "attested_on": "2008-09-25",
+      "text": "The Presidency's release 'Members of Cabinet as Announced by the President, Mr. Kgalema Motlanthe, on 25 September 2008' lists second 'The Deputy President: Ms B Mbete' (initial and surname only).",
+      "locator": {
+        "section": "'Members of the Executive', item 2"
+      }
+    }
+  ],
+  "bounded_scope": "Deputy President observations for CLAUDE-C01-21 only (role za_deputy_president in za_presidency). Announcements, stated intentions, appointments and their notices, oaths and their scheduling, stated assumptions, releases, resignations and their stated effect, Assembly-seat events and in-office attestations stay separate rows; holder observations and any start or end are decided in the packet, not by any row. The President's roles (za_president_election, za_state_president) and the ANC's party office are excluded and no row feeds them. This extract derives only the deputy-president rows of a response whose other rows docs/campaign-certification/C01/research/sources/south-africa-presidency-cabinet-list-20080925-facts.json derives; that extract is unchanged."
+}

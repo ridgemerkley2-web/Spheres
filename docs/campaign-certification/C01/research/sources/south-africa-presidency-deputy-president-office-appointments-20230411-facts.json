@@ -1,0 +1,43 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_presidency_deputy_president_office_appointments_20230411",
+  "source_url": "https://web.archive.org/web/20250405034841id_/https://www.thepresidency.gov.za/appointment-key-positions-office-deputy-president",
+  "original_url": "https://www.thepresidency.gov.za/appointment-key-positions-office-deputy-president",
+  "archive_capture_utc": "2025-04-05T03:48:41Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2023-04-11",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 13746,
+  "source_response_sha256": "f215d57a7b32074ec1318d1862d890168bcd962439b1852e4a8ff9caf3fdb15c",
+  "source_response_content_encoding": "gzip",
+  "decoded_response_bytes": 63123,
+  "decoded_response_sha256": "68862c8b23f45584f202130b4bc6488ca60453f584aef0fe7c2c9d52b8312b94",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header, or with Accept-Encoding: identity, and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that accepts gzip can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "First downloaded on 2026-09-25 at 12:28Z by the researcher and downloaded again at 13:07Z; the independent check downloaded it again at 13:14-13:18Z with Accept-Encoding: identity. Every download had the same byte count and SHA-256. The check also confirmed the decoded size and SHA-256. Downloaded again for this packet at 2026-09-25T15:31Z (integration pass) with the same byte count and SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2025-04-05T03:48:41Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of the live page. The archive stores this capture gzip-encoded and serves it with Content-Encoding: gzip even to a request with no Accept-Encoding or with Accept-Encoding: identity: the recorded byte count and SHA-256 are those of the gzip-encoded body exactly as served, and decoded_response_bytes and decoded_response_sha256 give the decoded HTML (what a decoding client such as curl --compressed returns). The response identity was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw capture (5 April 2025) of the statement on the Presidency's site, dated Tuesday 11 April 2023 (the page was submitted on 7 December 2023). The archive stores this capture gzip-encoded and serves it with Content-Encoding: gzip even to a request with no Accept-Encoding or with Accept-Encoding: identity; the recorded identity is of the gzip-encoded bytes as served, and the decoded identity is recorded in the extract.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_mashatile_dp_sworn_in_20230307",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-DP-09",
+      "role_id": "za_deputy_president",
+      "holder_name": "Paul Mashatile",
+      "role_title": "Deputy President of the Republic of South Africa",
+      "event_kind": "oath_of_office",
+      "attested_on": "2023-03-07",
+      "text": "The Presidency's statement dated Tuesday 11 April 2023 says Deputy President Paul Mashatile was sworn in as the Deputy President of the Republic of South Africa on 7 March 2023, after which a transitional handover of delegated responsibilities from his predecessor followed.",
+      "locator": {
+        "section": "Statement body, first paragraph",
+        "page_date": "Tuesday, 11 April 2023 (page 'Submitted ... on 7 December 2023')"
+      }
+    }
+  ],
+  "bounded_scope": "Deputy President observations for CLAUDE-C01-21 only (role za_deputy_president in za_presidency). Announcements, stated intentions, appointments and their notices, oaths and their scheduling, stated assumptions, releases, resignations and their stated effect, Assembly-seat events and in-office attestations stay separate rows; holder observations and any start or end are decided in the packet, not by any row. The President's roles (za_president_election, za_state_president) and the ANC's party office are excluded and no row feeds them."
+}

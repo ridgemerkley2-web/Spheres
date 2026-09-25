@@ -1,0 +1,42 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_gazette_15792_19940603",
+  "source_url": "https://archive.gazettes.africa/archive/za/1994/za-government-gazette-dated-1994-06-03-no-15792.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": "1994-06-03",
+  "access_method": "downloaded_archived_government_gazette_pdf_and_page_rendered_for_visual_review",
+  "source_response_bytes": 2117040,
+  "source_response_sha256": "3f3735f069be6caf24dfd3a680f41050dbde59bcd88f79b152beb0c5b65868bf",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly with no automatic decoding, then hash the bytes as received; Cloudflare may answer from its cache, and a cache-busting query reaches the origin with the same bytes.",
+  "source_response_checked_in": false,
+  "stability_check": "First downloaded on 2026-09-25 at 12:52Z by the researcher and downloaded again at 12:57 and 13:28 (plain and cache-busting)Z; the independent check downloaded it again at 13:42 and 14:13 (plain and cache-busting)Z. Every download had the same byte count and SHA-256. Downloaded again for this packet at 2026-09-25T15:28Z (integration pass) with the same byte count and SHA-256.",
+  "provenance_note": "Scanned Government Gazette PDF, a static file on the gazettes.africa public archive host (Last-Modified 28 May 2024; the ETag equals the MD5 of the bytes), served without content encoding. The response identity was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Scanned Government Gazette on the gazettes.africa public archive host, a static file (Last-Modified 28 May 2024; the ETag equals the MD5 of the downloaded bytes). The gazettes.africa document landing pages sit behind a Cloudflare JavaScript challenge, which was not attempted; only the public archive PDF was fetched. Plain requests were answered from Cloudflare's cache and cache-busting requests from the origin; both matched.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "Page 1 rendered and read (Afrikaans and English columns); pages 2-4 read in the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "za_executive_deputy_presidents_consulted_on_cabinet_19940603",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-DP-01",
+      "role_id": "za_deputy_president",
+      "holder_name": null,
+      "role_title": "Deputy President of the Republic of South Africa",
+      "event_kind": "office_referenced_unnamed",
+      "attested_on": "1994-06-03",
+      "text": "Government Notice No. 1065 of 3 June 1994 (Office of the President) notifies that the President, acting under sections 88 and 94 of the 1993 Constitution and 'after consultation with the Executive Deputy Presidents and the leaders of the participating parties serving in Cabinet', decided to appoint the listed Ministers and Deputy Ministers with effect from 11 May 1994.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "Government Notice No. 1065, Office of the President, opening paragraph (English right column; Afrikaans left column)",
+        "gazette_no": 15792
+      }
+    }
+  ],
+  "bounded_scope": "Deputy President observations for CLAUDE-C01-21 only (role za_deputy_president in za_presidency). Announcements, stated intentions, appointments and their notices, oaths and their scheduling, stated assumptions, releases, resignations and their stated effect, Assembly-seat events and in-office attestations stay separate rows; holder observations and any start or end are decided in the packet, not by any row. The President's roles (za_president_election, za_state_president) and the ANC's party office are excluded and no row feeds them."
+}

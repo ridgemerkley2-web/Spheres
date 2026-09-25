@@ -1,0 +1,42 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_un_spv3379_19940525",
+  "source_url": "https://documents.un.org/doc/undoc/pro/n94/856/67/pdf/n9485667.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_static_pdf_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 145245,
+  "source_response_sha256": "c6ba5d28bc8660253b3fa0e66494ac5b9dbe0f48f1bdf097324c9106e3c23469",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly with no automatic decoding, then hash the bytes as received; a cache-busting query returns the same bytes.",
+  "source_response_checked_in": false,
+  "stability_check": "First downloaded on 2026-09-25 at 12:24Z by the researcher and downloaded again at 12:57 and 13:28 (plain and cache-busting)Z; the independent check downloaded it again at 13:42 and 14:13 (plain and cache-busting)Z. Every download had the same byte count and SHA-256. Downloaded again for this packet at 2026-09-25T15:28Z (integration pass) with the same byte count and SHA-256.",
+  "provenance_note": "Static PDF from the United Nations Official Document System (Last-Modified 5 April 2023), served without content encoding. The response identity was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Static PDF on the UN Official Document System (Last-Modified 5 April 2023; a weak ETag whose size part equals the byte count), reached from the document symbol, whose address redirects (302, then 301) to the recorded lower-case URL; the recorded URL is fetched directly. An international body's record of the title under which the Republic's delegate was received, used as a primary record of that day's styling, not as a South African appointment record; the Department of Foreign Affairs' own copy of the statement (za_dfa_mbeki_security_council_statement_19940525) is the South African record of the same day. The record is provisional. Plain and cache-busting requests matched.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "PDF pages 1 and 2 rendered and read (cover and the introduction of the first speaker); the other pages searched in the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "za_mbeki_first_executive_deputy_president_unsc_19940525",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-DP-01",
+      "role_id": "za_deputy_president",
+      "holder_name": "Thabo Mbeki",
+      "role_title": "Deputy President of the Republic of South Africa",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1994-05-25",
+      "text": "The provisional verbatim record of the Security Council's 3379th meeting (New York, 25 May 1994) records that Mr. Thabo Mbeki, First Executive Deputy President of the Republic of South Africa, was escorted to a place at the Council table, and the Council President then invites 'the First Executive Deputy President of the Republic of South Africa, His Excellency Mr. Thabo Mbeki' to speak as the first speaker.",
+      "locator": {
+        "pdf_page": 2,
+        "section": "Italic procedural note after the rule 37 invitation; President's introduction of the first speaker"
+      }
+    }
+  ],
+  "bounded_scope": "Deputy President observations for CLAUDE-C01-21 only (role za_deputy_president in za_presidency). Announcements, stated intentions, appointments and their notices, oaths and their scheduling, stated assumptions, releases, resignations and their stated effect, Assembly-seat events and in-office attestations stay separate rows; holder observations and any start or end are decided in the packet, not by any row. The President's roles (za_president_election, za_state_president) and the ANC's party office are excluded and no row feeds them."
+}

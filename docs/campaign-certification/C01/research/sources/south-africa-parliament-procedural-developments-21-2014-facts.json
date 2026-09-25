@@ -1,0 +1,60 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_parliament_procedural_developments_21_2014",
+  "source_url": "https://www.parliament.gov.za/storage/app/media/NA-Procedural-Devs/21.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_original_pdf_from_parliament_document_store_text_read_and_pages_rendered",
+  "source_response_bytes": 355964,
+  "source_response_sha256": "9d20ae19bc3525683ff2d5243aa348594adf1c8a36ffd5e8d503e132c8d49ee2",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (the server rejects HEAD) with no automatic decoding, then hash the bytes as received; the file is static and a cache-busting query returns the same bytes.",
+  "source_response_checked_in": false,
+  "stability_check": "First downloaded on 2026-09-25 at 12:21Z by the researcher and downloaded again at 13:05Z; the independent check downloaded it again at 13:14-13:18Z with Accept-Encoding: identity. Every download had the same byte count and SHA-256. Downloaded again for this packet at 2026-09-25T15:30Z (integration pass) with the same byte count and SHA-256.",
+  "provenance_note": "Official file from Parliament's document store, served as a static file (Last-Modified 2 March 2026, before the historical cutoff) without content encoding; fetch it with GET. The response identity was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official file from Parliament's document store, located through the site's own paper index (https://www.parliament.gov.za/docsjson/, called with the paging parameters the site sends; the listing grows over time and is used only to locate files, never as a source). A static file with Last-Modified 2 March 2026, before the historical cutoff, and an ETag whose size part equals the byte count; use GET. A retrospective compilation of events of 2014 by the Table Division ('where no year appears ... 2014').",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      7,
+      27
+    ],
+    "method": "PDF pages 1, 7 and 27 rendered and viewed; the text layer of all 32 pages searched."
+  },
+  "rows": [
+    {
+      "claim_id": "za_ramaphosa_dp_logb_designation_announced_20140618",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-DP-07",
+      "role_id": "za_deputy_president",
+      "holder_name": "Cyril Ramaphosa",
+      "role_title": "Deputy President of the Republic of South Africa",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2014-06-18",
+      "text": "At the sitting of 18 June 2014 the Deputy Speaker announced that the Deputy President, Mr M C Ramaphosa, had been designated Leader of Government Business in the National Assembly under section 91(4) of the Constitution.",
+      "locator": {
+        "pdf_page": 7,
+        "printed_page": 7,
+        "section": "[4] Appointment of Leader of Government Business"
+      }
+    },
+    {
+      "claim_id": "za_ramaphosa_dp_appointment_communicated_na_20140716",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-DP-07",
+      "role_id": "za_deputy_president",
+      "holder_name": "Cyril Ramaphosa",
+      "role_title": "Deputy President of the Republic of South Africa",
+      "event_kind": "appointment_communicated_to_assembly",
+      "attested_on": "2014-07-16",
+      "text": "Annexure 2 records that on 16 July 2014 the President informed the National Assembly of appointments made under sections 91(2), 91(3) and 93(1) of the Constitution; the list opens with The President of the Republic, Mr J G Zuma, and The Deputy President, Mr M C Ramaphosa.",
+      "locator": {
+        "pdf_page": 27,
+        "printed_page": 27,
+        "section": "Annexure 2, Appointment of new Ministers and Deputy Ministers"
+      }
+    }
+  ],
+  "bounded_scope": "Deputy President observations for CLAUDE-C01-21 only (role za_deputy_president in za_presidency). Announcements, stated intentions, appointments and their notices, oaths and their scheduling, stated assumptions, releases, resignations and their stated effect, Assembly-seat events and in-office attestations stay separate rows; holder observations and any start or end are decided in the packet, not by any row. The President's roles (za_president_election, za_state_president) and the ANC's party office are excluded and no row feeds them."
+}
