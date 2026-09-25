@@ -9,8 +9,8 @@
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 841,
     "institution_observations": 28,
-    "sources": 209,
-    "source_claims": 1874,
+    "sources": 220,
+    "source_claims": 1959,
     "discovery_batches": 92,
     "exhaustive_country_censuses": 0
   },
@@ -21,8 +21,8 @@
       "packet": "docs/campaign-certification/C01/research/brazil.json",
       "organization_observations": 31,
       "institution_observations": 1,
-      "role_observations": 1,
-      "source_claims": 146,
+      "role_observations": 2,
+      "source_claims": 231,
       "mapping_pending": 32,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -70,7 +70,8 @@
           "The PMB article and initial notice use different names; retain the later explicit rectification and research underlying decisions before creating lifecycle intervals.",
           "Federations, informal parties, parties in formation and institutions are outside this bounded intake; absence here does not establish nonexistence.",
           "All game mappings, leadership roles, continuous lifecycle intervals, successor eligibility and portrait permissions remain unknown.",
-          "Presidents 1990-2026 (CLAUDE-C01-10): the packet now holds one institution, br_presidency, with one role, br_president, and twelve dated holder observations (José Sarney observed on 5 January 1990; stated starts from 15 March 1990 to 1 January 2023; stated ends only for Collor and Rousseff). Still open for the presidency: Sarney's end, the ends of later terms, clock times, most sash transfers and the TSE and DOU originals. Vice-presidents, ministers, party offices and all other institutions remain outside this intake; the Vice-President's exercise of the office is claims only. No game identity or portrait permission is granted."
+          "Presidents 1990-2026 (CLAUDE-C01-10): the packet now holds one institution, br_presidency, with one role, br_president, and twelve dated holder observations (José Sarney observed on 5 January 1990; stated starts from 15 March 1990 to 1 January 2023; stated ends only for Collor and Rousseff). Still open for the presidency: Sarney's end, the ends of later terms, clock times, most sash transfers and the TSE and DOU originals. Vice-presidents, ministers, party offices and all other institutions remain outside this intake; the Vice-President's exercise of the office is claims only. No game identity or portrait permission is granted.",
+          "Vice-presidents 1990-2026 (CLAUDE-C01-17): the presidency institution now also holds a second role, br_vice_president, with nine dated holder observations (stated starts from 15 March 1990 to 1 January 2023; no stated end and no stated vacancy of the Vice-Presidency). The earlier statement in this list that vice-presidents remain outside this intake no longer applies to the Vice-Presidency of the Republic; ministers, party offices and all other institutions remain outside it. The Vice-President's exercise of the Presidency is claims only and never a holder of either role. No game identity or portrait permission is granted."
         ]
       }
     },
@@ -2631,8 +2632,8 @@
   "source_files": [
     {
       "path": "docs/campaign-certification/C01/research/brazil.json",
-      "bytes": 292670,
-      "sha256": "43d7ccc3eb3895485cb208226db735ea3eaf5eb283e7d1b57a713475a73a5039"
+      "bytes": 420463,
+      "sha256": "3153c865f224d9e72a52a2aa876be0a8fa3f5b8cccac6dc20c3b84f893557659"
     },
     {
       "path": "docs/campaign-certification/C01/research/france.json",
