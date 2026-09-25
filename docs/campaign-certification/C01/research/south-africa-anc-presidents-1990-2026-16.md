@@ -37,7 +37,7 @@ The resulting holder observations of `za_anc_president`, in date order:
 
 | Holder | `attested_on` | `from` | `until` | Basis |
 |---|---|---|---|---|
-| Oliver Tambo | 1990-01-08 | null | null | NEC anniversary statement: "the President of the ANC" |
+| Oliver Tambo | 1990-01-08 | null | null | NEC anniversary statement: "The President of your movement, the ANC, Comrade Oliver Tambo" |
 | Nelson Mandela | 1991-07-18 | null | null | NEC statement: the NEC meeting "presided over by President Comrade Nelson Mandela" |
 | Nelson Mandela | 1994-12-22 | null | null | closing address: congratulates the incoming NEC he is "proud to lead" |
 | Thabo Mbeki | 1997-12-20 | null | null | saluted "My President" by Mandela; closing statement and stadium address as President of the ANC |
@@ -93,7 +93,7 @@ Each row is a separate dated fact with its own claim; two facts on one day stay 
 
 | Date | Event | Claim or field |
 |---|---|---|
-| 8 Jan 1990 | NEC statement: Tambo "the President of the ANC", ill; the NEC speaks on his instructions | `za_anc_tambo_president_jan8_statement_19900108`; Tambo `attested_on` |
+| 8 Jan 1990 | NEC statement: Tambo "The President of your movement, the ANC", ill; the NEC speaks on his instructions | `za_anc_tambo_president_jan8_statement_19900108`; Tambo `attested_on` |
 | 1 or 2 Mar 1990 | NEC elects Mandela Deputy President | `za_anc_nec_elects_mandela_deputy_president_19900302` (no structured date; never a holder) |
 | 2 Mar 1990 | NEC greets "Comrade President Oliver Tambo" | `za_anc_nec_greets_president_tambo_19900302` (continuation) |
 | 2 Jul 1991 | 48th conference opens: Tambo's "my Presidency" farewell; he salutes Deputy President Mandela; Mandela greets "our President" Tambo | `za_anc_tambo_valedictory_presidency_19910702`, `za_anc_tambo_salutes_deputy_president_mandela_19910702`, `za_anc_mandela_greets_president_tambo_19910702` |
@@ -139,8 +139,8 @@ election's day.
 
 ### ZA-ANC-01 — The ANC President when the period opens
 
-Evidence: the NEC's anniversary statement dated 8 January 1990 says that "the President of the ANC, Comrade Oliver
-Tambo" cannot address the movement because he has not fully recovered his health, and that the NEC speaks on his
+Evidence: the NEC's anniversary statement dated 8 January 1990 says that "The President of your movement, the ANC, Comrade
+Oliver Tambo" cannot address the movement because he has not fully recovered his health, and that the NEC speaks on his
 instructions (`za_anc_tambo_president_jan8_statement_19900108`). The NEC's press statement of 2 March 1990 reports that
 its meeting of 1 and 2 March elected Nelson Mandela Deputy President (`za_anc_nec_elects_mandela_deputy_president_19900302`)
 and greets "Comrade President Oliver Tambo" (`za_anc_nec_greets_president_tambo_19900302`). On 2 July 1991 Tambo's
@@ -341,7 +341,7 @@ and any handover were not found.
 ### ZA-ANC-10 — An ANC attestation of its President before the cutoff
 
 Evidence: the Secretary-General's statement dated 15 May 2026 records that the NEC neither considered nor was asked to
-consider recalling "the ANC President" and reaffirmed "full and continuing support" for "the President of the African
+consider recalling the ANC President and reaffirmed "full and continuing support" for "the President of the African
 National Congress, Comrade Cyril Ramaphosa" (`za_anc_nec_reaffirms_ramaphosa_anc_president_20260515`).
 
 Decision: accepted. A separate holder observation dated 15 May 2026 (one per reviewed observation; defect C6), with no
@@ -592,7 +592,7 @@ Missing primary records found by the checks: imported are the three 2021 anc1912
 conference page), *Mayibuye*, the 1997 Declaration and the 2002 opening address (part B), and the ANC statements of 18
 and 19 December 2012, the 6 January 2013 address, the 54th Declaration web page and the 55th Declaration (part C).
 Leads, for the reasons given above: the 49th conference page capture, the 1998 index capture, the 2007 homepage, the
-2007 programme, the two ANC Today letters, the duplicate `id=10006` and the 2026 NEC page.
+2007 programme, the two ANC Today letters and the 2026 NEC page.
 
 Other changes made to fit the packet's rules rather than a numbered defect:
 

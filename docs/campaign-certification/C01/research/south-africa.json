@@ -3164,13 +3164,13 @@
       "scope_note": "Raw Internet Archive capture made 9 July 1997; archived Last-Modified Sat, 08 Mar 1997 19:33:15 GMT. published_date is the page's 'Last modified' line. Served without content encoding; plain ASCII, no charset declared.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/south-africa-anc-48th-conference-index-19970122-facts.json",
-        "bytes": 4534,
-        "sha256": "0b4e02c20d76836054a19b0bb307973bf0ea806666cddfb6680ecc9269bda59c"
+        "bytes": 4574,
+        "sha256": "af00fb9429a2098645ea043df171e355ca0ff946133c971ec831c0f2af4164b4"
       },
       "claims": [
         {
           "id": "za_anc_48th_conference_dates_19910702_19910706",
-          "text": "The ANC's 48th National Conference documents page says the conference was held in Durban from 2 to 6 July 1991, the first ANC National Conference held inside South Africa since 1959, and lists as its documents Tambo's and Mandela's opening addresses, the Report of the Independent Electoral Commission and Nelson Mandela's closing address.",
+          "text": "The ANC's 48th National Conference documents page says the conference was held in Durban from 2 to 6 July 1991, the first ANC National Conference held inside South Africa since 1959, and lists among the conference's main speeches and final documents Tambo's and Mandela's opening addresses, the Report of the Independent Electoral Commission and Nelson Mandela's closing address.",
           "locator": {
             "section": "Heading, subheading 'Durban, 2 - 6 July 1991', introductory paragraph and document list; footer 'Last modified: 22 January 1997'"
           },
@@ -9313,7 +9313,7 @@
       "Names containing Alliance, Congress or Movement are retained exactly as electoral reporting names. Organizational form, coalition membership, caucus identity and underlying component parties remain unresolved.",
       "DA offices have dated observations only; their relationships and continuity require further evidence. Presidency election does not establish party leadership or inauguration.",
       "Heads of state 1990-2024 (CLAUDE-C01-09): the State President under the 1983 Constitution and the President of the Republic are separate roles in za_presidency; holder observations are dated from primary records with only stated starts and ends. Deputy presidents, acting presidents during travel, ministers and party offices remain outside this review, and no game identity or portrait permission is granted.",
-      "ANC Presidents 1990-2026 (CLAUDE-C01-16, ZA-ANC-01..10): the party office is a separate role, za_anc_president, on the AFRICAN NATIONAL CONGRESS observation, with ten holder observations dated by ANC in-office attestations and no start or end; conference elections, result publications, handovers, departures, deputy and chair offices are claims only. No ANC record found states the day of any President's election, declaration of results, assumption or end; the Presidency of the Republic and the party office never feed each other, and no game identity or portrait permission is granted."
+      "ANC Presidents 1990-2026 (CLAUDE-C01-16, ZA-ANC-01..10): the party office is a separate role, za_anc_president, on the AFRICAN NATIONAL CONGRESS observation, with ten holder observations dated by ANC in-office attestations and no start or end; conference elections, result publications, handovers, departures, deputy and chair offices are claims only. No ANC record found states the day any President assumed or left the party office or the day a National Conference declared its result; the only stated election day (18 December 2017, in the ANC's later biography of Ramaphosa) and the 2007 voting and publication days (18 and 19 December 2007) are claims only, never boundaries; the Presidency of the Republic and the party office never feed each other, and no game identity or portrait permission is granted."
     ]
   }
 }
