@@ -9,8 +9,8 @@
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 841,
     "institution_observations": 29,
-    "sources": 287,
-    "source_claims": 1958,
+    "sources": 360,
+    "source_claims": 2071,
     "discovery_batches": 92,
     "exhaustive_country_censuses": 0
   },
@@ -190,8 +190,8 @@
       "packet": "docs/campaign-certification/C01/research/india.json",
       "organization_observations": 82,
       "institution_observations": 2,
-      "role_observations": 2,
-      "source_claims": 278,
+      "role_observations": 3,
+      "source_claims": 391,
       "mapping_pending": 84,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -231,7 +231,8 @@
           "Research separately dated party leaders, chairs, parliamentary roles and executive offices before adding characters or portraits.",
           "All game mappings, lifecycle intervals and leadership terms remain unknown. Fictional successor eligibility and portrait reuse rights have not been researched.",
           "Prime ministers 1990-2026 (CLAUDE-C01-11): the packet now holds one institution, in_prime_minister, with one role, in_pm, and thirteen dated holder observations (stated starts for Rao, Vajpayee in 1996, 1998 and 1999 and Gujral; stated ends for Chandra Shekhar, Rao, Deve Gowda and Vajpayee's 1998 term). Still open for the prime-ministership: V. P. Singh's end, Chandra Shekhar's and Deve Gowda's starts, the end of every continuation that no Gazette acceptance fixes, the President's 1990-1999 communiques in the PIB archive and the 2004-2024 Gazette notifications. Deputy prime ministers, ministers, the President, party offices and all other institutions remain outside this intake. No game identity or portrait permission is granted.",
-          "Presidents 1990-2026 (CLAUDE-C01-15): the packet now holds a second institution, in_presidency, with one role, in_president, and eight dated holder observations (R. Venkataraman observed on 13 January 1990, and stated starts on 25 July 1992, 1997, 2002, 2007, 2012, 2017 and 2022 for his seven successors). No primary source reviewed states the day any President's office ended, so no holder has an end. Still open for the presidency: every end, the text of the 2002 notification of assumption, the names of the Chief Justices who administered the 1997, 2002, 2007 and 2012 oaths, and the Election Commission's own result records. Vice-presidents, acting arrangements, party offices and all other institutions remain outside this intake. No game identity or portrait permission is granted."
+          "Presidents 1990-2026 (CLAUDE-C01-15): the packet now holds a second institution, in_presidency, with one role, in_president, and eight dated holder observations (R. Venkataraman observed on 13 January 1990, and stated starts on 25 July 1992, 1997, 2002, 2007, 2012, 2017 and 2022 for his seven successors). No primary source reviewed states the day any President's office ended, so no holder has an end. Still open for the presidency: every end, the text of the 2002 notification of assumption, the names of the Chief Justices who administered the 1997, 2002, 2007 and 2012 oaths, and the Election Commission's own result records. Vice-presidents, acting arrangements, party offices and all other institutions remain outside this intake. No game identity or portrait permission is granted.",
+          "INC Presidents 1990-2026 (CLAUDE-C01-20, INC-PRES-01..10): the party office is a separate role, in_inc_president, on the Indian National Congress recognition observation, with ten holder observations dated by same-day in-office attestations (Rajiv Gandhi 1990, P. V. Narasimha Rao 1996, Sitaram Kesri 1997, Sonia Gandhi 1999, 2000 and 2017, Rahul Gandhi 2017 and 2019, Mallikarjun Kharge 2022 and 2026) and no start or end. Working Committee decisions, AICC sessions, the Central Election Authority's notices and declarations, certificates, handovers, resignations, farewells and the 2019-2022 interim arrangement are claims only; no record reviewed states the day any President assumed or left the office. The prime-ministership and the presidency never feed the party office or the reverse, and no game identity or portrait permission is granted."
         ]
       }
     },
@@ -2643,8 +2644,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/india.json",
-      "bytes": 602075,
-      "sha256": "a67ad0e469178838fe71c6802c46d4e30ef0111b3ef9737475b022d51a25b564"
+      "bytes": 846539,
+      "sha256": "195cc839cdb871ca2cffe69dd02302382989c5cfb8e8b174846737d67c28c1fb"
     },
     {
       "path": "docs/campaign-certification/C01/research/japan.json",
