@@ -609,7 +609,7 @@ EVENTS = {
     'br_pt_dn_resolution_posse_window_20131118':
         ('PT-PRES-07', "2013-11-18", 'posse_window_resolved', None, 'P'),
     'br_pt_guia_schedules_president_posse_20131210':
-        ('PT-PRES-07', "2013-12-10", 'posse_scheduled', "Rui Falcão", 'P'),
+        ('PT-PRES-07', "2013-12-10", 'posse_scheduled', None, 'P'),
     'br_pt_dn_elects_and_inducts_cen_falcao_president_20131211':
         ('PT-PRES-07', "2013-12-11", 'executive_committee_selection', "Rui Falcão", 'P'),
     'br_pt_falcao_posse_speech_published_20131212':
@@ -689,7 +689,7 @@ EVENTS = {
     'br_pt_posse_scheduled_notice_20250723':
         ('PT-PRES-09', "2025-07-23", 'posse_scheduled', "Edinho Silva", 'P'),
     'br_pt_encontro_confirms_edinho_20250803':
-        ('PT-PRES-09', "2025-08-03", 'nomination_confirmed_at_meeting', "Edinho Silva", 'P'),
+        ('PT-PRES-09', None, 'nomination_confirmed_at_meeting', "Edinho Silva", 'P'),
     'br_pt_edinho_official_assumption_announced_for_20250804':
         ('PT-PRES-09', "2025-08-03", 'official_assumption_announced_prospective', "Edinho Silva", 'P'),
     'br_pt_edinho_empossado_20250803':
@@ -1048,7 +1048,7 @@ class BrazilPtPresidentsTests(unittest.TestCase):
     def test_starts_ends_and_interim_service_only_where_a_source_states_them(self):
         claims = self.claims
         undated = [cid for cid, e in EVENTS.items() if e[1] is None]
-        self.assertEqual(len(undated), 57)
+        self.assertEqual(len(undated), 58)
         for cid in undated:
             self.assertNotIn('attested_on', claims[cid], cid)
             self.assertIn('no structured date is stored', claims[cid]['uncertainty'].lower(), cid)

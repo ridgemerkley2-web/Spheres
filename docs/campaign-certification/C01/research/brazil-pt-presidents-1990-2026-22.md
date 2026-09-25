@@ -210,7 +210,7 @@ Each row is a separate dated fact with its own claim; two facts on one day stay 
 | 15 Jul 2025 | Edinho Silva totalization | `br_pt_ped2025_totalization_20250715` |
 | 16 Jul 2025 | Edinho Silva styled president-elect; Humberto Costa styled President (continuation) | `br_pt_edinho_styled_president_elect_20250716`, `br_pt_humberto_styled_current_president_20250716` |
 | 23 Jul 2025 | posse scheduled (prospective) | `br_pt_posse_scheduled_notice_20250723` |
-| 3 Aug 2025 | Encontro confirms Edinho Silva; Edinho Silva to assume officially on 4 August (prospective); posse of Edinho Silva; tribute to Humberto Costa | `br_pt_encontro_confirms_edinho_20250803`, `br_pt_edinho_official_assumption_announced_for_20250804`, `br_pt_edinho_empossado_20250803`, `br_pt_edinho_speech_thanks_humberto_20250803`; Edinho Silva `from` |
+| 3 Aug 2025 | Edinho Silva to assume officially on 4 August (prospective); posse of Edinho Silva; tribute to Humberto Costa | `br_pt_edinho_official_assumption_announced_for_20250804`, `br_pt_edinho_empossado_20250803`, `br_pt_edinho_speech_thanks_humberto_20250803`; Edinho Silva `from` |
 | 17 Sep 2025 | Edinho Silva styled President (continuation) | `br_pt_dn_page_edinho_presidente_20250917` |
 | 15 Aug 2026 | Edinho Silva styled President in office | `br_pt_dn_page_edinho_presidente_nacional_20260815`; Edinho Silva `attested_on` |
 | undated (PT-PRES-01) | spans, month or issue dates, meetings of several days, registry periods and retrospective statements (no structured date) | `br_pt_fpa_cen_altered_presidente_gushiken_19881210_11`, `br_pt_fpa_dn5_elected_7th_encontro_presidente_lula_19900601_03`, `br_pt_fpa_dn6_elected_8th_encontro_presidente_lula_19930611_13`, `br_pt_bn049_gushiken_presidente_nacional_meeting_19900216_18`, `br_pt_bn049_gushiken_signs_official_note_haiti_199003`, `br_pt_bn050_gushiken_presidente_nacional_theses_199005`, `br_pt_bn051_vii_encontro_reconducts_lula_19900531_0603`, `br_pt_csbh_resumo_vii_encontro_elects_5th_dn_19900531_0603`, `br_pt_bn085_lula_styled_presidente_do_pt_199404`, `br_pt_bn091_gushiken_former_national_president_199410`, `br_pt_ptn124_retrospective_fifth_president_count_200212`, `br_pt_camara_bio_gushiken_presidente_dn_1988_1990` |
@@ -221,7 +221,7 @@ Each row is a separate dated fact with its own claim; two facts on one day stay 
 | undated (PT-PRES-06) | spans, month or issue dates, meetings of several days, registry periods and retrospective statements (no structured date) | `br_pt_deputy_aparte_berzoini_president_2005_2007_2007_2010`, `br_pt_dutra_posse_speech_lists_past_pt_presidents` |
 | undated (PT-PRES-07) | spans, month or issue dates, meetings of several days, registry periods and retrospective statements (no structured date) | `br_pt_falcao_elected_unanimously_2011`, `br_pt_tse_sgip_falcao_dn_registered_exercise_20140219_20170908`, `br_pt_tse_sgip_falcao_cen_registered_exercise_20140219_20171009`, `br_pt_falcao_balance_retrospective_span` |
 | undated (PT-PRES-08) | spans, month or issue dates, meetings of several days, registry periods and retrospective statements (no structured date) | `br_pt_tse_sgip_gleisi_registered_exercise_20170909_20200117`, `br_pt_tse_sgip_gleisi_registered_exercise_20200117_20250307`, `br_pt_dn_page_gleisi_resignation_referenced` |
-| undated (PT-PRES-09) | spans, month or issue dates, meetings of several days, registry periods and retrospective statements (no structured date) | `br_pt_tse_sgip_humberto_registered_president_20250307_20250823`, `br_pt_humberto_assumed_interim_early_in_week`, `br_pt_humberto_assumed_previous_week_recital`, `br_pt_dn_page_edinho_ped_election_recited` |
+| undated (PT-PRES-09) | spans, month or issue dates, meetings of several days, registry periods and retrospective statements (no structured date) | `br_pt_tse_sgip_humberto_registered_president_20250307_20250823`, `br_pt_humberto_assumed_interim_early_in_week`, `br_pt_humberto_assumed_previous_week_recital`, `br_pt_dn_page_edinho_ped_election_recited`, `br_pt_encontro_confirms_edinho_20250803` |
 
 Date conventions follow CLAUDE-C01-10 and CLAUDE-C01-17: `attested_on` is the day of the observed event as the source
 dates it; a day printed without a month or year takes them from the issue or item that prints it, and the claim says
@@ -344,7 +344,7 @@ both fall in the period the party compilation records as his interim substitutio
 election by the Diretório Nacional on 15 March 2003 ('Presidente eleito pela R/DN 15/03/2003')
 (`br_pt_fpa_dn_genoino_elected_national_president_20030315`; split from the resignation by check A6). A Portal do PT
 item of 18 March 2003, located for this packet among the portal's archived items of 17-26 March 2003, reports a ceremony
-'que contou com a presença do presidente do PT, José Genoino' and quotes 'O presidente nacional do PT'
+'contou com a presença do presidente do PT, José Genoino' and quotes 'O presidente nacional do PT'
 (`br_pt_genoino_attends_affiliation_as_pt_president_20030318`). On 9 July 2005 the portal reports his announcement of
 his 'afastamento' and reproduces his declaration: he hands the office to the Diretório Nacional ('eu entrego o cargo';
 'eu entreguei o meu cargo'), 'numa licença da condição de presidente do PT', after 'nesses 30 meses'
@@ -608,21 +608,21 @@ test).
 | `br_pt_tse_sgip_dn_2014_2017` | SGIP: PT national organ 70953 (Órgão definitivo, vigência 19/02/2014-08/09/2017) with members | 07 | 41,754 bytes, `4b7a8986…de601b`; TSE SGIP JSON, closed organ |
 | `br_pt_tse_sgip_cen_2014_2017` | SGIP: PT national organ 70954 (Comissão executiva, vigência 19/02/2014-09/10/2017) with members | 07 | 18,797 bytes, `723f11fd…f982ca`; TSE SGIP JSON, closed organ |
 | `br_pt_agencia_5th_congress_falcao_20150612` | 5º Congresso do PT foi totalmente bem-sucedido, avalia Rui Falcão (Agência PT de Notícias) | 07 | 55,662 bytes, `dced8c74…674c49`; capture 2015-06-15 |
-| `br_pt_dn_page_falcao_20160805` | Diretório Nacional | Partido dos Trabalhadores (composition page) | 07 | 96,335 bytes, `3efa4283…e92e6b`; capture 2016-08-05 |
+| `br_pt_dn_page_falcao_20160805` | Diretório Nacional \| Partido dos Trabalhadores (composition page) | 07 | 96,335 bytes, `3efa4283…e92e6b`; capture 2016-08-05 |
 | `br_pt_falcao_balance_20170527` | Conheça o balanço da gestão de Rui Falcão a frente do PT (Agência PT de Notícias) | 07 | 65,582 bytes, `bb3b8bf7…6d6381`; capture 2018-10-11 |
 | `br_pt_gleisi_elected_6th_congress_20170603` | Gleisi é eleita a primeira mulher presidenta nacional do PT (Agência PT de Notícias) | 08 | 67,962 bytes, `d50070c0…245448`; capture 2017-06-05 |
 | `br_pt_new_directorate_gleisi_posse_20170705` | Novo Diretório e Gleisi Hoffmann tomam posse no PT (Agência PT de Notícias) | 08 | 62,459 bytes, `cda5ae16…06ac5b`; capture 2017-07-07 |
 | `br_pt_lula_at_gleisi_posse_20170705` | Lula garante apoio incondicional à Gleisi na presidência do PT (Agência PT de Notícias; URL slug 'valeu-a-pena-insistir-nas-mulheres-diz-lula-em-posse-de-gleisi') | 08 | 68,205 bytes, `e72dc623…73a883`; capture 2017-07-07 |
 | `br_pt_tse_sgip_dn_2017_2020` | SGIP: PT national organ 232052 (Órgão definitivo, vigência 09/09/2017-17/01/2020) with members | 08 | 43,974 bytes, `c132f132…7317a3`; TSE SGIP JSON, closed organ |
-| `br_pt_dn_page_gleisi_20180225` | Diretório Nacional | Partido dos Trabalhadores (composition page) | 08 | 182,595 bytes, `95dd6e10…2726ac`; capture 2018-02-25 |
+| `br_pt_dn_page_gleisi_20180225` | Diretório Nacional \| Partido dos Trabalhadores (composition page) | 08 | 182,595 bytes, `95dd6e10…2726ac`; capture 2018-02-25 |
 | `br_pt_gleisi_reelected_7th_congress_20191124` | Assista: Gleisi Hoffmann é reeleita presidenta Nacional do PT (pt.org.br) | 08 | 62,315 bytes, `61dd6ddb…dbb4c1`; capture 2019-12-21 |
 | `br_pt_gleisi_reelected_text_20191124` | Gleisi Hoffmann é reeleita presidenta do Partido dos Trabalhadores (pt.org.br, 24/11/2019) | 08 | 71,267 bytes, `f5d73d2d…277a17`; capture 2019-12-20; **found by the checks** |
 | `br_pt_7th_congress_new_leadership_20191126` | 7º Congresso Nacional elege nova direção do PT (pt.org.br, 26/11/2019) | 08 | 66,164 bytes, `c958459b…44b371`; capture 2019-12-21; **found by the checks** |
 | `br_pt_tse_sgip_dn_2020_2025` | SGIP: PT national organ 308884 (Órgão definitivo, vigência 17/01/2020-23/08/2025) with members | 08, 09 | 65,506 bytes, `d53c2fdf…8bad62`; TSE SGIP JSON, closed organ |
-| `br_pt_dn_page_gleisi_20200401` | Diretório Nacional | Partido dos Trabalhadores (composition page) | 08 | 174,032 bytes, `40e6c715…d9f8bd`; capture 2020-04-01 |
+| `br_pt_dn_page_gleisi_20200401` | Diretório Nacional \| Partido dos Trabalhadores (composition page) | 08 | 174,032 bytes, `40e6c715…d9f8bd`; capture 2020-04-01 |
 | `br_pt_portal_gleisi_sri_congratulations_20250228` | PT parabeniza Gleisi por nomeação para Secretaria de Relações Institucionais (pt.org.br, 28/02/2025) | 08 | 98,654 bytes, `bb6c575d…4cd576`; capture 2025-03-01; **found by the checks** |
 | `br_pt_humberto_interim_executive_20250307` | Com Gleisi ministra, Humberto Costa assume interinamente presidência do PT (pt.org.br) | 08, 09 | 98,815 bytes, `bfdf4e5a…7e19ea`; capture 2025-03-08 |
-| `br_pt_dn_page_humberto_20250308` | Diretório Nacional | Atribuições | Partido dos Trabalhadores (composition page) | 08, 09 | 46,464 bytes, `a223ce2b…c1e77c`; capture 2025-03-08, gzip-stored |
+| `br_pt_dn_page_humberto_20250308` | Diretório Nacional \| Atribuições \| Partido dos Trabalhadores (composition page) | 08, 09 | 46,464 bytes, `a223ce2b…c1e77c`; capture 2025-03-08, gzip-stored |
 | `br_pt_humberto_priorities_20250312` | Presidente nacional do PT, Humberto Costa lista prioridades do novo desafio (pt.org.br, from PT no Senado) | 09 | 97,522 bytes, `6c10728b…fc5834`; capture 2025-03-13 |
 | `br_pt_portal_humberto_ped_mobilization_20250313` | Humberto Costa: PED deve ser processo de mobilização nacional para 2026 (pt.org.br, 13/03/2025) | 09 | 95,733 bytes, `86ee3963…dab56a`; capture 2025-03-14; **found by the checks** |
 | `br_pt_dn_elects_humberto_20250320` | Em reunião do Diretório, PT elege Humberto Costa como presidente (pt.org.br) | 09 | 96,231 bytes, `2c38caf5…85f7d5`; capture 2025-03-21 |
@@ -633,7 +633,7 @@ test).
 | `br_pt_encontro_posse_notice_20250723` | PT faz encontro nacional e empossa nova direção no início de agosto (pt.org.br) | 09 | 91,839 bytes, `abcdce0e…a6bebe`; capture 2025-10-14 |
 | `br_pt_portal_edinho_speech_report_20250803` | “Quero ser presidente de um partido vivo e comprometido com o povo”, diz Edinho Silva (pt.org.br, 03/08/2025 13h27) | 09 | 101,233 bytes, `4b68321f…ec2425`; capture 2025-08-04; **found by the checks** |
 | `br_pt_edinho_posse_speech_20250803` | Leia a íntegra do discurso de Edinho Silva, novo presidente do PT (pt.org.br) | 09 | 116,902 bytes, `38bde2b4…abf228`; capture 2025-10-15 |
-| `br_pt_dn_page_edinho_20250917` | Diretório Nacional | Atribuições | Partido dos Trabalhadores (composition page) | 09 | 40,639 bytes, `c179b431…cbffdb`; capture 2025-09-17, gzip-stored |
+| `br_pt_dn_page_edinho_20250917` | Diretório Nacional \| Atribuições \| Partido dos Trabalhadores (composition page) | 09 | 40,639 bytes, `c179b431…cbffdb`; capture 2025-09-17, gzip-stored |
 | `br_pt_dn_page_edinho_20260815` | Diretório Nacional – Partido dos Trabalhadores (composition page) | 10 | 159,613 bytes, `37fedb84…c0657b`; capture 2026-08-15 |
 
 The sources are the party's own records and two public record-keepers of the party office: the party compilation of
@@ -884,6 +884,11 @@ These are proposals for the integrator. They are not created in `work-orders.jso
   the PT observation, `roles` set to the one new role and the new ids appended to its `sources` and `claim_ids`; one
   coverage note appended to the PT observation and one to the packet. No existing source record or extract is edited,
   and no CLAUDE-C01-10 or CLAUDE-C01-17 record changes.
+- **Verifier fixes (25 September 2026):** three of this packet's own extracts are edited in place and their snapshots
+  updated in `brazil.json`: `sources/brazil-pt-portal-genoino-affiliation-20030318-facts.json` (the quotation corrected
+  to the capture's wording), `sources/brazil-pt-edinho-speech-report-20250803-facts.json` (the Encontro's confirmation
+  of Edinho Silva carries no structured date) and `sources/brazil-pt-portal-fifth-congress-guide-20131210-facts.json`
+  (the posse notice names no president, so `holder_name` is null).
 - `research-index.json` is regenerated in a **separate commit**, and it is **the only file shared with other pending
   packets** (the parallel C01 packets touch other countries' packets). New totals against `7d71acef`: 328 sources and
   2,136 claims (previously 220 and 1,959); 28 institution observations (unchanged); Brazil has one institution, three

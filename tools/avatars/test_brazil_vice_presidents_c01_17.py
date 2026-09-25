@@ -562,6 +562,7 @@ class BrazilVicePresidentsTests(unittest.TestCase):
             self.assertNotIn(stale, earlier_raw if stale == '20250715' else self.raw, stale)
         self.assertEqual({s['id'] for s in self.packet['sources'] if '20250715' in json.dumps(s, ensure_ascii=False)},
                          {'br_pt_ped2025_totalization_20250715', 'br_pt_edinho_elected_ped_20250707'})
+        self.assertEqual(self.raw.count('20250715'), 9)
 
     def test_holders_are_exactly_as_intended(self):
         vice_invariants(self.packet, self.rows)

@@ -5085,13 +5085,13 @@
       "scope_note": "A Portal do PT news item of 18 March 2003 (the portal numbers its items; cod=10038 falls in the run dated 17-18 March 2003), served from the portal's news archive as captured on 4 January 2005 (x-archive-orig-date Tue, 04 Jan 2005 16:56:45 GMT). Located for this packet to date José Genoino's presidency after his election by the Diretório Nacional on 15 March 2003. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/brazil-pt-portal-genoino-affiliation-20030318-facts.json",
-        "bytes": 4523,
-        "sha256": "c713aa7a890a80f6ad096f73146047a2f2b53e3ed467fc64889cca4d400ab6b7"
+        "bytes": 4519,
+        "sha256": "4f7539ecc3cf6314642c26b67d824fd611d01676d1e5f007e265f508a4e1cb68"
       },
       "claims": [
         {
           "id": "br_pt_genoino_attends_affiliation_as_pt_president_20030318",
-          "text": "A portal item dated 18 March 2003 reports that the governor of Roraima, Flamarion Portela, signed his PT membership form that afternoon in Brasília at a ceremony 'que contou com a presença do presidente do PT, José Genoino', and quotes 'O presidente nacional do PT' calling the affiliation a historic moment.",
+          "text": "A portal item dated 18 March 2003 reports that the governor of Roraima, Flamarion Portela, signed his PT membership form that afternoon in Brasília at a ceremony 'contou com a presença do presidente do PT, José Genoino', and quotes 'O presidente nacional do PT' calling the affiliation a historic moment.",
           "attested_on": "2003-03-18",
           "locator": {
             "section": "Item body, headline '18/03/2003 - PT amplia seu quadro de governadores', second and fourth paragraphs"
@@ -6408,13 +6408,13 @@
       "scope_note": "A Portal do PT item of 10 December 2013 (07h10), captured 11 December 2013. Found by the independent check. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/brazil-pt-portal-fifth-congress-guide-20131210-facts.json",
-        "bytes": 4026,
-        "sha256": "bca9c70468abfb7f9e6239d33a32418a60d9a102fe1d5ffb0c0210fd6dfbcff3"
+        "bytes": 4066,
+        "sha256": "0198912cd6304b430ebff09d41d645a271ca69bb669201e6c50d8584ddb938c1"
       },
       "claims": [
         {
           "id": "br_pt_guia_schedules_president_posse_20131210",
-          "text": "The congress guide says that at the opening of the 5th Congress 'na noite do dia dia 12 de dezembro' there 'será realizada a posse do presidente nacional, dos membros do DN e dos presidentes estaduais eleitos'.",
+          "text": "The congress guide says that at the opening of the 5th Congress 'na noite do dia dia 12 de dezembro' there 'será realizada a posse do presidente nacional, dos membros do DN e dos presidentes estaduais eleitos'; it prints only the title and names no president.",
           "attested_on": "2013-12-10",
           "locator": {
             "item": "second paragraph"
@@ -7358,18 +7358,17 @@
       "scope_note": "A pt.org.br article of 3 August 2025 (13h27), captured 4 August 2025. Found by the independent check. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/brazil-pt-edinho-speech-report-20250803-facts.json",
-        "bytes": 4681,
-        "sha256": "cb9468ad964cb6333e295c956f51502b469a6ce50b5c8b2f984e65192ed70aed"
+        "bytes": 4673,
+        "sha256": "73e4ee1e385fb6ad8cbbb7bf1fcc2fb231afd857e1ae553b8045b6961d1416a9"
       },
       "claims": [
         {
           "id": "br_pt_encontro_confirms_edinho_20250803",
           "text": "The article, subtitled as a report of his 'discurso de posse no 17º Encontro Nacional do PT', says the Encontro 'confirmou o nome de Edinho Silva como novo presidente nacional da legenda'.",
-          "attested_on": "2025-08-03",
           "locator": {
             "item": "subtitle and first paragraph"
           },
-          "uncertainty": "A confirmation by the national meeting; a claim only, never a start or a holder date. Found by the independent check."
+          "uncertainty": "A confirmation by the national meeting (17th Encontro Nacional, 1-3 August 2025); the report published at 13h27 on 3 August 2025 does not print the day of the confirmation, so no structured date is stored; a claim only, never a start or a holder date. Found by the independent check."
         },
         {
           "id": "br_pt_edinho_official_assumption_announced_for_20250804",

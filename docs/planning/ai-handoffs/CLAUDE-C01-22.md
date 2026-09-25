@@ -60,6 +60,10 @@ Submitted `ready_for_review` on 25 September 2026 on `claude/c01-br-22`, stacked
   CLAUDE-C01-17's; on the PT observation `br_tse_fefc_2024_party_03`, the one new role and the new ids appended to its
   sources and claims; one coverage note on the PT observation and one on the packet);
 - 108 new extracts `docs/campaign-certification/C01/research/sources/brazil-*-facts.json` (no existing extract edited);
+  the verifier fixes edit three of them in place (snapshots updated):
+  `sources/brazil-pt-portal-genoino-affiliation-20030318-facts.json`,
+  `sources/brazil-pt-edinho-speech-report-20250803-facts.json` and
+  `sources/brazil-pt-portal-fifth-congress-guide-20131210-facts.json`;
 - `tools/avatars/test_brazil_pt_presidents_c01_22.py` (new); `tools/avatars/test_brazil_research_s10f.py`,
   `tools/avatars/test_brazil_presidents_c01_10.py` and `tools/avatars/test_brazil_vice_presidents_c01_17.py` (pins
   re-expressed exactly, none loosened);
@@ -96,8 +100,8 @@ Observation decisions:
 | PT-PRES-09 | Accepted in part: Humberto Costa interim 7-19 March, from 20 March 2025; Edinho Silva from 3 August 2025 (the prospective 4 August recorded for Codex) |
 | PT-PRES-10 | Accepted: the PT's Diretório page archived 15 August 2026; the live SGIP record of the organ in force is a lead |
 
-Checker defects: all 40 (A1-A12, B1-B14, C1-C14) are applied, C2 in part (the start kept on the stated posse, with
-the alternative recorded for Codex) and B10 declined (the Chamber diary of 19 December 2002: other deputies' remarks on
+Checker defects: 39 of the 40 (A1-A12, B1-B14, C1-C14) are applied, C2 in part (the start kept on the stated posse, with
+the alternative recorded for Codex); B10 is declined (the Chamber diary of 19 December 2002: other deputies' remarks on
 an OCR scan during the interim period; a lead with its identity). Of the 25 missing primary records the checks found,
 24 are imported; one further portal item (18 March 2003) was located for this packet. Rulings left to Codex are listed
 in the report's integration notes.
