@@ -9,8 +9,8 @@
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 841,
     "institution_observations": 28,
-    "sources": 220,
-    "source_claims": 1959,
+    "sources": 328,
+    "source_claims": 2136,
     "discovery_batches": 92,
     "exhaustive_country_censuses": 0
   },
@@ -21,8 +21,8 @@
       "packet": "docs/campaign-certification/C01/research/brazil.json",
       "organization_observations": 31,
       "institution_observations": 1,
-      "role_observations": 2,
-      "source_claims": 231,
+      "role_observations": 3,
+      "source_claims": 408,
       "mapping_pending": 32,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -71,7 +71,8 @@
           "Federations, informal parties, parties in formation and institutions are outside this bounded intake; absence here does not establish nonexistence.",
           "All game mappings, leadership roles, continuous lifecycle intervals, successor eligibility and portrait permissions remain unknown.",
           "Presidents 1990-2026 (CLAUDE-C01-10): the packet now holds one institution, br_presidency, with one role, br_president, and twelve dated holder observations (José Sarney observed on 5 January 1990; stated starts from 15 March 1990 to 1 January 2023; stated ends only for Collor and Rousseff). Still open for the presidency: Sarney's end, the ends of later terms, clock times, most sash transfers and the TSE and DOU originals. Vice-presidents, ministers, party offices and all other institutions remain outside this intake; the Vice-President's exercise of the office is claims only. No game identity or portrait permission is granted.",
-          "Vice-presidents 1990-2026 (CLAUDE-C01-17): the presidency institution now also holds a second role, br_vice_president, with nine dated holder observations (stated starts from 15 March 1990 to 1 January 2023; no stated end and no stated vacancy of the Vice-Presidency). The earlier statement in this list that vice-presidents remain outside this intake no longer applies to the Vice-Presidency of the Republic; ministers, party offices and all other institutions remain outside it. The Vice-President's exercise of the Presidency is claims only and never a holder of either role. No game identity or portrait permission is granted."
+          "Vice-presidents 1990-2026 (CLAUDE-C01-17): the presidency institution now also holds a second role, br_vice_president, with nine dated holder observations (stated starts from 15 March 1990 to 1 January 2023; no stated end and no stated vacancy of the Vice-Presidency). The earlier statement in this list that vice-presidents remain outside this intake no longer applies to the Vice-Presidency of the Republic; ministers, party offices and all other institutions remain outside it. The Vice-President's exercise of the Presidency is claims only and never a holder of either role. No game identity or portrait permission is granted.",
+          "PT national presidents 1990-2026 (CLAUDE-C01-22, PT-PRES-01..10): the PT funding observation br_tse_fefc_2024_party_03 now holds one party role, br_pt_president, with eighteen dated holder observations; the earlier statement in this list that party offices remain outside this intake no longer applies to the PT national presidency. Party office and the Presidency of the Republic stay separate, the presidency and vice-presidency holders are unchanged, interim and acting service is claims only, and no game identity or portrait permission is granted."
         ]
       }
     },
@@ -2632,8 +2633,8 @@
   "source_files": [
     {
       "path": "docs/campaign-certification/C01/research/brazil.json",
-      "bytes": 420548,
-      "sha256": "df259e191cbbee4777ef99e10d868770d70f2a1c667884bddd58a49eee2c0c46"
+      "bytes": 774582,
+      "sha256": "b3050acefa0a9dd3df2ef69512d06120bef6ed365d55654644581bd3295c2194"
     },
     {
       "path": "docs/campaign-certification/C01/research/france.json",
