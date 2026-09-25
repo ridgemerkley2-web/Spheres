@@ -1,0 +1,401 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_ldp_ayumi_2015",
+  "source_url": "https://web.archive.org/web/20260208085555id_/https://storage2.jimin.jp/pdf/aboutus/history/jimin_history.pdf",
+  "original_url": "https://storage2.jimin.jp/pdf/aboutus/history/jimin_history.pdf",
+  "archive_capture_utc": "2026-02-08T08:55:55Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_pdf_and_rendered_page_review",
+  "source_response_bytes": 3313141,
+  "source_response_sha256": "2924c7dd5ba66d939531b961892d4493ae4e08a60e89de8f521b1c7b72c0f482",
+  "source_response_content_encoding": "identity",
+  "source_response_sha1_base32": "WXLQISOJP7736TAPLAW7VSABPVAF7AVX",
+  "source_character_encoding": "PDF (binary); Japanese text in embedded fonts",
+  "source_response_checked_in": false,
+  "fetch_recipe": "curl -s -o FILE 'https://web.archive.org/web/20260208085555id_/https://storage2.jimin.jp/pdf/aboutus/history/jimin_history.pdf' with no Accept-Encoding request header and no automatic decoding; hash the bytes as received.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2026-02-08T08:55:55Z; that form replays the archived bytes unchanged. The archived original's Last-Modified header is Sat, 08 Jul 2023 00:47:41 GMT. Archived original Last-Modified: Sat, 08 Jul 2023 00:47:41 GMT; PDF CreationDate 2015-12-01 (a fixed stored file, not generated per request). The live stored file https://storage2.jimin.jp/pdf/aboutus/history/jimin_history.pdf returned the same bytes on 25 September 2026, but every direct download after 12:00:13Z that day, including requests with a cache-busting query or an Origin header, was a CloudFront copy of one origin response, so the recorded identity is the raw capture, whose SHA-1 equals the CDX digest of captures of this PDF from January 2023 to February 2026. Researcher (part A): Raw capture first downloaded 2026-09-25 12:08:51Z (identity); re-downloaded 12:49:24Z (plain), same byte count and SHA-256. The live original https://storage2.jimin.jp/pdf/aboutus/history/jimin_history.pdf was downloaded at 12:01:06Z and again at 12:49:26Z with a cache-busting ?cb= query, identical to the capture. The SHA-1 of the bytes equals the capture's CDX digest. The part A check downloaded it again at 12:58Z-12:59Z and 13:40Z-13:42Z on 25 September 2026, each time with the same byte count and SHA-256. Downloaded on 25 September 2026 (UTC) by this packet at 14:15:50Z and 14:52:18Z, 36 minutes apart, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party's own printed history (a short history for the 60th anniversary, November 2015), a stored PDF recorded as the raw Internet Archive capture of 8 February 2026, made before the cutoff; a retrospective narrative and chronology. For 1989-1995 only the appended chronology (付録・年表) is imported, because chapters 14-17 repeat the imported web pages; for 1998-2003 chapters 18-20 and the chronology are imported (the web pages for those chapters are not). Every claim is retrospective, with no structured date.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      74,
+      76,
+      78,
+      84,
+      90,
+      96,
+      99,
+      100,
+      104,
+      107,
+      110,
+      113,
+      114,
+      178,
+      180,
+      181,
+      182,
+      183,
+      184,
+      185,
+      187,
+      188,
+      189,
+      190,
+      191,
+      193,
+      194
+    ],
+    "method": "Rendered and read PDF pages (one-based) 74, 76, 78, 84 and 90 (chapters 14-17, printing 宮澤 with 澤), 96, 99, 100, 104, 107, 110, 113 and 114 (chapters 18-20), 178, 181, 183 and 185 (1989-1995 chronology), 187-191, 193 and 194 (1998-2003 chronology); the text layer of pages 180, 182 and 184 (year headings) was read, and the checks confirmed the entries against the year headings. The text layer maps 龍 to 龒; the rendered pages print 龍. No images reused."
+  },
+  "alternate_location": {
+    "url": "https://storage2.jimin.jp/pdf/aboutus/history/jimin_history.pdf",
+    "bytes": 3313141,
+    "sha256": "2924c7dd5ba66d939531b961892d4493ae4e08a60e89de8f521b1c7b72c0f482",
+    "note": "the live stored file (linked from the history page as storage.jimin.jp, which redirects to storage2), returned with the same bytes on 25 September 2026; every direct download after 12:00:13Z that day was a CloudFront copy of one origin response, so the pre-cutoff identity rests on this capture"
+  },
+  "rows": [
+    {
+      "claim_id": "jp_ldp_ayumi_chronology_kaifu_selected_19890808",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-01",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "海部俊樹",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_election_record",
+      "attested_on": null,
+      "text": "The chronology appended to the party history 自由民主党のあゆみ lists, under 1989 (平成元年), 自民党両院議員総会、海部俊樹総裁選任（八・八）: the joint plenary meeting of party Diet members chose 海部俊樹 as president on 8 August.",
+      "locator": {
+        "pdf_page_one_based": 178,
+        "printed_page": 172,
+        "section": "付録・年表, 1989 (平成元年)"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_ayumi_chronology_kaifu_confirmed_19891031",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-01",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "海部俊樹",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_convention_record",
+      "attested_on": null,
+      "text": "The chronology lists 自民党第五一回臨時党大会、海部俊樹第一四代総裁追認（一〇・三一）: the 51st extraordinary convention confirmed 海部俊樹 as 14th president on 31 October 1989.",
+      "locator": {
+        "pdf_page_one_based": 178,
+        "printed_page": 172,
+        "section": "付録・年表, 1989"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_ayumi_chronology_miyazawa_elected_19911027",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-02",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "宮澤喜一",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_election_record",
+      "attested_on": null,
+      "text": "Under 1991 (平成三年) the chronology lists 自民党総裁選で宮澤喜一氏が総裁に選出（一〇・二七）: 宮澤喜一 elected president in the LDP presidential election on 27 October.",
+      "locator": {
+        "pdf_page_one_based": 181,
+        "printed_page": 175,
+        "section": "付録・年表, 1991 (year heading on PDF page 180)"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_ayumi_chronology_miyazawa_confirmed_19911029",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-02",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "宮澤喜一",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_convention_record",
+      "attested_on": null,
+      "text": "The chronology lists 自民党第五四回臨時党大会、宮澤喜一第一五代総裁追認（一〇・二九）: the 54th extraordinary convention confirmed 宮澤喜一 as 15th president on 29 October 1991.",
+      "locator": {
+        "pdf_page_one_based": 181,
+        "printed_page": 175,
+        "section": "付録・年表, 1991"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_ayumi_chronology_kono_elected_19930730",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-03",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "河野洋平",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_election_record",
+      "attested_on": null,
+      "text": "Under 1993 (平成五年) the chronology lists 第一六代総裁に河野洋平前官房長官が選出（七・三〇）: 河野洋平, the former Chief Cabinet Secretary, chosen as 16th president on 30 July.",
+      "locator": {
+        "pdf_page_one_based": 183,
+        "printed_page": 177,
+        "section": "付録・年表, 1993 (year heading on PDF page 182)"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_ayumi_chronology_57th_convention_19930930",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-03",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": null,
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_convention_record",
+      "attested_on": null,
+      "text": "The chronology lists 自民党第五七回臨時党大会（九・三〇）, the 57th extraordinary party convention on 30 September 1993, without naming a president.",
+      "locator": {
+        "pdf_page_one_based": 183,
+        "printed_page": 177,
+        "section": "付録・年表, 1993"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_ayumi_chronology_hashimoto_elected_19950922",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-04",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "橋本龍太郎",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_election_record",
+      "attested_on": null,
+      "text": "Under 1995 (平成七年) the chronology lists 党総裁選で橋本龍太郎通産相が第一七代総裁に選出される（九・二二）: 橋本龍太郎, Minister of International Trade and Industry, chosen as 17th president in the party presidential election on 22 September.",
+      "locator": {
+        "pdf_page_one_based": 185,
+        "printed_page": 179,
+        "section": "付録・年表, 1995 (the year heading and the entries to 8 August 1995 are on PDF page 184; this entry opens page 185)"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_ayumi_chronology_hashimoto_selected_convention_19950925",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-04",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "橋本龍太郎",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_convention_record",
+      "attested_on": null,
+      "text": "The chronology lists 自民党第六〇回臨時党大会、橋本総裁選任（九・二五）: the 60th extraordinary convention chose (選任) 橋本総裁 on 25 September 1995.",
+      "locator": {
+        "pdf_page_one_based": 185,
+        "printed_page": 179,
+        "section": "付録・年表, 1995"
+      }
+    },
+    {
+      "claim_id": "jp_ldphist_obuchi_elected_18th_president_19980724",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-05",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "小渕恵三",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_election_record",
+      "attested_on": null,
+      "text": "The party history says that after 橋本龍太郎総裁 announced his resignation following the July 1998 upper-house election, the election of the 18th president was held on 24 July 1998 between 小渕恵三, 小泉純一郎 and 梶山静六; in a vote of all LDP members of both Houses and prefectural representatives 小渕 won a majority of 225 on the first ballot and was chosen as the new president. The chronology lists 総裁選で小渕恵三外相を選出（七・二四） under 平成十年.",
+      "locator": {
+        "pdf_page_one_based": [
+          96,
+          187
+        ],
+        "printed_page": [
+          "90",
+          "181"
+        ],
+        "section": "第十八章 小渕恵三総裁時代, first paragraph; 付録・年表 平成十年（一九九八年） entry (七・二四)"
+      }
+    },
+    {
+      "claim_id": "jp_ldphist_obuchi_inherited_term_election_announced_19990909",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-05",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": null,
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_election_notice_record",
+      "attested_on": null,
+      "text": "The party history says that because 小渕総裁 had taken over the remainder of the previous president's term (前総裁の任期を引き継いだ), a presidential election was notified (告示) on 9 September 1999, with 小渕恵三総裁, 加藤紘一 and 山崎拓 as candidates.",
+      "locator": {
+        "pdf_page_one_based": 99,
+        "printed_page": "93",
+        "section": "第十八章, paragraph beginning 小渕総裁は前総裁の任期を引き継いだ"
+      }
+    },
+    {
+      "claim_id": "jp_ldphist_obuchi_reelected_19990921",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-05",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "小渕恵三",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_election_record",
+      "attested_on": null,
+      "text": "The party history says the member and party-friend ballots were counted and the party Diet members voted and were counted on 21 September 1999: 小渕 350, 加藤 113, 山崎 51, and 小渕総裁 was re-elected; member votes were converted into 党員算定票 and added to the Diet members' votes. The chronology lists 総裁選で小渕総裁再選（九・二一） under 平成一一年.",
+      "locator": {
+        "pdf_page_one_based": [
+          99,
+          100,
+          188
+        ],
+        "printed_page": [
+          "93",
+          "94",
+          "182"
+        ],
+        "section": "第十八章, paragraphs beginning 小渕総裁は前総裁の任期 and なお、党員・党友の票は; 年表 平成一一年 entry (九・二一)"
+      }
+    },
+    {
+      "claim_id": "jp_ldphist_65th_extraordinary_congress_held_19990922",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-05",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": null,
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_convention_record",
+      "attested_on": null,
+      "text": "The chronology lists 自民党第六五回臨時党大会を党本部で開催（九・二二） under 平成一一年, the day after the presidential election.",
+      "locator": {
+        "pdf_page_one_based": 188,
+        "printed_page": "182",
+        "section": "付録・年表 平成一一年（一九九九年） entry (九・二二)"
+      }
+    },
+    {
+      "claim_id": "jp_ldphist_mori_chosen_19th_president_joint_plenary_20000405",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-06",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "森喜朗",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_selection_record",
+      "attested_on": null,
+      "text": "The party history says that, following the resignation of the 小渕内閣, on 5 April 2000 the joint plenary meeting of the party's members of both Houses held in place of the party convention (党大会に代わる両院議員総会) unanimously chose secretary-general 森喜朗 as the 19th president. The chronology lists 党大会に代わる両院議員総会で森喜朗総裁が決定（四・五） under 平成一二年.",
+      "locator": {
+        "pdf_page_one_based": [
+          104,
+          189,
+          190
+        ],
+        "printed_page": [
+          "98",
+          "183",
+          "184"
+        ],
+        "section": "第十九章 森喜朗総裁時代, first paragraph; 年表 平成一二年（二〇〇〇年） entry (四・五)"
+      }
+    },
+    {
+      "claim_id": "jp_ldphist_mori_early_election_signalled_20010313",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-06",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "森喜朗",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_early_election_reference",
+      "attested_on": null,
+      "text": "The party history says that at the party convention on 13 March 2001 森首相 referred to bringing forward the presidential election scheduled for the autumn and to his own position (自らの出処進退); the chronology lists 第六七回党大会…森総裁が総裁選の繰り上げ実施を表明（三・一三）.",
+      "locator": {
+        "pdf_page_one_based": [
+          107,
+          110,
+          191
+        ],
+        "printed_page": [
+          "101",
+          "104",
+          "185"
+        ],
+        "section": "第十九章 last paragraphs; 第二十章 first paragraph; 年表 平成一三年 entry (三・一三)"
+      }
+    },
+    {
+      "claim_id": "jp_ldphist_mori_statement_at_joint_plenary_20010411",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-06",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "森喜朗",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_resignation_intent_reference",
+      "attested_on": null,
+      "text": "The party history says that at the joint plenary meeting of 11 April 2001 森首相 said nothing would make him happier than his stepping down saving the party and Japan (私が身を退くことで党が救われるのなら…).",
+      "locator": {
+        "pdf_page_one_based": 107,
+        "printed_page": "101",
+        "section": "第十九章, paragraph beginning 七月に参院選を控え"
+      }
+    },
+    {
+      "claim_id": "jp_ldphist_koizumi_elected_20th_president_20010424",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-07",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "小泉純一郎",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_election_record",
+      "attested_on": null,
+      "text": "The party history says that on 24 April 2001 the presidential election was held at the joint plenary meeting in place of the party convention, with each prefectural federation's votes raised from one to three; 小泉 won a majority of 298 against 橋本's 155 and 麻生's 31 (亀井 withdrew) and was elected the 20th president. The chronology lists 総裁選で小泉純一郎元厚生相を選出（四・二四）.",
+      "locator": {
+        "pdf_page_one_based": [
+          110,
+          191
+        ],
+        "printed_page": [
+          "104",
+          "185"
+        ],
+        "section": "第二十章 小泉純一郎総裁時代, paragraphs beginning その結果 and 四月二十四日; 年表 平成一三年 entry (四・二四)"
+      }
+    },
+    {
+      "claim_id": "jp_ldphist_koizumi_reelected_unopposed_joint_plenary_20010810",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-07",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "小泉純一郎",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_reappointment_record",
+      "attested_on": null,
+      "text": "The party history says that on 10 August 2001, after the upper-house election, 小泉総裁 was re-elected without a vote (無投票再選) at the joint plenary meeting in place of the party convention; the chronology lists 党大会に代わる両院議員総会で小泉総裁再任を決定（八・一〇）.",
+      "locator": {
+        "pdf_page_one_based": [
+          110,
+          191
+        ],
+        "printed_page": [
+          "104",
+          "185"
+        ],
+        "section": "第二十章, paragraph beginning 参院選後の八月十日; 年表 平成一三年 entry (八・一〇)"
+      }
+    },
+    {
+      "claim_id": "jp_ldphist_koizumi_reelected_20030920",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-07",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "小泉純一郎",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_election_record",
+      "attested_on": null,
+      "text": "The party history says that on 20 September 2003 the presidential election was held on the expiry of 小泉総裁's term; from this election the term was lengthened from two to three years and member-derived votes rose to 300; 小泉総裁 399 (Diet members 194, member-derived 205), 亀井静香 139 (66, 73), 藤井孝男 65 (50, 15), 高村正彦 54 (47, 7), and 小泉総裁 was re-elected. The chronology lists 総裁選で小泉総裁再選（九・二〇） under 平成一五年.",
+      "locator": {
+        "pdf_page_one_based": [
+          113,
+          114,
+          193,
+          194
+        ],
+        "printed_page": [
+          "107",
+          "108",
+          "187",
+          "188"
+        ],
+        "section": "第二十章, paragraph beginning 平成十五年九月二十日; 年表 平成一五年（二〇〇三年） entry (九・二〇)"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations of the LDP president (総裁) for CLAUDE-C01-18 only, 1990-2009 (stacked on CLAUDE-C01-13). Party elections and selections (member and Diet-member votes, joint plenary meetings of party Diet members), notices, candidacies, declarations and reports of results, statements of assumption, in-office attestations, announced and prospective resignations, predecessor references and retrospective records stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this office (a notice, a filing, a schedule, an unnamed caption or a meeting). The prime-ministership (jp_pm) is excluded: no row feeds it, and no jp_pm claim feeds this office."
+}

@@ -1,0 +1,69 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_ldp_news_index_200909_20091001",
+  "source_url": "https://web.archive.org/web/20091001235323id_/http://www.jimin.jp:80/jimin/daily/09_09index.shtml",
+  "original_url": "http://www.jimin.jp/jimin/daily/09_09index.shtml",
+  "archive_capture_utc": "2009-10-01T23:53:23Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 27053,
+  "source_response_sha256": "422b8ee220b8f555f560bf26dec6c23acda92d1ab8700bdf330aac6ae633fced",
+  "source_response_content_encoding": "identity",
+  "source_response_sha1_base32": "UGW2XWJEHJS6TZKM4YYBUURUEJOJINTY",
+  "source_character_encoding": "Shift_JIS (the page declares charset=Shift_JIS; the bytes decode cleanly as Shift_JIS)",
+  "source_response_checked_in": false,
+  "fetch_recipe": "curl -s -o FILE 'https://web.archive.org/web/20091001235323id_/http://www.jimin.jp:80/jimin/daily/09_09index.shtml' with no Accept-Encoding request header and no automatic decoding; hash the bytes as received.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2009-10-01T23:53:23Z; that form replays the archived bytes unchanged. Researcher (part C): downloaded at 12:28:49Z on 25 September 2026, requested without Accept-Encoding; the SHA-1 of the bytes equals the Internet Archive CDX digest for this capture. The part C check downloaded it again at 13:11:58Z, 43 minutes later, with Accept-Encoding: identity (HTTP 200, no Content-Encoding) and the same byte count and SHA-256. Downloaded on 25 September 2026 (UTC) by this packet at 14:18:54Z and 14:55:26Z, 36 minutes apart, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party's news index for September 2009, recorded as a raw Internet Archive capture of 1 October 2009: a fixed, month-restricted listing, not an open search page. Its headlines are supplementary claims only; the articles themselves are recorded from the 2009 election site where archived.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded and read in full (headings, date lines, captions and body); no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_ldp_index_tanigaki_elected_24th_president_20090928",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-10",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "谷垣禎一",
+      "role_title": "総裁 — party president",
+      "event_kind": "news_index_headline",
+      "attested_on": "2009-09-28",
+      "text": "The LDP's September 2009 news index (captured 1 October 2009) lists an item dated 9/28 titled 第２４代自由民主党総裁に谷垣禎一氏を選出 (谷垣禎一 elected 24th LDP president).",
+      "locator": {
+        "section": "list 平成２１年 ９月, item （9/28） linking to 09_09/28/210928a.shtml"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_index_tanigaki_president_first_press_conference_20090928",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-10",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "谷垣禎一",
+      "role_title": "総裁 — party president",
+      "event_kind": "news_index_headline",
+      "attested_on": "2009-09-28",
+      "text": "The same index lists an item dated 9/28 titled 谷垣禎一総裁が初の記者会見 (谷垣禎一 as president holds his first press conference).",
+      "locator": {
+        "section": "list 平成２１年 ９月, item （9/28） linking to 09_09/28/210928b.shtml"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_index_2009_candidates_filed_20090918",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-10",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": null,
+      "role_title": "総裁 — party president",
+      "event_kind": "news_index_headline",
+      "attested_on": "2009-09-18",
+      "text": "The same index lists an item dated 9/18 titled 総裁選スタート 候補者届出と所見発表演説会 (candidate filing and policy speeches).",
+      "locator": {
+        "section": "list 平成２１年 ９月, item （9/18） linking to 09_09/18/210918b.shtml"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations of the LDP president (総裁) for CLAUDE-C01-18 only, 1990-2009 (stacked on CLAUDE-C01-13). Party elections and selections (member and Diet-member votes, joint plenary meetings of party Diet members), notices, candidacies, declarations and reports of results, statements of assumption, in-office attestations, announced and prospective resignations, predecessor references and retrospective records stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this office (a notice, a filing, a schedule, an unnamed caption or a meeting). The prime-ministership (jp_pm) is excluded: no row feeds it, and no jp_pm claim feeds this office."
+}

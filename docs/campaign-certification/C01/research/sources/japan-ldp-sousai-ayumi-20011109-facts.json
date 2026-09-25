@@ -1,0 +1,139 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_ldp_sousai_ayumi_20011109",
+  "source_url": "https://web.archive.org/web/20011109084346id_/http://www.jimin.or.jp:80/jimin/jimin/ayumi/ayumi.html",
+  "original_url": "http://www.jimin.or.jp/jimin/jimin/ayumi/ayumi.html",
+  "archive_capture_utc": "2001-11-09T08:43:46Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 20913,
+  "source_response_sha256": "c6caae50dec836685c41d2d6eda5cc483a53609c325b8621b0f33dc302f48c3e",
+  "source_response_content_encoding": "identity",
+  "source_response_sha1_base32": "647EOH2H32M3ZELTRI4DM334MOHJACXW",
+  "source_character_encoding": "Shift_JIS (no charset is declared in the page; the bytes decode cleanly as Shift_JIS)",
+  "source_response_checked_in": false,
+  "fetch_recipe": "curl -s -o FILE 'https://web.archive.org/web/20011109084346id_/http://www.jimin.or.jp:80/jimin/jimin/ayumi/ayumi.html' with no Accept-Encoding request header and no automatic decoding; hash the bytes as received.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2001-11-09T08:43:46Z; that form replays the archived bytes unchanged. The archived original's Last-Modified header is Mon, 22 Oct 2001 02:58:20 GMT. Researcher (part B): Raw Internet Archive capture (id_ form) of the original response; the id_ form replays the archived bytes unchanged. Fetched with Accept-Encoding: identity (curl without --compressed); the archived response had no Content-Encoding, so the recorded bytes and SHA-256 are the plain HTML body. SHA-1 of the body (base32) 647EOH2H32M3ZELTRI4DM334MOHJACXW; equals the CDX digest of this capture. Archived original Last-Modified: Mon, 22 Oct 2001 02:58:20 GMT. Downloaded on 25 September 2026 at 12:40:21Z and 13:11:01Z, each time with the same byte count and SHA-256 (downloads at least 30 minutes apart). The part B check downloaded it again at 13:15:05Z and 13:57:16Z on 25 September 2026, each time with the same byte count and SHA-256. Downloaded on 25 September 2026 (UTC) by this packet at 14:16:22Z and 14:52:51Z, 36 minutes apart, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party's list of its presidential elections as last modified on 22 October 2001, recorded as a raw Internet Archive capture; a retrospective list whose rows are claims with no structured date. Only the 18th to 20th presidents' rows are used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded and read in full (headings, date lines, captions and body); no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_ldpayumi01_obuchi_span_18th",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-05",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "小渕恵三",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The party's 自由民主党総裁選挙のあゆみ page, as last modified in October 2001, lists 第18代 小渕恵三 with the period 平成10年7月24日〜平成12年4月5日.",
+      "locator": {
+        "section": "第18代 小渕恵三 ＜小渕総裁時代＞"
+      }
+    },
+    {
+      "claim_id": "jp_ldpayumi01_obuchi_elected_19980724",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-05",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "小渕恵三",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_election_record",
+      "attested_on": null,
+      "text": "The page records the 1998 vote as 選出：公選 with 小渕恵三 (225), 梶山静六 (102) and 小泉純一郎 (84), election date 平成10年7月24日, at the joint plenary meeting in place of the party convention (党大会に代わる両院議員総会).",
+      "locator": {
+        "section": "第18代, first block"
+      }
+    },
+    {
+      "claim_id": "jp_ldpayumi01_obuchi_elected_19990921",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-05",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "小渕恵三",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_election_record",
+      "attested_on": null,
+      "text": "The page records a 公選 with 小渕恵三 (350), 加藤紘一 (113) and 山崎拓 (51), election date 平成11年9月21日.",
+      "locator": {
+        "section": "第18代, second block"
+      }
+    },
+    {
+      "claim_id": "jp_ldpayumi01_obuchi_result_reported_19990922",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-05",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "小渕恵三",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_convention_record",
+      "attested_on": null,
+      "text": "The page records 平成11年9月22日（第65回臨時党大会 報告） for the 1999 election of 小渕恵三.",
+      "locator": {
+        "section": "第18代, second block, last item"
+      }
+    },
+    {
+      "claim_id": "jp_ldpayumi01_mori_span_19th",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-06",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "森喜朗",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The page lists 第19代 森喜朗 with the period 平成12年4月5日〜平成13年4月24日.",
+      "locator": {
+        "section": "第19代 森喜朗"
+      }
+    },
+    {
+      "claim_id": "jp_ldpayumi01_mori_selected_joint_plenary_20000405",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-06",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "森喜朗",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_selection_record",
+      "attested_on": null,
+      "text": "The page records 選出：両院議員総会で決定 and 平成12年4月5日（党大会に代わる両院議員総会 選任） for 森喜朗.",
+      "locator": {
+        "section": "第19代, block"
+      }
+    },
+    {
+      "claim_id": "jp_ldpayumi01_koizumi_open_span_20th",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-07",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "小泉純一郎",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The page lists 第20代 小泉純一郎 with the open period 平成13年4月24日〜 (no end), as last modified on 22 October 2001.",
+      "locator": {
+        "section": "第20代 小泉純一郎"
+      }
+    },
+    {
+      "claim_id": "jp_ldpayumi01_koizumi_elected_20010424",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-07",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "小泉純一郎",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_election_record",
+      "attested_on": null,
+      "text": "The page records a 公選 with 小泉純一郎 (298), 橋本龍太郎 (155), 麻生太郎 (31) and 亀井静香 (本選辞退), election date 平成13年4月24日, at the joint plenary meeting in place of the party convention.",
+      "locator": {
+        "section": "第20代, block"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations of the LDP president (総裁) for CLAUDE-C01-18 only, 1990-2009 (stacked on CLAUDE-C01-13). Party elections and selections (member and Diet-member votes, joint plenary meetings of party Diet members), notices, candidacies, declarations and reports of results, statements of assumption, in-office attestations, announced and prospective resignations, predecessor references and retrospective records stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this office (a notice, a filing, a schedule, an unnamed caption or a meeting). The prime-ministership (jp_pm) is excluded: no row feeds it, and no jp_pm claim feeds this office."
+}

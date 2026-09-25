@@ -12,6 +12,9 @@ import campaign_research as research
 # CLAUDE-C01-13 (stacked on this packet) extends the same institution and role from 26 September 2006; its exact
 # sources, claims and holders are pinned in its own test and appended to this packet's pins below.
 import test_japan_prime_ministers_c01_13 as later
+# CLAUDE-C01-18 (stacked on CLAUDE-C01-13) adds sources for the LDP presidency role only; its exact source list is pinned in
+# its own test and appended after the later packet's below.
+import test_japan_ldp_presidents_c01_18 as ldp
 
 
 # Original response identity recorded in each extract: (bytes, sha256), of the identity-encoded body. Every new source is
@@ -911,7 +914,8 @@ class JapanPrimeMinistersTests(unittest.TestCase):
     def test_new_records_are_bounded_and_every_claim_is_classified(self):
         ids = self.validate()
         self.assertEqual((len(NEW_SOURCES), len(self.new_claims)), (119, 174))
-        self.assertEqual([s['id'] for s in self.packet['sources']], list(ORIGINAL_SOURCES) + NEW_SOURCES + later.NEW_SOURCES)
+        self.assertEqual([s['id'] for s in self.packet['sources']],
+                         list(ORIGINAL_SOURCES) + NEW_SOURCES + later.NEW_SOURCES + ldp.NEW_SOURCES)
         self.assertEqual((len(ids['entries']), len(ids['roles'])), (24, 5))
         self.assertEqual(len(self.packet['organizations']), 16)
         # Every new claim is either a holder claim or a claim that never feeds a holder, never both.
@@ -1033,7 +1037,8 @@ class JapanPrimeMinistersTests(unittest.TestCase):
         self.assertEqual(sum('CLAUDE-C01-12' in u for u in coverage['unresolved']), 1)
         self.assertTrue(coverage['unresolved'][8].startswith('Prime ministers 1990-2006 (CLAUDE-C01-12)'))
         self.assertTrue(coverage['unresolved'][9].startswith('Prime ministers 2006-2026 (CLAUDE-C01-13'))
-        self.assertEqual(len(coverage['unresolved']), 10)
+        self.assertTrue(coverage['unresolved'][10].startswith('LDP presidents 1990-2009 (CLAUDE-C01-18'))
+        self.assertEqual(len(coverage['unresolved']), 11)
         self.assertEqual([r['records'] for r in coverage['bounded_registers']], [16, 7])
 
     def test_extracts_match_packet_claims_and_record_original_responses(self):

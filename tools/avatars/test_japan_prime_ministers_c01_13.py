@@ -9,6 +9,9 @@ import unittest
 from urllib.parse import urlsplit
 
 import campaign_research as research
+# CLAUDE-C01-18 (stacked on this packet) adds sources for the LDP presidency role only, after this packet's; its exact
+# sources and the LDP holders are pinned in its own test.
+import test_japan_ldp_presidents_c01_18 as ldp
 
 
 # Original response identity recorded in each extract: (bytes, sha256), of the identity-encoded body. Every new source is
@@ -1685,8 +1688,10 @@ HOLDER_CLAIMS = [
 ]
 # Every stated end in the role, all from the Official Gazette's notices of loss of office.
 ENDS = [('安倍晋三', '2020-09-16'), ('菅義偉', '2021-10-04'), ('岸田文雄', '2021-11-10'), ('岸田文雄', '2024-10-01'), ('石破茂', '2024-11-11'), ('石破茂', '2025-10-21'), ('高市早苗', '2026-02-18')]
-# The LDP presidency keeps its two observations unchanged; party office never feeds jp_pm.
-LDP_HOLDERS = [('石破茂', '2024-09-27', None, None), ('高市早苗', '2025-10-04', None, None)]
+# The LDP presidency: its 2024 and 2025 observations unchanged, preceded by CLAUDE-C01-18's fourteen of 1990-2009 (pinned
+# exactly in that packet's test); party office never feeds jp_pm.
+LDP_HOLDERS = ldp.HOLDERS
+assert LDP_HOLDERS[-2:] == [('石破茂', '2024-09-27', None, None), ('高市早苗', '2025-10-04', None, None)]
 # Dates that are never a holder's start or end: designation-only days, announcements, hospital, continued duties,
 # recollections, the Chief Cabinet Secretary's span and later attestations.
 NEVER_HOLDER_DATE = {'2007-09-12', '2007-09-13', '2007-09-24', '2007-09-25', '2008-09-01', '2010-06-02', '2010-06-04',
@@ -1805,7 +1810,8 @@ HANDOFF = 'docs/planning/ai-handoffs/CLAUDE-C01-13.md'
 
 
 def later_sources(packet):
-    return packet['sources'][ORIGINAL_COUNT + EARLIER_SOURCES:]
+    # This packet's own sources, between the earlier packet's and CLAUDE-C01-18's.
+    return packet['sources'][ORIGINAL_COUNT + EARLIER_SOURCES:ORIGINAL_COUNT + EARLIER_SOURCES + len(RESPONSES)]
 
 
 def load_rows(packet):
@@ -1940,7 +1946,9 @@ class JapanPrimeMinisters2006Tests(unittest.TestCase):
         ids = self.validate()
         self.assertEqual((len(NEW_SOURCES), len(self.new_claims)), COUNTS['sources_claims'])
         self.assertEqual([s['id'] for s in later_sources(self.packet)], NEW_SOURCES)
-        self.assertEqual(len(self.packet['sources']), ORIGINAL_COUNT + EARLIER_SOURCES + len(NEW_SOURCES))
+        self.assertEqual(len(self.packet['sources']), ORIGINAL_COUNT + EARLIER_SOURCES + len(NEW_SOURCES) + len(ldp.NEW_SOURCES))
+        self.assertEqual([s['id'] for s in self.packet['sources'][ORIGINAL_COUNT + EARLIER_SOURCES + len(NEW_SOURCES):]],
+                         ldp.NEW_SOURCES)
         self.assertEqual((len(ids['entries']), len(ids['roles'])), (24, 5))
         self.assertEqual((len(self.packet['organizations']), len(self.packet['institutions'])), (16, 8))
         self.assertEqual(self.new_claims, NEW_CLAIMS)
@@ -2054,7 +2062,9 @@ class JapanPrimeMinisters2006Tests(unittest.TestCase):
         unresolved = self.office['coverage']['unresolved']
         self.assertTrue(unresolved[-1].startswith('Keep executive office distinct from party leadership'))
         self.assertEqual([u[:40] for u in unresolved[-4:-1]], [u[:40] for u in INSTITUTION_UNRESOLVED])
-        self.assertTrue(self.packet['coverage']['unresolved'][-1].startswith('Prime ministers 2006-2026 (CLAUDE-C01-13'))
+        # This packet's note is at index 9, followed only by CLAUDE-C01-18's (pinned in its own test).
+        self.assertTrue(self.packet['coverage']['unresolved'][9].startswith('Prime ministers 2006-2026 (CLAUDE-C01-13'))
+        self.assertEqual(len(self.packet['coverage']['unresolved']), 11)
         self.assertEqual(sum('CLAUDE-C01-13' in u for u in self.packet['coverage']['unresolved']), 1)
 
     def test_extracts_match_packet_claims_and_record_original_responses(self):
