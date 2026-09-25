@@ -9,8 +9,8 @@
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 841,
     "institution_observations": 27,
-    "sources": 211,
-    "source_claims": 1840,
+    "sources": 265,
+    "source_claims": 1913,
     "discovery_batches": 92,
     "exhaustive_country_censuses": 0
   },
@@ -362,8 +362,8 @@
       "packet": "docs/campaign-certification/C01/research/south-africa.json",
       "organization_observations": 52,
       "institution_observations": 1,
-      "role_observations": 5,
-      "source_claims": 187,
+      "role_observations": 6,
+      "source_claims": 260,
       "mapping_pending": 53,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -400,7 +400,8 @@
           "Reconcile every party with game identities and separately source leadership terms, roles, biographies and portrait permission. No game roster or character eligibility is changed.",
           "Names containing Alliance, Congress or Movement are retained exactly as electoral reporting names. Organizational form, coalition membership, caucus identity and underlying component parties remain unresolved.",
           "DA offices have dated observations only; their relationships and continuity require further evidence. Presidency election does not establish party leadership or inauguration.",
-          "Heads of state 1990-2024 (CLAUDE-C01-09): the State President under the 1983 Constitution and the President of the Republic are separate roles in za_presidency; holder observations are dated from primary records with only stated starts and ends. Deputy presidents, acting presidents during travel, ministers and party offices remain outside this review, and no game identity or portrait permission is granted."
+          "Heads of state 1990-2024 (CLAUDE-C01-09): the State President under the 1983 Constitution and the President of the Republic are separate roles in za_presidency; holder observations are dated from primary records with only stated starts and ends. Deputy presidents, acting presidents during travel, ministers and party offices remain outside this review, and no game identity or portrait permission is granted.",
+          "ANC Presidents 1990-2026 (CLAUDE-C01-16, ZA-ANC-01..10): the party office is a separate role, za_anc_president, on the AFRICAN NATIONAL CONGRESS observation, with ten holder observations dated by ANC in-office attestations and no start or end; conference elections, result publications, handovers, departures, deputy and chair offices are claims only. No ANC record found states the day of any President's election, declaration of results, assumption or end; the Presidency of the Republic and the party office never feed each other, and no game identity or portrait permission is granted."
         ]
       }
     },
@@ -2660,8 +2661,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/south-africa.json",
-      "bytes": 377867,
-      "sha256": "2b6e86d5eb884ce87de92a4b0452dbd156934d31208a04f3d872d03b3ad37576"
+      "bytes": 545463,
+      "sha256": "36e490e4c7c9c3c69f0bb4a577307fad035b7d7e7aa2cb314127f63f7deada46"
     },
     {
       "path": "docs/campaign-certification/C01/research/tonga.json",
