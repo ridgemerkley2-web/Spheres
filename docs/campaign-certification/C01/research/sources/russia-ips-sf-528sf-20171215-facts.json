@@ -14,10 +14,10 @@
   "source_response_checked_in": false,
   "stability_check": "Dossier: First retrieved 2026-09-24T21:54Z; re-downloaded 2026-09-24T22:47:30Z (byte-identical: 20353 bytes, same SHA-256). Independent check: re-downloaded at 2026-09-24T23:04:57Z-23:07:53Z and with a cache-busting query at 23:34Z; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T00:40:09Z (20,353 bytes); identical SHA-256.",
   "portal_card_response": {
-    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=528-%D1%D4&a8type=1&sort=7&page=firstlast&lstsize=50",
-    "bytes": 46955,
-    "sha256": "6b88f9738262d93c1e0937e2ee5ff5f7014b457d7483eba1faa4f02403249a8a",
-    "note": "Number search listing with status and publication citations."
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=528-%D1%D4&a8type=1&a7type=4&a7from=15.12.2017&a7to=15.12.2017&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3263,
+    "sha256": "6b3e1a41df5f180a3b248e45e046ae72d21b1be460423fa0f95243ed6272d256",
+    "note": "Date-restricted search card (one hit), status 'Действует без изменений', citing the official portal 18.12.2017 No. 0001201712180034 and Sobranie zakonodatelstva RF 2017 No. 52 art. 7969 (Part I). Identical bytes at 2026-09-25T01:31Z, 02:03Z and 02:14Z and with a cache-busting query. The unrestricted number search (a8=528-СФ only) lists every year's 528-СФ and grows each year, so it is not used."
   },
   "facsimile_responses": [
     {

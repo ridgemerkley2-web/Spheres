@@ -14,10 +14,10 @@
   "source_response_checked_in": false,
   "stability_check": "Dossier: Downloaded at 2026-09-24T22:00:00Z and again at 2026-09-24T22:38:35Z (at least 28 minutes later); identical 371,762 bytes and SHA-256. Independent check: re-downloaded at 2026-09-24T22:46:25Z-22:47:01Z, 38-58 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T00:32:12Z (371,762 bytes); identical SHA-256.",
   "portal_card_response": {
-    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=9-%CF&a8type=1&sort=7&page=firstlast&lstsize=200",
-    "bytes": 80685,
-    "sha256": "b60f225bf7ad3ae18650065274ddee6d2c15d787a225b8d0f0ad9ef602431ca0",
-    "note": "Portal number-search list for 9-P; gives the Vedomosti 1993 No. 11 art. 400 citation."
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=9-%CF&a8type=1&a7type=4&a7from=30.11.1992&a7to=30.11.1992&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3445,
+    "sha256": "040ea51de672f487f6c41de7a45455aa2d18a75deaacadd5554b7da62d6ba47f",
+    "note": "Date-restricted search card (one hit), status 'Действует без изменений'; gives the Vedomosti 1993 No. 11 art. 400 citation. Identical bytes at 2026-09-25T01:31Z, 02:03Z and 02:14Z and with a cache-busting query. The unrestricted number search (a8=9-П only) lists every later ruling numbered 9-П and grows every year, so it is not used."
   },
   "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 24 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
   "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",

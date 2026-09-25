@@ -21,12 +21,6 @@
       "bytes": 16063,
       "sha256": "1c0d7d4e272d4c34aeecbbffe07083531993bcec7b142dadec2839b1996348ef",
       "note": "Live text version (HTTP) on 24 September 2026: byte-identical to the 2025-10-12 capture. An alternate live response only, never the recorded identity: it carries a changing site template and may drift; not reproduced on this packet's retrieval (connection refused or a changed page)."
-    },
-    {
-      "url": "http://kremlin.ru/events/president/news/15224",
-      "bytes": 57968,
-      "sha256": "61bb300b7bd0e85284fabdf99fdcbe65f77772daa72ef95c0706a7a17290bd3f",
-      "note": "Live full page; shows speakers with their current titles (e.g. Medvedev as Deputy Chairman of the Security Council), so not used. An alternate live response only, never the recorded identity: it carries a changing site template and may drift; not reproduced on this packet's retrieval (connection refused or a changed page)."
     }
   ],
   "provenance_note": "Raw Internet Archive capture (id_ form) of http://kremlin.ru/events/president/news/copy/15224, captured at 2025-10-12T04:42:58Z, before the 7 September 2026 cutoff; the id_ form replays the archived bytes unchanged and is used because kremlin.ru refused HTTPS from this environment and its live pages carry a changing site template (footer year, menus, promoted blocks), so the live page is not a stable identity. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",

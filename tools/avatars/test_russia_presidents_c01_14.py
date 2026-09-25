@@ -131,10 +131,10 @@ HTTP_READ = {
 }
 # Hashed responses attached to a source (portal cards, CEC index pages, annexes, facsimiles, corroborating captures).
 ATTACHED = {
-    'ru_rf_law_2708i_19920421': [('portal_card_response', 9558, '89cdc72d2525b87734d4753ea7aaaae9f59e787ea886b986262b81510e242210')],
-    'ru_ks_post_9p_19921130': [('portal_card_response', 80685, 'b60f225bf7ad3ae18650065274ddee6d2c15d787a225b8d0f0ad9ef602431ca0')],
+    'ru_rf_law_2708i_19920421': [('portal_card_response', 3163, 'afa68972a56e467013cb94885658f05ef8896d0de4d13cf3d3e88f2118ca9e17')],
+    'ru_ks_post_9p_19921130': [('portal_card_response', 3445, '040ea51de672f487f6c41de7a45455aa2d18a75deaacadd5554b7da62d6ba47f')],
     'ru_ks_conclusion_19930323': [('portal_card_response', 9452, 'c3902c4ebe6f993d13a313128d983900d9d6b806f12430bdbc33a6194b971a5d')],
-    'ru_ks_det_134o_19981105': [('portal_card_response', 20681, 'f056140cee8d9bf7ab3c6df173aee1d0587c1c30a1fda8bee4472b3d918453b4')],
+    'ru_ks_det_134o_19981105': [('portal_card_response', 3240, '52120d184cc2cba44ea80653f9aaacd8d90ca2ba06542fac53758c1a21d30130')],
     'ru_const_1993_original': [('portal_card_response', 10151, '019a9adf93fbc4a79d28787f4069c9e425aa664a6a897c9675be31a0c847995f')],
     'ru_sf_res_697i_19951115': [('portal_card_response', 135597, 'ca463b87eb994a086aa975e4fc69fa04ac6a359df95861c4b9965820a46a20aa')],
     'ru_cec_protocol_runoff_19960709': [('index_response', 15137, 'b8d50e1fdf879e6d82191a177d9668bdba37e8a04789711af980074fc2f58836')],
@@ -147,13 +147,13 @@ ATTACHED = {
     'ru_cec_protocol_2000_20000405': [('index_response', 10968, '6809b85012cf2e3018b6ff38d1bd070aec9508d1a92e87005bdfa6cc2682edf7')],
     'ru_pravo_sf_337sf_20031210': [('portal_card_response', 3246, '8254367c00c3de14663b059751cd3c64e2e759361c784d2cf01b5fa612300d4f')],
     'ru_cec_res_125_902_4_20041029': [('index_response', 10287, 'c908538bf462bbe7a5741fff5e31a7038c2abf68a64c6f62930ffd7de179e895')],
-    'ru_fc_res_550sf_20071126': [('portal_card_response', 44147, 'a7f5e26145f76784c3aba83cbaa201ea5e16edb4554f036e806ca79a41e4ae85')],
+    'ru_fc_res_550sf_20071126': [('portal_card_response', 3246, 'e1184174f113599837a5a861d382d9587c46f7c719bd9e4bf76839408d2b8e45')],
     'ru_rg_cec_res_104_777_5_20080308': [('annex_responses', 11240, '25a076d2ea7e69ded51dfc64ed3ede75177bc3f1b6f2faf92195793e20804ce1')],
     'ru_kremlin_transcript_3_20080507': [('corroborating_responses', 77737, 'ac1a5e24818ba695ab9ec439a640104d81c6bf556c62a704cadb79b177868a77')],
-    'ru_fc_res_442sf_20111125': [('portal_card_response', 59211, 'ee5074acbfe1eee43c8212b043b66b6ffda98d136c8fef066821d54fc207b1a7'), ('facsimile_responses', 45191, '768c128e3066bba4c9495d9098348537c23a99ae68ecd153760fdf98725072ac')],
-    'ru_fc_res_528sf_20171215': [('portal_card_response', 46955, '6b88f9738262d93c1e0937e2ee5ff5f7014b457d7483eba1faa4f02403249a8a'), ('facsimile_responses', 65007, '2fa290f529eb6e8d37758fe8fee1c1a4f1297fa7f220f1fee730bd03f04fac3f')],
+    'ru_fc_res_442sf_20111125': [('portal_card_response', 3408, '21e3aa980a4359c048b6121a07b4583765a3ac3b71d361da3d608700606f3bc3'), ('facsimile_responses', 45191, '768c128e3066bba4c9495d9098348537c23a99ae68ecd153760fdf98725072ac')],
+    'ru_fc_res_528sf_20171215': [('portal_card_response', 3263, '6b3e1a41df5f180a3b248e45e046ae72d21b1be460423fa0f95243ed6272d256'), ('facsimile_responses', 65007, '2fa290f529eb6e8d37758fe8fee1c1a4f1297fa7f220f1fee730bd03f04fac3f')],
     'ru_cec_res_152_1255_7_20180323': [('annex_responses', 18560, '21e55f09f8ef6a0c2debd25c8ed568b9f40cab0d076871a49cd298e502b45c02')],
-    'ru_fc_res_678sf_20231207': [('portal_card_response', 11992, '2ae2edce15034f18ac834a5de6cf25b6a0d0b7c26cdc5307d95d73b6ea0aef71'), ('facsimile_responses', 123828, '37be57dc2de28ebaa6b80e84c4e7fa17ea8aef9d977af397f9a208497de2895b')],
+    'ru_fc_res_678sf_20231207': [('portal_card_response', 3315, '1924dcd46b94dd4c9dbe877e7e8dcf7c35f3de4cdfd09706c1e8bc1c5069006f'), ('facsimile_responses', 123828, '37be57dc2de28ebaa6b80e84c4e7fa17ea8aef9d977af397f9a208497de2895b')],
     'ru_rg_cec_res_163_1291_8_20240321': [('facsimile_responses', 85147, '6ff16d38b85f6fb562bd96b45abc2aa63c6f101df3257752dc5d56f88e598075')],
     'ru_pub_decree_636_20260904': [('card_response', 20071, '1acd4fc56f14c2962d725adc7d3b1ab3ab38a4ad6f52c83a29e48f87fd10bb90')],
 }

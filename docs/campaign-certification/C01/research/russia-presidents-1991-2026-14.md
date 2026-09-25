@@ -15,7 +15,8 @@ or avatar. The parent scope (C01, C06, S23, WC1 and CP1) remains open.
 
 Three research dossiers (parts A, B and C) and an independent adversarial check of each were prepared before this
 packet was written. Every checker defect is applied below, one in part and one by removing the source; every
-missing primary record the checks found is imported, except two that are not official copies (see
+missing primary record the checks found is imported, except three: the Rossiyskaya Gazeta copy of 4-SF, which is
+not the publication the portal cites, and two commercial-database titles, which are not official copies (see
 [Checker defects](#checker-defects) and [Leads not imported](#leads-not-imported)).
 
 ## Outcome
@@ -323,10 +324,10 @@ republished. "Check find" marks a primary record found by an independent check.
 
 | Source ID | What | Response identity (bytes, SHA-256) and read path |
 |---|---|---|
-| `ru_rf_law_2708i_19920421` | [Law 2708-I, 21 Apr 1992](https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102015844&page=1&rdk=0) | HTTP, 104,315 bytes, `0df2faec…0306ba`; card 9,558 `89cdc72d` |
-| `ru_ks_post_9p_19921130` | [Constitutional Court ruling 9-P, 30 Nov 1992](https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102020039&page=1&rdk=0) | HTTP, 371,762 bytes, `bd71ec4f…0ebfc6`; card 80,685 `b60f225b` |
+| `ru_rf_law_2708i_19920421` | [Law 2708-I, 21 Apr 1992](https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102015844&page=1&rdk=0) | HTTP, 104,315 bytes, `0df2faec…0306ba`; card 3,163 `afa68972` |
+| `ru_ks_post_9p_19921130` | [Constitutional Court ruling 9-P, 30 Nov 1992](https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102020039&page=1&rdk=0) | HTTP, 371,762 bytes, `bd71ec4f…0ebfc6`; card 3,445 `040ea51d` |
 | `ru_ks_conclusion_19930323` | [Constitutional Court conclusion, 23 Mar 1993](https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102022316&page=1&rdk=0) | HTTP, 55,038 bytes, `bd3f3ddc…29885e`; card 9,452 `c3902c4e` |
-| `ru_ks_det_134o_19981105` | [Constitutional Court determination 134-O, 5 Nov 1998](https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102056287&page=1&rdk=0) | HTTP, 36,602 bytes, `2c45f919…5d464f`; card 20,681 `f056140c` |
+| `ru_ks_det_134o_19981105` | [Constitutional Court determination 134-O, 5 Nov 1998](https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102056287&page=1&rdk=0) | HTTP, 36,602 bytes, `2c45f919…5d464f`; card 3,240 `52120d18` |
 | `ru_const_1993_original` | [Constitution of 12 Dec 1993 (original edition)](https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102027595&page=1&rdk=0) | HTTP, 117,303 bytes, `5b49db4a…d5e5ed`; card 10,151 `019a9adf` |
 | `ru_sf_res_697i_19951115` | [Federation Council 697-I SF, 15 Nov 1995](https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102038135&page=1&rdk=0) (check find) | HTTP, 7,748 bytes, `d173929b…2a78b5`; card 135,597 `ca463b87` |
 | `ru_cec_protocol_first_round_19960620` | [CEC protocol, first round of 16 Jun 1996](https://web.archive.org/web/20160401180417id_/http://www.cikrf.ru/banners/vib_arhiv/president/1996/files/1/1996-1-Protokol_CIK.doc) (check find) | IA 20160401180417, 79,360 bytes, `6e587cc3…34f917` |
@@ -355,23 +356,23 @@ republished. "Check find" marks a primary record found by an independent check.
 | `ru_cec_res_125_902_4_20041029` | [CEC 125/902-4, 29 Oct 2004](https://web.archive.org/web/20111119154354id_/http://cikrf.ru/law/decree_of_cec/2004/10/29/post_902_pr_2004.html) (check find) | IA 20111119154354, 33,983 bytes, `31e36b14…10c1a0`; index 10,287 `c908538b` |
 | `ru_cec_res_135_935_4_20050120` | [CEC 135/935-4, 20 Jan 2005](https://web.archive.org/web/20111119155204id_/http://cikrf.ru:80/banners/vib_arhiv/president/2004/post_935_pr_2004.html) (check find) | IA 20111119155204, 14,959 bytes, `760ab1e2…827fbe` |
 | `ru_cec_res_175_1128_4_20060425` | [CEC 175/1128-4, 25 Apr 2006](https://web.archive.org/web/20111119155112id_/http://cikrf.ru/law/decree_of_cec/2006/04/25/zp061128.html) (check find) | IA 20111119155112, 32,055 bytes, `b2d68d5f…78d9b2` |
-| `ru_fc_res_550sf_20071126` | [Federation Council 550-SF, 26 Nov 2007](https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102118390&page=1&rdk=0) | HTTP, 32,327 bytes, `1d0ca88f…6e2615`; card 44,147 `a7f5e261` |
+| `ru_fc_res_550sf_20071126` | [Federation Council 550-SF, 26 Nov 2007](https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102118390&page=1&rdk=0) | HTTP, 32,327 bytes, `1d0ca88f…6e2615`; card 3,246 `e1184174` |
 | `ru_cec_res_104_777_5_20080307` | [CEC 104/777-5, 7 Mar 2008](https://web.archive.org/web/20080313193604id_/http://www.cikrf.ru:80/postancik/Zp080777.jsp) | IA 20080313193604, 15,657 bytes, `eee45922…e2274d` |
 | `ru_rg_cec_res_104_777_5_20080308` | [CEC 104/777-5 in RG No. 4608, 8 Mar 2008](https://web.archive.org/web/20080310004304id_/http://www.rg.ru:80/2008/03/08/cik-president-dok.html) (check find) | IA 20080310004304, 41,974 bytes, `9d871e47…2734d9`; annex 11,240 `25a076d2` |
 | `ru_kremlin_news_4_20080507` | [Kremlin news 4, 7 May 2008](https://web.archive.org/web/20260312204311id_/http://www.kremlin.ru/events/president/news/4) | IA 20260312204311, 57,494 bytes, `3410c4de…eceacd` |
 | `ru_kremlin_transcript_3_20080507` | [Kremlin transcript 3 (text version), 7 May 2008](https://web.archive.org/web/20220526201821id_/http://kremlin.ru/events/president/transcripts/copy/3) | IA 20220526201821, 38,354 bytes, `b2c728d1…eb29f5`; capture 77,737 `ac1a5e24` |
 | `ru_kremlin_news_11_20080507` | [Kremlin news 11, 7 May 2008](https://web.archive.org/web/20260517065034id_/http://www.kremlin.ru/events/president/news/11) | IA 20260517065034, 37,548 bytes, `21d22773…41418d` |
-| `ru_fc_res_442sf_20111125` | [Federation Council 442-SF, 25 Nov 2011](https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102152264&page=1&rdk=0) | HTTP, 24,040 bytes, `35c52f74…524776`; card 59,211 `ee5074ac`; facsimile 45,191 `768c128e` |
+| `ru_fc_res_442sf_20111125` | [Federation Council 442-SF, 25 Nov 2011](https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102152264&page=1&rdk=0) | HTTP, 24,040 bytes, `35c52f74…524776`; card 3,408 `21e3aa98`; facsimile 45,191 `768c128e` |
 | `ru_kremlin_news_14680_20120304` | [Kremlin news 14680, 4 Mar 2012](https://web.archive.org/web/20230202123957id_/http://kremlin.ru/events/president/news/14680) (check find) | IA 20230202123957, 46,512 bytes, `e1423d45…6636a0` |
 | `ru_cec_res_112_893_6_20120307` | [CEC 112/893-6, 7 Mar 2012](https://web.archive.org/web/20120311220745id_/http://www.cikrf.ru:80/law/decree_of_cec/2012/03/07/Zp12893.html) | IA 20120311220745, 12,676 bytes, `e40cc334…0baf48` |
 | `ru_rg_cec_res_112_893_6_20120308` | [CEC 112/893-6 in RG No. 5724, 8 Mar 2012](https://web.archive.org/web/20120311050014id_/http://rg.ru:80/2012/03/08/cik-vibory-dok.html) (check find) | IA 20120311050014, 45,730 bytes, `847bc03a…989006` |
 | `ru_kremlin_news_15224_20120507` | [Kremlin news 15224 (text version), 7 May 2012](https://web.archive.org/web/20251012044258id_/http://kremlin.ru/events/president/news/copy/15224) | IA 20251012044258, 16,063 bytes, `1c0d7d4e…6348ef` |
-| `ru_fc_res_528sf_20171215` | [Federation Council 528-SF, 15 Dec 2017](https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102454764&page=1&rdk=0) | HTTP, 20,353 bytes, `effab7f8…9f5e3c`; card 46,955 `6b88f973`; facsimile 65,007 `2fa290f5` |
+| `ru_fc_res_528sf_20171215` | [Federation Council 528-SF, 15 Dec 2017](https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102454764&page=1&rdk=0) | HTTP, 20,353 bytes, `effab7f8…9f5e3c`; card 3,263 `6b3e1a41`; facsimile 65,007 `2fa290f5` |
 | `ru_kremlin_news_57083_20180318` | [Kremlin news 57083, 18 Mar 2018](https://web.archive.org/web/20180320095741id_/http://kremlin.ru:80/events/president/news/57083) (check find) | IA 20180320095741, 42,708 bytes, `6df21b99…640963` |
 | `ru_cec_res_152_1255_7_20180323` | [CEC 152/1255-7, 23 Mar 2018](https://web.archive.org/web/20180324211630id_/http://cikrf.ru:80/activity/docs/postanovleniya/39429/) | IA 20180324211630, 40,311 bytes, `50e3a6fa…8a9188`; annex 18,560 `21e55f09` |
 | `ru_rg_cec_res_152_1255_7_20180324` | [CEC 152/1255-7 in RG, 24 Mar 2018](https://web.archive.org/web/20180324135637id_/https://rg.ru/2018/03/23/postanovlenie-site-dok.html) (check find) | IA 20180324135637, 143,832 bytes, `322f1a53…4f126c` |
 | `ru_kremlin_news_57416_20180507` | [Kremlin news 57416 (text version), 7 May 2018](https://web.archive.org/web/20251229124214id_/http://www.kremlin.ru/events/president/news/copy/57416) | IA 20251229124214, 20,506 bytes, `e0ac877d…cab8d7` |
-| `ru_fc_res_678sf_20231207` | [Federation Council 678-SF, 7 Dec 2023](https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=606168232&page=1&rdk=0) | HTTP, 24,272 bytes, `50613a83…dd2915`; card 11,992 `2ae2edce`; facsimile 123,828 `37be57dc` |
+| `ru_fc_res_678sf_20231207` | [Federation Council 678-SF, 7 Dec 2023](https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=606168232&page=1&rdk=0) | HTTP, 24,272 bytes, `50613a83…dd2915`; card 3,315 `1924dcd4`; facsimile 123,828 `37be57dc` |
 | `ru_kremlin_news_73658_20240315` | [Kremlin news 73658, 15 Mar 2024](https://web.archive.org/web/20260513124847id_/http://kremlin.ru/events/president/news/73658) | IA 20260513124847, 37,431 bytes, `3dffdcc9…5c9c86` |
 | `ru_rg_cec_res_163_1291_8_20240321` | [CEC 163/1291-8 in RG, 21 Mar 2024](https://web.archive.org/web/20240405043140id_/https://rg.ru/documents/2024/03/21/cik-post-resultaty2024-site-dok.html) | IA 20240405043140, 92,949 bytes, `e7ba12c9…0a937f`; facsimile 85,147 `6ff16d38` |
 | `ru_kremlin_news_73981_20240507` | [Kremlin news 73981 (text version), 7 May 2024](https://web.archive.org/web/20250504092901id_/http://www.kremlin.ru/events/president/news/copy/73981) | IA 20250504092901, 13,029 bytes, `a55150b9…1af56c` |
@@ -393,10 +394,14 @@ file, not one generated per request:
   cache-busting query);
 - the independent check, 38-75 minutes after the first downloads (part C also with cache-busting queries on the
   portal and the publication section); records the checks found were hashed and re-downloaded 30-44 minutes later;
-- this packet, 2026-09-25T00:31:53Z-00:43:51Z: 97 of 102 recorded identities (every primary response, every portal
+- this packet, 2026-09-25T00:31:53Z-00:43:51Z: 97 of 100 recorded identities (every primary response, every portal
   card, CEC index, annex, facsimile and corroborating capture) came back with identical bytes and SHA-256, several
-  hours after the first downloads. The five that did not are live kremlin.ru pages kept only as alternates: four
-  connections were refused and the live full page of news 4 returned 14,793 bytes.
+  hours after the first downloads. The three that did not are live kremlin.ru text versions kept only as alternates
+  (connections refused). The live full pages of news 4 and news 15224, which carry rotating blocks and current titles,
+  are no longer recorded. After that check the portal cards of 134-O, 9-P, 2708-I and 442/528/550/678-SF were
+  replaced by date-restricted one-hit searches, because the unrestricted number searches also list later acts with
+  the same number and can grow; each replacement returned identical bytes on the review's downloads at
+  2026-09-25T01:31Z and 02:03Z and on this revision's at 02:14Z, and with a cache-busting query at 02:16Z-02:17Z.
 
 Points a reviewer needs:
 

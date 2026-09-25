@@ -14,10 +14,10 @@
   "source_response_checked_in": false,
   "stability_check": "Dossier: First retrieved 2026-09-24T21:54Z; re-downloaded 2026-09-24T22:47:26Z (byte-identical: 32327 bytes, same SHA-256). Independent check: re-downloaded at 2026-09-24T23:04:57Z-23:07:53Z and with a cache-busting query at 23:34Z; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T00:36:55Z (32,327 bytes); identical SHA-256.",
   "portal_card_response": {
-    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=550-%D1%D4&a8type=1&sort=7&page=firstlast&lstsize=50",
-    "bytes": 44147,
-    "sha256": "a7f5e26145f76784c3aba83cbaa201ea5e16edb4554f036e806ca79a41e4ae85",
-    "note": "Number search (a8=550-СФ, cp1251-encoded) listing the act with status \"Действует без изменений\" and its publication citations; a search listing, so it can change when acts with the same number are added."
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=550-%D1%D4&a8type=1&a7type=4&a7from=26.11.2007&a7to=26.11.2007&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3246,
+    "sha256": "e1184174f113599837a5a861d382d9587c46f7c719bd9e4bf76839408d2b8e45",
+    "note": "Date-restricted search card (one hit; a8=550-СФ, cp1251-encoded), status \"Действует без изменений\", citing Sobranie zakonodatelstva RF 2007 No. 49 art. 6130, Parlamentskaya Gazeta 28.11.2007 and Rossiyskaya Gazeta 28.11.2007. Identical bytes at 2026-09-25T01:31Z, 02:03Z and 02:14Z and with a cache-busting query. The unrestricted number search lists every year's 550-СФ and grows each year, so it is not used."
   },
   "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 24 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
   "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",

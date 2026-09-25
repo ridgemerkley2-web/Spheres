@@ -14,10 +14,10 @@
   "source_response_checked_in": false,
   "stability_check": "Dossier: First retrieved 2026-09-24T21:54Z; re-downloaded 2026-09-24T22:47:31Z (byte-identical: 24272 bytes, same SHA-256). Independent check: re-downloaded at 2026-09-24T23:04:57Z-23:07:53Z and with a cache-busting query at 23:34Z; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T00:41:37Z (24,272 bytes); identical SHA-256.",
   "portal_card_response": {
-    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=678-%D1%D4&a8type=1&sort=7&page=firstlast&lstsize=50",
-    "bytes": 11992,
-    "sha256": "2ae2edce15034f18ac834a5de6cf25b6a0d0b7c26cdc5307d95d73b6ea0aef71",
-    "note": "Number search listing with status and publication citations."
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=678-%D1%D4&a8type=1&a7type=4&a7from=07.12.2023&a7to=07.12.2023&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3315,
+    "sha256": "1924dcd46b94dd4c9dbe877e7e8dcf7c35f3de4cdfd09706c1e8bc1c5069006f",
+    "note": "Date-restricted search card (one hit), status 'Действует без изменений', citing the official portal 7.12.2023 No. 0001202312070002, Rossiyskaya Gazeta 8.12.2023 and Sobranie zakonodatelstva RF 2023 No. 50 art. 8879. Identical bytes at 2026-09-25T01:31Z, 02:03Z and 02:14Z and with a cache-busting query. The unrestricted number search (a8=678-СФ only) lists every year's 678-СФ (2014, 2018, 2022, 2023 and 2025 so far) and can grow each year, so it is not used."
   },
   "facsimile_responses": [
     {

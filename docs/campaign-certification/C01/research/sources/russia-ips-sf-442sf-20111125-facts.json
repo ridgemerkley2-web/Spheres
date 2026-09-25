@@ -14,10 +14,10 @@
   "source_response_checked_in": false,
   "stability_check": "Dossier: First retrieved 2026-09-24T21:54Z; re-downloaded 2026-09-24T22:47:29Z (byte-identical: 24040 bytes, same SHA-256). Independent check: re-downloaded at 2026-09-24T23:04:57Z-23:07:53Z and with a cache-busting query at 23:34Z; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T00:38:53Z (24,040 bytes); identical SHA-256.",
   "portal_card_response": {
-    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=442-%D1%D4&a8type=1&sort=7&page=firstlast&lstsize=50",
-    "bytes": 59211,
-    "sha256": "ee5074acbfe1eee43c8212b043b66b6ffda98d136c8fef066821d54fc207b1a7",
-    "note": "Number search listing with status and publication citations."
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=442-%D1%D4&a8type=1&a7type=4&a7from=25.11.2011&a7to=25.11.2011&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3408,
+    "sha256": "21e3aa980a4359c048b6121a07b4583765a3ac3b71d361da3d608700606f3bc3",
+    "note": "Date-restricted search card (one hit), status 'Действует без изменений', citing Sobranie zakonodatelstva RF 2011 No. 49 art. 7071 (Part V), Parlamentskaya Gazeta 25.11.2011, the official portal 25.11.2011 No. 0001201111250007 and Rossiyskaya Gazeta 26.11.2011. Identical bytes at 2026-09-25T01:31Z, 02:03Z and 02:14Z and with a cache-busting query. The unrestricted number search (a8=442-СФ only) lists every year's 442-СФ and grows each year, so it is not used."
   },
   "facsimile_responses": [
     {

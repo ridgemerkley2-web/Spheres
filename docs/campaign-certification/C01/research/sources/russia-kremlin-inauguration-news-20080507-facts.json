@@ -21,12 +21,6 @@
       "bytes": 4075,
       "sha256": "15444e0555b7c4993e5ff000c273defc0dc930de995e3727bea6fe8606607612",
       "note": "Live \"text version\" read over HTTP on 24 September 2026 (HTTPS to kremlin.ru failed on port 443); same text. Its last line references /static/js/item_copy.js?<build hash>, which changes when the site is redeployed, so this live response is stable only between deployments. No Internet Archive capture of the copy URL exists. An alternate live response only, never the recorded identity: it carries a changing site template and may drift; identical on this packet's retrieval at 2026-09-25T00:37:19Z."
-    },
-    {
-      "url": "http://kremlin.ru/events/president/news/4",
-      "bytes": 58042,
-      "sha256": "a68c7e489f8c58b92aab8d8b78aaf1fa8900a697040343acc7aca6d821ef43ed",
-      "note": "Live full page, identical on two plain downloads 13 minutes apart, but it carries a rotating \"promoted\" block and current titles of persons, so it is not recorded as the source response. An alternate live response only, never the recorded identity: it carries a changing site template and may drift; not reproduced on this packet's retrieval (connection refused or a changed page)."
     }
   ],
   "provenance_note": "Raw Internet Archive capture (id_ form) of http://www.kremlin.ru/events/president/news/4, captured at 2026-03-12T20:43:11Z, before the 7 September 2026 cutoff; the id_ form replays the archived bytes unchanged and is used because kremlin.ru refused HTTPS from this environment and its live pages carry a changing site template (footer year, menus, promoted blocks), so the live page is not a stable identity. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
