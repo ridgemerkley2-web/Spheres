@@ -8,7 +8,7 @@
   "source_response_bytes": 1829092,
   "source_response_sha256": "395e155d2c05f83c2e51380e9181769dd48b73e7f1ca7e698d865f9094d28822",
   "source_response_checked_in": false,
-  "provenance_note": "Official file from the Senate's document service, a static response. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "provenance_note": "Official file from the Senate's document service, a static response. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet. For CLAUDE-C01-17, the independent check's cache-busted downloads on 24 September 2026 (22:37:51-22:38:51 UTC, Age 0, from the origin) match the recorded byte count and SHA-256; plain downloads within 30 minutes of another may be edge-cache copies (max-age 1800), so reviewers should add a cache-busting query or wait, and rows keyed to br_vice_president were added; the accessed_date stays CLAUDE-C01-10's.",
   "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
   "scope_note": "Born-digital Diário do Congresso Nacional issue from the Senate's diary store (viewer https://legis.senado.leg.br/diarios/ver/1398) with facsimiles of the diplomas, the commitment forms and the signed termo; PDF page numbers equal printed page numbers. The Chamber's partial three-page copy is a lead only.",
   "visual_review": {
@@ -17,7 +17,13 @@
       8,
       9
     ],
-    "method": "PDF pages 4, 8 and 9 rendered and read (the TSE diploma, declaration of posse and termo, the signed termo); the opening (page 3) and Lula's address (pages 10-15) read from the text layer."
+    "method": "PDF pages 4, 8 and 9 rendered and read (the TSE diploma, declaration of posse and termo, the signed termo); the opening (page 3) and Lula's address (pages 10-15) read from the text layer. CLAUDE-C01-17 (br_vice_president rows): PDF pages 3 (Mesa and opening), 5 (the Vice-President's TSE diploma, printed sideways), 7 (his oath and signed termo de compromisso) and 9 (signed termo de posse) rendered and read; pages 8 (declaration and typed termo) and 10 (salutation) read from the text layer.",
+    "c01_17_pdf_pages_one_based": [
+      3,
+      5,
+      7,
+      9
+    ]
   },
   "rows": [
     {
@@ -131,7 +137,119 @@
         "printed_page": 10,
         "section": "Lula's address after the salutation ('Quatro anos atrás, nesta Casa, em um 1º de janeiro, vivi a experiência mais importante de minha vida: a de assumir a Presidência do meu País')"
       }
+    },
+    {
+      "claim_id": "br_alencar_styled_incumbent_opening_20070101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-05",
+      "role_id": "br_vice_president",
+      "holder_name": "José Alencar",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "styled_incumbent_before_posse",
+      "attested_on": "2007-01-01",
+      "text": "At the opening of the solemn joint session of 1 January 2007 (16:15), the Mesa composition places \"o Vice-Presidente da República, Senhor José Alencar Gomes da Silva\" at the left of the Congress President.",
+      "locator": {
+        "pdf_page": 3,
+        "printed_page": 3,
+        "section": "Mesa composition in italics"
+      }
+    },
+    {
+      "claim_id": "br_alencar_reelected_20061029",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-05",
+      "role_id": "br_vice_president",
+      "holder_name": "José Alencar",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "popular_election",
+      "attested_on": "2006-10-29",
+      "text": "The Congress record states that Lula and José Alencar Gomes da Silva were re-elected on 29 October 2006; the reproduced TSE diploma says José Alencar Gomes da Silva, candidate of the A Força do Povo coalition (PT, PRB, PC do B), was re-elected Vice-President of the Republic by the will expressed at the polls on 29 October 2006.",
+      "locator": {
+        "pdf_page": 3,
+        "printed_page": 3,
+        "section": "Opening by Renan Calheiros (\"reeleitos em 29 de outubro de 2006\"); diploma on p. 5; termo on p. 8"
+      }
+    },
+    {
+      "claim_id": "br_alencar_diplomado_tse_20061214",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-05",
+      "role_id": "br_vice_president",
+      "holder_name": "José Alencar",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "diplomacao",
+      "attested_on": "2006-12-14",
+      "text": "The reproduced TSE diploma, dated Brasília 14 December 2006 and signed by Minister Marco Aurélio as President of the Court, qualifies José Alencar Gomes da Silva for a new investiture in the office of Vice-President before the National Congress on 1 January 2007; the opening and termo date the diplomação to 14 December 2006.",
+      "locator": {
+        "pdf_page": 5,
+        "printed_page": 5,
+        "section": "Facsimile of the Vice-President's TSE diploma, printed sideways (\"Brasília, quatorze de dezembro de dois mil e seis\")"
+      }
+    },
+    {
+      "claim_id": "br_alencar_oath_before_congress_20070101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-05",
+      "role_id": "br_vice_president",
+      "holder_name": "José Alencar",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "oath_of_office",
+      "attested_on": "2007-01-01",
+      "text": "After Lula, José Alencar Gomes da Silva recited the constitutional commitment before the Congress; the record reproduces his signed termo de compromisso under article 78, \"prestado em 1º de janeiro de 2007\", naming him as re-elected to the office of Vice-President of the Republic on 29 October 2006.",
+      "locator": {
+        "pdf_page": 7,
+        "printed_page": 7,
+        "section": "\"O SR. JOSÉ ALENCAR GOMES DA SILVA - Prometo manter...\"; boxed facsimile \"TERMO DE COMPROMISSO ... PRESTADO EM 1º DE JANEIRO DE 2007\""
+      }
+    },
+    {
+      "claim_id": "br_alencar_posse_declared_20070101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-05",
+      "role_id": "br_vice_president",
+      "holder_name": "José Alencar",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "posse_declared",
+      "attested_on": "2007-01-01",
+      "text": "Renan Calheiros declared Luiz Inácio Lula da Silva and José Alencar Gomes da Silva empossados as President and Vice-President of the Federative Republic of Brazil respectively, for the period 1 January 2007 to 31 December 2010; the session was opened to give posse to the two, re-elected and diplomados \"para o período a iniciar-se nesta data\".",
+      "locator": {
+        "pdf_page": 8,
+        "printed_page": 8,
+        "section": "Left column: \"Declaro empossados nos cargos de Presidente e Vice-Presidente da República Federativa do Brasil, respectivamente, ... para o período de 1º de janeiro de 2007 a 31 de dezembro de 2010\"; opening on p. 3"
+      }
+    },
+    {
+      "claim_id": "br_alencar_termo_de_posse_20070101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-05",
+      "role_id": "br_vice_president",
+      "holder_name": "José Alencar",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "posse_record",
+      "attested_on": "2007-01-01",
+      "text": "The joint termo de posse records that at 16:00 on 1 January 2007, before the National Congress in solemn joint session, Luiz Inácio Lula da Silva and José Alencar Gomes da Silva were solemnly empossados under article 78 of the Constitution as President and Vice-President respectively, re-elected on 29 October 2006 and diplomados on 14 December 2006, for the period 1 January 2007 to 31 December 2010.",
+      "locator": {
+        "pdf_page": 8,
+        "printed_page": 8,
+        "section": "Typed termo (both columns); signed facsimile on p. 9"
+      }
+    },
+    {
+      "claim_id": "br_alencar_saluted_vice_president_lula_address_20070101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-05",
+      "role_id": "br_vice_president",
+      "holder_name": "José Alencar",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2007-01-01",
+      "text": "Opening his address after the posse, Lula salutes \"Exmo. Sr. José Alencar, Vice-Presidente da República\", and later says that he has at his side, as in 2003, José Alencar, whose collaboration eased the tasks of the past four years, and that it will be so in the government now beginning.",
+      "locator": {
+        "pdf_page": 10,
+        "printed_page": 10,
+        "section": "Salutation of Lula's address; the passage \"Tenho ao meu lado, como em 2003, o amigo e companheiro José Alencar\" follows on the same page"
+      }
     }
   ],
-  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 (rows with role_id br_president) and Vice-President observations for CLAUDE-C01-17 (rows with role_id br_vice_president). Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, the Vice-President's succession, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. The Vice-President's exercise of the office recorded by CLAUDE-C01-10 stays on br_president rows; ministers and party offices are excluded."
 }

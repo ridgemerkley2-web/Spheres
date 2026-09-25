@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_planalto_lei_8469_19921005",
+  "source_url": "https://web.archive.org/web/20081014095729id_/http://www.planalto.gov.br/ccivil_03/LEIS/L8469.htm",
+  "original_url": "http://www.planalto.gov.br/ccivil_03/LEIS/L8469.htm",
+  "archive_capture_utc": "2008-10-14T09:57:29Z",
+  "accessed_date": "2026-09-24",
+  "published_date": "1992-10-06",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 5013,
+  "source_response_sha256": "5843b0cb78f331fc7f75ce834b2d0771c90ad6d29930b99f42f687d6ea500d57",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2008-10-14T09:57:29Z; that form replays the archived bytes unchanged and is used in place of the live page. Found by the independent check, which downloaded it on 24 September 2026 at 22:57 and 23:06 UTC with identical bytes; downloaded again for this packet at 00:57 UTC on 25 September (17:57 on 24 September, local), about two hours later, with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Presidency's consolidated legislation page, captured 14 October 2008 (text/html with no charset; windows-1252 bytes; original Last-Modified 9 January 2008); the page notes the DOU of 6 October 1992.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read (heading, enacting formula, dateline, signature block and DOU note); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "br_itamar_vp_exercising_lei_8469_19921005",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-03",
+      "role_id": "br_vice_president",
+      "holder_name": "Itamar Franco",
+      "role_title": "Vice-President of the Republic in exercise of the office of President",
+      "event_kind": "vice_president_exercising_office",
+      "attested_on": "1992-10-05",
+      "text": "Law No. 8.469 of 5 October 1992, creating the Regional Labour Prosecutor's Office of the 23rd Region, is sanctioned by 'O VICE-PRESIDENTE DA REPÚBLICA no exercício do cargo de PRESIDENTE DA REPÚBLICA', dated Brasília, 5 October 1992, and signed Itamar Franco (countersigned Maurício Corrêa); the page notes publication in the DOU of 6 October 1992.",
+      "locator": {
+        "item": "enacting formula; closing 'Brasília, 5 de outubro de 1992'; signature block; DOU note"
+      }
+    }
+  ],
+  "bounded_scope": "Vice-President observations for CLAUDE-C01-17 only (role br_vice_president of br_presidency). Election, diplomação, oath, posse, termo de posse, same-session styling, the Vice-President's exercise of the Presidency, his succession to the Presidency, vacancy and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Ministers and party offices are excluded; the office of President is CLAUDE-C01-10's br_president role."
+}

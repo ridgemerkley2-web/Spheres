@@ -8,7 +8,7 @@
   "source_response_bytes": 397945,
   "source_response_sha256": "dfe8e27ab3045795d36504ed15aa4ef85a914cebe42682756e1a0cd2ba020d33",
   "source_response_checked_in": false,
-  "provenance_note": "Official file from the Senate's document service, a static response. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "provenance_note": "Official file from the Senate's document service, a static response. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet. For CLAUDE-C01-17, the researcher and the independent check downloaded it again on 24 September 2026, including with cache-busting queries (22:33, 22:43 and 23:05 UTC), with the same byte count and SHA-256, and rows keyed to br_vice_president were added; the accessed_date stays CLAUDE-C01-10's.",
   "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
   "scope_note": "Scanned Diário do Congresso Nacional issue from the Senate's diary store (viewer https://legis.senado.leg.br/diarios/ver/14742). The special edition of 29 December 1992 that first printed the letter is not in the archive.",
   "visual_review": {
@@ -16,7 +16,11 @@
       3,
       6
     ],
-    "method": "PDF pages 3 (the handwritten resignation letter) and 6 (the handwritten declaration and the termo de posse) rendered and read at high zoom; pages 1, 4 and 5 read from the text layer."
+    "method": "PDF pages 3 (the handwritten resignation letter) and 6 (the handwritten declaration and the termo de posse) rendered and read at high zoom; pages 1, 4 and 5 read from the text layer. CLAUDE-C01-17 (br_vice_president rows): PDF pages 3 (declaration of vacancy of the office of President and the announced notification of the Vice-President) and 6 (handwritten declaration and termo) rendered and read; pages 1 and 4 read from the text layer.",
+    "c01_17_pdf_pages_one_based": [
+      3,
+      6
+    ]
   },
   "rows": [
     {
@@ -114,7 +118,39 @@
         "printed_page": 4814,
         "item": "É a seguinte a declaração recebida (handwritten)"
       }
+    },
+    {
+      "claim_id": "br_itamar_vp_notification_announced_19921229",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-03",
+      "role_id": "br_vice_president",
+      "holder_name": "Itamar Franco",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "vice_president_notification_announced",
+      "attested_on": "1992-12-29",
+      "text": "At the 2nd joint session of 29 December 1992 (11:30-11:50), after Collor's letter was read and the office of President declared vacant, the President of Congress, Senator Mauro Benevides, said that in consequence he would inform the Vice-President of the Republic, Dr. Itamar Franco, that he must appear before Congress at 12:30 that day to take the oath as President of the Republic.",
+      "locator": {
+        "pdf_page": 3,
+        "printed_page": 4811,
+        "item": "'Em conseqüência da vacância agora proclamada, irei cientificar o Vice-Presidente da República, Dr. Itamar Franco, de que deve comparecer hoje ao Congresso Nacional, às 12h30min'"
+      }
+    },
+    {
+      "claim_id": "br_itamar_vp_invested_as_president_19921229",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-03",
+      "role_id": "br_vice_president",
+      "holder_name": "Itamar Franco",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "vice_president_succeeds_to_presidency",
+      "attested_on": "1992-12-29",
+      "text": "The termo de posse records that at 12:30 on 29 December 1992 Itamar Augusto Cautiero Franco, Vice-President of the Republic, elected in the second round on 17 December 1989, appeared before the National Congress in joint session to be invested, under Article 79 of the Constitution, in the office of President of the Republic by virtue of the resignation of Fernando Affonso Collor de Mello that day, and took the oath under Article 78.",
+      "locator": {
+        "pdf_page": 6,
+        "printed_page": 4814,
+        "item": "Termo de posse do Exmo Sr. Itamar Augusto Cautiero Franco no cargo de Presidente da República: 'compareceu o Sr. Dr. Itamar Augusto Cautiero Franco, Vice-Presidente da República ... a fim de ser investido, de acordo com o art. 79 ...'"
+      }
     }
   ],
-  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 (rows with role_id br_president) and Vice-President observations for CLAUDE-C01-17 (rows with role_id br_vice_president). Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, the Vice-President's succession, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. The Vice-President's exercise of the office recorded by CLAUDE-C01-10 stays on br_president rows; ministers and party offices are excluded."
 }

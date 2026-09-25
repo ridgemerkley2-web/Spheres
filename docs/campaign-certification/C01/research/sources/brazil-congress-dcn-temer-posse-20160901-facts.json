@@ -8,7 +8,7 @@
   "source_response_bytes": 8585228,
   "source_response_sha256": "60e2c85c00bf0215c934de795ca0c98a107ab9fc6bfe8ec29128032241824195",
   "source_response_checked_in": false,
-  "provenance_note": "Official file from the Senate's document service, a static response. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "provenance_note": "Official file from the Senate's document service, a static response. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet. For CLAUDE-C01-17, the researcher downloaded it again on 24 September 2026 at 22:43 UTC and the independent check 74-85 minutes later, each with the same byte count and SHA-256, and rows keyed to br_vice_president were added; the accessed_date stays CLAUDE-C01-10's.",
   "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
   "scope_note": "Complete 30-page extraordinary Diário do Congresso Nacional issue from the Senate's diary store (viewer https://legis.senado.leg.br/diarios/ver/20556; dataSessao 2016-08-31, dataPublicacao 2016-08-31; verification code 296540C200135FE0).",
   "visual_review": {
@@ -16,7 +16,10 @@
       4,
       6
     ],
-    "method": "PDF pages 4 (minutes) and 6 (signed termo de posse) rendered and read; pages 1, 3 and 5 read from the text layer."
+    "method": "PDF pages 4 (minutes) and 6 (signed termo de posse) rendered and read; pages 1, 3 and 5 read from the text layer. CLAUDE-C01-17 (br_vice_president rows): PDF page 6 (the signed termo de posse) rendered and read; pages 3, 4 and 5 (summary, minutes and the termo read into the record) read from the text layer.",
+    "c01_17_pdf_pages_one_based": [
+      6
+    ]
   },
   "rows": [
     {
@@ -62,7 +65,22 @@
         "pdf_page": 4,
         "section": "'Compõem a Mesa com esta Presidência'"
       }
+    },
+    {
+      "claim_id": "br_temer_vp_succeeds_art79_termo_20160831",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-07",
+      "role_id": "br_vice_president",
+      "holder_name": "Michel Temer",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "vice_president_succeeds_to_presidency",
+      "attested_on": "2016-08-31",
+      "text": "The Termo de Posse read into the record, and signed, states that at 16:00 on 31 August 2016, before Congress in joint session in the Senate chamber, 'o Senhor Michel Temer, Vice-Presidente da República' appeared to be invested under art. 79 of the Constitution in the office of President of the Republic by virtue of the vacancy that occurred on 31 August 2016, and took the oath.",
+      "locator": {
+        "pdf_pages": "4-5 (read into the record), 6 (signed termo)",
+        "section": "'Termo de Posse do Excelentíssimo Senhor Michel Temer, no cargo de Presidente da República'"
+      }
     }
   ],
-  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 (rows with role_id br_president) and Vice-President observations for CLAUDE-C01-17 (rows with role_id br_vice_president). Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, the Vice-President's succession, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. The Vice-President's exercise of the office recorded by CLAUDE-C01-10 stays on br_president rows; ministers and party offices are excluded."
 }

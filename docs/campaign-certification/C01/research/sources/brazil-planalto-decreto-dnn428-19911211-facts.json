@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_planalto_dnn428_19911211",
+  "source_url": "https://web.archive.org/web/20240724055151id_/http://planalto.gov.br/CCIVIL_03/DNN/Anterior_a_2000/1991/Dnn428.htm",
+  "original_url": "http://planalto.gov.br/CCIVIL_03/DNN/Anterior_a_2000/1991/Dnn428.htm",
+  "archive_capture_utc": "2024-07-24T05:51:51Z",
+  "accessed_date": "2026-09-24",
+  "published_date": "1991-12-12",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 5934,
+  "source_response_sha256": "02f18ec05b4f1a891baa02e64869b2171edbbd89a3dc3ee0d9cfab661d193612",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2024-07-24T05:51:51Z; that form replays the archived bytes unchanged and is used in place of the live page. Found by the independent check, which downloaded it on 24 September 2026 at 22:58 and 23:07 UTC with identical bytes; downloaded again for this packet at 00:57 UTC on 25 September (17:57 on 24 September, local), about two hours later, with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Presidency's legislation page for an unnumbered decree of 11 December 1991 (a supplementary credit for the Presidency), captured 24 July 2024 (text/html with no charset; windows-1252 bytes; original Last-Modified 28 May 2021); the page notes the DOU of 12 December 1991 and a later revocation by Decree No. 10.646/2021.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read (heading, enacting formula, dateline, signature block and DOU note); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "br_itamar_vp_exercising_dnn428_19911211",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-03",
+      "role_id": "br_vice_president",
+      "holder_name": "Itamar Franco",
+      "role_title": "Vice-President of the Republic in exercise of the office of President",
+      "event_kind": "vice_president_exercising_office",
+      "attested_on": "1991-12-11",
+      "text": "An unnumbered decree of 11 December 1991, opening a supplementary credit of Cr$ 2,578,453,000.00 in favour of the Presidency, is issued by 'O VICE-PRESIDENTE DA REPÚBLICA, no exercício do cargo de PRESIDENTE DA REPÚBLICA', dated Brasília, 11 December 1991, and signed Itamar Franco (countersigned Marcílio Marques Moreira); the page notes publication in the DOU of 12 December 1991.",
+      "locator": {
+        "item": "heading 'DECRETO DE 11 DE DEZEMBRO DE 1991'; enacting formula; closing 'Brasília, 11 de dezembro de 1991'; signature block; DOU note"
+      }
+    }
+  ],
+  "bounded_scope": "Vice-President observations for CLAUDE-C01-17 only (role br_vice_president of br_presidency). Election, diplomação, oath, posse, termo de posse, same-session styling, the Vice-President's exercise of the Presidency, his succession to the Presidency, vacancy and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Ministers and party offices are excluded; the office of President is CLAUDE-C01-10's br_president role."
+}

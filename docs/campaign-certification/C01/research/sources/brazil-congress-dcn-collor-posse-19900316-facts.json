@@ -8,7 +8,7 @@
   "source_response_bytes": 1255764,
   "source_response_sha256": "838abf03a2ef59781aabc66121dd9fd938ed78ebd15df36a6f0c02c70c7b6645",
   "source_response_checked_in": false,
-  "provenance_note": "Official file from the Senate's document service, a static response. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "provenance_note": "Official file from the Senate's document service, a static response. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet. For CLAUDE-C01-17, the researcher and the independent check downloaded it again on 24 September 2026, including with cache-busting queries (22:33, 22:43 and 23:05 UTC), with the same byte count and SHA-256, and rows keyed to br_vice_president were added; the accessed_date stays CLAUDE-C01-10's.",
   "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
   "scope_note": "Scanned Diário do Congresso Nacional issue from the Senate's diary store (viewer https://legis.senado.leg.br/diarios/ver/14789).",
   "visual_review": {
@@ -17,7 +17,11 @@
       3,
       4
     ],
-    "method": "PDF pages 1 (masthead and summary), 3 (opening and oath) and 4 (declaration, termo de posse and the President's address) rendered and read; the address passage was also read in the text layer."
+    "method": "PDF pages 1 (masthead and summary), 3 (opening and oath) and 4 (declaration, termo de posse and the President's address) rendered and read; the address passage was also read in the text layer. CLAUDE-C01-17 (br_vice_president rows): PDF page 4 (declaration of posse and termo) and the right half of page 3 (opening and oath) rendered and read; page 9 (closing) read from the text layer.",
+    "c01_17_pdf_pages_one_based": [
+      3,
+      4
+    ]
   },
   "rows": [
     {
@@ -99,7 +103,93 @@
         "printed_page": 301,
         "item": "opening statement of the President of Congress"
       }
+    },
+    {
+      "claim_id": "br_itamar_vp_second_round_recited_19891217",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-02",
+      "role_id": "br_vice_president",
+      "holder_name": "Itamar Franco",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "popular_election",
+      "attested_on": "1989-12-17",
+      "text": "Opening the solemn joint session of 15 March 1990, the President of Congress, Senator Nelson Carneiro, stated that it was convened to give posse to the President and Vice-President of the Republic elected in the second round on 17 December 1989 and certified ('diplomados') by the Superior Electoral Court for the period 15 March 1990 to 1 January 1995, naming Fernando Affonso Collor de Mello and Itamar Augusto Cautiero Franco.",
+      "locator": {
+        "pdf_page": 3,
+        "printed_page": 301,
+        "item": "O SR. PRESIDENTE (Nelson Carneiro) - Declaro aberta a sessão solene ... destinada a dar posse ao Presidente e Vice-Presidente da República"
+      }
+    },
+    {
+      "claim_id": "br_itamar_vp_oath_before_congress_19900315",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-02",
+      "role_id": "br_vice_president",
+      "holder_name": "Itamar Franco",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "oath_of_office",
+      "attested_on": "1990-03-15",
+      "text": "After the session resumed (suspended 9:43-9:46), the President and the Vice-President-elect were seated at the Mesa, the Vice-President to the left of the President of the Senate, and both took the constitutional oath ('Prometo manter, defender e cumprir a Constituição ...') before the joint session.",
+      "locator": {
+        "pdf_page": [
+          3,
+          4
+        ],
+        "printed_page": [
+          301,
+          302
+        ],
+        "item": "'Os Srs. Presidente e Vice-Presidente da República irão prestar o compromisso constitucional'; the oath text continues on printed page 302"
+      }
+    },
+    {
+      "claim_id": "br_itamar_vp_posse_declared_19900315",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-02",
+      "role_id": "br_vice_president",
+      "holder_name": "Itamar Franco",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "posse_declared",
+      "attested_on": "1990-03-15",
+      "text": "After the oath, the President of Congress declared Fernando Affonso Collor de Mello and Itamar Augusto Cautiero Franco invested ('Declaro empossados') as President and Vice-President of the Federative Republic of Brazil for the period 15 March 1990 to 1 January 1995.",
+      "locator": {
+        "pdf_page": 4,
+        "printed_page": 302,
+        "item": "O SR. PRESIDENTE (Nelson Carneiro) - Declaro empossados, para o período de 15 de março de 1990 a 1º de janeiro de 1995, como Presidente e Vice-Presidente ..."
+      }
+    },
+    {
+      "claim_id": "br_itamar_vp_termo_de_posse_19900315",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-02",
+      "role_id": "br_vice_president",
+      "holder_name": "Itamar Franco",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "posse_record",
+      "attested_on": "1990-03-15",
+      "text": "The termo de posse read by the First Secretary and signed at the session records that at 10:00 on 15 March 1990, before the National Congress in joint session in the Chamber's plenary, Fernando Affonso Collor de Mello and Itamar Augusto Cautiero Franco were solemnly invested under Article 78 of the Constitution in the offices of President and Vice-President of the Republic, respectively, for the period 15 March 1990 to 1 January 1995, and took the prescribed oath.",
+      "locator": {
+        "pdf_page": 4,
+        "printed_page": 302,
+        "item": "Termo de posse dos Excelentíssimos senhores Fernando Affonso Collor de Mello e Itamar Augusto Cautiero Franco, nos cargos, respectivamente, de Presidente e Vice-Presidente da República"
+      }
+    },
+    {
+      "claim_id": "br_itamar_vp_diplomacao_recited_19891230",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-02",
+      "role_id": "br_vice_president",
+      "holder_name": "Itamar Franco",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "diplomacao",
+      "attested_on": "1989-12-30",
+      "text": "The same termo recites that the two had been elected in the second round on 17 December of the previous year and certified ('diplomados') by the Superior Electoral Court on 30 December of that year.",
+      "locator": {
+        "pdf_page": 4,
+        "printed_page": 302,
+        "item": "Termo de posse: 'diplomados, pelo Tribunal Superior Eleitoral, a trinta de dezembro do mesmo ano'"
+      }
     }
   ],
-  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 (rows with role_id br_president) and Vice-President observations for CLAUDE-C01-17 (rows with role_id br_vice_president). Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, the Vice-President's succession, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. The Vice-President's exercise of the office recorded by CLAUDE-C01-10 stays on br_president rows; ministers and party offices are excluded."
 }

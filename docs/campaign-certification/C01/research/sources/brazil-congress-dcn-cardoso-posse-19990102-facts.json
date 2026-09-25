@@ -8,7 +8,7 @@
   "source_response_bytes": 939787,
   "source_response_sha256": "b7c0283e5691a42520189f974b743c548c2dd8db56d6a9a090b8e20e4a2f2abb",
   "source_response_checked_in": false,
-  "provenance_note": "Official file from the Senate's document service, a static response. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "provenance_note": "Official file from the Senate's document service, a static response. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet. For CLAUDE-C01-17, the independent check's cache-busted downloads on 24 September 2026 (22:37:51-22:38:51 UTC, Age 0, from the origin) match the recorded byte count and SHA-256; plain downloads within 30 minutes of another may be edge-cache copies (max-age 1800), so reviewers should add a cache-busting query or wait, and rows keyed to br_vice_president were added; the accessed_date stays CLAUDE-C01-10's.",
   "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
   "scope_note": "Scanned Diário do Congresso Nacional issue from the Senate's diary store (viewer https://legis.senado.leg.br/diarios/ver/14239); the TSE diplomas are reproduced as facsimiles on printed pages 00004-00005.",
   "visual_review": {
@@ -19,7 +19,15 @@
       9,
       13
     ],
-    "method": "PDF pages 3, 4, 6, 9 and the upper half of 13 rendered and read (opening, the TSE diploma, oath and termo, declaration of posse, the Congress President's address); page 5 read from the text layer."
+    "method": "PDF pages 3, 4, 6, 9 and the upper half of 13 rendered and read (opening, the TSE diploma, oath and termo, declaration of posse, the Congress President's address); page 5 read from the text layer. CLAUDE-C01-17 (br_vice_president rows): PDF pages 3 (Mesa and opening), 5 (the Vice-President's TSE diploma), 6 (oaths and typed termo), 7-8 (handwritten original termo) and 9 (signatories, declaration of posse, Cardoso's salutation) rendered and read.",
+    "c01_17_pdf_pages_one_based": [
+      3,
+      5,
+      6,
+      7,
+      8,
+      9
+    ]
   },
   "rows": [
     {
@@ -117,7 +125,119 @@
         "printed_page": "00013",
         "section": "Address of Antonio Carlos Magalhães, left column (\"no momento em que assume o segundo mandato\"; \"no mandato que se findou ... neste que hoje se inicia\")"
       }
+    },
+    {
+      "claim_id": "br_maciel_styled_incumbent_opening_19990101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-04",
+      "role_id": "br_vice_president",
+      "holder_name": "Marco Maciel",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "styled_incumbent_before_posse",
+      "attested_on": "1999-01-01",
+      "text": "At the opening of the solemn joint session of 1 January 1999 (17:00), the Mesa composition places \"o Vice-Presidente da República Marco Antonio de Oliveira Maciel\" at the left of the Congress President, and the Congress President then invites the President and, after him, \"o Senhor Vice-Presidente da República\" to take the constitutional commitment.",
+      "locator": {
+        "pdf_page": 3,
+        "printed_page": "00003",
+        "section": "Mesa composition in italics; invitation at the head of pdf p. 6 (\"Em seguida, o Senhor Vice-Presidente da República\")"
+      }
+    },
+    {
+      "claim_id": "br_maciel_reelected_first_round_19981004",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-04",
+      "role_id": "br_vice_president",
+      "holder_name": "Marco Maciel",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "popular_election",
+      "attested_on": "1998-10-04",
+      "text": "The Congress record states that the President and the Vice-President, Fernando Henrique Cardoso and Marco Antonio de Oliveira Maciel, were re-elected in the first round on 4 October 1998; the reproduced TSE diploma says the will of the people was expressed at the polls on 4 October 1998.",
+      "locator": {
+        "pdf_page": 3,
+        "printed_page": "00003",
+        "section": "Summary and opening by Antonio Carlos Magalhães (\"reeleitos em primeiro turno a 4 de outubro de 1998\"); diploma on pdf p. 5; termo on pdf p. 6"
+      }
+    },
+    {
+      "claim_id": "br_maciel_diplomado_tse_19981212",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-04",
+      "role_id": "br_vice_president",
+      "holder_name": "Marco Maciel",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "diplomacao",
+      "attested_on": "1998-12-12",
+      "text": "The record reproduces the Superior Electoral Court diploma, dated Brasília 12 December 1998 and signed by Minister Ilmar Galvão as President of the Court with the other ministers, stating that Marco Antônio de Oliveira Maciel was re-elected Vice-President of the Republic and qualifying him for a new investiture in the office before the National Congress on 1 January 1999; the opening and the termo date the diplomação to 12 December 1998.",
+      "locator": {
+        "pdf_page": 5,
+        "printed_page": "00005",
+        "section": "Facsimile of the Vice-President's TSE diploma (\"foi reeleito Vice-Presidente da República\"; \"Brasília, aos 12 de dezembro de 1998\")"
+      }
+    },
+    {
+      "claim_id": "br_maciel_oath_before_congress_19990101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-04",
+      "role_id": "br_vice_president",
+      "holder_name": "Marco Maciel",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "oath_of_office",
+      "attested_on": "1999-01-01",
+      "text": "After Cardoso, Marco Antonio de Oliveira Maciel recited the constitutional commitment before the Congress in the solemn joint session of 1 January 1999.",
+      "locator": {
+        "pdf_page": 6,
+        "printed_page": "00006",
+        "section": "Left column: \"O SR. MARCO ANTONIO DE OLIVEIRA MACIEL - Prometo manter, defender e cumprir a Constituição...\""
+      }
+    },
+    {
+      "claim_id": "br_maciel_posse_declared_19990101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-04",
+      "role_id": "br_vice_president",
+      "holder_name": "Marco Maciel",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "posse_declared",
+      "attested_on": "1999-01-01",
+      "text": "After the termo was signed, Antonio Carlos Magalhães declared Fernando Henrique Cardoso and Marco Antonio de Oliveira Maciel empossados as President and Vice-President of the Federative Republic of Brazil for the period 1 January 1999 to 31 December 2002; the session had been opened to give posse to the two, diplomados \"para o período a iniciar-se nesta data\".",
+      "locator": {
+        "pdf_page": 9,
+        "printed_page": "00009",
+        "section": "Left column: \"Declaro empossados nos cargos de Presidente e Vice-Presidente da República Federativa do Brasil ... para o período de 1º de janeiro de 1999 até 31 de dezembro de 2002\"; opening on pdf p. 3"
+      }
+    },
+    {
+      "claim_id": "br_maciel_termo_de_posse_19990101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-04",
+      "role_id": "br_vice_president",
+      "holder_name": "Marco Maciel",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "posse_record",
+      "attested_on": "1999-01-01",
+      "text": "The joint termo de posse, read by the First Secretary and reproduced in its handwritten original, records that at 17:00 on 1 January 1999, before the National Congress in joint session, Fernando Henrique Cardoso and Marco Antônio de Oliveira Maciel were solemnly empossados under article 78 of the Constitution as President and Vice-President respectively, re-elected in the first round on 4 October 1998 and diplomados on 12 December 1998, for the period 1 January 1999 to 31 December 2002; Maciel is listed among its signatories.",
+      "locator": {
+        "pdf_page": 6,
+        "printed_page": "00006",
+        "section": "Typed termo (both columns); handwritten original on pdf pp. 7-8; signatories on pdf p. 9 (\"Assinam o termo de posse os Senhores Fernando Henrique Cardoso, Marco Antonio de Oliveira Maciel, ...\")"
+      }
+    },
+    {
+      "claim_id": "br_maciel_saluted_vice_president_cardoso_address_19990101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-04",
+      "role_id": "br_vice_president",
+      "holder_name": "Marco Maciel",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1999-01-01",
+      "text": "Opening his address after the declaration of posse, Cardoso salutes \"Sr. Vice-Presidente da República, Dr. Marco Maciel\".",
+      "locator": {
+        "pdf_page": 9,
+        "printed_page": "00009",
+        "section": "Left column, salutation of Cardoso's address"
+      }
     }
   ],
-  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 (rows with role_id br_president) and Vice-President observations for CLAUDE-C01-17 (rows with role_id br_vice_president). Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, the Vice-President's succession, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. The Vice-President's exercise of the office recorded by CLAUDE-C01-10 stays on br_president rows; ministers and party offices are excluded."
 }

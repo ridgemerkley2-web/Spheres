@@ -1,0 +1,155 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_vpr_biografias_vice_presidentes_2024",
+  "source_url": "https://web.archive.org/web/20251207025501id_/https://www.gov.br/planalto/pt-br/vice-presidencia/acesso-a-informacao/institucional/biografia-dos-vice-presidentes-da-republica/biografias-vice-presidentes-versao-final.pdf",
+  "original_url": "https://www.gov.br/planalto/pt-br/vice-presidencia/acesso-a-informacao/institucional/biografia-dos-vice-presidentes-da-republica/biografias-vice-presidentes-versao-final.pdf",
+  "archive_capture_utc": "2025-12-07T02:55:01Z",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_pages_rendered_for_visual_review",
+  "source_response_bytes": 2129103,
+  "source_response_sha256": "ae0c5e07eea9fa87b431e597b43e81ce476ca04188585ba4d82e73314993327f",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2025-12-07T02:55:01Z; that form replays the archived bytes unchanged and is used in place of the live page. The researchers downloaded it on 24 September 2026 at 21:50, 22:32 and 22:56 UTC, and the independent check at 22:45 and 23:04 UTC; every download had the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A retrospective publication of the Vice-Presidency (60 pages; colophon Brasília, DF, Ascom/VPR, 2024; PDF modified 15 July 2025), captured by the Internet Archive on 7 December 2025, before the cutoff. Retrospective: its spans and its chronology are claims only, never boundaries. The live gov.br URL returns an F5 JavaScript challenge page, which was not bypassed; the July 2026 captures of the same URL are also challenge pages.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      6,
+      7,
+      47,
+      49,
+      55,
+      57,
+      59
+    ],
+    "method": "PDF pages 6-7 ('Cronologia sucessória' graphic, introduction and footnote), 47 (José Sarney), 49 (Itamar Franco), 55 (Michel Temer), 57 (Hamilton Mourão) and 59 (Geraldo Alckmin) rendered and read; pages 2-3 (colophon and index) read from the text layer. No photograph is reused."
+  },
+  "rows": [
+    {
+      "claim_id": "br_vpbio_vacancy_chronology_undated",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-01",
+      "role_id": "br_vice_president",
+      "holder_name": null,
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "retrospective_vacancy_statement",
+      "attested_on": null,
+      "text": "The publication's introduction says that since 1891 the Vice-Presidency has been held by 26 Vice-Presidents and that its succession chronology shows the office left vacant ('o cargo ficou vago') on ten occasions, by ascent to the Presidency following a vacancy or by a break in institutional order. Its 'Cronologia sucessória' graphic places José Sarney at 1985 followed by a grey segment before Itamar Franco at 1990, and a grey segment between 1992 and 1995 before the next Vice-President; a footnote says the graphic is a visual reference not proportional to time.",
+      "locator": {
+        "pdf_page": [
+          6,
+          7
+        ],
+        "printed_page": [
+          4,
+          5
+        ],
+        "item": "'CRONOLOGIA SUCESSÓRIA - Vice-Presidência da República'; introduction box; footnote (1) on pdf p. 7"
+      }
+    },
+    {
+      "claim_id": "br_vpbio_sarney_vp_span_19850315_19850421",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-01",
+      "role_id": "br_vice_president",
+      "holder_name": "José Sarney",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The profile of José Sarney gives his period as Vice-President as 15/03/1985 to 21/04/1985, with Tancredo de Almeida Neves as President, and says that Tancredo died before taking office and Sarney assumed the office on 21 April 1985.",
+      "locator": {
+        "pdf_page": 47,
+        "printed_page": 45,
+        "item": "header box '15/03/1985 a 21/04/1985'; paragraph 4"
+      }
+    },
+    {
+      "claim_id": "br_vpbio_itamar_vp_span_19900315_19921229",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-03",
+      "role_id": "br_vice_president",
+      "holder_name": "Itamar Franco",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The profile of Itamar Franco gives his period as Vice-President as 15/03/1990 to 29/12/1992, with Fernando Afonso Collor de Melo as President, and says that on Collor's removal by the impeachment process he assumed the office of President provisionally ('em caráter provisório') on 2 October 1992 and was confirmed ('efetivado') in it on 29 December 1992 after Collor's resignation.",
+      "locator": {
+        "pdf_page": 49,
+        "printed_page": 47,
+        "item": "header box '15/03/1990 a 29/12/1992'; paragraph 4"
+      }
+    },
+    {
+      "claim_id": "br_vpbio_temer_vp_span_20110101_20160831",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-07",
+      "role_id": "br_vice_president",
+      "holder_name": "Michel Temer",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The Vice-Presidency's profile of Michel Temer gives his period as Vice-President as 01/01/2011 to 31/08/2016, with Dilma Vana Rousseff as President; it says he was elected Vice-President in 2010 and re-elected in 2014, and that he assumed the Presidency 'definitivamente' on 31 August 2016 after the Senate approved the impeachment process and removed Rousseff.",
+      "locator": {
+        "pdf_page": 55,
+        "printed_page": 53,
+        "section": "header box '01/01/2011 a 31/08/2016'; paragraphs 3-4"
+      }
+    },
+    {
+      "claim_id": "br_vpbio_chronology_grey_segment_2016_2019",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-07",
+      "role_id": "br_vice_president",
+      "holder_name": null,
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "retrospective_chronology_depiction",
+      "attested_on": null,
+      "text": "In the Vice-Presidency's 'Cronologia sucessória' graphic, Michel Temer is placed at 2011 and a grey, unlabelled segment beginning at 2016 precedes Hamilton Mourão at 2019; footnote (1) says the illustration is a visual reference not proportional in time.",
+      "locator": {
+        "pdf_page": [
+          6,
+          7
+        ],
+        "printed_page": [
+          4,
+          5
+        ],
+        "section": "'CRONOLOGIA SUCESSÓRIA - Vice-Presidência da República', bottom rows (2011, 2016, 2019, 2023) on pdf p. 6; footnote (1) on pdf p. 7"
+      }
+    },
+    {
+      "claim_id": "br_vpbio_mourao_vp_span_20190101_20221231",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-08",
+      "role_id": "br_vice_president",
+      "holder_name": "Hamilton Mourão",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The profile of Hamilton Mourão gives his period as Vice-President as 01/01/2019 to 31/12/2022, with Jair Messias Bolsonaro as President, and says the ticket was elected in the second round on 28 October 2018 and that on 1 January 2019 he became Vice-President of the Republic.",
+      "locator": {
+        "pdf_page": 57,
+        "printed_page": 55,
+        "section": "header box '01/01/2019 a 31/12/2022'; paragraph 3"
+      }
+    },
+    {
+      "claim_id": "br_vpbio_alckmin_vp_since_20230101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-09",
+      "role_id": "br_vice_president",
+      "holder_name": "Geraldo Alckmin",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The profile of Geraldo José Rodrigues Alckmin Filho says that since 1 January 2023 he is the 26th Vice-President of the Federative Republic of Brazil, elected in 2022 for the period 2023-2026 with President Luiz Inácio Lula da Silva; its header box gives 01/01/2023 to 31/12/2026, and the colophon lists him as Vice-President.",
+      "locator": {
+        "pdf_page": 59,
+        "printed_page": 57,
+        "section": "header box '01/01/2023 a 31/12/2026'; paragraphs 1 and 5; colophon on pdf p. 2"
+      }
+    }
+  ],
+  "bounded_scope": "Vice-President observations for CLAUDE-C01-17 only (role br_vice_president of br_presidency). Election, diplomação, oath, posse, termo de posse, same-session styling, the Vice-President's exercise of the Presidency, his succession to the Presidency, vacancy and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Ministers and party offices are excluded; the office of President is CLAUDE-C01-10's br_president role."
+}

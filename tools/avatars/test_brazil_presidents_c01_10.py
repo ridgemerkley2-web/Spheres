@@ -8,6 +8,10 @@ import unittest
 from urllib.parse import urlsplit
 
 import campaign_research as research
+# CLAUDE-C01-17 (stacked on this packet) adds the second role br_vice_president and appends its own claims to some of
+# these sources; its exact claim, source and event pins live in that packet's test and are reused here, so every
+# guard below stays exact for this packet's 48 sources and 112 claims.
+import test_brazil_vice_presidents_c01_17 as vp
 
 
 # Original response identity recorded in each extract: (bytes, sha256). Every new source is reproducible.
@@ -411,7 +415,8 @@ def presidency_rules(packet, rows):
     assert [i['id'] for i in packet['institutions']] == ['br_presidency'], 'exactly one presidency institution'
     presidency = packet['institutions'][0]
     assert presidency['kind'] == 'executive_institution' and presidency['lifecycle']['status'] == 'unknown'
-    assert [r['id'] for r in presidency['roles']] == [PR], 'exactly one role'
+    assert [(r['id'], r['title'], r['kind']) for r in presidency['roles']] == [
+        (PR, T_PR, 'head_of_state'), (vp.VP, vp.T_VPR, 'institutional_office')], 'exactly the two presidency roles'
     role = presidency['roles'][0]
     assert (role['title'], role['kind']) == (T_PR, 'head_of_state')
     heads = [r['id'] for e in packet['organizations'] + packet['institutions'] for r in e['roles']
@@ -501,7 +506,8 @@ class BrazilPresidentsTests(unittest.TestCase):
         cls.extracts = {sid: json.loads((research.ROOT / cls.sources[sid]['snapshot']['path']).read_text(encoding='utf-8'))
                         for sid in NEW_SOURCES}
         cls.rows = load_rows()
-        cls.new_claims = [c['id'] for sid in NEW_SOURCES for c in cls.sources[sid]['claims']]
+        # This packet's claims: every claim of its sources except CLAUDE-C01-17's appended ones (pinned exactly below).
+        cls.new_claims = [c['id'] for sid in NEW_SOURCES for c in cls.sources[sid]['claims'] if c['id'] not in vp.EVENTS]
         cls.report = (research.ROOT / REPORT).read_text(encoding='utf-8')
 
     def validate(self, packet=None):
@@ -515,18 +521,23 @@ class BrazilPresidentsTests(unittest.TestCase):
     def test_new_records_are_bounded_and_every_claim_is_classified(self):
         ids = self.validate()
         self.assertEqual((len(NEW_SOURCES), len(self.new_claims)), (48, 112))
-        self.assertEqual([s['id'] for s in self.packet['sources']], list(ORIGINAL_SOURCES) + NEW_SOURCES)
-        self.assertEqual((len(ids['entries']), len(ids['roles'])), (32, 1))
+        self.assertEqual([s['id'] for s in self.packet['sources']], list(ORIGINAL_SOURCES) + NEW_SOURCES + vp.NEW_SOURCES)
+        self.assertEqual((len(ids['entries']), len(ids['roles'])), (32, 2))
+        # Each source keeps this packet's claims first, followed by exactly CLAUDE-C01-17's appended claims, if any.
+        for sid in NEW_SOURCES:
+            ids_ = [c['id'] for c in self.sources[sid]['claims']]
+            self.assertEqual([c for c in ids_ if c not in vp.EVENTS] + vp.ADDED_TO_C01_10.get(sid, []), ids_, sid)
         # Every new claim is either a holder claim or a claim that never feeds a holder, never both.
         holder_claims = {cid for ids_ in HOLDER_CLAIMS for cid in ids_}
         self.assertEqual(len(NEVER_HOLDER), len(set(NEVER_HOLDER)))
         self.assertFalse(holder_claims & set(NEVER_HOLDER))
         self.assertEqual(holder_claims | set(NEVER_HOLDER), set(self.new_claims))
         self.assertEqual((len(holder_claims), len(NEVER_HOLDER)), (41, 71))
-        # Every new claim and source is cited by the institution and its one role, and by no organization.
-        self.assertEqual(self.presidency['claim_ids'], self.new_claims)
+        # Every new claim and source is cited by the institution and by br_president, and by no organization; the
+        # institution then cites CLAUDE-C01-17's claims and sources, exactly.
+        self.assertEqual(self.presidency['claim_ids'], self.new_claims + vp.C01_17_CLAIMS)
         self.assertEqual(self.role['claim_ids'], self.new_claims)
-        self.assertEqual(self.presidency['sources'], NEW_SOURCES)
+        self.assertEqual(self.presidency['sources'], NEW_SOURCES + vp.NEW_SOURCES)
         self.assertEqual(self.role['sources'], NEW_SOURCES)
         for entry in self.packet['organizations']:
             self.assertFalse(set(self.new_claims) & set(entry['claim_ids']), entry['id'])
@@ -534,7 +545,8 @@ class BrazilPresidentsTests(unittest.TestCase):
         # At most ten observations, each reported and each carrying rows.
         observations = re.findall(r'^### (BR-PRES-\d\d)\b', self.report, re.M)
         self.assertEqual(observations, [f'BR-PRES-{n:02d}' for n in range(1, 11)])
-        self.assertEqual({row['review_observation'] for row in self.rows.values()},
+        self.assertEqual(set(self.rows), set(self.new_claims) | set(vp.C01_17_CLAIMS))
+        self.assertEqual({self.rows[cid]['review_observation'] for cid in self.new_claims},
                          {f'BR-PRES-{n:02d}' for n in range(1, 11)})
         for stale in STALE_IDS:
             self.assertNotIn(stale, self.raw, stale)
@@ -658,12 +670,15 @@ class BrazilPresidentsTests(unittest.TestCase):
             for row, claim in zip(extract['rows'], source['claims']):
                 self.assertEqual((row['text'], row['locator'], row['attested_on']),
                                  (claim['text'], claim['locator'], claim.get('attested_on')))
-                self.assertEqual((row['observation_id'], row['role_id']), ('br_presidency', PR))
+                self.assertEqual((row['observation_id'], row['role_id']),
+                                 ('br_presidency', vp.VP if row['claim_id'] in vp.EVENTS else PR))
                 self.assertNotIn('name', row)
                 self.assertEqual(list(row), ['claim_id', 'observation_id', 'review_observation', 'role_id', 'holder_name',
                                              'role_title', 'event_kind', 'attested_on', 'text', 'locator'])
         self.assertEqual(len({self.sources[s]['snapshot']['path'] for s in NEW_SOURCES}), len(NEW_SOURCES))
-        self.assertEqual({cid: (row['attested_on'], row['event_kind']) for cid, row in self.rows.items()}, EVENTS)
+        self.assertEqual({cid: (row['attested_on'], row['event_kind']) for cid, row in self.rows.items()
+                          if cid not in vp.EVENTS}, EVENTS)
+        self.assertEqual(set(self.rows) - set(EVENTS), set(vp.EVENTS))
         for sid, stamp in ARCHIVED.items():
             source, extract = self.sources[sid], self.extracts[sid]
             url = urlsplit(source['url'])
@@ -786,7 +801,8 @@ class BrazilPresidentsTests(unittest.TestCase):
             ('declared period stored as a structure', lambda p: claim(p, 'br_temer_posse_declared_20160831').update(
                 period={'from': '2016-08-31', 'through': '2018-12-31'})),
             ('observation date without an in-office act (Sarney)', lambda p: holder(p, 0).update(attested_on='1990-03-15')),
-            ('second role', lambda p: p['institutions'][0]['roles'].append(dict(copy.deepcopy(role(p)), id='br_president_2'))),
+            ('third role (beside br_president and br_vice_president)',
+             lambda p: p['institutions'][0]['roles'].append(dict(copy.deepcopy(role(p)), id='br_president_2'))),
             ('second institution', lambda p: p['institutions'].append(dict(copy.deepcopy(p['institutions'][0]),
                                                                            id='br_presidency_2'))),
             ('head of state moved onto an organization', lambda p: p['organizations'][0]['roles'].append(
@@ -838,7 +854,7 @@ class BrazilPresidentsTests(unittest.TestCase):
         country = next(p for p in index['countries'] if p['nation'] == 'Brazil')
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
-        self.assertEqual((country['institution_observations'], country['role_observations']), (1, 1))
+        self.assertEqual((country['institution_observations'], country['role_observations']), (1, 2))
         self.assertEqual({w['status'] for w in index['work_orders'] if w['nation'] == 'Brazil'}, {'open'})
         self.assertFalse(index['c01_complete'])
 

@@ -1,0 +1,56 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_senado_den1_2016_autos_vol48",
+  "source_url": "https://legis.senado.leg.br/sdleg-getter/documento?dm=7749877",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "downloaded_official_pdf_and_pages_rendered_for_visual_review",
+  "source_response_bytes": 29934149,
+  "source_response_sha256": "72e1b1e6e629b9b59663f6dd74ed76a414af1febc8ef88fc3312206d946f4b90",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file from the Senate's document service, a stored scan (cache-control public, max-age 3600). The independent check downloaded it at 00:10 UTC, at 00:11 UTC with a cache-busting query and at 00:43 UTC on 25 September 2026 (24 September, local), 33 minutes after the first; this packet downloaded it again with a cache-busting query at 01:05 UTC (Age 0). Every complete download had the same byte count and SHA-256. Two quick transfers came back short with HTTP 200 (1,046 and 1,854 bytes missing): compare the size with the Content-Length and retry a short transfer. The local copy was deleted after hashing, text extraction and rendering. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Volume 48 of the Senate's complete case file for Denúncia nº 1/2016 (437-page scanned PDF with OCR, ScanPDFMaker, fixed CreationDate and ModDate 21 June 2018), linked from the matter page already recorded as CLAUDE-C01-10's br_senado_den1_2016_materia_20260508. PDF page 16 is folio 18.146, the filed copy of the Mandado de Notificação to the Vice-President (the same document the Senate publishes as the image temer.jpg, a lead); PDF page 17 is folio 18.147, the Termo de Juntada. Located by the independent check.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      16,
+      17
+    ],
+    "method": "PDF pages 16 (folio 18.146, the Mandado de Notificação) and 17 (folio 18.147, the Termo de Juntada) rendered and read; their text layers were also read. No signature is reproduced."
+  },
+  "rows": [
+    {
+      "claim_id": "br_temer_notified_to_assume_interim_20160512",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-07",
+      "role_id": "br_vice_president",
+      "holder_name": "Michel Temer",
+      "role_title": "Vice-President of the Republic in exercise of the office of President",
+      "event_kind": "vice_president_notified_to_exercise",
+      "attested_on": "2016-05-12",
+      "text": "The Senate's filed copy of a Mandado de Notificação addressed to 'MICHEL TEMER, Vice-Presidente da República Federativa do Brasil', dated 'Senado Federal, em 12 de maio de 2016' and signed by Senator Renan Calheiros as President of the Senate, informs him that, the Chamber having authorized the process and the Senate having admitted it at its extraordinary session of 11 May 2016, President Dilma Vana Rousseff was intimated of Denúncia nº 1 of 2016; that from her receipt of the intimation the impeachment process is instituted and she is suspended from her functions under art. 86, § 1, II of the Constitution until the judgment ends or the 180-day period elapses; and that he is therefore to assume the Presidency immediately and on an interim basis ('assumir imediata e interinamente a Presidência da República') under art. 79.",
+      "locator": {
+        "pdf_page": 16,
+        "folio": "18.146",
+        "item": "addressee block; paragraphs 1-2; dateline and signatures"
+      }
+    },
+    {
+      "claim_id": "br_temer_vp_notification_filed_signed_20160512",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-07",
+      "role_id": "br_vice_president",
+      "holder_name": "Michel Temer",
+      "role_title": "Vice-President of the Republic in exercise of the office of President",
+      "event_kind": "vice_president_notification_receipt_filed",
+      "attested_on": "2016-05-12",
+      "text": "A Termo de Juntada dated Brasília, 12 May 2016, signed by Luiz Fernando Bandeira de Mello Filho as clerk (Escrivão) of Denúncia nº 1 of 2016, certifies that on that date he filed in the case, with the documents of the President's intimation and summons, a 'Cópia do Mandado de Notificação expedido para o Sr. Vice-Presidente da República, Michel Temer, assinado por S.Exa. no anverso'.",
+      "locator": {
+        "pdf_page": 17,
+        "folio": "18.147",
+        "item": "Termo de Juntada, item 5; dateline and signature"
+      }
+    }
+  ],
+  "bounded_scope": "Vice-President observations for CLAUDE-C01-17 only (role br_vice_president of br_presidency). Election, diplomação, oath, posse, termo de posse, same-session styling, the Vice-President's exercise of the Presidency, his succession to the Presidency, vacancy and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Ministers and party offices are excluded; the office of President is CLAUDE-C01-10's br_president role."
+}

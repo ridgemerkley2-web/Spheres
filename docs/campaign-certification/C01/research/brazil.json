@@ -614,8 +614,8 @@
       "scope_note": "Scanned Diário do Congresso Nacional issue from the Senate's diary store (viewer https://legis.senado.leg.br/diarios/ver/14789).",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/brazil-congress-dcn-collor-posse-19900316-facts.json",
-        "bytes": 6562,
-        "sha256": "ba1ba1e5280081ab82ca6736db6c37bcf546c3109d5bb9e4b854ce24061f6adc"
+        "bytes": 12200,
+        "sha256": "b32a77d58331719b038e81dbcb8efed1ace65ff7648f1d660fb741ea411dd1d6"
       },
       "claims": [
         {
@@ -672,6 +672,67 @@
             "item": "opening statement of the President of Congress"
           },
           "uncertainty": "Election recital; never a start or a holder date."
+        },
+        {
+          "id": "br_itamar_vp_second_round_recited_19891217",
+          "text": "Opening the solemn joint session of 15 March 1990, the President of Congress, Senator Nelson Carneiro, stated that it was convened to give posse to the President and Vice-President of the Republic elected in the second round on 17 December 1989 and certified ('diplomados') by the Superior Electoral Court for the period 15 March 1990 to 1 January 1995, naming Fernando Affonso Collor de Mello and Itamar Augusto Cautiero Franco.",
+          "attested_on": "1989-12-17",
+          "locator": {
+            "pdf_page": 3,
+            "printed_page": 301,
+            "item": "O SR. PRESIDENTE (Nelson Carneiro) - Declaro aberta a sessão solene ... destinada a dar posse ao Presidente e Vice-Presidente da República"
+          },
+          "uncertainty": "Congress's recital of the second-round election; never a start or a holder date. The same passage is already recorded for the President as br_collor_second_round_recited_19891217."
+        },
+        {
+          "id": "br_itamar_vp_oath_before_congress_19900315",
+          "text": "After the session resumed (suspended 9:43-9:46), the President and the Vice-President-elect were seated at the Mesa, the Vice-President to the left of the President of the Senate, and both took the constitutional oath ('Prometo manter, defender e cumprir a Constituição ...') before the joint session.",
+          "attested_on": "1990-03-15",
+          "locator": {
+            "pdf_page": [
+              3,
+              4
+            ],
+            "printed_page": [
+              301,
+              302
+            ],
+            "item": "'Os Srs. Presidente e Vice-Presidente da República irão prestar o compromisso constitucional'; the oath text continues on printed page 302"
+          },
+          "uncertainty": "A distinct event recorded before the declaration of posse. The oath is never a start or a holder date (the start rests on the declaration and the termo); no clock time is stored for it."
+        },
+        {
+          "id": "br_itamar_vp_posse_declared_19900315",
+          "text": "After the oath, the President of Congress declared Fernando Affonso Collor de Mello and Itamar Augusto Cautiero Franco invested ('Declaro empossados') as President and Vice-President of the Federative Republic of Brazil for the period 15 March 1990 to 1 January 1995.",
+          "attested_on": "1990-03-15",
+          "locator": {
+            "pdf_page": 4,
+            "printed_page": 302,
+            "item": "O SR. PRESIDENTE (Nelson Carneiro) - Declaro empossados, para o período de 15 de março de 1990 a 1º de janeiro de 1995, como Presidente e Vice-Presidente ..."
+          },
+          "uncertainty": "Posse record with an explicit period beginning 15 March 1990: the basis for Itamar Franco's from as Vice-President. The printed period end (1 January 1995) is prospective and never an until. The President's posse in the same declaration is br_collor_posse_declared_congress_19900315."
+        },
+        {
+          "id": "br_itamar_vp_termo_de_posse_19900315",
+          "text": "The termo de posse read by the First Secretary and signed at the session records that at 10:00 on 15 March 1990, before the National Congress in joint session in the Chamber's plenary, Fernando Affonso Collor de Mello and Itamar Augusto Cautiero Franco were solemnly invested under Article 78 of the Constitution in the offices of President and Vice-President of the Republic, respectively, for the period 15 March 1990 to 1 January 1995, and took the prescribed oath.",
+          "attested_on": "1990-03-15",
+          "locator": {
+            "pdf_page": 4,
+            "printed_page": 302,
+            "item": "Termo de posse dos Excelentíssimos senhores Fernando Affonso Collor de Mello e Itamar Augusto Cautiero Franco, nos cargos, respectivamente, de Presidente e Vice-Presidente da República"
+          },
+          "uncertainty": "Signed termo of the same posse; supports the declaration. The termo's clock time (10:00) is not relied on (the minutes show the session reopening at 9:46)."
+        },
+        {
+          "id": "br_itamar_vp_diplomacao_recited_19891230",
+          "text": "The same termo recites that the two had been elected in the second round on 17 December of the previous year and certified ('diplomados') by the Superior Electoral Court on 30 December of that year.",
+          "attested_on": "1989-12-30",
+          "locator": {
+            "pdf_page": 4,
+            "printed_page": 302,
+            "item": "Termo de posse: 'diplomados, pelo Tribunal Superior Eleitoral, a trinta de dezembro do mesmo ano'"
+          },
+          "uncertainty": "Congress's recital of the TSE act; agrees with the TSE diploma (br_itamar_vp_tse_diploma_issued_19891230). Never a holder date."
         }
       ]
     },
@@ -899,8 +960,8 @@
       "scope_note": "Scanned Diário do Congresso Nacional issue from the Senate's diary store (viewer https://legis.senado.leg.br/diarios/ver/14742). The special edition of 29 December 1992 that first printed the letter is not in the archive.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/brazil-congress-dcn-resignation-posse-19921230-facts.json",
-        "bytes": 7959,
-        "sha256": "ca46b125218a1c4e9fd7ca44cc095af474cbe7287bf868a82d4b930623d0bfdb"
+        "bytes": 11015,
+        "sha256": "af8a993e22e2bdb88a44d81ffe18d5c7f3a6a3a3d9032dd382cb51b0d6e64584"
       },
       "claims": [
         {
@@ -968,6 +1029,28 @@
             "item": "É a seguinte a declaração recebida (handwritten)"
           },
           "uncertainty": "Retrospective statement by the Vice-President himself, handwritten; the reading 'em dia 2 de outubro do corrente ano, quando assumi a condição de Vice-Presidente em exercício do cargo de Presidente da República' was made from renders and confirmed by the independent check. Vice-President's exercise: claim only, never a holder or a start."
+        },
+        {
+          "id": "br_itamar_vp_notification_announced_19921229",
+          "text": "At the 2nd joint session of 29 December 1992 (11:30-11:50), after Collor's letter was read and the office of President declared vacant, the President of Congress, Senator Mauro Benevides, said that in consequence he would inform the Vice-President of the Republic, Dr. Itamar Franco, that he must appear before Congress at 12:30 that day to take the oath as President of the Republic.",
+          "attested_on": "1992-12-29",
+          "locator": {
+            "pdf_page": 3,
+            "printed_page": 4811,
+            "item": "'Em conseqüência da vacância agora proclamada, irei cientificar o Vice-Presidente da República, Dr. Itamar Franco, de que deve comparecer hoje ao Congresso Nacional, às 12h30min'"
+          },
+          "uncertainty": "The President of Congress announces that he will notify the Vice-President ('irei cientificar'); the notification itself is not recorded in the issue. It styles Itamar Franco as Vice-President on 29 December 1992, before his posse as President. The vacancy it follows is that of the office of President (CLAUDE-C01-10's br_presidency_vacancy_declared_19921229, which is not cited on this role); it says nothing of the office of Vice-President, sets no end and states no vacancy of the Vice-Presidency."
+        },
+        {
+          "id": "br_itamar_vp_invested_as_president_19921229",
+          "text": "The termo de posse records that at 12:30 on 29 December 1992 Itamar Augusto Cautiero Franco, Vice-President of the Republic, elected in the second round on 17 December 1989, appeared before the National Congress in joint session to be invested, under Article 79 of the Constitution, in the office of President of the Republic by virtue of the resignation of Fernando Affonso Collor de Mello that day, and took the oath under Article 78.",
+          "attested_on": "1992-12-29",
+          "locator": {
+            "pdf_page": 6,
+            "printed_page": 4814,
+            "item": "Termo de posse do Exmo Sr. Itamar Augusto Cautiero Franco no cargo de Presidente da República: 'compareceu o Sr. Dr. Itamar Augusto Cautiero Franco, Vice-Presidente da República ... a fim de ser investido, de acordo com o art. 79 ...'"
+          },
+          "uncertainty": "The Vice-President's succession to the Presidency (his posse as President is CLAUDE-C01-10's br_itamar_posse_declared_congress_19921229 and br_itamar_termo_de_posse_19921229 on br_president). The record neither declares the office of Vice-President vacant nor states that his vice-presidential office ended, so it sets no until and no vacancy on br_vice_president; his posse as President is never an end of his vice-presidential office, and nothing is inferred from it."
         }
       ]
     },
@@ -1124,8 +1207,8 @@
       "scope_note": "The Presidency Library's gallery page for Fernando Collor, captured 12 August 2016. A retrospective summary; claim only, never a boundary.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/brazil-presidency-library-collor-20160812-facts.json",
-        "bytes": 3097,
-        "sha256": "3c0768280d13e9e8e0ff685a627183dc0e829182b206bfa5431d15af7344b2e9"
+        "bytes": 4493,
+        "sha256": "ef0e645f6c4e2e013dae036700d9d3c152163278373016bcd7f72408a0f3f540"
       },
       "claims": [
         {
@@ -1135,6 +1218,14 @@
             "section": "Resumo do Governo"
           },
           "uncertainty": "Retrospective gallery summary; no structured date is stored and it is never a boundary. Its phase end of 2 October 1992 is the suspension, not the end of Collor's term, which the Congress records place at his resignation on 29 December 1992."
+        },
+        {
+          "id": "br_bibpr_collor_page_vp_itamar_span_19900315_19921229",
+          "text": "The Presidency Library's retrospective summary of Collor's government lists as Vice-President Itamar Augusto Cautiero Franco, 'Período de Governo: 15.03.1990 a 29.12.1992 (02a06m17d)', and notes that, as Vice-President, he exercised the Presidency during the holder's trips.",
+          "locator": {
+            "section": "Resumo do Governo: 'Vice-presidente' and 'Viagens' boxes"
+          },
+          "uncertainty": "Retrospective gallery summary; no structured date is stored and it is never a boundary: its 29.12.1992 end is not an until for the Vice-President, and it states no vacancy."
         }
       ]
     },
@@ -1179,8 +1270,8 @@
       "scope_note": "Scanned Diário do Congresso Nacional issue from the Senate's diary store (viewer https://legis.senado.leg.br/diarios/ver/14474; filename DCN-1-1995.pdf). The header prints the session as the 3rd joint session of the '11ª' [as printed] extraordinary legislative session of the 49th Legislature. No TSE diploma is reproduced. The Chamber's copy on imagem.camara.leg.br returned HTTP 403 and was not used.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/brazil-congress-dcn-cardoso-posse-19950102-facts.json",
-        "bytes": 8770,
-        "sha256": "49062c63103d0ae5c11d9b5e83445cfc642c87085df464287676997376522e33"
+        "bytes": 15012,
+        "sha256": "9fe4dbc43ff21b590c2774134109da0d409b2e9fed0a7cbd6210010eeff068c8"
       },
       "claims": [
         {
@@ -1259,6 +1350,72 @@
             "section": "Address, foot of left column into right column (\"No momento em que deixa o Governo cercado da estima que fez por merecer, agradeço em nome da Nação a Itamar Franco\")"
           },
           "uncertainty": "A successor's thanks in his posse address, in a rhetorical present tense ('No momento em que deixa o Governo'), with no clock time and no instrument. Recorded as a claim only and never a boundary: under this packet's rule a successor's or third party's statement at the successor's posse does not state the day a term, resignation or removal took effect (as CLAUDE-C01-09 treated a third party on Mbeki and a successor on Motlanthe). Itamar Franco's holder has no until, and Cardoso's posse is not used as his end."
+        },
+        {
+          "id": "br_maciel_elected_first_round_19941003",
+          "text": "The Congress record states that the President and Vice-President to be invested, Fernando Henrique Cardoso and Marco Antônio de Oliveira Maciel, were elected in the first round on 3 October 1994; the termo de posse repeats that both were elected in the first round on that day.",
+          "attested_on": "1994-10-03",
+          "locator": {
+            "pdf_page": 5,
+            "printed_page": 3,
+            "section": "Opening declaration by Humberto Lucena (\"eleitos, em primeiro turno, a 3 de outubro de 1994\"); termo on pdf p. 6 (printed p. 4)"
+          },
+          "uncertainty": "Dated by the Congress record, not by an electoral-court result table. Never a holder date."
+        },
+        {
+          "id": "br_maciel_diplomado_tse_19941217",
+          "text": "The termo de posse states that the two were certified (diplomados) by the Superior Electoral Court on 17 December 1994 for the period 1 January 1995 to 31 December 1998.",
+          "attested_on": "1994-12-17",
+          "locator": {
+            "pdf_page": 6,
+            "printed_page": 4,
+            "section": "Termo de posse, right column (\"diplomados, pelo Tribunal Superior Eleitoral, a dezessete de dezembro do mesmo ano\")"
+          },
+          "uncertainty": "No diploma is reproduced in this issue; the TSE collection exemplar is recorded separately (br_maciel_tse_diploma_issued_19941217). Never a holder date."
+        },
+        {
+          "id": "br_maciel_oath_before_congress_19950101",
+          "text": "At the solemn joint session of 1 January 1995 (opened 16:30, suspended 16:32-16:36 to await the President- and Vice-President-elect), after the President, the Vice-President of the Republic, Marco Antônio de Oliveira Maciel, recited the constitutional commitment.",
+          "attested_on": "1995-01-01",
+          "locator": {
+            "pdf_page": 6,
+            "printed_page": 4,
+            "section": "Left column: \"O SR. VICE-PRESIDENTE DA REPÚBLICA (Marco Antônio de Oliveira Maciel) - Prometo manter, defender e cumprir a Constituição...\""
+          },
+          "uncertainty": "No clock time is recorded for the oath itself. The oath is never a start or a holder date; the from rests on the declaration of posse and the termo. The minutes already call the two \"Presidente e Vice-Presidente da República empossados\" when the session is reopened, before the oaths; that anticipatory wording is not a start."
+        },
+        {
+          "id": "br_maciel_posse_declared_19950101",
+          "text": "Immediately after the oaths, Humberto Lucena declared Fernando Henrique Cardoso and Marco Antônio de Oliveira Maciel empossados as President and Vice-President of the Federative Republic of Brazil for the period 1 January 1995 to 31 December 1998.",
+          "attested_on": "1995-01-01",
+          "locator": {
+            "pdf_page": 6,
+            "printed_page": 4,
+            "section": "Left column: \"Declaro empossados, para o período de 1º de janeiro de 1995 a 31 de dezembro de 1998, como Presidente e Vice-Presidente da República Federativa do Brasil...\""
+          },
+          "uncertainty": "States the posse on 1 January 1995 and a mandate beginning that day (basis for from). The stated period end is prospective (made at the posse) and is never used as an until; a posse-day statement of a period does not show that the term ran to that day."
+        },
+        {
+          "id": "br_maciel_termo_de_posse_19950101",
+          "text": "The joint termo de posse, read by the First Secretary and signed in the session by the two empossados and the Mesa, records that at 16:30 on 1 January 1995, before the National Congress in joint session, Fernando Henrique Cardoso and Marco Antônio de Oliveira Maciel were solemnly empossados under article 78 of the Constitution as President and Vice-President respectively, for the period 1 January 1995 to 31 December 1998.",
+          "attested_on": "1995-01-01",
+          "locator": {
+            "pdf_page": 6,
+            "printed_page": 4,
+            "section": "Termo de posse (both columns); signing note \"(Procede-se à assinatura do termo de posse.)\""
+          },
+          "uncertainty": "The termo time (16:30) is the session opening time, while the oaths came after the 16:32-16:36 suspension; no time of day is relied on. The stated period end is prospective (made at the posse) and is never used as an until; a posse-day statement of a period does not show that the term ran to that day."
+        },
+        {
+          "id": "br_maciel_saluted_vice_president_closing_19950101",
+          "text": "Closing the session (which rose at 17:19), the President of Congress saluted the President of the Republic and the \"Vice-Presidente da República Marco Antônio de Oliveira Maciel\", wishing them success in the mission received by the vote of the people.",
+          "attested_on": "1995-01-01",
+          "locator": {
+            "pdf_page": 9,
+            "printed_page": 7,
+            "section": "Right column: \"saúdo Suas Excelências, os Senhores Presidente da República Fernando Henrique Cardoso e Vice-Presidente da República Marco Antônio de Oliveira Maciel\""
+          },
+          "uncertainty": "Same-session styling after the declaration of posse; support only, it does not replace the declaration and sets no date of its own."
         }
       ]
     },
@@ -1275,8 +1432,8 @@
       "scope_note": "Scanned Diário do Congresso Nacional issue from the Senate's diary store (viewer https://legis.senado.leg.br/diarios/ver/14239); the TSE diplomas are reproduced as facsimiles on printed pages 00004-00005.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/brazil-congress-dcn-cardoso-posse-19990102-facts.json",
-        "bytes": 7939,
-        "sha256": "8b6f40cbcb23c0010110b7e66ce4491bfdfce7e5f5235aa653f19181a67a1e8f"
+        "bytes": 15608,
+        "sha256": "e5cb8e3cacba4862d783f1c916797b03a728d9aaa8c0bd8413840c18e0527254"
       },
       "claims": [
         {
@@ -1344,6 +1501,83 @@
             "section": "Address of Antonio Carlos Magalhães, left column (\"no momento em que assume o segundo mandato\"; \"no mandato que se findou ... neste que hoje se inicia\")"
           },
           "uncertainty": "Supports the 1 January 1999 start. \"O mandato que se findou\" gives no day for the end of the first term, so the 1995 holder receives no until."
+        },
+        {
+          "id": "br_maciel_styled_incumbent_opening_19990101",
+          "text": "At the opening of the solemn joint session of 1 January 1999 (17:00), the Mesa composition places \"o Vice-Presidente da República Marco Antonio de Oliveira Maciel\" at the left of the Congress President, and the Congress President then invites the President and, after him, \"o Senhor Vice-Presidente da República\" to take the constitutional commitment.",
+          "attested_on": "1999-01-01",
+          "locator": {
+            "pdf_page": 3,
+            "printed_page": "00003",
+            "section": "Mesa composition in italics; invitation at the head of pdf p. 6 (\"Em seguida, o Senhor Vice-Presidente da República\")"
+          },
+          "uncertainty": "Styling of the incumbent from the 1995 term before the new posse (continuation context). Claim only: it is never a start, an end or a holder date, and it neither ends the 1995 holder nor starts the 1999 holder."
+        },
+        {
+          "id": "br_maciel_reelected_first_round_19981004",
+          "text": "The Congress record states that the President and the Vice-President, Fernando Henrique Cardoso and Marco Antonio de Oliveira Maciel, were re-elected in the first round on 4 October 1998; the reproduced TSE diploma says the will of the people was expressed at the polls on 4 October 1998.",
+          "attested_on": "1998-10-04",
+          "locator": {
+            "pdf_page": 3,
+            "printed_page": "00003",
+            "section": "Summary and opening by Antonio Carlos Magalhães (\"reeleitos em primeiro turno a 4 de outubro de 1998\"); diploma on pdf p. 5; termo on pdf p. 6"
+          },
+          "uncertainty": "Never a holder date."
+        },
+        {
+          "id": "br_maciel_diplomado_tse_19981212",
+          "text": "The record reproduces the Superior Electoral Court diploma, dated Brasília 12 December 1998 and signed by Minister Ilmar Galvão as President of the Court with the other ministers, stating that Marco Antônio de Oliveira Maciel was re-elected Vice-President of the Republic and qualifying him for a new investiture in the office before the National Congress on 1 January 1999; the opening and the termo date the diplomação to 12 December 1998.",
+          "attested_on": "1998-12-12",
+          "locator": {
+            "pdf_page": 5,
+            "printed_page": "00005",
+            "section": "Facsimile of the Vice-President's TSE diploma (\"foi reeleito Vice-Presidente da República\"; \"Brasília, aos 12 de dezembro de 1998\")"
+          },
+          "uncertainty": "A TSE document reproduced by Congress (its text layer is illegible OCR; read from the render). The 1 January 1999 investiture it names is prospective. Never a holder date."
+        },
+        {
+          "id": "br_maciel_oath_before_congress_19990101",
+          "text": "After Cardoso, Marco Antonio de Oliveira Maciel recited the constitutional commitment before the Congress in the solemn joint session of 1 January 1999.",
+          "attested_on": "1999-01-01",
+          "locator": {
+            "pdf_page": 6,
+            "printed_page": "00006",
+            "section": "Left column: \"O SR. MARCO ANTONIO DE OLIVEIRA MACIEL - Prometo manter, defender e cumprir a Constituição...\""
+          },
+          "uncertainty": "No clock time is recorded for the oath itself. The oath is never a start or a holder date; the from rests on the declaration of posse and the termo."
+        },
+        {
+          "id": "br_maciel_posse_declared_19990101",
+          "text": "After the termo was signed, Antonio Carlos Magalhães declared Fernando Henrique Cardoso and Marco Antonio de Oliveira Maciel empossados as President and Vice-President of the Federative Republic of Brazil for the period 1 January 1999 to 31 December 2002; the session had been opened to give posse to the two, diplomados \"para o período a iniciar-se nesta data\".",
+          "attested_on": "1999-01-01",
+          "locator": {
+            "pdf_page": 9,
+            "printed_page": "00009",
+            "section": "Left column: \"Declaro empossados nos cargos de Presidente e Vice-Presidente da República Federativa do Brasil ... para o período de 1º de janeiro de 1999 até 31 de dezembro de 2002\"; opening on pdf p. 3"
+          },
+          "uncertainty": "States the posse and a second mandate beginning 1 January 1999 (basis for from). The stated period end is prospective (made at the posse) and is never used as an until; a posse-day statement of a period does not show that the term ran to that day."
+        },
+        {
+          "id": "br_maciel_termo_de_posse_19990101",
+          "text": "The joint termo de posse, read by the First Secretary and reproduced in its handwritten original, records that at 17:00 on 1 January 1999, before the National Congress in joint session, Fernando Henrique Cardoso and Marco Antônio de Oliveira Maciel were solemnly empossados under article 78 of the Constitution as President and Vice-President respectively, re-elected in the first round on 4 October 1998 and diplomados on 12 December 1998, for the period 1 January 1999 to 31 December 2002; Maciel is listed among its signatories.",
+          "attested_on": "1999-01-01",
+          "locator": {
+            "pdf_page": 6,
+            "printed_page": "00006",
+            "section": "Typed termo (both columns); handwritten original on pdf pp. 7-8; signatories on pdf p. 9 (\"Assinam o termo de posse os Senhores Fernando Henrique Cardoso, Marco Antonio de Oliveira Maciel, ...\")"
+          },
+          "uncertainty": "No time of day is relied on. The stated period end is prospective (made at the posse) and is never used as an until; a posse-day statement of a period does not show that the term ran to that day."
+        },
+        {
+          "id": "br_maciel_saluted_vice_president_cardoso_address_19990101",
+          "text": "Opening his address after the declaration of posse, Cardoso salutes \"Sr. Vice-Presidente da República, Dr. Marco Maciel\".",
+          "attested_on": "1999-01-01",
+          "locator": {
+            "pdf_page": 9,
+            "printed_page": "00009",
+            "section": "Left column, salutation of Cardoso's address"
+          },
+          "uncertainty": "Same-session styling after the declaration of posse; support only, it sets no date of its own."
         }
       ]
     },
@@ -1360,8 +1594,8 @@
       "scope_note": "Scanned Diário do Congresso Nacional issue from the Senate's diary store (viewer https://legis.senado.leg.br/diarios/ver/14088); the session is on PDF pages 3-14. The record does not name Fernando Henrique Cardoso, so it states nothing about his end.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/brazil-congress-dcn-lula-posse-20030102-facts.json",
-        "bytes": 7937,
-        "sha256": "752134f7a66d80e3efb40e4265e7981705ca543fb466718145f007452a1063ed"
+        "bytes": 14433,
+        "sha256": "0d7eae37b70709a477b286fa81ef51ea464c58316024d41885626a4f74cfcb4e"
       },
       "claims": [
         {
@@ -1429,6 +1663,72 @@
             "section": "Right column, Severino Cavalcanti (\"hoje assume a Presidência da República\"); Lula's address on pdf p. 12 (\"que agora assume o posto de Supremo Mandatário da Nação\")"
           },
           "uncertainty": "Statements in the session, dated by it; they support the Congress declaration."
+        },
+        {
+          "id": "br_alencar_elected_20021027",
+          "text": "The Congress record states that the President and Vice-President, Luiz Inácio Lula da Silva and José Alencar Gomes da Silva, were elected on 27 October 2002; the reproduced TSE diploma says José Alencar Gomes da Silva was elected Vice-President of the Republic by the will of the people expressed at the polls on 27 October 2002.",
+          "attested_on": "2002-10-27",
+          "locator": {
+            "pdf_page": 3,
+            "printed_page": "000003",
+            "section": "Opening by Ramez Tebet (\"eleitos em 27 de outubro de 2002\"); diploma on pdf p. 5; termo on pdf p. 6"
+          },
+          "uncertainty": "Neither text says which round; no round is inferred. Never a holder date."
+        },
+        {
+          "id": "br_alencar_diplomado_tse_20021214",
+          "text": "The record reproduces the TSE diploma, dated Brasília 14 December 2002 and signed by Minister Nelson Jobim as President of the Court with the other members of the Court, stating that José Alencar Gomes da Silva was elected Vice-President of the Republic and qualifying him for investiture in the office before the National Congress on 1 January 2003; the opening and termo date the diplomação to 14 December 2002.",
+          "attested_on": "2002-12-14",
+          "locator": {
+            "pdf_page": 5,
+            "printed_page": "000005",
+            "section": "Facsimile of the Vice-President's TSE diploma (\"foi eleito Vice-Presidente da República\"; \"Brasília, aos 14 de dezembro de 2002\")"
+          },
+          "uncertainty": "A TSE document reproduced by Congress; the name is legible only in the render. The investiture date it names is prospective. Never a holder date."
+        },
+        {
+          "id": "br_alencar_oath_before_congress_20030101",
+          "text": "At the solemn joint session of 1 January 2003 (opened 15:05), after Lula, Ramez Tebet invited José Alencar Gomes da Silva, \"Vice-Presidente da República eleito\", to take the constitutional commitment standing, and he recited it.",
+          "attested_on": "2003-01-01",
+          "locator": {
+            "pdf_page": 6,
+            "printed_page": "000006",
+            "section": "Left column: invitation and \"O SR. JOSÉ ALENCAR GOMES DA SILVA - Prometo manter, defender e cumprir a Constituição...\""
+          },
+          "uncertainty": "No clock time is recorded for the oath itself. The oath is never a start or a holder date; the from rests on the declaration of posse and the termo."
+        },
+        {
+          "id": "br_alencar_posse_declared_20030101",
+          "text": "Ramez Tebet then declared Luiz Inácio Lula da Silva and José Alencar Gomes da Silva empossados as President and Vice-President of the Federative Republic of Brazil respectively, for the period 1 January 2003 to 31 December 2006; the session was opened to give posse to the two, diplomados \"para o período a iniciar-se nesta data\".",
+          "attested_on": "2003-01-01",
+          "locator": {
+            "pdf_page": 6,
+            "printed_page": "000006",
+            "section": "Left column: \"Declaro empossados nos cargos de Presidente e Vice-Presidente da República Federativa do Brasil ... respectivamente, para o período de 1º de janeiro de 2003 a 31 de dezembro de 2006\"; opening on pdf p. 3"
+          },
+          "uncertainty": "Basis for from. The stated period end is prospective (made at the posse) and is never used as an until; a posse-day statement of a period does not show that the term ran to that day."
+        },
+        {
+          "id": "br_alencar_termo_de_posse_20030101",
+          "text": "The joint termo de posse, read in the session and reproduced with its signatures, records that at 15:00 on 1 January 2003, before the National Congress in joint session, Luiz Inácio Lula da Silva and José Alencar Gomes da Silva were solemnly empossados under article 78 of the Constitution as President and Vice-President respectively, elected on 27 October 2002 and diplomados on 14 December 2002, for the period 1 January 2003 to 31 December 2006.",
+          "attested_on": "2003-01-01",
+          "locator": {
+            "pdf_page": 6,
+            "printed_page": "000006",
+            "section": "Typed termo (both columns); signed facsimile on pdf p. 7 (printed 000007)"
+          },
+          "uncertainty": "The termo is a pre-drafted form whose clock time (15:00) precedes the session opening recorded in the minutes (15:05); no time of day is relied on. The stated period end is prospective (made at the posse) and is never used as an until; a posse-day statement of a period does not show that the term ran to that day."
+        },
+        {
+          "id": "br_alencar_saluted_vice_president_lula_address_20030101",
+          "text": "Opening his address after the posse, Lula salutes \"Exmº Sr. Vice-Presidente da República, José Alencar\".",
+          "attested_on": "2003-01-01",
+          "locator": {
+            "pdf_page": 8,
+            "printed_page": "000008",
+            "section": "Salutation of Lula's address (text layer)"
+          },
+          "uncertainty": "Same-session styling after the declaration of posse; support only. In the same issue the Congress President's closing address calls him \"o Senador José Alencar\" (pdf p. 14), and the back matter lists \"Vice-Presidente: Senador José Alencar\" of the Senate's Conselho do Diploma Mulher-Cidadã Bertha Lutz (pdf p. 25): neither is the Vice-Presidency of the Republic, and neither is imported."
         }
       ]
     },
@@ -1445,8 +1745,8 @@
       "scope_note": "Born-digital Diário do Congresso Nacional issue from the Senate's diary store (viewer https://legis.senado.leg.br/diarios/ver/1398) with facsimiles of the diplomas, the commitment forms and the signed termo; PDF page numbers equal printed page numbers. The Chamber's partial three-page copy is a lead only.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/brazil-congress-dcn-lula-posse-20070102-facts.json",
-        "bytes": 8568,
-        "sha256": "6344accdd3744563f29169d1b7b300237d3719c435aafe2e3e617cd207b5275e"
+        "bytes": 16020,
+        "sha256": "2b69385e1e823eedd2b90034c7704e258d19672b2d782aee54fbbef3b74162f4"
       },
       "claims": [
         {
@@ -1525,6 +1825,83 @@
             "section": "Lula's address after the salutation ('Quatro anos atrás, nesta Casa, em um 1º de janeiro, vivi a experiência mais importante de minha vida: a de assumir a Presidência do meu País')"
           },
           "uncertainty": "Retrospective: the year (2003) follows from 'four years ago' in a speech of 1 January 2007, and attested_on is the recalled day. It supports the 2003 holder's start, which rests on the 2003 declaration of posse and termo, and is never a boundary by itself. Found by the independent check."
+        },
+        {
+          "id": "br_alencar_styled_incumbent_opening_20070101",
+          "text": "At the opening of the solemn joint session of 1 January 2007 (16:15), the Mesa composition places \"o Vice-Presidente da República, Senhor José Alencar Gomes da Silva\" at the left of the Congress President.",
+          "attested_on": "2007-01-01",
+          "locator": {
+            "pdf_page": 3,
+            "printed_page": 3,
+            "section": "Mesa composition in italics"
+          },
+          "uncertainty": "Styling of the incumbent from the 2003 term before the new posse (continuation context). Claim only: it is never a start, an end or a holder date, and it neither ends the 2003 holder nor starts the 2007 holder."
+        },
+        {
+          "id": "br_alencar_reelected_20061029",
+          "text": "The Congress record states that Lula and José Alencar Gomes da Silva were re-elected on 29 October 2006; the reproduced TSE diploma says José Alencar Gomes da Silva, candidate of the A Força do Povo coalition (PT, PRB, PC do B), was re-elected Vice-President of the Republic by the will expressed at the polls on 29 October 2006.",
+          "attested_on": "2006-10-29",
+          "locator": {
+            "pdf_page": 3,
+            "printed_page": 3,
+            "section": "Opening by Renan Calheiros (\"reeleitos em 29 de outubro de 2006\"); diploma on p. 5; termo on p. 8"
+          },
+          "uncertainty": "No round is stated or inferred. Never a holder date."
+        },
+        {
+          "id": "br_alencar_diplomado_tse_20061214",
+          "text": "The reproduced TSE diploma, dated Brasília 14 December 2006 and signed by Minister Marco Aurélio as President of the Court, qualifies José Alencar Gomes da Silva for a new investiture in the office of Vice-President before the National Congress on 1 January 2007; the opening and termo date the diplomação to 14 December 2006.",
+          "attested_on": "2006-12-14",
+          "locator": {
+            "pdf_page": 5,
+            "printed_page": 5,
+            "section": "Facsimile of the Vice-President's TSE diploma, printed sideways (\"Brasília, quatorze de dezembro de dois mil e seis\")"
+          },
+          "uncertainty": "A TSE document reproduced by Congress (image only, no text layer); the investiture date it names is prospective. Never a holder date."
+        },
+        {
+          "id": "br_alencar_oath_before_congress_20070101",
+          "text": "After Lula, José Alencar Gomes da Silva recited the constitutional commitment before the Congress; the record reproduces his signed termo de compromisso under article 78, \"prestado em 1º de janeiro de 2007\", naming him as re-elected to the office of Vice-President of the Republic on 29 October 2006.",
+          "attested_on": "2007-01-01",
+          "locator": {
+            "pdf_page": 7,
+            "printed_page": 7,
+            "section": "\"O SR. JOSÉ ALENCAR GOMES DA SILVA - Prometo manter...\"; boxed facsimile \"TERMO DE COMPROMISSO ... PRESTADO EM 1º DE JANEIRO DE 2007\""
+          },
+          "uncertainty": "No clock time is recorded for the oath itself. The oath is never a start or a holder date; the from rests on the declaration of posse and the termo."
+        },
+        {
+          "id": "br_alencar_posse_declared_20070101",
+          "text": "Renan Calheiros declared Luiz Inácio Lula da Silva and José Alencar Gomes da Silva empossados as President and Vice-President of the Federative Republic of Brazil respectively, for the period 1 January 2007 to 31 December 2010; the session was opened to give posse to the two, re-elected and diplomados \"para o período a iniciar-se nesta data\".",
+          "attested_on": "2007-01-01",
+          "locator": {
+            "pdf_page": 8,
+            "printed_page": 8,
+            "section": "Left column: \"Declaro empossados nos cargos de Presidente e Vice-Presidente da República Federativa do Brasil, respectivamente, ... para o período de 1º de janeiro de 2007 a 31 de dezembro de 2010\"; opening on p. 3"
+          },
+          "uncertainty": "Basis for from. The stated period end is prospective (made at the posse) and is never used as an until; a posse-day statement of a period does not show that the term ran to that day."
+        },
+        {
+          "id": "br_alencar_termo_de_posse_20070101",
+          "text": "The joint termo de posse records that at 16:00 on 1 January 2007, before the National Congress in solemn joint session, Luiz Inácio Lula da Silva and José Alencar Gomes da Silva were solemnly empossados under article 78 of the Constitution as President and Vice-President respectively, re-elected on 29 October 2006 and diplomados on 14 December 2006, for the period 1 January 2007 to 31 December 2010.",
+          "attested_on": "2007-01-01",
+          "locator": {
+            "pdf_page": 8,
+            "printed_page": 8,
+            "section": "Typed termo (both columns); signed facsimile on p. 9"
+          },
+          "uncertainty": "The termo is a pre-drafted form whose clock time (16:00) precedes the session opening recorded in the minutes (16:15); no time of day is relied on. The stated period end is prospective (made at the posse) and is never used as an until; a posse-day statement of a period does not show that the term ran to that day."
+        },
+        {
+          "id": "br_alencar_saluted_vice_president_lula_address_20070101",
+          "text": "Opening his address after the posse, Lula salutes \"Exmo. Sr. José Alencar, Vice-Presidente da República\", and later says that he has at his side, as in 2003, José Alencar, whose collaboration eased the tasks of the past four years, and that it will be so in the government now beginning.",
+          "attested_on": "2007-01-01",
+          "locator": {
+            "pdf_page": 10,
+            "printed_page": 10,
+            "section": "Salutation of Lula's address; the passage \"Tenho ao meu lado, como em 2003, o amigo e companheiro José Alencar\" follows on the same page"
+          },
+          "uncertainty": "Same-session styling after the declaration of posse; support only. The \"four years\" passage is retrospective and gives no day."
         }
       ]
     },
@@ -1541,8 +1918,8 @@
       "scope_note": "Born-digital Diário do Congresso Nacional issue from the Senate's diary store (viewer https://legis.senado.leg.br/diarios/ver/3422; PDF page 3 is printed page 1). The cover and running heads print Saturday 1 January 2011 (used as published_date), while the Senate's metadata gives 2 January 2011; the opening misspells the name 'Dilma Roussef'.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/brazil-congress-dcn-rousseff-posse-20110101-facts.json",
-        "bytes": 8637,
-        "sha256": "a7eb5db325c567b80534d5abb76dc0fc9e73725cbd4205b1ed679b92ecac9400"
+        "bytes": 16269,
+        "sha256": "e8607a4394b28a0326f8dff97b65db93d718cd8a0cfb9d0220effaf571ec9f1a"
       },
       "claims": [
         {
@@ -1621,6 +1998,83 @@
             "section": "Sarney's address ('Aqui, neste momento, Vossa Excelência aceita a responsabilidade de governar o País'; 'através deste compromisso a Presidente eleita assume a responsabilidade que a Constituição lhe impõe')"
           },
           "uncertainty": "Congress-record support for the 2011 start, dated by the session; the from rests on the declaration of posse and the termo. Found by the independent check. The same address says she has the difficult responsibility of replacing 'um grande Presidente que concluiu' his cycle (Lula), which gives no day for Lula's end."
+        },
+        {
+          "id": "br_temer_vp_elected_20101031",
+          "text": "The Congress record states that Dilma Rousseff and Michel Temer were elected on 31 October 2010; the reproduced TSE diploma says Michel Miguel Elias Temer Lulia, candidate of the Para o Brasil Seguir Mudando coalition, was elected Vice-President of the Federative Republic of Brazil by the will expressed at the polls on 31 October 2010.",
+          "attested_on": "2010-10-31",
+          "locator": {
+            "pdf_page": 3,
+            "printed_page": 1,
+            "section": "Opening by José Sarney (\"eleitos em 31 de outubro de 2010\"); diploma on pdf p. 5 (printed p. 3)"
+          },
+          "uncertainty": "No round is stated or inferred. The diploma prints his full name, Michel Miguel Elias Temer Lulia. Never a holder date."
+        },
+        {
+          "id": "br_temer_vp_diplomado_tse_20101217",
+          "text": "The reproduced TSE diploma, dated Brasília 17 December 2010 and signed by Minister Ricardo Lewandowski as President of the Court, qualifies Michel Miguel Elias Temer Lulia for investiture in the office of Vice-President before the National Congress on 1 January 2011; the opening and his termo de compromisso date the diplomação to 17 December 2010.",
+          "attested_on": "2010-12-17",
+          "locator": {
+            "pdf_page": 5,
+            "printed_page": 3,
+            "section": "Facsimile of the Vice-President's TSE diploma, printed sideways (\"Brasília, 17 de dezembro de 2010\")"
+          },
+          "uncertainty": "A TSE document reproduced by Congress (image only); the investiture date it names is prospective. Never a holder date."
+        },
+        {
+          "id": "br_temer_vp_oath_before_congress_20110101",
+          "text": "At the solemn joint session of 1 January 2011 (14:47-15:55), after Rousseff, José Sarney invited \"o Excelentíssimo Vice-Presidente da República eleito, Sr. Michel Temer\" to take the constitutional commitment, and he recited it; the record reproduces his signed termo de compromisso under article 78, \"prestado em 1º de janeiro de 2011\", naming him as elected to the office of Vice-President on 31 October 2010 and diplomado on 17 December 2010.",
+          "attested_on": "2011-01-01",
+          "locator": {
+            "pdf_page": 7,
+            "printed_page": 5,
+            "section": "\"O SR. MICHEL TEMER - Prometo manter...\"; boxed facsimile \"TERMO DE COMPROMISSO ... PRESTADO EM 1º DE JANEIRO DE 2011\""
+          },
+          "uncertainty": "No clock time is recorded for the oath itself. The oath is never a start or a holder date; the from rests on the declaration of posse and the termo."
+        },
+        {
+          "id": "br_temer_vp_posse_declared_20110101",
+          "text": "José Sarney, \"with the powers conferred on me by the Constitution\", declared Dilma Rousseff and Michel Temer empossados as President and Vice-President of the Federative Republic of Brazil for the period 1 January 2011 to 31 December 2014; the session was opened to give posse to the two, diplomados \"para o período a iniciar-se nesta data\".",
+          "attested_on": "2011-01-01",
+          "locator": {
+            "pdf_page": 8,
+            "printed_page": 6,
+            "section": "Left column: \"declaro empossados, nos cargos de Presidente e Vice-Presidente da República Federativa do Brasil, a Excelentíssima Senhora Dilma Rousseff e o Excelentíssimo Senhor Michel Temer, para o período de 1º de janeiro de 2011 a 31 de dezembro de 2014\"; opening on pdf p. 3"
+          },
+          "uncertainty": "Basis for from. The stated period end is prospective (made at the posse) and is never used as an until; a posse-day statement of a period does not show that the term ran to that day."
+        },
+        {
+          "id": "br_temer_vp_termo_de_posse_20110101",
+          "text": "The joint termo de posse records that at 14:30 on 1 January 2011, before the National Congress in joint session, Dilma Rousseff and Michel Temer were solemnly empossados under article 78 of the Constitution in the offices of President and Vice-President, elected on 31 October 2010 and diplomados on 17 December 2010, for the period 1 January 2011 to 31 December 2014.",
+          "attested_on": "2011-01-01",
+          "locator": {
+            "pdf_page": 8,
+            "printed_page": 6,
+            "section": "Typed termo (both columns); signed facsimile on pdf p. 9 (printed p. 7)"
+          },
+          "uncertainty": "The termo is a pre-drafted form whose clock time (14:30) precedes the session opening recorded in the minutes (14:47); no time of day is relied on. The stated period end is prospective (made at the posse) and is never used as an until; a posse-day statement of a period does not show that the term ran to that day."
+        },
+        {
+          "id": "br_temer_vp_styled_after_posse_20110101",
+          "text": "After the posse, Rousseff's address salutes \"Sr. Vice-Presidente da República, Michel Temer\", and the Congress President's closing address tells her that she has at her side \"o Vice-Presidente Michel Temer\".",
+          "attested_on": "2011-01-01",
+          "locator": {
+            "pdf_page": 10,
+            "printed_page": 8,
+            "section": "Salutation of Rousseff's address (text layer); Sarney's address on pdf p. 15 (printed p. 13)"
+          },
+          "uncertainty": "Same-session styling after the declaration of posse; support only, it sets no date of its own."
+        },
+        {
+          "id": "br_alencar_tribute_rousseff_address_20110101",
+          "text": "In her address at the 2011 posse, Rousseff pays homage to \"nosso querido Vice-Presidente José Alencar\", the companion who was at President Lula's side \"nesses oito anos\", and says that she and the Vice-President, Michel Temer, feel responsible for following the path they began.",
+          "attested_on": "2011-01-01",
+          "locator": {
+            "pdf_page": 10,
+            "printed_page": 8,
+            "section": "Rousseff's address (\"Quero, neste momento, prestar minha homenagem ... nosso querido Vice-Presidente José Alencar!\")"
+          },
+          "uncertainty": "A successor administration's retrospective tribute at its own posse, with no day and no instrument. Recorded as a claim only and never a boundary: it does not state the day Alencar's term ended, and his 2007 holder has no until."
         }
       ]
     },
@@ -1675,8 +2129,8 @@
       "scope_note": "Born-digital Diário do Congresso Nacional issue from the Senate's diary store (viewer https://legis.senado.leg.br/diarios/ver/19242) with colour facsimiles of the diplomas and the signed termo; PDF page numbers equal printed page numbers. The cover's text layer is garbled, so the cover was read visually.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/brazil-congress-dcn-rousseff-posse-20150102-facts.json",
-        "bytes": 6784,
-        "sha256": "646c155ec0980c883132552eecaa69a5130253c7e16fb9a2bf4afd7cf7b6be84"
+        "bytes": 13723,
+        "sha256": "d7802b6799470f53937b67d3ab6369f9279610d4b1a8cce55a894e5e5b33445d"
       },
       "claims": [
         {
@@ -1733,6 +2187,72 @@
             "section": "Termo read; signed facsimile on p. 11"
           },
           "uncertainty": "The termo is a pre-drafted form whose clock time (15:00) precedes the session opening recorded in the minutes (15:19); no time of day is relied on. The stated period end is prospective (made at the posse) and is never used as an until; a posse-day statement of a period does not show that the term ran to that day."
+        },
+        {
+          "id": "br_temer_vp_reelected_20141026",
+          "text": "The Congress record states that Dilma Rousseff and Michel Temer were elected on 26 October 2014; the reproduced TSE diploma says Michel Miguel Elias Temer Lulia, candidate of the Com a Força do Povo coalition (PT, PMDB, PRB, PP, PDT, PR, PSD, PCdoB, PROS), was elected Vice-President of the Republic by the will expressed at the polls on 26 October 2014.",
+          "attested_on": "2014-10-26",
+          "locator": {
+            "pdf_page": 3,
+            "printed_page": 3,
+            "section": "Opening by Renan Calheiros (\"eleitos em 26 de outubro de 2014\"); diploma on p. 6"
+          },
+          "uncertainty": "No round is stated or inferred; the diploma's vote total is not imported. The typed termo says \"eleitos\" while its signed facsimile (p. 11) says \"reeleitos\". Never a holder date."
+        },
+        {
+          "id": "br_temer_vp_diplomado_tse_20141218",
+          "text": "The reproduced TSE diploma, dated Brasília 18 December 2014 and signed by Minister José Antonio Dias Toffoli as President of the Court, followed by a page of the Court's ministers' signatures, qualifies Michel Miguel Elias Temer Lulia for investiture in the office of Vice-President before the National Congress on 1 January 2015; the opening and his termo de compromisso date the diplomação to 18 December 2014.",
+          "attested_on": "2014-12-18",
+          "locator": {
+            "pdf_page": 6,
+            "printed_page": 6,
+            "section": "Facsimile of the Vice-President's TSE diploma, printed sideways (\"Brasília, dezoito de dezembro de dois mil e quatorze\"); signature page p. 7"
+          },
+          "uncertainty": "A TSE document reproduced by Congress (image only); the investiture date it names is prospective. Never a holder date."
+        },
+        {
+          "id": "br_temer_vp_oath_before_congress_20150101",
+          "text": "At the solemn joint session of 1 January 2015 (15:19-16:32), after Rousseff, Renan Calheiros invited \"o Exmo. Vice-Presidente da República eleito, Sr. Michel Temer\" to take the constitutional commitment, and he recited it; the record reproduces his signed termo de compromisso under article 78, \"prestado em 1º de janeiro de 2015\", naming him as elected to the office of Vice-President on 26 October 2014 and diplomado on 18 December 2014.",
+          "attested_on": "2015-01-01",
+          "locator": {
+            "pdf_page": 9,
+            "printed_page": 9,
+            "section": "\"O SR. MICHEL TEMER - Prometo manter...\"; boxed facsimile \"TERMO DE COMPROMISSO ... PRESTADO EM 1º DE JANEIRO DE 2015\""
+          },
+          "uncertainty": "No clock time is recorded for the oath itself. The oath is never a start or a holder date; the from rests on the declaration of posse and the termo."
+        },
+        {
+          "id": "br_temer_vp_posse_declared_20150101",
+          "text": "Renan Calheiros, \"with the powers granted by the Federal Constitution\", declared Dilma Rousseff and Michel Temer empossados in the offices of President and Vice-President of the Republic respectively, for the period 1 January 2015 to 31 December 2018; the session was opened to give posse to the two, diplomados \"para o período a iniciar-se nesta data\".",
+          "attested_on": "2015-01-01",
+          "locator": {
+            "pdf_page": 9,
+            "printed_page": 9,
+            "section": "\"declaro empossados nos cargos de Presidenta e Vice-Presidente da República a Exma. Sra. Dilma Rousseff e o Exmo. Sr. Michel Temer, respectivamente, para o período de 1º de janeiro de 2015 a 31 de dezembro de 2018\"; opening on p. 3"
+          },
+          "uncertainty": "Basis for from. The stated end (31 December 2018) is prospective and is never an until; the end of this term and his 2016 posse as President belong to BR-VP-07."
+        },
+        {
+          "id": "br_temer_vp_termo_de_posse_20150101",
+          "text": "The joint termo de posse records that at 15:00 on 1 January 2015, before the National Congress in joint session, Dilma Rousseff and Michel Temer were solemnly empossados under article 78 of the Constitution in the offices of President and Vice-President respectively, elected on 26 October 2014 and diplomados on 18 December 2014, for the period 1 January 2015 to 31 December 2018; the signed facsimile says \"reeleitos\".",
+          "attested_on": "2015-01-01",
+          "locator": {
+            "pdf_page": 10,
+            "printed_page": 10,
+            "section": "Typed termo; signed facsimile on p. 11"
+          },
+          "uncertainty": "The termo is a pre-drafted form whose clock time (15:00) precedes the session opening recorded in the minutes (15:19); no time of day is relied on. The stated period end is prospective (made at the posse) and is never used as an until; a posse-day statement of a period does not show that the term ran to that day."
+        },
+        {
+          "id": "br_temer_vp_styled_after_posse_20150101",
+          "text": "After the posse, Rousseff's address salutes \"Sr. Vice-Presidente da República, Michel Temer\" and later speaks of \"meu querido Vice-Presidente Michel Temer, parceiro de todas as horas\".",
+          "attested_on": "2015-01-01",
+          "locator": {
+            "pdf_page": 11,
+            "printed_page": 11,
+            "section": "Salutation of Rousseff's address; the second passage on p. 12 (text layer)"
+          },
+          "uncertainty": "Same-session styling after the declaration of posse; support only, it sets no date of its own."
         }
       ]
     },
@@ -2182,8 +2702,8 @@
       "scope_note": "Complete 30-page extraordinary Diário do Congresso Nacional issue from the Senate's diary store (viewer https://legis.senado.leg.br/diarios/ver/20556; dataSessao 2016-08-31, dataPublicacao 2016-08-31; verification code 296540C200135FE0).",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/brazil-congress-dcn-temer-posse-20160901-facts.json",
-        "bytes": 4815,
-        "sha256": "9a39489b3eca70fb0c4542f98cea7316b800987c04ba81482e256a92fec7434a"
+        "bytes": 6497,
+        "sha256": "a2e445311858f6fe403f54b69da37e033ab0ff58ca461d6baff4174bb5a99b50"
       },
       "claims": [
         {
@@ -2214,6 +2734,16 @@
             "section": "'Compõem a Mesa com esta Presidência'"
           },
           "uncertainty": "Styling immediately before the posse; not a holder observation."
+        },
+        {
+          "id": "br_temer_vp_succeeds_art79_termo_20160831",
+          "text": "The Termo de Posse read into the record, and signed, states that at 16:00 on 31 August 2016, before Congress in joint session in the Senate chamber, 'o Senhor Michel Temer, Vice-Presidente da República' appeared to be invested under art. 79 of the Constitution in the office of President of the Republic by virtue of the vacancy that occurred on 31 August 2016, and took the oath.",
+          "attested_on": "2016-08-31",
+          "locator": {
+            "pdf_pages": "4-5 (read into the record), 6 (signed termo)",
+            "section": "'Termo de Posse do Excelentíssimo Senhor Michel Temer, no cargo de Presidente da República'"
+          },
+          "uncertainty": "Records the Vice-President's succession to the Presidency. In the minutes the declaration of posse as President (CLAUDE-C01-10's br_temer_posse_declared_20160831) precedes the reading of the termo, and his br_president start is CLAUDE-C01-10's, unchanged. The termo does not say that his Vice-Presidency ended or that the office of Vice-President became vacant: the stated vacancy is of the Presidency, so no until and no vacancy is recorded from it, and it is never an end. The termo's 16:00 precedes the minutes' 16:41 opening; no time is relied on."
         }
       ]
     },
@@ -2230,8 +2760,8 @@
       "scope_note": "Complete 21-page DCN nº 1/2019 issue from the Senate's diary store (viewer https://legis.senado.leg.br/diarios/ver/21600; dataSessao 2019-01-01, dataPublicacao 2019-01-03); PDF page numbers equal printed page numbers, and these claims rest on pages 5-11. Scanned pages with an OCR layer. The viewer's page-range form (seqPaginaInicial/seqPaginaFinal) is regenerated by Aspose.PDF on every request with a new CreationDate and document /ID, so its SHA-256 changes from one generation to the next and it is not a reproducible identity.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/brazil-congress-dcn-bolsonaro-posse-20190102-facts.json",
-        "bytes": 5040,
-        "sha256": "357e6176cc49b355a04fbc099155bfacc66fe96c82e1777d0d05114925ad299b"
+        "bytes": 10453,
+        "sha256": "5702c8f55e601d3a04a88a4ff10d5695a965613ada7779411e393140afab1568"
       },
       "claims": [
         {
@@ -2261,6 +2791,61 @@
             "passage": "'não posso deixar de registrar a perseverança política e pessoal do ex-Presidente Michel Temer'"
           },
           "uncertainty": "Styling in a speech; context only, never an end of Temer's term."
+        },
+        {
+          "id": "br_mourao_elected_20181028",
+          "text": "The President of Congress opened the session to give office to the President and to the Vice-President of the Republic, 'Sr. Antonio Hamilton Martins Mourão', elected on 28 October 2018; the termo read into the record repeats that both were elected on 28 October 2018.",
+          "attested_on": "2018-10-28",
+          "locator": {
+            "pdf_page": 6,
+            "printed_page": 6,
+            "section": "opening declaration by Eunício Oliveira; termo on pdf p. 7"
+          },
+          "uncertainty": "Congress's statement of the election day, not a TSE result record; the diplomação has its own claim (br_mourao_diplomado_tse_20181210). Never a holder date."
+        },
+        {
+          "id": "br_mourao_oath_before_congress_20190101",
+          "text": "Invited as 'Vice-Presidente da República eleito', Antonio Hamilton Martins Mourão took the constitutional oath before Congress on 1 January 2019, after the President-elect.",
+          "attested_on": "2019-01-01",
+          "locator": {
+            "pdf_page": 6,
+            "printed_page": 6,
+            "section": "'Convido o Exmo. Sr. Vice-Presidente da República eleito ...' and 'O SR. ANTONIO HAMILTON MARTINS MOURÃO - Prometo manter ...'; signed termo de compromisso on pdf p. 18 (source br_cn_dcn1_20190102_full)"
+          },
+          "uncertainty": "The oath is its own claim. The oath is never a start or a holder date."
+        },
+        {
+          "id": "br_mourao_posse_declared_20190101",
+          "text": "The session was called to give office to the President and the Vice-President 'para o período a iniciar-se nesta data'; after the oaths the President of Congress (Eunício Oliveira) declared Jair Messias Bolsonaro and Antonio Hamilton Martins Mourão 'empossados nos cargos de Presidente e Vice-Presidente da República Federativa do Brasil ... respectivamente, para o período de 1º de janeiro de 2019 a 31 de dezembro de 2022'. The session ran from 15:02 to 15:42.",
+          "attested_on": "2019-01-01",
+          "locator": {
+            "pdf_page": 6,
+            "printed_page": 6,
+            "section": "opening declaration and 'declaro empossados'; session times on pdf p. 5"
+          },
+          "uncertainty": "Posse before Congress with a period stated to begin that day (basis for from). The printed period end (31 December 2022) is prospective and never an until."
+        },
+        {
+          "id": "br_mourao_termo_read_20190101",
+          "text": "The First Secretary read the Termo de Posse: at 15:00 on 1 January 2019, before Congress in joint session in the Chamber's plenary, Jair Messias Bolsonaro and Antonio Hamilton Martins Mourão were solemnly empossados under art. 78 of the Constitution as President and Vice-President, respectively, elected on 28 October 2018 and diplomados by the TSE on 10 December 2018, for the period 1 January 2019 to 31 December 2022; the termo was then signed by the President 'agora empossado', by the Vice-President 'também empossado' and by the Mesa.",
+          "attested_on": "2019-01-01",
+          "locator": {
+            "pdf_page": 7,
+            "printed_page": 7,
+            "section": "'TERMO DE POSSE ... NOS CARGOS DE PRESIDENTE E VICE-PRESIDENTE DA REPÚBLICA' and the Presidency's announcement of the signatures"
+          },
+          "uncertainty": "The termo's 15:00 precedes the 15:02 opening; no time is relied on. The printed end is prospective and never an until."
+        },
+        {
+          "id": "br_mourao_saluted_vice_president_bolsonaro_address_20190101",
+          "text": "In his address to Congress after the posse, President Bolsonaro saluted the 'Vice-Presidente da República Federativa do Brasil, Sr. Hamilton Mourão'; the President of Congress's closing address also saluted him as Vice-President.",
+          "attested_on": "2019-01-01",
+          "locator": {
+            "pdf_page": 8,
+            "printed_page": 8,
+            "section": "opening salutations of Bolsonaro's address; Eunício Oliveira's address on pdf p. 10"
+          },
+          "uncertainty": "Same-session styling after the declaration of posse; support only, it sets no date of its own."
         }
       ]
     },
@@ -2277,8 +2862,8 @@
       "scope_note": "The complete 21-page DCN nº 1/2019 issue from the Senate's diary store (Content-Length 49,257,639; viewer https://legis.senado.leg.br/diarios/ver/21600). No local copy is kept because of its size. Page 14 is the TSE diploma and page 20 the signed termo de posse. The narrower seqPaginaInicial=14 forms are not reliable identities (one broke with a chunked-encoding error).",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/brazil-congress-dcn-bolsonaro-diploma-termo-20190102-facts.json",
-        "bytes": 4410,
-        "sha256": "5d6b9d9192412312c9a70513baee717422fcaee47713f6bc3e7021152608fe41"
+        "bytes": 8014,
+        "sha256": "01ba49e7fbac8beda5d23f13822b84c3f8e06ad1c5acdfd1674fd1d82ee190a7"
       },
       "claims": [
         {
@@ -2301,6 +2886,39 @@
             "section": "Termo de posse with the signatures"
           },
           "uncertainty": "The termo's 15:00 precedes the session opening in the minutes (15:02); no time of day is relied on. The period end is prospective and never an until. The Vice-President's posse is the same act and is outside this role. Located by the independent check."
+        },
+        {
+          "id": "br_mourao_diplomado_tse_20181210",
+          "text": "The Superior Electoral Court's diploma reproduced in the issue states that, by the will of the people expressed at the ballot of 28 October 2018, Antonio Hamilton Martins Mourão, candidate of the Coligação Brasil Acima de Tudo, Deus Acima de Todos (PSL/PRTB), was elected Vice-President of the Federative Republic of Brazil, and that the diploma qualifies him for investiture before Congress on 1 January 2019; it is dated Brasília, 10 December 2018, and signed by Minister Rosa Weber as President.",
+          "attested_on": "2018-12-10",
+          "locator": {
+            "pdf_page": 15,
+            "printed_page": 15,
+            "section": "diploma image (item 2.1 of the summary: 'Diplomas do Exmo. Sr. Jair Messias Bolsonaro e do Exmo. Sr. Antonio Hamilton Martins Mourão')"
+          },
+          "uncertainty": "The TSE diploma as reproduced in the Congress diary; the TSE's own record was not fetched. Read visually from a scanned image. Never a holder date."
+        },
+        {
+          "id": "br_mourao_termo_de_compromisso_20190101",
+          "text": "The signed Termo de Compromisso records the oath under art. 78 of the Constitution given on 1 January 2019 by Antônio Hamilton Martins Mourão, 'eleito para o cargo de Vice-Presidente da República em 28 de outubro de 2018 e diplomado em 10 de dezembro de 2018'.",
+          "attested_on": "2019-01-01",
+          "locator": {
+            "pdf_page": 18,
+            "printed_page": 18,
+            "section": "Termo de compromisso with signature (item 2.2 of the summary)"
+          },
+          "uncertainty": "The signed oath text. The oath is never a start or a holder date. Repeats the election and diplomação days."
+        },
+        {
+          "id": "br_mourao_signed_termo_de_posse_20190101",
+          "text": "The signed Termo de Posse records that at 15:00 on 1 January 2019, before Congress in joint session in the Chamber's plenary, Jair Messias Bolsonaro and Antônio Hamilton Martins Mourão were solemnly empossados under art. 78 of the Constitution as President and Vice-President, respectively, elected on 28 October 2018 and diplomados by the TSE on 10 December 2018, for the period 1 January 2019 to 31 December 2022.",
+          "attested_on": "2019-01-01",
+          "locator": {
+            "pdf_page": 20,
+            "printed_page": 20,
+            "section": "Termo de posse with the signatures (item 2.3 of the summary)"
+          },
+          "uncertainty": "Signed termo; basis for from together with the declaration. C01-10's claim br_bolsonaro_signed_termo_de_posse_20190101 (role br_president) records the same page. The printed period end is prospective and never an until."
         }
       ]
     },
@@ -2433,8 +3051,8 @@
       "scope_note": "Complete 59-page extraordinary DCN nº 1/2023 issue from the Senate's diary store (viewer https://legis.senado.leg.br/diarios/ver/111711; dataSessao 2023-01-01, dataPublicacao 2023-01-02; verification code E08D962B004C6AB2); PDF page numbers equal printed page numbers, and these claims rest on pages 1-8. The viewer's page-range form (seqPaginaInicial/seqPaginaFinal) is regenerated by Aspose.PDF on every request with a new CreationDate and document /ID, so its SHA-256 changes from one generation to the next and it is not a reproducible identity.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/brazil-congress-dcn-lula-posse-20230102-facts.json",
-        "bytes": 4873,
-        "sha256": "7e0442059ba48042da20ce2463a7b20f5307717f18de0b0e699860d2e97e01a9"
+        "bytes": 10023,
+        "sha256": "b03c6ef08651677c73f758ac6de391e13929b5fad5c628de9bc1c066adc38040"
       },
       "claims": [
         {
@@ -2463,6 +3081,61 @@
             "pdf_pages": "6, 7"
           },
           "uncertainty": "Congress's statement; the diploma itself is reproduced on pages 18-19 of the same issue and recorded as br_lula_diplomado_tse_20221212. Never a holder date."
+        },
+        {
+          "id": "br_alckmin_elected_20221030",
+          "text": "The President of Congress opened the session to give office to the President and to the Vice-President of the Republic, 'Senhor Geraldo José Rodrigues Alckmin Filho', elected on 30 October 2022; the termo read into the record repeats the election day.",
+          "attested_on": "2022-10-30",
+          "locator": {
+            "pdf_page": 6,
+            "printed_page": 6,
+            "section": "opening declaration by Rodrigo Pacheco; termo on pdf p. 7"
+          },
+          "uncertainty": "Congress's statement of the election day, not a TSE result record; the diplomação has its own claim (br_alckmin_diplomado_tse_20221212). Never a holder date."
+        },
+        {
+          "id": "br_alckmin_oath_before_congress_20230101",
+          "text": "Invited as 'Vice-Presidente da República eleito', Geraldo José Rodrigues Alckmin Filho took the constitutional oath before Congress on 1 January 2023, after the President-elect.",
+          "attested_on": "2023-01-01",
+          "locator": {
+            "pdf_page": 6,
+            "printed_page": 6,
+            "section": "'Convido o Excelentíssimo Vice-Presidente da República eleito ...' and 'O SR. GERALDO JOSÉ RODRIGUES ALCKMIN FILHO - Prometo ...'; signed termo de compromisso on pdf p. 26 (source br_cn_dcn1_20230102_p20_26)"
+          },
+          "uncertainty": "The ata prints his spoken words beginning 'Prometo defender e cumprir a Constituição', without 'manter', while the signed termo de compromisso has the full formula; the discrepancy is noted, not resolved. The oath is never a start or a holder date."
+        },
+        {
+          "id": "br_alckmin_posse_declared_20230101",
+          "text": "After the oaths the President of Congress (Rodrigo Pacheco) declared Luiz Inácio Lula da Silva and Geraldo José Rodrigues Alckmin Filho 'empossados nos cargos de Presidente e Vice-Presidente da República Federativa do Brasil ... respectivamente, para o período de 1º de janeiro de 2023 a 4 de janeiro de 2027'. The session ran from 14:55 to 16:04.",
+          "attested_on": "2023-01-01",
+          "locator": {
+            "pdf_page": 6,
+            "printed_page": 6,
+            "section": "'declaro empossados'; session times on pdf p. 5"
+          },
+          "uncertainty": "Posse before Congress for a period beginning 1 January 2023 (basis for from, as C01-10 does for Lula). The printed end, 4 January 2027, is prospective and after the 7 September 2026 cutoff; it is kept in this text only, never as a structured date."
+        },
+        {
+          "id": "br_alckmin_termo_read_20230101",
+          "text": "The First Secretary read the Termo de Posse: at 15:00 on 1 January 2023, before Congress in joint session in the Chamber's plenary, Luiz Inácio Lula da Silva and Geraldo José Rodrigues Alckmin Filho were solemnly empossados under art. 78 of the Constitution as President and Vice-President, respectively, elected on 30 October 2022 and diplomados by the TSE on 12 December 2022, for the period 1 January 2023 to 4 January 2027; the President of Congress announced that the termo would be signed by the President, the Vice-President and the Mesa.",
+          "attested_on": "2023-01-01",
+          "locator": {
+            "pdf_page": 7,
+            "printed_page": 7,
+            "section": "'Termo de posse do Excelentíssimo Senhor Luiz Inácio Lula da Silva e do Excelentíssimo Senhor Geraldo José Alckmin Filho' (read by Luciano Bivar)"
+          },
+          "uncertainty": "The reading drops 'Rodrigues' in the heading but names him in full in the body; the signed termo is claim br_alckmin_signed_termo_de_posse_20230101. The printed end is prospective."
+        },
+        {
+          "id": "br_alckmin_saluted_vice_president_lula_address_20230101",
+          "text": "In his address after the posse, President Lula saluted 'meu querido companheiro Vice-Presidente da República, Geraldo Alckmin'.",
+          "attested_on": "2023-01-01",
+          "locator": {
+            "pdf_page": 8,
+            "printed_page": 8,
+            "section": "opening salutations of Lula's address"
+          },
+          "uncertainty": "Same-session styling after the declaration of posse; support only."
         }
       ]
     },
@@ -2551,6 +3224,489 @@
             "section": "Preamble; closing 'Brasília, 24 de agosto de 2026' and signature"
           },
           "uncertainty": "An in-office attestation dated before the 7 September 2026 cutoff; it establishes no end and does not extend the term beyond what the posse record declares."
+        }
+      ]
+    },
+    {
+      "id": "br_dcn_36_19850423",
+      "title": "Diário do Congresso Nacional nº 36, 23 April 1985: minutes of the 69th joint session of 22 April 1985 (death of the President-elect; vacancy of the office of President; José Sarney assumes the office of President)",
+      "url": "https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=15364&download=true",
+      "publisher": "Congresso Nacional (printed by the Senado Federal)",
+      "published_date": "1985-04-23",
+      "accessed_date": "2026-09-24",
+      "access_method": "downloaded_official_pdf_and_pages_rendered_for_visual_review",
+      "source_type": "primary_congress_session_record_pdf",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Complete stored issue from the Senate's diary store (download=true; viewer https://legis.senado.leg.br/diarios/ver/15364; 8 pages, iText 2.1.3, CreationDate 12 April 2013), not a regenerated page-range PDF. Pre-period context for BR-VP-01 only: its claims fall before 1 January 1990 and feed no holder.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/brazil-congress-dcn-sarney-succession-19850423-facts.json",
+        "bytes": 6330,
+        "sha256": "5013f806c5e6e2292d80c9d0c917dd069d35a4e82bdd72d6fcb86050035660d9"
+      },
+      "claims": [
+        {
+          "id": "br_sarney_vp_oath_recited_19850315",
+          "text": "Opening the 69th joint session of 22 April 1985, the President of Congress, Senator José Fragelli, recalled that the Vice-President, José Sarney, had taken the constitutional oath before the National Congress on 15 March 1985.",
+          "attested_on": "1985-03-15",
+          "locator": {
+            "pdf_page": 3,
+            "printed_page": 613,
+            "item": "'ao Vice-Presidente, sua Excelência o Senhor Doutor José Sarney, que já prestou, perante o Congresso Nacional, a 15 de março do corrente ano, o compromisso constitucional'"
+          },
+          "uncertainty": "Congress's recital, dated by the day recalled; outside the 1990-2026 window. The oath is never a start or a holder date, and no holder is recorded for José Sarney as Vice-President."
+        },
+        {
+          "id": "br_sarney_vp_exercise_from_recited_19850315",
+          "text": "The same statement says that the Vice-President had since then been in the exercise of the Presidency by reason of the impediment of the holder (the President-elect).",
+          "attested_on": "1985-03-15",
+          "locator": {
+            "pdf_page": 3,
+            "printed_page": 613,
+            "item": "'encontra-se, desde então, no exercício da Presidência em virtude do impedimento do titular'"
+          },
+          "uncertainty": "Recited on 22 April 1985 as running since the oath of 15 March 1985, and dated by the day recalled, as CLAUDE-C01-10 dates Itamar Franco's own statement. The source states no day on which the exercise as Vice-President ended, and Mensagem nº 232 of 21 April already has him continuing as successor, so no period is stored. Exercise of the Presidency: a claim only, never a holder, and outside the window."
+        },
+        {
+          "id": "br_presidency_vacant_vp_sarney_succeeds_19850422",
+          "text": "He stated that, President-elect Tancredo de Almeida Neves having died, the office of President of the Republic being vacant, it fell to the Vice-President, José Sarney, as successor of the President-elect, to exercise the office of President of the Republic under Article 77, caput, of the Constitution.",
+          "attested_on": "1985-04-22",
+          "locator": {
+            "pdf_page": [
+              1,
+              3
+            ],
+            "printed_page": [
+              null,
+              613
+            ],
+            "item": "summary 'vacância do cargo de Presidente da República; e assunção do Doutor José Sarney ao cargo de Presidente da República'; 'Vago o cargo de Presidente da República, ao Vice-Presidente ... cabe exercer, como sucessor ...'"
+          },
+          "uncertainty": "Declares the vacancy of the office of President, not of the Vice-Presidency. No source reviewed states that the office of Vice-President was vacant, in 1985 or on 1 January 1990; nothing is inferred from this succession about the office on 1 January 1990."
+        },
+        {
+          "id": "br_sarney_mensagem232_continues_as_successor_19850421",
+          "text": "Mensagem nº 232, dated Brasília 21 April 1985, signed José Sarney and read at the session, informs the President of the Senate of the death that day of President-elect Tancredo de Almeida Neves and states that Sarney continues to exercise, now as successor, the office of President of the Republic under Article 77 of the Constitution.",
+          "attested_on": "1985-04-21",
+          "locator": {
+            "pdf_page": 3,
+            "printed_page": 613,
+            "item": "MENSAGEM Nº 232: 'continuo a exercer, agora na qualidade de sucessor, o cargo de Presidente da República'"
+          },
+          "uncertainty": "The successor's own statement; it does not mention the office of Vice-President. Context for BR-VP-01 only."
+        }
+      ]
+    },
+    {
+      "id": "br_tse_diploma_itamar_19891230",
+      "title": "TSE: Diploma do vice-presidente da República eleito, Itamar Augusto Cautiero Franco (photograph of the diploma)",
+      "url": "https://bibliotecadigital.tse.jus.br/server/api/core/bitstreams/6b2f6066-4e87-40b9-b5c8-4cb26682d51f/content",
+      "publisher": "Tribunal Superior Eleitoral (Biblioteca Digital da Justiça Eleitoral)",
+      "published_date": "1989-12-30",
+      "accessed_date": "2026-09-24",
+      "access_method": "downloaded_repository_image_and_viewed",
+      "source_type": "primary_electoral_court_repository_image",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Photograph (JPEG, 764x1024; bitstream 1989_diploma_itamar_franco.JPG) of the diploma in the TSE digital library, item bdtse/5202 (http://bibliotecadigital.tse.jus.br/handle/bdtse/5202); a static bitstream whose ETag equals the MD5 of the bytes (Last-Modified 9 November 2018). The item's catalogue record (https://bibliotecadigital.tse.jus.br/server/api/core/items/e0633b12-fadc-4cab-8b14-4aeaf9a5a899; 6,166 bytes, SHA-256 da1fefe7552fa785b34e2baf702f835e1b2948177513a92b7534faa3e6ff3f2f, stable across two downloads) dates the item 1989-12-30, names the Casa da Moeda do Brasil as publisher and places it in bdtse/539, the 1989 diplomação ceremony (CLAUDE-C01-10's br_tse_catalogue_diplomacao_1989). Unlike Collor's bdtse/1942 it states no acquisition mode or date: it is the TSE's collection exemplar, and nothing shows it is the exemplar handed to Itamar Franco. published_date is the date printed on the diploma.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/brazil-tse-itamar-vp-diploma-19891230-facts.json",
+        "bytes": 5092,
+        "sha256": "0c627c8615cca534b4ae3ecdc5cba6234f51a9336768064b591fc376b30963bb"
+      },
+      "claims": [
+        {
+          "id": "br_itamar_vp_tse_diploma_issued_19891230",
+          "text": "The Superior Electoral Court's diploma, dated Brasília 30 December 1989 and signed by its President, Minister Francisco Rezek, and the Court's other ministers, states that the Electoral Justice issued it in witness that Itamar Augusto Cautiero Franco was elected Vice-President of the Republic, and that it qualifies him for investiture in the office before the National Congress on 15 March 1990 under the Constitution.",
+          "attested_on": "1989-12-30",
+          "locator": {
+            "item": "date line 'Brasília, aos 30 de dezembro de 1989'; investiture clause 'que o habilita à investidura no cargo perante o Congresso Nacional em 15 de março de 1990'; signature captions"
+          },
+          "uncertainty": "The TSE's own act, as the collection exemplar photographed in its digital library (item bdtse/5202, with no stated acquisition mode or date; nothing shows it is the exemplar handed to Itamar Franco). The investiture date it prints is prospective and never a start; the diplomação is never a holder date."
+        },
+        {
+          "id": "br_itamar_vp_elected_ballots_19891217",
+          "text": "The diploma states that by the will of the Brazilian people, expressed at the ballots of 15 November and 17 December 1989, Itamar Augusto Cautiero Franco was elected Vice-President of the Republic.",
+          "attested_on": "1989-12-17",
+          "locator": {
+            "item": "'Pela vontade do povo brasileiro, expressa nas urnas em 15 de novembro e 17 de dezembro de 1989, Itamar Augusto Cautiero Franco foi eleito Vice-Presidente da República'"
+          },
+          "uncertainty": "Election statement dated by the second ballot; never a start or a holder date."
+        }
+      ]
+    },
+    {
+      "id": "br_planalto_dnn428_19911211",
+      "title": "Decreto de 11 de dezembro de 1991 (unnumbered; Presidency legislation page Dnn428, archived)",
+      "url": "https://web.archive.org/web/20240724055151id_/http://planalto.gov.br/CCIVIL_03/DNN/Anterior_a_2000/1991/Dnn428.htm",
+      "original_url": "http://planalto.gov.br/CCIVIL_03/DNN/Anterior_a_2000/1991/Dnn428.htm",
+      "publisher": "Presidência da República, Secretaria-Geral, Subchefia para Assuntos Jurídicos",
+      "published_date": "1991-12-12",
+      "accessed_date": "2026-09-24",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_presidency_legislation_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The Presidency's legislation page for an unnumbered decree of 11 December 1991 (a supplementary credit for the Presidency), captured 24 July 2024 (text/html with no charset; windows-1252 bytes; original Last-Modified 28 May 2021); the page notes the DOU of 12 December 1991 and a later revocation by Decree No. 10.646/2021.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/brazil-planalto-decreto-dnn428-19911211-facts.json",
+        "bytes": 3690,
+        "sha256": "883619c131c71b9f9d0cac4d52b491246102312d282850ee99045d948b3e156d"
+      },
+      "claims": [
+        {
+          "id": "br_itamar_vp_exercising_dnn428_19911211",
+          "text": "An unnumbered decree of 11 December 1991, opening a supplementary credit of Cr$ 2,578,453,000.00 in favour of the Presidency, is issued by 'O VICE-PRESIDENTE DA REPÚBLICA, no exercício do cargo de PRESIDENTE DA REPÚBLICA', dated Brasília, 11 December 1991, and signed Itamar Franco (countersigned Marcílio Marques Moreira); the page notes publication in the DOU of 12 December 1991.",
+          "attested_on": "1991-12-11",
+          "locator": {
+            "item": "heading 'DECRETO DE 11 DE DEZEMBRO DE 1991'; enacting formula; closing 'Brasília, 11 de dezembro de 1991'; signature block; DOU note"
+          },
+          "uncertainty": "Attests Itamar Franco as Vice-President, exercising the Presidency, on 11 December 1991: the only primary act found for him between his posse (15 March 1990) and October 1992; it does not say why the President was not exercising the office. Exercise of the Presidency: a claim only, never a holder of br_president or of br_vice_president, and not a start or an end. Found by the independent check."
+        }
+      ]
+    },
+    {
+      "id": "br_planalto_lei_8469_19921005",
+      "title": "Lei nº 8.469, de 5 de outubro de 1992 (Presidency legislation page, archived)",
+      "url": "https://web.archive.org/web/20081014095729id_/http://www.planalto.gov.br/ccivil_03/LEIS/L8469.htm",
+      "original_url": "http://www.planalto.gov.br/ccivil_03/LEIS/L8469.htm",
+      "publisher": "Presidência da República, Casa Civil, Subchefia para Assuntos Jurídicos",
+      "published_date": "1992-10-06",
+      "accessed_date": "2026-09-24",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_presidency_legislation_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The Presidency's consolidated legislation page, captured 14 October 2008 (text/html with no charset; windows-1252 bytes; original Last-Modified 9 January 2008); the page notes the DOU of 6 October 1992.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/brazil-planalto-lei-8469-19921005-facts.json",
+        "bytes": 3459,
+        "sha256": "4d50c648a815009b62e1e27530eea72ddb287977552cf365fc7deffc674a2165"
+      },
+      "claims": [
+        {
+          "id": "br_itamar_vp_exercising_lei_8469_19921005",
+          "text": "Law No. 8.469 of 5 October 1992, creating the Regional Labour Prosecutor's Office of the 23rd Region, is sanctioned by 'O VICE-PRESIDENTE DA REPÚBLICA no exercício do cargo de PRESIDENTE DA REPÚBLICA', dated Brasília, 5 October 1992, and signed Itamar Franco (countersigned Maurício Corrêa); the page notes publication in the DOU of 6 October 1992.",
+          "attested_on": "1992-10-05",
+          "locator": {
+            "item": "enacting formula; closing 'Brasília, 5 de outubro de 1992'; signature block; DOU note"
+          },
+          "uncertainty": "The earliest primary act found attesting the Vice-President's exercise of the Presidency after the suspension of 2 October 1992; it does not state the day the exercise began. Exercise of the Presidency: a claim only, never a holder or a start. Found by the independent check; Law No. 8.470 of the same day, in the same form, is a lead."
+        }
+      ]
+    },
+    {
+      "id": "br_bibpr_itamar_speech_19921005",
+      "title": "Biblioteca da Presidência da República: Discurso do Senhor Itamar Franco, Vice-Presidente da República, no exercício do cargo de Presidente da República, na cerimônia de posse ministerial, Brasília, 5 de outubro de 1992 (PDF, archived)",
+      "url": "https://web.archive.org/web/20250421205127id_/http://www.biblioteca.presidencia.gov.br/presidencia/ex-presidentes/itamar-franco/discursos/1992/05-10-1992-discurso-do-sr-itamar-franco-vice-presidente-no-cargo-de-presidente-na-cerimonia-de-posse-ministerial",
+      "original_url": "http://www.biblioteca.presidencia.gov.br/presidencia/ex-presidentes/itamar-franco/discursos/1992/05-10-1992-discurso-do-sr-itamar-franco-vice-presidente-no-cargo-de-presidente-na-cerimonia-de-posse-ministerial",
+      "publisher": "Presidência da República, Biblioteca da Presidência",
+      "published_date": null,
+      "accessed_date": "2026-09-24",
+      "access_method": "downloaded_archived_raw_capture_and_pages_rendered_for_visual_review",
+      "source_type": "primary_presidency_speech_text_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The Presidency Library's transcript of the address (a 2008 scan of a printed collection, 5 pages, ABBYY FineReader; printed page 15 on PDF page 3), captured by the Internet Archive on 21 April 2025. A later printed transcript, not the Congress or DOU record.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/brazil-presidency-library-itamar-speech-19921005-facts.json",
+        "bytes": 4045,
+        "sha256": "ce4307649406423faf1889ecb0199ddb15bb5c0acb416ea43c22f6418a20925b"
+      },
+      "claims": [
+        {
+          "id": "br_itamar_vp_in_exercise_speech_19921005",
+          "text": "The Presidency Library's transcript titles the address 'Discurso do Senhor Itamar Franco, Vice-Presidente da República, no exercício do cargo de Presidente da República, na cerimônia de posse ministerial, no Palácio do Planalto', dated Brasília, DF, 5 October 1992; in it he says that 'este Governo se inicia' in fulfilment of the Constitution.",
+          "attested_on": "1992-10-05",
+          "locator": {
+            "pdf_page": [
+              2,
+              3
+            ],
+            "printed_page": [
+              null,
+              15
+            ],
+            "item": "title block; first paragraph of the address"
+          },
+          "uncertainty": "Attests the Vice-President's exercise of the Presidency on 5 October 1992 (the ministers' posse); claim only, never a holder or a start, and it does not state the day the exercise began. The title is the Library's; the text is a later printed transcript, supported by Law No. 8.469 of the same day."
+        }
+      ]
+    },
+    {
+      "id": "br_vpr_biografias_vice_presidentes_2024",
+      "title": "Vice-Presidência da República: Vice-Presidentes da República (biographies and succession chronology, 2024; PDF, archived)",
+      "url": "https://web.archive.org/web/20251207025501id_/https://www.gov.br/planalto/pt-br/vice-presidencia/acesso-a-informacao/institucional/biografia-dos-vice-presidentes-da-republica/biografias-vice-presidentes-versao-final.pdf",
+      "original_url": "https://www.gov.br/planalto/pt-br/vice-presidencia/acesso-a-informacao/institucional/biografia-dos-vice-presidentes-da-republica/biografias-vice-presidentes-versao-final.pdf",
+      "publisher": "Vice-Presidência da República, Diretoria de Administração, Coordenação-Geral de Acervo e Patrimônio (Ascom/VPR)",
+      "published_date": null,
+      "accessed_date": "2026-09-24",
+      "access_method": "downloaded_archived_raw_capture_and_pages_rendered_for_visual_review",
+      "source_type": "primary_vice_presidency_publication_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "A retrospective publication of the Vice-Presidency (60 pages; colophon Brasília, DF, Ascom/VPR, 2024; PDF modified 15 July 2025), captured by the Internet Archive on 7 December 2025, before the cutoff. Retrospective: its spans and its chronology are claims only, never boundaries. The live gov.br URL returns an F5 JavaScript challenge page, which was not bypassed; the July 2026 captures of the same URL are also challenge pages.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/brazil-vice-presidency-biographies-20251207-facts.json",
+        "bytes": 9729,
+        "sha256": "da308312dc50090e631ec0e9de7c2cfa74af1a562c166a697d0ffcfacdee6a8c"
+      },
+      "claims": [
+        {
+          "id": "br_vpbio_vacancy_chronology_undated",
+          "text": "The publication's introduction says that since 1891 the Vice-Presidency has been held by 26 Vice-Presidents and that its succession chronology shows the office left vacant ('o cargo ficou vago') on ten occasions, by ascent to the Presidency following a vacancy or by a break in institutional order. Its 'Cronologia sucessória' graphic places José Sarney at 1985 followed by a grey segment before Itamar Franco at 1990, and a grey segment between 1992 and 1995 before the next Vice-President; a footnote says the graphic is a visual reference not proportional to time.",
+          "locator": {
+            "pdf_page": [
+              6,
+              7
+            ],
+            "printed_page": [
+              4,
+              5
+            ],
+            "item": "'CRONOLOGIA SUCESSÓRIA - Vice-Presidência da República'; introduction box; footnote (1) on pdf p. 7"
+          },
+          "uncertainty": "A retrospective chronology: a claim, never a boundary, and no structured date is stored. The text does not list the ten vacancies or date any of them, and the grey segments are unlabelled, so no vacancy interval is recorded from it (neither 1985-1990 nor 1992-1995)."
+        },
+        {
+          "id": "br_vpbio_sarney_vp_span_19850315_19850421",
+          "text": "The profile of José Sarney gives his period as Vice-President as 15/03/1985 to 21/04/1985, with Tancredo de Almeida Neves as President, and says that Tancredo died before taking office and Sarney assumed the office on 21 April 1985.",
+          "locator": {
+            "pdf_page": 47,
+            "printed_page": 45,
+            "item": "header box '15/03/1985 a 21/04/1985'; paragraph 4"
+          },
+          "uncertainty": "Retrospective profile; no structured date is stored and it is never a boundary. It gives an end of his vice-presidential period in 1985, which is outside this packet's window and says nothing directly of the office on 1 January 1990."
+        },
+        {
+          "id": "br_vpbio_itamar_vp_span_19900315_19921229",
+          "text": "The profile of Itamar Franco gives his period as Vice-President as 15/03/1990 to 29/12/1992, with Fernando Afonso Collor de Melo as President, and says that on Collor's removal by the impeachment process he assumed the office of President provisionally ('em caráter provisório') on 2 October 1992 and was confirmed ('efetivado') in it on 29 December 1992 after Collor's resignation.",
+          "locator": {
+            "pdf_page": 49,
+            "printed_page": 47,
+            "item": "header box '15/03/1990 a 29/12/1992'; paragraph 4"
+          },
+          "uncertainty": "Retrospective profile; no structured date is stored and it is never a boundary: the 29/12/1992 end is not an until and the provisional exercise from 2 October 1992 is a claim only."
+        },
+        {
+          "id": "br_vpbio_temer_vp_span_20110101_20160831",
+          "text": "The Vice-Presidency's profile of Michel Temer gives his period as Vice-President as 01/01/2011 to 31/08/2016, with Dilma Vana Rousseff as President; it says he was elected Vice-President in 2010 and re-elected in 2014, and that he assumed the Presidency 'definitivamente' on 31 August 2016 after the Senate approved the impeachment process and removed Rousseff.",
+          "locator": {
+            "pdf_page": 55,
+            "printed_page": 53,
+            "section": "header box '01/01/2011 a 31/08/2016'; paragraphs 3-4"
+          },
+          "uncertainty": "A retrospective profile (colophon 2024; captured 7 December 2025): a claim, never a boundary, and no structured date is stored. Its 31/08/2016 end is not an until for his Vice-Presidency and it states no vacancy of the office."
+        },
+        {
+          "id": "br_vpbio_chronology_grey_segment_2016_2019",
+          "text": "In the Vice-Presidency's 'Cronologia sucessória' graphic, Michel Temer is placed at 2011 and a grey, unlabelled segment beginning at 2016 precedes Hamilton Mourão at 2019; footnote (1) says the illustration is a visual reference not proportional in time.",
+          "locator": {
+            "pdf_page": [
+              6,
+              7
+            ],
+            "printed_page": [
+              4,
+              5
+            ],
+            "section": "'CRONOLOGIA SUCESSÓRIA - Vice-Presidência da República', bottom rows (2011, 2016, 2019, 2023) on pdf p. 6; footnote (1) on pdf p. 7"
+          },
+          "uncertainty": "An unlabelled, retrospective graphic. The graphic's other grey segments sit where the office was vacant, but this one is neither labelled nor dated, so no vacancy of the Vice-Presidency is recorded from it and no structured date is stored. br_vpbio_vacancy_chronology_undated records the publication's general statement that the office has been vacant on ten occasions, without listing them."
+        },
+        {
+          "id": "br_vpbio_mourao_vp_span_20190101_20221231",
+          "text": "The profile of Hamilton Mourão gives his period as Vice-President as 01/01/2019 to 31/12/2022, with Jair Messias Bolsonaro as President, and says the ticket was elected in the second round on 28 October 2018 and that on 1 January 2019 he became Vice-President of the Republic.",
+          "locator": {
+            "pdf_page": 57,
+            "printed_page": 55,
+            "section": "header box '01/01/2019 a 31/12/2022'; paragraph 3"
+          },
+          "uncertainty": "Retrospective profile; a claim, never a boundary, and no structured date is stored. The 31/12/2022 end is not an until."
+        },
+        {
+          "id": "br_vpbio_alckmin_vp_since_20230101",
+          "text": "The profile of Geraldo José Rodrigues Alckmin Filho says that since 1 January 2023 he is the 26th Vice-President of the Federative Republic of Brazil, elected in 2022 for the period 2023-2026 with President Luiz Inácio Lula da Silva; its header box gives 01/01/2023 to 31/12/2026, and the colophon lists him as Vice-President.",
+          "locator": {
+            "pdf_page": 59,
+            "printed_page": 57,
+            "section": "header box '01/01/2023 a 31/12/2026'; paragraphs 1 and 5; colophon on pdf p. 2"
+          },
+          "uncertainty": "A present-tense profile published by the Vice-Presidency (colophon 2024; file modified 15 July 2025; captured 7 December 2025), undated as to the day it speaks of: a claim that supports but does not replace the posse record, and no structured date is stored. The printed end 31/12/2026 is prospective, after the cutoff and different from the 4 January 2027 declared at the posse; it is never a structured date."
+        }
+      ]
+    },
+    {
+      "id": "br_tse_diploma_maciel_19941217",
+      "title": "TSE: Diploma do vice-presidente da República eleito, Marco Antônio de Oliveira Maciel (photograph of the diploma dated 17 December 1994)",
+      "url": "https://bibliotecadigital.tse.jus.br/server/api/core/bitstreams/ff51f273-c254-4cbb-bd17-fdf821c02427/content",
+      "publisher": "Tribunal Superior Eleitoral (Biblioteca Digital da Justiça Eleitoral)",
+      "published_date": "1994-12-17",
+      "accessed_date": "2026-09-24",
+      "access_method": "downloaded_repository_image_and_viewed",
+      "source_type": "primary_electoral_court_repository_image",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Photograph (JPEG, 759x1024; bitstream 1994_diploma_marco_maciel.JPG) of the diploma in the TSE digital library, item bdtse/5204 (http://bibliotecadigital.tse.jus.br/handle/bdtse/5204); a static bitstream whose ETag equals the MD5 of the bytes (Last-Modified 9 November 2018). The item's catalogue record (https://bibliotecadigital.tse.jus.br/server/api/core/items/a8e55e50-25c0-4954-a71f-ec0c2e8805a2; 5,998 bytes, SHA-256 628c4921a95657c65b0257e47ed862a8b7119b7ff156831589a33ccf543d8985, identical across four downloads) dates it 1994-12-17, names the Casa da Moeda do Brasil as publisher and places it in bdtse/533 (the 1994 diplomação); it does not say whether the pictured exemplar is the one handed to Maciel. Imported because DCN nº 1/1995 reproduces no diploma. published_date is the date printed on the diploma.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/brazil-tse-maciel-vp-diploma-19941217-facts.json",
+        "bytes": 4231,
+        "sha256": "0064f3c3a5cbea789472e1f73cad7fd103ea71ed82e8207a9e1121f98eae2d80"
+      },
+      "claims": [
+        {
+          "id": "br_maciel_tse_diploma_issued_19941217",
+          "text": "The Superior Electoral Court diploma, dated Brasília 17 December 1994 and signed by Minister Carlos Velloso as President of the Court with the other ministers, the Procurador-Geral Eleitoral and the Director-General, certifies that by the will of the people expressed at the polls on 3 October 1994 Marco Antônio de Oliveira Maciel was elected Vice-President of the Republic, and qualifies him for investiture in the office before the National Congress on 1 January 1995.",
+          "attested_on": "1994-12-17",
+          "locator": {
+            "image": "1994_diploma_marco_maciel.JPG",
+            "section": "Whole diploma: \"foi eleito Vice-Presidente da República\"; \"Brasília, aos 17 de dezembro de 1994\"; \"Ministro CARLOS VELLOSO Presidente\""
+          },
+          "uncertainty": "The TSE's collection exemplar (catalogue record bdtse/5204); the record does not say whether it is the exemplar handed to Maciel. The 1 January 1995 investiture it names is prospective. The election date is stated inside the diploma and has its own Congress-record claim (br_maciel_elected_first_round_19941003). Never a holder date."
+        }
+      ]
+    },
+    {
+      "id": "br_senado_den1_2016_autos_vol48",
+      "title": "Senado Federal: Denúncia nº 1/2016, complete case file (Cópia integral de processo), Volume 48: the Mandado de Notificação to Vice-President Michel Temer (fl. 18.146) and the Termo de Juntada of 12 May 2016 (fl. 18.147)",
+      "url": "https://legis.senado.leg.br/sdleg-getter/documento?dm=7749877",
+      "publisher": "Senado Federal",
+      "published_date": null,
+      "accessed_date": "2026-09-24",
+      "access_method": "downloaded_official_pdf_and_pages_rendered_for_visual_review",
+      "source_type": "primary_senate_case_file_pdf",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Volume 48 of the Senate's complete case file for Denúncia nº 1/2016 (437-page scanned PDF with OCR, ScanPDFMaker, fixed CreationDate and ModDate 21 June 2018), linked from the matter page already recorded as CLAUDE-C01-10's br_senado_den1_2016_materia_20260508. PDF page 16 is folio 18.146, the filed copy of the Mandado de Notificação to the Vice-President (the same document the Senate publishes as the image temer.jpg, a lead); PDF page 17 is folio 18.147, the Termo de Juntada. Located by the independent check.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/brazil-senate-den1-case-file-vol48-20160512-facts.json",
+        "bytes": 5408,
+        "sha256": "9113da476900a929ffd4b6e1bd51baf122ce9dc1031dafbdaf282bf59074eff5"
+      },
+      "claims": [
+        {
+          "id": "br_temer_notified_to_assume_interim_20160512",
+          "text": "The Senate's filed copy of a Mandado de Notificação addressed to 'MICHEL TEMER, Vice-Presidente da República Federativa do Brasil', dated 'Senado Federal, em 12 de maio de 2016' and signed by Senator Renan Calheiros as President of the Senate, informs him that, the Chamber having authorized the process and the Senate having admitted it at its extraordinary session of 11 May 2016, President Dilma Vana Rousseff was intimated of Denúncia nº 1 of 2016; that from her receipt of the intimation the impeachment process is instituted and she is suspended from her functions under art. 86, § 1, II of the Constitution until the judgment ends or the 180-day period elapses; and that he is therefore to assume the Presidency immediately and on an interim basis ('assumir imediata e interinamente a Presidência da República') under art. 79.",
+          "attested_on": "2016-05-12",
+          "locator": {
+            "pdf_page": 16,
+            "folio": "18.146",
+            "item": "addressee block; paragraphs 1-2; dateline and signatures"
+          },
+          "uncertainty": "The notification instructs the Vice-President to assume on an interim basis; it does not record the hour, or that he did so. Besides the President of the Senate's signature it carries the Secretary-General's attestation and a lower signature, which the Termo de Juntada identifies as the Vice-President's (br_temer_vp_notification_filed_signed_20160512). Interim exercise of the Presidency is a claim only: it never makes him a holder of br_president, and it neither ends nor splits his br_vice_president holder."
+        },
+        {
+          "id": "br_temer_vp_notification_filed_signed_20160512",
+          "text": "A Termo de Juntada dated Brasília, 12 May 2016, signed by Luiz Fernando Bandeira de Mello Filho as clerk (Escrivão) of Denúncia nº 1 of 2016, certifies that on that date he filed in the case, with the documents of the President's intimation and summons, a 'Cópia do Mandado de Notificação expedido para o Sr. Vice-Presidente da República, Michel Temer, assinado por S.Exa. no anverso'.",
+          "attested_on": "2016-05-12",
+          "locator": {
+            "pdf_page": 17,
+            "folio": "18.147",
+            "item": "Termo de Juntada, item 5; dateline and signature"
+          },
+          "uncertainty": "Certifies that the notification copy on the preceding folio was signed by the Vice-President on its face; it gives no hour and does not record when he began to exercise the Presidency. The Senate matter page's entry for the same filing is CLAUDE-C01-10's br_senate_record_vp_notified_20160512. A claim only, never a holder or a start."
+        }
+      ]
+    },
+    {
+      "id": "br_cn_dcn1_20230102_p20_26",
+      "title": "Diário do Congresso Nacional nº 1, 2 January 2023, extraordinary edition, pages 20-26 (the Vice-President's TSE diploma, the signed termo de posse and his termo de compromisso)",
+      "url": "https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=111711&download=true",
+      "publisher": "Congresso Nacional (published by the Senado Federal)",
+      "published_date": "2023-01-02",
+      "accessed_date": "2026-09-24",
+      "access_method": "downloaded_official_pdf_and_pages_rendered_for_visual_review",
+      "source_type": "primary_congress_session_record_pdf",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Complete 59-page extraordinary DCN nº 1/2023 issue (the same response as CLAUDE-C01-10's br_cn_dcn1_20230102_p1_8 and br_cn_dcn1_20230102_p18_19, whose records are scoped to pages 1-8 and 18-19): PDF page 20 is the TSE diploma of Geraldo José Rodrigues Alckmin Filho (page 21 its blank reverse), page 23 the signed termo de posse and page 26 his signed termo de compromisso; PDF page numbers equal printed page numbers. The viewer's page-range form is regenerated on every request and is never a recorded identity.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/brazil-congress-dcn-alckmin-diploma-termo-20230102-facts.json",
+        "bytes": 5878,
+        "sha256": "b657689a4858416116aa7024e85e597fa9a4d661f8953304ef456464feb59d54"
+      },
+      "claims": [
+        {
+          "id": "br_alckmin_diplomado_tse_20221212",
+          "text": "The Superior Electoral Court's diploma reproduced in the issue states that, by the will of the people expressed at the ballot of 30 October 2022, Geraldo José Rodrigues Alckmin Filho, candidate of the Coligação Brasil da Esperança (FE Brasil (PT/PCdoB/PV)/SOLIDARIEDADE/Federação PSOL REDE (PSOL/REDE)/PSB/AGIR/AVANTE/PROS), was elected Vice-President of the Federative Republic of Brazil, qualifying him for investiture before Congress on 1 January 2023; it is dated Brasília, 12 December 2022, and signed by Minister Alexandre de Moraes as President.",
+          "attested_on": "2022-12-12",
+          "locator": {
+            "pdf_page": 20,
+            "printed_page": 20,
+            "section": "diploma image (item 2.1.1 of the summary: 'Diplomas do Sr. Luiz Inácio Lula da Silva e do Sr. Geraldo José Rodrigues Alckmin Filho'); page 21 is its blank reverse"
+          },
+          "uncertainty": "The TSE diploma as reproduced in the Congress diary, read visually from a scanned image; the coalition list is transcribed from the image and may contain small punctuation differences. Never a holder date."
+        },
+        {
+          "id": "br_alckmin_signed_termo_de_posse_20230101",
+          "text": "The signed Termo de Posse records that at 15:00 on 1 January 2023, before Congress in joint session in the Chamber's plenary, Luiz Inácio Lula da Silva and Geraldo José Rodrigues Alckmin Filho were solemnly empossados under art. 78 of the Constitution as President and Vice-President, respectively, elected on 30 October 2022 and diplomados by the TSE on 12 December 2022, for the period 1 January 2023 to 4 January 2027.",
+          "attested_on": "2023-01-01",
+          "locator": {
+            "pdf_page": 23,
+            "printed_page": 23,
+            "section": "Termo de posse with the signatures (item 2.1.2 of the summary)"
+          },
+          "uncertainty": "Signed termo; basis for from together with the declaration. The printed period end is prospective and after the cutoff, never a structured date."
+        },
+        {
+          "id": "br_alckmin_termo_de_compromisso_20230101",
+          "text": "The signed Termo de Compromisso records the oath under art. 78 of the Constitution given on 1 January 2023 by Geraldo José Rodrigues Alckmin Filho, 'eleito para o cargo de Vice-Presidente da República em 30 de outubro de 2022 e diplomado em 12 de dezembro de 2022'.",
+          "attested_on": "2023-01-01",
+          "locator": {
+            "pdf_page": 26,
+            "printed_page": 26,
+            "section": "Termo de compromisso with signature (item 2.1.3 of the summary)"
+          },
+          "uncertainty": "The signed oath text (full formula). The oath is never a start or a holder date."
+        }
+      ]
+    },
+    {
+      "id": "br_planalto_lei15434_20260616",
+      "title": "Lei nº 15.434, de 16 de junho de 2026 (Presidency legislation page, archived)",
+      "url": "https://web.archive.org/web/20260620021856id_/https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15434.htm",
+      "original_url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15434.htm",
+      "publisher": "Presidência da República, Casa Civil, Secretaria Especial para Assuntos Jurídicos",
+      "published_date": "2026-06-17",
+      "accessed_date": "2026-09-24",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_presidency_legislation_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The Presidency's legislation page for Law No. 15.434 (creating a department in the National Council of Justice), captured 20 June 2026, before the cutoff (text/html with no charset; windows-1252 bytes); the page notes the DOU of 17 June 2026. Its enacting formula is split by &nbsp; entities in the markup. The live Planalto page was not used.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/brazil-planalto-lei-15434-20260616-facts.json",
+        "bytes": 3744,
+        "sha256": "b21d14b10849db69b141e806a5a5ba80744d99199d3efdd648f07943e58f24be"
+      },
+      "claims": [
+        {
+          "id": "br_alckmin_vp_exercising_l15434_20260616",
+          "text": "Law nº 15.434 of 16 June 2026 is enacted by 'O VICE-PRESIDENTE DA REPÚBLICA, no exercício do cargo de PRESIDENTE DA REPÚBLICA' ('Faço saber que o Congresso Nacional decreta e eu sanciono a seguinte Lei'), dated Brasília, 16 June 2026, and signed GERALDO JOSÉ RODRIGUES ALCKMIN FILHO, countersigned by Janine Mello dos Santos and Maria Laura da Rocha; the page notes publication in the DOU of 17 June 2026.",
+          "attested_on": "2026-06-16",
+          "locator": {
+            "section": "enacting formula; closing 'Brasília, 16 de junho de 2026; 205º da Independência e 138º da República'; signature block; 'Este texto não substitui o publicado no DOU de 17.6.2026'"
+          },
+          "uncertainty": "An official act attesting him as Vice-President, exercising the Presidency, on 16 June 2026, before the 7 September 2026 cutoff; it does not say why the President was not exercising the office. It extends no term, is never a holder of br_president or of br_vice_president and is never a boundary. Law No. 15.436 of the next day (br_alckmin_vp_exercising_l15436_20260617) is the latest captured act in this form."
+        }
+      ]
+    },
+    {
+      "id": "br_planalto_lei15436_20260617",
+      "title": "Lei nº 15.436, de 17 de junho de 2026 (Presidency legislation page, archived)",
+      "url": "https://web.archive.org/web/20260816171933id_/https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15436.htm",
+      "original_url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15436.htm",
+      "publisher": "Presidência da República, Casa Civil, Secretaria Especial para Assuntos Jurídicos",
+      "published_date": "2026-06-18",
+      "accessed_date": "2026-09-24",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_presidency_legislation_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "The Presidency's legislation page for Law No. 15.436 (the National Policy for Students with High Abilities or Giftedness), captured 16 August 2026, before the cutoff (text/html with no charset; windows-1252 bytes; original Last-Modified 18 June 2026); the page notes the DOU of 18 June 2026. Its enacting formula prints an en dash in VICE–PRESIDENTE. The live Planalto page was not used.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/brazil-planalto-lei-15436-20260617-facts.json",
+        "bytes": 3946,
+        "sha256": "1e62db439f9dceff4a0ddbdd15d0b6bf642c778fce47cf576143c33aa3f3a8ef"
+      },
+      "claims": [
+        {
+          "id": "br_alckmin_vp_exercising_l15436_20260617",
+          "text": "Law No. 15.436 of 17 June 2026, instituting the National Policy for Students with High Abilities or Giftedness, is enacted by 'O VICE–PRESIDENTE DA REPÚBLICA, no exercício do cargo de PRESIDENTE DA REPÚBLICA' ('Faço saber que o Congresso Nacional decreta e eu sanciono a seguinte Lei'), dated Brasília, 17 June 2026, and signed Geraldo José Rodrigues Alckmin Filho, countersigned by Janine Mello dos Santos, Dario Carnevalli Durigan and Leonardo Osvaldo Barchini Rosa; the page notes publication in the DOU of 18 June 2026.",
+          "attested_on": "2026-06-17",
+          "locator": {
+            "item": "enacting formula; closing 'Brasília, 17 de junho de 2026; 205º da Independência e 138º da República'; signature block; 'Este texto não substitui o publicado no DOU de 18.6.2026'"
+          },
+          "uncertainty": "The latest-dated act with the Vice-President-in-exercise formula found among the Internet Archive's captured 2026 Planalto act pages: the independent check re-scanned the 63 captured laws, decrees and provisional measures dated 9 June to 3 September 2026 by signatory, matching any dash in the formula (this capture prints an en dash), and every later act is signed by Lula; an act not captured by the Internet Archive may exist. It attests Alckmin as Vice-President in office on 17 June 2026, before the cutoff; it extends no term, sets no end, and is never a holder of br_president or of br_vice_president. Found by the independent check."
         }
       ]
     }
@@ -4351,6 +5507,298 @@
             }
           ],
           "scope_note": "President of the Federative Republic of Brazil under the 1988 Constitution, recorded here as head of state (the office is also head of government). CLAUDE-C01-10 keeps popular election, diplomação by the Superior Electoral Court, the oath before Congress, the declaration of posse, the termo de posse, assumption statements, sash ceremonies, the Chamber's authorization, the Senate's admission, the summons and its receipt (suspension), the Vice-President's exercise of the office, resignation, vacancy, the Senate's judgment, removal and disqualification as separate dated claims. A holder has a start only where a declaration of posse or a termo de posse states that the person was invested for a period beginning that day, and an end only where a source states the day a resignation or removal took effect; otherwise it is dated by attested_on. Oaths, elections, diplomações and sash ceremonies are never boundaries; periods declared at a posse are prospective and never ends; a successor's or third party's statement that the predecessor leaves office is a claim only; retrospective Presidency Library spans are claims with no structured date. A Vice-President exercising the office (Itamar Franco in 1992, Michel Temer in 2016, Hamilton Mourão in 2022) is recorded as claims, never as a holder of it. Constitution texts establish procedure only, never a date. Vice-presidents, ministers and party offices are otherwise outside this role."
+        },
+        {
+          "id": "br_vice_president",
+          "title": "Vice-President of the Federative Republic of Brazil",
+          "kind": "institutional_office",
+          "sources": [
+            "br_tse_catalogue_diplomacao_1989",
+            "br_dcn_08_19900316",
+            "br_senado_autos_impeachment_vol1",
+            "br_planalto_lei_8471_19921007",
+            "br_dcn_70_19921230",
+            "br_bibpr_collor_page_2016",
+            "br_bibpr_itamar_page_2016",
+            "br_dcn_1_1995_posse_19950101",
+            "br_dcn_1_1999_posse_19990101",
+            "br_dcn_1_2003_posse_20030101",
+            "br_dcn_1_2007_posse_20070101",
+            "br_dcn_1_2011_posse_20110101",
+            "br_dcn_1_2015_posse_20150101",
+            "br_radio_senado_notifications_20160512",
+            "br_senado_den1_2016_materia_20260508",
+            "br_planalto_mpv726_20160512",
+            "br_senado_den1_2016_dou_20160831_extra",
+            "br_senado_den1_2016_mensagem144",
+            "br_cn_dcn15_20160901",
+            "br_cn_dcn1_20190102_p5_11",
+            "br_cn_dcn1_20190102_full",
+            "br_planalto_d11322_20221230",
+            "br_planalto_d11324_20221231",
+            "br_cn_dcn1_20230102_p1_8",
+            "br_dcn_36_19850423",
+            "br_tse_diploma_itamar_19891230",
+            "br_planalto_dnn428_19911211",
+            "br_planalto_lei_8469_19921005",
+            "br_bibpr_itamar_speech_19921005",
+            "br_vpr_biografias_vice_presidentes_2024",
+            "br_tse_diploma_maciel_19941217",
+            "br_senado_den1_2016_autos_vol48",
+            "br_cn_dcn1_20230102_p20_26",
+            "br_planalto_lei15434_20260616",
+            "br_planalto_lei15436_20260617"
+          ],
+          "claim_ids": [
+            "br_tse_diplomacao_ceremony_catalogued_19891230",
+            "br_itamar_vp_second_round_recited_19891217",
+            "br_itamar_vp_oath_before_congress_19900315",
+            "br_itamar_vp_posse_declared_19900315",
+            "br_itamar_vp_termo_de_posse_19900315",
+            "br_itamar_vp_diplomacao_recited_19891230",
+            "br_vice_president_instructed_to_assume_19921001",
+            "br_itamar_exercising_signs_lei_8471_19921007",
+            "br_itamar_states_exercise_from_19921002",
+            "br_itamar_vp_notification_announced_19921229",
+            "br_itamar_vp_invested_as_president_19921229",
+            "br_bibpr_collor_page_vp_itamar_span_19900315_19921229",
+            "br_bibpr_itamar_phase_19921002_period_19921229",
+            "br_maciel_elected_first_round_19941003",
+            "br_maciel_diplomado_tse_19941217",
+            "br_maciel_oath_before_congress_19950101",
+            "br_maciel_posse_declared_19950101",
+            "br_maciel_termo_de_posse_19950101",
+            "br_maciel_saluted_vice_president_closing_19950101",
+            "br_maciel_styled_incumbent_opening_19990101",
+            "br_maciel_reelected_first_round_19981004",
+            "br_maciel_diplomado_tse_19981212",
+            "br_maciel_oath_before_congress_19990101",
+            "br_maciel_posse_declared_19990101",
+            "br_maciel_termo_de_posse_19990101",
+            "br_maciel_saluted_vice_president_cardoso_address_19990101",
+            "br_alencar_elected_20021027",
+            "br_alencar_diplomado_tse_20021214",
+            "br_alencar_oath_before_congress_20030101",
+            "br_alencar_posse_declared_20030101",
+            "br_alencar_termo_de_posse_20030101",
+            "br_alencar_saluted_vice_president_lula_address_20030101",
+            "br_alencar_styled_incumbent_opening_20070101",
+            "br_alencar_reelected_20061029",
+            "br_alencar_diplomado_tse_20061214",
+            "br_alencar_oath_before_congress_20070101",
+            "br_alencar_posse_declared_20070101",
+            "br_alencar_termo_de_posse_20070101",
+            "br_alencar_saluted_vice_president_lula_address_20070101",
+            "br_temer_vp_elected_20101031",
+            "br_temer_vp_diplomado_tse_20101217",
+            "br_temer_vp_oath_before_congress_20110101",
+            "br_temer_vp_posse_declared_20110101",
+            "br_temer_vp_termo_de_posse_20110101",
+            "br_temer_vp_styled_after_posse_20110101",
+            "br_alencar_tribute_rousseff_address_20110101",
+            "br_temer_vp_reelected_20141026",
+            "br_temer_vp_diplomado_tse_20141218",
+            "br_temer_vp_oath_before_congress_20150101",
+            "br_temer_vp_posse_declared_20150101",
+            "br_temer_vp_termo_de_posse_20150101",
+            "br_temer_vp_styled_after_posse_20150101",
+            "br_radio_senado_notifications_served_20160512",
+            "br_senate_record_vp_notified_20160512",
+            "br_temer_vp_in_exercise_mpv726_20160512",
+            "br_dou_masthead_temer_vp_in_exercise_20160831",
+            "br_mensagem144_to_vp_in_exercise_20160831",
+            "br_dcn_vp_in_exercise_at_posse_opening_20160831",
+            "br_temer_vp_succeeds_art79_termo_20160831",
+            "br_mourao_elected_20181028",
+            "br_mourao_oath_before_congress_20190101",
+            "br_mourao_posse_declared_20190101",
+            "br_mourao_termo_read_20190101",
+            "br_mourao_saluted_vice_president_bolsonaro_address_20190101",
+            "br_mourao_diplomado_tse_20181210",
+            "br_mourao_termo_de_compromisso_20190101",
+            "br_mourao_signed_termo_de_posse_20190101",
+            "br_mourao_vp_in_exercise_d11322_20221230",
+            "br_mourao_vp_in_exercise_d11324_20221231",
+            "br_alckmin_elected_20221030",
+            "br_alckmin_oath_before_congress_20230101",
+            "br_alckmin_posse_declared_20230101",
+            "br_alckmin_termo_read_20230101",
+            "br_alckmin_saluted_vice_president_lula_address_20230101",
+            "br_sarney_vp_oath_recited_19850315",
+            "br_sarney_vp_exercise_from_recited_19850315",
+            "br_presidency_vacant_vp_sarney_succeeds_19850422",
+            "br_sarney_mensagem232_continues_as_successor_19850421",
+            "br_itamar_vp_tse_diploma_issued_19891230",
+            "br_itamar_vp_elected_ballots_19891217",
+            "br_itamar_vp_exercising_dnn428_19911211",
+            "br_itamar_vp_exercising_lei_8469_19921005",
+            "br_itamar_vp_in_exercise_speech_19921005",
+            "br_vpbio_vacancy_chronology_undated",
+            "br_vpbio_sarney_vp_span_19850315_19850421",
+            "br_vpbio_itamar_vp_span_19900315_19921229",
+            "br_vpbio_temer_vp_span_20110101_20160831",
+            "br_vpbio_chronology_grey_segment_2016_2019",
+            "br_vpbio_mourao_vp_span_20190101_20221231",
+            "br_vpbio_alckmin_vp_since_20230101",
+            "br_maciel_tse_diploma_issued_19941217",
+            "br_temer_notified_to_assume_interim_20160512",
+            "br_temer_vp_notification_filed_signed_20160512",
+            "br_alckmin_diplomado_tse_20221212",
+            "br_alckmin_signed_termo_de_posse_20230101",
+            "br_alckmin_termo_de_compromisso_20230101",
+            "br_alckmin_vp_exercising_l15434_20260616",
+            "br_alckmin_vp_exercising_l15436_20260617"
+          ],
+          "holder_claims": [
+            {
+              "name": "Itamar Franco",
+              "attested_on": null,
+              "from": "1990-03-15",
+              "until": null,
+              "sources": [
+                "br_dcn_08_19900316"
+              ],
+              "claim_ids": [
+                "br_itamar_vp_posse_declared_19900315",
+                "br_itamar_vp_termo_de_posse_19900315"
+              ],
+              "note": "From 15 March 1990: the President of Congress declared Collor and Itamar Augusto Cautiero Franco invested as President and Vice-President 'para o período de 15 de março de 1990 a 1º de janeiro de 1995', and the signed termo records their posse under Article 78 (DCN nº 8/1990).",
+              "uncertainty": "No end: no reviewed source states the day his vice-presidential office ended or that the office became vacant. His exercise of the Presidency (11 December 1991; from 2 October 1992) is recorded only as claims, and his posse as President on 29 December 1992, the vacancy of the office of President declared that day, the printed period end (1 January 1995) and the retrospective 29/12/1992 spans are not used as this end. The 17 December 1989 election, the 30 December 1989 diplomação and the oath are separate claims."
+            },
+            {
+              "name": "Marco Maciel",
+              "attested_on": null,
+              "from": "1995-01-01",
+              "until": null,
+              "sources": [
+                "br_dcn_1_1995_posse_19950101"
+              ],
+              "claim_ids": [
+                "br_maciel_posse_declared_19950101",
+                "br_maciel_termo_de_posse_19950101",
+                "br_maciel_saluted_vice_president_closing_19950101"
+              ],
+              "note": "From 1 January 1995: declared invested as Vice-President for the period beginning that day, and the joint termo records the solemn posse (DCN nº 1/1995); the President of Congress saluted him as Vice-President at the close.",
+              "uncertainty": "No end: the printed period end (31 December 1998) is prospective and no reviewed source states the day the term ended; his styling as Vice-President at the opening of the 1999 session is a claim only, and his 1999 posse is not used as this end. The 3 October 1994 election, the 17 December 1994 diplomação (Congress record and TSE diploma) and the oath are separate claims and never boundaries."
+            },
+            {
+              "name": "Marco Maciel",
+              "attested_on": null,
+              "from": "1999-01-01",
+              "until": null,
+              "sources": [
+                "br_dcn_1_1999_posse_19990101"
+              ],
+              "claim_ids": [
+                "br_maciel_posse_declared_19990101",
+                "br_maciel_termo_de_posse_19990101",
+                "br_maciel_saluted_vice_president_cardoso_address_19990101"
+              ],
+              "note": "From 1 January 1999: declared invested as Vice-President for the second mandate beginning that day ('a iniciar-se nesta data'), and the termo records the posse (DCN nº 1/1999).",
+              "uncertainty": "No end: the printed period end (31 December 2002) is prospective, the 2003 Congress record does not name him, and Alencar's posse is not used as this end. The 4 October 1998 re-election, the 12 December 1998 diploma and the oath are separate claims."
+            },
+            {
+              "name": "José Alencar",
+              "attested_on": null,
+              "from": "2003-01-01",
+              "until": null,
+              "sources": [
+                "br_dcn_1_2003_posse_20030101"
+              ],
+              "claim_ids": [
+                "br_alencar_posse_declared_20030101",
+                "br_alencar_termo_de_posse_20030101",
+                "br_alencar_saluted_vice_president_lula_address_20030101"
+              ],
+              "note": "From 1 January 2003: declared invested as Vice-President for the period beginning that day, and the signed termo records the posse (DCN nº 1/2003).",
+              "uncertainty": "No end: the printed period end (31 December 2006) is prospective; his styling at the opening of the 2007 session is a claim only, and his 2007 posse is not used as this end. The 27 October 2002 election, the 14 December 2002 diploma and the oath are separate claims."
+            },
+            {
+              "name": "José Alencar",
+              "attested_on": null,
+              "from": "2007-01-01",
+              "until": null,
+              "sources": [
+                "br_dcn_1_2007_posse_20070101"
+              ],
+              "claim_ids": [
+                "br_alencar_posse_declared_20070101",
+                "br_alencar_termo_de_posse_20070101",
+                "br_alencar_saluted_vice_president_lula_address_20070101"
+              ],
+              "note": "From 1 January 2007: declared invested as Vice-President for the period beginning that day, with the signed termo de compromisso and termo de posse (DCN nº 1/2007).",
+              "uncertainty": "No end: the printed period end (31 December 2010) is prospective; Rousseff's 1 January 2011 tribute (br_alencar_tribute_rousseff_address_20110101) is a successor administration's statement with no day, a claim only and never a boundary; Temer's posse is not used as this end. The 29 October 2006 re-election, the 14 December 2006 diploma and the oath are separate claims."
+            },
+            {
+              "name": "Michel Temer",
+              "attested_on": null,
+              "from": "2011-01-01",
+              "until": null,
+              "sources": [
+                "br_dcn_1_2011_posse_20110101"
+              ],
+              "claim_ids": [
+                "br_temer_vp_posse_declared_20110101",
+                "br_temer_vp_termo_de_posse_20110101",
+                "br_temer_vp_styled_after_posse_20110101"
+              ],
+              "note": "From 1 January 2011: declared invested as Vice-President for the period beginning that day, with the signed termo de compromisso and termo de posse (DCN nº 1/2011).",
+              "uncertainty": "No end: the printed period end (31 December 2014) is prospective, no reviewed source states the day the term ended, and his 2015 posse is not used as this end. The 31 October 2010 election, the 17 December 2010 diploma and the oath are separate claims."
+            },
+            {
+              "name": "Michel Temer",
+              "attested_on": null,
+              "from": "2015-01-01",
+              "until": null,
+              "sources": [
+                "br_dcn_1_2015_posse_20150101"
+              ],
+              "claim_ids": [
+                "br_temer_vp_posse_declared_20150101",
+                "br_temer_vp_termo_de_posse_20150101",
+                "br_temer_vp_styled_after_posse_20150101"
+              ],
+              "note": "From 1 January 2015: declared invested as Vice-President for the period beginning that day, with the signed termo de compromisso and termo de posse (DCN nº 1/2015).",
+              "uncertainty": "No end: the printed period end (31 December 2018) is prospective. His notification and interim exercise of the Presidency from 12 May 2016 are claims only and neither split nor end this holder, and his posse as President on 31 August 2016 (by virtue of the vacancy of the office of President) states no end of the Vice-Presidency and no vacancy of it; the retrospective 31/08/2016 span and chronology are claims only, and Mourão's posse is not used as this end. His br_president holder (CLAUDE-C01-10, from 31 August 2016) is unchanged. The 26 October 2014 election, the 18 December 2014 diploma and the oath are separate claims."
+            },
+            {
+              "name": "Hamilton Mourão",
+              "attested_on": null,
+              "from": "2019-01-01",
+              "until": null,
+              "sources": [
+                "br_cn_dcn1_20190102_p5_11",
+                "br_cn_dcn1_20190102_full"
+              ],
+              "claim_ids": [
+                "br_mourao_posse_declared_20190101",
+                "br_mourao_termo_read_20190101",
+                "br_mourao_signed_termo_de_posse_20190101",
+                "br_mourao_saluted_vice_president_bolsonaro_address_20190101"
+              ],
+              "note": "From 1 January 2019: declared invested as Vice-President for the period beginning that day ('para o período a iniciar-se nesta data'), with the termo read into the record and the signed joint termo de posse at 15:00 (DCN nº 1/2019). The minutes print Antonio Hamilton Martins Mourão; the signed termos and decrees print Antônio.",
+              "uncertainty": "No end: the printed period end (31 December 2022) is prospective, no reviewed source states the day his term ended, and Alckmin's posse is not used as this end. His exercise of the Presidency on 30 and 31 December 2022 (Decrees No. 11.322 and 11.324) is claims only and never a holder or a boundary. The 28 October 2018 election, the 10 December 2018 diploma and the oath are separate claims."
+            },
+            {
+              "name": "Geraldo Alckmin",
+              "attested_on": null,
+              "from": "2023-01-01",
+              "until": null,
+              "sources": [
+                "br_cn_dcn1_20230102_p1_8",
+                "br_cn_dcn1_20230102_p20_26"
+              ],
+              "claim_ids": [
+                "br_alckmin_posse_declared_20230101",
+                "br_alckmin_termo_read_20230101",
+                "br_alckmin_signed_termo_de_posse_20230101",
+                "br_alckmin_saluted_vice_president_lula_address_20230101"
+              ],
+              "note": "From 1 January 2023: declared invested as Vice-President (Geraldo José Rodrigues Alckmin Filho) for the period beginning that day, with the termo read into the record and the signed joint termo de posse at 15:00 (DCN nº 1/2023).",
+              "uncertainty": "No end: the declared end (4 January 2027) is prospective and after the 7 September 2026 cutoff, and the Vice-Presidency's profile prints 31/12/2026; neither is a structured date. His exercise of the Presidency in 2026 (Laws No. 15.434 of 16 June and 15.436 of 17 June 2026) attests him as Vice-President before the cutoff but is recorded as claims only, never cited by this holder, and extends nothing. The 30 October 2022 election, the 12 December 2022 diploma and the oath are separate claims."
+            }
+          ],
+          "scope_note": "Vice-President of the Federative Republic of Brazil under the 1988 Constitution, recorded as an institutional office of the Presidency (the 1985 claims of BR-VP-01 are pre-period context under the earlier Constitution). CLAUDE-C01-17 keeps popular election, diplomação by the Superior Electoral Court, the oath before Congress, the declaration of posse, the termo de posse, same-session styling, styling of the incumbent before a new posse, the Vice-President's notification to exercise and exercise of the Presidency as substitute or on an interim basis, the Vice-President's succession to the Presidency, any vacancy and any stated end as separate dated claims. A holder has a start only where a declaration of posse or a termo de posse states that the person was invested as Vice-President for a period beginning that day, and an end only where a source states the day the vice-presidential office ended; otherwise it is dated by attested_on. No reviewed primary source states such an end or a vacancy of the Vice-Presidency, so no holder has an end and no vacancy is recorded: a successor's posse, the Vice-President's posse as President (1992, 2016), the vacancy of the office of President and periods declared at a posse are never ends. A Vice-President exercising the Presidency is recorded as claims, never as a holder of br_president or of this role, and the exercise neither splits nor ends a holder. Elections, diplomações, oaths, styling of the incumbent and a successor's tribute are never boundaries; retrospective Vice-Presidency and Presidency Library spans and chronologies are claims with no structured date. Constitution texts establish procedure only, never a date. Thirteen claims recorded by CLAUDE-C01-10 (the 1989 diplomação ceremony, the Vice-President's notification and exercise of the Presidency in 1992, 2016 and 2022, the Rádio Senado report and a Presidency Library span) keep their br_president rows and are cited here; this role's own rows carry role_id br_vice_president. Ministers and party offices are outside this role."
         }
       ],
       "sources": [
@@ -4401,7 +5849,18 @@
         "br_cn_dcn1_20230102_p1_8",
         "br_cn_dcn1_20230102_p18_19",
         "br_planalto_mpv1154_20230101",
-        "br_planalto_mpv1388_20260824"
+        "br_planalto_mpv1388_20260824",
+        "br_dcn_36_19850423",
+        "br_tse_diploma_itamar_19891230",
+        "br_planalto_dnn428_19911211",
+        "br_planalto_lei_8469_19921005",
+        "br_bibpr_itamar_speech_19921005",
+        "br_vpr_biografias_vice_presidentes_2024",
+        "br_tse_diploma_maciel_19941217",
+        "br_senado_den1_2016_autos_vol48",
+        "br_cn_dcn1_20230102_p20_26",
+        "br_planalto_lei15434_20260616",
+        "br_planalto_lei15436_20260617"
       ],
       "claim_ids": [
         "br_sarney_signs_decreto_98797_19900105",
@@ -4515,7 +5974,92 @@
         "br_lula_diplomacao_recited_20221212",
         "br_lula_diplomado_tse_20221212",
         "br_lula_signs_as_president_mpv1154_20230101",
-        "br_lula_signs_as_president_mpv1388_20260824"
+        "br_lula_signs_as_president_mpv1388_20260824",
+        "br_itamar_vp_second_round_recited_19891217",
+        "br_itamar_vp_oath_before_congress_19900315",
+        "br_itamar_vp_posse_declared_19900315",
+        "br_itamar_vp_termo_de_posse_19900315",
+        "br_itamar_vp_diplomacao_recited_19891230",
+        "br_itamar_vp_notification_announced_19921229",
+        "br_itamar_vp_invested_as_president_19921229",
+        "br_bibpr_collor_page_vp_itamar_span_19900315_19921229",
+        "br_maciel_elected_first_round_19941003",
+        "br_maciel_diplomado_tse_19941217",
+        "br_maciel_oath_before_congress_19950101",
+        "br_maciel_posse_declared_19950101",
+        "br_maciel_termo_de_posse_19950101",
+        "br_maciel_saluted_vice_president_closing_19950101",
+        "br_maciel_styled_incumbent_opening_19990101",
+        "br_maciel_reelected_first_round_19981004",
+        "br_maciel_diplomado_tse_19981212",
+        "br_maciel_oath_before_congress_19990101",
+        "br_maciel_posse_declared_19990101",
+        "br_maciel_termo_de_posse_19990101",
+        "br_maciel_saluted_vice_president_cardoso_address_19990101",
+        "br_alencar_elected_20021027",
+        "br_alencar_diplomado_tse_20021214",
+        "br_alencar_oath_before_congress_20030101",
+        "br_alencar_posse_declared_20030101",
+        "br_alencar_termo_de_posse_20030101",
+        "br_alencar_saluted_vice_president_lula_address_20030101",
+        "br_alencar_styled_incumbent_opening_20070101",
+        "br_alencar_reelected_20061029",
+        "br_alencar_diplomado_tse_20061214",
+        "br_alencar_oath_before_congress_20070101",
+        "br_alencar_posse_declared_20070101",
+        "br_alencar_termo_de_posse_20070101",
+        "br_alencar_saluted_vice_president_lula_address_20070101",
+        "br_temer_vp_elected_20101031",
+        "br_temer_vp_diplomado_tse_20101217",
+        "br_temer_vp_oath_before_congress_20110101",
+        "br_temer_vp_posse_declared_20110101",
+        "br_temer_vp_termo_de_posse_20110101",
+        "br_temer_vp_styled_after_posse_20110101",
+        "br_alencar_tribute_rousseff_address_20110101",
+        "br_temer_vp_reelected_20141026",
+        "br_temer_vp_diplomado_tse_20141218",
+        "br_temer_vp_oath_before_congress_20150101",
+        "br_temer_vp_posse_declared_20150101",
+        "br_temer_vp_termo_de_posse_20150101",
+        "br_temer_vp_styled_after_posse_20150101",
+        "br_temer_vp_succeeds_art79_termo_20160831",
+        "br_mourao_elected_20181028",
+        "br_mourao_oath_before_congress_20190101",
+        "br_mourao_posse_declared_20190101",
+        "br_mourao_termo_read_20190101",
+        "br_mourao_saluted_vice_president_bolsonaro_address_20190101",
+        "br_mourao_diplomado_tse_20181210",
+        "br_mourao_termo_de_compromisso_20190101",
+        "br_mourao_signed_termo_de_posse_20190101",
+        "br_alckmin_elected_20221030",
+        "br_alckmin_oath_before_congress_20230101",
+        "br_alckmin_posse_declared_20230101",
+        "br_alckmin_termo_read_20230101",
+        "br_alckmin_saluted_vice_president_lula_address_20230101",
+        "br_sarney_vp_oath_recited_19850315",
+        "br_sarney_vp_exercise_from_recited_19850315",
+        "br_presidency_vacant_vp_sarney_succeeds_19850422",
+        "br_sarney_mensagem232_continues_as_successor_19850421",
+        "br_itamar_vp_tse_diploma_issued_19891230",
+        "br_itamar_vp_elected_ballots_19891217",
+        "br_itamar_vp_exercising_dnn428_19911211",
+        "br_itamar_vp_exercising_lei_8469_19921005",
+        "br_itamar_vp_in_exercise_speech_19921005",
+        "br_vpbio_vacancy_chronology_undated",
+        "br_vpbio_sarney_vp_span_19850315_19850421",
+        "br_vpbio_itamar_vp_span_19900315_19921229",
+        "br_vpbio_temer_vp_span_20110101_20160831",
+        "br_vpbio_chronology_grey_segment_2016_2019",
+        "br_vpbio_mourao_vp_span_20190101_20221231",
+        "br_vpbio_alckmin_vp_since_20230101",
+        "br_maciel_tse_diploma_issued_19941217",
+        "br_temer_notified_to_assume_interim_20160512",
+        "br_temer_vp_notification_filed_signed_20160512",
+        "br_alckmin_diplomado_tse_20221212",
+        "br_alckmin_signed_termo_de_posse_20230101",
+        "br_alckmin_termo_de_compromisso_20230101",
+        "br_alckmin_vp_exercising_l15434_20260616",
+        "br_alckmin_vp_exercising_l15436_20260617"
       ],
       "coverage": {
         "status": "partial",
@@ -4528,6 +6072,8 @@
           "Stated starts: every posse from 15 March 1990 to 1 January 2023. Stated ends: Fernando Collor de Mello (resignation, 29 December 1992) and Dilma Rousseff (Resolution No. 35, 31 August 2016) only. The ends of Itamar Franco, of each first term, of Cardoso's and Lula's second terms, of Temer and of Bolsonaro are not stated by an event record; periods declared at a posse, successors' statements, a successor's posse and 'ex-Presidente' styling are not used as ends.",
           "Clock times: no source states the hour Collor's resignation took effect (the letter reached the Senate between 9:00 and 9:43 and was read in Congress between 11:30 and 11:50 on 29 December 1992) or the hour Rousseff received the intimation on 12 May 2016. Termo clock times differ from the session openings and are not used.",
           "Sash transfers: only the 1 January 2019 ceremony has a Presidency record, with a misprinted dateline and no named giver; none was found for 1990, 1995, 2003, 2011, 2015 or 2023 (Senate and Chamber news-agency reports of 2003 and 2011 are leads). The Vice-President's exercise of the office (Itamar Franco from 2 October 1992, Michel Temer from 12 May 2016, Hamilton Mourão on 30-31 December 2022) is recorded only as claims.",
+          "Vice-Presidents 1990-2026 (CLAUDE-C01-17, BR-VP-01..10): the second role, br_vice_president, holds nine holder observations, each starting on a stated posse (Itamar Franco 15 March 1990; Marco Maciel 1995 and 1999; José Alencar 2003 and 2007; Michel Temer 2011 and 2015; Hamilton Mourão 2019; Geraldo Alckmin 2023). No reviewed primary source states the end of any vice-presidential term or a vacancy of the Vice-Presidency: not on 1 January 1990, not after Itamar Franco's posse as President on 29 December 1992 and not after Temer's on 31 August 2016 (the vacancies declared on those days are of the Presidency). Retrospective spans and the Vice-Presidency's chronology are claims only.",
+          "Still open for the Vice-Presidency: a contemporaneous record of the office on 1 January 1990 (vacant or held); the day each term ended; the hour Michel Temer began exercising the Presidency on 12 May 2016; the Vice-Presidency's own pages on gov.br (bot-check pages, not bypassed), the Diário Oficial da União (CAPTCHA) and the TSE's diplomação minutes. The Vice-President's exercise of the Presidency (1985, 1991, 1992, 2016, 2022 and 2026) is recorded only as claims.",
           "Keep executive office distinct from party leadership; no game mapping, likeness or portrait permission is granted."
         ]
       }
@@ -4577,7 +6123,8 @@
       "The PMB article and initial notice use different names; retain the later explicit rectification and research underlying decisions before creating lifecycle intervals.",
       "Federations, informal parties, parties in formation and institutions are outside this bounded intake; absence here does not establish nonexistence.",
       "All game mappings, leadership roles, continuous lifecycle intervals, successor eligibility and portrait permissions remain unknown.",
-      "Presidents 1990-2026 (CLAUDE-C01-10): the packet now holds one institution, br_presidency, with one role, br_president, and twelve dated holder observations (José Sarney observed on 5 January 1990; stated starts from 15 March 1990 to 1 January 2023; stated ends only for Collor and Rousseff). Still open for the presidency: Sarney's end, the ends of later terms, clock times, most sash transfers and the TSE and DOU originals. Vice-presidents, ministers, party offices and all other institutions remain outside this intake; the Vice-President's exercise of the office is claims only. No game identity or portrait permission is granted."
+      "Presidents 1990-2026 (CLAUDE-C01-10): the packet now holds one institution, br_presidency, with one role, br_president, and twelve dated holder observations (José Sarney observed on 5 January 1990; stated starts from 15 March 1990 to 1 January 2023; stated ends only for Collor and Rousseff). Still open for the presidency: Sarney's end, the ends of later terms, clock times, most sash transfers and the TSE and DOU originals. Vice-presidents, ministers, party offices and all other institutions remain outside this intake; the Vice-President's exercise of the office is claims only. No game identity or portrait permission is granted.",
+      "Vice-presidents 1990-2026 (CLAUDE-C01-17): the presidency institution now also holds a second role, br_vice_president, with nine dated holder observations (stated starts from 15 March 1990 to 1 January 2023; no stated end and no stated vacancy of the Vice-Presidency). The earlier statement in this list that vice-presidents remain outside this intake no longer applies to the Vice-Presidency of the Republic; ministers, party offices and all other institutions remain outside it. The Vice-President's exercise of the Presidency is claims only and never a holder of either role. No game identity or portrait permission is granted."
     ]
   }
 }

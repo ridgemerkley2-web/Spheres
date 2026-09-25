@@ -8,7 +8,7 @@
   "source_response_bytes": 49257639,
   "source_response_sha256": "2d8a63d500ff5ffc82d690a1dc27c3239e25ece96511550e5a82398fc90b24eb",
   "source_response_checked_in": false,
-  "provenance_note": "Official file from the Senate's document service, a static response. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256; it was downloaded once more for this packet with the same result. No local copy is kept because of its size. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "provenance_note": "Official file from the Senate's document service, a static response. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256; it was downloaded once more for this packet with the same result. No local copy is kept because of its size. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet. For CLAUDE-C01-17, the researcher downloaded it again on 24 September 2026 at 22:36 UTC and the independent check 74-85 minutes later, each with the same byte count and SHA-256, and rows keyed to br_vice_president were added; the accessed_date stays CLAUDE-C01-10's.",
   "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
   "scope_note": "The complete 21-page DCN nº 1/2019 issue from the Senate's diary store (Content-Length 49,257,639; viewer https://legis.senado.leg.br/diarios/ver/21600). No local copy is kept because of its size. Page 14 is the TSE diploma and page 20 the signed termo de posse. The narrower seqPaginaInicial=14 forms are not reliable identities (one broke with a chunked-encoding error).",
   "visual_review": {
@@ -16,7 +16,12 @@
       14,
       20
     ],
-    "method": "PDF page 14 (the diploma, a scanned image) rendered and read by the researcher and the independent check; page 20 (the signed termo) rendered by the check and read again for this packet."
+    "method": "PDF page 14 (the diploma, a scanned image) rendered and read by the researcher and the independent check; page 20 (the signed termo) rendered by the check and read again for this packet. CLAUDE-C01-17 (br_vice_president rows): PDF pages 15 (Mourão's TSE diploma, read visually), 18 (his signed termo de compromisso) and 20 (signed termo de posse) rendered and read.",
+    "c01_17_pdf_pages_one_based": [
+      15,
+      18,
+      20
+    ]
   },
   "rows": [
     {
@@ -49,7 +54,55 @@
         "printed_page": 20,
         "section": "Termo de posse with the signatures"
       }
+    },
+    {
+      "claim_id": "br_mourao_diplomado_tse_20181210",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-08",
+      "role_id": "br_vice_president",
+      "holder_name": "Hamilton Mourão",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "diplomacao",
+      "attested_on": "2018-12-10",
+      "text": "The Superior Electoral Court's diploma reproduced in the issue states that, by the will of the people expressed at the ballot of 28 October 2018, Antonio Hamilton Martins Mourão, candidate of the Coligação Brasil Acima de Tudo, Deus Acima de Todos (PSL/PRTB), was elected Vice-President of the Federative Republic of Brazil, and that the diploma qualifies him for investiture before Congress on 1 January 2019; it is dated Brasília, 10 December 2018, and signed by Minister Rosa Weber as President.",
+      "locator": {
+        "pdf_page": 15,
+        "printed_page": 15,
+        "section": "diploma image (item 2.1 of the summary: 'Diplomas do Exmo. Sr. Jair Messias Bolsonaro e do Exmo. Sr. Antonio Hamilton Martins Mourão')"
+      }
+    },
+    {
+      "claim_id": "br_mourao_termo_de_compromisso_20190101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-08",
+      "role_id": "br_vice_president",
+      "holder_name": "Hamilton Mourão",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "oath_of_office",
+      "attested_on": "2019-01-01",
+      "text": "The signed Termo de Compromisso records the oath under art. 78 of the Constitution given on 1 January 2019 by Antônio Hamilton Martins Mourão, 'eleito para o cargo de Vice-Presidente da República em 28 de outubro de 2018 e diplomado em 10 de dezembro de 2018'.",
+      "locator": {
+        "pdf_page": 18,
+        "printed_page": 18,
+        "section": "Termo de compromisso with signature (item 2.2 of the summary)"
+      }
+    },
+    {
+      "claim_id": "br_mourao_signed_termo_de_posse_20190101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-08",
+      "role_id": "br_vice_president",
+      "holder_name": "Hamilton Mourão",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "posse_record",
+      "attested_on": "2019-01-01",
+      "text": "The signed Termo de Posse records that at 15:00 on 1 January 2019, before Congress in joint session in the Chamber's plenary, Jair Messias Bolsonaro and Antônio Hamilton Martins Mourão were solemnly empossados under art. 78 of the Constitution as President and Vice-President, respectively, elected on 28 October 2018 and diplomados by the TSE on 10 December 2018, for the period 1 January 2019 to 31 December 2022.",
+      "locator": {
+        "pdf_page": 20,
+        "printed_page": 20,
+        "section": "Termo de posse with the signatures (item 2.3 of the summary)"
+      }
     }
   ],
-  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 (rows with role_id br_president) and Vice-President observations for CLAUDE-C01-17 (rows with role_id br_vice_president). Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, the Vice-President's succession, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. The Vice-President's exercise of the office recorded by CLAUDE-C01-10 stays on br_president rows; ministers and party offices are excluded."
 }
