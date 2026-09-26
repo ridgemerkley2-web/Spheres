@@ -8,9 +8,9 @@
     "country_packets": 9,
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 841,
-    "institution_observations": 29,
-    "sources": 336,
-    "source_claims": 2046,
+    "institution_observations": 30,
+    "sources": 367,
+    "source_claims": 2123,
     "discovery_batches": 93,
     "exhaustive_country_censuses": 0
   },
@@ -447,10 +447,10 @@
       "nation": "USSR",
       "packet": "docs/campaign-certification/C01/research/ussr.json",
       "organization_observations": 1,
-      "institution_observations": 3,
-      "role_observations": 5,
-      "source_claims": 21,
-      "mapping_pending": 4,
+      "institution_observations": 4,
+      "role_observations": 6,
+      "source_claims": 98,
+      "mapping_pending": 5,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
       "coverage": {
@@ -468,7 +468,8 @@
           "Exact party election dates, acting roles, original spelling and full leadership intervals remain unresolved; contemporary Japanese diplomatic reporting is not an original CPSU election protocol.",
           "1991 office changes, emergency claims, resignations, suspensions and dissolution require their own source review. No legal or organizational continuity through 2026 is inferred.",
           "The USSR packet remains separate from Russia. Existing game party mappings, historical avatar eligibility, likeness approval and post-cutoff fictional succession are not changed.",
-          "CLAUDE-C01-05 reviews only the December 1991 records bearing on the Presidency (SURU-TR91-04 to 08). The August 1991 events, the CPSU suspension and the September 1991 changes to the Congress and Supreme Soviet remain unreviewed."
+          "CLAUDE-C01-05 reviews only the December 1991 records bearing on the Presidency (SURU-TR91-04 to 08). The August 1991 events, the CPSU suspension and the September 1991 changes to the Congress and Supreme Soviet remain unreviewed.",
+          "CLAUDE-C01-26 adds a fourth state institution, su_government (the Council of Ministers and, from 1991, the Cabinet of Ministers of the USSR), with one head-of-government role, and extends su_supreme_soviet_chair; it reviews the Union government's head and the Supreme Soviet's chair from 1 January 1990 to December 1991 (SU-GOV-01 to 10), including the August 1991 release decree, suspension and no-confidence vote and the September 1991 reorganisation of the Supreme Soviet. The CPSU's 1991 suspension and dissolution, the Congress's own end and the chamber chairmanships remain unreviewed, and no holder in either role has a from or an until."
         ]
       }
     }
@@ -2641,7 +2642,8 @@
         "su_cpsu",
         "su_presidency",
         "su_congress_peoples_deputies",
-        "su_supreme_soviet"
+        "su_supreme_soviet",
+        "su_government"
       ],
       "maximum_reviewed_records": 10,
       "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
@@ -2690,8 +2692,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/ussr.json",
-      "bytes": 44960,
-      "sha256": "d760dcc1e9a4cce6b38ebcefa3f53ad1b9df5b972a1e1125cc6b1a435b8befe3"
+      "bytes": 191099,
+      "sha256": "b3b0939207b742a6141f0c4386efebf292152b923697528981aa8afa911b7062"
     },
     {
       "path": "tools/avatars/campaign_research.py",
