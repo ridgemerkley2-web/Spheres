@@ -1,0 +1,21 @@
+test_closed_or_unverified_organization_does_not_become_exhaustive (test_campaign_census.CensusTests.test_closed_or_unverified_organization_does_not_become_exhaustive) ... ok
+test_duplicate_fictional_identity_is_rejected (test_campaign_census.CensusTests.test_duplicate_fictional_identity_is_rejected) ... ok
+test_every_known_member_once_and_ten_record_limit (test_campaign_census.CensusTests.test_every_known_member_once_and_ten_record_limit) ... ok
+test_existing_stale_snapshot_is_disclosed_without_promoting_art (test_campaign_census.CensusTests.test_existing_stale_snapshot_is_disclosed_without_promoting_art) ... ok
+test_missing_component_export_is_rejected (test_campaign_census.CensusTests.test_missing_component_export_is_rejected) ... ok
+test_source_roles_uncertainty_and_components_are_lossless (test_campaign_census.CensusTests.test_source_roles_uncertainty_and_components_are_lossless) ... ok
+test_unknown_and_zero_rows_cannot_close_census (test_campaign_census.CensusTests.test_unknown_and_zero_rows_cannot_close_census) ... ok
+test_claim_must_belong_to_the_cited_source (test_campaign_research.ResearchTests.test_claim_must_belong_to_the_cited_source) ... ok
+test_duplicate_identity_and_broken_claim_fail (test_campaign_research.ResearchTests.test_duplicate_identity_and_broken_claim_fail) ... ok
+test_every_discovery_gets_one_bounded_work_order_without_closing_gate (test_campaign_research.ResearchTests.test_every_discovery_gets_one_bounded_work_order_without_closing_gate) ... ok
+test_no_postcutoff_holders_but_later_research_access_is_allowed (test_campaign_research.ResearchTests.test_no_postcutoff_holders_but_later_research_access_is_allowed) ... ok
+test_official_snapshot_is_pinned_and_observations_are_not_terms (test_campaign_research.ResearchTests.test_official_snapshot_is_pinned_and_observations_are_not_terms) ... ok
+test_partial_intake_cannot_close_census (test_campaign_research.ResearchTests.test_partial_intake_cannot_close_census) ... ok
+test_role_holders_need_explicit_roles_and_matching_source_claims (test_campaign_research.ResearchTests.test_role_holders_need_explicit_roles_and_matching_source_claims) ... ok
+test_snapshot_path_cannot_escape_sources (test_campaign_research.ResearchTests.test_snapshot_path_cannot_escape_sources) ... ok
+test_unknown_party_mapping_is_not_silently_accepted (test_campaign_research.ResearchTests.test_unknown_party_mapping_is_not_silently_accepted) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.597s
+
+OK

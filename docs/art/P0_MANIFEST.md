@@ -9,39 +9,39 @@ Runtime loader: runtime geometry is generated locally; no GLB asset fetch or bui
 
 | asset | game id | LOD0 tris | LOD1 tris | LOD2 tris | size |
 | --- | --- | --- | --- | --- | --- |
-| `ground.tank_standard.baseline.v1` | `tank_standard` | 68872 | 8050 | 1168 | 3.826 x 3.688 x 10.3 m |
-| `ground.tank_heavy.baseline.v1` | `tank_heavy` | 74144 | 5834 | 1204 | 4.166 x 3.708 x 10.66 m |
-| `ground.tank_light.baseline.v1` | `tank_light` | 68872 | 8050 | 1168 | 3.061 x 2.95 x 8.24 m |
-| `ground.tank_destroyer.baseline.v1` | `tank_destroyer` | 68872 | 8050 | 1168 | 3.826 x 3.688 x 10.3 m |
-| `ground.ground_ifv.baseline.v1` | `ground_ifv` | 44222 | 5862 | 1144 | 3.254 x 2.841 x 6.93 m |
+| `ground.tank_standard.baseline.v1` | `tank_standard` | 64840 | 8050 | 1168 | 3.826 x 3.688 x 10.3 m |
+| `ground.tank_heavy.baseline.v1` | `tank_heavy` | 69728 | 5834 | 1204 | 4.166 x 3.708 x 10.66 m |
+| `ground.tank_light.baseline.v1` | `tank_light` | 64840 | 8050 | 1168 | 3.061 x 2.95 x 8.24 m |
+| `ground.tank_destroyer.baseline.v1` | `tank_destroyer` | 64840 | 8050 | 1168 | 3.826 x 3.688 x 10.3 m |
+| `ground.ground_ifv.baseline.v1` | `ground_ifv` | 42590 | 5862 | 1144 | 3.254 x 2.841 x 6.93 m |
 | `ground.ground_apc.baseline.v1` | `ground_apc` | 26746 | 4197 | 982 | 2.98 x 2.975 x 6.78 m |
 | `ground.ground_recon.baseline.v1` | `ground_recon` | 23726 | 4476 | 944 | 2.72 x 2.615 x 5.117 m |
-| `ground.ground_artillery.baseline.v1` | `ground_artillery` | 45330 | 5182 | 1144 | 3.554 x 2.943 x 7.885 m |
-| `ground.ground_air_defense.baseline.v1` | `ground_air_defense` | 41178 | 5632 | 1112 | 3.254 x 3.35 x 6.56 m |
+| `ground.ground_artillery.baseline.v1` | `ground_artillery` | 43554 | 5182 | 1144 | 3.554 x 2.943 x 7.885 m |
+| `ground.ground_air_defense.baseline.v1` | `ground_air_defense` | 39570 | 5632 | 1112 | 3.254 x 3.35 x 6.56 m |
 | `aviation.air_light_attack.baseline.v1` | `air_light_attack` | 199326 | 11474 | 1252 | 10.44 x 3.352 x 12.73 m |
-| `aviation.air_tactical_strike.baseline.v1` | `air_tactical_strike` | 228640 | 14904 | 1696 | 11.84 x 4.082 x 17.73 m |
+| `aviation.air_tactical_strike.baseline.v1` | `air_tactical_strike` | 228640 | 10936 | 1392 | 11.84 x 4.082 x 17.73 m |
 | `aviation.air_fighter.baseline.v1` | `air_fighter` | 200446 | 11594 | 1296 | 9.54 x 3.712 x 15.73 m |
-| `site.infrastructure.v1` | `infrastructure` | 8846-23496 | 244-708 | — | 64 x 11.78 x 46 m |
-| `site.civilian_industry.v1` | `civilian_industry` | 8066-32042 | 180-546 | — | 66 x 14.19 x 46.16 m |
-| `site.power_grid.v1` | `power_grid` | 9390-31292 | 276-664 | — | 66 x 24.2 x 48 m |
-| `site.research_center.v1` | `research_center` | 8066-25520 | 180-532 | — | 66 x 15.7 x 46.18 m |
-| `site.arms_plant.v1` | `arms_plant` | 8202-28376 | 180-422 | — | 66.2 x 17.6 x 48 m |
-| `site.machinery_works.v1` | `machinery_works` | 9366-30468 | 204-582 | — | 66 x 16.79 x 48 m |
-| `site.generation.v1` | `generation` | 8394-31760 | 196-648 | — | 70 x 22.7 x 50 m |
-| `site.processing_plant.v1` | `processing_plant` | 8746-27510 | 220-640 | — | 68 x 22.7 x 48 m |
-| `site.freight_terminal.v1` | `freight_terminal` | 8802-29026 | 198-674 | — | 72 x 13.9 x 50 m |
-| `site.warehouse.v1` | `warehouse` | 8560-26746 | 188-566 | — | 70 x 16.39 x 48 m |
-| `site.automation.v1` | `automation` | 9044-26056 | 220-610 | — | 62 x 11.78 x 44 m |
-| `site.efficiency.v1` | `efficiency` | 8882-25796 | 208-682 | — | 62 x 11.78 x 44 m |
-| `site.starter_industry.v1` | `starter_industry` | 7250-22388 | 164-494 | — | 50.56 x 11.78 x 38 m |
-| `site.office_district.v1` | `office_district` | 8066-25090 | 180-550 | — | 66 x 15.7 x 46 m |
-| `site.shipyard.v1` | `shipyard` | 8474-23064 | 188-594 | — | 72 x 21.6 x 50 m |
-| `site.advanced_industry.v1` | `advanced_industry` | 8202-23068 | 180-606 | — | 66 x 13.79 x 48 m |
-| `town.temperate.mixed.v1` | `visual_only` | 198462 | 3422 | — | 148 x 15.595 x 104 m |
-| `town.temperate.residential.v1` | `visual_only` | 212820 | 3330 | — | 148 x 15.155 x 104 m |
-| `town.temperate.commercial.v1` | `visual_only` | 132360 | 3012 | — | 148 x 23.68 x 104 m |
-| `town.temperate.civic.v1` | `visual_only` | 131586 | 3124 | — | 148 x 22.175 x 104 m |
-| `town.temperate.industrial.v1` | `visual_only` | 91276 | 2616 | — | 148 x 21.505 x 104 m |
+| `site.infrastructure.v1` | `infrastructure` | 8846-22180 | 244-708 | — | 64 x 11.78 x 46 m |
+| `site.civilian_industry.v1` | `civilian_industry` | 8066-30406 | 180-546 | — | 66 x 14.19 x 46.16 m |
+| `site.power_grid.v1` | `power_grid` | 9390-29976 | 276-664 | — | 66 x 24.2 x 48 m |
+| `site.research_center.v1` | `research_center` | 8066-24204 | 180-532 | — | 66 x 15.7 x 46.18 m |
+| `site.arms_plant.v1` | `arms_plant` | 8202-27060 | 180-422 | — | 66.2 x 17.6 x 48 m |
+| `site.machinery_works.v1` | `machinery_works` | 9366-28992 | 204-582 | — | 66 x 16.79 x 48 m |
+| `site.generation.v1` | `generation` | 8394-30284 | 196-648 | — | 70 x 22.7 x 50 m |
+| `site.processing_plant.v1` | `processing_plant` | 8746-26194 | 220-640 | — | 68 x 22.7 x 48 m |
+| `site.freight_terminal.v1` | `freight_terminal` | 8802-27710 | 198-674 | — | 72 x 13.9 x 50 m |
+| `site.warehouse.v1` | `warehouse` | 8560-25430 | 188-566 | — | 70 x 16.39 x 48 m |
+| `site.automation.v1` | `automation` | 9044-24740 | 220-610 | — | 62 x 11.78 x 44 m |
+| `site.efficiency.v1` | `efficiency` | 8882-24480 | 208-682 | — | 62 x 11.78 x 44 m |
+| `site.starter_industry.v1` | `starter_industry` | 7250-21072 | 164-494 | — | 50.56 x 11.78 x 38 m |
+| `site.office_district.v1` | `office_district` | 8066-23774 | 180-550 | — | 66 x 15.7 x 46 m |
+| `site.shipyard.v1` | `shipyard` | 8474-21748 | 188-594 | — | 72 x 21.6 x 50 m |
+| `site.advanced_industry.v1` | `advanced_industry` | 8202-21752 | 180-606 | — | 66 x 13.79 x 48 m |
+| `town.temperate.mixed.v1` | `visual_only` | 159598 | 3422 | — | 148 x 15.595 x 104 m |
+| `town.temperate.residential.v1` | `visual_only` | 171520 | 3330 | — | 148 x 15.155 x 104 m |
+| `town.temperate.commercial.v1` | `visual_only` | 109058 | 3012 | — | 148 x 23.68 x 104 m |
+| `town.temperate.civic.v1` | `visual_only` | 105672 | 3124 | — | 148 x 22.175 x 104 m |
+| `town.temperate.industrial.v1` | `visual_only` | 82142 | 2616 | — | 148 x 21.505 x 104 m |
 
 All 16 construction kinds have authored compositions; none is marked as placeholder massing.
 Placeholder status comes from each generator's metadata and is also retained in the JSON.

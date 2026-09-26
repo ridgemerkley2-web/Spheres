@@ -1,0 +1,34 @@
+{
+  "gates_command": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\iteration-21-native-snapshot\\bloc_census-b35be4d742aae476.exe --include-ignored --skip bloc_census --nocapture --test-threads=4",
+  "focused_total": 111,
+  "post_run_observed_source_sha256": [
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\src\\government.rs",
+      "Hash": "3254020EA00EC763EB95DABE0C03B79E33B861D4144D6DE7307627C03DE4E51C"
+    },
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\src\\blocs.rs",
+      "Hash": "3CDCB1CA4620E81D91F26288F39362DA86A440E21610A569B4AD4E7C1640FF51"
+    },
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\src\\statecraft.rs",
+      "Hash": "EAE2D88EF1D2A7AA33AD78AC65714C3B53C06E3EA592B6C319F9E1533D76FBDF"
+    }
+  ],
+  "binary_sha256": [
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\iteration-21-native-snapshot\\spheres_sim-de8a2e7790f15db6.exe",
+      "Hash": "099C9A3EF1F3F1C009CFBDEE76473E6F3E3E248DB12B93A7A10E1FF18CB5A605"
+    },
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\iteration-21-native-snapshot\\bloc_census-b35be4d742aae476.exe",
+      "Hash": "596C1452CF8947C864D7B5A105A9ECC82E59ADED7990DEDBE0E127503B914BC1"
+    }
+  ],
+  "finished_utc": "2026-09-22T20:39:26.4192485Z",
+  "focused_passed": 111,
+  "source_manifest": "iteration-21-source-input-manifest.json",
+  "iteration": 21,
+  "gates_exit": 101,
+  "gates_log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\iteration-21-A1-A10.log"
+}

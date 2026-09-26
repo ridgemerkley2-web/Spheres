@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "as_of": "1990-01-01",
+  "coverage": "Partial source audit, not an eligibility census of the world. Only the attested Suriname record below is enabled. Absence means unknown or not imported, never proof that no historical mandate existed.",
+  "reviewed_not_imported": [
+    { "nation": "Guatemala", "reason": "The prior Cerezo/DCG mandate does not attest the model's synthetic DCG+UCN cabinet; PGT was legally excluded. No blanket unrestricted-mandate claim." },
+    { "nation": "Guyana", "reason": "The declared 1985 result has documented fraud allegations and opposition withdrawal; it is not imported as freely expressed consent." },
+    { "nation": "Comoros", "reason": "The modeled party result dates to March 1990, after the opening interim presidency; no backward party tie is inferred." },
+    { "nation": "SaoTome", "reason": "The dormant competitive party result dates to January 1991; the opening government was a one-party regime." },
+    { "nation": "Myanmar", "reason": "The dormant party result dates to May 1990 and cannot confer an opening mandate on the military government." }
+  ],
+  "rows": [
+    {
+      "key": "sr-front-assembly-1987-11-25",
+      "nation": "Suriname",
+      "ballot_on": "1987-11-25",
+      "governing_parties": ["sr_fdo"],
+      "opening_holder": "Ramsewak Shankar",
+      "opening_office": "President of the Republic",
+      "opening_party": "sr_fdo",
+      "authority": "assembly_elected_executive",
+      "sources": [
+        "https://www.dna.sr/achtergrond-info/geschiedenis-dna/een-korte-geschiedenis/",
+        "https://cidh.oas.org/annualrep/87.88eng/chap4e.htm"
+      ],
+      "note": "The National Assembly dates free secret elections to 25 November 1987. IACHR records the Front majority and Assembly election of Shankar, inaugurated 25 January 1988. Its account also documents constitutional Army and Council of State powers limiting civilian sovereignty. This record attests prior parliamentary authority, not unrestricted democracy, military obedience, or an exact vote percentage. The existing gameplay support table is not revised or independently certified here. IACHR contains conflicting November 15/25 wording; the Assembly's November 25 date controls."
+    }
+  ]
+}

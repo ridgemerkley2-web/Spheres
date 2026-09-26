@@ -1,0 +1,27 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://ago.gov.to/cms/images/LEGISLATION/AMENDING/1990/1990-0012/ActofConstitutionofTongaAmendmentAct1990.pdf",
+  "accessed_date": "2026-09-21",
+  "published_date": null,
+  "document_date": "1990-08-08",
+  "access_method": "downloaded_original_pdf_text_read",
+  "source_response_bytes": 32413,
+  "source_response_sha256": "4eab11f44316d1687023313b05119ff41d64f78e84c2622043d445c841dca90a",
+  "source_response_checked_in": false,
+  "provenance_note": "Original response downloaded (curl -L) and hashed before extraction on 2026-09-21 (local). This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_crown_assent_tupou_iv_19900808",
+      "text": "The assent block reads 'I assent, TAUFA'AHAU TUPOU IV, 8th August, 1990'; the Act records its passage on 26 July 1990.",
+      "attested_on": "1990-08-08",
+      "locator": "PDF page 1, assent block and passage line",
+      "uncertainty": "A dated attestation of Tupou IV exercising the royal assent only. Re-typeset reproduction; the assent block was read from the text layer, not from a rendered page."
+    }
+  ],
+  "scope_note": "Used only for the assent attestation (TO-CROWN-01). This is Act 12 of 1990, the latest amendment noted in the older revised constitution text. The assent date is recorded as document_date. The Act's substance is not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Text layer of PDF page 1 read; the page was not image-rendered."
+  }
+}

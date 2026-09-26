@@ -1,0 +1,139 @@
+{
+  "reviewed_utc": "2026-09-22T23:41:45.652698+00:00",
+  "reviewer": "/root/verify_linux_ci",
+  "head": "12278ea4c66863200fd10948350ae69391954cfa",
+  "selection": "Stage1: only the three-line all-false stall-mask return. Stage2 predicate reorder is absent.",
+  "decision": "Selected optimization preserves all printed original political results and passes all eight focused checks. The pre-existing A1 failure remains; this is not full political certification.",
+  "source_verification": {
+    "freeze_receipt": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\empty-stall-optimization\\source-freeze.json",
+    "freeze_sha256": "ec48c9890b03ab0b4bead805114f4d7a58dc2c367c2c0eacadad4cf61c4ac0d9",
+    "baseline_manifest": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\iteration-27-baseline-source-manifest.json",
+    "manifest_sha256": "c5b0b5f294c85b9a1fc90fd9344d6d5d8f21cc0c2e3b3ef9502a4f0900e0fa62",
+    "native_inputs_checked": 1932,
+    "missing_inputs": [],
+    "only_difference_from_baseline": [
+      {
+        "path": "spheres-sim/src/dyads.rs",
+        "before": "710a8121c1f93c3516b05e99ee37a3fd4323aa42be7023d6947c227076fe295f",
+        "after": "a9bc6689a343d1957130a3b38af4f020e2d22b4d8c2c9dfe77db4b3f89c2a98b"
+      }
+    ],
+    "all_other_native_inputs_byte_identical": true,
+    "all_native_tests_and_thresholds_byte_identical": true
+  },
+  "focused": {
+    "log": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\completion-selected-optimization-focused-20260922.log",
+      "bytes": 1430,
+      "sha256": "e4ab447999a37203d329d426df0f0b96850e02aba0f2ba727526929d410bc952"
+    },
+    "tests": {
+      "dyads::tests::a_claim_pressed_by_force_stops_being_a_war_aim": "ok",
+      "government::tests::the_algeria_shaped_annulment_fires_under_its_conditions_and_not_under_the_court": "ok",
+      "resources::tests::a_deficit_alone_never_raises_appetite": "ok",
+      "resources::tests::the_last_resort_predicate": "ok",
+      "resources::tests::the_stall_mask_equals_twelve_calls": "ok",
+      "tests::golden_hash_of_a_known_run": "ok",
+      "tests::the_market_switch_is_off_for_the_suite_and_deterministic_when_on": "ok",
+      "tests::the_resource_layer_is_inert_over_time": "ok"
+    },
+    "summaries": [
+      [
+        "ok",
+        "8",
+        "0",
+        "0",
+        "0",
+        "1023"
+      ],
+      [
+        "ok",
+        "0",
+        "0",
+        "0",
+        "0",
+        "12"
+      ]
+    ],
+    "passed": 8,
+    "failed": 0,
+    "zero_test_integration_tail": "Cargo also invoked bloc_census with the focus filters: zero tests, twelve filtered; not counted as a pass."
+  },
+  "political": {
+    "baseline_log": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\completion-checkpoint26-political-20260922.log",
+      "bytes": 13016,
+      "sha256": "fd609d16482a240dcf327d7130762b9ee6ba814b658ee810699690884b10b5e9"
+    },
+    "selected_log": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\completion-selected-optimization-political-20260922.log",
+      "bytes": 13017,
+      "sha256": "06a1e423265f5c3e781f87e8780ab893e70125633262fdde4338043b0f85429a"
+    },
+    "all_ten_metric_lines_exactly_equal": true,
+    "unique_printed_seed_rows_exactly_equal": true,
+    "unique_seed_rows_compared": 20,
+    "unique_seed_row_digest_sha256": "eba959a319318e95c8bcba5c403379b240ffcd7b590a2dc2950dd30236d9081b",
+    "test_results_exactly_equal": true,
+    "metrics": [
+      "A10: median discontent lead 0.336 over 12 seeds ([0.33341456126668745, 0.33104810396799245, 0.35670630425800604, 0.33577484778301514, 0.3357723098778521, 0.3007995143443215, 0.35432617767836094, 0.31010827116205064, 0.3386345352567025, 0.3360175856984459, 0.3363010949676545, 0.32729452049986185])",
+      "A1: median coups 7 top-3 share median 0.59",
+      "A2: 8/12 seeds; Algeria Islamist 0/12 annulled 12/12",
+      "A3: 1/20 seeds with a Communist non-ballot takeover",
+      "A4: median 1990 regimes electoral at end-1996 15",
+      "A5: 12/12 seeds with a flagged successor party led back into government by ballot in >= 3 ex-communist states by 1996",
+      "A6 at 420 months: route events 0 in 12/12 seeds; pre-existing collapses beside [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]",
+      "A7: median ballot-flips / takeovers 7.893 ([8.428571428571429, 10.3, 5.083333333333333, 5.9, 5.2727272727272725, 10.909090909090908, 7.785714285714286, 8.0, 7.3, 5.8, 9.416666666666666, 12.1])",
+      "A8: 40/40 seeds keep >= 6 of 8; per seed [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]",
+      "A9: 193/193 = 1.000 of coups in nations under $8,000 a head"
+    ],
+    "test_results": {
+      "a_ballot_and_an_uncoloured_collapse_do_not_fabricate_a_movement_takeover": "ok",
+      "a9_four_coups_in_five_strike_nations_under_8000_a_head": "ok",
+      "a4_the_democratisation_wave_opens_fifteen_regimes_by_1996": "ok",
+      "a5_ex_communists_return_by_ballot_in_most_seeds": "ok",
+      "a10_discontent_leads_the_roster_by_a_quarter_before_a_takeover": "ok",
+      "a2_an_islamist_takeover_without_a_ballot_in_most_seeds_by_2000": "ok",
+      "a7_ballots_flip_the_ruling_bloc_three_times_as_often_as_takeovers": "ok",
+      "a1_coups_against_elected_governments_are_spread_not_three_micro_polities": "FAILED",
+      "a3_a_communist_takeover_without_a_ballot_is_rare": "ok",
+      "a6_no_road_reaches_a_1990_democracy_in_thirty_five_years": "ok",
+      "a8_six_of_the_eight_big_regimes_keep_their_bloc_in_most_seeds": "ok"
+    },
+    "failures": [
+      "a1_coups_against_elected_governments_are_spread_not_three_micro_polities"
+    ],
+    "summaries": [
+      [
+        "FAILED",
+        "10",
+        "1",
+        "0",
+        "0",
+        "1"
+      ]
+    ],
+    "parent_reported_exit_code": 101,
+    "comparison_scope": "Exact printed metric/seed strings and test outcomes; log execution order and elapsed durations may differ."
+  },
+  "current_native_binaries": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_sim-de8a2e7790f15db6.exe",
+      "bytes": 48837687,
+      "sha256": "1dc09dafde0607af24c330555593491ffa8a4368f49f5e98eed93e4803077556",
+      "scope": "Current selected-source native binaries observed read-only after parent execution; no reviewer run."
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\bloc_census-b35be4d742aae476.exe",
+      "bytes": 31612144,
+      "sha256": "9d0d91760d2a75270a53878534921129160ac0e7eac8c662f8c28863661d46f1",
+      "scope": "Current selected-source native binaries observed read-only after parent execution; no reviewer run."
+    }
+  ],
+  "no_additional_measurements_or_simulations_by_reviewer": true,
+  "no_repository_edits_by_reviewer": true,
+  "new_development_N200_claim": false,
+  "independent_holdout_claim": false,
+  "remaining_known_failure": "Original A1: median coups 7; printed median top-3 share0.59 fails unchanged strict<0.50 concentration rule.",
+  "advisory_note": "Stage1 timing receipt remains authoritative for the selected optimization. This comparison performs no timing run and does not claim the0.05ms advisory was met."
+}

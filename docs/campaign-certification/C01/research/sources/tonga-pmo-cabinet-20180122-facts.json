@@ -1,0 +1,28 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://web.archive.org/web/20181030055037id_/http://www.mic.gov.to/news-today/press-releases/7086-his-majesty-the-king-appoints-prime-minister-and-ministers-of-his-majestys-cabinet",
+  "original_url": "http://www.mic.gov.to/news-today/press-releases/7086-his-majesty-the-king-appoints-prime-minister-and-ministers-of-his-majestys-cabinet",
+  "archive_capture_utc": "2018-10-30T05:50:37Z",
+  "accessed_date": "2026-09-22",
+  "published_date": "2018-01-22",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 34016,
+  "source_response_sha256": "f47dc0dce1a3e533be47bc1307fdd7e45ac65070633a52cdfafc12f6acf1c9e6",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original government portal page, captured at 2018-10-30T05:50:37Z; the capture is used in place of the live page. The researcher downloaded and hashed the capture bytes before extraction on 2026-09-22 (local); the independent check re-downloaded it the same day and matched the bytes and SHA-256, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_pohiva_appointment_repeated_20180122",
+      "text": "The PMO advises that the King appointed Hon. Samuela 'Akilisi Pohiva as Prime Minister 'with effect from 2nd January, 2018', and appointed eleven Ministers with effect from 5th January, 2018, among them Hon. Semisi Kioa Lafu Sika as Deputy Prime Minister. After an audience on 17 January 2018, the King appointed the Prime Minister as Minister of Foreign Affairs with effect from 19 January 2018.",
+      "attested_on": "2018-01-02",
+      "locator": "Body paragraphs 1-3",
+      "uncertainty": "Repeats the 2 January effective date. The ministerial list and Deputy Prime Minister entry are outside this packet's role scope and are not imported as holders."
+    }
+  ],
+  "scope_note": "PMO release on the government portal dated 22 January 2018 (raw Internet Archive capture of 30 October 2018). Used for the repeated effective date; the ministers, including the Deputy Prime Minister, are not imported as holders.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  }
+}

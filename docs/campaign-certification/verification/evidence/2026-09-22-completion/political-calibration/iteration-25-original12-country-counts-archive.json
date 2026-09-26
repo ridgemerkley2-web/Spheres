@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "scope": "Compact original12 diagnostic archive only; no binaries or runtime changes",
+  "files": [
+    {
+      "path": "prepare-original12-country-counts.py",
+      "bytes": 6845,
+      "sha256": "3d5611a45ff0e885aefd8d81ed517a5925c2d91d9854e0b2aedac89a285a727c"
+    },
+    {
+      "path": "analyze-original12-country-counts.py",
+      "bytes": 3689,
+      "sha256": "5cfde3755806b512087aacbc766d7dedcc5b969b82075f932447ef7222d395d4"
+    },
+    {
+      "path": "iteration-25-original12-country-counts.rs",
+      "bytes": 65304,
+      "sha256": "1b142fe426edb48d91606bf2ea676f010bab86d92d38b79f67da1c4eeca49316"
+    },
+    {
+      "path": "iteration-25-original12-country-counts-plan.json",
+      "bytes": 99088,
+      "sha256": "03d53d6b797faa4ee94d2016c13d79893d6cc964a955a1a6e7855c3ac7d42545"
+    },
+    {
+      "path": "iteration-25-original12-country-counts-build-input.json",
+      "bytes": 609,
+      "sha256": "ccd763d055d396b3c80ced8159607f03b0dbc7dc86c1790053bfb2f77fa1696b"
+    },
+    {
+      "path": "iteration-25-original12-country-counts-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "iteration-25-original12-country-counts.log",
+      "bytes": 4511,
+      "sha256": "db0ccd73ee0cbfaea8927722a69e1fe6d0aa7709f3c372427726e3d9112dd460"
+    },
+    {
+      "path": "iteration-25-original12-country-counts-result.json",
+      "bytes": 859,
+      "sha256": "9e50bafc2503ed981cff1c257bf47cf98aeb738076e2dda9538fea31e512998f"
+    },
+    {
+      "path": "iteration-25-original12-country-counts-comparison.json",
+      "bytes": 10457,
+      "sha256": "2dd0f1b78c921982ca173ad203a129f8bbb8820aff4e8d03ff7ef5990325b8dc"
+    },
+    {
+      "path": "original12-diversity-toy-comparison.json",
+      "bytes": 1454,
+      "sha256": "5b92216807b4bd4cc7637855d7fc85841fbf7a013a7a6647da33f4f4ec27b139"
+    },
+    {
+      "path": "original12-diversity-toy-comparison.md",
+      "bytes": 1716,
+      "sha256": "517efa3df3dd38df3badca096f5b12e055fcc96757ec4e34600da314b1af49ed"
+    }
+  ]
+}

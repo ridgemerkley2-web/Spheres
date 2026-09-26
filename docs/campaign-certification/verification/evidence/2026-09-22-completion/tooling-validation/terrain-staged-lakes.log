@@ -1,0 +1,331 @@
+==============================================================================
+CHECK 1: district_terrain.json — famous geography
+==============================================================================
+district_terrain.json: 2610 entries; roster: 2610 districts
+  PASS  entry count == 2610 (got 2610)
+  PASS  no roster districts missing from terrain (missing: [])
+  PASS  no terrain ids absent from roster (extra: [])
+
+-- Nepal (Himalaya) --
+  PASS  Nepal all-districts: majority in ['mountain'] — 14/14 (actual mix {'mountain': 14})
+  PASS  Nepal high-Himalaya: NP-SA (Sagarmatha): t=mountain f='Himalayas'  [expect mountain]
+  PASS  Nepal high-Himalaya: NP-GA (Gandaki): t=mountain f='Himalayas'  [expect mountain]
+  PASS  Nepal high-Himalaya: NP-DH (Dhawalagiri): t=mountain f='Himalayas'  [expect mountain]
+  PASS  Nepal high-Himalaya: NP-KA (Karnali): t=mountain f='Himalayas'  [expect mountain]
+  PASS  Nepal high-Himalaya: NP-BA (Bagmati): t=mountain f='Himalayas'  [expect mountain]
+  PASS  Nepal high-Himalaya: NP-ME (Mechi): t=mountain f='Himalayas'  [expect mountain]
+  PASS  Nepal high-Himalaya: 6 district(s) carry a 'Himalaya' feature name (need >= 3)
+
+-- Bhutan (Himalaya) --
+  PASS  Bhutan all-districts: majority in ['mountain'] — 19/20 (actual mix {'mountain': 19, 'lowland': 1})
+  PASS  Bhutan spot: BT-11 (Paro): t=mountain f='Himalayas'  [expect mountain]
+  PASS  Bhutan spot: BT-15 (Thimphu): t=mountain f='Himalayas'  [expect mountain]
+  PASS  Bhutan spot: BT-33 (Bumthang): t=mountain f='Himalayas'  [expect mountain]
+  PASS  Bhutan spot: BT-GA (Gasa): t=mountain f='Himalayas'  [expect mountain]
+  PASS  Bhutan spot: 4 district(s) carry a 'Himalaya' feature name (need >= 1)
+
+-- Swiss Alps --
+  PASS  Swiss Alpine cantons: CH-VS (Valais): t=mountain f='Alps'  [expect mountain]
+  PASS  Swiss Alpine cantons: CH-GR (Graubünden): t=mountain f='Alps'  [expect mountain]
+  PASS  Swiss Alpine cantons: CH-BE (Bern): t=mountain f='Alps'  [expect mountain]
+  PASS  Swiss Alpine cantons: CH-UR (Uri): t=mountain f='Alps'  [expect mountain]
+  PASS  Swiss Alpine cantons: CH-TI (Ticino): t=mountain f='Alps'  [expect mountain]
+  PASS  Swiss Alpine cantons: CH-GL (Glarus): t=mountain f='Alps'  [expect mountain]
+  PASS  Swiss Alpine cantons: 6 district(s) carry a 'Alps' feature name (need >= 4)
+
+-- Austrian Alps --
+  PASS  Austrian Alpine states: AT-7 (Tirol): t=mountain f='Alps'  [expect mountain]
+  PASS  Austrian Alpine states: AT-5 (Salzburg): t=mountain f='Alps'  [expect mountain]
+  PASS  Austrian Alpine states: AT-8 (Vorarlberg): t=mountain f='Alps'  [expect mountain]
+  PASS  Austrian Alpine states: AT-2 (Kärnten): t=mountain f='Alps'  [expect mountain]
+  PASS  Austrian Alpine states: AT-6 (Steiermark): t=mountain f='Alps'  [expect mountain]
+  PASS  Austrian Alpine states: 5 district(s) carry a 'Alps' feature name (need >= 3)
+
+-- Egyptian Sahara --
+  PASS  Egypt desert governorates: EG-WAD (Al Wadi at Jadid): t=desert f='Sahara'  [expect desert]
+  PASS  Egypt desert governorates: EG-MT (Matruh): t=desert f='Libyan Desert'  [expect desert]
+  PASS  Egypt desert governorates: EG-GZ (Al Jizah): t=desert f='Sahara'  [expect desert]
+  PASS  Egypt desert governorates: EG-ASN (Aswan): t=desert f='Sahara'  [expect desert]
+  PASS  Egypt desert governorates: EG-MN (Al Minya): t=desert f='Sahara'  [expect desert]
+  PASS  Egypt desert governorates: 4 district(s) carry a 'Sahara' feature name (need >= 2)
+
+-- Libyan Sahara --
+  PASS  Libya desert districts: LY-KF (Al Kufrah): t=desert f='Sahara'  [expect desert]
+  PASS  Libya desert districts: LY-MQ (Murzuq): t=desert f='Sahara'  [expect desert]
+  PASS  Libya desert districts: LY-JU (Al Jufrah): t=desert f='Sahara'  [expect desert]
+  PASS  Libya desert districts: LY-GT (Ghat): t=desert f='Sahara'  [expect desert]
+  PASS  Libya desert districts: LY-GD (Ghadamis): t=desert f='Sahara'  [expect desert]
+  PASS  Libya desert districts: LY-SB (Sabha): t=desert f='Sahara'  [expect desert]
+  PASS  Libya desert districts: LY-WD (Wadi al Hayaa): t=desert f='Sahara'  [expect desert]
+  PASS  Libya desert districts: 7 district(s) carry a 'Sahara' feature name (need >= 3)
+
+-- Algerian Sahara --
+  PASS  Algeria Saharan wilayas: DZ-01 (Adrar): t=desert f='Sahara'  [expect desert]
+  PASS  Algeria Saharan wilayas: DZ-11 (Tamanghasset): t=desert f='Sahara'  [expect desert]
+  PASS  Algeria Saharan wilayas: DZ-33 (Illizi): t=desert f='Sahara'  [expect desert]
+  PASS  Algeria Saharan wilayas: DZ-37 (Tindouf): t=desert f='Sahara'  [expect desert]
+  PASS  Algeria Saharan wilayas: DZ-30 (Ouargla): t=desert f='Sahara'  [expect desert]
+  PASS  Algeria Saharan wilayas: DZ-39 (El Oued): t=desert f='Sahara'  [expect desert]
+  PASS  Algeria Saharan wilayas: DZ-08 (Béchar): t=desert f='Sahara'  [expect desert]
+  PASS  Algeria Saharan wilayas: 7 district(s) carry a 'Sahara' feature name (need >= 3)
+
+-- Mongolian Gobi (desert or highland accepted) --
+  PASS  Gobi core aimags: MN-053 (Ömnögovi): t=highland f='Mongolian Plateau'  [expect desert/highland]
+  PASS  Gobi core aimags: MN-059 (Dundgovi): t=highland f='Mongolian Plateau'  [expect desert/highland]
+  PASS  Gobi core aimags: MN-063 (Dornogovi): t=highland f='Mongolian Plateau'  [expect desert/highland]
+  PASS  Govi-Altay (mountain accepted: Gobi-Altai range): MN-065 (Govi-Altay): t=mountain f='Altay Mountains'  [expect desert/highland/mountain]
+  WARN  Gobi: MN-064 (Govĭ-Sümber): t=mountain f='Hentiyn Mts.' [expect desert/highland; judged NE fuzzy-blob quirk]
+
+-- Tibet (mountain/highland) --
+  PASS  Tibet/Qinghai: CN-XZ (Xizang): t=highland f='Plateau of Tibet'  [expect highland/mountain]
+  PASS  Tibet/Qinghai: CN-QH (Qinghai): t=highland f='Plateau of Tibet'  [expect highland/mountain]
+
+-- Netherlands lowland (European provinces) --
+  PASS  NL provinces: NL-DR (Drenthe): t=lowland f='Northern European Plain'  [expect lowland/wetland]
+  PASS  NL provinces: NL-FL (Flevoland): t=lowland f='Northern European Plain'  [expect lowland/wetland]
+  PASS  NL provinces: NL-FR (Friesland): t=lowland f='Northern European Plain'  [expect lowland/wetland]
+  PASS  NL provinces: NL-GE (Gelderland): t=lowland f='Northern European Plain'  [expect lowland/wetland]
+  PASS  NL provinces: NL-GR (Groningen): t=lowland f='Northern European Plain'  [expect lowland/wetland]
+  PASS  NL provinces: NL-LI (Limburg): t=lowland f='Northern European Plain'  [expect lowland/wetland]
+  PASS  NL provinces: NL-NB (Noord-Brabant): t=lowland f='Northern European Plain'  [expect lowland/wetland]
+  PASS  NL provinces: NL-NH (Noord-Holland): t=lowland f='Northern European Plain'  [expect lowland/wetland]
+  PASS  NL provinces: NL-OV (Overijssel): t=lowland f='Northern European Plain'  [expect lowland/wetland]
+  PASS  NL provinces: NL-UT (Utrecht): t=lowland f='Northern European Plain'  [expect lowland/wetland]
+  PASS  NL provinces: NL-ZE (Zeeland): t=lowland f='Northern European Plain'  [expect lowland/wetland]
+  PASS  NL provinces: NL-ZH (Zuid-Holland): t=lowland f='Northern European Plain'  [expect lowland/wetland]
+
+-- Bangladesh lowland --
+  PASS  BD divisions: BD-A (Barisal): t=wetland f='Ganges Delta'  [expect lowland/wetland]
+  PASS  BD divisions: BD-B (Chittagong): t=lowland f=None  [expect lowland/wetland]
+  PASS  BD divisions: BD-C (Dhaka): t=lowland f='Ganges Plain'  [expect lowland/wetland]
+  PASS  BD divisions: BD-D (Khulna): t=wetland f='Ganges Delta'  [expect lowland/wetland]
+  PASS  BD divisions: BD-E (Rajshahi): t=lowland f='Ganges Plain'  [expect lowland/wetland]
+  PASS  BD divisions: BD-F (Rangpur): t=lowland f='Ganges Plain'  [expect lowland/wetland]
+  PASS  BD divisions: BD-G (Sylhet): t=lowland f=None  [expect lowland/wetland]
+
+-- Po Valley lowland --
+  PASS  Po Valley regions: ITA_emilia-romagna (Emilia-Romagna): t=lowland f='Appennini'  [expect lowland/wetland]
+  PASS  Po Valley regions: ITA_veneto (Veneto): t=lowland f=None  [expect lowland/wetland]
+  PASS  Po Valley regions: ITA_lombardia (Lombardia): t=lowland f=None  [expect lowland/wetland]
+  PASS  Po Valley regions: ITA_piemonte (Piemonte): t=lowland f='Alps'  [expect lowland/wetland]
+
+-- Siberian far north (tundra or equivalent) --
+  PASS  Yamal-Nenets (66N override): RU-YAN (Yamal-Nenets): t=tundra f='Western Siberian Plain'  [expect tundra]
+  PASS  far-north: RU-NEN (Nenets): t=tundra f='Bol’shezemel’skaya Tundra'  [expect tundra]
+  PASS  far-north: RU-CHU (Chukchi Autonomous Okrug): t=tundra f=None  [expect tundra]
+  PASS  far-north: RU-SA (Sakha (Yakutia)): t=tundra f='Central Siberian Plateau'  [expect tundra]
+  PASS  far-north: RU-MUR (Murmansk): t=tundra f=None  [expect tundra]
+  PASS  far-north: RU-KYA (Krasnoyarsk): t=tundra f='Central Siberian Plateau' [tundra or highland: Central Siberian Plateau]
+  PASS  at least 3 Russian districts classified tundra (got 6)
+
+==============================================================================
+CHECK 2: ui/rivers.js — named majors + canvas bounds
+==============================================================================
+  PASS  rivers.js carries the generated header
+  PASS  rivers.js is self-contained (no https://)
+  PASS  meta canvas contract w=2400 h~1018.2 (got {'w': 2400, 'h': 1018.2})
+  PASS  river count == 263 (got 263)
+  PASS  lake count == 29 (got 29)
+  PASS  major river present: Rhine
+  PASS  major river present: Tigris
+  PASS  major river present: Euphrates
+  PASS  major river present: Yangtze
+  PASS  major river present: Mississippi
+  PASS  major river present: Volga
+  PASS  major river present: Amazonas
+  PASS  major river present: Danube
+  PASS  major river present: Mekong
+  PASS  major river present: Nile
+  PASS  major river present: Ganges
+  PASS  major river present: Indus
+  PASS  major river present: Congo
+  PASS  major river present: Ob
+  PASS  major river present: Lena
+  PASS  major river present: Yenisey
+  PASS  major river present: Niger
+  PASS  major river present: Zambezi
+  PASS  major river present: Mackenzie
+  PASS  major river present: Murray
+  PASS  major river present: Rio Grande
+  PASS  major river present: Paraná
+  PASS  major lake in the scalerank<=1 source selection: Superior
+  PASS  major lake in the scalerank<=1 source selection: Michigan
+  PASS  major lake in the scalerank<=1 source selection: Huron
+  PASS  major lake in the scalerank<=1 source selection: Erie
+  PASS  major lake in the scalerank<=1 source selection: Ontario
+  PASS  major lake in the scalerank<=1 source selection: Baikal
+  PASS  major lake in the scalerank<=1 source selection: Tanganyika
+  PASS  major lake in the scalerank<=1 source selection: Malawi
+  PASS  major lake in the scalerank<=1 source selection: Ladoga
+  PASS  major lake in the scalerank<=1 source selection: Balkhash
+  PASS  major lake in the scalerank<=1 source selection: Winnipeg
+  PASS  major lake in the scalerank<=1 source selection: Titicaca
+  PASS  major lake in the scalerank<=1 source selection: Chad
+  PASS  major lake in the scalerank<=1 source selection: Nicaragua
+  PASS  major lake in the scalerank<=1 source selection: Great Salt
+  PASS  major lake in the scalerank<=1 source selection: Vänern
+  PASS  source scalerank<=1 lake selection is 29 (got 29)
+  PASS  paths contain only M/L/Z commands (0 with strays)
+  16823 vertices; x range [336.40, 2285.22] of [0, 2400]; y range [51.86, 962.89] of [0, 1018.19]
+  PASS  all x inside canvas [0, 2400]
+  PASS  all y inside canvas [0, 1018.19]
+  PASS  x extremes match build report (336.40–2285.22)
+  PASS  y extremes match build report (51.86–962.89)
+  PASS  Amazonas passes within 60 px of projected lower-Amazon point (min dist 4.8 px)
+
+==============================================================================
+CHECK 3: ui/terrain.png — dimensions, alpha, known-point relief
+==============================================================================
+  1x: size=(2400, 1018) mode=LA
+  PASS  1x dimensions == 2400x1018 (got (2400, 1018))
+  PASS  1x mode == LA (got LA)
+  PASS  corner (0,0) alpha == 0 (got a=0)
+  PASS  corner (2399,0) alpha == 0 (got a=0)
+  PASS  corner (0,1017) alpha == 0 (got a=0)
+  PASS  corner (2399,1017) alpha == 0 (got a=0)
+  PASS  canvas centre alpha == 255 (got a=255)
+  transparent fraction (subsampled): 8.994%
+  PASS  transparent area is a small corner-lune fraction (0.1%–10%)
+  PASS  just-inside-globe point (lon -179.5, lat 0) opaque (a=255)
+  PASS  far-left pixel at lat 75N (off-globe lune) transparent (a=0)
+  point                                  px    mean    std  min  max
+  Andes ridge (Aconcagua)      ( 756, 831)   177.8  40.19   71  249   alpha_min=255
+  PASS  Andes ridge (Aconcagua): fully opaque window
+  Sahara interior              (1265, 411)   203.4   2.66  199  210   alpha_min=255
+  PASS  Sahara interior: fully opaque window
+  Amazon basin                 ( 767, 615)   205.0   1.84  201  210   alpha_min=255
+  PASS  Amazon basin: fully opaque window
+  Himalaya (Everest)           (1759, 374)   158.6  44.21   68  246   alpha_min=255
+  PASS  Himalaya (Everest): fully opaque window
+  Central Australia            (2069, 774)   203.2   2.68  198  209   alpha_min=255
+  PASS  Central Australia: fully opaque window
+  PASS  relief contrast: every ridge window varies more than every flat window (ridge stds ['40.19', '44.21'] vs flat stds ['2.66', '1.84', '2.68'])
+  PASS  strong contrast: ridge std > 2x flat std
+
+==============================================================================
+CHECK 3B: ui/relief.png + coast.png + cover.png — the GL terrain textures
+==============================================================================
+  PASS  H_EXT == 1018.1941195106424 (got 1018.1941195106424)
+  PASS  H_EXT within 0.01 of WORLD.h = 1018.2 (delta 0.0059) — the row grid is the projection extent, NOT make_underlay.py's [0,1018] and NOT the 1-dp WORLD.h
+  WARN  make_relief + make_occlusion: byte-identity SKIPPED, source absent (spheres-web/data/etopo_60s.nc)
+  PASS  make_coast regenerates byte-identically (sha256 085c537e4b8ad900…)
+  WARN  make_cover: byte-identity SKIPPED, source absent (spheres-web/data/NE1_50M_SR_W.zip)
+  PASS  make_lakes regenerates byte-identically (sha256 41378dcca41043fa…)
+  relief.png  size=(2400, 1018) mode=RGB 2856812 bytes
+  PASS  relief.png dimensions == (2400, 1018)
+  PASS  relief.png mode == RGB
+  PASS  relief.png carries no gAMA/sRGB/iCCP chunk (found [])
+  coast.png   size=(2400, 1018) mode=L 292852 bytes
+  PASS  coast.png dimensions == (2400, 1018)
+  PASS  coast.png mode == L
+  PASS  coast.png carries no gAMA/sRGB/iCCP chunk (found [])
+  cover.png   size=(1200, 509) mode=L 260856 bytes
+  PASS  cover.png dimensions == (1200, 509)
+  PASS  cover.png mode == L
+  PASS  cover.png carries no gAMA/sRGB/iCCP chunk (found [])
+  lake.png    size=(2400, 1018) mode=L 20394 bytes
+  PASS  lake.png dimensions == (2400, 1018)
+  PASS  lake.png mode == L
+  PASS  lake.png carries no gAMA/sRGB/iCCP chunk (found [])
+  added baked payload: 3430914 bytes = 3.272 MiB
+  PASS  four GL textures total <= 3,561,000 bytes (got 3430914)
+  relief peak 6230.63 m, floor -1500.00 m, deepest 10154 m
+  PASS  no texel exceeds ELEV_HI = 6400.0 (peak 6230.63 m)
+  PASS  peak sits just under the ceiling, not truncated against it (6230.63 m) — a 2x array baked with the 1x ceiling would clamp a flat plateau at exactly 6400.0
+  PASS  the deep ocean is clipped out of the 16-bit field, as designed
+  PASS  Everest cell at texel (1759,373): 6199.3 m / depth 0 m — expected > 5500 m
+  PASS  Tibetan plateau at texel (1759,343): 4599.0 m / depth 4 m — expected > 4000 m
+  PASS  Dead Sea at texel (1425,347): -302.4 m / depth 11 m — expected < 0 m
+  PASS  Amazon floodplain at texel (787,607): 34.6 m / depth 0 m — expected 0..300 m
+  PASS  Mariana Trench at texel (2142,499): -1500.0 m / depth 9989 m — expected depth > 8000 m
+  PASS  mid-Atlantic at texel (944,358): -1500.0 m / depth 3268 m — expected depth > 2000 m
+  coast land fraction of the canvas: 0.26806
+  PASS  land fraction plausible for Robinson 83N..58S (got 0.26806)
+  PASS  coast Sahara interior at texel (1277,403): d = +1.409 -> land (want land)
+  PASS  coast Tibet interior at texel (1759,343): d = +8.000 -> land (want land)
+  PASS  coast Zuid-Holland inland at texel (1226,194): d = +2.047 -> land (want land)
+  PASS  coast Ganges delta at texel (1787,405): d = +1.861 -> land (want land)
+  PASS  coast mid-Pacific at texel (266,585): d = -7.875 -> water (want water)
+  PASS  coast North Atlantic at texel (1020,246): d = -7.875 -> water (want water)
+  PASS  coast Caspian Sea at texel (1509,268): d = -7.751 -> water (want water)
+  PASS  coast Lake Superior at texel (685,226): d = +3.431 -> land (want land)
+  coastline registration: 146 shoreline vertices, mean d = +0.0557, RMS 0.3121, max |d| 1.2592
+  PASS  world.js coastline vertices sit on coast.png's zero level set (mean |d| < 0.25, max |d| < 2.0 canvas units)
+  occlusion: land texels 654935, occ p50 0.0086 p90 0.0430 p99 0.1117 max 0.3781
+  PASS  coast.png reports 654,935 land texels (got 654935) — the occlusion plane is written on exactly this set
+  PASS  no land texel exceeds the 0.55 occlusion clip (max 0.3781) — a value above it means the byte is being read as depth
+  PASS  the median land texel is essentially unoccluded (0.0086) — flat land must still render the authored hex
+  PASS  occlusion Grand Canyon: 5x5 max 0.1719 (want > 0.1)
+  PASS  occlusion Colca Canyon: 5x5 max 0.2234 (want > 0.1)
+  PASS  occlusion Kali Gandaki gorge: 5x5 max 0.2664 (want > 0.1)
+  PASS  occlusion Alps (Mont Blanc): 5x5 max 0.1891 (want > 0.1)
+  PASS  occlusion Tibetan plateau: 5x5 max 0.0602 (want < 0.1)
+  PASS  occlusion N European Plain: 5x5 max 0.0086 (want < 0.01)
+  PASS  occlusion W Siberian Plain: 5x5 max 0.0086 (want < 0.01)
+  PASS  occlusion Amazon floodplain: 5x5 max 0.0000 (want < 0.01)
+  lake field: 2997 lake texels, 243 distinct codes
+  PASS  the 29 scalerank<=1 lakes cover a plausible 2997 texels
+  PASS  lake Lake Superior at texel (685,226): d = -6.228 -> lake (want lake)
+  PASS  lake Lake Baikal at texel (1808,183): d = -2.242 -> lake (want lake)
+  PASS  lake Lake Victoria at texel (1419,594): d = -4.872 -> lake (want lake)
+  PASS  lake Lake Michigan at texel (675,257): d = -3.269 -> lake (want lake)
+  PASS  lake Caspian Sea at texel (1509,268): d = +8.000 -> not-lake (want not-lake)
+  PASS  lake mid-Pacific at texel (266,585): d = +8.000 -> not-lake (want not-lake)
+  PASS  lake North Atlantic at texel (1020,246): d = +8.000 -> not-lake (want not-lake)
+  PASS  lake Mediterranean at texel (1306,320): d = +8.000 -> not-lake (want not-lake)
+  PASS  lake Sahara interior at texel (1277,403): d = +8.000 -> not-lake (want not-lake)
+  PASS  no lake texel is ocean-side of the coastline (got 0)
+  cover [barren      ] Atacama 0.000  Sahara 0.090  Great Victoria 0.105
+  cover [semi-arid   ] Sahel 0.317
+  cover [temperate   ] Alps 0.582  Great Plains 0.685
+  cover [boreal/humid] West Siberia 0.758  Scandinavia 0.835
+  cover [rainforest  ] Amazon 0.988  Congo 0.996
+  PASS  cover separates barren (max 0.105) from semi-arid (min 0.317)
+  PASS  cover separates semi-arid (max 0.317) from temperate (min 0.582)
+  PASS  cover separates temperate (max 0.685) from boreal/humid (min 0.758)
+  PASS  cover separates boreal/humid (max 0.835) from rainforest (min 0.988)
+
+==============================================================================
+CHECK 4: class histogram sanity
+==============================================================================
+  lowland    1719  ( 65.9%)
+  mountain    583  ( 22.3%)
+  highland    150  (  5.7%)
+  desert      124  (  4.8%)
+  wetland      17  (  0.7%)
+  tundra       17  (  0.7%)
+  PASS  exactly the 6 expected classes (got ['desert', 'highland', 'lowland', 'mountain', 'tundra', 'wetland'])
+  PASS  class 'lowland' non-empty (1719)
+  PASS  class 'mountain' non-empty (583)
+  PASS  class 'highland' non-empty (150)
+  PASS  class 'desert' non-empty (124)
+  PASS  class 'wetland' non-empty (17)
+  PASS  class 'tundra' non-empty (17)
+  PASS  lowland dominates (1719 of 2610)
+  PASS  mountain+highland share plausible: 733/2610 = 28.1% (expect 10%–45%)
+  PASS  histogram matches build report exactly {'mountain': 583, 'highland': 150, 'desert': 124, 'wetland': 17, 'tundra': 17, 'lowland': 1719}
+
+==============================================================================
+CHECK 5: crossing_edges.json — shape, ordering, adjacency subset
+==============================================================================
+  PASS  exactly the four documented keys (got ['count', 'edges', 'eps_deg', 'rule'])
+  PASS  eps_deg == 0.05 (got 0.05)
+  PASS  count field matches edge list (845 vs 845)
+  PASS  every pair lexicographic (a < b)
+  PASS  edge list sorted and unique
+  PASS  every crossed pair is a real adjacency edge (0 outside: [])
+  PASS  known crossing present: IQ-BA -- IR-10 (Shatt al-Arab / Rio Grande / Rhine)
+  PASS  known crossing present: MX-TAM -- US-TX (Shatt al-Arab / Rio Grande / Rhine)
+  PASS  known crossing present: DE-NW -- NL-GE (Shatt al-Arab / Rio Grande / Rhine)
+
+==============================================================================
+CHECK 6: districts.json — mapgen merge is verbatim transcription
+==============================================================================
+  PASS  all 2985 district records carry the generators' t/f/riv verbatim
+
+==============================================================================
+RESULT: 0 failure(s), 3 warning(s)
+  WARN [famous] Gobi: MN-064 (Govĭ-Sümber): t=mountain f='Hentiyn Mts.' [expect desert/highland; judged NE fuzzy-blob quirk]
+  WARN [gltex] make_relief + make_occlusion: byte-identity SKIPPED, source absent (spheres-web/data/etopo_60s.nc)
+  WARN [gltex] make_cover: byte-identity SKIPPED, source absent (spheres-web/data/NE1_50M_SR_W.zip)
+VERDICT: PASS

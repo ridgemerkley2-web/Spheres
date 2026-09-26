@@ -1,0 +1,28 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://web.archive.org/web/20100824203137id_/https://www.pmo.gov.to/ourconstitution/2006-feleti-sevele-is-appointed-as-the-first-non-noble-prime-minister.html",
+  "original_url": "https://www.pmo.gov.to/ourconstitution/2006-feleti-sevele-is-appointed-as-the-first-non-noble-prime-minister.html",
+  "archive_capture_utc": "2010-08-24T20:31:37Z",
+  "accessed_date": "2026-09-22",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 28570,
+  "source_response_sha256": "96a9b335fef7bc3924dda71d00975d504ebab7e78940554ab96727c6be24dd63",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original PMO page, captured at 2010-08-24T20:31:37Z; the capture is used in place of the live page. The researcher downloaded and hashed the capture bytes before extraction on 2026-09-22 (local); the independent check re-downloaded it the same day and matched the bytes and SHA-256, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_sevele_appointed_20060330",
+      "text": "The PMO-hosted timeline entry reads: '30 March 2006: Feleti Sevele is appointed as the first non-noble Prime Minister of Tonga since Shirley Baker in the 19th century.'",
+      "attested_on": "2006-03-30",
+      "locator": "Timeline entry body",
+      "uncertainty": "Retrospective timeline date: an unattributed civic-education timeline (footer '© Our Constitution - Copyright 2009') hosted on pmo.gov.to, not a contemporaneous release or instrument, and its Tongan twin gives the year only. The date fits the PMO's change in usage between 23 March and 7 April 2006, but the PMO articles of 30 March to 7 April 2006 contain no appointment release, so it is kept as a claim and is not the date of the holder observation. The timeline's 'first non-noble' characterisation is not imported."
+    }
+  ],
+  "scope_note": "Archived entry of the 'Our Constitution' timeline hosted on www.pmo.gov.to (raw Internet Archive capture of 24 August 2010; footer 'Copyright 2009'). Retrospective: its 30 March 2006 date is kept as a claim labelled a retrospective timeline date and is not a holder date.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  }
+}

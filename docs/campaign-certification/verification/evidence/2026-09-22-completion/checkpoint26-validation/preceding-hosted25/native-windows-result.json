@@ -1,0 +1,26 @@
+{
+  "job_id": 106961552110,
+  "conclusion": "success",
+  "commit": "7b8a3dbb90f191ee5520705a8233409274d9d752",
+  "path": "native-windows-106961552110.log",
+  "bytes": 326851,
+  "sha256": "d358725afad4396cfab4a0611b4a68f3f34a1daf57e34ad26011065741bb8e0e",
+  "expected_checkout_mentioned": true,
+  "failed_tests": [],
+  "workspace_targets": 66,
+  "workspace_counts": {
+    "passed": 1884,
+    "failed": 0,
+    "ignored": 89,
+    "measured": 0,
+    "filtered": 1
+  },
+  "isolated_timing_counts": {
+    "passed": 1,
+    "failed": 0,
+    "ignored": 0,
+    "measured": 0,
+    "filtered": 1030
+  },
+  "full_browser_step": "success per completed job steps; artifact receipt stored separately"
+}

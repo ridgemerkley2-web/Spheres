@@ -1,0 +1,41 @@
+﻿2026-09-22T22:29:37.9429264Z Current runner version: '2.337.0'
+2026-09-22T22:29:37.9454591Z ##[group]Runner Image Provisioner
+2026-09-22T22:29:37.9455564Z Hosted Compute Agent
+2026-09-22T22:29:37.9456167Z Version: 20260828.587
+2026-09-22T22:29:37.9456781Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-09-22T22:29:37.9457617Z Build Date: 2026-08-28T16:44:25Z
+2026-09-22T22:29:37.9458336Z Worker ID: {cae6d158-de1b-4752-9e41-0ef04c4a3631}
+2026-09-22T22:29:37.9459105Z Azure Region: westus
+2026-09-22T22:29:37.9459695Z ##[endgroup]
+2026-09-22T22:29:37.9461147Z ##[group]Operating System
+2026-09-22T22:29:37.9462146Z Ubuntu
+2026-09-22T22:29:37.9462706Z 24.04.5
+2026-09-22T22:29:37.9463286Z LTS
+2026-09-22T22:29:37.9463818Z ##[endgroup]
+2026-09-22T22:29:37.9464364Z ##[group]Runner Image
+2026-09-22T22:29:37.9465025Z Image: ubuntu-24.04
+2026-09-22T22:29:37.9465629Z Version: 20260907.300.1
+2026-09-22T22:29:37.9466982Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260907.300/images/ubuntu/Ubuntu2404-Readme.md
+2026-09-22T22:29:37.9468569Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260907.300
+2026-09-22T22:29:37.9469619Z ##[endgroup]
+2026-09-22T22:29:37.9470747Z ##[group]GITHUB_TOKEN Permissions
+2026-09-22T22:29:37.9472942Z Contents: read
+2026-09-22T22:29:37.9473561Z Metadata: read
+2026-09-22T22:29:37.9474277Z ##[endgroup]
+2026-09-22T22:29:37.9476375Z Secret source: Actions
+2026-09-22T22:29:37.9477291Z Cache mode: write
+2026-09-22T22:29:37.9478195Z Prepare workflow directory
+2026-09-22T22:29:37.9833725Z Prepare all required actions
+2026-09-22T22:29:37.9962936Z Complete job name: verify (ubuntu-latest)
+2026-09-22T22:29:38.0860988Z ##[group]Run python -c "import os,sys; results={key:os.environ[key] for key in ('NATIVE_RESULT','JAVASCRIPT_RESULT','TOWN_BROWSER_RESULT','POLITICAL_RESULT')}; print(results); sys.exit(0 if all(value=='success' for value in results.values()) else 1)"
+2026-09-22T22:29:38.0866415Z [36;1mpython -c "import os,sys; results={key:os.environ[key] for key in ('NATIVE_RESULT','JAVASCRIPT_RESULT','TOWN_BROWSER_RESULT','POLITICAL_RESULT')}; print(results); sys.exit(0 if all(value=='success' for value in results.values()) else 1)"[0m
+2026-09-22T22:29:38.1608768Z shell: /usr/bin/bash -e {0}
+2026-09-22T22:29:38.1610439Z env:
+2026-09-22T22:29:38.1612041Z   NATIVE_RESULT: failure
+2026-09-22T22:29:38.1613269Z   JAVASCRIPT_RESULT: success
+2026-09-22T22:29:38.1614547Z   TOWN_BROWSER_RESULT: success
+2026-09-22T22:29:38.1615723Z   POLITICAL_RESULT: failure
+2026-09-22T22:29:38.1616779Z ##[endgroup]
+2026-09-22T22:29:38.2105266Z {'NATIVE_RESULT': 'failure', 'JAVASCRIPT_RESULT': 'success', 'TOWN_BROWSER_RESULT': 'success', 'POLITICAL_RESULT': 'failure'}
+2026-09-22T22:29:38.2180599Z ##[error]Process completed with exit code 1.
+2026-09-22T22:29:38.2345116Z Cleaning up orphan processes

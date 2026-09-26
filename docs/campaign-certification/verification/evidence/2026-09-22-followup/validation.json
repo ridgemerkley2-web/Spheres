@@ -1,0 +1,105 @@
+{
+  "baseline": "be67c9b8785ec8a6919a8e354e536e8237b6c566",
+  "recorded_utc": "2026-09-22T14:02:18.064640+00:00",
+  "source_sha256_at_publication": {
+    "spheres-sim/src/government.rs": "f83675c86933401bb513a8112838e85cf547fb75299fa6d620f1a4f2a1bbdc82",
+    "spheres-sim/src/blocs.rs": "ddc0c595bebdd5a990936fc3f0ba7bfee4521963bd312ffded406fa48ec6bdd5",
+    "spheres-sim/src/lib.rs": "4ba247b61bea5f0469473432641bc24488aea030a1e2444f09833653efdd6c0f",
+    "spheres-sim/src/province_economy.rs": "e5800af61f60d9e6ea5796269f6cf2cc696f309e2579cde9d71cedf3100b256d",
+    "spheres-sim/tests/treasury.rs": "858e9af2c44452b9dfd24303d458a22564e7aef34bce317ff979fb9e9118c6d5",
+    "spheres-web/src/main.rs": "d326ded3829e77c5ed1ea9976130bb899d0b67b3d8ea7eb95090a639bfc7a5d7",
+    "spheres-web/ui/site-mesh.js": "fabe23995fc7ccf64c79d5858b83b72285f8498d55879457f800ce5c9655e54a",
+    "spheres-web/ui/town-mesh.js": "078ad8b738acf8c926fd402f1143135d20d6affe56171fbb4a429542e02fd0f0"
+  },
+  "native_sim": {
+    "command": "cargo test --locked --release -p spheres-sim --no-fail-fast -- --skip tests::the_resource_pass_stays_under_budget",
+    "exit_code": 0,
+    "suites": 63,
+    "passed": 1351,
+    "failed": 0,
+    "ignored": 69,
+    "filtered": 1,
+    "log_sha256": "a74250418d37e37c4a6051f55e7901d6d9dd78ad24a52df00a13ef76d96eb935"
+  },
+  "isolated_resource_timing": {
+    "command": "spheres_sim test binary: tests::the_resource_pass_stays_under_budget --exact --nocapture --test-threads=1",
+    "exit_code": 0,
+    "passed": 1,
+    "milliseconds_per_month": 0.0617,
+    "assertion_ceiling": 0.15,
+    "aspirational_target": 0.05,
+    "log_sha256": "222bdc29918a13fb1456ae44df293bc58b35bff77023140d2405209a5e430ad8"
+  },
+  "javascript": {
+    "command": "node tools/ui/run-unit.cjs",
+    "exit_code": 0,
+    "elapsed_seconds": 112.292,
+    "test_totals": {
+      "tests": 1677,
+      "suites": 0,
+      "pass": 1677,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "log_sha256": "81481100d60d4498c0c71b91cfc59f8da52abc029c3a3253b74d371b428073a0"
+  },
+  "leadership": {
+    "production_self_tests": 8,
+    "census_unit_tests": 7,
+    "production_census_research_checks": "pass",
+    "generated_changes": "four provenance fields only; roster/art data unchanged"
+  },
+  "geometry": {
+    "record_check_exit": 0,
+    "manifest_check_exit": 0,
+    "strict_budget_exit": 1,
+    "graded": 112,
+    "pass": 77,
+    "over": 35,
+    "under": 0,
+    "site_configurations": 1600,
+    "site_far_meshes_byte_identical": 800,
+    "town_ray_comparisons": 180766,
+    "town_exposure_cases": 8,
+    "near_inventory_triangles_removed": 38786
+  },
+  "political_optional": {
+    "passed": 0,
+    "failed": 7,
+    "P6_remaining": [
+      "Communist count 17 vs 11-13",
+      "Libya NonAligned vs Nationalist"
+    ],
+    "A1": {
+      "coups_median": 6,
+      "top_three_share": 1.0
+    },
+    "A2": {
+      "islamist_nonballot_seeds": 0,
+      "seeds": 12,
+      "algeria_annulled": 5
+    },
+    "A3": {
+      "communist_nonballot_seeds": 14,
+      "seeds": 20
+    },
+    "A4": {
+      "democratizations_median": 1
+    },
+    "A5": {
+      "qualifying_successor_return_seeds": 0,
+      "seeds": 12
+    },
+    "A7": {
+      "ballot_takeover_median_ratio": 0.233031674208145
+    }
+  },
+  "preservation": {
+    "protected_files_unchanged": 8,
+    "protected_worktree_heads_unchanged": 2,
+    "original_preview_processes_replaced": 0
+  },
+  "hosted_ci_for_this_commit": "pending publication; no complete-workspace CI pass claimed by this local evidence"
+}

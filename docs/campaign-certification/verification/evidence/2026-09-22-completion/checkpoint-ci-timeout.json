@@ -1,0 +1,26 @@
+{
+  "run_id": 35756074095,
+  "commit": "9d352f037ecf779258533554345d67a886aef006",
+  "windows_job_id": 106842052412,
+  "windows_conclusion": "cancelled",
+  "prior_steps": "native workspace, isolated resource timing, web build, Chromium installation and ci-browser all successful",
+  "job_started_utc": "2026-09-22T16:44:17.4789883Z",
+  "town_started_utc": "2026-09-22T17:26:56.1612196Z",
+  "cancelled_utc": "2026-09-22T17:29:22.4886974Z",
+  "configured_native_job_timeout_minutes": 45,
+  "diagnosis": "45-minute native job allocation exhausted during static town browser lane; no town assertion/error logged before cancellation. Windows town is incomplete, not passing.",
+  "ubuntu_town": {
+    "job_id": 106842052869,
+    "conclusion": "success",
+    "started_utc": "2026-09-22T17:07:29.524Z",
+    "completed_utc": "2026-09-22T17:09:42.559Z",
+    "elapsed_seconds": 133.035
+  },
+  "repair": "Move the unchanged town command and environment to an independent Ubuntu/Windows town-browser job with20-minute allowance; retain native ci-browser and all artifacts. Both required verify checks require native, javascript AND town-browser success.",
+  "local_validation": [
+    "PyYAML6.0.3 syntax parse",
+    "unchanged OS matrices, town command and environment",
+    "all64 aggregate success/failure/cancelled/skipped combinations: only all-success passes",
+    "git diff--check"
+  ]
+}

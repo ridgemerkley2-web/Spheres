@@ -1,0 +1,2876 @@
+{
+  "source": "..\\evidence\\political-calibration-20260922\\iteration-12-development-n200.log",
+  "source_sha256": "35486cfb32fe884c8673e6df3615f9c29dd99e3c2a57c707e47355852259c0cb",
+  "interpretation": "Read-only exact arithmetic on existing development sample, not held-out evidence or alternate acceptance rule. Reconstructtop3numerator fromtwo-decimaldisplay; unique nearestinteger atN5..11.",
+  "cohort": {
+    "seeds": "0..199",
+    "months": 252,
+    "counts": {
+      "5": 5,
+      "6": 13,
+      "7": 61,
+      "8": 67,
+      "9": 34,
+      "10": 18,
+      "11": 2
+    },
+    "median_coups": 8.0,
+    "median_share": 0.6,
+    "individual_share_passes": 6,
+    "individual_exact_half": 22,
+    "structurally_impossible_n_1_to_6": 18
+  },
+  "pooled_nations": [
+    [
+      "Myanmar",
+      306
+    ],
+    [
+      "SaoTome",
+      276
+    ],
+    [
+      "Comoros",
+      271
+    ],
+    [
+      "Guatemala",
+      240
+    ],
+    [
+      "Guyana",
+      235
+    ],
+    [
+      "Suriname",
+      200
+    ],
+    [
+      "Mozambique",
+      36
+    ],
+    [
+      "Cambodia",
+      6
+    ],
+    [
+      "Chad",
+      4
+    ]
+  ],
+  "pooled_top3_share": 0.5419313850063533,
+  "pooled_top6_share": 0.9707750952986023,
+  "repeat_lower_bound": 328,
+  "rows": [
+    {
+      "seed": 0,
+      "coups": 8,
+      "top3_numerator": 3,
+      "share": 0.375,
+      "shown_top_countries": [
+        "Chad",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Mozambique"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 1,
+      "coups": 5,
+      "top3_numerator": 3,
+      "share": 0.6,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe",
+        "Suriname"
+      ],
+      "min_possible_share": 0.6
+    },
+    {
+      "seed": 2,
+      "coups": 6,
+      "top3_numerator": 3,
+      "share": 0.5,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.5
+    },
+    {
+      "seed": 3,
+      "coups": 6,
+      "top3_numerator": 4,
+      "share": 0.6666666666666666,
+      "shown_top_countries": [
+        "Guyana",
+        "Comoros",
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Suriname"
+      ],
+      "min_possible_share": 0.5
+    },
+    {
+      "seed": 4,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 5,
+      "coups": 9,
+      "top3_numerator": 6,
+      "share": 0.6666666666666666,
+      "shown_top_countries": [
+        "Comoros",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Guatemala",
+        "Guyana"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 6,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Comoros",
+        "Sao Tome and Principe",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 7,
+      "coups": 6,
+      "top3_numerator": 3,
+      "share": 0.5,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.5
+    },
+    {
+      "seed": 8,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 9,
+      "coups": 8,
+      "top3_numerator": 4,
+      "share": 0.5,
+      "shown_top_countries": [
+        "Guatemala",
+        "Comoros",
+        "Guyana",
+        "Mozambique",
+        "Myanmar"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 10,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 11,
+      "coups": 10,
+      "top3_numerator": 6,
+      "share": 0.6,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Mozambique"
+      ],
+      "min_possible_share": 0.3
+    },
+    {
+      "seed": 12,
+      "coups": 10,
+      "top3_numerator": 6,
+      "share": 0.6,
+      "shown_top_countries": [
+        "Comoros",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Guatemala",
+        "Guyana"
+      ],
+      "min_possible_share": 0.3
+    },
+    {
+      "seed": 13,
+      "coups": 9,
+      "top3_numerator": 6,
+      "share": 0.6666666666666666,
+      "shown_top_countries": [
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 14,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 15,
+      "coups": 7,
+      "top3_numerator": 5,
+      "share": 0.7142857142857143,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe",
+        "Suriname"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 16,
+      "coups": 10,
+      "top3_numerator": 6,
+      "share": 0.6,
+      "shown_top_countries": [
+        "Comoros",
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Guatemala"
+      ],
+      "min_possible_share": 0.3
+    },
+    {
+      "seed": 17,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 18,
+      "coups": 10,
+      "top3_numerator": 5,
+      "share": 0.5,
+      "shown_top_countries": [
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Cambodia",
+        "Comoros",
+        "Guatemala"
+      ],
+      "min_possible_share": 0.3
+    },
+    {
+      "seed": 19,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 20,
+      "coups": 9,
+      "top3_numerator": 6,
+      "share": 0.6666666666666666,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Myanmar",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 21,
+      "coups": 9,
+      "top3_numerator": 6,
+      "share": 0.6666666666666666,
+      "shown_top_countries": [
+        "Guatemala",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guyana"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 22,
+      "coups": 7,
+      "top3_numerator": 5,
+      "share": 0.7142857142857143,
+      "shown_top_countries": [
+        "Guyana",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Suriname"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 23,
+      "coups": 6,
+      "top3_numerator": 3,
+      "share": 0.5,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.5
+    },
+    {
+      "seed": 24,
+      "coups": 9,
+      "top3_numerator": 6,
+      "share": 0.6666666666666666,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Guyana",
+        "Myanmar"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 25,
+      "coups": 9,
+      "top3_numerator": 5,
+      "share": 0.5555555555555556,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Mozambique"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 26,
+      "coups": 10,
+      "top3_numerator": 6,
+      "share": 0.6,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Guyana"
+      ],
+      "min_possible_share": 0.3
+    },
+    {
+      "seed": 27,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Comoros",
+        "Myanmar",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 28,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 29,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 30,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 31,
+      "coups": 9,
+      "top3_numerator": 6,
+      "share": 0.6666666666666666,
+      "shown_top_countries": [
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 32,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 33,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 34,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 35,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 36,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Guatemala",
+        "Myanmar",
+        "Comoros",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 37,
+      "coups": 9,
+      "top3_numerator": 6,
+      "share": 0.6666666666666666,
+      "shown_top_countries": [
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 38,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 39,
+      "coups": 8,
+      "top3_numerator": 4,
+      "share": 0.5,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Mozambique"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 40,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 41,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Comoros",
+        "Guyana",
+        "Guatemala",
+        "Myanmar",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 42,
+      "coups": 5,
+      "top3_numerator": 3,
+      "share": 0.6,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe",
+        "Suriname"
+      ],
+      "min_possible_share": 0.6
+    },
+    {
+      "seed": 43,
+      "coups": 10,
+      "top3_numerator": 6,
+      "share": 0.6,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Myanmar",
+        "Cambodia",
+        "Guyana"
+      ],
+      "min_possible_share": 0.3
+    },
+    {
+      "seed": 44,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Guyana",
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 45,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 46,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guyana",
+        "Myanmar"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 47,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 48,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Guyana",
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 49,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Comoros",
+        "Chad",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 50,
+      "coups": 8,
+      "top3_numerator": 4,
+      "share": 0.5,
+      "shown_top_countries": [
+        "Guyana",
+        "Cambodia",
+        "Comoros",
+        "Guatemala",
+        "Myanmar"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 51,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 52,
+      "coups": 7,
+      "top3_numerator": 3,
+      "share": 0.42857142857142855,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Mozambique",
+        "Myanmar"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 53,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Guatemala",
+        "Myanmar",
+        "Comoros",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 54,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 55,
+      "coups": 9,
+      "top3_numerator": 6,
+      "share": 0.6666666666666666,
+      "shown_top_countries": [
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 56,
+      "coups": 7,
+      "top3_numerator": 5,
+      "share": 0.7142857142857143,
+      "shown_top_countries": [
+        "Comoros",
+        "Guyana",
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Suriname"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 57,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Guyana",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Myanmar"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 58,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 59,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 60,
+      "coups": 10,
+      "top3_numerator": 6,
+      "share": 0.6,
+      "shown_top_countries": [
+        "Comoros",
+        "Guyana",
+        "Myanmar",
+        "Guatemala",
+        "Mozambique"
+      ],
+      "min_possible_share": 0.3
+    },
+    {
+      "seed": 61,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 62,
+      "coups": 10,
+      "top3_numerator": 6,
+      "share": 0.6,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.3
+    },
+    {
+      "seed": 63,
+      "coups": 9,
+      "top3_numerator": 5,
+      "share": 0.5555555555555556,
+      "shown_top_countries": [
+        "Guyana",
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Mozambique"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 64,
+      "coups": 11,
+      "top3_numerator": 6,
+      "share": 0.5454545454545454,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Myanmar",
+        "Chad",
+        "Guyana"
+      ],
+      "min_possible_share": 0.2727272727272727
+    },
+    {
+      "seed": 65,
+      "coups": 10,
+      "top3_numerator": 6,
+      "share": 0.6,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Guyana"
+      ],
+      "min_possible_share": 0.3
+    },
+    {
+      "seed": 66,
+      "coups": 9,
+      "top3_numerator": 6,
+      "share": 0.6666666666666666,
+      "shown_top_countries": [
+        "Comoros",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Guatemala",
+        "Guyana"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 67,
+      "coups": 8,
+      "top3_numerator": 4,
+      "share": 0.5,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Mozambique",
+        "Myanmar"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 68,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Comoros",
+        "Cambodia",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 69,
+      "coups": 8,
+      "top3_numerator": 4,
+      "share": 0.5,
+      "shown_top_countries": [
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Mozambique"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 70,
+      "coups": 9,
+      "top3_numerator": 4,
+      "share": 0.4444444444444444,
+      "shown_top_countries": [
+        "Guyana",
+        "Cambodia",
+        "Comoros",
+        "Guatemala",
+        "Mozambique"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 71,
+      "coups": 9,
+      "top3_numerator": 6,
+      "share": 0.6666666666666666,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Guyana",
+        "Myanmar"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 72,
+      "coups": 10,
+      "top3_numerator": 6,
+      "share": 0.6,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Guyana"
+      ],
+      "min_possible_share": 0.3
+    },
+    {
+      "seed": 73,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 74,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 75,
+      "coups": 6,
+      "top3_numerator": 3,
+      "share": 0.5,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.5
+    },
+    {
+      "seed": 76,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 77,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 78,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Guyana",
+        "Comoros",
+        "Guatemala",
+        "Myanmar",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 79,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 80,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 81,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Comoros",
+        "Sao Tome and Principe",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 82,
+      "coups": 9,
+      "top3_numerator": 6,
+      "share": 0.6666666666666666,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Myanmar",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 83,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Comoros",
+        "Myanmar",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 84,
+      "coups": 6,
+      "top3_numerator": 3,
+      "share": 0.5,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.5
+    },
+    {
+      "seed": 85,
+      "coups": 10,
+      "top3_numerator": 6,
+      "share": 0.6,
+      "shown_top_countries": [
+        "Guatemala",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guyana"
+      ],
+      "min_possible_share": 0.3
+    },
+    {
+      "seed": 86,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Comoros",
+        "Myanmar",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 87,
+      "coups": 10,
+      "top3_numerator": 6,
+      "share": 0.6,
+      "shown_top_countries": [
+        "Comoros",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Guatemala",
+        "Guyana"
+      ],
+      "min_possible_share": 0.3
+    },
+    {
+      "seed": 88,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 89,
+      "coups": 6,
+      "top3_numerator": 4,
+      "share": 0.6666666666666666,
+      "shown_top_countries": [
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Suriname"
+      ],
+      "min_possible_share": 0.5
+    },
+    {
+      "seed": 90,
+      "coups": 9,
+      "top3_numerator": 6,
+      "share": 0.6666666666666666,
+      "shown_top_countries": [
+        "Guatemala",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guyana"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 91,
+      "coups": 9,
+      "top3_numerator": 6,
+      "share": 0.6666666666666666,
+      "shown_top_countries": [
+        "Guatemala",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guyana"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 92,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Comoros",
+        "Myanmar",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 93,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 94,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 95,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 96,
+      "coups": 6,
+      "top3_numerator": 4,
+      "share": 0.6666666666666666,
+      "shown_top_countries": [
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Suriname"
+      ],
+      "min_possible_share": 0.5
+    },
+    {
+      "seed": 97,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 98,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Guyana",
+        "Comoros",
+        "Guatemala",
+        "Myanmar",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 99,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 100,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Comoros",
+        "Myanmar",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 101,
+      "coups": 8,
+      "top3_numerator": 4,
+      "share": 0.5,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Mozambique"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 102,
+      "coups": 9,
+      "top3_numerator": 6,
+      "share": 0.6666666666666666,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Myanmar",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 103,
+      "coups": 9,
+      "top3_numerator": 5,
+      "share": 0.5555555555555556,
+      "shown_top_countries": [
+        "Guyana",
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Mozambique"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 104,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 105,
+      "coups": 9,
+      "top3_numerator": 5,
+      "share": 0.5555555555555556,
+      "shown_top_countries": [
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 106,
+      "coups": 9,
+      "top3_numerator": 6,
+      "share": 0.6666666666666666,
+      "shown_top_countries": [
+        "Comoros",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Guatemala",
+        "Guyana"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 107,
+      "coups": 11,
+      "top3_numerator": 7,
+      "share": 0.6363636363636364,
+      "shown_top_countries": [
+        "Guyana",
+        "Comoros",
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Myanmar"
+      ],
+      "min_possible_share": 0.2727272727272727
+    },
+    {
+      "seed": 108,
+      "coups": 9,
+      "top3_numerator": 6,
+      "share": 0.6666666666666666,
+      "shown_top_countries": [
+        "Guatemala",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guyana"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 109,
+      "coups": 6,
+      "top3_numerator": 3,
+      "share": 0.5,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.5
+    },
+    {
+      "seed": 110,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 111,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Comoros",
+        "Myanmar",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 112,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Comoros",
+        "Myanmar",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 113,
+      "coups": 9,
+      "top3_numerator": 5,
+      "share": 0.5555555555555556,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Mozambique",
+        "Myanmar"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 114,
+      "coups": 9,
+      "top3_numerator": 6,
+      "share": 0.6666666666666666,
+      "shown_top_countries": [
+        "Guatemala",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guyana"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 115,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 116,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 117,
+      "coups": 9,
+      "top3_numerator": 6,
+      "share": 0.6666666666666666,
+      "shown_top_countries": [
+        "Guatemala",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guyana"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 118,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 119,
+      "coups": 10,
+      "top3_numerator": 6,
+      "share": 0.6,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Mozambique",
+        "Myanmar"
+      ],
+      "min_possible_share": 0.3
+    },
+    {
+      "seed": 120,
+      "coups": 8,
+      "top3_numerator": 4,
+      "share": 0.5,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Mozambique"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 121,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 122,
+      "coups": 7,
+      "top3_numerator": 3,
+      "share": 0.42857142857142855,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Mozambique",
+        "Myanmar"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 123,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guyana",
+        "Myanmar"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 124,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Comoros",
+        "Myanmar",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 125,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 126,
+      "coups": 5,
+      "top3_numerator": 3,
+      "share": 0.6,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe",
+        "Suriname"
+      ],
+      "min_possible_share": 0.6
+    },
+    {
+      "seed": 127,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 128,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 129,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 130,
+      "coups": 9,
+      "top3_numerator": 6,
+      "share": 0.6666666666666666,
+      "shown_top_countries": [
+        "Guatemala",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guyana"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 131,
+      "coups": 9,
+      "top3_numerator": 5,
+      "share": 0.5555555555555556,
+      "shown_top_countries": [
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Cambodia",
+        "Comoros",
+        "Guatemala"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 132,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 133,
+      "coups": 10,
+      "top3_numerator": 6,
+      "share": 0.6,
+      "shown_top_countries": [
+        "Comoros",
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Guatemala"
+      ],
+      "min_possible_share": 0.3
+    },
+    {
+      "seed": 134,
+      "coups": 8,
+      "top3_numerator": 4,
+      "share": 0.5,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Mozambique",
+        "Myanmar"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 135,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 136,
+      "coups": 10,
+      "top3_numerator": 6,
+      "share": 0.6,
+      "shown_top_countries": [
+        "Comoros",
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Guatemala"
+      ],
+      "min_possible_share": 0.3
+    },
+    {
+      "seed": 137,
+      "coups": 6,
+      "top3_numerator": 3,
+      "share": 0.5,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.5
+    },
+    {
+      "seed": 138,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 139,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Guyana",
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 140,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Comoros",
+        "Myanmar",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 141,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Guatemala",
+        "Myanmar",
+        "Comoros",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 142,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Guatemala",
+        "Comoros",
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 143,
+      "coups": 5,
+      "top3_numerator": 3,
+      "share": 0.6,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe",
+        "Suriname"
+      ],
+      "min_possible_share": 0.6
+    },
+    {
+      "seed": 144,
+      "coups": 8,
+      "top3_numerator": 4,
+      "share": 0.5,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Mozambique"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 145,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 146,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Comoros",
+        "Myanmar",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 147,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 148,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 149,
+      "coups": 9,
+      "top3_numerator": 6,
+      "share": 0.6666666666666666,
+      "shown_top_countries": [
+        "Comoros",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Guatemala",
+        "Guyana"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 150,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Comoros",
+        "Sao Tome and Principe",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 151,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 152,
+      "coups": 7,
+      "top3_numerator": 5,
+      "share": 0.7142857142857143,
+      "shown_top_countries": [
+        "Comoros",
+        "Guyana",
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Suriname"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 153,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Comoros",
+        "Sao Tome and Principe",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 154,
+      "coups": 9,
+      "top3_numerator": 6,
+      "share": 0.6666666666666666,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Myanmar",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 155,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 156,
+      "coups": 5,
+      "top3_numerator": 3,
+      "share": 0.6,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe",
+        "Suriname"
+      ],
+      "min_possible_share": 0.6
+    },
+    {
+      "seed": 157,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 158,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Comoros",
+        "Myanmar",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 159,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Comoros",
+        "Myanmar",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 160,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Guatemala",
+        "Myanmar",
+        "Comoros",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 161,
+      "coups": 8,
+      "top3_numerator": 4,
+      "share": 0.5,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Mozambique"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 162,
+      "coups": 10,
+      "top3_numerator": 6,
+      "share": 0.6,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Myanmar",
+        "Guyana",
+        "Mozambique"
+      ],
+      "min_possible_share": 0.3
+    },
+    {
+      "seed": 163,
+      "coups": 9,
+      "top3_numerator": 5,
+      "share": 0.5555555555555556,
+      "shown_top_countries": [
+        "Guyana",
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Mozambique"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 164,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 165,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 166,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Guyana",
+        "Comoros",
+        "Guatemala",
+        "Myanmar",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 167,
+      "coups": 7,
+      "top3_numerator": 3,
+      "share": 0.42857142857142855,
+      "shown_top_countries": [
+        "Chad",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 168,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Comoros",
+        "Myanmar",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 169,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 170,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 171,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Mozambique",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 172,
+      "coups": 8,
+      "top3_numerator": 4,
+      "share": 0.5,
+      "shown_top_countries": [
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Mozambique"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 173,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Comoros",
+        "Guyana",
+        "Guatemala",
+        "Myanmar",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 174,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Guyana",
+        "Comoros",
+        "Guatemala",
+        "Myanmar",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 175,
+      "coups": 8,
+      "top3_numerator": 4,
+      "share": 0.5,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Mozambique"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 176,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 177,
+      "coups": 7,
+      "top3_numerator": 3,
+      "share": 0.42857142857142855,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Mozambique",
+        "Myanmar"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 178,
+      "coups": 6,
+      "top3_numerator": 3,
+      "share": 0.5,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.5
+    },
+    {
+      "seed": 179,
+      "coups": 9,
+      "top3_numerator": 6,
+      "share": 0.6666666666666666,
+      "shown_top_countries": [
+        "Comoros",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Guatemala",
+        "Guyana"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 180,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 181,
+      "coups": 9,
+      "top3_numerator": 6,
+      "share": 0.6666666666666666,
+      "shown_top_countries": [
+        "Guatemala",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guyana"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 182,
+      "coups": 10,
+      "top3_numerator": 6,
+      "share": 0.6,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Guyana"
+      ],
+      "min_possible_share": 0.3
+    },
+    {
+      "seed": 183,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guyana",
+        "Myanmar"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 184,
+      "coups": 8,
+      "top3_numerator": 6,
+      "share": 0.75,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Sao Tome and Principe",
+        "Guyana",
+        "Suriname"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 185,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 186,
+      "coups": 9,
+      "top3_numerator": 5,
+      "share": 0.5555555555555556,
+      "shown_top_countries": [
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 187,
+      "coups": 8,
+      "top3_numerator": 6,
+      "share": 0.75,
+      "shown_top_countries": [
+        "Guyana",
+        "Guatemala",
+        "Comoros",
+        "Sao Tome and Principe",
+        "Suriname"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 188,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 189,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Comoros",
+        "Sao Tome and Principe",
+        "Guatemala",
+        "Guyana",
+        "Myanmar"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 190,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 191,
+      "coups": 6,
+      "top3_numerator": 3,
+      "share": 0.5,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.5
+    },
+    {
+      "seed": 192,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 193,
+      "coups": 6,
+      "top3_numerator": 4,
+      "share": 0.6666666666666666,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe",
+        "Suriname"
+      ],
+      "min_possible_share": 0.5
+    },
+    {
+      "seed": 194,
+      "coups": 8,
+      "top3_numerator": 5,
+      "share": 0.625,
+      "shown_top_countries": [
+        "Myanmar",
+        "Sao Tome and Principe",
+        "Comoros",
+        "Guatemala",
+        "Guyana"
+      ],
+      "min_possible_share": 0.375
+    },
+    {
+      "seed": 195,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Myanmar",
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 196,
+      "coups": 9,
+      "top3_numerator": 6,
+      "share": 0.6666666666666666,
+      "shown_top_countries": [
+        "Comoros",
+        "Guyana",
+        "Sao Tome and Principe",
+        "Guatemala",
+        "Myanmar"
+      ],
+      "min_possible_share": 0.3333333333333333
+    },
+    {
+      "seed": 197,
+      "coups": 10,
+      "top3_numerator": 6,
+      "share": 0.6,
+      "shown_top_countries": [
+        "Comoros",
+        "Mozambique",
+        "Myanmar",
+        "Guatemala",
+        "Guyana"
+      ],
+      "min_possible_share": 0.3
+    },
+    {
+      "seed": 198,
+      "coups": 7,
+      "top3_numerator": 4,
+      "share": 0.5714285714285714,
+      "shown_top_countries": [
+        "Comoros",
+        "Guatemala",
+        "Guyana",
+        "Myanmar",
+        "Sao Tome and Principe"
+      ],
+      "min_possible_share": 0.42857142857142855
+    },
+    {
+      "seed": 199,
+      "coups": 9,
+      "top3_numerator": 5,
+      "share": 0.5555555555555556,
+      "shown_top_countries": [
+        "Comoros",
+        "Sao Tome and Principe",
+        "Guatemala",
+        "Guyana",
+        "Mozambique"
+      ],
+      "min_possible_share": 0.3333333333333333
+    }
+  ],
+  "uniform_occupancy_illustration": {
+    "caution": "Not actual riskforecast or fittedvalidation; uniformindependentdraws are illustrativeonly. At8coups stricttop3<half meansall8differentnations.",
+    "probability_all8distinct": {
+      "9": 0.008429910375751963,
+      "15": 0.10123693827160495,
+      "30": 0.359685925925926,
+      "60": 0.6142093935185184,
+      "128": 0.799993556743317
+    }
+  }
+}

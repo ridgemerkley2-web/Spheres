@@ -1,0 +1,2106 @@
+{
+  "status": "PASS",
+  "scope": "Default locked release workspace, original ignored political tests remain separate. No later repairs included.",
+  "git_head": "90fce9475d20049741589de0e5c5e1c1668a26f6",
+  "command": "cargo test --locked --release --workspace --no-fail-fast -- --skip tests::the_resource_pass_stays_under_budget",
+  "exit_code": 0,
+  "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\completion-restored21-workspace-20260922.log",
+  "log_sha256": "83651b2dcfe688964f34f2c72b5834ebaccb1c594d313a9d00c98b450cde54e7",
+  "targets": 66,
+  "totals": {
+    "passed": 1866,
+    "failed": 0,
+    "ignored": 89,
+    "measured": 0,
+    "filtered": 1
+  },
+  "files": [
+    {
+      "path": "Cargo.lock",
+      "raw_sha256": "7d232286affcc685b3c10ea6362968309fc441226a677662e6e14c872fb48a56",
+      "raw_bytes": 9405
+    },
+    {
+      "path": "Cargo.toml",
+      "raw_sha256": "a47e290d494a83f89697cfe94e2f74bd86363847873fb7acdaa490d23ef39d66",
+      "raw_bytes": 200
+    },
+    {
+      "path": "spheres-cli/Cargo.toml",
+      "raw_sha256": "a5597415b5cd4a560789af32a6551b20bc69a683a18f07846d6451f223de454b",
+      "raw_bytes": 195
+    },
+    {
+      "path": "spheres-cli/src/main.rs",
+      "raw_sha256": "963dba26be49a18a0faa371d125f136bb8c9ebe0e39057771bf5dd1b0fddf260",
+      "raw_bytes": 37617
+    },
+    {
+      "path": "spheres-sim/Cargo.toml",
+      "raw_sha256": "51b62b1e1ec71d9a4fe7bed30e9992534a31f1a373340ebc910e19137972d748",
+      "raw_bytes": 202
+    },
+    {
+      "path": "spheres-sim/data/armed_security_1990.json",
+      "raw_sha256": "7fa6c2fd1ddb0737d0f35faa1ab1d24d7e08c249ae0a7fa2a8a1f837ead535cf",
+      "raw_bytes": 1903
+    },
+    {
+      "path": "spheres-sim/data/army_authority_1989.json",
+      "raw_sha256": "35e99445235348ded56a45cdd912892f0cd810c92a29121fbd66c8f911dc6d38",
+      "raw_bytes": 70204
+    },
+    {
+      "path": "spheres-sim/data/army_institution_coverage_1990.json",
+      "raw_sha256": "836075908f6e86638f159f5b57a1048e41e847243ece75697ca2bd6b538afd52",
+      "raw_bytes": 7806
+    },
+    {
+      "path": "spheres-sim/data/army_institutions_1990.json",
+      "raw_sha256": "9d5df834998c535e7bc8039d8352ecaf0ddcfdd8e4662830eaba2b2de26c25af",
+      "raw_bytes": 32062
+    },
+    {
+      "path": "spheres-sim/data/districts.json",
+      "raw_sha256": "b6b1a88c891ccc4fa02f877cc73786d96bf81ea4269ecd8915a6759fac480f46",
+      "raw_bytes": 844035
+    },
+    {
+      "path": "spheres-sim/data/future_party_continuation.json",
+      "raw_sha256": "cec3e9d9f49cd27a97229b9741a325952df24f259acbbde092150f4032d24176",
+      "raw_bytes": 2600
+    },
+    {
+      "path": "spheres-sim/data/future_party_leadership.json",
+      "raw_sha256": "96e724b21f59ff7278f1a64625bbf1620b3dca24d3ed7d7f3116684a0a0fec26",
+      "raw_bytes": 26453
+    },
+    {
+      "path": "spheres-sim/data/future_party_leadership_seats.json",
+      "raw_sha256": "cbf74d65ccd193a3cc86ef686d11ddb2b7f3281b98675d0c7b842e8bea92cd08",
+      "raw_bytes": 2972
+    },
+    {
+      "path": "spheres-sim/data/industry_1990.json",
+      "raw_sha256": "66864f3785f8a021625796c0471206f0e30c80fc5fa36023425c53efe1b5a748",
+      "raw_bytes": 922666
+    },
+    {
+      "path": "spheres-sim/data/leaders_1990.json",
+      "raw_sha256": "cdc868e9c60ad7df6ca92d4d8a30e1b355cab953df46108f1328d7dc6ab46008",
+      "raw_bytes": 117104
+    },
+    {
+      "path": "spheres-sim/data/logistics_network.json",
+      "raw_sha256": "fa988d8abd12fe8bb1c967c7041bc486f0a37731afb90ac8e891e4c9769af4ff",
+      "raw_bytes": 1518439
+    },
+    {
+      "path": "spheres-sim/data/movements_1990.json",
+      "raw_sha256": "00e488f071c2457104eea18afb5975a81c80b53d505af97557187ca119cef279",
+      "raw_bytes": 1050
+    },
+    {
+      "path": "spheres-sim/data/nations/afghanistan.json",
+      "raw_sha256": "3123b2051015d2dfdc5ecbf1c9d42bfd19e9ba6b141ec118212a8ff5ab4daef3",
+      "raw_bytes": 13248
+    },
+    {
+      "path": "spheres-sim/data/nations/albania.json",
+      "raw_sha256": "f378b6c9269f4a91b579f24a3f2ff6d1754b0f54d36e8252ce770469d4502460",
+      "raw_bytes": 10230
+    },
+    {
+      "path": "spheres-sim/data/nations/algeria.json",
+      "raw_sha256": "6650991dfadef79f600756fb756eecb4a6d2359fa89b6400cc52cbc29d6eaa68",
+      "raw_bytes": 10168
+    },
+    {
+      "path": "spheres-sim/data/nations/angola.json",
+      "raw_sha256": "bb182a2d8614ec8c204398be0f6b2f19f660eb1a1a4e2a8515715b08b0f6e0ad",
+      "raw_bytes": 10458
+    },
+    {
+      "path": "spheres-sim/data/nations/argentina.json",
+      "raw_sha256": "01fb73457b42aa8dc650c3e85f2457d503c174eadd8d2b9daedb09416c2d5604",
+      "raw_bytes": 8196
+    },
+    {
+      "path": "spheres-sim/data/nations/australia.json",
+      "raw_sha256": "0b8f64e0825a07ed62f3750fbda0a12df2813bdf8a61587385a0e2af88751f1c",
+      "raw_bytes": 22116
+    },
+    {
+      "path": "spheres-sim/data/nations/austria.json",
+      "raw_sha256": "61b5ee3b6cc9410417dba257246539d667950167da46af9e7930101dc2fca9f6",
+      "raw_bytes": 9375
+    },
+    {
+      "path": "spheres-sim/data/nations/bahamas.json",
+      "raw_sha256": "12d59bf40e48d7f3b9abf6ea4d261c5f1a8ef86fb8b3f5f249e66bcc6221d575",
+      "raw_bytes": 10983
+    },
+    {
+      "path": "spheres-sim/data/nations/bahrain.json",
+      "raw_sha256": "94f14cb9fb493351d66285bfd4faa872a2a4819c576f62e349ae8c177b15c184",
+      "raw_bytes": 12946
+    },
+    {
+      "path": "spheres-sim/data/nations/bangladesh.json",
+      "raw_sha256": "8cd26d7b911c5157abecca467e357c6726ddac3db7bdf8113dff2754f056bfdc",
+      "raw_bytes": 10701
+    },
+    {
+      "path": "spheres-sim/data/nations/belgium.json",
+      "raw_sha256": "e473684ec2a176239d8c70d9f70370585bf0b865d64bbfd39694c436f596b67d",
+      "raw_bytes": 10084
+    },
+    {
+      "path": "spheres-sim/data/nations/belize.json",
+      "raw_sha256": "3e9f080dc51cdb83c2e9795259ac5ebcd4fe476c7d0e282b0eae228f6dc215c1",
+      "raw_bytes": 11297
+    },
+    {
+      "path": "spheres-sim/data/nations/bhutan.json",
+      "raw_sha256": "017dc2b21f06a3e22b71c70d2fac8263f18840a0de3190a96557041cf80e5b2b",
+      "raw_bytes": 16384
+    },
+    {
+      "path": "spheres-sim/data/nations/bolivia.json",
+      "raw_sha256": "3b8aed0476fe5f3fd131f1d05e99b359b967dd13133b2f14eca95e5491607cb3",
+      "raw_bytes": 7348
+    },
+    {
+      "path": "spheres-sim/data/nations/botswana.json",
+      "raw_sha256": "b3d66528d8144e9afeb0a5d59dcd7b610bf0acbcce53e982f05e51e1b4b6715d",
+      "raw_bytes": 11780
+    },
+    {
+      "path": "spheres-sim/data/nations/brazil.json",
+      "raw_sha256": "357bc6ce0764ce62051ecf7f02748275bce3f060b339647acbdd57b2c8569dd7",
+      "raw_bytes": 10433
+    },
+    {
+      "path": "spheres-sim/data/nations/brunei.json",
+      "raw_sha256": "b0bc557bed511580aa16dc99b6be26b002880e2542d1257fc702ccf79075bd72",
+      "raw_bytes": 11692
+    },
+    {
+      "path": "spheres-sim/data/nations/bulgaria.json",
+      "raw_sha256": "1b126c3bfeb4858d7ba44c8e37d1ae3a15c2d00a213394105b271b6b2574a8f8",
+      "raw_bytes": 9461
+    },
+    {
+      "path": "spheres-sim/data/nations/cambodia.json",
+      "raw_sha256": "ee65b180d95941ce0d8162ee6b539545f5f5d43b4fecb970a00611092b498c47",
+      "raw_bytes": 8593
+    },
+    {
+      "path": "spheres-sim/data/nations/cameroon.json",
+      "raw_sha256": "ada9d309eda90b64e08a284aebd859918d809805f9731ef7371b9bd4ba702b6d",
+      "raw_bytes": 9324
+    },
+    {
+      "path": "spheres-sim/data/nations/canada.json",
+      "raw_sha256": "24c6ebbba0eaf52e5c694ef771fe1f99d28acf11c138e5e378f3723aaae02e64",
+      "raw_bytes": 26159
+    },
+    {
+      "path": "spheres-sim/data/nations/capeverde.json",
+      "raw_sha256": "bed7e9612d7f9aacdd825997996096f1f66293b1a9000c6b4ff73598a5a0c93e",
+      "raw_bytes": 12982
+    },
+    {
+      "path": "spheres-sim/data/nations/centralafricanrepublic.json",
+      "raw_sha256": "c1fca002383dc26e03b207c84291b9de47d31b11e2eb28f454a3f3e8e2fe0e70",
+      "raw_bytes": 10860
+    },
+    {
+      "path": "spheres-sim/data/nations/chad.json",
+      "raw_sha256": "7b61869245c5a5f9d4a17d22e37401536a824ea42962826ecf73c454b7fbc59f",
+      "raw_bytes": 11899
+    },
+    {
+      "path": "spheres-sim/data/nations/chile.json",
+      "raw_sha256": "e08628997480f4f0e6bd84f4d5fac7312db378b73ef315fe9daa5498e5404aad",
+      "raw_bytes": 7963
+    },
+    {
+      "path": "spheres-sim/data/nations/china.json",
+      "raw_sha256": "decfa145261d10a777ea42aa2193895862bcd0186ae9f48c32641edc197e6ac2",
+      "raw_bytes": 7820
+    },
+    {
+      "path": "spheres-sim/data/nations/colombia.json",
+      "raw_sha256": "e0146962595f4dffec0845098a83bcf63a3921b15821b25ba4b6dd60632a8013",
+      "raw_bytes": 7334
+    },
+    {
+      "path": "spheres-sim/data/nations/comoros.json",
+      "raw_sha256": "994163f050726614d0d76f19305c8650f74ee4d9a72a184ca907a0fcf86db0a6",
+      "raw_bytes": 13796
+    },
+    {
+      "path": "spheres-sim/data/nations/congo.json",
+      "raw_sha256": "e8fbc8b66f65be522acbbbb0208afc17bfd8e7a3fe335701cda29b499713c17b",
+      "raw_bytes": 10572
+    },
+    {
+      "path": "spheres-sim/data/nations/costarica.json",
+      "raw_sha256": "ba60402c746ee87778689ae4ceb2bf60b694a82e881af736051248de52377d0d",
+      "raw_bytes": 10524
+    },
+    {
+      "path": "spheres-sim/data/nations/cuba.json",
+      "raw_sha256": "68efd7aebde2847fad9735d4553e1d05ba00811c296513a774a4b69e563a60c5",
+      "raw_bytes": 7492
+    },
+    {
+      "path": "spheres-sim/data/nations/cyprus.json",
+      "raw_sha256": "8718de4c63c8a4bd8f68fef237a2c56d5de2981358e569a9afc915d98ec04722",
+      "raw_bytes": 13610
+    },
+    {
+      "path": "spheres-sim/data/nations/czechoslovakia.json",
+      "raw_sha256": "109d2b7f87a9fdf54f87f7f29372ac00b73694dec470db172ab590b85f6902f9",
+      "raw_bytes": 10724
+    },
+    {
+      "path": "spheres-sim/data/nations/denmark.json",
+      "raw_sha256": "993018e10713ccde6d181d26d7349a85425fb89fc1133c2f4eda5c38635013f6",
+      "raw_bytes": 10175
+    },
+    {
+      "path": "spheres-sim/data/nations/dominicanrepublic.json",
+      "raw_sha256": "1216140a42cc423adf808b41f15bbebf3f8930187ab6f7ec8ee65d9d0e3fdb0a",
+      "raw_bytes": 10554
+    },
+    {
+      "path": "spheres-sim/data/nations/ecuador.json",
+      "raw_sha256": "16f8b6ed4ff9d8f741e3382441ca6309b32e73d91d0c9a321d8acce87b28cfa4",
+      "raw_bytes": 6789
+    },
+    {
+      "path": "spheres-sim/data/nations/egypt.json",
+      "raw_sha256": "76b311247a0b368f02c7ed345c5af93f1544940f2aa070daade2e99bf20a9c68",
+      "raw_bytes": 6552
+    },
+    {
+      "path": "spheres-sim/data/nations/elsalvador.json",
+      "raw_sha256": "5da05559d7b2aa1ab89c90ff06f9211dde85c6ae496f185343d768acb913ef4d",
+      "raw_bytes": 10953
+    },
+    {
+      "path": "spheres-sim/data/nations/equatorialguinea.json",
+      "raw_sha256": "4e91711af4544950770ad13867a739eec25b20be8cf6ae50ebf9ad806e7e2593",
+      "raw_bytes": 11484
+    },
+    {
+      "path": "spheres-sim/data/nations/ethiopia.json",
+      "raw_sha256": "3311be638f94a7fbcd661f3f9abd5a5a0dca7226feb1a90023b87a89f0a9086a",
+      "raw_bytes": 9473
+    },
+    {
+      "path": "spheres-sim/data/nations/fiji.json",
+      "raw_sha256": "305d2a1319173fa50e9f6981ad419261ae21046ce4bf8f6554c33b75eacdd5b6",
+      "raw_bytes": 11757
+    },
+    {
+      "path": "spheres-sim/data/nations/finland.json",
+      "raw_sha256": "305b92b2cb73e024825a49c2ce9995adb54d90784771e608ce8ab4b08b535eaf",
+      "raw_bytes": 9469
+    },
+    {
+      "path": "spheres-sim/data/nations/france.json",
+      "raw_sha256": "0fddbc44e01060b8d8345909cc04cfcf34a53adf15c04dd432b192944f0c106f",
+      "raw_bytes": 18668
+    },
+    {
+      "path": "spheres-sim/data/nations/gabon.json",
+      "raw_sha256": "132923c240b6addbf989dd1608954b757cedeb423641622aab72c5ac307d0473",
+      "raw_bytes": 11520
+    },
+    {
+      "path": "spheres-sim/data/nations/germany.json",
+      "raw_sha256": "6563a080eb1357c3947bf34f5cbfd018ee5f1b6e096a529bf7ea09fce94c770b",
+      "raw_bytes": 20856
+    },
+    {
+      "path": "spheres-sim/data/nations/ghana.json",
+      "raw_sha256": "9134b91568c5d7a3805e480d80aef123da19d8ab9bd9c491745ab130bb178852",
+      "raw_bytes": 9839
+    },
+    {
+      "path": "spheres-sim/data/nations/greece.json",
+      "raw_sha256": "fc11a2326a45d589dfea35425324ce01d27c0a9ece4dec4e9765e51887f1a076",
+      "raw_bytes": 8545
+    },
+    {
+      "path": "spheres-sim/data/nations/guatemala.json",
+      "raw_sha256": "03f5ca99ad1294f77ee4f559f700ce36d1a08cd7211f8c3a8465b37d788ac276",
+      "raw_bytes": 11755
+    },
+    {
+      "path": "spheres-sim/data/nations/guyana.json",
+      "raw_sha256": "d29047cb158043fada9c66830744328a80471cdc59fc775be688b0c03e00d19f",
+      "raw_bytes": 11892
+    },
+    {
+      "path": "spheres-sim/data/nations/haiti.json",
+      "raw_sha256": "79574190acd950919897e3f4f00a087938d583ff39f777bb681dcbf8ebdbd112",
+      "raw_bytes": 10471
+    },
+    {
+      "path": "spheres-sim/data/nations/honduras.json",
+      "raw_sha256": "d3a53e0cbedb0e09903f772de96181ae354ca81c5b7a15e4466fa15126733605",
+      "raw_bytes": 10026
+    },
+    {
+      "path": "spheres-sim/data/nations/hungary.json",
+      "raw_sha256": "72120b2737f5a6a34a6c85df1cf68eacd95493af0338f8f9b64d8a3b1e60aefa",
+      "raw_bytes": 11256
+    },
+    {
+      "path": "spheres-sim/data/nations/iceland.json",
+      "raw_sha256": "a7c170a68e3bfbc0e3ef4f5d437d209008d2193bbe7e70a68eebdc3811997a76",
+      "raw_bytes": 12035
+    },
+    {
+      "path": "spheres-sim/data/nations/india.json",
+      "raw_sha256": "9117846df3d18a850aa120a4e597b4a9cbf4fce7bb9ed604a9acd198b9af8ebf",
+      "raw_bytes": 8226
+    },
+    {
+      "path": "spheres-sim/data/nations/indonesia.json",
+      "raw_sha256": "75a4ae4cc6218880a6ce38b61fca42255a2942b9f54f3249669efb29b4819f44",
+      "raw_bytes": 6071
+    },
+    {
+      "path": "spheres-sim/data/nations/iran.json",
+      "raw_sha256": "01d24c4f752f04557eaf65da1feaa7b3c2ea81879f1076b86eef672924b97ed7",
+      "raw_bytes": 5556
+    },
+    {
+      "path": "spheres-sim/data/nations/iraq.json",
+      "raw_sha256": "996f80730efa1596350d35fb637ec8098ff72fe6b4f4040b3ba9b1ccb2c2b2bd",
+      "raw_bytes": 5712
+    },
+    {
+      "path": "spheres-sim/data/nations/ireland.json",
+      "raw_sha256": "791b81655caeeabf6c91c5d49c8c800190b77e9df5001fe5c4c6d27db7b251e8",
+      "raw_bytes": 10575
+    },
+    {
+      "path": "spheres-sim/data/nations/israel.json",
+      "raw_sha256": "475e5449fe355ccfa55e96f4b012252b2c15e18bba324acc27e4db40c97658e0",
+      "raw_bytes": 9886
+    },
+    {
+      "path": "spheres-sim/data/nations/italy.json",
+      "raw_sha256": "5dcb198188b586b57cd4205210cc7410146b1df195d64b4a4584612b233ca076",
+      "raw_bytes": 23878
+    },
+    {
+      "path": "spheres-sim/data/nations/jamaica.json",
+      "raw_sha256": "92193932517410f29a43ad653b4be5d167d35ddaf869b8b04800b6f05b876764",
+      "raw_bytes": 9603
+    },
+    {
+      "path": "spheres-sim/data/nations/japan.json",
+      "raw_sha256": "02d3f2afbf5dff48abed9e86929e3fdd9708d0770e9dd3a0c06b262f1d6a5a5a",
+      "raw_bytes": 23820
+    },
+    {
+      "path": "spheres-sim/data/nations/jordan.json",
+      "raw_sha256": "593d41523bc22a090d1690ec025eeb7b204d49da1c479c7b1d33527610e68ea0",
+      "raw_bytes": 11128
+    },
+    {
+      "path": "spheres-sim/data/nations/kenya.json",
+      "raw_sha256": "d197bfee00a147216441d80107e2b460eb0765fc7f271b79d9c08e6bdf8c90cc",
+      "raw_bytes": 8803
+    },
+    {
+      "path": "spheres-sim/data/nations/kuwait.json",
+      "raw_sha256": "dd75789e24e0b5115dd0a5e7b6983fd80d978c0a631352fc0baa970aac75ae16",
+      "raw_bytes": 6023
+    },
+    {
+      "path": "spheres-sim/data/nations/laos.json",
+      "raw_sha256": "fab1cb0454679146ea3f8f21a0a0af7c81743bc29ccb1f28ce1db34dd0cdb19c",
+      "raw_bytes": 8101
+    },
+    {
+      "path": "spheres-sim/data/nations/lebanon.json",
+      "raw_sha256": "8ba94b293eabd96445bfe54684914b321f7827a098b170697225b52da0403235",
+      "raw_bytes": 11548
+    },
+    {
+      "path": "spheres-sim/data/nations/lesotho.json",
+      "raw_sha256": "10d1b6bac439b0dca2886e96db45d169315ab074d13c3de456f80f7710ff747d",
+      "raw_bytes": 11433
+    },
+    {
+      "path": "spheres-sim/data/nations/libya.json",
+      "raw_sha256": "b7d96764d1e24979d8132ba07d5ed9be72b24cdcc7643ac16ddadea3088d1159",
+      "raw_bytes": 11387
+    },
+    {
+      "path": "spheres-sim/data/nations/luxembourg.json",
+      "raw_sha256": "c6b820bfcc9f8f5115ce90b78aa8e4de13a0f9059c9ea69db4d6e5f407d24a81",
+      "raw_bytes": 11471
+    },
+    {
+      "path": "spheres-sim/data/nations/madagascar.json",
+      "raw_sha256": "014089ec8599b39b7b08bc875b4cc1db176f722e448f5b21514908ae1dbad176",
+      "raw_bytes": 12711
+    },
+    {
+      "path": "spheres-sim/data/nations/malawi.json",
+      "raw_sha256": "566d2038e8946ec4d384a1f99a90f93a5f3620c56ca555cdb438dd26c00b17f0",
+      "raw_bytes": 9983
+    },
+    {
+      "path": "spheres-sim/data/nations/malaysia.json",
+      "raw_sha256": "6f3606bad3fbfc9d0b9a65b8eec4cab21ae1be377a88026f7ab810b4effbdb5b",
+      "raw_bytes": 7973
+    },
+    {
+      "path": "spheres-sim/data/nations/maldives.json",
+      "raw_sha256": "5e90f02131fa2ea9dc445746cd4bfcb86cdc36347d54883e6417442431f0817f",
+      "raw_bytes": 12237
+    },
+    {
+      "path": "spheres-sim/data/nations/malta.json",
+      "raw_sha256": "9bbcc171de10757b6ed1c4e7fe18eb866fe90c97b2c0fc198a89a0d2a4793d95",
+      "raw_bytes": 11561
+    },
+    {
+      "path": "spheres-sim/data/nations/mauritius.json",
+      "raw_sha256": "db7d17c0c6e414a7b67dec257f5d00f9ee942b0622b9f8ed8fd73d4f0bd8e223",
+      "raw_bytes": 10731
+    },
+    {
+      "path": "spheres-sim/data/nations/mexico.json",
+      "raw_sha256": "6b3d1b4e3fe1de3ab158ac2123e131f08d1ad8c7b53c4882a26928e8903b7454",
+      "raw_bytes": 10555
+    },
+    {
+      "path": "spheres-sim/data/nations/mongolia.json",
+      "raw_sha256": "d6b1e2928a6292837dc9996c99abf9d28b86d98b1e097cf4fdea182122bf90c9",
+      "raw_bytes": 7236
+    },
+    {
+      "path": "spheres-sim/data/nations/morocco.json",
+      "raw_sha256": "766834f21880cfd024492825e27030d6234abd775ec72a33f245e5349f9050a3",
+      "raw_bytes": 9658
+    },
+    {
+      "path": "spheres-sim/data/nations/mozambique.json",
+      "raw_sha256": "d2e605a1d6bd155f9c5d81f804b24c5b5d5006fb93b2ceda068ae0fb8b540907",
+      "raw_bytes": 13279
+    },
+    {
+      "path": "spheres-sim/data/nations/myanmar.json",
+      "raw_sha256": "c8f1d5ed00d0dbbf3635cacd70525bb20a0f557cae839d879c093860abeaf4db",
+      "raw_bytes": 13108
+    },
+    {
+      "path": "spheres-sim/data/nations/nepal.json",
+      "raw_sha256": "3237a94a7652af0642e0938dc9de3c04657d04729bee1177c39ed676ba516ece",
+      "raw_bytes": 10274
+    },
+    {
+      "path": "spheres-sim/data/nations/netherlands.json",
+      "raw_sha256": "290465d8e48061514f751db738996aa266f152848bf61e8999a3f75926b2f2c1",
+      "raw_bytes": 21807
+    },
+    {
+      "path": "spheres-sim/data/nations/newzealand.json",
+      "raw_sha256": "411c706ab9185be8c0b9bed440538a1434b54bfc67967294025e112e91799763",
+      "raw_bytes": 13284
+    },
+    {
+      "path": "spheres-sim/data/nations/nicaragua.json",
+      "raw_sha256": "fd413fbb364a1627681da8d19308a71c8563c2cdddc13fa99273dd03c28d7c31",
+      "raw_bytes": 14026
+    },
+    {
+      "path": "spheres-sim/data/nations/nigeria.json",
+      "raw_sha256": "700d7a6282af3a6d6b7335c59915d7133f42376cf6acb5256393b6d879ef0307",
+      "raw_bytes": 4710
+    },
+    {
+      "path": "spheres-sim/data/nations/northkorea.json",
+      "raw_sha256": "345e0be5a555e18e9ab34f42f7443894526724c250cc7ecc2436d238b314a1f8",
+      "raw_bytes": 8409
+    },
+    {
+      "path": "spheres-sim/data/nations/norway.json",
+      "raw_sha256": "4273be3f5afa1c9c54216be4855a5c858f396d4f66fc8c77c2b72b7ce1b7f133",
+      "raw_bytes": 10017
+    },
+    {
+      "path": "spheres-sim/data/nations/oman.json",
+      "raw_sha256": "9594777781ea7ce6ffc03d57c0b5c46769e2ca7bf76408817582549f677f65b8",
+      "raw_bytes": 11547
+    },
+    {
+      "path": "spheres-sim/data/nations/pakistan.json",
+      "raw_sha256": "c593a6379aff75fa8f7ff64d446532235f40d2923711fdf500dda529b8715d27",
+      "raw_bytes": 6875
+    },
+    {
+      "path": "spheres-sim/data/nations/panama.json",
+      "raw_sha256": "f2b8c58b0517413351f5255d055fffe1cb677dea8aebbe4033cc03c72c706958",
+      "raw_bytes": 10813
+    },
+    {
+      "path": "spheres-sim/data/nations/papuanewguinea.json",
+      "raw_sha256": "ad0ba65b22aa2a128f3d1c531a5998b378529dece2b7c32624a52e3aab40af93",
+      "raw_bytes": 11572
+    },
+    {
+      "path": "spheres-sim/data/nations/paraguay.json",
+      "raw_sha256": "efb7eee854743e8f4455f75cc4f08c2cbc8ac92068514db818f16ffc60ccea3a",
+      "raw_bytes": 9870
+    },
+    {
+      "path": "spheres-sim/data/nations/peru.json",
+      "raw_sha256": "e2cc9e2bf9ac2ac0170ab948d397db487bf7d43ff3b55aeb5e7288c0f808e619",
+      "raw_bytes": 7419
+    },
+    {
+      "path": "spheres-sim/data/nations/philippines.json",
+      "raw_sha256": "70c537e62f6bd7860794360a6b2cdaf5c2b40131ff5e5bd293c155c40ac985fc",
+      "raw_bytes": 6748
+    },
+    {
+      "path": "spheres-sim/data/nations/poland.json",
+      "raw_sha256": "0e6b6f2f93cb74c76408b63abb6a1fd7e49b2ca6e2a8008ef4daf798e3d1957e",
+      "raw_bytes": 6959
+    },
+    {
+      "path": "spheres-sim/data/nations/portugal.json",
+      "raw_sha256": "f49006a7f19e6152d2a1e00a25f46c5b14cd5a4ecd291da74500470dfb7d5006",
+      "raw_bytes": 9672
+    },
+    {
+      "path": "spheres-sim/data/nations/qatar.json",
+      "raw_sha256": "72bb38cdf9cc635f422d6eef48bfd7e2222ef276948f6538fe0aa9c39f90a652",
+      "raw_bytes": 10425
+    },
+    {
+      "path": "spheres-sim/data/nations/romania.json",
+      "raw_sha256": "54597f88d37dc704af6c0dc916f8fe6fc2e43a558c17bcc703e7ec4fd87aba83",
+      "raw_bytes": 10552
+    },
+    {
+      "path": "spheres-sim/data/nations/samoa.json",
+      "raw_sha256": "c06b07cc352b4d757d29d8f62fbf132ba8f5a0f1259545ece1acaa4d2994334f",
+      "raw_bytes": 12171
+    },
+    {
+      "path": "spheres-sim/data/nations/saotome.json",
+      "raw_sha256": "6173964a8bf5f50d9ff38ba0a441621975764f8b115ca63e736f6bf11bd66b16",
+      "raw_bytes": 12781
+    },
+    {
+      "path": "spheres-sim/data/nations/saudiarabia.json",
+      "raw_sha256": "b418637f6384520ed00b6f5fb2ad2be838d64a16d19a5c5ffba111dffb9e7325",
+      "raw_bytes": 7920
+    },
+    {
+      "path": "spheres-sim/data/nations/senegal.json",
+      "raw_sha256": "85ef8b14e24138781dd865ff8f4e82c3ccda6aba378f022813e2c305b873cb42",
+      "raw_bytes": 9073
+    },
+    {
+      "path": "spheres-sim/data/nations/seychelles.json",
+      "raw_sha256": "c21bbfdbe0b1c17d53cfa359556daa77394130af6c95aaf1ede0e99e996b9bc0",
+      "raw_bytes": 11474
+    },
+    {
+      "path": "spheres-sim/data/nations/singapore.json",
+      "raw_sha256": "7800050f45e94d1f818ef2162970f8f120cf498e4bdf78fad4513e3c50e59d6a",
+      "raw_bytes": 8864
+    },
+    {
+      "path": "spheres-sim/data/nations/solomonislands.json",
+      "raw_sha256": "70b79049ee0191e4f9f9b93da9c75124da591908a51d3134ed25c4149bc69661",
+      "raw_bytes": 10286
+    },
+    {
+      "path": "spheres-sim/data/nations/southafrica.json",
+      "raw_sha256": "9cc555db54bf0318381c901ace3f73ef19ae9d4d972fe270e401d1302a677b27",
+      "raw_bytes": 14713
+    },
+    {
+      "path": "spheres-sim/data/nations/southkorea.json",
+      "raw_sha256": "0b3fa0ab5053efa1dbf0148ae3095dde8cd81d3f6c042e7c876598025bb2fa90",
+      "raw_bytes": 9665
+    },
+    {
+      "path": "spheres-sim/data/nations/spain.json",
+      "raw_sha256": "7caa63f288e1d84ae5e69f5d0ae7f4de389f7cead86c18b975fc9015d0efbe47",
+      "raw_bytes": 19085
+    },
+    {
+      "path": "spheres-sim/data/nations/srilanka.json",
+      "raw_sha256": "2ff60977c1a5b4d4f9ea449db7002bdb9e4c99d994dd1248754b1bea78a8090f",
+      "raw_bytes": 10009
+    },
+    {
+      "path": "spheres-sim/data/nations/sudan.json",
+      "raw_sha256": "790ed2b8bdb91dae45615d3f9940668188997847652f1f221895ea8cab231fea",
+      "raw_bytes": 10567
+    },
+    {
+      "path": "spheres-sim/data/nations/suriname.json",
+      "raw_sha256": "1e0534fffb820fc641338ade35ce6a87a4f948672d0cd9930d99afd2f36ca80a",
+      "raw_bytes": 10380
+    },
+    {
+      "path": "spheres-sim/data/nations/swaziland.json",
+      "raw_sha256": "29b6b61ada62248ccb329e7ad8294ae5d5a90e68153187573aea289766546fa7",
+      "raw_bytes": 10987
+    },
+    {
+      "path": "spheres-sim/data/nations/sweden.json",
+      "raw_sha256": "51a36ea58ebfbe3b62e0a341632fe6cab9ff74b93d70922d9d24c8ed9a0da546",
+      "raw_bytes": 17893
+    },
+    {
+      "path": "spheres-sim/data/nations/switzerland.json",
+      "raw_sha256": "1ee2fd6c4a4af510239acac5704250be4ea5a8273383fa7a8accf5571d9ec2db",
+      "raw_bytes": 17498
+    },
+    {
+      "path": "spheres-sim/data/nations/syria.json",
+      "raw_sha256": "f3709b74f02525e1b47c74bf83d268c9d5b6a3c3820d9419fafbbb4b226e1ba9",
+      "raw_bytes": 10483
+    },
+    {
+      "path": "spheres-sim/data/nations/taiwan.json",
+      "raw_sha256": "1daadd0cfbdd2373375d22b565908f01ba7f4c4e52ae86f30524d67842620aee",
+      "raw_bytes": 10695
+    },
+    {
+      "path": "spheres-sim/data/nations/tanzania.json",
+      "raw_sha256": "eac79b129f1e09cb3cf118d93501e2e191b73fb81ca74878df1fdce3fa392084",
+      "raw_bytes": 8662
+    },
+    {
+      "path": "spheres-sim/data/nations/thailand.json",
+      "raw_sha256": "3c3b925c07f3c8e34e8a2dfd0f050e23a053315b8d76eaa26eda999dd5fe5598",
+      "raw_bytes": 7989
+    },
+    {
+      "path": "spheres-sim/data/nations/tonga.json",
+      "raw_sha256": "5a76aa017229fb7d50853e76c9e9b907cf747579892fa918f0b6f6b67cf6c4b5",
+      "raw_bytes": 10130
+    },
+    {
+      "path": "spheres-sim/data/nations/trinidadtobago.json",
+      "raw_sha256": "9e4acf8e608dba5c4bbcc9dee6b1bfc5886e53bf8a60e0c44cf6f659d451ef4c",
+      "raw_bytes": 13085
+    },
+    {
+      "path": "spheres-sim/data/nations/tunisia.json",
+      "raw_sha256": "3adc297fce2cbe2b686063c8594bb0818d7be9ebd892d846e53c5bca8ab4e0c4",
+      "raw_bytes": 10808
+    },
+    {
+      "path": "spheres-sim/data/nations/turkey.json",
+      "raw_sha256": "d5f7571d05813d187cf4ad237c854224131c1eb7daf49f2acf2aa3047333369a",
+      "raw_bytes": 5935
+    },
+    {
+      "path": "spheres-sim/data/nations/uae.json",
+      "raw_sha256": "977193d0398fe941b17b50fc4c336acf96058c8dfd33fe96867cc81f98b268f9",
+      "raw_bytes": 12771
+    },
+    {
+      "path": "spheres-sim/data/nations/uganda.json",
+      "raw_sha256": "8396533ab79e09dfbfb6c6f4985771650851da9abdb64ab24765e3387305abe2",
+      "raw_bytes": 9159
+    },
+    {
+      "path": "spheres-sim/data/nations/uk.json",
+      "raw_sha256": "b9fba870d9f22053ea91a3a24a3360630558e2db260e3fd0cc1f92de02ace0e1",
+      "raw_bytes": 16629
+    },
+    {
+      "path": "spheres-sim/data/nations/uruguay.json",
+      "raw_sha256": "330b6c40272752936791e414fd516fe3a004af44b949c475f8387db94220862f",
+      "raw_bytes": 7055
+    },
+    {
+      "path": "spheres-sim/data/nations/usa.json",
+      "raw_sha256": "5aafdf69359d937cd990304758d58414db6b77497fa0a051985ea2deb2db4e23",
+      "raw_bytes": 23430
+    },
+    {
+      "path": "spheres-sim/data/nations/ussr.json",
+      "raw_sha256": "f65b359c38191198fa0e7c29bda39873e413d0b88c4aa9dbfe87090103d34fa2",
+      "raw_bytes": 11877
+    },
+    {
+      "path": "spheres-sim/data/nations/vanuatu.json",
+      "raw_sha256": "13b4ff41b921465fd279ebef5913a47b8d257742d4c90facc45c2d99e2a316dc",
+      "raw_bytes": 10498
+    },
+    {
+      "path": "spheres-sim/data/nations/venezuela.json",
+      "raw_sha256": "a60034ca05ab0165dda8a29fd71d8e659be2b98d1bbfc714c0fc753dbcd94f51",
+      "raw_bytes": 7345
+    },
+    {
+      "path": "spheres-sim/data/nations/vietnam.json",
+      "raw_sha256": "9a612d943eaf838e1c4bb05e190e5c41c08d5ba2fbe15fbf0bb707780b1de5c9",
+      "raw_bytes": 5257
+    },
+    {
+      "path": "spheres-sim/data/nations/yemen.json",
+      "raw_sha256": "df4645f6d01c2a21702b59f8e770b3cc81a13539912c1df640d57c25aaac6955",
+      "raw_bytes": 13383
+    },
+    {
+      "path": "spheres-sim/data/nations/yugoslavia.json",
+      "raw_sha256": "e144e3728a7c8dee03823c6246e2c0065cbd45ca54c2e7b52245ce6bad6a6510",
+      "raw_bytes": 8233
+    },
+    {
+      "path": "spheres-sim/data/nations/zaire.json",
+      "raw_sha256": "5ade65b31284695a2cfc065543d4475d703d795ddd0c7f3b10ff114c441c2c41",
+      "raw_bytes": 10178
+    },
+    {
+      "path": "spheres-sim/data/nations/zambia.json",
+      "raw_sha256": "5d5dc130d9c47f8871960851d9efdac7ab6106df50d0ac07397d6f4b3d6b3e31",
+      "raw_bytes": 12623
+    },
+    {
+      "path": "spheres-sim/data/nations/zimbabwe.json",
+      "raw_sha256": "ba9c1e9944d37c616b8a18f781b65130ee2963cf83300491c88570d1b53460e2",
+      "raw_bytes": 10480
+    },
+    {
+      "path": "spheres-sim/data/opening_mandates_1990.json",
+      "raw_sha256": "bc403a209d829dbd225e2df89611bc0bcbed0c27d5a8aa127325baf652a19384",
+      "raw_bytes": 2246
+    },
+    {
+      "path": "spheres-sim/data/party_executive_eligibility.json",
+      "raw_sha256": "d4fbdbff29956f5251fc97dc2021b31b4a2a8b423fd6a89e2ce34397b409510d",
+      "raw_bytes": 86656
+    },
+    {
+      "path": "spheres-sim/data/party_leaders.json",
+      "raw_sha256": "18774ffa08a226e1a9c6b9608d6a4e8adfbab43928092ed925d3c44803cd2494",
+      "raw_bytes": 1262625
+    },
+    {
+      "path": "spheres-sim/data/population_1990.json",
+      "raw_sha256": "72ceeb910a2db1dbe94234ec30cbe81c080fbde309e6dc76c8dac0fd43735937",
+      "raw_bytes": 562620
+    },
+    {
+      "path": "spheres-sim/data/relations_1990.json",
+      "raw_sha256": "4831266c72220da62a7bb172ee889a04d18236817cf9b6cd0929a327ee48bb13",
+      "raw_bytes": 168717
+    },
+    {
+      "path": "spheres-sim/data/resources_1990.json",
+      "raw_sha256": "2e4520ef2d23f479e87eac79c2cf33e001d841f73ea0786d961f1d6d71770d6e",
+      "raw_bytes": 411535
+    },
+    {
+      "path": "spheres-sim/data/sectors_1990.json",
+      "raw_sha256": "6173ac1563ebd1312704491fc42461d25a4410b9f6e37c060620ac70938809ce",
+      "raw_bytes": 207082
+    },
+    {
+      "path": "spheres-sim/src/agency.rs",
+      "raw_sha256": "97ae30ef9458782f3982bb451464953894d43528c04604013728bf202ebb1c73",
+      "raw_bytes": 17314
+    },
+    {
+      "path": "spheres-sim/src/airbase_distance_tests.rs",
+      "raw_sha256": "7ccdf74ca72d92d181f6111ad4c1f91f757c6d91a2284bd2ff9702d885a94069",
+      "raw_bytes": 1128
+    },
+    {
+      "path": "spheres-sim/src/airbases.rs",
+      "raw_sha256": "9cb11b10c9137ec35951c32b5154cbb090f8407ff48d77b4e501b45092dfb187",
+      "raw_bytes": 39993
+    },
+    {
+      "path": "spheres-sim/src/airbases_tests.rs",
+      "raw_sha256": "a419971b26e93865ff71205e2fd8db5d1fb259096bad7ef7039a859017ec562a",
+      "raw_bytes": 24207
+    },
+    {
+      "path": "spheres-sim/src/airmissions.rs",
+      "raw_sha256": "a3a7e787577100c9087143f3007f706f7dc0bff3b9b1c039058bcadf21eac3fa",
+      "raw_bytes": 42407
+    },
+    {
+      "path": "spheres-sim/src/airmissions_defense_tests.rs",
+      "raw_sha256": "1641c1ce4c909d772ffbe82b9dda384317626de8436fa03044a17f35a1dc7573",
+      "raw_bytes": 30685
+    },
+    {
+      "path": "spheres-sim/src/airmissions_tests.rs",
+      "raw_sha256": "3b3a1a8929f6163a42271323c96e6631eee1d3a30b95909495e0698c39efa832",
+      "raw_bytes": 24050
+    },
+    {
+      "path": "spheres-sim/src/armed_security.rs",
+      "raw_sha256": "24f7377d32e8aef40bd04206296ff003307101ccaddbadb7b997ef98722639e1",
+      "raw_bytes": 35882
+    },
+    {
+      "path": "spheres-sim/src/army_authority.rs",
+      "raw_sha256": "7c2d4bd867f434221490dc9cecac53eb18eef701f7a6d9a97011a4cf3a5c2053",
+      "raw_bytes": 11457
+    },
+    {
+      "path": "spheres-sim/src/army_institutions.rs",
+      "raw_sha256": "d1b7039a5f04fb8636e32e9c5c610cdc9defe70d8c57ee0505e8a719ff732f36",
+      "raw_bytes": 12506
+    },
+    {
+      "path": "spheres-sim/src/arsenal.rs",
+      "raw_sha256": "237a00bd7931b3130ebb19683669445c70278d120be6a34ef0a1136f3f7f7bc8",
+      "raw_bytes": 64742
+    },
+    {
+      "path": "spheres-sim/src/aviation.rs",
+      "raw_sha256": "ecd346d0383cdd886fabcac35aecd3709e4fa6568190d76a5adf00d96e0af5bd",
+      "raw_bytes": 15720
+    },
+    {
+      "path": "spheres-sim/src/aviation_tests.rs",
+      "raw_sha256": "cdd0ec5fc6419ff1afde9aa10f388a0f77639ce1715dd944277d73bcfd6b063e",
+      "raw_bytes": 19691
+    },
+    {
+      "path": "spheres-sim/src/blocs.rs",
+      "raw_sha256": "3cdcb1ca4620e81d91f26288f39362da86a440e21610a569b4ad4e7c1640ff51",
+      "raw_bytes": 133955
+    },
+    {
+      "path": "spheres-sim/src/campaign.rs",
+      "raw_sha256": "fea1477754c958fc9c4230e0d02ebdde3f4f443091f3995021ec4d5b19865e2b",
+      "raw_bytes": 116757
+    },
+    {
+      "path": "spheres-sim/src/campaign_aims.rs",
+      "raw_sha256": "120b8d59f9e97c11ed66c8b842c3cf16c57ba396a5d88b979d65721c4835f8ae",
+      "raw_bytes": 12383
+    },
+    {
+      "path": "spheres-sim/src/campaign_peace.rs",
+      "raw_sha256": "b18551e016aababe00a09ab28901f0b9332f51ba7bf39f9b8dba4f85f2abdcd5",
+      "raw_bytes": 38583
+    },
+    {
+      "path": "spheres-sim/src/campaign_supply.rs",
+      "raw_sha256": "b6e213d99638cad04dfe3b4f5fa548d0cfd8dc9f7fb531701cdd3fdb5405f863",
+      "raw_bytes": 47836
+    },
+    {
+      "path": "spheres-sim/src/clock.rs",
+      "raw_sha256": "e55402a749a84d8cd35a664cd97c74a49acf1e7756887f90194d4e207d098aa8",
+      "raw_bytes": 6175
+    },
+    {
+      "path": "spheres-sim/src/commerce.rs",
+      "raw_sha256": "3ef26c83c15882dfedd66b19a95bf0ee4acf018ad5115b30078df8f2c0264ad2",
+      "raw_bytes": 85761
+    },
+    {
+      "path": "spheres-sim/src/commitment.rs",
+      "raw_sha256": "82044fb753194f9fd021a628a30eb0f862c2bec22081b6daedb05cf58dcef620",
+      "raw_bytes": 36637
+    },
+    {
+      "path": "spheres-sim/src/companies.rs",
+      "raw_sha256": "d0ecb67fdf8687ca1b45a1ead976fd7e979c63e315a6c6d749cd031314064c3b",
+      "raw_bytes": 123776
+    },
+    {
+      "path": "spheres-sim/src/companies_ammunition.rs",
+      "raw_sha256": "9673aa46e2488289394e111f1811e5ffca2cb8b5f2258ef2fef095d1201e0513",
+      "raw_bytes": 36019
+    },
+    {
+      "path": "spheres-sim/src/companies_imports.rs",
+      "raw_sha256": "6f978d74caec10441f83f0bd799c57c24c85c77945dc262ea6aa14d0ee9b2d4b",
+      "raw_bytes": 36126
+    },
+    {
+      "path": "spheres-sim/src/companies_refits.rs",
+      "raw_sha256": "37b3b6697b4d35747da61a9c61aeb5c3d68138623b7fd23963c15099335c6777",
+      "raw_bytes": 42203
+    },
+    {
+      "path": "spheres-sim/src/company_network.rs",
+      "raw_sha256": "6fac320cf4ae99196e71ee3d9ad9ee416ef26433f3b4d9eeb6ffacd7acffb308",
+      "raw_bytes": 2881
+    },
+    {
+      "path": "spheres-sim/src/company_save.rs",
+      "raw_sha256": "7a8250b5a99122d7f7da31624b3af36473c4d6a54aaba9aa3c2cecbdfa4c871e",
+      "raw_bytes": 9405
+    },
+    {
+      "path": "spheres-sim/src/connected_economy.rs",
+      "raw_sha256": "ea5b75dcea2067e720a0610ee3640a3c759ad6fa4e9656320a0e0ffcd4b0527b",
+      "raw_bytes": 2179
+    },
+    {
+      "path": "spheres-sim/src/construction_preview.rs",
+      "raw_sha256": "b2596f7008a805590bfaa1f8d23b7e593041708468ac4c7fe4aac069360d6350",
+      "raw_bytes": 47513
+    },
+    {
+      "path": "spheres-sim/src/construction_suggestions.rs",
+      "raw_sha256": "2742815614857b57fa6b9ea2c0c0aede60f380b65c1ff25c2304fd21330b5761",
+      "raw_bytes": 24619
+    },
+    {
+      "path": "spheres-sim/src/control.rs",
+      "raw_sha256": "6cbd099e538c5539d19c54cd21be278660c71b7beb0904e991bc5d98dcd40235",
+      "raw_bytes": 2058
+    },
+    {
+      "path": "spheres-sim/src/data/embedded.rs",
+      "raw_sha256": "32b5c732955b6684e5b806c9fc0053450855dbd425b4edf77ea9da14348797da",
+      "raw_bytes": 17399
+    },
+    {
+      "path": "spheres-sim/src/data/mod.rs",
+      "raw_sha256": "485ecaddedb0610669fce4ab8f52c288bb13d4dcc459392fbeda330d99da71ef",
+      "raw_bytes": 97151
+    },
+    {
+      "path": "spheres-sim/src/data/movements.rs",
+      "raw_sha256": "0f6dd954c0ffce448192ef45ef27732b543c6c873ce4cfb7277f6c918272cd80",
+      "raw_bytes": 3814
+    },
+    {
+      "path": "spheres-sim/src/districts.rs",
+      "raw_sha256": "a81f486c1b275391fe14c3603e1d03e7424e974f1988e625ff7b4f31de743b6b",
+      "raw_bytes": 60723
+    },
+    {
+      "path": "spheres-sim/src/domination.rs",
+      "raw_sha256": "4ce280a85a2836cee48c22027d454951c1dc14f327fc85da4f5e268e784c15c1",
+      "raw_bytes": 42580
+    },
+    {
+      "path": "spheres-sim/src/dyads.rs",
+      "raw_sha256": "710a8121c1f93c3516b05e99ee37a3fd4323aa42be7023d6947c227076fe295f",
+      "raw_bytes": 27149
+    },
+    {
+      "path": "spheres-sim/src/economic_ai.rs",
+      "raw_sha256": "99775c42516da75068aa9e74a0aef1db8691e7e4b162aced2e61ae39b5c6599e",
+      "raw_bytes": 139086
+    },
+    {
+      "path": "spheres-sim/src/economy.rs",
+      "raw_sha256": "2c9b9f3b0caf9bc349a66dc13ab681b2932fda82ab2ea88b469ecd24b1459701",
+      "raw_bytes": 118697
+    },
+    {
+      "path": "spheres-sim/src/equipment.rs",
+      "raw_sha256": "d16c3390ceaaf1aa84b90cb85f7471e28e2acd57605a29537bd47f7dd7cb03a0",
+      "raw_bytes": 114955
+    },
+    {
+      "path": "spheres-sim/src/equipment_air_support.rs",
+      "raw_sha256": "f6e2935dc64bf67dd87b033eaeb113c1a1f4b967ba9bac7c2f00dd7fe61d8503",
+      "raw_bytes": 26158
+    },
+    {
+      "path": "spheres-sim/src/equipment_air_support_tests.rs",
+      "raw_sha256": "d38579a2106128adc9438a157853bc97a187825233d833658dae9f2643cb7b88",
+      "raw_bytes": 23108
+    },
+    {
+      "path": "spheres-sim/src/equipment_ammunition_operations.rs",
+      "raw_sha256": "44d321f63754f952d87fb3e458e3340e8054e98781d4e6b215262ea696126025",
+      "raw_bytes": 37087
+    },
+    {
+      "path": "spheres-sim/src/equipment_ammunition_production.rs",
+      "raw_sha256": "6f2757d425de1e1bccd9bb688161c407db144e0f148b32b8cf0b20862aa06a3c",
+      "raw_bytes": 65857
+    },
+    {
+      "path": "spheres-sim/src/equipment_ammunition_reserves.rs",
+      "raw_sha256": "fad8ba33ad6391cee8ecd9bd09312bd1f2f94fff5293da2055db845040684b98",
+      "raw_bytes": 29053
+    },
+    {
+      "path": "spheres-sim/src/equipment_aviation.rs",
+      "raw_sha256": "94cdab5900548c65fd71e65ef45aebb80a46aa2b868580bb435b760606aed960",
+      "raw_bytes": 31209
+    },
+    {
+      "path": "spheres-sim/src/equipment_fighter_tests.rs",
+      "raw_sha256": "7ecdc0e9ae6f9539a77602100301e2a3fcd0e57e9fb753272ded6ad5870ae1a6",
+      "raw_bytes": 15891
+    },
+    {
+      "path": "spheres-sim/src/equipment_ground.rs",
+      "raw_sha256": "b2ea4b2016bed4f9b247c730bb1c2b81294a84ec0968a4e64e89993ca39a0489",
+      "raw_bytes": 21349
+    },
+    {
+      "path": "spheres-sim/src/equipment_ground_readiness_tests.rs",
+      "raw_sha256": "1f35ed81fffdfa3e021ed99206b1d0619aa6176600a58b0471bdac95873bc0cf",
+      "raw_bytes": 13092
+    },
+    {
+      "path": "spheres-sim/src/equipment_ground_receipt.rs",
+      "raw_sha256": "d6af1701e3ca2e68875e6cba6bd7edfd66282ba7a09f6108e40d7ba686006571",
+      "raw_bytes": 6297
+    },
+    {
+      "path": "spheres-sim/src/equipment_ground_receipt_tests.rs",
+      "raw_sha256": "9599f6f654cf2a7bc934a5fce4d14bdb2bd8c231a857da67e6a76bf78da7e740",
+      "raw_bytes": 10809
+    },
+    {
+      "path": "spheres-sim/src/equipment_maintenance.rs",
+      "raw_sha256": "0de7997e857aa9361f6bbbe5dd68f5df8e69aff421e4afe02d1419dba6700c1f",
+      "raw_bytes": 13215
+    },
+    {
+      "path": "spheres-sim/src/equipment_replenishment.rs",
+      "raw_sha256": "368a80d72cbe6e821d8b3a9d17d771e54338696473638fbb61241945b8a1ef7f",
+      "raw_bytes": 9473
+    },
+    {
+      "path": "spheres-sim/src/equipment_service.rs",
+      "raw_sha256": "9633aaebcdb14aeacdd9696323fe74c62e5a0fa8ff8141963bc399a5b3b68e03",
+      "raw_bytes": 17498
+    },
+    {
+      "path": "spheres-sim/src/equipment_specs.rs",
+      "raw_sha256": "2d98f0593232cc505d9612285f909bf4b3fdc1750474c8ee7aec5aff76cdc3f7",
+      "raw_bytes": 12945
+    },
+    {
+      "path": "spheres-sim/src/equipment_supply.rs",
+      "raw_sha256": "780d1ed106b8f94c787106868e1f315f349dce62c717c57ab5606161c993dd97",
+      "raw_bytes": 49495
+    },
+    {
+      "path": "spheres-sim/src/equipment_supply_automation.rs",
+      "raw_sha256": "cd02926b5abe4ad033de9106508b5e22386bf8619657a2ed4009b83ddb8cc77c",
+      "raw_bytes": 28169
+    },
+    {
+      "path": "spheres-sim/src/equipment_targets.rs",
+      "raw_sha256": "88423af0fa1217b4650fbd9be8f95ed28453cddab85932f6040fcb03fca2f7d0",
+      "raw_bytes": 19798
+    },
+    {
+      "path": "spheres-sim/src/exact.rs",
+      "raw_sha256": "857247bfe0f3b14f568bec6618fdcfcb0285b40b970c2eeb7c7ab15aecaf94d7",
+      "raw_bytes": 24831
+    },
+    {
+      "path": "spheres-sim/src/fiscal_journal.rs",
+      "raw_sha256": "b3dbc64bde0a56476e315307320f59457f93c83c1f9b39f10da0349119aff0c9",
+      "raw_bytes": 23612
+    },
+    {
+      "path": "spheres-sim/src/fiscal_preview.rs",
+      "raw_sha256": "bf08117db3501f225d210295a9ede1f47c0bbe4cefadfd75bc452cce8b132ca5",
+      "raw_bytes": 3050
+    },
+    {
+      "path": "spheres-sim/src/fiscal_recovery.rs",
+      "raw_sha256": "9d871d69f87ac108908176b5d5e8b50afcdd3bb3cb8715c571c636437245a390",
+      "raw_bytes": 33361
+    },
+    {
+      "path": "spheres-sim/src/fiscal_recovery_ai.rs",
+      "raw_sha256": "5ea351203c3d4818f7271f1ed6b91d02f463ff0534522a361a96150af66a08cf",
+      "raw_bytes": 28381
+    },
+    {
+      "path": "spheres-sim/src/freight_routing.rs",
+      "raw_sha256": "d9fed6f073cd1ba52928028b685a3ebaa4a1edd8fca01610605dcc91fda191e2",
+      "raw_bytes": 12172
+    },
+    {
+      "path": "spheres-sim/src/front.rs",
+      "raw_sha256": "ca5d2973a976dec041183ce936aaf9cf937fe7defc8dd99fd5c4f275add923bc",
+      "raw_bytes": 29295
+    },
+    {
+      "path": "spheres-sim/src/gdp_projects.rs",
+      "raw_sha256": "8ec2a7b958cedfdab1681ef6871dbf073aca700e97849f0faf73b0415dacdd23",
+      "raw_bytes": 54718
+    },
+    {
+      "path": "spheres-sim/src/government.rs",
+      "raw_sha256": "3254020ea00ec763eb95dabe0c03b79e33b861d4144d6de7307627c03de4e51c",
+      "raw_bytes": 833242
+    },
+    {
+      "path": "spheres-sim/src/industrial_modules.rs",
+      "raw_sha256": "190cf457866b7216b7d15b5a18c9f76cdb67f4a4d60ac5ff4aba61a4ad6f6514",
+      "raw_bytes": 21871
+    },
+    {
+      "path": "spheres-sim/src/industry.rs",
+      "raw_sha256": "e41e5732089f95c651123063b1822cb44cb567cf6a56aa36593e40eefc5a4487",
+      "raw_bytes": 111700
+    },
+    {
+      "path": "spheres-sim/src/industry_operations.rs",
+      "raw_sha256": "5210c457d8739274a96801a84651595fe3cd0597108b51e91be817b5fdfacda9",
+      "raw_bytes": 51907
+    },
+    {
+      "path": "spheres-sim/src/industry_planning.rs",
+      "raw_sha256": "d49176e4b0a8c81387f241aefb6d97371980ed0c3abe5c2a7c37195e36ec7a36",
+      "raw_bytes": 35035
+    },
+    {
+      "path": "spheres-sim/src/init.rs",
+      "raw_sha256": "aac78736219da05727956be0cfc680d9b8223bc3010cac6f9474c34985b9c567",
+      "raw_bytes": 1600
+    },
+    {
+      "path": "spheres-sim/src/lib.rs",
+      "raw_sha256": "fd9f346dafa9a23b6098ac5edef61cde328adb685308758c57ac8a7efbc13047",
+      "raw_bytes": 533970
+    },
+    {
+      "path": "spheres-sim/src/logistics.rs",
+      "raw_sha256": "82b332bf0133502044f8c1e2a8c1596103f19e81ee919850178e95233b2f8946",
+      "raw_bytes": 169593
+    },
+    {
+      "path": "spheres-sim/src/logistics_tree.rs",
+      "raw_sha256": "403d28ad920195b2c00a2274929d5388689654e5cee2205eac64beb1c1201ca4",
+      "raw_bytes": 7076
+    },
+    {
+      "path": "spheres-sim/src/manufacturing.rs",
+      "raw_sha256": "55cbfd6f426e01a335d90aab51abf7bb3079a2b9cfb7f7807aab8163d112bae8",
+      "raw_bytes": 52684
+    },
+    {
+      "path": "spheres-sim/src/materials.rs",
+      "raw_sha256": "86526777f12796a7accccd7b958da5521da3ffe1f79aefab41307a5cb31a5c51",
+      "raw_bytes": 43993
+    },
+    {
+      "path": "spheres-sim/src/military_ai.rs",
+      "raw_sha256": "49ff88fbd8179d4976217c8f1c731768194b61cc5dc6702f2f645903d2579667",
+      "raw_bytes": 45251
+    },
+    {
+      "path": "spheres-sim/src/military_ai_tests.rs",
+      "raw_sha256": "cdddbc690b8e14346d1e1a99bfd56b6b64808a23ece748dae5a350d3c76628ea",
+      "raw_bytes": 20242
+    },
+    {
+      "path": "spheres-sim/src/ministries.rs",
+      "raw_sha256": "d22365a00a92e7bc78836b8e07acd4a12cdaa6f767c4327c705b2a874c5b1bd0",
+      "raw_bytes": 28354
+    },
+    {
+      "path": "spheres-sim/src/nations.rs",
+      "raw_sha256": "8b847b6a843e6a41a82f80446c41ef0e2abccbb6172cc956207859cf71edab08",
+      "raw_bytes": 214148
+    },
+    {
+      "path": "spheres-sim/src/opening_mandates.rs",
+      "raw_sha256": "1c12d70b6992f89af17f8d861c364e3eac32a340905be2638484495c88bef22b",
+      "raw_bytes": 7945
+    },
+    {
+      "path": "spheres-sim/src/operational_warfare.rs",
+      "raw_sha256": "a205df1a5c6e4547ef091f779e7505b341819edaa101b373f388e6b3bc168c5c",
+      "raw_bytes": 2800
+    },
+    {
+      "path": "spheres-sim/src/operations.rs",
+      "raw_sha256": "fa362629e797dab3cd22a6a1a9223b7aeccb6b502ff3a45a8929ffae5348d589",
+      "raw_bytes": 23478
+    },
+    {
+      "path": "spheres-sim/src/operations_aviation_loss_tests.rs",
+      "raw_sha256": "5a884bc59e418963496c06db0fbbe16722d0314140b471d96008a4abebdfdfa6",
+      "raw_bytes": 12325
+    },
+    {
+      "path": "spheres-sim/src/operations_campaign_ammo_tests.rs",
+      "raw_sha256": "513bbdf4f71e395fba9f1cf1a6c033b350f8b2708f48ac8b6b129deaf75c1c10",
+      "raw_bytes": 9241
+    },
+    {
+      "path": "spheres-sim/src/party_executive_eligibility.rs",
+      "raw_sha256": "11c19e785ba40357b24130d0c1cf4fbad190375b8874eed7dd81a3bcbebada54",
+      "raw_bytes": 11224
+    },
+    {
+      "path": "spheres-sim/src/party_executive_eligibility_tests.rs",
+      "raw_sha256": "5bbcccf9059624aa96eaee05a2d8e6ff43cd0bb1578f5533b6d36fcfe74da9c3",
+      "raw_bytes": 16430
+    },
+    {
+      "path": "spheres-sim/src/party_leadership.rs",
+      "raw_sha256": "c55bdce3a7e16ce82d4bcab14a55ff6cc3eda4e29e29417108bb931260948605",
+      "raw_bytes": 100912
+    },
+    {
+      "path": "spheres-sim/src/party_leadership_future.rs",
+      "raw_sha256": "d07d30d3981b77eed153d36516477f917c08b14602e03c393409f523696b0f62",
+      "raw_bytes": 18895
+    },
+    {
+      "path": "spheres-sim/src/party_leadership_seats.rs",
+      "raw_sha256": "6cbaa0e279862c4496b5d499d60b72d6ecf5153233038c6f60dfc87f55c304fa",
+      "raw_bytes": 7850
+    },
+    {
+      "path": "spheres-sim/src/party_leadership_seats_tests.rs",
+      "raw_sha256": "96c8654444f8e8eb6e5d3d8432700f6730006c833281af0404b301f65c5aa4b4",
+      "raw_bytes": 9804
+    },
+    {
+      "path": "spheres-sim/src/politics.rs",
+      "raw_sha256": "68215324a4babb38cb2819dfd7d8bf1e5105a53c64fda8a7f712a1d40130043c",
+      "raw_bytes": 108125
+    },
+    {
+      "path": "spheres-sim/src/population.rs",
+      "raw_sha256": "8c9a1f9dbc9b00745bdad10df66655f197bd8c6d25a79ae20a27ee74ff33d99f",
+      "raw_bytes": 83234
+    },
+    {
+      "path": "spheres-sim/src/production.rs",
+      "raw_sha256": "df39144f47235343c497e90fcae40d46e4528f412a8752b6707b71dc718a1b75",
+      "raw_bytes": 66896
+    },
+    {
+      "path": "spheres-sim/src/programs.rs",
+      "raw_sha256": "7fa56393476499257e045d26a6219ce7fd6b476ee671cea08cb3c6e6c461c25d",
+      "raw_bytes": 60315
+    },
+    {
+      "path": "spheres-sim/src/province_economy.rs",
+      "raw_sha256": "e5800af61f60d9e6ea5796269f6cf2cc696f309e2579cde9d71cedf3100b256d",
+      "raw_bytes": 51307
+    },
+    {
+      "path": "spheres-sim/src/resource_replenishment.rs",
+      "raw_sha256": "45ca490bc44a848bbd1de864a56bbee99d9b25d23ea64cc000f1a2b14d090590",
+      "raw_bytes": 13956
+    },
+    {
+      "path": "spheres-sim/src/resources.rs",
+      "raw_sha256": "3ea70fb478e9c691db34186505c6d350ed5e563c1879f96f4551f2b8ebec7898",
+      "raw_bytes": 486342
+    },
+    {
+      "path": "spheres-sim/src/sector_contractors.rs",
+      "raw_sha256": "d7cdb487b2bb87c229be53e5eb7dbb71c101ff051a634aa57eddc9aec71ce71b",
+      "raw_bytes": 77063
+    },
+    {
+      "path": "spheres-sim/src/sector_profiles.rs",
+      "raw_sha256": "f95e1792f0987ee74230b4e262ba9dca7de49ade0b4a0832b64de6fee317a95d",
+      "raw_bytes": 1906
+    },
+    {
+      "path": "spheres-sim/src/sovereignty.rs",
+      "raw_sha256": "a62afae637dcb3fe37a5b4fb1d8359693955552f42422921dbe25eea83dd47f9",
+      "raw_bytes": 15419
+    },
+    {
+      "path": "spheres-sim/src/starting_industry.rs",
+      "raw_sha256": "87f7dc7353aff836c345a4b7dcd8f71f1b8562722da9d8b4f36c6e168a7ae24c",
+      "raw_bytes": 23445
+    },
+    {
+      "path": "spheres-sim/src/statecraft.rs",
+      "raw_sha256": "eae2d88ef1d2a7aa33ad78ac65714c3b53c06e3ea592b6c319f9e1533d76fbdf",
+      "raw_bytes": 54094
+    },
+    {
+      "path": "spheres-sim/src/stratagems.rs",
+      "raw_sha256": "f3b98971bcb4e7c585bfcf85b76c1a85ca15ceaa1157e549b52e8aacf52b4629",
+      "raw_bytes": 28616
+    },
+    {
+      "path": "spheres-sim/src/supplier_catalogue.rs",
+      "raw_sha256": "879b9366eb9043a50c9a3bace0d16554b3e012baac065d80a570a84c467cc847",
+      "raw_bytes": 25830
+    },
+    {
+      "path": "spheres-sim/src/supplier_operations.rs",
+      "raw_sha256": "d7ed2453fe94c9cd30a64b3584f4b9e37a18ca9904285965c099741e5f7762b8",
+      "raw_bytes": 39207
+    },
+    {
+      "path": "spheres-sim/src/tech/aerospace.rs",
+      "raw_sha256": "babb832508ffa56b619808d60c2f3603f5ae07c55edd3bcebf8a5dcf1d851ee4",
+      "raw_bytes": 42300
+    },
+    {
+      "path": "spheres-sim/src/tech/agriculture.rs",
+      "raw_sha256": "f859b68e1af9ee9e501d363c70ddcf924a57512b1a44b89799f615a0fb5dc4ea",
+      "raw_bytes": 37780
+    },
+    {
+      "path": "spheres-sim/src/tech/biotech.rs",
+      "raw_sha256": "6a80ab4833ccb385bebe93b6469d0a37b1cf472d7f6f4ec63c93abc10815119f",
+      "raw_bytes": 42400
+    },
+    {
+      "path": "spheres-sim/src/tech/communications.rs",
+      "raw_sha256": "63abcdc78849a0b2588ef4360f7c4dda25cf989fae0e4892645bdade4adab649",
+      "raw_bytes": 44722
+    },
+    {
+      "path": "spheres-sim/src/tech/computing.rs",
+      "raw_sha256": "380e3414a3ed07de8c507e55fef7531e7d05e2a7d42a937fbd5b41c54d068a58",
+      "raw_bytes": 42639
+    },
+    {
+      "path": "spheres-sim/src/tech/energy.rs",
+      "raw_sha256": "ebf118e67b9234e2cf4aa08de5ef5ae747b4b85625aceff44f8bdeeeda440e8c",
+      "raw_bytes": 41201
+    },
+    {
+      "path": "spheres-sim/src/tech/materials.rs",
+      "raw_sha256": "370cce605f42cfee57980e130daef731c28612fdbb189d8d6b52935e1799b2ad",
+      "raw_bytes": 38955
+    },
+    {
+      "path": "spheres-sim/src/tech/mod.rs",
+      "raw_sha256": "d9c74f5d85b4752e4dc2f586f8164b8d588d91872d6399388c152602c30eb8b9",
+      "raw_bytes": 155804
+    },
+    {
+      "path": "spheres-sim/src/tech/transport.rs",
+      "raw_sha256": "54d2732e02791d47b749073c534c6a7d72f0ffa22220ac6a4c23cdd726668b84",
+      "raw_bytes": 36145
+    },
+    {
+      "path": "spheres-sim/src/theatre.rs",
+      "raw_sha256": "db99759b02c78c8638e4c827bc1528b5adbf02b2b06f7d332ae05c67d698b971",
+      "raw_bytes": 20191
+    },
+    {
+      "path": "spheres-sim/src/war.rs",
+      "raw_sha256": "77c47e5742a20f056599818217c11cbd764f07eb5bfae506425180ea27d8b98b",
+      "raw_bytes": 106766
+    },
+    {
+      "path": "spheres-sim/src/world.rs",
+      "raw_sha256": "b83d0a5d33526824082f2b1446a8f843fc4ed85f90a25d76d5256231b9c9c354",
+      "raw_bytes": 80811
+    },
+    {
+      "path": "spheres-sim/tests/agency.rs",
+      "raw_sha256": "765399a968dfea6b95430f48a90cbc7cf3e0b6e7a401344d4b139e0969cc9806",
+      "raw_bytes": 11307
+    },
+    {
+      "path": "spheres-sim/tests/ammunition_reserves.rs",
+      "raw_sha256": "5caa54f60fea2fa759326c7fd92f59f8ceb1b4eb64b2faf35f5a3064cb63988e",
+      "raw_bytes": 14340
+    },
+    {
+      "path": "spheres-sim/tests/aviation_ammunition.rs",
+      "raw_sha256": "883c138b753264800389a8a4ce1e6624664951d7c945ef1860b318be73b45770",
+      "raw_bytes": 15635
+    },
+    {
+      "path": "spheres-sim/tests/bloc_census.rs",
+      "raw_sha256": "4d0b0c242d12933b1bd23e11cd2185c97656315820e2f9c72a7c671f5eb9bf56",
+      "raw_bytes": 65134
+    },
+    {
+      "path": "spheres-sim/tests/campaign_aims.rs",
+      "raw_sha256": "b396ed6b9624594627efd77b7691c2ef632ef0de458e10b5a5a72a2770e9b233",
+      "raw_bytes": 6644
+    },
+    {
+      "path": "spheres-sim/tests/campaign_identity.rs",
+      "raw_sha256": "9bd7e5bf1e012ef1859c9811abef30883bca7ee585e46bb4b10b011305ecd01d",
+      "raw_bytes": 11089
+    },
+    {
+      "path": "spheres-sim/tests/campaign_movement_audit.rs",
+      "raw_sha256": "e2a268ff46887fca25c7ae9de145c429fb3e0eaca5e83b2bfc3bb3116bd53a8a",
+      "raw_bytes": 2066
+    },
+    {
+      "path": "spheres-sim/tests/campaign_operations.rs",
+      "raw_sha256": "d8edcc2808cf492776b3a3e6891b157230d0fd0f7f42c29791ff29c08e4fa1d8",
+      "raw_bytes": 11201
+    },
+    {
+      "path": "spheres-sim/tests/campaign_peace.rs",
+      "raw_sha256": "315b2cf560a1a334c4cafa6394e79d497203ffb0e2a30174db296040f66728be",
+      "raw_bytes": 8393
+    },
+    {
+      "path": "spheres-sim/tests/campaign_peace_audit.rs",
+      "raw_sha256": "0c983d4f68f7498a6b8aa7d19fa5239b3cb414527b0cd23805762703a9bbcdec",
+      "raw_bytes": 5846
+    },
+    {
+      "path": "spheres-sim/tests/campaign_population.rs",
+      "raw_sha256": "86219ba3bb8109bea0b096f1631fe68dd3fcd657c2035736aa0f258607ee4e95",
+      "raw_bytes": 8409
+    },
+    {
+      "path": "spheres-sim/tests/capital_damage_audit.rs",
+      "raw_sha256": "b1af60a3dd0d97b463bbb3b5ac7919457a2213ec7528a1ce5f6c25581323b946",
+      "raw_bytes": 29009
+    },
+    {
+      "path": "spheres-sim/tests/companies_integration.rs",
+      "raw_sha256": "cc63db72e67ad52c0c1a3a32416e9ca8eb0b50ffc0e4a29187ca1e5f306978df",
+      "raw_bytes": 67784
+    },
+    {
+      "path": "spheres-sim/tests/company_ammunition.rs",
+      "raw_sha256": "87d23b1df8ad82aa2ec8390b33a728aaf7e7c8f6d500cadc50039667704399be",
+      "raw_bytes": 57596
+    },
+    {
+      "path": "spheres-sim/tests/company_refits.rs",
+      "raw_sha256": "2f11102d8387de3b93fae5aae8ef76ef7fcca644c9839451bce0e4f4085de7c8",
+      "raw_bytes": 55447
+    },
+    {
+      "path": "spheres-sim/tests/daily.rs",
+      "raw_sha256": "ccb53b42d1992a845e7e97a2c548303a63e8bb43c7ca43139e2725b33ae0903a",
+      "raw_bytes": 10187
+    },
+    {
+      "path": "spheres-sim/tests/daily_balance.rs",
+      "raw_sha256": "b24b990698ebbc0129e5a73b5b8cdb0f754c2fd1b31e6d289b9043e04f41134b",
+      "raw_bytes": 19031
+    },
+    {
+      "path": "spheres-sim/tests/economic_ai_supply.rs",
+      "raw_sha256": "30822e5ad84a0c6fe56abd877fa5eb7f3b82352530890eaf7bbed4645b644c05",
+      "raw_bytes": 35355
+    },
+    {
+      "path": "spheres-sim/tests/economic_competition.rs",
+      "raw_sha256": "87aa3d41f1f6de89d6378b77f3e3a3898711f83ed49086b253354cd3570ae5f3",
+      "raw_bytes": 37911
+    },
+    {
+      "path": "spheres-sim/tests/economic_sovereignty.rs",
+      "raw_sha256": "c46841bd7bddaa4ce88c9f27e84346b91ac17351838e281a06044f5332766aa8",
+      "raw_bytes": 10901
+    },
+    {
+      "path": "spheres-sim/tests/economic_sphere_intervention.rs",
+      "raw_sha256": "e192dd5ea42cd8021bd2011d0e9658ce7357156eaa6e0308b6c6457ddee5cc65",
+      "raw_bytes": 2549
+    },
+    {
+      "path": "spheres-sim/tests/endowment_channel_probe.rs",
+      "raw_sha256": "a03f238a509723feef27ea00ea3185553568e9d0c026756049e079b0746e3e4b",
+      "raw_bytes": 10522
+    },
+    {
+      "path": "spheres-sim/tests/endowment_margin_probe.rs",
+      "raw_sha256": "2cd541714e65aba0e3b14fddf4753e7e3fcaff9223c13892f857f513d6db62de",
+      "raw_bytes": 4262
+    },
+    {
+      "path": "spheres-sim/tests/equipment_integration.rs",
+      "raw_sha256": "60abf91570cda243801d42d184278383c96182f1dfe84ade74d437dc23b68ba7",
+      "raw_bytes": 13883
+    },
+    {
+      "path": "spheres-sim/tests/equipment_supply_automation.rs",
+      "raw_sha256": "3e233bea26c5fa9ad63ea5019da0a12920a1599b1f82094e5e32193ed7d5287a",
+      "raw_bytes": 15218
+    },
+    {
+      "path": "spheres-sim/tests/ground_equipment_integration.rs",
+      "raw_sha256": "cb6f3b22f0fd9fadeea0a9ed7cc6dc2404d66c98414f0d75d0f1a25c5c581e31",
+      "raw_bytes": 9415
+    },
+    {
+      "path": "spheres-sim/tests/growth_decomposition.rs",
+      "raw_sha256": "9bf072a79e95d12400fdf2669899a9bf391389d12588e740edb9c9b70ff0810d",
+      "raw_bytes": 63784
+    },
+    {
+      "path": "spheres-sim/tests/industry_planning.rs",
+      "raw_sha256": "800711fb386ac5ed3bf4eabe082f5378621985e635100c95eff1acb3bea97462",
+      "raw_bytes": 15952
+    },
+    {
+      "path": "spheres-sim/tests/materials.rs",
+      "raw_sha256": "fe2128711992be00584cbe65f1a2fd6437cc6093ca31e58ebb9e9fcfc3ecf07c",
+      "raw_bytes": 24399
+    },
+    {
+      "path": "spheres-sim/tests/materials_accounting.rs",
+      "raw_sha256": "9780f75d98d2a438913d69ab3d0789b52d8f94234ec7834f13cbd73cb466c06b",
+      "raw_bytes": 12852
+    },
+    {
+      "path": "spheres-sim/tests/materials_ai_bootstrap.rs",
+      "raw_sha256": "f713e479cb754e19ad1e4fcd32959f8b9be879fe6ec7ecd612dddf7a1cbd88cf",
+      "raw_bytes": 19716
+    },
+    {
+      "path": "spheres-sim/tests/materials_ai_timing.rs",
+      "raw_sha256": "be2c8cc21e4fbdd87f7573f1b3d2f888cf5d02dd2506435f5d7a3ccb84c0ee5b",
+      "raw_bytes": 8408
+    },
+    {
+      "path": "spheres-sim/tests/materials_ai_warehouse.rs",
+      "raw_sha256": "7293f1e012fdfab28fdd10187f5191303f2c91219fddd23bc4a07895f3e68c47",
+      "raw_bytes": 5691
+    },
+    {
+      "path": "spheres-sim/tests/materials_planning.rs",
+      "raw_sha256": "b0cc23f246aec14b368fdb321c842125f124f55198109445406c74d1f47557ad",
+      "raw_bytes": 6282
+    },
+    {
+      "path": "spheres-sim/tests/military_operations.rs",
+      "raw_sha256": "a82d3ea2cca6ff6dcde5772293ed45214174a84d6c4c51308d98d384d3d16d22",
+      "raw_bytes": 9177
+    },
+    {
+      "path": "spheres-sim/tests/ministries.rs",
+      "raw_sha256": "8999b3e853908e5ae1510b60f5a88acc1f7c0a5237f18380e2f7d6e5304fe787",
+      "raw_bytes": 64951
+    },
+    {
+      "path": "spheres-sim/tests/research.rs",
+      "raw_sha256": "7625ec4420bba83f062245c32fead9bfba6c286c123deda3c134ca62c2792ef5",
+      "raw_bytes": 22867
+    },
+    {
+      "path": "spheres-sim/tests/research_centers.rs",
+      "raw_sha256": "353f3f3ba3381dc42c660f85489a56b0f148b687b2bf4ff38ef0ad9dcc32b7a3",
+      "raw_bytes": 20496
+    },
+    {
+      "path": "spheres-sim/tests/s02_entitlements.rs",
+      "raw_sha256": "aaecddc340232ca75cf09d7e11214ac8d97e82c817e27f69c271aac0867be6f4",
+      "raw_bytes": 14662
+    },
+    {
+      "path": "spheres-sim/tests/s02_fiscal.rs",
+      "raw_sha256": "c70630e5a7c875d8f2a83120be15018bfba2d01a5a46dcfc1c336b477b6515b6",
+      "raw_bytes": 17111
+    },
+    {
+      "path": "spheres-sim/tests/s02_industry.rs",
+      "raw_sha256": "b25f4920701d65f7bd66770e08511f0daed40ecd0c94e71e17388902160d66b1",
+      "raw_bytes": 14666
+    },
+    {
+      "path": "spheres-sim/tests/s02_integration.rs",
+      "raw_sha256": "2edc52e9d810f1d4a7f0b67398a6804b07c2c551daf76fc8240897e6632f0199",
+      "raw_bytes": 8295
+    },
+    {
+      "path": "spheres-sim/tests/s02_population.rs",
+      "raw_sha256": "1786263039d41e0327f3dc8571752c2b9d8a882ea41416b257b07a133e998425",
+      "raw_bytes": 28457
+    },
+    {
+      "path": "spheres-sim/tests/s02_succession.rs",
+      "raw_sha256": "4862eef4a3e314a6cf85a3836db1432e739d65e3a0e13f957294c6ac43d8adc8",
+      "raw_bytes": 7981
+    },
+    {
+      "path": "spheres-sim/tests/s03_integration.rs",
+      "raw_sha256": "1d6f2abbf2201b6ddee52aa28cb49f901fe39bd9c717b133d1799381519c95f0",
+      "raw_bytes": 7593
+    },
+    {
+      "path": "spheres-sim/tests/s03_supplier_operations.rs",
+      "raw_sha256": "fc504ebb912c774b4022f21e031d6b67a3517fa66642eaed5895c71b7cde2211",
+      "raw_bytes": 27828
+    },
+    {
+      "path": "spheres-sim/tests/s04_integration.rs",
+      "raw_sha256": "1a77954b2f346c4cf640d878610e15d671885f492847c979b4480d5b09f3a361",
+      "raw_bytes": 4319
+    },
+    {
+      "path": "spheres-sim/tests/s04_peace_boundaries.rs",
+      "raw_sha256": "d6d9be00b2d4fda7b78747a6e76dc3d89bfb8af70d9ec82846489e529dfbafb1",
+      "raw_bytes": 17352
+    },
+    {
+      "path": "spheres-sim/tests/s05_master_fiscal.rs",
+      "raw_sha256": "b7558563d6e80534a63e59284a30ad53327c6fffad239c2105e4ef1aa0fc5c4a",
+      "raw_bytes": 7871
+    },
+    {
+      "path": "spheres-sim/tests/s06_money_journal.rs",
+      "raw_sha256": "2e39f0fa296e5ce04e2761c6846373c49720f3604312ded3929f18e1c9fe22c9",
+      "raw_bytes": 18985
+    },
+    {
+      "path": "spheres-sim/tests/s07_construction_operations.rs",
+      "raw_sha256": "ad4ffde8ebba1a52938d4dd4f3a5e316248e69f964d85c2152be33acfd4f597e",
+      "raw_bytes": 22259
+    },
+    {
+      "path": "spheres-sim/tests/s08_supplier_catalogue.rs",
+      "raw_sha256": "6eab5eae7e0d544d36aec3cfb0d01cb9fe73bc37e33a5e48a30a1c0c654b0420",
+      "raw_bytes": 3734
+    },
+    {
+      "path": "spheres-sim/tests/s08_supplier_lifecycle.rs",
+      "raw_sha256": "c5e7dc3984e69d4ee80c2eba731b3f3cb07464149d5e21bd0ecc2f2a14ec8574",
+      "raw_bytes": 39467
+    },
+    {
+      "path": "spheres-sim/tests/sample_size_audit.rs",
+      "raw_sha256": "6661d5c7d853cf0924904bebbde49ba8539b29533d7a523f558c8f8632e7d48f",
+      "raw_bytes": 29628
+    },
+    {
+      "path": "spheres-sim/tests/sector_profiles.rs",
+      "raw_sha256": "ec68075b858f166be1b56476140c644a51208f79c5e87e00bfce1cf8fe9b5973",
+      "raw_bytes": 1807
+    },
+    {
+      "path": "spheres-sim/tests/small_country_modules.rs",
+      "raw_sha256": "ce7f279a261b0091baa8c31d0f4d5d6ca5c85395c169d978fd250e3ea2a16d3c",
+      "raw_bytes": 19373
+    },
+    {
+      "path": "spheres-sim/tests/starting_industry.rs",
+      "raw_sha256": "8b56370c324d3068a7949cc1c99477ca1fc451e4896e90902b9c893b6f8b114a",
+      "raw_bytes": 12898
+    },
+    {
+      "path": "spheres-sim/tests/starting_industry_planning.rs",
+      "raw_sha256": "9705422aac43a544772c4d171dd1cc044a687b0df6cffec8d923c78690fa6a99",
+      "raw_bytes": 7260
+    },
+    {
+      "path": "spheres-sim/tests/starting_industry_priority.rs",
+      "raw_sha256": "c6004251554c17c1ac947ed4401b818cd61541cc9c466e702cf755281793b91a",
+      "raw_bytes": 5793
+    },
+    {
+      "path": "spheres-sim/tests/strategic_raw_supply.rs",
+      "raw_sha256": "df0678b118364c8f4c746dce2096da11fcd000d4954735e61202c8a9cfb2b73f",
+      "raw_bytes": 30446
+    },
+    {
+      "path": "spheres-sim/tests/treasury.rs",
+      "raw_sha256": "7e008c3161887de70440911fe50c51287c59de6bfbadf470a7cd509773f1bb3e",
+      "raw_bytes": 43138
+    },
+    {
+      "path": "spheres-web/Cargo.toml",
+      "raw_sha256": "dc84ce098e3201c562b6f46d8e0863f7fccadaf34655440bd9b580f4b8bd0913",
+      "raw_bytes": 490
+    },
+    {
+      "path": "spheres-web/build.rs",
+      "raw_sha256": "21e63908914a59638832345402fd0baef185a71566359500990cb3b524465b87",
+      "raw_bytes": 1358
+    },
+    {
+      "path": "spheres-web/data/crossing_edges.json",
+      "raw_sha256": "72f8a2487eb6dfba0efdd08e8d60ed156515a75b46c7c84f37f6a38bb4e4272f",
+      "raw_bytes": 28667
+    },
+    {
+      "path": "spheres-web/data/district_population.json",
+      "raw_sha256": "1f0a1884e5bf720aab3c65cedee84a6a4f7d347fdf6c86fefe24acb1a6f65547",
+      "raw_bytes": 379944
+    },
+    {
+      "path": "spheres-web/data/district_resources.json",
+      "raw_sha256": "e81f0dc3b31e9c165832f48f4ab7b27d1ca8e34f97bfee2c8de779482ce41b78",
+      "raw_bytes": 4405816
+    },
+    {
+      "path": "spheres-web/data/district_terrain.json",
+      "raw_sha256": "f93893412150483e5609c292ab35794332e782b3f8d7f003b8982e7a6aeb1271",
+      "raw_bytes": 138289
+    },
+    {
+      "path": "spheres-web/data/fictional_portraits.json",
+      "raw_sha256": "54a16634b77cb60d4945b541d64504c8c354610d406e3baff00da5b186235d0c",
+      "raw_bytes": 7666
+    },
+    {
+      "path": "spheres-web/data/future_candidates_2035.json",
+      "raw_sha256": "75afd1f5ef49b82b0569feacf025a786f7daf49ca9da7436b6acc677fbedc492",
+      "raw_bytes": 3273947
+    },
+    {
+      "path": "spheres-web/data/leadership_production_2035.json",
+      "raw_sha256": "2d0147f3dbcfc6f9d311556760ed5773aea900f9f82a276051e519d5d9a9e6db",
+      "raw_bytes": 5984743
+    },
+    {
+      "path": "spheres-web/data/nation_figures.json",
+      "raw_sha256": "f2fbd1a1a138fb94f55c33a6d058958fa51564bbc60cb7012ab5a27674351962",
+      "raw_bytes": 408800
+    },
+    {
+      "path": "spheres-web/data/person_models.json",
+      "raw_sha256": "97a3cee3505a798c84c9a925b982c822b295808446c4b0a2c9fa88a673343476",
+      "raw_bytes": 5038
+    },
+    {
+      "path": "spheres-web/data/person_portraits.json",
+      "raw_sha256": "1a73390a88cfd5603d8e5aa3a1fbec5cbe713ce46ec5a3573f7ebb1512fc305d",
+      "raw_bytes": 290378
+    },
+    {
+      "path": "spheres-web/data/river_segments.json",
+      "raw_sha256": "08d89e4874642e8dbe0356f89db041c89006d8973281b67ce5a3bb6c8d068a37",
+      "raw_bytes": 1283767
+    },
+    {
+      "path": "spheres-web/src/arsenal_model_tests.rs",
+      "raw_sha256": "27fd96d3ab1fe08755bd4576db7ffefe8a95ffe91ab1c685c599865b143bcbd1",
+      "raw_bytes": 6717
+    },
+    {
+      "path": "spheres-web/src/bin/mapgen.rs",
+      "raw_sha256": "5db428364714e2efae4606903ffef70c96d4079d3d68dbc16aff6927121629c0",
+      "raw_bytes": 56306
+    },
+    {
+      "path": "spheres-web/src/campaign_api_tests.rs",
+      "raw_sha256": "0345ae032c592ffac696f2e0e956b47bf4edbbde86da9dda24e97d09da367111",
+      "raw_bytes": 12396
+    },
+    {
+      "path": "spheres-web/src/campaign_journey.rs",
+      "raw_sha256": "85e2fb36e2e173603ded7586a83e77bf3553db0a63fbbf763884becbb500c78b",
+      "raw_bytes": 21456
+    },
+    {
+      "path": "spheres-web/src/companies_view.rs",
+      "raw_sha256": "079c7c03285e0fcd5ebe6cd8cf0ec39452e7cab8ec378610a8b6d1457fa7a928",
+      "raw_bytes": 10481
+    },
+    {
+      "path": "spheres-web/src/company_ammunition_view.rs",
+      "raw_sha256": "92a4d5e7c7cc77cb70956529889110e0a7bd9b2a76d46ee2d0d339bc22fe521e",
+      "raw_bytes": 25787
+    },
+    {
+      "path": "spheres-web/src/company_refit_view.rs",
+      "raw_sha256": "7d5dbde5e244f2b1bc2dfdcc1692a0560c997cdb6798124a0b239f0442b85cfe",
+      "raw_bytes": 26848
+    },
+    {
+      "path": "spheres-web/src/company_view.rs",
+      "raw_sha256": "06f652a7a20c8ac35c9414875e199924e27cfcf2927a48c189a5fbf66f782d76",
+      "raw_bytes": 104350
+    },
+    {
+      "path": "spheres-web/src/construction_outcomes.rs",
+      "raw_sha256": "2ded1456ea7ea4ac9e8fd9fa9080e9bbf7978c430c3ab4eb4b289954b60262ea",
+      "raw_bytes": 28542
+    },
+    {
+      "path": "spheres-web/src/decision_review.rs",
+      "raw_sha256": "5dd2bdc2e1815c30c2dbb9a4932fdcd49394a9378b6d4e901b138a73f69ee5ab",
+      "raw_bytes": 32667
+    },
+    {
+      "path": "spheres-web/src/diplomatic_commitments.rs",
+      "raw_sha256": "71e513f3ab6340a80a523820b7fc89e8fadee1bcfda884da9b8afda070d0a375",
+      "raw_bytes": 22296
+    },
+    {
+      "path": "spheres-web/src/diplomatic_sanctions.rs",
+      "raw_sha256": "26b43be0eca63324f5928f99340119bd3fd9117809555239db3f34133c44e204",
+      "raw_bytes": 21721
+    },
+    {
+      "path": "spheres-web/src/equipment_ammunition_reserves_view.rs",
+      "raw_sha256": "bf6dbecb638a4e98024a234118e32528c027c750440b8ac77155ef140cd18d3e",
+      "raw_bytes": 17923
+    },
+    {
+      "path": "spheres-web/src/equipment_ammunition_view.rs",
+      "raw_sha256": "6738c86e69ded3a1a1e29bad744e38dc9285f2324a6dc7ebc26786095bc1a802",
+      "raw_bytes": 23777
+    },
+    {
+      "path": "spheres-web/src/equipment_aviation_view.rs",
+      "raw_sha256": "50800a6ab87b87516ce91a1599788c045405c0398110852ca95cb84105f0cdd4",
+      "raw_bytes": 14282
+    },
+    {
+      "path": "spheres-web/src/equipment_flight_view.rs",
+      "raw_sha256": "b7c45d67684eddae1df14630f3991556539e868bf5291089f40f8d8a30461ff1",
+      "raw_bytes": 71071
+    },
+    {
+      "path": "spheres-web/src/equipment_guidance.rs",
+      "raw_sha256": "118b719f5a5349486a332f334b5198689bdbb6a4a80b57b3936616ef689edb3d",
+      "raw_bytes": 26486
+    },
+    {
+      "path": "spheres-web/src/equipment_maintenance_view.rs",
+      "raw_sha256": "2ae106a096914ed93855a335663668d8d1d465be9823384205b10daf55eae595",
+      "raw_bytes": 10325
+    },
+    {
+      "path": "spheres-web/src/equipment_planning.rs",
+      "raw_sha256": "08f3e1a5c50eb59d7c804626e81f6b029706e31c09c4d66b56564a37bf54eeda",
+      "raw_bytes": 23392
+    },
+    {
+      "path": "spheres-web/src/equipment_replenishment_view.rs",
+      "raw_sha256": "ad5dfd79cb651b5980afaa5f52174d25b0448a83a2fc69b7eaa4c7c8e7705838",
+      "raw_bytes": 9225
+    },
+    {
+      "path": "spheres-web/src/equipment_service_view.rs",
+      "raw_sha256": "45986dc1e675115b6c7abe0b12e03163450ff6e0ec8c929492021957a9d100b4",
+      "raw_bytes": 16702
+    },
+    {
+      "path": "spheres-web/src/equipment_supply_automation_view.rs",
+      "raw_sha256": "24d3fed3081d61faf7223f65d171fd9ad83f38d48cd9b4e80cb506bd0f311d92",
+      "raw_bytes": 18711
+    },
+    {
+      "path": "spheres-web/src/equipment_supply_view.rs",
+      "raw_sha256": "22e6b597a6708768d36e04e2084fe3142b538b225d65b856efc44421a8d8e38d",
+      "raw_bytes": 16358
+    },
+    {
+      "path": "spheres-web/src/equipment_targets_view.rs",
+      "raw_sha256": "fa92a37ca243c66a369d400cc7793a4437312e844b23436c2b7f4ac0ffc76565",
+      "raw_bytes": 15646
+    },
+    {
+      "path": "spheres-web/src/equipment_view.rs",
+      "raw_sha256": "aeb5bfc138d0c50a7218b3ee46bab044c457aab7f1f144c4b74b997e6f0b509e",
+      "raw_bytes": 35012
+    },
+    {
+      "path": "spheres-web/src/fiscal_recovery_view.rs",
+      "raw_sha256": "d4b62c7c834b2c393712ffca9c2469e7e6e7804da67f42adbeda028d727f893f",
+      "raw_bytes": 3651
+    },
+    {
+      "path": "spheres-web/src/government_view.rs",
+      "raw_sha256": "5c3dd1c4086d0d1b35407fb914c0b69fc15b77e92e6af76b39580bc0c84b43d4",
+      "raw_bytes": 31345
+    },
+    {
+      "path": "spheres-web/src/guidance_outcomes.rs",
+      "raw_sha256": "317030ce81b4505c20dce6c233e63c1e77613d2ba323f374f902be2a88347f08",
+      "raw_bytes": 17211
+    },
+    {
+      "path": "spheres-web/src/history.rs",
+      "raw_sha256": "2b8f381c07c6b0a684b0099986b80e3b1d8df84e693e9cf226b62b20217c65d0",
+      "raw_bytes": 15779
+    },
+    {
+      "path": "spheres-web/src/main.rs",
+      "raw_sha256": "908f893ad9ab4d461243a18a4e4f2479a287522c8f4494a9a7304d6cb47b6b3d",
+      "raw_bytes": 978918
+    },
+    {
+      "path": "spheres-web/src/money_commitments.rs",
+      "raw_sha256": "5178232ce6f1c2f892df8d043cdb0a510e3a69ff580f5d5441b80b736351bb3a",
+      "raw_bytes": 28318
+    },
+    {
+      "path": "spheres-web/src/money_view.rs",
+      "raw_sha256": "78a810929e7d23db5e3a26814966964a725f3d290050b39620bf2720979c3b02",
+      "raw_bytes": 16744
+    },
+    {
+      "path": "spheres-web/src/operations_view.rs",
+      "raw_sha256": "ebd408acc5611d80ef9d13e87a1a8809ac4fd5f61b94ca7bee126ea2c313c481",
+      "raw_bytes": 7224
+    },
+    {
+      "path": "spheres-web/src/page_art_assets.rs",
+      "raw_sha256": "f1bc5f9d6120dee02d462ef897c9e1b2822e4cc4be085e4bb336e975deaa2bdd",
+      "raw_bytes": 4934
+    },
+    {
+      "path": "spheres-web/src/performance.rs",
+      "raw_sha256": "8eaa3b16ccd6695caad7c2c034c68d63c2fd9a5cf8cd3681862315aec0346d6d",
+      "raw_bytes": 41724
+    },
+    {
+      "path": "spheres-web/src/person_avatar_assets.rs",
+      "raw_sha256": "3204b4110758b208f0dc1561d81783e05af800e9b737ff6a0d970f25dab57a2f",
+      "raw_bytes": 7945
+    },
+    {
+      "path": "spheres-web/src/person_portraits.rs",
+      "raw_sha256": "a68071437e7d185df73d6a945d143601ef279c059b1382a04de061f0622bbf57",
+      "raw_bytes": 20527
+    },
+    {
+      "path": "spheres-web/src/portrait_assets.rs",
+      "raw_sha256": "578daccf7b8330283c9ca73a4909ad57e1bda48a3bdf0fa7810d4198e5507119",
+      "raw_bytes": 76091
+    },
+    {
+      "path": "spheres-web/src/s05_active_fixture_tests.rs",
+      "raw_sha256": "0ee28bebe73a0ee7170bb8125ca9c1f8bd7fbef8110f6a70c5859b53254b872b",
+      "raw_bytes": 9398
+    },
+    {
+      "path": "spheres-web/src/s05_campaign_api_tests.rs",
+      "raw_sha256": "c2eb0f28d574575c24a856d22dfd64804038868898d84a75cdb80e58bf1caead",
+      "raw_bytes": 7529
+    },
+    {
+      "path": "spheres-web/src/s05_fresh_startup_tests.rs",
+      "raw_sha256": "9902bdc88bf2ec3910ea92a7fbbb0fc6d82018c0a91936f67480e6fd656415f4",
+      "raw_bytes": 11957
+    },
+    {
+      "path": "spheres-web/src/s05_master_migration_tests.rs",
+      "raw_sha256": "b601163092a37dfeb5e2d4e6a209e697b345e83404eee8ef4cfe2566e2649d2b",
+      "raw_bytes": 9670
+    },
+    {
+      "path": "spheres-web/src/s05_save_matrix_tests.rs",
+      "raw_sha256": "dc7a555c095c3549ee2d55e421ccdb6e98829f9f343c38530b09b548ea514f1a",
+      "raw_bytes": 20073
+    },
+    {
+      "path": "spheres-web/src/s08_performance_diagnostics.rs",
+      "raw_sha256": "e3de46f9cb0ce234249b0447318c166d56440b85882573cae89832397be79087",
+      "raw_bytes": 10438
+    },
+    {
+      "path": "spheres-web/src/s08_route_pool_tests.rs",
+      "raw_sha256": "bcf6616db537215903bca6485b6982b36e80fb2d207a2743dab8be36d704aa48",
+      "raw_bytes": 4745
+    },
+    {
+      "path": "spheres-web/src/s10_decision_tests.rs",
+      "raw_sha256": "717864ac4f27cba45aecc7dbd135b449b20a51570a3ed409bbe46abac8450625",
+      "raw_bytes": 17809
+    },
+    {
+      "path": "spheres-web/src/s10_government_tests.rs",
+      "raw_sha256": "f5a03cb47358203a244fadf57beb81b9e3afd8cf45319857a54178b0bc75669d",
+      "raw_bytes": 12742
+    },
+    {
+      "path": "spheres-web/src/s10d_inbox_fixture_tests.rs",
+      "raw_sha256": "697b40600b400cee0587f3e0cb8a515e9cc750bbe4bb1b94db20c6c8a87e2164",
+      "raw_bytes": 6785
+    },
+    {
+      "path": "spheres-web/src/s10e_commitment_fixture_tests.rs",
+      "raw_sha256": "b5676483cd0b05310b7ad6a0e6912f87e07612c691e0ac28f999c00566fd47e6",
+      "raw_bytes": 8251
+    },
+    {
+      "path": "spheres-web/src/s10f_succession_fixture_tests.rs",
+      "raw_sha256": "8da01903c97d79bfe9bc872138cbad202a7504586612072c6a9b990541e238d0",
+      "raw_bytes": 7188
+    },
+    {
+      "path": "spheres-web/src/s10g_sanctions_fixture_tests.rs",
+      "raw_sha256": "130830a816c5a220c41adde11e5ffc9246e271f37db8a7cc15fde11293f6b319",
+      "raw_bytes": 7231
+    },
+    {
+      "path": "spheres-web/src/s11_fixture_tests.rs",
+      "raw_sha256": "d2807aafe1df39e6b373bb555f140f99f41d13c2d71275455e9894713123a5e5",
+      "raw_bytes": 22319
+    },
+    {
+      "path": "spheres-web/src/s15_fixture_tests.rs",
+      "raw_sha256": "79ebbe15ffaebec4807627ccbe646e066376e68f37cdee9df5464a48f0a8cccc",
+      "raw_bytes": 20568
+    },
+    {
+      "path": "spheres-web/src/s16_fixture_tests.rs",
+      "raw_sha256": "b7c65b76777722e605f9d7aae26dc4d99dc194c0c68124d1babc7ea81082e7e9",
+      "raw_bytes": 23519
+    },
+    {
+      "path": "spheres-web/src/s17_fixture_tests.rs",
+      "raw_sha256": "e2b692592e0e6f64ebdf77adb070122a3038cb6a06ddd702cb3283fe113abb1c",
+      "raw_bytes": 4718
+    },
+    {
+      "path": "spheres-web/src/storage.rs",
+      "raw_sha256": "faeccb0b6ee6388285026a4258ca720e799fdd3727292566ae8515046f4028ac",
+      "raw_bytes": 18613
+    },
+    {
+      "path": "spheres-web/src/transport.rs",
+      "raw_sha256": "8a705e192bb50161c7d04c3032733444df98423e7d83280ad69bdd9dd895f377",
+      "raw_bytes": 10491
+    },
+    {
+      "path": "spheres-web/tests/http_connections.rs",
+      "raw_sha256": "0d2c61540e20ac874c315a4c3346d2f47bb6ccc606aecf101ec4452bd8596941",
+      "raw_bytes": 254
+    },
+    {
+      "path": "tools/campaign/active-fixture-layout.json",
+      "raw_sha256": "b5d9da5df793360774e177fe98c54f47e3bcee89865f5d09d60dbcea8b3013d6",
+      "raw_bytes": 3609
+    }
+  ],
+  "binaries": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\bloc_census-b35be4d742aae476.exe",
+      "sha256": "ec54e20b45f244a8aa988f441684ae72acf04b04be4dd53082d338787551e93a"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\s02_population-291e33abbb7c36b5.exe",
+      "sha256": "e638595bc9c0c8a598d96decd8192cd728b72207eb9263aa1fd1e5f30eff1b34"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_sim-de8a2e7790f15db6.exe",
+      "sha256": "c849aecde169eb45b9c11eea3c06cf1d03e1100061a1886c2b95f79d9640807e"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-181336f96cd8285a.exe",
+      "sha256": "be2e141c2e2291f118ea19cedbaaac24ec12ca24d3e80c95eb4032c2ba0b93f4"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+      "sha256": "d0057ca5e92d0c87277646e50e10425a8a413eafdfaeb2d58f81459bae3660be"
+    }
+  ]
+}

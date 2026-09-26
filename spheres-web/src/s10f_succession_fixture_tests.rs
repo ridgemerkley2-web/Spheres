@@ -51,7 +51,7 @@ fn s10f_export_disposable_succession_fixtures() {
         .expect("Set SPHERES_S10F_SUCCESSION_FIXTURE_DIR to a new disposable directory"));
     assert!(destination.is_absolute());
     assert!(!destination.exists(), "Never overwrite a fixture or save directory");
-    let mut initial = Game::new(13, Some(NationId::UK));
+    let mut initial = Game::new_fresh(13, Some(NationId::UK));
     fresh_play_rules(&mut initial).unwrap();
     let historical = person_portraits::reference_view(&initial.world, NationId::UK, "1990-01-01").unwrap();
     let thatcher = party(&historical)["historical"].as_array().unwrap().iter()

@@ -1,0 +1,17 @@
+
+running 1 test
+test s05_master_migration_tests::actual_pinned_master_archive_preserves_property_history_and_next_day ... 
+thread 's05_master_migration_tests::actual_pinned_master_archive_preserves_property_history_and_next_day' (16556) panicked at spheres-web\src\s05_master_migration_tests.rs:23:13:
+assertion `left == right` failed: governments.states[0].pillars: changed ownership count
+  left: 0
+ right: 1
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+FAILED
+
+failures:
+
+failures:
+    s05_master_migration_tests::actual_pinned_master_archive_preserves_property_history_and_next_day
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 434 filtered out; finished in 1.22s
+

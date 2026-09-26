@@ -1,0 +1,97 @@
+{
+  "schema": 1,
+  "declared_utc": "2026-09-22T23:01:21.201539+00:00",
+  "status": "Proposed for parent review; no implementation, compilation or candidate simulation authorized by this document or performed in this review.",
+  "base_revision": "9f7faed5f541e14545e01caf1616ba08c6ad8ff9",
+  "decision": "One bounded reassessment of the existing confidence response at1.20 is defensible on the independently corrected fiscal/AI base, before adding any budget-memory state. It is not predicted to pass and not an erasure of the rejected candidate22.",
+  "source_fact": {
+    "source": "https://jonathanmpowell.com/wp-content/uploads/2025/10/powell-2012jcr-determinants-of-the-attempting-and-outcome-of-coups-detat.pdf",
+    "pages": "1020-1022,1025",
+    "supported_claim": "Military willingness is not identical to available material resources; legitimacy and corporate grievances are distinct. The study does not estimate this game coefficient, source-country coup probabilities, or a guaranteed crisis outcome."
+  },
+  "new_design_assumption": "Under severe sustained civilian crisis, substantial military executive-removal leverage and weak public mandate can lower obedience below the existing coup line even at full material provision. The response value is a game-design choice, not an empirical measurement.",
+  "single_candidate": {
+    "name": "confidence120-on-corrected26",
+    "army_crisis_confidence_weight": 1.2,
+    "baseline_weight": 0.65,
+    "adverse_record_response": 0.024,
+    "army_programme_veto_weight": 0.45,
+    "allowed_runtime_delta": "Only ARMY_CRISIS_CONFIDENCE_WEIGHT0.65->1.20; no new fields, triggers, countries, dates, RNG, thresholds or lifecycle changes."
+  },
+  "mechanical_requirement": {
+    "equation": "T=0.85-k*L*C*(1-M), with no war or foreign backing",
+    "L": 0.8,
+    "C": 0.75,
+    "M": 0.25,
+    "baseline_T": 0.5575,
+    "candidate_T": 0.31,
+    "existing_loyalty_line": 0.35,
+    "minimum_k_to_reach_line": 1.111111111111111,
+    "scope": "Target reachability only; current D>=.25, established record>=6months, actual settled government>=12months, loyalty smoothing and accumulated pressure remain required."
+  },
+  "why_retest_is_distinct": [
+    "Candidate22 predates independently witnessed/repaired fiscal bounds, paid-card ownership/no-effect behavior, debt-ratio refresh and actual-executive voluntary-opening eligibility.",
+    "Those repairs changed observed trajectories at the same0.65 coefficient; current original A1 is7/.59 and A2 is8/12.",
+    "One prospective ablation on the corrected base isolates the existing response. No search across additional weights or selection of favorable seeds is permitted."
+  ],
+  "prior_rejection_retained": {
+    "iteration": 22,
+    "A1": "Failed concentration0.52",
+    "A2": "Failed6/12",
+    "unit": "Algerian chronology fixture failed",
+    "receipt_sha256": "1e9208866020c72e92b37ee60c4bbb48a7736bac655f6c3ec9abaea826c490bd",
+    "statement": "All original rejected evidence remains valid for its source revision. The same failures on this candidate cause rejection; no fixture rewrite is allowed."
+  },
+  "budget_memory_alternative": {
+    "status": "Defer new state; current evidence does not establish a strong opportunity",
+    "observations_from_existing_seed0_trace": [
+      "Philippines1995-05:D.307,L.714,target.765; prior12month military-share change-5.84%.",
+      "Peru2000-04:D.386,L.375,target.469; prior12month military-share change-5.84%.",
+      "ElSalvador1993-12:D.278,L.558,target.375; share-5.84%, observed resources/member2710.8vs2812.9 twelve months earlier(-3.63%).",
+      "Romania2006-05:D.299,L.5,target.807; share-5.84%.",
+      "Nicaragua1991-01:D.679,L.4,target.740; share-5.84%, observed resources/member23567.5vs25000(-5.73%).",
+      "Quiet Thailand/Pakistan remain belowD.25 in this trace; no military-budget mechanism should fabricate public crisis."
+    ],
+    "limitations": "These are retained whole-month extrema/calendar snapshots, not a complete monthly resource series. A declining GDP share is not proof of declining real resources. The observed small cuts do not justify adding a large grievance penalty or claim A1 will improve. No new simulation was run.",
+    "trace_sha256": "25583ee6515526d868f96649ad2c4526c7be6f69f8603c606c8fd899a11ff483"
+  },
+  "false_positive_controls": [
+    "Quiet D<.25, no Army, zero known leverage, flag-off, pending first ballot and immature record remain inert under the political channel.",
+    "Full public consent makes this penalty zero. A strong mandate exampleM.75 withL.8,C.75 gives target.67 at1.20, still above the coup line.",
+    "No automatic coup: unchanged present hostility, crisis, settled-government guard, smoothing, pressure, and monarchy/annulment rules all apply.",
+    "No invented approval for missing opening mandates, no reconstruction of missing authority, no higher material cost or fake force strength.",
+    "All currently passing1005sim-library tests remain unchanged, including the exact Algerian chronology scenario; no fixture/expectation rewrites to admit this candidate."
+  ],
+  "counterplay_controls": [
+    "Paid appropriation still moves material provision through the real priced command; no free loyalty, PC, debt or stock. Useful-cap and explicit budget/player ownership remain unchanged.",
+    "When useful maximum resources cannot restore political obedience, AI must not spend above that cap to pretend it can cure the crisis.",
+    "Resolving current public crisisD<.25 removes the political penalty immediately, while actual loyalty recovers at the existing gradual rate and old pressure cools.",
+    "A genuinely different elected government starts its existing grace/accountability lifecycle; same-party renewal/reshuffle cannot farm a reset.",
+    "Recovering performance and strengthening real national public support lower the same pure readout; equipment capacity itself does not change."
+  ],
+  "prospective_sequence": [
+    "Parent explicitly reviews/authorizes; record exact raw/canonical source and binary snapshots for corrected26 baseline and the single candidate before measuring.",
+    "Run unchanged1005active sim-library tests plus needed integrations, paying attention toAlgeria/firstballot/accountability/paidfunding controls. Rejected22mechanical controls may be retained separately, never substituted for old guards.",
+    "Run the original A1-A10 and attribution regression with all existing cohorts/thresholds unchanged. Preserve all failures, complete original measurement even if one outcome gate fails.",
+    "Only if correctness controls pass, run fixed development seeds0..199x252 for the candidate. A paired corrected26N200 baseline may be measured once on its preserved binary; prior23N200 is context, not claimed26verification.",
+    "Assess every existing joint frequency target, first/repeat distribution, pressure opportunities, fiscal costs and harmful spillovers. No automatic admission from A1 alone. No candidate extension, resampling, threshold change, fixture relaxation or nation-specific remedy.",
+    "If all joint original and development requirements pass, freeze candidate source; only then use the already-predeclared independent1000..1059 cohort and1000..1011x420month check. It remains untouched before that decision and cannot be used to select parameters."
+  ],
+  "joint_risks": {
+    "A2": "Extra pressure can preempt intended elections/patron continuity; retain >6and<=10/12 and Algeria constraints.",
+    "A3_A8": "Changed coups can alter later regimes and Communist reversals; original rare-takeover and eight-regime persistence checks stay.",
+    "A4": "Restoring elected governments via the real actor-aware opening path must still yield15..40; no forced reopenings.",
+    "A5": "Military removal may interrupt actual successor returns; require original >6/12 atthreecountries by1996.",
+    "A6": "Original12x420month no-road-into1990democracy guard remains exact.",
+    "A7_A9_A10": "Ballot/force ratio, poverty distribution and .25median discontent lead all retain current thresholds; crisisD.25 alone does not imply A10passes."
+  },
+  "stop_rule": "Any unmodified correctness failure rejects the candidate. Any original/joint gate failure remains a real failure; no automatic further tuning. Preserve baseline26 as known technical-green/A1-red. Do not push this model candidate as certified without complete acceptance.",
+  "input_hashes": {
+    "spheres-sim/src/government.rs": "0e2dbdefe5ed1909804b81d43b736c94315be647d615bda85e62e1fe78a2b73f",
+    "spheres-sim/src/politics.rs": "990e675157008bbcf80944840d7946b961bff7863ea6584a998c13a9d4119995",
+    "spheres-sim/src/stratagems.rs": "a756149de98b6633a57b8fd3b3c7fcc2c0f5c3a25ccb721ff924c7d62364d8bb",
+    "spheres-sim/tests/bloc_census.rs": "4d0b0c242d12933b1bd23e11cd2185c97656315820e2f9c72a7c671f5eb9bf56",
+    "spheres-sim/src/army_authority.rs": "7c2d4bd867f434221490dc9cecac53eb18eef701f7a6d9a97011a4cf3a5c2053"
+  },
+  "execution_performed": "Read source/previouslogs and calculated snapshot descriptive changes only. No source edits, Cargo, binaries or simulation runs."
+}

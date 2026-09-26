@@ -1,0 +1,22 @@
+{
+  "platform": "ubuntu-latest",
+  "commit": "b51b7333b862d60fc3357b6d54d2ca5960b1543c",
+  "job_id": 106954163165,
+  "log_sha256": "628033ab5a5d96b6c33360d34d1384cd47b4273d90766e3f928c135ed0fe5012",
+  "log_bytes": 305649,
+  "test_targets": 66,
+  "counts": {
+    "passed": 1881,
+    "failed": 3,
+    "ignored": 89,
+    "measured": 0,
+    "filtered": 1
+  },
+  "failed_tests": [
+    "the_stratagem_deck_moves_money_only_through_the_one_channel",
+    "tests::the_clock_still_moves_after_your_nation_is_gone",
+    "tests::a_dissolved_state_is_not_served_as_a_live_belligerent"
+  ],
+  "matches_local24_failures": true,
+  "additional_failures": []
+}

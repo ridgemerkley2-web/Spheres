@@ -1,0 +1,22 @@
+{
+  "iteration": 9,
+  "scope": "Whole compiled workspace with resource timing test excluded; ignored diagnostics remain ignored here. Not final source and not100%completion.",
+  "execution": "Cargo workspace batch; exact tests and per-target counts independently read from captured output. Resource timing filtered out.",
+  "counts": {
+    "passed": 1839,
+    "failed": 1,
+    "ignored": 89,
+    "measured": 0,
+    "filtered": 1
+  },
+  "failed_test": "government::tests::an_unvoted_opposition_list_does_not_inherit_the_incumbents_bad_record",
+  "failure": "thread 'government::tests::an_unvoted_opposition_list_does_not_inherit_the_incumbents_bad_record' (24988) panicked at spheres-sim\\src\\government.rs:10129:9:\nassertion `left == right` failed: opposition leads only the provisional table\n  left: Some(\"su_cpsu\")\n right: Some(\"su_dr\")\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+  "diagnosis": "Fixture assumed scheduling a first election immediately rebuilt the chamber. Scheduling intentionally retains the prior chamber. Test-only correction explicitly stages provisional opposition seats before testing real incumbent accountability; assertions retained. The correction was not in iteration9 executable. It passes the later iteration10 focused set, not a new whole-workspace run.",
+  "original_log": {
+    "path_hint": "..\\evidence\\politics-iteration9-workspace.log",
+    "bytes": 201024,
+    "sha256": "f8670e42efef599de94e2ac9f20acfbd33ce089b6cb48766f7c0ac08c56b5081"
+  },
+  "source_provenance": "iteration-9-source-input-manifest-supplement.json",
+  "next": "Full final-source workspace, isolated timing, explicitly ignored correctness checks, both-OSCI and independent calibration still required."
+}

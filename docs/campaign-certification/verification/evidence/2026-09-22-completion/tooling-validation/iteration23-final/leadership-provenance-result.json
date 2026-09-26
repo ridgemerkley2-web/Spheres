@@ -1,0 +1,274 @@
+{
+  "revision": "90fce9475d20049741589de0e5c5e1c1668a26f6",
+  "python": "3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]",
+  "scope": "Final iteration23 fiscal-accounting and selected political-source provenance after measured pins settle; metadata coherence only, not campaign certification or expanded historical coverage.",
+  "government_crlf_pairs_removed": 0,
+  "government_file_written": false,
+  "commands": [
+    {
+      "name": "production-build",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/leadership_production.py",
+        "build"
+      ],
+      "exit_code": 0,
+      "seconds": 0.361,
+      "log_sha256": "ede01baeaf00d1291e7980acaf67ee41fdc7281b8c9eb0b633122423d2ccea17"
+    },
+    {
+      "name": "production-check",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/leadership_production.py",
+        "check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.371,
+      "log_sha256": "ede01baeaf00d1291e7980acaf67ee41fdc7281b8c9eb0b633122423d2ccea17"
+    },
+    {
+      "name": "production-self-test",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/leadership_production.py",
+        "self-test"
+      ],
+      "exit_code": 0,
+      "seconds": 1.005,
+      "log_sha256": "a17dd2caa82f36f94403594f08ad19738f0876b6f4cdac3802fcc0a44c11b5dd"
+    },
+    {
+      "name": "census-build",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_census.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.182,
+      "log_sha256": "627b0f8dee139e3f4f02f7880585c8857db6005114aabe495e7e64a1d8d0aee3"
+    },
+    {
+      "name": "census-check",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_census.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.203,
+      "log_sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+    },
+    {
+      "name": "census-unit",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_campaign_census.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 0.326,
+      "log_sha256": "e5fe47777d5e748bcd8fa4cd824824c1e81ef941bcfb009cd06af48d24230052"
+    },
+    {
+      "name": "research-check",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.164,
+      "log_sha256": "bbdaaa6498ffb2ad3aaa7e42442256e05602572192e967e2f66991ed3837c709"
+    }
+  ],
+  "source_inputs_before": {
+    "spheres-sim/src/government.rs": "4453a90a9949090337e3bafe4b211ccedc0755efdf50022888acb2f748fb7cff",
+    "spheres-sim/src/nations.rs": "8b847b6a843e6a41a82f80446c41ef0e2abccbb6172cc956207859cf71edab08",
+    "tools/avatars/leadership_production.py": "f05b765d013f697a773a2f1f4eea872e7114ba9233538d87d7f551700a1387af",
+    "tools/avatars/campaign_census.py": "4eda2d0bf01a10d7770f79f9dad964dffc01d5b884d90ea226730e254626207b",
+    "tools/avatars/campaign_research.py": "82294ea6e849736551d2688e01e48fade211aed93ca85a2eb674ecee9cbb791b",
+    "spheres-sim/src/opening_mandates.rs": "1c12d70b6992f89af17f8d861c364e3eac32a340905be2638484495c88bef22b",
+    "spheres-sim/data/opening_mandates_1990.json": "bc403a209d829dbd225e2df89611bc0bcbed0c27d5a8aa127325baf652a19384",
+    "spheres-sim/src/army_institutions.rs": "d1b7039a5f04fb8636e32e9c5c610cdc9defe70d8c57ee0505e8a719ff732f36",
+    "spheres-sim/data/army_institutions_1990.json": "9d5df834998c535e7bc8039d8352ecaf0ddcfdd8e4662830eaba2b2de26c25af",
+    "spheres-sim/data/army_institution_coverage_1990.json": "836075908f6e86638f159f5b57a1048e41e847243ece75697ca2bd6b538afd52",
+    "spheres-sim/src/army_authority.rs": "7c2d4bd867f434221490dc9cecac53eb18eef701f7a6d9a97011a4cf3a5c2053",
+    "spheres-sim/data/army_authority_1989.json": "35e99445235348ded56a45cdd912892f0cd810c92a29121fbd66c8f911dc6d38",
+    "tools/politics/build_army_authority.py": "1d7de3d66f1ad8ac19f76c41f314ead9b4422b1474589069e220161c159c401d",
+    "tools/politics/extract_army_authority.py": "e2dc18e47e401c4cffacca7d29e11def17604adf61355e6c81f9542dd86c6eb4",
+    "tools/politics/fixtures/vdem-v16-1989-military-authority.json": "362db5c52447501a1403ac31d3abf59fd474768e9301b06042b35cdf1e136894",
+    "spheres-sim/src/lib.rs": "f2852dfc40d213f74d04647ccedd4d674c9e00e08d1bc5f79ff6de20624eef82",
+    "spheres-sim/src/blocs.rs": "47d1d456576b638d8bfb9a18f9c7564b62c2f5fb97acec978b207210c6d09fbb",
+    "spheres-sim/src/politics.rs": "990e675157008bbcf80944840d7946b961bff7863ea6584a998c13a9d4119995",
+    "spheres-sim/src/stratagems.rs": "10493241d716514902cfc1310baf0bbe8c8da76c6a8229c2fa637c0d2ff36e0d",
+    "spheres-sim/src/world.rs": "b83d0a5d33526824082f2b1446a8f843fc4ed85f90a25d76d5256231b9c9c354",
+    "spheres-sim/src/economy.rs": "2c9b9f3b0caf9bc349a66dc13ab681b2932fda82ab2ea88b469ecd24b1459701",
+    "spheres-sim/src/init.rs": "aac78736219da05727956be0cfc680d9b8223bc3010cac6f9474c34985b9c567",
+    "spheres-sim/tests/treasury.rs": "980d8247afc804a2bb2b5436be42542e77b8d5852310cfe44abd349b80318bc8",
+    "spheres-sim/data/resources_1990.json": "d8682405afddcfc04f4dfbfb4d16d5195ed352df09120a678d3d5d3ef9573073",
+    "spheres-web/data/district_resources.json": "7ce1c3de0eb1684c89edc0efeb2538f6c3e3c7c5ff547307af864e72074c4cb5",
+    "tools/resources/resource_coverage.py": "534d2d08e647a2a08d5cef55a254d53919636522ed01dc35b78a03017601b0b9",
+    "tools/resources/make_resources.py": "f1b8883a30a429a6ac809af83f724ab52d2231a943bfc545c33ff540525e7e85",
+    "tools/resources/check.py": "27dd8c359abbbf67c0aac98b37251c014579c0fc0312edd707936e55c8c374af",
+    "tools/resources/check_resources.py": "f37ec0a1bda16e94678c5f6da64d7350150ad5c6a42460e3b37e89a19ca6657e",
+    "spheres-sim/data/party_leaders.json": "18774ffa08a226e1a9c6b9608d6a4e8adfbab43928092ed925d3c44803cd2494",
+    "spheres-sim/data/party_executive_eligibility.json": "d4fbdbff29956f5251fc97dc2021b31b4a2a8b423fd6a89e2ce34397b409510d",
+    "spheres-sim/data/future_party_leadership.json": "96e724b21f59ff7278f1a64625bbf1620b3dca24d3ed7d7f3116684a0a0fec26",
+    "spheres-sim/data/future_party_leadership_seats.json": "cbf74d65ccd193a3cc86ef686d11ddb2b7f3281b98675d0c7b842e8bea92cd08",
+    "spheres-sim/data/future_party_continuation.json": "cec3e9d9f49cd27a97229b9741a325952df24f259acbbde092150f4032d24176",
+    "spheres-web/data/nation_figures.json": "f2fbd1a1a138fb94f55c33a6d058958fa51564bbc60cb7012ab5a27674351962",
+    "spheres-web/data/future_candidates_2035.json": "75afd1f5ef49b82b0569feacf025a786f7daf49ca9da7436b6acc677fbedc492",
+    "spheres-web/data/person_portraits.json": "1a73390a88cfd5603d8e5aa3a1fbec5cbe713ce46ec5a3573f7ebb1512fc305d",
+    "spheres-web/data/fictional_portraits.json": "54a16634b77cb60d4945b541d64504c8c354610d406e3baff00da5b186235d0c",
+    "tools/avatars/person_art_pipeline.py": "6afa236683c311ca9e70779ab4666063be18b12969286c8de5fe8b1556833947",
+    "tools/avatars/fictional_art_pipeline.py": "3c9c413c355ead18960ade226773e7f5df3506442dd2687fb9a78bcbbc21d826"
+  },
+  "initial_status": "M .gitattributes\n M .github/workflows/verify.yml\n M docs/campaign-certification/verification/2026-09-22-completion.md\n M docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-history.json\n M docs/political-arm/2026-09-22-calibration-repairs.md\n M spheres-sim/data/resources_1990.json\n M spheres-sim/src/blocs.rs\n M spheres-sim/src/government.rs\n M spheres-sim/src/lib.rs\n M spheres-sim/src/politics.rs\n M spheres-sim/src/stratagems.rs\n M spheres-sim/tests/treasury.rs\n M spheres-web/data/district_resources.json\n M tools/resources/README.md\n M tools/resources/check.py\n M tools/resources/check_resources.py\n M tools/resources/make_resources.py\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/fiscal-policy/\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/coup-debt-original21-witness-build.log\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/coup-debt-original21-witness-input.json\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/coup-debt-original21-witness.log\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/coup-debt-original21-witness.rs\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-21-a1-accounting-lifecycle-review.md\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-21-ai-franchise-authority-review.md\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-21-restored-workspace-result.json\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-A1-A10.log\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-build.log\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-calibration-summary.json\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-coup-distribution.json\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-development-analysis.json\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-development-n200-provenance.json\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-development-n200-result.json\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-development-n200-summary.log\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-distribution-extraction.py\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-focused-receipt.json\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-focused-runner.ps1\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-franchise-policy-application.json\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-franchise-policy-plan.json\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-native-snapshot.json\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-results.json\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-source-capture-tool.ps1\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-source-input-manifest.json\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/regime-break-debt-refresh-application.json\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/regime-break-debt-refresh-notes.md\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/regime-break-debt-refresh-tests.rs\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/regime-break-debt-refresh.patch\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/resource-coverage/\n?? tools/resources/fixtures/\n?? tools/resources/resource_coverage.py\n?? tools/resources/test_coverage.py",
+  "files": [
+    {
+      "path": "spheres-web/data/leadership_production_2035.json",
+      "before_sha256": "2d0147f3dbcfc6f9d311556760ed5773aea900f9f82a276051e519d5d9a9e6db",
+      "after_sha256": "74f24fc9e9a612e3e6ef7fcc64372486d70d558b5b5838f2d5053e8cf8a24438",
+      "byte_identical": false,
+      "differences": [
+        {
+          "field": "/input_hashes/spheres-sim/src/government.rs",
+          "before": "3254020ea00ec763eb95dabe0c03b79e33b861d4144d6de7307627c03de4e51c",
+          "after": "4453a90a9949090337e3bafe4b211ccedc0755efdf50022888acb2f748fb7cff"
+        }
+      ]
+    },
+    {
+      "path": "docs/campaign-certification/C01/census.json",
+      "before_sha256": "91560aaffaf547594463498c76e7660704f9fbe331297f413024fe0bbcaac4f7",
+      "after_sha256": "e54f7e230608cda0d93464b0cf5bd571d7707ddc8cdcf2b327b8a2debaf01d97",
+      "byte_identical": false,
+      "differences": [
+        {
+          "field": "/source_files/1/bytes",
+          "before": 833242,
+          "after": 848824
+        },
+        {
+          "field": "/source_files/1/sha256",
+          "before": "3254020ea00ec763eb95dabe0c03b79e33b861d4144d6de7307627c03de4e51c",
+          "after": "4453a90a9949090337e3bafe4b211ccedc0755efdf50022888acb2f748fb7cff"
+        },
+        {
+          "field": "/source_files/11/sha256",
+          "before": "2d0147f3dbcfc6f9d311556760ed5773aea900f9f82a276051e519d5d9a9e6db",
+          "after": "74f24fc9e9a612e3e6ef7fcc64372486d70d558b5b5838f2d5053e8cf8a24438"
+        }
+      ]
+    },
+    {
+      "path": "docs/campaign-certification/C01/countries.json",
+      "before_sha256": "3f3ea61354fadbf85d182b6593f5cdf13e13a856d3fe59b64e1f3305c6622ca4",
+      "after_sha256": "3f3ea61354fadbf85d182b6593f5cdf13e13a856d3fe59b64e1f3305c6622ca4",
+      "byte_identical": true,
+      "differences": []
+    },
+    {
+      "path": "docs/campaign-certification/C01/represented-organizations.json",
+      "before_sha256": "85603b71cc5488937fff54f38dbf36ad18af6124d6dc3a492dbb20760d2c8e66",
+      "after_sha256": "85603b71cc5488937fff54f38dbf36ad18af6124d6dc3a492dbb20760d2c8e66",
+      "byte_identical": true,
+      "differences": []
+    },
+    {
+      "path": "docs/campaign-certification/C01/roles-and-lifecycle.json",
+      "before_sha256": "17c8a72eae1b6f309d9b8bd2a7fe2531996116c23fbafab2d3ebbd8517b39625",
+      "after_sha256": "17c8a72eae1b6f309d9b8bd2a7fe2531996116c23fbafab2d3ebbd8517b39625",
+      "byte_identical": true,
+      "differences": []
+    },
+    {
+      "path": "docs/campaign-certification/C01/work-orders.json",
+      "before_sha256": "ac94a794e315be810eb5c77fe65aaea9727c4f654b31d35810c0929fc8bc784d",
+      "after_sha256": "ac94a794e315be810eb5c77fe65aaea9727c4f654b31d35810c0929fc8bc784d",
+      "byte_identical": true,
+      "differences": []
+    },
+    {
+      "path": "docs/campaign-certification/C01/research-index.json",
+      "before_sha256": "37df1997e1e4b1acf5f6d9dffc2445c8c7edd2f137394ad7e352a75f2bbfe9ba",
+      "after_sha256": "37df1997e1e4b1acf5f6d9dffc2445c8c7edd2f137394ad7e352a75f2bbfe9ba",
+      "byte_identical": true,
+      "differences": []
+    }
+  ],
+  "source_inputs_after": {
+    "spheres-sim/src/government.rs": "4453a90a9949090337e3bafe4b211ccedc0755efdf50022888acb2f748fb7cff",
+    "spheres-sim/src/nations.rs": "8b847b6a843e6a41a82f80446c41ef0e2abccbb6172cc956207859cf71edab08",
+    "tools/avatars/leadership_production.py": "f05b765d013f697a773a2f1f4eea872e7114ba9233538d87d7f551700a1387af",
+    "tools/avatars/campaign_census.py": "4eda2d0bf01a10d7770f79f9dad964dffc01d5b884d90ea226730e254626207b",
+    "tools/avatars/campaign_research.py": "82294ea6e849736551d2688e01e48fade211aed93ca85a2eb674ecee9cbb791b",
+    "spheres-sim/src/opening_mandates.rs": "1c12d70b6992f89af17f8d861c364e3eac32a340905be2638484495c88bef22b",
+    "spheres-sim/data/opening_mandates_1990.json": "bc403a209d829dbd225e2df89611bc0bcbed0c27d5a8aa127325baf652a19384",
+    "spheres-sim/src/army_institutions.rs": "d1b7039a5f04fb8636e32e9c5c610cdc9defe70d8c57ee0505e8a719ff732f36",
+    "spheres-sim/data/army_institutions_1990.json": "9d5df834998c535e7bc8039d8352ecaf0ddcfdd8e4662830eaba2b2de26c25af",
+    "spheres-sim/data/army_institution_coverage_1990.json": "836075908f6e86638f159f5b57a1048e41e847243ece75697ca2bd6b538afd52",
+    "spheres-sim/src/army_authority.rs": "7c2d4bd867f434221490dc9cecac53eb18eef701f7a6d9a97011a4cf3a5c2053",
+    "spheres-sim/data/army_authority_1989.json": "35e99445235348ded56a45cdd912892f0cd810c92a29121fbd66c8f911dc6d38",
+    "tools/politics/build_army_authority.py": "1d7de3d66f1ad8ac19f76c41f314ead9b4422b1474589069e220161c159c401d",
+    "tools/politics/extract_army_authority.py": "e2dc18e47e401c4cffacca7d29e11def17604adf61355e6c81f9542dd86c6eb4",
+    "tools/politics/fixtures/vdem-v16-1989-military-authority.json": "362db5c52447501a1403ac31d3abf59fd474768e9301b06042b35cdf1e136894",
+    "spheres-sim/src/lib.rs": "f2852dfc40d213f74d04647ccedd4d674c9e00e08d1bc5f79ff6de20624eef82",
+    "spheres-sim/src/blocs.rs": "47d1d456576b638d8bfb9a18f9c7564b62c2f5fb97acec978b207210c6d09fbb",
+    "spheres-sim/src/politics.rs": "990e675157008bbcf80944840d7946b961bff7863ea6584a998c13a9d4119995",
+    "spheres-sim/src/stratagems.rs": "10493241d716514902cfc1310baf0bbe8c8da76c6a8229c2fa637c0d2ff36e0d",
+    "spheres-sim/src/world.rs": "b83d0a5d33526824082f2b1446a8f843fc4ed85f90a25d76d5256231b9c9c354",
+    "spheres-sim/src/economy.rs": "2c9b9f3b0caf9bc349a66dc13ab681b2932fda82ab2ea88b469ecd24b1459701",
+    "spheres-sim/src/init.rs": "aac78736219da05727956be0cfc680d9b8223bc3010cac6f9474c34985b9c567",
+    "spheres-sim/tests/treasury.rs": "980d8247afc804a2bb2b5436be42542e77b8d5852310cfe44abd349b80318bc8",
+    "spheres-sim/data/resources_1990.json": "d8682405afddcfc04f4dfbfb4d16d5195ed352df09120a678d3d5d3ef9573073",
+    "spheres-web/data/district_resources.json": "7ce1c3de0eb1684c89edc0efeb2538f6c3e3c7c5ff547307af864e72074c4cb5",
+    "tools/resources/resource_coverage.py": "534d2d08e647a2a08d5cef55a254d53919636522ed01dc35b78a03017601b0b9",
+    "tools/resources/make_resources.py": "f1b8883a30a429a6ac809af83f724ab52d2231a943bfc545c33ff540525e7e85",
+    "tools/resources/check.py": "27dd8c359abbbf67c0aac98b37251c014579c0fc0312edd707936e55c8c374af",
+    "tools/resources/check_resources.py": "f37ec0a1bda16e94678c5f6da64d7350150ad5c6a42460e3b37e89a19ca6657e",
+    "spheres-sim/data/party_leaders.json": "18774ffa08a226e1a9c6b9608d6a4e8adfbab43928092ed925d3c44803cd2494",
+    "spheres-sim/data/party_executive_eligibility.json": "d4fbdbff29956f5251fc97dc2021b31b4a2a8b423fd6a89e2ce34397b409510d",
+    "spheres-sim/data/future_party_leadership.json": "96e724b21f59ff7278f1a64625bbf1620b3dca24d3ed7d7f3116684a0a0fec26",
+    "spheres-sim/data/future_party_leadership_seats.json": "cbf74d65ccd193a3cc86ef686d11ddb2b7f3281b98675d0c7b842e8bea92cd08",
+    "spheres-sim/data/future_party_continuation.json": "cec3e9d9f49cd27a97229b9741a325952df24f259acbbde092150f4032d24176",
+    "spheres-web/data/nation_figures.json": "f2fbd1a1a138fb94f55c33a6d058958fa51564bbc60cb7012ab5a27674351962",
+    "spheres-web/data/future_candidates_2035.json": "75afd1f5ef49b82b0569feacf025a786f7daf49ca9da7436b6acc677fbedc492",
+    "spheres-web/data/person_portraits.json": "1a73390a88cfd5603d8e5aa3a1fbec5cbe713ce46ec5a3573f7ebb1512fc305d",
+    "spheres-web/data/fictional_portraits.json": "54a16634b77cb60d4945b541d64504c8c354610d406e3baff00da5b186235d0c",
+    "tools/avatars/person_art_pipeline.py": "6afa236683c311ca9e70779ab4666063be18b12969286c8de5fe8b1556833947",
+    "tools/avatars/fictional_art_pipeline.py": "3c9c413c355ead18960ade226773e7f5df3506442dd2687fb9a78bcbbc21d826"
+  },
+  "sources_unchanged_during_run": true,
+  "source_input_mtimes_unchanged": true,
+  "passed": true,
+  "final_status": "M .gitattributes\n M .github/workflows/verify.yml\n M docs/campaign-certification/C01/census.json\n M docs/campaign-certification/verification/2026-09-22-completion.md\n M docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-history.json\n M docs/political-arm/2026-09-22-calibration-repairs.md\n M spheres-sim/data/resources_1990.json\n M spheres-sim/src/blocs.rs\n M spheres-sim/src/government.rs\n M spheres-sim/src/lib.rs\n M spheres-sim/src/politics.rs\n M spheres-sim/src/stratagems.rs\n M spheres-sim/tests/treasury.rs\n M spheres-web/data/district_resources.json\n M spheres-web/data/leadership_production_2035.json\n M tools/resources/README.md\n M tools/resources/check.py\n M tools/resources/check_resources.py\n M tools/resources/make_resources.py\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/fiscal-policy/\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/coup-debt-original21-witness-build.log\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/coup-debt-original21-witness-input.json\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/coup-debt-original21-witness.log\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/coup-debt-original21-witness.rs\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-21-a1-accounting-lifecycle-review.md\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-21-ai-franchise-authority-review.md\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-21-restored-workspace-result.json\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-A1-A10.log\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-build.log\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-calibration-summary.json\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-coup-distribution.json\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-development-analysis.json\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-development-n200-provenance.json\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-development-n200-result.json\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-development-n200-summary.log\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-distribution-extraction.py\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-focused-receipt.json\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-focused-runner.ps1\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-franchise-policy-application.json\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-franchise-policy-plan.json\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-native-snapshot.json\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-results.json\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-source-capture-tool.ps1\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-23-source-input-manifest.json\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/regime-break-debt-refresh-application.json\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/regime-break-debt-refresh-notes.md\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/regime-break-debt-refresh-tests.rs\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/regime-break-debt-refresh.patch\n?? docs/campaign-certification/verification/evidence/2026-09-22-completion/resource-coverage/\n?? tools/resources/fixtures/\n?? tools/resources/resource_coverage.py\n?? tools/resources/test_coverage.py"
+}

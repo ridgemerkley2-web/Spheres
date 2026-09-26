@@ -1,0 +1,34 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://web.archive.org/web/20120525141049id_/http://www.mic.gov.to/news-today/press-releases/1953-lord-tuivakano-elected-tongas-prime-minister-designate",
+  "original_url": "http://www.mic.gov.to/news-today/press-releases/1953-lord-tuivakano-elected-tongas-prime-minister-designate",
+  "archive_capture_utc": "2012-05-25T14:10:49Z",
+  "accessed_date": "2026-09-22",
+  "published_date": "2010-12-21",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 35956,
+  "source_response_sha256": "deb4413c1fdc33b4cac4f5cf6225a16a53bb21ecefbddcf1a0ebf12b3f74e9e3",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original government portal page, captured at 2012-05-25T14:10:49Z; the capture is used in place of the live page. The researcher downloaded and hashed the capture bytes before extraction on 2026-09-22 (local); the independent check re-downloaded it the same day and matched the bytes and SHA-256, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_tuivakano_assembly_result_presented_20101221",
+      "text": "MIC's release dated 21 December 2010 states that the 26 newly elected members elected Lord Tu'ivakano by secret ballot to be the next Prime Minister, 14-12 against 'Akilisi Pohiva, and that the result was presented to King George Tupou V 'today at the Villa' by the Interim Speaker, Lord Tupou, before the Prime Minister Designate was announced in the House.",
+      "attested_on": "2010-12-21",
+      "locator": "Body paragraphs 1-2",
+      "uncertainty": "attested_on is the date of the presentation to the King and of the announcement ('today'), not of the ballot, whose own date (20 or 21 December 2010) the release does not state. This is the Assembly's selection, not the royal appointment. The same sentence also calls the election 'unanimously' made, which contradicts the 14-12 count; the count is recorded as printed."
+    },
+    {
+      "id": "to_tuivakano_appointment_announced_20101221",
+      "text": "The same release says the Interim Speaker announced that the King 'will formalize Lord Tu'ivakano's appointment as Tonga's Prime Minister this Wednesday, 22, December, 2010', and that Tu'ivakano 'will replace' Dr. Feleti Vaka'uta Sevele.",
+      "locator": "Body paragraphs 4 and final",
+      "uncertainty": "A prospective statement. It is not used as evidence that the appointment took place, for which see to_palace_20101222_appointment."
+    }
+  ],
+  "scope_note": "MIC release dated 21 December 2010 (raw Internet Archive capture of 25 May 2012). Used for the Assembly's selection and its presentation to the King; the prospective appointment statement is not evidence that the appointment took place.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  }
+}

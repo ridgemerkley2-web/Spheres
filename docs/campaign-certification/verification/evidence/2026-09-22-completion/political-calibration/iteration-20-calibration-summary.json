@@ -1,0 +1,79 @@
+{
+  "iteration": 20,
+  "configuration": "Corrected UTF8 build; sourced opening executive-removal leverage and live lifecycle, .024 accountability/.65 confidence/.45 veto unchanged.",
+  "focused": {
+    "passed": 107,
+    "total": 107
+  },
+  "workspace": {
+    "targets": 66,
+    "failed": 0,
+    "receipt": "iteration-20-workspace-result.json",
+    "ignored": 89,
+    "passed": 1862,
+    "resource_timing_filtered": 1
+  },
+  "original": {
+    "A9": "203/203",
+    "total_outcome_gates": 10,
+    "passed_outcome_gates": 9,
+    "A8": "40/40 keep8",
+    "A1": {
+      "median_coups": 8.5,
+      "median_top3": 0.62
+    },
+    "A10": 0.358,
+    "A2": {
+      "hits": 9,
+      "seeds": 12
+    },
+    "failed": [
+      "A1"
+    ],
+    "A3": {
+      "hits": 0,
+      "seeds": 20
+    },
+    "attribution_guard": "pass",
+    "A5": {
+      "hits": 7,
+      "seeds": 12
+    },
+    "A6": "zero route events in12seeds at420months",
+    "A4": 19,
+    "A7": 7.815
+  },
+  "development": {
+    "seeds": "0..199",
+    "A9": "3248/3248",
+    "A4": 19,
+    "months": 252,
+    "A8": "200/200 keep8",
+    "A1": {
+      "median_coups": 8,
+      "median_top3": 0.62
+    },
+    "A10": 0.34,
+    "A2": {
+      "hits_over_run": 132,
+      "seeds": 200,
+      "hits_by_2000": 128
+    },
+    "failed": [
+      "A1"
+    ],
+    "A3": {
+      "hits": 2,
+      "seeds": 200
+    },
+    "A7": 7.52,
+    "A6": "zero route events in200seeds at252months; not the35year check",
+    "A5": {
+      "hits": 124,
+      "seeds": 200
+    }
+  },
+  "encoding": "The earlier corrupt preflight build was never measured; exact source repair and independent byte audit are retained.",
+  "independent_validation": "Not run; seeds1000..1059 remain untouched",
+  "status": "Incomplete calibration: original and development A1 fail despite ordinary full workspace and all107 focused checks passing."
+}

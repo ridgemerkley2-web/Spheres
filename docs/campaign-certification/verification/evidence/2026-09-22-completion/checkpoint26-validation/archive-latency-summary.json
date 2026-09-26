@@ -1,0 +1,170 @@
+{
+  "revision": "9f7faed5f541e14545e01caf1616ba08c6ad8ff9",
+  "completed_utc": "2026-09-22T22:47:58.148750+00:00",
+  "scope": "Four genuine archived-save checks plus two native mature-preview tests; not campaign certification or HTTP/browser performance.",
+  "passed": true,
+  "tests_passed": 6,
+  "tests_failed": 0,
+  "tests_ignored": 0,
+  "checks": [
+    {
+      "name": "legacy-population",
+      "command": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\s02_population-291e33abbb7c36b5.exe",
+        "archived_legacy_checkpoint_adoption_preserves_accounts_and_replays",
+        "--ignored",
+        "--exact",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "environment": {
+        "SPHERES_POPULATION_LEGACY_CHECKPOINT": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\lifetime-legacy\\saves\\profile-idle_human-30.json"
+      },
+      "exit_code": 0,
+      "seconds": 2.186,
+      "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\checkpoint26-validation-20260922\\final-archive-20260922T224635Z-3d5a44c3\\legacy-population.log",
+      "log_sha256": "53ac22bc7edc107f1ce71812154ec90271f86ec1fbbdc4db87909771810597c8",
+      "passed": true
+    },
+    {
+      "name": "master-archive",
+      "command": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+        "s05_master_migration_tests::actual_pinned_master_archive_preserves_property_history_and_next_day",
+        "--ignored",
+        "--exact",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "environment": {
+        "SPHERES_S05_MASTER_ARCHIVE": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-pinned-master\\profile-campaigns\\saves\\profile-industry_and_war-0.json"
+      },
+      "exit_code": 0,
+      "seconds": 2.777,
+      "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\checkpoint26-validation-20260922\\final-archive-20260922T224635Z-3d5a44c3\\master-archive.log",
+      "log_sha256": "23a80e50b2939ae2e75136c433cc1b0fdaec5643b89bcd5d511b188a85685e88",
+      "passed": true
+    },
+    {
+      "name": "party-save-versions",
+      "command": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+        "s05_save_matrix_tests::standalone_party_v1_preserves_real_supplier_books_for_equipment_versions_2_through_5",
+        "--ignored",
+        "--exact",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "environment": {
+        "SPHERES_S05_ACTIVE_FIXTURES": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active"
+      },
+      "exit_code": 0,
+      "seconds": 1.045,
+      "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\checkpoint26-validation-20260922\\final-archive-20260922T224635Z-3d5a44c3\\party-save-versions.log",
+      "log_sha256": "97ebc0130ee8237ce00f34a22cf5c2db09fd011b8eb588650473b83bdff31060",
+      "passed": true
+    },
+    {
+      "name": "active-company-stages",
+      "command": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+        "s05_active_fixture_tests::original_active_company_stages_preserve_property_across_load_and_explicit_adoption",
+        "--ignored",
+        "--exact",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "environment": {
+        "SPHERES_S05_ACTIVE_FIXTURES": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active"
+      },
+      "exit_code": 0,
+      "seconds": 25.622,
+      "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\checkpoint26-validation-20260922\\final-archive-20260922T224635Z-3d5a44c3\\active-company-stages.log",
+      "log_sha256": "2e5ca5de171856327371f55f5dcbc5d0cb6fc186f048eab55b6b1c5aac529683",
+      "passed": true
+    },
+    {
+      "name": "decision-review",
+      "command": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+        "decision_review::tests::mature_review_latency",
+        "--ignored",
+        "--exact",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "environment": {
+        "SPHERES_S10_PERF_SAVE": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\lifetime-legacy\\saves\\profile-idle_human-10.json"
+      },
+      "exit_code": 0,
+      "seconds": 0.997,
+      "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\checkpoint26-validation-20260922\\latency-20260922T224717Z-523b9c26\\decision-review.log",
+      "log_sha256": "074501a09269149ebc1c166c9c018eace65852fa4c3e31f23661f7ea5ec7f14f",
+      "passed": true
+    },
+    {
+      "name": "open-route-review",
+      "command": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+        "diplomatic_sanctions::tests::s10g_mature_open_route_preview_latency",
+        "--ignored",
+        "--exact",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "environment": {
+        "SPHERES_S10_PERF_SAVE": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\export\\2127-purchased.campaign.json"
+      },
+      "exit_code": 0,
+      "seconds": 8.062,
+      "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\checkpoint26-validation-20260922\\latency-20260922T224717Z-523b9c26\\open-route-review.log",
+      "log_sha256": "62be511f23862acb5ad31614b7e7a2f774a26bd11220cf0424076e0ec8cdae8a",
+      "passed": true
+    }
+  ],
+  "latency_metrics": [
+    {
+      "kind": "decisions",
+      "p95_ms": 13.9524,
+      "max_ms": 14.4049,
+      "p95_limit_ms": 300,
+      "max_limit_ms": 750
+    },
+    {
+      "kind": "government",
+      "p95_ms": 11.6118,
+      "max_ms": 11.6136,
+      "p95_limit_ms": 300,
+      "max_limit_ms": 750
+    },
+    {
+      "p95_ms": 172.6067,
+      "max_ms": 179.594,
+      "p95_limit_ms": 300,
+      "max_limit_ms": 750
+    }
+  ],
+  "latency_samples_per_metric": 21,
+  "latency_warmups_per_metric": 3,
+  "preservation": {
+    "source_unchanged": true,
+    "archive_fixture_and_provenance_count": 32,
+    "archive_fixtures_unchanged": true,
+    "latency_fixture_count": 2,
+    "latency_fixtures_unchanged": true
+  },
+  "raw_results": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\checkpoint26-validation-20260922\\final-archive-20260922T224635Z-3d5a44c3\\result.json",
+      "sha256": "b36971ee97934ca4d629479352fbfb42c761f75bccca76b487e48b957f97839d"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\checkpoint26-validation-20260922\\latency-20260922T224717Z-523b9c26\\result.json",
+      "sha256": "a2147daedc4b303e6ac3190ad1b9326b6d52ef4bf870b1dd9fc9c50e4696c0b5"
+    }
+  ],
+  "build_receipt": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\checkpoint26-validation-20260922\\build-receipt-9f7faed5.json",
+    "sha256": "120dbaa9060a859851059968f161a6bcb7ca372eb00b3264d49195c3d8fcff05"
+  }
+}

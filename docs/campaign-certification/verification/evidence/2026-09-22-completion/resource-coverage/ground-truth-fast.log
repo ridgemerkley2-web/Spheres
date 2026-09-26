@@ -1,0 +1,182 @@
+==============================================================================
+1. STRUCTURE
+  PASS  all 1471 districts in the artifact exist in the roster
+  PASS  meta.districts_with_any_resource (1471) equals the districts block (1471)
+  PASS  meta.districts_total (2610) equals the roster (2610 distinct ids)
+        coverage 1471/2610 = 56.36%
+        3524 district-commodity entries (1909 mineral, 1615 petroleum)
+  PASS  no mineral entry carries a magnitude key (keys seen: ['bands', 'confidence', 'field_level', 'fields', 'n', 'sites', 'src'])
+  PASS  no coal-field attachment carries a tonnage key (481 attachments, keys allowed: ['age', 'area_frac_district', 'area_frac_field', 'dep_age', 'intersection_sqkm', 'name', 'note', 'polygons', 'province', 'rank', 'sqkm_field_total', 'src'])
+  PASS  every coal-field attachment says in the artifact that it carries no tonnage
+  PASS  all 1615 petroleum entries flag their apportionment DERIVED
+  PASS  every cited province volume is flagged `shared`
+  PASS  meta.apportionment warns against reading the derived split as production
+
+==============================================================================
+2. THE PLANT GUARD  (re-derived from raw mrds.csv, not from sources.py)
+        4512 distinct cited MRDS site ids, 5018 (site, commodity) pairs
+        304632 MRDS records read
+  PASS  every cited site id resolves to a real MRDS record (4512/4512)
+  PASS  every cited site is a Producer or Past Producer (4512/4512)
+  PASS  NO cited site is a Processing Plant or a Geothermal operation (0 of 4512) — the correction pass holds
+  PASS  every (site, commodity) pair names its commodity in commod1/commod2, never only in commod3 (5018/5018)
+  PASS  Steep Rock (10157857) is cited by no commodity (commod1/2 both empty)
+  PASS  Dsc Warri (10304733), the Delta Steel PLANT, is cited by no commodity
+
+  -- the coke guard (re-derived from raw minfac.csv)
+        380 minfac rows mention coal or coke; 299 distinct ids cited by the artifact
+  PASS  every cited minfac coal id resolves to a real minfac record (299/299)
+  PASS  NO coke record is cited as coal (14 coke rows in the source, 0 admitted)
+  PASS  NO record classified `Plant` is cited as a coal mine (20 such rows in the source, 0 admitted)
+  PASS  every cited coal site sits at the coordinate minfac published, uncorrected (0 mismatches)
+
+==============================================================================
+3. POSITIVE GROUND TRUTH  (the 1990 world, pinned by district id)
+  -- Persian Gulf
+  PASS  Iraq / Al-Basrah: IQ-BA Al-Basrah carries oil — band=strong, province covers 89.8% of the district, 16,139 MMBO apportioned
+  PASS  Kuwait / Al Ahmadi: KW-AH Al Ahmadi carries oil — band=strong, province covers 100.0% of the district, 5,031 MMBO apportioned
+  PASS  Saudi / Ash Sharqiyah: SA-04 Ash Sharqiyah carries oil — band=strong, province covers 56.5% of the district, 217,455 MMBO apportioned
+  PASS  Iran / Khuzestan: IR-10 Khuzestan carries oil — band=strong, province covers 72.8% of the district, 32,630 MMBO apportioned
+  PASS  UAE / Abu Dhabi: AE-AZ Abu Dhabi carries oil — band=strong, province covers 97.4% of the district, 7,990 MMBO apportioned
+  PASS  Qatar / Ar Rayyan: QA-RA Ar Rayyān carries oil — band=strong, province covers 86.4% of the district, 1,541 MMBO apportioned
+  PASS  the Gulf littoral carries oil broadly: 67 of 84 districts across 7 nations (79.8%)
+  -- the Central African Copperbelt
+  PASS  Zambia / Copperbelt: ZM-08 Copperbelt carries copper — band=strong, 12 distinct coordinates from 12 records
+  PASS  Zaire / Katanga: CD-KA Katanga carries copper — band=strong, 25 distinct coordinates from 25 records
+  PASS  Zaire / Katanga cobalt: CD-KA Katanga carries cobalt — band=strong, 28 distinct coordinates from 29 records
+  -- the Andes
+  PASS  Chile / Antofagasta: CL-AN Antofagasta carries copper — band=strong, 627 distinct coordinates from 633 records; 1 of them a filing centroid holding 3 records
+  -- Australia
+  PASS  Pilbara (Western Australia): AU-WA Western Australia carries iron — band=strong, 16 distinct coordinates from 18 records
+  PASS  the Pilbara mines are the evidence, by name: ['Mount Tom Price Mine', 'Mount Whaleback Mine', 'Paraburdoo Mine', 'Robe River Mine']
+  PASS  Queensland (Weipa): AU-QLD Queensland carries bauxite — band=moderate, 3 distinct coordinates from 6 records; 1 of them a filing centroid holding 4 records
+  PASS  Northern Territory (Gove): AU-NT Northern Territory carries bauxite — band=moderate, 3 distinct coordinates from 3 records; 1 of them a filing centroid holding 1 records
+  -- South Africa
+  PASS  Witwatersrand (Gauteng): ZA-GT Gauteng carries gold — band=strong, 91 distinct coordinates from 92 records
+  PASS  Free State goldfield: ZA-FS Free State carries gold — band=strong, 28 distinct coordinates from 63 records; 2 of them a filing centroid holding 37 records
+  PASS  Bushveld (Limpopo): ZA-LP Limpopo carries platinum_group — band=strong, 12 distinct coordinates from 12 records
+  PASS  Bushveld (North West): ZA-NW North West carries platinum_group — band=moderate, 4 distinct coordinates from 5 records
+  PASS  the Western Cape, which has no goldfield, carries no gold
+  -- the Soviet iron belt
+  PASS  Krivoy Rog (Dnipropetrovs'k): UA-12 Dnipropetrovs'k carries iron — band=moderate, 3 distinct coordinates from 4 records
+  PASS  the Urals (Sverdlovsk): RU-SVE Sverdlovsk carries iron — band=strong, 16 distinct coordinates from 17 records
+  PASS  the KMA (Belgorod): RU-BEL Belgorod carries iron — band=moderate, 3 distinct coordinates from 3 records
+  PASS  Russia carries iron in 14 districts, Ukraine in 3
+  -- the bauxite islands and the phosphate desert
+  PASS  Jamaica / Manchester: JM-12 Manchester carries bauxite — band=strong, 47 distinct coordinates from 47 records; 1 of them a filing centroid holding 1 records
+  PASS  Jamaica carries bauxite in 8 of 14 districts
+  PASS  Khouribga (Chaouia-Ouardigha): MA-09 Chaouia - Ouardigha carries phosphate — band=moderate, 4 distinct coordinates from 5 records
+  PASS  Bou Craa (Laayoune): MA-15 Laâyoune - Boujdour - Sakia El Hamra carries phosphate — band=moderate, 3 distinct coordinates from 3 records
+  PASS  Morocco carries phosphate in 5 districts
+  -- the coal hole (the six fields that decide 1990)
+  PASS  the RUHR (Nordrhein-Westfalen): DE-NW Nordrhein-Westfalen carries coal — band=strong, 10 distinct coordinates from 10 records
+  PASS  the Ruhr's evidence is named collieries: ['Augusta Victoria/Blumenthal Mine', 'Ibbenb�ren Mine', 'Lippe Mine', 'Mine at Bergheim']
+  PASS  UPPER SILESIA (Slaskie): PL-SL Silesian carries coal — band=single, 1 distinct coordinates from 7 records; 1 of them a filing centroid holding 7 records
+  PASS  Upper Silesia is `single` and FLAGGED: the Yearbook files seventeen mines as one row and eight rows stack on 50.17N 18.83E, so one coordinate is one site's worth of evidence (ruling 4, working)
+  PASS  the DONBAS (Donets'ka): UA-14 Donets'k carries coal — band=moderate, 1 distinct coordinates from 1 records; 4 named coal field(s), Donetsky basin covering 39.1% of the district
+  PASS  the Donbas (Luhans'ka): UA-09 Luhans'k carries coal — band=moderate, 1 distinct coordinates from 1 records; 3 named coal field(s), Donetsky basin covering 31.6% of the district
+  PASS  the Donbas is named by its source: OFR 01-104's `Donetsky basin` polygon, not a guess at where the Donbas is
+  PASS  APPALACHIA (West Virginia): US-WV West Virginia carries coal — band=strong, 2 named coal field(s), Appalachian Region covering 69.6% of the district
+  PASS  Appalachia (Pennsylvania): US-PA Pennsylvania carries coal — band=moderate, 4 named coal field(s), Appalachian Region covering 30.4% of the district
+  PASS  Appalachia (Kentucky): US-KY Kentucky carries coal — band=moderate, 3 named coal field(s), Appalachian Region covering 24.1% of the district
+  PASS  Appalachia is named by its source: OFR 2012-1205's `Appalachian Region`, and West Virginia is measured against it, not assigned to it
+  PASS  SHANXI: CN-SX Shanxi carries coal — band=strong, 169 distinct coordinates from 243 records; 19 of them a filing centroid holding 75 records
+  PASS  Shanxi rests on 169 distinct mine coordinates — minfac alone would have given it one province centroid at 37N 112E
+  PASS  BRITISH COAL after the strike: 8 districts carry coal — ['GBR_east-midlands', 'GBR_east-wales', 'GBR_eastern', 'GBR_north-east']
+  PASS  and they are named pits: ['Daw Mill Colliery', 'Kellingley Colliery', 'Maltby Colliery', 'Thoresby Colliery']
+  -- the Soviet coal basins, by their own names
+  PASS  the KUZBASS (Kemerovo): RU-KEM carries `Kuznetsky basin` — yes
+  PASS  KARAGANDA: KZ-KAR carries `Karagandinsky basin` — yes
+  PASS  EKIBASTUZ (Pavlodar): KZ-PAV carries `Ekibastuzsky basin` — yes
+  PASS  the PECHORA basin (Komi): RU-KO carries `Pechorsky basin` — yes
+
+==============================================================================
+4. NEGATIVE GROUND TRUTH  (absences that carry as much weight)
+  PASS  Tyssedal and Mosjoen are aluminium SMELTERS: Norway carries no bauxite anywhere (21 districts checked)
+  PASS  Japan has no bauxite ore geology: Japan carries no bauxite anywhere (47 districts checked)
+  PASS  Switzerland carries no located resource of any kind (26 districts, 0 with an entry)
+  PASS  Singapore carries no located resource of any kind (5 districts, 0 with an entry)
+  PASS  no coke plant was admitted as a coal mine (minfac files 14 coke rows under a commodity string containing 'coal')
+  PASS  no US district carries oil or gas — WEP assessed only provinces OUTSIDE the United States
+  WARN  Germany carries bauxite in 1 district(s): DE-TH Thüringen (single, n=1) — NOT zero; the surviving evidence is DE-TH Vogelsberg Mountain
+  WARN  France carries bauxite in 3 district(s): FRA_provence-alpes-c-te-d-azur Provence-Alpes-Côte-d'Azur (strong, n=13), FRA_centre-val-de-loire Centre-Val de Loire (single, n=6), FRA_auvergne-rh-ne-alpes Auvergne-Rhône-Alpes (single, n=1) — NOT zero; the surviving evidence is the Var bauxite field
+
+==============================================================================
+5. APPORTIONMENT  (ruling 2 arithmetic)
+  PASS  every apportioned volume is known x area_frac_province to the artifact's own published precision (2109 checked)
+        worst residual is 0.9946 of the rounding bound, at ('IR-14', 'oil', '2030')
+  PASS  every province's `known` total is identical wherever it is cited (213 province-commodity totals)
+  PASS  no province apportions more than it holds, to rounding (213 province-commodity totals summed; worst excess +0.0020)
+        Iraq oil: Al-Basrah (IQ-BA) ranks 3 of 18 by apportioned volume, band=strong
+        Iraq oil: Al-Anbar (IQ-AN) ranks 7 of 18 by apportioned volume, band=moderate
+        Nigeria oil: Delta (NG-DE) ranks 1 of 12 by apportioned volume, band=strong
+        Nigeria oil: Cross River (NG-CR) ranks 9 of 12 by apportioned volume, band=sparse
+        Mexico oil: Tabasco (MX-TAB) ranks 1 of 9 by apportioned volume, band=moderate
+        Mexico oil: Campeche (MX-CAM) ranks 4 of 9 by apportioned volume, band=single
+  PASS  Iraq: Al-Basrah (#3) out-ranks Al-Anbar (#7) — the named failure is inverted
+  PASS  Al-Basrah bands strong and Al-Anbar moderate (0.8980 vs 0.4397 district coverage)
+  PASS  Nigeria: Delta is the leading oil district (#1)
+  PASS  Nigeria: Cross River has fallen to #9 of 12
+  WARN  Al-Basrah is Iraq's #3 oil district, not #1 — IQ-SD Sala ad-Din leads at 17,965 MMBO. WEP publishes one volume for the whole Mesopotamian Foredeep and holds no field geometry, so Rumaila and West Qurna cannot be placed.
+
+==============================================================================
+6. THE HONEST-LIMIT LEDGER
+        bands: moderate 660, single 997, sparse 547, strong 1320
+        single-site / single-province entries: 997 of 3524 = 28.3%
+  PASS  the single-evidence share is 28.3% — kept and rendered weaker, never filtered (ruling 1)
+        point-sourced entries by DISTINCT COORDINATES: 1->802, 2->251, 3-5->278, 6+->417  (n=1748)
+  PASS  every one of the 1748 point-sourced entries bands on its distinct coordinate count, recomputed here independently
+  PASS  802 of 1748 point-sourced entries rest on ONE distinct site (45.9%) — the honest headline, and it is not small
+        coal-field entries: 161 (22 of them also holding mine points, banded on the stronger of the two)
+  PASS  every one of the 161 coal-field entries bands on its measured area share, recomputed here independently
+  PASS  every roster nation has a continent ([])
+        Oceania          25 /   92 =  27.2%
+        Africa          210 /  513 =  40.9%
+        Asia            417 /  744 =  56.0%
+        Europe          422 /  707 =  59.7%
+        NorthAmerica    218 /  311 =  70.1%
+        SouthAmerica    179 /  243 =  73.7%
+  PASS  continental coverage spread is 46.5 points (Oceania 27.2% to SouthAmerica 73.7%) — survey effort, not endowment
+  WARN  coverage is NOT uniform: Oceania at 27.2% against SouthAmerica at 73.7%. Reading district count as endowment inverts the real 1990 map.
+        cited MRDS records sharing a coordinate with another: 533 of 4512 (11.8%), over 171 coordinates
+        worst collision: ('46.56346', '2.55405') carries 18 distinct cited records
+  PASS  coordinate collisions are measured, not assumed away
+  PASS  the named defect is closed: FRA_centre-val-de-loire bauxite still carries all 6 transcribed records and now bands `single` on 1 distinct coordinate (it read `strong`)
+  PASS  and every one of its sites is flagged `at_centroid`, so the map and the hover can say the point is a filing centroid
+        filing-centroid flag: 258 of 1748 point-sourced entries (14.8%) touch one, 80 rest on nothing else
+  PASS  the centroid flag is selective: 258 entries flagged, 80 of them wholly
+  WARN  80 entries have NO unflagged coordinate at all: every point under them is a filing centroid, so they are located to an administrative unit and no further. The band cannot say that on its own — `confidence.unflagged_coordinates` is the number to read.
+
+  -- the unrostered producer
+  PASS  the district roster models 160 nations and Guinea is not one of them
+  PASS  MRDS holds 10 ADMITTED bauxite-extraction records for Guinea: Bauxite - Guinea, Bauxite - Guinea, Boke-Sangaredi, Cbg, Boke Project, Fria, Friguia, Kindia, Kindia Debele, Kindia-Friguiagbe, Sangaredi
+  PASS  none of them is cited by any district — there is no district to hold them
+  PASS  Guinea is absent from national.bauxite (24 nations)
+  PASS  Guinea is absent from unlocated_producers.bauxite (['Albania', 'Romania'])
+  PASS  both out-of-roster 1990 bauxite producers are explicitly reported, with no aggregate
+  PASS  Guinea: 15,800,000 metric tons in 1990, reported only as outside the roster
+  PASS  Sierra Leone: 1,430,000 metric tons in 1990, reported only as outside the roster
+  PASS  coverage review is explicitly bauxite-only; other commodity omissions remain unaudited
+  WARN  COVERAGE LIMIT: Guinea and Sierra Leone remain outside the district roster. Their sourced 1990 bauxite production is now explicit in unrostered_producers; no production or mines were assigned to a modeled country. Other commodities remain unaudited.
+
+  -- the three structural holes
+  WARN  1. NO PER-DISTRICT MAGNITUDE for any mineral. Districts carry presence and a citation count only; 1990 production is national and undivided.
+  WARN  2. NO LOCATED US PETROLEUM. 0 US districts carry oil or gas; the USA's 7,355.32 kb/d sits in unlocated_producers.
+  WARN  3. COAL IS LOCATED BUT NOT AT 1990. 328 districts carry coal from four USGS sources dated 2001-2012; 14 nations produced coal in 1990 and still have none located. The Ruhr shows the nine collieries open in 2006, not the twenty-odd working in 1990, and British coal shows the twenty pits left in 2007. The hole that remains is VINTAGE, not absence, and it understates 1990.
+
+==============================================================================
+7. DETERMINISM
+  SKIP  (--fast)
+
+==============================================================================
+RESULT: 99 checks, 0 failure(s), 9 warning(s)
+  WARN [no-bauxite] Germany carries bauxite in 1 district(s): DE-TH Thüringen (single, n=1) — NOT zero; the surviving evidence is DE-TH Vogelsberg Mountain
+  WARN [no-bauxite] France carries bauxite in 3 district(s): FRA_provence-alpes-c-te-d-azur Provence-Alpes-Côte-d'Azur (strong, n=13), FRA_centre-val-de-loire Centre-Val de Loire (single, n=6), FRA_auvergne-rh-ne-alpes Auvergne-Rhône-Alpes (single, n=1) — NOT zero; the surviving evidence is the Var bauxite field
+  WARN [apportion] Al-Basrah is Iraq's #3 oil district, not #1 — IQ-SD Sala ad-Din leads at 17,965 MMBO. WEP publishes one volume for the whole Mesopotamian Foredeep and holds no field geometry, so Rumaila and West Qurna cannot be placed.
+  WARN [limits] coverage is NOT uniform: Oceania at 27.2% against SouthAmerica at 73.7%. Reading district count as endowment inverts the real 1990 map.
+  WARN [limits] 80 entries have NO unflagged coordinate at all: every point under them is a filing centroid, so they are located to an administrative unit and no further. The band cannot say that on its own — `confidence.unflagged_coordinates` is the number to read.
+  WARN [guinea] COVERAGE LIMIT: Guinea and Sierra Leone remain outside the district roster. Their sourced 1990 bauxite production is now explicit in unrostered_producers; no production or mines were assigned to a modeled country. Other commodities remain unaudited.
+  WARN [holes] 1. NO PER-DISTRICT MAGNITUDE for any mineral. Districts carry presence and a citation count only; 1990 production is national and undivided.
+  WARN [holes] 2. NO LOCATED US PETROLEUM. 0 US districts carry oil or gas; the USA's 7,355.32 kb/d sits in unlocated_producers.
+  WARN [holes] 3. COAL IS LOCATED BUT NOT AT 1990. 328 districts carry coal from four USGS sources dated 2001-2012; 14 nations produced coal in 1990 and still have none located. The Ruhr shows the nine collieries open in 2006, not the twenty-odd working in 1990, and British coal shows the twenty pits left in 2007. The hole that remains is VINTAGE, not absence, and it understates 1990.
+VERDICT: PASS

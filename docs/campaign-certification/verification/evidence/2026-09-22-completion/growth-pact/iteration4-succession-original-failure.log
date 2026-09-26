@@ -1,0 +1,17 @@
+
+running 1 test
+
+thread 'government::tests::every_succession_rule_seats_the_right_description_and_never_a_name' (23060) panicked at spheres-sim\src\government.rs:12789:9:
+assertion `left == right` failed
+  left: Some("United States is led by the Republican Party government.")
+ right: Some("United States is led by a new Republican Party president.")
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test government::tests::every_succession_rule_seats_the_right_description_and_never_a_name ... FAILED
+
+failures:
+
+failures:
+    government::tests::every_succession_rule_seats_the_right_description_and_never_a_name
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 951 filtered out; finished in 0.03s
+

@@ -1,0 +1,117 @@
+{
+  "checks": [
+    {
+      "name": "avatar-unit-frozen",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 7.779,
+      "sha256": "b2a6ddf14f5b00294941a0dcef088abe23c33b9657ade7b87fc7562105a2a3f4",
+      "summary": [
+        "Ran 162 tests in 7.182s"
+      ]
+    },
+    {
+      "name": "workboard-frozen",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/planning/workboard.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.397,
+      "sha256": "6cc71a3c645534f8525319dc992aaa9aafa512dab30b47fc6c1c7a998c1f30b6",
+      "summary": []
+    },
+    {
+      "name": "leadership-ui-targeted",
+      "command": [
+        "node",
+        "--test",
+        "tools/ui/check_leadership_research_review.cjs",
+        "tools/ui/check_leadership_government_review.cjs",
+        "tools/ui/check_government_leadership.cjs"
+      ],
+      "exit_code": 0,
+      "seconds": 1.24,
+      "sha256": "1dd983764f138f54f338357288151c275d5fd970881ac1e6cb3a7e647d392ec0",
+      "summary": [
+        "\u2139 tests 89",
+        "\u2139 pass 89",
+        "\u2139 fail 0",
+        "\u2139 skipped 0"
+      ]
+    }
+  ],
+  "git_normalization": [
+    {
+      "path": "spheres-sim/src/government.rs",
+      "sha256": "33c9c466ed9ba9771b51bffad6d23acd22018eb988c43344e892825a41e5a75c",
+      "bytes": 812741,
+      "crlf_pairs": 0,
+      "raw_git_blob": "65f8699d49ef3b98264ba721d4104dc2fec911b0",
+      "clean_git_blob": "65f8699d49ef3b98264ba721d4104dc2fec911b0",
+      "same": true
+    },
+    {
+      "path": "spheres-web/data/leadership_production_2035.json",
+      "sha256": "a83fdd318b53b9b68284d8f72f982b86f9fbb0a155473b0edee7021917e91ba6",
+      "bytes": 5984743,
+      "crlf_pairs": 0,
+      "raw_git_blob": "0ba0a747068702f060079e7abf2a9b280a89d8e4",
+      "clean_git_blob": "0ba0a747068702f060079e7abf2a9b280a89d8e4",
+      "same": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/census.json",
+      "sha256": "43284930e888589345c5249d53e4b2fa85d58605e04a25caf0ef1a8cc925d42b",
+      "bytes": 6105,
+      "crlf_pairs": 0,
+      "raw_git_blob": "d134cc7ea263483a563058063abd14584c8a1c9d",
+      "clean_git_blob": "d134cc7ea263483a563058063abd14584c8a1c9d",
+      "same": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/research-index.json",
+      "sha256": "37df1997e1e4b1acf5f6d9dffc2445c8c7edd2f137394ad7e352a75f2bbfe9ba",
+      "bytes": 103748,
+      "crlf_pairs": 0,
+      "raw_git_blob": "cb0ac16c0bcc8ef16a89baa553f914ebc402900c",
+      "clean_git_blob": "cb0ac16c0bcc8ef16a89baa553f914ebc402900c",
+      "same": true
+    },
+    {
+      "path": "spheres-sim/src/opening_mandates.rs",
+      "sha256": "6641a0049f4ba1d12b6efeb4f61053921533221af8748761aa2db4610a420f5d",
+      "bytes": 7946,
+      "crlf_pairs": 1,
+      "raw_git_blob": "c86279d88d3f2ac0ea507574f19d45dd74cf34b5",
+      "clean_git_blob": "d2edf379e6803dac9caf09313f09930fb3c50108",
+      "same": false
+    },
+    {
+      "path": "spheres-sim/data/opening_mandates_1990.json",
+      "sha256": "a7c94c7e46b621cbcbd08da2ecdbdffd6868d54583d6d6e7bed7dee9f6d9edae",
+      "bytes": 2247,
+      "crlf_pairs": 1,
+      "raw_git_blob": "48d8d4d34d967eeab549d58100c575c307bdafeb",
+      "clean_git_blob": "e2ec1c61f61c53654ca3e8c7569664be2fc4bd85",
+      "same": false
+    }
+  ]
+}

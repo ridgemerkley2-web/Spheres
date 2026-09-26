@@ -1,0 +1,32 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://ago.gov.to/cms/judgements/supreme-court-civil/category/188-cv-2021.html?download=2294:lord-tuivakano-v-1-police-commissioner-2-attorney-general-3-kingdom-of-tonga-cv-23-21-tosc-28-oct-2021-whitten-qc-cj-judgement",
+  "accessed_date": "2026-09-21",
+  "published_date": "2021-10-28",
+  "access_method": "downloaded_original_pdf_text_and_relevant_pages_visually_read",
+  "source_response_bytes": 1288307,
+  "source_response_sha256": "af4f8fe0e4d2db8536ab8fe136d6db62e0a2ae407871a2276d3c5903ab593c08",
+  "source_response_checked_in": false,
+  "provenance_note": "Original response bytes were downloaded (curl -L) on 2026-09-21 and hashed before extraction; an independent re-download the same day matched the byte count and SHA-256. The PDF is a page scan with an OCR text layer; the imported label was checked against the rendered page image. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_ptoa_pohiva_campaign_2017",
+      "text": "The judgment records the plaintiff's evidence that, during the election campaign that followed Parliament's dissolution in August 2017, 'Mr Pohiva and the PTOA party' made statements about him (their content, which he denied, is not imported). Paragraphs 42-44 refer to Prime Minister Samuela 'Akilisi Pohiva, and paragraph 47 dates a live radio broadcast of Mr Pohiva's election speech to 7 October 2017.",
+      "locator": "PDF page 10, paragraph 42; page 11, paragraphs 43-47",
+      "period": {
+        "from": "2017-08-01",
+        "through": null
+      },
+      "uncertainty": "The court is recounting a litigant's evidence; only the co-occurrence of the PTOA label with Mr Pohiva in the 2017 campaign is used. Paragraph 46 says only 'Mr Pohiva'; reading him as 'Akilisi Pohiva is contextual, from paragraphs 42-44 and 47. The period starts at the dissolution month (month precision; 1 August 2017 is a lower bound, not a stated day). The judgment gives no end to the campaign and none is taken from another source. The 7 October speech does not mention PTOA. Pohiva's party office is not stated."
+    }
+  ],
+  "scope_note": "Label co-reference only. The statements described in paragraph 46, which the plaintiff denied, the speech quoted in paragraph 47 and all other allegations, evidence, findings and the outcome are not imported. Trial 13-15 and 20 September 2021; judgment 28 October 2021.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      11
+    ],
+    "method": "Pages 1 (title, trial and judgment dates) and 11 (paragraphs 43-47) rendered with PDFium and visually read; page 11 again by the checker. Paragraph 42 (page 10) was read from the text layer."
+  }
+}

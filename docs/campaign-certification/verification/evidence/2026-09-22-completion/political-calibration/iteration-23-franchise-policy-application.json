@@ -1,0 +1,15 @@
+{
+  "recorded_utc": "2026-09-22T21:26:29.908600+00:00",
+  "before_sha256": "b4d396947e1c7ae844f5f79594dc9901807ebdaff71a31b9fa73e190edc4afd0",
+  "after_sha256": "cd3a201a85abb1fd9349fa11218dcc03b257d158aea73559b49b2fbb85e780ae",
+  "helper_sha256": "b7086e148531a0942f2bb971cece16d1c08caabefcb12f58d3f50cc0fddb956a",
+  "tests_sha256": "26917b21807926b67c423540892bdc0241f87338ca7359604311372644c5fd02",
+  "plan_sha256": "58759f32aa023638e9d7aa791fc6fa40eaf476f96beb321d7611ef8240514095",
+  "method": "ASCII byte replacements; prior UTF-8 source bytes preserved",
+  "tests": [
+    "government::tests::ai_voluntary_opening_requires_a_live_eligible_party",
+    "government::tests::a_fresh_military_government_keeps_its_choice_without_blocking_paid_openings"
+  ],
+  "compiled_or_run": false,
+  "claim": "No prediction of calibration outcomes; thresholds and cohorts unchanged"
+}

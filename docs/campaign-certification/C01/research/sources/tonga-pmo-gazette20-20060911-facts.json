@@ -1,0 +1,58 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://web.archive.org/web/20070514085818id_/http://www.pmo.gov.to/artman/publish/article_170.shtml",
+  "original_url": "http://www.pmo.gov.to/artman/publish/article_170.shtml",
+  "archive_capture_utc": "2007-05-14T08:58:18Z",
+  "article_timestamp": "Sep 11, 2006, 18:32",
+  "accessed_date": "2026-09-21",
+  "published_date": "2006-09-11",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 11613,
+  "source_response_sha256": "0e8ebd4c7b7ef60b26b61030853879d4b29ae7a6791986168fba73632e64c73e",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original PMO page, captured at 2007-05-14T08:58:18Z; the original official page is no longer served. The capture bytes were downloaded and hashed before extraction on 2026-09-21 (local); a second download for this packet matched. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_crown_tupou_iv_death_20060911",
+      "text": "Gazette No. 20 of Monday 11 September 2006 carries Prime Minister Feleti Vaka'uta Sevele's announcement that the passing away of His Majesty King Taufa'ahau Tupou IV occurred in Auckland, New Zealand, 'at 11:34 pm on 10th September 2006 (New Zealand time), 12:34 am on 11th September 2006, (Tongan time)'.",
+      "attested_on": "2006-09-11",
+      "printed_times": [
+        {
+          "zone": "New Zealand time",
+          "date": "2006-09-10",
+          "time": "23:34"
+        },
+        {
+          "zone": "Tongan time",
+          "date": "2006-09-11",
+          "time": "00:34"
+        }
+      ],
+      "locator": "Reproduced gazette header and first paragraph; article timestamp Sep 11, 2006, 18:32",
+      "uncertainty": "attested_on is the Tongan calendar date, as for George Tupou V's death, which is recorded in Tonga time; the New Zealand date, 10 September, is kept in printed_times and is the date the UN record gives (to_crown_tupou_iv_death_20060910_un). The two printed times are one instant, consistent with New Zealand standard time (UTC+12) and Tongan time (UTC+13) in September 2006. PMO web reproduction, not the gazette facsimile."
+    },
+    {
+      "id": "to_crown_tupou_iv_funeral_announced_20060911",
+      "text": "The same notice announces that the late King will arrive in Tonga by Royal New Zealand Air Force flight on Wednesday 13 September 2006 and lie in state at the Royal Palace, and that the State Funeral will be at the Mala'e Kula Royal Tombs on Tuesday 19 September 2006.",
+      "attested_on": "2006-09-11",
+      "locator": "Second paragraph",
+      "uncertainty": "An advance announcement, dated by the notice. The burial is reported separately after the event (to_crown_tupou_iv_burial_reported_20060920). A funeral is not a reign boundary."
+    },
+    {
+      "id": "to_crown_tupou_iv_mourning_20060911",
+      "text": "The notice declares a period of State mourning of one month, beginning 'today' and ending on 17 October 2006, with flags flown at half-mast throughout the Kingdom.",
+      "locator": "Third paragraph",
+      "period": {
+        "from": "2006-09-11",
+        "through": "2006-10-17"
+      },
+      "uncertainty": "A mourning instrument, separate from the death, the accession and the proclamation; not a reign boundary."
+    }
+  ],
+  "scope_note": "Death notice by the Prime Minister as reproduced on the PMO website (raw Internet Archive capture of 14 May 2007, 08:58:18 UTC; the page header shows a later site update, 11 May 2007, while the article is timestamped 11 September 2006). The original page is no longer served, and the Gazette No. 20 facsimile was not found. Located by the independent check.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  }
+}

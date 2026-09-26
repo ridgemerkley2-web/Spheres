@@ -1,0 +1,28 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://web.archive.org/web/20020420031118id_/http://pmo.gov.to:80/office_of_the_prime_minister.htm",
+  "original_url": "http://pmo.gov.to/office_of_the_prime_minister.htm",
+  "archive_capture_utc": "2002-04-20T03:11:18Z",
+  "accessed_date": "2026-09-22",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 7015,
+  "source_response_sha256": "05bd72340c40011fe15e3ae9fe30050ac27278b1119d692bdaa98f7bb18bbda8",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original PMO page, captured at 2002-04-20T03:11:18Z; the capture is used in place of the live page. The researcher downloaded and hashed the capture bytes before extraction on 2026-09-22 (local); the independent check re-downloaded it the same day and matched the bytes and SHA-256, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_pmo_lavaka_ata_commencement_20000103",
+      "text": "The PMO's page on the office profiles 'HRH Prince Ulukalala Lavaka Ata, Prime Minister, and Minister for Communications and Women's Affairs', with 'Commencement Date : 3 rd January, 2000' and the career entry '2000 - Prime Minister of the Kingdom of Tonga ...'.",
+      "attested_on": "2000-01-03",
+      "locator": "Profile block below 'Official Address'",
+      "uncertainty": "A PMO profile written during his premiership (captured 20 April 2002), not an appointment instrument. 'Commencement Date' is read as the stated start of office; the appointment or signature date is not given separately."
+    }
+  ],
+  "scope_note": "Archived PMO page on the Office of the Prime Minister (raw Internet Archive capture of 20 April 2002), written during Lavaka Ata's premiership. Used only for the stated 'Commencement Date'.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  }
+}

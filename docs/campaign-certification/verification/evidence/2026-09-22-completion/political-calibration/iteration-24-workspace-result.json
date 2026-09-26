@@ -1,0 +1,21 @@
+{
+  "revision": "b51b7333b862d60fc3357b6d54d2ca5960b1543c",
+  "command": "cargo test --locked --release --workspace --no-fail-fast -- --skip tests::the_resource_pass_stays_under_budget",
+  "exit_code": 101,
+  "targets": 66,
+  "counts": {
+    "passed": 1881,
+    "failed": 3,
+    "ignored": 89,
+    "measured": 0,
+    "filtered": 1
+  },
+  "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\completion-checkpoint24-workspace-20260922.log",
+  "log_sha256": "62b66e087aae20b22b8af27dc7a15bd4858e1ca6e664b64669ebc8822d33b857",
+  "failed_tests": [
+    "the_stratagem_deck_moves_money_only_through_the_one_channel",
+    "tests::the_clock_still_moves_after_your_nation_is_gone",
+    "tests::a_dissolved_state_is_not_served_as_a_live_belligerent"
+  ],
+  "interpretation": "Failed checkpoint, preserved. Later focused fixes do not retroactively change this result."
+}

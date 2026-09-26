@@ -1,0 +1,181 @@
+{
+  "run": {
+    "id": 35789452696,
+    "head_sha": "b51b7333b862d60fc3357b6d54d2ca5960b1543c",
+    "status": "completed",
+    "conclusion": "failure",
+    "run_attempt": 1,
+    "event": "push",
+    "created_at": "2026-09-22T21:55:13Z",
+    "updated_at": "2026-09-22T22:29:41Z",
+    "html_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/35789452696"
+  },
+  "complete": true,
+  "jobs": [
+    {
+      "id": 106954162905,
+      "name": "town-browser (ubuntu-latest)",
+      "conclusion": "success",
+      "failed_steps": []
+    },
+    {
+      "id": 106954163045,
+      "name": "javascript (windows-latest)",
+      "conclusion": "success",
+      "failed_steps": []
+    },
+    {
+      "id": 106954163142,
+      "name": "town-browser (windows-latest)",
+      "conclusion": "success",
+      "failed_steps": []
+    },
+    {
+      "id": 106954163156,
+      "name": "native (windows-latest)",
+      "conclusion": "failure",
+      "failed_steps": [
+        "Run cargo test --locked --release --workspace --no-fail-fast -- --skip tests::the_resource_pass_stays_under_budget"
+      ]
+    },
+    {
+      "id": 106954163165,
+      "name": "native (ubuntu-latest)",
+      "conclusion": "failure",
+      "failed_steps": [
+        "Run cargo test --locked --release --workspace --no-fail-fast -- --skip tests::the_resource_pass_stays_under_budget"
+      ]
+    },
+    {
+      "id": 106954163188,
+      "name": "political-calibration (ubuntu-latest)",
+      "conclusion": "failure",
+      "failed_steps": [
+        "Require all ten political outcome gates and attribution controls"
+      ]
+    },
+    {
+      "id": 106954163226,
+      "name": "javascript (ubuntu-latest)",
+      "conclusion": "success",
+      "failed_steps": []
+    },
+    {
+      "id": 106954163274,
+      "name": "political-calibration (windows-latest)",
+      "conclusion": "failure",
+      "failed_steps": [
+        "Require all ten political outcome gates and attribution controls"
+      ]
+    },
+    {
+      "id": 106964589911,
+      "name": "verify (ubuntu-latest)",
+      "conclusion": "failure",
+      "failed_steps": [
+        "Require every native, JavaScript, town and political check to pass"
+      ]
+    },
+    {
+      "id": 106964589912,
+      "name": "verify (windows-latest)",
+      "conclusion": "failure",
+      "failed_steps": [
+        "Require every native, JavaScript, town and political check to pass"
+      ]
+    }
+  ],
+  "passed_jobs": 4,
+  "failed_jobs": 6,
+  "logs": [
+    {
+      "path": "native-linux-106954163165.log",
+      "bytes": 305649,
+      "sha256": "628033ab5a5d96b6c33360d34d1384cd47b4273d90766e3f928c135ed0fe5012",
+      "expected_checkout_mentioned": true,
+      "test_targets": 66,
+      "counts": {
+        "passed": 1881,
+        "failed": 3,
+        "ignored": 89,
+        "measured": 0,
+        "filtered": 1
+      },
+      "failed_tests": [
+        "the_stratagem_deck_moves_money_only_through_the_one_channel",
+        "tests::the_clock_still_moves_after_your_nation_is_gone",
+        "tests::a_dissolved_state_is_not_served_as_a_live_belligerent"
+      ],
+      "matches_local24_failures": true
+    },
+    {
+      "path": "native-windows-106954163156.log",
+      "bytes": 310580,
+      "sha256": "3c27cb18d79c8a3a482d90c9fa22ee828ad25349d5597f10424b4b61b4ef3ce0",
+      "expected_checkout_mentioned": true,
+      "test_targets": 66,
+      "counts": {
+        "passed": 1881,
+        "failed": 3,
+        "ignored": 89,
+        "measured": 0,
+        "filtered": 1
+      },
+      "failed_tests": [
+        "the_stratagem_deck_moves_money_only_through_the_one_channel",
+        "tests::the_clock_still_moves_after_your_nation_is_gone",
+        "tests::a_dissolved_state_is_not_served_as_a_live_belligerent"
+      ],
+      "matches_local24_failures": true
+    },
+    {
+      "path": "political-linux-106954163188.log",
+      "bytes": 38525,
+      "sha256": "d2ff9fd1ffe5c86299d4195b96e50af7e4065041835525256c1888909a3ec7eb",
+      "expected_checkout_mentioned": true,
+      "test_targets": 1,
+      "counts": {
+        "passed": 10,
+        "failed": 1,
+        "ignored": 0,
+        "measured": 0,
+        "filtered": 1
+      },
+      "failed_tests": [
+        "a1_coups_against_elected_governments_are_spread_not_three_micro_polities"
+      ],
+      "a1": "median coups 7 top-3 share median 0.59"
+    },
+    {
+      "path": "political-windows-106954163274.log",
+      "bytes": 39609,
+      "sha256": "366548ceacb337a2e3eaf8ff9377f774eb8fb48452e25433e7d6a6207d42f60c",
+      "expected_checkout_mentioned": true,
+      "test_targets": 1,
+      "counts": {
+        "passed": 10,
+        "failed": 1,
+        "ignored": 0,
+        "measured": 0,
+        "filtered": 1
+      },
+      "failed_tests": [
+        "a1_coups_against_elected_governments_are_spread_not_three_micro_polities"
+      ],
+      "a1": "median coups 7 top-3 share median 0.59"
+    },
+    {
+      "path": "verify-linux-106964589911.log",
+      "bytes": 2896,
+      "sha256": "f4416e8bf3ab8d7d9f53f3ba136daa4737d39d691b7b8308df83e63843505cdb",
+      "expected_checkout_mentioned": false
+    },
+    {
+      "path": "verify-windows-106964589912.log",
+      "bytes": 3040,
+      "sha256": "3ae20506f9c06e45d065ab217ffb89a7b2cf908f059cb9e9281f9a7be0672c16",
+      "expected_checkout_mentioned": false
+    }
+  ],
+  "interpretation": "Both native jobs exactly reproduce the three local24 failures repaired in checkpoint25. Both political jobs fail A1 only. Aggregate jobs correctly fail closed. No additional platform-specific failure found. Later25 fixes do not turn this run into a pass."
+}

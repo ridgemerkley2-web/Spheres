@@ -1,0 +1,9 @@
+{
+  "captured_utc": "2026-09-22T22:24:07.3342111Z",
+  "source_sha256": "1b142fe426edb48d91606bf2ea676f010bab86d92d38b79f67da1c4eeca49316",
+  "rlib_sha256": "1d5585501a47e94f809067a8604dd7c0d2555341fbbdca3de89f79c896241031",
+  "serde_json_sha256": "61f181ea73dfdeaf1e51c2355a919581074c1cc5152691c0937322690a0e5a34",
+  "plan": "iteration-25-original12-country-counts-plan.json",
+  "scope": "Original seeds0..11 only, original A1 assertion unchanged; native source edits after checkpoint25 not attributed to library",
+  "build": "rustc --edition=2021 --test -O with recorded sim and serde_json rlibs"
+}

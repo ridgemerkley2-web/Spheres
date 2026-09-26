@@ -175,12 +175,31 @@
     // Pending elevations and the openings that will be cut out of them; see
     // the punched-wall note below.
     this.faces = []; this.holes = [];
+    this.unit = null; this.unitTriangles = [];
     // 2 close, 1 card, 0 map. Read by the shared kit — a chamfer, a slate
     // course, a glazing bar, a tree limb and a parked car all ask it whether
     // they are worth drawing — so the three LODs are one call graph and a kind
     // never has to know which one it is being built at.
     this.detail = detail == null ? 2 : detail | 0;
   }
+  // Budget ownership is authored at physical component boundaries. It never
+  // changes geometry or divides a shared roof by an invented dwelling count.
+  Builder.prototype.budgetUnit = function (id, kind, buildingIds) {
+    this.unit = { id, kind, buildingIds: buildingIds || [] };
+    return this;
+  };
+  Builder.prototype.budgetRanges = function () {
+    const ranges = [];
+    for (let i = 0; i < this.unitTriangles.length; i += 1) {
+      const unit = this.unitTriangles[i];
+      if (!unit) throw new Error("Town budget ownership is incomplete");
+      const last = ranges[ranges.length - 1];
+      if (last && last.id.startsWith(unit.id + ":") && last.kind === unit.kind
+          && last.buildingIds.join("|") === unit.buildingIds.join("|")) last.count += 3;
+      else ranges.push({ id: unit.id + ":" + i, kind: unit.kind, buildingIds: unit.buildingIds.slice(), first: i * 3, count: 3 });
+    }
+    return ranges;
+  };
   /// How many sides a round thing gets. Curvature is the one place where
   /// segments are worth real triangles, so close view is generous; the map is
   /// where a six-sided pipe is not only acceptable but invisible.
@@ -221,6 +240,7 @@
     if (!(len > 1e-7)) return this;
     nx /= len; ny /= len; nz /= len;
     const m = mat == null ? 1 : mat;
+    if (this.unit) this.unitTriangles.push(this.unit);
     const tri = [A, B, C];
     for (let k = 0; k < 3; k += 1) {
       this.pos.push(tri[k][0], tri[k][1], tri[k][2]);
@@ -242,10 +262,10 @@
   /// An axis-aligned box by extents, because almost every part of a building
   /// is positioned by a face it must sit flush against — a floor level, an
   /// eaves line, a wall plane — and extents say that directly.
-  Builder.prototype.box = function (x0, x1, y0, y1, z0, z1, slot, mat) {
+  Builder.prototype.box = function (x0, x1, y0, y1, z0, z1, slot, mat, coveredTop) {
     this.quad([x1, y0, z0], [x1, y1, z0], [x1, y1, z1], [x1, y0, z1], slot, mat);
     this.quad([x0, y0, z0], [x0, y0, z1], [x0, y1, z1], [x0, y1, z0], slot, mat);
-    this.quad([x0, y1, z0], [x0, y1, z1], [x1, y1, z1], [x1, y1, z0], slot, mat);
+    if (!coveredTop) this.quad([x0, y1, z0], [x0, y1, z1], [x1, y1, z1], [x1, y1, z0], slot, mat);
     this.quad([x0, y0, z0], [x1, y0, z0], [x1, y0, z1], [x0, y0, z1], slot, mat);
     this.quad([x0, y0, z1], [x1, y0, z1], [x1, y1, z1], [x0, y1, z1], slot, mat);
     this.quad([x0, y0, z0], [x0, y1, z0], [x1, y1, z0], [x1, y0, z0], slot, mat);
@@ -314,7 +334,7 @@
     this.quad([x0, y1, z0], [x0, y1, z1], [x1, y1, z1], [x1, y1, z0], slot, mat);
     this.quad([x0, y0, z0], [x1, y0, z0], [x1, y0, z1], [x0, y0, z1], slot, mat);
     for (const f of [["z+", z1, x0, x1], ["z-", z0, x0, x1], ["x+", x1, z0, z1], ["x-", x0, z0, z1]]) {
-      this.faces.push({ tf: this.tf, side: f[0], at: f[1], u0: f[2], u1: f[3], v0: y0, v1: y1, slot, mat });
+      this.faces.push({ tf: this.tf, unit: this.unit, side: f[0], at: f[1], u0: f[2], u1: f[3], v0: y0, v1: y1, slot, mat });
     }
     return this;
   };
@@ -342,9 +362,9 @@
     const faces = this.faces;
     if (!faces.length) { this.holes = []; return this; }
     this.faces = [];
-    const saved = this.tf;
+    const saved = this.tf, savedUnit = this.unit;
     for (const f of faces) {
-      this.tf = f.tf;
+      this.tf = f.tf; this.unit = f.unit;
       const cuts = [];
       for (const world of this.holes) {
         const h = toLocal(f.tf, world);
@@ -357,7 +377,7 @@
       }
       emitFace(this, f, cuts);
     }
-    this.tf = saved;
+    this.tf = saved; this.unit = savedUnit;
     this.holes = [];
     return this;
   };
@@ -602,6 +622,8 @@
       slot: new Uint8Array(this.slot),
       mat: new Float32Array(this.mat),
       tris: this.pos.length / 9,
+      budgetUnits: this.unit ? this.budgetRanges() : null,
+      budgetBuildings: this.budgetBuildings || null,
     };
   };
 
@@ -621,7 +643,7 @@
   /// from the LOWEST vertex rather than a nominal datum, because a kerb
   /// upstand, a sunken loading dock and a garden step all disagree about where
   /// the ground is and the renderer only needs nothing to float.
-  Builder.prototype.finish = function (description, extra) {
+  Builder.prototype.finish = function (description, extra, ground) {
     const n = this.pos.length / 3;
     const positions = new Float32Array(this.pos);
     const normals = new Float32Array(this.nrm);
@@ -638,7 +660,7 @@
         if (positions[i + k] > max[k]) max[k] = positions[i + k];
       }
     }
-    const drop = min[1];
+    const drop = ground == null ? min[1] : ground;
     if (drop !== 0) {
       for (let i = 1; i < positions.length; i += 3) positions[i] -= drop;
       min[1] -= drop; max[1] -= drop;
@@ -676,10 +698,31 @@
 
   // ------------------------------------------------------- window and door
   // Openings are where the triangles go, and that is the correct place for
-  // them: what makes a box read as a building is the rhythm of its holes. A
-  // sash window here costs about ninety triangles — surround, reveal, glass
-  // and glazing bars — which is why a two-storey house lands near two thousand
-  // and a fourteen-storey slab needs the cheaper ribbon below instead.
+  // them: what makes a box read as a building is the rhythm of its holes.
+  // The surround, reveal, glass and glazing bars retain their real depth.
+  // Faces sealed inside the reveal or behind the glass need no triangles.
+
+  /// A frame member mounted in a glazed opening. Its rear is sealed by the
+  /// opaque pane; ends touching the aperture are sealed by the reveal. Keep
+  /// every exposed face, including the sides that give a thin bar its depth.
+  /// The limits are the actual aperture, not a camera or distance heuristic.
+  function glazingBar(b, x0, x1, y0, y1, z0, z1, mat, left, right, bottom, top) {
+    if (x1 < right) b.quad([x1, y0, z0], [x1, y1, z0], [x1, y1, z1], [x1, y0, z1], SLOT.TRIM, mat);
+    if (x0 > left) b.quad([x0, y0, z0], [x0, y0, z1], [x0, y1, z1], [x0, y1, z0], SLOT.TRIM, mat);
+    if (y1 < top) b.quad([x0, y1, z0], [x0, y1, z1], [x1, y1, z1], [x1, y1, z0], SLOT.TRIM, mat);
+    if (y0 > bottom) b.quad([x0, y0, z0], [x1, y0, z0], [x1, y0, z1], [x0, y0, z1], SLOT.TRIM, mat);
+    b.quad([x0, y0, z1], [x1, y0, z1], [x1, y1, z1], [x0, y1, z1], SLOT.TRIM, mat);
+    return b;
+  }
+
+  /// The cill and lintel cover a jamb's ends, and the wall covers its rear.
+  /// Both projecting sides remain: they are visible along an oblique facade.
+  function sashJamb(b, x0, x1, y0, y1, z0, z1) {
+    b.quad([x1, y0, z0], [x1, y1, z0], [x1, y1, z1], [x1, y0, z1], SLOT.TRIM, 0.98);
+    b.quad([x0, y0, z0], [x0, y0, z1], [x0, y1, z1], [x0, y1, z0], SLOT.TRIM, 0.98);
+    b.quad([x0, y0, z1], [x1, y0, z1], [x1, y1, z1], [x0, y1, z1], SLOT.TRIM, 0.98);
+    return b;
+  }
 
   /// One opening on the +Z wall plane at z = zf, centred on cx. Authored only
   /// for +Z; the other three elevations get it by pushing a cardinal yaw, so
@@ -692,6 +735,8 @@
   /// triangles for the fronts come from.
   function sash(b, cx, y0, w, h, zf, cols, rows, dress) {
     const hw = w / 2, y1 = y0 + h, dep = 0.17, full = b.detail >= 2;
+    const bar = (x0, x1, lo, hi, z0, z1, mat) =>
+      glazingBar(b, x0, x1, lo, hi, z0, z1, mat, cx - hw, cx + hw, y0, y1);
     const shown = dress !== false;
     // A CILL IS A PROJECTING STONE, not a painted line. It oversails the jambs,
     // stands 100 mm proud of the brickwork and is chamfered on its outer
@@ -706,8 +751,8 @@
       b.box(cx - hw - 0.14, cx + hw + 0.14, y0 - 0.1, y0 + 0.01, zf - 0.02, zf + 0.07, SLOT.TRIM, 1.04);
       b.box(cx - hw - 0.14, cx + hw + 0.14, y1 - 0.01, y1 + 0.14, zf - 0.02, zf + 0.05, SLOT.TRIM, 1.0);
     }
-    b.box(cx - hw - 0.13, cx - hw, y0, y1, zf - 0.02, zf + 0.05, SLOT.TRIM, 0.98);                        // jambs
-    b.box(cx + hw, cx + hw + 0.13, y0, y1, zf - 0.02, zf + 0.05, SLOT.TRIM, 0.98);
+    sashJamb(b, cx - hw - 0.13, cx - hw, y0, y1, zf - 0.02, zf + 0.05);
+    sashJamb(b, cx + hw, cx + hw + 0.13, y0, y1, zf - 0.02, zf + 0.05);
     b.opening(cx - hw, cx + hw, y0, y1, zf);
     // Reveal: four inward-facing quads from the wall plane back to the glass.
     b.quad([cx - hw, y0, zf], [cx + hw, y0, zf], [cx + hw, y0, zf - dep], [cx - hw, y0, zf - dep], SLOT.WALL, 0.72);
@@ -719,21 +764,24 @@
       // The frame itself, sitting in the reveal in front of the glass. Four
       // sections and a meeting rail: the window, rather than the hole.
       const fz0 = zf - dep + 0.005, fz1 = zf - dep + 0.075;
-      b.box(cx - hw, cx - hw + 0.07, y0, y1, fz0, fz1, SLOT.TRIM, 1.02);
-      b.box(cx + hw - 0.07, cx + hw, y0, y1, fz0, fz1, SLOT.TRIM, 1.02);
-      b.box(cx - hw, cx + hw, y0, y0 + 0.07, fz0, fz1, SLOT.TRIM, 1.06);
-      b.box(cx - hw, cx + hw, y1 - 0.07, y1, fz0, fz1, SLOT.TRIM, 1.06);
-      b.box(cx - hw, cx + hw, y0 + h * 0.5 - 0.05, y0 + h * 0.5 + 0.05, fz0, fz1 + 0.02, SLOT.TRIM, 1.08);
+      bar(cx - hw, cx - hw + 0.07, y0, y1, fz0, fz1, 1.02);
+      bar(cx + hw - 0.07, cx + hw, y0, y1, fz0, fz1, 1.02);
+      bar(cx - hw, cx + hw, y0, y0 + 0.07, fz0, fz1, 1.06);
+      bar(cx - hw, cx + hw, y1 - 0.07, y1, fz0, fz1, 1.06);
+      bar(cx - hw, cx + hw, y0 + h * 0.5 - 0.05, y0 + h * 0.5 + 0.05, fz0, fz1 + 0.02, 1.08);
     }
     if (!full) return b;
     const nc = Math.max(1, cols | 0), nr = Math.max(1, rows | 0);
     for (let i = 1; i < nc; i += 1) {
       const x = cx - hw + (w * i) / nc;
-      b.box(x - 0.026, x + 0.026, y0, y1, zf - dep, zf - dep + 0.05, SLOT.TRIM, 1.05);
+      bar(x - 0.026, x + 0.026, y0, y1, zf - dep, zf - dep + 0.05, 1.05);
     }
     for (let j = 1; j < nr; j += 1) {
       const y = y0 + (h * j) / nr;
-      b.box(cx - hw, cx + hw, y - 0.028, y + 0.028, zf - dep, zf - dep + 0.05, SLOT.TRIM, 1.05);
+      // The middle glazing bar is entirely behind the wider meeting rail.
+      // Its 5 mm rear lip is sealed by the pane; neither contributes a face.
+      if (Math.abs(y - (y0 + h * 0.5)) + 0.028 <= 0.05) continue;
+      bar(cx - hw, cx + hw, y - 0.028, y + 0.028, zf - dep, zf - dep + 0.05, 1.05);
     }
     return b;
   }
@@ -744,6 +792,8 @@
   /// one band covers a whole floor for the price of a couple of sashes.
   function ribbon(b, x0, x1, y0, h, zf, pitch) {
     const y1 = y0 + h, dep = 0.14;
+    const bar = (left, right, lo, hi, z1, mat) =>
+      glazingBar(b, left, right, lo, hi, zf - dep, z1, mat, x0, x1, y0, y1);
     if (b.detail >= 2) {
       b.bevelBox(x0 - 0.12, x1 + 0.12, y0 - 0.14, y0 + 0.01, zf - 0.02, zf + 0.1, SLOT.TRIM, 1.02, 0.02);
       b.bevelBox(x0 - 0.12, x1 + 0.12, y1 - 0.01, y1 + 0.15, zf - 0.02, zf + 0.06, SLOT.TRIM, 1.0, 0.02);
@@ -764,12 +814,12 @@
     const n = Math.max(1, Math.round((x1 - x0) / ((pitch || 1.8) * (b.detail >= 2 ? 1 : 2))));
     for (let i = 1; i < n; i += 1) {
       const x = x0 + ((x1 - x0) * i) / n;
-      b.box(x - 0.05, x + 0.05, y0, y1, zf - dep, zf - dep + 0.06, SLOT.TRIM, 1.05);
+      bar(x - 0.05, x + 0.05, y0, y1, zf - dep + 0.06, 1.05);
     }
     if (b.detail >= 2) {
       // A transom at the head of the opening light, which is what turns a
       // glazed slot into a window at close range.
-      b.box(x0, x1, y0 + h * 0.62 - 0.04, y0 + h * 0.62 + 0.04, zf - dep, zf - dep + 0.055, SLOT.TRIM, 1.06);
+      bar(x0, x1, y0 + h * 0.62 - 0.04, y0 + h * 0.62 + 0.04, zf - dep + 0.055, 1.06);
     }
     return b;
   }
@@ -1004,7 +1054,7 @@
   /// A stack with a corbelled head, lead flashing at the roof line and clay
   /// pots. Chimneys are the single cheapest thing that says "temperate, and
   /// not new": the kit puts one on every pitched roof and one per party wall
-  /// on a terrace. The pots are smoothed and have a rim and a hollow throat,
+  /// on a terrace. The pots are smoothed and have a projecting rim,
   /// because a pot is the most obviously round object on the skyline and a
   /// hexagonal one gives the whole roof away.
   function chimney(b, cx, cz, base, top, w, d, pots) {
@@ -1019,10 +1069,12 @@
     const n = pots || 2;
     for (let i = 0; i < n; i += 1) {
       const x = cx + (n === 1 ? 0 : (i / (n - 1) - 0.5) * (w - 0.4));
-      tube(b, x, cz, top, top + 0.58, 0.145, 0.125, b.segs(9, 6, 4), SLOT.ROOF, 1.1);
+      // At close range the corbel seals the base and the wider, capped rim
+      // seals the top. Separate barrel caps and an inner throat enclosed by
+      // those opaque surfaces add no visible geometry.
+      tube(b, x, cz, top, top + 0.58, 0.145, 0.125, b.segs(9, 6, 4), SLOT.ROOF, 1.1, b.detail < 2);
       if (b.detail >= 2) {
         tube(b, x, cz, top + 0.58, top + 0.66, 0.155, 0.15, 9, SLOT.ROOF, 1.14);   // rim
-        tube(b, x, cz, top + 0.5, top + 0.62, 0.09, 0.09, 9, SLOT.DARK, 0.7);      // throat
       }
     }
     return b;
@@ -1074,7 +1126,10 @@
     b.box(x0, x1, y + h * 0.42, y + h * 0.42 + 0.05, z - 0.025, z + 0.025, SLOT.METAL, 0.95);
     for (let i = 0; i <= n; i += 1) {
       const x = x0 + ((x1 - x0) * i) / n;
-      b.box(x - 0.018, x + 0.018, y, y + h, z - 0.018, z + 0.018, SLOT.METAL, 1.0);
+      // Interior baluster caps lie entirely inside the top rail's top face.
+      // Keep the end-post caps: their outer half extends beyond that rail.
+      b.box(x - 0.018, x + 0.018, y, y + h, z - 0.018, z + 0.018, SLOT.METAL, 1.0,
+        x - 0.018 >= x0 && x + 0.018 <= x1);
     }
     return b;
   }
@@ -1451,7 +1506,11 @@
       const units = Math.round(p.w / 5.9), uw = p.w / units;
       const hw = p.w / 2, hd = 4.4, h = p.storeys * STOREY;
       const zc = -p.d / 2 + 5.0 + hd;
+      const homes = Array.from({ length: units }, (_, i) => "dwelling-" + (i + 1));
+      b.budgetBuildings = homes.map((id, i) => ({ id, label: "Dwelling " + (i + 1) }));
+      b.budgetUnit("lot-ground", "terrain");
       grass(b, -hw, hw, -p.d / 2, p.d / 2);
+      b.budgetUnit("shared-envelope", "shared", homes);
       b.push(0, 0, 0, zc);
       shell(b, hw, hd, h, p.storeys - 1, (i) => i * STOREY);
       gableRoof(b, hw, hd, h, hd * 0.8, 0.22);
@@ -1459,11 +1518,14 @@
         (function () { const xs = []; for (let u = 0; u < units; u += 1) xs.push(-hw + uw * (u + 0.5)); return xs; })(), 1.25);
       // A stack on every party wall and both ends: the signature of a terrace.
       for (let i = 0; i <= units; i += 1) {
+        b.budgetUnit("party-stack-" + i, "shared", homes.slice(Math.max(0, i - 1), Math.min(units, i + 1)));
         const inset = i === 0 ? 0.62 : i === units ? -0.62 : 0;
         chimney(b, -hw + uw * i + inset, 0, h, h + hd * 0.8 + 0.95, 0.95, 0.7, i === 0 || i === units ? 2 : 3);
       }
+      b.budgetUnit("shared-envelope", "shared", homes);
       rainwater(b, hw, hd, h);
       for (let u = 0; u < units; u += 1) {
+        b.budgetUnit(homes[u], "building", [homes[u]]);
         const cx = -hw + uw * (u + 0.5);
         frontDoor(b, cx + uw * 0.28, hd, 2.05);
         sash(b, cx - uw * 0.2, 0.85, uw * 0.42, 1.6, hd, 2, 3);
@@ -1474,6 +1536,8 @@
       }
       b.push(2, 0, 0, 0);
       for (let u = 0; u < units; u += 1) {
+        // Yaw 2 reverses the physical dwelling order on the rear elevation.
+        b.budgetUnit(homes[units - 1 - u], "building", [homes[units - 1 - u]]);
         const cx = -hw + uw * (u + 0.5);
         // The ground-floor back window sits BESIDE the addition, not behind it,
         // which is both where a terrace actually puts it and the only place it
@@ -1496,13 +1560,17 @@
       b.pop();
       // Forecourt: a shallow strip, dwarf wall and railings, no front garden.
       const fz = p.d / 2;
+      b.budgetUnit("lot-ground", "terrain");
       paving(b, -hw, hw, zc + hd, fz - 1.0);
+      b.budgetUnit("forecourt-boundary", "prop");
       lowWall(b, -hw, hw, fz - 1.2, fz - 0.85, 0.5);
       railing(b, -hw, hw, fz - 1.02, 0.58, 0.5, 0.24);
+      b.budgetUnit("lot-ground", "terrain");
       for (let u = 0; u < units; u += 1) grass(b, -hw + uw * u + 0.4, -hw + uw * (u + 1) - 0.4, -p.d / 2 + 0.5, zc - hd - 3.0);
       // Two cars nose to tail at the kerb. A terrace with an empty frontage is
       // the single clearest tell that a street was generated rather than lived
       // in, and this is four hundred triangles against that.
+      b.budgetUnit("parked-cars", "prop");
       parkedCar(b, -hw + uw * 0.9, fz - 1.9, 0, SLOT.CAR_A, 4.0);
       if (units > 3) parkedCar(b, -hw + uw * (units - 1.1), fz - 1.9, 0, SLOT.CAR_C, 4.2);
       return "Original game art: representative temperate terrace, continuous eaves and party-wall stacks over " +
@@ -2099,7 +2167,15 @@
     close(b, p) {
       const hw = p.w / 2, hd = 7.0, h = TALL_STOREY + (p.storeys - 1) * 3.5;
       const zc = -p.d / 2 + 24.0 + hd;
+      const wingH = TALL_STOREY + 3.5, wd = 8.0;
+      b.budgetBuildings = [
+        { id: "main-range", label: "Main university range" },
+        { id: "west-wing", label: "West university wing" },
+        { id: "east-wing", label: "East university wing" },
+      ];
+      b.budgetUnit("campus-ground", "terrain");
       grass(b, -hw, hw, -p.d / 2, p.d / 2);
+      b.budgetUnit("main-range", "building", ["main-range"]);
       // A U around a courtyard: main range at the rear, two wings coming
       // forward. It costs three volumes and it is the shape that says campus.
       b.push(0, 0, 0, zc);
@@ -2126,12 +2202,23 @@
       }
       b.push(2, 0, 0, 0);
       for (let s = 0; s < p.storeys; s += 1) {
-        for (let i = 0; i < 6; i += 1) sash(b, -hw + (p.w * (i + 0.5)) / 6, (s === 0 ? 0 : TALL_STOREY + (s - 1) * 3.5) + 1.1, 1.35, 1.9, hd, 2, 3, false);
+        for (let i = 0; i < 6; i += 1) {
+          const x = -hw + (p.w * (i + 0.5)) / 6;
+          const y = (s === 0 ? 0 : TALL_STOREY + (s - 1) * 3.5) + 1.1;
+          // The attached wings seal these lower rear openings completely.
+          // Include the whole cill/lintel extents in the containment test;
+          // courtyard-facing and upper-storey windows remain unchanged.
+          const halfTrim = 1.35 / 2 + 0.14;
+          const withinWing = Math.abs(x) - halfTrim >= hw - 12 && Math.abs(x) + halfTrim <= hw
+            && y - 0.1 >= 0 && y + 1.9 + 0.14 <= wingH;
+          if (!withinWing) sash(b, x, y, 1.35, 1.9, hd, 2, 3, false);
+        }
       }
       b.pop();
       b.pop();
-      const wingH = TALL_STOREY + 3.5, wd = 8.0;
       for (const sx of [-1, 1]) {
+        const unit = sx < 0 ? "west-wing" : "east-wing";
+        b.budgetUnit(unit, "building", [unit]);
         const cx = sx * (hw - 6.0);
         b.push(0, cx, 0, zc - hd - wd);
         shell(b, 6.0, wd, wingH, 1, () => TALL_STOREY);
@@ -2148,13 +2235,17 @@
         b.pop();
       }
       // Courtyard between the wings.
+      b.budgetUnit("campus-ground", "terrain");
       const cyz = zc - hd - wd;
       paving(b, -hw + 12.5, hw - 12.5, cyz - wd, cyz + wd);
+      b.budgetUnit("courtyard-furniture-and-trees", "prop");
       for (const x of [-hw + 15, hw - 15]) tree(b, x, cyz, 7.6, 0.2, 6);
       bench(b, 0, cyz - wd + 2.0, 0); bench(b, 0, cyz + wd - 2.0, 2);
       const fz = p.d / 2;
       railing(b, -hw, hw, fz - 0.8, 0, 1.9, 0.3);
+      b.budgetUnit("campus-ground", "terrain");
       paving(b, -3.0, 3.0, zc + hd + 1.4, fz - 0.9);
+      b.budgetUnit("entrance-trees", "prop");
       for (const x of [-hw + 5, hw - 5]) tree(b, x, fz - 5.0, 8.2, -0.2, 6);
       return "Original game art: representative temperate university range around a courtyard. Original design; not any existing institution.";
     },
@@ -2578,7 +2669,7 @@
   function variantFor(kind, p, lod) {
     const key = kind + "|" + p.w + "|" + p.d + "|" + p.storeys + "|" + lod + "|" + p.seed;
     const hit = variants.get(key);
-    if (hit) return hit;
+    if (hit) { variants.delete(key); variants.set(key, hit); return hit; }
     const b = new Builder(DETAIL[lod]);
     const spec = KINDS[kind];
     let description;
@@ -2628,6 +2719,14 @@
     }
     baked.extent = baked.tris ? [ex1 - ex0, ez1 - ez0] : [0, 0];
     variants.set(key, baked);
+    // A long city-browsing session must not retain every seed ever inspected.
+    // Callers retain their own light metadata, never rely on cache residency.
+    let total = 0;
+    for (const v of variants.values()) total += v.tris;
+    for (const [oldKey, v] of variants) {
+      if (total <= 400000 || oldKey === key) break;
+      variants.delete(oldKey); total -= v.tris;
+    }
     return baked;
   }
 
@@ -2872,7 +2971,7 @@
   /// so two tiles laid side by side make one full carriageway between them and
   /// a single tile still reads correctly on its own. That is a deliberate
   /// compromise for a P0 whose job is to be looked at as one block.
-  function block(opts) {
+  function block(opts, sceneLots) {
     const o = opts || {};
     const seed = seedOf(o.id == null ? 0 : o.id);
     const district = DISTRICTS[o.district] ? o.district : "mixed";
@@ -2895,10 +2994,15 @@
         seed: SEEDED[kind] ? mix32(seed ^ Math.imul(lotIndex + 1, 0x27d4eb2f)) : 0 };
       const baked = variantFor(kind, p, lod);
       const scheme = ask(seed, 900 + lotIndex * 5) % SCHEMES.length;
-      out.part(label + " / " + baked.label, kind, lotIndex, () => {
+      if (sceneLots) {
+        sceneLots.push({ index: lotIndex, kind, params: p, yaw, x, z, scheme, label: baked.label });
+        tris += baked.tris;
+      } else out.part(label + " / " + baked.label, kind, lotIndex, () => {
         tris += stampInto(out, baked, yaw, x, z, scheme);
       });
-      used.set(baked.key, (used.get(baked.key) || 0) + 1);
+      const use = used.get(baked.key);
+      if (use) use.uses++;
+      else used.set(baked.key, { key: baked.key, kind, triangleCount: baked.tris, uses: 1 });
       lots.push({ index: lotIndex, kind, label: baked.label, x: quantise(x), z: quantise(z), yaw,
         width: p.w, depth: p.d, storeys: p.storeys, scheme: SCHEMES[scheme].id, variant: baked.key });
       lotIndex += 1;
@@ -3008,10 +3112,7 @@
     });
 
     const variantList = [];
-    for (const [key, count] of used) {
-      const baked = variants.get(key);
-      variantList.push({ key, kind: baked.kind, triangleCount: baked.tris, uses: count });
-    }
+    for (const value of used.values()) variantList.push(value);
     variantList.sort((a, c) => (a.key < c.key ? -1 : a.key > c.key ? 1 : 0));
 
     return out.finish(
@@ -3028,8 +3129,68 @@
         variantCount: variantList.length,
         anchor: anchored,
         buildingTriangles: tris,
-      },
+      }, sceneLots ? 0 : undefined,
     );
+  }
+
+  // A scene describes the SAME close block. Only its draw list changes with
+  // the camera. Exact (unrounded) placements come from the layout above; public
+  // lot captions round metres and must never be used as rendering transforms.
+  // Local buffers bake cardinal yaw before colour, matching stampInto's light.
+  function scene(opts) {
+    const lots = [], background = block({ ...(opts || {}), lod: "close" }, lots);
+    const bounds = { min: background.bounds.min.slice(), max: background.bounds.max.slice() };
+    let rawCloseTriangles = background.triangleCount;
+    for (const lot of lots) {
+      lot.id = "lot-" + lot.index;
+      lot.offset = [lot.x, 0, lot.z];
+      lot.triangles = {};
+      const keys = {};
+      lot.meshKey = (lod) => keys[normaliseLod(lod)];
+      lot.mesh = (lod) => {
+        const tier = normaliseLod(lod), baked = variantFor(lot.kind, lot.params, tier);
+        const out = new Builder(DETAIL[tier]);
+        stampInto(out, baked, lot.yaw, 0, 0, lot.scheme);
+        return out.finish(baked.description, { id: lot.meshKey(tier), lod: tier }, 0);
+      };
+      for (const lod of ["close", "mid", "map"]) {
+        const baked = variantFor(lot.kind, lot.params, lod);
+        lot.triangles[lod] = baked.tris;
+        keys[lod] = "town-lot:" + baked.key + ":" + lot.yaw + ":" + lot.scheme;
+      }
+      const close = lot.mesh("close");
+      lot.bounds = { min: close.bounds.min.map((v, i) => v + lot.offset[i]),
+        max: close.bounds.max.map((v, i) => v + lot.offset[i]) };
+      lot.closeBounds = { min: lot.bounds.min.slice(), max: lot.bounds.max.slice() };
+      // Coarse roof envelopes can extend slightly past individual close roof
+      // tiles. Cull against their union, not a potentially smaller close box.
+      for (const tier of ["mid", "map"]) {
+        const mesh = lot.mesh(tier);
+        for (let i = 0; i < 3; i++) {
+          lot.bounds.min[i] = Math.min(lot.bounds.min[i], mesh.bounds.min[i] + lot.offset[i]);
+          lot.bounds.max[i] = Math.max(lot.bounds.max[i], mesh.bounds.max[i] + lot.offset[i]);
+        }
+      }
+      for (let i = 0; i < 3; i++) {
+        bounds.min[i] = Math.min(bounds.min[i], lot.closeBounds.min[i]);
+        bounds.max[i] = Math.max(bounds.max[i], lot.closeBounds.max[i]);
+      }
+      rawCloseTriangles += close.triangleCount;
+    }
+    const ground = bounds.min[1];
+    for (let i = 1; i < background.positions.length; i += 3) background.positions[i] -= ground;
+    background.bounds.min[1] -= ground; background.bounds.max[1] -= ground;
+    for (const lot of lots) {
+      lot.offset[1] = -ground; lot.bounds.min[1] -= ground; lot.bounds.max[1] -= ground;
+      lot.closeBounds.min[1] -= ground; lot.closeBounds.max[1] -= ground;
+    }
+    bounds.min[1] -= ground; bounds.max[1] -= ground;
+    const id = "town-scene:" + JSON.stringify([background.blockId, background.district,
+      background.tile, background.streetWidth]);
+    background.id = id + ":streets";
+    return { assetKind: "town-scene", id, bounds, background, lots, rawCloseTriangles,
+      blockId: background.blockId, district: background.district,
+      description: background.description, budget: 150000 };
   }
 
   // --------------------------------------------------------------- exports
@@ -3048,6 +3209,7 @@
     out.part(baked.label, kind, 0, () => { stampInto(out, baked, 0, 0, 0, scheme); });
     return out.finish(baked.description, {
       kind, lod, scheme: SCHEMES[scheme].id,
+      ...(baked.budgetUnits ? { budgetUnits: baked.budgetUnits, budgetBuildings: baked.budgetBuildings } : {}),
       storeys: p.storeys, footprint: baked.footprint,
       variantKey: baked.key, label: baked.label,
     });
@@ -3063,6 +3225,9 @@
 
   return Object.freeze({
     block, building, kinds, kindInfo,
+    scene,
+    cacheStats: () => ({ variants: variants.size,
+      triangles: [...variants.values()].reduce((n, v) => n + v.tris, 0), cap: 400000 }),
     districts: districtNames,
     schemes: SCHEMES.map((s) => s.id),
     version: "urban.temperate_block.v1",

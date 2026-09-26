@@ -6,7 +6,34 @@ on:
 permissions:
   contents: read
 jobs:
-  verify:
+  javascript:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      # Independent of the native build: both suites must report even when
+      # the other fails, and neither should delay the other's feedback.
+      - run: node tools/ui/run-unit.cjs
+      - name: Enforce current geometry and visible-scene budgets
+        run: node tools/ui/bench_art.cjs --check
+      - name: Verify detailed lake surface bindings
+        run: python -B tools/terrain/test_lake_surfaces.py
+      - name: Verify sourced military authority inputs
+        run: python -B tools/politics/build_army_authority.py --source tools/politics/fixtures/vdem-v16-1989-military-authority.json --nations spheres-sim/data/nations --output spheres-sim/data/army_authority_1989.json --check
+      - name: Verify military authority source controls
+        run: python -B -m unittest discover -s tools/politics -p "test_*.py"
+      - name: Verify bounded resource coverage metadata
+        run: python -B tools/resources/resource_coverage.py --check
+      - name: Verify source-backed resource coverage controls
+        run: python -B -m unittest discover -s tools/resources -p "test_coverage.py"
+  native:
     strategy:
       fail-fast: false
       matrix:
@@ -21,8 +48,11 @@ jobs:
           node-version: '22'
           cache: npm
           cache-dependency-path: tools/ui/package-lock.json
-      - run: cargo test --locked --release --workspace --no-fail-fast
-      - run: node tools/ui/run-unit.cjs
+      # The absolute resource timing limit is load-sensitive. Keep its original
+      # assertion, but measure it without the parallel simulation suite running.
+      - run: cargo test --locked --release --workspace --no-fail-fast -- --skip tests::the_resource_pass_stays_under_budget
+      - name: Verify resource timing budget in isolation
+        run: cargo test --locked --release -p spheres-sim --lib tests::the_resource_pass_stays_under_budget -- --exact --nocapture --test-threads=1
       - run: cargo build --locked --release -p spheres-web
       - run: npm ci --prefix tools/ui
       - run: npx --prefix tools/ui playwright install --with-deps chromium
@@ -32,3 +62,64 @@ jobs:
         with:
           name: browser-evidence-${{ matrix.os }}
           path: artifacts/browser-ci
+  # This static WebGL harness needs no native executable. Give it an independent
+  # allowance so a cold Windows Rust build cannot consume its execution time.
+  town-browser:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: tools/ui/package-lock.json
+      - run: npm ci --prefix tools/ui
+      - run: npx --prefix tools/ui playwright install --with-deps chromium
+      - name: Verify actual adaptive town submissions and recovery
+        env:
+          SPHERES_BROWSER_CHANNEL: chromium
+          SPHERES_ART_OUTPUT: artifacts/town-scene-browser
+        run: node tools/ui/town-scene-browser.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: town-scene-evidence-${{ matrix.os }}
+          path: artifacts/town-scene-browser
+  # The opt-in political model has ten historical outcome gates. Run even
+  # the gates kept out of the default suite while calibration was incomplete;
+  # the separate measurement-only census is not an acceptance test.
+  political-calibration:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Require all ten political outcome gates and attribution controls
+        run: cargo test --locked --release -p spheres-sim --test bloc_census -- --include-ignored --skip bloc_census
+  # Preserve the original required-check names, each covering every suite.
+  verify:
+    if: always()
+    needs: [javascript, native, town-browser, political-calibration]
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 5
+    steps:
+      - name: Require every native, JavaScript, town and political check to pass
+        env:
+          NATIVE_RESULT: ${{ needs.native.result }}
+          JAVASCRIPT_RESULT: ${{ needs.javascript.result }}
+          TOWN_BROWSER_RESULT: ${{ needs['town-browser'].result }}
+          POLITICAL_RESULT: ${{ needs['political-calibration'].result }}
+        run: python -c "import os,sys; results={key:os.environ[key] for key in ('NATIVE_RESULT','JAVASCRIPT_RESULT','TOWN_BROWSER_RESULT','POLITICAL_RESULT')}; print(results); sys.exit(0 if all(value=='success' for value in results.values()) else 1)"

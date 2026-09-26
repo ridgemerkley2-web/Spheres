@@ -899,7 +899,7 @@ mod company_view_tests {
     }
     #[test]
     fn s08_no_factory_country_can_review_import_access_without_any_opening_stock_grant() {
-        let mut g=super::super::Game::new(1990,Some(NationId::Tonga));
+        let mut g=super::super::Game::new_fresh(1990,Some(NationId::Tonga));
         super::super::fresh_play_rules(&mut g).unwrap();
         let me=NationId::Tonga;let before=spheres_sim::save(&g.world);
         let market=company_supplier_market(&g.world,me);
@@ -1042,7 +1042,7 @@ mod company_view_tests {
 
     #[test]
     fn s08_declared_small_country_purchase_policy_uses_the_actual_priced_budget_review() {
-        let mut g=super::super::Game::new(1990,Some(NationId::Tonga));
+        let mut g=super::super::Game::new_fresh(1990,Some(NationId::Tonga));
         super::super::fresh_play_rules(&mut g).unwrap();enroll_current_budget(&mut g,NationId::Tonga);
         let policy=review_tonga_procurement_priority(&mut g);
         assert_eq!(policy["no_immediate_cash_debt_authority_property_or_research_grant"],true);
@@ -1104,7 +1104,7 @@ mod company_view_tests {
             println!("S08 {advanced} {} {label}: France {} / {}",g.world.date_str(),status.map_or("unreviewed",|p|p.status.as_str()),status.map_or("",|p|p.reason.as_str()));
         }
         let buyer=NationId::Tonga;let seller=NationId::France;
-        let mut g=super::super::Game::new(1990,Some(buyer));
+        let mut g=super::super::Game::new_fresh(1990,Some(buyer));
         super::super::fresh_play_rules(&mut g).unwrap();
         g.history.clear();g.log.clear();g.snapshot();
         checkpoint(&g,&out,&mut journal,"fresh-before-decisions",0,true);

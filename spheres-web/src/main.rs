@@ -297,8 +297,20 @@ fn exchange_session_matches(method: &Method, url: &str, payload: &serde_json::Va
 }
 
 impl Game {
+    /// Default/off worlds remain available to the legacy regression fixtures.
+    #[cfg(test)]
     fn new(seed: u64, player: Option<NationId>) -> Game {
-        let rules = GameRules { seed, ..GameRules::default() };
+        Self::new_with_rules(GameRules { seed, ..GameRules::default() }, player)
+    }
+
+    /// Fresh browser political data is initialized by the authoritative world
+    /// constructor, before any government or movement is seated. Save loading
+    /// never enters this path, even when its recorded date is January 1.
+    fn new_fresh(seed: u64, player: Option<NationId>) -> Game {
+        Self::new_with_rules(GameRules { seed, ideology_blocs: true, ..GameRules::default() }, player)
+    }
+
+    fn new_with_rules(rules: GameRules, player: Option<NationId>) -> Game {
         let mut world = world_1990(rules);
         world.player = player;
         // The derived HAVE cache, built before the first tick so the resource
@@ -7138,6 +7150,9 @@ fn play_rules(g: &mut Game) {
 /// adopt the connected economy, company operations and daily operational warfare.
 /// Existing saves keep those upgrades opt-in; loading never grants supplier stock.
 fn fresh_play_rules(g: &mut Game) -> Result<(), String> {
+    if !g.world.rules.ideology_blocs {
+        return Err("Create a fresh campaign with its political rules before adopting browser capabilities.".into());
+    }
     spheres_sim::clock::enable_daily_play(&mut g.world);
     if spheres_sim::starting_industry::enable_new_world(&mut g.world)? {
         spheres_sim::starting_industry::enrich_new_world(&mut g.world)?;
@@ -7223,7 +7238,7 @@ fn apply_orders(w: &mut WorldState, me: NationId, list: &[serde_json::Value]) ->
 }
 
 fn new_game(g: &mut Game, seed: u64, player: Option<NationId>) -> (serde_json::Value, bool) {
-    let mut fresh = Game::new(seed, player);
+    let mut fresh = Game::new_fresh(seed, player);
     if let Some(id) = player {
         // Asked of the world that was just built rather than of `start_1990`,
         // so this stays true if the roster ever seats a nation it does not
@@ -7298,7 +7313,7 @@ fn main() {
     let port = listen_port(&args, env_port.as_deref());
 
     // Setup and /api/new adopt the same capabilities before the first response.
-    let mut boot = Game::new(1990, None);
+    let mut boot = Game::new_fresh(1990, None);
     fresh_play_rules(&mut boot).expect("fresh 1990 campaign capabilities must validate");
     let game: Mutex<Game> = Mutex::new(boot);
 
@@ -11114,47 +11129,38 @@ mod tests {
         let observe = serde_json::json!({"session_id":g.session_id,"commands":[{
             "kind":"continue_campaign","action":"observe","player":g.world.player,"date":g.world.date_str()}]});
         transport::immediate_request(&mut g, &observe).unwrap();
-        // From here the player is a spectator, and a spectator can still watch.
-        // Twelve asked for is twelve delivered — unless some OTHER major event
-        // interrupts, which is the ordinary behaviour and not this defect, so
-        // the bar is that the clock moves by more than the single month the
-        // repeated interrupt used to allow.
-        let before = month_index(g.world.year, g.world.month);
-        let (_, why) = g.advance(12, vec![]);
-        let moved = month_index(g.world.year, g.world.month) - before;
-        assert!(
-            why.as_deref().is_none_or(|w| !w.contains("no longer exists")),
-            "the death must not be re-announced on every later advance: {:?}",
-            why
-        );
-        assert!(
-            moved > 1,
-            "asked for 12 months after the player died and got {}",
-            moved
-        );
-
-        // Ten more advances, and the death is never the reason any of them
-        // stops. What DOES stop them is the ordinary major-event interrupt —
-        // measured here as revolutions in Tajikistan and Georgia and half a
-        // dozen escalations across 1994 — which is that interrupt working, not
-        // this defect. The bar is therefore the shape of the defect and not the
-        // pace of the world: before the fix ten advances delivered exactly ten
-        // months, one per call, and no world event could change that number.
-        let before = month_index(g.world.year, g.world.month);
-        for _ in 0..10 {
-            let (_, why) = g.advance(120, vec![]);
+        // Independently settle the same world one month at a time. A legitimate
+        // major event can occur in the very first month, so a minimum elapsed
+        // span confuses that event with the repeated-death defect. Compare the
+        // exact event, calendar and complete world instead: the old death latch
+        // fails even when both paths happen to stop after one month.
+        // Eleven requests of twelve months keep this dissolution regression
+        // separate from the independently tested 2035 campaign horizon.
+        for _ in 0..11 {
+            let mut expected = g.world.clone();
+            let mut expected_reason = None;
+            let before = month_index(expected.year, expected.month);
+            let mut settled = 0;
+            for month in 0..12 {
+                let headlines = tick_month(&mut expected, &[]);
+                settled += 1;
+                // The compatibility monthly API interrupts only when some of
+                // the requested span remains; a last-month event is in the log.
+                if month < 11 {
+                    expected_reason = headlines.into_iter().find(|h| is_major(h, expected.player));
+                    if expected_reason.is_some() { break; }
+                }
+            }
+            let (stopped_early, why) = g.advance(12, vec![]);
             assert!(
                 why.as_deref().is_none_or(|w| !w.contains("no longer exists")),
-                "a spectator was told again that their nation is gone: {:?}",
-                why
+                "a spectator was told again that their nation is gone: {:?}", why
             );
+            assert_eq!(why, expected_reason, "only an actual major event may interrupt the spectator");
+            assert_eq!(stopped_early, settled < 12);
+            assert_eq!(month_index(g.world.year, g.world.month) - before, settled);
+            assert_eq!(save(&g.world), save(&expected), "spectating must settle every promised month exactly once");
         }
-        let moved = month_index(g.world.year, g.world.month) - before;
-        assert!(
-            moved > 10,
-            "ten advances after the player died moved {} months — one per call              is the signature of the interrupt firing every time",
-            moved
-        );
     }
 
     #[test]
@@ -11641,7 +11647,7 @@ mod tests {
             .expect("the cabinet dispatch is gone");
         assert!(room_pause < cabinet, "the cabinet swallows the pause key");
         assert!(
-            INDEX.contains("      && !tech.open && !stock.open\r\n"),
+            INDEX.lines().any(|line| line == "      && !tech.open && !stock.open"),
             "both space rules fire on one press: the top rule no longer stands aside for the two boards"
         );
         // Said on the card, both halves.
@@ -14144,10 +14150,57 @@ mod tests {
     /// unchanged, which is the line between a view fix and a model change.
     #[test]
     fn a_dissolved_state_is_not_served_as_a_live_belligerent() {
+        // Guarantee the two original failure shapes instead of depending on
+        // seed 1 still choosing a particular war years into a changing model.
+        // Quarrels and participation use paid public commands. Only the
+        // union's separateness is staged; the real politics phase dissolves it.
+        let mut fixture = Game::new(1, None);
+        for id in [NationId::USSR, NationId::Iraq] {
+            fixture.world.nation_mut(id).political_capital = 500.0;
+        }
+        apply_command(&mut fixture.world, &Command::OpenConflict {
+            opener: NationId::USSR, target: NationId::China, theatre: TheatreId::EastAsia,
+        }).expect("the union can open a two-party quarrel");
+        let two_party = fixture.world.conflict_between(NationId::USSR, NationId::China).unwrap().id;
+        apply_command(&mut fixture.world, &Command::OpenConflict {
+            opener: NationId::Iraq, target: NationId::Israel, theatre: TheatreId::Levant,
+        }).expect("Iraq can open the surviving quarrel");
+        let three_party = fixture.world.conflict_between(NationId::Iraq, NationId::Israel).unwrap().id;
+        apply_command(&mut fixture.world, &Command::JoinConflict {
+            conflict: three_party, nation: NationId::USSR, side_a: true, objective: Objective::Deny,
+        }).expect("the union can take Iraq's side through the normal command");
+        let before = state_json(&fixture, None);
+        for (id, participants) in [(two_party, 2), (three_party, 3)] {
+            let war = before["wars"].as_array().unwrap().iter().find(|w| w["id"] == id).unwrap();
+            assert_eq!(war["posture"].as_array().unwrap().len(), participants);
+        }
+        fixture.world.nation_mut(NationId::USSR).separatism = 1.0;
+        spheres_sim::politics::tick(&mut fixture.world);
+        assert!(fixture.world.has_flag("ussr_dissolved"));
+        assert!(!fixture.world.nation(NationId::USSR).alive);
+        for id in [two_party, three_party] {
+            assert!(fixture.world.conflict(id).unwrap().posture.iter().any(|b| b.nation == NationId::USSR),
+                "the real dissolution must leave the dead row for the view to filter");
+        }
+        let untouched = save(&fixture.world);
+        let after = state_json(&fixture, None);
+        assert_eq!(save(&fixture.world), untouched, "serving a view must not prune the model");
+        assert!(after["dead"].as_array().unwrap().iter().any(|n| n["id"] == "USSR"));
+        let wars = after["wars"].as_array().unwrap();
+        assert!(!wars.iter().any(|w| w["id"] == two_party), "a conflict with an empty living side is not served");
+        let survivor = wars.iter().find(|w| w["id"] == three_party).expect("the living two-sided conflict remains visible");
+        let rows = survivor["posture"].as_array().unwrap();
+        assert_eq!(rows.len(), 2);
+        assert!(rows.iter().any(|b| b["id"] == "Iraq" && b["side_a"] == true));
+        assert!(rows.iter().any(|b| b["id"] == "Israel" && b["side_a"] == false));
+        assert!(!rows.iter().any(|b| b["id"] == "USSR"));
+
+        // Retain the complete 360-month payload invariant sweep. Its random
+        // occurrence quota is superseded by the guaranteed real-event fixture
+        // above; no particular ambient war history is a rendering contract.
         let mut g = Game::new(1, None);
         let mut checked = 0;
         let mut wars_seen = 0;
-        let mut sim_held_a_dead_belligerent = 0;
         for _ in 0..(30 * 12) {
             tick_month(&mut g.world, &[]);
             g.snapshot();
@@ -14184,28 +14237,11 @@ mod tests {
                     war["id"]
                 );
             }
-            // What the sim is holding underneath, this same month. Seed 1 is
-            // one of the three measured worlds, so this counter must not be
-            // zero — if it were, the loop above would be proving nothing and
-            // the test would pass on a world where the defect cannot occur.
-            if g
-                .world
-                .conflicts
-                .iter()
-                .flat_map(|c| c.posture.iter())
-                .any(|b| !g.world.nation_opt(b.nation).is_some_and(|n| n.alive))
-            {
-                sim_held_a_dead_belligerent += 1;
-            }
             checked += 1;
         }
         assert_eq!(checked, 360);
         assert!(wars_seen > 0, "thirty years produced no conflicts to check");
-        assert!(
-            sim_held_a_dead_belligerent > 0,
-            "the sim never held a dead belligerent in this world, so the filter \
-             above was never exercised and the assertions in it mean nothing"
-        );
+
     }
 
     /// TRIAGE F-19 — the conflict sheet priced four rungs the world will never
@@ -14402,12 +14438,38 @@ mod tests {
     fn the_basing_panel_does_not_sell_what_the_theatre_already_gives() {
         use spheres_sim::theatre;
 
-        // The invariant the suppression rests on, checked on a world that has
-        // actually issued grants: needing no host IMPLIES having access, so a
-        // row this panel hides is always a row that would have bought nothing.
+        // Exercise both sources of access through real host commands, without
+        // requiring an unrelated AI campaign to choose an expedition. A grant
+        // gives access but never turns a revocable visitor into a home nation.
         let mut g = Game::new(7, Some(NationId::Iraq));
+        let visitor = NationId::Iraq;
+        let host = NationId::Japan;
+        let away = theatre::TheatreId::EastAsia;
+        assert!(!theatre::needs_no_host(&g.world, visitor, away));
+        assert!(!theatre::has_access(&g.world, visitor, away));
+        spheres_sim::apply_command(&mut g.world, &Command::GrantAccess {
+            host, seeker: visitor, theatre: away, grant: true,
+        }).expect("the host can grant real basing access");
+        assert!(theatre::has_access(&g.world, visitor, away));
+        assert!(!theatre::needs_no_host(&g.world, visitor, away),
+            "a grant does not justify hiding all revocable access controls");
+        assert_eq!(theatre::granting_host(&g.world, visitor, away), Some(host));
+        g.world = spheres_sim::load(&spheres_sim::save(&g.world)).unwrap();
+        assert!(theatre::has_access(&g.world, visitor, away), "standing consent survives a save");
+        let s = state_json(&g, None);
+        let east = s["theatres"].as_array().unwrap().iter().find(|t| t["id"] == "EastAsia").unwrap();
+        assert_eq!(east["me_needs_no_host"], serde_json::json!(false));
+        spheres_sim::apply_command(&mut g.world, &Command::RevokeAccess {
+            host, seeker: visitor, theatre: away,
+        }).expect("the same host can withdraw its consent");
+        assert!(!theatre::has_access(&g.world, visitor, away));
+        assert_eq!(theatre::granting_host(&g.world, visitor, away), None);
+        assert!(theatre::needs_no_host(&g.world, visitor, theatre::TheatreId::Gulf));
+        assert!(theatre::has_access(&g.world, visitor, theatre::TheatreId::Gulf));
+
+        // Retain the twenty-year invariant: every structural resident or host
+        // has access, regardless of changing politics or incidental AI grants.
         let mut structural = 0usize;
-        let mut granted = 0usize;
         for _ in 0..(20 * 12) {
             tick_month(&mut g.world, &[]);
             for t in g.world.theatres.iter().map(|t| t.id).collect::<Vec<_>>() {
@@ -14421,18 +14483,11 @@ mod tests {
                             n,
                             t
                         );
-                    } else if theatre::has_access(&g.world, n, t) {
-                        granted += 1;
                     }
                 }
             }
         }
         assert!(structural > 0, "no nation was ever structurally in a theatre");
-        assert!(
-            granted > 0,
-            "twenty years produced no granted access, so the OTHER half of \
-             has_access was never exercised and the implication above is vacuous"
-        );
 
         // And the payload carries it, for the player's own seat, both ways.
         let s = state_json(&g, None);
@@ -16495,7 +16550,7 @@ mod tests {
 
         // Exercise the same factories as boot and /api/new. Counting source
         // mentions also counted test fixtures and the fresh_play_rules name.
-        let mut boot = Game::new(1990, Some(NationId::Iraq));
+        let mut boot = Game::new_fresh(1990, Some(NationId::Iraq));
         fresh_play_rules(&mut boot).unwrap();
         let (_, started) = new_game(&mut g, 1990, Some(NationId::Iraq));
         assert!(started);
@@ -17600,11 +17655,13 @@ mod tests {
             *tally.entry(b.to_string()).or_insert(0) += 1;
         }
         assert_eq!(alive, 137);
-        assert_eq!(tally["Western"], 67);
-        assert_eq!(tally["NonAligned"], 43);
-        assert_eq!(tally["Communist"], 17);
-        assert_eq!(tally["Nationalist"], 7);
-        assert_eq!(tally["Islamist"], 3);
+        assert_eq!(tally["Western"], 65);
+        assert_eq!(tally["NonAligned"], 42);
+        assert_eq!(tally["Communist"], 19);
+        // Algeria opens with the FLN-only 1987 national chamber, separately
+        // from support proxies drawn from the later June 1990 local vote.
+        assert_eq!(tally["Nationalist"], 9);
+        assert_eq!(tally["Islamist"], 2);
         // A loaded save is played with the lens on too.
         let loaded = loaded_play_game(Game::new(7, Some(NationId::Poland)).world);
         assert!(loaded.world.rules.ideology_blocs && !loaded.world.rules.ideology_takeover);
@@ -17784,7 +17841,7 @@ mod tests {
             .split_once("const MAP_MODES = {")
             .expect("MAP_MODES is gone")
             .1
-            .split_once("\r\n};")
+            .split_once("\n};")
             .expect("MAP_MODES is brace-terminated")
             .0;
         let entries: Vec<&str> = modes.lines().filter(|l| {
@@ -17829,7 +17886,7 @@ mod tests {
         assert_eq!(handler.matches(r#"k === "i" || k === "I""#).count(), 1, "I is bound exactly once");
         assert!(handler.contains("if (gov.open) { closeGovernment(); return; }"), "Escape does not close the screen");
         assert!(handler.contains("if (gov.open) { govKeys(e); return; }"), "the screen does not take the keyboard");
-        assert!(handler.contains("      && !gov.open\r\n"), "the pause-only branch must skip the screen, like the board");
+        assert!(handler.lines().any(|line| line == "      && !gov.open"), "the pause-only branch must skip the screen, like the board");
         // Space is bound ahead of the screen's dispatch, so pause reaches the clock.
         let space = handler
             .find("if (e.key === \" \" && !e.target?.closest?.('button, summary, select, [role=\"tab\"]')) {")
@@ -18366,7 +18423,7 @@ mod s02_connected_economy_api_tests {
         assert_eq!(view["upgrade"]["available"],true);
         assert!(view["population"].is_null());assert!(view["industry"].is_null());
         assert_eq!(save(&legacy.world),before);
-        let mut fresh=Game::new(1990,Some(NationId::France));fresh_play_rules(&mut fresh).unwrap();
+        let mut fresh=Game::new_fresh(1990,Some(NationId::France));fresh_play_rules(&mut fresh).unwrap();
         let before=save(&fresh.world);let view=connected_economy_json(&fresh.world,NationId::France);
         assert_eq!(view["enabled"],true);assert_eq!(view["upgrade"]["available"],false);
         assert_eq!(view["population"]["policies"].as_array().unwrap().len(),4);
@@ -18379,7 +18436,7 @@ mod s02_connected_economy_api_tests {
 
     #[test]
     fn s02_connected_reading_is_pure_and_exposes_the_same_snapshot_in_cash_flow_and_state() {
-        let mut g=Game::new(1990,Some(NationId::France));fresh_play_rules(&mut g).unwrap();
+        let mut g=Game::new_fresh(1990,Some(NationId::France));fresh_play_rules(&mut g).unwrap();
         let fresh=connected_economy_json(&g.world,NationId::France);
         for _ in 0..3 {spheres_sim::tick_day(&mut g.world,&[]);}
         let before=save(&g.world);let reading=connected_economy_json(&g.world,NationId::France);

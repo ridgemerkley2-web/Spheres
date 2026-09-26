@@ -130,13 +130,52 @@ test('switching between specialist armour and aircraft hides controls and releas
   f.controller.setFinish('sand');f.flush();assert.deepEqual(f.controller.exportGlb().colors,require('../../spheres-web/ui/equipment-model.js').finishColors(f.mesh.colors,'sand'));
   f.controller.update({platform:'ground_air_defense'});f.flush();assert.equal(f.armourControls.hidden,false);assert.equal(f.wearControl.disabled,false);assert.equal(f.uniforms.get('uTankEnabled'),1);assert.equal(f.uniforms.get('uTankWear'),1);assert.equal(f.gpu.size,allocation);f.controller.dispose();assert.equal(f.gpu.size,0);
 });
-test('approved tank shader and representative four-platform appearance buffers remain byte-identical through the specialist extension',()=>{
+test('sealed pin-cap removal preserves every surviving triangle material parameter and baked finish',()=>{
+  const source=fs.readFileSync(path.join(__dirname,'../../spheres-web/ui/equipment-mesh.js'),'utf8');
+  const marker='caps && caps.start !== false';assert(source.includes(marker),'Selective start cap is the only reference change');
+  const context={module:{exports:{}},Float32Array,Uint8Array};
+  // Restore the original sealed caps using the real primitive. Historical
+  // material hashes below verify that this recreates the reviewed baseline.
+  vm.runInNewContext(source.replace(marker,'caps'),context);
+  for(const platform of ['tank_standard','tank_destroyer']){
+    const before=context.module.exports.build({platform}),after=Mesh.build({platform}),indices=new Uint32Array(after.positions.length/3);
+    assert.equal(before.triangleCount-after.triangleCount,4032);
+    const sameTriangle=(a,b)=>{
+      for(const key of ['positions','normals','colors'])for(let j=0;j<9;j++)if(before[key][a+j]!==after[key][b+j])return false;
+      for(let j=0;j<3;j++)if(before.materialClasses[a/3+j]!==after.materialClasses[b/3+j])return false;
+      return true;
+    };
+    let previous=0;
+    for(let at=0;at<after.positions.length;at+=9){
+      while(previous<before.positions.length&&!sameTriangle(previous,at))previous+=9;
+      assert(previous<before.positions.length,'Every surviving triangle retains geometry, normals, paint and material class');
+      for(let j=0;j<3;j++)indices[at/3+j]=previous/3+j;
+      previous+=9;
+    }
+    const cases=[
+      [m=>Surface.prepare(m).parameters,4,'8160d8a538b0fd79beebafad0179d67cfd980c2feb12915157447db08ef95700'],
+      [m=>Surface.bake(m,{finish:'sand',wear:'service',baseOnly:true}),3,'1b82ee4dfa0ca8743faca80764a789885e3bdb66bd35ee339dafa899be5f205a'],
+      [m=>Surface.bake(m,{finish:'olive',wear:'factory'}),3,'540a295b872195aa9357dc34628a0dea6fb55987b5b526933d7aacede44b3da5'],
+      [m=>Surface.bake(m,{finish:'woodland',wear:'field'}),3,'199b413cf7b41569ad34752041edd8d853f1a56b0fc11c902f588cb4484c1ec0']
+    ];
+    for(const [derive,width,historical]of cases){
+      const original=derive(before),current=derive(after);
+      assert.equal(digest(original),historical,platform+' reconstructed original appearance');
+      for(let i=0;i<indices.length;i++)for(let j=0;j<width;j++)
+        assert.equal(current[i*width+j],original[indices[i]*width+j],platform+' retained vertex appearance');
+    }
+  }
+});
+
+test('approved tank shader and representative four-platform appearance buffers match their reviewed geometry',()=>{
   assert.equal(crypto.createHash('sha256').update(Surface.glsl).digest('hex'),'277e7524d8e0bf281133fb1e6a2a198bad796a372b29570a703b4cb5f0e4a8d6');
   const snapshots=[
-    ['tank_standard',0,'8160d8a538b0fd79beebafad0179d67cfd980c2feb12915157447db08ef95700','1b82ee4dfa0ca8743faca80764a789885e3bdb66bd35ee339dafa899be5f205a','540a295b872195aa9357dc34628a0dea6fb55987b5b526933d7aacede44b3da5','199b413cf7b41569ad34752041edd8d853f1a56b0fc11c902f588cb4484c1ec0'],
+    // Only standard/destroyer LOD0 buffers shrink after sealed cap removal.
+    // The preceding test proves surviving derived values are exactly unchanged.
+    ['tank_standard',0,'8139ff5651591cd52c8bd83948e178c610e338c177b5cbf4f3d986e25f250bd2','9036412eaee76c2a2b3ce354c70f99c76a72f64013fe58808cd95f3de32fe162','76e30824460525ae11318d8fe39f1363b057ff1774fbad52df9c68d90d8a7ed5','a2a35ed65bae4ec8bf60569479dcc56739d465fe6a88598bbd125954028052f1'],
     ['tank_heavy',1,'e776f6710250c29cb671ae222bce586d6a43d6b5c87992d7df440a0798570a34','0b476ec1b4e501bb50f594600c9112c9b48660a7c47ca9b93059ba6b0aa5d62e','d80b81df287ef4928c7e218ff988c2090006e1df897586352e6a2fcf11e3fb94','be924e87f0b4898288833bf3221f02356ce6a67e6fd6936d14c565652dad915d'],
     ['tank_light',2,'0d952996f77b2dd857163153e8801a20b6bd63e0f3c6eaad62082a65da0726dc','9e337b4b069da07137cce025fd3c70944d510db499919523824c6627a0d8bb87','c0b0b43c86e6d04c767525f86e3f15964fa7f88e5f8021de71d0f9758aa211b6','e43d9511b759a856b6f2eac56d9f3dce91549f9506a8da1bf4b17f8f5294c66c'],
-    ['tank_destroyer',0,'8160d8a538b0fd79beebafad0179d67cfd980c2feb12915157447db08ef95700','1b82ee4dfa0ca8743faca80764a789885e3bdb66bd35ee339dafa899be5f205a','540a295b872195aa9357dc34628a0dea6fb55987b5b526933d7aacede44b3da5','199b413cf7b41569ad34752041edd8d853f1a56b0fc11c902f588cb4484c1ec0']
+    ['tank_destroyer',0,'8139ff5651591cd52c8bd83948e178c610e338c177b5cbf4f3d986e25f250bd2','9036412eaee76c2a2b3ce354c70f99c76a72f64013fe58808cd95f3de32fe162','76e30824460525ae11318d8fe39f1363b057ff1774fbad52df9c68d90d8a7ed5','a2a35ed65bae4ec8bf60569479dcc56739d465fe6a88598bbd125954028052f1']
   ];
   for(const [platform,lod,parameters,preview,olive,woodland] of snapshots){const mesh=Mesh.build({platform,lod});assert.equal(digest(Surface.prepare(mesh).parameters),parameters,platform+' material parameters');assert.equal(digest(Surface.bake(mesh,{finish:'sand',wear:'service',baseOnly:true})),preview,platform+' preview');assert.equal(digest(Surface.bake(mesh,{finish:'olive',wear:'factory'})),olive,platform+' factory finish');assert.equal(digest(Surface.bake(mesh,{finish:'woodland',wear:'field'})),woodland,platform+' field camouflage');}
 });

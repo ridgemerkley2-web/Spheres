@@ -1,0 +1,9 @@
+# Prepared debt-ratio correction
+
+Prepared against selected source21 / checkpoint90fce. Initially external only; subsequently applied after parent clearance at 2026-09-22T21:19:09Z. Application receipt records resulting government.rs SHA256 b4d396947e1c7ae844f5f79594dc9901807ebdaff71a31b9fa73e190edc4afd0. The corrected tests remain uncompiled at this record.
+
+The production patch adds one call immediately after regime_break changes output. It is the same helper already used by uprising and generic-collapse settlement. It preserves dollar debt, cash, and the legacy independently simulated closed-book ratio. It changes no political condition, classification, threshold, or randomness. Original A1 uses closed books and therefore is not repaired by this change.
+
+Insert the separate Rust fixture file inside government.rs's existing tests module. The first test executes actual electoral-coup, internal-regime-coup and annulled-ballot callers with both fiscal modes, plus internal coups with political switches off. It checks the 3% output change, exact debt/cash conservation, ratio semantics, no extra RNG, and immediate byte-identical save/load. The second stages an actual hostile, settled electoral government through government::tick and compares two subsequent complete monthly turns across a save boundary.
+
+The fixtures deliberately stage live trigger conditions instead of counting an arbitrary historical campaign trajectory. Parent independently compiled the second test through public government::tick against the original exact source21 library: the closed-book case passed its assertions, then the open-book case failed at the expected derived debt-ratio comparison. See coup-debt-original21-witness-input.json, wrapper, build log and failure log. This establishes an actual pre-fix failure, not a claimed corrected pass. Compile and execute both in-repository tests after the combined source is frozen. No native metadata was changed by this repair.

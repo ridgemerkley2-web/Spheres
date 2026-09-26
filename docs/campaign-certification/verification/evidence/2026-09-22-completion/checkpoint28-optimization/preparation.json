@@ -1,0 +1,27 @@
+{
+  "status": "prepared externally only; not applied, compiled, tested, or benchmarked",
+  "prepared_utc": "2026-09-22T23:14:56.937615+00:00",
+  "head": "12278ea4c66863200fd10948350ae69391954cfa",
+  "source_path": "spheres-sim/src/dyads.rs",
+  "before_raw_sha256": "710a8121c1f93c3516b05e99ee37a3fd4323aa42be7023d6947c227076fe295f",
+  "proposed_after_raw_sha256": "a9bc6689a343d1957130a3b38af4f020e2d22b4d8c2c9dfe77db4b3f89c2a98b",
+  "patch_sha256": "bf92f5b6676a4a10e60a6f1ceee49d13fe5458076ac936a103ca3d7456ac18a6",
+  "patch_added_lines": 3,
+  "patch_removed_lines": 0,
+  "original_line_endings": "CRLF",
+  "expected_world_effect": "None; exact pure-predicate early return on an all-false supplied mask.",
+  "focused_existing_checks": [
+    "resources::tests::the_last_resort_predicate",
+    "resources::tests::a_deficit_alone_never_raises_appetite",
+    "resources::tests::the_stall_mask_equals_twelve_calls",
+    "dyads::tests::a_claim_pressed_by_force_stops_being_a_war_aim",
+    "tests::the_market_switch_is_off_for_the_suite_and_deterministic_when_on",
+    "tests::golden_hash_of_a_known_run",
+    "tests::the_resource_layer_is_inert_over_time"
+  ],
+  "isolated_existing_timing_check": "tests::the_resource_pass_stays_under_budget",
+  "timing_note": "Run the existing timing test alone only after semantic checks and parent authorization. Keep its advisory 0.05ms and hard 0.15ms constants unchanged. No measured speedup claimed.",
+  "candidate_separation": "Preparation occurs during rejected confidence candidate27. This patch touches dyads.rs only; apply only after the parent restores the authorized baseline and rechecks the before hash.",
+  "no_new_tests_or_assertion_changes": true,
+  "repository_unchanged": true
+}

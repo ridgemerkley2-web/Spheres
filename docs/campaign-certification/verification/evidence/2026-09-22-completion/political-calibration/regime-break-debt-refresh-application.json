@@ -1,0 +1,14 @@
+{
+  "recorded_utc": "2026-09-22T21:19:09.921721+00:00",
+  "file": "spheres-sim/src/government.rs",
+  "before_sha256": "3254020ea00ec763eb95dabe0c03b79e33b861d4144d6de7307627c03de4e51c",
+  "after_sha256": "b4d396947e1c7ae844f5f79594dc9901807ebdaff71a31b9fa73e190edc4afd0",
+  "test_fixture_sha256": "af0df25da1b489dfa6c7ea925800e18231bb12f5c5eb02892d7152f9db52c237",
+  "method": "byte exact one-site replacement and ASCII test insertion at existing module close",
+  "production_change": "refresh derived open-book debt ratio after the existing 3 percent coup output loss",
+  "test_names": [
+    "government::tests::coups_refresh_open_book_debt_ratios_without_rewriting_legacy_debt",
+    "government::tests::a_coup_tick_has_identical_fiscal_state_with_and_without_a_save_boundary"
+  ],
+  "compiled_or_run": false
+}

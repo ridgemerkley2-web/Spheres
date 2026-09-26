@@ -1,0 +1,66 @@
+{
+  "format": "spheres-advisor-archived-api-projection/v1",
+  "prepared_on": "2026-09-22",
+  "source": {
+    "path_hint": "../leadership-2035-evidence/source-state-before.json",
+    "bytes": 4337703,
+    "sha256": "6ab2803c0c66a3bc21ca96cb96a1ba27d29580b3630522debc66ee670ca1fecc",
+    "description": "Existing workspace archive previously consumed by the optional real-/api/state advisor regression. Original HTTP capture command and engine revision are not recorded; no current-engine compatibility certification is implied.",
+    "file_last_modified_utc": "2026-09-08T00:59:04.824Z",
+    "file_timestamp_is_not_verified_capture_date": true
+  },
+  "identity": {
+    "player": "Japan",
+    "date": "1 Jan 1990",
+    "nation_count": 137
+  },
+  "projection": {
+    "full_top_level_fields": [
+      "player",
+      "date",
+      "year",
+      "month",
+      "day",
+      "simulation_cadence",
+      "research",
+      "wars",
+      "operations",
+      "agency",
+      "production_summary",
+      "manufacturing_summary"
+    ],
+    "program_fields": [
+      "enabled",
+      "due"
+    ],
+    "resource_fields": [
+      "offers"
+    ],
+    "all_nation_fields": [
+      "id",
+      "name",
+      "alive"
+    ],
+    "player_additional_fields": [
+      "annual_budget",
+      "treasury",
+      "takeover"
+    ],
+    "rule": "Keep original field values and array order, omit absent keys. Copy nested values of retained fields unchanged; never synthesize defaults."
+  },
+  "fixture": {
+    "path": "tools/ui/fixtures/advisor-archive.json",
+    "bytes": 32618,
+    "sha256": "f2f404914bcc9ee2ce9e690012e5b29b964dfef261f92f5da7201486403d6c02"
+  },
+  "equivalence": {
+    "method": "Node assert.deepEqual of complete advisor.evaluate results from original and projection before writing; original four assertions retained.",
+    "passed": true,
+    "card_ids": [
+      "annual-budget",
+      "research-project"
+    ],
+    "cards_sha256": "16710c06563d9efef962068b92eeb2b1c51e0fc27ebd446ff73787fbfab03caf",
+    "advisor_source_canonical_lf_sha256": "a4f33000b52580b702d58282a540ab0ee96f35400250950d5a89f34378afd098"
+  }
+}

@@ -1,0 +1,12 @@
+test_ambiguous_source_name_cannot_silently_replace_a_country (test_army_authority.ArmyAuthoritySourceTests.test_ambiguous_source_name_cannot_silently_replace_a_country) ... ok
+test_catalog_exactly_reproduces_pinned_source_and_complete_roster_accounting (test_army_authority.ArmyAuthoritySourceTests.test_catalog_exactly_reproduces_pinned_source_and_complete_roster_accounting) ... ok
+test_combined_executive_cannot_be_counted_twice (test_army_authority.ArmyAuthoritySourceTests.test_combined_executive_cannot_be_counted_twice) ... ok
+test_duplicate_roster_identity_cannot_create_extra_source_coverage (test_army_authority.ArmyAuthoritySourceTests.test_duplicate_roster_identity_cannot_create_extra_source_coverage) ... ok
+test_future_or_duplicate_source_rows_are_rejected (test_army_authority.ArmyAuthoritySourceTests.test_future_or_duplicate_source_rows_are_rejected) ... ok
+test_missing_required_power_is_not_silently_zero_or_renormalized (test_army_authority.ArmyAuthoritySourceTests.test_missing_required_power_is_not_silently_zero_or_renormalized) ... ok
+test_relevant_executive_and_dated_crosswalks_are_preserved (test_army_authority.ArmyAuthoritySourceTests.test_relevant_executive_and_dated_crosswalks_are_preserved) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.028s
+
+OK

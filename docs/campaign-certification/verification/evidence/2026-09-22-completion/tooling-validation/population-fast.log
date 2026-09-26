@@ -1,0 +1,40 @@
+1  COVERAGE
+  PASS  (nation, district) pairs match districts.json  2985 pairs
+  PASS  counts covers exactly the roster ids  2610 ids
+  PASS  2,610 unique districts  2610
+  PASS  2,985 (nation, district) pairs  2985
+  PASS  no district lacks a head count
+2  SHARE SUMS
+  PASS  every nation's shares sum to 1  max |sum-1| = 4.441e-16 (Bulgaria)
+3  HEAD COUNT SUMS (exact, not a tolerance)
+  PASS  head counts sum exactly to the transcribed total  131 nations exact
+4  DOUBLE MEMBERSHIP (the flat-map trap)
+  PASS  375 ids belong to two nations  375
+  PASS  dual-held ids differ under each holder, except uninhabited ones  374/375 differ; identical only for ['RUS_rus-99'] (all zero-population)
+  PASS  the identical ones are identically ZERO, not identically collapsed
+  PASS  RU-MOS weighs more in Russia than in the USSR  0.0594 vs 0.0309
+5  RASTERIZER — area reconstructed from the same coverage masks
+  SKIP  (--fast)
+6  CENSUS (external to every input)
+  PASS  US-CA          GHS   29.761m vs   29.760m — 1990 US Census, California  ratio 1.000 (tol 3%)
+  PASS  US-TX          GHS   16.904m vs   16.987m — 1990 US Census, Texas  ratio 0.995 (tol 5%)
+  PASS  US-WY          GHS    0.451m vs    0.454m — 1990 US Census, Wyoming  ratio 0.994 (tol 5%)
+  PASS  RU-MOS         GHS    8.926m vs    8.967m — 1989 Soviet Census, Moscow city  ratio 0.995 (tol 5%)
+  PASS  IN-UP+IN-UT    GHS  144.804m vs  139.112m — 1991 Census of India, undivided Uttar Pradesh  ratio 1.041 (tol 8%)
+  PASS  JP-13          GHS   11.170m vs   11.856m — 1990 Japan Census, Tokyo-to  ratio 0.942 (tol 12%)
+  PASS  CA-ON          GHS   10.394m vs   10.085m — 1991 Census of Canada, Ontario  ratio 1.031 (tol 8%)
+  PASS  CN-HA          GHS   91.052m vs   85.510m — 1990 China Census, Henan  ratio 1.065 (tol 10%)
+7  ORDERING — does the weighting invert the country?
+  PASS  Moscow city vs Chukotka      RU-MOS/RU-CHU  271.1x (need >= 50x)
+  PASS  Moscow oblast vs Chukotka    RU-MOW/RU-CHU  190.1x (need >= 40x)
+  PASS  Tokyo vs Tottori             JP-13/JP-31  20.6x (need >= 10x)
+  PASS  Uttar Pradesh vs Sikkim      IN-UP/IN-SK  296.9x (need >= 100x)
+  PASS  East Java vs Papua           ID-JI/ID-PA  47.4x (need >= 25x)
+  PASS  West Java vs West Papua      ID-JB/ID-PB  116.5x (need >= 50x)
+  PASS  Cairo vs the New Valley      EG-C/EG-WAD  25.9x (need >= 20x)
+  PASS  Henan vs Tibet               CN-HA/CN-XZ  36.1x (need >= 10x)
+  PASS  Ontario vs Nunavut           CA-ON/CA-NU  537.6x (need >= 100x)
+8  BYTE-IDENTITY
+  SKIP  (--fast)
+
+all checks passed

@@ -1,0 +1,75 @@
+{
+  "iteration": 21,
+  "configuration": "Successor election-calendar lifecycle correction; .024 adverse/.65 confidence/.45 veto unchanged. Baseline measured before prospective candidate22.",
+  "focused": {
+    "passed": 111,
+    "total": 111
+  },
+  "original": {
+    "A7": 8.156,
+    "A9": "199/199",
+    "passed_outcome_gates": 9,
+    "total_outcome_gates": 10,
+    "failed": [
+      "A1"
+    ],
+    "A5": {
+      "seeds": 12,
+      "hits": 12
+    },
+    "A3": {
+      "seeds": 20,
+      "hits": 0
+    },
+    "attribution_guard": "pass",
+    "A4": 19,
+    "A2": {
+      "seeds": 12,
+      "hits": 9
+    },
+    "A6": "zero route events in12seeds at420months",
+    "A8": "40/40 keep8",
+    "A1": {
+      "median_coups": 8.5,
+      "median_top3": 0.62
+    },
+    "A10": 0.337
+  },
+  "development": {
+    "A7": 8.46,
+    "seeds": "0..199",
+    "A6": "zero route events in200seeds at252months; not the35year check",
+    "months": 252,
+    "failed": [
+      "A1"
+    ],
+    "A5": {
+      "hits": 200,
+      "universal_return_countries": [
+        "Bulgaria",
+        "Croatia",
+        "Poland"
+      ],
+      "seeds": 200
+    },
+    "A3": {
+      "seeds": 200,
+      "hits": 1
+    },
+    "A9": "3255/3255",
+    "A4": 19,
+    "A2": {
+      "seeds": 200,
+      "hits_over_run": 133,
+      "hits_by_2000": 128
+    },
+    "A8": "200/200 keep8",
+    "A1": {
+      "median_coups": 8,
+      "median_top3": 0.62
+    },
+    "A10": 0.34
+  },
+  "independent_validation": "Not run; seeds1000..1059 remain untouched",
+  "status": "Incomplete calibration: original and development A1 fail. A5 passes both unchanged cohorts after the lifecycle correction; no balance coefficient or threshold changed."
+}

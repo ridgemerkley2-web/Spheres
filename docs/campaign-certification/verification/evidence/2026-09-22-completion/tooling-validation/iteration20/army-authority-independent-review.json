@@ -1,0 +1,147 @@
+{
+  "reviewer": "verify_python_assets",
+  "mode": "read-only production/source review; no Cargo",
+  "checks": [
+    {
+      "name": "authority-import-check",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/politics/build_army_authority.py",
+        "--source",
+        "tools/politics/fixtures/vdem-v16-1989-military-authority.json",
+        "--nations",
+        "spheres-sim/data/nations",
+        "--output",
+        "spheres-sim/data/army_authority_1989.json",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.375,
+      "log_sha256": "1b63981aff729e7e8bb924a5279fb812427b52672533f98f1ffc2283c228ba83"
+    },
+    {
+      "name": "authority-import-tests",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/politics",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 0.474,
+      "log_sha256": "42806080c333448f402ae5af0655734c100c5aba8bbade858e66e2f1066a626d"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "tools/politics/build_army_authority.py",
+      "sha256": "1d7de3d66f1ad8ac19f76c41f314ead9b4422b1474589069e220161c159c401d",
+      "bytes": 7287
+    },
+    {
+      "path": "tools/politics/extract_army_authority.py",
+      "sha256": "e2dc18e47e401c4cffacca7d29e11def17604adf61355e6c81f9542dd86c6eb4",
+      "bytes": 1331
+    },
+    {
+      "path": "tools/politics/test_army_authority.py",
+      "sha256": "4ceac7f3b05ec9d55f13e95acc7b4bac2676148543c4d50fb7d8bfa11918694f",
+      "bytes": 3858
+    },
+    {
+      "path": "tools/politics/README.md",
+      "sha256": "0a3b24c8f4999e46ae47ca83f0c3a725ac836576e203527ccf83f5a49693caf9",
+      "bytes": 3536
+    },
+    {
+      "path": "tools/politics/fixtures/vdem-v16-1989-military-authority.json",
+      "sha256": "362db5c52447501a1403ac31d3abf59fd474768e9301b06042b35cdf1e136894",
+      "bytes": 39803
+    },
+    {
+      "path": "spheres-sim/data/army_authority_1989.json",
+      "sha256": "35e99445235348ded56a45cdd912892f0cd810c92a29121fbd66c8f911dc6d38",
+      "bytes": 70204
+    },
+    {
+      "path": "spheres-sim/src/army_authority.rs",
+      "sha256": "7c2d4bd867f434221490dc9cecac53eb18eef701f7a6d9a97011a4cf3a5c2053",
+      "bytes": 11457
+    },
+    {
+      "path": "spheres-sim/src/government.rs",
+      "sha256": "255933253b97624dfb94a68b6c5125c85aad65c424068afe3631272153758c9c",
+      "bytes": 824011
+    },
+    {
+      "path": "spheres-sim/src/init.rs",
+      "sha256": "aac78736219da05727956be0cfc680d9b8223bc3010cac6f9474c34985b9c567",
+      "bytes": 1600
+    }
+  ],
+  "source_verification": {
+    "rdata_sha256": "39b412d39a061c18f20c98e4ad4d6355b05a0441df31be4ee9aec420dc3d95ea",
+    "reproduced_extract_sha256": "362db5c52447501a1403ac31d3abf59fd474768e9301b06042b35cdf1e136894",
+    "reproduced_bytes_equal_checked_in": true,
+    "prior_CRLF_extract_sha256": "85e6bca3a9561215be7fc4c43492fbd31a12618eb3dc892ce109cc93d1cf30e8",
+    "prior_and_canonical_parsed_values_equal": true
+  },
+  "coverage": {
+    "raw_rows": 158,
+    "year": 1989,
+    "covered": 130,
+    "known_zero": 47,
+    "unknown": [
+      "Bahamas",
+      "Belize",
+      "Brunei",
+      "Germany",
+      "Samoa",
+      "Tonga",
+      "Yemen"
+    ]
+  },
+  "findings_resolved": [
+    "Importer initially accepted duplicate roster IDs; parent added fail-closed validation and regression.",
+    "Importer initially allowed different ISO rows with colliding normalized names to overwrite a mapping; parent added fail-closed validation and regression."
+  ],
+  "current_findings": [],
+  "semantic_review": "Qualified annual lagged game proxy for military executive-removal leverage short of armed force. Original HOS/HOG expert means and cabinet-power weights remain explicit. No interpretation as physical Army autonomy, troop loyalty, probability, or January1 source observation. Known zero is distinct from missing.",
+  "mapping_review": "No duplicates among current158 ISO/name rows or130 mapped keys. RUS/CZE/SRB use documented1989 units; Germany and Yemen refused; no later successor rows inherited.",
+  "lifecycle_review": "Fresh exact1990-01-01 and Army/lens eligibility only; optional old saves stay absent. Immutable saved source is separate from live leverage. Actual Army Break sets live1.0; qualifying civilian transfer applies existing consolidation/.40 once. No read path initializes history or changes funding/strength; monthly timestamp convention preserved. Native behavior remains subject to the parent suite.",
+  "sources": [
+    {
+      "url": "https://www.v-dem.net/documents/70/codebook_v16.pdf",
+      "sections": [
+        "3.4.2.4 p132",
+        "3.4.3.4 pp142-143",
+        "3.4.3.18 p149",
+        "3.6.1.11 pp169-170"
+      ]
+    },
+    {
+      "url": "https://v-dem.net/documents/72/countryunit_v16.pdf",
+      "sections": [
+        "Serbia/Yugoslavia p28",
+        "Czechia/Czechoslovakia p29",
+        "Russia/USSR p30"
+      ]
+    },
+    {
+      "url": "https://www.v-dem.net/about/faq/",
+      "scope": "Attribution and CC BY-SA4.0 statement read; source/derived-data notice exists in tools/politics/README.md and catalogue. No V-Dem endorsement claimed."
+    }
+  ],
+  "no_gate_outcome_claim": true
+}

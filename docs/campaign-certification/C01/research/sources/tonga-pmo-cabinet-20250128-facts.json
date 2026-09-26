@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://pmo.gov.to/prime-minister-hon-dr-aisake-valu-eke-announces-new-cabinet-ministers/",
+  "accessed_date": "2026-09-21",
+  "published_date": "2025-01-28",
+  "access_method": "browser_fetched_page_and_downloaded_original_release_pdf_visually_read",
+  "source_response_url": "https://pmo.gov.to/wp-content/uploads/2025/01/Media-Release_28_01_2025_Prime-Minister-Hon.Dr_.Aisake-Valu-Eke-announces-new-Cabinet-Ministers.pdf",
+  "source_response_bytes": 396595,
+  "source_response_sha256": "ad766e4ddce9bd50442776e2a23237cf40c57722a6d959c671f89a4a318ae134",
+  "source_response_checked_in": false,
+  "page_response": {
+    "bytes": 82136,
+    "sha256": null,
+    "method": "browser_fetch",
+    "note": "WordPress post carrying the release text and PDF links, read in a browser; its HTML hash is not asserted as reproducible."
+  },
+  "duplicate_responses": [
+    {
+      "url": "https://pmo.gov.to/wp-content/uploads/2025/01/Media-Release_28_01_2025_Prime-Minister-Hon.Dr_.Aisake-Valu-Eke-announces-new-Cabinet-Ministers-1.pdf",
+      "bytes": 396595,
+      "sha256": "ad766e4ddce9bd50442776e2a23237cf40c57722a6d959c671f89a4a318ae134"
+    }
+  ],
+  "provenance_note": "The release PDF was downloaded directly (HTTP 200, application/pdf) and hashed before extraction; the independent check re-downloaded both upload URLs with identical bytes. The PDF is the original response identity recorded here: source_response_url names it, which differs from the post URL in source_url. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_eke_cabinet_effective_20250128",
+      "text": "The PMO media release dated 28 January 2025 states that King Tupou VI, on the recommendations of Prime Minister Hon. Dr. 'Aisake Valu Eke, appointed the new Ministers of Government 'with effect from today, Tuesday 28th January 2025'. Its numbered list has eleven members: 1, Eke (Prime Minister; Finance; Fisheries; Prisons); 2, Hon. Dr. Taniela Likuohihifo Fusimalohi (Deputy Prime Minister; Infrastructure; MEIDECC); 3, His Royal Highness the Crown Prince Tupouto'a 'Ulukalala (Foreign Affairs; His Majesty's Armed Forces); items 4-11 name the other ministers.",
+      "attested_on": "2025-01-28",
+      "locator": "PDF p.1, first paragraph and items 1-3; items 4-11 on pp.1-2",
+      "uncertainty": "The stated effective date of the ministerial appointments. Item 1 lists the premiership among Eke's portfolios; that is not a second start date for the premiership, which the 22 January release dates. Items 4-11 are not imported."
+    },
+    {
+      "id": "to_eke_cabinet_letters_planned_20250128",
+      "text": "The same release states that the Prime Minister 'will present' the letters of appointment to all Cabinet Ministers on Thursday 30 January 2025.",
+      "attested_on": "2025-01-28",
+      "locator": "PDF p.2, closing paragraph",
+      "uncertainty": "A forecast made on 28 January; no retrieved record confirms that the letters were presented on 30 January."
+    }
+  ],
+  "scope_note": "Two-page PDF release (created 28 January 2025, 14:29 +13:00) attached to the live PMO post; the page text matches the PDF. A second upload with the suffix '-1.pdf' is byte-identical. The post's group photograph and an attached image of a different (24 January) release were not used. Items 4-11 of the list are not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "Both PDF pages rendered and read: the 28 January date line, the effective-date sentence, items 1-11 and the forecast of letters on 30 January. The group photograph was not used."
+  }
+}

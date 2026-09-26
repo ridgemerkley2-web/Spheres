@@ -1,0 +1,34 @@
+{
+  "focused_passed": 102,
+  "finished_utc": "2026-09-22T20:08:25.1069310Z",
+  "gates_exit": 101,
+  "gates_log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\iteration-19-A1-A10.log",
+  "source_manifest": "iteration-19-source-input-manifest.json",
+  "focused_total": 102,
+  "post_run_observed_source_sha256": [
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\src\\government.rs",
+      "Hash": "33C9C466ED9BA9771B51BFFAD6D23ACD22018EB988C43344E892825A41E5A75C"
+    },
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\src\\blocs.rs",
+      "Hash": "3CDCB1CA4620E81D91F26288F39362DA86A440E21610A569B4AD4E7C1640FF51"
+    },
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\src\\statecraft.rs",
+      "Hash": "EAE2D88EF1D2A7AA33AD78AC65714C3B53C06E3EA592B6C319F9E1533D76FBDF"
+    }
+  ],
+  "iteration": 19,
+  "binary_sha256": [
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\iteration-19-native-snapshot\\spheres_sim-de8a2e7790f15db6.exe",
+      "Hash": "46F4EB7BD2E6F6BA2E1ECA6F8AAC03DEE120CC2ECB539EA1C5E2B5527E9DC435"
+    },
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\iteration-19-native-snapshot\\bloc_census-b35be4d742aae476.exe",
+      "Hash": "FCD3F25066C593E42EE95BC185313B415E5AB4ABC7AED24CF8633089B53746D2"
+    }
+  ],
+  "gates_command": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\iteration-19-native-snapshot\\bloc_census-b35be4d742aae476.exe --include-ignored --skip bloc_census --nocapture --test-threads=4"
+}

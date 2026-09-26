@@ -1,0 +1,41 @@
+﻿2026-09-22T22:29:36.2566313Z Current runner version: '2.337.0'
+2026-09-22T22:29:36.2592702Z ##[group]Runner Image Provisioner
+2026-09-22T22:29:36.2593579Z Hosted Compute Agent
+2026-09-22T22:29:36.2594423Z Version: 20260828.587
+2026-09-22T22:29:36.2595054Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-09-22T22:29:36.2595762Z Build Date: 2026-08-28T16:44:25Z
+2026-09-22T22:29:36.2596711Z Worker ID: {2e5d4908-635b-42e3-99c4-c11f57298dc6}
+2026-09-22T22:29:36.2597430Z Azure Region: northcentralus
+2026-09-22T22:29:36.2598034Z ##[endgroup]
+2026-09-22T22:29:36.2599429Z ##[group]Operating System
+2026-09-22T22:29:36.2600055Z Microsoft Windows Server 2025
+2026-09-22T22:29:36.2600640Z 10.0.26100
+2026-09-22T22:29:36.2601124Z Datacenter
+2026-09-22T22:29:36.2601647Z ##[endgroup]
+2026-09-22T22:29:36.2602147Z ##[group]Runner Image
+2026-09-22T22:29:36.2602743Z Image: windows-2025-vs2026
+2026-09-22T22:29:36.2603326Z Version: 20260907.229.1
+2026-09-22T22:29:36.2604809Z Included Software: https://github.com/actions/runner-images/blob/win25-vs2026/20260907.229/images/windows/Windows2025-VS2026-Readme.md
+2026-09-22T22:29:36.2606406Z Image Release: https://github.com/actions/runner-images/releases/tag/win25-vs2026%2F20260907.229
+2026-09-22T22:29:36.2607341Z ##[endgroup]
+2026-09-22T22:29:36.2608475Z ##[group]GITHUB_TOKEN Permissions
+2026-09-22T22:29:36.2610497Z Contents: read
+2026-09-22T22:29:36.2611076Z Metadata: read
+2026-09-22T22:29:36.2611596Z ##[endgroup]
+2026-09-22T22:29:36.2613771Z Secret source: Actions
+2026-09-22T22:29:36.2615022Z Cache mode: write
+2026-09-22T22:29:36.2615788Z Prepare workflow directory
+2026-09-22T22:29:36.3018156Z Prepare all required actions
+2026-09-22T22:29:36.3117906Z Complete job name: verify (windows-latest)
+2026-09-22T22:29:36.4540059Z ##[group]Run python -c "import os,sys; results={key:os.environ[key] for key in ('NATIVE_RESULT','JAVASCRIPT_RESULT','TOWN_BROWSER_RESULT','POLITICAL_RESULT')}; print(results); sys.exit(0 if all(value=='success' for value in results.values()) else 1)"
+2026-09-22T22:29:36.4546259Z [36;1mpython -c "import os,sys; results={key:os.environ[key] for key in ('NATIVE_RESULT','JAVASCRIPT_RESULT','TOWN_BROWSER_RESULT','POLITICAL_RESULT')}; print(results); sys.exit(0 if all(value=='success' for value in results.values()) else 1)"[0m
+2026-09-22T22:29:36.5491338Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-09-22T22:29:36.5493013Z env:
+2026-09-22T22:29:36.5493786Z   NATIVE_RESULT: failure
+2026-09-22T22:29:36.5494747Z   JAVASCRIPT_RESULT: success
+2026-09-22T22:29:36.5495788Z   TOWN_BROWSER_RESULT: success
+2026-09-22T22:29:36.5496754Z   POLITICAL_RESULT: failure
+2026-09-22T22:29:36.5497646Z ##[endgroup]
+2026-09-22T22:29:37.5923348Z {'NATIVE_RESULT': 'failure', 'JAVASCRIPT_RESULT': 'success', 'TOWN_BROWSER_RESULT': 'success', 'POLITICAL_RESULT': 'failure'}
+2026-09-22T22:29:37.7266271Z ##[error]Process completed with exit code 1.
+2026-09-22T22:29:37.7453238Z Cleaning up orphan processes

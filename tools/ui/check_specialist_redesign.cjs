@@ -5,25 +5,28 @@ const {build}=require(process.env.SPHERES_SPECIALIST_AUDIT_MESH||'../../spheres-
 const {raycast}=require('../../spheres-web/ui/equipment-model.js');
 const ground=['ground_ifv','ground_apc','ground_recon','ground_artillery','ground_air_defense'];
 const hash=m=>{const h=crypto.createHash('sha256');for(const key of ['positions','normals','colors','materialClasses'])h.update(Buffer.from(m[key].buffer));return h.digest('hex');};
+// Tactical LOD1/2 pins reflect the reviewed September 22 coarse optimization;
+// aircraft inspection sidecars remain unchanged. Tank LOD0 pins record removal
+// of sealed track-pin caps, verified by check_equipment_connector_optimization.
 const approved={
-  "tank_standard/0": "34344d8b40719b76d156b1207fe0e3c48cbc8ff28675d87e84faec153ba45b31",
+  "tank_standard/0": "67232b2d303fe76c37827b1f1e65876e3347e8c840934f889bab4fd076175848",
   "tank_standard/1": "b274d23ccb22110a5d130207f2d0ad118553f2e3b4cff650d50e935dd35ea214",
   "tank_standard/2": "e6b413a7db639a76c42d7343f8fb45325c7b3717c4371389994cd010c3e1c2c7",
-  "tank_heavy/0": "f1d2503765fece454dcd5347c40b5423763f2592f9e4a597a92a5b9dc4079b0d",
+  "tank_heavy/0": "77ecf283c8cb60d9542498e2fb5e90fc07fb5f497e0bbfd8a15a8c9e82673a60",
   "tank_heavy/1": "630d16da3f2e389021b2aec6790bd8600561a8e89cb9c1c43fa24b628e69ccd4",
   "tank_heavy/2": "3d685892766222155637764cb2281fb9e31c1efabd4407c4bf010aa54df243d0",
-  "tank_light/0": "56b1975aa7f00a56c82f9bef16e77b19288a2fcd9094900566dd6ef81bbb2a66",
+  "tank_light/0": "63762adfc5ebefb6213f31813bd2b935e078bc58c2e60d5265713391ad101615",
   "tank_light/1": "d882ac1f41def90481cb6e32ce15d43ad5e20c58c2763eac94e337d76aaa2ee5",
   "tank_light/2": "8dd91b1dad7688e70f2a4c67a6cde5ee4e2018102c550141e91a882963bec8dc",
-  "tank_destroyer/0": "34344d8b40719b76d156b1207fe0e3c48cbc8ff28675d87e84faec153ba45b31",
+  "tank_destroyer/0": "67232b2d303fe76c37827b1f1e65876e3347e8c840934f889bab4fd076175848",
   "tank_destroyer/1": "b274d23ccb22110a5d130207f2d0ad118553f2e3b4cff650d50e935dd35ea214",
   "tank_destroyer/2": "e6b413a7db639a76c42d7343f8fb45325c7b3717c4371389994cd010c3e1c2c7",
   "air_light_attack/0": "626cb63c944adf487b6d3746c100aa7b7d8c3523531ac27eb6b3f54f59cd0801",
   "air_light_attack/1": "d6701d02d852080cba870e1de5a706ec1b13c486081f6d780b6b22a47b951fae",
   "air_light_attack/2": "c1902656dea412d725693a8c4b3b52118d42749c06482e15b20a2d42de905d88",
   "air_tactical_strike/0": "9ff8123ae78043163cd78d154f054daad2f11c077138efabd37eaa2bff2c7569",
-  "air_tactical_strike/1": "1b2a941672cc8718516dc9a6e4cebaa01bbbc1ddb992890a50566826269ac9e5",
-  "air_tactical_strike/2": "e7c1f139ffa95a696f4d14cd972c4ab0dc9acb2fe8b11d499b495f6c76657074"
+  "air_tactical_strike/1": "b5f018a05f291035da6bf020669eb6c96630d61e6958c26d7dcdacd37f063655",
+  "air_tactical_strike/2": "a7b1dbc4dbae7abe1786640c1bec7b5c81e27dff82954ab2420db710c739b17e"
 };
 function vertices(m,name,color){const p=m.parts.find(p=>typeof name==='string'?p.name===name:name(p));assert(p,String(name));const out=[];for(let i=p.first;i<p.first+p.count;i++)if(!color||color.every((v,k)=>Math.abs(m.colors[i*3+k]-v)<1e-6))out.push({p:Array.from(m.positions.subarray(i*3,i*3+3)),n:Array.from(m.normals.subarray(i*3,i*3+3)),material:m.materialClasses[i]});return out;}
 function span(v,k){const nums=v.map(v=>v.p[k]);return [Math.min(...nums),Math.max(...nums)];}

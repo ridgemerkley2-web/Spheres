@@ -1,0 +1,35 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://ago.gov.to/cms/images/LEGISLATION/GAZETTES/2019/2019-0048/GazetteExtraordinaryNo.282019.pdf",
+  "accessed_date": "2026-09-22",
+  "published_date": "2019-09-16",
+  "access_method": "downloaded_original_pdf_text_and_relevant_page_visually_read",
+  "source_response_bytes": 64374,
+  "source_response_sha256": "eb1f70f2dad6c22177b595762926c25e2ac59f427c906f53cc630e1ff1db75a4",
+  "source_response_checked_in": false,
+  "provenance_note": "Original response downloaded and hashed before extraction on 2026-09-22 (local); the independent check re-downloaded it the same day and matched the bytes and SHA-256, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_gazette_pohiva_death_notice_20190916",
+      "text": "Gazette Extraordinary No. 28 of Monday 16th September 2019, headed 'DEATH OF THE PRIME MINISTER HONOURABLE SAMUELA 'AKILISI POHIVA' (Tongan: 'KO E PEKIA 'A E 'EIKI PALEMIA KO SAMUELA 'AKILISI POHIVA'), directs that to honour 'the late Prime Minister' the flag be flown at half-mast throughout the Kingdom and at every Tongan Diplomatic Mission on the date of the funeral, Thursday 19th September 2019.",
+      "attested_on": "2019-09-16",
+      "locator": "Gazette No. 28/477, English and Tongan notices",
+      "uncertainty": "A primary official record of the death, published by 16 September 2019. It does not state the date, time or place of death."
+    },
+    {
+      "id": "to_sika_acting_pm_20190916_gazette",
+      "text": "Both notices are signed 'Hon. Semisi K.L. Sika, Acting Prime Minister of Tonga' (Tongan: 'Palemia Le'ole'o 'o Tonga').",
+      "attested_on": "2019-09-16",
+      "locator": "Signature blocks",
+      "uncertainty": "Attests Sika as Acting Prime Minister on 16 September 2019. The start of his acting service and its legal basis are not given. A claim on the role, not a holder."
+    }
+  ],
+  "scope_note": "Bilingual Gazette Extraordinary No. 28 of Monday 16 September 2019 (gazette page 28/477). Read on 2026-09-22, after the 7 September 2026 historical cutoff; the file is the dated historical document and no later content is used. It records the death but not its date, time or place.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "PDF page 1 was rendered and visually checked in the research dossier."
+  }
+}

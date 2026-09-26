@@ -1,0 +1,12 @@
+test_closed_or_unverified_organization_does_not_become_exhaustive (test_campaign_census.CensusTests.test_closed_or_unverified_organization_does_not_become_exhaustive) ... ok
+test_duplicate_fictional_identity_is_rejected (test_campaign_census.CensusTests.test_duplicate_fictional_identity_is_rejected) ... ok
+test_every_known_member_once_and_ten_record_limit (test_campaign_census.CensusTests.test_every_known_member_once_and_ten_record_limit) ... ok
+test_existing_stale_snapshot_is_disclosed_without_promoting_art (test_campaign_census.CensusTests.test_existing_stale_snapshot_is_disclosed_without_promoting_art) ... ok
+test_missing_component_export_is_rejected (test_campaign_census.CensusTests.test_missing_component_export_is_rejected) ... ok
+test_source_roles_uncertainty_and_components_are_lossless (test_campaign_census.CensusTests.test_source_roles_uncertainty_and_components_are_lossless) ... ok
+test_unknown_and_zero_rows_cannot_close_census (test_campaign_census.CensusTests.test_unknown_and_zero_rows_cannot_close_census) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.191s
+
+OK

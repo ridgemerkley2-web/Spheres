@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-09-21",
+  "updated": "2026-09-22",
   "integration_branch": "codex/campaign-certification",
   "status_source": "docs/planning/campaign-pathway.json",
   "workstreams": [
@@ -61,8 +61,8 @@
         "C07",
         "S23"
       ],
-      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-03.md",
-      "next": "CLAUDE-C01-01 and CLAUDE-C01-02 accepted as bounded research; latest review: docs/campaign-certification/C01/integrations/CLAUDE-C01-02/README.md. C01 remains incomplete. CLAUDE-C01-03 is available and unclaimed: at most six observations on the 2024–2025 Tonga succession transition."
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-08.md",
+      "next": "CLAUDE-C01-01, CLAUDE-C01-02, CLAUDE-C01-03, CLAUDE-C01-04, CLAUDE-C01-07 and CLAUDE-C01-08 are accepted bounded research intake. C01-08 was independently reviewed at 14f01c5a and merged at bd24d577; its original source limitations remain recorded. C01-03 was reviewed at 3291facf (including 387e4526) and merged at 5a63d7b6; seven critical original responses reproduced exactly and 85 Python tests passed in isolation. Evidence: docs/campaign-certification/C01/integrations/CLAUDE-C01-03/README.md and the adjacent C01-08 review. C01-05 USSR/RSFSR (claude/c01-ussr-05, 1c698ed0) and C01-06 Saudi (claude/c01-saudi-06, 7948ab98) are submitted and pending independent source review and integration; do not reclaim them as unstarted or repeat accepted packets. The old claude/c01-saudi-03 is the renamed C01-06 submission, not additional work. C01 remains incomplete; dates, role uncertainty, coverage and cartoon work retain their own acceptance criteria."
     },
     {
       "id": "qualification",
@@ -76,7 +76,7 @@
         "S29",
         "S30"
       ],
-      "next": "CODEX-S22-PREP-01 complete at 2c959cd: repaired art accounting and equipment self-shadows. S22 remains planned after S20; 42 art budget overruns and full campaign performance qualification remain open. Evidence: docs/campaign-certification/S22/preparation/README.md. Six-session preparation adds a local raw timing export and a 137/137 ordinary-starter backend preflight; neither closes the full performance/worldwide gates."
+      "next": "CODEX-S22-PREP-01 complete at 2c959cd: repaired art accounting and equipment self-shadows. Its historical 42-overrun reading is retained in docs/campaign-certification/S22/preparation/README.md. Current docs/art/P0_BUDGETS.md grades 245 configurations: 166 pass, 79 advisory density notes, zero ceiling or required-quality-floor failures. Adaptive town scenes preserve raw close meshes while enforcing the unchanged 150,000-triangle actual submission ceiling; raw full-block overages remain diagnostics. Exact local/hosted readings: docs/campaign-certification/verification/2026-09-22-completion.md. S22 remains planned after S20; full campaign performance and human qualification stay open. The six-session timing export and 137-country preflight do not close performance/worldwide gates."
     },
     {
       "id": "human-playtests",

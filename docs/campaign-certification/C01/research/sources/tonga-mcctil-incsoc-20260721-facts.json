@@ -1,0 +1,28 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://www.businessregistries.gov.to/Documentation/TO/Consultation_Memo_Proposed_New_Incorporated_Societies_Act_July_21_2026.pdf",
+  "accessed_date": "2026-09-21",
+  "published_date": "2026-07-21",
+  "access_method": "downloaded_original_pdf_text_and_relevant_page_visually_read",
+  "source_response_bytes": 985683,
+  "source_response_sha256": "d70f817469fcbfa77e721ae5d4fe270638d7c8d645be1db93277b6f13efcb757",
+  "source_response_checked_in": false,
+  "provenance_note": "Original response bytes were downloaded (curl -L) on 2026-09-21 and hashed before extraction; an independent re-download the same day matched the byte count and SHA-256. Born-digital PDF with a text layer. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_incsoc_paper_register_20260721",
+      "text": "MCCTIL states that the Incorporated Societies Act, enacted in 1988, does not support online filing. The online register it deployed in December 2025 takes filings for companies, business names, business licences and foreign-investment certification. Incorporating a society currently requires a paper application signed by five members of the proposed society, with two copies of its rules.",
+      "attested_on": "2026-07-21",
+      "locator": "PDF page 1, section 1.0; page 3, sections 2.1-2.2",
+      "uncertainty": "Describes registry practice as at the memo date. It names no society or political party and does not say whether any political organization is registered as a society. Because the online register does not take society filings, it was not searched for PTOA."
+    }
+  ],
+  "scope_note": "Registry-practice evidence only; it names no society and no political party. Comments on the consultation were due 28 August 2026.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      3
+    ],
+    "method": "Page 3 (sections 2.0-2.2) rendered and visually read; pages 1-2 read from the text layer."
+  }
+}

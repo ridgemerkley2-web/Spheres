@@ -1,0 +1,21 @@
+test_archival_license_and_observation (__main__.self_test.<locals>.Checks.test_archival_license_and_observation) ... ok
+test_coverage_keeps_partial_and_missing_distinct (__main__.self_test.<locals>.Checks.test_coverage_keeps_partial_and_missing_distinct) ... ok
+test_era_and_crop_constraints (__main__.self_test.<locals>.Checks.test_era_and_crop_constraints) ... ok
+test_exact_file_and_identity (__main__.self_test.<locals>.Checks.test_exact_file_and_identity) ... ok
+test_executives_never_match_by_name (__main__.self_test.<locals>.Checks.test_executives_never_match_by_name) ... ok
+test_generated_requires_builtin_and_actual_prompt (__main__.self_test.<locals>.Checks.test_generated_requires_builtin_and_actual_prompt) ... ok
+test_jobs_are_deterministic_and_never_rendered (__main__.self_test.<locals>.Checks.test_jobs_are_deterministic_and_never_rendered) ... ok
+test_no_metadata_auto_approval (__main__.self_test.<locals>.Checks.test_no_metadata_auto_approval) ... ok
+test_no_substitution_on_unknown_person_or_era (__main__.self_test.<locals>.Checks.test_no_substitution_on_unknown_person_or_era) ... ok
+test_overlapping_eras_refuse_selection (__main__.self_test.<locals>.Checks.test_overlapping_eras_refuse_selection) ... ok
+test_path_escape_and_unapproved_folder (__main__.self_test.<locals>.Checks.test_path_escape_and_unapproved_folder) ... ok
+test_same_asset_cannot_be_two_people (__main__.self_test.<locals>.Checks.test_same_asset_cannot_be_two_people) ... ok
+test_transparency_is_checked_from_pixels (__main__.self_test.<locals>.Checks.test_transparency_is_checked_from_pixels) ... ok
+test_uncertain_dates_are_not_promoted_to_exact (__main__.self_test.<locals>.Checks.test_uncertain_dates_are_not_promoted_to_exact) ... ok
+test_unknown_person_and_wrong_name (__main__.self_test.<locals>.Checks.test_unknown_person_and_wrong_name) ... ok
+test_wrong_hash_and_missing_file (__main__.self_test.<locals>.Checks.test_wrong_hash_and_missing_file) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.187s
+
+OK

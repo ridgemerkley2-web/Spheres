@@ -1,0 +1,75 @@
+{
+  "algorithm": "sha256",
+  "files": [
+    {
+      "path": "artifacts.json",
+      "bytes": 3408,
+      "sha256": "c7f60d867660ffd29fd7b883856ffd2c2b44a579f7f2b173f0c482b7e340cd98"
+    },
+    {
+      "path": "completion-obligations-audit.json",
+      "bytes": 2886,
+      "sha256": "1be19c9bc71d00273a5b23c7bbbaee33fe489307995f328513cb5b75d7d24f1e"
+    },
+    {
+      "path": "latest-jobs.json",
+      "bytes": 10799,
+      "sha256": "736d521d114dd70cc4a2a31657e451ad4015908a917e3aadc649dc11a24da34c"
+    },
+    {
+      "path": "native-linux-106961552179.log",
+      "bytes": 336919,
+      "sha256": "5e93eb88b8db51a37153e6eec5acf6a9f449841b46dd50396eff8b40ac6e29be"
+    },
+    {
+      "path": "native-linux-result.json",
+      "bytes": 566,
+      "sha256": "78f18114f2b5097d3166b3803e9a6433e7cf697bde74ec6edbe911705659bf1b"
+    },
+    {
+      "path": "native-windows-106961552110.log",
+      "bytes": 326851,
+      "sha256": "d358725afad4396cfab4a0611b4a68f3f34a1daf57e34ad26011065741bb8e0e"
+    },
+    {
+      "path": "native-windows-result.json",
+      "bytes": 687,
+      "sha256": "2ace832ef8cb76733dccca0a6982f953dbbe7e340318fa056e93eef9eb20f1e5"
+    },
+    {
+      "path": "political-linux-106961552041.log",
+      "bytes": 37759,
+      "sha256": "df8922a9d1fea8889da3d16561bb78c90b316666ccd407f42bee33f392959714"
+    },
+    {
+      "path": "political-windows-106961551955.log",
+      "bytes": 39688,
+      "sha256": "d1b2675121e303addde51a96f264bcae515b963ad706c9a615a473d26eddfa39"
+    },
+    {
+      "path": "README.md",
+      "bytes": 929,
+      "sha256": "5bd30e0286d73d7b8b86fe892cc2c3784affe7629b39bf9452d2b6d6760045fb"
+    },
+    {
+      "path": "result.json",
+      "bytes": 20968,
+      "sha256": "6cc253443478c4c3fe0e913c5cdbb0b6a2e5f824125b256c112ebccaa698140d"
+    },
+    {
+      "path": "run.json",
+      "bytes": 340,
+      "sha256": "6470ea55dee6575d58a6b7a6aafac44d27cf6345b47a9cf75f6ebc7c43d79946"
+    },
+    {
+      "path": "verify-linux-106970857606.log",
+      "bytes": 2899,
+      "sha256": "a8f07b56b185f4dbdabac4f58e86d71e9ca05ba31faf9e942a7077fcb679f164"
+    },
+    {
+      "path": "verify-windows-106970857652.log",
+      "bytes": 3039,
+      "sha256": "89853e6653ed304e03ecfd3fc4efd2140402ac569c81b50c3f1897120b7515af"
+    }
+  ]
+}

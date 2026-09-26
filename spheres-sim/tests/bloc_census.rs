@@ -10,10 +10,13 @@
 //! The world: both switches on (`ideology_blocs`, `ideology_takeover`),
 //! `GameRules::default()` otherwise, the monthly clock, no player, no
 //! commands, January 1990 to December 2010 (252 months, or
-//! `SPHERES_CENSUS_MONTHS`), seeds `0..SPHERES_CENSUS_SEEDS` (default 60).
+//! `SPHERES_CENSUS_MONTHS`), `SPHERES_CENSUS_SEEDS` seeds (default 60)
+//! starting at `SPHERES_CENSUS_SEED_START` (default 0). The optional offset
+//! affects only this diagnostic; the A1-A10 assertion cohorts stay fixed.
 //!
 //! ```text
 //! SPHERES_CENSUS_SEEDS=60 cargo test --release -p spheres-sim --test bloc_census -- --ignored --nocapture
+//! SPHERES_CENSUS_SEED_START=1000 SPHERES_CENSUS_SEEDS=60 cargo test --release -p spheres-sim --test bloc_census -- --ignored --exact bloc_census --nocapture
 //! ```
 //!
 //! THE BARS (2026-09-06, the pin-and-wire pass) sit below the scan and read
@@ -113,6 +116,7 @@ enum Route {
     ElCoup,
     RegCoup,
     Uprising,
+    Collapse,
     Programme,
     Ballot,
     Suspend,
@@ -120,6 +124,40 @@ enum Route {
     OpensUp,
     Seam,
     Other,
+}
+
+/// A generic stability collapse does not seat a movement or replace a party.
+/// If an election changes the bloc in the same tick and the country remains
+/// electoral, the ballot owns that change. A crowned movement, an annulment,
+/// or an actual collapse of the electoral system retains non-ballot priority.
+fn transition_route(events: &[Route], electoral_before: bool, electoral_after: bool) -> Route {
+    if let Some(route) = [Route::Annul, Route::ElCoup, Route::RegCoup, Route::Uprising, Route::Programme]
+        .into_iter().find(|r| events.contains(r))
+    {
+        return route;
+    }
+    if events.contains(&Route::Collapse)
+        && !(electoral_before && electoral_after && events.contains(&Route::Ballot))
+    {
+        return Route::Collapse;
+    }
+    [Route::Seam, Route::Ballot, Route::Suspend, Route::RoundTable, Route::OpensUp]
+        .into_iter().find(|r| events.contains(r)).unwrap_or(Route::Other)
+}
+
+#[test]
+fn a_ballot_and_an_uncoloured_collapse_do_not_fabricate_a_movement_takeover() {
+    for events in [vec![Route::Ballot, Route::Collapse], vec![Route::Collapse, Route::Ballot]] {
+        assert_eq!(transition_route(&events, true, true), Route::Ballot);
+        assert_eq!(transition_route(&events, true, false), Route::Collapse,
+            "a collapse which actually ends electoral rule remains a forced transition");
+    }
+    assert_eq!(transition_route(&[Route::Ballot, Route::Uprising], true, true), Route::Uprising,
+        "a named movement taking power is still a non-ballot takeover");
+    assert_eq!(transition_route(&[Route::Uprising], false, false), Route::Uprising);
+    assert_eq!(transition_route(&[Route::Collapse], false, true), Route::Collapse);
+    assert_eq!(transition_route(&[Route::Ballot, Route::Collapse, Route::Annul], true, false), Route::Annul);
+    assert_eq!(transition_route(&[], false, false), Route::Other);
 }
 
 #[derive(Default, Clone)]
@@ -420,7 +458,7 @@ fn run_seed(seed: u64, months: usize, verbose: bool, by_nation: &mut HashMap<&'s
                         bump("a6_collapse", name_of(&w, idx));
                     }
                 }
-                events.entry(idx).or_default().push(Route::Uprising);
+                events.entry(idx).or_default().push(if winner.is_some() { Route::Uprising } else { Route::Collapse });
             } else if let Some(nm) = h.split(" votes: ").next().filter(|_| h.contains(" votes: ")) {
                 if let Some(i) = find(nm) {
                     events.entry(i).or_default().push(Route::Ballot);
@@ -495,7 +533,7 @@ fn run_seed(seed: u64, months: usize, verbose: bool, by_nation: &mut HashMap<&'s
                 if !before.electoral && after.electoral && opened_month[i].is_none() {
                     opened_month[i] = Some(m);
                     let ev = events.get(&i).cloned().unwrap_or_default();
-                    let attr = if ev.contains(&Route::Uprising) {
+                    let attr = if ev.contains(&Route::Uprising) || ev.contains(&Route::Collapse) {
                         1
                     } else if ev.contains(&Route::RoundTable) {
                         2
@@ -512,18 +550,14 @@ fn run_seed(seed: u64, months: usize, verbose: bool, by_nation: &mut HashMap<&'s
                 continue;
             }
             let ev = events.get(&i).cloned().unwrap_or_default();
-            let route = [Route::Annul, Route::ElCoup, Route::RegCoup, Route::Uprising, Route::Programme, Route::Seam, Route::Ballot, Route::Suspend, Route::RoundTable, Route::OpensUp]
-                .iter()
-                .copied()
-                .find(|r| ev.contains(r))
-                .unwrap_or(Route::Other);
+            let route = transition_route(&ev, before.electoral, after.electoral);
             let new = after.ruling.unwrap();
             let nm = name_of(&w, i);
             match route {
                 Route::Ballot if before.electoral && after.electoral => {
                     out.ballot_flips += 1;
                 }
-                Route::Annul | Route::ElCoup | Route::RegCoup | Route::Uprising | Route::Programme => {
+                Route::Annul | Route::ElCoup | Route::RegCoup | Route::Uprising | Route::Collapse | Route::Programme => {
                     out.take[new as usize] += 1;
                     out.take_total += 1;
                     if new == Bloc::Islamist {
@@ -562,7 +596,7 @@ fn run_seed(seed: u64, months: usize, verbose: bool, by_nation: &mut HashMap<&'s
             if !before.electoral && after.electoral && opened_month[i].is_none() {
                 opened_month[i] = Some(m);
                 let attr = match route {
-                    Route::Uprising => 1,
+                    Route::Uprising | Route::Collapse => 1,
                     Route::RoundTable => 2,
                     Route::OpensUp => 3,
                     _ => 0,
@@ -630,13 +664,17 @@ fn run_seed(seed: u64, months: usize, verbose: bool, by_nation: &mut HashMap<&'s
 #[ignore]
 fn bloc_census() {
     let n: u64 = std::env::var("SPHERES_CENSUS_SEEDS").ok().and_then(|s| s.parse().ok()).unwrap_or(60);
+    let first: u64 = std::env::var("SPHERES_CENSUS_SEED_START").ok()
+        .map(|s| s.parse().expect("SPHERES_CENSUS_SEED_START must be a nonnegative integer"))
+        .unwrap_or(0);
+    let end = first.checked_add(n).expect("diagnostic seed range overflows u64");
     let months: usize = std::env::var("SPHERES_CENSUS_MONTHS").ok().and_then(|s| s.parse().ok()).unwrap_or(MONTHS);
     let verbose = std::env::var("SPHERES_CENSUS_VERBOSE").is_ok();
     let mut rows: Vec<Seed> = vec![];
     let mut by_nation: HashMap<&'static str, HashMap<&'static str, u32>> = HashMap::new();
-    println!("bloc census: both switches on, monthly, {months} months, seeds 0..{n}");
+    println!("bloc census: both switches on, monthly, {months} months, seeds {first}..{end}");
     println!("seed | coupEl annul regCoup | upr W/C/N/I/NA/none | clause s12/mov/both/none | take W/C/N/I/NA ballot(bloc/party) | isl<=2000 isl comm | open96 (drift/upr/lever/card) | excomm96 run | a6 route/collapse | big8 | poor/coups | a10 med (n) | deaths rt susp prog | maxIslI | elcoup top3 share nations");
-    for seed in 0..n {
+    for seed in first..end {
         let r = run_seed(seed, months, verbose, &mut by_nation);
         println!(
             "s{:>3} | {:>2} {:>2} {:>2} | {:>2}/{:>2}/{:>2}/{:>2}/{:>2}/{:>2} | {:>3}/{:>3}/{:>2}/{:>2} | {:>2}/{:>2}/{:>2}/{:>2}/{:>2} {:>3}/{:>3} | {} {} {} | {:>2} ({}/{}/{}/{}) | {} {} | {} {} | {} | {}/{} | {:+.3} ({:>2}) | {:>2} {} {} {} | {:.3} {} | {:.2} {:?}",

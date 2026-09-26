@@ -1,0 +1,75 @@
+{
+  "passed": true,
+  "rows": [
+    {
+      "platform": "tank_standard",
+      "triangles": 64840,
+      "removed": 4032,
+      "buffers": [
+        {
+          "key": "parameters",
+          "before": "8160d8a538b0fd79beebafad0179d67cfd980c2feb12915157447db08ef95700",
+          "after": "8139ff5651591cd52c8bd83948e178c610e338c177b5cbf4f3d986e25f250bd2",
+          "different": 0,
+          "max": 0
+        },
+        {
+          "key": "preview",
+          "before": "1b82ee4dfa0ca8743faca80764a789885e3bdb66bd35ee339dafa899be5f205a",
+          "after": "9036412eaee76c2a2b3ce354c70f99c76a72f64013fe58808cd95f3de32fe162",
+          "different": 0,
+          "max": 0
+        },
+        {
+          "key": "olive",
+          "before": "540a295b872195aa9357dc34628a0dea6fb55987b5b526933d7aacede44b3da5",
+          "after": "76e30824460525ae11318d8fe39f1363b057ff1774fbad52df9c68d90d8a7ed5",
+          "different": 0,
+          "max": 0
+        },
+        {
+          "key": "woodland",
+          "before": "199b413cf7b41569ad34752041edd8d853f1a56b0fc11c902f588cb4484c1ec0",
+          "after": "a2a35ed65bae4ec8bf60569479dcc56739d465fe6a88598bbd125954028052f1",
+          "different": 0,
+          "max": 0
+        }
+      ]
+    },
+    {
+      "platform": "tank_destroyer",
+      "triangles": 64840,
+      "removed": 4032,
+      "buffers": [
+        {
+          "key": "parameters",
+          "before": "8160d8a538b0fd79beebafad0179d67cfd980c2feb12915157447db08ef95700",
+          "after": "8139ff5651591cd52c8bd83948e178c610e338c177b5cbf4f3d986e25f250bd2",
+          "different": 0,
+          "max": 0
+        },
+        {
+          "key": "preview",
+          "before": "1b82ee4dfa0ca8743faca80764a789885e3bdb66bd35ee339dafa899be5f205a",
+          "after": "9036412eaee76c2a2b3ce354c70f99c76a72f64013fe58808cd95f3de32fe162",
+          "different": 0,
+          "max": 0
+        },
+        {
+          "key": "olive",
+          "before": "540a295b872195aa9357dc34628a0dea6fb55987b5b526933d7aacede44b3da5",
+          "after": "76e30824460525ae11318d8fe39f1363b057ff1774fbad52df9c68d90d8a7ed5",
+          "different": 0,
+          "max": 0
+        },
+        {
+          "key": "woodland",
+          "before": "199b413cf7b41569ad34752041edd8d853f1a56b0fc11c902f588cb4484c1ec0",
+          "after": "a2a35ed65bae4ec8bf60569479dcc56739d465fe6a88598bbd125954028052f1",
+          "different": 0,
+          "max": 0
+        }
+      ]
+    }
+  ]
+}

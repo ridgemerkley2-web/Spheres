@@ -1,0 +1,2397 @@
+{
+  "version": 1,
+  "as_of": "1990-01-01",
+  "coverage": "130 of 137 opening roster countries have a lagged 1989 annual proxy; 7 explicitly unknown. The campaign start date is not a source observation date. No future rows, later successors, generated probabilities or country-specific coup triggers.",
+  "provenance": {
+    "dataset": "V-Dem Country-Year Dataset v16",
+    "authors": "Coppedge et al. (2026), Varieties of Democracy (V-Dem) Project",
+    "doi": "https://doi.org/10.23696/vdemds26",
+    "reference_year": 1989,
+    "source_url": "https://raw.githubusercontent.com/vdeminstitute/vdemdata/f4dd26922e658442524dfd954bf14f7ebe622d5d/data/vdem.RData",
+    "source_commit": "f4dd26922e658442524dfd954bf14f7ebe622d5d",
+    "rdata_sha256": "39b412d39a061c18f20c98e4ad4d6355b05a0441df31be4ee9aec420dc3d95ea",
+    "extract_sha256": "362db5c52447501a1403ac31d3abf59fd474768e9301b06042b35cdf1e136894",
+    "codebook_url": "https://www.v-dem.net/documents/70/codebook_v16.pdf",
+    "country_units_url": "https://v-dem.net/documents/72/countryunit_v16.pdf",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "license_statement": "https://www.v-dem.net/about/faq/",
+    "adaptation": "1989 subset, roster crosswalk, and cabinet-power-weighted HOS/HOG military removal means. This derived data is shared under CC BY-SA 4.0; code has its own repository license.",
+    "meaning": "The _4 inputs are mean binary expert coding of practical military power to remove the relevant executive short of military force. Cabinet appointment/dismissal weights identify the relevant executive. Their combination is an explicit gameplay proxy for leverage, not observed troop obedience, a coup probability, or a physical counterforce measurement.",
+    "limitations": "Annual 1989 observations can predate late-year changes. Zero is observed absence of this informal removal power, not immunity to underfunding, war or armed coups. Missing inputs stay unknown. The assessment initializes new campaigns only; actual gameplay changes are recorded separately and never refreshed from later historical observations."
+  },
+  "rows": [
+    {
+      "nation": "Afghanistan",
+      "source_key": "vdem-v16-1989-AFG",
+      "source_year": 1989,
+      "hos_removal": 0.143,
+      "hog_removal": 0.571,
+      "hos_weight": 0.5,
+      "hog_weight": 0.5,
+      "assessment": 0.357
+    },
+    {
+      "nation": "Albania",
+      "source_key": "vdem-v16-1989-ALB",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Algeria",
+      "source_key": "vdem-v16-1989-DZA",
+      "source_year": 1989,
+      "hos_removal": 0.75,
+      "hog_removal": 0.75,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.75
+    },
+    {
+      "nation": "Angola",
+      "source_key": "vdem-v16-1989-AGO",
+      "source_year": 1989,
+      "hos_removal": 0.714,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.714
+    },
+    {
+      "nation": "Argentina",
+      "source_key": "vdem-v16-1989-ARG",
+      "source_year": 1989,
+      "hos_removal": 0.2,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.2
+    },
+    {
+      "nation": "Australia",
+      "source_key": "vdem-v16-1989-AUS",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.0,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Austria",
+      "source_key": "vdem-v16-1989-AUT",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.0,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Bahrain",
+      "source_key": "vdem-v16-1989-BHR",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.0,
+      "hos_weight": 0.5,
+      "hog_weight": 0.5,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Bangladesh",
+      "source_key": "vdem-v16-1989-BGD",
+      "source_year": 1989,
+      "hos_removal": 0.833,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.833
+    },
+    {
+      "nation": "Belgium",
+      "source_key": "vdem-v16-1989-BEL",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.0,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Bhutan",
+      "source_key": "vdem-v16-1989-BTN",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Bolivia",
+      "source_key": "vdem-v16-1989-BOL",
+      "source_year": 1989,
+      "hos_removal": 0.143,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.143
+    },
+    {
+      "nation": "Botswana",
+      "source_key": "vdem-v16-1989-BWA",
+      "source_year": 1989,
+      "hos_removal": 0.2,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.2
+    },
+    {
+      "nation": "Brazil",
+      "source_key": "vdem-v16-1989-BRA",
+      "source_year": 1989,
+      "hos_removal": 0.375,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.375
+    },
+    {
+      "nation": "Bulgaria",
+      "source_key": "vdem-v16-1989-BGR",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Cambodia",
+      "source_key": "vdem-v16-1989-KHM",
+      "source_year": 1989,
+      "hos_removal": 0.25,
+      "hog_removal": 0.2,
+      "hos_weight": 0.5,
+      "hog_weight": 0.5,
+      "assessment": 0.225
+    },
+    {
+      "nation": "Cameroon",
+      "source_key": "vdem-v16-1989-CMR",
+      "source_year": 1989,
+      "hos_removal": 0.714,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.714
+    },
+    {
+      "nation": "Canada",
+      "source_key": "vdem-v16-1989-CAN",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.0,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "CapeVerde",
+      "source_key": "vdem-v16-1989-CPV",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.0,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "CentralAfricanRepublic",
+      "source_key": "vdem-v16-1989-CAF",
+      "source_year": 1989,
+      "hos_removal": 0.6,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.6
+    },
+    {
+      "nation": "Chad",
+      "source_key": "vdem-v16-1989-TCD",
+      "source_year": 1989,
+      "hos_removal": 0.4,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.4
+    },
+    {
+      "nation": "Chile",
+      "source_key": "vdem-v16-1989-CHL",
+      "source_year": 1989,
+      "hos_removal": 0.25,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.25
+    },
+    {
+      "nation": "China",
+      "source_key": "vdem-v16-1989-CHN",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.091,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.091
+    },
+    {
+      "nation": "Colombia",
+      "source_key": "vdem-v16-1989-COL",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Comoros",
+      "source_key": "vdem-v16-1989-COM",
+      "source_year": 1989,
+      "hos_removal": 0.571,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.571
+    },
+    {
+      "nation": "Congo",
+      "source_key": "vdem-v16-1989-COG",
+      "source_year": 1989,
+      "hos_removal": 0.4,
+      "hog_removal": 0.25,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.4
+    },
+    {
+      "nation": "CostaRica",
+      "source_key": "vdem-v16-1989-CRI",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Cuba",
+      "source_key": "vdem-v16-1989-CUB",
+      "source_year": 1989,
+      "hos_removal": 0.25,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.25
+    },
+    {
+      "nation": "Cyprus",
+      "source_key": "vdem-v16-1989-CYP",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Czechoslovakia",
+      "source_key": "vdem-v16-1989-CZE",
+      "source_year": 1989,
+      "hos_removal": 0.2,
+      "hog_removal": 0.0,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Denmark",
+      "source_key": "vdem-v16-1989-DNK",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.0,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "DominicanRepublic",
+      "source_key": "vdem-v16-1989-DOM",
+      "source_year": 1989,
+      "hos_removal": 0.2,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.2
+    },
+    {
+      "nation": "Ecuador",
+      "source_key": "vdem-v16-1989-ECU",
+      "source_year": 1989,
+      "hos_removal": 1.0,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 1.0
+    },
+    {
+      "nation": "Egypt",
+      "source_key": "vdem-v16-1989-EGY",
+      "source_year": 1989,
+      "hos_removal": 0.833,
+      "hog_removal": 0.667,
+      "hos_weight": 0.5,
+      "hog_weight": 0.5,
+      "assessment": 0.75
+    },
+    {
+      "nation": "ElSalvador",
+      "source_key": "vdem-v16-1989-SLV",
+      "source_year": 1989,
+      "hos_removal": 0.6,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.6
+    },
+    {
+      "nation": "EquatorialGuinea",
+      "source_key": "vdem-v16-1989-GNQ",
+      "source_year": 1989,
+      "hos_removal": 0.5,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.5
+    },
+    {
+      "nation": "Ethiopia",
+      "source_key": "vdem-v16-1989-ETH",
+      "source_year": 1989,
+      "hos_removal": 0.857,
+      "hog_removal": 0.571,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.571
+    },
+    {
+      "nation": "Fiji",
+      "source_key": "vdem-v16-1989-FJI",
+      "source_year": 1989,
+      "hos_removal": 0.5,
+      "hog_removal": 0.5,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.5
+    },
+    {
+      "nation": "Finland",
+      "source_key": "vdem-v16-1989-FIN",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.0,
+      "hos_weight": 0.5,
+      "hog_weight": 0.5,
+      "assessment": 0.0
+    },
+    {
+      "nation": "France",
+      "source_key": "vdem-v16-1989-FRA",
+      "source_year": 1989,
+      "hos_removal": 0.2,
+      "hog_removal": 0.0,
+      "hos_weight": 0.5,
+      "hog_weight": 0.5,
+      "assessment": 0.1
+    },
+    {
+      "nation": "Gabon",
+      "source_key": "vdem-v16-1989-GAB",
+      "source_year": 1989,
+      "hos_removal": 0.833,
+      "hog_removal": 0.333,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.833
+    },
+    {
+      "nation": "Ghana",
+      "source_key": "vdem-v16-1989-GHA",
+      "source_year": 1989,
+      "hos_removal": 1.0,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 1.0
+    },
+    {
+      "nation": "Greece",
+      "source_key": "vdem-v16-1989-GRC",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.0,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Guatemala",
+      "source_key": "vdem-v16-1989-GTM",
+      "source_year": 1989,
+      "hos_removal": 0.8,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.8
+    },
+    {
+      "nation": "Guyana",
+      "source_key": "vdem-v16-1989-GUY",
+      "source_year": 1989,
+      "hos_removal": 0.5,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.5
+    },
+    {
+      "nation": "Haiti",
+      "source_key": "vdem-v16-1989-HTI",
+      "source_year": 1989,
+      "hos_removal": 0.5,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.5
+    },
+    {
+      "nation": "Honduras",
+      "source_key": "vdem-v16-1989-HND",
+      "source_year": 1989,
+      "hos_removal": 0.6,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.6
+    },
+    {
+      "nation": "Hungary",
+      "source_key": "vdem-v16-1989-HUN",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.0,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Iceland",
+      "source_key": "vdem-v16-1989-ISL",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.0,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "India",
+      "source_key": "vdem-v16-1989-IND",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.0,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Indonesia",
+      "source_key": "vdem-v16-1989-IDN",
+      "source_year": 1989,
+      "hos_removal": 0.25,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.25
+    },
+    {
+      "nation": "Iran",
+      "source_key": "vdem-v16-1989-IRN",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.0,
+      "hos_weight": 0.5,
+      "hog_weight": 0.5,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Iraq",
+      "source_key": "vdem-v16-1989-IRQ",
+      "source_year": 1989,
+      "hos_removal": 0.571,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.571
+    },
+    {
+      "nation": "Ireland",
+      "source_key": "vdem-v16-1989-IRL",
+      "source_year": 1989,
+      "hos_removal": 0.2,
+      "hog_removal": 0.0,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Israel",
+      "source_key": "vdem-v16-1989-ISR",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.0,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Italy",
+      "source_key": "vdem-v16-1989-ITA",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.0,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Jamaica",
+      "source_key": "vdem-v16-1989-JAM",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.2,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.2
+    },
+    {
+      "nation": "Japan",
+      "source_key": "vdem-v16-1989-JPN",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.0,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Jordan",
+      "source_key": "vdem-v16-1989-JOR",
+      "source_year": 1989,
+      "hos_removal": 0.4,
+      "hog_removal": 0.2,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.4
+    },
+    {
+      "nation": "Kenya",
+      "source_key": "vdem-v16-1989-KEN",
+      "source_year": 1989,
+      "hos_removal": 0.375,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.375
+    },
+    {
+      "nation": "Kuwait",
+      "source_key": "vdem-v16-1989-KWT",
+      "source_year": 1989,
+      "hos_removal": 0.143,
+      "hog_removal": 0.0,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.143
+    },
+    {
+      "nation": "Laos",
+      "source_key": "vdem-v16-1989-LAO",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.0,
+      "hos_weight": 0.5,
+      "hog_weight": 0.5,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Lebanon",
+      "source_key": "vdem-v16-1989-LBN",
+      "source_year": 1989,
+      "hos_removal": 0.333,
+      "hog_removal": 0.167,
+      "hos_weight": 0.5,
+      "hog_weight": 0.5,
+      "assessment": 0.25
+    },
+    {
+      "nation": "Lesotho",
+      "source_key": "vdem-v16-1989-LSO",
+      "source_year": 1989,
+      "hos_removal": 0.75,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.75
+    },
+    {
+      "nation": "Libya",
+      "source_key": "vdem-v16-1989-LBY",
+      "source_year": 1989,
+      "hos_removal": 0.333,
+      "hog_removal": 0.0,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.333
+    },
+    {
+      "nation": "Luxembourg",
+      "source_key": "vdem-v16-1989-LUX",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.0,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Madagascar",
+      "source_key": "vdem-v16-1989-MDG",
+      "source_year": 1989,
+      "hos_removal": 0.5,
+      "hog_removal": 0.0,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.5
+    },
+    {
+      "nation": "Malawi",
+      "source_key": "vdem-v16-1989-MWI",
+      "source_year": 1989,
+      "hos_removal": 0.2,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.2
+    },
+    {
+      "nation": "Malaysia",
+      "source_key": "vdem-v16-1989-MYS",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.0,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Maldives",
+      "source_key": "vdem-v16-1989-MDV",
+      "source_year": 1989,
+      "hos_removal": 0.2,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.2
+    },
+    {
+      "nation": "Malta",
+      "source_key": "vdem-v16-1989-MLT",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.0,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Mauritius",
+      "source_key": "vdem-v16-1989-MUS",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.0,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Mexico",
+      "source_key": "vdem-v16-1989-MEX",
+      "source_year": 1989,
+      "hos_removal": 0.143,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.143
+    },
+    {
+      "nation": "Mongolia",
+      "source_key": "vdem-v16-1989-MNG",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.2,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Morocco",
+      "source_key": "vdem-v16-1989-MAR",
+      "source_year": 1989,
+      "hos_removal": 0.167,
+      "hog_removal": 0.2,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.167
+    },
+    {
+      "nation": "Mozambique",
+      "source_key": "vdem-v16-1989-MOZ",
+      "source_year": 1989,
+      "hos_removal": 0.25,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.25
+    },
+    {
+      "nation": "Myanmar",
+      "source_key": "vdem-v16-1989-MMR",
+      "source_year": 1989,
+      "hos_removal": 0.667,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.667
+    },
+    {
+      "nation": "Nepal",
+      "source_key": "vdem-v16-1989-NPL",
+      "source_year": 1989,
+      "hos_removal": 0.1,
+      "hog_removal": 0.125,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.1
+    },
+    {
+      "nation": "Netherlands",
+      "source_key": "vdem-v16-1989-NLD",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.0,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "NewZealand",
+      "source_key": "vdem-v16-1989-NZL",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.0,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Nicaragua",
+      "source_key": "vdem-v16-1989-NIC",
+      "source_year": 1989,
+      "hos_removal": 0.4,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.4
+    },
+    {
+      "nation": "Nigeria",
+      "source_key": "vdem-v16-1989-NGA",
+      "source_year": 1989,
+      "hos_removal": 0.5,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.5
+    },
+    {
+      "nation": "NorthKorea",
+      "source_key": "vdem-v16-1989-PRK",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.25,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Norway",
+      "source_key": "vdem-v16-1989-NOR",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.0,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Oman",
+      "source_key": "vdem-v16-1989-OMN",
+      "source_year": 1989,
+      "hos_removal": 0.125,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.125
+    },
+    {
+      "nation": "Pakistan",
+      "source_key": "vdem-v16-1989-PAK",
+      "source_year": 1989,
+      "hos_removal": 0.8,
+      "hog_removal": 0.8,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.8
+    },
+    {
+      "nation": "Panama",
+      "source_key": "vdem-v16-1989-PAN",
+      "source_year": 1989,
+      "hos_removal": 1.0,
+      "hog_removal": 0.5,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 1.0
+    },
+    {
+      "nation": "PapuaNewGuinea",
+      "source_key": "vdem-v16-1989-PNG",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.5,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.5
+    },
+    {
+      "nation": "Paraguay",
+      "source_key": "vdem-v16-1989-PRY",
+      "source_year": 1989,
+      "hos_removal": 0.8,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.8
+    },
+    {
+      "nation": "Peru",
+      "source_key": "vdem-v16-1989-PER",
+      "source_year": 1989,
+      "hos_removal": 0.5,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.5
+    },
+    {
+      "nation": "Philippines",
+      "source_key": "vdem-v16-1989-PHL",
+      "source_year": 1989,
+      "hos_removal": 0.714,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.714
+    },
+    {
+      "nation": "Poland",
+      "source_key": "vdem-v16-1989-POL",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.0,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Portugal",
+      "source_key": "vdem-v16-1989-PRT",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.0,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Qatar",
+      "source_key": "vdem-v16-1989-QAT",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Romania",
+      "source_key": "vdem-v16-1989-ROU",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.5,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.5
+    },
+    {
+      "nation": "SaoTome",
+      "source_key": "vdem-v16-1989-STP",
+      "source_year": 1989,
+      "hos_removal": 0.25,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.25
+    },
+    {
+      "nation": "SaudiArabia",
+      "source_key": "vdem-v16-1989-SAU",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Senegal",
+      "source_key": "vdem-v16-1989-SEN",
+      "source_year": 1989,
+      "hos_removal": 0.333,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.333
+    },
+    {
+      "nation": "Seychelles",
+      "source_key": "vdem-v16-1989-SYC",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Singapore",
+      "source_key": "vdem-v16-1989-SGP",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.4,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.4
+    },
+    {
+      "nation": "SolomonIslands",
+      "source_key": "vdem-v16-1989-SLB",
+      "source_year": 1989,
+      "hos_removal": 0.333,
+      "hog_removal": 0.25,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.25
+    },
+    {
+      "nation": "SouthAfrica",
+      "source_key": "vdem-v16-1989-ZAF",
+      "source_year": 1989,
+      "hos_removal": 0.143,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.143
+    },
+    {
+      "nation": "SouthKorea",
+      "source_key": "vdem-v16-1989-KOR",
+      "source_year": 1989,
+      "hos_removal": 0.5,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.5
+    },
+    {
+      "nation": "Spain",
+      "source_key": "vdem-v16-1989-ESP",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.167,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.167
+    },
+    {
+      "nation": "SriLanka",
+      "source_key": "vdem-v16-1989-LKA",
+      "source_year": 1989,
+      "hos_removal": 0.25,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.25
+    },
+    {
+      "nation": "Sudan",
+      "source_key": "vdem-v16-1989-SDN",
+      "source_year": 1989,
+      "hos_removal": 1.0,
+      "hog_removal": 0.0,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 1.0
+    },
+    {
+      "nation": "Suriname",
+      "source_key": "vdem-v16-1989-SUR",
+      "source_year": 1989,
+      "hos_removal": 0.2,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.2
+    },
+    {
+      "nation": "Swaziland",
+      "source_key": "vdem-v16-1989-SWZ",
+      "source_year": 1989,
+      "hos_removal": 0.2,
+      "hog_removal": 0.2,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.2
+    },
+    {
+      "nation": "Sweden",
+      "source_key": "vdem-v16-1989-SWE",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.0,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Switzerland",
+      "source_key": "vdem-v16-1989-CHE",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Syria",
+      "source_key": "vdem-v16-1989-SYR",
+      "source_year": 1989,
+      "hos_removal": 0.6,
+      "hog_removal": 0.333,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.6
+    },
+    {
+      "nation": "Taiwan",
+      "source_key": "vdem-v16-1989-TWN",
+      "source_year": 1989,
+      "hos_removal": 0.167,
+      "hog_removal": 0.0,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Tanzania",
+      "source_key": "vdem-v16-1989-TZA",
+      "source_year": 1989,
+      "hos_removal": 0.4,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.4
+    },
+    {
+      "nation": "Thailand",
+      "source_key": "vdem-v16-1989-THA",
+      "source_year": 1989,
+      "hos_removal": 0.143,
+      "hog_removal": 0.833,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.833
+    },
+    {
+      "nation": "TrinidadTobago",
+      "source_key": "vdem-v16-1989-TTO",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.0,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Tunisia",
+      "source_key": "vdem-v16-1989-TUN",
+      "source_year": 1989,
+      "hos_removal": 0.4,
+      "hog_removal": 0.0,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.4
+    },
+    {
+      "nation": "Turkey",
+      "source_key": "vdem-v16-1989-TUR",
+      "source_year": 1989,
+      "hos_removal": 0.5,
+      "hog_removal": 0.5,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.5
+    },
+    {
+      "nation": "UAE",
+      "source_key": "vdem-v16-1989-ARE",
+      "source_year": 1989,
+      "hos_removal": 0.333,
+      "hog_removal": 0.333,
+      "hos_weight": 0.5,
+      "hog_weight": 0.5,
+      "assessment": 0.333
+    },
+    {
+      "nation": "UK",
+      "source_key": "vdem-v16-1989-GBR",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.0,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "USA",
+      "source_key": "vdem-v16-1989-USA",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "USSR",
+      "source_key": "vdem-v16-1989-RUS",
+      "source_year": 1989,
+      "hos_removal": 0.125,
+      "hog_removal": 0.0,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.125
+    },
+    {
+      "nation": "Uganda",
+      "source_key": "vdem-v16-1989-UGA",
+      "source_year": 1989,
+      "hos_removal": 0.8,
+      "hog_removal": 0.167,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.8
+    },
+    {
+      "nation": "Uruguay",
+      "source_key": "vdem-v16-1989-URY",
+      "source_year": 1989,
+      "hos_removal": 0.6,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.6
+    },
+    {
+      "nation": "Vanuatu",
+      "source_key": "vdem-v16-1989-VUT",
+      "source_year": 1989,
+      "hos_removal": 0.5,
+      "hog_removal": 0.5,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.5
+    },
+    {
+      "nation": "Venezuela",
+      "source_key": "vdem-v16-1989-VEN",
+      "source_year": 1989,
+      "hos_removal": 0.286,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.286
+    },
+    {
+      "nation": "Vietnam",
+      "source_key": "vdem-v16-1989-VNM",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": 0.0,
+      "hos_weight": 0.0,
+      "hog_weight": 1.0,
+      "assessment": 0.0
+    },
+    {
+      "nation": "Yugoslavia",
+      "source_key": "vdem-v16-1989-SRB",
+      "source_year": 1989,
+      "hos_removal": 0.286,
+      "hog_removal": 0.167,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.286
+    },
+    {
+      "nation": "Zaire",
+      "source_key": "vdem-v16-1989-COD",
+      "source_year": 1989,
+      "hos_removal": 0.333,
+      "hog_removal": 0.8,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.333
+    },
+    {
+      "nation": "Zambia",
+      "source_key": "vdem-v16-1989-ZMB",
+      "source_year": 1989,
+      "hos_removal": 0.333,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.333
+    },
+    {
+      "nation": "Zimbabwe",
+      "source_key": "vdem-v16-1989-ZWE",
+      "source_year": 1989,
+      "hos_removal": 0.0,
+      "hog_removal": null,
+      "hos_weight": 1.0,
+      "hog_weight": 0.0,
+      "assessment": 0.0
+    }
+  ],
+  "units": [
+    {
+      "source_key": "vdem-v16-1989-AFG",
+      "country_id": 36,
+      "country_name": "Afghanistan",
+      "country_text_id": "AFG",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-ALB",
+      "country_id": 12,
+      "country_name": "Albania",
+      "country_text_id": "ALB",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-DZA",
+      "country_id": 103,
+      "country_name": "Algeria",
+      "country_text_id": "DZA",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-AGO",
+      "country_id": 104,
+      "country_name": "Angola",
+      "country_text_id": "AGO",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-ARG",
+      "country_id": 37,
+      "country_name": "Argentina",
+      "country_text_id": "ARG",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-AUS",
+      "country_id": 67,
+      "country_name": "Australia",
+      "country_text_id": "AUS",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-AUT",
+      "country_id": 144,
+      "country_name": "Austria",
+      "country_text_id": "AUT",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-BHR",
+      "country_id": 146,
+      "country_name": "Bahrain",
+      "country_text_id": "BHR",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-BGD",
+      "country_id": 24,
+      "country_name": "Bangladesh",
+      "country_text_id": "BGD",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-BEL",
+      "country_id": 148,
+      "country_name": "Belgium",
+      "country_text_id": "BEL",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-BTN",
+      "country_id": 53,
+      "country_name": "Bhutan",
+      "country_text_id": "BTN",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-BOL",
+      "country_id": 25,
+      "country_name": "Bolivia",
+      "country_text_id": "BOL",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-BWA",
+      "country_id": 68,
+      "country_name": "Botswana",
+      "country_text_id": "BWA",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-BRA",
+      "country_id": 19,
+      "country_name": "Brazil",
+      "country_text_id": "BRA",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-BGR",
+      "country_id": 152,
+      "country_name": "Bulgaria",
+      "country_text_id": "BGR",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-KHM",
+      "country_id": 55,
+      "country_name": "Cambodia",
+      "country_text_id": "KHM",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-CMR",
+      "country_id": 108,
+      "country_name": "Cameroon",
+      "country_text_id": "CMR",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-CAN",
+      "country_id": 66,
+      "country_name": "Canada",
+      "country_text_id": "CAN",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-CPV",
+      "country_id": 70,
+      "country_name": "Cape Verde",
+      "country_text_id": "CPV",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-CAF",
+      "country_id": 71,
+      "country_name": "Central African Republic",
+      "country_text_id": "CAF",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-TCD",
+      "country_id": 109,
+      "country_name": "Chad",
+      "country_text_id": "TCD",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-CHL",
+      "country_id": 72,
+      "country_name": "Chile",
+      "country_text_id": "CHL",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-CHN",
+      "country_id": 110,
+      "country_name": "China",
+      "country_text_id": "CHN",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-COL",
+      "country_id": 15,
+      "country_name": "Colombia",
+      "country_text_id": "COL",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-COM",
+      "country_id": 153,
+      "country_name": "Comoros",
+      "country_text_id": "COM",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-COG",
+      "country_id": 112,
+      "country_name": "Republic of the Congo",
+      "country_text_id": "COG",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-CRI",
+      "country_id": 73,
+      "country_name": "Costa Rica",
+      "country_text_id": "CRI",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-CUB",
+      "country_id": 155,
+      "country_name": "Cuba",
+      "country_text_id": "CUB",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-CYP",
+      "country_id": 156,
+      "country_name": "Cyprus",
+      "country_text_id": "CYP",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-CZE",
+      "country_id": 157,
+      "country_name": "Czechia",
+      "country_text_id": "CZE",
+      "hos_is_hog": 0.0,
+      "mapping_note": "V-Dem country-unit v16 p29 identifies the CZE unit as Czechoslovakia in 1989; no later Czech score is used."
+    },
+    {
+      "source_key": "vdem-v16-1989-DNK",
+      "country_id": 158,
+      "country_name": "Denmark",
+      "country_text_id": "DNK",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-DOM",
+      "country_id": 114,
+      "country_name": "Dominican Republic",
+      "country_text_id": "DOM",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-ECU",
+      "country_id": 75,
+      "country_name": "Ecuador",
+      "country_text_id": "ECU",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-EGY",
+      "country_id": 13,
+      "country_name": "Egypt",
+      "country_text_id": "EGY",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-SLV",
+      "country_id": 22,
+      "country_name": "El Salvador",
+      "country_text_id": "SLV",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-GNQ",
+      "country_id": 160,
+      "country_name": "Equatorial Guinea",
+      "country_text_id": "GNQ",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-ETH",
+      "country_id": 38,
+      "country_name": "Ethiopia",
+      "country_text_id": "ETH",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-FJI",
+      "country_id": 162,
+      "country_name": "Fiji",
+      "country_text_id": "FJI",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-FIN",
+      "country_id": 163,
+      "country_name": "Finland",
+      "country_text_id": "FIN",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-FRA",
+      "country_id": 76,
+      "country_name": "France",
+      "country_text_id": "FRA",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-GAB",
+      "country_id": 116,
+      "country_name": "Gabon",
+      "country_text_id": "GAB",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-GHA",
+      "country_id": 7,
+      "country_name": "Ghana",
+      "country_text_id": "GHA",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-GRC",
+      "country_id": 164,
+      "country_name": "Greece",
+      "country_text_id": "GRC",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-GTM",
+      "country_id": 78,
+      "country_name": "Guatemala",
+      "country_text_id": "GTM",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-GUY",
+      "country_id": 166,
+      "country_name": "Guyana",
+      "country_text_id": "GUY",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-HTI",
+      "country_id": 26,
+      "country_name": "Haiti",
+      "country_text_id": "HTI",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-HND",
+      "country_id": 27,
+      "country_name": "Honduras",
+      "country_text_id": "HND",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-HUN",
+      "country_id": 210,
+      "country_name": "Hungary",
+      "country_text_id": "HUN",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-ISL",
+      "country_id": 168,
+      "country_name": "Iceland",
+      "country_text_id": "ISL",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-IND",
+      "country_id": 39,
+      "country_name": "India",
+      "country_text_id": "IND",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-IDN",
+      "country_id": 56,
+      "country_name": "Indonesia",
+      "country_text_id": "IDN",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-IRN",
+      "country_id": 79,
+      "country_name": "Iran",
+      "country_text_id": "IRN",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-IRQ",
+      "country_id": 80,
+      "country_name": "Iraq",
+      "country_text_id": "IRQ",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-IRL",
+      "country_id": 81,
+      "country_name": "Ireland",
+      "country_text_id": "IRL",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-ISR",
+      "country_id": 169,
+      "country_name": "Israel",
+      "country_text_id": "ISR",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-ITA",
+      "country_id": 82,
+      "country_name": "Italy",
+      "country_text_id": "ITA",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-JAM",
+      "country_id": 120,
+      "country_name": "Jamaica",
+      "country_text_id": "JAM",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-JPN",
+      "country_id": 9,
+      "country_name": "Japan",
+      "country_text_id": "JPN",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-JOR",
+      "country_id": 83,
+      "country_name": "Jordan",
+      "country_text_id": "JOR",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-KEN",
+      "country_id": 40,
+      "country_name": "Kenya",
+      "country_text_id": "KEN",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-KWT",
+      "country_id": 171,
+      "country_name": "Kuwait",
+      "country_text_id": "KWT",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-LAO",
+      "country_id": 123,
+      "country_name": "Laos",
+      "country_text_id": "LAO",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-LBN",
+      "country_id": 44,
+      "country_name": "Lebanon",
+      "country_text_id": "LBN",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-LSO",
+      "country_id": 85,
+      "country_name": "Lesotho",
+      "country_text_id": "LSO",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-LBY",
+      "country_id": 124,
+      "country_name": "Libya",
+      "country_text_id": "LBY",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-LUX",
+      "country_id": 174,
+      "country_name": "Luxembourg",
+      "country_text_id": "LUX",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-MDG",
+      "country_id": 125,
+      "country_name": "Madagascar",
+      "country_text_id": "MDG",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-MWI",
+      "country_id": 87,
+      "country_name": "Malawi",
+      "country_text_id": "MWI",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-MYS",
+      "country_id": 177,
+      "country_name": "Malaysia",
+      "country_text_id": "MYS",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-MDV",
+      "country_id": 88,
+      "country_name": "Maldives",
+      "country_text_id": "MDV",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-MLT",
+      "country_id": 178,
+      "country_name": "Malta",
+      "country_text_id": "MLT",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-MUS",
+      "country_id": 180,
+      "country_name": "Mauritius",
+      "country_text_id": "MUS",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-MEX",
+      "country_id": 3,
+      "country_name": "Mexico",
+      "country_text_id": "MEX",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-MNG",
+      "country_id": 89,
+      "country_name": "Mongolia",
+      "country_text_id": "MNG",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-MAR",
+      "country_id": 90,
+      "country_name": "Morocco",
+      "country_text_id": "MAR",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-MOZ",
+      "country_id": 57,
+      "country_name": "Mozambique",
+      "country_text_id": "MOZ",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-MMR",
+      "country_id": 10,
+      "country_name": "Burma/Myanmar",
+      "country_text_id": "MMR",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-NPL",
+      "country_id": 58,
+      "country_name": "Nepal",
+      "country_text_id": "NPL",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-NLD",
+      "country_id": 91,
+      "country_name": "Netherlands",
+      "country_text_id": "NLD",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-NZL",
+      "country_id": 185,
+      "country_name": "New Zealand",
+      "country_text_id": "NZL",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-NIC",
+      "country_id": 59,
+      "country_name": "Nicaragua",
+      "country_text_id": "NIC",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-NGA",
+      "country_id": 45,
+      "country_name": "Nigeria",
+      "country_text_id": "NGA",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-PRK",
+      "country_id": 41,
+      "country_name": "North Korea",
+      "country_text_id": "PRK",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-NOR",
+      "country_id": 186,
+      "country_name": "Norway",
+      "country_text_id": "NOR",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-OMN",
+      "country_id": 187,
+      "country_name": "Oman",
+      "country_text_id": "OMN",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-PAK",
+      "country_id": 29,
+      "country_name": "Pakistan",
+      "country_text_id": "PAK",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-PAN",
+      "country_id": 92,
+      "country_name": "Panama",
+      "country_text_id": "PAN",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-PNG",
+      "country_id": 93,
+      "country_name": "Papua New Guinea",
+      "country_text_id": "PNG",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-PRY",
+      "country_id": 189,
+      "country_name": "Paraguay",
+      "country_text_id": "PRY",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-PER",
+      "country_id": 30,
+      "country_name": "Peru",
+      "country_text_id": "PER",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-PHL",
+      "country_id": 46,
+      "country_name": "Philippines",
+      "country_text_id": "PHL",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-POL",
+      "country_id": 17,
+      "country_name": "Poland",
+      "country_text_id": "POL",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-PRT",
+      "country_id": 21,
+      "country_name": "Portugal",
+      "country_text_id": "PRT",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-QAT",
+      "country_id": 94,
+      "country_name": "Qatar",
+      "country_text_id": "QAT",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-ROU",
+      "country_id": 190,
+      "country_name": "Romania",
+      "country_text_id": "ROU",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-STP",
+      "country_id": 196,
+      "country_name": "Sao Tome and Principe",
+      "country_text_id": "STP",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-SAU",
+      "country_id": 197,
+      "country_name": "Saudi Arabia",
+      "country_text_id": "SAU",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-SEN",
+      "country_id": 31,
+      "country_name": "Senegal",
+      "country_text_id": "SEN",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-SYC",
+      "country_id": 199,
+      "country_name": "Seychelles",
+      "country_text_id": "SYC",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-SGP",
+      "country_id": 200,
+      "country_name": "Singapore",
+      "country_text_id": "SGP",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-SLB",
+      "country_id": 203,
+      "country_name": "Solomon Islands",
+      "country_text_id": "SLB",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-ZAF",
+      "country_id": 8,
+      "country_name": "South Africa",
+      "country_text_id": "ZAF",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-KOR",
+      "country_id": 42,
+      "country_name": "South Korea",
+      "country_text_id": "KOR",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-ESP",
+      "country_id": 96,
+      "country_name": "Spain",
+      "country_text_id": "ESP",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-LKA",
+      "country_id": 131,
+      "country_name": "Sri Lanka",
+      "country_text_id": "LKA",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-SDN",
+      "country_id": 33,
+      "country_name": "Sudan",
+      "country_text_id": "SDN",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-SUR",
+      "country_id": 4,
+      "country_name": "Suriname",
+      "country_text_id": "SUR",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-SWZ",
+      "country_id": 132,
+      "country_name": "Eswatini",
+      "country_text_id": "SWZ",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-SWE",
+      "country_id": 5,
+      "country_name": "Sweden",
+      "country_text_id": "SWE",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-CHE",
+      "country_id": 6,
+      "country_name": "Switzerland",
+      "country_text_id": "CHE",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-SYR",
+      "country_id": 97,
+      "country_name": "Syria",
+      "country_text_id": "SYR",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-TWN",
+      "country_id": 48,
+      "country_name": "Taiwan",
+      "country_text_id": "TWN",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-TZA",
+      "country_id": 47,
+      "country_name": "Tanzania",
+      "country_text_id": "TZA",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-THA",
+      "country_id": 49,
+      "country_name": "Thailand",
+      "country_text_id": "THA",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-TTO",
+      "country_id": 135,
+      "country_name": "Trinidad and Tobago",
+      "country_text_id": "TTO",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-TUN",
+      "country_id": 98,
+      "country_name": "Tunisia",
+      "country_text_id": "TUN",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-TUR",
+      "country_id": 99,
+      "country_name": "Türkiye",
+      "country_text_id": "TUR",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-ARE",
+      "country_id": 207,
+      "country_name": "United Arab Emirates",
+      "country_text_id": "ARE",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-GBR",
+      "country_id": 101,
+      "country_name": "United Kingdom",
+      "country_text_id": "GBR",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-USA",
+      "country_id": 20,
+      "country_name": "United States of America",
+      "country_text_id": "USA",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-RUS",
+      "country_id": 11,
+      "country_name": "Russia",
+      "country_text_id": "RUS",
+      "hos_is_hog": 0.0,
+      "mapping_note": "V-Dem country-unit v16 p30 treats the USSR under the continuous RUS unit before 1991; no score is transferred to a later independent successor."
+    },
+    {
+      "source_key": "vdem-v16-1989-UGA",
+      "country_id": 50,
+      "country_name": "Uganda",
+      "country_text_id": "UGA",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-URY",
+      "country_id": 102,
+      "country_name": "Uruguay",
+      "country_text_id": "URY",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-VUT",
+      "country_id": 206,
+      "country_name": "Vanuatu",
+      "country_text_id": "VUT",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-VEN",
+      "country_id": 51,
+      "country_name": "Venezuela",
+      "country_text_id": "VEN",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-VNM",
+      "country_id": 34,
+      "country_name": "Vietnam",
+      "country_text_id": "VNM",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-SRB",
+      "country_id": 198,
+      "country_name": "Serbia",
+      "country_text_id": "SRB",
+      "hos_is_hog": 0.0,
+      "mapping_note": "V-Dem country-unit v16 p28 identifies the SRB unit as the federal Yugoslav polity in 1989; its Slovenia coverage boundary is 1989 (Slovenia is also separately coded). This is executive authority, not a territorial average."
+    },
+    {
+      "source_key": "vdem-v16-1989-COD",
+      "country_id": 111,
+      "country_name": "Democratic Republic of the Congo",
+      "country_text_id": "COD",
+      "hos_is_hog": 0.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-ZMB",
+      "country_id": 61,
+      "country_name": "Zambia",
+      "country_text_id": "ZMB",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    },
+    {
+      "source_key": "vdem-v16-1989-ZWE",
+      "country_id": 62,
+      "country_name": "Zimbabwe",
+      "country_text_id": "ZWE",
+      "hos_is_hog": 1.0,
+      "mapping_note": "Direct 1989 source-unit match; name aliases are crosswalks only, not aggregation."
+    }
+  ],
+  "not_imported": [
+    {
+      "nation": "Bahamas",
+      "reason": "No 1989 observation in the official v16 country-year extract. Unknown remains distinct from observed zero."
+    },
+    {
+      "nation": "Belize",
+      "reason": "No 1989 observation in the official v16 country-year extract. Unknown remains distinct from observed zero."
+    },
+    {
+      "nation": "Brunei",
+      "reason": "No 1989 observation in the official v16 country-year extract. Unknown remains distinct from observed zero."
+    },
+    {
+      "nation": "Germany",
+      "reason": "The game starts with unified Germany; the 1989 DEU and DDR source units are separate. No combined executive-removal score is fabricated."
+    },
+    {
+      "nation": "Samoa",
+      "reason": "No 1989 observation in the official v16 country-year extract. Unknown remains distinct from observed zero."
+    },
+    {
+      "nation": "Tonga",
+      "reason": "No 1989 observation in the official v16 country-year extract. Unknown remains distinct from observed zero."
+    },
+    {
+      "nation": "Yemen",
+      "reason": "The game starts with unified Yemen; the 1989 YEM and YMD source units are separate. No combined executive-removal score is fabricated."
+    }
+  ]
+}

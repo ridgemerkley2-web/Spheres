@@ -1,0 +1,26 @@
+{
+  "status": "Applied, independently reviewed, source frozen; native results pending",
+  "base_commit": "90fce9475d20049741589de0e5c5e1c1668a26f6",
+  "files": [
+    {
+      "path": "spheres-sim/src/politics.rs",
+      "before_raw_sha256": "68215324a4babb38cb2819dfd7d8bf1e5105a53c64fda8a7f712a1d40130043c",
+      "applied_raw_sha256": "990e675157008bbcf80944840d7946b961bff7863ea6584a998c13a9d4119995",
+      "new_tests": 7,
+      "external_test_fragment": "fiscal-policy-boundaries-tests.rs",
+      "test_fragment_raw_sha256": "744483ea8536f4cfeea8c966af32a00744f5b695736c8acc024ea36c495ac6b2"
+    },
+    {
+      "path": "spheres-sim/src/stratagems.rs",
+      "before_raw_sha256": "f3b98971bcb4e7c585bfcf85b76c1a85ca15ceaa1157e549b52e8aacf52b4629",
+      "applied_raw_sha256": "10493241d716514902cfc1310baf0bbe8c8da76c6a8229c2fa637c0d2ff36e0d",
+      "new_tests": 6,
+      "external_test_fragment": "fiscal-card-ownership-tests.rs",
+      "test_fragment_raw_sha256": "5deeb2b2153f01823015a18141212eabd693e8e1d5f8c82bbb99500a5c655bee"
+    }
+  ],
+  "independent_reviewer": "verify_ui_browser",
+  "diff_whitespace_check": "PASS",
+  "native_build_run_by_this_reviewer": false,
+  "scope": "13 focused tests; existing rates, thresholds, prices, fiscal-recovery branch and political acceptance bars unchanged. Genuine directional/ownership/no-op defects repaired on their applicable paths."
+}

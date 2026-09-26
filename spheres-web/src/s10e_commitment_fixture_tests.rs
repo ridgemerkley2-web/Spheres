@@ -22,7 +22,7 @@ fn s10e_export_disposable_diplomatic_commitment_fixture() {
         .expect("Set SPHERES_S10E_COMMITMENT_FIXTURE_DIR to a new disposable directory"));
     assert!(destination.is_absolute(), "The fixture destination must be absolute");
     assert!(!destination.exists(), "Never overwrite an existing fixture or save directory");
-    let mut g = Game::new(13, Some(NationId::France));
+    let mut g = Game::new_fresh(13, Some(NationId::France));
     fresh_play_rules(&mut g).unwrap();
     // All of these preconditions are disclosed, including coalition membership.
     g.world.statecraft.pacts.clear();

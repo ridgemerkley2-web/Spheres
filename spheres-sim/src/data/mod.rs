@@ -37,6 +37,8 @@ use serde::{Deserialize, Serialize};
 use crate::world::*;
 
 pub mod embedded;
+pub mod movements;
+pub use movements::{opening_movements_1990, parse_opening_movements, OpeningMovement, EMBEDDED_MOVEMENTS};
 
 pub use embedded::{EMBEDDED_LEADERS, EMBEDDED_NATIONS, EMBEDDED_RELATIONS};
 

@@ -1,0 +1,28 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://pmo.gov.to/wp-content/uploads/2019/09/PUBLIC_NOTICE_16_09_2019-1.pdf",
+  "accessed_date": "2026-09-22",
+  "published_date": "2019-09-16",
+  "access_method": "downloaded_original_pdf_text_and_relevant_page_visually_read",
+  "source_response_bytes": 162294,
+  "source_response_sha256": "4250dc7e2f77e55ebf5cfd9a0d63814134dae326fc63c0ac629a2807f7e96c3b",
+  "source_response_checked_in": false,
+  "provenance_note": "Original response downloaded and hashed before extraction on 2026-09-22 (local); the independent check re-downloaded it the same day and matched the bytes and SHA-256, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_pohiva_cabinet_mourning_decisions_20190916",
+      "text": "The PMO public notice of 16 September 2019 announces His Majesty's Cabinet's decisions 'in honour of the late Prime Minister of Tonga, The Honourable Samuela 'Akilisi Pohiva': the cortege arriving at Fua'amotu on Tuesday 17 September 2019 at 3pm, lying in state until the morning of 19 September, the flag at half-mast and a Public Holiday and National Day of Mourning on Thursday 19 September 2019, the funeral service at the Centenary Church at 10am, and interment at Telekava Cemetery.",
+      "attested_on": "2019-09-16",
+      "locator": "Items 1-6",
+      "uncertainty": "Funeral and mourning arrangements only. The notice does not give the date of death."
+    }
+  ],
+  "scope_note": "PMO public notice of 16 September 2019 on Cabinet's funeral and mourning decisions. Read on 2026-09-22, after the 7 September 2026 historical cutoff; the file is the dated historical document and no later content is used. Funeral and mourning arrangements only; not a boundary of office.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "PDF page 1 was rendered and visually checked in the research dossier."
+  }
+}

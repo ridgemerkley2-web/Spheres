@@ -1,0 +1,41 @@
+{
+  "format": "spheres-final-archive-build/v1",
+  "scope": "Checkpoint26 regression validation only; A1 remains pending, no campaign certification claim.",
+  "revision": "9f7faed5f541e14545e01caf1616ba08c6ad8ff9",
+  "repository": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration",
+  "clean_source": true,
+  "created_utc": "2026-09-22T22:46:27.537434+00:00",
+  "cargo": {
+    "command": [
+      "cargo",
+      "test",
+      "--locked",
+      "--release",
+      "--workspace",
+      "--no-fail-fast",
+      "--",
+      "--skip",
+      "tests::the_resource_pass_stays_under_budget"
+    ],
+    "exit_code": 0,
+    "log": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\completion-checkpoint26-workspace-20260922.log",
+      "sha256": "9ce2526264f3586eca0cc02e6b7ff9e03b24ac245ca539b0e7add31e820e570e"
+    }
+  },
+  "source_manifest": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\checkpoint26-validation-20260922\\source-manifest-9f7faed5.json",
+    "sha256": "de8bb46eb286b4d6dc7ed9874618416ae3ae1b3c56cf210b85cf5be6a1eec0ad"
+  },
+  "source_inputs_verified": 1933,
+  "binaries": {
+    "s02_population": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\s02_population-291e33abbb7c36b5.exe",
+      "sha256": "5fed12a32663ab7434a7e2bc494ddbc79578877fbb3a1a4e0893b68110abf921"
+    },
+    "spheres_web": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+      "sha256": "4564e133dc9947c1337b451ffc294e016369cdc69d27987ec4ae773a6ff510b5"
+    }
+  }
+}

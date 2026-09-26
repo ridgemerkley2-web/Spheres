@@ -1,0 +1,51 @@
+{
+  "iteration": 13,
+  "negative_performance_rate": 0.03,
+  "source_manifest": "iteration-13-source-input-manifest.json",
+  "predeclared_plan": "accountability-calibration-plan.json",
+  "primary": {
+    "focused_total": 88,
+    "A3": "0/20",
+    "A7": 8.709,
+    "A1": {
+      "top3": 0.57,
+      "median": 7
+    },
+    "A2": "9/12; Algeria0/12; annul12/12",
+    "A8": "40/40 retain8",
+    "A4": 20.5,
+    "outcome_gates_passed": 9,
+    "remaining_gate": "A1 top-three concentration",
+    "outcome_gates_total": 10,
+    "focused_passed": 88,
+    "A10": 0.348,
+    "A6": "zero route events12/12 at420months",
+    "A9": "190/190",
+    "A5": "8/12"
+  },
+  "development": {
+    "A3": "14/200=.070",
+    "A7": 7.88,
+    "A1": {
+      "top3": 0.57,
+      "median": 8
+    },
+    "A2": "162/200=.810",
+    "A5_nations": {
+      "Bulgaria": 190,
+      "Russia": 108,
+      "Poland": 200
+    },
+    "A4": 19,
+    "months": 252,
+    "seeds": "0..199",
+    "A8": "200/200 retain>=7",
+    "A10": 0.34,
+    "A6": "zero route events200/200 at252months only",
+    "A9": "3295/3295",
+    "A5": "105/200=.525",
+    "runtime_seconds": 143.43
+  },
+  "interpretation": "Measured comparison not selected. No meaningful A5 majority improvement over smaller.024; A2 approaches its upper band and A3 becomes more frequent. Prefer.024 for next combined base; neither coefficient certified final.",
+  "independent_cohort": "Untouched"
+}

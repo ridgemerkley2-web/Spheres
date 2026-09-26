@@ -1,0 +1,12 @@
+{
+  "utc": "2026-09-22T20:46:36.946179+00:00",
+  "iteration": 22,
+  "baseline_sha256": "3254020ea00ec763eb95dabe0c03b79e33b861d4144d6de7307627c03de4e51c",
+  "government_sha256": "ae02aa1e59abdf3409c299fbfca3d2558049142eb97e1fe79fa173c2287a7591",
+  "test_fixture_raw_sha256": "dbad100e3b33c534fa8ef05226d638e4b914d76867ef3d12b8ebbe8ea834c0b7",
+  "test_fixture_lf_sha256": "038a64a66d3b5138be01389c2669b133840325930177ac4f5dbd83c73d7dadab",
+  "production_change": "ARMY_CRISIS_CONFIDENCE_WEIGHT .65 to 1.20 only; rationale comment and three regression fixtures added",
+  "prerequisite": "Iteration21 111 focused; original9of10 plus attribution; fixedN200 complete141.14s, A5 200/200, A1 remains8/.62",
+  "source_frozen": true,
+  "native_execution": "pending"
+}

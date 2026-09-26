@@ -1,0 +1,109 @@
+CHECK 1: structure and provenance
+  PASS  every district id exists in the roster
+  PASS  roster is 2610 districts
+  PASS  every district entry cites a declared source
+  PASS  source 'china2014' carries title/url/licence/role/bytes
+  PASS  source 'china2014' digests every staged file (1)
+  PASS  source 'ds896_bauxite' carries title/url/licence/role/bytes
+  PASS  source 'ds896_bauxite' digests every staged file (1)
+  PASS  source 'ds896_copper' carries title/url/licence/role/bytes
+  PASS  source 'ds896_copper' digests every staged file (1)
+  PASS  source 'ds896_iron' carries title/url/licence/role/bytes
+  PASS  source 'ds896_iron' digests every staged file (1)
+  PASS  source 'eia_intl' carries title/url/licence/role/bytes
+  PASS  source 'eia_intl' digests every staged file (1)
+  PASS  source 'fsucoal' carries title/url/licence/role/bytes
+  PASS  source 'fsucoal' digests every staged file (2)
+  PASS  source 'minfac' carries title/url/licence/role/bytes
+  PASS  source 'minfac' digests every staged file (1)
+  PASS  source 'mrds' carries title/url/licence/role/bytes
+  PASS  source 'mrds' digests every staged file (1)
+  PASS  source 'pp1802' carries title/url/licence/role/bytes
+  PASS  source 'pp1802' digests every staged file (1)
+  PASS  source 'uscoalfields' carries title/url/licence/role/bytes
+  PASS  source 'uscoalfields' digests every staged file (1)
+  PASS  source 'usda_psd' carries title/url/licence/role/bytes
+  PASS  source 'usda_psd' digests every staged file (1)
+  PASS  source 'wep_prva' carries title/url/licence/role/bytes
+  PASS  source 'wep_prva' digests every staged file (1)
+  PASS  NO district carries a tonnage/grade/production field
+  PASS  every province figure is flagged shared
+  PASS  meta district count matches the file
+  PASS  EVERY district-commodity entry carries a confidence block
+  PASS  every confidence band is one of the four declared values
+  PASS  every point-sourced entry states its distinct supporting record count
+  PASS  every coal-field entry states how many fields and how much of the district
+  PASS  no entry exists without sites, fields or a province
+  PASS  every province attachment carries measured area fractions in [0,1]
+
+CHECK 2: ground truth — named 1990 regions land where history puts them
+  PASS  Katanga / the Copperbelt carries copper
+  PASS  Katanga carries cobalt
+  PASS  Zambian Copperbelt (Central) carries copper
+  PASS  Witwatersrand / Gauteng carries gold
+  PASS  Bushveld / North West carries PGE
+  PASS  Bushveld / Limpopo carries PGE
+  PASS  Krivoy Rog / Dnipropetrovsk carries iron
+  PASS  Antofagasta / Chuquicamata carries copper
+  PASS  Pilbara / Western Australia carries iron
+  PASS  Weipa / Queensland carries bauxite
+  PASS  Darling Range / Western Australia carries bauxite
+  PASS  Saudi Eastern Province carries oil
+  PASS  Basra carries oil
+  PASS  Kuwait carries oil
+  PASS  Moroccan phosphate belt carries phosphate
+  PASS  Carajas / Para carries iron
+  PASS  Ontario carries gold
+
+  Persian Gulf oil, per nation:
+  PASS  SaudiArabia has >=1 oil district
+  PASS  Iraq has >=1 oil district
+  PASS  Kuwait has >=1 oil district
+  PASS  Iran has >=1 oil district
+  PASS  UAE has >=1 oil district
+  PASS  Qatar has >=1 oil district
+
+CHECK 2b: the 2026-08-31 contamination stays gone
+  PASS  NO-12 Hordaland carries no bauxite (Tyssedal is an aluminium SMELTER)
+  PASS  NO-18 Nordland carries no bauxite (Mosjoen is an aluminium SMELTER)
+  PASS  Norway carries no bauxite anywhere (it has no bauxite ore geology)
+  PASS  Japan carries no bauxite anywhere (it has no bauxite ore geology)
+  PASS  Steep Rock Iron Mine (10157857) no longer files under any commodity
+  PASS  Ontario carries no bauxite
+  PASS  Ontario still carries iron from its real iron mines
+  PASS  Dsc Warri (10304733), the Delta Steel PLANT, is not an iron deposit
+  PASS  Al-Basrah's measured oil-province coverage exceeds Al-Anbar's
+  PASS  Delta State's measured oil-province coverage exceeds Cross River's
+  PASS  Al-Basrah out-ranks Al-Anbar on apportioned oil, not just on area
+  PASS  Delta State out-ranks Cross River on apportioned oil
+  PASS  Delta State is Nigeria's leading oil district
+  PASS  both read the Foredeep as their lead province, but by measured share
+  PASS  Al-Basrah's Foredeep share is the larger one
+  PASS  the Mesopotamian Foredeep covers Al-Basrah and only clips Al-Anbar
+  PASS  every apportioned figure is exactly `known` x `area_frac_province`
+  PASS  no province's apportioned volume exceeds its own assessed total (213 provinces summed)
+  PASS  the measured district areas reproduce districts.json area_sqkm (1377 compared)
+  PASS  the USA is marked as an UNLOCATED oil producer, not as an empty one
+  PASS  Norway is marked as an UNLOCATED oil producer (its fields are offshore)
+  PASS  no US district was invented to fill the oil or gas hole
+  PASS  Alberta Basin x Montana is recorded as a dropped boundary ribbon
+  PASS  Williston Basin x North Dakota is recorded as a dropped boundary ribbon
+  PASS  Mackenzie Foldbelt x Alaska is recorded as a dropped boundary ribbon
+  PASS  every dropped ribbon is negligible in BOTH polygons (13 dropped)
+  PASS  every unlocated petroleum producer states WHICH kind of hole it is
+
+CHECK 3: fabrication guards
+  PASS  every national figure carries units and a source
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\resources\check_resources.py", line 847, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\resources\check_resources.py", line 395, in main
+    prows, _ = S.read_shapefile_zip(wep_zip, "WEP_PRVA/WEP_PRVA")
+               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\resources\sources.py", line 450, in read_shapefile_zip
+    z = zipfile.ZipFile(path)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\zipfile\__init__.py", line 1383, in __init__
+    self.fp = io.open(file, filemode)
+              ~~~~~~~^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-web\\data\\wep_prva.zip'

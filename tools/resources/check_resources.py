@@ -35,6 +35,7 @@ import os
 import subprocess
 import sys
 import zipfile
+from resource_coverage import build_report
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
@@ -337,6 +338,10 @@ def main():
 
     # Ruling 3: unlocated producers are marked, never faked.
     unl = art.get("unlocated_producers", {})
+    omitted, coverage = build_report(nations, art["sources"]["ds896_bauxite"])
+    ok(art.get("unrostered_producers", {}).get("bauxite") == omitted["bauxite"]
+       and art["meta"].get("unrostered_producer_coverage") == coverage,
+       "unrostered bauxite producers reproduce the pinned source; other commodities remain unaudited")
     oil_unl = {r["nation"] for r in unl.get("oil", ())}
     ok("USA" in oil_unl,
        "the USA is marked as an UNLOCATED oil producer, not as an empty one",

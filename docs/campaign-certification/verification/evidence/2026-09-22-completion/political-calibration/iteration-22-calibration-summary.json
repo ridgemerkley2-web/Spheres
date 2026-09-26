@@ -1,0 +1,83 @@
+{
+  "iteration": 22,
+  "configuration": "Single prospective confidence 1.20 candidate on iteration 21 sourced-authority/successor-calendar base; adverse .024 and veto .45 unchanged.",
+  "focused": {
+    "passed": 113,
+    "total": 114,
+    "failed": [
+      "government::tests::the_algeria_shaped_annulment_fires_under_its_conditions_and_not_under_the_court"
+    ],
+    "failure_cause": "An elected Army coup occurs before the long fixture reaches its staged hostile-at-ballot condition; preserved as failure, not waived."
+  },
+  "original": {
+    "passed_outcome_gates": 8,
+    "total_outcome_gates": 10,
+    "failed": [
+      "A1",
+      "A2"
+    ],
+    "attribution_guard": "pass",
+    "A1": {
+      "median_coups": 12.5,
+      "median_top3": 0.52
+    },
+    "A2": {
+      "seeds": 12,
+      "hits": 6
+    },
+    "A3": {
+      "seeds": 20,
+      "hits": 0
+    },
+    "A4": 19.5,
+    "A5": {
+      "seeds": 12,
+      "hits": 12
+    },
+    "A6": "Zero route events in 12 seeds at 420 months",
+    "A7": 5.296,
+    "A8": "40/40 keep 8",
+    "A9": "238/238",
+    "A10": 0.346
+  },
+  "development": {
+    "seeds": "0..199",
+    "months": 252,
+    "failed": [
+      "A1"
+    ],
+    "A1": {
+      "median_top3": 0.5,
+      "median_coups": 13,
+      "required_concentration": "strictly below .50"
+    },
+    "A2": {
+      "seeds": 200,
+      "hits_over_run": 137,
+      "hits_by_2000": 125
+    },
+    "A3": {
+      "seeds": 200,
+      "hits": 10
+    },
+    "A4": 19,
+    "A5": {
+      "hits": 200,
+      "seeds": 200,
+      "universal_return_countries": [
+        "Bulgaria",
+        "Croatia",
+        "Poland"
+      ]
+    },
+    "A6": "Zero route events in 200 seeds at 252 months; not the 35-year check",
+    "A7": 5.55,
+    "A8": "200/200 keep 8",
+    "A9": "4258/4258",
+    "A10": 0.35,
+    "electoral_coups": 2710,
+    "electoral_coup_nations": 16
+  },
+  "independent_validation": "Not run; seeds 1000..1059 remain untouched",
+  "status": "Rejected under the prospective joint criteria. Exact iteration 21 government source restored after measurement; native global executables still represent iteration 22 until rebuilt."
+}

@@ -1,0 +1,20 @@
+{
+  "iteration": 23,
+  "recorded_utc": "2026-09-22T21:32:43.9048721Z",
+  "source_manifest": "iteration-23-source-input-manifest.json",
+  "git_head": "90fce9475d20049741589de0e5c5e1c1668a26f6",
+  "source_inputs": 1963,
+  "native_source_bodies": 468,
+  "binaries": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\iteration-23-native-snapshot\\spheres_sim-de8a2e7790f15db6.exe",
+      "sha256": "07869e056686da9bac2953990d718e3023cc397fd55e0065f323c430af61a3cd",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_sim-de8a2e7790f15db6.exe"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\political-calibration-20260922\\iteration-23-native-snapshot\\bloc_census-b35be4d742aae476.exe",
+      "sha256": "cc02c88628b3bd8d37c830c398b3a95dcae5fe1cad8905477d764b8a16d5815c",
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\bloc_census-b35be4d742aae476.exe"
+    }
+  ]
+}

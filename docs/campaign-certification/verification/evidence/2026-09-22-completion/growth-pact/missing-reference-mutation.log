@@ -1,0 +1,28 @@
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+warning: unused variable: `reference`
+    --> spheres-sim\src\tech\mod.rs:2237:5
+     |
+2237 |     reference: f64,
+     |     ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_reference`
+     |
+     = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: `spheres-sim` (lib test) generated 1 warning (run `cargo fix --lib -p spheres-sim --tests` to apply 1 suggestion)
+    Finished `release` profile [optimized] target(s) in 1m 12s
+     Running unittests src\lib.rs (..\integration-target\release\deps\spheres_sim-de8a2e7790f15db6.exe)
+
+running 1 test
+
+thread 'tests::mature_economies_do_not_run_hot' (30984) panicked at spheres-sim\src\lib.rs:7830:17:
+seed 1990: USA earned unpriced growth from unchanged common technology: 0.012576600972939528 -> 0.02129104441075399
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::mature_economies_do_not_run_hot ... FAILED
+
+failures:
+
+failures:
+    tests::mature_economies_do_not_run_hot
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 951 filtered out; finished in 0.49s
+
+error: test failed, to rerun pass `-p spheres-sim --lib`

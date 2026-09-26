@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "purpose": "Mathematical examples only; no gameplay criterion approved",
+  "count_band": "All three totals lie in4..14; examples isolate diversity rule",
+  "cases": [
+    {
+      "label": "Four coups in four distinct countries",
+      "counts": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "total": 4,
+      "top3_exact": "3/4",
+      "top3": 0.75,
+      "original_top3_under_half": false,
+      "hhi_exact": "1/4",
+      "effective_exact": "4",
+      "effective": 4.0,
+      "candidate_effective_at_least_four": true
+    },
+    {
+      "label": "Seven coups across six countries, one repeat",
+      "counts": [
+        2,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "total": 7,
+      "top3_exact": "4/7",
+      "top3": 0.5714285714285714,
+      "original_top3_under_half": false,
+      "hhi_exact": "9/49",
+      "effective_exact": "49/9",
+      "effective": 5.444444444444445,
+      "candidate_effective_at_least_four": true
+    },
+    {
+      "label": "Seven coups across three countries, distribution3/2/2",
+      "counts": [
+        3,
+        2,
+        2
+      ],
+      "total": 7,
+      "top3_exact": "1",
+      "top3": 1.0,
+      "original_top3_under_half": false,
+      "hhi_exact": "17/49",
+      "effective_exact": "49/17",
+      "effective": 2.8823529411764706,
+      "candidate_effective_at_least_four": false
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "baseline": "be67c9b8",
+  "method": "Existing Arsenal3D WebGL renderer; 512px identical camera pairs. Temporary isolated headless Chrome; no game server or campaign data.",
+  "cases": [
+    {
+      "name": "row-house",
+      "before": 17904,
+      "after": 16382,
+      "changedPixels": 0,
+      "totalPixels": 262144,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0
+    },
+    {
+      "name": "university-rear",
+      "before": 19046,
+      "after": 16656,
+      "changedPixels": 0,
+      "totalPixels": 262144,
+      "maxChannelDifference": 0,
+      "meanAbsoluteChannelDifference": 0
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

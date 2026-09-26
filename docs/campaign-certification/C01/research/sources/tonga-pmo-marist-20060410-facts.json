@@ -1,0 +1,28 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://web.archive.org/web/20060501190324id_/http://www.pmo.gov.to:80/artman/publish/article_107.shtml",
+  "original_url": "http://www.pmo.gov.to/artman/publish/article_107.shtml",
+  "archive_capture_utc": "2006-05-01T19:03:24Z",
+  "accessed_date": "2026-09-22",
+  "published_date": "2006-04-10",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 18700,
+  "source_response_sha256": "b1c0dce7a8a6ef90e1960f1a27f1d879ef2dc325c808b8dd4da10d9ac92c01f1",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original PMO page, captured at 2006-05-01T19:03:24Z; the capture is used in place of the live page. The researcher downloaded and hashed the capture bytes before extraction on 2026-09-22 (local); the independent check re-downloaded it the same day and matched the bytes and SHA-256, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_sevele_pm_20060407",
+      "text": "The PMO reproduces the Fijian address and the 'ENGLISH TRANSLATION OF THE BRIEF ADDRESS BY THE HON. DR FRED V. SEVELE PRIME MINISTER OF THE KINGDOM OF TONGA AT MARIST BROTHERS' HIGH SCHOOL, SUVA (2:30 pm 7th April 2006)' and calls him 'The Prime Minister of Tonga'.",
+      "attested_on": "2006-04-07",
+      "locator": "Introductory paragraph and address heading",
+      "uncertainty": "Shows that he was styled Prime Minister, without 'Acting', by 7 April 2006: the earliest contemporaneous PMO styling found, to which the substantive holder observation is event-dated. The item does not date the appointment."
+    }
+  ],
+  "scope_note": "Archived PMO item of 10 April 2006 (raw Internet Archive capture of 1 May 2006). Used only for the styling of the speaker of an address dated 7 April 2006.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  }
+}

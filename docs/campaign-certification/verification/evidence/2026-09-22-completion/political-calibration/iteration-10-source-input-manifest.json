@@ -1,0 +1,4527 @@
+{
+  "iteration": 10,
+  "git_head": "5a63d7b6060d07c15b2069c611f1b0716a488bfe",
+  "captured_utc": "2026-09-22T18:41:17.6391316Z",
+  "scope": "All cached and untracked nonignored Rust crate source/text-data/web embeds, Cargo metadata, Git attributes and workflows, plus every changed/untracked repository input. Unchanged binary assets are recoverable from recorded Git HEAD. Historical15-file iteration manifests were limited scope; not rewritten.",
+  "note": "Current frozen iteration10 sources after warning-free 86-second build; includes all changed inputs, leaders data and prior full source coverage. Only this iteration receipt is newly generated.",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "raw_bytes": 3310,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "5ee1cebdd9bd7e79ab8a4409c8b170e7bc7cede70efed0fdf68233b1ec29fdbe",
+      "changed_or_untracked": false
+    },
+    {
+      "path": ".github/workflows/daily-calibration.yml",
+      "raw_bytes": 2045,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "33a6a653ec13a1d306432685aa1c2a99725e0dfae8137caa9192befd15ca9c63",
+      "changed_or_untracked": false
+    },
+    {
+      "path": ".github/workflows/verify.yml",
+      "raw_bytes": 3989,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "70072ae930677919ea0301112711ac191817982e45e6386b581f76264dcc9445",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "Cargo.lock",
+      "raw_bytes": 9405,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "7d232286affcc685b3c10ea6362968309fc441226a677662e6e14c872fb48a56",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "Cargo.toml",
+      "raw_bytes": 200,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "bb53efb0c9ad7b1bb2387c5280fb4624a6142ee3519cf884d8a2e8ffbeb8d321",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "docs/ADVISOR_MODEL.md",
+      "raw_bytes": 8199,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "0c9dc6108118f7868934b0485390bff0aeb8c1f35e28e3c0534d1df007ee3294",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/AI_WORKSTREAMS.md",
+      "raw_bytes": 11208,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "47c815ff849c450ea5428379773607c2708f2d19e755f1a3fe951162f15c3dd5",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-03/browser-validation.json",
+      "raw_bytes": 10141,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "2b31fcb9a6ee3fc16ad2530032ad6541c025db0caff134861152b8da6297bf7a",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-03/isolated-campaign.log",
+      "raw_bytes": 2544,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "3a9c786b7de2d9724fffcf99920ba1104981804f7adf240e72a0e0041d730632",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-03/isolated-census.log",
+      "raw_bytes": 1462,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d873eac38619ce74718d978bfbdea112bc18b74b44f5b06dba5b9dd3ac8b61e2",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-03/isolated-diff-check.log",
+      "raw_bytes": 0,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-03/isolated-research.log",
+      "raw_bytes": 250,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "64b94f5a3959285eb8a4c4b7d407815552a20674a3eb68887e3de3d2fcecbe66",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-03/isolated-tonga.log",
+      "raw_bytes": 12027,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "445b7edf1e141d31ac2d06fd036083f41d47618375f80a6947afeb46bc4901a7",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-03/isolated-validation.json",
+      "raw_bytes": 10670,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "a00f1b71470c7f7d73462745014aa390724ef2bf5950677ba4a7cbf533a63585",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-03/isolated-workboard.log",
+      "raw_bytes": 107,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "5924f9708c8473a1e10dfdb4f2b3984799f10ee208c590f38a982b66232dc5c1",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-03/merged-atlas-node.log",
+      "raw_bytes": 1118,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "4df99be0175f311036d628948a97df619a4ed681e8343213647b7bacb13237ef",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-03/merged-campaign.log",
+      "raw_bytes": 2544,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "18494aafe8fb98df94e0bf554185dfd8eb89bfecaa422a967402bde1dfa389ea",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-03/merged-census.log",
+      "raw_bytes": 177,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "559650350d96c22027e8fac9d2fe770ac36f6d9311f9baac6124fda6b2bd0a73",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-03/merged-commands.json",
+      "raw_bytes": 2047,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "a85454b0fd1158a100708eb7c452866481991bdc8c6e0f58ae5e05bf3e65a7ae",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-03/merged-research.log",
+      "raw_bytes": 250,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "64b94f5a3959285eb8a4c4b7d407815552a20674a3eb68887e3de3d2fcecbe66",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-03/merged-tonga.log",
+      "raw_bytes": 12027,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "641bac42d9324e6fb594b6bbff9f0a6dc8b5063698fb40e49da6b3a039a67178",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-03/merged-validation.json",
+      "raw_bytes": 3647,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "696d82f5245c3ebe070a6e8650266a276620b06c9e4ebb33cc15b331986666ab",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-03/merged-workboard.log",
+      "raw_bytes": 107,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "5924f9708c8473a1e10dfdb4f2b3984799f10ee208c590f38a982b66232dc5c1",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-03/README.md",
+      "raw_bytes": 4634,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "1cbe851ea9db1d77fb5d808013d7fbec7bbf3b11b5ad12b4050746a9e2e84a9b",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-08/atlas-tests-final.log",
+      "raw_bytes": 1122,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "c14601523378f9485daf396966a6839453119fb638b7174806e7573c500dcb3a",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-08/branch-provenance.json",
+      "raw_bytes": 1204,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "98d2f810e67ae792e0cba884320d5da5e2dbc09499977b362699fdfd6cf7de51",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-08/index-check.log",
+      "raw_bytes": 250,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "a9f6cf684f41a7cc280b4906d673fb15f852614afdf017e3eaa6f83af8a2d424",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-08/merged-index-check.log",
+      "raw_bytes": 250,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "a9f6cf684f41a7cc280b4906d673fb15f852614afdf017e3eaa6f83af8a2d424",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-08/merged-tonga-tests.log",
+      "raw_bytes": 162,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "a75dc15d6a73d7c2b300fa5d6effb3782ac50b42d5f37c1d35ff6bba1a60fc05",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-08/merged-validation.json",
+      "raw_bytes": 2525,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d4655ed5603ee2e44e40d05c267c675b326a9bd8b2da3285d63df8122d408ac6",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-08/README.md",
+      "raw_bytes": 10834,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "2b6d1b0a801c31cd971d1da50f21ba34b4833c1963743ed1d6840916f8dbf520",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-08/research-tests-final.log",
+      "raw_bytes": 183,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "4ff8746962af5d1262693de61fbca9e5a69852856b548ff3fcfad3dc527abfee",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-08/source-fetch.json",
+      "raw_bytes": 34791,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "cf593f0e681cf46d520d97f1b8bfdf3d623baf34d28d778f2842c343ffc34389",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-08/tonga-tests-final.log",
+      "raw_bytes": 162,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "57d51a98c24eb395218b209839c63a17b75453676f3a1ab07bfead18db9334ed",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/C01/integrations/CLAUDE-C01-08/validation.json",
+      "raw_bytes": 1981,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ae018ba871a413df369ab8d1b203dfd376a6efd031ec9c3ef2d9544b6c7f3ac1",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/2026-09-22-completion.md",
+      "raw_bytes": 9324,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "40b450a3f4cdc6959c8a2bb328e9c44c625e7092fb91a8ab88a87996a368342d",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/advisor-full-js.json",
+      "raw_bytes": 2338,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "7049b13cff798ae226c42c91bce73d71401be791ce4b77951b1f343f6c1b58c0",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/archive-correctness-plan.json",
+      "raw_bytes": 12220,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "a2865c09a5f77a7446f2d63a2b5774d54324f90967d489361e5bd140ee18ec8e",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/army-funding/focused-extracted-pass.log",
+      "raw_bytes": 214,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "7c92c791efbe2278f13f2e47bc9a96d30e265c52eb9302653b2e79fdac0b9568",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/army-funding/focused-receipt.json",
+      "raw_bytes": 2044,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ade11967478d1c0fbb512b2065515dbeee2d82ddeee91389707300e479544407",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/army-funding/old-inverse-mutation-fail.log",
+      "raw_bytes": 679,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "fee2771b4b1c55836a86d4eb1e8fc86795dd86d60b17a51154768ffe73fd29d6",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/army-funding/pre-coup-fiscal.json",
+      "raw_bytes": 18812,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "3273cc8349e31e476476edf010be102feaefc90d857fbf4d4d354f0efa02fdb7",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/army-funding/README.md",
+      "raw_bytes": 3220,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "17ccbf174806673594da8a390a944e2a0074bcfc4e43fbb4e267987d03ff270f",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/army-personnel/README.md",
+      "raw_bytes": 4108,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "9e0219da8d18e1f1884886f795f52103b9ad4f05255116be03069151dcf771f4",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/army-personnel/source-audit.json",
+      "raw_bytes": 6993,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "7b0a5bb0f751d08dd94b9a8d58c5680fddb29b6331eebea5a4d742b026403cd3",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/checkpoint-ci-complete.json",
+      "raw_bytes": 11564,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ee75535fc568c1a8de926b3b0ceccb5efc99667e4e181236877b51813d9754d6",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/final-source-coverage-plan.json",
+      "raw_bytes": 3230,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "4eb2ad9b1afd573dab08f80d3fbe05e2cd6cc91c03215b711d9791a6eb9dafa2",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/growth-pact/current-test-probe.log",
+      "raw_bytes": 288,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "13b2b29253349a34d08c1e9c0ca8edaa7c6059dde5868907095a63c3bcd956b1",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/growth-pact/diagnostic-measurements.json",
+      "raw_bytes": 9016,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "b2b93761b713c5168c9c44807a607d769835c4e7cbafb25f1bb33b7a2f74b0bf",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/growth-pact/iteration3-mature.log",
+      "raw_bytes": 508,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f9980b8301cafe6fdefa1e26ad55169b91d605e1124d8cd9f4d3e60f85de8585",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/growth-pact/iteration3-pact.log",
+      "raw_bytes": 564,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "831aaa3246861b5b5d239b3647a17c7ccc686783000b154a1371cf4b96fc0d2a",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/growth-pact/iteration4-focused-result.json",
+      "raw_bytes": 950,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "0734968525dead2dc7e994445080f807c3ca8d3c98c7ac093c86f952e5a13c37",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/growth-pact/iteration4-full-lib-result.json",
+      "raw_bytes": 1069,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "7a7dd1ecbaf02fe7dd5c88e4d8841fdba3878960922e4b5cb007b893dcd96c94",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/growth-pact/iteration4-great_power_pacts_answer_real_defensive_obligations.log",
+      "raw_bytes": 191,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f32b244c8084389bc4a7b69b0fba1bd11d425233926fdcc3f059676727acec69",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/growth-pact/iteration4-guarantees_are_usually_but_not_always_honoured.log",
+      "raw_bytes": 186,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d73b81dfec31a6595abf3271b91dc3a94b497ad4c69366a6aba1eb556e48e753",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/growth-pact/iteration4-mature_economies_do_not_run_hot.log",
+      "raw_bytes": 171,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "9b4942b553da71733312d082a2663e2f34b487a2316320779e89ffe7f9f3a187",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/growth-pact/iteration4-succession-original-failure.log",
+      "raw_bytes": 762,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "cd0e58e7068a5bfbd1b4b7ca1c09e664aa558673484aef9a4e56886b7b4c9ebb",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/growth-pact/iteration5-focused-excerpt.log",
+      "raw_bytes": 394,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "1d0c8a546e6ac2db68eef624f38566389384730f2157f77160db7d57603b2fc4",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/growth-pact/iteration5-followup-result.json",
+      "raw_bytes": 1184,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "326714972a7698f1e5ad687df68e17ea76bb60b4d73aca0f3f67270248dff76e",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/growth-pact/missing-reference-mutation.log",
+      "raw_bytes": 1364,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "b6539bb69dc0314c6d0fc85714b4eec9b960c455f8f8a2d281f30d86642eba27",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/growth-pact/mutation-result.json",
+      "raw_bytes": 403,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "79c22c5e60f72dda542bd56c684ea0c117dccbcdd0e0cb44083df661bd567868",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/growth-pact/README.md",
+      "raw_bytes": 10290,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "1d6f61c96f1230361146145edfefc1b472e250934e7641e6e597d9b6d4708fb2",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/growth-pact/rlib-provenance.txt",
+      "raw_bytes": 282,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "9ad16ff14db49d352bc1e5eabee5b83e63a91cdd22b8c0bf814992c835e74c55",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/growth-pact/term-limit-boundary-probe.log",
+      "raw_bytes": 236,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "dd5bbc1eecc873a07071a270ebd290b93cce6e7a315c160c34d068b8fe827bf2",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/army-coverage-factbook-1990.json",
+      "raw_bytes": 4469,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f5b616a1e66403cd2f21a884eaf31ef89fd0215654ba8d9a0aa638ca7c11931e",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/default-hashes-iteration8.jsonl",
+      "raw_bytes": 801,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "23498289681ad261600444efb07b8ccd9ffb8cf18ce207fdbdd4fc54eb6920b4",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-1-A1-A10.log",
+      "raw_bytes": 14465,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "e8ef02cc37074e98c9984f2bfec1fe0738c0866ad622c084d1b8b06e3618391e",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-1-results.json",
+      "raw_bytes": 2031,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "0247fea749b67c0f16a486d04095a5e84503333fc814178babb0ed2dbfd59400",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-2-A1-A10.log",
+      "raw_bytes": 13911,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "dd528d2dc7d22dd54eb95de8f158bdce78f6d2f1c7124a1b5dad364b94f8e608",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-2-results.json",
+      "raw_bytes": 2031,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "5fb5ba999c899f6d4ed72d7a1f169c894b4bee351527c1bd483c23ade3b017cd",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-3-A1-A10.log",
+      "raw_bytes": 13682,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ff5d6a93693f72a140867ceb990f955f21275b287464d674663f788c4253aec2",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-3-results.json",
+      "raw_bytes": 2031,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "9b99aa46cc3d0ba08983262732c71eeba43f4e7ae584b1563f93dface823bd23",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-4-A1-A10.log",
+      "raw_bytes": 13938,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "0ed9845e4de42572365f0e4978ab1dfea06f76e121dd17b196fee6fcf0e6e743",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-4-results.json",
+      "raw_bytes": 2031,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "30b3ef489c5ecb4f2e68a66ad7aeceb627292986fc69084846856d75854fb2a4",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-5-A1-A10.log",
+      "raw_bytes": 13430,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "a9710bd60a1b1ad194c74709a68b4f02bdfaa0037ff7d048b6fb24d529a549d1",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-5-results.json",
+      "raw_bytes": 2031,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "17efc217309c5f6dd6280d77ecf20039cebbbb68f8ace07ed2a5e6160b5fa6e0",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-6-A1-A10.log",
+      "raw_bytes": 13658,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "6db9bd5e74f31a9b848895b5d08049fdc1c406dbd6dd256c87e9f2113b84816b",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-6-results.json",
+      "raw_bytes": 2031,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "8f6cc74c85f153bec07d07b6f26a1af823aef3ecf93c5acdc04effa4bbae3a27",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-7-A1-A10.log",
+      "raw_bytes": 13634,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "a4c93c84df474bc0f3c650d268a4570b7e228350ff2a9f0f0ab185fcbf4a555e",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-7-compiled-source-hashes.json",
+      "raw_bytes": 4337,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "74b0e91c4303e9867448ecece49d99f7bd74db2dbda2496099c5c1e2bf1d2622",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-7-results.json",
+      "raw_bytes": 2031,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f74765b9fd1714d5655949c85a63c1d3ace3939a47c7172463369b73baeacd40",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-8-A1-A10.log",
+      "raw_bytes": 13396,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "b4c741f9ff6a94cec56c3983c6362fe4ae4e10f6e02aec29e8498af9efab75db",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-8-compiled-source-hashes.json",
+      "raw_bytes": 4291,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d6e8b4c9c143ea09975f69ccce518f9ca3163f3d325a072b6275a385fb0f8cc1",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-8-results.json",
+      "raw_bytes": 2031,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "b6eba7b869acaad5a5c9fc3ad1a0f3c051a60cfe421b801a2d12c73a59acbe21",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/iteration-history.json",
+      "raw_bytes": 12700,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f6b31aad74445f56171dd44a126d7d02aa2acd7eb544ba98572a67ca09054914",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/political-calibration/predeclared-independent-cohort.json",
+      "raw_bytes": 641,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "1c9f6a3babba71e5eb6f7480ca07339cb0305ac8a74ed8e45177d96e2b296e28",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/public-mandate/README.md",
+      "raw_bytes": 2924,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "50fa0e9b7f1fd6dbc73099aadc8f5ba3ad328c0f4898dc24f0fdf8dc5d3433ff",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/public-mandate/same-state-probe.json",
+      "raw_bytes": 9885,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "42a05b718ebd252ad9774f4c518c01b7efe8bfbe06da6b5c83ded70f5b51dcec",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/town-ci-independent.json",
+      "raw_bytes": 1857,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "bf556ef7a66e31219d6dd9937b5132ff227dccc67d9652fa074c017251f2dd13",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/planning/ai-handoffs/CLAUDE-C01-03.md",
+      "raw_bytes": 4394,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ecce48ecef645b5a2699b624538f7d034a95aa441144775bd8408b7c56d97f7a",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/planning/ai-handoffs/CLAUDE-C01-08.md",
+      "raw_bytes": 7097,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "732f582e8895c83065fbac13ab10dd35f85d5e80c27e883bffab1fb9d30de5ae",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/planning/ai-workstreams.json",
+      "raw_bytes": 4613,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "791fdaf3ebd00556546b7e89e06adbe7221c9a64cd13bd5ec8041b6ff25990ab",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/political-arm/1990-census-reconciliation.md",
+      "raw_bytes": 3583,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "a683d28063fc54d7412eb7dea26fda0324c17601b355490bf0ce4d673f774b9a",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "docs/political-arm/2026-09-22-calibration-repairs.md",
+      "raw_bytes": 23553,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f0aecf7bad356b533ca384a3ff9c2dac451fa133ea97036adb2e137526bfb302",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "spheres-cli/Cargo.toml",
+      "raw_bytes": 195,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "6090b75dbdaa016246b8bfc88699c500daaee7abcf87f4d4e94911b2a63eac21",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-cli/src/main.rs",
+      "raw_bytes": 37617,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "4036c7a2ee9c1073e717fb442e59b78925dca30f70741479a01cc7f5ccd86800",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/Cargo.toml",
+      "raw_bytes": 202,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "a0b0cf2b76db3643ef2deddab56de7abb0497c9dfac6949e9eb315dd360c1d54",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/armed_security_1990.json",
+      "raw_bytes": 1903,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "7fa6c2fd1ddb0737d0f35faa1ab1d24d7e08c249ae0a7fa2a8a1f837ead535cf",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "spheres-sim/data/army_institutions_1990.json",
+      "raw_bytes": 10268,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "99382e5c64f64345a1659b0fc949d5919288f0a7507821d70b45ada05033c13d",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "spheres-sim/data/districts.json",
+      "raw_bytes": 844035,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "b6b1a88c891ccc4fa02f877cc73786d96bf81ea4269ecd8915a6759fac480f46",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/future_party_continuation.json",
+      "raw_bytes": 2600,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "cec3e9d9f49cd27a97229b9741a325952df24f259acbbde092150f4032d24176",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/future_party_leadership_seats.json",
+      "raw_bytes": 2972,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "cbf74d65ccd193a3cc86ef686d11ddb2b7f3281b98675d0c7b842e8bea92cd08",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/future_party_leadership.json",
+      "raw_bytes": 26453,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "96e724b21f59ff7278f1a64625bbf1620b3dca24d3ed7d7f3116684a0a0fec26",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/industry_1990.json",
+      "raw_bytes": 922666,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "66864f3785f8a021625796c0471206f0e30c80fc5fa36023425c53efe1b5a748",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/leaders_1990.json",
+      "raw_bytes": 117104,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "cdc868e9c60ad7df6ca92d4d8a30e1b355cab953df46108f1328d7dc6ab46008",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "spheres-sim/data/logistics_network.json",
+      "raw_bytes": 1518439,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "fa988d8abd12fe8bb1c967c7041bc486f0a37731afb90ac8e891e4c9769af4ff",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/movements_1990.json",
+      "raw_bytes": 1050,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "00e488f071c2457104eea18afb5975a81c80b53d505af97557187ca119cef279",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "spheres-sim/data/nations/afghanistan.json",
+      "raw_bytes": 13248,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "3123b2051015d2dfdc5ecbf1c9d42bfd19e9ba6b141ec118212a8ff5ab4daef3",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/albania.json",
+      "raw_bytes": 10230,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f378b6c9269f4a91b579f24a3f2ff6d1754b0f54d36e8252ce770469d4502460",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/algeria.json",
+      "raw_bytes": 10168,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "6650991dfadef79f600756fb756eecb4a6d2359fa89b6400cc52cbc29d6eaa68",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/angola.json",
+      "raw_bytes": 10458,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "bb182a2d8614ec8c204398be0f6b2f19f660eb1a1a4e2a8515715b08b0f6e0ad",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/argentina.json",
+      "raw_bytes": 8196,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "01fb73457b42aa8dc650c3e85f2457d503c174eadd8d2b9daedb09416c2d5604",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/australia.json",
+      "raw_bytes": 22116,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "0b8f64e0825a07ed62f3750fbda0a12df2813bdf8a61587385a0e2af88751f1c",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/austria.json",
+      "raw_bytes": 9375,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "61b5ee3b6cc9410417dba257246539d667950167da46af9e7930101dc2fca9f6",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/bahamas.json",
+      "raw_bytes": 10983,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "12d59bf40e48d7f3b9abf6ea4d261c5f1a8ef86fb8b3f5f249e66bcc6221d575",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/bahrain.json",
+      "raw_bytes": 12946,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "94f14cb9fb493351d66285bfd4faa872a2a4819c576f62e349ae8c177b15c184",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/bangladesh.json",
+      "raw_bytes": 10701,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "8cd26d7b911c5157abecca467e357c6726ddac3db7bdf8113dff2754f056bfdc",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/belgium.json",
+      "raw_bytes": 10084,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "e473684ec2a176239d8c70d9f70370585bf0b865d64bbfd39694c436f596b67d",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/belize.json",
+      "raw_bytes": 11297,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "3e9f080dc51cdb83c2e9795259ac5ebcd4fe476c7d0e282b0eae228f6dc215c1",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/bhutan.json",
+      "raw_bytes": 16384,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "017dc2b21f06a3e22b71c70d2fac8263f18840a0de3190a96557041cf80e5b2b",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/bolivia.json",
+      "raw_bytes": 7348,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "3b8aed0476fe5f3fd131f1d05e99b359b967dd13133b2f14eca95e5491607cb3",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/botswana.json",
+      "raw_bytes": 11780,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "b3d66528d8144e9afeb0a5d59dcd7b610bf0acbcce53e982f05e51e1b4b6715d",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/brazil.json",
+      "raw_bytes": 10433,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "357bc6ce0764ce62051ecf7f02748275bce3f060b339647acbdd57b2c8569dd7",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/brunei.json",
+      "raw_bytes": 11692,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "b0bc557bed511580aa16dc99b6be26b002880e2542d1257fc702ccf79075bd72",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/bulgaria.json",
+      "raw_bytes": 9461,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "1b126c3bfeb4858d7ba44c8e37d1ae3a15c2d00a213394105b271b6b2574a8f8",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/cambodia.json",
+      "raw_bytes": 8593,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ee65b180d95941ce0d8162ee6b539545f5f5d43b4fecb970a00611092b498c47",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/cameroon.json",
+      "raw_bytes": 9324,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ada9d309eda90b64e08a284aebd859918d809805f9731ef7371b9bd4ba702b6d",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/canada.json",
+      "raw_bytes": 26159,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "24c6ebbba0eaf52e5c694ef771fe1f99d28acf11c138e5e378f3723aaae02e64",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/capeverde.json",
+      "raw_bytes": 12982,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "bed7e9612d7f9aacdd825997996096f1f66293b1a9000c6b4ff73598a5a0c93e",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/centralafricanrepublic.json",
+      "raw_bytes": 10860,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "c1fca002383dc26e03b207c84291b9de47d31b11e2eb28f454a3f3e8e2fe0e70",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/chad.json",
+      "raw_bytes": 11899,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "7b61869245c5a5f9d4a17d22e37401536a824ea42962826ecf73c454b7fbc59f",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/chile.json",
+      "raw_bytes": 7963,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "e08628997480f4f0e6bd84f4d5fac7312db378b73ef315fe9daa5498e5404aad",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/china.json",
+      "raw_bytes": 7820,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "decfa145261d10a777ea42aa2193895862bcd0186ae9f48c32641edc197e6ac2",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/colombia.json",
+      "raw_bytes": 7334,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "e0146962595f4dffec0845098a83bcf63a3921b15821b25ba4b6dd60632a8013",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/comoros.json",
+      "raw_bytes": 13796,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "994163f050726614d0d76f19305c8650f74ee4d9a72a184ca907a0fcf86db0a6",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/congo.json",
+      "raw_bytes": 10572,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "e8fbc8b66f65be522acbbbb0208afc17bfd8e7a3fe335701cda29b499713c17b",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/costarica.json",
+      "raw_bytes": 10524,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ba60402c746ee87778689ae4ceb2bf60b694a82e881af736051248de52377d0d",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/cuba.json",
+      "raw_bytes": 7492,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "68efd7aebde2847fad9735d4553e1d05ba00811c296513a774a4b69e563a60c5",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/cyprus.json",
+      "raw_bytes": 13610,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "8718de4c63c8a4bd8f68fef237a2c56d5de2981358e569a9afc915d98ec04722",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/czechoslovakia.json",
+      "raw_bytes": 10724,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "109d2b7f87a9fdf54f87f7f29372ac00b73694dec470db172ab590b85f6902f9",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/denmark.json",
+      "raw_bytes": 10175,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "993018e10713ccde6d181d26d7349a85425fb89fc1133c2f4eda5c38635013f6",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/dominicanrepublic.json",
+      "raw_bytes": 10554,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "1216140a42cc423adf808b41f15bbebf3f8930187ab6f7ec8ee65d9d0e3fdb0a",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/ecuador.json",
+      "raw_bytes": 6789,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "16f8b6ed4ff9d8f741e3382441ca6309b32e73d91d0c9a321d8acce87b28cfa4",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/egypt.json",
+      "raw_bytes": 6552,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "76b311247a0b368f02c7ed345c5af93f1544940f2aa070daade2e99bf20a9c68",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/elsalvador.json",
+      "raw_bytes": 10953,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "5da05559d7b2aa1ab89c90ff06f9211dde85c6ae496f185343d768acb913ef4d",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/equatorialguinea.json",
+      "raw_bytes": 11484,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "4e91711af4544950770ad13867a739eec25b20be8cf6ae50ebf9ad806e7e2593",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/ethiopia.json",
+      "raw_bytes": 9473,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "3311be638f94a7fbcd661f3f9abd5a5a0dca7226feb1a90023b87a89f0a9086a",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/fiji.json",
+      "raw_bytes": 11757,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "305d2a1319173fa50e9f6981ad419261ae21046ce4bf8f6554c33b75eacdd5b6",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/finland.json",
+      "raw_bytes": 9469,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "305b92b2cb73e024825a49c2ce9995adb54d90784771e608ce8ab4b08b535eaf",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/france.json",
+      "raw_bytes": 18668,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "0fddbc44e01060b8d8345909cc04cfcf34a53adf15c04dd432b192944f0c106f",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/gabon.json",
+      "raw_bytes": 11520,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "132923c240b6addbf989dd1608954b757cedeb423641622aab72c5ac307d0473",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/germany.json",
+      "raw_bytes": 20856,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "6563a080eb1357c3947bf34f5cbfd018ee5f1b6e096a529bf7ea09fce94c770b",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/ghana.json",
+      "raw_bytes": 9839,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "9134b91568c5d7a3805e480d80aef123da19d8ab9bd9c491745ab130bb178852",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/greece.json",
+      "raw_bytes": 8545,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "fc11a2326a45d589dfea35425324ce01d27c0a9ece4dec4e9765e51887f1a076",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/guatemala.json",
+      "raw_bytes": 11755,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "03f5ca99ad1294f77ee4f559f700ce36d1a08cd7211f8c3a8465b37d788ac276",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/guyana.json",
+      "raw_bytes": 11892,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d29047cb158043fada9c66830744328a80471cdc59fc775be688b0c03e00d19f",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/haiti.json",
+      "raw_bytes": 10471,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "79574190acd950919897e3f4f00a087938d583ff39f777bb681dcbf8ebdbd112",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/honduras.json",
+      "raw_bytes": 10026,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d3a53e0cbedb0e09903f772de96181ae354ca81c5b7a15e4466fa15126733605",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/hungary.json",
+      "raw_bytes": 11256,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "72120b2737f5a6a34a6c85df1cf68eacd95493af0338f8f9b64d8a3b1e60aefa",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/iceland.json",
+      "raw_bytes": 12035,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "a7c170a68e3bfbc0e3ef4f5d437d209008d2193bbe7e70a68eebdc3811997a76",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/india.json",
+      "raw_bytes": 8226,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "9117846df3d18a850aa120a4e597b4a9cbf4fce7bb9ed604a9acd198b9af8ebf",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/indonesia.json",
+      "raw_bytes": 6071,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "75a4ae4cc6218880a6ce38b61fca42255a2942b9f54f3249669efb29b4819f44",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/iran.json",
+      "raw_bytes": 5556,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "01d24c4f752f04557eaf65da1feaa7b3c2ea81879f1076b86eef672924b97ed7",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/iraq.json",
+      "raw_bytes": 5712,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "996f80730efa1596350d35fb637ec8098ff72fe6b4f4040b3ba9b1ccb2c2b2bd",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/ireland.json",
+      "raw_bytes": 10575,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "791b81655caeeabf6c91c5d49c8c800190b77e9df5001fe5c4c6d27db7b251e8",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/israel.json",
+      "raw_bytes": 9886,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "475e5449fe355ccfa55e96f4b012252b2c15e18bba324acc27e4db40c97658e0",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/italy.json",
+      "raw_bytes": 23878,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "5dcb198188b586b57cd4205210cc7410146b1df195d64b4a4584612b233ca076",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/jamaica.json",
+      "raw_bytes": 9603,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "92193932517410f29a43ad653b4be5d167d35ddaf869b8b04800b6f05b876764",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/japan.json",
+      "raw_bytes": 23820,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "02d3f2afbf5dff48abed9e86929e3fdd9708d0770e9dd3a0c06b262f1d6a5a5a",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/jordan.json",
+      "raw_bytes": 11128,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "593d41523bc22a090d1690ec025eeb7b204d49da1c479c7b1d33527610e68ea0",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/kenya.json",
+      "raw_bytes": 8803,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d197bfee00a147216441d80107e2b460eb0765fc7f271b79d9c08e6bdf8c90cc",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/kuwait.json",
+      "raw_bytes": 6023,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "dd75789e24e0b5115dd0a5e7b6983fd80d978c0a631352fc0baa970aac75ae16",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/laos.json",
+      "raw_bytes": 8101,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "fab1cb0454679146ea3f8f21a0a0af7c81743bc29ccb1f28ce1db34dd0cdb19c",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/lebanon.json",
+      "raw_bytes": 11548,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "8ba94b293eabd96445bfe54684914b321f7827a098b170697225b52da0403235",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/lesotho.json",
+      "raw_bytes": 11433,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "10d1b6bac439b0dca2886e96db45d169315ab074d13c3de456f80f7710ff747d",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/libya.json",
+      "raw_bytes": 11387,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "b7d96764d1e24979d8132ba07d5ed9be72b24cdcc7643ac16ddadea3088d1159",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/luxembourg.json",
+      "raw_bytes": 11471,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "c6b820bfcc9f8f5115ce90b78aa8e4de13a0f9059c9ea69db4d6e5f407d24a81",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/madagascar.json",
+      "raw_bytes": 12711,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "014089ec8599b39b7b08bc875b4cc1db176f722e448f5b21514908ae1dbad176",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/malawi.json",
+      "raw_bytes": 9983,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "566d2038e8946ec4d384a1f99a90f93a5f3620c56ca555cdb438dd26c00b17f0",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/malaysia.json",
+      "raw_bytes": 7973,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "6f3606bad3fbfc9d0b9a65b8eec4cab21ae1be377a88026f7ab810b4effbdb5b",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/maldives.json",
+      "raw_bytes": 12237,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "5e90f02131fa2ea9dc445746cd4bfcb86cdc36347d54883e6417442431f0817f",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/malta.json",
+      "raw_bytes": 11561,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "9bbcc171de10757b6ed1c4e7fe18eb866fe90c97b2c0fc198a89a0d2a4793d95",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/mauritius.json",
+      "raw_bytes": 10731,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "db7d17c0c6e414a7b67dec257f5d00f9ee942b0622b9f8ed8fd73d4f0bd8e223",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/mexico.json",
+      "raw_bytes": 10555,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "6b3d1b4e3fe1de3ab158ac2123e131f08d1ad8c7b53c4882a26928e8903b7454",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/mongolia.json",
+      "raw_bytes": 7236,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d6b1e2928a6292837dc9996c99abf9d28b86d98b1e097cf4fdea182122bf90c9",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/morocco.json",
+      "raw_bytes": 9658,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "766834f21880cfd024492825e27030d6234abd775ec72a33f245e5349f9050a3",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/mozambique.json",
+      "raw_bytes": 13279,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d2e605a1d6bd155f9c5d81f804b24c5b5d5006fb93b2ceda068ae0fb8b540907",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/myanmar.json",
+      "raw_bytes": 13108,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "c8f1d5ed00d0dbbf3635cacd70525bb20a0f557cae839d879c093860abeaf4db",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/nepal.json",
+      "raw_bytes": 10274,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "3237a94a7652af0642e0938dc9de3c04657d04729bee1177c39ed676ba516ece",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/netherlands.json",
+      "raw_bytes": 21807,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "290465d8e48061514f751db738996aa266f152848bf61e8999a3f75926b2f2c1",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/newzealand.json",
+      "raw_bytes": 13284,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "411c706ab9185be8c0b9bed440538a1434b54bfc67967294025e112e91799763",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/nicaragua.json",
+      "raw_bytes": 14026,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "fd413fbb364a1627681da8d19308a71c8563c2cdddc13fa99273dd03c28d7c31",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/nigeria.json",
+      "raw_bytes": 4710,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "700d7a6282af3a6d6b7335c59915d7133f42376cf6acb5256393b6d879ef0307",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/northkorea.json",
+      "raw_bytes": 8409,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "345e0be5a555e18e9ab34f42f7443894526724c250cc7ecc2436d238b314a1f8",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/norway.json",
+      "raw_bytes": 10017,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "4273be3f5afa1c9c54216be4855a5c858f396d4f66fc8c77c2b72b7ce1b7f133",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/oman.json",
+      "raw_bytes": 11547,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "9594777781ea7ce6ffc03d57c0b5c46769e2ca7bf76408817582549f677f65b8",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/pakistan.json",
+      "raw_bytes": 6875,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "c593a6379aff75fa8f7ff64d446532235f40d2923711fdf500dda529b8715d27",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/panama.json",
+      "raw_bytes": 10813,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f2b8c58b0517413351f5255d055fffe1cb677dea8aebbe4033cc03c72c706958",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/papuanewguinea.json",
+      "raw_bytes": 11572,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ad0ba65b22aa2a128f3d1c531a5998b378529dece2b7c32624a52e3aab40af93",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/paraguay.json",
+      "raw_bytes": 9870,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "efb7eee854743e8f4455f75cc4f08c2cbc8ac92068514db818f16ffc60ccea3a",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/peru.json",
+      "raw_bytes": 7419,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "e2cc9e2bf9ac2ac0170ab948d397db487bf7d43ff3b55aeb5e7288c0f808e619",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/philippines.json",
+      "raw_bytes": 6748,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "70c537e62f6bd7860794360a6b2cdaf5c2b40131ff5e5bd293c155c40ac985fc",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/poland.json",
+      "raw_bytes": 6959,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "0e6b6f2f93cb74c76408b63abb6a1fd7e49b2ca6e2a8008ef4daf798e3d1957e",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/portugal.json",
+      "raw_bytes": 9672,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f49006a7f19e6152d2a1e00a25f46c5b14cd5a4ecd291da74500470dfb7d5006",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/qatar.json",
+      "raw_bytes": 10425,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "72bb38cdf9cc635f422d6eef48bfd7e2222ef276948f6538fe0aa9c39f90a652",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/romania.json",
+      "raw_bytes": 10552,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "54597f88d37dc704af6c0dc916f8fe6fc2e43a558c17bcc703e7ec4fd87aba83",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/samoa.json",
+      "raw_bytes": 12171,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "c06b07cc352b4d757d29d8f62fbf132ba8f5a0f1259545ece1acaa4d2994334f",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/saotome.json",
+      "raw_bytes": 12781,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "6173964a8bf5f50d9ff38ba0a441621975764f8b115ca63e736f6bf11bd66b16",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/saudiarabia.json",
+      "raw_bytes": 7920,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "b418637f6384520ed00b6f5fb2ad2be838d64a16d19a5c5ffba111dffb9e7325",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/senegal.json",
+      "raw_bytes": 9073,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "85ef8b14e24138781dd865ff8f4e82c3ccda6aba378f022813e2c305b873cb42",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/seychelles.json",
+      "raw_bytes": 11474,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "c21bbfdbe0b1c17d53cfa359556daa77394130af6c95aaf1ede0e99e996b9bc0",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/singapore.json",
+      "raw_bytes": 8864,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "7800050f45e94d1f818ef2162970f8f120cf498e4bdf78fad4513e3c50e59d6a",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/solomonislands.json",
+      "raw_bytes": 10286,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "70b79049ee0191e4f9f9b93da9c75124da591908a51d3134ed25c4149bc69661",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/southafrica.json",
+      "raw_bytes": 14713,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "9cc555db54bf0318381c901ace3f73ef19ae9d4d972fe270e401d1302a677b27",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/southkorea.json",
+      "raw_bytes": 9665,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "0b3fa0ab5053efa1dbf0148ae3095dde8cd81d3f6c042e7c876598025bb2fa90",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/spain.json",
+      "raw_bytes": 19085,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "7caa63f288e1d84ae5e69f5d0ae7f4de389f7cead86c18b975fc9015d0efbe47",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/srilanka.json",
+      "raw_bytes": 10009,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "2ff60977c1a5b4d4f9ea449db7002bdb9e4c99d994dd1248754b1bea78a8090f",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/sudan.json",
+      "raw_bytes": 10567,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "790ed2b8bdb91dae45615d3f9940668188997847652f1f221895ea8cab231fea",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/suriname.json",
+      "raw_bytes": 10380,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "1e0534fffb820fc641338ade35ce6a87a4f948672d0cd9930d99afd2f36ca80a",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/swaziland.json",
+      "raw_bytes": 10987,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "29b6b61ada62248ccb329e7ad8294ae5d5a90e68153187573aea289766546fa7",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/sweden.json",
+      "raw_bytes": 17893,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "51a36ea58ebfbe3b62e0a341632fe6cab9ff74b93d70922d9d24c8ed9a0da546",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/switzerland.json",
+      "raw_bytes": 17498,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "1ee2fd6c4a4af510239acac5704250be4ea5a8273383fa7a8accf5571d9ec2db",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/syria.json",
+      "raw_bytes": 10483,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f3709b74f02525e1b47c74bf83d268c9d5b6a3c3820d9419fafbbb4b226e1ba9",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/taiwan.json",
+      "raw_bytes": 10695,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "1daadd0cfbdd2373375d22b565908f01ba7f4c4e52ae86f30524d67842620aee",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/tanzania.json",
+      "raw_bytes": 8662,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "eac79b129f1e09cb3cf118d93501e2e191b73fb81ca74878df1fdce3fa392084",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/thailand.json",
+      "raw_bytes": 7989,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "3c3b925c07f3c8e34e8a2dfd0f050e23a053315b8d76eaa26eda999dd5fe5598",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/tonga.json",
+      "raw_bytes": 10130,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "5a76aa017229fb7d50853e76c9e9b907cf747579892fa918f0b6f6b67cf6c4b5",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/trinidadtobago.json",
+      "raw_bytes": 13085,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "9e4acf8e608dba5c4bbcc9dee6b1bfc5886e53bf8a60e0c44cf6f659d451ef4c",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/tunisia.json",
+      "raw_bytes": 10808,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "3adc297fce2cbe2b686063c8594bb0818d7be9ebd892d846e53c5bca8ab4e0c4",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/turkey.json",
+      "raw_bytes": 5935,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d5f7571d05813d187cf4ad237c854224131c1eb7daf49f2acf2aa3047333369a",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/uae.json",
+      "raw_bytes": 12771,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "977193d0398fe941b17b50fc4c336acf96058c8dfd33fe96867cc81f98b268f9",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/uganda.json",
+      "raw_bytes": 9159,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "8396533ab79e09dfbfb6c6f4985771650851da9abdb64ab24765e3387305abe2",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/uk.json",
+      "raw_bytes": 16629,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "b9fba870d9f22053ea91a3a24a3360630558e2db260e3fd0cc1f92de02ace0e1",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/uruguay.json",
+      "raw_bytes": 7055,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "330b6c40272752936791e414fd516fe3a004af44b949c475f8387db94220862f",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/usa.json",
+      "raw_bytes": 23430,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "5aafdf69359d937cd990304758d58414db6b77497fa0a051985ea2deb2db4e23",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/ussr.json",
+      "raw_bytes": 11877,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f65b359c38191198fa0e7c29bda39873e413d0b88c4aa9dbfe87090103d34fa2",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/vanuatu.json",
+      "raw_bytes": 10498,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "13b4ff41b921465fd279ebef5913a47b8d257742d4c90facc45c2d99e2a316dc",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/venezuela.json",
+      "raw_bytes": 7345,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "a60034ca05ab0165dda8a29fd71d8e659be2b98d1bbfc714c0fc753dbcd94f51",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/vietnam.json",
+      "raw_bytes": 5257,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "9a612d943eaf838e1c4bb05e190e5c41c08d5ba2fbe15fbf0bb707780b1de5c9",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/yemen.json",
+      "raw_bytes": 13383,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "df4645f6d01c2a21702b59f8e770b3cc81a13539912c1df640d57c25aaac6955",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/yugoslavia.json",
+      "raw_bytes": 8233,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "e144e3728a7c8dee03823c6246e2c0065cbd45ca54c2e7b52245ce6bad6a6510",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/zaire.json",
+      "raw_bytes": 10178,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "5ade65b31284695a2cfc065543d4475d703d795ddd0c7f3b10ff114c441c2c41",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/zambia.json",
+      "raw_bytes": 12623,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "5d5dc130d9c47f8871960851d9efdac7ab6106df50d0ac07397d6f4b3d6b3e31",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/nations/zimbabwe.json",
+      "raw_bytes": 10480,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ba9c1e9944d37c616b8a18f781b65130ee2963cf83300491c88570d1b53460e2",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/party_executive_eligibility.json",
+      "raw_bytes": 86656,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d4fbdbff29956f5251fc97dc2021b31b4a2a8b423fd6a89e2ce34397b409510d",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/party_leaders.json",
+      "raw_bytes": 1262625,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "18774ffa08a226e1a9c6b9608d6a4e8adfbab43928092ed925d3c44803cd2494",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/population_1990.json",
+      "raw_bytes": 562620,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d13754425fe45b03fc79e18e44d2945f109a172cce97935729566a8dfec0ef6e",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/relations_1990.json",
+      "raw_bytes": 168717,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "4831266c72220da62a7bb172ee889a04d18236817cf9b6cd0929a327ee48bb13",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/resources_1990.json",
+      "raw_bytes": 411535,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "2e4520ef2d23f479e87eac79c2cf33e001d841f73ea0786d961f1d6d71770d6e",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/data/sectors_1990.json",
+      "raw_bytes": 207082,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "6173ac1563ebd1312704491fc42461d25a4410b9f6e37c060620ac70938809ce",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/examples/audit_leadership_save_upgrade.rs",
+      "raw_bytes": 3745,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "31d7f24b8cdc71b75ee2f105f0ac5489e4dcdbb9dc2c2dc101a335c6658dd0e8",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/examples/daily_calibration.rs",
+      "raw_bytes": 33752,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ef0521afb1216eb0c8cc5591f97824e4fd4aed15aa9e695a4bee22492429cd50",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/examples/economic_competition_census.rs",
+      "raw_bytes": 20582,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "113447a3add4a3f8abe3da426843d300142adffaacc3798bacc2fba12f06f38a",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/examples/economic_competition_profile.rs",
+      "raw_bytes": 2296,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "3bf7c5b5e7d85bd42147cfc79d317066d5998991005f12e6aa5e1314183e120f",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/examples/export_future_leadership.rs",
+      "raw_bytes": 2309,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "8a07d1559b3e4c068b3f3ac7ff7ebd28a308842545e6d1dd669d1554c380ee9a",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/examples/export_party_leadership_views.rs",
+      "raw_bytes": 1786,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "0c4982647ee7da374942feb863ad664aaacba7fc26ee43f20ed640e087afb100",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/examples/materials_census.rs",
+      "raw_bytes": 33216,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d0c76b9731e19903c6518b2e236f0a9e11d406c1f414c4e59f8ed5de5f12610d",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/examples/materials_profile.rs",
+      "raw_bytes": 7595,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "a473ab2d899f6eb351c9162ada1796de441cb3ac8790918fe8d966f2da3e4ecb",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/agency.rs",
+      "raw_bytes": 17314,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "216d52b11660f291bf9542098abd1b43cf08b07d70b705853769c5ced28e2ec4",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/airbase_distance_tests.rs",
+      "raw_bytes": 1128,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "7ccdf74ca72d92d181f6111ad4c1f91f757c6d91a2284bd2ff9702d885a94069",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/airbases_tests.rs",
+      "raw_bytes": 24207,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "a419971b26e93865ff71205e2fd8db5d1fb259096bad7ef7039a859017ec562a",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/airbases.rs",
+      "raw_bytes": 39993,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "9cb11b10c9137ec35951c32b5154cbb090f8407ff48d77b4e501b45092dfb187",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/airmissions_defense_tests.rs",
+      "raw_bytes": 30685,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "1641c1ce4c909d772ffbe82b9dda384317626de8436fa03044a17f35a1dc7573",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/airmissions_tests.rs",
+      "raw_bytes": 24050,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "3b3a1a8929f6163a42271323c96e6631eee1d3a30b95909495e0698c39efa832",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/airmissions.rs",
+      "raw_bytes": 42407,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "447dd898de42fa67988c61075eb366412e9ee35d27bbce28d8ade45960abeea8",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/armed_security.rs",
+      "raw_bytes": 35882,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "24f7377d32e8aef40bd04206296ff003307101ccaddbadb7b997ef98722639e1",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "spheres-sim/src/army_institutions.rs",
+      "raw_bytes": 8140,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "23fdd0c550cf6e34989fbc7ff79d22270853e4844662be911d7dfe5af1d49385",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "spheres-sim/src/arsenal.rs",
+      "raw_bytes": 64742,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "e425a1e0ed05d8b0d82dd55dfc51b0d991404fccec023f60271df12ef4a40685",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/aviation_tests.rs",
+      "raw_bytes": 19691,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "cdd0ec5fc6419ff1afde9aa10f388a0f77639ce1715dd944277d73bcfd6b063e",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/aviation.rs",
+      "raw_bytes": 15720,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ecd346d0383cdd886fabcac35aecd3709e4fa6568190d76a5adf00d96e0af5bd",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/blocs.rs",
+      "raw_bytes": 133483,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "2c2f79e69a795f30a64b94b0b5abbe98f7fbbccc79eda78e441950e313b9347d",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "spheres-sim/src/campaign_aims.rs",
+      "raw_bytes": 12383,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "4f4e54641571601c9f7c633f8e311ed1fbeab52b93512d270f6d9db0f1275b39",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/campaign_peace.rs",
+      "raw_bytes": 38583,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "3a8ead590b8db7af23f03d6982a1104aa35ab99d3551d83439544eb00be16c85",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/campaign_supply.rs",
+      "raw_bytes": 47836,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "fc6f080340c245d8ccef2753b2cc6d37aabd283885412054e5641f092f9f1894",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/campaign.rs",
+      "raw_bytes": 116757,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "86d89afcc0fde2416f10d2453f76e6bc14749769ef42149830befbd2e6fb4aca",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/clock.rs",
+      "raw_bytes": 6175,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "49ffed79f9b3639aeaae5ac9c1c32d8f954484325d4f45b2ccc56dd1cef66e7b",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/commerce.rs",
+      "raw_bytes": 85761,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "9412198992f863676254b033e880210889b227335417c3e8893fc4aa2638c58e",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/commitment.rs",
+      "raw_bytes": 36637,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ce68125ea8df25db2115da96f0981ed19ce57916425f74d9b50c49f2f53e01b3",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/companies_ammunition.rs",
+      "raw_bytes": 36019,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "7f6f5b6d57085c90c0ade91766b54966e2b7519d639e84b3e1cc42db9658263a",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/companies_imports.rs",
+      "raw_bytes": 36126,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "25b2ac8c009d37a5d52b9834a488d383f6e3f765e823b52b12fe2aa6b05abebc",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/companies_refits.rs",
+      "raw_bytes": 42203,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ab4f2c11cb4c59803862559f65a63b79ad5bd4cffa268031b3b23fb7f3c4da4f",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/companies.rs",
+      "raw_bytes": 123776,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "6c3da6ce3fa028865ef74c03bcdcd41ff6ffb7d33aa8879baa9b44ac6e168902",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/company_network.rs",
+      "raw_bytes": 2881,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "6fac320cf4ae99196e71ee3d9ad9ee416ef26433f3b4d9eeb6ffacd7acffb308",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/company_save.rs",
+      "raw_bytes": 9405,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "b9544be25c0c559b47d7cecbb7c748949b723c64af4d1a2c47f9339e4fc9b283",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/connected_economy.rs",
+      "raw_bytes": 2179,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f2bd0645ed4d1cc8c04a8565c3a75e993a4f2e6a6a0b99275b850b2f662ca646",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/construction_preview.rs",
+      "raw_bytes": 47513,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "b2596f7008a805590bfaa1f8d23b7e593041708468ac4c7fe4aac069360d6350",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/construction_suggestions.rs",
+      "raw_bytes": 24619,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "e4af5bc6510fc71f67de404fe513ec93fc916e0efe99ec5ccf9c27af335a9f9d",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/control.rs",
+      "raw_bytes": 2058,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "76f96ae745410ec9bfd56015f94b69428f035606e4687520219e8e82b526e6c0",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/data/embedded.rs",
+      "raw_bytes": 17399,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "bb19d88356d67c6f3ed1705670018a36463a4deefc86aec2327cd85d013d7862",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/data/mod.rs",
+      "raw_bytes": 97151,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "cc9fcfcda884fff01616e4af5bb70496808f5781062b9b3f47a708e16cedef2d",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "spheres-sim/src/data/movements.rs",
+      "raw_bytes": 3814,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "0f6dd954c0ffce448192ef45ef27732b543c6c873ce4cfb7277f6c918272cd80",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "spheres-sim/src/districts.rs",
+      "raw_bytes": 60723,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "27ea1ea9ac476ed5a61fd4606f21f17ff10c379b6245f374dac6c567f0f16b92",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/domination.rs",
+      "raw_bytes": 42580,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "587c7e5960cb125b96f2be3f33ca5c778c5aa731af8fee7bed292a04a5e2cc09",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/dyads.rs",
+      "raw_bytes": 27149,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "598b67a983843cf7e238cf0af2d635021a5c50801ad623a7242fdb28bde49efa",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/economic_ai.rs",
+      "raw_bytes": 139086,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "1904ac5eeca833ccb53390a0f27d7309858716862e537545e8b2a7f10adf54b8",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/economy.rs",
+      "raw_bytes": 118697,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "88552a12a1d4ce6ea6055c6923d314ec4245533b5c3697c9ebc9d2d3aad5e1c5",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/equipment_air_support_tests.rs",
+      "raw_bytes": 23108,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d38579a2106128adc9438a157853bc97a187825233d833658dae9f2643cb7b88",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/equipment_air_support.rs",
+      "raw_bytes": 26158,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f6e2935dc64bf67dd87b033eaeb113c1a1f4b967ba9bac7c2f00dd7fe61d8503",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/equipment_ammunition_operations.rs",
+      "raw_bytes": 37087,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "14bc10c7d2846210b6b50a7f8ca0472eb8855cd8b8bbbe5c0e3b092655ea7f67",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/equipment_ammunition_production.rs",
+      "raw_bytes": 65857,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d3b7eb49e83e0cc8739933db8f8ac3224be4632964bdf44f8e9315a3f29653f6",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/equipment_ammunition_reserves.rs",
+      "raw_bytes": 29053,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "8d34e7624654b3854805664dc78e527f9f3655f9eb071a0ce3383326aea99054",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/equipment_aviation.rs",
+      "raw_bytes": 31209,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d1a6341ae517e7f6b4b47f6d0208c75e301ec736a1702efff9cb686e1a74ef9d",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/equipment_fighter_tests.rs",
+      "raw_bytes": 15891,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "7ecdc0e9ae6f9539a77602100301e2a3fcd0e57e9fb753272ded6ad5870ae1a6",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/equipment_ground_readiness_tests.rs",
+      "raw_bytes": 13092,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "1f35ed81fffdfa3e021ed99206b1d0619aa6176600a58b0471bdac95873bc0cf",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/equipment_ground_receipt_tests.rs",
+      "raw_bytes": 10809,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "9599f6f654cf2a7bc934a5fce4d14bdb2bd8c231a857da67e6a76bf78da7e740",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/equipment_ground_receipt.rs",
+      "raw_bytes": 6297,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d6af1701e3ca2e68875e6cba6bd7edfd66282ba7a09f6108e40d7ba686006571",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/equipment_ground.rs",
+      "raw_bytes": 21349,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "0ae64c21e4b8cf7509baa86e6477e2a9c242731665fa3274bbb949c7db40b13c",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/equipment_maintenance.rs",
+      "raw_bytes": 13215,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "6935d9243cdc67ea2649f143f3cd70dd50f7e8948953d02071e915e493c83dc7",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/equipment_replenishment.rs",
+      "raw_bytes": 9473,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "063eee3bbf2d1a3cd5291a2dcf7db86536168565f1453ac0e3dde5c357caa761",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/equipment_service.rs",
+      "raw_bytes": 17498,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "60ac75856f58219343ebf6a3bcac06232a6e6fc768c3fda19a8ee4747ad6ca06",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/equipment_specs.rs",
+      "raw_bytes": 12945,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "31ba462db55e60d3664c636f60aad67a884d6d6978108d1c0b86a1ef13c5f4ca",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/equipment_supply_automation.rs",
+      "raw_bytes": 28169,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ab8252b907b368bdd9354435df847478a16725ecf4d851dcce00c76e37bbdfb0",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/equipment_supply.rs",
+      "raw_bytes": 49495,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "53340cc913799e65e5335e18845b75e84263629554aeaab8cb8233d3878d0f04",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/equipment_targets.rs",
+      "raw_bytes": 19798,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "3101cd680023f07ef61a8fcb3683f9e6a61d24be3e1b9c51972d3bead1f8f1c4",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/equipment.rs",
+      "raw_bytes": 114955,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "a7e9451df51fdcc3bde70500401244e074b2e93ba27c723927b228a09a3722b4",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/exact.rs",
+      "raw_bytes": 24831,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "62601c7496e56303046f6a4e3819ee998921fc37896140714b0fd7146cf03260",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/fiscal_journal.rs",
+      "raw_bytes": 23612,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "4d3497f6dbe2d3499975473f3b9b28a3cab384b60f18c9f74ee287732135ad63",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/fiscal_preview.rs",
+      "raw_bytes": 3050,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d57f44711ca65f12101ba97c430c16867611a9c6aecfa1cabf2b9c35c2e8a015",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/fiscal_recovery_ai.rs",
+      "raw_bytes": 28381,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "5ea351203c3d4818f7271f1ed6b91d02f463ff0534522a361a96150af66a08cf",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/fiscal_recovery.rs",
+      "raw_bytes": 33361,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "87c8b2153d7ceddd3dba30bea71940b05e36ec59080015f3316996a68669baa1",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/freight_routing.rs",
+      "raw_bytes": 12172,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "0c67c015a5515aa001debccaf083b927f2b6070a44d0d7bdfa3bfcb1f6422450",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/front.rs",
+      "raw_bytes": 29295,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "fa1272686772ac5a1c88a62bcf4ef95bb5176d4e8a637c8bce0495caa3b1e918",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/gdp_projects.rs",
+      "raw_bytes": 54718,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "61ccee25dbea94fe3dbc80559cb8000ab275f4e20c0415a96b826ba4eb0cbcd0",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/government.rs",
+      "raw_bytes": 778028,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "e2c6cebf36ee1ffcb14e357dfa5b8b4325fbe5167137c55e2df8de2076707ba2",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "spheres-sim/src/industrial_modules.rs",
+      "raw_bytes": 21871,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "5af409840ca6e2573756d12467fb733d7242440f50e8f236b6e2d86d9edb58b3",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/industry_operations.rs",
+      "raw_bytes": 51907,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "e1c32acae8e6005a8cf0374142961529a8b357701c6028e7f63a5cb2e0572f07",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/industry_planning.rs",
+      "raw_bytes": 35035,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "37181a3c74179093c84a2c2336725dc0bc0b47afa991e464e2763f1e4cf74461",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/industry.rs",
+      "raw_bytes": 111700,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d17c35d25b7e02ba3aaaff72ae3d2502cb3af2c37dcddcf663439f40d01a7091",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/init.rs",
+      "raw_bytes": 1522,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "2c0af175d728b30a2aadb751ee1c7e450aa21377d8bdf06865177842094f762a",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "spheres-sim/src/lib.rs",
+      "raw_bytes": 544315,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "2da013e8abf16cf92f3b9fffc4de2b7e9b675b54d24b8ebc5d84d4714817aabd",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "spheres-sim/src/logistics_tree.rs",
+      "raw_bytes": 7076,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "403d28ad920195b2c00a2274929d5388689654e5cee2205eac64beb1c1201ca4",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/logistics.rs",
+      "raw_bytes": 169593,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "3941b34118797c313b778c0c16bf57454f2c51ae55777bb00e65277306670678",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/manufacturing.rs",
+      "raw_bytes": 52684,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "caaa384bc6198d8f32e3e41336cf68a815b2c23c439d2d837051c87bf1c79dd6",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/materials.rs",
+      "raw_bytes": 43993,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "46790491d4ea919dcc76336c0b7a4f521c5ae35b4c2d2db4dc7f9fd78228ef06",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/military_ai_tests.rs",
+      "raw_bytes": 20242,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "cdddbc690b8e14346d1e1a99bfd56b6b64808a23ece748dae5a350d3c76628ea",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/military_ai.rs",
+      "raw_bytes": 45251,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "49ff88fbd8179d4976217c8f1c731768194b61cc5dc6702f2f645903d2579667",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/ministries.rs",
+      "raw_bytes": 28354,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "c9b9b2af58b1cdb0e7946647274d124426b35ea64687faaf6cd7474822cb2a0d",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/nations.rs",
+      "raw_bytes": 214148,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "8b847b6a843e6a41a82f80446c41ef0e2abccbb6172cc956207859cf71edab08",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/operational_warfare.rs",
+      "raw_bytes": 2800,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d40c5cf388796b59e05e00076474ccbd3828fcf94b0520e8c4e94ec7f59b9dd0",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/operations_aviation_loss_tests.rs",
+      "raw_bytes": 12325,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "5a884bc59e418963496c06db0fbbe16722d0314140b471d96008a4abebdfdfa6",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/operations_campaign_ammo_tests.rs",
+      "raw_bytes": 9241,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "327ba03be9d44e82d1f276990baf5b005a4d496515ea98f64c5f8ef8f9e6c227",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/operations.rs",
+      "raw_bytes": 23478,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "fa362629e797dab3cd22a6a1a9223b7aeccb6b502ff3a45a8929ffae5348d589",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/party_executive_eligibility_tests.rs",
+      "raw_bytes": 16430,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "5bbcccf9059624aa96eaee05a2d8e6ff43cd0bb1578f5533b6d36fcfe74da9c3",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/party_executive_eligibility.rs",
+      "raw_bytes": 11224,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "3a60b808c4adca72b4397d35962b5bb09ac919934d4a58c174107f3c29846204",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/party_leadership_future.rs",
+      "raw_bytes": 18895,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "7e47558b42844dad3d422ed8acc084f09952e61722286e82cf4862af1612bc5e",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/party_leadership_seats_tests.rs",
+      "raw_bytes": 9804,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "7dc8e8965a6b5ef253f71e99dcbe2f1356b91336a89b8f71b60d6a805202496e",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/party_leadership_seats.rs",
+      "raw_bytes": 7850,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "de4c6bd49e1a79692ad514215c1a68d67933a962a7b542b6ff15f8148333640d",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/party_leadership.rs",
+      "raw_bytes": 100912,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "c55bdce3a7e16ce82d4bcab14a55ff6cc3eda4e29e29417108bb931260948605",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/politics.rs",
+      "raw_bytes": 108125,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "e9d42a39f8b033953ede8f67ec117bf284cc2222d67a56eea6a7c7e5f5375511",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "spheres-sim/src/population.rs",
+      "raw_bytes": 83234,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "8c9a1f9dbc9b00745bdad10df66655f197bd8c6d25a79ae20a27ee74ff33d99f",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/production.rs",
+      "raw_bytes": 66896,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "df39144f47235343c497e90fcae40d46e4528f412a8752b6707b71dc718a1b75",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/programs.rs",
+      "raw_bytes": 60315,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "6d13895e86c8d6c72254289612cae3f5c6a9a84b8c73865cdb5869d0d3ab42b9",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/province_economy.rs",
+      "raw_bytes": 51307,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ff97ca4fcc1930c3308335fd08dc376c4b78e22ea3d211973863d27ba4d14bbc",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/resource_replenishment.rs",
+      "raw_bytes": 13956,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "9bb1cf5488814c8770fcb49101df30d6586ad4c731b210e31121224202f1573a",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/resources.rs",
+      "raw_bytes": 486342,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "e05ef3a9571dbf7acdbaa2b584752d172cbe78080da9535ec6ce70a0e77929b2",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/sector_contractors.rs",
+      "raw_bytes": 77063,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "171212168b0bf8449100459a9944af9e7e80aad43bacbdf2dd9da43d1e6f9c67",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/sector_profiles.rs",
+      "raw_bytes": 1906,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "413c5cdd81da0cdf59bb95adb08b4d0c1b729cd624b5f6091dc2c8b422f2e462",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/sovereignty.rs",
+      "raw_bytes": 15419,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "e3809dbb95861fe59ad043b5da583c841504f89d784acaeeccbdd8e700c578e2",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/starting_industry.rs",
+      "raw_bytes": 23445,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "0e9cc3b5593b814afabe818acc925a2656ac5cb20b62451b322cb2c353196bb9",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/statecraft.rs",
+      "raw_bytes": 54094,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "7b174e390f4ee39104f6b45fba238295c6fb2b55c1f0abb0627d63abf314f05f",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/stratagems.rs",
+      "raw_bytes": 28616,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ba665fe56b49c7bdd8e794a586fb3f663bfdb816f3463a48c88a499ed4a63a2b",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "spheres-sim/src/supplier_catalogue.rs",
+      "raw_bytes": 25830,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "879b9366eb9043a50c9a3bace0d16554b3e012baac065d80a570a84c467cc847",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/supplier_operations.rs",
+      "raw_bytes": 39207,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d7ed2453fe94c9cd30a64b3584f4b9e37a18ca9904285965c099741e5f7762b8",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/tech/aerospace.rs",
+      "raw_bytes": 42300,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f07271d872ab4e597c9401aaa3830ff0d9d26d77e723d8d3924db7616115ef00",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/tech/agriculture.rs",
+      "raw_bytes": 37780,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d9af6d37e5d9172c5da08795e09a6d2813d87e2bad010694ec88a44d9fac7d01",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/tech/biotech.rs",
+      "raw_bytes": 42400,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "9bf5532eba3abe019f6e16c1ee103076f57c64986453872d8b63cf08c10aef0e",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/tech/communications.rs",
+      "raw_bytes": 44722,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f2862291664342e3325afc30c36915c1c7d1c37a47418f1f60ae0cee3883fc6f",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/tech/computing.rs",
+      "raw_bytes": 42639,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "21489adbd01ec8c23727d466847ad9d53e1b507f01a39f62dc79744d5e12c65a",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/tech/energy.rs",
+      "raw_bytes": 41201,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "515bb7d52bc9101594d0c6f07d6fb2678e88cf39744698f399584411ecbd2169",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/tech/materials.rs",
+      "raw_bytes": 38955,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f8ec383f67fbe6b3ce7e442bf9a3151a3609a33cc1775b7eadfc35d53f5c263d",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/tech/mod.rs",
+      "raw_bytes": 155804,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "c0cb9d9fc51e8a333231eaec07f05cdfd51042b8312506157dfe3c7aea354a68",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/tech/transport.rs",
+      "raw_bytes": 36145,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "cec3e8cfda1b7c78d479e5466109d1a2fe4f41765117d0141055dfdd2eee6764",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/theatre.rs",
+      "raw_bytes": 20191,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "df091ced7cf9d4ca5cd74619d4d5dbddfe1e0e73fb628702e74411b5bc5746d3",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/war.rs",
+      "raw_bytes": 106766,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "40d299a71f044936d1cdd797a533ae119404772084067455c8826da1d32d818f",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/src/world.rs",
+      "raw_bytes": 80811,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "18b0f4364562a1ad2c3d0ad0e8c1767591381e91b89728dc6428da86f78a4bfe",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/agency.rs",
+      "raw_bytes": 11307,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "184f6297281889e510fe87f546eb6a588db661c2d76878dd9c71219fd38e1405",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/ammunition_reserves.rs",
+      "raw_bytes": 14340,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "bd0ee59599b873d2291f141a49380f61851e6c7b700038412289ae78c05e1c61",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/aviation_ammunition.rs",
+      "raw_bytes": 15635,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "39e34937c4d1f15324f5f6c3dbbee28d7457e6e9509fa0488859fe7915fe5956",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/bloc_census.rs",
+      "raw_bytes": 65134,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "5f87457baf8d4f4d6a4258ea72edd4b348b18d1e7ed10c7b7be2998e837e1bb2",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "spheres-sim/tests/campaign_aims.rs",
+      "raw_bytes": 6644,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "9e60077cea25f7a19f6eaab7c80cdcda42affabbf08d1a681f7868c571bb1bba",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/campaign_identity.rs",
+      "raw_bytes": 11089,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "043e1fa95d9516571d8168130829da56e5c9e3c4982d6c70c2701e99d9c07c42",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/campaign_movement_audit.rs",
+      "raw_bytes": 2066,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "2a85e3c8b962a966c91c3852851829b27ee562ea0091c38f8e0c33ec21df7cf9",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/campaign_operations.rs",
+      "raw_bytes": 11201,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "58650311665a95d0abdd70de809d14703bacc80baf5e69c46814d3a9d5a1e7d6",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/campaign_peace_audit.rs",
+      "raw_bytes": 5846,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "70a3089f64d957f17c879f285b79b0ae74ba7fbad4cac317f5c3251fe7522949",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/campaign_peace.rs",
+      "raw_bytes": 8393,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ecdec68f073142530d03f84044057465c420172d576f12770c618cc656902a8f",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/campaign_population.rs",
+      "raw_bytes": 8409,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "a5deb7ef812f91f0b9e0c548d566f75670685bb75f65a4fcc9b0c5ddd81b59ef",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/capital_damage_audit.rs",
+      "raw_bytes": 29009,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "06b10893339a02783479c9f553d8eaa616893d1632851883818414959e833956",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/companies_integration.rs",
+      "raw_bytes": 67784,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "81c3daa7366ec71b8fd72e3bc744559450e80b2e9a3c42953a3401fd8f0a7b6d",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/company_ammunition.rs",
+      "raw_bytes": 57596,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "1763496756d8134bb0299396fb2ec600fa19527908b873e0682a8bf0b1705869",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/company_refits.rs",
+      "raw_bytes": 55447,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ab22d790d3f25d0643657498dc105738b8b52c313bb02b6b1c766db04a7b3c01",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/daily_balance.rs",
+      "raw_bytes": 19031,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "218db885d1f9cae274f8072918769020d3459f659581f4699b980dc8d0832e2e",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/daily.rs",
+      "raw_bytes": 10187,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "fb504970ca50d0425cc72b0fa6374ba5d54aae63dcb52e9c551bddf38e0ecc0f",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/economic_ai_supply.rs",
+      "raw_bytes": 35355,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f3a58e584f8dc7f645636ebe31288be22bcde10974d0fbf93d0923661343ae04",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/economic_competition.rs",
+      "raw_bytes": 37911,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "0aa255b15cee97166d522f622742f0301ac4848d7cb32cfa640bcc805baf955b",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/economic_sovereignty.rs",
+      "raw_bytes": 10901,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "45dd4bd0aa16493faee300bcd106901f88aeb549bb0ada9ca07aef1d85148bed",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/economic_sphere_intervention.rs",
+      "raw_bytes": 2549,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "5fc393c1666d693fc2f80a27a8d40b6aa6f8f9fb5c5efcff4dcb0f978fbd0416",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/endowment_channel_probe.rs",
+      "raw_bytes": 10522,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f0b19bc1669da5cea62b9f76485f194ac7ac424b0508f19eae21a793a082866d",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/endowment_margin_probe.rs",
+      "raw_bytes": 4262,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f168d3fb7b7d1e6affec1252848e02f49744f12d08860a06f3a4c1ed5b6aceae",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/equipment_integration.rs",
+      "raw_bytes": 13883,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "b630d385682cf331a83b9d3bb38e080ab31ba1938e331161aa02ee34b411bbc6",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/equipment_supply_automation.rs",
+      "raw_bytes": 15218,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "973693859010b34ce4bc41649dc825798c3529a0a36da43fc80f0a825f856b11",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/ground_equipment_integration.rs",
+      "raw_bytes": 9415,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ce1f17d72efddb16d5b0928d5b88cc4e883439f5cdcfbcbfba14c7f16ab02f09",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/growth_decomposition.rs",
+      "raw_bytes": 63784,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "29fb2b2c25c63ece776b9b767b8f8c2f3743592020f53ad70c6b21713d7735d8",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/industry_planning.rs",
+      "raw_bytes": 15952,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "402148ae3729e119584701420f2134a20a04e34a96cae2f6b97eedbd8015e2aa",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/materials_accounting.rs",
+      "raw_bytes": 12852,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ceda419d7ab5d1de329148890c8838c4b83c6ea0a2a17e3761b72e55e97b3601",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/materials_ai_bootstrap.rs",
+      "raw_bytes": 19716,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "925e0c3c89946590f48583fac0a43c5b32acc32baa60199f28a70ce17dad35a2",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/materials_ai_timing.rs",
+      "raw_bytes": 8408,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "5d52879f84e8779034426b0d9328bc18b0770d4e9cbe3cf77ce4a62713a2c8a4",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/materials_ai_warehouse.rs",
+      "raw_bytes": 5691,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ab755084fbd101f0340fdc5e42097a5ced5ff1085d75fa39425c5e40532600a1",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/materials_planning.rs",
+      "raw_bytes": 6282,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "b7b0646e6f245a6a9d5ed26f5ff869fe3790ff1e7962af8f621b30eb4d1f95ed",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/materials.rs",
+      "raw_bytes": 24399,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "575510a85d5f2f4c197e3b6ecf2ebbc9a304c57e95fe377b82f2f5a3cd056870",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/military_operations.rs",
+      "raw_bytes": 9177,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "4d68579e3a887e4f4d68bea04e47c6758d99a6b3e76b8d69221f1dcea4e78da9",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/ministries.rs",
+      "raw_bytes": 64951,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "0e5cecca1dcac6f4873231eba28b74844c60955df4da99f55a1aa3492eb9dbb2",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/research_centers.rs",
+      "raw_bytes": 20496,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "e21023f2a7263a263283d0e83f93171b9a5bc69e70b23f9d41aa23896304138e",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/research.rs",
+      "raw_bytes": 22867,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "6103278f7b3ab3fd893064ce15a714a3104a1c6bcac39f864d66d366b0d7b3a0",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/s02_entitlements.rs",
+      "raw_bytes": 14662,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "aaecddc340232ca75cf09d7e11214ac8d97e82c817e27f69c271aac0867be6f4",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/s02_fiscal.rs",
+      "raw_bytes": 17111,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "c70630e5a7c875d8f2a83120be15018bfba2d01a5a46dcfc1c336b477b6515b6",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/s02_industry.rs",
+      "raw_bytes": 14666,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "b25f4920701d65f7bd66770e08511f0daed40ecd0c94e71e17388902160d66b1",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/s02_integration.rs",
+      "raw_bytes": 8295,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "e9fbc72cd6bfeacc8e7067edb8c42e64623192931196da73215dc4f986d64a52",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/s02_population.rs",
+      "raw_bytes": 28457,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "1786263039d41e0327f3dc8571752c2b9d8a882ea41416b257b07a133e998425",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/s02_succession.rs",
+      "raw_bytes": 7981,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "4862eef4a3e314a6cf85a3836db1432e739d65e3a0e13f957294c6ac43d8adc8",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/s03_integration.rs",
+      "raw_bytes": 7593,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "1d6f2abbf2201b6ddee52aa28cb49f901fe39bd9c717b133d1799381519c95f0",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/s03_supplier_operations.rs",
+      "raw_bytes": 27828,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "fc504ebb912c774b4022f21e031d6b67a3517fa66642eaed5895c71b7cde2211",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/s04_integration.rs",
+      "raw_bytes": 4319,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "1a77954b2f346c4cf640d878610e15d671885f492847c979b4480d5b09f3a361",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/s04_peace_boundaries.rs",
+      "raw_bytes": 17352,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d6d9be00b2d4fda7b78747a6e76dc3d89bfb8af70d9ec82846489e529dfbafb1",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/s05_master_fiscal.rs",
+      "raw_bytes": 7871,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "95ef053994947f0b558678271f61f28cec8bab10adeef77c8da10dcb89b7b65e",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/s06_money_journal.rs",
+      "raw_bytes": 18985,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "2e39f0fa296e5ce04e2761c6846373c49720f3604312ded3929f18e1c9fe22c9",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/s07_construction_operations.rs",
+      "raw_bytes": 22259,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ad4ffde8ebba1a52938d4dd4f3a5e316248e69f964d85c2152be33acfd4f597e",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/s08_supplier_catalogue.rs",
+      "raw_bytes": 3734,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "6eab5eae7e0d544d36aec3cfb0d01cb9fe73bc37e33a5e48a30a1c0c654b0420",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/s08_supplier_lifecycle.rs",
+      "raw_bytes": 39467,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "c5e7dc3984e69d4ee80c2eba731b3f3cb07464149d5e21bd0ecc2f2a14ec8574",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/sample_size_audit.rs",
+      "raw_bytes": 29628,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ee86a683f8346b6ae43a8c5ce4734bbfab4c5d01065725bbe779838beac67152",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/sector_profiles.rs",
+      "raw_bytes": 1807,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "5525f3558a33179622824e4b31eda8f2860f7a0769ffb9349f644cae600d0a75",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/small_country_modules.rs",
+      "raw_bytes": 19373,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "27c81cc0c03018413fff0bb118530edb40a0b4b4a5b0d8b88dbdd5ff837ae61e",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/starting_industry_planning.rs",
+      "raw_bytes": 7260,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "91d7f8e9616de10f2cea603b327ef11d13534dc0f8a0ba75a73e77121a80b8ba",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/starting_industry_priority.rs",
+      "raw_bytes": 5793,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "b34946f693c0a2cc30fd823ce1c3260f507b17b9f28cb44c4a351ece6424c0c8",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/starting_industry.rs",
+      "raw_bytes": 12898,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "7c37968c0d96badda88def377c671f10960e76bc3f58485ea8383ee1f3f2c08f",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/strategic_raw_supply.rs",
+      "raw_bytes": 30446,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "a91edb3f47d4fb8db7558aebe16eb82411e32f063ac24f8d670c5236c3bda56e",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-sim/tests/treasury.rs",
+      "raw_bytes": 43138,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ea8bf57bbf54501ab3f496a5f9cb64f30c6bc956a5ab6aea87e449514f9be0db",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "spheres-web/build.rs",
+      "raw_bytes": 1358,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ae52124b66e94b39a6b4367ad04453bc4d3c89362c7604d5c81dbbf45d9a516f",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/Cargo.toml",
+      "raw_bytes": 490,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "e416250bf2451724206988f04b34d382814f7c5e4675f05d7fb8ac36085b7115",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/data/crossing_edges.json",
+      "raw_bytes": 28667,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "72f8a2487eb6dfba0efdd08e8d60ed156515a75b46c7c84f37f6a38bb4e4272f",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/data/district_population.json",
+      "raw_bytes": 379944,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "1f0a1884e5bf720aab3c65cedee84a6a4f7d347fdf6c86fefe24acb1a6f65547",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/data/district_resources.json",
+      "raw_bytes": 4405816,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "e81f0dc3b31e9c165832f48f4ab7b27d1ca8e34f97bfee2c8de779482ce41b78",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/data/district_terrain.json",
+      "raw_bytes": 138289,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f93893412150483e5609c292ab35794332e782b3f8d7f003b8982e7a6aeb1271",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/data/fictional_portraits.json",
+      "raw_bytes": 7666,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "54a16634b77cb60d4945b541d64504c8c354610d406e3baff00da5b186235d0c",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/data/future_candidates_2035.json",
+      "raw_bytes": 3273947,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "75afd1f5ef49b82b0569feacf025a786f7daf49ca9da7436b6acc677fbedc492",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/data/leadership_production_2035.json",
+      "raw_bytes": 5984743,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "7252dd065aed6732cf1cd6b900a413ee833f742143c1e2daa563be436516567b",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/data/nation_figures.json",
+      "raw_bytes": 408800,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f2fbd1a1a138fb94f55c33a6d058958fa51564bbc60cb7012ab5a27674351962",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/data/person_models.json",
+      "raw_bytes": 5038,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "97a3cee3505a798c84c9a925b982c822b295808446c4b0a2c9fa88a673343476",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/data/person_portraits.json",
+      "raw_bytes": 290378,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "1a73390a88cfd5603d8e5aa3a1fbec5cbe713ce46ec5a3573f7ebb1512fc305d",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/data/river_segments.json",
+      "raw_bytes": 1283767,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "08d89e4874642e8dbe0356f89db041c89006d8973281b67ce5a3bb6c8d068a37",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/arsenal_model_tests.rs",
+      "raw_bytes": 6717,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "c8d5dc85581849c70921a214c6a2c0f8bf1053ca706cdf2a60be6688132c9705",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/bin/mapgen.rs",
+      "raw_bytes": 56306,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "1aa0f560d4d7dcf6d86147fdbb3dc9d3b0608a800882260ca2bc20716ac44597",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/campaign_api_tests.rs",
+      "raw_bytes": 12396,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ac2bee51fe1ca5119e64b3235cfa9943474a33eedb497dc340611aac57c9ec23",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/campaign_journey.rs",
+      "raw_bytes": 21456,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "85e2fb36e2e173603ded7586a83e77bf3553db0a63fbbf763884becbb500c78b",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/companies_view.rs",
+      "raw_bytes": 10481,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "079c7c03285e0fcd5ebe6cd8cf0ec39452e7cab8ec378610a8b6d1457fa7a928",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/company_ammunition_view.rs",
+      "raw_bytes": 25787,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ec77ee2e49358a94ac6ff5c6177b8d73bab946ff187d8631385db0bbe0fef8c1",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/company_refit_view.rs",
+      "raw_bytes": 26848,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d367d2f28819fde3f5973471d0463021d01704e2e59b735f41d1b55f6320aa6b",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/company_view.rs",
+      "raw_bytes": 104350,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "5b52319ea5ff3bc667ed7e0f8b41f09ad1b3f4a5d5bf650808ef321a442976d7",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/construction_outcomes.rs",
+      "raw_bytes": 28542,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "2ded1456ea7ea4ac9e8fd9fa9080e9bbf7978c430c3ab4eb4b289954b60262ea",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/decision_review.rs",
+      "raw_bytes": 32667,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "5dd2bdc2e1815c30c2dbb9a4932fdcd49394a9378b6d4e901b138a73f69ee5ab",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/diplomatic_commitments.rs",
+      "raw_bytes": 22296,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "71e513f3ab6340a80a523820b7fc89e8fadee1bcfda884da9b8afda070d0a375",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/diplomatic_sanctions.rs",
+      "raw_bytes": 21721,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "26b43be0eca63324f5928f99340119bd3fd9117809555239db3f34133c44e204",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/equipment_ammunition_reserves_view.rs",
+      "raw_bytes": 17923,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "15ab92c75a9f75bc245a6b3e3b992d80d5edde55070eebb44b827d64e819c518",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/equipment_ammunition_view.rs",
+      "raw_bytes": 23777,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "0edcb10bcff1b59b3c64b73e6e575ef51264e6db6072a1f14211edabbc0fd811",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/equipment_aviation_view.rs",
+      "raw_bytes": 14282,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "8ebff86be9758a9bf8432ea320dce945fb536e34040e9930690e86d64453471f",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/equipment_flight_view.rs",
+      "raw_bytes": 71071,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "da5b8eaf02d3a36b3c2f23518a1765ae718080d5c7fc780b45918af120e8587d",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/equipment_guidance.rs",
+      "raw_bytes": 26486,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "118b719f5a5349486a332f334b5198689bdbb6a4a80b57b3936616ef689edb3d",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/equipment_maintenance_view.rs",
+      "raw_bytes": 10325,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "a17fbd5a422af37d8453b76884faa80c342b5faa21158550fd4f0088394a1835",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/equipment_planning.rs",
+      "raw_bytes": 23392,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "08f3e1a5c50eb59d7c804626e81f6b029706e31c09c4d66b56564a37bf54eeda",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/equipment_replenishment_view.rs",
+      "raw_bytes": 9225,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f5a404d3d1fb22f7d3c588ba6fb60b5daeffdb33f18d6c5d5e853d973449ba52",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/equipment_service_view.rs",
+      "raw_bytes": 16702,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "4aaf2d5391d0515811cb4c41f0add90374a16260a99992dbdf92c999d424516d",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/equipment_supply_automation_view.rs",
+      "raw_bytes": 18711,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ffb9e68b18484963071df34ad5bf44de330622a05e0b533ea58e9b8010217ce8",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/equipment_supply_view.rs",
+      "raw_bytes": 16358,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "4010e57660cee5bc557e321bd432f86d18be246556a3acb096ce147abf4bfdb1",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/equipment_targets_view.rs",
+      "raw_bytes": 15646,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d9b146a2381745bec0fefcf863a53fe300ce91c6420b23ed448c87a1a8774510",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/equipment_view.rs",
+      "raw_bytes": 35012,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "a21c9fada1abffc2e08aed3113b049256d81c947def705b103ed94f67b3918cb",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/fiscal_recovery_view.rs",
+      "raw_bytes": 3651,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d4b62c7c834b2c393712ffca9c2469e7e6e7804da67f42adbeda028d727f893f",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/government_view.rs",
+      "raw_bytes": 31345,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "130209fea3007befe4a0c0d957ce149820e335279d86aa755d25ff1e5564847b",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/guidance_outcomes.rs",
+      "raw_bytes": 17211,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "9710bd3154f3a18e073ed234c122f6e1c96f1c27882fa0261a5cebf96d1ab4ac",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/history.rs",
+      "raw_bytes": 15779,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "fd83e7f74a23d5807318096b78ebad6219a645240b32a03703fba07d2facead1",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/main.rs",
+      "raw_bytes": 995884,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "36e051fc22bb22e3b87d703ab4124aebf16987d3ebbfa3f8c46b9ef300909b97",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "spheres-web/src/money_commitments.rs",
+      "raw_bytes": 28318,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "5178232ce6f1c2f892df8d043cdb0a510e3a69ff580f5d5441b80b736351bb3a",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/money_view.rs",
+      "raw_bytes": 16744,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "78a810929e7d23db5e3a26814966964a725f3d290050b39620bf2720979c3b02",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/operations_view.rs",
+      "raw_bytes": 7224,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ebd408acc5611d80ef9d13e87a1a8809ac4fd5f61b94ca7bee126ea2c313c481",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/page_art_assets.rs",
+      "raw_bytes": 4934,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "2927e0bf8a20c89a802c15f84af19a958323819818fdcaa96e36eb2a55922bda",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/performance.rs",
+      "raw_bytes": 41724,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "aaf059f61c8e6f303fb4420ea113e225b6567c66f82d811456da5b4409c2c729",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/person_avatar_assets.rs",
+      "raw_bytes": 7945,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "3204b4110758b208f0dc1561d81783e05af800e9b737ff6a0d970f25dab57a2f",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/person_portraits.rs",
+      "raw_bytes": 20527,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "85ad4f7b772043eeedfeb50633bfcb11dc2ddf52c671911e0d466dd082beed51",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/portrait_assets.rs",
+      "raw_bytes": 76091,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "a5b410a53604075edb751303571e00c58a3ce56b2c8b26731788620c08a79182",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/s05_active_fixture_tests.rs",
+      "raw_bytes": 9398,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "9bdaf20675a1a92c86ac6997c1ddf750cf1ea42beaedddc1d581c5cdff3fc38c",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/s05_campaign_api_tests.rs",
+      "raw_bytes": 7529,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "13217ab869c40d82a0f734543cc9c9045ff7a8c4131ca55258d7bfc068900e2a",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/s05_fresh_startup_tests.rs",
+      "raw_bytes": 11957,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f0c04126507a8c6ff8e9157d1095e6320d69b7c2e95ae570e75a1bf87ce1a795",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/s05_master_migration_tests.rs",
+      "raw_bytes": 9670,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "34c0e8e6df8fdfdbb7705976559ba55fb7bd4df5107be66527cee119147c51f7",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/s05_save_matrix_tests.rs",
+      "raw_bytes": 20073,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "a2c7106233e06489916eadba33e7df800cef7f20ba7cbca1486c541d0db38ffc",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/s08_performance_diagnostics.rs",
+      "raw_bytes": 10438,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "e3de46f9cb0ce234249b0447318c166d56440b85882573cae89832397be79087",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/s08_route_pool_tests.rs",
+      "raw_bytes": 4745,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "bcf6616db537215903bca6485b6982b36e80fb2d207a2743dab8be36d704aa48",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/s10_decision_tests.rs",
+      "raw_bytes": 17809,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "717864ac4f27cba45aecc7dbd135b449b20a51570a3ed409bbe46abac8450625",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/s10_government_tests.rs",
+      "raw_bytes": 12742,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f5a03cb47358203a244fadf57beb81b9e3afd8cf45319857a54178b0bc75669d",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/s10d_inbox_fixture_tests.rs",
+      "raw_bytes": 6785,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "697b40600b400cee0587f3e0cb8a515e9cc750bbe4bb1b94db20c6c8a87e2164",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/s10e_commitment_fixture_tests.rs",
+      "raw_bytes": 8251,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "b5676483cd0b05310b7ad6a0e6912f87e07612c691e0ac28f999c00566fd47e6",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/s10f_succession_fixture_tests.rs",
+      "raw_bytes": 7188,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "8da01903c97d79bfe9bc872138cbad202a7504586612072c6a9b990541e238d0",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/s10g_sanctions_fixture_tests.rs",
+      "raw_bytes": 7231,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "130830a816c5a220c41adde11e5ffc9246e271f37db8a7cc15fde11293f6b319",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/s11_fixture_tests.rs",
+      "raw_bytes": 22319,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d2807aafe1df39e6b373bb555f140f99f41d13c2d71275455e9894713123a5e5",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/s15_fixture_tests.rs",
+      "raw_bytes": 20568,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "79ebbe15ffaebec4807627ccbe646e066376e68f37cdee9df5464a48f0a8cccc",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "spheres-web/src/s16_fixture_tests.rs",
+      "raw_bytes": 23519,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "b7c65b76777722e605f9d7aae26dc4d99dc194c0c68124d1babc7ea81082e7e9",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/s17_fixture_tests.rs",
+      "raw_bytes": 4718,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "e2b692592e0e6f64ebdf77adb070122a3038cb6a06ddd702cb3283fe113abb1c",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/storage.rs",
+      "raw_bytes": 18613,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ce5e4e0cff2d7d0263a4aaf90f076f878fd8444ac84b3e78f6b72b2d9e746d7b",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/src/transport.rs",
+      "raw_bytes": 10491,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "7cf556da01dc508ed16200ab5cdc300704fd95f885945d4bd4feb9cffecf838b",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/tests/http_connections.rs",
+      "raw_bytes": 254,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "0d2c61540e20ac874c315a4c3346d2f47bb6ccc606aecf101ec4452bd8596941",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/advisor-model.js",
+      "raw_bytes": 48486,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "a4f33000b52580b702d58282a540ab0ee96f35400250950d5a89f34378afd098",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/agency-ui.js",
+      "raw_bytes": 29855,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "7e26b14580972c9d2c27f838286738c50656bd150e432744b30e0c7f930c332c",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/agency.css",
+      "raw_bytes": 6678,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "1dcb529def98562a3ccc64ce32e1d86f07e2be9a2f4845d80e146484813594d5",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/arcade-discovery.css",
+      "raw_bytes": 39829,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "0c25606fd304805bc977842b71a866d75411249cc4305c500da0b29f24f0a059",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/arcade-operations.css",
+      "raw_bytes": 27515,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "3c2960f4b187f5257ea48c4fe031e49969bbffcfdd7dc5c85f5a45a04dc523aa",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/arcade.css",
+      "raw_bytes": 25380,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "beae3c12b4e0b4fe0e11f9953aa4faef0d06d695117b16609bd490755f58beff",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/area-art.css",
+      "raw_bytes": 4359,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f353455eb4809bfef63fc4bcde423b48ef90651ca739585841834505841ddbf5",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/area-art.js",
+      "raw_bytes": 1378,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "4e9b31d0a783dba7e45124d08efeec873e71ad0b9cf0b46b1e82402ab6e15304",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/area-art/manifest.json",
+      "raw_bytes": 7592,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "5b696f404177d6935068f005b02ecaad4d9808f89e08315f5c764472812aaaae",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/arsenal-models.js",
+      "raw_bytes": 456286,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "77f850c6be4a89978f478505a453d49e389fb7660b5e15d52bc420f0f6a08ef7",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/arsenal3d.css",
+      "raw_bytes": 4926,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ec405a099e43bef2b70752af74727b8a8810949cebdbdd9d8c1d3f7e458d8df4",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/arsenal3d.js",
+      "raw_bytes": 57557,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "90045209c01c9dac0df19635b335efd1871c2a33a5493af0b9fa443b40d9cca7",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/campaign-journey.css",
+      "raw_bytes": 3099,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "06925c80c853633e664dcca21a8ad01765ceb8c1188559d9e84f967ff8e6b9f3",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/campaign-journey.js",
+      "raw_bytes": 10163,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "86210dfda6590d28358c63be54faf2ee4787e551b6b58998bd519f8824499f83",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/campaign-operations-ui.css",
+      "raw_bytes": 8447,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "8d5d927c4a6ca6c86715c1a04c46a5577b19342841b12604e92d95e948a0bc64",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/campaign-operations-ui.js",
+      "raw_bytes": 21133,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "5746a6ced8e301d1151fdb1fef32a83a20631d8ae024850d9f47ab02e4279b7b",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/campaign-transport.js",
+      "raw_bytes": 4775,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "1cbd2407c8822070e860f84e8378976aa1e2624aca7dd234eed8c723ac8acd2c",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/campaign-ui.js",
+      "raw_bytes": 13683,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "9aa62da51602a3d612312e157d37726cc6d2ed73efd17a7e5f2634386b1be312",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/cash-flow-ui.css",
+      "raw_bytes": 11401,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d57e8343eaed5433120aa9d56d8be72355d383c3b2dd6ec74ca95d7000ea75d3",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/cash-flow-ui.js",
+      "raw_bytes": 30198,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "023fee351e029edacd074d5b7056819bd3c81b387dbe13e6a32a541840091107",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/chronicle-data.js",
+      "raw_bytes": 4513,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f9098148a6bf1cf9c4febc848b0040f8efdd9923bf7869761f394d305424cc82",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/chronicle-ui.js",
+      "raw_bytes": 16175,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "55892279eb2e7361abb65ab915c2a6fa322b128b61724bf6e95cd5002b37190d",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/chronicle.css",
+      "raw_bytes": 6431,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "c973ad317427f533651d79079bdcd0767ac443b8058ac6f00d3023cff0498499",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/cities.js",
+      "raw_bytes": 106398,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "7eef85ed30f77d11e1dea55be7ebc08268fa7762a9f4625e28ccdf44b06d5f4c",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/city-detail.js",
+      "raw_bytes": 14190,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "a1a52c2ee11a57a64e49f74d4a576040ca101ecc2de9417f1371240c90110c5b",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/city-layer.js",
+      "raw_bytes": 12449,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d4afb63a0cc695cd11bb7c31fa5decd7f4e762ab65091a57e4d83ffaa948c3fc",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/city-mesh.js",
+      "raw_bytes": 87641,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "59593662fa4f31bd80c99b7e7349f6db18514c428724350b6e81b3adc87d5e26",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/companies-ui.js",
+      "raw_bytes": 32920,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/companies.css",
+      "raw_bytes": 13908,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "958e3d1de86a4c21c5033d06898c478f016d293261b639feff9e77cfa9876724",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/competition-ui.js",
+      "raw_bytes": 60076,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "63764f27f4ef91442811ca8d956cf408abe7ed92279192a6345a82402825d060",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/competition.css",
+      "raw_bytes": 20495,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "b3244436653a5f6b401e740270518f836ab31103c5915dd31d652233e035b00f",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/component-art/manifest.json",
+      "raw_bytes": 9438,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "bf04840ba130881c340ad40ee67d7490aeafab4e7ae27039c16ef8dac7c56ae2",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/decision-tools.css",
+      "raw_bytes": 2083,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "b61588dd1e1ae0c42635722125842bbfd29af02ad705164e4a5b687f9a54c7b6",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/decision-tools.js",
+      "raw_bytes": 19122,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "6e3524679bc7a329acdaa2cdddb9392118ffe594c0e243466f01bce88a39c609",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/display-art/manifest.json",
+      "raw_bytes": 133156,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "afa2c9bb127248b46ab390c4cbe357a385e8a279b6cd0e5a3d0e4c867f1d5fdb",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/districts.js",
+      "raw_bytes": 715895,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "28fb376cdd4d4adc24238409549e0a686fd4f4cf4c21a3f7395334b7f4f3b02d",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/equipment-export.js",
+      "raw_bytes": 8868,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "4057adc8ae13d8c2c107b2fe7a797e8018b16a37adcc88a91a347604fb355475",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/equipment-import.js",
+      "raw_bytes": 27373,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "3697425601b8b5c21d7c43a2efa8157443a785338d2323017dc42989c1f7c71c",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/equipment-mesh.js",
+      "raw_bytes": 180994,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "4f8a6b30fbc575578785525fa131862765afd36736c41d37799ef77a1f0b9921",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/equipment-model.js",
+      "raw_bytes": 47269,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "356403f2a135ca3ac12fa46de0483091d663cfa339de0c043fdb2a5201a03b82",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/equipment-ui.css",
+      "raw_bytes": 39241,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "5d29a1c59de7b5d4f53844645c1f8130f81ef22da4858d8fbb8c26980610eff9",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/equipment-ui.js",
+      "raw_bytes": 136107,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d263364b530ce4f81b5e8a2e6bba196150b25755202369f90c0f587e022ae83d",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/fiscal-recovery-ui.js",
+      "raw_bytes": 11098,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/globe3d.js",
+      "raw_bytes": 36245,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "9c634e8320a66702ce78de192573af03f80c625c562376d79cd0125d2a559403",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/government-ui.css",
+      "raw_bytes": 36730,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "99ee93b190631cdad51cd79dfac6ee5817768bf744e18b1f9a0b8ffc9b46c6d7",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/government-ui.js",
+      "raw_bytes": 52239,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "3437b8a00a56fcc85853d427d72df87386d159503e7e62e309e9faa598908899",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/guidance-ui.css",
+      "raw_bytes": 10622,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "62a7e7e364b87ec2794f8e1753c73d7abe755a37510f4696dd73063fbfd499bf",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/guidance-ui.js",
+      "raw_bytes": 36381,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "e815bdde20b34395c93c9e8bb7704ba15ecfcedfe0cf0ae52c8e4250caac26e6",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/height-detail.js",
+      "raw_bytes": 6148,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "8b1ecc40dc9dafc97a8a4793bb4ae565f8ac3cdab3e203b4453b5901b0bf3dd8",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/height-detail.json",
+      "raw_bytes": 5636,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "a3bc9e6e2e5e9751add3228d0ce2e4719f2974b0b4228eb7f7178bdadf00ce22",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/index.html",
+      "raw_bytes": 1158416,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "4ece8532806623316574392ac85d0f422ecbb40deb44cf070c1db8015ff919fc",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/industry-ui.css",
+      "raw_bytes": 9841,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "df7e9be6e2cd0aa1d95d6391bab6eabc3061942ddb1bec5417ae38edd70974b8",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/industry-ui.js",
+      "raw_bytes": 27842,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "91732bc28103e2f8522df58d07b44f9533720b4764c2d52df998c4341d878a6d",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/lake-surfaces.json",
+      "raw_bytes": 3807,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "bf8c29d64866faaf02bc7fbba5482fe0882e11d5cfb9a9f3bb2d82ee5ce95522",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/main-menu.css",
+      "raw_bytes": 22484,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "54b147025180a66d2ed76d0e3b414b2d3b4059286441278d756131c8f0378b0a",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/map-controls.css",
+      "raw_bytes": 9732,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "5a2f2c2414679f65f8bebbf8e342553c2829e45d9cb506fc7dafd596597a04e6",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/map-controls.js",
+      "raw_bytes": 10651,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "79b99912a9406b43f22d786ea7063d47fc05d738e432e9749561eb1fdff03fd7",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/military-surface.js",
+      "raw_bytes": 10398,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "7e9ad100ae54b2a98f837a0edd970b14201c782fa0c573446613a8f7c4d6315e",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/operations-ui.css",
+      "raw_bytes": 4475,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "54ba86fb159925ec84204bfb00b6b155441429e06f1a0d20229824ae798d0b0c",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/operations-ui.js",
+      "raw_bytes": 11658,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d7de98c6198b19fd7a65e13c1438eedcf9c54c44b665fc3d32a8d0888bd3ecc1",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/page-art.css",
+      "raw_bytes": 26796,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "2a2a81f82b5d0013c1a97c673966547a37bfb33f6e1bcd8e94b7c29ac288626d",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/page-art.js",
+      "raw_bytes": 1604,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "1c0c7fb7792e18f48221c614a1a977697dbe7dc8ea74b5df957f109fd5fc73a5",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/page-art/manifest.json",
+      "raw_bytes": 96093,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "7cffd10d6c1f8b3075c41259bec249d457b612aa52a05ca16bf2f5470e39738c",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/performance-ui.js",
+      "raw_bytes": 6638,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "85d6e5a15c879a32b021d267a6b11b2097cb467b8c77129380dd4db9e4be37e3",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/person-3d.js",
+      "raw_bytes": 7168,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "4f1f32a39cc1e50834189dea550515c51de300b0deb94c8d6eab0cabc37065ab",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/person-models.js",
+      "raw_bytes": 21334,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "e977542609692e0e8fa7e71d7abcedb283f6b35f245cdf75d98f5c5757817e02",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/references/source-review-uk-v1.json",
+      "raw_bytes": 5505,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "16baa8bba813953530af586c621f783548a2a501033f7b62bcb37c2aff5d40f1",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/programs-ui.js",
+      "raw_bytes": 14422,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "0c7a91cd5569ac564819c864577c00449322366432bf3213127f69d38b7e5667",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/programs.css",
+      "raw_bytes": 17137,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "99a302434b99cce32e4a06c22e6ad01a868d7a9ebc6531140061a06a63fc736c",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/prop-mesh.js",
+      "raw_bytes": 179156,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "4f6f47d04e27dc962bf7bfa0fd6fedf9d803cc7b87b08cbf46da94abc4f2d5b1",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/province-economy-ui.js",
+      "raw_bytes": 26094,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "81f3137d1b174063af6547f2a750f2dccbe06a75f202c65194859eeaf4f051ee",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/province-economy.css",
+      "raw_bytes": 8271,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "1bedef0ef676141b292f0c1b04b9b73708b3c71173b8c06ee9b6bed61fb82e6a",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/rivers.js",
+      "raw_bytes": 245187,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "6ad931de88b5bfb78fd71e0df1ee545bac8e9748ca3e5e03f8dda7f60ca12664",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/road-mesh.js",
+      "raw_bytes": 96361,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "a6ef74ef4e746350e9fc9e1ae148ed1cc4c209728d11aec9e9c09ef07f89b210",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/scatter-mesh.js",
+      "raw_bytes": 102540,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "06520bc500c904160eec9392f76dc49ee24e127461ad973fdd5d46775eb06c64",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/shader-loader.js",
+      "raw_bytes": 3570,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d9ed07ce1b7b838e9be4f4f4535fe35f6cf4d78baaf7518107ad690f84b9e088",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/site-mesh.js",
+      "raw_bytes": 308376,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "2269bb2dadc41676cc17f915c8ed20022d5fd7ba9746540c7492967d2065dede",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/surface-grain.js",
+      "raw_bytes": 20822,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "4a62e5e7d535e7abeed25284ef39d8a8d69c67a2e9a78d7ebedbf383bde92333",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/surface-material.js",
+      "raw_bytes": 19760,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "b9939d555ea3932cc7bc7cf623f5ac69b13765249aabda54ed5b411a20cf43d2",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/surface-wear.js",
+      "raw_bytes": 26623,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "e6c514e200c905568021d0e0d0e17b7c20a69bf580719384b6a960fc40e242c4",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/tank-assets/strv103/License.original.txt",
+      "raw_bytes": 113,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "3e7cdd59ee21b968a9948fe841f8d840744d2b6d749687308e37ea27d6ea293e",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/tank-assets/strv103/strv103.report.json",
+      "raw_bytes": 9107,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "c0aa65e0845b22bd1c6951824a1e1768721a5abba815a6c9dc1ec22c78154074",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/tank-assets/strv103/strv103.validation.json",
+      "raw_bytes": 2035,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ae80a696433180be2bb66b661ebeaa54572215e4906cb03f9c4b147c3a4d0d6d",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/tank-surface.js",
+      "raw_bytes": 13282,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d6e9ed2f0087d212c4487dabf3e4b50e08cf9cbb026823de40e2414855e8f157",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/terrain-labels.js",
+      "raw_bytes": 7522,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "4a5769e16e46e487a427267d67c8aa3348b3207ac9bf65d493633cb9edc662e7",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/terrain-surface.js",
+      "raw_bytes": 24750,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ebb4e530aef3ac2369defefb4cbdf80bd14e831b7fc119da3b749d0716a77d74",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/terrain-tiles/embed.rs",
+      "raw_bytes": 37948,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "9afba416065e8e58bf3c497f168d74573c7d04c08e944d669ef693e417d821d3",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/terrain-tiles/manifest.json",
+      "raw_bytes": 253962,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "077e7684e18de36311c675a2c34b03d3ef89e2556f88b647cf5b100b2f98fa1b",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/terrain.js",
+      "raw_bytes": 93007,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "6be11057edbeccfa07d89f12e4fb0782e1e2e24f6eb97fa4538cbe3ede315e8d",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/town-mesh.js",
+      "raw_bytes": 178182,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "1d1636de92fa3fd05ff09af581b8e2b47404ef9e8d80163b27561b09b34de27b",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/tutorial-model.js",
+      "raw_bytes": 12649,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "da554c28a2cde577a0eb3b9913d522fbce675440b1b44f989b407580f05adf46",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/water-detail.js",
+      "raw_bytes": 11962,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "0b1bc8e9a4b5116c4c9564f69214ff12b5f5b181c4cf47567acc7e81569361f0",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/world-scatter.js",
+      "raw_bytes": 33979,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f5ee83cf2f310a70a2db4d1bc45db61769c87618d4af25a7ec3bf616b88f2026",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/ui/world.js",
+      "raw_bytes": 525549,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "4330767eafa40a742083dcde9cc7f0313420760a6b89d71666d11401eb52626b",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/.cargo_vcs_info.json",
+      "raw_bytes": 94,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d2a5c2966bca9bcb96f1fb22d7839be5e6dc329dd4e3237696b5c0682720faef",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/.gitattributes",
+      "raw_bytes": 8,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/benches/bench.rs",
+      "raw_bytes": 2111,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "803e8ac58aadee8bf3c037d622e04473b597c4c3399dfe0951065943599254ab",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/Cargo.toml",
+      "raw_bytes": 1657,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "03c7dfc1df0bbf4274890d33e256baddd4c77e0f9eaee1035ef07a250d229db8",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/examples/hello-world.rs",
+      "raw_bytes": 616,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "cc095046b2e9ae44dc095032185db2d478e6e556159614e93917f64c60ba3430",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/examples/php-cgi.rs",
+      "raw_bytes": 2706,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f2650e84a807f11cec6568a9893169bea17dd2eb0013302d7dda38b5da249a55",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/examples/readme-example.rs",
+      "raw_bytes": 495,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "5b93dd6584c3bea80896391842ceca5f2f350435b2470c7c0a5dd33fb4a46d92",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/examples/serve-root.rs",
+      "raw_bytes": 1626,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "05d84565ef1e38f5782296ae8bc014b621f4e0b9e7827274b5468efbc1aa3921",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/examples/ssl.rs",
+      "raw_bytes": 1322,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "1595c78153214ffc5e5724aba903164e61f33fca1083c727f1d5c417aeee85b5",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/examples/websockets.rs",
+      "raw_bytes": 4962,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "69c96aa370a0378f072dab65fa3ab935309032fe2ddf537c523abce6e9662a0f",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/src/client.rs",
+      "raw_bytes": 10728,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "8fcc6344c2259e91677c267cd9e022a316463a1b03bb805c0a2ec692ef94c898",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/src/common.rs",
+      "raw_bytes": 11951,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "5cae33d9517acdf3f559488acbd4fd727b565ac5e10234b060d37f6398ef2c7b",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/src/connection.rs",
+      "raw_bytes": 5334,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "67dbb92f1d7b3edc8b9fb85b6d770bd50250fb08cde0fdc9e75ceacb68125ac0",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/src/lib.rs",
+      "raw_bytes": 15219,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "5545e94107ab9b4474ad8253d6367f0a20a696ad3f647c97136e21c2824b4a90",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/src/request.rs",
+      "raw_bytes": 17309,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ef8fcf8d36706a0e1a146f3262917b4631ecf8db925408d4b6959a0d7423695a",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/src/response.rs",
+      "raw_bytes": 17130,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "946c4aa551b7a16cc2ea5f86f8ae2ce9b9bda3faecb2f9d1057d5bc17cb2dbdc",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/src/ssl.rs",
+      "raw_bytes": 966,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "dd38964c51c5d9fe6dbafd383e172f89d0f62f8d52042e94247cc1d67e07c29e",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/src/ssl/openssl.rs",
+      "raw_bytes": 3417,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "7a7317d2d6d5e75b7e57caa282180a21ec0639e71813e5498a75dcba0dab7e7d",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/src/ssl/rustls.rs",
+      "raw_bytes": 3621,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "d39f329d74f611ec992c0a559a8ea32280b66981380f78683142102a0b758268",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/src/test.rs",
+      "raw_bytes": 3796,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "b6a2a4848acb46fbacc7593629cf6d2fac745e852ead9bf57e014e32623ca1b4",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/src/util/custom_stream.rs",
+      "raw_bytes": 696,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "a6921b2eb16600070647c41a339c57eb2f616f24116b8b7135cf9a26b2e5ceec",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/src/util/equal_reader.rs",
+      "raw_bytes": 3086,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "7d7916b42316d745c12185509fa5719dd9a032fef1c19fe8057b154f48e8db55",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/src/util/fused_reader.rs",
+      "raw_bytes": 1254,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "2c92bf51a069ec7d6aa647fb44709bbb013131c43cd1667a4a0d1784a57eab6b",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/src/util/messages_queue.rs",
+      "raw_bytes": 2803,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ac283569e0e24d4f5ff7515a4c74ea08a2cc8439152a17dd1121030429ebcb4f",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/src/util/mod.rs",
+      "raw_bytes": 1870,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "107ceae83c9a10672be797a1805e13772f9c25e68b74e02bef6f45af85018293",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/src/util/refined_tcp_stream.rs",
+      "raw_bytes": 4089,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f1ee3a06ded63843209120d2d9bf94ae113bc781be91daedce7f5ce9e537a6a1",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/src/util/sequential.rs",
+      "raw_bytes": 4268,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "5ad84c87bd412edec8b289639d6d21486201e84f25a7edc1be4284be59c5570c",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/src/util/task_pool.rs",
+      "raw_bytes": 8059,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "03d2fcff36e6cd52262d0e0536ace1b5526b01f2a95e2bdec82438f2cc26f997",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/tests/input-tests.rs",
+      "raw_bytes": 3909,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "591757acb069d74c6f3a36acee1d931ddb13fe9bc06fe8527d23527071c36e35",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/tests/network.rs",
+      "raw_bytes": 6815,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ccb382c4c2205caa6025ad8c53c8c101f4fb7f2288c6891c6e04ddb6b31882d3",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/tests/non-chunked-buffering.rs",
+      "raw_bytes": 2614,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "66548e609ce52e8b20e557c3cebab465ed276af5246ea60921a3c344507a0a94",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/tests/promptness.rs",
+      "raw_bytes": 7109,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "1a59a54cde25b90d737f1285a5173b560f962bb8ca9e0a6c74477a5b366b431d",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/tests/simple-test.rs",
+      "raw_bytes": 725,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "0bf6f66c281fb0ac1b59228c6933cfe49ba8423b7c4fb211b72fa0d800153250",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/tests/support/mod.rs",
+      "raw_bytes": 1274,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "2aed60864d0edb33157bfb3da9fe5d373001cf411a2e6b6fcb065dc972cc8887",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/tests/unblock-test.rs",
+      "raw_bytes": 844,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f4a474b808bc0832cf6b1c0e1db754d81a2ae2ea6cf1f539838ac23051e5f8f7",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/tests/unix-test.rs",
+      "raw_bytes": 1045,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "9b104a35858ef9b11d8c7e8803c2399d01b01b2faaf75a10d66dc110356f7dca",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "spheres-web/vendor/tiny_http/UPSTREAM.json",
+      "raw_bytes": 6419,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "519dac86f14242db8824e09f7ef13b2e749fa9dd8a507cb35789515cef22c4fa",
+      "changed_or_untracked": false
+    },
+    {
+      "path": "tools/avatars/test_tonga_pm_1990_2019_c01_08.py",
+      "raw_bytes": 42532,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "91c252b803dcd8c2582229a7e469c635724c54d1d754fdea31ac95d4b93a0043",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "tools/ui/check_advisor_model.cjs",
+      "raw_bytes": 20924,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "bc25cb4e51c93e2fe3b28f2e2c12f523e52dc6f431451158b4c71ac39bec995d",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "tools/ui/ci-leadership-research-browser.cjs",
+      "raw_bytes": 15905,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "ba5e61a955b6c35bc5d3ae57becceb506c2ce5a98d99317db0f38e8d5719d84b",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "tools/ui/fixtures/ADVISOR_ARCHIVE.md",
+      "raw_bytes": 2413,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "4812544af02dfe7508fbdc07fb4a1f5819f8f86fcbc9b52493404c77585de9eb",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "tools/ui/fixtures/advisor-archive.json",
+      "raw_bytes": 32618,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "f2f404914bcc9ee2ce9e690012e5b29b964dfef261f92f5da7201486403d6c02",
+      "changed_or_untracked": true
+    },
+    {
+      "path": "tools/ui/fixtures/advisor-archive.provenance.json",
+      "raw_bytes": 2173,
+      "normalization": "utf8_crlf_to_lf",
+      "sha256": "1fe8e9f0ee931953e710141ed7e480ca0d4b5ded08a79621f89f037540051364",
+      "changed_or_untracked": true
+    }
+  ],
+  "binaries": [
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_sim-de8a2e7790f15db6.exe",
+      "Hash": "F26B04F462F0775742925091DFBA609C254F18F1CBDF5EF3D3BFA70BD9CEAA14"
+    },
+    {
+      "Path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\bloc_census-b35be4d742aae476.exe",
+      "Hash": "AA4BA9B92B52BC8D7E8C0100286074BA3CF9AD5921C784D54DE9625E2EF29604"
+    }
+  ]
+}

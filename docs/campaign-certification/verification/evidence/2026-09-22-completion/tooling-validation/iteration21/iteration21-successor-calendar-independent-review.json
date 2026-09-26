@@ -1,0 +1,34 @@
+{
+  "scope": "Read-only independent iteration21 successor-calendar code and test review; no Cargo or runtime mutation.",
+  "source": {
+    "path": "spheres-sim/src/government.rs",
+    "sha256": "a82d56109ab94108e29f87610891e440868bf20c51ac2cafddd9cd8aaad4ac3d",
+    "bytes": 831609,
+    "crlf_pairs": 0,
+    "replacement_characters": 0,
+    "utf8_cp1252_e2_markers": 0
+  },
+  "production_finding": "No remaining actionable issue found. Lens-on ordinary cabinets with neither regime authority nor an explicit pending election receive only a calendar date and headline; existing regime/pending/off paths preserve the previous scheduling seam.",
+  "reviewed_invariants": [
+    "No invented historical or completed modeled ballot, unrestricted mandate, vote anchor or named office",
+    "Preserves observed modeled-party record and office age, pressure, support, coalition and pillars while scheduling",
+    "Real regime openings and explicitly pending old saves retain interim protections and existing authority",
+    "Off path remains the original scheduling branch",
+    "Daily and legacy-monthly dates and fractional observed accountability preserved",
+    "Existing first-free-ballot, annulment, military/court handover and snap-grace helpers unchanged"
+  ],
+  "test_issue_corrected": {
+    "test": "missing_calendars_do_not_erase_real_regime_interims_or_change_the_lens_off_path",
+    "issue": "Jordan starts electoral at authoritarianism0.55 so no initial regime_bloc exists. Original assertion incorrectly assumed a court regime.",
+    "fix_verified": "Author now explicitly stages authoritarianism0.75 and seed_blocs before reopening; original historical opening is unchanged."
+  },
+  "new_tests_reviewed": [
+    "scheduling_a_new_electoral_successor_preserves_its_real_governing_record",
+    "a_successor_calendar_keeps_the_eighteen_month_deadline_without_claiming_a_ballot",
+    "successor_calendar_dates_and_accountability_survive_daily_and_legacy_saves",
+    "missing_calendars_do_not_erase_real_regime_interims_or_change_the_lens_off_path"
+  ],
+  "native_tests_executed_by_reviewer": false,
+  "calibration_outcomes_claimed": false,
+  "metadata_regenerated": false
+}

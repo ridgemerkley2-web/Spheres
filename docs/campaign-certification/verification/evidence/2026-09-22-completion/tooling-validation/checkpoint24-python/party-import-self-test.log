@@ -1,0 +1,11 @@
+test_bad_dates_unknown_fields_and_unreviewed_components_fail_without_mutation (__main__.self_test.<locals>.Checks.test_bad_dates_unknown_fields_and_unreviewed_components_fail_without_mutation) ... ok
+test_existing_chronology_and_duplicate_rejected (__main__.self_test.<locals>.Checks.test_existing_chronology_and_duplicate_rejected) ... ok
+test_identical_import_is_idempotent (__main__.self_test.<locals>.Checks.test_identical_import_is_idempotent) ... ok
+test_missing_policy_and_unknown_person_fail (__main__.self_test.<locals>.Checks.test_missing_policy_and_unknown_person_fail) ... ok
+test_offices_and_people_preserved (__main__.self_test.<locals>.Checks.test_offices_and_people_preserved) ... ok
+test_reviewed_components_require_every_term_binding_and_exact_order (__main__.self_test.<locals>.Checks.test_reviewed_components_require_every_term_binding_and_exact_order) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+OK

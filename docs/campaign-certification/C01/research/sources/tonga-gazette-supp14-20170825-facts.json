@@ -1,0 +1,28 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://ago.gov.to/cms/images/LEGISLATION/GAZETTES/2017/2017-0041/GazetteSupplementExtraordinaryNo.14of2017.pdf",
+  "accessed_date": "2026-09-22",
+  "published_date": "2017-08-25",
+  "access_method": "downloaded_original_pdf_text_and_relevant_page_visually_read",
+  "source_response_bytes": 204017,
+  "source_response_sha256": "5124737e65e4ff232e0e122858f3b0625946abc1451521b3c3133a59703907ae",
+  "source_response_checked_in": false,
+  "provenance_note": "Original response downloaded and hashed before extraction on 2026-09-22 (local); the independent check re-downloaded it the same day and matched the bytes and SHA-256, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, coat of arms, seals, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "to_dissolution_instrument_20170824",
+      "text": "The Instrument of Dissolution, signed TUPOU VI and done at Nuku'alofa on 24 August 2017, states that the King, having considered advice from the Lord Speaker and having regard to Clauses 38 and 77(2), dissolves the Legislative Assembly 'with effect from Thursday 24 August 2017 at 1700 hours', with elections to be held no later than 16 November 2017. The instrument does not mention the Prime Minister.",
+      "attested_on": "2017-08-24",
+      "locator": "Gazette Supplement Extraordinary No. 14, 25 August 2017, pp. 55-56",
+      "uncertainty": "Dissolves the Assembly. It is not a dismissal of the Prime Minister and provides no caretaker instrument."
+    }
+  ],
+  "scope_note": "Gazette Supplement Extraordinary No. 14 of 25 August 2017 carrying the Instrument of Dissolution. Read on 2026-09-22, after the 7 September 2026 historical cutoff; the file is the dated historical document and no later content is used. Used only for the dissolution and its effective time; the instrument says nothing about the Prime Minister.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "PDF page 1 (English and Tongan facing texts) was rendered and visually checked in the research dossier."
+  }
+}

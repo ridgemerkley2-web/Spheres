@@ -1,0 +1,19 @@
+{
+  "scope": "External verification wrapper idempotency repair; no runtime inputs or metadata regenerated.",
+  "cause": "Wrapper unconditionally wrote government.rs after CRLF replacement even when zero replacements occurred; unchanged bytes advanced mtime and invalidated Cargo inputs.",
+  "historical_command_preserved": "verify-leadership-provenance.executed.py",
+  "historical_runner_sha256": "22c948523395eb75561b043e648c6b201ed675c25af851268e3c06a8e8315edc",
+  "fixed_runner_sha256": "96aa537bd340dd694144d1adac5f310a5690885d1d251a85763b1a66ec6a2664",
+  "fix": "Write only when normalized bytes differ; report government_file_written explicitly on future runs.",
+  "tests": {
+    "passed": 3,
+    "failed": 0,
+    "errors": 0,
+    "cases": [
+      "LF bytes and mtime retained",
+      "CRLF normalizes once, second pass retains mtime",
+      "read-only canonical path never invokes writer"
+    ]
+  },
+  "full_wrapper_executed_after_fix": false
+}

@@ -1,0 +1,318 @@
+{
+  "diagnosed_build": "iteration3",
+  "rlib_sha256": "b3c67c17afb3bc2d7c2328a6796b65ec726c39a72dea1e533a0a229c63efe536",
+  "growth_band_unchanged": [
+    0.008,
+    0.026
+  ],
+  "growth": [
+    {
+      "seed": 1990,
+      "nation": "USA",
+      "reported_growth": 0.009511077,
+      "structural_potential": 0.014896843,
+      "demand_output": -0.001470022,
+      "oil": 0.000149705,
+      "sanctions": -0.0,
+      "war": 0.0,
+      "before_noise": 0.013576526,
+      "tfp_trend": 0.010711765
+    },
+    {
+      "seed": 1990,
+      "nation": "Germany",
+      "reported_growth": 0.001795659,
+      "structural_potential": 0.011181404,
+      "demand_output": -0.001983685,
+      "oil": -0.000202332,
+      "sanctions": 0.001504893,
+      "war": 0.0,
+      "before_noise": 0.007490494,
+      "tfp_trend": 0.011229223
+    },
+    {
+      "seed": 1990,
+      "nation": "France",
+      "reported_growth": 0.005278489,
+      "structural_potential": 0.012613613,
+      "demand_output": -0.00213126,
+      "oil": -0.000202332,
+      "sanctions": -0.0,
+      "war": 0.0,
+      "before_noise": 0.010280021,
+      "tfp_trend": 0.010942521
+    },
+    {
+      "seed": 1990,
+      "nation": "Italy",
+      "reported_growth": 0.007941203,
+      "structural_potential": 0.009240896,
+      "demand_output": -0.000661238,
+      "oil": -0.000202332,
+      "sanctions": -0.0,
+      "war": 0.0,
+      "before_noise": 0.008377326,
+      "tfp_trend": 0.01056771
+    },
+    {
+      "seed": 7,
+      "nation": "USA",
+      "reported_growth": 0.015380443,
+      "structural_potential": 0.014743324,
+      "demand_output": 0.0,
+      "oil": 0.00031211,
+      "sanctions": -0.0,
+      "war": 0.0,
+      "before_noise": 0.015055434,
+      "tfp_trend": 0.010706556
+    },
+    {
+      "seed": 7,
+      "nation": "Germany",
+      "reported_growth": 0.009594736,
+      "structural_potential": 0.010494644,
+      "demand_output": -0.000150812,
+      "oil": -0.000411896,
+      "sanctions": -0.0,
+      "war": 0.0,
+      "before_noise": 0.009931935,
+      "tfp_trend": 0.01129195
+    },
+    {
+      "seed": 7,
+      "nation": "France",
+      "reported_growth": 0.011795947,
+      "structural_potential": 0.013163874,
+      "demand_output": -0.000150812,
+      "oil": -0.000411896,
+      "sanctions": -0.0,
+      "war": 0.0,
+      "before_noise": 0.012601166,
+      "tfp_trend": 0.011065909
+    },
+    {
+      "seed": 7,
+      "nation": "Italy",
+      "reported_growth": 0.008727252,
+      "structural_potential": 0.009412893,
+      "demand_output": -0.000150774,
+      "oil": -0.000411896,
+      "sanctions": -0.0,
+      "war": 0.0,
+      "before_noise": 0.008850223,
+      "tfp_trend": 0.010862068
+    },
+    {
+      "seed": 42,
+      "nation": "USA",
+      "reported_growth": 0.015481451,
+      "structural_potential": 0.014753963,
+      "demand_output": 0.0,
+      "oil": 2.7617E-05,
+      "sanctions": -0.0,
+      "war": 0.0,
+      "before_noise": 0.01478158,
+      "tfp_trend": 0.010733925
+    },
+    {
+      "seed": 42,
+      "nation": "Germany",
+      "reported_growth": 0.011114166,
+      "structural_potential": 0.010680556,
+      "demand_output": -2.5935E-05,
+      "oil": -3.9985E-05,
+      "sanctions": -0.0,
+      "war": 0.0,
+      "before_noise": 0.010614636,
+      "tfp_trend": 0.011250768
+    },
+    {
+      "seed": 42,
+      "nation": "France",
+      "reported_growth": 0.012910599,
+      "structural_potential": 0.013192127,
+      "demand_output": -2.5921E-05,
+      "oil": -3.9985E-05,
+      "sanctions": -0.0,
+      "war": 0.0,
+      "before_noise": 0.013126221,
+      "tfp_trend": 0.011043622
+    },
+    {
+      "seed": 42,
+      "nation": "Italy",
+      "reported_growth": 0.009160346,
+      "structural_potential": 0.009314059,
+      "demand_output": -2.5921E-05,
+      "oil": -3.9985E-05,
+      "sanctions": -0.0,
+      "war": 0.0,
+      "before_noise": 0.009248153,
+      "tfp_trend": 0.010820455
+    }
+  ],
+  "technology_invariant": [
+    {
+      "seed": 1990,
+      "nation": "USA",
+      "known_before": 128,
+      "known_after": 128,
+      "tfp_residual_bound": 1E-12,
+      "no_reference_alternate_tfp_windfall": 0.008528580608,
+      "real_tech_tick_assertion_passed": true
+    },
+    {
+      "seed": 1990,
+      "nation": "Germany",
+      "known_before": 128,
+      "known_after": 128,
+      "tfp_residual_bound": 1E-12,
+      "no_reference_alternate_tfp_windfall": 0.008704701808,
+      "real_tech_tick_assertion_passed": true
+    },
+    {
+      "seed": 1990,
+      "nation": "France",
+      "known_before": 128,
+      "known_after": 128,
+      "tfp_residual_bound": 1E-12,
+      "no_reference_alternate_tfp_windfall": 0.00863810659,
+      "real_tech_tick_assertion_passed": true
+    },
+    {
+      "seed": 1990,
+      "nation": "Italy",
+      "known_before": 128,
+      "known_after": 128,
+      "tfp_residual_bound": 1E-12,
+      "no_reference_alternate_tfp_windfall": 0.008597989452,
+      "real_tech_tick_assertion_passed": true
+    },
+    {
+      "seed": 7,
+      "nation": "USA",
+      "known_before": 129,
+      "known_after": 129,
+      "tfp_residual_bound": 1E-12,
+      "no_reference_alternate_tfp_windfall": 0.008657814946,
+      "real_tech_tick_assertion_passed": true
+    },
+    {
+      "seed": 7,
+      "nation": "Germany",
+      "known_before": 129,
+      "known_after": 129,
+      "tfp_residual_bound": 1E-12,
+      "no_reference_alternate_tfp_windfall": 0.008831199773,
+      "real_tech_tick_assertion_passed": true
+    },
+    {
+      "seed": 7,
+      "nation": "France",
+      "known_before": 129,
+      "known_after": 129,
+      "tfp_residual_bound": 1E-12,
+      "no_reference_alternate_tfp_windfall": 0.008765238175,
+      "real_tech_tick_assertion_passed": true
+    },
+    {
+      "seed": 7,
+      "nation": "Italy",
+      "known_before": 129,
+      "known_after": 129,
+      "tfp_residual_bound": 1E-12,
+      "no_reference_alternate_tfp_windfall": 0.008725502731,
+      "real_tech_tick_assertion_passed": true
+    },
+    {
+      "seed": 42,
+      "nation": "USA",
+      "known_before": 128,
+      "known_after": 128,
+      "tfp_residual_bound": 1E-12,
+      "no_reference_alternate_tfp_windfall": 0.008545689776,
+      "real_tech_tick_assertion_passed": true
+    },
+    {
+      "seed": 42,
+      "nation": "Germany",
+      "known_before": 128,
+      "known_after": 128,
+      "tfp_residual_bound": 1E-12,
+      "no_reference_alternate_tfp_windfall": 0.008715327055,
+      "real_tech_tick_assertion_passed": true
+    },
+    {
+      "seed": 42,
+      "nation": "France",
+      "known_before": 128,
+      "known_after": 128,
+      "tfp_residual_bound": 1E-12,
+      "no_reference_alternate_tfp_windfall": 0.008650783315,
+      "real_tech_tick_assertion_passed": true
+    },
+    {
+      "seed": 42,
+      "nation": "Italy",
+      "known_before": 128,
+      "known_after": 128,
+      "tfp_residual_bound": 1E-12,
+      "no_reference_alternate_tfp_windfall": 0.008611906648,
+      "real_tech_tick_assertion_passed": true
+    }
+  ],
+  "pact_calls": [
+    {
+      "seed": 1,
+      "guarantor": "UK",
+      "defender": "Kuwait",
+      "outcome": "honour",
+      "prior_reputation": 70.0,
+      "prior_war_exhaustion": 0.0,
+      "approximate_honour_probability": 0.88
+    },
+    {
+      "seed": 2,
+      "guarantor": "USSR",
+      "defender": "Mozambique",
+      "outcome": "honour",
+      "prior_reputation": 70.0,
+      "prior_war_exhaustion": 0.0,
+      "approximate_honour_probability": 0.88
+    },
+    {
+      "seed": 2,
+      "guarantor": "China",
+      "defender": "NorthKorea",
+      "outcome": "refusal",
+      "prior_reputation": 2.25,
+      "prior_war_exhaustion": 0.0,
+      "approximate_honour_probability": 0.484
+    },
+    {
+      "seed": 7,
+      "guarantor": "UK",
+      "defender": "Kuwait",
+      "outcome": "refusal",
+      "prior_reputation": 63.8,
+      "prior_war_exhaustion": 0.06793822689005846,
+      "approximate_honour_probability": 0.7748119727820326
+    },
+    {
+      "seed": 11,
+      "guarantor": "UK",
+      "defender": "Kuwait",
+      "outcome": "refusal",
+      "prior_reputation": 59.2,
+      "prior_war_exhaustion": 0.0,
+      "approximate_honour_probability": 0.7442285714285716
+    }
+  ],
+  "probability_caveat": "Approximation from pre-month states; within-month ordering and reputation recovery can differ. Not a prospective confidence bound.",
+  "old_honour_campaigns": 2,
+  "new_answered_campaigns": 4,
+  "total_campaigns": 12,
+  "original_failed_quota": "3..12 campaigns with honours",
+  "replacement_integration_quota": "3..12 campaigns with actual answered calls, both outcomes, and resulting side/pact state verified",
+  "unchanged_controlled_rate_test": "40 forced invasions: all answered, honours > 2 * refusals, at least one refusal"
+}

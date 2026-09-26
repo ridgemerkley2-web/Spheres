@@ -1,0 +1,62 @@
+{
+  "scope": "Reviewed inspection-only removal of sealed track-pin start caps. Existing connector blocks enclose every omitted cap. Every visible triangle attribute and every coarse/aircraft mesh is preserved; the immutable S15 baseline remains separately recorded.",
+  "hash_contract": "All typed geometry buffers plus exact enumerable metadata, in build order.",
+  "rows": [
+    {
+      "spec": {
+        "platform": "tank_standard",
+        "lod": 0
+      },
+      "inherited_sha256": "2bfdb4ca5671bf070725c665518696152030f2fd89761f3383255c47ede70569",
+      "sha256": "136010fa6d49691be448b9dace1fa728f8d1892e03c2498dd5ab3bb3582feed3"
+    },
+    {
+      "spec": {
+        "platform": "tank_heavy",
+        "lod": 0
+      },
+      "inherited_sha256": "d0fbde2922baca415d9be84efe33c1620e0a51ec15abf9ecde0ebb81102254af",
+      "sha256": "be769911fdaa59732d5b86bedab428e30ef32db55acba66b854708f2b667cbe7"
+    },
+    {
+      "spec": {
+        "platform": "tank_light",
+        "lod": 0
+      },
+      "inherited_sha256": "299045935a27881bbc1208ea01c79f4f4b19e3bee3a3b9775111f81e156c4f29",
+      "sha256": "fc0de1177ae1008c2dbd99bf69bd27cd4f285fe01b1f39e8fa8cd0a9039c97d0"
+    },
+    {
+      "spec": {
+        "platform": "tank_destroyer",
+        "lod": 0
+      },
+      "inherited_sha256": "f7916c271b6ff95954ce9c2dbc95df010e4c6b09edf62f747617cb21eb8281c7",
+      "sha256": "d9ea9d58bc25df87be438866c161933e8bdfcb14618898b8ae06198a69246e8b"
+    },
+    {
+      "spec": {
+        "platform": "ground_ifv",
+        "lod": 0
+      },
+      "inherited_sha256": "f1fbd7dc1c0e4c44e88e5b86ff4f5b3747940d5f8801e91fb2edcfa1d4554b8f",
+      "sha256": "7a8d48292f53dfa33233460b13c4350fef501168f8d2a63fb487382c0282bb93"
+    },
+    {
+      "spec": {
+        "platform": "ground_artillery",
+        "lod": 0
+      },
+      "inherited_sha256": "5e15a2f508597abc8b8a9f34d4ca75b815689a3954941d23366474ae4ddb2d0b",
+      "sha256": "f11c579aa925cc51e512b8c696f8c0c83c95412b9391f157acaa4b689015f28e"
+    },
+    {
+      "spec": {
+        "platform": "ground_air_defense",
+        "lod": 0
+      },
+      "inherited_sha256": "fa2a8827012f451f04e7b726552966967cef04cf34ea705ff1a685e7905e5c28",
+      "sha256": "16444d399d65db4671cb714fb97c9df67339a9505e77387e3cd6d9fa8b008d70"
+    }
+  ]
+}

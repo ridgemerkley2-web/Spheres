@@ -1,0 +1,55 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "tools/ui/check_leadership_research_review.cjs",
+    "tools/ui/check_leadership_government_review.cjs",
+    "tools/ui/check_government_leadership.cjs"
+  ],
+  "seconds": 0.347,
+  "exit_code": 0,
+  "log_sha256": "b118c24513a20a567eb536dab461eeaaa0a668c401036751299fa6bb27a7759e",
+  "summary": [
+    "\u2139 tests 89",
+    "\u2139 pass 89",
+    "\u2139 fail 0",
+    "\u2139 skipped 0"
+  ],
+  "before": {
+    "spheres-sim/src/government.rs": {
+      "sha256": "0e2dbdefe5ed1909804b81d43b736c94315be647d615bda85e62e1fe78a2b73f",
+      "mtime_ns": 1790116320732606400
+    },
+    "spheres-web/src/main.rs": {
+      "sha256": "f954638dbdc4db92d838c8aeaa0bd471a029b9ebe662256f327d685ac6876709",
+      "mtime_ns": 1790116233696602100
+    },
+    "spheres-web/data/leadership_production_2035.json": {
+      "sha256": "f98cbae966b91bbcccc3ce6a76f0d15f52a59fd11ce53d0063b8effd55acded8",
+      "mtime_ns": 1790116375206503700
+    },
+    "docs/campaign-certification/C01/census.json": {
+      "sha256": "3bd35544f2cc363e9a45ef317169b461d3d98a9ef3841a7e8fb5f3f127e87244",
+      "mtime_ns": 1790116376712608500
+    }
+  },
+  "after": {
+    "spheres-sim/src/government.rs": {
+      "sha256": "0e2dbdefe5ed1909804b81d43b736c94315be647d615bda85e62e1fe78a2b73f",
+      "mtime_ns": 1790116320732606400
+    },
+    "spheres-web/src/main.rs": {
+      "sha256": "f954638dbdc4db92d838c8aeaa0bd471a029b9ebe662256f327d685ac6876709",
+      "mtime_ns": 1790116233696602100
+    },
+    "spheres-web/data/leadership_production_2035.json": {
+      "sha256": "f98cbae966b91bbcccc3ce6a76f0d15f52a59fd11ce53d0063b8effd55acded8",
+      "mtime_ns": 1790116375206503700
+    },
+    "docs/campaign-certification/C01/census.json": {
+      "sha256": "3bd35544f2cc363e9a45ef317169b461d3d98a9ef3841a7e8fb5f3f127e87244",
+      "mtime_ns": 1790116376712608500
+    }
+  },
+  "source_and_metadata_unchanged": true
+}

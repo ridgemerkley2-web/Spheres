@@ -1,0 +1,16 @@
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+    Finished `release` profile [optimized] target(s) in 1m 15s
+     Running unittests src\lib.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_sim-de8a2e7790f15db6.exe)
+
+running 2 tests
+test government::tests::the_algeria_shaped_annulment_fires_under_its_conditions_and_not_under_the_court ... annulment: Algeria discontent at the vote read 0.511
+ok
+test tests::the_resource_pass_stays_under_budget ...     resources       0.0337 ms/month  (market on, best of 3, 1200 months, 137 living at start)
+    buy pass        0.0083 ms/month  (market on, best of 3, 1200 months, 137 living at start)
+    appetite term   0.0208 ms/month  (market on, best of 3, 1200 months, 137 living at start)
+    total           0.0629 ms/month  (market on, best of 3, 1200 months, 137 living at start)
+    budget 0.05 ms/month NOT met on this reading (a loaded machine?); bar 0.15
+ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 1029 filtered out; finished in 8.31s
+

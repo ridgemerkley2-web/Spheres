@@ -80,7 +80,12 @@ class TongaReconciliationTests(unittest.TestCase):
         self.assertIn('not a legal identity', link['note'])
         self.assertIn('to_ipu_2017_dpfi_continuity', dpfi['claim_ids'])
         self.assertIsNone(dpfi['lifecycle']['from'])
-        self.assertEqual(dpfi['roles'][0]['holder_claims'], ['to_dpfi_pohiva_2010'])
+        # CLAUDE-C01-04 added exactly one later IPU 2014 attestation (test_tonga_dpfi_c01_04 owns it);
+        # the 2010 observation stays first and neither gains a term.
+        first, second = dpfi['roles'][0]['holder_claims']
+        self.assertEqual(first, 'to_dpfi_pohiva_2010')
+        self.assertEqual((second['claim_ids'], second['attested_on'], second['from'], second['until']),
+                         (['to_ipu_2014_dpfi_pohiva_leader'], '2014-11-27', None, None))
         pdp = self.entries['to_pdp']
         self.assertEqual(pdp['claim_ids'], ['to_pdp_split_fuko', 'to_2008_party_candidacy', 'to_pdp_constitution_archive'])
         self.assertNotIn('identity_reconciliation', pdp)

@@ -1,0 +1,408 @@
+{
+  "recorded_utc": "2026-09-22T18:30:44.697Z",
+  "run_id": 35761708980,
+  "run_url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/35761708980",
+  "revision": "78cd39bb3b2ee2a7d4fe1d43b18702a51fbfbdbc",
+  "branch": "codex/campaign-certification",
+  "scope": "All eight jobs succeeded at this checkpoint revision only. This does not certify subsequent research merges or uncommitted political calibration and advisor-fixture changes; final validation remains in progress.",
+  "evidence_method": "GitHub workflow-run jobs API returned eight completed success jobs; all four workflow-run artifact API records independently pin the same exact head SHA. Artifact archives were not downloaded.",
+  "totals": {
+    "jobs": 8,
+    "success": 8,
+    "failure": 0,
+    "cancelled": 0,
+    "in_progress": 0
+  },
+  "jobs": [
+    {
+      "id": 106861080856,
+      "name": "javascript (windows-latest)",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run node tools/ui/run-unit.cjs",
+          "conclusion": "success"
+        },
+        {
+          "name": "Enforce current geometry and visible-scene budgets",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify detailed lake surface bindings",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 106861081172,
+      "name": "javascript (ubuntu-latest)",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run node tools/ui/run-unit.cjs",
+          "conclusion": "success"
+        },
+        {
+          "name": "Enforce current geometry and visible-scene budgets",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify detailed lake surface bindings",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 106861081186,
+      "name": "native (windows-latest)",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run dtolnay/rust-toolchain@stable",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run cargo test --locked --release --workspace --no-fail-fast -- --skip tests::the_resource_pass_stays_under_budget",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify resource timing budget in isolation",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run cargo build --locked --release -p spheres-web",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run npm ci --prefix tools/ui",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run npx --prefix tools/ui playwright install --with-deps chromium",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run node tools/ui/ci-browser.cjs",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 106861081255,
+      "name": "native (ubuntu-latest)",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run dtolnay/rust-toolchain@stable",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run cargo test --locked --release --workspace --no-fail-fast -- --skip tests::the_resource_pass_stays_under_budget",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify resource timing budget in isolation",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run cargo build --locked --release -p spheres-web",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run npm ci --prefix tools/ui",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run npx --prefix tools/ui playwright install --with-deps chromium",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run node tools/ui/ci-browser.cjs",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 106861081311,
+      "name": "town-browser (ubuntu-latest)",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run npm ci --prefix tools/ui",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run npx --prefix tools/ui playwright install --with-deps chromium",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify actual adaptive town submissions and recovery",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 106861081404,
+      "name": "town-browser (windows-latest)",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run npm ci --prefix tools/ui",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run npx --prefix tools/ui playwright install --with-deps chromium",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify actual adaptive town submissions and recovery",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 106876627986,
+      "name": "verify (windows-latest)",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Require every native, JavaScript and town browser check to pass",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 106876628053,
+      "name": "verify (ubuntu-latest)",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Require every native, JavaScript and town browser check to pass",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 10712402518,
+      "name": "browser-evidence-windows-latest",
+      "bytes": 12119246,
+      "digest": "sha256:9347ed9c4d99883939fe8c43990e2b7d2e752c2099f17be24a0c97ed9b974b5f",
+      "created_at": "2026-09-22T18:18:37Z",
+      "head_sha": "78cd39bb3b2ee2a7d4fe1d43b18702a51fbfbdbc"
+    },
+    {
+      "id": 10711451483,
+      "name": "town-scene-evidence-windows-latest",
+      "bytes": 645515,
+      "digest": "sha256:1e5115638e244fc4ea5f549ec6967cd37433b9b0fc2258b83a2c12bdf0d582f3",
+      "created_at": "2026-09-22T17:53:00Z",
+      "head_sha": "78cd39bb3b2ee2a7d4fe1d43b18702a51fbfbdbc"
+    },
+    {
+      "id": 10711300937,
+      "name": "town-scene-evidence-ubuntu-latest",
+      "bytes": 645282,
+      "digest": "sha256:b63f4d6173709f2d9f6d7cc57bac90e84387e73a7b1d54dc507c88fb5c63fdd1",
+      "created_at": "2026-09-22T17:48:03Z",
+      "head_sha": "78cd39bb3b2ee2a7d4fe1d43b18702a51fbfbdbc"
+    },
+    {
+      "id": 10711173053,
+      "name": "browser-evidence-ubuntu-latest",
+      "bytes": 12354894,
+      "digest": "sha256:5f685f421871fe12fac1315e969db9e74a4657aeaaab71d11eb803b18a6fa075",
+      "created_at": "2026-09-22T18:03:11Z",
+      "head_sha": "78cd39bb3b2ee2a7d4fe1d43b18702a51fbfbdbc"
+    }
+  ],
+  "limits": [
+    "Job success does not mean zero ignored or skipped tests. The archived-advisor checkout dependency was fixed after this checkpoint; its later local full-Node receipt is separate.",
+    "The earlier cancelled Windows town job in run 35756074095 remains a historical non-pass."
+  ]
+}

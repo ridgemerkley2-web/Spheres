@@ -1,0 +1,49 @@
+{
+  "scope": "Read-only audit; no production source, test, data or document edits",
+  "revision": "7b8a3dbb90f191ee5520705a8233409274d9d752",
+  "reviewed_inputs": [
+    {
+      "path": "docs/campaign-certification/verification/2026-09-22-completion.md",
+      "sha256": "ec7507012acf4e632049ae0458224f7005261c97cf6afc0cf5cf3299de551722"
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/tooling-validation/README.md",
+      "sha256": "2ba152d7ac3a8a83b09f11474dcb769fe97ffa2e4b5d1b8ddccf81fc08faa9a3"
+    },
+    {
+      "path": "docs/political-arm/2026-09-22-calibration-repairs.md",
+      "sha256": "9da61e89f25720ae2e984bad2aa0adb5493171cf16a97dea7b7a386503a8b9a6"
+    },
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/checkpoint25-repairs/README.md",
+      "sha256": "3268b234534c427bb373197f3dc77f50e4836bdb59145dbd6d8a0d2d6423bcd3"
+    }
+  ],
+  "additional_current_production_test_lanes_found": [],
+  "current_plan_coverage": [
+    "workspace25",
+    "isolated resource timing",
+    "four archive correctness tests",
+    "two mature preview latency tests",
+    "final server/browser",
+    "preservation",
+    "push/hosted25 including Node, source validators and town-browser",
+    "A1 design decision followed by untouched independent cohort only after selected model"
+  ],
+  "reporting_obligations": [
+    {
+      "path": "docs/campaign-certification/verification/evidence/2026-09-22-completion/tooling-validation/README.md",
+      "issue": "Opening status still calls restored iteration21 the current source and latest metadata, although its appended iteration23-final section supersedes it. Relabel older paragraph as historical and point current status to final selected receipt."
+    },
+    {
+      "path": "docs/campaign-certification/verification/2026-09-22-completion.md",
+      "issue": "C01-03 paragraph says shared production census fingerprint awaits political freeze; final seven-command receipts have since completed. Update current wording while preserving dated prior receipts."
+    }
+  ],
+  "uncompleted_optional_source_reconstruction_scopes": [
+    "Full decoded GHS-POP reconstruction/rasterized area: absent large decoded source, fast mode retains explicit skips.",
+    "Full offline resource byte-reproduction remains incomplete; historical WEP ZIP identity unresolved despite stable current member payloads.",
+    "Broad terrain source audit skips two coarse-raster regeneration checks. Detailed lake and shipped geometry checks are separate passes."
+  ],
+  "claim_rule": "These optional reconstruction gaps are not new runtime failures, but a blanket all checks/zero skips/source-reproducibility claim would be false. Preserve limitations in final report. C01 coverage and pending packets05/06 remain development scope, not a newly failing verification lane."
+}

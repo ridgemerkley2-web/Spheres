@@ -52,6 +52,35 @@ fn dev(w: &WorldState, id: NationId) -> f64 {
     (n.gdp * 1000.0 / n.population.max(0.001) / 24000.0).min(1.0)
 }
 
+/// The legacy package keeps its existing proportional cuts when a detailed
+/// plan owns expenditure. The package's one political price buys this change;
+/// dispatch preserves department receipts, already granted funds and cash.
+fn legacy_consolidation_budget(w: &WorldState, id: NationId) -> Option<(crate::Command, bool)> {
+    let n = w.nation(id);
+    if n.annual_budget.is_none() && n.program_budget.is_none() {
+        return None;
+    }
+    let current = n.budget_for(w.year);
+    let mut allocations = current.allocations;
+    let investment = current.investment_total();
+    if investment > 0.0 {
+        let reduced = (investment * 0.7).max(0.02_f64.min(investment));
+        for ministry in [BUDGET_INFRASTRUCTURE, BUDGET_INDUSTRY, BUDGET_SCIENCE] {
+            allocations[ministry] *= reduced / investment;
+        }
+    }
+    let defense = current.defense();
+    allocations[BUDGET_DEFENSE] = (defense * 0.8).max(0.005_f64.min(defense));
+    let changed = allocations != current.allocations;
+    let command = if let Some(program) = &n.program_budget {
+        crate::Command::SetProgramBudget {
+            nation: id, fiscal_year: w.year, allocations, departments: program.departments,
+        }
+    } else {
+        crate::Command::SetAnnualBudget { nation: id, fiscal_year: w.year, allocations }
+    };
+    Some((command, changed))
+}
 fn consolidation_available(w: &WorldState, id: NationId) -> bool {
     if crate::fiscal_recovery::enabled(w) {
         crate::fiscal_recovery::assessment(w, id).is_some_and(|v| v.recovery_required)
@@ -59,6 +88,23 @@ fn consolidation_available(w: &WorldState, id: NationId) -> bool {
                 || crate::fiscal_recovery_ai::budget_adjustment(w, id, 0.20, 0.02).is_some())
     } else {
         n_of(w, id).debt_gdp > 0.90
+            && legacy_consolidation_budget(w, id).map_or_else(
+                || { let n = n_of(w, id); n.tax_rate < 0.60
+                    || n.state_invest_gdp > 0.02 || n.mil_spend_gdp > 0.005 },
+                |(command, changed)| {
+                let allocations = match &command {
+                    crate::Command::SetAnnualBudget { allocations, .. }
+                    | crate::Command::SetProgramBudget { allocations, .. } => allocations,
+                    _ => unreachable!(),
+                };
+                // SetAnnualBudget enforces these bounds at dispatch; quote
+                // them here too so invalid old plans cannot partially enact.
+                (n_of(w, id).tax_rate < 0.60 || changed)
+                    && (!changed || (allocations.iter().enumerate().all(|(i, v)|
+                    v.is_finite() && *v >= 0.0 && *v <= BUDGET_CAPS[i])
+                    && allocations.iter().sum::<f64>() <= 0.70
+                    && crate::world_refusal(w, &command).is_none()))
+            })
     }
 }
 
@@ -82,11 +128,22 @@ fn enact_consolidation(w: &mut WorldState, id: NationId) {
             crate::dispatch(w, &budget.command)
                 .expect("the consolidation quote retains a valid current budget");
         }
+    } else if let Some((budget, changed)) = legacy_consolidation_budget(w, id) {
+        // Availability checked the plan owner's ordinary command authority.
+        // The 34-PC package price is charged by the outer command exactly once.
+        if changed {
+            crate::dispatch(w, &budget)
+                .expect("the legacy consolidation quote retains a valid owned budget");
+        }
+        let tax = (w.nation(id).tax_rate + 0.05).min(0.60);
+        crate::dispatch(w, &crate::Command::SetTaxRate { nation: id, rate: tax })
+            .expect("a finite consolidation tax is a valid ordinary command");
     } else {
         let n = w.nation_mut(id);
         n.tax_rate = (n.tax_rate + 0.05).min(0.60);
-        n.state_invest_gdp = (n.state_invest_gdp * 0.7).max(0.02);
-        n.mil_spend_gdp = (n.mil_spend_gdp * 0.8).max(0.005);
+        // Floors limit cuts; an austerity vote cannot invent new expenditure.
+        n.state_invest_gdp = (n.state_invest_gdp * 0.7).max(0.02_f64.min(n.state_invest_gdp));
+        n.mil_spend_gdp = (n.mil_spend_gdp * 0.8).max(0.005_f64.min(n.mil_spend_gdp));
     }
     let n = w.nation_mut(id);
     n.stability = (n.stability - 9.0).max(0.0);
@@ -203,7 +260,7 @@ pub const DECK: &[Stratagem] = &[
         blurb: "Raise taxes by up to five points and trim discretionary spending. \
                 Essential services and maintenance are protected in recovery campaigns. \
                 The vote costs 9 stability; debt only improves when the budget delivers.",
-        because: "A debt trajectory that requires recovery (legacy campaigns: debt above 90%)",
+        because: "A debt trajectory that requires recovery, with room for a fiscal adjustment (legacy campaigns: debt above 90%)",
         cost: 34.0,
         available: consolidation_available,
         enact: enact_consolidation,
@@ -478,9 +535,13 @@ pub fn ai_stratagems(w: &mut WorldState) {
         .collect();
     for id in actors.iter().copied() {
         let held = w.nation(id).political_capital;
-        // Keep a reserve. A government that spends to the floor cannot answer
-        // the next crisis, and the crisis is what stratagems are for.
-        if held < 55.0 {
+        let lever = crate::government::ai_lever(w, id);
+        // Routine cards keep their standing reserve. A legally available
+        // political lever already checks its own price: the 30-point round
+        // table must not be silently replaced by a 55-point dispatch gate.
+        // With the political layer off, ai_lever is None and this is exactly
+        // the previous card gate, including its random-draw behavior.
+        if held < 55.0 && lever.is_none() {
             continue;
         }
         let options: Vec<_> = available(w, id).into_iter().filter(|s|
@@ -496,7 +557,6 @@ pub fn ai_stratagems(w: &mut WorldState) {
         // it only in a month a government has a lever and no card (the same
         // finding as the sponsors' draw in `politics`). The lever comes
         // first because its conditions are the narrower crisis.
-        let lever = crate::government::ai_lever(w, id);
         if options.is_empty() && lever.is_none() {
             continue;
         }
@@ -539,3 +599,6 @@ pub fn tick(w: &mut WorldState) {
         }
     }
 }
+
+#[cfg(test)]
+mod tests;

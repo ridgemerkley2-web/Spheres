@@ -1,0 +1,454 @@
+{
+  "revision": "9f7faed5f541e14545e01caf1616ba08c6ad8ff9",
+  "scope": "Full Node suite executed after runtime/metadata freeze and before commit; no runtime or test inputs changed during execution. Documentation and exact-byte evidence attributes were finalized afterward. This does not claim a clean working tree at test start.",
+  "command": [
+    "node",
+    "tools/ui/run-unit.cjs"
+  ],
+  "node": "v24.12.0",
+  "exit_code": 0,
+  "passed": 1701,
+  "failed": 0,
+  "skipped": 0,
+  "duration_ms": 105174.5127,
+  "test_files": 107,
+  "input_files_at_receipt": [
+    {
+      "path": "tools/ui/run-unit.cjs",
+      "sha256": "56e6d2c1fd5af752446516463c1d7fdf6f4d2f2623bd845bb937c8d950e73424"
+    },
+    {
+      "path": "tools/ui/check_advisor_model.cjs",
+      "sha256": "e17293e7211b656efee66bde16d986202aa66a97d526e66b2fe85bc5232bd377"
+    },
+    {
+      "path": "tools/ui/check_agency_reviews.cjs",
+      "sha256": "90ee31129c5e7787c468f3955334d0c9615121f43fbe3e46a757cb4e00a3a026"
+    },
+    {
+      "path": "tools/ui/check_aircraft_closeup.cjs",
+      "sha256": "1a1fb88307855f05d0ca3b08eaa0a6d46b8043b22203a0d3a778acc0449e5864"
+    },
+    {
+      "path": "tools/ui/check_aircraft_detail.cjs",
+      "sha256": "1caf4520748d5fcf88af6a27b214750a8e47aa4e8a539ff5973aab1f199b8911"
+    },
+    {
+      "path": "tools/ui/check_aircraft_interior_detail.cjs",
+      "sha256": "6dd36ac23b2448dc6b6b48296c45b1ef23b8c665a71d89e4125bb7c06c27f5ac"
+    },
+    {
+      "path": "tools/ui/check_aircraft_rebuild.cjs",
+      "sha256": "de38dd4d122a8a79790eacb9f51d5f110d9b4be04f3a85f2aee68abc137790c4"
+    },
+    {
+      "path": "tools/ui/check_aircraft_surface.cjs",
+      "sha256": "c7f36cc78fb64668ccda79d88dafb9fd252f47ba914ffd17813aa2288254c4d5"
+    },
+    {
+      "path": "tools/ui/check_arcade.cjs",
+      "sha256": "54413254e61d6a91539f1e3d793e6cf014ff50ee5091067773c16752d2b160d5"
+    },
+    {
+      "path": "tools/ui/check_area_art.cjs",
+      "sha256": "20ecd73f807c7f1100255c444d2719cf77047f6df42ca003a0fb992b15ed8f7d"
+    },
+    {
+      "path": "tools/ui/check_armored_workshop.cjs",
+      "sha256": "4e2a4e6920eb24278a8c9150994bbbc6297f53aaf4761041e1fb0fbf1685990b"
+    },
+    {
+      "path": "tools/ui/check_arsenal3d_cache.cjs",
+      "sha256": "f8a43ea3c939d56424e4b410d5ed43a1192a4967bd6cf365a9a60f93c430e0d7"
+    },
+    {
+      "path": "tools/ui/check_arsenal3d_framing.cjs",
+      "sha256": "941d2195e0e1af0356ffb092cd1ff8c02d93754748fe2eff18fb3f297aaa08d2"
+    },
+    {
+      "path": "tools/ui/check_arsenal_inf_mech.cjs",
+      "sha256": "c44668d28e792fbad2543f9ec06f835a4f276fb7fa92b1b8dbd83f1cf7d70c52"
+    },
+    {
+      "path": "tools/ui/check_arsenal_model_detail.cjs",
+      "sha256": "f3fad1cce83ed738fc2924bee623bb3ddf1b6a35f8675f4d37e8afdee20ec5b1"
+    },
+    {
+      "path": "tools/ui/check_arsenal_models.cjs",
+      "sha256": "e652a95c89c89ee8d1a411eb5e10165230f013d65dbc9ae81535f16573e811b8"
+    },
+    {
+      "path": "tools/ui/check_arsenal_realism.cjs",
+      "sha256": "7cf9cdc38ea117cbcaaf100661dfd8c3cd7f76810f9d8057abe492e6a11f8bc4"
+    },
+    {
+      "path": "tools/ui/check_art_budget_contract.cjs",
+      "sha256": "4bd1f12b4e17bd05a0680000be09b5423b6358b002f357aed10f2fc5c48470f5"
+    },
+    {
+      "path": "tools/ui/check_art_budget_units.cjs",
+      "sha256": "2661fd6dbacce76b02e2c37030199baeef23b5c2de9c670042e9ed54d7656189"
+    },
+    {
+      "path": "tools/ui/check_art_gallery.cjs",
+      "sha256": "fd1a970aa0aefa4cba3272e58cf482010659e4171947579b1498972b0a61a9ab"
+    },
+    {
+      "path": "tools/ui/check_art_worst_spec.cjs",
+      "sha256": "5073a0ea648e54318880d0eb3776300ca128ee230de081c496b7dde2abcb8a16"
+    },
+    {
+      "path": "tools/ui/check_cabinet.cjs",
+      "sha256": "413fc6c2f9f72a1ea0c225664307381afdd15c6eb1aa23d7c55cabd0c6f2a04a"
+    },
+    {
+      "path": "tools/ui/check_campaign.cjs",
+      "sha256": "ac2b3244dc96f32a76c59375d896bc7e55917e86f01cd5b9e5104ad6bd0f5174"
+    },
+    {
+      "path": "tools/ui/check_campaign_dialogs.cjs",
+      "sha256": "5256d39c7310a3cee60c49bb9343a5c2250719bd451560234da58168766b15a3"
+    },
+    {
+      "path": "tools/ui/check_campaign_journey.cjs",
+      "sha256": "2e143169ff987b6cf7ce13134fcd607bd81a83f2ce00f0e0c78a49ef35f349e8"
+    },
+    {
+      "path": "tools/ui/check_campaign_transport.cjs",
+      "sha256": "7c6b2e28b1b5f1ef8236d9c8a88706ee7bed5a66baac7f06eb6e4f1327f36b8c"
+    },
+    {
+      "path": "tools/ui/check_cash_flow.cjs",
+      "sha256": "249e388b001a6c6c1a579679f0dd910a0357a6e98ab967c13394006a072ae9e6"
+    },
+    {
+      "path": "tools/ui/check_chronicle.cjs",
+      "sha256": "4ad2888d3d79f1f8d26358583fb52e73ec00694566f487b5a2f36057d3585733"
+    },
+    {
+      "path": "tools/ui/check_city_detail.cjs",
+      "sha256": "fd34af3bd47785762375f91b634bb3237dc9f664a6fab43080e9a1358c5a83b0"
+    },
+    {
+      "path": "tools/ui/check_city_labels.cjs",
+      "sha256": "9ef6f824c5fc39720532735a09f3b209f75e17d612a7d548ccfe27aae7611f94"
+    },
+    {
+      "path": "tools/ui/check_city_layer.cjs",
+      "sha256": "f2d8db0382eb576be6022e2d5f59bf3d53126c65ddcb39aca780f5639871d7b5"
+    },
+    {
+      "path": "tools/ui/check_city_mesh.cjs",
+      "sha256": "8d381b85c55f33636cc8f7098ef676c727745e225aeaaedd572fc7ef9d5215e6"
+    },
+    {
+      "path": "tools/ui/check_city_water.cjs",
+      "sha256": "0faa3a8993f0f1ebe4bcf11cdf8816488a6bedc1b0df7b180090f8b4fc5e6bef"
+    },
+    {
+      "path": "tools/ui/check_clock.cjs",
+      "sha256": "c6ea5221e1ba386dee83a5086189956b42b6d81ab865aaddd59e201e411c7675"
+    },
+    {
+      "path": "tools/ui/check_company_network.cjs",
+      "sha256": "621f47fdafe5b72952125a9a9cddd222fec638fad78c1891ab0aab0e0f2db3dd"
+    },
+    {
+      "path": "tools/ui/check_competition.cjs",
+      "sha256": "ad557ce3dc2faa6a79dbb824e7ff2d3e348434c9de6178d0d672c94e9c067992"
+    },
+    {
+      "path": "tools/ui/check_connected_economy.cjs",
+      "sha256": "107c7816684e8b497cb59c0111f09596ea7b36900072302ca682e13f5b21fbda"
+    },
+    {
+      "path": "tools/ui/check_construction.cjs",
+      "sha256": "7f2c45a6541cef9e1711f10fc8e90db2b142ad46c9862b92d4b9a9634d57f05f"
+    },
+    {
+      "path": "tools/ui/check_construction_budget_units.cjs",
+      "sha256": "8dfcd8429651b080d4e79923eb3d44f27c603b414bb55a80a65ee56f9667869f"
+    },
+    {
+      "path": "tools/ui/check_decision_tools.cjs",
+      "sha256": "a83b1e49f4ff99cb8ade9beb4f3d67227bfb9683c9c6b9931af83bc2b15b448f"
+    },
+    {
+      "path": "tools/ui/check_discovery_arcade.cjs",
+      "sha256": "79427e591e22ff18fd9fcee9fe85373db614f0ec911d194b771dda0310245aaa"
+    },
+    {
+      "path": "tools/ui/check_equipment.cjs",
+      "sha256": "62151eb4677ad684660ee1a091db10b1926e942c7d87f4edc8762b09cf53cc34"
+    },
+    {
+      "path": "tools/ui/check_equipment_connector_optimization.cjs",
+      "sha256": "7f9b32004fdb36e6714886d8dc72a71fad337ecb89ba6222abfedfd1e27e39c4"
+    },
+    {
+      "path": "tools/ui/check_equipment_export.cjs",
+      "sha256": "c3e23c31117af1bc9bfbc055957605157a33bf8f619c000a195895019a5766a9"
+    },
+    {
+      "path": "tools/ui/check_equipment_import.cjs",
+      "sha256": "c82d8b2bb54471c0975d12c6b45cf18e963ea303fd1ae00beb6241f9f30177a2"
+    },
+    {
+      "path": "tools/ui/check_equipment_mesh.cjs",
+      "sha256": "0a16456c72b3844371a6f22d71f2e2e80fb890c02704b9d4610b303505a563f0"
+    },
+    {
+      "path": "tools/ui/check_equipment_mesh_detail.cjs",
+      "sha256": "758edca8e5e8db840102e4bebb3ce8464925b3cebeae99a06128919c054593d8"
+    },
+    {
+      "path": "tools/ui/check_equipment_model.cjs",
+      "sha256": "e4d7498de62de0dd59b6ad35e6e5a99d21517f07489f05aaa58c5f9c9d668922"
+    },
+    {
+      "path": "tools/ui/check_equipment_realism.cjs",
+      "sha256": "71f390f8e296e46938ee40c2e369468ba6b2d5d9b4c329e287858bae9c7ff69e"
+    },
+    {
+      "path": "tools/ui/check_equipment_shadows.cjs",
+      "sha256": "c4f53a0e269433ba4b87ec4e9a14f6e2d8282f572559a32f375810f4ab0ae3bf"
+    },
+    {
+      "path": "tools/ui/check_flight_defense.cjs",
+      "sha256": "6e91cb94de8d72bace09d793230f8f55d32bf2fc30d04cb4b5fa218ed41f6ecc"
+    },
+    {
+      "path": "tools/ui/check_globe_terrain.cjs",
+      "sha256": "584ab4b8145f8245e3b6d4eb3c29e30569fe920e8cfd822f3da6de1e25e441f1"
+    },
+    {
+      "path": "tools/ui/check_government.cjs",
+      "sha256": "9815816d7e77bde506548f603a4df39ef9c956b6d33420a12fdd2732251adfc2"
+    },
+    {
+      "path": "tools/ui/check_government_leadership.cjs",
+      "sha256": "c043c4471bedaf0f95ca71e2d1734c008cb6e866d3938aa538e1a3b3fb015725"
+    },
+    {
+      "path": "tools/ui/check_guidance_host.cjs",
+      "sha256": "e9949db72804c54e9a38134b2977a8c1d09dfa109ab80df79d2ba9f1848af859"
+    },
+    {
+      "path": "tools/ui/check_guidance_outcomes.cjs",
+      "sha256": "98009ca51da7aef61f4f59535ef823396e032e7b9c562242c7441354d96b8d3c"
+    },
+    {
+      "path": "tools/ui/check_guidance_ui.cjs",
+      "sha256": "00dbde61523f094d84b193437b8acfd0a1f41609a62309f194d526823388d301"
+    },
+    {
+      "path": "tools/ui/check_height_detail.cjs",
+      "sha256": "308eceaec72731d9c6dd6a9e7ffc699d3581cd7aeeefbd21d33ff414e405ec0b"
+    },
+    {
+      "path": "tools/ui/check_history_charts.cjs",
+      "sha256": "1ce3b271506976e9c9268f7626dd73551c38557d0ab92b4b63c95dbd357ba571"
+    },
+    {
+      "path": "tools/ui/check_industry.cjs",
+      "sha256": "b6de2be64407f26c5c14ceb1a336a52985d556df9c0a29351af221af116337f9"
+    },
+    {
+      "path": "tools/ui/check_integrated_campaign_transport.cjs",
+      "sha256": "f81f2cc9226280056a8c1d4d40b0189f4ff5edf638cb7cf6a2e0ec06be5ff627"
+    },
+    {
+      "path": "tools/ui/check_leadership_government_review.cjs",
+      "sha256": "b796784cf6c4f78d78d9f64aa7a3c09b6804aff9706a9a2e0d22c64a00231181"
+    },
+    {
+      "path": "tools/ui/check_leadership_research_review.cjs",
+      "sha256": "fcf63efafc8d2a5cec8cd7082eefba0d2e918a831c75ef81bd9f3039e33de7e7"
+    },
+    {
+      "path": "tools/ui/check_main_menu.cjs",
+      "sha256": "1e8237b90b551cf1ecc348aea76568b60f53f97cc0912fd87c7b42ac3f2c47a1"
+    },
+    {
+      "path": "tools/ui/check_map_controls.cjs",
+      "sha256": "aae10d533fac7454b5ad0142f0b140c265c960f30a3d07fed7ccb8c2383c0ed0"
+    },
+    {
+      "path": "tools/ui/check_map_detail.cjs",
+      "sha256": "89d4a122e09ec444b4a8298e7d53bca88a7155cb95f658cb64cdb9e6e1658ab3"
+    },
+    {
+      "path": "tools/ui/check_map_focus.cjs",
+      "sha256": "fdf3cc79e606819f0e5468da801f4776d86b6f812fa34f16dd85160432d272ff"
+    },
+    {
+      "path": "tools/ui/check_mesh_accounting.cjs",
+      "sha256": "1a87a6f993e8d94acdaf545b79c512c6084d738ff6f9fc5b0e37ccc95b8347b4"
+    },
+    {
+      "path": "tools/ui/check_military_operations.cjs",
+      "sha256": "d9efff9c067a34fcff5942aa75ca340991de4c8700201b9c90eae0938f125885"
+    },
+    {
+      "path": "tools/ui/check_military_surface.cjs",
+      "sha256": "f082784fde7fa45b54bbd677197c20da9d7ba305a0b1f5b58266fd1c2356ebcb"
+    },
+    {
+      "path": "tools/ui/check_military_textures.cjs",
+      "sha256": "c8b7691363c09d48c610bcf9448b45dcc90d76a85d92733c074d9b299e4feff1"
+    },
+    {
+      "path": "tools/ui/check_operations_arcade.cjs",
+      "sha256": "d18f6b937e88d3f4dbcfa3c03cff4fd703dc591591ed48faf032baf87639dce6"
+    },
+    {
+      "path": "tools/ui/check_page_art.cjs",
+      "sha256": "9f8056abfb5b6cda5cf214113f290e3de23d6b1428512f8d9cf18690ff1364d4"
+    },
+    {
+      "path": "tools/ui/check_performance_sample.cjs",
+      "sha256": "1d2cc569363d3d74091a637c48a9d7454a51853188533157e5b20f4cb52ccf40"
+    },
+    {
+      "path": "tools/ui/check_person_models.cjs",
+      "sha256": "d1f42ea67fe534eebc7d4969dcbfab119562ff35f070a15fa98c61e5176fab2e"
+    },
+    {
+      "path": "tools/ui/check_polar_cap.cjs",
+      "sha256": "132efcd0a4dec542640100b201b180468f950b69af4bf8d9bf8d97a952ad3b27"
+    },
+    {
+      "path": "tools/ui/check_programs.cjs",
+      "sha256": "dde46357ef832acd57f7285ba7ff41d688edd76fc77f5c5f24763afe122fc5b6"
+    },
+    {
+      "path": "tools/ui/check_prop_mesh.cjs",
+      "sha256": "91f7567ceb11d9f29e9540fb4778f048099c24b3f7b837678b12702f8dbe2ae8"
+    },
+    {
+      "path": "tools/ui/check_province_economy.cjs",
+      "sha256": "6f6ca4037c8680fb7653f5e5d233cec3c435d78d8513c5f9c9ad483fe0bf8ad8"
+    },
+    {
+      "path": "tools/ui/check_road_mesh.cjs",
+      "sha256": "93fcc0466ac32e4d54c9409b482f6a3b87325e77dfd6d0c3c8f594cf6d9c0eec"
+    },
+    {
+      "path": "tools/ui/check_s11_ground_outcomes.cjs",
+      "sha256": "037fe6f3b8a85f5b51f0bf87a35113307111b4c931e400de33e39370aa21ca5b"
+    },
+    {
+      "path": "tools/ui/check_s11_native_reader.cjs",
+      "sha256": "1bc40ed2ce255b8a736a35e109888e90568fd254cacd085119ea60d2ab72c895"
+    },
+    {
+      "path": "tools/ui/check_s11_operations_guards.cjs",
+      "sha256": "45e057dfede75c803f10aeaa37eb7a10ebdbb5a65b932f8639407f9284d85115"
+    },
+    {
+      "path": "tools/ui/check_s16_fighter_mesh.cjs",
+      "sha256": "ecd0c6ce43dcf15242bb4ff7f0760569ece041dd66628917265bc376fa742ebb"
+    },
+    {
+      "path": "tools/ui/check_save_slots.cjs",
+      "sha256": "787bfd0d6e349a7e6e2a42bfac96d5107fe946f0d42ca7d0e225e91941b7a469"
+    },
+    {
+      "path": "tools/ui/check_scatter_mesh.cjs",
+      "sha256": "87b80ab2e5011505d372553ec78b2e5d2b44637e03cfb2bdc2fb8b321272c854"
+    },
+    {
+      "path": "tools/ui/check_session.cjs",
+      "sha256": "716c189eb793ef62f4ce1c593428e509d2be91f62224c2c216f83cc4f61792ab"
+    },
+    {
+      "path": "tools/ui/check_shader_loader.cjs",
+      "sha256": "a58ab3a3a15394ca423cdbdf79353d1249b4b83a152857406350a91fd5dfe171"
+    },
+    {
+      "path": "tools/ui/check_site_mesh.cjs",
+      "sha256": "464e99b3bfba6777afeb3d30cc1b4d7c06387f382835a60d242cbd4076f52ca6"
+    },
+    {
+      "path": "tools/ui/check_site_surface_optimization.cjs",
+      "sha256": "888828c6fe2fcb8c97e5c87cbec71317139daaedb73e7412bdffd21e8f678acc"
+    },
+    {
+      "path": "tools/ui/check_specialist_redesign.cjs",
+      "sha256": "408c4e87ae505382d1af9b138ca63b8c9098b1aa906c761ba6a057c332ebf804"
+    },
+    {
+      "path": "tools/ui/check_surface_grain.cjs",
+      "sha256": "b089e294c8523c1197d5c0737b49b3ca2ae84a00a4cceb61f1f20aff08fd52fd"
+    },
+    {
+      "path": "tools/ui/check_surface_material.cjs",
+      "sha256": "8a8a807ee08faf65d09d526360a6d4a14b1c191bd813c45cbaace2face5d7f31"
+    },
+    {
+      "path": "tools/ui/check_surface_wear.cjs",
+      "sha256": "0bed54bd30beeaa894c2a7d6478d41180e7153cc42e22d85eeb1d5ba06f8a6f9"
+    },
+    {
+      "path": "tools/ui/check_tank_redesign.cjs",
+      "sha256": "4fcfdc3c0a397d362ecc9066d9a9b353a14182dd5fb75caccd4c88f17b182061"
+    },
+    {
+      "path": "tools/ui/check_tank_surface.cjs",
+      "sha256": "619ce0ad6f3a2f254f6c902dab28ecc8c1721fec86cb1b11cb5d09daeaac599d"
+    },
+    {
+      "path": "tools/ui/check_tank_workshop.cjs",
+      "sha256": "be8aff608a8e8e411dba7697397405a5b526dec729c44d3342c3064d703e407a"
+    },
+    {
+      "path": "tools/ui/check_terrain_labels.cjs",
+      "sha256": "3affe172f7b9f0a71f9a9ce403bb89b3ba9895bd6ea0dc9c317c735c2e527fd3"
+    },
+    {
+      "path": "tools/ui/check_terrain_surface.cjs",
+      "sha256": "f78bbfd22b1883b2385047eda25938b8e775541852f525d97b2d20d9b501565d"
+    },
+    {
+      "path": "tools/ui/check_town_mesh.cjs",
+      "sha256": "353a9f0ae02209d92635d111b258764d084f68c24fb5dbfb84d7bf617f4d3a27"
+    },
+    {
+      "path": "tools/ui/check_town_scene.cjs",
+      "sha256": "366886fbf44691f82aefa982c7b7920fe1c8848c038cee52ecbbe2a6ffc73f61"
+    },
+    {
+      "path": "tools/ui/check_town_scene_budget.cjs",
+      "sha256": "9052a42304caf3e436a4170889b107e9dd96434fcfd9c1c5d0cdd84247bda78e"
+    },
+    {
+      "path": "tools/ui/check_town_surface_optimization.cjs",
+      "sha256": "8692b48485100298d5cea3e7a6e4a41a18779e3eb9425582bd9f1a8e2b93b606"
+    },
+    {
+      "path": "tools/ui/check_tutorial_model.cjs",
+      "sha256": "d4d321be81bb4156089b65c72bd4e255dd45425e93997360e3292fdafa4f559c"
+    },
+    {
+      "path": "tools/ui/check_warfare_adoption.cjs",
+      "sha256": "5f83e568763098c6583f8559ae9036768ba15fcaa581c85acbe62274dcdca680"
+    },
+    {
+      "path": "tools/ui/check_water_detail.cjs",
+      "sha256": "f2c7cd637b2688ac20a559caffeb3855574a2a4c6030ec5257679c9914ee718e"
+    },
+    {
+      "path": "tools/ui/check_webgl_measurement.cjs",
+      "sha256": "714ea50616074598d4fdc0c81391bcdfb7e3eb0d65efd6608ffe003688419333"
+    },
+    {
+      "path": "tools/ui/check_world_scatter.cjs",
+      "sha256": "13e40bb777210aae900adec2bc151cfbd966be2658c73d47a54ebc83cebd5d19"
+    }
+  ],
+  "log": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\completion-checkpoint26-node-20260922.log",
+    "sha256": "8f08ad3a15895beb31ea4c308b6586728bef7214d1aac629fcf2da2105ad9f3e"
+  },
+  "receipt_utc": "2026-09-22T22:40:16.599325+00:00"
+}

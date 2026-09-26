@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "declared_utc": "2026-09-22T18:40:26.4176113Z",
+  "purpose": "Bounded gameplay calibration of economic accountability after iteration10 correctness repairs; not an empirical estimate or a test-threshold change.",
+  "candidates": [
+    0.018,
+    0.024,
+    0.03
+  ],
+  "order": "Measure iteration10 at0.018 first. Then evaluate0.024; consider0.030 only if0.024 does not satisfy the joint targets. Retain all results. Prefer the smallest adequate rate.",
+  "unchanged": [
+    "All A1-A10 outcome definitions and historical target intervals",
+    "1.5pp complete monthly vote-transfer cap",
+    "0.005 anchor reversion",
+    "term-length rolling record and current/remembered weights",
+    "positive-performance gain rate",
+    "family appeal weights",
+    "country/year-independent rule",
+    "fiscal/army coefficients"
+  ],
+  "development": "Original acceptance cohorts plus200seeds0..199/252months; use development data only for calibration and predeclared statistical sizing.",
+  "validation": "Untouched seeds1000..1059 and1000..1011 must remain uninspected until frozen final mechanics; never select a coefficient with that cohort.",
+  "safeguards": [
+    "Quiet/recovery and forgiveness controls",
+    "One calendar month in both clocks",
+    "Vote conservation and complete monthly bound",
+    "Save continuity and actual-incumbent attribution",
+    "No manufactured votes, country-specific bonuses or historical event schedules"
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "base_revision": "7b8a3dbb90f191ee5520705a8233409274d9d752",
+  "scope": "Preserve recorded saved-government pillars; initialize actual new browser campaigns through authoritative world_1990(lens=true) before any government seeding. No new public political initializer.",
+  "files": {
+    "spheres-sim/src/army_institutions.rs": {
+      "before_sha256": "d1b7039a5f04fb8636e32e9c5c610cdc9defe70d8c57ee0505e8a719ff732f36",
+      "after_sha256": "918beb1e980db551dd6c076d6b4b15a23f878402eafbf90bb06a4689130abb06",
+      "bytes": 12876,
+      "line_endings": "LF",
+      "utf8_valid": true
+    },
+    "spheres-sim/src/government.rs": {
+      "before_sha256": "4453a90a9949090337e3bafe4b211ccedc0755efdf50022888acb2f748fb7cff",
+      "after_sha256": "0e2dbdefe5ed1909804b81d43b736c94315be647d615bda85e62e1fe78a2b73f",
+      "bytes": 848551,
+      "line_endings": "LF",
+      "utf8_valid": true
+    },
+    "spheres-web/src/campaign_journey.rs": {
+      "before_sha256": "85e2fb36e2e173603ded7586a83e77bf3553db0a63fbbf763884becbb500c78b",
+      "after_sha256": "ccb195bc61ebf09d0a7e17a7abbb2b9bb3232b052514b6d038e98f34c485010c",
+      "bytes": 21468,
+      "line_endings": "LF",
+      "utf8_valid": true
+    },
+    "spheres-web/src/company_view.rs": {
+      "before_sha256": "06f652a7a20c8ac35c9414875e199924e27cfcf2927a48c189a5fbf66f782d76",
+      "after_sha256": "bfffcc9ba5f433f80ea685e17027d8d2eeb4a866d13e6cc7d4c217fed124614c",
+      "bytes": 104368,
+      "line_endings": "CRLF",
+      "utf8_valid": true
+    },
+    "spheres-web/src/main.rs": {
+      "before_sha256": "892b6185bb9b34636fef6104c0d2cc4af329dd6f2ab7d2f883f353528e3c6bbd",
+      "after_sha256": "f954638dbdc4db92d838c8aeaa0bd471a029b9ebe662256f327d685ac6876709",
+      "bytes": 981930,
+      "line_endings": "LF",
+      "utf8_valid": true
+    },
+    "spheres-web/src/performance.rs": {
+      "before_sha256": "8eaa3b16ccd6695caad7c2c034c68d63c2fd9a5cf8cd3681862315aec0346d6d",
+      "after_sha256": "f882743d684d6361e89087a5b555d930f25c54768154545e5d73f3ca0217889f",
+      "bytes": 41845,
+      "line_endings": "CRLF",
+      "utf8_valid": true
+    },
+    "spheres-web/src/s05_fresh_startup_tests.rs": {
+      "before_sha256": "9902bdc88bf2ec3910ea92a7fbbb0fc6d82018c0a91936f67480e6fd656415f4",
+      "after_sha256": "59ad7f336132db76862b9c21625cf2a62e6ec8be013281ef2cd0d86027c45b12",
+      "bytes": 15075,
+      "line_endings": "CRLF",
+      "utf8_valid": true
+    },
+    "spheres-web/src/s10d_inbox_fixture_tests.rs": {
+      "before_sha256": "697b40600b400cee0587f3e0cb8a515e9cc750bbe4bb1b94db20c6c8a87e2164",
+      "after_sha256": "d4cd95f18144122a5598953214b4657176faf38b9f26996139d387f92bf63b09",
+      "bytes": 6791,
+      "line_endings": "LF",
+      "utf8_valid": true
+    },
+    "spheres-web/src/s10e_commitment_fixture_tests.rs": {
+      "before_sha256": "b5676483cd0b05310b7ad6a0e6912f87e07612c691e0ac28f999c00566fd47e6",
+      "after_sha256": "f3623744ccdf2fac704dce6529788ff169ab7acdb5b47a9f698892d79d113378",
+      "bytes": 8257,
+      "line_endings": "LF",
+      "utf8_valid": true
+    },
+    "spheres-web/src/s10f_succession_fixture_tests.rs": {
+      "before_sha256": "8da01903c97d79bfe9bc872138cbad202a7504586612072c6a9b990541e238d0",
+      "after_sha256": "ada061cc02d1e3bab822e559bdc751002e2ecbb4d367871b044c200d3d14d83a",
+      "bytes": 7194,
+      "line_endings": "LF",
+      "utf8_valid": true
+    },
+    "spheres-web/src/s10g_sanctions_fixture_tests.rs": {
+      "before_sha256": "130830a816c5a220c41adde11e5ffc9246e271f37db8a7cc15fde11293f6b319",
+      "after_sha256": "9fde2c74563823bf16fd4c0c0d8865dac2e7c7e561b6332953b95a5e0c83fb44",
+      "bytes": 7237,
+      "line_endings": "LF",
+      "utf8_valid": true
+    }
+  },
+  "new_tests_executed": false,
+  "exact_archive_assertions_changed": false,
+  "original_fixture_files_changed": false,
+  "source_frozen": true,
+  "independent_review": "Hume read-only review: no actionable runtime issue; constructor order and saved/missing government distinction verified. Native execution pending."
+}

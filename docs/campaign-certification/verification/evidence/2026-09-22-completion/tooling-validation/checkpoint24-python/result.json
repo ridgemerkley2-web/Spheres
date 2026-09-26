@@ -1,0 +1,295 @@
+{
+  "commit": "b51b7333b862d60fc3357b6d54d2ca5960b1543c",
+  "scope": "Full lightweight Python discovery and retained self-tests; no native build or source generators",
+  "before": {
+    "spheres-sim/src/government.rs": {
+      "sha256": "4453a90a9949090337e3bafe4b211ccedc0755efdf50022888acb2f748fb7cff",
+      "mtime_ns": 1790113456596715100
+    },
+    "spheres-sim/src/politics.rs": {
+      "sha256": "990e675157008bbcf80944840d7946b961bff7863ea6584a998c13a9d4119995",
+      "mtime_ns": 1790111970359344200
+    },
+    "spheres-sim/src/stratagems.rs": {
+      "sha256": "10493241d716514902cfc1310baf0bbe8c8da76c6a8229c2fa637c0d2ff36e0d",
+      "mtime_ns": 1790112563520536200
+    },
+    "spheres-sim/src/lib.rs": {
+      "sha256": "f2852dfc40d213f74d04647ccedd4d674c9e00e08d1bc5f79ff6de20624eef82",
+      "mtime_ns": 1790113674687504800
+    },
+    "spheres-sim/src/blocs.rs": {
+      "sha256": "47d1d456576b638d8bfb9a18f9c7564b62c2f5fb97acec978b207210c6d09fbb",
+      "mtime_ns": 1790113674687504800
+    },
+    "spheres-sim/data/army_authority_1989.json": {
+      "sha256": "35e99445235348ded56a45cdd912892f0cd810c92a29121fbd66c8f911dc6d38",
+      "mtime_ns": 1790107868546290500
+    },
+    "spheres-web/data/leadership_production_2035.json": {
+      "sha256": "74f24fc9e9a612e3e6ef7fcc64372486d70d558b5b5838f2d5053e8cf8a24438",
+      "mtime_ns": 1790113730967066700
+    },
+    "docs/campaign-certification/C01/census.json": {
+      "sha256": "e54f7e230608cda0d93464b0cf5bd571d7707ddc8cdcf2b327b8a2debaf01d97",
+      "mtime_ns": 1790113732517285800
+    }
+  },
+  "checks": [
+    {
+      "name": "avatar-unit",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 6.443,
+      "tests": 162,
+      "skips": 0,
+      "log_sha256": "77d3431151d1660e0a17495dd4a93f70edcb6176bd94a880ffc40391add3ce44",
+      "log_bytes": 28717
+    },
+    {
+      "name": "terrain-unit",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/terrain",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 0.511,
+      "tests": 25,
+      "skips": 0,
+      "log_sha256": "813a18a5e112974e10a86f0316100074fef4c6ba177f25d01f6c8729ba91f9e5",
+      "log_bytes": 3897
+    },
+    {
+      "name": "ui-export-unit",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/ui",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 0.173,
+      "tests": 3,
+      "skips": 0,
+      "log_sha256": "7308a46eb4e572cb2de50d8dffa34c237b9ff3ff4e4f18c9998036c49b4fb059",
+      "log_bytes": 689
+    },
+    {
+      "name": "person-art-self-test",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/person_art_pipeline.py",
+        "self-test"
+      ],
+      "exit_code": 0,
+      "seconds": 0.299,
+      "tests": 16,
+      "skips": 0,
+      "log_sha256": "db4c541a61e31d53e8ebbdec368040884ac87d8def14a7776593a6ac6d894489",
+      "log_bytes": 2078
+    },
+    {
+      "name": "fictional-art-self-test",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/fictional_art_pipeline.py",
+        "self-test"
+      ],
+      "exit_code": 0,
+      "seconds": 0.187,
+      "tests": 7,
+      "skips": 0,
+      "log_sha256": "5fc05efdf57872988d623bc7ccf88c06349c64537d603e3f6a0793b2d8f8719d",
+      "log_bytes": 1098
+    },
+    {
+      "name": "leadership-production-self-test",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/leadership_production.py",
+        "self-test"
+      ],
+      "exit_code": 0,
+      "seconds": 1.159,
+      "tests": 8,
+      "skips": 0,
+      "log_sha256": "6e06fef03efd439141fbf1a5c8cee9486c2eeca6ce9023e8042a27a957ed1c70",
+      "log_bytes": 1317
+    },
+    {
+      "name": "historical-import-self-test",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/import_historical_people.py",
+        "--self-test"
+      ],
+      "exit_code": 0,
+      "seconds": 0.101,
+      "tests": 5,
+      "skips": 0,
+      "log_sha256": "cdb1958c89a0b68821f74faab647cdcf47eeb7fcddd23db9f0e89f21e011ad3c",
+      "log_bytes": 820
+    },
+    {
+      "name": "party-import-self-test",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/avatars/import_party_terms.py",
+        "--self-test"
+      ],
+      "exit_code": 0,
+      "seconds": 0.107,
+      "tests": 6,
+      "skips": 0,
+      "log_sha256": "fdcc1745dfb4067ec07e9755a414cca50b39711ba4fca32dc5cb33c75dc3742e",
+      "log_bytes": 989
+    },
+    {
+      "name": "calibration-self-test",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "tools/calibration/aggregate.py",
+        "--self-test"
+      ],
+      "exit_code": 0,
+      "seconds": 0.179,
+      "tests": 5,
+      "skips": 0,
+      "log_sha256": "605fd00c8abd34570fb25347c60f986d929f99cadad2bad9db7be899b19f6159",
+      "log_bytes": 715
+    },
+    {
+      "name": "authority-unit",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/politics",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 0.116,
+      "tests": 7,
+      "skips": 0,
+      "log_sha256": "4fbf122175baa60662679be65d6399306c46010bab8ad6171d80fbea0d49ed8d",
+      "log_bytes": 1342
+    },
+    {
+      "name": "resource-coverage-unit",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/resources",
+        "-p",
+        "test_coverage.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 0.585,
+      "tests": 8,
+      "skips": 0,
+      "log_sha256": "699243237f568da2e1de3b3cd8a31390f776570053bab220ac2257c2e8e0c95c",
+      "log_bytes": 1283
+    }
+  ],
+  "after": {
+    "spheres-sim/src/government.rs": {
+      "sha256": "4453a90a9949090337e3bafe4b211ccedc0755efdf50022888acb2f748fb7cff",
+      "mtime_ns": 1790113456596715100
+    },
+    "spheres-sim/src/politics.rs": {
+      "sha256": "990e675157008bbcf80944840d7946b961bff7863ea6584a998c13a9d4119995",
+      "mtime_ns": 1790111970359344200
+    },
+    "spheres-sim/src/stratagems.rs": {
+      "sha256": "10493241d716514902cfc1310baf0bbe8c8da76c6a8229c2fa637c0d2ff36e0d",
+      "mtime_ns": 1790112563520536200
+    },
+    "spheres-sim/src/lib.rs": {
+      "sha256": "f2852dfc40d213f74d04647ccedd4d674c9e00e08d1bc5f79ff6de20624eef82",
+      "mtime_ns": 1790113674687504800
+    },
+    "spheres-sim/src/blocs.rs": {
+      "sha256": "47d1d456576b638d8bfb9a18f9c7564b62c2f5fb97acec978b207210c6d09fbb",
+      "mtime_ns": 1790113674687504800
+    },
+    "spheres-sim/data/army_authority_1989.json": {
+      "sha256": "35e99445235348ded56a45cdd912892f0cd810c92a29121fbd66c8f911dc6d38",
+      "mtime_ns": 1790107868546290500
+    },
+    "spheres-web/data/leadership_production_2035.json": {
+      "sha256": "74f24fc9e9a612e3e6ef7fcc64372486d70d558b5b5838f2d5053e8cf8a24438",
+      "mtime_ns": 1790113730967066700
+    },
+    "docs/campaign-certification/C01/census.json": {
+      "sha256": "e54f7e230608cda0d93464b0cf5bd571d7707ddc8cdcf2b327b8a2debaf01d97",
+      "mtime_ns": 1790113732517285800
+    }
+  },
+  "sources_unchanged": true,
+  "status_after": "",
+  "all_passed": true,
+  "total_tests": 252
+}
