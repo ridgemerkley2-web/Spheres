@@ -584,7 +584,9 @@ def government_invariants(russia, ussr):
             for entry in packet[group]:
                 for r in entry['roles']:
                     kinds.setdefault(r['kind'], []).append(r['id'])
-    assert kinds['head_of_government'] == [ROLE], 'no other head-of-government role'
+    # CLAUDE-C01-26 added the Union head of government in ussr.json (su_government_head), pinned in its own test; no other
+    # head-of-government role exists in either packet.
+    assert kinds['head_of_government'] == [ROLE, 'su_government_head'], 'no other head-of-government role'
     assert kinds['head_of_state'] == ['ru_president', 'su_president']
     # The presidency holders are unchanged and share nothing with this role.
     presidency = next(e for e in russia['institutions'] if e['id'] == 'ru_rsfsr_presidency')

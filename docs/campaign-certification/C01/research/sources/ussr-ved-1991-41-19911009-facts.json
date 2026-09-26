@@ -1,0 +1,42 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_ved_1991_41",
+  "source_url": "https://vedomosti.sssr.su/1991/41.pdf",
+  "source_title": "Ведомости Верховного Совета СССР, 1991, No. 41 (9 October 1991), scanned issue",
+  "accessed_date": "2026-09-26",
+  "published_date": "1991-10-09",
+  "document_date": "1991-10-09",
+  "access_method": "scanned_facsimile_downloaded_over_https",
+  "source_response_url": "https://vedomosti.sssr.su/1991/41.pdf",
+  "source_response_bytes": 556781,
+  "source_response_sha256": "91cf65718b9dceaeb8cb4b4c6ce4eccf337af45afa3cdb897f197c97bdff902e",
+  "source_response_encoding": "application/pdf (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier (part C): downloaded at 2026-09-26T01:57:20Z, 02:12:17Z, 02:53:15Z and 02:53:44Z (the last with a cache-busting '_cb=' query); identical bytes and SHA-256. Independent check (part C): re-downloaded at 02:57:46Z (cache-busting '_chk=' query) and 03:24:14Z; identical. This packet: re-downloaded at 2026-09-26T03:53:23Z and again at 2026-09-26T04:26:49Z (33 minutes later); identical 556,781 bytes and SHA-256.",
+  "provenance_note": "Static PDF file served by the non-official SSSR.SU project (Last-Modified Sat, 19 Nov 2016 21:30:06 GMT), requested without Accept-Encoding and served without Content-Encoding; cache-busting requests returned identical bytes, so it is a stored file, not one generated per request. No Internet Archive capture of it was found. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "A page-image scan of the official gazette, served as a static file by the non-official SSSR.SU project; no Internet Archive capture of it was found.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      3,
+      20
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "PDF pages 3 and 20 rendered and read by the dossier; this packet read p. 20 from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "su_ukaz_up2663_new_ss_first_sitting_moved_19911003",
+      "observation_id": "su_supreme_soviet",
+      "review_observation": "SU-GOV-09",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "sitting_scheduled",
+      "attested_on": "1991-10-03",
+      "text": "Decree of the President of the USSR 'О переносе срока созыва сессии Верховного Совета Союза Советских Социалистических Республик нового состава' (art. 1162), 'Москва, Кремль. 3 октября 1991 г. № УП-2663': because the leaders of some republics reported that they could not complete forming their deputations by 8 October 1991, and under the Law of 5 September 1991, the first sitting of the new Supreme Soviet is moved to 21 October 1991 in Moscow.",
+      "locator": "Art. 1162, printed p. 1582 (PDF p. 20)"
+    }
+  ],
+  "bounded_scope": "Union head-of-government and Supreme Soviet chair observations for CLAUDE-C01-26 only. Election or approval, appointment, release decree, parliamentary consent, dismissal, no confidence, resignation statement, suspension, consent to arrest, release, acting or interim service, presiding arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The CLAUDE-C01-05 su_president holders and russia.json are outside this extract."
+}

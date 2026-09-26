@@ -1,0 +1,46 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_ips_cm_res_525_19900526",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102010231&page=1&rdk=0",
+  "source_title": "Resolution of the USSR Council of Ministers No. 525 of 26 May 1990 'О развитии Сибирского отделения Академии наук СССР на период до 2000 года' (original edition)",
+  "accessed_date": "2026-09-26",
+  "published_date": null,
+  "document_date": "1990-05-26",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102010231&page=1&rdk=0",
+  "source_response_bytes": 52511,
+  "source_response_sha256": "889da9f719499ba58720b976c29f378d31a84e8ba9eabe9fded290c5c46c14c9",
+  "source_response_encoding": "windows-1251",
+  "source_response_checked_in": false,
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=525&a8type=1&a7type=4&a7from=26.05.1990&a7to=26.05.1990&sort=7&page=firstlast&lstsize=50",
+    "bytes": 2936,
+    "sha256": "93cfc7cb1bbbcf8c9a5caba20b07e71de142bb6d25ae0e59929c85783196abee",
+    "note": "Date-restricted single-document card (number 525, date 26.05.1990): one hit, 'Постановление Совета Министров СССР от 26.05.1990 № 525', status 'Действует без изменений'."
+  },
+  "stability_check": "Dossier: downloaded at 2026-09-26T02:07:17Z and again at 02:49:01Z, card at 02:17:39Z and 02:49:01Z; identical. Independent check: 02:55:40Z, 02:55:53Z (cache-busting '&cb=' query) and 03:20:21Z, card at 02:55:41Z, 02:55:54Z (cache-busting) and 03:20:22Z; identical. This packet: re-downloaded at 2026-09-26T03:52:14Z and again at 2026-09-26T04:25:49Z (33 minutes later); identical 52,511 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 26 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read in full; the portal offers no facsimile. The date-restricted single-document portal card (portal_card_response) returns only this act.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in full in Russian after windows-1251 decoding by the dossier of part A, the independent check and this packet."
+  },
+  "rows": [
+    {
+      "claim_id": "su_ips_cm_525_ryzhkov_signs_as_chairman_19900526",
+      "observation_id": "su_government",
+      "review_observation": "SU-GOV-01",
+      "role_id": "su_government_head",
+      "holder_name": "Николай Иванович Рыжков",
+      "printed_name": "Н.РЫЖКОВ (initial and surname only)",
+      "role_title": "Председатель Совета Министров СССР / Премьер-министр СССР — Head of the Union government",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1990-05-26",
+      "text": "USSR Council of Ministers resolution No. 525, headed 'СОВЕТ МИНИСТРОВ СССР ПОСТАНОВЛЕНИЕ от 26 мая 1990 г. N 525, Москва, Кремль', on developing the Siberian Branch of the USSR Academy of Sciences to 2000, is signed 'Председатель Совета Министров СССР Н.РЫЖКОВ' (initial and surname only) and countersigned by the Administrator of Affairs, 'М.ШКАБАРДНЯ'.",
+      "locator": "Heading block; signature block after the last operative point, before Appendix 1"
+    }
+  ],
+  "bounded_scope": "Union head-of-government and Supreme Soviet chair observations for CLAUDE-C01-26 only. Election or approval, appointment, release decree, parliamentary consent, dismissal, no confidence, resignation statement, suspension, consent to arrest, release, acting or interim service, presiding arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The CLAUDE-C01-05 su_president holders and russia.json are outside this extract."
+}

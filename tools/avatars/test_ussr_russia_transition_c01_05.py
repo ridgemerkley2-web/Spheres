@@ -94,8 +94,12 @@ EXCLUDED_CLAIMS = {
     'su_un_a46_771_transmittal_19911212', 'su_un_a47_60_transmittal_19911227', 'su_steno_gorbachev_lukyanov_titles_19910710',
     'su_steno_gorbachev_confirms_oath_19910710', 'ru_cec_communication_results_19910612',
 }
-EXCLUDED_HOSTS = {'vedomosti.sssr.su', 'sten.sr.vs.sssr.su', 'www.gorby.ru', 'base.garant.ru', 'www.consultant.ru',
-                  'www.presidency.ucsb.edu'}
+EXCLUDED_HOSTS = {'sten.sr.vs.sssr.su', 'www.gorby.ru', 'base.garant.ru', 'www.consultant.ru', 'www.presidency.ucsb.edu'}
+# The non-official HTML transcription of the Vedomosti (vedomosti.sssr.su/1991/52/ and the like) stays excluded. CLAUDE-C01-26
+# cites page-image scans of the gazette from the same host (the gazette facsimiles this packet's own SURU-TR91-08 criteria
+# accept), so on that host only scanned issue PDFs, /1991/<issue>.pdf, may appear in either packet.
+TRANSCRIPTION_HOST = 'vedomosti.sssr.su'
+FACSIMILE_PATH = re.compile(r'^/1991/\d+\.pdf$')
 REPORT = research.RESEARCH / 'ussr-russia-transition-1991-05.md'
 HANDOFF = 'docs/planning/ai-handoffs/CLAUDE-C01-05.md'
 
@@ -250,8 +254,9 @@ class UssrRussiaTransitionTests(unittest.TestCase):
         self.assertEqual((jurisdiction['nation'], jurisdiction['automatic_successor_mapping']), ('Russia', False))
         self.assertIn('not the USSR Presidency', jurisdiction['note'])
         self.assertEqual((self.presidency['represented_party_ids'], self.presidency['reconciled_organization_id']), ([], None))
+        # CLAUDE-C01-26 appended su_government (head_of_government), pinned in test_ussr_government_supreme_soviet_c01_26.
         self.assertEqual({e['id'] for e in self.ussr['institutions']},
-                         {'su_presidency', 'su_congress_peoples_deputies', 'su_supreme_soviet'})
+                         {'su_presidency', 'su_congress_peoples_deputies', 'su_supreme_soviet', 'su_government'})
         # CLAUDE-C01-19 appended ru_government (head_of_government), pinned in test_russia_heads_of_government_c01_19.
         self.assertEqual([e['id'] for e in self.russia['institutions'] if not e['id'].startswith('ru_duma_faction_')],
                          ['ru_rsfsr_presidency', 'ru_government'])
@@ -283,6 +288,9 @@ class UssrRussiaTransitionTests(unittest.TestCase):
         for name, raw in self.raw.items():
             for host in EXCLUDED_HOSTS:
                 self.assertNotIn(host, raw, name)
+            for path in re.findall(r'vedomosti\.sssr\.su(/[^"\s]*)?', raw):
+                self.assertRegex(path, FACSIMILE_PATH, name)
+            self.assertNotIn(TRANSCRIPTION_HOST + '/1991/52', raw, name)
         for cid in EXCLUDED_CLAIMS:
             self.assertNotIn(cid, self.claims)
             self.assertNotIn(f'"{cid}"', self.raw['ussr.json'] + self.raw['russia.json'])

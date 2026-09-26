@@ -1,0 +1,166 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_ved_1991_36",
+  "source_url": "https://web.archive.org/web/20250820135020id_/https://vedomosti.sssr.su/1991/36.pdf",
+  "original_url": "https://vedomosti.sssr.su/1991/36.pdf",
+  "archive_capture_utc": "2025-08-20T13:50:20Z",
+  "source_title": "Ведомости Съезда народных депутатов СССР и Верховного Совета СССР, 1991, No. 36 (4 September 1991), scanned issue, Internet Archive capture 20250820135020",
+  "accessed_date": "2026-09-26",
+  "published_date": "1991-09-04",
+  "document_date": "1991-09-04",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20250820135020id_/https://vedomosti.sssr.su/1991/36.pdf",
+  "source_response_bytes": 1303663,
+  "source_response_sha256": "87abb4c154470c0681cd0867ef63119675b249d323372fdcbfe87a34ab075b6f",
+  "source_response_encoding": "application/pdf (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "live_file_response": {
+    "url": "https://vedomosti.sssr.su/1991/36.pdf",
+    "bytes": 1303663,
+    "sha256": "87abb4c154470c0681cd0867ef63119675b249d323372fdcbfe87a34ab075b6f",
+    "last_modified": "Sun, 01 Jan 2017 22:40:50 GMT",
+    "note": "The live static file on the non-official SSSR.SU host, byte-identical to the recorded capture; requested without Accept-Encoding and served without Content-Encoding."
+  },
+  "stability_check": "Dossier (parts B and C): live file downloaded at 2026-09-26T01:48:18Z, 01:57:17Z, 02:10:58Z (cache-busting '?cb='), 02:12:13Z, 02:26:04Z/02:26:06Z (plain and cache-busting), 02:53:11Z, 02:53:41Z (cache-busting '_cb=') and 02:57:07Z/02:57:14Z; capture at 02:30:38Z; identical. Independent checks: live file at 02:57:43Z (cache-busting '_chk='), 03:14:19Z, 03:14:25Z (cache-busting), 03:24:11Z and 03:27:43Z; identical; the CDX digest RG5TINDLZDABIRTQX3XQBQC477EQ5NQ3 equals the base32 SHA-1 of these bytes for every capture from 2017-01-13 to 2025-08-20. This packet: re-downloaded at 2026-09-26T03:54:48Z and again at 2026-09-26T04:27:29Z (32 minutes later); identical 1,303,663 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of https://vedomosti.sssr.su/1991/36.pdf, captured at 2025-08-20T13:50:20Z, before the 7 September 2026 cutoff; requested without an Accept-Encoding header (curl without --compressed, i.e. identity) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed (a request accepting gzip is served gzip-encoded, with different bytes). The same bytes are served as a static file by the live host (live_file_response); the capture is recorded as the identity because it is fixed before the cutoff. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "A page-image scan of the official gazette (ABBYY FineReader PDF with an OCR layer used only to search), hosted by the non-official SSSR.SU project; the recorded identity is a raw Internet Archive capture made before the cutoff, byte-identical to the live static file (live_file_response). Parts B and C of the dossier recorded the same file under two identifiers; this packet keeps one source and one set of claims per article or paragraph.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      13,
+      15,
+      17,
+      38,
+      39,
+      40
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "PDF pages 13, 15 and 38-40 rendered and read by the dossier and the checks; this packet viewed p. 13 (printed p. 1443, arts. 1032-1034) rendered and read pp. 13, 15 and 38-40 from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "su_vs_2366i_agrees_to_pavlov_release_19910828",
+      "observation_id": "su_government",
+      "review_observation": "SU-GOV-06",
+      "role_id": "su_government_head",
+      "holder_name": "Валентин Сергеевич Павлов",
+      "printed_name": "Павлова В. С. (genitive; initials and surname only)",
+      "role_title": "Председатель Совета Министров СССР / Премьер-министр СССР — Head of the Union government",
+      "event_kind": "parliamentary_consent_to_release",
+      "attested_on": "1991-08-28",
+      "text": "Supreme Soviet resolution 'Об освобождении Павлова В. С. от обязанностей Премьер-министра СССР' (art. 1032), 'Москва, Кремль. 28 августа 1991 г. № 2366-I', signed 'ВЕРХОВНЫЙ СОВЕТ СССР': 'Согласиться с Указом Президента СССР от 22 августа 1991 года «Об освобождении Павлова В. С от обязанностей Премьер-министра СССР»' in connection with the criminal case opened against him by the USSR Prosecutor's Office for participation in an anti-constitutional conspiracy.",
+      "locator": "Art. 1032, printed p. 1443 (PDF p. 13)"
+    },
+    {
+      "claim_id": "su_vs_2367i_no_confidence_in_cabinet_19910828",
+      "observation_id": "su_government",
+      "review_observation": "SU-GOV-06",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "no_confidence",
+      "attested_on": "1991-08-28",
+      "text": "Supreme Soviet resolution 'О недоверии Кабинету Министров СССР' (art. 1033), 'Москва, Кремль 28 августа 1991 г. № 2367-I': having considered the President's decree of 24 August 1991 'О Кабинете Министров СССР', under Article 130 of the Constitution the Supreme Soviet resolves '1. Выразить недоверие Кабинету Министров СССР.'",
+      "locator": "Art. 1033, preamble and point 1, printed p. 1443 (PDF p. 13)"
+    },
+    {
+      "claim_id": "su_vs_2367i_committee_until_new_cabinet_19910828",
+      "observation_id": "su_government",
+      "review_observation": "SU-GOV-07",
+      "role_id": null,
+      "holder_name": null,
+      "persons_named": [
+        "тов. Силаевым И. С. (instrumental; initials and surname only)"
+      ],
+      "role_title": null,
+      "event_kind": "committee_created",
+      "attested_on": "1991-08-28",
+      "text": "Point 2: 'Впредь до образования нового состава Кабинета Министров СССР для организации совместно с республиками оперативного управления народным хозяйством страны создать Комитет по оперативному управлению народным хозяйством СССР во главе с тов. Силаевым И. С.'",
+      "locator": "Art. 1033, point 2, printed p. 1443 (PDF p. 13)"
+    },
+    {
+      "claim_id": "su_ss_res_2368i_lukyanov_arrest_consent_19910829",
+      "observation_id": "su_supreme_soviet",
+      "review_observation": "SU-GOV-08",
+      "role_id": "su_supreme_soviet_chair",
+      "holder_name": "Анатолий Иванович Лукьянов",
+      "printed_name": "Лукьянова Анатолия Ивановича (genitive)",
+      "role_title": "Chairman of the USSR Supreme Soviet",
+      "event_kind": "consent_to_arrest",
+      "attested_on": "1991-08-29",
+      "text": "Supreme Soviet resolution 'О даче согласия на привлечение к уголовной ответственности и арест народного депутата СССР Лукьянова А. И.' (art. 1034), 'Москва, Кремль. 29 августа 1991 г. № 2368-I': under Article 34 of the USSR Law on the status of a people's deputy, consent is given to 'привлечение к уголовной ответственности и арест народного депутата СССР Лукьянова Анатолия Ивановича'.",
+      "locator": "Art. 1034, printed p. 1443 (PDF p. 13)"
+    },
+    {
+      "claim_id": "su_vs_2371i_pavlov_named_among_organizers_19910829",
+      "observation_id": "su_government",
+      "review_observation": "SU-GOV-06",
+      "role_id": "su_government_head",
+      "holder_name": "Валентин Сергеевич Павлов",
+      "printed_name": "Павлов В. С. (initials and surname only), styled 'Премьер-министр СССР'",
+      "role_title": "Председатель Совета Министров СССР / Премьер-министр СССР — Head of the Union government",
+      "event_kind": "retrospective_office_reference",
+      "attested_on": "1991-08-29",
+      "text": "Supreme Soviet resolution 'О ситуации, возникшей в стране в связи с имевшим место государственным переворотом' (art. 1038, 29 August 1991, No. 2371-I) states that the coup of the night of 18-19 August 1991 was organised by members of the unconstitutionally formed ГКЧП, listing among them 'Премьер-министр СССР Павлов В. С.'.",
+      "locator": "Art. 1038, first paragraph, printed p. 1445 (PDF p. 15); signature block, printed p. 1447 (PDF p. 17)"
+    },
+    {
+      "claim_id": "su_ved36_lukyanov_styled_chairman_19910828",
+      "observation_id": "su_supreme_soviet",
+      "review_observation": "SU-GOV-08",
+      "role_id": "su_supreme_soviet_chair",
+      "holder_name": "Анатолий Иванович Лукьянов",
+      "printed_name": "А. И. Лукьянов (initials and surname only)",
+      "role_title": "Chairman of the USSR Supreme Soviet",
+      "event_kind": "in_office_styling_reported",
+      "attested_on": "1991-08-28",
+      "text": "The gazette's report 'Сессия Верховного Совета СССР', in the paragraph beginning '28 августа', states that during the discussion of the role of the Supreme Soviet's leadership in the events from 18 August 'Председатель Верховного Совета СССР А. И. Лукьянов дал объяснение по поводу своих действий в этот период'.",
+      "locator": "Section Three ('Раздел третий'), paragraph beginning '28 августа', printed pp. 1468-1469 (PDF pp. 38-39)"
+    },
+    {
+      "claim_id": "su_ved36_consent_to_pavlov_release_reported_19910828",
+      "observation_id": "su_government",
+      "review_observation": "SU-GOV-06",
+      "role_id": "su_government_head",
+      "holder_name": "Валентин Сергеевич Павлов",
+      "printed_name": "В. С. Павлова (genitive; initials and surname only)",
+      "persons_named": [
+        "В. И Щербаков и В. X. Догужиев (первые заместители Премьер-министра СССР; initials and surname only)"
+      ],
+      "role_title": "Председатель Совета Министров СССР / Премьер-министр СССР — Head of the Union government",
+      "event_kind": "session_record_consent_to_release",
+      "attested_on": "1991-08-28",
+      "text": "The same paragraph reports that at the agenda item on confidence in the Cabinet, after the first deputy Premiers 'В. И Щербаков и В. X. Догужиев' addressed the sitting, 'Верховный Совет согласился с Указом Президента СССР об освобождении В. С. Павлова от обязанностей Премьер-министра СССР'.",
+      "locator": "Section Three, paragraph beginning '28 августа', printed p. 1469 (PDF p. 39)"
+    },
+    {
+      "claim_id": "su_ved36_no_confidence_reported_19910828",
+      "observation_id": "su_government",
+      "review_observation": "SU-GOV-06",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "session_record_no_confidence",
+      "attested_on": "1991-08-28",
+      "text": "The same paragraph reports that the Supreme Soviet 'принял Постановление о недоверии Кабинету Министров СССР'.",
+      "locator": "Section Three, paragraph beginning '28 августа', printed p. 1469 (PDF p. 39)"
+    },
+    {
+      "claim_id": "su_ved36_laptev_closes_session_19910831",
+      "observation_id": "su_supreme_soviet",
+      "review_observation": "SU-GOV-08",
+      "role_id": "su_supreme_soviet_chair",
+      "holder_name": null,
+      "persons_named": [
+        "И. Д. Лаптев (Председатель Совета Союза)"
+      ],
+      "role_title": "Chairman of the USSR Supreme Soviet",
+      "event_kind": "chamber_chairman_statement_reported",
+      "attested_on": "1991-08-31",
+      "text": "The report states that on 31 August 'Председатель Совета Союза И. Д. Лаптев в своем выступлении подвел итоги работы сессии', after which the extraordinary session ended.",
+      "locator": "Section Three, printed p. 1470 (PDF p. 40)"
+    }
+  ],
+  "bounded_scope": "Union head-of-government and Supreme Soviet chair observations for CLAUDE-C01-26 only. Election or approval, appointment, release decree, parliamentary consent, dismissal, no confidence, resignation statement, suspension, consent to arrest, release, acting or interim service, presiding arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The CLAUDE-C01-05 su_president holders and russia.json are outside this extract."
+}

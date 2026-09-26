@@ -1,0 +1,62 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_garf_exhibit_law_2392i",
+  "source_url": "https://web.archive.org/web/20260415035300id_/https://projects.rusarchives.ru/statehood/09-42-postanovlenie-organy-gosvlasti.shtml",
+  "original_url": "https://projects.rusarchives.ru/statehood/09-42-postanovlenie-organy-gosvlasti.shtml",
+  "archive_capture_utc": "2026-04-15T03:53:00Z",
+  "source_title": "Rosarkhiv virtual exhibition item 09-42: USSR Law 'Об органах государственной власти и управления Союза ССР в переходный период', 5 September 1991 (GARF original), Internet Archive capture 20260415035300",
+  "accessed_date": "2026-09-26",
+  "published_date": null,
+  "document_date": "1991-09-05",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20260415035300id_/https://projects.rusarchives.ru/statehood/09-42-postanovlenie-organy-gosvlasti.shtml",
+  "source_response_bytes": 14839,
+  "source_response_sha256": "f6a4f3ea50f21498c838b8ba41b5f865e5b8d71b8f1d7d535a97ac407650c2e9",
+  "source_response_encoding": "text/html (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "facsimile_responses": [
+    {
+      "image": 1,
+      "role": "typescript original, leaf 45 (Articles 1-2)",
+      "url": "https://web.archive.org/web/20211228220220id_/http://projects.rusarchives.ru/statehood/images/09-42-1-postanovlenie-organy-gosvlasti.jpg",
+      "bytes": 157151,
+      "sha256": "c32c9177fd1f5e0b8aceb0e1092414cc41c392a0f8e2419932a225dde0d2a5b7",
+      "content_type": "image/jpeg"
+    },
+    {
+      "image": 2,
+      "role": "typescript original, leaf 47 (Articles 6-9, signature, seal, date and number)",
+      "url": "https://web.archive.org/web/20211228220406id_/http://projects.rusarchives.ru/statehood/images/09-42-3-postanovlenie-organy-gosvlasti.jpg",
+      "bytes": 117260,
+      "sha256": "044b8701b377fc4c392f00e48dde11406a09d1f4d56c862e9a69260db3af46e7",
+      "content_type": "image/jpeg"
+    }
+  ],
+  "stability_check": "Dossier (part C): page and both images downloaded at 2026-09-26T02:20Z-02:21Z, 02:22:19Z-02:22:21Z and again at 02:53:29Z-02:53:37Z; identical. Independent check: page at 03:37:13Z, leaf 45 at 03:38:35Z and leaf 47 at 03:38:56Z, after HTTP 429 responses and timeouts; identical. This packet: re-downloaded at 2026-09-26T03:54:01Z and again at 2026-09-26T04:27:20Z (33 minutes later); identical 14,839 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of https://projects.rusarchives.ru/statehood/09-42-postanovlenie-organy-gosvlasti.shtml, captured at 2026-04-15T03:53:00Z, before the 7 September 2026 cutoff; requested without an Accept-Encoding header (curl without --compressed, i.e. identity) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed (a request accepting gzip is served gzip-encoded, with different bytes). The official host (projects.rusarchives.ru) refused or timed out connections from this environment. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The 2012 exhibition page (caption and partial transcription) and facsimiles of leaves 45 and 47 of the signed original, read from raw Internet Archive captures made before the cutoff because the official host timed out. It corroborates the gazette text of Law 2392-I and adds no office holder. The capture of leaf 46 timed out and was not viewed.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "Leaves 45 and 47 viewed at full size by the dossier and the check; leaf 47 viewed again by this packet (Articles 6-9, the autograph over the seal, the date and number). The caption was read in the page capture."
+  },
+  "rows": [
+    {
+      "claim_id": "su_garf_law_2392i_signed_original_19910905",
+      "observation_id": "su_supreme_soviet",
+      "review_observation": "SU-GOV-09",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "procedure",
+      "attested_on": "1991-09-05",
+      "text": "Rosarkhiv describes the item as 'Подлинник. Машинопись. Подпись-автограф Президента СССР М.С. Горбачева' (GARF F. R-9654, Op. 1, D. 184, L. 45-47). Leaf 45, marked 'Подлежит опубликованию', carries Articles 1-2 as in the gazette (two chambers, the Council of Republics and the Council of the Union); leaf 47 carries Articles 6-9, the signature 'Президент Союза Советских Социалистических Республик (М.Горбачев)' with an autograph over the seal of the Congress of People's Deputies of the USSR, and 'Москва, Кремль. 5 сентября 1991 г. № 2392-I'.",
+      "locator": "Exhibit caption; facsimile leaves 45 and 47"
+    }
+  ],
+  "bounded_scope": "Union head-of-government and Supreme Soviet chair observations for CLAUDE-C01-26 only. Election or approval, appointment, release decree, parliamentary consent, dismissal, no confidence, resignation statement, suspension, consent to arrest, release, acting or interim service, presiding arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The CLAUDE-C01-05 su_president holders and russia.json are outside this extract."
+}

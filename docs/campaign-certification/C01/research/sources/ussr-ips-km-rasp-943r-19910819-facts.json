@@ -1,0 +1,55 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_km_rasp_943r_19910819",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102012314&page=1&rdk=0",
+  "source_title": "Order (распоряжение) of the USSR Cabinet of Ministers No. 943р of 19 August 1991 (original edition)",
+  "accessed_date": "2026-09-26",
+  "published_date": null,
+  "document_date": "1991-08-19",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102012314&page=1&rdk=0",
+  "source_response_bytes": 6925,
+  "source_response_sha256": "b967d16d8b4a5dd6cb145225e991d848b5d2cfefd8be425c8629d575f585e53a",
+  "source_response_encoding": "windows-1251",
+  "source_response_checked_in": false,
+  "stability_check": "Found by this packet (no dossier or independent check): first downloaded at 2026-09-26T03:49:49Z. This packet: re-downloaded at 2026-09-26T03:52:23Z and again at 2026-09-26T04:25:59Z (33 minutes later); identical 6,925 bytes and SHA-256.",
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 26 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read in full; the portal offers no facsimile. Found by this packet in the portal's list of Cabinet of Ministers acts of 15-20 August 1991, used for discovery only and not recorded. An order of 20 August 1991 (No. 940р) signed 'Зам. Премьер-министра СССР В. Догужиев' was read and is not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in full in Russian after windows-1251 decoding by this packet."
+  },
+  "rows": [
+    {
+      "claim_id": "su_km_943r_pavlov_signs_as_premier_19910819",
+      "observation_id": "su_government",
+      "review_observation": "SU-GOV-06",
+      "role_id": "su_government_head",
+      "holder_name": "Валентин Сергеевич Павлов",
+      "printed_name": "В. Павлов (initial and surname only)",
+      "role_title": "Председатель Совета Министров СССР / Премьер-министр СССР — Head of the Union government",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1991-08-19",
+      "text": "Cabinet of Ministers order 'КАБИНЕТ МИНИСТРОВ СССР РАСПОРЯЖЕНИЕ от 19 августа 1991 г. N 943р, Москва, Кремль' is signed 'Премьер-министр СССР В. Павлов' (initial and surname only).",
+      "locator": "Heading block and signature"
+    },
+    {
+      "claim_id": "su_km_943r_general_direction_entrusted_19910819",
+      "observation_id": "su_government",
+      "review_observation": "SU-GOV-06",
+      "role_id": "su_government_head",
+      "holder_name": null,
+      "persons_named": [
+        "т. Догужиева В. Х. (genitive; initials and surname only)"
+      ],
+      "role_title": "Председатель Совета Министров СССР / Премьер-министр СССР — Head of the Union government",
+      "event_kind": "interim_direction_entrusted",
+      "attested_on": "1991-08-19",
+      "text": "The order reads: 'В связи с невозможностью выполнения мною из-за болезни обязанностей Премьер-министра СССР временно возложить на первого заместителя Премьер-министра СССР т. Догужиева В. Х. общее руководство работой Кабинета Министров СССР.'",
+      "locator": "Sole operative paragraph"
+    }
+  ],
+  "bounded_scope": "Union head-of-government and Supreme Soviet chair observations for CLAUDE-C01-26 only. Election or approval, appointment, release decree, parliamentary consent, dismissal, no confidence, resignation statement, suspension, consent to arrest, release, acting or interim service, presiding arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The CLAUDE-C01-05 su_president holders and russia.json are outside this extract."
+}

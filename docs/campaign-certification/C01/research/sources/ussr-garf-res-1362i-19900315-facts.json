@@ -1,0 +1,67 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_garf_exhibit_res_1362i_19900315",
+  "source_url": "https://web.archive.org/web/20191207080438id_/http://projects.rusarchives.ru/statehood/09-30-postanovlenie-prezident.shtml",
+  "original_url": "http://projects.rusarchives.ru/statehood/09-30-postanovlenie-prezident.shtml",
+  "archive_capture_utc": "2019-12-07T08:04:38Z",
+  "source_title": "Rosarkhiv virtual exhibition item 09-30: resolution of the USSR Congress of People's Deputies 'О Президенте Союза Советских Социалистических Республик', 15 March 1990, No. 1362-I (GARF original), Internet Archive capture 20191207080438",
+  "accessed_date": "2026-09-26",
+  "published_date": null,
+  "document_date": "1990-03-15",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20191207080438id_/http://projects.rusarchives.ru/statehood/09-30-postanovlenie-prezident.shtml",
+  "source_response_bytes": 9423,
+  "source_response_sha256": "e2ab870b81a665e2c6318fd1a4c754a2fa0f347f2337058675398db68713ad95",
+  "source_response_encoding": "text/html (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "facsimile_responses": [
+    {
+      "image": 1,
+      "role": "typescript original, folio 148 (783 x 1100 px)",
+      "url": "https://web.archive.org/web/20191207080453id_/http://projects.rusarchives.ru/statehood/images/09-30-postanovlenie-prezident.jpg",
+      "bytes": 157538,
+      "sha256": "543c9efb25dedcab267b6505135da07a35a9928bec24b6b74c4593226970aee4",
+      "content_type": "image/jpeg"
+    }
+  ],
+  "stability_check": "Dossier: page downloaded at 2026-09-26T02:17:41Z and again at 02:49:02Z, facsimile at 01:58:44Z and 02:49:03Z; identical. Independent check: page at 02:55:42Z and 03:37:40Z, facsimile at 02:55:43Z and 03:37:45Z; identical (second pass X-Page-Cache: MISS). This packet: re-downloaded at 2026-09-26T03:53:53Z and again at 2026-09-26T04:27:10Z (33 minutes later); identical 9,423 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of http://projects.rusarchives.ru/statehood/09-30-postanovlenie-prezident.shtml, captured at 2019-12-07T08:04:38Z, before the 7 September 2026 cutoff; requested without an Accept-Encoding header (curl without --compressed, i.e. identity) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed (a request accepting gzip is served gzip-encoded, with different bytes). The official host (projects.rusarchives.ru) refused or timed out connections from this environment. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The 2012 exhibition page (caption and transcription) and the facsimile of the signed original, read from raw Internet Archive captures of December 2019 because the official host refused connections. CLAUDE-C01-05 listed this exhibit as a lead for the 1990 presidential election.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [
+      1
+    ],
+    "method": "The facsimile of folio 148 viewed at full size (783 x 1100 px) by the dossier, the check and this packet: heading, operative sentence, the typed line '(А.Лукьянов)' with the autograph, the seal, the date and number. The caption was read in the page capture."
+  },
+  "rows": [
+    {
+      "claim_id": "su_garf_1362i_gorbachev_elected_president_19900315",
+      "observation_id": "su_presidency",
+      "review_observation": "SU-GOV-02",
+      "role_id": "su_president",
+      "holder_name": "Михаил Сергеевич Горбачев",
+      "printed_name": "товарища ГОРБАЧЕВА Михаила Сергеевича (accusative)",
+      "role_title": "President of the USSR",
+      "event_kind": "election_resolution",
+      "attested_on": "1990-03-15",
+      "text": "Resolution of the Congress of People's Deputies of the USSR 'О Президенте Союза Советских Социалистических Республик': 'Съезд народных депутатов СССР постановляет: Избрать Президентом Союза Советских Социалистических Республик товарища ГОРБАЧЕВА Михаила Сергеевича.' Dated 'Москва, Кремль. 15 марта 1990 г. № 1362-I'; stamped 'Подлежит опубликованию'; folio 148.",
+      "locator": "Facsimile (GARF F. R-9654, Op. 1, D. 121, L. 148): title, operative sentence, date and number block; exhibit caption"
+    },
+    {
+      "claim_id": "su_garf_1362i_lukyanov_signs_as_chairman_19900315",
+      "observation_id": "su_supreme_soviet",
+      "review_observation": "SU-GOV-02",
+      "role_id": "su_supreme_soviet_chair",
+      "holder_name": "Анатолий Иванович Лукьянов",
+      "printed_name": "(А.Лукьянов) (initial and surname only); caption: А.И. Лукьянова (genitive)",
+      "role_title": "Chairman of the USSR Supreme Soviet",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1990-03-15",
+      "text": "The same original is signed over the typed line 'Председатель Верховного Совета СССР (А.Лукьянов)' (initial and surname only) with an autograph, over the Congress's round seal. Rosarkhiv's caption describes the item as 'Подлинник. Машинопись. Подпись-автограф председателя Верховного совета СССР А.И. Лукьянова'.",
+      "locator": "Facsimile signature block (lower half of folio 148); exhibit caption"
+    }
+  ],
+  "bounded_scope": "Union head-of-government and Supreme Soviet chair observations for CLAUDE-C01-26 only. Election or approval, appointment, release decree, parliamentary consent, dismissal, no confidence, resignation statement, suspension, consent to arrest, release, acting or interim service, presiding arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The CLAUDE-C01-05 su_president holders and russia.json are outside this extract."
+}

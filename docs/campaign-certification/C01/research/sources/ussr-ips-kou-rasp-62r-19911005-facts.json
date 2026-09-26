@@ -1,0 +1,42 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_kou_rasp_62r_19911005",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102012665&page=1&rdk=0",
+  "source_title": "Order of the Committee for Operational Management of the National Economy of the USSR No. 62р of 5 October 1991 (original edition)",
+  "accessed_date": "2026-09-26",
+  "published_date": null,
+  "document_date": "1991-10-05",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102012665&page=1&rdk=0",
+  "source_response_bytes": 8464,
+  "source_response_sha256": "00a8eed4e06d7aa612153eee364a450930dfcfe5c42a3571f6baefc3dc0f8e06",
+  "source_response_encoding": "windows-1251",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier (part C): downloaded at 2026-09-26T02:12:22Z, 02:53:20Z and 02:53:51Z (the last with a cache-busting '_cb=' query); identical bytes and SHA-256. Independent check (part C): re-downloaded at 02:57:52Z (cache-busting '_chk=' query) and 03:24:27Z; identical. This packet: re-downloaded at 2026-09-26T03:52:28Z and again at 2026-09-26T04:26:05Z (33 minutes later); identical 8,464 bytes and SHA-256.",
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 26 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read in full; the portal offers no facsimile. The portal lists 94 acts of the Committee for Operational Management of the National Economy of the USSR dated 4 September - 19 December 1991; that organ listing grows with the database, was used for discovery only and is not a recorded source, and 'earliest' or 'latest' means earliest or latest listed there, not first or last issued.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in full in Russian after windows-1251 decoding by the dossier, the independent check and this packet."
+  },
+  "rows": [
+    {
+      "claim_id": "su_kou_62r_guest_of_ussr_government_19911005",
+      "observation_id": "su_government",
+      "review_observation": "SU-GOV-07",
+      "role_id": null,
+      "holder_name": null,
+      "persons_named": [
+        "И. Силаев (signatory; initial and surname only)"
+      ],
+      "role_title": null,
+      "event_kind": "acts_in_name_of_union_government",
+      "attested_on": "1991-10-05",
+      "text": "Order No. 62р of 5 October 1991 receives the Prime Minister of the Republic of Afghanistan on a working visit of 2-6 October 1991 'в качестве гостя Правительства СССР', at the level Soviet protocol provides for working visits of foreign heads of government, served by the apparatus of the Cabinet of Ministers of the USSR; it is signed 'Руководитель Комитета И. Силаев'.",
+      "locator": "Heading block, operative text and signature"
+    }
+  ],
+  "bounded_scope": "Union head-of-government and Supreme Soviet chair observations for CLAUDE-C01-26 only. Election or approval, appointment, release decree, parliamentary consent, dismissal, no confidence, resignation statement, suspension, consent to arrest, release, acting or interim service, presiding arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The CLAUDE-C01-05 su_president holders and russia.json are outside this extract."
+}

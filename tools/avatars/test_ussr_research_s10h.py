@@ -7,8 +7,11 @@ import campaign_research as research
 
 
 # The three 1990 sources of S10.h. CLAUDE-C01-05 added seven 1991 sources that
-# test_ussr_russia_transition_c01_05 owns and pins.
+# test_ussr_russia_transition_c01_05 owns and pins. CLAUDE-C01-26 appended 31 sources (packet positions 10-40) with
+# table-format extracts, pinned in test_ussr_government_supreme_soviet_c01_26.
 ORIGINAL_1990_SOURCES = {'su_presidency_law_19900314', 'su_japan_diplomatic_bluebook_1990', 'su_bush_presidential_letter_19900320'}
+C01_26_PDF_SOURCES = {'su_snd4_steno_vol3', 'su_sten_vs_bulletin1_19910826', 'su_sten_vs_bulletin2_19910826', 'su_ved_1991_35',
+                          'su_ved_1991_36', 'su_snd5_bulletin5_19910904', 'su_ved_1991_37', 'su_ved_1991_41'}
 
 
 class UssrDiscoveryTests(unittest.TestCase):
@@ -25,10 +28,11 @@ class UssrDiscoveryTests(unittest.TestCase):
 
     def test_bounded_inventory_cannot_certify_an_exhaustive_country(self):
         ids = self.validate()
-        # CLAUDE-C01-05 added seven sources and 13 claims; no entry or role.
-        self.assertEqual(tuple(len(ids[key]) for key in ('entries', 'sources', 'claims', 'roles')), (4, 10, 21, 5))
+        # CLAUDE-C01-05 added seven sources and 13 claims; no entry or role. CLAUDE-C01-26 added 31 sources, 77 claims,
+        # one institution (su_government) and one role (su_government_head).
+        self.assertEqual(tuple(len(ids[key]) for key in ('entries', 'sources', 'claims', 'roles')), (5, 41, 98, 6))
         self.assertEqual(len(self.packet['organizations']), 1)
-        self.assertEqual(len(self.packet['institutions']), 3)
+        self.assertEqual(len(self.packet['institutions']), 4)
         self.assertEqual(self.packet['coverage']['status'], 'partial_primary_source_inventory')
         self.assertFalse(self.packet['coverage']['exhaustive_organization_register_reviewed'])
         self.assertIsNone(self.packet['coverage']['unrepresented_organization_total'])
@@ -106,10 +110,18 @@ class UssrDiscoveryTests(unittest.TestCase):
             'su_presidency_law_19900314': (166710, '710afdf4fd5df03e3098c69d783f0fdd1528f42b858e36420d531a05ce1c054e'),
             'su_bush_presidential_letter_19900320': (40716, 'e39829ace8d141b2b8651d9b8fcc7d8c6bfa19db42cda0ef0a6046aa589e3558'),
         }
+        # The ten S10.h and CLAUDE-C01-05 extracts repeat the claims; the 31 CLAUDE-C01-26 table extracts key a row to each claim.
+        tables = {s['id'] for s in self.packet['sources'][10:]}
+        self.assertEqual(len(tables), 31)
         for sid, extract in self.extracts.items():
             source = self.sources[sid]
             self.assertEqual(extract['source_url'], source['url'])
-            self.assertEqual(extract['claims'], source['claims'])
+            if sid in tables:
+                self.assertEqual(extract['format'], 'spheres-c01-derived-factual-table/v1')
+                self.assertNotIn('claims', extract)
+                self.assertEqual([r['claim_id'] for r in extract['rows']], [c['id'] for c in source['claims']])
+            else:
+                self.assertEqual(extract['claims'], source['claims'])
             self.assertEqual(extract['scope_note'], source['scope_note'])
             self.assertFalse(extract['source_response_checked_in'])
             self.assertEqual(source['snapshot']['kind'], 'derived_factual_extract')
@@ -142,17 +154,21 @@ class UssrDiscoveryTests(unittest.TestCase):
                 self.assertEqual(extract['visual_review']['pdf_pages_one_based'], [])
             self.assertIn('no source artwork or portrait copied', extract['rights_note'])
             self.assertIn('No portrait permission or likeness approval', extract['rights_note'])
-        # Only the CLAUDE-C01-05 UN and NARA PDFs record rendered PDF pages (pinned in its own test).
+        # Only the CLAUDE-C01-05 UN and NARA PDFs and the eight CLAUDE-C01-26 scanned PDFs record rendered PDF pages
+        # (each pinned in its own test).
         self.assertEqual({sid for sid, e in self.extracts.items() if e['visual_review']['pdf_pages_one_based']},
-                         {'su_un_a46_771_minsk_19911208', 'su_un_a47_60_almaata_19911221', 'su_nara_bush_gorbachev_telcon_19911225'})
+                         {'su_un_a46_771_minsk_19911208', 'su_un_a47_60_almaata_19911221', 'su_nara_bush_gorbachev_telcon_19911225'}
+                         | C01_26_PDF_SOURCES)
 
     def test_cutoff_and_unknown_term_guards_reject_future_or_reversed_history(self):
         self.assertEqual(self.packet['research_cutoff'], '2026-09-07')
         self.assertEqual(self.packet['coverage']['period'], {'from': '1990-01-01', 'through': '2026-09-07'})
         self.assertEqual({sid: s['accessed_date'] for sid, s in self.sources.items() if sid in ORIGINAL_1990_SOURCES},
                          dict.fromkeys(ORIGINAL_1990_SOURCES, '2026-09-13'))
-        # CLAUDE-C01-05 sources were accessed on 2026-09-21.
-        self.assertEqual({s['accessed_date'] for s in self.sources.values()}, {'2026-09-13', '2026-09-21'})
+        # CLAUDE-C01-05 sources were accessed on 2026-09-21 and the 31 CLAUDE-C01-26 sources on 2026-09-26 (UTC).
+        self.assertEqual({s['accessed_date'] for s in self.sources.values()}, {'2026-09-13', '2026-09-21', '2026-09-26'})
+        self.assertEqual({s['id'] for s in self.sources.values() if s['accessed_date'] == '2026-09-26'},
+                         {s['id'] for s in self.packet['sources'][10:]})
         packet = copy.deepcopy(self.packet)
         packet['institutions'][0]['roles'][0]['holder_claims'][0]['attested_on'] = '2026-09-08'
         with self.assertRaisesRegex(ValueError, 'exceeds cutoff'):
@@ -166,9 +182,10 @@ class UssrDiscoveryTests(unittest.TestCase):
         index = research.build()
         country = next(c for c in index['countries'] if c['nation'] == 'USSR')
         self.assertEqual(country['organization_observations'], 1)
-        self.assertEqual(country['institution_observations'], 3)
-        self.assertEqual(country['source_claims'], 21)
-        self.assertEqual(country['mapping_pending'], 4)
+        # CLAUDE-C01-26 added su_government (77 claims), with no party mapping.
+        self.assertEqual(country['institution_observations'], 4)
+        self.assertEqual(country['source_claims'], 98)
+        self.assertEqual(country['mapping_pending'], 5)
         self.assertFalse(country['country_census_complete'])
         self.assertFalse(index['c01_complete'])
         self.assertFalse(index['g2_prerequisite_satisfied'])

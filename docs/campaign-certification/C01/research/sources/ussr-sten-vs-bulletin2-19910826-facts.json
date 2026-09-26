@@ -1,0 +1,61 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_sten_vs_bulletin2_19910826",
+  "source_url": "https://sten.vs.sssr.su/12/6/2.pdf",
+  "source_title": "Верховный Совет СССР, внеочередная сессия: Бюллетень No. 2 совместного заседания Совета Союза и Совета Национальностей, 26 августа 1991 г. (stenographic bulletin, evening sitting), scanned facsimile",
+  "accessed_date": "2026-09-26",
+  "published_date": null,
+  "document_date": "1991-08-26",
+  "access_method": "scanned_facsimile_downloaded_over_https",
+  "source_response_url": "https://sten.vs.sssr.su/12/6/2.pdf",
+  "source_response_bytes": 1530044,
+  "source_response_sha256": "22562b5be16890047e3f62b4cf253ca9daac0fa374ca3870a63bee62723fd5bd",
+  "source_response_encoding": "application/pdf (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "stability_check": "Independent check (part C): downloaded at 2026-09-26T03:06:24Z, 03:13:09Z (cache-busting query) and 03:37:09Z; identical. This packet: re-downloaded at 2026-09-26T03:53:50Z and again at 2026-09-26T04:27:07Z (33 minutes later); identical 1,530,044 bytes and SHA-256.",
+  "provenance_note": "Static PDF file served by the non-official SSSR.SU project (Last-Modified Thu, 24 Mar 2016 23:32:43 GMT), requested without Accept-Encoding and served without Content-Encoding; cache-busting requests returned identical bytes, so it is a stored file, not one generated per request. No Internet Archive capture of it was found. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The official stenographic bulletin of the evening sitting of 26 August 1991, a page-image scan with an OCR layer, served as a static file by the non-official SSSR.SU project; no Internet Archive capture of it was found. Found by the independent check of part C. The bulletins recording the adoption of resolution 2361-I and the sittings of 27-29 August (12/6/3.pdf to 5.pdf) return HTTP 404.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      3,
+      42,
+      43
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "PDF pages 1, 3 and 41-43 read by the independent check of part C and by this packet from the text layer: the heading on p. 3 and the Зелинский exchange, the registration and the break on pp. 42-43."
+  },
+  "rows": [
+    {
+      "claim_id": "su_sten2_laptev_presiding_evening_19910826",
+      "observation_id": "su_supreme_soviet",
+      "review_observation": "SU-GOV-08",
+      "role_id": "su_supreme_soviet_chair",
+      "holder_name": null,
+      "persons_named": [
+        "И. Д. Лаптев (Председатель Совета Союза)",
+        "Р. Н. Нишанов"
+      ],
+      "role_title": "Chairman of the USSR Supreme Soviet",
+      "event_kind": "presiding_officer_attestation",
+      "attested_on": "1991-08-26",
+      "text": "Evening sitting of 26 August 1991 (hall of the chambers in the Kremlin, 16:00): 'Председательствует Председатель Совета Союза Верховного Совета СССР И. Д. Лаптев'; he announces that 'Р. Н. Нишанов' will conduct the sitting the next morning.",
+      "locator": "PDF p. 3, sitting heading and opening remarks"
+    },
+    {
+      "claim_id": "su_sten2_presidium_removal_not_approved_no_quorum_19910826",
+      "observation_id": "su_supreme_soviet",
+      "review_observation": "SU-GOV-08",
+      "role_id": "su_supreme_soviet_chair",
+      "holder_name": "Анатолий Иванович Лукьянов",
+      "printed_name": "Лукьянова (accusative; surname only)",
+      "role_title": "Chairman of the USSR Supreme Soviet",
+      "event_kind": "approval_not_voted_no_quorum",
+      "attested_on": "1991-08-26",
+      "text": "Deputy 'Зелинский И. П.' proposes that, 'учитывая, что Президиум Верховного Совета СССР своим решением 22 августа отстранил Лукьянова от ведения сессии Верховного Совета СССР', the sitting take note and 'Утвердить решение Президиума Верховного Совета'; the presiding officer replies 'кворума нет для того, чтобы утвердить это решение', and the proposal is only taken note of. Registration then shows 290 members (Council of the Union 153, Council of Nationalities 127, 'Кворума нет' in each) and a break is called until 20:30.",
+      "locator": "PDF pp. 42-43 (deputy Зелинский, the presiding officer's reply, the registration and the break)"
+    }
+  ],
+  "bounded_scope": "Union head-of-government and Supreme Soviet chair observations for CLAUDE-C01-26 only. Election or approval, appointment, release decree, parliamentary consent, dismissal, no confidence, resignation statement, suspension, consent to arrest, release, acting or interim service, presiding arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The CLAUDE-C01-05 su_president holders and russia.json are outside this extract."
+}
