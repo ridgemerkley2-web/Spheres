@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_infogov_executive_deputy_president_rdp_statement_19960418",
+  "source_url": "https://web.archive.org/web/20080127171652id_/http://www.info.gov.za:80/speeches/1996/960618_28597.htm",
+  "original_url": "http://www.info.gov.za/speeches/1996/960618_28597.htm",
+  "archive_capture_utc": "2008-01-27T17:16:52Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "1996-04-18",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 13463,
+  "source_response_sha256": "3983491cced8bab63754e9a60e64d2d527d2bf73922ebd9159e48923958034e5",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header, or with Accept-Encoding: identity, and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that accepts gzip can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded twice by the independent check on 2026-09-25, about 10 minutes apart, with the same byte count and SHA-256; downloaded again for this packet at 14:55Z, more than 30 minutes after the check, with the same identity. Downloaded again for this packet at 2026-09-25T15:28Z (integration pass) with the same byte count and SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2008-01-27T17:16:52Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of the live page. Fetched without Accept-Encoding (curl without --compressed), the archive serves it uncompressed: the recorded byte count and SHA-256 are those of the uncompressed body. The response identity was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw capture (27 January 2008) of the government information site's copy (archived Last-Modified 22 June 2004), 'Issued by: The Office of Executive Deputy President T M Mbeki' and dated 18 April 1996; the file name begins 960618, but the statement and its Annexure A are both dated 18 April 1996. Located by the independent check.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_mbeki_executive_deputy_president_rdp_statement_19960418",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-DP-01",
+      "role_id": "za_deputy_president",
+      "holder_name": "Thabo Mbeki",
+      "role_title": "Deputy President of the Republic of South Africa",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "1996-04-18",
+      "text": "A press statement 'Issued by: The Office of Executive Deputy President T M Mbeki' and dated 18 April 1996 says that the President assigned 'Executive Deputy President Thabo Mbeki' the task of overseeing the reallocation of the RDP Office's programmes, projects and institutions, and records the decisions that 'Deputy President Mbeki' took on the task team's recommendations.",
+      "locator": {
+        "section": "Heading; fourth, fifth and eighth paragraphs; issuer line"
+      }
+    }
+  ],
+  "bounded_scope": "Deputy President observations for CLAUDE-C01-21 only (role za_deputy_president in za_presidency). Announcements, stated intentions, appointments and their notices, oaths and their scheduling, stated assumptions, releases, resignations and their stated effect, Assembly-seat events and in-office attestations stay separate rows; holder observations and any start or end are decided in the packet, not by any row. The President's roles (za_president_election, za_state_president) and the ANC's party office are excluded and no row feeds them."
+}

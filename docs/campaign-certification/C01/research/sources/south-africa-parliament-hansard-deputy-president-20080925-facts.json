@@ -1,0 +1,69 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_parliament_hansard_na_20080925_deputy_president",
+  "source_url": "https://www.parliament.gov.za/storage/app/media/Docs/hansard/176241_1.doc",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_original_msword_doc_from_parliament_document_store_and_text_read_with_antiword_0_37_w0",
+  "source_response_bytes": 178176,
+  "source_response_sha256": "ad14dad050de5575d79fde9a9532c292ede85a78593fd115385dd57eb42a179f",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (the server rejects HEAD) with no automatic decoding, then hash the bytes as received; the file is static and a cache-busting query returns the same bytes.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded again on 2026-09-25 by the part B researcher, by the part B check at 13:52Z (plain) and with a cache-busting query, and for this packet at 14:58Z, each time with the byte count and SHA-256 recorded for this file on 22 September 2026. Downloaded again for this packet at 2026-09-25T15:30Z (integration pass) with the same byte count and SHA-256. The response is the one the extract south-africa-parliament-hansard-20080925-facts.json records.",
+  "provenance_note": "Official file from Parliament's document store, served as a static file (Last-Modified 2 March 2026, before the historical cutoff) without content encoding; fetch it with GET. The response identity was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The same official Hansard file and the same response bytes as the source za_parliament_hansard_na_20080925, whose extract leaves deputy presidents out of scope; this separate source record carries only the Deputy President rows, so that extract is unchanged. A static file in Parliament's document store with Last-Modified 2 March 2026, before the historical cutoff; use GET. Text read with antiword -w 0; line locators refer to that output.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "MS Word binary; text read with antiword -w 0 (line locators refer to that output); not rendered."
+  },
+  "rows": [
+    {
+      "claim_id": "za_motlanthe_intends_appointing_mbete_deputy_president_20080925",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-DP-05",
+      "role_id": "za_deputy_president",
+      "holder_name": "Baleka Mbete",
+      "role_title": "Deputy President of the Republic of South Africa",
+      "event_kind": "appointment_intention_announced",
+      "attested_on": "2008-09-25",
+      "text": "After the sitting resumed at 17:02, President Motlanthe told the House that he intended appointing the Cabinet, beginning 'For the position of Deputy President, Mrs Baleka Mbete'.",
+      "locator": {
+        "heading": "STATEMENT BY PRESIDENT OF THE REPUBLIC IN TERMS OF RULE 106",
+        "antiword_w0_text_lines": "303, 350-352"
+      }
+    },
+    {
+      "claim_id": "za_mbete_vacates_speakership_for_deputy_presidency_20080925",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-DP-05",
+      "role_id": "za_deputy_president",
+      "holder_name": "Baleka Mbete",
+      "role_title": "Deputy President of the Republic of South Africa",
+      "event_kind": "other_office_vacated_for_appointment",
+      "attested_on": "2008-09-25",
+      "text": "The Speaker then said that, now that the President had expressed his wish that she occupy the post of Deputy President, she rose to vacate the post of Speaker; the Deputy Speaker later announced the Speaker's resignation 'with immediate effect' and the Chief Justice presided over the election of a new Speaker.",
+      "locator": {
+        "heading": "RESIGNATION OF SPEAKER (Announcement); ELECTION OF SPEAKER OF NATIONAL ASSEMBLY",
+        "antiword_w0_text_lines": "364-370, 456"
+      }
+    },
+    {
+      "claim_id": "za_mbete_designation_congratulated_in_house_20080925",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-DP-05",
+      "role_id": "za_deputy_president",
+      "holder_name": "Baleka Mbete",
+      "role_title": "Deputy President of the Republic of South Africa",
+      "event_kind": "members_remarks_on_designation",
+      "attested_on": "2008-09-25",
+      "text": "Responding members spoke of her as the incoming Deputy President: one asked whether responses were to 'Ms Mbete, the Deputy President'; the IFP congratulated 'the hon Mbete on her appointment as Deputy President'; the UCDP congratulated her 'on her nomination as the Deputy President'; and the FF Plus spoke of 'this wonderful opportunity she is being given to become the Deputy President'.",
+      "locator": {
+        "heading": "RESIGNATION OF SPEAKER (Announcement), party responses",
+        "antiword_w0_text_lines": "394, 399, 415, 423"
+      }
+    }
+  ],
+  "bounded_scope": "Deputy President observations for CLAUDE-C01-21 only (role za_deputy_president in za_presidency). Announcements, stated intentions, appointments and their notices, oaths and their scheduling, stated assumptions, releases, resignations and their stated effect, Assembly-seat events and in-office attestations stay separate rows; holder observations and any start or end are decided in the packet, not by any row. The President's roles (za_president_election, za_state_president) and the ANC's party office are excluded and no row feeds them. This extract derives only the deputy-president rows of a response whose other rows docs/campaign-certification/C01/research/sources/south-africa-parliament-hansard-20080925-facts.json derives; that extract is unchanged."
+}

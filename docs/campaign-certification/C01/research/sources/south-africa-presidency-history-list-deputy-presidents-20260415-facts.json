@@ -1,0 +1,106 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_presidency_history_list_deputy_presidents",
+  "source_url": "https://web.archive.org/web/20260415035431id_/https://thepresidency.gov.za/history",
+  "original_url": "https://thepresidency.gov.za/history",
+  "archive_capture_utc": "2026-04-15T03:54:31Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 64973,
+  "source_response_sha256": "bf8b63b08069814874cd3425c7d92f0e4a09f24d9d0ac310bae6ebfa4f269bac",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header, or with Accept-Encoding: identity, and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that accepts gzip can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded again on 2026-09-25 by the part A researcher (12:57Z and 13:29Z), the part A check (13:42Z and 14:13Z) and the part B check (13:52Z), each time with the byte count and SHA-256 recorded for this capture on 22 September 2026. Downloaded again for this packet at 2026-09-25T15:28Z (integration pass) with the same byte count and SHA-256. The response is the one the extract south-africa-presidency-history-list-20260415-facts.json records.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2026-04-15T03:54:31Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of the live page. Fetched without Accept-Encoding (curl without --compressed), the archive serves it uncompressed: the recorded byte count and SHA-256 are those of the uncompressed body. The response identity was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The same raw capture and the same response bytes as the source za_presidency_history_list, whose extract leaves the deputy-president rows out of scope; this separate source record carries only the five rows under 'Deputy Presidents of the Republic', so that extract is unchanged. Retrospective and undated: every row is recorded as printed with no structured date and is never a boundary. The list ends with Baleka Mbete. The capture records that the crawler received gzip; the archive replays the body uncompressed.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_presidency_list_deputy_president_mbeki_19940513_19990616",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-DP-01",
+      "role_id": "za_deputy_president",
+      "holder_name": "Thabo Mbeki",
+      "role_title": "Deputy President of the Republic of South Africa",
+      "event_kind": "retrospective_list_row",
+      "attested_on": null,
+      "printed_range": "13 May 1994 - 16 June 1999",
+      "text": "The Presidency's history page lists under 'Deputy Presidents': '13 May 1994 - 16 June 1999 : Thabo Mbeki (1st Executive deputy President)'.",
+      "locator": {
+        "section": "Deputy Presidents of the Republic (list)",
+        "row": "13 May 1994 - 16 June 1999 : Thabo Mbeki (1st Executive deputy President)"
+      }
+    },
+    {
+      "claim_id": "za_presidency_list_deputy_president_de_klerk_19940513_19960630",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-DP-01",
+      "role_id": "za_deputy_president",
+      "holder_name": "F. W. de Klerk",
+      "role_title": "Deputy President of the Republic of South Africa",
+      "event_kind": "retrospective_list_row",
+      "attested_on": null,
+      "printed_range": "13 May 1994 - 30 June 1996",
+      "text": "The same list gives '13 May 1994 - 30 June 1996 : Frederik Willem (FW) de Klerk (2nd Executive deputy President)'.",
+      "locator": {
+        "section": "Deputy Presidents of the Republic (list)",
+        "row": "13 May 1994 - 30 June 1996 : Frederik Willem (FW) de Klerk (2nd Executive deputy President)"
+      }
+    },
+    {
+      "claim_id": "za_presidency_list_deputy_president_zuma_19990617_20050614",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-DP-03",
+      "role_id": "za_deputy_president",
+      "holder_name": "Jacob Zuma",
+      "role_title": "Deputy President of the Republic of South Africa",
+      "event_kind": "retrospective_list_row",
+      "attested_on": null,
+      "printed_range": "17 June 1999 - 14 June 2005",
+      "text": "The same list gives '17 June 1999 - 14 June 2005 : Jacob Zuma'.",
+      "locator": {
+        "section": "Deputy Presidents of the Republic (list)",
+        "row": "17 June 1999 - 14 June 2005 : Jacob Zuma"
+      }
+    },
+    {
+      "claim_id": "za_presidency_list_deputy_president_mlambo_ngcuka_20050623_20080924",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-DP-05",
+      "role_id": "za_deputy_president",
+      "holder_name": "Phumzile Mlambo-Ngcuka",
+      "role_title": "Deputy President of the Republic of South Africa",
+      "event_kind": "retrospective_list_row",
+      "attested_on": null,
+      "printed_range": "23 June 2005 - 24 September 2008",
+      "text": "The same list gives '23 June 2005 - 24 September 2008 : Phumzile Mlambo-Ngcuka'.",
+      "locator": {
+        "section": "Deputy Presidents of the Republic (list)",
+        "row": "23 June 2005 - 24 September 2008 : Phumzile Mlambo-Ngcuka"
+      }
+    },
+    {
+      "claim_id": "za_presidency_list_deputy_president_mbete_20080905",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-DP-05",
+      "role_id": "za_deputy_president",
+      "holder_name": "Baleka Mbete",
+      "role_title": "Deputy President of the Republic of South Africa",
+      "event_kind": "retrospective_list_row",
+      "attested_on": null,
+      "printed_range": "5 September 2008 -",
+      "text": "The same list gives '5 September 2008 - : Baleka Mbete', with no end and no later Deputy President listed.",
+      "locator": {
+        "section": "Deputy Presidents of the Republic (list)",
+        "row": "5 September 2008 - : Baleka Mbete"
+      }
+    }
+  ],
+  "bounded_scope": "Deputy President observations for CLAUDE-C01-21 only (role za_deputy_president in za_presidency). Announcements, stated intentions, appointments and their notices, oaths and their scheduling, stated assumptions, releases, resignations and their stated effect, Assembly-seat events and in-office attestations stay separate rows; holder observations and any start or end are decided in the packet, not by any row. The President's roles (za_president_election, za_state_president) and the ANC's party office are excluded and no row feeds them. This extract derives only the deputy-president rows of a response whose other rows docs/campaign-certification/C01/research/sources/south-africa-presidency-history-list-20260415-facts.json derives; that extract is unchanged."
+}
