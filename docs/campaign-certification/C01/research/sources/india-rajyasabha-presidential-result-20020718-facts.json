@@ -1,0 +1,56 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rs_debates_20020718",
+  "source_url": "https://cms.rajyasabha.nic.in/UploadedFiles/Debates/OfficialDebatesDatewise/Floor/196/F18.07.2002.pdf",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "downloaded_official_pdf_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 1486333,
+  "source_response_sha256": "c7f43556fc4c49d1a8f79752261ecfd2e3d5ff5d2e77099ceae80aefc59b3b6c",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host. Downloaded 2026-09-24T22:23:29Z; downloaded again at 2026-09-24T22:55:31Z with a cache-busting query and at 2026-09-24T22:55:54Z plain (30 minutes or more later): identical byte count and SHA-256. Static file: Last-Modified 12 Jan 2018, ETag \"04f55db978bd31:0\", PDF CreationDate 12 Jan 2018 and no per-request ID. The independent check downloaded it again at 23:17Z and 23:17Z on 24 September 2026, with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Rajya Sabha Secretariat's own floor version of the debates, located through the Rajya Sabha debates service (sansad.in date-wise debates, session 196). A 2018 Word-to-PDF reconstruction (297 pages), not a scan. The reports of 25 and 26 July 2002 were searched by the research and the Part B check and do not mention the oath.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      3,
+      256
+    ],
+    "method": "PDF page 3 (contents: 'Re. Result of Presidential Elections-2002 (page 253)') read from the text layer; PDF page 256 (printed page 253) rendered and read against the text layer. The PDF is a 2018 Word-to-PDF reconstruction of the debates (297 pages), not a scan."
+  },
+  "rows": [
+    {
+      "claim_id": "in_rs_informed_ro_declared_kalam_20020718",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-04",
+      "role_id": "in_president",
+      "holder_name": "A. P. J. Abdul Kalam",
+      "role_title": "President of India",
+      "event_kind": "result_announced_in_house",
+      "attested_on": "2002-07-18",
+      "text": "The Deputy Chairman informs the Rajya Sabha that the Returning Officer, R. C. Tripathi, Secretary-General of the Rajya Sabha, has, after the counting of votes under the Presidential and Vice-Presidential Elections Act 1952, declared Shri A.P.J. Abul Kalam [sic] as the President of India, and that the House sends its congratulations to the newly elected President.",
+      "locator": {
+        "pdf_page": 256,
+        "printed_page": 253,
+        "item": "INFORMATION TO THE HOUSE RE. RESULT OF PRESIDENTIAL ELECTION - 2002, first paragraphs"
+      }
+    },
+    {
+      "claim_id": "in_rs_kalam_votes_reported_20020718",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-04",
+      "role_id": "in_president",
+      "holder_name": "A. P. J. Abdul Kalam",
+      "role_title": "President of India",
+      "event_kind": "result_figures_reported",
+      "attested_on": "2002-07-18",
+      "text": "In the announcement the Deputy Chairman says that he got 89.58 per cent of the votes; asked by a member, she states that he got 9,22,884 votes and the second candidate 1,07,366 votes.",
+      "locator": {
+        "pdf_page": 256,
+        "printed_page": 253,
+        "item": "Same item, second and fourth paragraphs"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-15 only. The Election Commission's notices, the Returning Officer's declaration of the result and its Gazette publication, the programme for the ceremony of assumption of office, the oath administered by the Chief Justice, the Ministry of Home Affairs resolution and proclamation of the assumption of office, the holder's address on assumption, prospective term-expiry notices, farewells, stylings of a predecessor as former President and retrospective statements stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the Vice-President (including any service as acting President), ministers and party offices are excluded."
+}

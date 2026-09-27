@@ -1,0 +1,65 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rb_kalam_pm_resignation_accepted_20040513",
+  "source_url": "https://web.archive.org/web/20040629140504id_/http://presidentofindia.nic.in:80/scripts/prlatest1.jsp?id=229",
+  "original_url": "http://presidentofindia.nic.in/scripts/prlatest1.jsp?id=229",
+  "archive_capture_utc": "2004-06-29T14:05:04Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "2004-05-13",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 16811,
+  "source_response_sha256": "578d03405ea6ae694b7641c83127a2de344551d63febb90fc4850f0b2edce643",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2004-06-29T14:05:04Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The researcher downloaded it at 2026-09-23T16:30:12Z and again at 2026-09-23T17:36:50Z with identical bytes (at least 30 minutes apart), and the independent check downloaded it again at 2026-09-24T12:15:45Z with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The President's Secretariat's own 2004 website (President A. P. J. Abdul Kalam), press release id 229, captured 29 June 2004. The current presidentofindia.nic.in archive of Dr Kalam carries speeches but not this press release.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_vajpayee_tenders_resignation_20040513",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-07",
+      "role_id": "in_pm",
+      "holder_name": "Atal Bihari Vajpayee",
+      "role_title": "Prime Minister of India",
+      "event_kind": "resignation_tendered",
+      "attested_on": "2004-05-13",
+      "text": "The President's press communique dated 13 May 2004 states that Prime Minister Atal Bihari Vajpayee has tendered his resignation and that of his colleagues from the Council of Ministers; Deputy Prime Minister L. K. Advani accompanied him.",
+      "locator": {
+        "section": "Press Communique, first sentence and closing sentence"
+      }
+    },
+    {
+      "claim_id": "in_kalam_accepts_vajpayee_resignation_20040513",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-07",
+      "role_id": "in_pm",
+      "holder_name": "Atal Bihari Vajpayee",
+      "role_title": "Prime Minister of India",
+      "event_kind": "resignation_accepted",
+      "attested_on": "2004-05-13",
+      "text": "The same communique states that the President has accepted the resignation.",
+      "locator": {
+        "section": "Press Communique, second sentence"
+      }
+    },
+    {
+      "claim_id": "in_vajpayee_requested_to_continue_20040513",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-07",
+      "role_id": "in_pm",
+      "holder_name": "Atal Bihari Vajpayee",
+      "role_title": "Prime Minister of India",
+      "event_kind": "continuation_requested",
+      "attested_on": "2004-05-13",
+      "text": "The same communique states that the President requested Vajpayee and his colleagues to continue in office till alternative arrangements are made.",
+      "locator": {
+        "section": "Press Communique, second sentence"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

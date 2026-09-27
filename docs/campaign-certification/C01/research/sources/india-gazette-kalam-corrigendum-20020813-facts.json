@@ -1,0 +1,54 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_gazette_ext_no723_so849e_20020813",
+  "source_url": "https://egazette.gov.in/WriteReadData/2002/E-2544-2002-0723-115371.pdf",
+  "accessed_date": "2026-09-24",
+  "published_date": "2002-08-13",
+  "access_method": "downloaded_official_gazette_pdf_and_rendered_page_review",
+  "source_response_bytes": 39931,
+  "source_response_sha256": "86135c39e1597fbb6dbe7bc9ac53b0d4e069f75c429eef6ff2c908f6a127de74",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host. Downloaded 2026-09-24T21:46:49Z; downloaded again at 2026-09-24T22:18:07Z, 2026-09-24T22:18:08Z (more than 30 minutes later), once with a cache-busting query string and once plain: identical byte count and SHA-256 each time. Static file: Last-Modified Tue, 12 Mar 2013 06:05:32 GMT, ETag \"01e949ae71ece1:0\"; byte-identical (MD5) to the Internet Archive Gazette item(s) named in the note. The independent check downloaded it again at 23:17Z and 23:17Z on 24 September 2026, with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official eGazette file (eGazette ID 115371). MD5 354d6631dcc122994567a84c48ef67a0 equals the Internet Archive items in.gazette.central.e.2002-08-13.115371 and .153127. The notification it corrects, S.O. 788(E) of 25 July 2002, was not found: eGazette IDs 115340 (S.O. 781(E), 23 July) and 115341 (S.O. 800(E)) are consecutive, and no Internet Archive Gazette item of 24-26 July 2002 carries it.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "Both PDF pages rendered and read: page 1 carries the Hindi notification above the English one; page 2 is blank. The Devanagari forms of the name (the corrected and the replaced reading) were read from the scan, since the text layer drops them."
+  },
+  "rows": [
+    {
+      "claim_id": "in_kalam_assumption_recited_in_corrigendum_20020725",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-04",
+      "role_id": "in_president",
+      "holder_name": "A. P. J. Abdul Kalam",
+      "role_title": "President of India",
+      "event_kind": "assumption_recited_in_corrigendum",
+      "attested_on": "2002-07-25",
+      "text": "In its corrigendum S.O. 849(E) of 13 August 2002 the Ministry of Home Affairs describes its notification S.O. 788(E), published in the Gazette of India Extraordinary, Part II Section 3(ii), dated 25-7-2002, as 'regarding assumption of office by Dr. A P J. Abdul Kalam as the President of India on 25-7-2002'; the Hindi text likewise refers to his taking charge (padbhar grahan) as President on 25-7-2002.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "S.O. 849(E), English and Hindi paragraphs"
+      }
+    },
+    {
+      "claim_id": "in_mha_corrects_kalam_hindi_name_20020813",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-04",
+      "role_id": "in_president",
+      "holder_name": "A. P. J. Abdul Kalam",
+      "role_title": "President of India",
+      "event_kind": "name_corrigendum",
+      "attested_on": "2002-08-13",
+      "text": "By S.O. 849(E) of 13 August 2002 [F No 2/4/2002-Public], signed by Yashwant Raj, Joint Secretary, the Ministry of Home Affairs directs that in the Hindi version of S.O. 788(E) the President's name be read as 'Dr. Aa. Pa. Jai. Abdul Kalam' instead of 'Dr. E. P. J. Abdul Kalam' (Devanagari).",
+      "locator": {
+        "pdf_page": 1,
+        "item": "S.O. 849(E), whole notification"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-15 only. The Election Commission's notices, the Returning Officer's declaration of the result and its Gazette publication, the programme for the ceremony of assumption of office, the oath administered by the Chief Justice, the Ministry of Home Affairs resolution and proclamation of the assumption of office, the holder's address on assumption, prospective term-expiry notices, farewells, stylings of a predecessor as former President and retrospective statements stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the Vice-President (including any service as acting President), ministers and party offices are excluded."
+}

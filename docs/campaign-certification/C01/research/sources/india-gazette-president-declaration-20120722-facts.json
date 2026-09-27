@@ -1,0 +1,53 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_gazette_ext_no1364_so1657e_20120722",
+  "source_url": "https://egazette.gov.in/WriteReadData/2012/E_1364_2012_008.pdf",
+  "accessed_date": "2026-09-24",
+  "published_date": "2012-07-22",
+  "access_method": "downloaded_official_gazette_pdf_and_rendered_page_review",
+  "source_response_bytes": 22147,
+  "source_response_sha256": "a77e15dc1fb4ea3e8dcd9e66b52d93c824f34351b46de907959756ebb0f38780",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host. Downloaded 2026-09-24T22:03:55Z; downloaded again at 2026-09-24T22:35:13Z, 2026-09-24T22:35:14Z (more than 30 minutes later), once with a cache-busting query string and once plain: identical byte count and SHA-256 each time. Static file: Last-Modified Tue, 11 Dec 2012 06:48:02 GMT, ETag \"0fde7766bd7cd1:0\"; byte-identical (MD5) to the Internet Archive Gazette item(s) named in the note. The independent check downloaded it again at 23:17Z and 23:18Z on 24 September 2026, with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official eGazette file (a single scanned page). MD5 94f8ecf68d9b32b47ebe699612a6b360 equals the Internet Archive items in.gazette.central.e.2012-07-22.008 and in.gazette.e.2012.2301.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "The single scanned page (no text layer) rendered and read, Hindi and English columns."
+  },
+  "rows": [
+    {
+      "claim_id": "in_ro_agnihotri_declares_pranab_elected_20120722",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-06",
+      "role_id": "in_president",
+      "holder_name": "Pranab Mukherjee",
+      "role_title": "President of India",
+      "event_kind": "result_declaration",
+      "attested_on": "2012-07-22",
+      "text": "V. K. Agnihotri, Returning Officer for the Presidential Election, 2012 and Secretary-General, Rajya Sabha, declares under section 11 of the 1952 Act read with rule 35 of the 1974 Rules that Shri Pranab Mukherjee (H. No. 60/2/97, Kabi Bharati Sarani (Lake Road), Kolkata) has been duly elected to the Office of President of India; the declaration is dated New Delhi, 22 July 2012.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "DECLARATION (quoted inside S.O. 1657(E)), English and Hindi columns"
+      }
+    },
+    {
+      "claim_id": "in_law_ministry_publishes_pranab_declaration_20120722",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-06",
+      "role_id": "in_president",
+      "holder_name": "Pranab Mukherjee",
+      "role_title": "President of India",
+      "event_kind": "result_publication",
+      "attested_on": "2012-07-22",
+      "text": "The Ministry of Law and Justice publishes that declaration under section 12 of the 1952 Act by S.O. 1657(E) of 22 July 2012 [F. No. H-11024(3)/2011-Leg. II], signed by V. K. Bhasin, Secretary.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "Notification S.O. 1657(E), opening paragraph and file number"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-15 only. The Election Commission's notices, the Returning Officer's declaration of the result and its Gazette publication, the programme for the ceremony of assumption of office, the oath administered by the Chief Justice, the Ministry of Home Affairs resolution and proclamation of the assumption of office, the holder's address on assumption, prospective term-expiry notices, farewells, stylings of a predecessor as former President and retrospective statements stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the Vice-President (including any service as acting President), ministers and party offices are excluded."
+}

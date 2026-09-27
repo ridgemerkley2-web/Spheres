@@ -1,0 +1,61 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_ls_debates_19901116",
+  "source_url": "https://archive.org/download/eparlib.nic.in.3530/lsd_09_05_16-11-1990.pdf",
+  "mirror_of": "https://eparlib.sansad.in/bitstream/123456789/3530/1/lsd_09_05_16-11-1990.pdf",
+  "accessed_date": "2026-09-23",
+  "published_date": null,
+  "access_method": "downloaded_internet_archive_item_copy_pdf_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 6599374,
+  "source_response_sha256": "49f3e736cf37f72c6f962cf0ff8f0d66f31be706fedb6aa1676a1d3346d385c4",
+  "source_response_checked_in": false,
+  "provenance_note": "Stored file in an Internet Archive item that mirrors the official document; archive.org redirects the download URL to a storage node and the final response body is the recorded identity. The researcher downloaded it twice on 23 September 2026 (16:50Z and 17:24Z, the second with a cache-busting query) and the check three more times (17:27Z, 17:54Z and 18:04Z, with cache-busting queries), each with the same byte count and SHA-256. PDF metadata: Adobe Scan-to-PDF, CreationDate 7 January 2015, ModDate 26 June 2015 (a static scan). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Mirror-only provenance: the hashed response is a third-party copy of the Lok Sabha Secretariat's PDF in the Internet Archive item eparlib.nic.in.3530, a private upload of July 2025 whose metadata names the Parliament Digital Library handle page for record 123456789/3530 as its source. No capture of the official eparlib URL exists, and the eparlib hosts could not be reached, so nothing ties these bytes to the official host beyond the item's own MD5 (55bacb7574de9e300d13f83ed3f586c9) and SHA-1 (d7d513fed57ec4728e445b5fdd4c05890381c0fc). The Rajya Sabha record of 27 December 1990 (in_rs_debates_19901227) attests him in office on an official host.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      33,
+      98,
+      107
+    ],
+    "method": "PDF pages 33 (columns 21-22) and 107 (columns 169-170) rendered and read by the researcher; page 98 (columns 151-152, the division) read by the check; page 21 (front matter) read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "in_chandra_shekhar_moves_confidence_motion_19901116",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-02",
+      "role_id": "in_pm",
+      "holder_name": "Chandra Shekhar",
+      "role_title": "Prime Minister of India",
+      "event_kind": "confidence_motion_moved",
+      "attested_on": "1990-11-16",
+      "text": "On 16 November 1990 the Prime Minister, Shri Chandra Shekhar, moves in the Lok Sabha that the House expresses its confidence in the Council of Ministers, after the Speaker rules that the motion is in order.",
+      "locator": {
+        "pdf_page": 33,
+        "columns": "21-22",
+        "item": "'THE PRIME MINISTER (SHRI CHANDRA SHEKHAR): I beg to move'"
+      }
+    },
+    {
+      "claim_id": "in_ls_confidence_motion_adopted_19901116",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-02",
+      "role_id": "in_pm",
+      "holder_name": "Chandra Shekhar",
+      "role_title": "Prime Minister of India",
+      "event_kind": "confidence_vote_won",
+      "attested_on": "1990-11-16",
+      "text": "The confidence motion moved by Shri Chandra Shekhar is carried on a division at 19.13 hrs: subject to correction, Ayes 269, Noes 204; the motion is adopted and the House is adjourned sine die.",
+      "locator": {
+        "pdf_page": [
+          98,
+          107
+        ],
+        "columns": "151-152 and 169-170",
+        "item": "'The Lok Sabha divided' (Division No. 1, 19.13 hrs); 'Ayes: 269 / Noes: 204 / The motion was adopted'"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

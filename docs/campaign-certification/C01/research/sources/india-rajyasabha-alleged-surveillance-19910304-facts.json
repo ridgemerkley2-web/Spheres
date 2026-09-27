@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rs_debate_19910304_surveillance",
+  "source_url": "https://bucketapi.rajyasabha.digital/public-bucket/rsdebate/assetstore/15/94/89/159489245889169465255389992912821097136?response-content-type=application%2Fpdf&response-content-disposition=inline%3B+filename%3D%22ID_157_04031991_01_p325-335_1.pdf%22",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "official_pdf_download_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 398978,
+  "source_response_sha256": "208694149484595dd6462bf594700bd28dba7ee655f1a92cd61778bf15d2c0fb",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host: the Rajya Sabha Secretariat's debates store (handle 123456789/242181), a static object whose ETag equals the MD5 of the body. The Part A check downloaded it at 14:07Z and 14:34Z on 25 September 2026, and this packet downloaded it again at 14:52Z and 14:59Z, at least 30 minutes after the check's first download, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Rajya Sabha Secretariat's debates store (handle 123456789/242181); a static object (ETag equals the MD5 of the body; Last-Modified 29 July 2026). Located by the Part A check. The item heading is the Secretariat's own.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "PDF page 1 (cols 325-326) read from the text layer: the item heading at 12.00 noon and the first exchange; the passage is in English."
+  },
+  "rows": [
+    {
+      "claim_id": "in_rs_heading_surveillance_on_congress_president_rajiv_gandhi_19910304",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-01",
+      "role_id": "in_inc_president",
+      "holder_name": "Rajiv Gandhi",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "1991-03-04",
+      "text": "The Rajya Sabha's report of 4 March 1991 heads an item at 12.00 noon 'Alleged Surveillance on Congress President Shri Rajiv Gandhi', and Shrimati Jayanthi Natarajan (Tamil Nadu) asks why the Government is spying on 'Congress President Rajiv Gandhi's house'.",
+      "locator": {
+        "pdf_page": 1,
+        "printed_columns": "325-326",
+        "item": "12.00 NOON Alleged Surveillance on Congress President Shri Rajiv Gandhi"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-20 only: the role in_inc_president (President of the Indian National Congress) on the Indian National Congress recognition observation in_eci_20240323_np_05. Working Committee decisions, AICC sessions and ratifications, the Central Election Authority's schedules, notifications and declarations, certificates, handovers, resignations, withdrawals, farewells, interim arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, the Leader of the Opposition, the Congress Parliamentary Party and every other office are excluded."
+}

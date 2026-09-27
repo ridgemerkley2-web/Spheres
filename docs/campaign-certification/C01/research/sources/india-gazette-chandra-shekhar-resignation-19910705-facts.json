@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_gazette_ext_p1s2_no15_19910705",
+  "source_url": "https://egazette.gov.in/WriteReadData/1991/E-0540-1991-0015-23097.pdf",
+  "accessed_date": "2026-09-23",
+  "published_date": "1991-07-05",
+  "access_method": "official_egazette_pdf_download_and_complete_visual_page_review",
+  "source_response_bytes": 66039,
+  "source_response_sha256": "c9c8e5c885d2da365d4412dc4b4d1c9902fdba59bf88370b3713ea8ca7297099",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host. The researcher downloaded it twice on 23 September 2026 (the second time more than 30 minutes later, with a cache-busting query) and the independent check three more times that day (17:26Z to 18:04Z, each with a cache-busting query), all with the same byte count and SHA-256. The file is a static egazette.gov.in object (Last-Modified 12 March 2013, fixed ETag; PDF CreationDate in 2013, no per-request /ID or ModDate), so it is not generated per request. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official eGazette file. MD5 574da98dd29b14db1ec5c8a8a89ffee1 and SHA-1 ca5fd8cfa6c30f129667e6b5698cf22051e2f615 equal the copies in the Internet Archive items in.gazette.e.1991.1369 and in.gazette.central.e.1991-07-05.23097 (uploaded 2017-2018); a third mirror holds a different 98,259-byte rendering and is not used.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "Both PDF pages rendered and read (page 1 masthead and Hindi text; page 2 English notification)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_president_accepts_chandra_shekhar_resignation_wef_19910621",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-02",
+      "role_id": "in_pm",
+      "holder_name": "Chandra Shekhar",
+      "role_title": "Prime Minister of India",
+      "event_kind": "resignation_accepted_with_effect",
+      "attested_on": "1991-06-21",
+      "text": "Ministry of Home Affairs notification of 5 July 1991: the President has been pleased to accept the resignation of Shri Chandra Shekhar of his office of Prime Minister, and of the listed members of the Council of Ministers, with effect from 21 June 1991.",
+      "locator": {
+        "pdf_page": 2,
+        "item": "Ministry of Home Affairs Notification No. 10/4/91-M&G(i), New Delhi, the 5th July, 1991 (Hindi text on page 1)"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

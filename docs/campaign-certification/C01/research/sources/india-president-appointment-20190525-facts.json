@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rb_kovind_appoints_modi_20190525",
+  "source_url": "https://web.archive.org/web/20190716083258id_/https://presidentofindia.nic.in/press-release-detail.htm?1613",
+  "original_url": "https://presidentofindia.nic.in/press-release-detail.htm?1613",
+  "archive_capture_utc": "2019-07-16T08:32:58Z",
+  "accessed_date": "2026-09-24",
+  "published_date": "2019-05-25",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 63689,
+  "source_response_sha256": "c76eaf2adfa1b2fe990fc07bc86000ea9e7a26c25928ded82b3df382373a0be9",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2019-07-16T08:32:58Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The check downloaded it at 12:54:15Z and 13:26:32Z on 24 September 2026 and this packet again at 2026-09-24T13:36:52Z, each with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A press communique on the President's 2019 website (President Ram Nath Kovind), recorded as a raw Internet Archive capture made in 2019, as the HTML rule prefers. The same text is served as a static page at ramnathkovind.nic.in/pr250519_2.html (3,228 bytes, SHA-256 c70785ea8446ddc5d45dd191f979d3def559dd3d52b78427e948c73f14572d54, byte-stable on 23 and 24 September 2026), which the research first recorded. The capture's form fields and visitor counter are fixed in the archived response.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_kovind_appoints_modi_pm_20190525",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-09",
+      "role_id": "in_pm",
+      "holder_name": "Narendra Modi",
+      "role_title": "Prime Minister of India",
+      "event_kind": "appointment",
+      "attested_on": "2019-05-25",
+      "text": "The release dated 25 May 2019 states that, exercising powers under Article 75(1), the President 'today appointed' Narendra Modi to the office of Prime Minister of India and asked him to advise the names of other ministers and to indicate the date and time of the swearing-in; Modi was formally intimated when he called on the President that day as leader of the BJP Parliamentary Party.",
+      "locator": {
+        "section": "Release body, first and second paragraphs"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

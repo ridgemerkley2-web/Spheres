@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_pmo_former_pm_chandra_shekhar",
+  "source_url": "https://web.archive.org/web/20260411232705id_/https://www.pmindia.gov.in/en/former_pm/shri-chandra-shekhar/",
+  "original_url": "https://www.pmindia.gov.in/en/former_pm/shri-chandra-shekhar/",
+  "archive_capture_utc": "2026-04-11T23:27:05Z",
+  "accessed_date": "2026-09-23",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 50298,
+  "source_response_sha256": "7338776db01c2e96bc082c91766a7759e1b479a1d9c24e6e4e53e6e422ac2bee",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2026-04-11T23:27:05Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The check downloaded it at 18:01:09Z and 18:07:30Z on 23 September 2026 and this packet again at 2026-09-24T13:36:33Z, each with the same byte count and SHA-256 (payload digest 4CQRFTLANK4Q5P5OML5IRUM5QQSPZXFV matches). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Retrospective former-prime-minister page, captured by the Internet Archive on 11 April 2026, before the cutoff (a WordPress page whose embedded nonce is fixed in the capture). Located by the Part A check. Claims only, never a boundary.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_pmo_span_chandra_shekhar_19901110_19910621",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-02",
+      "role_id": "in_pm",
+      "holder_name": "Chandra Shekhar",
+      "role_title": "Prime Minister of India",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The PMO's former-prime-minister page heads Chandra Shekhar's entry 'November 10, 1990 - June 21, 1991 | Janata Dal (S)'.",
+      "locator": {
+        "element": "page heading under 'HOME PMINDIA'"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

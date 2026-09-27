@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_pmo_uzbekistan_joint_statement_20260830",
+  "source_url": "https://web.archive.org/web/20260902065902id_/https://www.pmindia.gov.in/en/news_updates/joint-statement-during-the-state-visit-of-prime-minister-narendra-modi-to-uzbekistan/?comment=disable",
+  "original_url": "https://www.pmindia.gov.in/en/news_updates/joint-statement-during-the-state-visit-of-prime-minister-narendra-modi-to-uzbekistan/?comment=disable",
+  "archive_capture_utc": "2026-09-02T06:59:02Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "2026-08-30",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 19526,
+  "source_response_sha256": "17a56d1e9f8b060af7ec309bbdc895a4af981747dd4ef5a21a383a78fe239ab2",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "gzip",
+  "decoded_response_bytes": 81083,
+  "decoded_response_sha256": "4a07b0f399e7fb65f74634661bdd1c5c4bd478a72c481e322c98deb6d7d87884",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2026-09-02T06:59:02Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The researcher downloaded it at 2026-09-23T16:29:42Z and again at 2026-09-23T17:31:17Z with identical bytes (at least 30 minutes apart), and the independent check downloaded it again at 2026-09-24T12:29:58Z with the same byte count and SHA-256. The Internet Archive serves this capture gzip-encoded (Content-Encoding: gzip, as archived), even to a request for identity encoding; source_response_bytes and source_response_sha256 are of the encoded body as transferred (curl without --compressed). The decoded HTML is 81,083 bytes, SHA-256 4a07b0f399e7fb65f74634661bdd1c5c4bd478a72c481e322c98deb6d7d87884. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Found by listing Internet Archive captures of pmindia.gov.in news updates made between 15 August and 6 September 2026; the only capture of this page carries the query string '?comment=disable', which is kept in the original URL.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_modi_pm_state_visit_uzbekistan_20260830",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-10",
+      "role_id": "in_pm",
+      "holder_name": "Narendra Modi",
+      "role_title": "Prime Minister of India",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2026-08-30",
+      "text": "The PMO page dated 30 August 2026 carries a joint statement stating that the Prime Minister of the Republic of India, Narendra Modi, paid a State Visit to Uzbekistan from 29 to 30 August 2026 at the invitation of President Shavkat Mirziyoyev.",
+      "locator": {
+        "section": "Page date line and first paragraph of the joint statement"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

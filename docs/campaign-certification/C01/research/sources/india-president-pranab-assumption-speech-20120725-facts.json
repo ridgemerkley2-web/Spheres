@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_poi_pranab_assumption_speech_20120725",
+  "source_url": "https://web.archive.org/web/20120809045746id_/http://presidentofindia.nic.in:80/sp250712.html",
+  "original_url": "http://presidentofindia.nic.in/sp250712.html",
+  "archive_capture_utc": "2012-08-09T04:57:46Z",
+  "accessed_date": "2026-09-24",
+  "published_date": "2012-07-25",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 12598,
+  "source_response_sha256": "0352665a7a57a3d7b66f6b8857b3af902f80f5e4db997484282299d40393d969",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2012-08-09T04:57:46Z; that form replays the archived bytes unchanged and is used in place of the live page or file. Raw id_ capture downloaded 2026-09-24T21:54:22Z via http://web.archive.org (https was refusing connections), and again at 2026-09-24T22:31:17Z via the recorded https URL: identical byte count and SHA-256. The id_ form replays the archived bytes unchanged; no Content-Encoding was applied (Accept-Encoding: identity). The independent check downloaded it again at 23:18Z on 24 September 2026, with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The President's Secretariat's page of the speech, recorded as a raw Internet Archive capture (original Last-Modified 8 August 2012); the linked English and Hindi PDFs were not used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images reviewed; the linked English and Hindi PDFs were not downloaded. Original Last-Modified 8 Aug 2012."
+  },
+  "rows": [
+    {
+      "claim_id": "in_pranab_assumption_speech_20120725",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-06",
+      "role_id": "in_president",
+      "holder_name": "Pranab Mukherjee",
+      "role_title": "President of India",
+      "event_kind": "assumption_statement",
+      "attested_on": "2012-07-25",
+      "text": "The President's Secretariat publishes Shri Pranab Mukherjee's speech 'on his assumption of office as President of India', delivered in the Central Hall of Parliament, New Delhi, on 25 July 2012 and addressed to Smt. Pratibha Devisingh Patil, Shri Hamid Ansari, Smt. Meira Kumar and Justice S. H. Kapadia among others.",
+      "locator": {
+        "element": "Page heading, place and date line, salutation"
+      }
+    },
+    {
+      "claim_id": "in_pranab_refers_to_oath_taken_20120725",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-06",
+      "role_id": "in_president",
+      "holder_name": "Pranab Mukherjee",
+      "role_title": "President of India",
+      "event_kind": "oath_referred_in_address",
+      "attested_on": "2012-07-25",
+      "text": "In the same speech he says he will strive, as he said on oath, to preserve, protect and defend the Constitution, referring to the oath already taken.",
+      "locator": {
+        "element": "Second paragraph of the speech"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-15 only. The Election Commission's notices, the Returning Officer's declaration of the result and its Gazette publication, the programme for the ceremony of assumption of office, the oath administered by the Chief Justice, the Ministry of Home Affairs resolution and proclamation of the assumption of office, the holder's address on assumption, prospective term-expiry notices, farewells, stylings of a predecessor as former President and retrospective statements stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the Vice-President (including any service as acting President), ministers and party offices are excluded."
+}

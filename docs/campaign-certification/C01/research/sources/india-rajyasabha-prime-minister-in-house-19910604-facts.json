@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rs_debates_19910604",
+  "source_url": "https://bucketapi.rajyasabha.digital/public-bucket/rsdebate/assetstore/40/01/85/40018581373608414684742468304729112452?response-content-type=application%2Fpdf&response-content-disposition=inline%3B+filename%3D%22ID_158_04061991_01_p10-16_1.pdf%22",
+  "accessed_date": "2026-09-23",
+  "published_date": null,
+  "access_method": "official_pdf_download_and_text_layer_read",
+  "source_response_bytes": 365671,
+  "source_response_sha256": "4e7b007de8b1941567bd50c4cb018974ec2e9acfa75676cc1856518c1109bbda",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host. The check downloaded it at 18:02:50Z and 18:07:37Z on 23 September 2026 and this packet again at 2026-09-24T13:36:09Z, each with the same byte count and SHA-256. PDF metadata: CreationDate = ModDate 23 February 2010 (static). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Rajya Sabha Secretariat's debates store (handle 123456789/237765); a static object (MD5 equals ETag; Last-Modified 29 July 2026). Located by the Part A check. The Rajya Sabha data service also lists him as 'CHANDRA SHEKHAR(PRIME MINISTER)' on 3 June 1991; that listing is not a recorded response.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      3
+    ],
+    "method": "PDF pages 1-3 read from the text layer; the speaker label is on page 3."
+  },
+  "rows": [
+    {
+      "claim_id": "in_chandra_shekhar_pm_in_rajya_sabha_19910604",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-02",
+      "role_id": "in_pm",
+      "holder_name": "Chandra Shekhar",
+      "role_title": "Prime Minister of India",
+      "event_kind": "continuation_in_office_attestation",
+      "attested_on": "1991-06-04",
+      "text": "In the Rajya Sabha on 4 June 1991, during the reference to the firing at Dalia (U.P.) on cement factory workers, 'THE PRIME MINISTER (SHRI CHANDRA SHEKHAR)' rises to reply ('Sir, I think it is over and I can speak').",
+      "locator": {
+        "pdf_page": 3,
+        "printed_pages": "10-16",
+        "item": "Reference to firing at Dalia (U.P.) on cement factory workers"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

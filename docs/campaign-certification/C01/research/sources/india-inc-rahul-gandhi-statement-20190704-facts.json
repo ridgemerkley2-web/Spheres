@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_inc_rahul_gandhi_statement_page_20190704",
+  "source_url": "https://web.archive.org/web/20190704065137id_/https://www.inc.in/en/media/press-releases/statement-issued-by-congress-president-shri-rahul-gandhi",
+  "original_url": "https://www.inc.in/en/media/press-releases/statement-issued-by-congress-president-shri-rahul-gandhi",
+  "archive_capture_utc": "2019-07-04T06:51:37Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 40720,
+  "source_response_sha256": "bc3e0706fcb4837968993929eed5bc83e9a6a1432a795772cdc49dde33d756c4",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2019-07-04T06:51:37Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl without --compressed, request header Accept-Encoding: identity). The researcher downloaded it at 12:03:16Z and again at 12:56:19Z on 25 September 2026, the Part C check downloaded it again at 13:02-13:03Z and again after 13:33Z, and this packet downloaded it again at 14:59Z, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The INC release page recorded as a raw Internet Archive capture made at 06:51:37 UTC on 4 July 2019; the live page is not byte-stable. The same text is held by the INC as an undated typed PDF and an undated signed letter (leads).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images reviewed. The page prints no date."
+  },
+  "rows": [
+    {
+      "claim_id": "in_rahul_gandhi_states_he_has_resigned_2019",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-07",
+      "role_id": "in_inc_president",
+      "holder_name": "Rahul Gandhi",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "resignation_statement",
+      "attested_on": null,
+      "text": "In the statement the INC publishes under the title 'Statement issued by Congress President Shri Rahul Gandhi', Rahul Gandhi says that as President he is responsible for the 2019 loss and 'It is for this reason that I have resigned as Congress President'; he says he will not select his successor and that 'Immediately after resigning' he suggested to Working Committee colleagues that a group begin the search for a new President.",
+      "locator": {
+        "item": "release body, paragraphs 2, 4 and 5"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-20 only: the role in_inc_president (President of the Indian National Congress) on the Indian National Congress recognition observation in_eci_20240323_np_05. Working Committee decisions, AICC sessions and ratifications, the Central Election Authority's schedules, notifications and declarations, certificates, handovers, resignations, withdrawals, farewells, interim arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, the Leader of the Opposition, the Congress Parliamentary Party and every other office are excluded."
+}

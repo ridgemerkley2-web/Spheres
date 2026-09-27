@@ -1,0 +1,38 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_gazette_ext_so2487_corrigendum_20170804",
+  "source_url": "https://egazette.gov.in/writereaddata/2017/177824.pdf",
+  "accessed_date": "2026-09-24",
+  "published_date": "2017-08-04",
+  "access_method": "official_egazette_pdf_download_text_layer_read_and_page_rendered",
+  "source_response_bytes": 1275649,
+  "source_response_sha256": "9098b6d29b80bb58dc6be4c076d20a8a3daf8fe3d77ebe55c5dc643e300cb045",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host. The Part C check downloaded it at 23:17:52Z, 23:18:08Z and 23:52:26Z on 24 September 2026 (the last two with cache-busting queries, the last 34 minutes after the first) and this packet again at 2026-09-25T00:03:21Z, each with the same byte count and SHA-256. The file is a static egazette.gov.in object (Last-Modified 5 August 2017 03:29:04 GMT, ETag \"040b9fc9add31:0\"; PDF CreationDate 4 August 2017 and ModDate 5 August 2017, no per-request ID), so it is not generated per request. The copy was deleted from scratch after hashing. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official eGazette stored file (Gazette ID 177824, Gazette of India Extraordinary Part II-Section 3-Sub-section (ii) No. 2186), served at the lower-case writereaddata path; its MD5 (b2f7423a599946620ee11491f5dd3986) equals the Internet Archive copy in item in.gazette.central.e.2017-08-04.177824. Located by the Part C check.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "The single PDF page read from its English and Hindi text layer by the Part C check and by this packet."
+  },
+  "rows": [
+    {
+      "claim_id": "in_kovind_name_corrigendum_20170804",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-07",
+      "role_id": "in_president",
+      "holder_name": "Ram Nath Kovind",
+      "role_title": "President of India",
+      "event_kind": "name_corrigendum",
+      "attested_on": "2017-08-04",
+      "text": "Ministry of Home Affairs Corrigendum S.O. 2487(E), New Delhi, 4 August 2017 (F. No. 2/4/2017-Public, Shri Prakash, Joint Secretary): in partial modification of Resolution No. 2318(E) dated 25 July 2017, the name of the President of India for all official purposes is 'Shri Ram Nath Kovind'.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "CORRIGENDUM S.O. 2487(E), English text (Hindi above)"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-15 only. The Election Commission's notices, the Returning Officer's declaration of the result and its Gazette publication, the programme for the ceremony of assumption of office, the oath administered by the Chief Justice, the Ministry of Home Affairs resolution and proclamation of the assumption of office, the holder's address on assumption, prospective term-expiry notices, farewells, stylings of a predecessor as former President and retrospective statements stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the Vice-President (including any service as acting President), ministers and party offices are excluded."
+}

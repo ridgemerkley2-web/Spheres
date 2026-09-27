@@ -1,0 +1,38 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_inc_past_president_pv_narasimha_rao_20221026",
+  "source_url": "https://web.archive.org/web/20221026054027id_/https://www.inc.in/_next/data/jaqjxgp0Go5FMUctobSal/leadership/past-party-presidents/p-v-narasimha-rao.json",
+  "original_url": "https://www.inc.in/_next/data/jaqjxgp0Go5FMUctobSal/leadership/past-party-presidents/p-v-narasimha-rao.json",
+  "archive_capture_utc": "2022-10-26T05:40:27Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_json_read",
+  "source_response_bytes": 1833,
+  "source_response_sha256": "297ee3cf049ae4914061883fdc2ae6880f7b903be583caf5a0be8bc21eca7bc3",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2022-10-26T05:40:27Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl without --compressed, request header Accept-Encoding: identity). The researcher downloaded it at 12:07:42Z and again at 13:21:04Z on 25 September 2026, the Part A check downloaded it again between 13:33Z and 13:42Z, and this packet downloaded it again at 14:58Z, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A retrospective party biography recorded as a raw Internet Archive capture of the site's page data. Claims only, never a boundary.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "JSON read in full."
+  },
+  "rows": [
+    {
+      "claim_id": "in_inc_bio_rao_presided_tirupati_session_1992",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-02",
+      "role_id": "in_inc_president",
+      "holder_name": "P. V. Narasimha Rao",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "retrospective_biography_statement",
+      "attested_on": null,
+      "text": "The Congress's past-president biography, headed 'President: 1921-2004 (Tirupati, 1992)', says P.V. Narasimha Rao presided over the Indian National Congress Session at Tirupati in 1992.",
+      "locator": {
+        "json_path": "pageProps.objPartyPresident.description",
+        "item": "heading line and end of the second paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-20 only: the role in_inc_president (President of the Indian National Congress) on the Indian National Congress recognition observation in_eci_20240323_np_05. Working Committee decisions, AICC sessions and ratifications, the Central Election Authority's schedules, notifications and declarations, certificates, handovers, resignations, withdrawals, farewells, interim arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, the Leader of the Opposition, the Congress Parliamentary Party and every other office are excluded."
+}

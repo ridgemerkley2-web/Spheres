@@ -1,0 +1,42 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_ls_debates_19900312",
+  "source_url": "https://web.archive.org/web/20210519104239id_/https://eparlib.nic.in/bitstream/123456789/419/1/lsd_09_II_12_03_1990.pdf",
+  "original_url": "https://eparlib.nic.in/bitstream/123456789/419/1/lsd_09_II_12_03_1990.pdf",
+  "archive_capture_utc": "2021-05-19T10:42:39Z",
+  "accessed_date": "2026-09-23",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_pdf_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 1043511,
+  "source_response_sha256": "57751214004313157ed91bd93044a7078f98479f750906cb3617f0c7315ab51b",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2021-05-19T10:42:39Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The researcher downloaded the byte-identical Internet Archive item copy twice on 23 September 2026 (16:49Z and 17:24Z, the second with a cache-busting query) and the check three more times (17:26Z, 17:54Z and 18:04Z); the check downloaded this raw capture on 23 September and this packet downloaded it again at 2026-09-24T13:45:21Z, each with the same byte count and SHA-256. PDF metadata: Adobe Scan-to-PDF, CreationDate 8 January 2015, ModDate 23 September 2015 (a static scan). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Parliament Digital Library PDF of the printed debates, recorded as the raw Internet Archive capture of the official eparlib.nic.in bitstream made on 19 May 2021. The eparlib hosts could not be reached from the research network (DNS failure for eparlib.nic.in; TCP failure for eparlib.sansad.in). The same bytes are stored in the Internet Archive item eparlib.nic.in.419, a private upload of 7 July 2025 whose metadata names the eparlib handle page as its source (MD5 89eb4cbb3726f61a982f1f2f3d0fc042, SHA-1 506835971e08fd2b8a8096862b07c703fbf81067); that item copy was the researcher's first response.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      28
+    ],
+    "method": "PDF pages 1 (cover) and 28 (columns 15-16) rendered and read."
+  },
+  "rows": [
+    {
+      "claim_id": "in_vp_singh_pm_introduces_minister_19900312",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-01",
+      "role_id": "in_pm",
+      "holder_name": "Vishwanath Pratap Singh",
+      "role_title": "Prime Minister of India",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1990-03-12",
+      "text": "At the first Lok Sabha sitting of 1990 (12 March), the Prime Minister, Shri Vishwanath Pratap Singh, introduces the Minister of State for Defence, Dr Raja Ramanna, to the House under the heading Introduction of Minister (12.50 1/2 hrs).",
+      "locator": {
+        "pdf_page": 28,
+        "columns": "15-16",
+        "item": "Introduction of Minister; speaker label 'THE PRIME MINISTER (SHRI VISHWANATH PRATAP SINGH)'"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}
