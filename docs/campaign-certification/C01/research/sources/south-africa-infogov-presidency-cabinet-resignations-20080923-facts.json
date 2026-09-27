@@ -1,0 +1,55 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_infogov_presidency_cabinet_resignations_20080923",
+  "source_url": "https://web.archive.org/web/20080925232835id_/http://www.info.gov.za:80/speeches/2008/08092313151001.htm",
+  "original_url": "http://www.info.gov.za/speeches/2008/08092313151001.htm",
+  "archive_capture_utc": "2008-09-25T23:28:35Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2008-09-23",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 7731,
+  "source_response_sha256": "f5e9cfd64381c2f5bb28d33b1b1fb948e47138c6d6f8fed5bb86b7a9d27ee0fb",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header, or with Accept-Encoding: identity, and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that accepts gzip can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "First downloaded on 2026-09-25 at 12:24Z by the researcher and downloaded again at 13:45Z; the independent check downloaded it again at 13:52Z. Every download had the same byte count and SHA-256. Downloaded again for this packet at 2026-09-25T15:30Z (integration pass) with the same byte count and SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2008-09-25T23:28:35Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of the live page. Fetched without Accept-Encoding (curl without --compressed), the archive serves it uncompressed: the recorded byte count and SHA-256 are those of the uncompressed body. The response identity was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw capture (25 September 2008) of the government information site's copy of the Presidency statement of 23 September 2008. It names the Deputy President by title only.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_deputy_president_resignation_accepted_20080923",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-DP-05",
+      "role_id": "za_deputy_president",
+      "holder_name": null,
+      "role_title": "Deputy President of the Republic of South Africa",
+      "event_kind": "resignation_accepted",
+      "attested_on": "2008-09-23",
+      "text": "The Presidency said on 23 September 2008 that President Mbeki had received letters of resignation from members of Cabinet which he had regretfully had to accept; the first listed is the 'Deputy President', given by title only.",
+      "locator": {
+        "section": "statement body, numbered list item 1",
+        "date_line": "23 September 2008; Issued by: The Presidency 23 September 2008"
+      }
+    },
+    {
+      "claim_id": "za_deputy_president_resignation_effect_by_reference_20080923",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-DP-05",
+      "role_id": "za_deputy_president",
+      "holder_name": null,
+      "role_title": "Deputy President of the Republic of South Africa",
+      "event_kind": "resignation_effect_stated_by_reference",
+      "attested_on": "2008-09-23",
+      "text": "The same statement says the resignations will be effective from the day the President's resignation takes effect.",
+      "locator": {
+        "section": "paragraph after the list of Deputy Ministers"
+      }
+    }
+  ],
+  "bounded_scope": "Deputy President observations for CLAUDE-C01-21 only (role za_deputy_president in za_presidency). Announcements, stated intentions, appointments and their notices, oaths and their scheduling, stated assumptions, releases, resignations and their stated effect, Assembly-seat events and in-office attestations stay separate rows; holder observations and any start or end are decided in the packet, not by any row. The President's roles (za_president_election, za_state_president) and the ANC's party office are excluded and no row feeds them."
+}

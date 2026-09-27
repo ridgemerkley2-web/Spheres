@@ -1,0 +1,73 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_cn_dcn1_20230102_p20_26",
+  "source_url": "https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=111711&download=true",
+  "accessed_date": "2026-09-24",
+  "published_date": "2023-01-02",
+  "access_method": "downloaded_official_pdf_and_pages_rendered_for_visual_review",
+  "source_response_bytes": 24950218,
+  "source_response_sha256": "d6c9c275da00f4d8b73a3127fa98c53a7723f7779445d6a33e93131d7ec854ee",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file from the Senate's document service, a static stored issue (download=true), the same response CLAUDE-C01-10 recorded on 23 September 2026. The researcher downloaded it again on 24 September 2026 at 22:39 UTC and the independent check 74-85 minutes later; both had the same byte count and SHA-256. The local copies were deleted after hashing, text extraction and rendering. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Complete 59-page extraordinary DCN nº 1/2023 issue (the same response as CLAUDE-C01-10's br_cn_dcn1_20230102_p1_8 and br_cn_dcn1_20230102_p18_19, whose records are scoped to pages 1-8 and 18-19): PDF page 20 is the TSE diploma of Geraldo José Rodrigues Alckmin Filho (page 21 its blank reverse), page 23 the signed termo de posse and page 26 his signed termo de compromisso; PDF page numbers equal printed page numbers. The viewer's page-range form is regenerated on every request and is never a recorded identity.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      20,
+      23,
+      26
+    ],
+    "method": "PDF pages 20 (the diploma; its OCR layer is unusable, read visually), 23 (signed termo de posse) and 26 (signed termo de compromisso) rendered and read; pages 17, 22 and 24 (section cover pages) read from the text layer. No diploma image, seal or signature is reproduced."
+  },
+  "rows": [
+    {
+      "claim_id": "br_alckmin_diplomado_tse_20221212",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-09",
+      "role_id": "br_vice_president",
+      "holder_name": "Geraldo Alckmin",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "diplomacao",
+      "attested_on": "2022-12-12",
+      "text": "The Superior Electoral Court's diploma reproduced in the issue states that, by the will of the people expressed at the ballot of 30 October 2022, Geraldo José Rodrigues Alckmin Filho, candidate of the Coligação Brasil da Esperança (FE Brasil (PT/PCdoB/PV)/SOLIDARIEDADE/Federação PSOL REDE (PSOL/REDE)/PSB/AGIR/AVANTE/PROS), was elected Vice-President of the Federative Republic of Brazil, qualifying him for investiture before Congress on 1 January 2023; it is dated Brasília, 12 December 2022, and signed by Minister Alexandre de Moraes as President.",
+      "locator": {
+        "pdf_page": 20,
+        "printed_page": 20,
+        "section": "diploma image (item 2.1.1 of the summary: 'Diplomas do Sr. Luiz Inácio Lula da Silva e do Sr. Geraldo José Rodrigues Alckmin Filho'); page 21 is its blank reverse"
+      }
+    },
+    {
+      "claim_id": "br_alckmin_signed_termo_de_posse_20230101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-09",
+      "role_id": "br_vice_president",
+      "holder_name": "Geraldo Alckmin",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "posse_record",
+      "attested_on": "2023-01-01",
+      "text": "The signed Termo de Posse records that at 15:00 on 1 January 2023, before Congress in joint session in the Chamber's plenary, Luiz Inácio Lula da Silva and Geraldo José Rodrigues Alckmin Filho were solemnly empossados under art. 78 of the Constitution as President and Vice-President, respectively, elected on 30 October 2022 and diplomados by the TSE on 12 December 2022, for the period 1 January 2023 to 4 January 2027.",
+      "locator": {
+        "pdf_page": 23,
+        "printed_page": 23,
+        "section": "Termo de posse with the signatures (item 2.1.2 of the summary)"
+      }
+    },
+    {
+      "claim_id": "br_alckmin_termo_de_compromisso_20230101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-09",
+      "role_id": "br_vice_president",
+      "holder_name": "Geraldo Alckmin",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "oath_of_office",
+      "attested_on": "2023-01-01",
+      "text": "The signed Termo de Compromisso records the oath under art. 78 of the Constitution given on 1 January 2023 by Geraldo José Rodrigues Alckmin Filho, 'eleito para o cargo de Vice-Presidente da República em 30 de outubro de 2022 e diplomado em 12 de dezembro de 2022'.",
+      "locator": {
+        "pdf_page": 26,
+        "printed_page": 26,
+        "section": "Termo de compromisso with signature (item 2.1.3 of the summary)"
+      }
+    }
+  ],
+  "bounded_scope": "Vice-President observations for CLAUDE-C01-17 only (role br_vice_president of br_presidency). Election, diplomação, oath, posse, termo de posse, same-session styling, the Vice-President's exercise of the Presidency, his succession to the Presidency, vacancy and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Ministers and party offices are excluded; the office of President is CLAUDE-C01-10's br_president role."
+}

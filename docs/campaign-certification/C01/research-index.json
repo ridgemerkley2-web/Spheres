@@ -8,10 +8,10 @@
     "country_packets": 9,
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 841,
-    "institution_observations": 29,
-    "sources": 360,
-    "source_claims": 2071,
-    "discovery_batches": 92,
+    "institution_observations": 34,
+    "sources": 1329,
+    "source_claims": 3731,
+    "discovery_batches": 93,
     "exhaustive_country_censuses": 0
   },
   "interpretation": "Source-backed discovery observations are not verified game parties, complete office histories or permission to create portraits. Reporting years do not establish organization lifespans. Unknown representation is not absence.",
@@ -20,10 +20,10 @@
       "nation": "Brazil",
       "packet": "docs/campaign-certification/C01/research/brazil.json",
       "organization_observations": 31,
-      "institution_observations": 0,
-      "role_observations": 0,
-      "source_claims": 34,
-      "mapping_pending": 31,
+      "institution_observations": 1,
+      "role_observations": 3,
+      "source_claims": 408,
+      "mapping_pending": 32,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
       "coverage": {
@@ -69,7 +69,10 @@
           "PCB and PMB release cells are dashes: no date, refusal, nonpayment, inactivity or exclusion is inferred.",
           "The PMB article and initial notice use different names; retain the later explicit rectification and research underlying decisions before creating lifecycle intervals.",
           "Federations, informal parties, parties in formation and institutions are outside this bounded intake; absence here does not establish nonexistence.",
-          "All game mappings, leadership roles, continuous lifecycle intervals, successor eligibility and portrait permissions remain unknown."
+          "All game mappings, leadership roles, continuous lifecycle intervals, successor eligibility and portrait permissions remain unknown.",
+          "Presidents 1990-2026 (CLAUDE-C01-10): the packet now holds one institution, br_presidency, with one role, br_president, and twelve dated holder observations (José Sarney observed on 5 January 1990; stated starts from 15 March 1990 to 1 January 2023; stated ends only for Collor and Rousseff). Still open for the presidency: Sarney's end, the ends of later terms, clock times, most sash transfers and the TSE and DOU originals. Vice-presidents, ministers, party offices and all other institutions remain outside this intake; the Vice-President's exercise of the office is claims only. No game identity or portrait permission is granted.",
+          "Vice-presidents 1990-2026 (CLAUDE-C01-17): the presidency institution now also holds a second role, br_vice_president, with nine dated holder observations (stated starts from 15 March 1990 to 1 January 2023; no stated end and no stated vacancy of the Vice-Presidency). The earlier statement in this list that vice-presidents remain outside this intake no longer applies to the Vice-Presidency of the Republic; ministers, party offices and all other institutions remain outside it. The Vice-President's exercise of the Presidency is claims only and never a holder of either role. No game identity or portrait permission is granted.",
+          "PT national presidents 1990-2026 (CLAUDE-C01-22, PT-PRES-01..10): the PT funding observation br_tse_fefc_2024_party_03 now holds one party role, br_pt_president, with eighteen dated holder observations; the earlier statement in this list that party offices remain outside this intake no longer applies to the PT national presidency. Party office and the Presidency of the Republic stay separate, the presidency and vice-presidency holders are unchanged, interim and acting service is claims only, and no game identity or portrait permission is granted."
         ]
       }
     },
@@ -240,10 +243,10 @@
       "nation": "Japan",
       "packet": "docs/campaign-certification/C01/research/japan.json",
       "organization_observations": 16,
-      "institution_observations": 7,
-      "role_observations": 4,
-      "source_claims": 29,
-      "mapping_pending": 23,
+      "institution_observations": 8,
+      "role_observations": 5,
+      "source_claims": 688,
+      "mapping_pending": 24,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
       "coverage": {
@@ -279,7 +282,10 @@
           "Only four independently titled party offices and five dated holder observations across three organizations were reviewed. These are not full office terms, biography records, campaign eligibility or portrait authorization.",
           "Election candidates and independent-member aggregates are not silently promoted into party leaders or fabricated organizations.",
           "The live upper-house English strength page was dated 13 September 2026 when accessed and was excluded because it exceeds the fixed 7 September cutoff. Search-cache dates were not substituted for the current page.",
-          "Neither the 2025 election nor the February 2026 group list establishes a complete present-day September roster. No observations after the cutoff or fictional successors are populated here."
+          "Neither the 2025 election nor the February 2026 group list establishes a complete present-day September roster. No observations after the cutoff or fictional successors are populated here.",
+          "Prime ministers 1990-2006 (CLAUDE-C01-12): the packet now holds one executive institution, jp_prime_minister, with one role, jp_pm, and fourteen dated holder observations (stated starts for 橋本龍太郎 in January 1996, 森喜朗 in April and July 2000 and 小泉純一郎 in 2001, 2003 and 2005; no stated end). Still open for the prime-ministership: the 1990-1998 appointment ceremonies, every end of office, any continued performance of duties under art. 71, the Official Gazette record, and all holders from 26 September 2006 to the cutoff. Ministers, deputy prime ministers and party offices remain outside this intake. No game identity or portrait permission is granted.",
+          "Prime ministers 2006-2026 (CLAUDE-C01-13, stacked on the 1990-2006 packet): jp_pm now has thirty holder observations; the sixteen from 26 September 2006 each have a stated start, and seven have an end stated by the Official Gazette (2020-2026). Still open: the ends of the 2006-2014 appointments (the Official Gazette of 2006-2017 is not available without restriction) and the conflicting end of 鳩山由紀夫's office in June 2010. No party office feeds the prime-ministership.",
+          "LDP presidents 1990-2009 (CLAUDE-C01-18, stacked on the 2006-2026 prime-ministers packet): the party role jp_ldp_party_president gains fourteen holder observations, from 海部俊樹 (1990) to 谷垣禎一 (2009), dated by same-day party records or the presidents' own Diet statements; 森喜朗 alone has a stated start (5 April 2000), and no holder has a stated end. Party office and the prime-ministership stay separate both ways. Still open: the presidents from 2009 to 2024, the end of every 1990-2009 presidency and contemporaneous party records for 1989-1995."
         ]
       }
     },
@@ -287,10 +293,10 @@
       "nation": "Russia",
       "packet": "docs/campaign-certification/C01/research/russia.json",
       "organization_observations": 14,
-      "institution_observations": 5,
-      "role_observations": 5,
-      "source_claims": 24,
-      "mapping_pending": 19,
+      "institution_observations": 7,
+      "role_observations": 9,
+      "source_claims": 295,
+      "mapping_pending": 21,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
       "coverage": {
@@ -326,7 +332,11 @@
           "The five faction memberships are reported as 324, 57, 28, 23 and 15. They are preserved without forcing a chamber-capacity total or treating them as party election results.",
           "All game-party mappings and faction constituent links remain empty. Shared names do not create an automatic legal identity match.",
           "Russia and USSR organizations, predecessor states, renames, mergers, dissolutions and regional party histories require separate sourced reconciliation; no continuity is assumed.",
-          "This packet does not establish a September 2026 current roster, complete country census, succession eligibility or artwork completion. No post-cutoff facts or fictional successors are populated."
+          "This packet does not establish a September 2026 current roster, complete country census, succession eligibility or artwork completion. No post-cutoff facts or fictional successors are populated.",
+          "CLAUDE-C01-05 adds one institution, ru_rsfsr_presidency, from RSFSR acts of 1991. It is filed here because Law 2094-I renamed the RSFSR the Russian Federation; it is not mapped from, and does not continue, the USSR Presidency in ussr.json.",
+          "The RSFSR Supreme Soviet, its Chairman and the RSFSR Congress of People's Deputies are not institutions in this packet. Yeltsin's 1991 signatures as Supreme Soviet Chairman and his release from that post on 10 July 1991 are recorded as claims only.",
+          "CLAUDE-C01-14 adds the role ru_president (President of the Russian Federation, head_of_state) to ru_rsfsr_presidency, with seven holder observations from 1996 to 2024 drawn from official records of 1992-2026. It does not change the C01-05 holders, does not merge holders across the RSFSR and Russian Federation titles, records acting service (1999-2000) as claims only and establishes no current roster, succession eligibility or artwork claim.",
+          "CLAUDE-C01-19 adds one institution, ru_government (Government of the Russian Federation), with one role, ru_government_chairman (head_of_government), and fifteen holder observations from 1992 to 2024 drawn from official records of 1991-2026. It does not change the presidency holders, records acting service and the Government's continued duties as claims only, gives no holder an end (no reviewed source states the day a Chairman's office ended) and establishes no current roster, succession eligibility or artwork claim."
         ]
       }
     },
@@ -336,7 +346,7 @@
       "organization_observations": 6,
       "institution_observations": 6,
       "role_observations": 10,
-      "source_claims": 15,
+      "source_claims": 48,
       "mapping_pending": 12,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -365,8 +375,8 @@
       "packet": "docs/campaign-certification/C01/research/south-africa.json",
       "organization_observations": 52,
       "institution_observations": 1,
-      "role_observations": 4,
-      "source_claims": 109,
+      "role_observations": 7,
+      "source_claims": 342,
       "mapping_pending": 53,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
@@ -402,7 +412,10 @@
           "Review earlier and later official registers, excluded electoral universes, independent representation and all organizational continuity before claiming a country census.",
           "Reconcile every party with game identities and separately source leadership terms, roles, biographies and portrait permission. No game roster or character eligibility is changed.",
           "Names containing Alliance, Congress or Movement are retained exactly as electoral reporting names. Organizational form, coalition membership, caucus identity and underlying component parties remain unresolved.",
-          "DA offices have dated observations only; their relationships and continuity require further evidence. Presidency election does not establish party leadership or inauguration."
+          "DA offices have dated observations only; their relationships and continuity require further evidence. Presidency election does not establish party leadership or inauguration.",
+          "Heads of state 1990-2024 (CLAUDE-C01-09): the State President under the 1983 Constitution and the President of the Republic are separate roles in za_presidency; holder observations are dated from primary records with only stated starts and ends. Deputy presidents, acting presidents during travel, ministers and party offices remain outside this review, and no game identity or portrait permission is granted.",
+          "Deputy Presidents 1994-2026 (CLAUDE-C01-21, ZA-DP-01..10): the Deputy President is a separate role, za_deputy_president, in za_presidency, with twelve holder observations from primary records; only Jacob Zuma's start (17 June 1999) is stated and no holder has a stated end. Announcements, appointments and their notices, scheduled oaths, releases, resignations and their stated effect, Assembly-seat events and retrospective lists are claims only; acting service as President is never a holder; the President's roles and the ANC's party office are unchanged, and no game identity or portrait permission is granted.",
+          "ANC Presidents 1990-2026 (CLAUDE-C01-16, ZA-ANC-01..10): the party office is a separate role, za_anc_president, on the AFRICAN NATIONAL CONGRESS observation, with ten holder observations dated by ANC in-office attestations and no start or end; conference elections, result publications, handovers, departures, deputy and chair offices are claims only. No ANC record found states the day any President assumed or left the party office or the day a National Conference declared its result; the only stated election day (18 December 2017, in the ANC's later biography of Ramaphosa) and the 2007 voting and publication days (18 and 19 December 2007) are claims only, never boundaries; the Presidency of the Republic and the party office never feed each other, and no game identity or portrait permission is granted."
         ]
       }
     },
@@ -446,10 +459,10 @@
       "nation": "USSR",
       "packet": "docs/campaign-certification/C01/research/ussr.json",
       "organization_observations": 1,
-      "institution_observations": 3,
-      "role_observations": 5,
-      "source_claims": 8,
-      "mapping_pending": 4,
+      "institution_observations": 4,
+      "role_observations": 6,
+      "source_claims": 98,
+      "mapping_pending": 5,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
       "coverage": {
@@ -462,11 +475,13 @@
         "unrepresented_organization_total": null,
         "art_completion_claim": false,
         "unresolved": [
-          "This is a bounded 1990 source inventory: one party and three state institutions, not an exhaustive USSR party, faction, opposition, republic or coalition census.",
+          "This is a bounded 1990-1991 source inventory: one party and three state institutions, not an exhaustive USSR party, faction, opposition, republic or coalition census.",
           "The packet does not establish absence of other organizations. Discover original party registers, congresses, candidate organizations and opposition movements with separate union/republic jurisdiction.",
           "Exact party election dates, acting roles, original spelling and full leadership intervals remain unresolved; contemporary Japanese diplomatic reporting is not an original CPSU election protocol.",
           "1991 office changes, emergency claims, resignations, suspensions and dissolution require their own source review. No legal or organizational continuity through 2026 is inferred.",
-          "The USSR packet remains separate from Russia. Existing game party mappings, historical avatar eligibility, likeness approval and post-cutoff fictional succession are not changed."
+          "The USSR packet remains separate from Russia. Existing game party mappings, historical avatar eligibility, likeness approval and post-cutoff fictional succession are not changed.",
+          "CLAUDE-C01-05 reviews only the December 1991 records bearing on the Presidency (SURU-TR91-04 to 08). The August 1991 events, the CPSU suspension and the September 1991 changes to the Congress and Supreme Soviet remain unreviewed.",
+          "CLAUDE-C01-26 adds a fourth state institution, su_government (the Council of Ministers and, from 1991, the Cabinet of Ministers of the USSR), with one head-of-government role, and extends su_supreme_soviet_chair; it reviews the Union government's head and the Supreme Soviet's chair from 1 January 1990 to December 1991 (SU-GOV-01 to 10), including the August 1991 release decree, suspension and no-confidence vote and the September 1991 reorganisation of the Supreme Soviet. The CPSU's 1991 suspension and dissolution, the Congress's own end and the chamber chairmanships remain unreviewed, and no holder in either role has a from or an until."
         ]
       }
     }
@@ -554,7 +569,8 @@
         "C01-Brazil-ROLE-001"
       ],
       "members": [
-        "br_pmb_name_decisions_2025_2026"
+        "br_pmb_name_decisions_2025_2026",
+        "br_presidency"
       ],
       "maximum_reviewed_records": 10,
       "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
@@ -2360,7 +2376,8 @@
       "members": [
         "jp_shugiin_group_20260218_050",
         "jp_shugiin_group_20260218_060",
-        "jp_shugiin_group_20260218_070"
+        "jp_shugiin_group_20260218_070",
+        "jp_prime_minister"
       ],
       "maximum_reviewed_records": 10,
       "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
@@ -2407,7 +2424,23 @@
         "ru_duma_faction_20211012_kprf",
         "ru_duma_faction_20211012_srzp",
         "ru_duma_faction_20211012_ldpr",
-        "ru_duma_faction_20211012_nl"
+        "ru_duma_faction_20211012_nl",
+        "ru_rsfsr_presidency"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-Russia-DISC-B003",
+      "nation": "Russia",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-Russia-ORG-001",
+        "C01-Russia-ROLE-001"
+      ],
+      "members": [
+        "ru_government"
       ],
       "maximum_reviewed_records": 10,
       "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
@@ -2625,7 +2658,8 @@
         "su_cpsu",
         "su_presidency",
         "su_congress_peoples_deputies",
-        "su_supreme_soviet"
+        "su_supreme_soviet",
+        "su_government"
       ],
       "maximum_reviewed_records": 10,
       "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
@@ -2634,8 +2668,8 @@
   "source_files": [
     {
       "path": "docs/campaign-certification/C01/research/brazil.json",
-      "bytes": 85773,
-      "sha256": "4709177ebd35439933819a9319a7aca829b217bc7e486280705a7acdbf89ef66"
+      "bytes": 774754,
+      "sha256": "17b3e586b1fa91f5a6fa91a0fb13297a0c43bb9dd589e70dd65b6d3ad0819a36"
     },
     {
       "path": "docs/campaign-certification/C01/research/france.json",
@@ -2649,23 +2683,23 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/japan.json",
-      "bytes": 60293,
-      "sha256": "2aaa46d504ee151f5d92ee25849f7773db9c49ce7597f6ac87f5921b753ed573"
+      "bytes": 1393225,
+      "sha256": "918afdce0cce6e43019a565f88720109e53cfc5a6bee40cfb46e0ccf8d324752"
     },
     {
       "path": "docs/campaign-certification/C01/research/russia.json",
-      "bytes": 56106,
-      "sha256": "3ff8b214e21092420135927b0913e2a51b15baa08687444834d204cbb0fe12a1"
+      "bytes": 573475,
+      "sha256": "02a014ccb98351f623a627d40b45938944edca2160ff8172a7f79f37527dd647"
     },
     {
       "path": "docs/campaign-certification/C01/research/saudi-arabia.json",
-      "bytes": 32202,
-      "sha256": "8c432b519fd01641e23de609fcfc6c98d893ab177be1038faf7b0d9cb0f45490"
+      "bytes": 91251,
+      "sha256": "b88926650563a145e0f87783706657fdd28484a764f8512125b67538b68d68e7"
     },
     {
       "path": "docs/campaign-certification/C01/research/south-africa.json",
-      "bytes": 210415,
-      "sha256": "ce1d742da90c1765fdacb5627a6808bc88d86dbee62599d50e605f567b92c609"
+      "bytes": 740024,
+      "sha256": "ba404b46f685442aa9d3798cf437de0f489d742912b1fb9a6084993dc9f6d16f"
     },
     {
       "path": "docs/campaign-certification/C01/research/tonga.json",
@@ -2674,8 +2708,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/ussr.json",
-      "bytes": 19923,
-      "sha256": "7130e97ff0fbfa8224e787b167835395cea2127fa3e567ae75e6604a752c3f57"
+      "bytes": 191099,
+      "sha256": "b3b0939207b742a6141f0c4386efebf292152b923697528981aa8afa911b7062"
     },
     {
       "path": "tools/avatars/campaign_research.py",

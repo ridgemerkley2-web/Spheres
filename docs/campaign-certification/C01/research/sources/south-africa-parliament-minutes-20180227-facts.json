@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_parliament_na_minutes_20180227",
+  "source_url": "https://www.parliament.gov.za/storage/app/media/Docs/min/686ae05d-bb4e-454d-b6ed-607889a9cc7b.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_original_pdf_from_parliament_document_store_and_text_layer_read",
+  "source_response_bytes": 238856,
+  "source_response_sha256": "2c7ceb4185776d10c518d91283d90e404121a1e40f6024eaa0c9d570c5994695",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (the server rejects HEAD) with no automatic decoding, then hash the bytes as received; the file is static and a cache-busting query returns the same bytes.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded by the independent check on 2026-09-25 at 13:19-13:31Z and again at 14:02Z, with the same byte count, SHA-256 and Last-Modified; downloaded again for this packet at 14:55Z with the same identity. Downloaded again for this packet at 2026-09-25T15:30Z (integration pass) with the same byte count and SHA-256.",
+  "provenance_note": "Official file from Parliament's document store, served as a static file (Last-Modified 2 March 2026, before the historical cutoff) without content encoding; fetch it with GET. The response identity was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official file from Parliament's document store, located through the site's own paper index (https://www.parliament.gov.za/docsjson/, called with the paging parameters the site sends; the listing grows over time and is used only to locate files, never as a source). A static file with Last-Modified 2 March 2026, before the historical cutoff, and an ETag whose size part equals the byte count; use GET. Located by the independent check. Assembly membership only.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Text PDF (19 pages); the text layer of pages 1-2 read; no page rendered."
+  },
+  "rows": [
+    {
+      "claim_id": "za_mabuza_assembly_seat_filled_20180226",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-DP-08",
+      "role_id": "za_deputy_president",
+      "holder_name": "David Mabuza",
+      "role_title": "Deputy President of the Republic of South Africa",
+      "event_kind": "assembly_seat_filled",
+      "attested_on": "2018-02-26",
+      "text": "The Minutes of 27 February 2018 record the Speaker's announcement that the vacancy caused by the resignation of Ms D P Manana 'had been filled by the nomination of Mr D D Mabuza with effect from 26 February 2018', and that the new members 'had made and subscribed the oath and affirmation in the Speaker's office'.",
+      "locator": {
+        "pdf_page": 1,
+        "printed_page": 5,
+        "item": 3,
+        "continued": "pdf page 2"
+      }
+    }
+  ],
+  "bounded_scope": "Deputy President observations for CLAUDE-C01-21 only (role za_deputy_president in za_presidency). Announcements, stated intentions, appointments and their notices, oaths and their scheduling, stated assumptions, releases, resignations and their stated effect, Assembly-seat events and in-office attestations stay separate rows; holder observations and any start or end are decided in the packet, not by any row. The President's roles (za_president_election, za_state_president) and the ANC's party office are excluded and no row feeds them."
+}

@@ -1,0 +1,68 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_portal_humberto_reiterates_unity_20250320",
+  "source_url": "https://web.archive.org/web/20250321212958id_/http://pt.org.br/ped-2025-humberto-costa-reitera-trabalho-pela-uniao-nacional-do-pt/",
+  "original_url": "http://pt.org.br/ped-2025-humberto-costa-reitera-trabalho-pela-uniao-nacional-do-pt/",
+  "archive_capture_utc": "2025-03-21T21:29:58Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2025-03-20",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 99562,
+  "source_response_sha256": "4e732da3e22d1baf50f4b0aaf0d624da4ab641741119beaea63cdd0fb957784f",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Found by the independent check, which downloaded it at 15:04:16 UTC and again at 15:49:05 UTC on 25 September 2026 with Accept-Encoding: identity; both downloads had the same byte count and SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2025-03-21T21:29:58Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Found by the independent check, which downloaded it at 15:04:16 UTC and again at 15:49:05 UTC on 25 September 2026 with Accept-Encoding: identity; both downloads had the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A pt.org.br article of 20 March 2025 (13h45, updated 15h39), captured 21 March 2025. Found by the independent check. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_dn_ratifies_humberto_choice_20250320",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-09",
+      "role_id": "br_pt_president",
+      "holder_name": "Humberto Costa",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "directorate_ratification",
+      "attested_on": "2025-03-20",
+      "text": "The article says the national president, Senator Humberto Costa, gave a press conference on Thursday 20 March 2025 'após a reunião do Diretório Nacional (DN), em Brasília, que ratificou a escolha do parlamentar para liderar o PT até que esteja concluído o Processo de Eleição Direta (PED), em julho'.",
+      "locator": {
+        "item": "first paragraph"
+      }
+    },
+    {
+      "claim_id": "br_pt_humberto_states_interim_to_effective_20250320",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-09",
+      "role_id": "br_pt_president",
+      "holder_name": "Humberto Costa",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "stated_assumption_of_office",
+      "attested_on": "2025-03-20",
+      "text": "Humberto Costa is quoted: 'Nós cumprimos as últimas formalidades, agora saio da condição de presidente interino para presidente efetivo, até a realização do nosso Processo de Eleição Direta, que vai acontecer no dia 6 de julho'.",
+      "locator": {
+        "item": "third paragraph (quotation)"
+      }
+    },
+    {
+      "claim_id": "br_pt_humberto_assumed_previous_week_recital",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-09",
+      "role_id": "br_pt_president",
+      "holder_name": "Humberto Costa",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores em exercício ou interino",
+      "event_kind": "interim_assumption_day_not_printed",
+      "attested_on": null,
+      "text": "The article adds that 'Humberto Costa assumiu a presidência do partido no início da semana passada, em substituição à hoje ministra-chefe da Secretaria de Relações Institucionais (SRI), Gleisi Hoffmann'.",
+      "locator": {
+        "item": "second paragraph"
+      }
+    }
+  ]
+}

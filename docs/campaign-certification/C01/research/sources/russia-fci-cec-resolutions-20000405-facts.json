@@ -1,0 +1,54 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_fci_cec_resolutions_april_2000",
+  "source_url": "https://web.archive.org/web/20000831231210id_/http://www.fci.ru:80/prez2000/pnorm_akt/pnorm_akta_s.htm",
+  "original_url": "http://www.fci.ru/prez2000/pnorm_akt/pnorm_akta_s.htm",
+  "archive_capture_utc": "2000-08-31T23:12:10Z",
+  "source_title": "Resolutions adopted by the CEC of Russia in April 2000 (list) — CEC/GAS 'Vybory' site www.fci.ru, presidential election 2000 section",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "document_date": null,
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20000831231210id_/http://www.fci.ru:80/prez2000/pnorm_akt/pnorm_akta_s.htm",
+  "source_response_bytes": 5647,
+  "source_response_sha256": "01e526644c6c8360184ba673c15e4a35e423b0fe626613ed63066f846a0e430a",
+  "source_response_encoding": "windows-1251 (meta charset); served uncompressed; original Last-Modified 17 May 2000",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Raw capture downloaded 21:56:16 UTC and again at 22:46 UTC on 2026-09-24 (50 minutes): identical bytes. Independent check: re-downloaded between 2026-09-24T23:22Z and 23:53Z, 35-60 minutes after the first downloads; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T00:34:19Z (5,647 bytes); identical SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of http://www.fci.ru/prez2000/pnorm_akt/pnorm_akta_s.htm, captured at 2000-08-31T23:12:10Z, before the 7 September 2026 cutoff; the id_ form replays the archived bytes unchanged and is used because the Central Election Commission's hosts refused connections from this environment (ports 80 and 443). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The index is a CEC self-publication, undated as a whole (captured 31 August 2000; server Last-Modified 17 May 2000). Read in full.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Whole list read in Russian after windows-1251 decoding."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_cec_res_97_1110_3_results_20000405",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-05",
+      "role_id": "ru_president",
+      "holder_name": null,
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "result_declaration_index_entry",
+      "attested_on": "2000-04-05",
+      "text": "The CEC's April 2000 list includes resolution No. 97/1110-3 of 5 April 2000, 'On the results of the election of the President of the Russian Federation'.",
+      "locator": "Last list entry"
+    },
+    {
+      "claim_id": "ru_cec_res_97_1111_3_certificate_20000405",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-05",
+      "role_id": "ru_president",
+      "holder_name": "Владимир Владимирович Путин",
+      "printed_name": "В.В. Путина (genitive)",
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "election_certificate_index_entry",
+      "attested_on": "2000-04-05",
+      "text": "The same list includes resolution No. 97/1111-3 of 5 April 2000, 'On the certificate of the election of V. V. Putin as President of the Russian Federation'.",
+      "locator": "Last-but-one list entry"
+    }
+  ],
+  "bounded_scope": "Presidency observations for CLAUDE-C01-14 only. Election calling, voting, result determination, declaration, correction and publication, oath, stated assumption of office, inauguration ceremony, resignation, acting service and outgoing-holder statements stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-05 RSFSR roles and the USSR packet are outside this extract."
+}

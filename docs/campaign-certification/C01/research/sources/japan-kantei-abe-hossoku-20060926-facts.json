@@ -1,0 +1,53 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_kantei_abe_hossoku_20060926",
+  "source_url": "https://web.archive.org/web/20061004144947id_/http://www.kantei.go.jp/jp/abephoto/2006/09/26hossoku.html",
+  "original_url": "http://www.kantei.go.jp/jp/abephoto/2006/09/26hossoku.html",
+  "archive_capture_utc": "2006-10-04T14:49:47Z",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 5538,
+  "source_response_sha256": "370ae14d206d380de78296b2a214df8756375e1fed3f9311393dbeb8197f8bbf",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "Shift_JIS (no charset is declared in the page or the archived Content-Type header; the bytes decode cleanly as Shift_JIS)",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2006-10-04T14:49:47Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The archived original's Last-Modified header is Tue, 26 Sep 2006 16:58:41 GMT. The SHA-1 of these bytes (3UNAA2JLZ4D2LF24YQF6WVFKIOA567CF) equals the Internet Archive's CDX digest for the capture, compared by this packet on 24 September 2026. Downloaded on 24 September 2026 by the researcher at 18:29:57Z and 19:12:02Z; by the independent check at 19:15:11Z and 19:44:02Z; by this packet at 20:20:59Z, 20:41:33Z and 20:55:33Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A contemporaneous Kantei page, recorded as a raw Internet Archive capture made before the cutoff; the archived original's Last-Modified header is given in the extract. No photograph is reused.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded and read in full; no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_abe_shinninshiki_20060926",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-10",
+      "role_id": "jp_pm",
+      "holder_name": null,
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "imperial_appointment_ceremony",
+      "attested_on": "2006-09-26",
+      "text": "Kantei's account states that on the afternoon of 26 September 2006 安倍晋三 was designated by both Houses as the 90th Prime Minister (57th person), and that the Prime Minister's Imperial appointment ceremony and the ministers' attestation took place at the Palace that night, followed by a press conference and the first cabinet meeting.",
+      "locator": {
+        "section": "paragraphs 1-3 under 平成１８年９月２６日"
+      }
+    },
+    {
+      "claim_id": "jp_abe_cabinet_formed_20060926",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-10",
+      "role_id": "jp_pm",
+      "holder_name": null,
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "cabinet_formation",
+      "attested_on": "2006-09-26",
+      "text": "The same page is headed 安倍内閣の発足 and quotes Abe saying he had organised the 'beautiful country' cabinet that day.",
+      "locator": {
+        "section": "heading and fourth paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-12 only. Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, a cabinet's formation, its resignation en masse, any continued performance of duties and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role in this packet: an unnamed statement, agenda or ceremony record, an acting prime minister, the House of Councillors' 1998 designee or the successor at the closing boundary. Ministers, deputy prime ministers and party offices are excluded."
+}

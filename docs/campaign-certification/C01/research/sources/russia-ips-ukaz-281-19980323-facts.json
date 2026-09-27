@@ -1,0 +1,70 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_ukaz_281_19980323",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102052192&page=1&rdk=0",
+  "source_title": "Decree of the President of the Russian Federation No. 281 of 23 March 1998 'On the Government of the Russian Federation' (original edition)",
+  "accessed_date": "2026-09-25",
+  "published_date": "1998-03-24",
+  "document_date": "1998-03-23",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102052192&page=1&rdk=0",
+  "source_response_bytes": 23883,
+  "source_response_sha256": "a3e71c3180b569aae119128df4e76775febd38ec1febf9f35b51aa21850e4254",
+  "source_response_encoding": "windows-1251",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded at 2026-09-25T12:00:44Z and again at 2026-09-25T12:41:24Z (more than 30 minutes later); identical 23,883 bytes and SHA-256. Portal card: Downloaded at 2026-09-25T12:04:22Z and again at 2026-09-25T12:41:50Z (more than 30 minutes later); identical 3,115 bytes and SHA-256. Independent check: re-downloaded at 2026-09-25T13:21Z-13:25Z, at least 40 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:19:16Z and again at 2026-09-25T14:52:49Z (33 minutes later); identical 23,883 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=281&a8type=1&a7type=4&a7from=23.03.1998&a7to=23.03.1998&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3115,
+    "sha256": "38c29453c7d0584f4e46984c9d92323b6570ea0c293ebd1c5f3ff6e9b900b53f",
+    "note": "Date-restricted single-document card (number 281, date 23.03.1998): one hit, status 'Действует c изменениями' (point 3 repealed by decree 287)."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 25 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read in full. The date-restricted single-document portal card (portal_card_response) returns only this act.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in full in Russian after windows-1251 decoding."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_ukaz_281_government_dismissed_19980323",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-03",
+      "role_id": "ru_government_chairman",
+      "holder_name": null,
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "government_resignation_announced",
+      "attested_on": "1998-03-23",
+      "text": "Citing Articles 83 and 117 of the Constitution, the President declares the resignation of the Government of the Russian Federation ('Объявляю об отставке Правительства Российской Федерации'); the decree takes effect from the day of signing, 23 March 1998.",
+      "locator": "Points 1 and 4; signature block"
+    },
+    {
+      "claim_id": "ru_ukaz_281_members_continue_19980323",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-03",
+      "role_id": "ru_government_chairman",
+      "holder_name": null,
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "continuation_of_duties",
+      "attested_on": "1998-03-23",
+      "text": "The President asks the members of the Government to perform their duties until a new Government is formed.",
+      "locator": "Point 2"
+    },
+    {
+      "claim_id": "ru_ukaz_281_president_assumes_acting_duties_19980323",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-03",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Борис Николаевич Ельцин",
+      "printed_name": "Б.Ельцин (signature; point 3 reads \"возлагаю на себя\")",
+      "role_title": "Исполняющий обязанности Председателя Правительства — Acting Chairman of the Government",
+      "event_kind": "acting_service_designation",
+      "attested_on": "1998-03-23",
+      "text": "In the original edition the President assumes the temporary performance of the duties of the Chairman of the Government himself ('Временное исполнение обязанностей Председателя Правительства Российской Федерации возлагаю на себя').",
+      "locator": "Point 3 (original edition, rdk=0)"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

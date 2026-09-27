@@ -1,0 +1,68 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_portal_dn_posse_dutra_20100219",
+  "source_url": "https://web.archive.org/web/20100223022603id_/http://www.pt.org.br:80/portalpt/noticias/nacional-2/o-pt-tem-lado-e-sabe-o-que-o-quer-para-o-brasil-diz-lula-na-posse-do-novo-dn-3241.html",
+  "original_url": "http://www.pt.org.br/portalpt/noticias/nacional-2/o-pt-tem-lado-e-sabe-o-que-o-quer-para-o-brasil-diz-lula-na-posse-do-novo-dn-3241.html",
+  "archive_capture_utc": "2010-02-23T02:26:03Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2010-02-19",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 25662,
+  "source_response_sha256": "9eaa13b5b80429c27202992973570283431bf34b606b0255b51663cac12e5f4e",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture (20100223022603). First downloaded 2026-09-25T13:13:24Z with a Python urllib client; downloaded again 2026-09-25T13:44:43Z with curl (no --compressed, Accept-Encoding: identity), more than 30 minutes later: 25662 bytes, SHA-256 identical. The independent check downloaded it again at 13:58-14:00 UTC and at 14:31-14:33 UTC on 25 September 2026 (at least 30 minutes after the earlier downloads) with Accept-Encoding: identity; every response had the same byte count and SHA-256 and no Content-Encoding.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2010-02-23T02:26:03Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Raw Internet Archive id_ replay of a fixed capture (20100223022603). First downloaded 2026-09-25T13:13:24Z with a Python urllib client; downloaded again 2026-09-25T13:44:43Z with curl (no --compressed, Accept-Encoding: identity), more than 30 minutes later: 25662 bytes, SHA-256 identical. The independent check downloaded it again at 13:58-14:00 UTC and at 14:31-14:33 UTC on 25 September 2026 (at least 30 minutes after the earlier downloads) with Accept-Encoding: identity; every response had the same byte count and SHA-256 and no Content-Encoding. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A Portal do PT item of 19 February 2010 (22:15) reporting the posse of the new Diretório Nacional, captured 23 February 2010. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full in the original Portuguese; no images reviewed."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_dutra_empossado_president_20100219",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-06",
+      "role_id": "br_pt_president",
+      "holder_name": "José Eduardo Dutra",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "posse_reported",
+      "attested_on": "2010-02-19",
+      "text": "The PT portal reports that the posse act took place on the night of Friday 19 February 2010, within the 4th Congress at the Centro de Convenções Ulysses Guimarães, when the new president José Eduardo Dutra and the 81 members of the new National Directorate were invested ('foram empossados').",
+      "locator": {
+        "section": "Item body, second paragraph ('O ato ocorreu na noite desta sexta-feira (19) ... quando foram empossados o novo presidente José Eduardo Dutra e os 81 membros do novo DN')"
+      }
+    },
+    {
+      "claim_id": "br_pt_berzoini_leaves_presidency_statement_20100219",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-06",
+      "role_id": "br_pt_president",
+      "holder_name": "Ricardo Berzoini",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "predecessor_departure_statement",
+      "attested_on": "2010-02-19",
+      "text": "The same report describes 'O deputado federal Ricardo Berzoini, que deixa a presidência do partido' as reviewing the party's history at the act.",
+      "locator": {
+        "section": "Item body, paragraph beginning 'O deputado federal Ricardo Berzoini'"
+      }
+    },
+    {
+      "claim_id": "br_pt_dutra_posse_speech_lists_past_pt_presidents",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-06",
+      "role_id": "br_pt_president",
+      "holder_name": null,
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "retrospective_list",
+      "attested_on": null,
+      "text": "The report of 19 February 2010 says Dutra, in his posse speech, paid tribute to all the presidents in the PT's history, naming Lula, Olívio Dutra, Rui Falcão, Luiz Gushiken, Tarso Genro, José Dirceu, José Genoíno and Berzoini.",
+      "locator": {
+        "section": "Item body, paragraph beginning 'O presidente empossado, José Eduardo Dutra'"
+      }
+    }
+  ]
+}

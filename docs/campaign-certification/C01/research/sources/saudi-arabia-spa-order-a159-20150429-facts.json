@@ -1,0 +1,62 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://www.spa.gov.sa/1355272",
+  "accessed_date": "2026-09-21",
+  "published_date": "2015-04-29",
+  "access_method": "downloaded_original_html_and_embedded_article_text_read",
+  "source_response_bytes": 182370,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "article_content_sha256": "460122e798164cd1eeba90f475ffdffd1caad8d84a9c536565b69c52d31fd0dc",
+  "article_content_field": "__NEXT_DATA__ props.pageProps.newsDetails.content, encoded as UTF-8",
+  "title_as_published": "عام / أوامر ملكية",
+  "portal_metadata": {
+    "uuid": "3e3407beb0",
+    "locale": "ar",
+    "published_at_utc": "2015-04-29T03:18:25Z",
+    "date_hijri_field": "1436-07-10",
+    "filing_time_printed": "06:16 Makkah time"
+  },
+  "response_observations": [
+    {
+      "downloaded_by": "researcher",
+      "url_form": "https://www.spa.gov.sa/1355272",
+      "bytes": 182370,
+      "sha256": "137feef01b6c422a2c55bb71e7a3dcd4e6da3191e1690cad0b18b7f270ef233e",
+      "views_count": 1117,
+      "server_id": "S101"
+    },
+    {
+      "downloaded_by": "checker",
+      "url_form": "https://www.spa.gov.sa/1355272",
+      "bytes": 182370,
+      "sha256": "7936bc74fa4a1e538a4030e095850218719b8808e265fef8e667ea7542ed51c1",
+      "views_count": 1118,
+      "server_id": "S101"
+    }
+  ],
+  "provenance_note": "Downloaded with curl -L on 2026-09-21 by the researcher and again, independently, by the checker (2 responses; 182,370 bytes; SHA-256 137feef0..., 7936bc74...). The response embeds a live views_count and a load-balancer server_id in its __NEXT_DATA__ JSON, so response bytes and SHA-256 vary between fetches and between URL forms; no response hash is asserted. article_content_sha256 is the SHA-256 of the UTF-8 newsDetails.content field; it was identical in every download and is the reproducible identity. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "sa_muqrin_relieved_a159",
+      "text": "Royal Order A/159 dated 10/7/1436 AH, issued that day according to the dateline Riyadh 10 Rajab 1436 / 29 April 2015: citing Prince Muqrin bin Abdulaziz's letter of the same date asking to be relieved of the crown princeship, King Salman relieves him, at his request, of the crown princeship and of the post of Deputy Prime Minister.",
+      "attested_on": "2015-04-29",
+      "locator": "Dateline; order number and date; recital and item First; trailer (filed 06:16 Makkah time)",
+      "uncertainty": "A relief at his own request, not a death. No Allegiance Commission vote is stated for the relief."
+    },
+    {
+      "id": "sa_mbn_cp_a159",
+      "text": "Item Second of the same order selects Prince Mohammed bin Nayef bin Abdulaziz as Crown Prince and appoints him Deputy Prime Minister, Minister of Interior and Chairman of the Council of Political and Security Affairs; the preamble cites Royal Order A/52 of 3/4/1436 AH.",
+      "attested_on": "2015-04-29",
+      "locator": "Preamble and item Second",
+      "uncertainty": "No Allegiance Commission vote is stated for this selection. A/52 was cited but not read."
+    }
+  ],
+  "scope_note": "The release ends with 'to follow'; its continuation, Royal Order A/160, is recorded separately (sa_spa_order_a160_20150429). Used for SA-EXEC-06.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not visually rendered. HTML news article (not a scan or PDF); the article text was read from the embedded newsDetails JSON of the downloaded response."
+  }
+}

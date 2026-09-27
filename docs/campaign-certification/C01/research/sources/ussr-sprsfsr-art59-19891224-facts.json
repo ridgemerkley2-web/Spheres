@@ -1,0 +1,53 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_sprsfsr_1990_8_art59_19891224",
+  "source_url": "https://docs.historyrussia.org/system/pages/016/529/17/images/small/2deefa51e6a9fe2dc161dca537b10f3eed802f18.jpg?1716491941",
+  "source_title": "Собрание постановлений Правительства РСФСР, 1990, No. 8, art. 59: joint resolution of the USSR and RSFSR Councils of Ministers No. 1139 of 24 December 1989 (page scans)",
+  "accessed_date": "2026-09-26",
+  "published_date": null,
+  "document_date": "1989-12-24",
+  "access_method": "gazette_page_scan_images_downloaded_over_https",
+  "source_response_url": "https://docs.historyrussia.org/system/pages/016/529/17/images/small/2deefa51e6a9fe2dc161dca537b10f3eed802f18.jpg?1716491941",
+  "source_response_bytes": 30424,
+  "source_response_sha256": "d795d3dddc4e07e1e2de030f4750f532ddedbf5fe13f2b52d864c4343891a236",
+  "source_response_encoding": "image/jpeg (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "facsimile_responses": [
+    {
+      "image": 2,
+      "role": "printed p. 194: section heading and the title of art. 59",
+      "url": "https://docs.historyrussia.org/system/pages/016/529/09/images/small/6393cc1b12e1d2fd634203d8a0ea3b825adf2d9d.jpg?1716491916",
+      "bytes": 37089,
+      "sha256": "55bda52a960e86dc79b42dff8381a59cfe7db60db28bab2d7004365f5930a892",
+      "content_type": "image/jpeg"
+    }
+  ],
+  "stability_check": "Independent check (part A): downloaded at 2026-09-26T03:12Z and again at 03:40Z, the later download also with a cache-busting variant ('?cb=' in place of the timestamp query); identical bytes and SHA-256 (Last-Modified 23 May 2024). This packet: re-downloaded at 2026-09-26T03:52:53Z and again at 2026-09-26T04:26:29Z (33 minutes later); identical 30,424 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "provenance_note": "Static JPEG page image (the library's public 'small' rendition, about 328 x 480 pixels; larger renditions need a sign-in, which was not attempted), Last-Modified Thu, 23 May 2024 19:19:03 GMT, before the cutoff. The library's document page (https://docs.historyrussia.org/ru/nodes/418646) embeds a per-request security token and a view counter, so it is a locator only and has no recorded identity. The URL's numeric query is the file's upload timestamp, not a cache-buster; a request with a different query returned the same bytes. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Two static page images of the official RSFSR government gazette: printed p. 202 (signatures, date and number) is the recorded response and p. 194 (section heading and title) is attached. The library's document page for the article (node 418646) is a locator only: it embeds a per-request token and a view counter. A pre-period attestation, filed as context for SU-GOV-01.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "Both page images viewed by the independent check of part A and by this packet: printed p. 194 (section heading, title of art. 59) and printed p. 202 (the two signatures, place, date and number)."
+  },
+  "rows": [
+    {
+      "claim_id": "su_sprsfsr_59_ryzhkov_signs_as_chairman_19891224",
+      "observation_id": "su_government",
+      "review_observation": "SU-GOV-01",
+      "role_id": "su_government_head",
+      "holder_name": "Николай Иванович Рыжков",
+      "printed_name": "Н. Рыжков (initial and surname only)",
+      "role_title": "Председатель Совета Министров СССР / Премьер-министр СССР — Head of the Union government",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1989-12-24",
+      "text": "Article 59, the joint resolution of the Council of Ministers of the USSR and the Council of Ministers of the RSFSR 'О проведении в Свердловской области в 1990 году экспериментальной отработки механизма хозяйствования на основе самоуправления и самофинансирования', is signed 'Председатель Совета Министров СССР Н. Рыжков' (initial and surname only) and 'Председатель Совета Министров РСФСР А. Власов', 'Москва, 24 декабря 1989 г. № 1139'.",
+      "locator": "Art. 59: section heading and title, printed p. 194; signature, place, date and number block, printed p. 202 (page scans)"
+    }
+  ],
+  "bounded_scope": "Union head-of-government and Supreme Soviet chair observations for CLAUDE-C01-26 only. Election or approval, appointment, release decree, parliamentary consent, dismissal, no confidence, resignation statement, suspension, consent to arrest, release, acting or interim service, presiding arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The CLAUDE-C01-05 su_president holders and russia.json are outside this extract."
+}

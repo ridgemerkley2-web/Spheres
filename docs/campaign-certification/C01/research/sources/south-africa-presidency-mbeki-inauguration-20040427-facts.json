@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_presidency_mbeki_inauguration_address_20040427",
+  "source_url": "https://web.archive.org/web/20040520232213id_/http://www.dfa.gov.za:80/docs/speeches/2004/mbek0427.htm",
+  "original_url": "http://www.dfa.gov.za/docs/speeches/2004/mbek0427.htm",
+  "archive_capture_utc": "2004-05-20T23:22:13Z",
+  "accessed_date": "2026-09-22",
+  "published_date": "2004-04-27",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 37674,
+  "source_response_sha256": "3617e47ea3b12424d20c428c953af954c4e70d25b97fb3c1e11842a4369ba968",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2004-05-20T23:22:13Z; that form replays the archived bytes unchanged and is used in place of the live page. The researcher downloaded it on 22 September 2026 and the independent check downloaded it again the same day; both copies matched the byte count and SHA-256 recorded here, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Presidency address hosted on the Department of Foreign Affairs site (captured May 2004).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed. The words 'oath' and 'sworn' do not occur in it."
+  },
+  "rows": [
+    {
+      "claim_id": "za_mbeki_inauguration_ceremony_20040427",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-04",
+      "role_id": "za_president_election",
+      "holder_name": "Thabo Mbeki",
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "inauguration_ceremony",
+      "attested_on": "2004-04-27",
+      "text": "The Presidency's text of Mbeki's address on the occasion of his inauguration, Pretoria, 27 April 2004, says the day marks Freedom Day and the inauguration of the President of the Republic; Speaker Baleka Mbete and Chief Justice Arthur Chaskalson are among those addressed.",
+      "locator": {
+        "section": "title and opening paragraphs"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-09 only. Election, oath, inauguration, resignation announcement, resignation effect and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy presidents, ministers and party offices are excluded."
+}

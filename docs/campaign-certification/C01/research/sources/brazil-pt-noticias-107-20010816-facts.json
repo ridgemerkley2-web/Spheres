@@ -1,0 +1,57 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_noticias_107_20010819",
+  "source_url": "https://siac.fpabramo.org.br/uploads/acervo/J_PT_NOTICIAS_2001_0107.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_original_pdf_text_layer_read",
+  "source_response_bytes": 16049882,
+  "source_response_sha256": "8065054bac4318ace891cab8b779917fbe70318946738dcc57a9b8cc3d45b397",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded (a cache-busting query string may be added to reach the origin and is not part of the recorded URL); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Found by the independent check, which downloaded it at 13:17:11 UTC and again with a cache-busting query at 13:54:15 UTC on 25 September 2026; both downloads had the same byte count and SHA-256.",
+  "provenance_note": "Original file from the party foundation's SIAC digital archive (plain nginx origin, no CDN). Found by the independent check, which downloaded it at 13:17:11 UTC and again with a cache-busting query at 13:54:15 UTC on 25 September 2026; both downloads had the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "PT Notícias nº 107 (19 August - 4 September 2001), organ of the Diretório Nacional. Found by the independent check.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Scanned newspaper with an OCR text layer; the text layer read (pages 3, 5 and 7); no page rendered."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_ptn107_dirceu_signs_as_president_on_leave_200108",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-03",
+      "role_id": "br_pt_president",
+      "holder_name": "José Dirceu",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "leave_of_absence",
+      "attested_on": null,
+      "text": "A signed text lists among its signatories 'José Dirceu, deputado federal (SP), presidente nacional do PT licenciado', and a PED report quotes 'o deputado federal José Dirceu, presidente nacional licenciado'.",
+      "locator": {
+        "pdf_page": [
+          3,
+          5
+        ],
+        "item": "signature list 'ASSINAM'; PED debates report"
+      }
+    },
+    {
+      "claim_id": "br_pt_ptn107_genoino_signs_note_as_acting_president_20010816",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-03",
+      "role_id": "br_pt_president",
+      "holder_name": "José Genoino",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores em exercício ou interino",
+      "event_kind": "acting_service",
+      "attested_on": "2001-08-16",
+      "text": "A note dated 'Brasília, 16 de agosto de 2001' is signed 'Deputado Walter Pinheiro, líder do PT' and 'Deputado José Genoino, presidente em exercício do PT'.",
+      "locator": {
+        "pdf_page": 7,
+        "item": "note signature block"
+      }
+    }
+  ]
+}

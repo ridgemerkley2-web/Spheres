@@ -1,0 +1,238 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_hc_precedents_pm_designations",
+  "source_url": "https://web.archive.org/web/20240419112946id_/https://www.sangiin.go.jp/japanese/aramashi/houki/09senrei/pdf/r5se-s-11.pdf",
+  "original_url": "https://www.sangiin.go.jp/japanese/aramashi/houki/09senrei/pdf/r5se-s-11.pdf",
+  "archive_capture_utc": "2024-04-19T11:29:46Z",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_pdf_and_rendered_page_review",
+  "source_response_bytes": 1071345,
+  "source_response_sha256": "9b828b599e4c3842fb1e0a0e82fde66f3a63ffd1a73a2aa775b701bda80874fb",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "PDF (binary)",
+  "alternate_location": {
+    "url": "https://www.sangiin.go.jp/jpn/shiryo/houki/09senrei/pdf/r5se-s-11.pdf",
+    "bytes": 1071345,
+    "sha256": "9b828b599e4c3842fb1e0a0e82fde66f3a63ffd1a73a2aa775b701bda80874fb",
+    "note": "The House's current live copy of the same file (Last-Modified Wed, 25 Oct 2023 06:00:00 GMT), byte-identical to the recorded capture; downloaded by the part A check (plain and cache-busting) and by this packet on 24 September 2026. The recorded identity stays the fixed capture."
+  },
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2024-04-19T11:29:46Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The archived original's Last-Modified header is Fri, 02 Feb 2024 01:37:55 GMT. The SHA-1 of these bytes (Y355BTMU6H4RGNUCEQ7JUPV3NCHAC7VG) equals the Internet Archive's CDX digest for the capture, compared by this packet on 24 September 2026. Downloaded on 24 September 2026 by the researcher at 18:17:25Z, 18:25:49Z, 18:57:21Z and 18:58:05Z; by the independent check at 19:00:02Z, 19:00:51Z and 19:29:19Z; by this packet at 20:18:21Z, 20:42:38Z and 20:53:29Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The House of Councillors' compiled table of Prime Minister designations (先例諸表 11, 令和5年版), recorded as the raw Internet Archive capture of 19 April 2024. The old URL now returns 404 because the House's site moved; the same file is live at https://www.sangiin.go.jp/jpn/shiryo/houki/09senrei/pdf/r5se-s-11.pdf (listed on https://www.sangiin.go.jp/jpn/shiryo/houki/09senrei/senrei-syohyou.html), byte-identical to the capture. A retrospective table: its rows are claims with no structured date.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      15,
+      16
+    ],
+    "method": "PDF pages 15 (printed 二九五) and 16 (printed 二九六) rendered and read; the text layer is out of reading order for vertical text, so only the rendered pages were relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_hc_precedents_hc_designates_kaifu_19900227",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-01",
+      "role_id": "jp_pm",
+      "holder_name": "海部俊樹",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "retrospective_designation_record_house_of_councillors",
+      "attested_on": null,
+      "text": "For the 118th (special) session convened on 2.2.27 (27 February 1990), the House of Councillors' table records in its 参議院の指名 column the House's designation of 海部俊樹 on 2.2.27: first ballot 246 votes (majority 124), 海部俊樹 110; runoff 246 votes, 海部俊樹 111, 土井たか子 91, 44 blank.",
+      "locator": {
+        "pdf_page": 15,
+        "printed_page": "二九五",
+        "row": "第百十八回（特別）",
+        "column": "参議院の指名"
+      }
+    },
+    {
+      "claim_id": "jp_hc_precedents_hr_designates_kaifu_19900227",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-01",
+      "role_id": "jp_pm",
+      "holder_name": "海部俊樹",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "retrospective_designation_record_house_of_representatives",
+      "attested_on": null,
+      "text": "In its 衆議院の指名 column the same row records the House of Representatives' designation of 海部俊樹 on 2.2.27: 508 votes (majority 255), 海部俊樹 286; the days-to-designation column gives the day of convocation, which the table also gives as the day of the Cabinet's resignation decision.",
+      "locator": {
+        "pdf_page": 15,
+        "printed_page": "二九五",
+        "row": "第百十八回（特別）",
+        "column": "衆議院の指名"
+      }
+    },
+    {
+      "claim_id": "jp_hc_precedents_kaifu_cabinet_resignation_19900227",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-01",
+      "role_id": "jp_pm",
+      "holder_name": "海部俊樹",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "retrospective_cabinet_resignation_record",
+      "attested_on": null,
+      "text": "The remarks column for the 118th session lists 2.1.24 dissolution of the House of Representatives, 2.2.18 general election and 2.2.27 海部内閣総辞職決定 (the Kaifu cabinet's decision to resign en masse).",
+      "locator": {
+        "pdf_page": 15,
+        "printed_page": "二九五",
+        "row": "第百十八回（特別）",
+        "column": "備考"
+      }
+    },
+    {
+      "claim_id": "jp_hc_precedents_second_kaifu_cabinet_formed_19900228",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-01",
+      "role_id": "jp_pm",
+      "holder_name": "海部俊樹",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "retrospective_cabinet_formation_record",
+      "attested_on": null,
+      "text": "The same remarks column lists 2.2.28 第二次海部内閣成立 (formation of the second Kaifu cabinet).",
+      "locator": {
+        "pdf_page": 15,
+        "printed_page": "二九五",
+        "row": "第百十八回（特別）",
+        "column": "備考"
+      }
+    },
+    {
+      "claim_id": "jp_hc_precedents_hc_designates_miyazawa_19911105",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-02",
+      "role_id": "jp_pm",
+      "holder_name": "宮澤喜一",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "retrospective_designation_record_house_of_councillors",
+      "attested_on": null,
+      "text": "For the 122nd (extraordinary) session convened on 3.11.5 (5 November 1991), the table records in its 参議院の指名 column the House's designation of 宮澤喜一 on 3.11.5: first ballot 245 votes (majority 123), 宮澤喜一 115; runoff 244 votes, 宮澤喜一 115, 田邊誠 85, 44 blank.",
+      "locator": {
+        "pdf_page": 16,
+        "printed_page": "二九六",
+        "row": "第百二十二回（臨時）",
+        "column": "参議院の指名"
+      }
+    },
+    {
+      "claim_id": "jp_hc_precedents_hr_designates_miyazawa_19911105",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-02",
+      "role_id": "jp_pm",
+      "holder_name": "宮澤喜一",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "retrospective_designation_record_house_of_representatives",
+      "attested_on": null,
+      "text": "In its 衆議院の指名 column the same row records the House of Representatives' designation of 宮澤喜一 on 3.11.5: 492 votes (majority 247), 宮澤喜一 276, with one blank and one ballot giving only a surname that two members share; the days-to-designation column reads 召集日（内閣総辞職決定日）.",
+      "locator": {
+        "pdf_page": 16,
+        "printed_page": "二九六",
+        "row": "第百二十二回（臨時）",
+        "column": "衆議院の指名"
+      }
+    },
+    {
+      "claim_id": "jp_hc_precedents_kaifu_cabinet_resignation_19911105",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-02",
+      "role_id": "jp_pm",
+      "holder_name": "海部俊樹",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "retrospective_cabinet_resignation_record",
+      "attested_on": null,
+      "text": "The remarks column for the 122nd session lists 3.11.5 海部内閣総辞職決定.",
+      "locator": {
+        "pdf_page": 16,
+        "printed_page": "二九六",
+        "row": "第百二十二回（臨時）",
+        "column": "備考"
+      }
+    },
+    {
+      "claim_id": "jp_hc_precedents_miyazawa_cabinet_formed_19911105",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-02",
+      "role_id": "jp_pm",
+      "holder_name": "宮澤喜一",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "retrospective_cabinet_formation_record",
+      "attested_on": null,
+      "text": "The same remarks column lists 3.11.5 宮澤内閣成立.",
+      "locator": {
+        "pdf_page": 16,
+        "printed_page": "二九六",
+        "row": "第百二十二回（臨時）",
+        "column": "備考"
+      }
+    },
+    {
+      "claim_id": "jp_hc_precedents_hc_designates_hosokawa_19930806",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-03",
+      "role_id": "jp_pm",
+      "holder_name": "細川護煕",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "retrospective_designation_record_house_of_councillors",
+      "attested_on": null,
+      "text": "For the 127th (special) session convened on 5.8.5 (5 August 1993), the table records in its 参議院の指名 column the House's designation of 細川護熙 (printed with 熙) on 5.8.6: 240 votes (majority 121), 細川護熙 132, 河野洋平 93, 不破哲三 11, 4 blank.",
+      "locator": {
+        "pdf_page": 16,
+        "printed_page": "二九六",
+        "row": "第百二十七回（特別）",
+        "column": "参議院の指名"
+      }
+    },
+    {
+      "claim_id": "jp_hc_precedents_hr_designates_hosokawa_19930806",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-03",
+      "role_id": "jp_pm",
+      "holder_name": "細川護煕",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "retrospective_designation_record_house_of_representatives",
+      "attested_on": null,
+      "text": "In its 衆議院の指名 column the same row records the House of Representatives' designation of 細川護熙 on 5.8.6: 503 votes (majority 252), 細川護熙 262, 河野洋平 224, 不破哲三 15, 山花貞夫 2; the days-to-designation column reads 召集日から二日.",
+      "locator": {
+        "pdf_page": 16,
+        "printed_page": "二九六",
+        "row": "第百二十七回（特別）",
+        "column": "衆議院の指名"
+      }
+    },
+    {
+      "claim_id": "jp_hc_precedents_miyazawa_cabinet_resignation_19930805",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-03",
+      "role_id": "jp_pm",
+      "holder_name": "宮澤喜一",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "retrospective_cabinet_resignation_record",
+      "attested_on": null,
+      "text": "The remarks column for the 127th session lists 5.6.18 dissolution of the House of Representatives, 5.7.18 general election and 5.8.5 宮澤内閣総辞職決定.",
+      "locator": {
+        "pdf_page": 16,
+        "printed_page": "二九六",
+        "row": "第百二十七回（特別）",
+        "column": "備考"
+      }
+    },
+    {
+      "claim_id": "jp_hc_precedents_hosokawa_cabinet_formed_19930809",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-03",
+      "role_id": "jp_pm",
+      "holder_name": "細川護煕",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "retrospective_cabinet_formation_record",
+      "attested_on": null,
+      "text": "The same remarks column lists 5.8.9 細川内閣成立.",
+      "locator": {
+        "pdf_page": 16,
+        "printed_page": "二九六",
+        "row": "第百二十七回（特別）",
+        "column": "備考"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-12 only. Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, a cabinet's formation, its resignation en masse, any continued performance of duties and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role in this packet: an unnamed statement, agenda or ceremony record, an acting prime minister, the House of Councillors' 1998 designee or the successor at the closing boundary. Ministers, deputy prime ministers and party offices are excluded."
+}

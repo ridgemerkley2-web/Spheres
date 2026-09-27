@@ -857,6 +857,36 @@ async function verifyEmbeddedText(page,url,revision,index){
       landed:'Companies & Procurement',purchase_actions:0});
     stop('7');
 
+    // Optional later-construction checkpoint. Keep the ordinary first-hour path
+    // and its command audit unchanged; time advances through the same visible
+    // +1 DAY control. No grants, save edits or synthetic outcomes are permitted.
+    if(process.env.SPHERES_GUIDANCE_LATER_CONSTRUCTION==='1'){
+      mark('7b later construction');
+      const initial=(await nativeGuidance()).native.outcomes.construction;
+      const project=initial.projects.find(p=>p.id===workshopId);
+      assert(project,'The funded first-hour project must still be present');
+      let observed=null,days=0;
+      for(;days<540;days++){
+        await stepDay();
+        const reading=await nativeGuidance(),c=reading.native.outcomes.construction;
+        const completion=c.completions.find(x=>x.district===project.district&&x.kind===project.kind);
+        const output=c.operating.find(x=>x.district===project.district&&x.kind===project.kind&&x.output_daily>0);
+        if(days%30===0)progress('later-construction',{days:days+1,date:reading.state.date,projects:c.projects,completion:completion||null,output:output||null});
+        if(completion&&output){observed={days:days+1,date:reading.state.date,completion,output};break;}
+      }
+      assert(observed,'No matching completed and producing site after 540 ordinary campaign days; inspect progress evidence');
+      await openGuide('later-construction');
+      const result=await readRoute('later-construction');
+      for(const id of ['project_completed','site_producing']){
+        const milestone=result.step('construction').milestones.find(m=>m.id===id);
+        assert.equal(milestone?.status,'done',id+' must be recognized by live guidance');
+        assert(milestone.date,id+' requires a dated native observation');
+      }
+      await shot('route-later-construction-desktop',page.locator('#guidanceDialog [data-guidance-route-card="construction"]'));
+      evidence.later_construction={...observed,project,route:result.step('construction')};
+      check('Later construction completed and produced output through ordinary daily advancement; the existing save/load stages will verify milestone persistence');
+    }
+
     // 8. A held real response is overtaken by a newer real day (close / advance / reopen path).
     mark('8 stale response');
     await closePanels();const held=await holdGuidance();
@@ -1179,7 +1209,7 @@ async function verifyEmbeddedText(page,url,revision,index){
     evidence.binary={path:binary,sha256_before:binaryBefore,sha256_after:binaryAfter};
     evidence.scope_notes=[
       'Procurement is expected to stay Not yet in the first hour: companies sell only certified designs (at least 180 days of ground or 240 days of air development) and no foreign import was attempted.',
-      'Construction is achieved by paid work only; project completion and site output (about 182 days for this workshop) were not reached.',
+      evidence.later_construction?'Later-construction mode reached matching project completion and positive site output; save/load stages checked the resulting milestones.':'Construction is achieved by paid work only; project completion and site output (about 182 days for this workshop) were not reached.',
       'The work_paid milestone is dated by the native last_day of the latest payment, so its displayed date moves forward while work continues.',
       'Air force is achieved by the completed airbase foundation; squadron formation, readiness and missions need delivered aircraft and were not exercised.',
       'Inside the open dialog the visible refresh is disabled while a reading is in flight, so the second in-dialog reading (8b) was started with F1, the documented guidance shortcut, which re-runs open("tutorial") and refresh().',

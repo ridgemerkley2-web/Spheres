@@ -1,0 +1,46 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_ukaz_288_19980323",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102052187&page=1&rdk=0",
+  "source_title": "Decree of the President of the Russian Federation No. 288 of 23 March 1998 'On the performance of the duties of the Chairman of the Government of the Russian Federation' (original edition)",
+  "accessed_date": "2026-09-25",
+  "published_date": "1998-03-25",
+  "document_date": "1998-03-23",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102052187&page=1&rdk=0",
+  "source_response_bytes": 23794,
+  "source_response_sha256": "71d0e6ef2df617c511bdb886909fcc43fe6c29623f3140003680c8a8acc37d13",
+  "source_response_encoding": "windows-1251",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded at 2026-09-25T12:00:48Z and again at 2026-09-25T12:41:28Z (more than 30 minutes later); identical 23,794 bytes and SHA-256. Portal card: Downloaded at 2026-09-25T12:04:25Z and again at 2026-09-25T12:41:53Z (more than 30 minutes later); identical 3,153 bytes and SHA-256. Independent check: re-downloaded at 2026-09-25T13:21Z-13:25Z, at least 40 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:19:23Z and again at 2026-09-25T14:52:54Z (33 minutes later); identical 23,794 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=288&a8type=1&a7type=4&a7from=23.03.1998&a7to=23.03.1998&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3153,
+    "sha256": "f4db87e88c0df1791a86e824e528aa2bf36a703e22438f3219f8567a3cb88335",
+    "note": "Date-restricted single-document card (number 288, date 23.03.1998): one hit, status 'Действует без изменений'."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 25 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read in full. The date-restricted single-document portal card (portal_card_response) returns only this act.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in full in Russian after windows-1251 decoding."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_ukaz_288_kiriyenko_acting_19980323",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-03",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Сергей Владиленович Кириенко",
+      "printed_name": "Кириенко Сергею Владиленовичу (dative)",
+      "role_title": "Исполняющий обязанности Председателя Правительства — Acting Chairman of the Government",
+      "event_kind": "acting_service_designation",
+      "attested_on": "1998-03-23",
+      "text": "The decree entrusts the performance of the duties of the Chairman of the Government to the First Deputy Chairman of the Government Kiriyenko Sergei Vladilenovich ('Поручить исполнение обязанностей Председателя Правительства Российской Федерации Первому заместителю Председателя Правительства Российской Федерации Кириенко Сергею Владиленовичу'), with effect from the moment of signing, 23 March 1998.",
+      "locator": "Points 1-2; signature block"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

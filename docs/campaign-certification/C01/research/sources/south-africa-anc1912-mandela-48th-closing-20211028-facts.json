@@ -1,0 +1,42 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_anc1912_mandela_48th_closing_address_page",
+  "source_url": "https://web.archive.org/web/20211028121642id_/https://www.anc1912.org.za/48th-national-conference-president-nelson-mandelas-closing-address/",
+  "original_url": "https://www.anc1912.org.za/48th-national-conference-president-nelson-mandelas-closing-address/",
+  "archive_capture_utc": "2021-10-28T12:16:42Z",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 206816,
+  "source_response_sha256": "da6f822adb6ee4a9411486952faa748e0c773383ef7c8f4ad29db3ca5fde06a0",
+  "source_response_sha1_base32": "ZXUTWPJQ7VKGKIEKMZ4CVA3U7EG7VSXM",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Located by the independent check, which downloaded it at 2026-09-24T23:05:54Z and again at 23:45:56Z (about 40 minutes later) with the same byte count and SHA-256; the check's kept copy was re-hashed for this packet with the same result.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the ANC's original page, captured at 2021-10-28T12:16:42Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the old www.anc.org.za pages are no longer served, and the ANC's current anc1912.org.za site regenerates its HTML pages per request). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture made 28 October 2021 of the ANC's current website edition of Mandela's 1991 closing address; served without content encoding (text/html; charset=UTF-8). The live page is regenerated per request (Cloudflare tokens), so the capture is used. Its '6 July 1991' heading is a later web-edition date and is recorded as a claim only.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_anc1912_heading_mandela_48th_closing_19910706",
+      "observation_id": "za_iec_n2024_014",
+      "review_observation": "ZA-ANC-02",
+      "role_id": "za_anc_president",
+      "holder_name": "Nelson Mandela",
+      "role_title": "President of the African National Congress",
+      "event_kind": "retrospective_web_edition_date",
+      "attested_on": null,
+      "printed_range": "6 July 1991",
+      "text": "The ANC's anc1912.org.za web edition (captured 28 October 2021) publishes 'President Nelson Mandela's closing address' to the 48th National Conference under the date '6 July 1991', with the same text as the 1997 copy, including 'You have entrusted me with the presidency of the ANC', 'We then released him' and 'The leadership we have elected here today'.",
+      "locator": {
+        "section": "Page heading and date line ('6 July 1991'); body paragraphs beginning 'You have entrusted me' and 'The leadership we have elected here today'"
+      }
+    }
+  ],
+  "bounded_scope": "ANC President observations for CLAUDE-C01-16 only (role za_anc_president on the AFRICAN NATIONAL CONGRESS observation). Conference election, publication of results, acceptance, handover speeches, departure statements, deputy and chair offices and in-office attestations stay separate rows; holder observations are decided in the packet, not by any row. The Presidency of the Republic (za_presidency) is excluded and no row feeds it."
+}

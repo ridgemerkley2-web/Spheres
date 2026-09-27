@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_dfa_mbeki_security_council_statement_19940525",
+  "source_url": "https://web.archive.org/web/20041028003708id_/http://www.dfa.gov.za:80/docs/speeches/1994/mbek0525.htm",
+  "original_url": "http://www.dfa.gov.za/docs/speeches/1994/mbek0525.htm",
+  "archive_capture_utc": "2004-10-28T00:37:08Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 28919,
+  "source_response_sha256": "2efd3e354a71067b169d60392be2c7a784d727c1a3c8ce8b88dbd06683b37e51",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header, or with Accept-Encoding: identity, and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that accepts gzip can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded twice by the independent check on 2026-09-25, about 10 minutes apart, with the same byte count and SHA-256; downloaded again for this packet at 14:55Z, more than 30 minutes after the check, with the same identity. Downloaded again for this packet at 2026-09-25T15:28Z (integration pass) with the same byte count and SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2004-10-28T00:37:08Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of the live page. Fetched without Accept-Encoding (curl without --compressed), the archive serves it uncompressed: the recorded byte count and SHA-256 are those of the uncompressed body. The response identity was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw capture (28 October 2004) of the Department of Foreign Affairs' archived copy of the statement (archived Last-Modified 6 September 2004). Its heading cites the UN record S/PV.3379 and styles him 'First Deputy Vice-President of South Africa', a mis-styling kept as printed and never used to title the role. Located by the independent check.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_dfa_mbeki_first_deputy_statement_security_council_19940525",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-DP-01",
+      "role_id": "za_deputy_president",
+      "holder_name": "Thabo Mbeki",
+      "role_title": "Deputy President of the Republic of South Africa",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1994-05-25",
+      "text": "The Department of Foreign Affairs' copy of the statement is headed 'Statement by Mr. Thabo Mbeki, First Deputy Vice-President of South Africa, at the 3379th meeting of the United Nations Security Council S/PV.3379, 25 May 1994'; in it he conveys to the Council the greetings of 'our President, Nelson Mandela, and the rest of the Government of democratic South Africa'.",
+      "locator": {
+        "section": "Page heading; third paragraph of the statement"
+      }
+    }
+  ],
+  "bounded_scope": "Deputy President observations for CLAUDE-C01-21 only (role za_deputy_president in za_presidency). Announcements, stated intentions, appointments and their notices, oaths and their scheduling, stated assumptions, releases, resignations and their stated effect, Assembly-seat events and in-office attestations stay separate rows; holder observations and any start or end are decided in the packet, not by any row. The President's roles (za_president_election, za_state_president) and the ANC's party office are excluded and no row feeds them."
+}

@@ -1,0 +1,72 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_rg_cec_res_163_1291_8_20240321",
+  "source_url": "https://web.archive.org/web/20240405043140id_/https://rg.ru/documents/2024/03/21/cik-post-resultaty2024-site-dok.html",
+  "original_url": "https://rg.ru/documents/2024/03/21/cik-post-resultaty2024-site-dok.html",
+  "archive_capture_utc": "2024-04-05T04:31:40Z",
+  "source_title": "Resolution of the Central Election Commission No. 163/1291-8 of 21 March 2024 \"On the results of the election of the President of the Russian Federation called for 17 March 2024\", official publication in Rossiyskaya gazeta (rg.ru documents section)",
+  "accessed_date": "2026-09-24",
+  "published_date": "2024-03-21",
+  "document_date": "2024-03-21",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20240405043140id_/https://rg.ru/documents/2024/03/21/cik-post-resultaty2024-site-dok.html",
+  "source_response_bytes": 92949,
+  "source_response_sha256": "e7ba12c9024fe8b5928c082ccaf34c2782f107a457e56fe49a8e8f61f20a937f",
+  "source_response_encoding": "UTF-8",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: First retrieved 2026-09-24T22:19Z; re-downloaded 2026-09-24T22:49:36Z and 2026-09-24T23:00:34Z (byte-identical: 92949 bytes, same SHA-256 each time). Independent check: re-downloaded at 2026-09-24T23:04:57Z-23:07:53Z and again at 23:39:47Z-23:45:56Z; identical bytes and SHA-256 both times. This packet: re-downloaded at 2026-09-25T00:41:46Z (92,949 bytes); identical SHA-256.",
+  "facsimile_responses": [
+    {
+      "url": "https://web.archive.org/web/20240405043634id_/https://cdnstatic.rg.ru/uploads/attachments/2024/03/21/1291-8_ee0.pdf",
+      "bytes": 85147,
+      "sha256": "6ff16d38b85f6fb562bd96b45abc2aa63c6f101df3257752dc5d56f88e598075",
+      "note": "Scanned facsimile of the signed resolution 163/1291-8 with the CEC seal and its annex (3 pages, PaperPort, CreationDate 2024-03-21, a stored file), linked from the gazette page; raw capture 20240405043634. The live CDN copy (https://cdnstatic.rg.ru/uploads/attachments/2024/03/21/1291-8_ee0.pdf) returned identical bytes to the check. All three pages rendered and viewed.",
+      "pages_viewed": [
+        1,
+        2,
+        3
+      ]
+    }
+  ],
+  "provenance_note": "Raw Internet Archive capture (id_ form) of https://rg.ru/documents/2024/03/21/cik-post-resultaty2024-site-dok.html, captured at 2024-04-05T04:31:40Z, before the 7 September 2026 cutoff; the id_ form replays the archived bytes unchanged and is used because rg.ru answered HTTP 401 (a bot-protection page) to direct requests, which was not bypassed. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The gazette's documents page (dates block 21.03.2024, posted 14:59), found by a CDX prefix search; a later capture carries a tracking query and is not used. The linked PDF is recorded as a facsimile response and viewed. Editorial links on the page are news and are not used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [
+      1,
+      2,
+      3
+    ],
+    "method": "HTML text of the resolution read in full; the page also shows RG editorial links, which are not used. The facsimile recorded in facsimile_responses was rendered and viewed."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_cec_163_1291_8_putin_elected_20240321",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-10",
+      "role_id": "ru_president",
+      "holder_name": "Владимир Владимирович Путин",
+      "printed_name": "Путина Владимира Владимировича (genitive)",
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "result_declaration",
+      "attested_on": "2024-03-21",
+      "text": "On the CEC protocol of 21 March 2024 (87,397,569 voters took part), the CEC declares the election of the President \"called for 17 March 2024\" valid and deems Vladimir Vladimirovich Putin elected President of the Russian Federation with 76,277,708 votes (87.28 per cent); official publication ordered in Rossiyskaya gazeta and the CEC Vestnik. Signed E. A. Pamfilova (Chairman) and N. A. Budarina (Secretary). The page gives signing and publication dates of 21.03.2024 (posted 14:59).",
+      "locator": "Title, dates block, preamble, points 1-3, signature block"
+    },
+    {
+      "claim_id": "ru_rg_163_1291_8_candidate_figures_20240321",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-10",
+      "role_id": "ru_president",
+      "holder_name": "Владимир Владимирович Путин",
+      "printed_name": "Путин Владимир Владимирович",
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "result_figures",
+      "attested_on": "2024-03-21",
+      "text": "The annex to the signed resolution ('Данные о числе голосов избирателей, полученных каждым из зарегистрированных кандидатов...') gives: Davankov Vladislav Andreyevich 3,362,484 (3.85), Putin Vladimir Vladimirovich 76,277,708 (87.28), Slutsky Leonid Eduardovich 2,795,629 (3.20), Kharitonov Nikolai Mikhailovich 3,768,470 (4.31), in per cent of the voters who took part in the voting.",
+      "locator": "Facsimile PDF page 3 (annex); pages 1-2 carry the resolution, signatures and seal"
+    }
+  ],
+  "bounded_scope": "Presidency observations for CLAUDE-C01-14 only. Election calling, voting, result determination, declaration, correction and publication, oath, stated assumption of office, inauguration ceremony, resignation, acting service and outgoing-holder statements stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-05 RSFSR roles and the USSR packet are outside this extract."
+}

@@ -1,0 +1,49 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://www.spa.gov.sa/280269",
+  "accessed_date": "2026-09-21",
+  "published_date": "2005-08-01",
+  "access_method": "downloaded_original_html_and_embedded_article_text_read",
+  "source_response_bytes": 169616,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "article_content_sha256": "7a3a8e9e4a0298dfe9ea67e089ddbb96d09e50e64f7fb6b4acb5d8ec5897843b",
+  "article_content_field": "__NEXT_DATA__ props.pageProps.newsDetails.content, encoded as UTF-8",
+  "portal_metadata": {
+    "uuid": "1458cdff09",
+    "locale": "en",
+    "published_at_utc": "2005-08-01T08:42:01Z",
+    "date_hijri_field": "1426-06-26",
+    "legacy_ids": [
+      "280269"
+    ],
+    "filing_time_printed": "SPA1142 Local Time 0842 GMT"
+  },
+  "response_observations": [
+    {
+      "downloaded_by": "checker",
+      "url_form": "https://www.spa.gov.sa/280269",
+      "bytes": 169616,
+      "sha256": "a6014f63b6e6925a15b733707a508ed871785d564455266ae9158cf45192a09d",
+      "views_count": 1,
+      "server_id": "S101"
+    }
+  ],
+  "provenance_note": "Downloaded with curl -L on 2026-09-21 by the packet's independent checker (1 responses; 169,616 bytes; SHA-256 a6014f63...). The response embeds a live views_count and a load-balancer server_id in its __NEXT_DATA__ JSON, so response bytes and SHA-256 vary between fetches and between URL forms; no response hash is asserted. article_content_sha256 is the SHA-256 of the UTF-8 newsDetails.content field; it was identical in every download and is the reproducible identity. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "sa_family_pledge_en_translation_20050801",
+      "text": "SPA's English release datelined 'Riyadh, Aug 1' renders the same Royal Court statement: members of the Royal Family pledged allegiance to Crown Prince Abdullah bin Abdulaziz as King under the fifth article of the basic system of rule; King Abdullah then chose Prince Sultan bin Abdulaziz as Crown Prince; citizens would pledge at the Governorate Palace in Riyadh after noon prayers on Wednesday. It attributes the text to a statement released by the Royal Court that day.",
+      "attested_on": "2005-08-01",
+      "locator": "Dateline; paragraphs 1-3; trailer (11:42 local time)",
+      "uncertainty": "A translation that adds no event. 'Released today' dates the statement, not the family pledge. The dateline has no year; the date rests on the Arabic original (sa_spa_allegiance_20050801_ar)."
+    }
+  ],
+  "scope_note": "SPA English translation of sa_spa_allegiance_20050801_ar (uuid 1458cdff09, requested at legacy ID 280269), located and downloaded by the packet's independent checker. Used for SA-EXEC-02.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not visually rendered. HTML news article (not a scan or PDF); the article text was read from the embedded newsDetails JSON of the checker's downloaded response and re-read from that local copy for this packet."
+  }
+}

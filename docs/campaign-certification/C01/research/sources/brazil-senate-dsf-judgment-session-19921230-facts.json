@@ -1,0 +1,114 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_dsf_223_suplemento_19921230",
+  "source_url": "https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=20356&download=true",
+  "accessed_date": "2026-09-23",
+  "published_date": "1992-12-30",
+  "access_method": "downloaded_official_pdf_and_pages_rendered_for_visual_review",
+  "source_response_bytes": 24080741,
+  "source_response_sha256": "563c6a98cdcc50a3b746c028d269603040588bf0599edd01152e81f5deffdf74",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file from the Senate's document service, a static response. Located by the independent check, which downloaded it three times on 23 September 2026: the first transfer came back 1,390 bytes short with an inconsistent cross-reference table and was discarded, and the other two were identical and match the byte count and SHA-256 recorded here. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Scanned Seção II (Órgão Judiciário) issue of Wednesday 30 December 1992 (Ano XLVII, nº 32), archived by the Senate as the Suplemento Único to DSF nº 223/1992 (viewer https://legis.senado.leg.br/diarios/ver/20356; printed pages 2727-3018 in 328 PDF pages; built with iText 2.1.7, CreationDate 22 April 2016). Located by the independent check, which downloaded it three times: the first transfer came back 1,390 bytes short and was discarded, and the other two were identical. A large Senate PDF that mismatches once should be fetched again before it is called unstable.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      12,
+      235,
+      236
+    ],
+    "method": "PDF pages 1, 12 and 236 rendered and read for this packet and page 235 by the independent check; pages 3, 15, 16, 88, 89 and 324 read from the text layer (the vote panels carry OCR noise)."
+  },
+  "rows": [
+    {
+      "claim_id": "br_senate_resolution_101_first_printed_19921230",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-03",
+      "role_id": "br_president",
+      "holder_name": "Fernando Collor de Mello",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "resolution_published",
+      "attested_on": "1992-12-30",
+      "text": "The supplement, dated Wednesday 30 December 1992, opens with Resolução nº 101, de 1992, promulgated by Mauro Benevides as President of the Senate and dated Senado Federal 30 December 1992: it declares the request for loss of office prejudiced by Fernando Affonso Collor de Mello's resignation, formalized before the National Congress, upholds the accusation, imposes on him disqualification ('inabilitação') for eight years from exercising public functions, and enters into force on the date of its publication.",
+      "locator": {
+        "pdf_page": 1,
+        "printed_page": 2727,
+        "item": "RESOLUÇÃO Nº 101, DE 1992, arts. 1-4 and dating line"
+      }
+    },
+    {
+      "claim_id": "br_collor_resignation_letter_read_senate_19921229",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-03",
+      "role_id": "br_president",
+      "holder_name": "Fernando Collor de Mello",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "resignation_letter_read",
+      "attested_on": "1992-12-29",
+      "text": "At the Senate's session as a court on 29 December 1992 (opened at 9:00), defence counsel José Moura Rocha said he had just spoken by telephone with the suspended President Fernando Collor de Mello and read to the Senate Collor's letter to the President of the National Congress, dated Brasília 29 December 1992 and signed 'F. Collor', stating that on that date and by that instrument he resigns the mandate of President of the Republic. The President of Congress, Mauro Benevides, then convened a joint session for 11:30 that day, and Minister Sydney Sanches suspended the Senate session at 9:43 so that Congress could receive the resignation and declare the vacancy; it reopened at 13:40.",
+      "locator": {
+        "pdf_page": [
+          3,
+          12,
+          15,
+          16
+        ],
+        "printed_page": [
+          2729,
+          2738,
+          2741,
+          2742
+        ],
+        "item": "attendance at 9:00 (p. 2729); Moura Rocha's reading of the letter, with its handwritten facsimile (p. 2738); Benevides's convocation (p. 2741); 'Suspensa às 9h43min, a sessão é reaberta às 13h40min' (p. 2742)"
+      }
+    },
+    {
+      "claim_id": "br_senate_votes_to_continue_trial_19921229",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-03",
+      "role_id": "br_president",
+      "holder_name": "Fernando Collor de Mello",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "senate_trial_continuation_vote",
+      "attested_on": "1992-12-29",
+      "text": "When the session resumed, the Senate voted on whether the process should continue after the resignation: the panel printout headed '29.12.92 18:17 HORAS', 'PROSSEGUIMENTO DO PROCESSO DE IMPEACHMENT', shows 71 yes and 8 no; Sanches declared that the Senate had decided by 71 votes to 8 that the process against Collor should continue to consider the sanction of disqualification ('inabilitação'), and after two senators declared votes not registered on the panel he proclaimed 73 yes and 8 no.",
+      "locator": {
+        "pdf_page": [
+          88,
+          89
+        ],
+        "printed_page": [
+          2782,
+          2783
+        ],
+        "item": "vote panel '29.12.92 18:17 HORAS 2.SESSAO 1.VOTACAO'; the proclamations by Sydney Sanches"
+      }
+    },
+    {
+      "claim_id": "br_senate_disqualification_vote_19921230",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-03",
+      "role_id": "br_president",
+      "holder_name": "Fernando Collor de Mello",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "disqualification_vote",
+      "attested_on": "1992-12-30",
+      "text": "The panel printout headed '30.12.92 04:21 HORAS', 'INABILITACAO POR OITO ANOS', records 76 yes, 3 no and no abstentions (total 79); Sanches announced the result, noting that abstention was not permitted, and read the sentence against Collor. The session rose at 4:40 on the following day, 30 December 1992.",
+      "locator": {
+        "pdf_page": [
+          235,
+          236,
+          324
+        ],
+        "printed_page": [
+          2929,
+          2930,
+          null
+        ],
+        "item": "vote panel '30.12.92 04:21 HORAS 2.SESSAO 2.VOTACAO'; announcement of the result; closing line on PDF page 324 'Levanta-se a sessão às 4h40min do dia imediato'"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+}

@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_portal_dn_elects_cen_20131211",
+  "source_url": "https://web.archive.org/web/20131219155157id_/http://www.pt.org.br:80/noticias/view/pt_diretorio_nacional_elege_e_empossa_nova_comissaeo_executiva_nacional",
+  "original_url": "http://www.pt.org.br/noticias/view/pt_diretorio_nacional_elege_e_empossa_nova_comissaeo_executiva_nacional",
+  "archive_capture_utc": "2013-12-19T15:51:57Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2013-12-11",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 26619,
+  "source_response_sha256": "8c495bc5ecaac78de27e81ecd10d616b61239c79fcf9b1468d700ffa435eacd3",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Found by the independent check, which downloaded it at 15:09:59 UTC and again at 15:49:31 UTC on 25 September 2026 with Accept-Encoding: identity; both downloads had the same byte count and SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2013-12-19T15:51:57Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Found by the independent check, which downloaded it at 15:09:59 UTC and again at 15:49:31 UTC on 25 September 2026 with Accept-Encoding: identity; both downloads had the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A Portal do PT item of 11 December 2013 (18h11), captured 19 December 2013. Found by the independent check. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_dn_elects_and_inducts_cen_falcao_president_20131211",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-07",
+      "role_id": "br_pt_president",
+      "holder_name": "Rui Falcão",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "executive_committee_selection",
+      "attested_on": "2013-12-11",
+      "text": "The Diretório Nacional, meeting on the afternoon of Wednesday 11 December 2013 in Brasília, 'elegeu e empossou' the new national executive committee by unanimity, listed as 'Presidente Rui Falcão (SP)'; the photo caption says 'Rui Falcão presidiu a primeira reunião do DN'.",
+      "locator": {
+        "item": "headline, caption and first paragraph with the list"
+      }
+    }
+  ]
+}

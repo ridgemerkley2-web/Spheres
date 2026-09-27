@@ -1,0 +1,59 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_kanpo_gogai_toku9_20260218",
+  "source_url": "https://web.archive.org/web/20260218143823id_/https://www.kanpo.go.jp/20260218/20260218t00009/pdf/20260218t00009full00010002.pdf",
+  "original_url": "https://www.kanpo.go.jp/20260218/20260218t00009/pdf/20260218t00009full00010002.pdf",
+  "archive_capture_utc": "2026-02-18T14:38:23Z",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_pdf_and_rendered_page_review",
+  "source_response_bytes": 224239,
+  "source_response_sha256": "a25c3b3ad59709dd614afb8d8c64d3f9c9dcdea835f03c2ca45aa044ae91e3ec",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "PDF (binary)",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2026-02-18T14:38:23Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The archived original's Last-Modified header is Wed, 18 Feb 2026 13:16:28 GMT. The SHA-1 of these bytes (NZBFMNAC25BZ4CK42XSCUGYIS6MZWGT7) equals the Internet Archive's CDX digest for the capture, as compared by this packet (2026-09-25T03:18:28Z). Researcher (part C): Raw Internet Archive capture of the PDF (made before the cutoff) re-downloaded at least 30 minutes apart: 2 downloads at 2026-09-24T22:58:40Z, 2026-09-24T23:58:26Z UTC (first and last 59 minutes apart) gave the same byte count and SHA-256. The part C check downloaded it again on 25 September 2026 at 00:09Z-00:14Z (plain), at 00:10Z-00:11Z (the live hosts with a cache-busting query) and at 00:40Z-00:46Z (plain), each time with the same byte count and SHA-256. Downloaded on 25 September 2026 (UTC) by this packet at 01:38:01Z, 02:19:11Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "An Official Gazette (官報) special extra issue, recorded as a raw Internet Archive capture of the PDF made on the day of issue or the next day; the text layer holds only the masthead, so the cited pages were rendered and read. The Gazette is free on the official site only for the latest 90 days.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "PDF pages 1, 2 rendered and read; no image copied."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_kanpo_takaichi_appointed_pm_20260218",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM06-10",
+      "role_id": "jp_pm",
+      "holder_name": "高市早苗",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "appointment_notice_official_gazette",
+      "attested_on": "2026-02-18",
+      "text": "The Official Gazette special extra issue No. 9 (号外特第9号) dated Wednesday 18 February 2026 (発行 内閣府) prints under 人事異動 / 内閣 the appointment of 高市早苗 as Prime Minister (内閣総理大臣に任命する), followed by the appointments of the ministers of state.",
+      "locator": {
+        "page": 1,
+        "section": "人事異動 内閣",
+        "item": "内閣総理大臣に任命する"
+      }
+    },
+    {
+      "claim_id": "jp_kanpo_takaichi_office_lost_20260218",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM06-10",
+      "role_id": "jp_pm",
+      "holder_name": "高市早苗",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "end_of_office_stated",
+      "attested_on": "2026-02-18",
+      "text": "Page 2 of the same issue closes the day's appointments with (以上二月十八日) and, under ○内閣総理大臣及び国務大臣退官, states that, 高市早苗 having been appointed Prime Minister on the 18th of that month (本月十八日), 高市早苗, Prime Minister of the first Takaichi cabinet (第一次高市内閣の内閣総理大臣高市早苗), and the ministers of state each lost their office (それぞれその地位を失った).",
+      "locator": {
+        "page": 2,
+        "section": "○内閣総理大臣及び国務大臣退官"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-13 only (stacked on CLAUDE-C01-12). Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, the Official Gazette's appointment and loss-of-office notices, the Cabinet's minutes, a cabinet's formation, its resignation en masse, any continued performance of duties and acting designations stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role: an unnamed statement or schedule row, a House of Councillors designee who never held the office, or a designation of acting ministers. Ministers, deputy prime ministers and party offices are excluded."
+}

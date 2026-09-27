@@ -1,0 +1,66 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_snd5_bulletin5_19910904",
+  "source_url": "https://web.archive.org/web/20240901125154id_/https://snd.sssr.su/V/5.pdf",
+  "original_url": "https://snd.sssr.su/V/5.pdf",
+  "archive_capture_utc": "2024-09-01T12:51:54Z",
+  "source_title": "Внеочередной пятый Съезд народных депутатов СССР. Бюллетень No. 5, 4 сентября 1991 г. (stenographic bulletin), scanned facsimile, Internet Archive capture 20240901125154",
+  "accessed_date": "2026-09-26",
+  "published_date": null,
+  "document_date": "1991-09-04",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20240901125154id_/https://snd.sssr.su/V/5.pdf",
+  "source_response_bytes": 1620327,
+  "source_response_sha256": "9ea2c89395488a0214c38345333b504b30542563ebfa1af0646975a6ff227a65",
+  "source_response_encoding": "application/pdf (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "live_file_response": {
+    "url": "https://snd.sssr.su/V/5.pdf",
+    "bytes": 1620327,
+    "sha256": "9ea2c89395488a0214c38345333b504b30542563ebfa1af0646975a6ff227a65",
+    "last_modified": "Mon, 03 Jun 2024 23:27:12 GMT",
+    "note": "The live static file on the non-official SSSR.SU host, byte-identical to the recorded capture; requested without Accept-Encoding and served without Content-Encoding."
+  },
+  "corroborating_responses": [
+    {
+      "url": "https://web.archive.org/web/20240901194604id_/https://snd.sssr.su/V/7.pdf",
+      "original_url": "https://snd.sssr.su/V/7.pdf",
+      "archive_capture_utc": "2024-09-01T19:46:04Z",
+      "bytes": 544323,
+      "sha256": "236b00bd04599034c2175b4b05492be88c1eaa077cba2b96179575e8221e77a4",
+      "live_file_bytes": 544323,
+      "live_file_sha256": "236b00bd04599034c2175b4b05492be88c1eaa077cba2b96179575e8221e77a4",
+      "note": "'Законы, постановления и другие акты, принятые пятым Съездом народных депутатов СССР', the acts appended to the Congress bulletins: PDF p. 9 prints resolution 2389-I 'Об освобождении А. И. Лукьянова от обязанностей Председателя Верховного Совета СССР', 'Москва, Кремль. 4 сентября 1991 г. № 2389-I', as in Vedomosti 1991 No. 37 art. 1079; PDF p. 2 prints resolution 2381-I (2 September 1991) electing the Congress's working Presidium (the President, heads or representatives of the republics and the chamber chairmen). Read for corroboration; no claim."
+    }
+  ],
+  "stability_check": "Independent check (part C): live file downloaded at 2026-09-26T03:05:58Z, 03:13:02Z (cache-busting query) and 03:37:05Z, capture at 03:39:16Z without Accept-Encoding; identical. Acts publication: live file at 03:06:21Z, 03:13:05Z (cache-busting) and 03:37:08Z, capture at 03:39:38Z; identical. This packet: re-downloaded at 2026-09-26T03:54:19Z and again at 2026-09-26T04:27:34Z (33 minutes later); identical 1,620,327 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of https://snd.sssr.su/V/5.pdf, captured at 2024-09-01T12:51:54Z, before the 7 September 2026 cutoff; requested without an Accept-Encoding header (curl without --compressed, i.e. identity) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed (a request accepting gzip is served gzip-encoded, with different bytes). The same bytes are served as a static file by the live host (live_file_response); the capture is recorded as the identity because it is fixed before the cutoff. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The official stenographic bulletin of the Fifth Congress's sitting of 4 September 1991, a page-image scan with an OCR layer, hosted by the non-official SSSR.SU project; the recorded identity is a raw Internet Archive capture made before the cutoff, byte-identical to the live static file (live_file_response). Found by the independent check of part C, as was the acts publication attached as a corroborating response. The presiding officer's summary of the Supreme Soviet's earlier decisions is not imported: those decisions have their own claims.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      3,
+      5,
+      6
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "PDF pages 1, 3 and 5-6 read from the text layer by the independent check of part C and by this packet; the presiding officer is named once, on p. 3, with no change before the vote. The acts publication was read at PDF pp. 1, 2 and 9."
+  },
+  "rows": [
+    {
+      "claim_id": "su_snd5_lukyanov_release_vote_19910904",
+      "observation_id": "su_supreme_soviet",
+      "review_observation": "SU-GOV-08",
+      "role_id": "su_supreme_soviet_chair",
+      "holder_name": "Анатолий Иванович Лукьянов",
+      "printed_name": "А. И. Лукьянова (genitive; initials and surname only)",
+      "role_title": "Chairman of the USSR Supreme Soviet",
+      "event_kind": "congress_vote",
+      "attested_on": "1991-09-04",
+      "text": "At the morning sitting of 4 September 1991 (Kremlin Palace of Congresses, 10:00, 'Председательствует Президент СССР М. С. Горбачев') the presiding officer proposes, without debate, to release 'А. И. Лукьянова от обязанностей Председателя Верховного Совета СССР'; the bulletin records 'Постановление об освобождении А. И. Лукьянова принято' and the vote: quorum 1113, for 1702, against 20, abstained 78, total 1800, not voting 44.",
+      "locator": "PDF p. 3 (sitting heading); PDF pp. 5-6 (the proposal, the result and the vote)"
+    }
+  ],
+  "bounded_scope": "Union head-of-government and Supreme Soviet chair observations for CLAUDE-C01-26 only. Election or approval, appointment, release decree, parliamentary consent, dismissal, no confidence, resignation statement, suspension, consent to arrest, release, acting or interim service, presiding arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The CLAUDE-C01-05 su_president holders and russia.json are outside this extract."
+}

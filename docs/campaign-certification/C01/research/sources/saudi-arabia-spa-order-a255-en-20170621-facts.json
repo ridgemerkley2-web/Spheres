@@ -1,0 +1,54 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://www.spa.gov.sa/1641911",
+  "accessed_date": "2026-09-21",
+  "published_date": "2017-06-21",
+  "access_method": "downloaded_original_html_and_embedded_article_text_read",
+  "source_response_bytes": 173485,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "article_content_sha256": "31ec07b1cdb1278e25e767b66a44b715db81154e804fa5e730b3a50d861d2e79",
+  "article_content_field": "__NEXT_DATA__ props.pageProps.newsDetails.content, encoded as UTF-8",
+  "portal_metadata": {
+    "uuid": "adac0e7190",
+    "locale": "en",
+    "published_at_utc": "2017-06-21T08:14:25Z",
+    "date_hijri_field": "1438-09-26",
+    "filing_time_printed": "11:14 LOCAL TIME 08:14 GMT"
+  },
+  "response_observations": [
+    {
+      "downloaded_by": "researcher",
+      "url_form": "https://www.spa.gov.sa/1641911",
+      "bytes": 173485,
+      "sha256": "9c72cd06fea65885029d215c43496b6e26974ba88dfd0aad14195313e1e1670b",
+      "views_count": 855,
+      "server_id": "S102"
+    },
+    {
+      "downloaded_by": "checker",
+      "url_form": "https://www.spa.gov.sa/1641911",
+      "bytes": 173485,
+      "sha256": "8b87e2e369b22928cc4bb37e243cef14eeb2207750ce78827694056cd8b75157",
+      "views_count": 857,
+      "server_id": "S101"
+    }
+  ],
+  "provenance_note": "Downloaded with curl -L on 2026-09-21 by the researcher and again, independently, by the checker (2 responses; 173,485 bytes; SHA-256 9c72cd06..., 8b87e2e3...). The response embeds a live views_count and a load-balancer server_id in its __NEXT_DATA__ JSON, so response bytes and SHA-256 vary between fetches and between URL forms; no response hash is asserted. article_content_sha256 is the SHA-256 of the UTF-8 newsDetails.content field; it was identical in every download and is the reproducible identity. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "sa_orders_20170621_en_translation",
+      "text": "SPA's English release datelined Makkah, Ramadan 26, 1438 / June 21, 2017 translates the same order without printing its number: it relieves Mohammed bin Naif of the posts of Crown Prince, Deputy Premier and Minister of Interior; selects Mohammed bin Salman as Crown Prince and Deputy Premier, continuing as Minister of Defense; recites the Allegiance-Pledge Commission's support by 31 of 34; and dates the Deputy Crown Prince order 10/6/1436 AH.",
+      "attested_on": "2017-06-21",
+      "locator": "Dateline; recital; items First and Second; trailer (11:14 local time)",
+      "uncertainty": "A translation that adds no event; the Arabic original (sa_spa_order_a255_20170621_ar) carries the events."
+    }
+  ],
+  "scope_note": "SPA English translation of Royal Order A/255. Used for SA-EXEC-07, including the finding that the 10/6/1436 AH date is not a translation error.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Rendered in a browser tab on 2026-09-21: title, dateline and opening recital visually match the text read from the embedded newsDetails JSON."
+  }
+}

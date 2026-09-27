@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_fwdk_foundation_inauguration_speech_19890920",
+  "source_url": "https://web.archive.org/web/20260521194407id_/https://fwdeklerk.org/fw-de-klerk-inauguration-speech/",
+  "original_url": "https://fwdeklerk.org/fw-de-klerk-inauguration-speech/",
+  "archive_capture_utc": "2026-05-21T19:44:07Z",
+  "accessed_date": "2026-09-22",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 109220,
+  "source_response_sha256": "f997290be427fa6a0f0fd382582d79687356bb3f1c2606f4da68dd03c2a0a126",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2026-05-21T19:44:07Z; that form replays the archived bytes unchanged and is used in place of the live page. The researcher downloaded it on 22 September 2026 and the independent check downloaded it again the same day; both copies matched the byte count and SHA-256 recorded here, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Archival copy limitation: a transcript published by the former State President's own foundation, used only as a limited, dated attestation of a post-inauguration address. The heading and date are the foundation's, not the Government's, Parliament's or the Gazette's.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_de_klerk_post_inauguration_address_19890920",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-01",
+      "role_id": "za_state_president",
+      "holder_name": "F. W. de Klerk",
+      "role_title": "State President of the Republic of South Africa",
+      "event_kind": "post_inauguration_address",
+      "attested_on": "1989-09-20",
+      "text": "The FW de Klerk Foundation's transcript is headed as a speech by de Klerk 'following his inauguration as the second executive State President', dated 20 September 1989. In it he calls it his 'first public address after my inauguration as State President' and says that 'The new government will be installed tomorrow'.",
+      "locator": {
+        "section": "Heading and dateline; paragraph beginning 'In this, my first public address after my inauguration'; paragraph beginning 'Executing this mandate is our highest priority'"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-09 only. Election, oath, inauguration, resignation announcement, resignation effect and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy presidents, ministers and party offices are excluded."
+}

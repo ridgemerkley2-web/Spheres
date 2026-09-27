@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_anc_mbeki_opening_address_51st_20021216",
+  "source_url": "https://web.archive.org/web/20030115064311id_/http://www.anc.org.za:80/ancdocs/history/conf/conference51/presopen.htm",
+  "original_url": "http://www.anc.org.za/ancdocs/history/conf/conference51/presopen.htm",
+  "archive_capture_utc": "2003-01-15T06:43:11Z",
+  "accessed_date": "2026-09-24",
+  "published_date": "2002-12-16",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 104348,
+  "source_response_sha256": "cd93efdaccab7ef73e50b1d05d688276c54ada3d223e3f020fe2e829187772b3",
+  "source_response_sha1_base32": "PLWNJNEH6RZ6KH7AZQDLDIRKYANN5N3X",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "The researcher hashed it on 24 September 2026 at about 15:30 PDT; the independent check downloaded it at 16:44:56 PDT with the same byte count and SHA-256; downloaded again for this packet at 2026-09-25T00:42:57Z with the same result.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the ANC's original page, captured at 2003-01-15T06:43:11Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the old www.anc.org.za pages are no longer served, and the ANC's current anc1912.org.za site regenerates its HTML pages per request). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture made 15 January 2003 (page title 'President's Opening Address at 51st National Conference'); served without content encoding (all bytes ASCII). An identical text is at /ancdocs/history/mbeki/2002/tm1216.html (not imported).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_anc_mbeki_opening_political_report_20021216",
+      "observation_id": "za_iec_n2024_014",
+      "review_observation": "ZA-ANC-04",
+      "role_id": "za_anc_president",
+      "holder_name": "Thabo Mbeki",
+      "role_title": "President of the African National Congress",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2002-12-16",
+      "text": "The ANC's text headed 'Address of the President, Thabo Mbeki, at the opening of the 51st National Conference of the African National Congress', dated Stellenbosch, 16 December 2002, says 'We stand here today to present the Political Report dealing with the period since the 1997 50th National Conference', after recalling the report 'presented by our then President, Comrade Nelson Mandela' to that conference.",
+      "locator": {
+        "section": "Page title; heading and date line; paragraphs beginning 'Our 50th National Conference in Mafikeng' and 'We stand here today'"
+      }
+    }
+  ],
+  "bounded_scope": "ANC President observations for CLAUDE-C01-16 only (role za_anc_president on the AFRICAN NATIONAL CONGRESS observation). Conference election, publication of results, acceptance, handover speeches, departure statements, deputy and chair offices and in-office attestations stay separate rows; holder observations are decided in the packet, not by any row. The Presidency of the Republic (za_presidency) is excluded and no row feeds it."
+}

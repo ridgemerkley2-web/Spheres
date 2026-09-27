@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_planalto_mpv870_20190101",
+  "source_url": "https://web.archive.org/web/20190103091608id_/http://www.planalto.gov.br/ccivil_03/_Ato2019-2022/2019/Mpv/mpv870.htm",
+  "original_url": "http://www.planalto.gov.br/ccivil_03/_Ato2019-2022/2019/Mpv/mpv870.htm",
+  "archive_capture_utc": "2019-01-03T09:16:08Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "2019-01-01",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 241409,
+  "source_response_sha256": "98d89a0849b1226fc440e1629a6d3cfd4ef8226edf679a29ca63ef42ab00103e",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2019-01-03T09:16:08Z; that form replays the archived bytes unchanged and is used in place of the live page. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Presidency's consolidated legislation page, captured 3 January 2019; the page notes the DOU of 1 January 2019 (special edition). Windows-1252 text.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML preamble and signature block read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "br_bolsonaro_signs_as_president_mpv870_20190101",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-08",
+      "role_id": "br_president",
+      "holder_name": "Jair Bolsonaro",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2019-01-01",
+      "text": "Medida Provisória No. 870 of 1 January 2019 is adopted by 'O PRESIDENTE DA REPÚBLICA' and signed at Brasília on 1 January 2019 by Jair Messias Bolsonaro; published in the DOU of 1 January 2019 (special edition).",
+      "locator": {
+        "section": "Preamble; closing 'Brasília, 1º de janeiro de 2019' and signature"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+}

@@ -1,0 +1,43 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_anc_political_report_ramaphosa_55th_20221216",
+  "source_url": "https://web.archive.org/web/20230103184831id_/https://www.anc1912.org.za/political-report-presented-by-anc-president-cyril-ramaphosa-16-december-2022/",
+  "original_url": "https://www.anc1912.org.za/political-report-presented-by-anc-president-cyril-ramaphosa-16-december-2022/",
+  "archive_capture_utc": "2023-01-03T18:48:31Z",
+  "accessed_date": "2026-09-24",
+  "published_date": "2022-12-16",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 55991,
+  "source_response_sha256": "c6432fa29f7ce29bb7dffa64ad309755598e5d0621a1e910c2c13532c33b94f6",
+  "source_response_sha1_base32": "6MZAL2K2IBUVSUXY2ZCGUOUGKLGSDB5Q",
+  "source_response_content_encoding": "gzip",
+  "decoded_response_bytes": 274319,
+  "decoded_response_sha256": "3c1b2958a88bc8ff5a3dabbdcf05ae4fa0668d4b055128d19869a2182af6a1d8",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Raw Internet Archive id_ replay of a fixed WARC record. First downloaded on 2026-09-24 at about 22:20Z and again at 22:31-22:33Z for the kept copy; re-downloaded at 2026-09-24T23:12Z, at least 30 minutes after the first, with matching byte count and SHA-256 (55991 bytes). The independent check downloaded it again at 2026-09-24T23:22-23:31Z with plain curl (no Accept-Encoding, no decoding), at least 49 minutes after the kept copy, with the same byte count and SHA-256; the base32 SHA-1 of the bytes equals the Internet Archive's CDX digest for the capture. The researcher's kept copy was re-hashed for this packet with the same result.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the ANC's original page, captured at 2023-01-03T18:48:31Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the old www.anc.org.za pages are no longer served, and the ANC's current anc1912.org.za site regenerates its HTML pages per request). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw capture of 3 January 2023. The earlier CDX capture 20221218223817 redirects to this one and was not used. The live page varies per request (Cloudflare challenge token and e-mail-obfuscation key) and was not used. The archive stores and serves this capture gzip-encoded (Content-Encoding: gzip); the recorded identity is of the compressed bytes as served, and the decoded identity is recorded in the extract.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read after gzip decompression; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_anc_ramaphosa_political_report_as_president_20221216",
+      "observation_id": "za_iec_n2024_014",
+      "review_observation": "ZA-ANC-08",
+      "role_id": "za_anc_president",
+      "holder_name": "Cyril Ramaphosa",
+      "role_title": "President of the African National Congress",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2022-12-16",
+      "text": "The ANC dates to 16 December 2022, NASREC, Johannesburg, the Political Report \"presented by ANC President Cyril Ramaphosa\" to the 55th National Conference on behalf of the NEC, which he says he presents under Rule 16.1.2 of the ANC Constitution (\"The President shall... present to the National Conference...\"). Among those greeted are Deputy President David Mabuza and \"Former President Jacob Zuma\".",
+      "locator": {
+        "section": "Heading; date line; salutation; paragraphs 1-3; paragraph beginning 'I am honoured to stand before you to present this Political Report in compliance with Rule 16.1.2'"
+      }
+    }
+  ],
+  "bounded_scope": "ANC President observations for CLAUDE-C01-16 only (role za_anc_president on the AFRICAN NATIONAL CONGRESS observation). Conference election, publication of results, acceptance, handover speeches, departure statements, deputy and chair offices and in-office attestations stay separate rows; holder observations are decided in the packet, not by any row. The Presidency of the Republic (za_presidency) is excluded and no row feeds it."
+}

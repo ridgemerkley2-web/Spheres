@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_portal_ped2009_final_result_20091202",
+  "source_url": "https://web.archive.org/web/20091205215819id_/http://www.pt.org.br:80/portalpt/noticias/institucional-3/licao-de-democracia:-eleicoes-internas-do-pt-levaram-518912-filiados-as-urnas-2069.html",
+  "original_url": "http://www.pt.org.br/portalpt/noticias/institucional-3/licao-de-democracia:-eleicoes-internas-do-pt-levaram-518912-filiados-as-urnas-2069.html",
+  "archive_capture_utc": "2009-12-05T21:58:19Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2009-12-02",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 25425,
+  "source_response_sha256": "964ba1e891d2607d2c1eb467f8cb8f85ea5142dce800c24140e1ee97ba431945",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture (20091205215819). First downloaded 2026-09-25T13:11:40Z with a Python urllib client; downloaded again 2026-09-25T13:43:39Z with curl (no --compressed, Accept-Encoding: identity), more than 30 minutes later: 25425 bytes, SHA-256 identical. The independent check downloaded it again at 13:58-14:00 UTC and at 14:31-14:33 UTC on 25 September 2026 (at least 30 minutes after the earlier downloads) with Accept-Encoding: identity; every response had the same byte count and SHA-256 and no Content-Encoding.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2009-12-05T21:58:19Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Raw Internet Archive id_ replay of a fixed capture (20091205215819). First downloaded 2026-09-25T13:11:40Z with a Python urllib client; downloaded again 2026-09-25T13:43:39Z with curl (no --compressed, Accept-Encoding: identity), more than 30 minutes later: 25425 bytes, SHA-256 identical. The independent check downloaded it again at 13:58-14:00 UTC and at 14:31-14:33 UTC on 25 September 2026 (at least 30 minutes after the earlier downloads) with Accept-Encoding: identity; every response had the same byte count and SHA-256 and no Content-Encoding. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A Portal do PT item of 2 December 2009, captured 5 December 2009. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full in the original Portuguese; no images reviewed."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_ped2009_final_result_dutra_20091202",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-06",
+      "role_id": "br_pt_president",
+      "holder_name": "José Eduardo Dutra",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "final_result_declaration",
+      "attested_on": "2009-12-02",
+      "text": "The PED 2009 electoral organizing committee released on Wednesday 2 December 2009 the final result of the vote for the national leadership: 518,912 members voted on 22 November and José Eduardo Dutra won the national presidency with 274,419 votes (57.9% of valid votes).",
+      "locator": {
+        "section": "Item body, paragraphs 1-3 and 'Votação para presiodente nacional do PT'"
+      }
+    }
+  ]
+}

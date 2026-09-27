@@ -1,0 +1,42 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_presidency_profile_former_president_mbeki",
+  "source_url": "https://web.archive.org/web/20251114031652id_/https://www.thepresidency.gov.za/former-president-thabo-mvuyelwa-mbeki",
+  "original_url": "https://www.thepresidency.gov.za/former-president-thabo-mvuyelwa-mbeki",
+  "archive_capture_utc": "2025-11-14T03:16:52Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 68368,
+  "source_response_sha256": "55478200cf4ef9820d07dba88d6a8841101595833a105ca7df39e24646b00799",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header, or with Accept-Encoding: identity, and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that accepts gzip can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "First downloaded on 2026-09-25 at 12:45Z by the researcher and downloaded again at 12:58 and 13:29Z; the independent check downloaded it again at 13:42 and 14:13Z. Every download had the same byte count and SHA-256. Downloaded again for this packet at 2026-09-25T15:28Z (integration pass) with the same byte count and SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2025-11-14T03:16:52Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of the live page. Fetched without Accept-Encoding (curl without --compressed), the archive serves it uncompressed: the recorded byte count and SHA-256 are those of the uncompressed body. The response identity was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw capture (14 November 2025) of the Presidency's retrospective, undated profile, a live Drupal page with rotating side blocks (the capture fixes the bytes). The capture records that the crawler received gzip; the archive replays the body uncompressed.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_presidency_profile_mbeki_executive_deputy_president_span",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-DP-01",
+      "role_id": "za_deputy_president",
+      "holder_name": "Thabo Mbeki",
+      "role_title": "Deputy President of the Republic of South Africa",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "printed_range": "May 1994 - 13 June 1999",
+      "text": "The Presidency's profile of former President Thabo Mbeki lists, among positions to which 'he was elected', 'Executive Deputy President of the South African Government of National Unity (May 1994 - 13 June 1999)'.",
+      "locator": {
+        "section": "Biography, list after 'In subsequent years, he was elected to the following positions:'",
+        "row": 1
+      }
+    }
+  ],
+  "bounded_scope": "Deputy President observations for CLAUDE-C01-21 only (role za_deputy_president in za_presidency). Announcements, stated intentions, appointments and their notices, oaths and their scheduling, stated assumptions, releases, resignations and their stated effect, Assembly-seat events and in-office attestations stay separate rows; holder observations and any start or end are decided in the packet, not by any row. The President's roles (za_president_election, za_state_president) and the ANC's party office are excluded and no row feeds them."
+}

@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_parliament_hansard_na_19990628",
+  "source_url": "https://www.parliament.gov.za/storage/app/media/Docs/hansard/92085_1.doc",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_original_msword_doc_from_parliament_document_store_and_text_read_with_antiword_0_37_w0",
+  "source_response_bytes": 330752,
+  "source_response_sha256": "715a3397257fb2c5b512df8b630e5a4ac66d97403d617ae10edff1e61086fa1f",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (the server rejects HEAD) with no automatic decoding, then hash the bytes as received; the file is static and a cache-busting query returns the same bytes.",
+  "source_response_checked_in": false,
+  "stability_check": "First downloaded on 2026-09-25 at 12:30Z by the researcher and downloaded again at 13:00 and 13:30 (plain and cache-busting)Z; the independent check downloaded it again at 13:42 and 14:13 (plain and cache-busting)Z. Every download had the same byte count and SHA-256. Downloaded again for this packet at 2026-09-25T15:28Z (integration pass) with the same byte count and SHA-256.",
+  "provenance_note": "Official file from Parliament's document store, served as a static file (Last-Modified 2 March 2026, before the historical cutoff) without content encoding; fetch it with GET. The response identity was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official file from Parliament's document store, located through the site's own paper index (https://www.parliament.gov.za/docsjson/, called with the paging parameters the site sends; the listing grows over time and is used only to locate files, never as a source). A static file with Last-Modified 2 March 2026, before the historical cutoff, and an ETag whose size part equals the byte count; use GET. Listed as NA280699 (1999-06-28). Text read with antiword -w 0; line locators refer to that output. The document is not labelled 'unrevised'; its 'see col 000' placeholders suggest a pre-final text. Parliament's digital Hansard begins with the sitting of 14 June 1999. Plain and cache-busting requests matched.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "MS Word binary; text read with antiword -w 0 (line locators refer to that output); not rendered."
+  },
+  "rows": [
+    {
+      "claim_id": "za_zuma_deputy_president_leader_of_government_business_announced_19990628",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-DP-03",
+      "role_id": "za_deputy_president",
+      "holder_name": "Jacob Zuma",
+      "role_title": "Deputy President of the Republic of South Africa",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "1999-06-28",
+      "text": "At the sitting of Monday 28 June 1999, under 'Appointment of Office Bearers (Announcements)', the Speaker announced that 'the Deputy President, Mr J G Zuma, had been appointed Leader of Government Business'.",
+      "locator": {
+        "heading": "APPOINTMENT OF OFFICE BEARERS (Announcements)",
+        "antiword_w0_text_lines": "6, 14"
+      }
+    }
+  ],
+  "bounded_scope": "Deputy President observations for CLAUDE-C01-21 only (role za_deputy_president in za_presidency). Announcements, stated intentions, appointments and their notices, oaths and their scheduling, stated assumptions, releases, resignations and their stated effect, Assembly-seat events and in-office attestations stay separate rows; holder observations and any start or end are decided in the packet, not by any row. The President's roles (za_president_election, za_state_president) and the ANC's party office are excluded and no row feeds them."
+}

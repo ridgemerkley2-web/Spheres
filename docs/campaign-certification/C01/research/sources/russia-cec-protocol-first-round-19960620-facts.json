@@ -1,0 +1,54 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_cec_protocol_first_round_19960620",
+  "source_url": "https://web.archive.org/web/20160401180417id_/http://www.cikrf.ru/banners/vib_arhiv/president/1996/files/1/1996-1-Protokol_CIK.doc",
+  "original_url": "http://www.cikrf.ru/banners/vib_arhiv/president/1996/files/1/1996-1-Protokol_CIK.doc",
+  "archive_capture_utc": "2016-04-01T18:04:17Z",
+  "source_title": "Protocol of the Central Election Commission of the Russian Federation on the results of the election of the President of the Russian Federation, voting of 16 June 1996 (CEC election archive file 1996-1-Protokol_CIK.doc)",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "document_date": "1996-06-20",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20160401180417id_/http://www.cikrf.ru/banners/vib_arhiv/president/1996/files/1/1996-1-Protokol_CIK.doc",
+  "source_response_bytes": 79360,
+  "source_response_sha256": "6e587cc366331a6c4a94e8c5f354c3659c7f05b5d2ef96dedc59644c4c34f917",
+  "source_response_encoding": "application/msword (Word binary, text in windows-1251), served without Content-Encoding; original Last-Modified 6 December 2010",
+  "source_response_checked_in": false,
+  "stability_check": "Found by the independent check: first downloaded at 2026-09-24T22:51-22:53Z and re-downloaded at 23:24:58Z (32-34 minutes later); identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T00:33:16Z (79,360 bytes); identical SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of http://www.cikrf.ru/banners/vib_arhiv/president/1996/files/1/1996-1-Protokol_CIK.doc, captured at 2016-04-01T18:04:17Z, before the 7 September 2026 cutoff; the id_ form replays the archived bytes unchanged and is used because the Central Election Commission's hosts refused connections from this environment (ports 80 and 443). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The CEC's election-archive copy, linked from the same archived 1996 page as the run-off protocol. The Word file's metadata gives 19-20 June 1996 and a later save on 26 September 2008, so the digital copy was edited after 1996; its signature lines are blank. Read in full after text extraction; not rendered as an image. The CEC resolution 105/825-II of 20 June 1996 on the first-round result and the run-off was not found in an official copy.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Word file text extracted and read in full (heading, items 1-15, candidate table, signature block, date line)."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_cec_first_round_voting_19960616",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-03",
+      "role_id": "ru_president",
+      "holder_name": null,
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "election_voting",
+      "attested_on": "1996-06-16",
+      "text": "The protocol is headed 'ВЫБОРЫ ПРЕЗИДЕНТА РОССИЙСКОЙ ФЕДЕРАЦИИ 16 ИЮНЯ 1996 ГОДА'.",
+      "locator": "Heading"
+    },
+    {
+      "claim_id": "ru_cec_first_round_protocol_figures_19960620",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-03",
+      "role_id": "ru_president",
+      "holder_name": "Борис Николаевич Ельцин",
+      "printed_name": "ЕЛЬЦИН БОРИС НИКОЛАЕВИЧ",
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "result_determination",
+      "attested_on": "1996-06-20",
+      "text": "Summing 89 subject-commission protocols and 397 protocols of polling stations abroad, the CEC determines: 108,495,023 voters on the lists; 74,515,019 valid and 1,072,120 invalid ballots; 75,744,549 voters took part in the election; ten candidates, among them 'ЕЛЬЦИН БОРИС НИКОЛАЕВИЧ' 26,665,495 votes, 'ЗЮГАНОВ ГЕННАДИЙ АНДРЕЕВИЧ' 24,211,686 and 'ЛЕБЕДЬ АЛЕКСАНДР ИВАНОВИЧ' 10,974,736; against all 1,163,921. Chairman N. T. Ryabov heads the signature block. 'Протокол составлен \"20\" июня 1996 года'.",
+      "locator": "Items 1-15; signature block; date line"
+    }
+  ],
+  "bounded_scope": "Presidency observations for CLAUDE-C01-14 only. Election calling, voting, result determination, declaration, correction and publication, oath, stated assumption of office, inauguration ceremony, resignation, acting service and outgoing-holder statements stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-05 RSFSR roles and the USSR packet are outside this extract."
+}

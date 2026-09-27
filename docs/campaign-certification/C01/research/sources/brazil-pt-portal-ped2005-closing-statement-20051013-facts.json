@@ -1,0 +1,54 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_portal_ped2005_berzoini_elected_20051013",
+  "source_url": "https://web.archive.org/web/20051020093922id_/http://www.pt.org.br/site/noticias/noticias_int.asp?cod=39217",
+  "original_url": "http://www.pt.org.br/site/noticias/noticias_int.asp?cod=39217",
+  "archive_capture_utc": "2005-10-20T09:39:22Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2005-10-13",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 38217,
+  "source_response_sha256": "702c93c0ad4ad24a15202f95544e71393dec2a90533ba8b74438e40a5172a071",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture (20051020093922). First downloaded 2026-09-25T13:07:08Z with a Python urllib client; downloaded again 2026-09-25T13:38:30Z with curl (no --compressed, Accept-Encoding: identity), more than 30 minutes later: 38217 bytes, SHA-256 identical. The independent check downloaded it again at 13:58-14:00 UTC and at 14:31-14:33 UTC on 25 September 2026 (at least 30 minutes after the earlier downloads) with Accept-Encoding: identity; every response had the same byte count and SHA-256 and no Content-Encoding.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2005-10-20T09:39:22Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Raw Internet Archive id_ replay of a fixed capture (20051020093922). First downloaded 2026-09-25T13:07:08Z with a Python urllib client; downloaded again 2026-09-25T13:38:30Z with curl (no --compressed, Accept-Encoding: identity), more than 30 minutes later: 38217 bytes, SHA-256 identical. The independent check downloaded it again at 13:58-14:00 UTC and at 14:31-14:33 UTC on 25 September 2026 (at least 30 minutes after the earlier downloads) with Accept-Encoding: identity; every response had the same byte count and SHA-256 and no Content-Encoding. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A Portal do PT item of 13 October 2005 with the PT's closing statement on the PED 2005, captured 20 October 2005. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full in the original Portuguese; no images reviewed."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_ped2005_berzoini_elected_declared_20051013",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-05",
+      "role_id": "br_pt_president",
+      "holder_name": "Ricardo Berzoini",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "result_declaration",
+      "attested_on": "2005-10-13",
+      "text": "The PT's closing statement on the PED 2005, dated 13 October 2005, says that with only 2.8% of the votes left to count Ricardo Berzoini is already elected national president of the PT, with 113,130 votes (51.6%) against 106,224 (48.4%) for Raul Pont.",
+      "locator": {
+        "section": "Sub-heading 'Berzoini é eleito presidente do PT' and results table"
+      }
+    },
+    {
+      "claim_id": "br_pt_ped2005_leadership_to_take_office_20051022_prospective_20051013",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-05",
+      "role_id": "br_pt_president",
+      "holder_name": "Ricardo Berzoini",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "assumption_scheduled",
+      "attested_on": "2005-10-13",
+      "text": "The same statement says Ricardo Berzoini and the new national leadership are to take up their posts on 22 October at a meeting of the National Directorate.",
+      "locator": {
+        "section": "Paragraph after the results table"
+      }
+    }
+  ]
+}

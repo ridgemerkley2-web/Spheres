@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_rsfsr_res_2017i_19911212",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102013526&page=1&rdk=0",
+  "source_title": "Resolution of the RSFSR Supreme Soviet No. 2017-I of 12 December 1991 'Об отзыве депутатских групп РСФСР из Верховного Совета СССР' (original edition)",
+  "accessed_date": "2026-09-26",
+  "published_date": null,
+  "document_date": "1991-12-12",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102013526&page=1&rdk=0",
+  "source_response_bytes": 25236,
+  "source_response_sha256": "4bfe7135976067e09fd1bf6d913f8f3a81df9ff87f8bf26df7db039c6ecfc1dc",
+  "source_response_encoding": "windows-1251",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier (part C): downloaded at 2026-09-26T02:01:42Z, 02:12:31Z, 02:53:26Z and 02:53:58Z (the last with a cache-busting '_cb=' query); identical bytes and SHA-256. Independent check (part C): re-downloaded at 02:57:59Z (cache-busting '_chk=' query) and 03:24:36Z; identical. This packet: re-downloaded at 2026-09-26T03:52:47Z and again at 2026-09-26T04:26:23Z (33 minutes later); identical 25,236 bytes and SHA-256.",
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 26 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read in full; the portal offers no facsimile. An RSFSR act about the composition of the USSR chambers, filed in ussr.json as a claim on su_supreme_soviet; russia.json is not changed.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in full in Russian after windows-1251 decoding by the dossier, the independent check and this packet."
+  },
+  "rows": [
+    {
+      "claim_id": "su_rsfsr_2017i_recalls_deputy_groups_19911212",
+      "observation_id": "su_supreme_soviet",
+      "review_observation": "SU-GOV-10",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "delegation_recalled",
+      "attested_on": "1991-12-12",
+      "text": "In connection with the ratification of the Agreement on the creation of the Commonwealth of Independent States, the RSFSR Supreme Soviet recalls the RSFSR deputy groups from the Council of Republics and the Council of the Union of the USSR Supreme Soviet (point 1), invalidates its resolutions 1691-I of 27 September and 1765-I of 18 October 1991 on those groups (point 3), and puts the resolution into force from adoption (point 4); it is signed 'Председатель Верховного Совета РСФСР Р. И. ХАСБУЛАТОВ', 'Москва, Дом Советов РСФСР', 12 December 1991, 'N 2017-I'.",
+      "locator": "Preamble, points 1-4 and signature block"
+    }
+  ],
+  "bounded_scope": "Union head-of-government and Supreme Soviet chair observations for CLAUDE-C01-26 only. Election or approval, appointment, release decree, parliamentary consent, dismissal, no confidence, resignation statement, suspension, consent to arrest, release, acting or interim service, presiding arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The CLAUDE-C01-05 su_president holders and russia.json are outside this extract."
+}

@@ -1,0 +1,10 @@
+{
+  "date": "2026-09-27",
+  "runtime_source_commit": "474df63ed13571688dae8913023b1ab32155b4f4",
+  "command": "node --test tools/ui/check_guidance_outcomes.cjs tools/ui/check_guidance_host.cjs tools/ui/check_guidance_ui.cjs",
+  "tests": 79,
+  "passed": 79,
+  "failed": 0,
+  "sha256": "cdb7272c7c32860b553cb6dbffd88a6b983492abb06fc8e46e5a5e9f01512a81",
+  "scope": "Unit/host/UI contract preflight only; not later native/browser qualification."
+}
