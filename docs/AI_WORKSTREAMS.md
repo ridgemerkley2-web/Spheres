@@ -1,6 +1,6 @@
 # Spheres — Codex and Claude workboard
 
-Updated 22 September 2026. **Integration branch: `codex/campaign-certification`.**
+Updated 27 September 2026. **Integration branch: `codex/campaign-certification`.**
 Start from this branch, not `master` or an older Claude branch. S01–S18 and S21 are complete;
 Claude's S19 implementation is integrated; later-campaign browser qualification remains.
 CP1 certification and worldwide character coverage remain open.
@@ -17,7 +17,7 @@ handoff plan, not a claim that Claude has started work or permission to run ever
 |---|---|---|---|
 | Flight and player journey | Codex | S18, S20, S21 | S18 and S21 complete. S20 follows final S19 qualification; independent narrow controls are integrated. |
 | Tutorial and advisors | Claude | S19 | Submission `7de62539` integrated at `2400800b`; Codex qualifies remaining later outcomes before closure. |
-| Historical characters and cartoons | Claude | C01–C07, S23 | C01-01/02/03/04/07/08 accepted as bounded research; C01-05/06 submitted and awaiting independent review. C01 remains incomplete. |
+| Historical characters and cartoons | Claude | C01–C07, S23 | C01-01/02/03/04/07/08 accepted as bounded research; C01-05/06/09–22/26 integrated after technical verification, historical acceptance pending. C01-23/24/25/27 are claim-only. C01 remains incomplete. |
 | Integration, performance and qualification | Codex | S22, S24, S25, S27–S30 | Integrate reviewed work and run exact-build checks. Neither a content batch nor a unit-test pass earns CP1. |
 | Independent human playtests | User / human testers | S26 | Codex prepares reproducible builds and tasks; Claude may review observations. AI testing cannot substitute for human sessions. |
 | Later aircraft/naval expansion | Codex | E01–E04, E06 | Parked until CP1; preserve the current three supported mission families. |
@@ -45,15 +45,20 @@ Its seven critical original responses reproduced exactly; 85 Python tests passed
 in isolation, with unresolved instruments and office dates retained.
 
 These six accepted packets are bounded research intake. They do not complete
-C01 or install leaders and avatars. Do not repeat them. Two genuine submissions
-remain pending independent source review and integration:
+C01 or install leaders and avatars. Do not repeat them. On 27 September, the user
+authorized merging all 17 technically verified submissions: C01-05/06/09–22/26.
+They are now integrated as research; historical acceptance remains pending.
+The [integration record](campaign-certification/verification/2026-09-27-claude-integration.md)
+pins the reviewed heads, test evidence and remaining source-review limitations.
+Do not reimplement these submissions or confuse integration with acceptance.
+The two oldest submissions are:
 
 | Packet | Branch / reviewed inventory tip | Pending scope |
 |---|---|---|
 | [CLAUDE-C01-05](https://github.com/ridgemerkley2-web/Spheres/blob/claude/c01-ussr-05/docs/planning/ai-handoffs/CLAUDE-C01-05.md) | `claude/c01-ussr-05` / `1c698ed0` | The 1991 USSR/RSFSR executive transition. |
 | [CLAUDE-C01-06](https://github.com/ridgemerkley2-web/Spheres/blob/claude/c01-saudi-06/docs/planning/ai-handoffs/CLAUDE-C01-06.md) | `claude/c01-saudi-06` / `7948ab98` | Saudi kings and crown princes, 1990–2026. The older `claude/c01-saudi-03` is this same substantive packet before renumbering, not a separate submission. |
 
-The two pending tips are not already accepted equivalents. Their source claims
+These integrated tips are not already accepted equivalents. Their source claims
 have not been independently accepted by this workboard update; a submitted packet
 must not be reclaimed as unstarted work. Read its remote handoff and coordinate
 bounded repairs with the integrator. The [C01-08 review inventory](campaign-certification/C01/integrations/CLAUDE-C01-08/README.md#other-pending-submissions-inventory-only)
