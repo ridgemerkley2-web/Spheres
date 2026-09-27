@@ -1,0 +1,105 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_fpa_dn10_composition",
+  "source_url": "https://fpabramo.org.br/wp-content/uploads/2010/02/10diretorionacional.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_original_born_digital_pdf_text_layer_read",
+  "source_response_bytes": 112487,
+  "source_response_sha256": "aaf8e614c7ffc416720e96cbbb978d5e3e3334aeef08fdf1b47689112d11cb75",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded (a cache-busting query string may be added to reach the origin and is not part of the recorded URL); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "First downloaded 2026-09-25T12:02Z (Cloudflare HIT); re-downloaded 2026-09-25T12:39Z (Cloudflare MISS) with a cache-busting query string (origin fetch) and got the same byte count and SHA-256. The independent check downloaded it again between 13:10 and 13:11 UTC on 25 September 2026, 30 to 68 minutes after the first download (cache-busted for the FPA and SIAC files), with the same byte count and SHA-256.",
+  "provenance_note": "Original born-digital PDF served by the party foundation (Cloudflare in front of the origin). First downloaded 2026-09-25T12:02Z (Cloudflare HIT); re-downloaded 2026-09-25T12:39Z (Cloudflare MISS) with a cache-busting query string (origin fetch) and got the same byte count and SHA-256. The independent check downloaded it again between 13:10 and 13:11 UTC on 25 September 2026, 30 to 68 minutes after the first download (cache-busted for the FPA and SIAC files), with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A later party compilation of the Diretório Nacional and Comissão Executiva Nacional compositions (PT and Fundação Perseu Abramo, digital edition of the party resolutions; Last-Modified 5 April 2017), served from fpabramo.org.br. Retrospective: its rows are claims, never boundaries; a meeting printed as a span of days carries no structured date. The 10th Diretório Nacional, its 2002/2005 executive committee and the recorded changes; its notes cite the Diretório Nacional minutes book (Livro ata das reuniões do DN, 07/12/2002 and 15/03/2003), which was not seen.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Born-digital PDF from the party compilation of directorate compositions; its text layer read in full (no scan). Each page is headed Partido dos Trabalhadores (www.pt.org.br) / Fundação Perseu Abramo. Pages 1-6 read."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_fpa_dn10_elected_12th_encontro_presidente_dirceu_20011214_16",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-03",
+      "role_id": "br_pt_president",
+      "holder_name": "José Dirceu",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "national_meeting_directorate_election",
+      "attested_on": null,
+      "text": "The 10th Diretório Nacional (83 members), elected at the 12th Encontro Nacional at the Pernambuco convention centre, Recife, 14-16 December 2001, is headed 'Presidente: José Dirceu'; the footnote cites the PT's national communications page 'Conheça o Novo Diretório Nacional' (www.pt.org.br, 19/12/2001) and the SORG digital archive list of members elected in Recife on 15/12/01.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "'10º DIRETÓRIO NACIONAL Eleito no 12º Encontro Nacional ... entre os dias 14 e 16 de dezembro de 2001'; footnote 1"
+      }
+    },
+    {
+      "claim_id": "br_pt_fpa_dn_genoino_substitutes_dirceu_interim_20021207",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-03",
+      "role_id": "br_pt_president",
+      "holder_name": "José Genoino",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores em exercício ou interino",
+      "event_kind": "interim_substitution",
+      "attested_on": "2002-12-07",
+      "text": "Note 1 records that at the Diretório Nacional meeting of 7 December 2002 José Genoino replaced José Dirceu as interim president ('presidente interino', period 07/12/2002 to 15/03/2003), citing the DN minutes; the executive-committee page repeats 'Presidência: 07/12/2002 a 15/03/2003 - Presidente interino José Genoino (SP)'.",
+      "locator": {
+        "pdf_page": [
+          2,
+          4
+        ],
+        "item": "'ALTERAÇÕES DN: Nota 1'; footnote '*Presidência' under the executive committee list"
+      }
+    },
+    {
+      "claim_id": "br_pt_fpa_dn_dirceu_resigns_national_presidency_20030315_16",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-03",
+      "role_id": "br_pt_president",
+      "holder_name": "José Dirceu",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "resignation_day_not_stated",
+      "attested_on": null,
+      "text": "Note 1 records that at the Diretório Nacional meeting 'em 15 e 16/03/2003' José Dirceu resigned the national presidency ('renúncia de José Dirceu à presidência nacional'), remaining a full member of the Diretório Nacional.",
+      "locator": {
+        "pdf_page": 2,
+        "item": "'ALTERAÇÕES DN: Nota 1'"
+      }
+    },
+    {
+      "claim_id": "br_pt_fpa_dn_genoino_elected_national_president_20030315",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-04",
+      "role_id": "br_pt_president",
+      "holder_name": "José Genoino",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "directorate_election",
+      "attested_on": "2003-03-15",
+      "text": "Note 1 adds that at the same meeting 'José Genoino é eleito Presidente Nacional do PT', and the executive-committee footnote prints 'Presidência: 15/03/2003 - Presidente eleito pela R/DN 15/03/2003: José Genoino (SP)'.",
+      "locator": {
+        "pdf_page": [
+          2,
+          4
+        ],
+        "item": "'ALTERAÇÕES DN: Nota 1'; footnote '*Presidência' under the executive committee list"
+      }
+    },
+    {
+      "claim_id": "br_pt_fpa_cen_dirceu_to_federal_government_printed_20020110",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-03",
+      "role_id": "br_pt_president",
+      "holder_name": "José Dirceu",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "left_for_state_office_listing",
+      "attested_on": null,
+      "text": "Under 'ALTERAÇÕES CEN 2' the compilation lists, at an executive-committee meeting printed as 'R/CEN 10/01/2002 (FORAM PARA O GOVERNO FEDERAL)', José Dirceu as Ministro da Casa Civil among members who went into the federal government.",
+      "locator": {
+        "pdf_page": 4,
+        "item": "'ALTERAÇÕES CEN 2 R/CEN 10/01/2002'"
+      }
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_senado_den1_2016_mensagem144",
+  "source_url": "https://legis.senado.leg.br/sdleg-getter/documento?dm=4654071",
+  "accessed_date": "2026-09-23",
+  "published_date": "2016-08-31",
+  "access_method": "downloaded_official_pdf_scan_rendered",
+  "source_response_bytes": 61472,
+  "source_response_sha256": "ad1913ece01049dde93ceff3d584d1c53af99ae1cb0985f181a654b07d3f0535",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file from the Senate's document service, a static response. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Scanned Ofício nº 1.117 (SF) and Mensagem nº 144 (SF) filed in the Denúncia nº 1/2016 case record (document 7 of 1 September 2016), with a handwritten receipt note.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "Both scanned pages rendered and read; the handwritten receipt note read visually."
+  },
+  "rows": [
+    {
+      "claim_id": "br_mensagem144_to_vp_in_exercise_20160831",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-07",
+      "role_id": "br_president",
+      "holder_name": null,
+      "role_title": "Vice-President of the Republic in exercise of the office of President",
+      "event_kind": "vice_president_exercising_office",
+      "attested_on": "2016-08-31",
+      "text": "By Ofício No. 1.117 dated 31 August 2016 the First Secretary forwarded to the Chief of Staff Mensagem No. 144, in which the President of the Senate informs the 'Vice-Presidente da República, no exercício do cargo de Presidente da República' of the promulgation of Resolution No. 35 of 2016, approved at the session of 31 August. A handwritten receipt note on page 2 appears to read 31/08/16 at 15:30.",
+      "locator": {
+        "pdf_pages": "1 (Ofício), 2 (Mensagem and handwritten note)"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+}

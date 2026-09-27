@@ -7,6 +7,30 @@ from datetime import date
 from urllib.parse import urlsplit
 
 import campaign_research as research
+from test_brazil_vice_presidents_c01_17 import NEW_SOURCES as C01_17_SOURCES
+from test_brazil_pt_presidents_c01_22 import NEW_SOURCES as C01_22_SOURCES
+
+# The five sources of the original S10f intake keep every assertion below by id. CLAUDE-C01-10 adds 48 sources for
+# the br_presidency institution whose response identities are pinned exactly (bytes and SHA-256) in
+# test_brazil_presidents_c01_10.py. CLAUDE-C01-17 then adds 11 sources and the second role br_vice_president; its
+# identities are pinned exactly in test_brazil_vice_presidents_c01_17.py. CLAUDE-C01-22 then adds 108 sources and the
+# party role br_pt_president on the PT funding observation; its identities are pinned exactly in
+# test_brazil_pt_presidents_c01_22.py.
+ORIGINAL_SOURCES = ('br_tse_fefc_2024', 'br_tse_fefc_announcement_20240617', 'br_tse_missao_20251104',
+                    'br_tse_pmb_rename_20251202', 'br_trerj_pmb_name_notices')
+# CLAUDE-C01-10 sources: raw Internet Archive captures and the Senate, Chamber and TSE document services, all accessed
+# on 2026-09-23.
+C01_10_HOSTS = {'web.archive.org', 'legis.senado.leg.br', 'imagem.camara.leg.br', 'bibliotecadigital.tse.jus.br',
+                'www12.senado.leg.br'}
+C01_10_SOURCE_COUNT = 48
+# CLAUDE-C01-17 sources: raw Internet Archive captures and the Senate and TSE document services, accessed on
+# 2026-09-24.
+C01_17_HOSTS = {'web.archive.org', 'legis.senado.leg.br', 'bibliotecadigital.tse.jus.br'}
+C01_17_SOURCE_COUNT = 11
+# CLAUDE-C01-22 sources: the party foundation's files, raw Internet Archive captures, the Chamber's stored diary and
+# closed SGIP registry records of the Superior Electoral Court, accessed on 2026-09-25.
+C01_22_HOSTS = {'web.archive.org', 'fpabramo.org.br', 'siac.fpabramo.org.br', 'imagem.camara.leg.br', 'sgip3.tse.jus.br'}
+C01_22_SOURCE_COUNT = 108
 
 
 class BrazilDiscoveryTests(unittest.TestCase):
@@ -23,14 +47,22 @@ class BrazilDiscoveryTests(unittest.TestCase):
 
     def test_partial_inventory_is_valid_without_claiming_31_distinct_parties(self):
         ids = self.validate()
-        self.assertEqual(tuple(len(ids[k]) for k in ('entries', 'sources', 'claims', 'roles')), (31, 5, 34, 0))
+        # 31 organization observations plus the presidency: CLAUDE-C01-10 (48 sources, 112 claims, br_president),
+        # CLAUDE-C01-17 (11 sources, 85 claims, br_vice_president) and CLAUDE-C01-22 (108 sources, 177 claims, the PT
+        # observation's party role br_pt_president).
+        self.assertEqual(tuple(len(ids[k]) for k in ('entries', 'sources', 'claims', 'roles')), (32, 172, 408, 3))
+        self.assertEqual(len(self.packet['organizations']), 31)
         coverage = self.packet['coverage']
         self.assertFalse(coverage['exhaustive_organization_register_reviewed'])
         self.assertIsNone(coverage['unrepresented_organization_total'])
         self.assertFalse(coverage['art_completion_claim'])
         self.assertEqual([row['records'] for row in coverage['bounded_registers']], [29, 1, 1])
         self.assertIsNone(coverage['bounded_registers'][0]['registry_as_of_date'])
-        self.assertEqual(self.packet['institutions'], [])
+        # Exactly one institution, the presidency, with exactly two roles (CLAUDE-C01-10's br_president and
+        # CLAUDE-C01-17's br_vice_president); no other institution.
+        self.assertEqual([entry['id'] for entry in self.packet['institutions']], ['br_presidency'])
+        self.assertEqual([role['id'] for role in self.packet['institutions'][0]['roles']],
+                         ['br_president', 'br_vice_president'])
 
     def test_all_funding_rows_retain_source_order_and_exact_labels(self):
         rows = self.extracts['br_tse_fefc_2024']['rows']
@@ -95,13 +127,28 @@ class BrazilDiscoveryTests(unittest.TestCase):
 
     def test_access_and_update_dates_never_extend_historical_attestations(self):
         for source in self.packet['sources']:
-            self.assertIn(urlsplit(source['url']).hostname, {'www.tse.jus.br', 'www.tre-rj.jus.br'})
-            self.assertEqual(source['accessed_date'], '2026-09-13')
+            if source['id'] in ORIGINAL_SOURCES:
+                self.assertIn(urlsplit(source['url']).hostname, {'www.tse.jus.br', 'www.tre-rj.jus.br'})
+                self.assertEqual(source['accessed_date'], '2026-09-13')
+            elif source['id'] in C01_17_SOURCES:
+                self.assertIn(urlsplit(source['url']).hostname, C01_17_HOSTS)
+                self.assertEqual(source['accessed_date'], '2026-09-24')
+            elif source['id'] in C01_22_SOURCES:
+                self.assertIn(urlsplit(source['url']).hostname, C01_22_HOSTS)
+                self.assertEqual(source['accessed_date'], '2026-09-25')
+            else:
+                self.assertIn(urlsplit(source['url']).hostname, C01_10_HOSTS)
+                self.assertEqual(source['accessed_date'], '2026-09-23')
             if source['published_date']:
                 self.assertLessEqual(date.fromisoformat(source['published_date']), date.fromisoformat(research.CUTOFF))
             for claim in source['claims']:
-                if claim['attested_on']:
+                if source['id'] in ORIGINAL_SOURCES:
+                    self.assertIn('attested_on', claim)
+                # CLAUDE-C01-10's three retrospective library spans carry no structured date at all.
+                if claim.get('attested_on'):
                     self.assertLessEqual(claim['attested_on'], research.CUTOFF)
+        self.assertEqual({urlsplit(s['url']).hostname for s in self.packet['sources']},
+                         {'www.tse.jus.br', 'www.tre-rj.jus.br'} | C01_10_HOSTS | C01_22_HOSTS)
         packet = copy.deepcopy(self.packet)
         packet['sources'][0]['claims'][0]['attested_on'] = '2026-09-08'
         with self.assertRaisesRegex(ValueError, 'exceeds cutoff'):
@@ -112,10 +159,25 @@ class BrazilDiscoveryTests(unittest.TestCase):
             extract = self.extracts[source['id']]
             self.assertEqual(extract['source_url'], source['url'])
             self.assertEqual(extract['format'], 'spheres-c01-derived-factual-table/v1')
-            self.assertIsNone(extract['source_response_bytes'])
-            self.assertIsNone(extract['source_response_sha256'])
+            if source['id'] in ORIGINAL_SOURCES:
+                self.assertIsNone(extract['source_response_bytes'])
+                self.assertIsNone(extract['source_response_sha256'])
+            else:
+                # CLAUDE-C01-10 records every original response identity; the exact values are pinned in
+                # test_brazil_presidents_c01_10.py, and the extract's own checksum is a different file's.
+                self.assertIsInstance(extract['source_response_bytes'], int)
+                self.assertGreater(extract['source_response_bytes'], 0)
+                self.assertRegex(extract['source_response_sha256'], r'^[0-9a-f]{64}$')
+                self.assertNotEqual(extract['source_response_sha256'], source['snapshot']['sha256'])
+                self.assertIs(extract['source_response_checked_in'], False)
             found = {row['claim_id'] for row in extract['rows']} if 'rows' in extract else {claim['id'] for claim in extract['claims']}
             self.assertEqual(found, {claim['id'] for claim in source['claims']})
+        self.assertEqual([s['id'] for s in self.packet['sources']][:5], list(ORIGINAL_SOURCES))
+        self.assertEqual(len(self.packet['sources']),
+                         len(ORIGINAL_SOURCES) + C01_10_SOURCE_COUNT + C01_17_SOURCE_COUNT + C01_22_SOURCE_COUNT)
+        start = len(ORIGINAL_SOURCES) + C01_10_SOURCE_COUNT
+        self.assertEqual([s['id'] for s in self.packet['sources']][start:start + C01_17_SOURCE_COUNT], C01_17_SOURCES)
+        self.assertEqual([s['id'] for s in self.packet['sources']][-C01_22_SOURCE_COUNT:], C01_22_SOURCES)
         packet = copy.deepcopy(self.packet)
         packet['sources'][0]['snapshot']['sha256'] = '0' * 64
         with self.assertRaisesRegex(ValueError, 'checksum mismatch'):
@@ -124,7 +186,12 @@ class BrazilDiscoveryTests(unittest.TestCase):
     def test_reconciliation_never_grants_game_identity_or_closes_certification(self):
         for entry in self.packet['organizations']:
             self.assertEqual(entry['represented_party_ids'], [])
-            self.assertEqual(entry['roles'], [])
+            # Only the PT funding observation carries a role: CLAUDE-C01-22's party office br_pt_president, whose
+            # holders are pinned exactly in test_brazil_pt_presidents_c01_22.py; every other organization has none.
+            if entry['id'] == 'br_tse_fefc_2024_party_03':
+                self.assertEqual([(r['id'], r['kind']) for r in entry['roles']], [('br_pt_president', 'party_leader')])
+            else:
+                self.assertEqual(entry['roles'], [])
             self.assertIsNone(entry['lifecycle']['from'])
             self.assertIsNone(entry['lifecycle']['until'])
         packet = copy.deepcopy(self.packet)
@@ -134,12 +201,15 @@ class BrazilDiscoveryTests(unittest.TestCase):
         index = research.build()
         country = next(p for p in index['countries'] if p['nation'] == 'Brazil')
         self.assertFalse(country['country_census_complete'])
-        self.assertEqual(country['mapping_pending'], 31)
+        # 31 organization observations and the CLAUDE-C01-10 presidency, none mapped to a game identity.
+        self.assertEqual(country['mapping_pending'], 32)
+        self.assertEqual(self.packet['institutions'][0]['represented_party_ids'], [])
         self.assertFalse(index['runtime_roster_modified'])
         self.assertFalse(index['c01_complete'])
         self.assertFalse(index['g2_prerequisite_satisfied'])
         work = [row for row in index['work_orders'] if row['nation'] == 'Brazil']
-        self.assertEqual([len(row['members']) for row in work], [10, 10, 10, 1])
+        self.assertEqual([len(row['members']) for row in work], [10, 10, 10, 2])
+        self.assertEqual(work[-1]['members'], ['br_pmb_name_decisions_2025_2026', 'br_presidency'])
         self.assertEqual({member for row in work for member in row['members']}, set(self.validate()['entries']))
         self.assertEqual({row['status'] for row in work}, {'open'})
 

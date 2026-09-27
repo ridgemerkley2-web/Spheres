@@ -1,0 +1,68 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_portal_novo_comando_20110508",
+  "source_url": "https://web.archive.org/web/20110511191926id_/http://www.pt.org.br:80/portalpt/noticias/institucional-3/novo-comando-do-pt-aponta-para-unidade-da-militancia-de-olho-nas-eleicoes-municipais-60231.html",
+  "original_url": "http://www.pt.org.br/portalpt/noticias/institucional-3/novo-comando-do-pt-aponta-para-unidade-da-militancia-de-olho-nas-eleicoes-municipais-60231.html",
+  "archive_capture_utc": "2011-05-11T19:19:26Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2011-05-08",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 25987,
+  "source_response_sha256": "a5599021756e7f7cde10c7e70fdebc3e6a9d23c0ad3e317f81506d0f4446ebd8",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Found by the independent check, which downloaded it at 15:07:11 UTC and again at 15:49:16 UTC on 25 September 2026 with Accept-Encoding: identity; both downloads had the same byte count and SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2011-05-11T19:19:26Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Found by the independent check, which downloaded it at 15:07:11 UTC and again at 15:49:16 UTC on 25 September 2026 with Accept-Encoding: identity; both downloads had the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A Portal do PT item dated 08/05/2011 00:50 with statements of the party's secretary-general and national communication secretary on the new leadership, captured 11 May 2011. The PT's own article on Rui Falcão's election (…rui-falcao-e-eleito-por-unanimidade-para-presidir-partido-dos-trabalhadores-58511.html) has only a 2021 capture that returns 404. Found by the independent check. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_dutra_resignation_20110429",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-07",
+      "role_id": "br_pt_president",
+      "holder_name": "José Eduardo Dutra",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "resignation_stated",
+      "attested_on": "2011-04-29",
+      "text": "The portal item says 'A renúncia do presidente do PT José Eduardo Dutra no dia 29 de abril foi muito sentida no partido', and quotes the secretary-general regretting 'a saída de nosso presidente eleito em 2009'.",
+      "locator": {
+        "item": "first and second paragraphs"
+      }
+    },
+    {
+      "claim_id": "br_pt_falcao_elected_unanimously_2011",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-07",
+      "role_id": "br_pt_president",
+      "holder_name": "Rui Falcão",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "directorate_election",
+      "attested_on": null,
+      "text": "The national communication secretary 'comemora o fato da eleição de Falcão ter sido por unanimidade', and the secretary-general says that Rui Falcão 'já foi presidente do partido'.",
+      "locator": {
+        "item": "fourth and third paragraphs"
+      }
+    },
+    {
+      "claim_id": "br_pt_falcao_styled_new_national_president_20110508",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-07",
+      "role_id": "br_pt_president",
+      "holder_name": "Rui Falcão",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2011-05-08",
+      "text": "The secretary-general, Elói Pietá, is quoted: 'Porém nós confiamos na capacidade do novo presidente nacional do PT, Rui Falcão, de conduzir a bom termo estas tarefas'.",
+      "locator": {
+        "item": "third paragraph"
+      }
+    }
+  ]
+}

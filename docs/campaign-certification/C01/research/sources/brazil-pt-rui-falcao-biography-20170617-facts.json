@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_site_rui_falcao_biography_20170617",
+  "source_url": "https://web.archive.org/web/20170617175854id_/http://www.pt.org.br/rui-falcao/",
+  "original_url": "http://www.pt.org.br/rui-falcao/",
+  "archive_capture_utc": "2017-06-17T17:58:54Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 53135,
+  "source_response_sha256": "c2ea56104bcd950c91d84442c25251cb6ed3a6b5a5330fbab47849d552908d50",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Found by the independent check, which fetched the raw capture at about 13:19 UTC and again at 13:54:22 UTC on 25 September 2026 without Accept-Encoding; both responses had the same byte count and SHA-256 and no Content-Encoding.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2017-06-17T17:58:54Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Found by the independent check, which fetched the raw capture at about 13:19 UTC and again at 13:54:22 UTC on 25 September 2026 without Accept-Encoding; both responses had the same byte count and SHA-256 and no Content-Encoding. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The PT site's biography of Rui Falcão as a member of the national executive committee, captured 17 June 2017 (x-archive-orig-date Sat, 17 Jun 2017 17:58:54 GMT). Retrospective; the later wording 'assumed at the 9th Encontro when Lula took leave', seen only in a search snippet, is not in this capture. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read (the biography paragraph); no images reviewed."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_site_bio_rui_falcao_president_in_1994",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-02",
+      "role_id": "br_pt_president",
+      "holder_name": "Rui Falcão",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The biography says that between 1989 and 1992 Rui Falcão presided over the party's São Paulo municipal directorate and that 'em 1994, presidente do PT Nacional, ano em que foi coordenador da campanha de Luiz Inácio Lula da Silva para presidente do Brasil'.",
+      "locator": {
+        "item": "biography paragraph under the heading Rui Falcão"
+      }
+    }
+  ]
+}

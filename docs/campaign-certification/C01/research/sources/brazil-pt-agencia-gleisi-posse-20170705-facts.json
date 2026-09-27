@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_new_directorate_gleisi_posse_20170705",
+  "source_url": "https://web.archive.org/web/20170707180315id_/http://www.pt.org.br:80/novo-diretorio-e-gleisi-tomam-posse-no-pt/",
+  "original_url": "http://www.pt.org.br/novo-diretorio-e-gleisi-tomam-posse-no-pt/",
+  "archive_capture_utc": "2017-07-07T18:03:15Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2017-07-05",
+  "access_method": "downloaded_archived_raw_capture_id_form (curl with its default User-Agent, no Accept-Encoding header, no redirects followed)",
+  "source_response_bytes": 62459,
+  "source_response_sha256": "cda5ae16282b8ac93a28960a4596d90a007a48755c5bf275d5f402d8ee06ac5b",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-09-25T14:14:27Z and again at 2026-09-25T14:48:14Z from the same exact id_ URL (plain curl, no Accept-Encoding header, no decoding); both responses were 62459 bytes with SHA-256 cda5ae16282b8ac93a28960a4596d90a007a48755c5bf275d5f402d8ee06ac5b. The raw id_ form replays the stored capture. The independent check downloaded it again between 14:54 and 15:25 UTC on 25 September 2026 with Accept-Encoding: identity, at least 30 minutes after the researcher's last download; the response matched.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2017-07-07T18:03:15Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-09-25T14:14:27Z and again at 2026-09-25T14:48:14Z from the same exact id_ URL (plain curl, no Accept-Encoding header, no decoding); both responses were 62459 bytes with SHA-256 cda5ae16282b8ac93a28960a4596d90a007a48755c5bf275d5f402d8ee06ac5b. The raw id_ form replays the stored capture. The independent check downloaded it again between 14:54 and 15:25 UTC on 25 September 2026 with Accept-Encoding: identity, at least 30 minutes after the researcher's last download; the response matched. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "An Agência PT de Notícias item of 5 July 2017 (19h32, updated 6 July 10h28), 'Novo Diretório e Gleisi Hoffmann tomam posse no PT', captured 7 July 2017. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused. The embedded video was not played; the page text and the embedded post's text were read."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_gleisi_posse_20170705",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-08",
+      "role_id": "br_pt_president",
+      "holder_name": "Gleisi Hoffmann",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "posse_reported",
+      "attested_on": "2017-07-05",
+      "text": "The PT reports on 5 July 2017 that the new Diretório Nacional 'is being inducted today in Brasília' and that the ceremony is the posse of the new leadership and of the new presidenta, Gleisi Hoffmann; the embedded party post is dated Wednesday 5 July 2017.",
+      "locator": {
+        "item": "article dated 05/07/2017 19h32 (updated 06/07/2017 10h28), headline, subtitle ('evento acontece agora em Brasília') and embedded post text ('está sendo empossado hoje')"
+      }
+    }
+  ]
+}

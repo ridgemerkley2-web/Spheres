@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_planalto_lei15434_20260616",
+  "source_url": "https://web.archive.org/web/20260620021856id_/https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15434.htm",
+  "original_url": "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15434.htm",
+  "archive_capture_utc": "2026-06-20T02:18:56Z",
+  "accessed_date": "2026-09-24",
+  "published_date": "2026-06-17",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 17609,
+  "source_response_sha256": "074515205282e77edacb93658747cc9ebff54b7930f1fbd69153c3774768fb89",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2026-06-20T02:18:56Z; that form replays the archived bytes unchanged and is used in place of the live page. The researcher downloaded it on 24 September 2026 at 23:16, 23:30 and 23:47 UTC (31 minutes apart) and the independent check again 35 to 57 minutes after the first; every download had the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Presidency's legislation page for Law No. 15.434 (creating a department in the National Council of Justice), captured 20 June 2026, before the cutoff (text/html with no charset; windows-1252 bytes); the page notes the DOU of 17 June 2026. Its enacting formula is split by &nbsp; entities in the markup. The live Planalto page was not used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read (heading, enacting formula, dateline, signature block and DOU note); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "br_alckmin_vp_exercising_l15434_20260616",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-10",
+      "role_id": "br_vice_president",
+      "holder_name": "Geraldo Alckmin",
+      "role_title": "Vice-President of the Republic in exercise of the office of President",
+      "event_kind": "vice_president_exercising_office",
+      "attested_on": "2026-06-16",
+      "text": "Law nº 15.434 of 16 June 2026 is enacted by 'O VICE-PRESIDENTE DA REPÚBLICA, no exercício do cargo de PRESIDENTE DA REPÚBLICA' ('Faço saber que o Congresso Nacional decreta e eu sanciono a seguinte Lei'), dated Brasília, 16 June 2026, and signed GERALDO JOSÉ RODRIGUES ALCKMIN FILHO, countersigned by Janine Mello dos Santos and Maria Laura da Rocha; the page notes publication in the DOU of 17 June 2026.",
+      "locator": {
+        "section": "enacting formula; closing 'Brasília, 16 de junho de 2026; 205º da Independência e 138º da República'; signature block; 'Este texto não substitui o publicado no DOU de 17.6.2026'"
+      }
+    }
+  ],
+  "bounded_scope": "Vice-President observations for CLAUDE-C01-17 only (role br_vice_president of br_presidency). Election, diplomação, oath, posse, termo de posse, same-session styling, the Vice-President's exercise of the Presidency, his succession to the Presidency, vacancy and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Ministers and party offices are excluded; the office of President is CLAUDE-C01-10's br_president role."
+}

@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_falcao_posse_speech_20131212",
+  "source_url": "https://web.archive.org/web/20131219161742id_/http://www.pt.org.br:80/noticias/view/5_congresso_discurso_de_posse_do_presidente_nacional_do_pt_rui_falcaeo",
+  "original_url": "http://www.pt.org.br/noticias/view/5_congresso_discurso_de_posse_do_presidente_nacional_do_pt_rui_falcaeo",
+  "archive_capture_utc": "2013-12-19T16:17:42Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2013-12-12",
+  "access_method": "downloaded_archived_raw_capture_id_form (curl with its default User-Agent, no Accept-Encoding header, no redirects followed)",
+  "source_response_bytes": 44714,
+  "source_response_sha256": "d068ba43a1db841ba160e419386f53085efb593e2ed2f15f2426becc784be0d7",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-09-25T14:14:09Z and again at 2026-09-25T14:47:56Z from the same exact id_ URL (plain curl, no Accept-Encoding header, no decoding); both responses were 44714 bytes with SHA-256 d068ba43a1db841ba160e419386f53085efb593e2ed2f15f2426becc784be0d7. The raw id_ form replays the stored capture. The independent check downloaded it again between 14:54 and 15:25 UTC on 25 September 2026 with Accept-Encoding: identity, at least 30 minutes after the researcher's last download; the response matched.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2013-12-19T16:17:42Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-09-25T14:14:09Z and again at 2026-09-25T14:47:56Z from the same exact id_ URL (plain curl, no Accept-Encoding header, no decoding); both responses were 44714 bytes with SHA-256 d068ba43a1db841ba160e419386f53085efb593e2ed2f15f2426becc784be0d7. The raw id_ form replays the stored capture. The independent check downloaded it again between 14:54 and 15:25 UTC on 25 September 2026 with Accept-Encoding: identity, at least 30 minutes after the researcher's last download; the response matched. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A Portal do PT page of 12 December 2013 (18h12) with Rui Falcão's posse speech, captured 19 December 2013. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_falcao_posse_speech_published_20131212",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-07",
+      "role_id": "br_pt_president",
+      "holder_name": "Rui Falcão",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "posse_speech_published",
+      "attested_on": "2013-12-12",
+      "text": "The PT publishes, under the date 12 December 2013, the posse speech of 'the national President of the PT, Rui Falcão'; in it he calls himself the re-elected President and says the posse of the new PT leaders coincides with the preliminary phase of the 5th Congress.",
+      "locator": {
+        "item": "page dated 12/12/13 18h12, headline, photo caption ('Rui Falcão, presidente nacional do PT') and speech paragraphs on the posse"
+      }
+    }
+  ]
+}
