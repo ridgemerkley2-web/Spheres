@@ -1,0 +1,57 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_ldp_history_miyazawa_era",
+  "source_url": "https://web.archive.org/web/20260208085606id_/https://www.jimin.jp/aboutus/history/15.html",
+  "original_url": "https://www.jimin.jp/aboutus/history/15.html",
+  "archive_capture_utc": "2026-02-08T08:56:06Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 18264,
+  "source_response_sha256": "d6c60c8997cb0327ea81d2e923f39670e7f2e4030dddd2a0bf8f5de6a83438a9",
+  "source_response_content_encoding": "identity",
+  "source_response_sha1_base32": "KOCHVRE2MR4R65WDVXWPIRXWPRARVZW6",
+  "source_character_encoding": "UTF-8 (the page declares charset=UTF-8)",
+  "source_response_checked_in": false,
+  "fetch_recipe": "curl -s -o FILE 'https://web.archive.org/web/20260208085606id_/https://www.jimin.jp/aboutus/history/15.html' with no Accept-Encoding request header and no automatic decoding; hash the bytes as received.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2026-02-08T08:56:06Z; that form replays the archived bytes unchanged. The archived original has no Last-Modified header; its Date header is from the ArchiveBot capture of 8 February 2026. Researcher (part A): Raw capture first downloaded 2026-09-25 12:07:30Z (identity); re-downloaded 12:46:23Z (plain), same byte count and SHA-256. The live original https://www.jimin.jp/aboutus/history/15.html was downloaded at 11:59:34Z and again at 12:48:12Z with a cache-busting ?cb= query, identical to the capture. The SHA-1 of the bytes equals the capture's CDX digest. The part A check downloaded it again at 12:58Z-12:59Z and 13:40Z-13:42Z on 25 September 2026, each time with the same byte count and SHA-256. Downloaded on 25 September 2026 (UTC) by this packet at 14:15:44Z and 14:52:12Z, 36 minutes apart, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Web edition of chapter 15 of 自由民主党のあゆみ, recorded as a raw Internet Archive capture made before the cutoff; a retrospective narrative. Its statements on the cabinet and the prime-ministership are not used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded (UTF-8) and read in full; the heading prints 平成3年10月31日～平成5年7月30日, and body paragraphs are counted after it (27 in all). No images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_ldp_miyazawa_era_elected_19911027",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-02",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "宮澤喜一",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_election_record",
+      "attested_on": null,
+      "text": "The LDP's history page for the 宮沢喜一 presidency says that on 十月二十七日 (27 October 1991), in the LDP presidential election held in the eighth-floor hall of party headquarters, 宮沢喜一氏 was chosen as the 15th president (第十五代総裁に選ばれました) in a three-way contest with 渡辺美智雄 and 三塚博: 宮沢 285, 渡辺 120, 三塚 87.",
+      "locator": {
+        "section": "本文",
+        "paragraph": 2
+      }
+    },
+    {
+      "claim_id": "jp_ldp_miyazawa_era_kono_assumed_19930730",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-03",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "河野洋平",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_assumption_reference",
+      "attested_on": null,
+      "text": "The page's second-to-last body paragraph (26 of 27, beginning 宮沢内閣の後には) says the LDP's new president, 河野洋平氏, took office (就任しました) on 七月三十日 (30 July 1993).",
+      "locator": {
+        "section": "本文",
+        "paragraph": 26
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations of the LDP president (総裁) for CLAUDE-C01-18 only, 1990-2009 (stacked on CLAUDE-C01-13). Party elections and selections (member and Diet-member votes, joint plenary meetings of party Diet members), notices, candidacies, declarations and reports of results, statements of assumption, in-office attestations, announced and prospective resignations, predecessor references and retrospective records stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this office (a notice, a filing, a schedule, an unnamed caption or a meeting). The prime-ministership (jp_pm) is excluded: no row feeds it, and no jp_pm claim feeds this office."
+}

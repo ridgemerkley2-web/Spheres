@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_kantei_fukuda_jisyoku_20080924",
+  "source_url": "https://web.archive.org/web/20080927032752id_/http://www.kantei.go.jp/jp/hukudaphoto/2008/09/24jisyoku.html",
+  "original_url": "http://www.kantei.go.jp/jp/hukudaphoto/2008/09/24jisyoku.html",
+  "archive_capture_utc": "2008-09-27T03:27:52Z",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 2545,
+  "source_response_sha256": "be08035349c4c182d7b9a2937a3335a8e3324e5fb51adc27caf1ffd26057a198",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "Shift_JIS (no charset is declared in the page; the bytes decode cleanly as Shift_JIS)",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2008-09-27T03:27:52Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The archived original's Last-Modified header is Wed, 24 Sep 2008 07:55:29 GMT. The SHA-1 of these bytes (AEI2YDXISQQEXSQTQ7IOBROSYAFPZAG5) equals the Internet Archive's CDX digest for the capture, as compared by the researcher and the independent check and this packet (2026-09-25T02:09:02Z). Researcher (part A): Downloaded on 2026-09-24: first download 21:58Z; 22:26Z (plain, identical); 22:57Z (plain, identical). Every re-download had the same byte count and SHA-256 as the first; the first and last are 58 minutes apart. Raw Internet Archive capture (id_ form) replays the archived bytes unchanged; requested without Accept-Encoding (identity). SHA-1 of these bytes (base32) AEI2YDXISQQEXSQTQ7IOBROSYAFPZAG5 equals the Internet Archive CDX digest for this capture. The part A check downloaded it again at 23:03Z-23:08Z (plain), at 23:09Z (Diet API responses with a cache-busting query) and at 23:41Z-23:51Z (plain) on 24 September 2026, each time with the same byte count and SHA-256. Downloaded on 25 September 2026 (UTC) by this packet at 01:31:25Z, 02:14:17Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A contemporaneous Kantei page, recorded as a raw Internet Archive capture made before the cutoff; the archived original's Last-Modified header is given in the extract. No photograph is reused.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded and read in full; no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_fukuda_cabinet_resignation_decided_20080924",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM06-02",
+      "role_id": "jp_pm",
+      "holder_name": "福田康夫",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "cabinet_resignation_decided",
+      "attested_on": "2008-09-24",
+      "text": "Kantei's account dated 24 September 2008 says the Fukuda cabinet resigned en masse that day: the cabinet meeting collected the resignations and decided the resignation, the Prime Minister's statement was issued, and 福田総理 left the Prime Minister's Office.",
+      "locator": {
+        "section": "heading 福田内閣総辞職, paragraphs under 平成２０年９月２４日"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-13 only (stacked on CLAUDE-C01-12). Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, the Official Gazette's appointment and loss-of-office notices, the Cabinet's minutes, a cabinet's formation, its resignation en masse, any continued performance of duties and acting designations stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role: an unnamed statement or schedule row, a House of Councillors designee who never held the office, or a designation of acting ministers. Ministers, deputy prime ministers and party offices are excluded."
+}

@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_kantei_koizumi_sojishoku_danwa_20060926",
+  "source_url": "https://web.archive.org/web/20061004123042id_/http://www.kantei.go.jp/jp/koizumispeech/2006/09/26danwa.html",
+  "original_url": "http://www.kantei.go.jp/jp/koizumispeech/2006/09/26danwa.html",
+  "archive_capture_utc": "2006-10-04T12:30:42Z",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 3182,
+  "source_response_sha256": "68367c2504098fb70d3eb502b1f1d1ad7db53efeb9aff03dcf28aac33b00cb02",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "EUC-JP (no charset is declared in the page or the archived Content-Type header; the bytes decode cleanly as EUC-JP)",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2006-10-04T12:30:42Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The archived original's Last-Modified header is Tue, 26 Sep 2006 04:25:43 GMT. The SHA-1 of these bytes (RA6IHEVD6AN2JVXGPI2RUD4WNPUV4KF4) equals the Internet Archive's CDX digest for the capture, compared by this packet on 24 September 2026. Downloaded on 24 September 2026 by the researcher at 18:29:52Z and 19:11:57Z; by the independent check at 19:15:06Z and 19:43:56Z; by this packet at 20:20:56Z, 20:41:30Z and 20:55:29Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A contemporaneous Kantei page, recorded as a raw Internet Archive capture made before the cutoff; the archived original's Last-Modified header is given in the extract. No photograph is reused.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded and read in full; no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_koizumi_cabinet_resigned_statement_20060926",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-10",
+      "role_id": "jp_pm",
+      "holder_name": "小泉純一郎",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "cabinet_resignation_statement",
+      "attested_on": "2006-09-26",
+      "text": "Koizumi's statement dated 26 September 2006, under the breadcrumb 小泉総理の演説・記者会見等, says that the Koizumi cabinet resigned en masse that day (小泉内閣は、本日、総辞職いたしました), that he had borne the office for five years and five months, and that he would continue as an ordinary Diet member.",
+      "locator": {
+        "section": "date line 平成１８年９月２６日; first, second and fourth paragraphs"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-12 only. Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, a cabinet's formation, its resignation en masse, any continued performance of duties and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role in this packet: an unnamed statement, agenda or ceremony record, an acting prime minister, the House of Councillors' 1998 designee or the successor at the closing boundary. Ministers, deputy prime ministers and party offices are excluded."
+}

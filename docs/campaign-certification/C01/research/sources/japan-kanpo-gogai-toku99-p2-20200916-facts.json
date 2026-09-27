@@ -1,0 +1,59 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_kanpo_gogai_toku99_20200916_p2",
+  "source_url": "https://web.archive.org/web/20200917033144id_/https://kanpou.npb.go.jp/20200916/20200916t00099/pdf/20200916t000990002.pdf",
+  "original_url": "https://kanpou.npb.go.jp/20200916/20200916t00099/pdf/20200916t000990002.pdf",
+  "archive_capture_utc": "2020-09-17T03:31:44Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_pdf_and_rendered_page_review",
+  "source_response_bytes": 308013,
+  "source_response_sha256": "8f7729b138150b73c7fd82e4e9784e84f03741af6c8abac18e8bd0845ee0a744",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "PDF (binary)",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2020-09-17T03:31:44Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The archived original's Last-Modified header is Wed, 16 Sep 2020 13:42:53 GMT. The SHA-1 of these bytes (YRS76GBO7E6EI6YOOFOQYCBN32ZNTCJO) equals the Internet Archive's CDX digest for the capture, as compared by the independent check and this packet (2026-09-25T02:35:36Z). Found by the part C check, which downloaded it twice on 25 September 2026 (00:17Z-00:58Z and 01:02Z-01:18Z, the live Kantei responses the second time with a cache-busting query) with the same byte count and SHA-256. Downloaded on 25 September 2026 (UTC) by this packet at 01:36:39Z, 01:40:30Z, 02:20:47Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "An Official Gazette (官報) special extra issue, recorded as a raw Internet Archive capture of the PDF made on the day of issue or the next day; the text layer holds only the masthead, so the cited pages were rendered and read. The Gazette is free on the official site only for the latest 90 days.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "The issue's page 2 (PDF page 1) rendered and the 退官 notice and the closing (以上…) line read; no image copied."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_kanpo_suga_appointed_pm_20200916",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM06-08",
+      "role_id": "jp_pm",
+      "holder_name": "菅義偉",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "appointment_notice_official_gazette",
+      "attested_on": "2020-09-16",
+      "text": "Page 2 of the Official Gazette special extra issue No. 99 (号外特第99号), dated Wednesday 16 September 2020, closes the day's 内閣 appointments with (以上九月十六日) and, under ○内閣総理大臣及び国務大臣退官, states that on the 16th of that month 菅義偉 was appointed Prime Minister (本月十六日内閣総理大臣に菅義偉が任命せられ).",
+      "locator": {
+        "page": 2,
+        "section": "○内閣総理大臣及び国務大臣退官",
+        "item": "本月十六日内閣総理大臣に菅義偉が任命せられ"
+      }
+    },
+    {
+      "claim_id": "jp_kanpo_abe_office_lost_20200916",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM06-07",
+      "role_id": "jp_pm",
+      "holder_name": "安倍晋三",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "end_of_office_stated",
+      "attested_on": "2020-09-16",
+      "text": "The same notice states that, 菅義偉 having been appointed on the 16th of that month (本月十六日), 安倍晋三, Prime Minister of the fourth Abe cabinet (第四次安倍内閣の内閣総理大臣安倍晋三), and the ministers of state each lost their office (それぞれその地位を失った).",
+      "locator": {
+        "page": 2,
+        "section": "○内閣総理大臣及び国務大臣退官",
+        "item": "第四次安倍内閣の内閣総理大臣安倍晋三…それぞれその地位を失った"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-13 only (stacked on CLAUDE-C01-12). Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, the Official Gazette's appointment and loss-of-office notices, the Cabinet's minutes, a cabinet's formation, its resignation en masse, any continued performance of duties and acting designations stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role: an unnamed statement or schedule row, a House of Councillors designee who never held the office, or a designation of acting ministers. Ministers, deputy prime ministers and party offices are excluded."
+}

@@ -1,0 +1,53 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_kantei_koizumi_sokaku_20031119",
+  "source_url": "https://web.archive.org/web/20031209114816id_/http://www.kantei.go.jp:80/jp/koizumiphoto/2003/11/19sokaku.html",
+  "original_url": "http://www.kantei.go.jp/jp/koizumiphoto/2003/11/19sokaku.html",
+  "archive_capture_utc": "2003-12-09T11:48:16Z",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 3402,
+  "source_response_sha256": "953f02c21c97f22d2a6398bb900b0ad5089dfc35a94b69b379fa8a05fb38a242",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "Shift_JIS (no charset is declared in the page or the archived Content-Type header; the bytes decode cleanly as Shift_JIS)",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2003-12-09T11:48:16Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The archived original's Last-Modified header is Wed, 19 Nov 2003 12:46:12 GMT. The SHA-1 of these bytes (JNKDS2RC4JZM4KINXPFN3YRCL5YSQREC) equals the Internet Archive's CDX digest for the capture, compared by this packet on 24 September 2026. Downloaded on 24 September 2026 by the researcher at 18:29:24Z and 19:11:30Z; by the independent check at 19:14:38Z and 19:43:30Z; by this packet at 20:20:38Z, 20:41:19Z and 20:55:17Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A contemporaneous Kantei page, recorded as a raw Internet Archive capture made before the cutoff; the archived original's Last-Modified header is given in the extract. No photograph is reused.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded and read in full; no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_koizumi_shinninshiki_appointed_20031119",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-09",
+      "role_id": "jp_pm",
+      "holder_name": "小泉純一郎",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "imperial_appointment_ceremony",
+      "attested_on": "2003-11-19",
+      "text": "Kantei's account 第二次小泉内閣の発足, dated 19 November 2003, states that the 158th special session convened that day re-designated 小泉純一郎総理 by agreeing votes of both Houses, and that after forming the second cabinet 小泉総理 was appointed at the Imperial appointment ceremony as the 88th Prime Minister (56th person), followed by the ministers' attestation.",
+      "locator": {
+        "section": "paragraphs 1 and 3 under 平成１５年１１月１９日"
+      }
+    },
+    {
+      "claim_id": "jp_koizumi_second_cabinet_formed_20031119",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-09",
+      "role_id": "jp_pm",
+      "holder_name": "小泉純一郎",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "cabinet_formation",
+      "attested_on": "2003-11-19",
+      "text": "The same page records the launch of the second Koizumi cabinet (第二次小泉内閣) on 19 November 2003, all ministers of the September reshuffle being reappointed, and the first cabinet meeting that night.",
+      "locator": {
+        "section": "heading and paragraphs 3-4"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-12 only. Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, a cabinet's formation, its resignation en masse, any continued performance of duties and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role in this packet: an unnamed statement, agenda or ceremony record, an acting prime minister, the House of Councillors' 1998 designee or the successor at the closing boundary. Ministers, deputy prime ministers and party offices are excluded."
+}

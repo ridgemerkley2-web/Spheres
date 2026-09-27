@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_shugiin_honkaigi_abe_speech_20171117",
+  "source_url": "https://kokkai.ndl.go.jp/api/speech?speechID=119505254X00420171117_007&recordPacking=json",
+  "diet_record": {
+    "issueID": "119505254X00420171117",
+    "house": "衆議院",
+    "meeting": "本会議",
+    "issue": "第4号",
+    "sitting_date": "2017-11-17",
+    "response": "single speech",
+    "speech_ids": [
+      "119505254X00420171117_007"
+    ],
+    "record_page_url": "https://kokkai.ndl.go.jp/txt/119505254X00420171117"
+  },
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "official_diet_minutes_api_json_download_and_read",
+  "source_response_bytes": 11605,
+  "source_response_sha256": "f98ba62851cfedcfd180dbc646b22fc986e73c9725510b91608236c3ba5996eb",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "UTF-8 JSON (the Content-Type header declares application/json;charset=UTF-8)",
+  "source_response_checked_in": false,
+  "provenance_note": "Official response of the National Diet Library's Diet minutes API (JSON, UTF-8), served with Cache-Control: no-cache, no-store; the JSON carries no timestamp, session token or request echo, so it is not generated per request. Researcher (part B): Downloaded 4 times on 24 September 2026 UTC at 21:53:07Z, 22:18:00Z, 22:18:49Z (parameters reordered as a cache-bust), 23:08:22Z, each time with the same byte count and SHA-256; the first and last downloads are at least 30 minutes apart. The API response carries Cache-Control: no-cache, no-store and no timestamp, token or request echo; a reordered-parameter request is a cache-bust. The part B check downloaded it again from about 23:35Z on 24 September 2026 (the Diet API also with its parameters reordered, the Imperial Household Agency's pages also with a cache-busting query), each time with the same byte count and SHA-256. Downloaded on 25 September 2026 (UTC) by this packet at 01:33:24Z, 01:42:01Z (cache-busting query), 02:15:28Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Diet minutes API's JSON for the one speech record of the 衆議院 本会議 第4号 (2017-11-17), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/119505254X00420171117. The printed page images, served through a JavaScript viewer, were not viewed.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Machine-readable minute text read in full for the cited speeches; the printed page images were not viewed."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_abe_policy_speech_continues_office_20171117",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM06-07",
+      "role_id": "jp_pm",
+      "holder_name": "安倍晋三",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2017-11-17",
+      "text": "Speaking as 内閣総理大臣 (安倍晋三君) on 17 November 2017, he said that after the recent general election he had received the designation of both Houses and had come to continue bearing the office of Prime Minister (引き続き、内閣総理大臣の重責を担うこととなりました); no day is given.",
+      "locator": {
+        "speechID": "119505254X00420171117_007",
+        "speechOrder": 7,
+        "speaker": "安倍晋三 (内閣総理大臣)"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-13 only (stacked on CLAUDE-C01-12). Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, the Official Gazette's appointment and loss-of-office notices, the Cabinet's minutes, a cabinet's formation, its resignation en masse, any continued performance of duties and acting designations stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role: an unnamed statement or schedule row, a House of Councillors designee who never held the office, or a designation of acting ministers. Ministers, deputy prime ministers and party offices are excluded."
+}
