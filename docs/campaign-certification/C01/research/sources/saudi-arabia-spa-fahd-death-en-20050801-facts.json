@@ -1,0 +1,54 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://www.spa.gov.sa/en/35256ba2d1",
+  "accessed_date": "2026-09-21",
+  "published_date": "2005-08-01",
+  "access_method": "downloaded_original_html_and_embedded_article_text_read",
+  "source_response_bytes": 164267,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "article_content_sha256": "d1354c5710bc1f9e60551d77e53ea4a91a7af0cb8b4516ea1adf391b3c31e976",
+  "article_content_field": "__NEXT_DATA__ props.pageProps.newsDetails.content, encoded as UTF-8",
+  "portal_metadata": {
+    "uuid": "35256ba2d1",
+    "locale": "en",
+    "published_at_utc": "2005-08-01T08:21:15Z",
+    "date_hijri_field": "1426-06-26",
+    "filing_time_printed": "SPA1122 Local Time 0822 GMT"
+  },
+  "response_observations": [
+    {
+      "downloaded_by": "researcher",
+      "url_form": "https://www.spa.gov.sa/en/35256ba2d1",
+      "bytes": 164267,
+      "sha256": "939db163544e275b455a00e52f0e31045d97978063328f65cb09d8260a262a6d",
+      "views_count": 2,
+      "server_id": "S101"
+    },
+    {
+      "downloaded_by": "checker",
+      "url_form": "https://www.spa.gov.sa/en/35256ba2d1",
+      "bytes": 164267,
+      "sha256": "2809ab4c9533d0469043dd16cdb80d51e813e1123b6beb4d871df188c0141734",
+      "views_count": 3,
+      "server_id": "S102"
+    }
+  ],
+  "provenance_note": "Downloaded with curl -L on 2026-09-21 by the researcher and again, independently, by the checker (2 responses; 164,267 bytes; SHA-256 939db163..., 2809ab4c...). The response embeds a live views_count and a load-balancer server_id in its __NEXT_DATA__ JSON, so response bytes and SHA-256 vary between fetches and between URL forms; no response hash is asserted. article_content_sha256 is the SHA-256 of the UTF-8 newsDetails.content field; it was identical in every download and is the reproducible identity. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "sa_abdullah_cp_obs_20050801",
+      "text": "SPA's English release of the Royal Court announcement of King Fahd's death names the announcer as Crown Prince Abdullah bin Abdulaziz, the Deputy Premier and Commander of the National Guard.",
+      "attested_on": "2005-08-01",
+      "locator": "Dateline 'Riyadh, Aug 1'; paragraph 1; trailer (11:22 local time)",
+      "uncertainty": "A point observation of his styles at the announcement; it does not establish when his crown-princeship began. The English dateline has no year: the date rests on the Arabic original (26 Jumada II 1426 / 1 August 2005), which styles him Crown Prince only."
+    }
+  ],
+  "scope_note": "SPA English translation of the Arabic Royal Court statement sa_spa_fahd_death_20050801_ar. Used only for Abdullah's styles on 1 August 2005 (SA-EXEC-01).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not visually rendered. HTML news article (not a scan or PDF); the article text was read from the embedded newsDetails JSON of the downloaded response."
+  }
+}
