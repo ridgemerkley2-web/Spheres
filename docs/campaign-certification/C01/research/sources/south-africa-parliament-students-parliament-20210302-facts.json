@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_parliament_students_parliament_event_2018",
+  "source_url": "https://web.archive.org/web/20210302202858id_/https://www.parliament.gov.za/project-event-details/32",
+  "original_url": "https://www.parliament.gov.za/project-event-details/32",
+  "archive_capture_utc": "2021-03-02T20:28:58Z",
+  "accessed_date": "2026-09-22",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 43212,
+  "source_response_sha256": "da3505ad4d580ab65161a077174b1e178ae89f4e7193598163474767c5d8a423",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2021-03-02T20:28:58Z; that form replays the archived bytes unchanged and is used in place of the live page. The researcher downloaded it on 22 September 2026 and the independent check downloaded it again the same day; both copies matched the byte count and SHA-256 recorded here, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Retrospective event description for a 2018 re-enactment, captured in 2021. Used only for the day of the 1994 nomination; rotating panels on the live page are outside the claim.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_mandela_na_nomination_19940509",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-02",
+      "role_id": "za_president_election",
+      "holder_name": "Nelson Mandela",
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "national_assembly_nomination",
+      "attested_on": "1994-05-09",
+      "text": "Parliament's page for the Students' Parliament of 25 July 2018 says the students would re-enact the occasion 'which occurred in the National Assembly on 9 May 1994, when Ms Sisulu nominated Nelson Rolihlahla Mandela as democratic South Africa's first President'.",
+      "locator": {
+        "section": "Event description, paragraphs 1-2"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-09 only. Election, oath, inauguration, resignation announcement, resignation effect and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy presidents, ministers and party offices are excluded."
+}

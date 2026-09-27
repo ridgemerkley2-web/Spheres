@@ -1,0 +1,257 @@
+[
+  {
+    "packet": 5,
+    "path": "docs/campaign-certification/C01/research/sources/russia-garf-cec-result-19910619-facts.json",
+    "url": "https://projects.rusarchives.ru/statehood/09-37-postanovlenie-vybory-prezident.shtml",
+    "expected_sha256": "54000d3ca315063827147ddd5112ac8f2bb153d5d133ffc0d9ebb7c98019683e",
+    "expected_bytes": 15700,
+    "claims": [
+      {
+        "id": "ru_cec_resolution_20_25_19910619",
+        "text": "CEC resolution No. 20-25 of 19 June 1991 takes note of chairman V. I. Kazakov's report on the results of the election of the President of the RSFSR, approves the text of the CEC communication on the results and orders the communication published through TASS in the republican and local press; signed by V. Kazakov (chairman) and V. Prozorov (secretary).",
+        "locator": "Facsimile image 1 (resolution); exhibit caption",
+        "attested_on": "1991-06-19",
+        "uncertainty": "The TASS publication date is not given; that publication is the 'official announcement' from which Article 1 of Law 1494-I counts one month. The archival leaf is unconfirmed: the exhibit caption gives GARF F. 10026, Op. 8, D. 204, L. 6-7 and captions the three images L. 6, L. 6 ob. and L. 7, while the handwritten folio numbers on the images read 5, 6 and 7."
+      }
+    ],
+    "result": "unavailable_not_verified",
+    "error": "<urlopen error timed out>"
+  },
+  {
+    "packet": 6,
+    "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-bush41-address-19900808-facts.json",
+    "url": "https://www.bush41library.gov/digital-research-room/finding-aid/public-papers/address-nation-announcing-deployment-united-states",
+    "expected_sha256": "539f115582aea3de304d4557c61bb18169f829616c04d72b50d591c5f91ba1c3",
+    "expected_bytes": 31889,
+    "claims": [
+      {
+        "id": "sa_fahd_king_obs_19900808",
+        "text": "In his 8 August 1990 address the U.S. President says that, after consulting with King Fahd, he sent the Secretary of Defense to discuss cooperative measures; the Public Papers editorial note identifies him as King Fahd bin Abd al-Aziz Al Saud of Saudi Arabia.",
+        "attested_on": "1990-08-08",
+        "locator": "Address body, consultation paragraph; closing editorial Note",
+        "uncertainty": "A foreign official record, not a Saudi royal record, read from a presidential-library web transcription of the Public Papers rather than the GPO print edition. It attests the title on this date only; it gives no accession date, term start or continuity."
+      }
+    ],
+    "http_status": 200,
+    "final_url": "https://www.bush41library.gov/digital-research-room/finding-aid/public-papers/address-nation-announcing-deployment-united-states",
+    "actual_bytes": 32782,
+    "actual_sha256": "ad596dc95af9b5842d2a64bebc1954196f09f743c9cc9f81dafb6a569033aa8c",
+    "result": "changed_response_not_verified"
+  },
+  {
+    "packet": 9,
+    "path": "docs/campaign-certification/C01/research/sources/south-africa-dfa-mbeki-election-speech-19990614-facts.json",
+    "url": "https://web.archive.org/web/20041028004630id_/http://www.dfa.gov.za:80/docs/speeches/1999/mbek0614.htm",
+    "expected_sha256": "df5d81339bfce6ae39e67641654f6b9c81dcab9acd95b84fb89f5abb575ef02f",
+    "expected_bytes": 30799,
+    "claims": [],
+    "http_status": 200,
+    "final_url": "https://web.archive.org/web/20041028004630id_/http://www.dfa.gov.za:80/docs/speeches/1999/mbek0614.htm",
+    "actual_bytes": 30799,
+    "actual_sha256": "df5d81339bfce6ae39e67641654f6b9c81dcab9acd95b84fb89f5abb575ef02f",
+    "result": "exact_identity_match"
+  },
+  {
+    "packet": 10,
+    "path": "docs/campaign-certification/C01/research/sources/brazil-agencia-senado-trial-opened-20160512-facts.json",
+    "url": "https://web.archive.org/web/20160513123843id_/http://www12.senado.leg.br/noticias/materias/2016/05/12/senado-abre-processo-de-impeachment-contra-dilma-rousseff",
+    "expected_sha256": "61689374fc4b3aab66b0f6541fed5ce0d4c481b2bb34f75b6d3674a10a13b0be",
+    "expected_bytes": 121960,
+    "claims": [],
+    "http_status": 200,
+    "final_url": "https://web.archive.org/web/20160513123843id_/http://www12.senado.leg.br/noticias/materias/2016/05/12/senado-abre-processo-de-impeachment-contra-dilma-rousseff",
+    "actual_bytes": 121960,
+    "actual_sha256": "61689374fc4b3aab66b0f6541fed5ce0d4c481b2bb34f75b6d3674a10a13b0be",
+    "result": "exact_identity_match"
+  },
+  {
+    "packet": 11,
+    "path": "docs/campaign-certification/C01/research/sources/india-cabsec-council-list-20260623-facts.json",
+    "url": "https://cabsec.gov.in/writereaddata/councilofministers/english/1_Upload_4232.pdf",
+    "expected_sha256": "13df919e710e686f84966070428d71a3b05424dcaaffb3024dcb2c93df45f0e1",
+    "expected_bytes": 208003,
+    "claims": [],
+    "http_status": 200,
+    "final_url": "https://cabsec.gov.in/writereaddata/councilofministers/english/1_Upload_4232.pdf",
+    "actual_bytes": 208003,
+    "actual_sha256": "13df919e710e686f84966070428d71a3b05424dcaaffb3024dcb2c93df45f0e1",
+    "result": "exact_identity_match"
+  },
+  {
+    "packet": 12,
+    "path": "docs/campaign-certification/C01/research/sources/japan-diet-joint-committee-designation-19980730-facts.json",
+    "url": "https://kokkai.ndl.go.jp/api/meeting?issueID=114324952X00119980730&recordPacking=json",
+    "expected_sha256": "d605c74d9b02e901fe27c2b33bfb8d7b1000e0a3cc2163e80fbe38cda9d2e163",
+    "expected_bytes": 22992,
+    "claims": [],
+    "http_status": 200,
+    "final_url": "https://kokkai.ndl.go.jp/api/meeting?issueID=114324952X00119980730&recordPacking=json",
+    "actual_bytes": 22992,
+    "actual_sha256": "d605c74d9b02e901fe27c2b33bfb8d7b1000e0a3cc2163e80fbe38cda9d2e163",
+    "result": "exact_identity_match"
+  },
+  {
+    "packet": 13,
+    "path": "docs/campaign-certification/C01/research/sources/japan-joint-committee-designation-20070925-facts.json",
+    "url": "https://kokkai.ndl.go.jp/api/meeting?issueID=116824952X00120070925&recordPacking=json",
+    "expected_sha256": "15d18d73dfd375df9ad40d580808b517ed43498980350b3b7df0a21e7f155625",
+    "expected_bytes": 21704,
+    "claims": [],
+    "http_status": 200,
+    "final_url": "https://kokkai.ndl.go.jp/api/meeting?issueID=116824952X00120070925&recordPacking=json",
+    "actual_bytes": 21704,
+    "actual_sha256": "15d18d73dfd375df9ad40d580808b517ed43498980350b3b7df0a21e7f155625",
+    "result": "exact_identity_match"
+  },
+  {
+    "packet": 14,
+    "path": "docs/campaign-certification/C01/research/sources/russia-cec-protocol-20000405-facts.json",
+    "url": "https://web.archive.org/web/20140802013752id_/http://cikrf.ru:80/banners/vib_arhiv/president/2000/files/2000-Protokol_CIK.doc",
+    "expected_sha256": "2815f790dbaac18ea037bfbb0916342eb17341780af976d5fcf983122a4cb226",
+    "expected_bytes": 57344,
+    "claims": [],
+    "http_status": 200,
+    "final_url": "https://web.archive.org/web/20140802013752id_/http://cikrf.ru:80/banners/vib_arhiv/president/2000/files/2000-Protokol_CIK.doc",
+    "actual_bytes": 57344,
+    "actual_sha256": "2815f790dbaac18ea037bfbb0916342eb17341780af976d5fcf983122a4cb226",
+    "result": "exact_identity_match"
+  },
+  {
+    "packet": 15,
+    "path": "docs/campaign-certification/C01/research/sources/india-former-president-office-patil-profile-20130101-facts.json",
+    "url": "https://web.archive.org/web/20130101083749id_/http://pratibhapatil.nic.in:80/profile.html",
+    "expected_sha256": "f2b67138e9048eec5369598b4e5e24b61f33b415927976a2cc2e6532c940e429",
+    "expected_bytes": 9030,
+    "claims": [],
+    "http_status": 200,
+    "final_url": "https://web.archive.org/web/20130101083749id_/http://pratibhapatil.nic.in:80/profile.html",
+    "actual_bytes": 9030,
+    "actual_sha256": "f2b67138e9048eec5369598b4e5e24b61f33b415927976a2cc2e6532c940e429",
+    "result": "exact_identity_match"
+  },
+  {
+    "packet": 16,
+    "path": "docs/campaign-certification/C01/research/sources/south-africa-anc-48th-conference-index-19970122-facts.json",
+    "url": "https://web.archive.org/web/19970709013440id_/http://www.anc.org.za:80/ancdocs/history/conf/index48.html",
+    "expected_sha256": "dbd246de0f5b32487fe449d1e0a89cf4e6efb2c382742f3ad379c72d7d660c01",
+    "expected_bytes": 3569,
+    "claims": [],
+    "http_status": 200,
+    "final_url": "https://web.archive.org/web/19970709013440id_/http://www.anc.org.za:80/ancdocs/history/conf/index48.html",
+    "actual_bytes": 3569,
+    "actual_sha256": "dbd246de0f5b32487fe449d1e0a89cf4e6efb2c382742f3ad379c72d7d660c01",
+    "result": "exact_identity_match"
+  },
+  {
+    "packet": 17,
+    "path": "docs/campaign-certification/C01/research/sources/brazil-congress-dcn-alckmin-diploma-termo-20230102-facts.json",
+    "url": "https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=111711&download=true",
+    "expected_sha256": "d6c9c275da00f4d8b73a3127fa98c53a7723f7779445d6a33e93131d7ec854ee",
+    "expected_bytes": 24950218,
+    "claims": [],
+    "http_status": 200,
+    "final_url": "https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=111711&download=true",
+    "actual_bytes": 24950158,
+    "actual_sha256": "d9808101c1b9926db26d4c0aaaaaa39d98d4dabaf0fc55200ebc305521f6a619",
+    "result": "changed_response_not_verified"
+  },
+  {
+    "packet": 18,
+    "path": "docs/campaign-certification/C01/research/sources/japan-ldp-ayumi-2015-20260208-facts.json",
+    "url": "https://web.archive.org/web/20260208085555id_/https://storage2.jimin.jp/pdf/aboutus/history/jimin_history.pdf",
+    "expected_sha256": "2924c7dd5ba66d939531b961892d4493ae4e08a60e89de8f521b1c7b72c0f482",
+    "expected_bytes": 3313141,
+    "claims": [],
+    "http_status": 200,
+    "final_url": "https://web.archive.org/web/20260208085555id_/https://storage2.jimin.jp/pdf/aboutus/history/jimin_history.pdf",
+    "actual_bytes": 3313141,
+    "actual_sha256": "2924c7dd5ba66d939531b961892d4493ae4e08a60e89de8f521b1c7b72c0f482",
+    "result": "exact_identity_match"
+  },
+  {
+    "packet": 19,
+    "path": "docs/campaign-certification/C01/research/sources/russia-duma-stenogram-19980410-facts.json",
+    "url": "https://web.archive.org/web/20240727075703id_/http://transcript.duma.gov.ru/node/2581/",
+    "expected_sha256": "e2aaba021076bb77b3dc56797fc415f22142e660a4b106b0eb19cadd8c8bc896",
+    "expected_bytes": 351530,
+    "claims": [],
+    "http_status": 200,
+    "final_url": "https://web.archive.org/web/20240727075703id_/http://transcript.duma.gov.ru/node/2581/",
+    "actual_bytes": 351530,
+    "actual_sha256": "e2aaba021076bb77b3dc56797fc415f22142e660a4b106b0eb19cadd8c8bc896",
+    "result": "exact_identity_match"
+  },
+  {
+    "packet": 20,
+    "path": "docs/campaign-certification/C01/research/sources/india-aicc-cea-briefing-20171211-facts.json",
+    "url": "https://res.cloudinary.com/dkplc2mbj/image/upload/v1605677051/PR_111217_MR_790e7aefcc.pdf",
+    "expected_sha256": "5f1e0a24ca72e60c4a5a4abb00891ac3fd16e6339ba0dfeb943452a47372c783",
+    "expected_bytes": 76410,
+    "claims": [],
+    "http_status": 200,
+    "final_url": "https://res.cloudinary.com/dkplc2mbj/image/upload/v1605677051/PR_111217_MR_790e7aefcc.pdf",
+    "actual_bytes": 76410,
+    "actual_sha256": "5f1e0a24ca72e60c4a5a4abb00891ac3fd16e6339ba0dfeb943452a47372c783",
+    "result": "exact_identity_match"
+  },
+  {
+    "packet": 21,
+    "path": "docs/campaign-certification/C01/research/sources/south-africa-dfa-gcis-cabinet-statement-20050622-facts.json",
+    "url": "https://web.archive.org/web/20060924022538id_/http://www.dfa.gov.za/docs/2005/cabinet0622.htm",
+    "expected_sha256": "c87e98a389de48f537bda8f06cacb0e2e414c1a9a7578643536aa6ad0a91daf8",
+    "expected_bytes": 17742,
+    "claims": [],
+    "http_status": 200,
+    "final_url": "https://web.archive.org/web/20060924022538id_/http://www.dfa.gov.za/docs/2005/cabinet0622.htm",
+    "actual_bytes": 17742,
+    "actual_sha256": "c87e98a389de48f537bda8f06cacb0e2e414c1a9a7578643536aa6ad0a91daf8",
+    "result": "exact_identity_match"
+  },
+  {
+    "packet": 22,
+    "path": "docs/campaign-certification/C01/research/sources/brazil-camara-dcd-berzoini-farewell-20100210-facts.json",
+    "url": "https://imagem.camara.leg.br/Imagem/d/pdf/DCD11FEV2010.pdf",
+    "expected_sha256": "48098bf9bcc91c4db679e84b6434cf8247087ab8d2bfe8618cc9153d521dd9a8",
+    "expected_bytes": 6444492,
+    "claims": [],
+    "http_status": 200,
+    "final_url": "https://imagem.camara.leg.br/Imagem/d/pdf/DCD11FEV2010.pdf",
+    "actual_bytes": 6444492,
+    "actual_sha256": "48098bf9bcc91c4db679e84b6434cf8247087ab8d2bfe8618cc9153d521dd9a8",
+    "result": "exact_identity_match"
+  },
+  {
+    "packet": 25,
+    "path": "docs/campaign-certification/C01/research/sources/tonga-act-constitution-19900808-facts.json",
+    "url": "https://ago.gov.to/cms/images/LEGISLATION/AMENDING/1990/1990-0012/ActofConstitutionofTongaAmendmentAct1990.pdf",
+    "expected_sha256": "4eab11f44316d1687023313b05119ff41d64f78e84c2622043d445c841dca90a",
+    "expected_bytes": 32413,
+    "claims": [
+      {
+        "id": "to_crown_assent_tupou_iv_19900808",
+        "text": "The assent block reads 'I assent, TAUFA'AHAU TUPOU IV, 8th August, 1990'; the Act records its passage on 26 July 1990.",
+        "attested_on": "1990-08-08",
+        "locator": "PDF page 1, assent block and passage line",
+        "uncertainty": "A dated attestation of Tupou IV exercising the royal assent only. Re-typeset reproduction; the assent block was read from the text layer, not from a rendered page."
+      }
+    ],
+    "http_status": 200,
+    "final_url": "https://ago.gov.to/cms/images/LEGISLATION/AMENDING/1990/1990-0012/ActofConstitutionofTongaAmendmentAct1990.pdf",
+    "actual_bytes": 32413,
+    "actual_sha256": "4eab11f44316d1687023313b05119ff41d64f78e84c2622043d445c841dca90a",
+    "result": "exact_identity_match"
+  },
+  {
+    "packet": 26,
+    "path": "docs/campaign-certification/C01/research/sources/ussr-garf-law-2392i-19910905-facts.json",
+    "url": "https://web.archive.org/web/20260415035300id_/https://projects.rusarchives.ru/statehood/09-42-postanovlenie-organy-gosvlasti.shtml",
+    "expected_sha256": "f6a4f3ea50f21498c838b8ba41b5f865e5b8d71b8f1d7d535a97ac407650c2e9",
+    "expected_bytes": 14839,
+    "claims": [],
+    "http_status": 200,
+    "final_url": "https://web.archive.org/web/20260415035300id_/https://projects.rusarchives.ru/statehood/09-42-postanovlenie-organy-gosvlasti.shtml",
+    "actual_bytes": 14839,
+    "actual_sha256": "f6a4f3ea50f21498c838b8ba41b5f865e5b8d71b8f1d7d535a97ac407650c2e9",
+    "result": "exact_identity_match"
+  }
+]

@@ -1,0 +1,55 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_gazette_ext_p1s2_no13_19970429",
+  "source_url": "https://egazette.gov.in/WriteReadData/1997/E-0244-1997-0013-8338.pdf",
+  "accessed_date": "2026-09-24",
+  "published_date": "1997-04-29",
+  "access_method": "official_egazette_pdf_download_and_visual_page_review",
+  "source_response_bytes": 119649,
+  "source_response_sha256": "e911c1de3967aac09aeb9e410901d6bab77186ff9a0696e966816fac687b23ab",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host. The check downloaded the byte-identical Internet Archive copy twice on 23 September 2026 (10:58-11:08 PDT and 11:28 PDT with a cache-busting query); this packet downloaded this egazette.gov.in file at 2026-09-24T13:35:44Z and again at 2026-09-24T14:06:02Z, 30 minutes later, with a cache-busting query (two earlier cache-busting downloads at 14:04:35Z and 14:05:38Z matched as well), each with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official eGazette file (Last-Modified 12 March 2013, fixed ETag; iText PDF with CreationDate 12 March 2013 and no ModDate). Found by the Part B check as the stored original in the Internet Archive item in.gazette.central.e.1997-04-29.8338 (SHA-1 d94dc9d28a180b0db58276e1db6ffb631e89dfea); the egazette.gov.in file is byte-identical.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2,
+      3
+    ],
+    "method": "PDF pages 1-3 rendered by the check and read; the text layer of pages 2-3 read by this packet."
+  },
+  "rows": [
+    {
+      "claim_id": "in_president_accepts_deve_gowda_resignation_wef_19970421",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-05",
+      "role_id": "in_pm",
+      "holder_name": "H. D. Deve Gowda",
+      "role_title": "Prime Minister of India",
+      "event_kind": "resignation_accepted_with_effect",
+      "attested_on": "1997-04-21",
+      "text": "Ministry of Home Affairs notification No. 10/1/97-M&G(i) of 29 April 1997: the President has been pleased to accept the resignation of Shri H. D. Deve Gowda of his office of Prime Minister, and of the listed members of the Council of Ministers, with effect from 21 April 1997.",
+      "locator": {
+        "pdf_page": 2,
+        "item": "Notification No. 10/1/97-M&G(i), New Delhi, the 29th April, 1997"
+      }
+    },
+    {
+      "claim_id": "in_gujral_appointed_pm_wef_19970421",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-05",
+      "role_id": "in_pm",
+      "holder_name": "I. K. Gujral",
+      "role_title": "Prime Minister of India",
+      "event_kind": "appointment_with_effect",
+      "attested_on": "1997-04-21",
+      "text": "Notification No. 10/1/97-M&G(ii) of 29 April 1997: the President has been pleased to appoint Shri I. K. Gujral to be the Prime Minister with effect from 10.00 hours of 21 April 1997; the next paragraph appoints the members of the Council of Ministers, on his advice, from the same time.",
+      "locator": {
+        "pdf_page": 3,
+        "item": "Notification No. 10/1/97-M&G (II), New Delhi, the 29th April, 1997"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

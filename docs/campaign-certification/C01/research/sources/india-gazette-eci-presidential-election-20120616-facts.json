@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_gazette_ext_eci_on45_20120616",
+  "source_url": "https://archive.org/download/in.gazette.central.e.2012-06-16.150/150.pdf",
+  "mirror_of": "egazette.nic.in (Gazette of India, Extraordinary, 16 June 2012, CSL file 150)",
+  "accessed_date": "2026-09-24",
+  "published_date": "2012-06-16",
+  "access_method": "internet_archive_stored_gazette_pdf_download_and_pages_rendered",
+  "source_response_bytes": 230151,
+  "source_response_sha256": "d30202f8c8f0f57a685b984292ec2d0e3bc8d566c740c29a91cf7d1cd0717d57",
+  "source_response_checked_in": false,
+  "provenance_note": "Stored file in an Internet Archive item that mirrors the official document; archive.org redirects the download URL to a storage node and the final response body is the recorded identity. Internet Archive stored item file (item public since 2018-08-11, uploaded by Public.Resource.Org; MD5 d75bbcc11350dfd7a307975e09281194 equals the item's file listing). Downloaded 2026-09-24T22:31:22Z and again at 2026-09-24T23:02:27Z with identical bytes and SHA-256. A byte-identical copy was also downloaded at 22:22Z from a duplicate item added in August-September 2026; that newer item is not recorded. The independent check downloaded it again at 23:10Z on 24 September 2026, with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The stored original in the Internet Archive's Gazette of India collection (item in.gazette.central.e.2012-06-16.150, a Public.Resource.Org copy public since 11 August 2018; MD5 d75bbcc11350dfd7a307975e09281194 equals the item's file listing). eGazette ID 33416 has no reachable eGazette file. A scan with no text layer.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "PDF pages 1 (Hindi) and 2 (English) rendered and read (a scan with no text layer)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_eci_patil_term_due_to_expire_20120616",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-09",
+      "role_id": "in_president",
+      "holder_name": "Pratibha Devisingh Patil",
+      "role_title": "President of India",
+      "event_kind": "term_expiry_scheduled",
+      "attested_on": "2012-06-16",
+      "text": "The Election Commission states on 16 June 2012 that the term of office of Smt Pratibha Devisingh Patil, President of India, is due to expire under Article 56(1) on the 24th day of July, 2012, and fixes the election so that the President elected can enter upon office on 25 July 2012.",
+      "locator": {
+        "pdf_page": 2,
+        "item": "O.N. 45(E), recitals"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-15 only. The Election Commission's notices, the Returning Officer's declaration of the result and its Gazette publication, the programme for the ceremony of assumption of office, the oath administered by the Chief Justice, the Ministry of Home Affairs resolution and proclamation of the assumption of office, the holder's address on assumption, prospective term-expiry notices, farewells, stylings of a predecessor as former President and retrospective statements stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the Vice-President (including any service as acting President), ministers and party offices are excluded."
+}

@@ -1,0 +1,87 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_noticias_087_19991216",
+  "source_url": "https://siac.fpabramo.org.br/uploads/acervo/J_PT_NOTICIAS_1999-2000_0087.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_original_pdf_text_layer_read_and_pages_rendered_for_visual_review",
+  "source_response_bytes": 9375590,
+  "source_response_sha256": "4434183f0924746390fb4283c6389615ff899912bbbd9acadc9ba0c00fb68ad5",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded (a cache-busting query string may be added to reach the origin and is not part of the recorded URL); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "First downloaded 2026-09-25T12:16:46Z; re-downloaded with a cache-busting query string (?cb=<unix time>; plain nginx origin, no CDN) at 2026-09-25T12:59:58Z; every download had the same byte count and SHA-256. The independent check downloaded it again between 13:10 and 13:11 UTC on 25 September 2026, 30 to 68 minutes after the first download (cache-busted for the FPA and SIAC files), with the same byte count and SHA-256.",
+  "provenance_note": "Original file from the party foundation's SIAC digital archive (plain nginx origin, no CDN). First downloaded 2026-09-25T12:16:46Z; re-downloaded with a cache-busting query string (?cb=<unix time>; plain nginx origin, no CDN) at 2026-09-25T12:59:58Z; every download had the same byte count and SHA-256. The independent check downloaded it again between 13:10 and 13:11 UTC on 25 September 2026, 30 to 68 minutes after the first download (cache-busted for the FPA and SIAC files), with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "PT Notícias nº 87, ano III (16 December 1999 - 5 January 2000), the weekly of the Diretório Nacional (SIAC catalogue searchAcervo/744). The issue prints a span of days.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      2,
+      7
+    ],
+    "method": "12-page scanned newspaper with an OCR text layer; the page 2 (interview standfirst) and page 7 (result paragraph) passages rendered and read; page 1 and the page 2 masthead read from the text layer."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_ptn087_ii_congresso_held_19991124_28",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-03",
+      "role_id": "br_pt_president",
+      "holder_name": null,
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "national_meeting_held",
+      "attested_on": null,
+      "text": "The PT's II Congresso Nacional was held from 24 to 28 November [1999] at the Sesc Venda Nova, Belo Horizonte, with 928 delegates; its agenda included the renewal of the national leadership and of the presidency, and three 'presidenciáveis' were known in advance: José Dirceu (seeking a third term), Milton Temer and Arlindo Chinaglia.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "lead article 'PT realiza seu II Congresso ...'"
+      }
+    },
+    {
+      "claim_id": "br_pt_ptn087_result_known_dirceu_reelected_19991128",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-03",
+      "role_id": "br_pt_president",
+      "holder_name": "José Dirceu",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "election_result_declared",
+      "attested_on": "1999-11-28",
+      "text": "Before 17:00 on Sunday 28 November the result of the election for party president was known: José Dirceu was re-elected with 496 votes, Milton Temer 296, Arlindo Chinaglia 113, with five null and four blank; the Congresso closed after the results were announced.",
+      "locator": {
+        "pdf_page": 7,
+        "item": "section 'Eleição da nova direção partidária' and box 'II Congresso é encerrado com eleição de presidente e novo DN'"
+      }
+    },
+    {
+      "claim_id": "br_pt_ptn087_dirceu_assumed_third_term_during_congresso_199911",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-03",
+      "role_id": "br_pt_president",
+      "holder_name": "José Dirceu",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "stated_assumption_day_not_printed",
+      "attested_on": null,
+      "text": "The interview standfirst says José Dirceu 'foi novamente eleito presidente nacional do PT. Assumiu, ainda no II Congresso Nacional do Partido, seu terceiro mandato'.",
+      "locator": {
+        "pdf_page": 2,
+        "item": "interview standfirst '\"Revolução Democrática\" expressa possibilidade do PT ser governo'"
+      }
+    },
+    {
+      "claim_id": "br_pt_ptn087_masthead_presidente_nacional_dirceu_19991216_20000105",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-03",
+      "role_id": "br_pt_president",
+      "holder_name": "José Dirceu",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "in_office_period_attestation",
+      "attested_on": null,
+      "text": "The issue's masthead lists 'PRESIDENTE NACIONAL DO PT José Dirceu'.",
+      "locator": {
+        "pdf_page": 2,
+        "item": "masthead box (expediente)"
+      }
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://projects.rusarchives.ru/statehood/10-04-russian-federation.shtml",
+  "source_title": "Rosarkhiv virtual exhibition item 10-04: Law of the RSFSR 'On changing the name of the state Russian Soviet Federative Socialist Republic', 25 December 1991 (GARF original)",
+  "accessed_date": "2026-09-21",
+  "published_date": null,
+  "document_date": "1991-12-25",
+  "access_method": "internet_archive_capture_of_official_exhibition_page_and_facsimile_image",
+  "source_response_url": "https://web.archive.org/web/20191104174706id_/https://projects.rusarchives.ru/statehood/10-04-russian-federation.shtml",
+  "source_response_bytes": 12807,
+  "source_response_sha256": "57573abb325a763f854b43737be95f6c9f6e46129d48747b0219e18ddab1abc5",
+  "source_response_checked_in": false,
+  "facsimile_responses": [
+    {
+      "image": 1,
+      "role": "signed original, folio 103",
+      "url": "https://web.archive.org/web/20191104174711id_/https://projects.rusarchives.ru/statehood/images/10-04-russian-federation.jpg",
+      "bytes": 137825,
+      "sha256": "5ef34cca2624a582c976844ac714780033e8299d3cf5d1597fe28a3ce8160830",
+      "content_type": "image/jpeg"
+    }
+  ],
+  "capture_note": "The independent check did not record which capture of the page it read. This packet requested the capture nearest the facsimile's (20191104174711); the archive served 20191104174706, whose bytes match the check's copy.",
+  "provenance_note": "The official host (projects.rusarchives.ru) refused connections from this environment, so the exhibition page and its images were read from Internet Archive raw captures (id_). The packet URL is the official page; the capture actually read is the recorded response. The page and image were first downloaded by the independent check; this packet re-downloaded both from the recorded captures with identical bytes and viewed the image. This checked-in file is a derived factual extract, not the original response or an archived snapshot of it. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "claims": [
+    {
+      "id": "ru_garf_law_2094i_original_19911225",
+      "text": "Rosarkhiv describes the item as the typescript original with the autograph signature of the President of the RSFSR, B. N. Yeltsin (GARF F. 10026, Op. 1, D. 577, L. 103). The facsimile shows points 1-5 as in the portal text and the signature block 'Президент РСФСР ... Б.Ельцин, Москва, Дом Советов РСФСР, 25 декабря 1991 года, № 2094-I'.",
+      "locator": "Exhibit caption; facsimile image (folio 103)",
+      "attested_on": "1991-12-25",
+      "uncertainty": "The signed form. The published text prints 'President of the Russian Federation' (ru_law_2094i_published_signature_19911225). A signature title is an office observation, not a term, and is not used as a holder observation."
+    }
+  ],
+  "scope_note": "The 2012 exhibition page (caption and transcription) and the facsimile of the signed original, read from Internet Archive captures because the official host refused connections. The facsimile was viewed at full size.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [
+      1
+    ],
+    "method": "The facsimile was viewed at full size in the check and again for this packet: points 1-5 and the signature block 'Президент РСФСР', 'Дом Советов РСФСР', 25 December 1991, No. 2094-I."
+  }
+}

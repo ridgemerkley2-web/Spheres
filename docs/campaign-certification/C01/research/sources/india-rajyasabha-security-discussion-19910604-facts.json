@@ -1,0 +1,63 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rs_debate_19910604_security_discussion",
+  "source_url": "https://bucketapi.rajyasabha.digital/public-bucket/rsdebate/assetstore/16/91/90/169190837544983127785529019664363371952?response-content-type=application%2Fpdf&response-content-disposition=inline%3B+filename%3D%22ID_158_04061991_01_p31-164_1.pdf%22",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "official_pdf_download_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 3611707,
+  "source_response_sha256": "fdc07bbb07a5a012af474dfa66f889221e3af0a611b3bb382c8be261c030b968",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host: the Rajya Sabha Secretariat's debates store (handle 123456789/237760), a static object whose ETag equals the MD5 of the body. The Part A check downloaded this store file at 13:56Z and again at 14:34Z on 25 September 2026 (the second with a cache-busting query), and this packet downloaded it at 14:51Z and 14:58Z, each time with the same byte count and SHA-256; the researcher's earlier copy from the Internet Archive (12:31:29Z and 13:25:48Z) had the same bytes. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Rajya Sabha Secretariat's debates store (handle 123456789/237760); a static object (ETag equals the MD5 of the body; Last-Modified 29 July 2026). The researcher first read a byte-identical copy in Internet Archive item rsdebate.nic.in.237760; the official store file is recorded instead (check A1). CLAUDE-C01-11 records a different file of the same day (cols 10-16) for the prime-ministership; neither feeds the other.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      4,
+      18,
+      28,
+      54,
+      55,
+      60
+    ],
+    "method": "PDF pages 18 (cols 65-66), 28 (cols 85-86) and 55 (cols 139-140) rendered and read by the researcher; pages 4, 54 and 60 (cols 149-150) read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "in_rs_chavan_rajiv_gandhi_was_congress_president_19910604",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-01",
+      "role_id": "in_inc_president",
+      "holder_name": "Rajiv Gandhi",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "posthumous_reference",
+      "attested_on": "1991-06-04",
+      "text": "In the Rajya Sabha on 4 June 1991, Shri S. B. Chavan (Maharashtra), on whether enough security was provided to the former Prime Minister and leader of the biggest group in Parliament, says 'He was the Congress President', so adequate security should have been provided; the same speech names Mr. Rajiv Gandhi.",
+      "locator": {
+        "pdf_page": 28,
+        "printed_columns": "85-86",
+        "item": "SHRI S. B. CHAVAN (Maharashtra), opening paragraph"
+      }
+    },
+    {
+      "claim_id": "in_rs_pm_letter_from_unnamed_congress_president_19910604",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-01",
+      "role_id": "in_inc_president",
+      "holder_name": null,
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "unnamed_holder_attestation",
+      "attested_on": "1991-06-04",
+      "text": "Replying on 4 June 1991, Shri Chandra Shekhar says a suggestion about the inquiry commission's terms of reference 'has been made by the Congress President to me', that he has received a letter from him and will amend the terms 'When he comes back'; later he says that the day he had a letter 'from the President of the Congress Party' he replied within an hour. The Congress President is not named.",
+      "locator": {
+        "pdf_pages": [
+          55,
+          60
+        ],
+        "printed_columns": "139-140; 149-150",
+        "item": "SHRI CHANDRA SHEKHAR, paragraph beginning 'About the terms of reference', and his later reply"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-20 only: the role in_inc_president (President of the Indian National Congress) on the Indian National Congress recognition observation in_eci_20240323_np_05. Working Committee decisions, AICC sessions and ratifications, the Central Election Authority's schedules, notifications and declarations, certificates, handovers, resignations, withdrawals, farewells, interim arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, the Leader of the Opposition, the Congress Parliamentary Party and every other office are excluded."
+}

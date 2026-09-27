@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_pib_pranab_eve_of_demitting_office_20170724",
+  "source_url": "https://web.archive.org/web/20170728203623id_/http://pib.nic.in:80/newsite/PrintRelease.aspx?relid=168951",
+  "original_url": "http://pib.nic.in/newsite/PrintRelease.aspx?relid=168951",
+  "archive_capture_utc": "2017-07-28T20:36:23Z",
+  "accessed_date": "2026-09-24",
+  "published_date": "2017-07-24",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 14661,
+  "source_response_sha256": "0b62ff975909eebb5d1fb3fa5ecfb1e0ca05605db917c5fed78b8264bf646233",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2017-07-28T20:36:23Z; that form replays the archived bytes unchanged and is used in place of the live page or file. Raw Internet Archive capture (id_ form), replayed without Content-Encoding. Downloaded 2026-09-24T22:03:33Z and again at 2026-09-24T23:02:38Z with identical bytes and SHA-256. The independent check downloaded it again at 23:10Z on 24 September 2026, with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "PIB's release for the President's Secretariat (relid 168951, 21:33 IST), recorded as a raw Internet Archive capture; the live PIB pages inject per-request content and are not used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full."
+  },
+  "rows": [
+    {
+      "claim_id": "in_pranab_on_eve_of_demitting_office_20170724",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-09",
+      "role_id": "in_president",
+      "holder_name": "Pranab Mukherjee",
+      "role_title": "President of India",
+      "event_kind": "end_of_term_anticipated",
+      "attested_on": "2017-07-24",
+      "text": "The President's Secretariat reports that President Pranab Mukherjee received books and reports at Rashtrapati Bhavan today (July 24, 2017) at a function held on the eve of demitting office as the 13th President of India.",
+      "locator": {
+        "element": "first paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-15 only. The Election Commission's notices, the Returning Officer's declaration of the result and its Gazette publication, the programme for the ceremony of assumption of office, the oath administered by the Chief Justice, the Ministry of Home Affairs resolution and proclamation of the assumption of office, the holder's address on assumption, prospective term-expiry notices, farewells, stylings of a predecessor as former President and retrospective statements stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the Vice-President (including any service as acting President), ministers and party offices are excluded."
+}

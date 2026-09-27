@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_pib_kovind_farewell_address_20220724",
+  "source_url": "https://web.archive.org/web/20220724144120id_/https://pib.gov.in/PressReleasePage.aspx?PRID=1844440",
+  "original_url": "https://pib.gov.in/PressReleasePage.aspx?PRID=1844440",
+  "archive_capture_utc": "2022-07-24T14:41:20Z",
+  "accessed_date": "2026-09-24",
+  "published_date": "2022-07-24",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 114788,
+  "source_response_sha256": "485dbf2399e2544f1c0d11ec200a466f86d3ba91c36bb209ba7525fccf31b166",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2022-07-24T14:41:20Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The Part C check downloaded it at about 23:43Z, at 23:45:51Z and at 23:52:32Z on 24 September 2026, and this packet again at 2026-09-25T00:19:34Z, 00:21:49Z and 00:27:09Z (34 minutes after the check's last download), each with the same byte count and SHA-256; served with no Content-Encoding. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "PIB's release for the President's Secretariat (PRID 1844440, posted 24 July 2022 at 7:32 PM), recorded as a raw Internet Archive capture made that evening; the live PIB pages inject per-request content and are not used. It replaces as the recorded identity a later copy on the former President's archived website (last modified 26 November 2022), which is a lead. Located by the Part C check.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read (heading, posting line and opening paragraphs); no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_kovind_farewell_address_20220724",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-09",
+      "role_id": "in_president",
+      "holder_name": "Ram Nath Kovind",
+      "role_title": "President of India",
+      "event_kind": "farewell_address",
+      "attested_on": "2022-07-24",
+      "text": "PIB's release for the President's Secretariat, posted on 24 July 2022, carries the farewell address to the nation by the President of India, Shri Ram Nath Kovind, who says that as he demits his office at the end of his term he wishes to share a few ideas.",
+      "locator": {
+        "element": "heading, posting line and first paragraphs of the address"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-15 only. The Election Commission's notices, the Returning Officer's declaration of the result and its Gazette publication, the programme for the ceremony of assumption of office, the oath administered by the Chief Justice, the Ministry of Home Affairs resolution and proclamation of the assumption of office, the holder's address on assumption, prospective term-expiry notices, farewells, stylings of a predecessor as former President and retrospective statements stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the Vice-President (including any service as acting President), ministers and party offices are excluded."
+}

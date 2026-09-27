@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_pib_kovind_profile_20170725",
+  "source_url": "https://web.archive.org/web/20170728203039id_/http://pib.nic.in:80/newsite/PrintRelease.aspx?relid=168960",
+  "original_url": "http://pib.nic.in/newsite/PrintRelease.aspx?relid=168960",
+  "archive_capture_utc": "2017-07-28T20:30:39Z",
+  "accessed_date": "2026-09-24",
+  "published_date": "2017-07-25",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 9699,
+  "source_response_sha256": "1670c76e15ce1fcbdf34a5145db19ae3e40e95339c893dce4a929f4ada75c425",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2017-07-28T20:30:39Z; that form replays the archived bytes unchanged and is used in place of the live page or file. Raw Internet Archive capture (id_ form), replayed without Content-Encoding. Downloaded 2026-09-24T22:04:09Z and again at 2026-09-24T23:02:39Z with identical bytes and SHA-256. The live PIB pages inject per-request scripts and are not used. The independent check downloaded it again at 23:10Z on 24 September 2026, with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "PIB's release for the President's Secretariat (relid 168960, 13:07 IST, 25 July 2017), recorded as a raw Internet Archive capture; the live PIB pages inject per-request content and are not used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_kovind_assumed_charge_stated_20170725",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-07",
+      "role_id": "in_president",
+      "holder_name": "Ram Nath Kovind",
+      "role_title": "President of India",
+      "event_kind": "assumption_statement",
+      "attested_on": "2017-07-25",
+      "text": "The President's Secretariat's profile, released on 25 July 2017, states that before assuming charge of the office of the 14th President of India on July 25, 2017, Shri Kovind was Governor of Bihar (16 August 2015 to 20 June 2017).",
+      "locator": {
+        "element": "first paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-15 only. The Election Commission's notices, the Returning Officer's declaration of the result and its Gazette publication, the programme for the ceremony of assumption of office, the oath administered by the Chief Justice, the Ministry of Home Affairs resolution and proclamation of the assumption of office, the holder's address on assumption, prospective term-expiry notices, farewells, stylings of a predecessor as former President and retrospective statements stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the Vice-President (including any service as acting President), ministers and party offices are excluded."
+}

@@ -1,0 +1,55 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://www.spa.gov.sa/1007895",
+  "accessed_date": "2026-09-21",
+  "published_date": "2012-06-16",
+  "access_method": "downloaded_original_html_and_embedded_article_text_read",
+  "source_response_bytes": 173562,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "article_content_sha256": "5c4ef41015978b5da9ad9438a965497b4784299642f432d63582279371cde8d4",
+  "article_content_field": "__NEXT_DATA__ props.pageProps.newsDetails.content, encoded as UTF-8",
+  "title_as_published": "سياسي / بيان من الديوان الملكي : وفاة الأمير نايف بن عبدالعزيز - رحمه الله -",
+  "portal_metadata": {
+    "uuid": "3469bd750c",
+    "locale": "ar",
+    "published_at_utc": "2012-06-16T10:28:04Z",
+    "date_hijri_field": "1433-07-26",
+    "filing_time_printed": "13:29 Makkah time"
+  },
+  "response_observations": [
+    {
+      "downloaded_by": "researcher",
+      "url_form": "https://www.spa.gov.sa/1007895",
+      "bytes": 173562,
+      "sha256": "54b988c136f1cfffc29db8fc5b1d5d8ccc26d49d2cface94a9a75268ff7241ba",
+      "views_count": 4052,
+      "server_id": "S102"
+    },
+    {
+      "downloaded_by": "checker",
+      "url_form": "https://www.spa.gov.sa/1007895",
+      "bytes": 173562,
+      "sha256": "1bcbce5c8100c93a019795a2c3711594dd7634a050d20d570a37b19f422f656c",
+      "views_count": 4053,
+      "server_id": "S102"
+    }
+  ],
+  "provenance_note": "Downloaded with curl -L on 2026-09-21 by the researcher and again, independently, by the checker (2 responses; 173,562 bytes; SHA-256 54b988c1..., 1bcbce5c...). The response embeds a live views_count and a load-balancer server_id in its __NEXT_DATA__ JSON, so response bytes and SHA-256 vary between fetches and between URL forms; no response hash is asserted. article_content_sha256 is the SHA-256 of the UTF-8 newsDetails.content field; it was identical in every download and is the reproducible identity. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "sa_nayef_death_20120616",
+      "text": "A Royal Court statement datelined Jeddah 26 Rajab 1433 / 16 June 2012 says King Abdullah mourns Prince Nayef bin Abdulaziz, Crown Prince, Deputy Prime Minister and Minister of Interior, who died that day, Saturday 26/7/1433 AH, outside the Kingdom. The funeral prayer is set for after Maghrib on Sunday 27/7/1433 AH at the Grand Mosque in Makkah.",
+      "attested_on": "2012-06-16",
+      "locator": "Dateline; Royal Court statement; trailer (filed 13:29 Makkah time)",
+      "uncertainty": "No hour or place of death is given beyond outside the Kingdom. He is styled Crown Prince at his death, so this statement is the evidence for the end of his crown-princeship."
+    }
+  ],
+  "scope_note": "Used for SA-EXEC-03.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not visually rendered. HTML news article (not a scan or PDF); the article text was read from the embedded newsDetails JSON of the downloaded response."
+  }
+}

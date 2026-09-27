@@ -1,0 +1,95 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_inc_cwc_media_byte_20190810",
+  "source_url": "https://res.cloudinary.com/dkplc2mbj/image/upload/v1597476393/Shri_Randeep_Singh_Surjewala_10_08_2019_4f1dadc708.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": "2019-08-10",
+  "access_method": "party_stored_file_download_pdf_text_layer_read",
+  "source_response_bytes": 179349,
+  "source_response_sha256": "19b69b4f24f150e420427eb12f30b5a5364bb480191de958aa93b4663787a9fc",
+  "source_response_checked_in": false,
+  "provenance_note": "Stored file on the Indian National Congress's own media store (Cloudinary account dkplc2mbj): a versioned upload URL whose ETag equals the MD5 of the body, with Last-Modified at the upload time. Cloudinary's edge answers query-string variants from its cache, so a cache-busting download is not an origin test; stability rests on the ETag match and on downloads at least 30 minutes apart. The researcher downloaded it at 12:05:55Z and again at 12:56:12Z on 25 September 2026, the Part C check downloaded it again at 13:02-13:03Z and again after 13:33Z, and this packet downloaded it again at 14:59Z, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A stored file on the Indian National Congress's own media store, found through the INC press release of the Working Committee meeting's media byte of 10 August 2019; the live inc.in release pages were used only as finding aids and were not hashed, because they are rebuilt per request. ETag equals the MD5 of the body; Last-Modified Sat, 15 Aug 2020 07:26:35 GMT. The file is the INC's re-upload of August 2020, not the 2019 attachment: the original on cdn.inc.in no longer resolves and was never archived, and the archived 2019 release page that linked it is a lead.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "method": "All four pages read from the text layer (English and Unicode Hindi)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_cwc_members_ask_rahul_gandhi_to_continue_20190810",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-07",
+      "role_id": "in_inc_president",
+      "holder_name": "Rahul Gandhi",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "working_committee_request_to_continue",
+      "attested_on": "2019-08-10",
+      "text": "The Communication Department's highlights dated 10 August 2019 report that at the Working Committee meeting held that day all members unanimously urged Rahul Gandhi to remain Congress President and lead the party.",
+      "locator": {
+        "pdf_pages": [
+          1,
+          2
+        ],
+        "item": "Hindi summary, first paragraph; English summary, first paragraph"
+      }
+    },
+    {
+      "claim_id": "in_rahul_gandhi_says_resignation_decision_final_20190810",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-07",
+      "role_id": "in_inc_president",
+      "holder_name": "Rahul Gandhi",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "resignation_maintained",
+      "attested_on": "2019-08-10",
+      "text": "The same highlights report that Rahul Gandhi thanked the members but said his decision not to withdraw his resignation was final, and asked for a wider consultation (five sub-groups met PCC Presidents, CLP leaders, AICC Secretaries and MPs that day).",
+      "locator": {
+        "pdf_page": 2,
+        "item": "English summary, first and second paragraphs"
+      }
+    },
+    {
+      "claim_id": "in_resignation_still_under_cwc_consideration_20190810",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-07",
+      "role_id": "in_inc_president",
+      "holder_name": "Rahul Gandhi",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "resignation_pending",
+      "attested_on": "2019-08-10",
+      "text": "Asked whether the Working Committee had accepted the resignation, Shri Surjewala said (Hindi) that it had not: the resignation of Congress President Rahul Gandhi was still under the Working Committee's consideration, no decision had yet been taken on an interim or a final President, and the Working Committee would meet again at 8 pm.",
+      "locator": {
+        "pdf_pages": [
+          3,
+          4
+        ],
+        "item": "Hindi answer to the question on acceptance; English answer"
+      }
+    },
+    {
+      "claim_id": "in_rahul_gandhi_styled_congress_president_20190810",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-07",
+      "role_id": "in_inc_president",
+      "holder_name": "Rahul Gandhi",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2019-08-10",
+      "text": "The same highlights still style him 'Congress President Shri Rahul Gandhi' and call Sonia Gandhi the 'former Congress President'.",
+      "locator": {
+        "pdf_pages": [
+          2,
+          3
+        ],
+        "item": "English summary, second and last paragraphs"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-20 only: the role in_inc_president (President of the Indian National Congress) on the Indian National Congress recognition observation in_eci_20240323_np_05. Working Committee decisions, AICC sessions and ratifications, the Central Election Authority's schedules, notifications and declarations, certificates, handovers, resignations, withdrawals, farewells, interim arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, the Leader of the Opposition, the Congress Parliamentary Party and every other office are excluded."
+}

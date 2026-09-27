@@ -1,0 +1,46 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_rsfsr_gov_res_8_19911115",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102013105&page=1&rdk=0",
+  "source_title": "Resolution of the Government of the RSFSR No. 8 of 15 November 1991 'On organising work in connection with the liquidation of USSR ministries and other bodies of state administration' (original edition)",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "document_date": "1991-11-15",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102013105&page=1&rdk=0",
+  "source_response_bytes": 8523,
+  "source_response_sha256": "b8c9282efabbf114a54fe28c7547738e25b171f0e1d66fdfb2b2d831b174a31e",
+  "source_response_encoding": "windows-1251",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded at 2026-09-25T12:09:17Z and again at 2026-09-25T12:42:02Z (more than 30 minutes later); identical 8,523 bytes and SHA-256. Portal card: Downloaded at 2026-09-25T12:09:26Z and again at 2026-09-25T12:42:04Z (more than 30 minutes later); identical 2,964 bytes and SHA-256. Independent check: re-downloaded at 2026-09-25T13:21Z-13:25Z, at least 40 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:18:40Z and again at 2026-09-25T14:52:16Z (33 minutes later); identical 8,523 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a3=102000496&a3type=1&a3value=%CF%EE%F1%F2%E0%ED%EE%E2%EB%E5%ED%E8%E5&a8=8&a8type=1&a7type=4&a7from=15.11.1991&a7to=15.11.1991&sort=7&page=firstlast&lstsize=50",
+    "bytes": 2964,
+    "sha256": "2a3c6f999c744cf7c20d7b67e703db9393f148da0ffd518ae85754be6f153273",
+    "note": "Date-restricted single-document card restricted to act type 'Постановление' (a3=102000496), number 8, date 15.11.1991: one hit, status 'Действует без изменений'. Without the act-type filter the same number and date also match presidential order 87-рп."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 25 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read in full. The date-restricted single-document portal card (portal_card_response) returns only this act.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in full in Russian after windows-1251 decoding."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_gov_res_8_signed_yeltsin_19911115",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-01",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Борис Николаевич Ельцин",
+      "printed_name": "Б. ЕЛЬЦИН",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "government_act_signature",
+      "attested_on": "1991-11-15",
+      "text": "A resolution issued in the name of the Government of the RSFSR ('ПРАВИТЕЛЬСТВО РСФСР ... ПОСТАНОВЛЕНИЕ от 15 ноября 1991 г. N 8') is signed 'Б. ЕЛЬЦИН'; the portal's text prints no title above or beside the signature.",
+      "locator": "Heading; signature line"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

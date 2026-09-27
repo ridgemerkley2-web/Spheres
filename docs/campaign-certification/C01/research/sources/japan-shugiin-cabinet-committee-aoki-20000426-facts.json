@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_shugiin_naikaku_20000426_aoki",
+  "source_url": "https://kokkai.ndl.go.jp/api/speech?issueID=114704889X00520000426&speechNumber=11&recordPacking=json",
+  "diet_record": {
+    "issueID": "114704889X00520000426",
+    "house": "衆議院",
+    "meeting": "内閣委員会",
+    "issue": "第5号",
+    "sitting_date": "2000-04-26",
+    "response": "single speech",
+    "speech_ids": [
+      "114704889X00520000426_011"
+    ],
+    "record_page_url": "https://kokkai.ndl.go.jp/txt/114704889X00520000426"
+  },
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "official_diet_minutes_api_json_download_and_read",
+  "source_response_bytes": 948,
+  "source_response_sha256": "17d0295267719e4e3c7f05433514d9d53bb8b2e56ea80a28b395ebcb56f331ff",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "UTF-8 JSON (the Content-Type header declares application/json;charset=UTF-8)",
+  "source_response_checked_in": false,
+  "provenance_note": "Official response of the National Diet Library's Diet minutes API (JSON, UTF-8), served with Cache-Control: no-cache, no-store; the JSON carries no timestamp, session token or request echo, so it is not generated per request. Downloaded on 24 September 2026 by the independent check at 19:21:50Z, 19:39:51Z (cache-busting query) and 20:08:15Z; by this packet at 20:21:54Z, 20:42:17Z (cache-busting query) and 20:56:10Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Diet minutes API's JSON for one speech record of the 衆議院 内閣委員会 第5号 (2000-04-26), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/114704889X00520000426. The printed page images, served through a JavaScript viewer, were not viewed.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Machine-readable minute text read in full for the cited speeches; the printed page images were not viewed."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_aoki_states_acting_pm_legally_from_0900_20000403",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-08",
+      "role_id": "jp_pm",
+      "holder_name": null,
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "acting_prime_minister_assumed",
+      "attested_on": "2000-04-03",
+      "text": "In the House of Representatives Cabinet Committee on 26 April 2000, Chief Cabinet Secretary 青木幹雄 says that the exact time at which he assumed the acting prime ministership was, legally, 09:00 on the 3rd (私が臨時代理に就任した正確な時間は、法的には三日の午前九時).",
+      "locator": {
+        "issueID": "114704889X00520000426",
+        "speechOrder": 11,
+        "speaker": "青木幹雄 (内閣官房長官)"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-12 only. Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, a cabinet's formation, its resignation en masse, any continued performance of duties and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role in this packet: an unnamed statement, agenda or ceremony record, an acting prime minister, the House of Councillors' 1998 designee or the successor at the closing boundary. Ministers, deputy prime ministers and party offices are excluded."
+}

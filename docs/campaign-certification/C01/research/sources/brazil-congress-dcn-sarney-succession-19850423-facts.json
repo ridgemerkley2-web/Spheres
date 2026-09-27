@@ -1,0 +1,94 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_dcn_36_19850423",
+  "source_url": "https://legis.senado.leg.br/diarios/BuscaPaginasDiario?codDiario=15364&download=true",
+  "accessed_date": "2026-09-24",
+  "published_date": "1985-04-23",
+  "access_method": "downloaded_official_pdf_and_pages_rendered_for_visual_review",
+  "source_response_bytes": 237692,
+  "source_response_sha256": "0a2f326ea976372660d4d1096fbdee9054a588f037276e9476ca8ebb2cb5278d",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file from the Senate's document service, a static stored issue. The researcher downloaded it on 24 September 2026 at 22:01 UTC and again at 22:32 UTC, more than 30 minutes later, and with a cache-busting query at 22:32 UTC; the independent check downloaded it again at 22:43-22:44 UTC and at 23:04 UTC, including with new cache-busting queries. Every download had the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Complete stored issue from the Senate's diary store (download=true; viewer https://legis.senado.leg.br/diarios/ver/15364; 8 pages, iText 2.1.3, CreationDate 12 April 2013), not a regenerated page-range PDF. Pre-period context for BR-VP-01 only: its claims fall before 1 January 1990 and feed no holder.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      3
+    ],
+    "method": "PDF pages 1 (masthead 'ANO XL - Nº 36 ... TERÇA-FEIRA, 23 DE ABRIL DE 1985' and summary) and 3 (printed page 0613: the President of Congress's statement and Mensagem nº 232) rendered and read."
+  },
+  "rows": [
+    {
+      "claim_id": "br_sarney_vp_oath_recited_19850315",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-01",
+      "role_id": "br_vice_president",
+      "holder_name": "José Sarney",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "oath_recital",
+      "attested_on": "1985-03-15",
+      "text": "Opening the 69th joint session of 22 April 1985, the President of Congress, Senator José Fragelli, recalled that the Vice-President, José Sarney, had taken the constitutional oath before the National Congress on 15 March 1985.",
+      "locator": {
+        "pdf_page": 3,
+        "printed_page": 613,
+        "item": "'ao Vice-Presidente, sua Excelência o Senhor Doutor José Sarney, que já prestou, perante o Congresso Nacional, a 15 de março do corrente ano, o compromisso constitucional'"
+      }
+    },
+    {
+      "claim_id": "br_sarney_vp_exercise_from_recited_19850315",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-01",
+      "role_id": "br_vice_president",
+      "holder_name": "José Sarney",
+      "role_title": "Vice-President of the Republic in exercise of the office of President",
+      "event_kind": "vice_president_exercise_start",
+      "attested_on": "1985-03-15",
+      "text": "The same statement says that the Vice-President had since then been in the exercise of the Presidency by reason of the impediment of the holder (the President-elect).",
+      "locator": {
+        "pdf_page": 3,
+        "printed_page": 613,
+        "item": "'encontra-se, desde então, no exercício da Presidência em virtude do impedimento do titular'"
+      }
+    },
+    {
+      "claim_id": "br_presidency_vacant_vp_sarney_succeeds_19850422",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-01",
+      "role_id": "br_vice_president",
+      "holder_name": "José Sarney",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "vice_president_succeeds_to_presidency",
+      "attested_on": "1985-04-22",
+      "text": "He stated that, President-elect Tancredo de Almeida Neves having died, the office of President of the Republic being vacant, it fell to the Vice-President, José Sarney, as successor of the President-elect, to exercise the office of President of the Republic under Article 77, caput, of the Constitution.",
+      "locator": {
+        "pdf_page": [
+          1,
+          3
+        ],
+        "printed_page": [
+          null,
+          613
+        ],
+        "item": "summary 'vacância do cargo de Presidente da República; e assunção do Doutor José Sarney ao cargo de Presidente da República'; 'Vago o cargo de Presidente da República, ao Vice-Presidente ... cabe exercer, como sucessor ...'"
+      }
+    },
+    {
+      "claim_id": "br_sarney_mensagem232_continues_as_successor_19850421",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-01",
+      "role_id": "br_vice_president",
+      "holder_name": "José Sarney",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "succession_statement",
+      "attested_on": "1985-04-21",
+      "text": "Mensagem nº 232, dated Brasília 21 April 1985, signed José Sarney and read at the session, informs the President of the Senate of the death that day of President-elect Tancredo de Almeida Neves and states that Sarney continues to exercise, now as successor, the office of President of the Republic under Article 77 of the Constitution.",
+      "locator": {
+        "pdf_page": 3,
+        "printed_page": 613,
+        "item": "MENSAGEM Nº 232: 'continuo a exercer, agora na qualidade de sucessor, o cargo de Presidente da República'"
+      }
+    }
+  ],
+  "bounded_scope": "Vice-President observations for CLAUDE-C01-17 only (role br_vice_president of br_presidency). Election, diplomação, oath, posse, termo de posse, same-session styling, the Vice-President's exercise of the Presidency, his succession to the Presidency, vacancy and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Ministers and party offices are excluded; the office of President is CLAUDE-C01-10's br_president role."
+}

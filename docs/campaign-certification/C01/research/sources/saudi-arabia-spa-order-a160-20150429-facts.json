@@ -1,0 +1,55 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://www.spa.gov.sa/1355273",
+  "accessed_date": "2026-09-21",
+  "published_date": "2015-04-29",
+  "access_method": "downloaded_original_html_and_embedded_article_text_read",
+  "source_response_bytes": 183113,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "article_content_sha256": "0bfc867331af9d8e6a4e9e06d72f9d0c1d0ab814cd5c632b673598b19eb0159e",
+  "article_content_field": "__NEXT_DATA__ props.pageProps.newsDetails.content, encoded as UTF-8",
+  "title_as_published": "عام / أوامر ملكية إضافة أولى",
+  "portal_metadata": {
+    "uuid": "4591b0743f",
+    "locale": "ar",
+    "published_at_utc": "2015-04-29T03:18:55Z",
+    "date_hijri_field": "1436-07-10",
+    "filing_time_printed": "06:16 Makkah time"
+  },
+  "response_observations": [
+    {
+      "downloaded_by": "researcher",
+      "url_form": "https://www.spa.gov.sa/1355273",
+      "bytes": 183113,
+      "sha256": "099c9c30a51526b251270a118641557002da20dbab17ca6aca4f6c6df67071d3",
+      "views_count": 4718,
+      "server_id": "S102"
+    },
+    {
+      "downloaded_by": "checker",
+      "url_form": "https://www.spa.gov.sa/1355273",
+      "bytes": 183113,
+      "sha256": "e7892db6298f1fc99031d5529541bbcc3dd227d7e3b78a4d6e36b1b2a8786ca1",
+      "views_count": 4719,
+      "server_id": "S101"
+    }
+  ],
+  "provenance_note": "Downloaded with curl -L on 2026-09-21 by the researcher and again, independently, by the checker (2 responses; 183,113 bytes; SHA-256 099c9c30..., e7892db6...). The response embeds a live views_count and a load-balancer server_id in its __NEXT_DATA__ JSON, so response bytes and SHA-256 vary between fetches and between URL forms; no response hash is asserted. article_content_sha256 is the SHA-256 of the UTF-8 newsDetails.content field; it was identical in every download and is the reproducible identity. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "sa_mbs_deputy_cp_a160",
+      "text": "Royal Order A/160 dated 10/7/1436 AH: on the nomination of Crown Prince Mohammed bin Nayef in a letter of the same date, and after the support of the great majority of Allegiance Commission members, King Salman selects Prince Mohammed bin Salman bin Abdulaziz as Deputy Crown Prince and appoints him Second Deputy Prime Minister, Minister of Defence and Chairman of the Council of Economic and Development Affairs. The preamble cites item Third of Royal Order A/135 and item Fourth of Royal Order A/86.",
+      "attested_on": "2015-04-29",
+      "locator": "Order number and date; recitals; item First; trailer (filed 06:16 Makkah time)",
+      "uncertainty": "'Great majority' is unquantified. Deputy Crown Prince is a separate office and is not a role in this packet; no holder is added."
+    }
+  ],
+  "scope_note": "First addition to the 29 April 2015 royal-orders release. It carries no dateline of its own; the portal timestamp is 06:18 Makkah time on 29 April 2015. Used for SA-EXEC-06.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not visually rendered. HTML news article (not a scan or PDF); the article text was read from the embedded newsDetails JSON of the downloaded response."
+  }
+}

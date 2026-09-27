@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_aicc_site_sonia_elected_president_20050528",
+  "source_url": "https://web.archive.org/web/20051027141716id_/http://www.aicc.org.in:80/elected-president.htm",
+  "original_url": "http://www.aicc.org.in/elected-president.htm",
+  "archive_capture_utc": "2005-10-27T14:17:16Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 15410,
+  "source_response_sha256": "58f3e954518f202ee009f3d1afd799e8a1fca4ed05cca267c686b928b61972bd",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2005-10-27T14:17:16Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl without --compressed, request header Accept-Encoding: identity). The researcher downloaded it at 12:03Z and again at 13:20Z on 25 September 2026, the Part B check downloaded it again between 13:28Z and 13:40Z, and this packet downloaded it again at 14:59Z, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The AICC website's page on the 2005 election, recorded as a raw Internet Archive capture of 27 October 2005. No same-day record styling her in office was found on the AICC pages.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full; the four photographs were not reviewed, only their printed captions."
+  },
+  "rows": [
+    {
+      "claim_id": "in_sonia_elected_congress_president_20050528",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-05",
+      "role_id": "in_inc_president",
+      "holder_name": "Sonia Gandhi",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "election_result",
+      "attested_on": "2005-05-28",
+      "text": "The AICC website says 'On 28th May 2005 Smt. Sonia Gandhi was elected as President of the Indian National Congress by overwhelming support from across the country from all states.'",
+      "locator": {
+        "section": "page text above the photographs"
+      }
+    },
+    {
+      "claim_id": "in_cea_fernandes_declares_sonia_duly_elected_20050528",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-05",
+      "role_id": "in_inc_president",
+      "holder_name": "Sonia Gandhi",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "result_declaration",
+      "attested_on": "2005-05-28",
+      "text": "A photograph caption on the same page shows Shri Oscar Fernandes, Chairman of the Central Election Authority, 'declaring that Smt. Sonia Gandhi has been duly elected as the President of the Indian National Congress'; another shows her speaking to Congress workers 'on the occasion of her election as Congress President'.",
+      "locator": {
+        "section": "photograph captions 1 and 4"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-20 only: the role in_inc_president (President of the Indian National Congress) on the Indian National Congress recognition observation in_eci_20240323_np_05. Working Committee decisions, AICC sessions and ratifications, the Central Election Authority's schedules, notifications and declarations, certificates, handovers, resignations, withdrawals, farewells, interim arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, the Leader of the Opposition, the Congress Parliamentary Party and every other office are excluded."
+}

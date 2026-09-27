@@ -1,0 +1,56 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_pub_ukaz_209_20180508",
+  "source_url": "https://publication.pravo.gov.ru/file/pdf?eoNumber=0001201805080028",
+  "source_title": "Decree of the President of the Russian Federation No. 209 of 8 May 2018 \"О Председателе Правительства Российской Федерации\" (official publication PDF)",
+  "accessed_date": "2026-09-25",
+  "published_date": "2018-05-08",
+  "document_date": "2018-05-08",
+  "access_method": "official_publication_portal_pdf_downloaded_over_http",
+  "source_response_url": "http://publication.pravo.gov.ru/file/pdf?eoNumber=0001201805080028",
+  "source_response_bytes": 31157,
+  "source_response_sha256": "b44446814f36a9e184c3f2379313352753af5ce79385a0ab3f51808ff0dbdfd3",
+  "source_response_encoding": "application/pdf (image-only scan, no text layer)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded at 2026-09-25T12:17:17Z, 2026-09-25T12:57:09Z, 2026-09-25T12:57:10Z (UTC): byte-identical each time (31157 bytes, same SHA-256); first and last downloads 39 minutes apart. The last of these downloads added a cache-busting query (&nocache=<epoch>), more than 30 minutes after the first, and returned identical bytes; the PDF's internal CreationDate, where present, is a fixed past value (see encoding/visual_review), not the request day, so it is a stored file, not generated per request. Independent check: re-downloaded at 2026-09-25T13:12Z-13:14Z and again at 13:32Z-13:36Z (publication PDFs with a cache-busting query in the second round), at least 31 minutes after the last dossier download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:24:15Z and again at 2026-09-25T14:57:39Z (33 minutes later); identical 31,157 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a3=102000503&a3type=1&a8=209&a8type=2&a7type=4&a7from=08.05.2018&a7to=08.05.2018&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3270,
+    "sha256": "f1dba388b8c26a7b28ff78436905d877f31b263903a543d025007884ddc818de",
+    "note": "Date-restricted single-document card (number and one-day date range, document type Указ): one hit, status \"Действует без изменений\"; publication citations: \"Российская газета\" 9.5.2018; portal 8.5.2018 No. 0001201805080028; Собрание законодательства РФ 2018 No. 20 art. 2828."
+  },
+  "corroborating_responses": [
+    {
+      "url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102468432&page=1&rdk=0",
+      "bytes": 18517,
+      "sha256": "76329d071990ff4d636016190a144c9f47d41341e7401f91fbfce63dda15816a",
+      "note": "IPS original-edition text (rdk=0) of the same act, read over HTTP (port 443 refused) and decoded from windows-1251; read in full and agrees with the PDF. Stability: Downloaded at 2026-09-25T12:02:34Z, 2026-09-25T12:22:35Z, 2026-09-25T12:56:27Z (UTC): byte-identical each time (18517 bytes, same SHA-256); first and last downloads 53 minutes apart."
+    }
+  ],
+  "provenance_note": "The official-publication PDF was downloaded over HTTP because the official-publication section refused HTTPS from this environment on 25 September 2026 (port 443); the packet URL gives the same path on HTTPS, and the bytes and hash recorded here are those of the HTTP response. The PDF is a stored file, not one generated per request: its CreationDate, where present, is a fixed past value and cache-busting downloads returned identical bytes. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Official-publication PDF, rendered and viewed; the IPS original-edition text of the same act is attached as a corroborating response. The date-restricted single-document portal card (portal_card_response) returns only this act.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "PDF page 1 rendered with pypdfium2 and viewed: coat of arms, \"УКАЗ ПРЕЗИДЕНТА РОССИЙСКОЙ ФЕДЕРАЦИИ\", title, operative text, signature block \"Президент Российской Федерации В.Путин\" with the Chancellery stamp (\"КАНЦЕЛЯРИЯ\"), and the place/date/number block \"Москва, Кремль 8 мая 2018 года № 209\". Image-only scan (no text layer); PDF CreationDate D:20180508144637Z, the publication day, so a stored file."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_pub_ukaz_209_medvedev_appointed_20180508",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-09",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Дмитрий Анатольевич Медведев",
+      "printed_name": "Медведева Дмитрия Анатольевича (accusative)",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "appointment",
+      "attested_on": "2018-05-08",
+      "text": "Under Article 83(a) of the Constitution the President appoints Dmitry Anatolyevich Medvedev Chairman of the Government of the Russian Federation; in force on signing. Signed \"Президент Российской Федерации В.Путин\", Moscow, Kremlin, 8 May 2018, No. 209.",
+      "locator": "PDF page 1: points 1-2; signature and date block"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

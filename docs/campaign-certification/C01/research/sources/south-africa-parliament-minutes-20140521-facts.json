@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_parliament_na_minutes_20140521",
+  "source_url": "https://www.parliament.gov.za/storage/app/media/Docs/min/579724_1.pdf",
+  "accessed_date": "2026-09-22",
+  "published_date": null,
+  "access_method": "downloaded_original_pdf_from_parliament_document_store_text_read_and_pages_rendered",
+  "source_response_bytes": 172594,
+  "source_response_sha256": "bafafbf03709136e69124690f1d681a13d3b1b7504c09c95b3f4a968a2237190",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file from Parliament's document store, served as a static file (Last-Modified 2 March 2026, before the historical cutoff); fetch it with GET, because the server rejects HEAD. The researcher downloaded it on 22 September 2026 and the independent check downloaded it again the same day; both copies matched the byte count and SHA-256 recorded here, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official PDF from Parliament's document store, located through the site's own paper index (https://www.parliament.gov.za/docsjson/ATC?queries[search]=<date>); a static file with Last-Modified 2 March 2026, before the historical cutoff. Use GET: a HEAD request to the same host returned HTTP 500. No Internet Archive capture exists (CDX empty). PDF metadata creation date 22 May 2014.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      5
+    ],
+    "method": "Pages 1 and 5 rendered and read; page 6 (adjournment at 16:50 and signature) read as text."
+  },
+  "rows": [
+    {
+      "claim_id": "za_zuma_na_elected_president_20140521",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-07",
+      "role_id": "za_president_election",
+      "holder_name": "Jacob Zuma",
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "national_assembly_election",
+      "attested_on": "2014-05-21",
+      "text": "At the first sitting of the National Assembly after the 2014 election, with Chief Justice Mogoeng Thomas Reetsang Mogoeng presiding under section 86(2), Jacob Gedleyihlekisa Zuma was the only nominee and, 'There being no further nominations', the Chief Justice declared him duly elected President of the Republic of South Africa.",
+      "locator": {
+        "pdf_page": 5,
+        "items": "35-42",
+        "clock": "item 35 at 16:29"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-09 only. Election, oath, inauguration, resignation announcement, resignation effect and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy presidents, ministers and party offices are excluded."
+}

@@ -1,0 +1,38 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_ls_contents_19970411",
+  "source_url": "https://web.archive.org/web/20041027141913id_/http://parliamentofindia.nic.in/ls/lsdeb/ls11/ses4/c110497.htm",
+  "original_url": "http://parliamentofindia.nic.in/ls/lsdeb/ls11/ses4/c110497.htm",
+  "archive_capture_utc": "2004-10-27T14:19:13Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "1997-04-11",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 3331,
+  "source_response_sha256": "0e7a97297fd8f933f74d417c8323f044a1911c6a525dcc7d854bafbc7b552bcd",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2004-10-27T14:19:13Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The researcher downloaded it 2 times on 23 September 2026 (local times, PDT, 09:25, 10:43; first and last 78 minutes apart) with identical bytes, and the independent check downloaded it again at 11:43 PDT (with no-cache request headers, more than 50 minutes after the researcher's last download) with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Lok Sabha Secretariat's online English debate text for the 11th and 12th Lok Sabha on parliamentofindia.nic.in, recorded as a raw Internet Archive capture; the printed debates on eparlib could not be reached directly. A contents page.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Complete HTML response read as text (tags stripped); no images."
+  },
+  "rows": [
+    {
+      "claim_id": "in_deve_gowda_moves_confidence_motion_19970411",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-05",
+      "role_id": "in_pm",
+      "holder_name": "H. D. Deve Gowda",
+      "role_title": "Prime Minister of India",
+      "event_kind": "confidence_motion_moved",
+      "attested_on": "1997-04-11",
+      "text": "The contents for Friday 11 April 1997 list the Motion of Confidence in the Council of Ministers moved by the Prime Minister, H. D. Deve Gowda, listing Deve Gowda first and last among the participants.",
+      "locator": {
+        "page_heading": "Friday, April 11, 1997 / Chaitra 21, 1919 (Saka)",
+        "item": "MOTION OF CONFIDENCE IN THE COUNCIL OF MINISTERS"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

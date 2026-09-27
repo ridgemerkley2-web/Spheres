@@ -1,0 +1,66 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_kremlin_news_30891_20040507",
+  "source_url": "https://web.archive.org/web/20250521055537id_/http://kremlin.ru/events/president/news/30891",
+  "original_url": "http://kremlin.ru/events/president/news/30891",
+  "archive_capture_utc": "2025-05-21T05:55:37Z",
+  "source_title": "Владимир Путин провел рабочую встречу с Михаилом Фрадковым (Vladimir Putin held a working meeting with Mikhail Fradkov), 7 May 2004 — kremlin.ru news",
+  "accessed_date": "2026-09-25",
+  "published_date": "2004-05-07",
+  "document_date": "2004-05-07",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20250521055537id_/http://kremlin.ru/events/president/news/30891",
+  "source_response_bytes": 36430,
+  "source_response_sha256": "22151444e1a16d07d7b475f05f98517eb71fe5398c68b96cdff44c36032fca37",
+  "source_response_encoding": "UTF-8 (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Raw capture downloaded at 2026-09-25T12:21:50Z and again at 2026-09-25T13:10:19Z (48 minutes later): identical 36,430 bytes and SHA-256. Independent check: re-downloaded at 2026-09-25T13:14Z-13:24Z and again at 13:47Z-13:55Z (portal URLs with a cache-busting query in the second round), 33-110 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:22:44Z and again at 2026-09-25T14:56:12Z (33 minutes later); identical 36,430 bytes and SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of http://kremlin.ru/events/president/news/30891, captured at 2025-05-21T05:55:37Z, before the 7 September 2026 cutoff; requested without an Accept-Encoding header (curl without --compressed, i.e. identity) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The captured page carries 'Последнее обновление материала 20 марта 2015 года, 17:49', so its headline and styling are not shown to be contemporaneous. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Raw Internet Archive capture 20250521055537 of the official page, made before the cutoff.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Article text read in full in Russian (headline, dateline, body and linked-document list); photographs and video not reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_kremlin_premier_order_received_20040507",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-07",
+      "role_id": "ru_government_chairman",
+      "holder_name": null,
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "government_powers_laid_down_reported",
+      "attested_on": "2004-05-07",
+      "text": "Item dated 7 May 2004, 14:20, Moscow, Kremlin: the President confirmed that he had received that day the premier's order ('распоряжение премьер-министра') on the Government's surrender of its powers.",
+      "locator": "Second paragraph, first sentence"
+    },
+    {
+      "claim_id": "ru_kremlin_decree_585_signing_reported_20040507",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-07",
+      "role_id": "ru_government_chairman",
+      "holder_name": null,
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "continuation_of_duties_reported",
+      "attested_on": "2004-05-07",
+      "text": "The same item states that the President had signed a decree instructing the Government to perform its duties until the State Duma approves the cabinet (links decree No. 585).",
+      "locator": "Second paragraph, second sentence"
+    },
+    {
+      "claim_id": "ru_kremlin_putin_to_submit_fradkov_20040507",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-07",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Михаил Ефимович Фрадков",
+      "printed_name": "Михаила Фрадкова (genitive)",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "nomination_intention",
+      "attested_on": "2004-05-07",
+      "text": "At the same meeting the head of state said that he would submit Mikhail Fradkov's candidacy to the State Duma that day for approval as Chairman of the Government.",
+      "locator": "First paragraph"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

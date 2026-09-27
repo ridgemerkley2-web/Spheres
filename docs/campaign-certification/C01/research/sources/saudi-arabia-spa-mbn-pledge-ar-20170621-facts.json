@@ -1,0 +1,58 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://www.spa.gov.sa/45ccd99bc4",
+  "accessed_date": "2026-09-21",
+  "published_date": "2017-06-21",
+  "access_method": "downloaded_original_html_and_embedded_article_text_read",
+  "source_response_bytes": 170053,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "article_content_sha256": "35a5c1757fbdbadb6e37a7c192a008323a9af65610dcb99ace9ec9f5aea176be",
+  "article_content_field": "__NEXT_DATA__ props.pageProps.newsDetails.content, encoded as UTF-8",
+  "title_as_published": "عام / صاحب السمو الملكي الأمير محمد بن نايف بن عبدالعزيز يبايع صاحب السمو الملكي الأمير محمد بن سلمان بن عبدالعزيز وليا للعهد في قصر الصفا بمكة المكرمة",
+  "portal_metadata": {
+    "uuid": "45ccd99bc4",
+    "locale": "ar",
+    "published_at_utc": "2017-06-21T05:37:41Z",
+    "date_hijri_field": "1438-09-26",
+    "legacy_ids": [
+      "1641897"
+    ],
+    "filing_time_printed": "08:37 Makkah time"
+  },
+  "response_observations": [
+    {
+      "downloaded_by": "checker",
+      "url_form": "https://www.spa.gov.sa/45ccd99bc4",
+      "bytes": 170053,
+      "sha256": "abd2f8fac1ce223ea7f2e0b22e06e23a2426e775d96271346cc13573bbe615bd",
+      "views_count": 2019,
+      "server_id": "S101"
+    },
+    {
+      "downloaded_by": "checker",
+      "url_form": "https://www.spa.gov.sa/1641897",
+      "bytes": 171292,
+      "sha256": "74e06b2681a67f797a9ed78017287fed41d6809745a022fadb7de264e93f56fc",
+      "views_count": 2018,
+      "server_id": "S101"
+    }
+  ],
+  "provenance_note": "Downloaded with curl -L on 2026-09-21 by the packet's independent checker (2 responses; 170,053 and 171,292 bytes; SHA-256 abd2f8fa..., 74e06b26...). The response embeds a live views_count and a load-balancer server_id in its __NEXT_DATA__ JSON, so response bytes and SHA-256 vary between fetches and between URL forms; no response hash is asserted. article_content_sha256 is the SHA-256 of the UTF-8 newsDetails.content field; it was identical in every download and is the reproducible identity. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "sa_mbn_pledge_to_mbs_20170621",
+      "text": "An SPA report datelined Makkah 26 Ramadan 1438 / 21 June 2017 says Prince Mohammed bin Nayef pledged allegiance today, at Al-Safa Palace in Makkah, to Prince Mohammed bin Salman on his selection as Crown Prince.",
+      "attested_on": "2017-06-21",
+      "locator": "Dateline and sole paragraph; trailer (filed 08:37 Makkah time)",
+      "uncertainty": "An individual pledge by the relieved Crown Prince; it does not date the general pledge called for that evening."
+    }
+  ],
+  "scope_note": "Arabic original of the report (also served at legacy SPA ID 1641897), located by the packet's independent checker. SPA's English release (sa_spa_mbn_pledge_20170621_en) is its translation. Used for SA-EXEC-07.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not visually rendered. HTML news article (not a scan or PDF); the article text was read from the embedded newsDetails JSON of the checker's downloaded response and re-read from that local copy for this packet."
+  }
+}

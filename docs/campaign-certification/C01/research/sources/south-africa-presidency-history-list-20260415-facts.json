@@ -1,0 +1,87 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_presidency_history_list",
+  "source_url": "https://web.archive.org/web/20260415035431id_/https://thepresidency.gov.za/history",
+  "original_url": "https://thepresidency.gov.za/history",
+  "archive_capture_utc": "2026-04-15T03:54:31Z",
+  "accessed_date": "2026-09-22",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 64973,
+  "source_response_sha256": "bf8b63b08069814874cd3425c7d92f0e4a09f24d9d0ac310bae6ebfa4f269bac",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2026-04-15T03:54:31Z; that form replays the archived bytes unchanged and is used in place of the live page. The researcher downloaded it on 22 September 2026 and the independent check downloaded it again the same day; both copies matched the byte count and SHA-256 recorded here, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Retrospective, undated Presidency list (raw capture of the page at thepresidency.gov.za without \"www\", as the capture records it; the live www.thepresidency.gov.za page is a dynamic Drupal page with the same list text). Its rows are recorded as printed with no structured date and are never used as boundaries: the de Klerk row starts on his acting date and the Mbeki row ends a day before the National Assembly's resolution. Deputy-president rows are out of scope.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_presidency_list_state_president_de_klerk_19890815_19940510",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-01",
+      "role_id": "za_state_president",
+      "holder_name": "F. W. de Klerk",
+      "role_title": "State President of the Republic of South Africa",
+      "event_kind": "retrospective_list_row",
+      "attested_on": null,
+      "printed_range": "15 August 1989 - 10 May 1994",
+      "text": "The Presidency's history page lists, under 'State Presidents of the Republic', '15 August 1989 - 10 May 1994 : Frederik Willem (FW) de Klerk', after '3 September 1984 - 15 August 1989 : Pieter Willem (PW) Botha'.",
+      "locator": {
+        "section": "State Presidents of the Republic (list)",
+        "row": "15 August 1989 - 10 May 1994 : Frederik Willem (FW) de Klerk"
+      }
+    },
+    {
+      "claim_id": "za_presidency_list_president_mandela_19940510_19990616",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-02",
+      "role_id": "za_president_election",
+      "holder_name": "Nelson Mandela",
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "retrospective_list_row",
+      "attested_on": null,
+      "printed_range": "10 May 1994 - 16 June 1999",
+      "text": "The same page lists, under 'Presidents of the Republic', '10 May 1994 - 16 June 1999 : Nelson Rolihlahla Mandela'.",
+      "locator": {
+        "section": "Presidents of the Republic (list)",
+        "row": "10 May 1994 - 16 June 1999 : Nelson Rolihlahla Mandela"
+      }
+    },
+    {
+      "claim_id": "za_presidency_list_president_mbeki_19990616_20080924",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-03",
+      "role_id": "za_president_election",
+      "holder_name": "Thabo Mbeki",
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "retrospective_list_row",
+      "attested_on": null,
+      "printed_range": "16 June 1999 - 24 September 2008",
+      "text": "The same list gives '16 June 1999 - 24 September 2008 : Thabo Mvuyelwa Mbeki'.",
+      "locator": {
+        "section": "Presidents of the Republic (list)",
+        "row": "16 June 1999 - 24 September 2008 : Thabo Mvuyelwa Mbeki"
+      }
+    },
+    {
+      "claim_id": "za_presidency_list_president_motlanthe_20080925_20090509",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-06",
+      "role_id": "za_president_election",
+      "holder_name": "Kgalema Motlanthe",
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "retrospective_list_row",
+      "attested_on": null,
+      "printed_range": "25 September 2008 - 9 May 2009",
+      "text": "The same list gives '25 September 2008 - 9 May 2009: Kgalema Motlanthe'.",
+      "locator": {
+        "section": "Presidents of the Republic (list)",
+        "row": "25 September 2008 - 9 May 2009: Kgalema Motlanthe"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-09 only. Election, oath, inauguration, resignation announcement, resignation effect and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy presidents, ministers and party offices are excluded."
+}

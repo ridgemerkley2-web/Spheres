@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_gcis_acting_president_statement_20180215",
+  "source_url": "https://web.archive.org/web/20180215113627id_/https://www.gov.za/speeches/deputy-president-cyril-ramaphosa-sworn-acting-president-15-feb-2018-0000",
+  "original_url": "https://www.gov.za/speeches/deputy-president-cyril-ramaphosa-sworn-acting-president-15-feb-2018-0000",
+  "archive_capture_utc": "2018-02-15T11:36:27Z",
+  "accessed_date": "2026-09-22",
+  "published_date": "2018-02-15",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 44484,
+  "source_response_sha256": "8e18b2cd67cf88a50c61716f3e824e1a26796a51d842b5afb37b41d930f6c8bc",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2018-02-15T11:36:27Z; that form replays the archived bytes unchanged and is used in place of the live page. The researcher downloaded it on 22 September 2026 and the independent check downloaded it again the same day; both copies matched the byte count and SHA-256 recorded here, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Contemporaneous capture (15 February 2018, 11:36 UTC) of a GCIS statement.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_gcis_zuma_resignation_vacancy_20180214",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-08",
+      "role_id": "za_president_election",
+      "holder_name": "Jacob Zuma",
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "resignation_effective",
+      "attested_on": "2018-02-14",
+      "text": "GCIS states that 'On the 14 February 2018 the President of the Republic of South Africa, His Excellency Jacob Gedleyihlekisa Zuma resigned as the President' and that the resignation created a vacancy in the office of the President.",
+      "locator": {
+        "section": "Statement body, first paragraph"
+      }
+    },
+    {
+      "claim_id": "za_ramaphosa_acting_president_20180215",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-08",
+      "role_id": "za_president_election",
+      "holder_name": "Cyril Ramaphosa",
+      "role_title": "Acting President of the Republic of South Africa",
+      "event_kind": "acting_service",
+      "attested_on": "2018-02-15",
+      "text": "GCIS states on 15 February 2018 that Deputy President Cyril Matamela Ramaphosa is Acting President until the National Assembly elects the new President, which it would do that afternoon, and that he would not be sworn in again because he had already sworn the Acting President's oath.",
+      "locator": {
+        "section": "Statement body, second and third paragraphs"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-09 only. Election, oath, inauguration, resignation announcement, resignation effect and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy presidents, ministers and party offices are excluded."
+}

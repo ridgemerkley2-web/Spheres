@@ -1,0 +1,36 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_tse_diploma_maciel_19941217",
+  "source_url": "https://bibliotecadigital.tse.jus.br/server/api/core/bitstreams/ff51f273-c254-4cbb-bd17-fdf821c02427/content",
+  "accessed_date": "2026-09-24",
+  "published_date": "1994-12-17",
+  "access_method": "downloaded_repository_image_and_viewed",
+  "source_response_bytes": 678470,
+  "source_response_sha256": "120ec1e7e6f17ed060d48aa6e8d84bc5b8b644db1b642ed3bd8fa1ed6d4ba51c",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file from the TSE digital library's repository service, a stored bitstream (its ETag and the repository's recorded checksum equal the MD5 of the bytes, ecb20ad76a4fe7237c8c8f29340abfde; the server sends no-store). The researcher downloaded it on 24 September 2026 at 21:54 UTC, at 22:05 UTC with a cache-busting query and at 22:26 UTC; the independent check downloaded it at 22:37 UTC and at 23:04 UTC with a cache-busting query. Every download had the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Photograph (JPEG, 759x1024; bitstream 1994_diploma_marco_maciel.JPG) of the diploma in the TSE digital library, item bdtse/5204 (http://bibliotecadigital.tse.jus.br/handle/bdtse/5204); a static bitstream whose ETag equals the MD5 of the bytes (Last-Modified 9 November 2018). The item's catalogue record (https://bibliotecadigital.tse.jus.br/server/api/core/items/a8e55e50-25c0-4954-a71f-ec0c2e8805a2; 5,998 bytes, SHA-256 628c4921a95657c65b0257e47ed862a8b7119b7ff156831589a33ccf543d8985, identical across four downloads) dates it 1994-12-17, names the Casa da Moeda do Brasil as publisher and places it in bdtse/533 (the 1994 diplomação); it does not say whether the pictured exemplar is the one handed to Maciel. Imported because DCN nº 1/1995 reproduces no diploma. published_date is the date printed on the diploma.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "The whole image viewed and the diploma text read from it; not a PDF. The arms and signatures are visible in the image and are not reproduced in the packet (rights note)."
+  },
+  "rows": [
+    {
+      "claim_id": "br_maciel_tse_diploma_issued_19941217",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-04",
+      "role_id": "br_vice_president",
+      "holder_name": "Marco Maciel",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "diplomacao",
+      "attested_on": "1994-12-17",
+      "text": "The Superior Electoral Court diploma, dated Brasília 17 December 1994 and signed by Minister Carlos Velloso as President of the Court with the other ministers, the Procurador-Geral Eleitoral and the Director-General, certifies that by the will of the people expressed at the polls on 3 October 1994 Marco Antônio de Oliveira Maciel was elected Vice-President of the Republic, and qualifies him for investiture in the office before the National Congress on 1 January 1995.",
+      "locator": {
+        "image": "1994_diploma_marco_maciel.JPG",
+        "section": "Whole diploma: \"foi eleito Vice-Presidente da República\"; \"Brasília, aos 17 de dezembro de 1994\"; \"Ministro CARLOS VELLOSO Presidente\""
+      }
+    }
+  ],
+  "bounded_scope": "Vice-President observations for CLAUDE-C01-17 only (role br_vice_president of br_presidency). Election, diplomação, oath, posse, termo de posse, same-session styling, the Vice-President's exercise of the Presidency, his succession to the Presidency, vacancy and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Ministers and party offices are excluded; the office of President is CLAUDE-C01-10's br_president role."
+}

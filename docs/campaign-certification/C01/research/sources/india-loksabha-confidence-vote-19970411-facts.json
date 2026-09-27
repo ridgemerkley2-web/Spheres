@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_ls_debates_19970411_confidence_vote",
+  "source_url": "https://web.archive.org/web/20090411041101id_/http://parliamentofindia.nic.in/ls/lsdeb/ls11/ses4/0311049728.htm",
+  "original_url": "http://parliamentofindia.nic.in/ls/lsdeb/ls11/ses4/0311049728.htm",
+  "archive_capture_utc": "2009-04-11T04:11:01Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "1997-04-11",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 18288,
+  "source_response_sha256": "564eb8f1f5027322a3f1d4c40d41aa55f13a5f79c259b0f839287e9b78f6b41f",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2009-04-11T04:11:01Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The researcher downloaded it 2 times on 23 September 2026 (local times, PDT, 09:25, 10:01; first and last 36 minutes apart) with identical bytes, and the independent check downloaded it again at 11:44 PDT (with no-cache request headers, more than 50 minutes after the researcher's last download) with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Lok Sabha Secretariat's online English debate text for the 11th and 12th Lok Sabha on parliamentofindia.nic.in, recorded as a raw Internet Archive capture; the printed debates on eparlib could not be reached directly. An undated continuation page dated by its file name and the 11 April 1997 contents (in_ls_contents_19970411).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Complete HTML response read as text (tags stripped); no images."
+  },
+  "rows": [
+    {
+      "claim_id": "in_deve_gowda_confidence_motion_negatived_19970411",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-05",
+      "role_id": "in_pm",
+      "holder_name": "H. D. Deve Gowda",
+      "role_title": "Prime Minister of India",
+      "event_kind": "confidence_vote_lost",
+      "attested_on": "1997-04-11",
+      "text": "The Lok Sabha divided on the motion that the House expresses its confidence in the Council of Ministers; the Speaker announced, subject to correction, Ayes 158 and Noes 292, the motion was negatived, and the House adjourned sine die at 23:54.",
+      "locator": {
+        "page": "0311049728 (item 03, 11-04-97, part 28)",
+        "time": "2354 hours adjournment",
+        "date_basis": "file name and the 11 April 1997 contents (in_ls_contents_19970411)"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

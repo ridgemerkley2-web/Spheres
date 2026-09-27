@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rs_debate_19900829_sri_lanka",
+  "source_url": "https://bucketapi.rajyasabha.digital/public-bucket/rsdebate/assetstore/14/04/83/140483122035178533731947527627045617223?response-content-type=application%2Fpdf&response-content-disposition=inline%3B+filename%3D%22ID_155_29081990_01_p315-378_1.pdf%22",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "official_pdf_download_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 293232,
+  "source_response_sha256": "abaf31c2b040f0787605fa89f95e1ed4ee04a2c35d9011538d420597976f154d",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host: the Rajya Sabha Secretariat's debates store (handle 123456789/250799), a static object whose ETag equals the MD5 of the body. The Part A check downloaded it at 14:16Z and 14:35Z on 25 September 2026, and this packet downloaded it again at 14:52Z and 14:59Z, at least 30 minutes after the check's first download, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Rajya Sabha Secretariat's debates store (handle 123456789/250799), the host CLAUDE-C01-11 already records; a static object (ETag equals the MD5 of the body; Last-Modified 3 August 2026). Located by the Part A check through the Rajya Sabha data service. A member's statement in the House; Parliament records are used only where they record the party office.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      17
+    ],
+    "method": "PDF page 17 (cols 347-348, headed [Shrimati Jayanthi Natarajan]) read from the text layer and page 1 for the item; the passage is spoken in English."
+  },
+  "rows": [
+    {
+      "claim_id": "in_rs_natarajan_rajiv_gandhi_congress_president_19900829",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-01",
+      "role_id": "in_inc_president",
+      "holder_name": "Rajiv Gandhi",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1990-08-29",
+      "text": "In the Rajya Sabha on 29 August 1990, in the short duration discussion on the situation in Sri Lanka, Shrimati Jayanthi Natarajan says that the unity and integrity of Sri Lanka underlay the Indo-Sri Lankan Accord 'that the former Prime Minister and the Congress President, Shri Rajiv Gandhi, had entered into'.",
+      "locator": {
+        "pdf_page": 17,
+        "printed_columns": "347-348",
+        "item": "speech headed [Shrimati Jayanthi Natarajan]"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-20 only: the role in_inc_president (President of the Indian National Congress) on the Indian National Congress recognition observation in_eci_20240323_np_05. Working Committee decisions, AICC sessions and ratifications, the Central Election Authority's schedules, notifications and declarations, certificates, handovers, resignations, withdrawals, farewells, interim arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, the Leader of the Opposition, the Congress Parliamentary Party and every other office are excluded."
+}

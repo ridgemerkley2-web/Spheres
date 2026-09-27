@@ -1,0 +1,57 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_bn091_199410",
+  "source_url": "https://siac.fpabramo.org.br/uploads/acervo/J_BN_1994_0091.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_original_pdf_text_layer_read_and_pages_rendered_for_visual_review",
+  "source_response_bytes": 1835767,
+  "source_response_sha256": "3428336f9524e2fdcbec5ebaef13772fe236a498160466f679ca4769e1cbb4a8",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded (a cache-busting query string may be added to reach the origin and is not part of the recorded URL); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "First downloaded 2026-09-25T12:20:14Z; re-downloaded with a cache-busting query string (?cb=<unix time>; plain nginx origin, no CDN) at 2026-09-25T12:59:48Z; every download had the same byte count and SHA-256. The independent check downloaded it again between 13:10 and 13:11 UTC on 25 September 2026, 30 to 68 minutes after the first download (cache-busted for the FPA and SIAC files), with the same byte count and SHA-256.",
+  "provenance_note": "Original file from the party foundation's SIAC digital archive (plain nginx origin, no CDN). First downloaded 2026-09-25T12:20:14Z; re-downloaded with a cache-busting query string (?cb=<unix time>; plain nginx origin, no CDN) at 2026-09-25T12:59:48Z; every download had the same byte count and SHA-256. The independent check downloaded it again between 13:10 and 13:11 UTC on 25 September 2026, 30 to 68 minutes after the first download (cache-busted for the FPA and SIAC files), with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Boletim Nacional nº 91 (October 1994), the organ of the national executive committee (SIAC catalogue searchAcervo/877). The issue prints a month, not a day.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      2
+    ],
+    "method": "Scanned bulletin with an OCR text layer; the page 2 editorial signature rendered and read; the page 7 profile text read from the text layer."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_bn091_editorial_signed_rui_falcao_presidente_nacional_199410",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-02",
+      "role_id": "br_pt_president",
+      "holder_name": "Rui Falcão",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "in_office_period_attestation",
+      "attested_on": null,
+      "text": "The editorial on the second round of the October 1994 elections ('Segundo turno: cinco disputas e uma oposição') is signed 'Rui Falcão - Presidente Nacional do PT'.",
+      "locator": {
+        "pdf_page": 2,
+        "printed_page": 2,
+        "item": "EDITORIAL, signature above the masthead box"
+      }
+    },
+    {
+      "claim_id": "br_pt_bn091_gushiken_former_national_president_199410",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-01",
+      "role_id": "br_pt_president",
+      "holder_name": "Luiz Gushiken",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "retrospective_former_holder",
+      "attested_on": null,
+      "text": "A profile of the party's newly elected federal deputies says 'Luis Gushiken presidiu o sindicato dos bancários e foi presidente nacional do PT'.",
+      "locator": {
+        "pdf_page": 7,
+        "item": "profiles of elected deputies (Gushiken entry)"
+      }
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_kremlin_news_73658_20240315",
+  "source_url": "https://web.archive.org/web/20260513124847id_/http://kremlin.ru/events/president/news/73658",
+  "original_url": "http://kremlin.ru/events/president/news/73658",
+  "archive_capture_utc": "2026-05-13T12:48:47Z",
+  "source_title": "President of Russia website: \"Владимир Путин проголосовал на выборах Президента России\" (Putin voted in the presidential election), 15 March 2024, 19:10",
+  "accessed_date": "2026-09-24",
+  "published_date": "2024-03-15",
+  "document_date": "2024-03-15",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20260513124847id_/http://kremlin.ru/events/president/news/73658",
+  "source_response_bytes": 37431,
+  "source_response_sha256": "3dffdcc9816ea8c6a5de2c0857884e1fdfe2f62d5224f3bf13cd4024d25c9c86",
+  "source_response_encoding": "UTF-8",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: First retrieved 2026-09-24T22:25Z; re-downloaded 2026-09-24T22:53:33Z and 2026-09-24T23:01:20Z (byte-identical: 37431 bytes, same SHA-256 each time). Raw capture before the cutoff; fixed bytes. Independent check: re-downloaded at 2026-09-24T23:04:57Z-23:07:53Z and again at 23:39:47Z-23:45:56Z; identical bytes and SHA-256 both times. This packet: re-downloaded at 2026-09-25T00:41:41Z (37,431 bytes); identical SHA-256.",
+  "alternate_responses": [
+    {
+      "url": "http://kremlin.ru/events/president/news/copy/73658",
+      "bytes": 1634,
+      "sha256": "4b8dfe500c1705fb489a987cd2ee35f9e52f58256773dff80ba2f40c30218354",
+      "note": "Live text version (HTTP); same text; no capture of the copy URL exists. An alternate live response only, never the recorded identity: it carries a changing site template and may drift; identical on this packet's retrieval at 2026-09-25T00:41:44Z."
+    }
+  ],
+  "provenance_note": "Raw Internet Archive capture (id_ form) of http://kremlin.ru/events/president/news/73658, captured at 2026-05-13T12:48:47Z, before the 7 September 2026 cutoff; the id_ form replays the archived bytes unchanged and is used because kremlin.ru refused HTTPS from this environment and its live pages carry a changing site template (footer year, menus, promoted blocks), so the live page is not a stable identity. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Official-site news item stamped 15 March 2024, 19:10 (a pre-cutoff full-page capture of 13 May 2026).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "HTML text read in full."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_kremlin_voting_15_17_march_20240315",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-10",
+      "role_id": "ru_president",
+      "holder_name": "Владимир Владимирович Путин",
+      "printed_name": "Владимир Путин",
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "election_voting",
+      "attested_on": "2024-03-15",
+      "text": "The head of state took part online in the presidential election; the item states that the election of the President of the Russian Federation is being held from 15 to 17 March, for the first time over three days and with remote electronic voting in almost a third of the regions.",
+      "locator": "Both paragraphs (15 March 2024, 19:10, Novo-Ogaryovo)"
+    }
+  ],
+  "bounded_scope": "Presidency observations for CLAUDE-C01-14 only. Election calling, voting, result determination, declaration, correction and publication, oath, stated assumption of office, inauguration ceremony, resignation, acting service and outgoing-holder statements stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-05 RSFSR roles and the USSR packet are outside this extract."
+}

@@ -1,0 +1,54 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_kremlin_news_62585_20200115",
+  "source_url": "https://web.archive.org/web/20210513233827id_/http://www.kremlin.ru/events/president/news/copy/62585",
+  "original_url": "http://www.kremlin.ru/events/president/news/copy/62585",
+  "archive_capture_utc": "2021-05-13T23:38:27Z",
+  "source_title": "President of Russia website: \"Встреча с членами Правительства\" (Meeting with members of the Government), 15 January 2020, 16:30, Moscow, Government House (text version)",
+  "accessed_date": "2026-09-25",
+  "published_date": "2020-01-15",
+  "document_date": "2020-01-15",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20210513233827id_/http://www.kremlin.ru/events/president/news/copy/62585",
+  "source_response_bytes": 7497,
+  "source_response_sha256": "f2fbced0450729c91878558eb165b561c6779c599c72b20aef3fad54099f5ae0",
+  "source_response_encoding": "UTF-8 (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded at 2026-09-25T12:22:40Z, 2026-09-25T12:57:49Z, 2026-09-25T12:57:54Z (UTC): byte-identical each time (7497 bytes, same SHA-256); first and last downloads 35 minutes apart. A raw capture made before the cutoff: fixed bytes. Independent check: re-downloaded at 2026-09-25T13:12Z-13:14Z and again at 13:32Z-13:36Z (publication PDFs with a cache-busting query in the second round), at least 31 minutes after the last dossier download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:24:20Z and again at 2026-09-25T14:57:43Z (33 minutes later); identical 7,497 bytes and SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of http://www.kremlin.ru/events/president/news/copy/62585, captured at 2021-05-13T23:38:27Z, before the 7 September 2026 cutoff; requested without an Accept-Encoding header (curl without --compressed, i.e. identity) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Raw Internet Archive capture 20210513233827 of the official page, made before the cutoff.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "HTML text read in full; photographs and video not reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_kremlin_62585_medvedev_proposes_resignation_20200115",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-09",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Дмитрий Анатольевич Медведев",
+      "printed_name": "Д.Медведев (speaker label); addressed as \"Дмитрий Анатольевич\"",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "resignation_proposed",
+      "attested_on": "2020-01-15",
+      "text": "At the meeting, D. Medvedev (as labelled in the transcript) said that, in view of the constitutional changes the President had proposed in his Address that day, it would be right for the Government in its current composition to resign in accordance with Article 117 of the Constitution, and that further decisions would be taken by the President.",
+      "locator": "Transcript, Medvedev's first intervention"
+    },
+    {
+      "claim_id": "ru_kremlin_62585_putin_asks_duties_continue_20200115",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-09",
+      "role_id": "ru_government_chairman",
+      "holder_name": null,
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "continuation_of_duties",
+      "attested_on": "2020-01-15",
+      "text": "Putin thanked the Government and asked its members to carry out their duties in full until a Government in a new composition is formed.",
+      "locator": "Transcript, Putin's reply"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

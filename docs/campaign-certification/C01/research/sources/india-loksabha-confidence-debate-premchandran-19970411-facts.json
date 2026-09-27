@@ -1,0 +1,47 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_ls_debates_19970411_premchandran",
+  "source_url": "https://web.archive.org/web/20090411021147id_/http://parliamentofindia.nic.in/ls/lsdeb/ls11/ses4/0311049722.htm",
+  "original_url": "http://parliamentofindia.nic.in/ls/lsdeb/ls11/ses4/0311049722.htm",
+  "archive_capture_utc": "2009-04-11T02:11:47Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "1997-04-11",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 20221,
+  "source_response_sha256": "33460a2efbe4972c878f24e56c8063a78608364ad88c7760b27119395eca6074",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2009-04-11T02:11:47Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl without --compressed, request header Accept-Encoding: identity). The Part A check downloaded it at 14:29Z, 14:32Z and 14:36Z on 25 September 2026, and this packet downloaded it again at 14:52Z and 14:59Z, at least 30 minutes after the check's first download, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Lok Sabha Secretariat's online English debate text for the 11th Lok Sabha, recorded as a raw Internet Archive capture of 11 April 2009; the printed debates on eparlib could not be reached. An undated continuation page dated by its file name and the contents page for Friday, 11 April 1997, recorded as its date anchor (the same capture that CLAUDE-C01-11 records as in_ls_contents_19970411). Located by the Part A check.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Complete HTML response read as text (tags stripped); the passage is in English. No images."
+  },
+  "date_anchor": {
+    "url": "https://web.archive.org/web/20041027141913id_/http://parliamentofindia.nic.in/ls/lsdeb/ls11/ses4/c110497.htm",
+    "original_url": "http://parliamentofindia.nic.in/ls/lsdeb/ls11/ses4/c110497.htm",
+    "archive_capture_utc": "2004-10-27T14:19:13Z",
+    "source_response_bytes": 3331,
+    "source_response_sha256": "0e7a97297fd8f933f74d417c8323f044a1911c6a525dcc7d854bafbc7b552bcd",
+    "note": "Contents page for Friday, April 11, 1997: the motion of confidence in the Council of Ministers moved by the Prime Minister, with Shri N.K. Premchandran among the participants and Shri H.D. Deve Gowda the last; its links lead to the 03110497 pages. Used only to date the undated continuation page; it is the same capture that CLAUDE-C01-11 records as in_ls_contents_19970411. This packet downloaded it again at 14:54Z on 25 September 2026 with the same byte count and SHA-256."
+  },
+  "rows": [
+    {
+      "claim_id": "in_ls_premchandran_kesri_cwc_president_19970411",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-03",
+      "role_id": "in_inc_president",
+      "holder_name": "Sitaram Kesri",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1997-04-11",
+      "text": "In the Lok Sabha on 11 April 1997, speaking on the Prime Minister's motion of confidence, Shri N.K. Premchandran (Quilon) says the new development is 'the decision taken by the Congress Working Committee President, Shri Sitaram Kesri to withdraw the support of the Congress Party to the United Front'.",
+      "locator": {
+        "page": "0311049722 (item 03, 11-04-97, part 22)",
+        "speaker": "SHRI N.K. PREMCHANDRAN (QUILON)",
+        "date_basis": "file name and the contents page for Friday, April 11, 1997 (date_anchor)"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-20 only: the role in_inc_president (President of the Indian National Congress) on the Indian National Congress recognition observation in_eci_20240323_np_05. Working Committee decisions, AICC sessions and ratifications, the Central Election Authority's schedules, notifications and declarations, certificates, handovers, resignations, withdrawals, farewells, interim arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, the Leader of the Opposition, the Congress Parliamentary Party and every other office are excluded."
+}

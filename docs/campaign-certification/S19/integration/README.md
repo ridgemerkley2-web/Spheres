@@ -30,6 +30,11 @@ tutorial captures were visually inspected. All protected originals remain intact
 
 ## Remaining S19 qualification
 
+27 September update: [later construction checkpoint](LATER_CONSTRUCTION.md)
+qualifies actual completion/output and save/resume at `72d3414d`, fixes the raw
+district label, and records the remaining completed-project payment-history gap.
+Procurement and flown-result qualification remain open.
+
 Qualify later outcomes through the real guidance panel: company purchase/payment/
 delivery, completed construction/output, and squadron readiness/flown results.
 Record actual dated native receipts, persistence across save/resume and navigation

@@ -132,6 +132,20 @@ test('finances needs a dated yearly budget decision from this calendar year',()=
     const r=reading();r.outcomes.money=money;const s=step(contract(run(r)),'finances');assert.equal(s.status,'unknown',JSON.stringify(money));assert.equal(s.obstacle,null);}
 });
 
+test('completed construction uses the mapped province instead of the raw journal headline',()=>{
+  const r=reading(),c=r.outcomes.construction;
+  c.completions=[{day:150,date:'31 May 1990',district:'FRA_le-de-france',district_name:'Île-de-France',kind:'starter_industry',
+    text:'France completes a 10.1388% Starter Industry module in FRA_le-de-france.'}];
+  const detail=()=>mile(contract(run(r)),'construction','project_completed').detail;
+  assert.equal(detail(),'Completed starter industry in Île-de-France.');
+  assert(!detail().includes('FRA_'));
+  c.completions[0].district_name=null;
+  assert.equal(detail(),'Construction project completed.');
+  c.completions[0].district=null;c.completions[0].kind=null;
+  assert.equal(detail(),'Construction project completed.');
+  assert.equal(mile(run(r),'construction','project_completed').status,'done');
+});
+
 test('construction needs dated paid work; completion and output are later milestones',()=>{
   const r=reading(),today=151,c=r.outcomes.construction,project={id:7,kind:'starter_industry',district:'FR-IDF',spent_bn:0,contract_cost_bn:1,last_day:null,last_spent_bn:null,progress_days:0,total_days:90};
   c.projects=[{...project}];let route=contract(run(r)),s=step(route,'construction');

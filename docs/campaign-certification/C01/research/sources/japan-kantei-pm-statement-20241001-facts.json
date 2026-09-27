@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_kantei_pm_statement_20241001",
+  "source_url": "https://web.archive.org/web/20241001190718id_/https://www.kantei.go.jp/jp/102_ishiba/discourse/20241001danwa.html",
+  "original_url": "https://www.kantei.go.jp/jp/102_ishiba/discourse/20241001danwa.html",
+  "archive_capture_utc": "2024-10-01T19:07:18Z",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 8548,
+  "source_response_sha256": "48e63a19535468d12f39714e850f07e5ec14d2794fe4fbf369322c8b920d3a3a",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "UTF-8 (the page's meta tag declares utf-8; the bytes decode cleanly as UTF-8)",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2024-10-01T19:07:18Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The archived original's Last-Modified header is Tue, 01 Oct 2024 14:24:13 GMT. The SHA-1 of these bytes (SZ4LNDPAT4G33TFHFXWJOSHPVKRN4DL7) equals the Internet Archive's CDX digest for the capture, as compared by this packet (2026-09-25T02:26:55Z). Researcher (part C): Raw Internet Archive capture (made before the 2026-09-07 cutoff) re-downloaded at least 30 minutes apart: 2 downloads at 2026-09-24T22:25:45Z, 2026-09-25T00:01:11Z UTC (first and last 95 minutes apart) gave the same byte count and SHA-256. The part C check downloaded it again on 25 September 2026 at 00:09Z-00:14Z (plain), at 00:10Z-00:11Z (the live hosts with a cache-busting query) and at 00:40Z-00:46Z (plain), each time with the same byte count and SHA-256. Downloaded on 25 September 2026 (UTC) by this packet at 01:36:37Z, 02:17:55Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A contemporaneous Kantei page, recorded as a raw Internet Archive capture made before the cutoff; the archived original's Last-Modified header is given in the extract. No photograph is reused.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded and read in full; no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_kantei_pm_statement_assumes_office_20241001",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM06-10",
+      "role_id": "jp_pm",
+      "holder_name": null,
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "appointment_statement",
+      "attested_on": "2024-10-01",
+      "text": "The Prime Minister's statement dated 1 October 2024 (閣議決定) says that 'today' the speaker received the appointment as Prime Minister and a new LDP-Komeito coalition cabinet was launched.",
+      "locator": {
+        "section": "本文",
+        "paragraph": 1
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-13 only (stacked on CLAUDE-C01-12). Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, the Official Gazette's appointment and loss-of-office notices, the Cabinet's minutes, a cabinet's formation, its resignation en masse, any continued performance of duties and acting designations stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role: an unnamed statement or schedule row, a House of Councillors designee who never held the office, or a designation of acting ministers. Ministers, deputy prime ministers and party offices are excluded."
+}

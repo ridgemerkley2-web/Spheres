@@ -1,0 +1,84 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_sangiin_honkaigi_20110830",
+  "source_url": "https://kokkai.ndl.go.jp/api/meeting?issueID=117715254X03720110830&recordPacking=json",
+  "diet_record": {
+    "issueID": "117715254X03720110830",
+    "house": "参議院",
+    "meeting": "本会議",
+    "issue": "第37号",
+    "sitting_date": "2011-08-30",
+    "response": "whole meeting record",
+    "speeches_in_response": 11,
+    "record_page_url": "https://kokkai.ndl.go.jp/txt/117715254X03720110830"
+  },
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "official_diet_minutes_api_json_download_and_read",
+  "source_response_bytes": 9135,
+  "source_response_sha256": "8a239d08ea274063a87e629233eda5549af46ed0940c7bd3d1eec292213b979d",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "UTF-8 JSON (the Content-Type header declares application/json;charset=UTF-8)",
+  "source_response_checked_in": false,
+  "provenance_note": "Official response of the National Diet Library's Diet minutes API (JSON, UTF-8), served with Cache-Control: no-cache, no-store; the JSON carries no timestamp, session token or request echo, so it is not generated per request. Researcher (part B): Downloaded 4 times on 24 September 2026 UTC at 21:45:22Z, 22:17:23Z, 22:18:13Z (parameters reordered as a cache-bust), 23:07:58Z, each time with the same byte count and SHA-256; the first and last downloads are at least 30 minutes apart. The API response carries Cache-Control: no-cache, no-store and no timestamp, token or request echo; a reordered-parameter request is a cache-bust. The part B check downloaded it again from about 23:35Z on 24 September 2026 (the Diet API also with its parameters reordered, the Imperial Household Agency's pages also with a cache-busting query), each time with the same byte count and SHA-256. Downloaded on 25 September 2026 (UTC) by this packet at 01:33:19Z, 01:41:57Z (cache-busting query), 02:15:22Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Diet minutes API's JSON for the whole meeting record of the 参議院 本会議 第37号 (2011-08-30), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/117715254X03720110830. The printed page images, served through a JavaScript viewer, were not viewed.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Machine-readable minute text read in full for the cited speeches; the printed page images were not viewed."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_sangiin_honkaigi_kan_resignation_notice_20110830",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM06-05",
+      "role_id": "jp_pm",
+      "holder_name": "菅直人",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "cabinet_resignation_notice",
+      "attested_on": "2011-08-30",
+      "text": "The President read the notice received from Prime Minister Kan (菅内閣総理大臣) that the Cabinet had decided that day, 30 August 2011, to resign en masse (Diet Act art. 64).",
+      "locator": {
+        "issueID": "117715254X03720110830",
+        "speechOrder": 1,
+        "speaker": "西岡武夫 (議長)"
+      }
+    },
+    {
+      "claim_id": "jp_sangiin_first_ballot_no_majority_20110830",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM06-06",
+      "role_id": "jp_pm",
+      "holder_name": "野田佳彦",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "designation_ballot_no_majority_house_of_councillors",
+      "attested_on": "2011-08-30",
+      "text": "On the first ballot of 30 August 2011 no one reached the majority of 121 of 241 votes (野田佳彦 110, 谷垣禎一 85, 山口那津男 19, 渡辺喜美 11, 志位和夫 6, 福島みずほ 5, 平沼赳夫 3, 舛添要一 2), so a runoff between 野田佳彦 and 谷垣禎一 was held under House of Councillors Rules art. 20(3).",
+      "locator": {
+        "issueID": "117715254X03720110830",
+        "speechOrder": [
+          5,
+          6
+        ],
+        "speaker": "西岡武夫 (議長)"
+      }
+    },
+    {
+      "claim_id": "jp_sangiin_designates_noda_runoff_20110830",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM06-06",
+      "role_id": "jp_pm",
+      "holder_name": "野田佳彦",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "designation_vote_house_of_councillors",
+      "attested_on": "2011-08-30",
+      "text": "In the runoff of 30 August 2011 the House designated 野田佳彦 as Prime Minister: 110 votes to 谷垣禎一's 107, with 24 blank, of 241. The sitting opened at 13:31 and adjourned at 14:09.",
+      "locator": {
+        "issueID": "117715254X03720110830",
+        "speechOrder": 9,
+        "speaker": "西岡武夫 (議長)"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-13 only (stacked on CLAUDE-C01-12). Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, the Official Gazette's appointment and loss-of-office notices, the Cabinet's minutes, a cabinet's formation, its resignation en masse, any continued performance of duties and acting designations stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role: an unnamed statement or schedule row, a House of Councillors designee who never held the office, or a designation of acting ministers. Ministers, deputy prime ministers and party offices are excluded."
+}

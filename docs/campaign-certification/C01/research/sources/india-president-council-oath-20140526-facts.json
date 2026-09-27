@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rb_pranab_council_oath_20140526",
+  "source_url": "https://web.archive.org/web/20140529084744id_/http://presidentofindia.nic.in:80/pr260514-2.html",
+  "original_url": "http://presidentofindia.nic.in/pr260514-2.html",
+  "archive_capture_utc": "2014-05-29T08:47:44Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "2014-05-26",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 8329,
+  "source_response_sha256": "3d04a0f4a1dcc5e3be9f52948240ba3d95aa80dbc74399a429503d473978a7fb",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2014-05-29T08:47:44Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The researcher downloaded it at 2026-09-23T17:10:01Z and again at 2026-09-24T11:48:11Z with identical bytes (at least 30 minutes apart), and the independent check downloaded it again at 2026-09-24T12:24:52Z with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Static page of the President's 2014 website (President Pranab Mukherjee), raw Internet Archive capture made in May 2014. The same text is on the current Drupal archive at presidentofindia.nic.in/pranab-mukherjee/press_releases/..., whose responses are regenerated per request (see sources_attempted_failed).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_modi_appointed_pm_communique_20140526",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-09",
+      "role_id": "in_pm",
+      "holder_name": "Narendra Modi",
+      "role_title": "Prime Minister of India",
+      "event_kind": "appointment_communique",
+      "attested_on": "2014-05-26",
+      "text": "The communique dated 26 May 2014 states that the President of India has appointed Shri Narendra Damodardas Modi as the Prime Minister of India, and lists the ministers appointed on his advice.",
+      "locator": {
+        "section": "Communique, opening sentence"
+      }
+    },
+    {
+      "claim_id": "in_council_oath_administered_20140526",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-09",
+      "role_id": "in_pm",
+      "holder_name": null,
+      "role_title": "Prime Minister of India",
+      "event_kind": "council_oath_administered",
+      "attested_on": "2014-05-26",
+      "text": "The same communique states that the President administered the oaths of office and secrecy to 'the above members of the Council of Ministers' at a ceremony in Rashtrapati Bhavan 'today' (26 May 2014).",
+      "locator": {
+        "section": "Communique, closing sentence"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

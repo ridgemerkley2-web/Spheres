@@ -1,0 +1,65 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_anc_54th_conference_report",
+  "source_url": "https://web.archive.org/web/20211109161824id_/https://www.anc1912.org.za/wp-content/uploads/2021/01/54th_National-_Conference_2017.pdf",
+  "original_url": "https://www.anc1912.org.za/wp-content/uploads/2021/01/54th_National-_Conference_2017.pdf",
+  "archive_capture_utc": "2021-11-09T16:18:24Z",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_of_original_pdf_text_extracted_and_pages_rendered",
+  "source_response_bytes": 750729,
+  "source_response_sha256": "80feb09418ad9ba8b1b9efd792419d5d10cc0c4189376a7696473caa4e53b969",
+  "source_response_sha1_base32": "ZXIM5LIAZIWOH65ANR66WZFIZXQ2QASZ",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Raw Internet Archive id_ replay of a fixed WARC record. First downloaded on 2026-09-24 at about 22:32Z; re-downloaded at 2026-09-24T23:11Z, at least 30 minutes after the first, with matching byte count and SHA-256 (750729 bytes). The live original was downloaded at 21:59Z (750,729 bytes, same SHA-256), and again with a cache-busting query at 2026-09-24T23:21Z (750729 bytes, sha256 80feb09418ad9ba8..., identical). The base32 SHA-1 of these bytes (ZXIM5LIAZIWOH65ANR66WZFIZXQ2QASZ) equals the digest the Internet Archive recorded for every capture of both ANC URLs from 2021-11-09 to 2025-09-17. The independent check downloaded it again at 2026-09-24T23:22-23:31Z with plain curl (no Accept-Encoding, no decoding), at least 49 minutes after the kept copy, with the same byte count and SHA-256; the base32 SHA-1 of the bytes equals the Internet Archive's CDX digest for the capture. The researcher's kept copy was re-hashed for this packet with the same result.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the ANC's original page, captured at 2021-11-09T16:18:24Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the old www.anc.org.za pages are no longer served, and the ANC's current anc1912.org.za site regenerates its HTML pages per request). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw capture of 9 November 2021 of the file linked as \"Download\" from the ANC's 2017 conference page (archived Last-Modified 15 January 2021). The live file and the ANC's second copy at /wp-content/uploads/2023/12/ANC-54th-National-Conference-Report.pdf returned the same 750,729 bytes on 24 September 2026, and every Internet Archive capture of both URLs carries the same SHA-1 digest. PDF metadata: created 25 March 2018 (Adobe InDesign), so the report was compiled after the conference; published_date is left null. Served without content encoding.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      11,
+      13,
+      82
+    ],
+    "method": "Rendered and visually reviewed PDF pages 1 (cover \"54th National Conference Report and Resolutions\"), 11 (printed 9, National Executive Committee: Officials), 13 (printed 11, Declaration) and 82 (printed 80, Closing Address by ANC President). Full text extracted for all 88 pages."
+  },
+  "rows": [
+    {
+      "claim_id": "za_anc_54th_report_officials_president_ramaphosa_201712",
+      "observation_id": "za_iec_n2024_014",
+      "review_observation": "ZA-ANC-08",
+      "role_id": "za_anc_president",
+      "holder_name": "Cyril Ramaphosa",
+      "role_title": "President of the African National Congress",
+      "event_kind": "national_conference_election_result_list",
+      "attested_on": null,
+      "text": "The report lists \"the National Executive Committee duly elected at the 54th National Conference\", beginning with the Officials: President Cyril Matamela Ramaphosa, Deputy President David Dabeda Mabuza, National Chairperson Gwede Mantashe, Secretary General Ace Magashule, Deputy Secretary General Jessie Duarte and Treasurer General Paul Mashatile.",
+      "locator": {
+        "pdf_page_one_based": 11,
+        "printed_page": 9,
+        "section": "3. National Executive Committee: Officials"
+      }
+    },
+    {
+      "claim_id": "za_anc_54th_declaration_conference_dates_20171216_20171220",
+      "observation_id": "za_iec_n2024_014",
+      "review_observation": "ZA-ANC-08",
+      "role_id": "za_anc_president",
+      "holder_name": null,
+      "role_title": "President of the African National Congress",
+      "event_kind": "conference_session_dates",
+      "attested_on": null,
+      "printed_range": "from 16th - 20th December 2017",
+      "text": "The Declaration of the 54th Conference says the delegates met at NASREC, Johannesburg, Gauteng \"from 16th - 20th December 2017\".",
+      "locator": {
+        "pdf_page_one_based": 13,
+        "printed_page": 11,
+        "section": "4. Declaration of the 54th Conference, first paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "ANC President observations for CLAUDE-C01-16 only (role za_anc_president on the AFRICAN NATIONAL CONGRESS observation). Conference election, publication of results, acceptance, handover speeches, departure statements, deputy and chair offices and in-office attestations stay separate rows; holder observations are decided in the packet, not by any row. The Presidency of the Republic (za_presidency) is excluded and no row feeds it."
+}

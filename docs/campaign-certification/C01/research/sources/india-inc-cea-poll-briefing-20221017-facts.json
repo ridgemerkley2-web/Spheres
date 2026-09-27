@@ -1,0 +1,42 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_inc_cea_briefing_20221017",
+  "source_url": "https://res.cloudinary.com/dkplc2mbj/image/upload/v1666073606/Shri_Madhusudan_Mistry_17_10_2022_0d2273e73f.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": "2022-10-17",
+  "access_method": "party_stored_file_download_and_pages_rendered",
+  "source_response_bytes": 589150,
+  "source_response_sha256": "39db4153ccef9d96a03d5d1656dc8c7cdba22c41767a9ca7d9e977e9feaec53b",
+  "source_response_checked_in": false,
+  "provenance_note": "Stored file on the Indian National Congress's own media store (Cloudinary account dkplc2mbj): a versioned upload URL whose ETag equals the MD5 of the body, with Last-Modified at the upload time. Cloudinary's edge answers query-string variants from its cache, so a cache-busting download is not an origin test; stability rests on the ETag match and on downloads at least 30 minutes apart. The Part C check downloaded it at 13:12Z and 13:33Z on 25 September 2026, and this packet downloaded it again at 14:47Z and 15:00Z, at least 30 minutes after the check's first download, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A stored file on the Indian National Congress's own media store, found through the INC press release 'Shri Madhusudan Mistry, Chairman, Central Election Authority, AICC addressed the media at AICC Hdqrs' of 17 October 2022; the live inc.in release pages were used only as finding aids and were not hashed, because they are rebuilt per request. ETag equals the MD5 of the body; Last-Modified Tue, 18 Oct 2022 06:13:27 GMT. Uploaded on 18 October 2022.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "Page 1 rendered and read in the original Hindi; page 2 read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "in_cea_poll_held_20221017",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-08",
+      "role_id": "in_inc_president",
+      "holder_name": null,
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "election_poll",
+      "attested_on": "2022-10-17",
+      "text": "At the AICC briefing of 17 October 2022, Central Election Authority chairman Madhusudan Mistry says (Hindi) 'आज का दिन, पूरे देश के अंदर चुनाव का दिन था' (today was election day across the country), that about 9,500 of about 9,900 delegates had voted, about 96 per cent on provisional figures, and that 87 had voted at the AICC booth.",
+      "locator": {
+        "pdf_pages": [
+          1,
+          2
+        ],
+        "item": "paragraph beginning 'आज का दिन'; page 2, first paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-20 only: the role in_inc_president (President of the Indian National Congress) on the Indian National Congress recognition observation in_eci_20240323_np_05. Working Committee decisions, AICC sessions and ratifications, the Central Election Authority's schedules, notifications and declarations, certificates, handovers, resignations, withdrawals, farewells, interim arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, the Leader of the Opposition, the Congress Parliamentary Party and every other office are excluded."
+}

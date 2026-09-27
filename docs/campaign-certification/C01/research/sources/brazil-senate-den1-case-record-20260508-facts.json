@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_senado_den1_2016_materia_20260508",
+  "source_url": "https://web.archive.org/web/20260508123130id_/https://www25.senado.leg.br/web/atividade/materias/-/materia/125567",
+  "original_url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/125567",
+  "archive_capture_utc": "2026-05-08T12:31:30Z",
+  "accessed_date": "2026-09-23",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 1097044,
+  "source_response_sha256": "0880869ddf624f43d3079079184506bfe0b34a293445bf7639410b8d025ee7c3",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2026-05-08T12:31:30Z; that form replays the archived bytes unchanged and is used in place of the live page. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Senate's matter page for Denúncia nº 1/2016 with its case record (tramitação), captured 8 May 2026 (before the cutoff). The live page is dynamic (per-request timestamps in document links) and is not the recorded identity; the document identifiers (dm=) of the 31 August 2016 sources come from this listing.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Case-record entries for 11-13 May 2016 and the document list for 31 August-1 September 2016 read as text."
+  },
+  "rows": [
+    {
+      "claim_id": "br_senate_record_intimation_receipt_signed_20160512",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-07",
+      "role_id": "br_president",
+      "holder_name": "Dilma Rousseff",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "summons_receipt_filed",
+      "attested_on": "2016-05-12",
+      "text": "Under a case-record action dated 12 May 2016 the Senate recorded joining to volume 48 of the file a copy of the Mandado de Intimação issued to President Dilma Vana Rousseff (fl. 18.142) and the counterpart acknowledging its receipt signed by her (fl. 18.143), with the Mandado de Citação and its signed counterpart (fls. 18.144-18.145).",
+      "locator": {
+        "section": "Tramitação, entry dated 12/05/2016 ('Publicado no DSF Páginas 7-13 Suplemento (nº A)'), paragraph 'Ainda no volume 48, Termo de Juntada à fl.18.147', items 1-4"
+      }
+    },
+    {
+      "claim_id": "br_senate_record_vp_notified_20160512",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-07",
+      "role_id": "br_president",
+      "holder_name": "Michel Temer",
+      "role_title": "Vice-President of the Republic in exercise of the office of President",
+      "event_kind": "vice_president_notified_to_exercise",
+      "attested_on": "2016-05-12",
+      "text": "The same 12 May 2016 action records a copy of the Mandado de Notificação issued to Vice-President Michel Temer, signed by him on its face (fl. 18.146).",
+      "locator": {
+        "section": "Tramitação, entry dated 12/05/2016, 'Ainda no volume 48', item 5"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+}

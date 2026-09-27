@@ -1,0 +1,54 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_gazette_ext_so2282_declaration_20170720",
+  "source_url": "https://egazette.gov.in/writereaddata/2017/177509.pdf",
+  "accessed_date": "2026-09-24",
+  "published_date": "2017-07-20",
+  "access_method": "official_egazette_pdf_download_text_layer_read_and_page_rendered",
+  "source_response_bytes": 1266561,
+  "source_response_sha256": "bce8741ce227ea19643b9068765a4654f7c66d12e0575df07b8e939ff9d314c6",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host. Official eGazette stored file (Last-Modified Thu, 20 Jul 2017 16:29:14 GMT; fixed ETag; PDF creation date of the publication day, no per-request ID). Downloaded 2026-09-24T21:50:17Z and again with a cache-busting query at 2026-09-24T22:28:39Z with identical bytes and SHA-256. The independent check downloaded it again at 23:08Z on 24 September 2026 with a cache-busting query, with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official eGazette stored file (Gazette ID 177509), served at the lower-case writereaddata path; the capitalised path now returns 404.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "PDF page 2 (English notification and declaration) rendered and read; page 1 Hindi text read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "in_ro_declares_kovind_elected_20170720",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-07",
+      "role_id": "in_president",
+      "holder_name": "Ram Nath Kovind",
+      "role_title": "President of India",
+      "event_kind": "result_declaration",
+      "attested_on": "2017-07-20",
+      "text": "Anoop Mishra, Returning Officer for the Presidential Election, 2017 and Secretary-General of the Lok Sabha, declares under section 11 of the Presidential and Vice-Presidential Elections Act, 1952 read with rule 35 of the 1974 Rules that Shri Ramnath Kovind of Kanpur, Uttar Pradesh, has been duly elected to the Office of President of India; the declaration is dated New Delhi, 20 July 2017.",
+      "locator": {
+        "pdf_page": 2,
+        "item": "DECLARATION (quoted in S.O. 2282(E))"
+      }
+    },
+    {
+      "claim_id": "in_kovind_declaration_published_so2282_20170720",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-07",
+      "role_id": "in_president",
+      "holder_name": "Ram Nath Kovind",
+      "role_title": "President of India",
+      "event_kind": "result_publication",
+      "attested_on": "2017-07-20",
+      "text": "The Legislative Department publishes the Returning Officer's declaration for general information under section 12 of the 1952 Act by notification S.O. 2282(E) dated 20 July 2017 (F. No. H-11024/4/2016-Leg.II).",
+      "locator": {
+        "pdf_page": 2,
+        "item": "S.O. 2282(E)"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-15 only. The Election Commission's notices, the Returning Officer's declaration of the result and its Gazette publication, the programme for the ceremony of assumption of office, the oath administered by the Chief Justice, the Ministry of Home Affairs resolution and proclamation of the assumption of office, the holder's address on assumption, prospective term-expiry notices, farewells, stylings of a predecessor as former President and retrospective statements stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the Vice-President (including any service as acting President), ministers and party offices are excluded."
+}

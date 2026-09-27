@@ -1,0 +1,42 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_anc1912_49th_nec_as_elected_page",
+  "source_url": "https://web.archive.org/web/20211019220812id_/https://www.anc1912.org.za/49th-national-conference-national-executive-committee-as-elected-at-conference/",
+  "original_url": "https://www.anc1912.org.za/49th-national-conference-national-executive-committee-as-elected-at-conference/",
+  "archive_capture_utc": "2021-10-19T22:08:12Z",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 186330,
+  "source_response_sha256": "c6507c276fcc618f4240d7822a66dac08231ce407744b4c76249a7b136e740ac",
+  "source_response_sha1_base32": "NFYIMVYOYMNBBADQ6VX33DXZHL4J7DHH",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Located by the independent check, which downloaded it at 2026-09-24T23:07:30Z and again at 23:46:05Z with the same byte count and SHA-256; the check's kept copy was re-hashed for this packet with the same result.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the ANC's original page, captured at 2021-10-19T22:08:12Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the old www.anc.org.za pages are no longer served, and the ANC's current anc1912.org.za site regenerates its HTML pages per request). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture made 19 October 2021 of the ANC's current website edition of the 1994 NEC list; served without content encoding (text/html; charset=UTF-8). Its '20 December 1994' heading is a later web-edition date, recorded as a claim only; the live page is regenerated per request, so the capture is used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_anc1912_49th_nec_list_heading_19941220",
+      "observation_id": "za_iec_n2024_014",
+      "review_observation": "ZA-ANC-03",
+      "role_id": "za_anc_president",
+      "holder_name": "Nelson Mandela",
+      "role_title": "President of the African National Congress",
+      "event_kind": "national_conference_election_result_list",
+      "attested_on": null,
+      "printed_range": "20 December 1994",
+      "text": "The ANC's anc1912.org.za web edition (captured 19 October 2021) of 'National Executive Committee as elected at Conference' is headed '20 December 1994' and lists the NEC 'as elected by the 49th National Conference, Bloemfontein, December 1994', beginning President Nelson Mandela, Deputy President Thabo Mbeki, Treasurer General Arnold Stofile, National Chairperson Jacob Zuma, Secretary General Cyril Ramaphosa and Deputy Secretary General Cheryl Carolus.",
+      "locator": {
+        "section": "Page heading and date line; introductory sentence; officials list"
+      }
+    }
+  ],
+  "bounded_scope": "ANC President observations for CLAUDE-C01-16 only (role za_anc_president on the AFRICAN NATIONAL CONGRESS observation). Conference election, publication of results, acceptance, handover speeches, departure statements, deputy and chair offices and in-office attestations stay separate rows; holder observations are decided in the packet, not by any row. The Presidency of the Republic (za_presidency) is excluded and no row feeds it."
+}

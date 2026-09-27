@@ -1,0 +1,62 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://www.spa.gov.sa/938356",
+  "accessed_date": "2026-09-21",
+  "published_date": "2011-10-27",
+  "access_method": "downloaded_original_html_and_embedded_article_text_read",
+  "source_response_bytes": 174548,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "article_content_sha256": "01a8e5423e8a92db43ed7e5aa908255a4bb9af834bbaae03740048ee6458a0a2",
+  "article_content_field": "__NEXT_DATA__ props.pageProps.newsDetails.content, encoded as UTF-8",
+  "title_as_published": "عام / صدور أمر ملكي باختيار سمو الأمير نايف بن عبدالعزيز ولياً للعهد",
+  "portal_metadata": {
+    "uuid": "af4cfafbae",
+    "locale": "ar",
+    "published_at_utc": "2011-10-27T21:52:41Z",
+    "date_hijri_field": "1432-12-01",
+    "filing_time_printed": "00:51 Makkah time"
+  },
+  "response_observations": [
+    {
+      "downloaded_by": "researcher",
+      "url_form": "https://www.spa.gov.sa/938356",
+      "bytes": 174548,
+      "sha256": "9dbf2f2b8d0666041fe5967659a6c1837836a6498815da18dfc0fa321bad1fd9",
+      "views_count": 2417,
+      "server_id": "S101"
+    },
+    {
+      "downloaded_by": "checker",
+      "url_form": "https://www.spa.gov.sa/938356",
+      "bytes": 174548,
+      "sha256": "ce26f7185705c4f2c0f3b37b3b9e635984be9703ce93d75580ae5c8e15cb62a1",
+      "views_count": 2418,
+      "server_id": "S102"
+    }
+  ],
+  "provenance_note": "Downloaded with curl -L on 2026-09-21 by the researcher and again, independently, by the checker (2 responses; 174,548 bytes; SHA-256 9dbf2f2b..., ce26f718...). The response embeds a live views_count and a load-balancer server_id in its __NEXT_DATA__ JSON, so response bytes and SHA-256 vary between fetches and between URL forms; no response hash is asserted. article_content_sha256 is the SHA-256 of the UTF-8 newsDetails.content field; it was identical in every download and is the reproducible identity. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "sa_nayef_cp_order_a224",
+      "text": "Royal Order A/224 dated 29/11/1432 AH (dateline Riyadh 29 Dhu al-Qa'da 1432 / 27 October 2011): King Abdullah, having notified the chairman and members of the Allegiance Commission, chose Prince Nayef bin Abdulaziz as Crown Prince and ordered his appointment as Deputy Prime Minister and Minister of Interior.",
+      "attested_on": "2011-10-27",
+      "locator": "Dateline; order number and date; operative paragraph",
+      "uncertainty": "The order says the Commission was notified; it reports no Commission vote. The release was filed at 00:51 Makkah time on 28 October 2011, and the portal's date_hijri field (1432-12-01) reflects that filing day, not the order date. The printed order date, 29/11/1432 AH, which the dateline equates with 27 October 2011, stands."
+    },
+    {
+      "id": "sa_allegiance_law_a135_cited",
+      "text": "The order's preamble cites the Basic Law of Governance (Royal Order A/90 of 27/8/1412 AH), the Council of Ministers Law (Royal Order A/13 of 3/3/1414 AH), the Allegiance Commission Law (Royal Order A/135 of 26/9/1427 AH) and item Third of A/135.",
+      "attested_on": "2011-10-27",
+      "locator": "Preamble",
+      "uncertainty": "Citations inside a later order, not the establishing instruments. Their Gregorian dates were not verified here."
+    }
+  ],
+  "scope_note": "The release ends with 'to follow'; any continuation was not read. published_date is the printed dateline; the portal timestamp is 00:52 Makkah time on 28 October 2011. Used for SA-EXEC-03.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not visually rendered. HTML news article (not a scan or PDF); the article text was read from the embedded newsDetails JSON of the downloaded response."
+  }
+}

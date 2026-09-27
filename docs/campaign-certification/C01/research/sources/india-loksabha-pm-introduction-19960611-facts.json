@@ -1,0 +1,38 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_ls_debates_19960611_pm_introduction",
+  "source_url": "https://web.archive.org/web/20060519082009id_/http://parliamentofindia.nic.in:80/ls/lsdeb/ls11/ses1/01110696.htm",
+  "original_url": "http://parliamentofindia.nic.in/ls/lsdeb/ls11/ses1/01110696.htm",
+  "archive_capture_utc": "2006-05-19T08:20:09Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "1996-06-11",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 2436,
+  "source_response_sha256": "f1f9b8b4bac17c7c6315c96795fb0a4700f8e778ac2789880c79f845824ecbaf",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2006-05-19T08:20:09Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The researcher downloaded it 2 times on 23 September 2026 (local times, PDT, 09:19, 10:00; first and last 41 minutes apart) with identical bytes, and the independent check downloaded it again at 11:41 PDT (with no-cache request headers, more than 50 minutes after the researcher's last download) with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Lok Sabha Secretariat's online English debate text for the 11th and 12th Lok Sabha on parliamentofindia.nic.in, recorded as a raw Internet Archive capture; the printed debates on eparlib could not be reached directly. Hindi passages use a legacy font encoding and were not read.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Complete HTML response read as text (tags stripped); no images. Hindi passages on this page are encoded for a legacy Devanagari display font and are unreadable as text; only the English passages were used."
+  },
+  "rows": [
+    {
+      "claim_id": "in_deve_gowda_introduced_as_pm_19960611",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-04",
+      "role_id": "in_pm",
+      "holder_name": "H. D. Deve Gowda",
+      "role_title": "Prime Minister of India",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1996-06-11",
+      "text": "On 11 June 1996 the Speaker introduced the Prime Minister, H. D. Deve Gowda, to the House and asked him to introduce his Council of Ministers.",
+      "locator": {
+        "page_heading": "XI Lok Sabha Debates, Session I, Thursday, June 11, 1996 / Jyaistha 21, 1918 (Saka)",
+        "item": "Introduction of the Prime Minister and the Leader of the House"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

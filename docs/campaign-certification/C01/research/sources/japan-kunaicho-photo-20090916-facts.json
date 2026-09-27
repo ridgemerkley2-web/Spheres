@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_kunaicho_photo_20090916",
+  "source_url": "https://web.archive.org/web/20110322230830id_/http://www.kunaicho.go.jp/activity/gonittei/01/photo1/photo-20090916-572.html",
+  "original_url": "http://www.kunaicho.go.jp/activity/gonittei/01/photo1/photo-20090916-572.html",
+  "archive_capture_utc": "2011-03-22T23:08:30Z",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 6689,
+  "source_response_sha256": "395bad47d1f64fac0dcd6218e548b3855d814327f940945caffd85acaef51ebb",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "UTF-8 (the page's meta tag declares utf-8; the bytes decode cleanly as UTF-8)",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2011-03-22T23:08:30Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The archived original's Last-Modified header is Fri, 22 Oct 2010 08:09:52 GMT. The SHA-1 of these bytes (PH7NYNR3NOXNXGJH3H33GQPTASB6OL5S) equals the Internet Archive's CDX digest for the capture, as compared by the researcher and the independent check and this packet (2026-09-25T02:38:16Z). Researcher (part A): Downloaded on 2026-09-24: first download 22:22Z; 22:29Z (plain, identical); 23:00Z (plain, identical). Every re-download had the same byte count and SHA-256 as the first; the first and last are 37 minutes apart. Raw Internet Archive capture (id_ form) replays the archived bytes unchanged; requested without Accept-Encoding (identity). SHA-1 of these bytes (base32) PH7NYNR3NOXNXGJH3H33GQPTASB6OL5S equals the Internet Archive CDX digest for this capture. The part A check downloaded it again at 23:03Z-23:08Z (plain), at 23:09Z (Diet API responses with a cache-busting query) and at 23:41Z-23:51Z (plain) on 24 September 2026, each time with the same byte count and SHA-256. Downloaded on 25 September 2026 (UTC) by this packet at 01:32:23Z, 02:14:43Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "An Imperial Household Agency photo page, recorded as a raw Internet Archive capture made before the cutoff; the archived original's Last-Modified header is given in the extract. The caption is read; no photograph is reused.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded and read in full; no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_kunaicho_ceremony_hatoyama_20090916",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM06-04",
+      "role_id": "jp_pm",
+      "holder_name": "鳩山由紀夫",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "imperial_appointment_ceremony",
+      "attested_on": "2009-09-16",
+      "text": "The Imperial Household Agency's page 親任式・認証官任命式（大臣等20名）（宮殿）, Wednesday 16 September 2009, captions the ceremony 親任式（鳩山内閣総理大臣）（宮殿 松の間）.",
+      "locator": {
+        "heading": "平成21年9月16日（水）",
+        "caption": "親任式（鳩山内閣総理大臣）（宮殿 松の間）"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-13 only (stacked on CLAUDE-C01-12). Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, the Official Gazette's appointment and loss-of-office notices, the Cabinet's minutes, a cabinet's formation, its resignation en masse, any continued performance of duties and acting designations stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role: an unnamed statement or schedule row, a House of Councillors designee who never held the office, or a designation of acting ministers. Ministers, deputy prime ministers and party offices are excluded."
+}

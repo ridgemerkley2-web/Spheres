@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_camara_bio_dirceu_20251108",
+  "source_url": "https://web.archive.org/web/20251108014215id_/https://www.camara.leg.br/deputados/74782/biografia",
+  "original_url": "https://www.camara.leg.br/deputados/74782/biografia",
+  "archive_capture_utc": "2025-11-08T01:42:15Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_read",
+  "source_response_bytes": 40033,
+  "source_response_sha256": "af0740c7a0391644382f585b9918ec905f7610ef4d3a8e8f07d72b918e96e40c",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "First downloaded 2026-09-25T12:35:13Z; re-fetched the same raw id_ capture (curl without --compressed) at 2026-09-25T13:06:07Z; every download had the same byte count and SHA-256. The independent check downloaded it again between 13:10 and 13:11 UTC on 25 September 2026, 30 to 68 minutes after the first download (cache-busted for the FPA and SIAC files), with the same byte count and SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2025-11-08T01:42:15Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. The independent check found that a client sending Accept-Encoding: gzip receives a 10,369-byte gzip-compressed body from this capture. First downloaded 2026-09-25T12:35:13Z; re-fetched the same raw id_ capture (curl without --compressed) at 2026-09-25T13:06:07Z; every download had the same byte count and SHA-256. The independent check downloaded it again between 13:10 and 13:11 UTC on 25 September 2026, 30 to 68 minutes after the first download (cache-busted for the FPA and SIAC files), with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Chamber of Deputies' biography of José Dirceu, captured 8 November 2025. A Congress record of the party office: retrospective, claims only. The 21 November 2025 capture of the same page is stored gzip-compressed and is served compressed even when uncompressed content is requested, so it was not used. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML biography read ('Atividades Partidárias')."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_camara_bio_dirceu_presidente_pt_1995_1997_1998_2002",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-03",
+      "role_id": "br_pt_president",
+      "holder_name": "José Dirceu",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The Chamber's biography lists 'Presidente do PT, 1995-1997 e 1998-2002' among José Dirceu's party activities (and 'Secretário-Geral, 1987-1993, Diretório Nacional do PT').",
+      "locator": {
+        "item": "section 'Atividades Partidárias'"
+      }
+    }
+  ]
+}

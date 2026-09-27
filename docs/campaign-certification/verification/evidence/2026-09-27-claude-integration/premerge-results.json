@@ -1,0 +1,2082 @@
+[
+  {
+    "packet": 5,
+    "branch": "origin/claude/c01-ussr-05",
+    "sha": "1c698ed00cd3989e6c7dfc2c676fc7185c7b4c84",
+    "title": "# CLAUDE-C01-05 \u2014 The 1991 USSR/RSFSR executive transition",
+    "status": "ready_for_review",
+    "files_changed": 28,
+    "outside_research": [],
+    "checks": [
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/avatars/campaign_research.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.62,
+        "log": "C01-05-1.log",
+        "sha256": "1021f1f598706bb1021ea3273372a006ea6db95cd99bac2d13c2d2dc3a5dfc3b"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*research*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.99,
+        "log": "C01-05-2.log",
+        "sha256": "cf1a978139545d63d76e366f77a202fffa959685b389e84ed7fefede24c1d236"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*c01*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.38,
+        "log": "C01-05-3.log",
+        "sha256": "3d408e6987073f0e683c6e3f22cbc10736d8824e59af293e0507d6e24f0cc31c"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_campaign*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.71,
+        "log": "C01-05-4.log",
+        "sha256": "e90261ddb6088cb9156d376c350c1174e653fe373acb7b527f2c124ff4a26e92"
+      },
+      {
+        "command": [
+          "node",
+          "--test",
+          "tools/ui/check_leadership_research_review.cjs"
+        ],
+        "exit_code": 0,
+        "seconds": 0.26,
+        "log": "C01-05-5.log",
+        "sha256": "4cba88f0fa8fc4c880a1fb4a0e9ac0f16570f02a491bf18f9df6b9685cc1ba8b"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/planning/workboard.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.07,
+        "log": "C01-05-6.log",
+        "sha256": "6cc71a3c645534f8525319dc992aaa9aafa512dab30b47fc6c1c7a998c1f30b6"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check",
+          "ffe54b02...HEAD"
+        ],
+        "exit_code": 0,
+        "seconds": 0.03,
+        "log": "C01-05-7.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "worktree_status": ""
+  },
+  {
+    "packet": 6,
+    "branch": "origin/claude/c01-saudi-06",
+    "sha": "7948ab987efeaadba2c9dca67d8ccec03db430ca",
+    "title": "# CLAUDE-C01-06 \u2014 Saudi Arabia's executive chronology 1990-2026",
+    "status": "ready_for_review",
+    "files_changed": 28,
+    "outside_research": [],
+    "checks": [
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/avatars/campaign_research.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.28,
+        "log": "C01-06-1.log",
+        "sha256": "801a2092f0991f91cff11a5699f766e683e3ec1c4a58ec2bae3d8980e1dc7aa0"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*research*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.83,
+        "log": "C01-06-2.log",
+        "sha256": "f61b9e41f358a78ca52fc1a0b4ed999b3304eccd848e666436287e49ae652c40"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*c01*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.36,
+        "log": "C01-06-3.log",
+        "sha256": "f4196dbc4a579faef87ffe32df7f6b33ba3e7b7617c8bc5a0d83cfa643b99e29"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_campaign*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.59,
+        "log": "C01-06-4.log",
+        "sha256": "d57f725dcd359d9b7d2353cc66caa7a4f1ddf361d95abf2d20d85770bba38c3d"
+      },
+      {
+        "command": [
+          "node",
+          "--test",
+          "tools/ui/check_leadership_research_review.cjs"
+        ],
+        "exit_code": 0,
+        "seconds": 0.12,
+        "log": "C01-06-5.log",
+        "sha256": "ce680865487904dfb1e6586cfdbde748499d611101bad71e8e7a11d9f476c451"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/planning/workboard.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.06,
+        "log": "C01-06-6.log",
+        "sha256": "6cc71a3c645534f8525319dc992aaa9aafa512dab30b47fc6c1c7a998c1f30b6"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check",
+          "ffe54b02...HEAD"
+        ],
+        "exit_code": 0,
+        "seconds": 0.03,
+        "log": "C01-06-7.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "worktree_status": ""
+  },
+  {
+    "packet": 9,
+    "branch": "origin/claude/c01-za-09",
+    "sha": "82a23f9da8660839731c1aa02a1e9b9baf8614e2",
+    "title": "# CLAUDE-C01-09: South African heads of state, 1990\u20132024",
+    "status": "ready_for_review",
+    "files_changed": 56,
+    "outside_research": [],
+    "checks": [
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/avatars/campaign_research.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.93,
+        "log": "C01-09-1.log",
+        "sha256": "d031df95677cd6a2c4b1387f21937b8f25b9efaae36d651f51b1f58da59a0e8c"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*research*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 1.37,
+        "log": "C01-09-2.log",
+        "sha256": "783c8b7148136fcf9336f19a1683810cf834779ef91e2509fb7837942ba2ae2a"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*c01*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 1.91,
+        "log": "C01-09-3.log",
+        "sha256": "fac3a29bb553349f9e5f1568e34fc0e637ff6e9e2b5d87215c1225339282ff36"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_campaign*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.66,
+        "log": "C01-09-4.log",
+        "sha256": "d74176b2cb4358afe5b7529333b4af6cb7a0a14bf13f7386aadb372f3cbd6fe9"
+      },
+      {
+        "command": [
+          "node",
+          "--test",
+          "tools/ui/check_leadership_research_review.cjs"
+        ],
+        "exit_code": 0,
+        "seconds": 0.12,
+        "log": "C01-09-5.log",
+        "sha256": "fc8c247c98d3643c8d37b0c6b437d0891da36968cecc868507799477ee60fe4e"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/planning/workboard.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.06,
+        "log": "C01-09-6.log",
+        "sha256": "6cc71a3c645534f8525319dc992aaa9aafa512dab30b47fc6c1c7a998c1f30b6"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check",
+          "ffe54b02...HEAD"
+        ],
+        "exit_code": 0,
+        "seconds": 0.03,
+        "log": "C01-09-7.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "worktree_status": ""
+  },
+  {
+    "packet": 10,
+    "branch": "origin/claude/c01-br-10",
+    "sha": "73e5fd363769e589a09615e957b14c86f8756513",
+    "title": "# CLAUDE-C01-10: Brazilian presidents, 1990\u20132026",
+    "status": "ready_for_review",
+    "files_changed": 54,
+    "outside_research": [],
+    "checks": [
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/avatars/campaign_research.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.44,
+        "log": "C01-10-1.log",
+        "sha256": "4a6f1158b4fe0ee21d43a4bcf274d327de5245f67f52401be71d17bef6d60823"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*research*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 1.24,
+        "log": "C01-10-2.log",
+        "sha256": "cea051725aecbe8cc0a4690db0011bf6bb01c29f33256d2dda49adc0b50ae006"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*c01*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 1.83,
+        "log": "C01-10-3.log",
+        "sha256": "413fc0fa6c55a5b648ac30cbb24d208382ab8698839d89f7c2fe18f6cae7bf20"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_campaign*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.64,
+        "log": "C01-10-4.log",
+        "sha256": "14bac6bf25f04386b604c0f54e6fc87482a4bc9fd8297d10110239dd1cd2e84f"
+      },
+      {
+        "command": [
+          "node",
+          "--test",
+          "tools/ui/check_leadership_research_review.cjs"
+        ],
+        "exit_code": 0,
+        "seconds": 0.12,
+        "log": "C01-10-5.log",
+        "sha256": "8ea95fcc6ac499f8234fecc8ca64099543ede3bb21218693385e32b623c6ee49"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/planning/workboard.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.06,
+        "log": "C01-10-6.log",
+        "sha256": "6cc71a3c645534f8525319dc992aaa9aafa512dab30b47fc6c1c7a998c1f30b6"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check",
+          "ffe54b02...HEAD"
+        ],
+        "exit_code": 0,
+        "seconds": 0.03,
+        "log": "C01-10-7.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "worktree_status": ""
+  },
+  {
+    "packet": 11,
+    "branch": "origin/claude/c01-in-11",
+    "sha": "538920f14c5784e16d910dc2df22766ccd72f59c",
+    "title": "# CLAUDE-C01-11: Indian prime ministers, 1990\u20132026",
+    "status": "ready_for_review",
+    "files_changed": 76,
+    "outside_research": [],
+    "checks": [
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/avatars/campaign_research.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.56,
+        "log": "C01-11-1.log",
+        "sha256": "a3e20fd726ea719f98f49258d9527d79bf52076321b72dd3e6d0f02f3a155d3c"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*research*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 1.41,
+        "log": "C01-11-2.log",
+        "sha256": "1e37999ba9a491b6925adfca6735ec2de0f8d1a8ab58167441fe10a3100efa03"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*c01*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 2.04,
+        "log": "C01-11-3.log",
+        "sha256": "064d3e6c1c793218490a848b55ec5453d942230becd9be712be68e274853514a"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_campaign*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.65,
+        "log": "C01-11-4.log",
+        "sha256": "cdeec588a3579dd579aaeaf29c9260f92b718bf3a7483258429353f0870d228e"
+      },
+      {
+        "command": [
+          "node",
+          "--test",
+          "tools/ui/check_leadership_research_review.cjs"
+        ],
+        "exit_code": 0,
+        "seconds": 0.12,
+        "log": "C01-11-5.log",
+        "sha256": "12a9e9579790f83845f42d102e6ac846b3114e719479d8d1c3cee3e771325166"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/planning/workboard.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.06,
+        "log": "C01-11-6.log",
+        "sha256": "6cc71a3c645534f8525319dc992aaa9aafa512dab30b47fc6c1c7a998c1f30b6"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check",
+          "ffe54b02...HEAD"
+        ],
+        "exit_code": 0,
+        "seconds": 0.03,
+        "log": "C01-11-7.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "worktree_status": ""
+  },
+  {
+    "packet": 12,
+    "branch": "origin/claude/c01-jp-12",
+    "sha": "da358dbff9ae536a6b83a012d36f98f0dd639e49",
+    "title": "# CLAUDE-C01-12: Japanese prime ministers, 1990\u20132006",
+    "status": "ready_for_review",
+    "files_changed": 125,
+    "outside_research": [],
+    "checks": [
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/avatars/campaign_research.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.84,
+        "log": "C01-12-1.log",
+        "sha256": "b6070c7064860ea585704b192eaf3b527b01f02f1e675c2313f6d7f2b19fcbac"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*research*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 1.55,
+        "log": "C01-12-2.log",
+        "sha256": "a3fe65a45492f25247df05294b27f313e85b344e81bce777d9f9f31243fb3747"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*c01*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 2.17,
+        "log": "C01-12-3.log",
+        "sha256": "251e77260d69004fbeff07bcc7c5013e15efeb1871152138b54ae34ebbc44d5f"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_campaign*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.66,
+        "log": "C01-12-4.log",
+        "sha256": "e042cce5788830f12c473e2cd991605a8b4c8d8814479023a3c5cbf12238b58a"
+      },
+      {
+        "command": [
+          "node",
+          "--test",
+          "tools/ui/check_leadership_research_review.cjs"
+        ],
+        "exit_code": 0,
+        "seconds": 0.12,
+        "log": "C01-12-5.log",
+        "sha256": "a430a39df28598965f54626e46bb8c82946b3795f7576e806ef5d6225e54eb26"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/planning/workboard.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.06,
+        "log": "C01-12-6.log",
+        "sha256": "6cc71a3c645534f8525319dc992aaa9aafa512dab30b47fc6c1c7a998c1f30b6"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check",
+          "ffe54b02...HEAD"
+        ],
+        "exit_code": 0,
+        "seconds": 0.03,
+        "log": "C01-12-7.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "worktree_status": ""
+  },
+  {
+    "packet": 13,
+    "branch": "origin/claude/c01-jp-13",
+    "sha": "42f98dc8b3d2aae748cabd7f234e0ef7d1575eee",
+    "title": "# CLAUDE-C01-13: Japanese prime ministers, 2006\u20132026",
+    "status": "ready_for_review",
+    "files_changed": 339,
+    "outside_research": [],
+    "checks": [
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/avatars/campaign_research.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 1.35,
+        "log": "C01-13-1.log",
+        "sha256": "bb39b1de94d90d40b146aaceeb203fe620097712ac4a8619faa57f2e565edb48"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*research*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 2.38,
+        "log": "C01-13-2.log",
+        "sha256": "7fe86a662a5ef29a00be8a18f347ab38d93e62fa2554c0c41559dc46a4541c7f"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*c01*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 4.03,
+        "log": "C01-13-3.log",
+        "sha256": "d9ce964aa0aec7576ef26c5d6894b75b9a12a02bf899b60891b708d21084f391"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_campaign*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.72,
+        "log": "C01-13-4.log",
+        "sha256": "c57d111e37b312c7da108017a7652abc421ab44d32607557d65bd4783f3b7c71"
+      },
+      {
+        "command": [
+          "node",
+          "--test",
+          "tools/ui/check_leadership_research_review.cjs"
+        ],
+        "exit_code": 0,
+        "seconds": 0.12,
+        "log": "C01-13-5.log",
+        "sha256": "60aafdde55cb97fd99f67d31f7ea5754c2bd64c4f634ed37835ac35135d387e6"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/planning/workboard.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.06,
+        "log": "C01-13-6.log",
+        "sha256": "6cc71a3c645534f8525319dc992aaa9aafa512dab30b47fc6c1c7a998c1f30b6"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check",
+          "ffe54b02...HEAD"
+        ],
+        "exit_code": 0,
+        "seconds": 0.05,
+        "log": "C01-13-7.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "worktree_status": ""
+  },
+  {
+    "packet": 14,
+    "branch": "origin/claude/c01-ru-14",
+    "sha": "1d749e1520e3ee6a8b971e36b5027c723249b918",
+    "title": "# CLAUDE-C01-14: Russian presidents, 1991\u20132026",
+    "status": "ready_for_review",
+    "files_changed": 84,
+    "outside_research": [],
+    "checks": [
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/avatars/campaign_research.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.55,
+        "log": "C01-14-1.log",
+        "sha256": "023dc66f5af3bf2828eda53a3d729cf5a780411a154d559155b1ec083586b349"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*research*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 1.44,
+        "log": "C01-14-2.log",
+        "sha256": "d71a9c22416e677241b329ecf4435125dbd104f756aa4af54104fcaa86db2aa2"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*c01*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 2.09,
+        "log": "C01-14-3.log",
+        "sha256": "1fef0c9900727d01963495c4ce98d5c46655776c679c3885dcca4fbc8c737eb0"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_campaign*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.63,
+        "log": "C01-14-4.log",
+        "sha256": "440c85925ade8a362c583d83cb2f52bcec43be4a0a8decf56cfd73f9cf011bb1"
+      },
+      {
+        "command": [
+          "node",
+          "--test",
+          "tools/ui/check_leadership_research_review.cjs"
+        ],
+        "exit_code": 0,
+        "seconds": 0.12,
+        "log": "C01-14-5.log",
+        "sha256": "cd26ceaeba0584476448b393ff73c7ea1ef6ee37a8b80a76ab3089a59bdf830e"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/planning/workboard.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.06,
+        "log": "C01-14-6.log",
+        "sha256": "6cc71a3c645534f8525319dc992aaa9aafa512dab30b47fc6c1c7a998c1f30b6"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check",
+          "ffe54b02...HEAD"
+        ],
+        "exit_code": 0,
+        "seconds": 0.03,
+        "log": "C01-14-7.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "worktree_status": ""
+  },
+  {
+    "packet": 15,
+    "branch": "origin/claude/c01-in-15",
+    "sha": "dd58a610859f997a1ad2452012b464d305b7ba91",
+    "title": "# CLAUDE-C01-15: Indian presidents, 1990\u20132026",
+    "status": "ready_for_review",
+    "files_changed": 135,
+    "outside_research": [],
+    "checks": [
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/avatars/campaign_research.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.59,
+        "log": "C01-15-1.log",
+        "sha256": "a119e6398746f3fa98e179ef8f0bd5503e156d62fde016c9123904b8d54cd58e"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*research*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 1.57,
+        "log": "C01-15-2.log",
+        "sha256": "a67a90e7717ecd8d3ea602ad29ce6b557f0f07537445d31f4cdb4ce1f1ef82f7"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*c01*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 2.76,
+        "log": "C01-15-3.log",
+        "sha256": "2594a93763e8edba36a0a144ff786d49d202db320f84f51f18ee8a0630fef092"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_campaign*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.65,
+        "log": "C01-15-4.log",
+        "sha256": "07ef3c8cde16b24c0f7771bdb8050911eed47f0b39245cbdbdae46c1817fce3a"
+      },
+      {
+        "command": [
+          "node",
+          "--test",
+          "tools/ui/check_leadership_research_review.cjs"
+        ],
+        "exit_code": 0,
+        "seconds": 0.12,
+        "log": "C01-15-5.log",
+        "sha256": "d6189a3607d8a502e5eb16286545fc8ec531e55990a8a84d5c801c866127bb48"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/planning/workboard.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.06,
+        "log": "C01-15-6.log",
+        "sha256": "6cc71a3c645534f8525319dc992aaa9aafa512dab30b47fc6c1c7a998c1f30b6"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check",
+          "ffe54b02...HEAD"
+        ],
+        "exit_code": 0,
+        "seconds": 0.03,
+        "log": "C01-15-7.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "worktree_status": ""
+  },
+  {
+    "packet": 16,
+    "branch": "origin/claude/c01-za-16",
+    "sha": "2df4a0a6854a14796515d846d0d504edd785a83e",
+    "title": "# CLAUDE-C01-16: ANC presidents, 1990\u20132026",
+    "status": "ready_for_review",
+    "files_changed": 113,
+    "outside_research": [],
+    "checks": [
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/avatars/campaign_research.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.59,
+        "log": "C01-16-1.log",
+        "sha256": "1254446de3f1780a62fb03d09974fd8c1095b3853e455b90455f16e5d7e44a90"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*research*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 1.55,
+        "log": "C01-16-2.log",
+        "sha256": "33a25f3a0b1af9e75e62ccd11547be4a90719ba8d4c51c41ab2f2e2f91f65758"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*c01*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 2.46,
+        "log": "C01-16-3.log",
+        "sha256": "573e434e5caff0c88d16c3afa2e80aa9770deeafb3008130fcad2af24b16172d"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_campaign*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.64,
+        "log": "C01-16-4.log",
+        "sha256": "14bac6bf25f04386b604c0f54e6fc87482a4bc9fd8297d10110239dd1cd2e84f"
+      },
+      {
+        "command": [
+          "node",
+          "--test",
+          "tools/ui/check_leadership_research_review.cjs"
+        ],
+        "exit_code": 0,
+        "seconds": 0.12,
+        "log": "C01-16-5.log",
+        "sha256": "22276b43a79c5ad023abefbe13014666e707c46856d9c2336d29da5a19d4adfd"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/planning/workboard.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.06,
+        "log": "C01-16-6.log",
+        "sha256": "6cc71a3c645534f8525319dc992aaa9aafa512dab30b47fc6c1c7a998c1f30b6"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check",
+          "ffe54b02...HEAD"
+        ],
+        "exit_code": 0,
+        "seconds": 0.03,
+        "log": "C01-16-7.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "worktree_status": ""
+  },
+  {
+    "packet": 17,
+    "branch": "origin/claude/c01-br-17",
+    "sha": "7d71acef98e7a94781f48054b4574312bd9e7470",
+    "title": "# CLAUDE-C01-17: Brazilian vice-presidents, 1990\u20132026",
+    "status": "ready_for_review",
+    "files_changed": 68,
+    "outside_research": [],
+    "checks": [
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/avatars/campaign_research.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.36,
+        "log": "C01-17-1.log",
+        "sha256": "52f24fdec115dae8866baae67d3272145cc6b1c3358af19f42ababf9b248d8d1"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*research*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 1.32,
+        "log": "C01-17-2.log",
+        "sha256": "accdf50efa8333ba007ccc080da3e06ba4c49a3467b3f75ee8987447fc838245"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*c01*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 2.25,
+        "log": "C01-17-3.log",
+        "sha256": "e634cfc5c9a1fecd3a3c9486abf428528aa80198b4b738c7c231665aba5ded9f"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_campaign*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.62,
+        "log": "C01-17-4.log",
+        "sha256": "a47754919b6c7dd7ace217b7c404283249f701960cd5a78330faa32c2edb5b1d"
+      },
+      {
+        "command": [
+          "node",
+          "--test",
+          "tools/ui/check_leadership_research_review.cjs"
+        ],
+        "exit_code": 0,
+        "seconds": 0.12,
+        "log": "C01-17-5.log",
+        "sha256": "2647305f39260938ab17c67515b51ee00ef4bb24810af5993c31199b0102a4ad"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/planning/workboard.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.06,
+        "log": "C01-17-6.log",
+        "sha256": "6cc71a3c645534f8525319dc992aaa9aafa512dab30b47fc6c1c7a998c1f30b6"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check",
+          "ffe54b02...HEAD"
+        ],
+        "exit_code": 0,
+        "seconds": 0.03,
+        "log": "C01-17-7.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "worktree_status": ""
+  },
+  {
+    "packet": 18,
+    "branch": "origin/claude/c01-jp-18",
+    "sha": "2120b697a1c51efc680d3747912115efede183af",
+    "title": "# CLAUDE-C01-18: Liberal Democratic Party presidents, 1990\u20132009",
+    "status": "ready_for_review",
+    "files_changed": 423,
+    "outside_research": [],
+    "checks": [
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/avatars/campaign_research.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 1.14,
+        "log": "C01-18-1.log",
+        "sha256": "073d947bee8b30b3135789f08d466a1098401141052acd2067f7ff051fa5fdd0"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*research*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 2.65,
+        "log": "C01-18-2.log",
+        "sha256": "e4522e3313a4145fd3d00b877a7e6ede7f0f51132d3937368d39ce6efdb19b2f"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*c01*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 5.96,
+        "log": "C01-18-3.log",
+        "sha256": "24e7f85190676d1cd04c95f3a430dddd18c6e389b210f10085fffaa1a990282e"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_campaign*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.83,
+        "log": "C01-18-4.log",
+        "sha256": "88ff3976a9607e4ef08a5014828cdc56773bc36ff7ac1c9a3c7e65c1d05f9ee4"
+      },
+      {
+        "command": [
+          "node",
+          "--test",
+          "tools/ui/check_leadership_research_review.cjs"
+        ],
+        "exit_code": 0,
+        "seconds": 0.13,
+        "log": "C01-18-5.log",
+        "sha256": "7673d98b0471cef200888c15faa71cda924c4696498eb8bde10ed8ea985bd857"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/planning/workboard.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.06,
+        "log": "C01-18-6.log",
+        "sha256": "6cc71a3c645534f8525319dc992aaa9aafa512dab30b47fc6c1c7a998c1f30b6"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check",
+          "ffe54b02...HEAD"
+        ],
+        "exit_code": 0,
+        "seconds": 0.06,
+        "log": "C01-18-7.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "worktree_status": ""
+  },
+  {
+    "packet": 19,
+    "branch": "origin/claude/c01-ru-19",
+    "sha": "6f4ef2c27c5c4293bb324ee4c8ad359fd155ad66",
+    "title": "# CLAUDE-C01-19: Russian heads of government, 1991\u20132026",
+    "status": "ready_for_review",
+    "files_changed": 189,
+    "outside_research": [],
+    "checks": [
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/avatars/campaign_research.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.96,
+        "log": "C01-19-1.log",
+        "sha256": "0f060fe1bf7b60a041a2ed357cc07191a773d5d60db18cc976aba402a36cfd88"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*research*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 1.9,
+        "log": "C01-19-2.log",
+        "sha256": "f55fecb63163159414bafac21a7ccb2f152161d57ef15a7053dadab597126c9d"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*c01*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 3.3,
+        "log": "C01-19-3.log",
+        "sha256": "82619ef789ada5688c2883e326cc82e38cdb15e121acd58ee26dab862146e91e"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_campaign*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.69,
+        "log": "C01-19-4.log",
+        "sha256": "18cf813ddac028d3dd32b1eb0ed2bf3c9a7c0a398d48a98db9dbd409df9b251f"
+      },
+      {
+        "command": [
+          "node",
+          "--test",
+          "tools/ui/check_leadership_research_review.cjs"
+        ],
+        "exit_code": 0,
+        "seconds": 0.12,
+        "log": "C01-19-5.log",
+        "sha256": "82fb72e7378b4667c00eed0e15fd5c6d083a2e3fef855f38ea584e9aeab12cbb"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/planning/workboard.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.06,
+        "log": "C01-19-6.log",
+        "sha256": "6cc71a3c645534f8525319dc992aaa9aafa512dab30b47fc6c1c7a998c1f30b6"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check",
+          "ffe54b02...HEAD"
+        ],
+        "exit_code": 0,
+        "seconds": 0.05,
+        "log": "C01-19-7.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "worktree_status": ""
+  },
+  {
+    "packet": 20,
+    "branch": "origin/claude/c01-in-20",
+    "sha": "2ee3b14689e445486554604b69ff82dc1f9db9df",
+    "title": "# CLAUDE-C01-20: Indian National Congress presidents, 1990\u20132026",
+    "status": "ready_for_review",
+    "files_changed": 211,
+    "outside_research": [],
+    "checks": [
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/avatars/campaign_research.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.8,
+        "log": "C01-20-1.log",
+        "sha256": "d710086824af4ac1837abe4b12bbad1bfd48be3b2229f68c5dea6f8c57980c6a"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*research*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 2.04,
+        "log": "C01-20-2.log",
+        "sha256": "7e3bdda24554d4f5c4025fdff7e8eeb442a8b5efdb2824761828dc3a6448820e"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*c01*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 4.5,
+        "log": "C01-20-3.log",
+        "sha256": "c617d36ac428a3426b31417d66fb13a17962ad3e0d3dda356833e5b4e529aa92"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_campaign*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.69,
+        "log": "C01-20-4.log",
+        "sha256": "b80376dfb857d4dc866e49d238306fa66ac5f9088fe060947a670ea5fba2f93d"
+      },
+      {
+        "command": [
+          "node",
+          "--test",
+          "tools/ui/check_leadership_research_review.cjs"
+        ],
+        "exit_code": 0,
+        "seconds": 0.12,
+        "log": "C01-20-5.log",
+        "sha256": "d2ab741bf705cad8045d22f74b60ea0af1d4fa02c1dc2bcfecd30f673227d8db"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/planning/workboard.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.06,
+        "log": "C01-20-6.log",
+        "sha256": "6cc71a3c645534f8525319dc992aaa9aafa512dab30b47fc6c1c7a998c1f30b6"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check",
+          "ffe54b02...HEAD"
+        ],
+        "exit_code": 0,
+        "seconds": 0.04,
+        "log": "C01-20-7.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "worktree_status": ""
+  },
+  {
+    "packet": 21,
+    "branch": "origin/claude/c01-za-21",
+    "sha": "32ea29336e204eafb52e68485e97c8844a96cd6b",
+    "title": "# CLAUDE-C01-21: South African deputy presidents, 1994\u20132026",
+    "status": "ready_for_review",
+    "files_changed": 175,
+    "outside_research": [],
+    "checks": [
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/avatars/campaign_research.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.73,
+        "log": "C01-21-1.log",
+        "sha256": "ba88de2b1a1a00092a7aecb348314967f5b16154a0c5edd6444a667bbaa80450"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*research*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 1.96,
+        "log": "C01-21-2.log",
+        "sha256": "24c847d45ea3ab4fa6b8149332791e0e90dff7549b0512972cf224a131aa72d3"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*c01*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 3.7,
+        "log": "C01-21-3.log",
+        "sha256": "43bb19c19f59f86e90e66670c174be8dcade001ffacb26a24bc71b481d3b0410"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_campaign*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.71,
+        "log": "C01-21-4.log",
+        "sha256": "13309b638703b13d83dffb8ea7b54044e6cbad35d50531f426b8d3139b553263"
+      },
+      {
+        "command": [
+          "node",
+          "--test",
+          "tools/ui/check_leadership_research_review.cjs"
+        ],
+        "exit_code": 0,
+        "seconds": 0.13,
+        "log": "C01-21-5.log",
+        "sha256": "2962cccb64412175a027585746d66e7b47174267fbfa9757d910b84e38301a91"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/planning/workboard.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.06,
+        "log": "C01-21-6.log",
+        "sha256": "6cc71a3c645534f8525319dc992aaa9aafa512dab30b47fc6c1c7a998c1f30b6"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check",
+          "ffe54b02...HEAD"
+        ],
+        "exit_code": 0,
+        "seconds": 0.04,
+        "log": "C01-21-7.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "worktree_status": ""
+  },
+  {
+    "packet": 22,
+    "branch": "origin/claude/c01-br-22",
+    "sha": "39bb64395273ea3cb7eef0a3fd1b10068a787002",
+    "title": "# CLAUDE-C01-22: Workers' Party (PT) national presidents, 1990\u20132026",
+    "status": "ready_for_review",
+    "files_changed": 179,
+    "outside_research": [],
+    "checks": [
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/avatars/campaign_research.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.93,
+        "log": "C01-22-1.log",
+        "sha256": "1b301cc7b66a9e0c74c52c1c5ae82f0d8eadba15d217101bd6b91a471623d91e"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*research*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 1.91,
+        "log": "C01-22-2.log",
+        "sha256": "bccd1b22ef6bcbe207a66f28ba86e95b2f9bb9ae54c018780e1a11877896db4c"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*c01*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 3.93,
+        "log": "C01-22-3.log",
+        "sha256": "72c10933b8c731611e8c2a7adc798f3468e0875584e37f4303a5014e588b3f29"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_campaign*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.7,
+        "log": "C01-22-4.log",
+        "sha256": "b80376dfb857d4dc866e49d238306fa66ac5f9088fe060947a670ea5fba2f93d"
+      },
+      {
+        "command": [
+          "node",
+          "--test",
+          "tools/ui/check_leadership_research_review.cjs"
+        ],
+        "exit_code": 0,
+        "seconds": 0.14,
+        "log": "C01-22-5.log",
+        "sha256": "09ff28a970083ce225cad59c7b339d71d7e41117ecd6fb0dec8badc30b09e2c0"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/planning/workboard.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.07,
+        "log": "C01-22-6.log",
+        "sha256": "6cc71a3c645534f8525319dc992aaa9aafa512dab30b47fc6c1c7a998c1f30b6"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check",
+          "ffe54b02...HEAD"
+        ],
+        "exit_code": 0,
+        "seconds": 0.04,
+        "log": "C01-22-7.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "worktree_status": ""
+  },
+  {
+    "packet": 23,
+    "branch": "origin/claude/c01-fr-23",
+    "sha": "16e17c1813d6a99905e550c16cb72e984b7f59fd",
+    "title": "# CLAUDE-C01-23: French presidents, 1990\u20132026",
+    "status": "claimed",
+    "files_changed": 1,
+    "outside_research": [],
+    "checks": []
+  },
+  {
+    "packet": 24,
+    "branch": "origin/claude/c01-to-24",
+    "sha": "a91a8249e545db3a442344f4b7d2b1010e75c64e",
+    "title": "# CLAUDE-C01-24: Tongan Speakers of the Legislative Assembly, 1990\u20132026",
+    "status": "claimed",
+    "files_changed": 1,
+    "outside_research": [],
+    "checks": []
+  },
+  {
+    "packet": 25,
+    "branch": "origin/claude/c01-sa-25",
+    "sha": "5b80d442d5ad637d9201fae29a6bf807d78a2372",
+    "title": "# CLAUDE-C01-25: Saudi Shura Council and Allegiance Commission chairs, 1990\u20132026",
+    "status": "claimed",
+    "files_changed": 29,
+    "outside_research": [],
+    "checks": []
+  },
+  {
+    "packet": 26,
+    "branch": "origin/claude/c01-su-26",
+    "sha": "09f41dd4bbe05cec693e619eedd1740aec897d54",
+    "title": "# CLAUDE-C01-26: Soviet heads of government and Supreme Soviet chairs, 1990\u20131991",
+    "status": "ready_for_review",
+    "files_changed": 223,
+    "outside_research": [],
+    "checks": [
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/avatars/campaign_research.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.69,
+        "log": "C01-26-1.log",
+        "sha256": "3d62cb5c0533580e7b772a27402543031ea9a3d280fadc3c32d4c1db97782eae"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*research*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 2.05,
+        "log": "C01-26-2.log",
+        "sha256": "f7a0858ab0a1b330e2dcaec96b16409faa462e23bead0a957a57b88542ebed3d"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_*c01*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 3.72,
+        "log": "C01-26-3.log",
+        "sha256": "7430c6294128d45705e8ce7f5668a58aa113ca5541689f584bda401f47e43e25"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/avatars",
+          "-p",
+          "test_campaign*.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.74,
+        "log": "C01-26-4.log",
+        "sha256": "7b8645daba7e36bdce9f61355a2d2640f431c1c5047b8c21615e512dbebece7d"
+      },
+      {
+        "command": [
+          "node",
+          "--test",
+          "tools/ui/check_leadership_research_review.cjs"
+        ],
+        "exit_code": 0,
+        "seconds": 0.13,
+        "log": "C01-26-5.log",
+        "sha256": "1bb41ce0aa8655cb929c8f92338953004a593330fd4935459e633cd1403dafa7"
+      },
+      {
+        "command": [
+          "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+          "-B",
+          "-X",
+          "utf8",
+          "tools/planning/workboard.py",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.06,
+        "log": "C01-26-6.log",
+        "sha256": "6cc71a3c645534f8525319dc992aaa9aafa512dab30b47fc6c1c7a998c1f30b6"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check",
+          "ffe54b02...HEAD"
+        ],
+        "exit_code": 0,
+        "seconds": 0.05,
+        "log": "C01-26-7.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "worktree_status": ""
+  },
+  {
+    "packet": 27,
+    "branch": "origin/claude/c01-in-27",
+    "sha": "27c52dc4cbeb6e1290b663279cf4c2a214458d39",
+    "title": "# CLAUDE-C01-27: Bharatiya Janata Party presidents, 1990\u20132026",
+    "status": "claimed",
+    "files_changed": 212,
+    "outside_research": [],
+    "checks": []
+  }
+]
