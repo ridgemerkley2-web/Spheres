@@ -35,6 +35,11 @@ qualifies actual completion/output and save/resume at `72d3414d`, fixes the raw
 district label, and records the remaining completed-project payment-history gap.
 Procurement and flown-result qualification remain open.
 
+The subsequent [payment-retention fix](PAYMENT_RETENTION.md) at `24d05428` also
+qualifies the paid-work milestone through completion and save/resume. All three
+construction milestones now persist in the verified ordinary campaign. Company
+purchase/payment/delivery and squadron readiness/flown results remain outstanding.
+
 Qualify later outcomes through the real guidance panel: company purchase/payment/
 delivery, completed construction/output, and squadron readiness/flown results.
 Record actual dated native receipts, persistence across save/resume and navigation

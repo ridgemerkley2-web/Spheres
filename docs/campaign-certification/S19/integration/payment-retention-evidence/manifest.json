@@ -1,0 +1,70 @@
+{
+  "runtime_revision": "24d054289929d3afbe50497ee64547bb725923bf",
+  "driver_revision": "24d054289929d3afbe50497ee64547bb725923bf",
+  "driver_committed_blob_sha256": "53392e48d02bdd5b7995a6c5b98ec56caa7d87a0a8e69855a1897021c6328898",
+  "driver_provenance_note": "Raw driver flag is hardcoded false; independently verified captured bytes equal the committed driver after CRLF-to-LF normalization only.",
+  "native_workspace_passed": 1888,
+  "native_workspace_ignored": 89,
+  "native_note": "Resource timing was excluded from the parallel workspace run and checked separately in s19-payment-timing.log. Ignored qualification tests retain their existing scope.",
+  "save_archives": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s19-payment-browser-20260927\\france-sQFH1Q\\server-hifvOi\\saves\\auto-1.json",
+      "bytes": 26151096,
+      "sha256": "6c65a606716c63b931187e11f5912422c0fb72e6082bb5f4b764c77f21772708"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s19-payment-browser-20260927\\france-sQFH1Q\\server-hifvOi\\saves\\auto-2.json",
+      "bytes": 23204515,
+      "sha256": "8b76f0af677dcaa0d135a730e3a6f469fe353b713d440736b08118c306b57022"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s19-payment-browser-20260927\\france-sQFH1Q\\server-hifvOi\\saves\\auto-3.json",
+      "bytes": 24763108,
+      "sha256": "c4747248e77c4eac3323964e2c1709bac5cef5856c420564d1932be3466be377"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s19-payment-browser-20260927\\france-sQFH1Q\\server-hifvOi\\saves\\s19-first-hour.json",
+      "bytes": 26899763,
+      "sha256": "3bc0f75b0e73a8b061ceb1d13db134f58e36e7215671718e3485ea4d5efa0539"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s19-payment-browser-20260927\\france-sQFH1Q\\server-hifvOi\\saves\\s19-preview-after.json",
+      "bytes": 13529675,
+      "sha256": "18fbb2241b4c46295acd88ec3d999eb2ea6cb3bc7374abcd3490940b87333848"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s19-payment-browser-20260927\\france-sQFH1Q\\server-hifvOi\\saves\\s19-preview-before.json",
+      "bytes": 13529675,
+      "sha256": "f5555f71a9fd71aff309938e710ccc061e734a428d3dfbee89f5f6e4d31ca595"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s19-payment-browser-20260927\\france-sQFH1Q\\server-hifvOi\\saves\\s19-read-after.json",
+      "bytes": 13181864,
+      "sha256": "f0a97ec2bce9b80d7a4562497d13ebe537a0abdd5cc9c33dd41a94eb79ec2782"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s19-payment-browser-20260927\\france-sQFH1Q\\server-hifvOi\\saves\\s19-read-before.json",
+      "bytes": 13181864,
+      "sha256": "b3b34e738195388b8ea4a9641805e86468c5460046ab04b3f330ba06c953d6be"
+    }
+  ],
+  "files": {
+    ".gitattributes": "ffe82f3c5b968ed009c2577fa38f32c83be167799ee565d40a18e3440c57b342",
+    "claude-claims-20260927.json": "62e25533976507c4a48d12ca574810ca968d8ea31673fa95874116b6b751fb09",
+    "guidance-later-construction.json": "81fbb024f927f588bcb5278662c75ba74b50b8d652eb641b4a347abc09891988",
+    "guidance-loaded.json": "08d562c3640b907b498fd28747aaca5db7f3ade1a30a45abdf22ac1695c2c1b9",
+    "guidance-narrow.json": "8d507a51ad201391b7f5ac5942089d4c6f47e81d652a7440bcc0cd4538f07dc4",
+    "narrow-route-panel.png": "923229f9792da14cddbbd2c6afb75e801e8fbba974ed939df2115268acea9cd6",
+    "progress.jsonl": "d37a602d8698ac5e5393dcca6f9ed640c7deaa5dbe07f10ab273c57ec8dbd85a",
+    "result.json": "105ca17d029eecc56b0e1330237968b364428a69161609cac73bceef05225b69",
+    "route-later-construction-desktop.png": "308ff11a8b0d994580d04cb1757caaa4d6e4ee7810523d837844f9babb7429ab",
+    "route-loaded-desktop.png": "7699cbdf192963e1269c60b7309c9e837d85ad9fc171837f4398b889e9f33286",
+    "s19-payment-all-ui.log": "7850b74609a2928bf0b41cbc876c05c24b1c6a5fcbfd02ce8f2436a256ae3631",
+    "s19-payment-browser.log": "c138926ed7d1048c2865410046d838f0c608d62277deccd5d50f03445818202d",
+    "s19-payment-build.log": "1f3e88d2528a94d3e91dca30b953d49988e103fd644c92e79298bd376ce86c61",
+    "s19-payment-js.log": "092929d58975b41b0b3b79681248509d2854ba101710cf12b3617159b071103c",
+    "s19-payment-native.log": "10bf0ab3ac50b883baf6c66eba8314fd959237cbb0c3f96e3e047614a3de5eb9",
+    "s19-payment-timing.log": "cea57592569a9b94c9648ddd27603522b45d7ffa4fbb96b3fff6a2f42b9b1f45",
+    "s19-payment-workspace.log": "420ed198b2524cde8a9d72d2c3dda8101636d77a730147b8fe41f3b3bf3f5afa"
+  }
+}

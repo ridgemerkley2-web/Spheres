@@ -1,0 +1,33 @@
+✔ a fresh campaign reads not yet on every step, with an obstacle and a review route (2.1442ms)
+✔ real native records are recognised as achieved with their dates (2.7912ms)
+✔ reading progress, commands and previews never achieve a result (1.0528ms)
+✔ finances needs a dated yearly budget decision from this calendar year (2.383ms)
+✔ completed construction uses the mapped province instead of the raw journal headline (0.4894ms)
+✔ construction needs dated paid work; completion and output are later milestones (1.6006ms)
+✔ retained native payments keep work paid after a project leaves the active queue (0.8238ms)
+✔ paid mine work funded from the construction budget counts as construction work (1.3442ms)
+✔ research and design results need a dated saved design, revision, payment or completion (1.3205ms)
+✔ only a draft the native designer check accepts counts as a saved design (0.9777ms)
+✔ completed component research survives the next research order clearing its date (0.9582ms)
+✔ development payment survives the daily tick zeroing last_spent_bn (0.8263ms)
+✔ procurement names the current obstacle and counts only a dated delivery (1.5311ms)
+✔ a blocked delivery or import is never advertised as on its way (1.1678ms)
+✔ air force preparation follows the airbase route before squadrons and missions (1.1519ms)
+✔ identity mismatch or an unreadable reading makes every step unknown (1.5504ms)
+✔ a disabled or missing section is unknown, never not yet (1.2448ms)
+✔ a loaded save re-derives results from native records and needs a matching load receipt (1.1501ms)
+✔ receipts from another session, player or later date do not count (1.3179ms)
+✔ receipts are bounded to the newest twenty and read only own data properties (0.5126ms)
+✔ hostile, huge, sparse and accessor inputs are bounded and never throw (2.6224ms)
+✔ the route is deterministic, deeply frozen and retains no caller object (1.1104ms)
+✔ evaluate adds at most one route card, for the first unachieved step with an obstacle (0.7588ms)
+✔ the browser UMD build exposes recognize without DOM, clock or storage (2.4758ms)
+✔ milestone details name the province, never the internal district id, and a completed airbase keeps a funding date (0.2717ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 82.3214

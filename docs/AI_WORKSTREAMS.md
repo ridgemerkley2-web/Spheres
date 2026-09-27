@@ -76,8 +76,10 @@ Claude’s gameplay packet [CLAUDE-S19-01](planning/ai-handoffs/CLAUDE-S19-01.md
 submitted at `7de62539` and is integrated at `2400800b` after an independent complete
 first-hour browser rerun, 1,672 UI tests and 414 native web tests. The
 [integration review](campaign-certification/S19/integration/README.md) retains its
-remaining qualification: actual later purchase/delivery, completed output and flown
-results through the guidance panel. Codex owns that integration check; Claude may
+remaining qualification: actual later purchase/delivery and flown results through
+the guidance panel. Construction payment/completion/output now pass with save/resume
+at `24d05428`; [evidence](campaign-certification/S19/integration/PAYMENT_RETENTION.md).
+Codex owns the remaining integration check; Claude may
 provide bounded repairs. S19 remains in progress and S20 waits for its closure.
 Use the integrated routes instead of restarting or independently rewriting them.
 
@@ -99,9 +101,11 @@ python tools/planning/workboard.py --task CLAUDE-C01-SOURCE-05
 The [bounded task queue](planning/ai-task-queue.json) records priority, owner,
 packet state and dependencies separately from canonical session status.
 [Claude's current task list](planning/ai-handoffs/CLAUDE-C01-NEXT.md) assigns four
-source-review follow-ups, then the existing C01-23/24/25/27 claims. Codex's next
+source-review follow-ups (now claimed on their own branches), then the existing
+C01-23/24/25/27 claims. Codex's next
 campaign task is [S19 later outcomes](planning/ai-handoffs/CODEX-S19-LATER-01.md):
-actual delivery, completed output, flown results and save/resume qualification.
+actual procurement/delivery and flown results with save/resume qualification.
+Construction payment, completion and output are already verified together.
 
 Copy this into Claude to continue bounded research:
 

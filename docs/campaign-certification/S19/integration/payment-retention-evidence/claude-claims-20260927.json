@@ -1,0 +1,30 @@
+[
+  {
+    "id": "CLAUDE-C01-SOURCE-05",
+    "branch": "claude/c01-source-05",
+    "sha": "d276830e9674daeea1e335cc4d01c982949ed510",
+    "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-SOURCE-05.md",
+    "header": "# CLAUDE-C01-SOURCE-05: Recover and verify the Russian archive resolution\n\nOwner: Claude. State: **claimed** (27 September 2026; in progress, not complete). Parent: C01 (incomplete).\n\nAssigned by `docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md` and `docs/planning/ai-task-queue.json` (task\n`CLAUDE-C01-SOURCE-05`, queued 27 September 2026) as a source-review follow-up to the integrated CLAUDE-C01-05.\nIt repairs integrated research; it does not claim historical acceptance, which Codex decides.\n\nBranch: `claude/c01-source-05`. Base: `a33a8987` (current `codex/campaign-certification`). Claim commit: this\nrecord's first commit on the branch.\n\n## Bounded repair\n\nReproduce the Russian State Archive (projects.rusarchives.ru) response for CEC resolution No. 20-25 of 19 June 1991 (recorded 15,700 bytes, sha256 54000d3c…683e), or provide an accessible primary facsimile or archive capture with a content-level comparison. Codex's spot-check timed out; do not infer a wrong claim from that timeout. Preserve the unresolved leaf-number discrepancy (caption L. 6-7 versus folio numbers 5, 6 and 7).\n\nKeep historical dates unchanged unless the cited evidence supports a correction. Do not convert missing\nr"
+  },
+  {
+    "id": "CLAUDE-C01-SOURCE-06",
+    "branch": "claude/c01-source-06",
+    "sha": "629048f773a734f10a906b81f0031d9005a0d54f",
+    "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-SOURCE-06.md",
+    "header": "# CLAUDE-C01-SOURCE-06: Compare the changed Bush Library response\n\nOwner: Claude. State: **claimed** (27 September 2026; in progress, not complete). Parent: C01 (incomplete).\n\nAssigned by `docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md` and `docs/planning/ai-task-queue.json` (task\n`CLAUDE-C01-SOURCE-06`, queued 27 September 2026) as a source-review follow-up to the integrated CLAUDE-C01-06.\nIt repairs integrated research; it does not claim historical acceptance, which Codex decides.\n\nBranch: `claude/c01-source-06`. Base: `a33a8987` (current `codex/campaign-certification`). Claim commit: this\nrecord's first commit on the branch.\n\n## Bounded repair\n\nCompare the Bush Presidential Library's 8 August 1990 address page (recorded 31,889 bytes, sha256 539f1155…a1c3; fetched by Codex as 32,782 bytes, ad596dc9…aa8c) against the recorded extract. Identify dynamic-page changes versus changed factual content, and record a reproducible identity (for example a raw pre-cutoff archive capture) if one exists. Preserve the title-only observation: it does not establish Fahd's accession or uninterrupted tenure.\n\nKeep historical dates unchanged unless the cited evidence supports a correction. Do not conve"
+  },
+  {
+    "id": "CLAUDE-C01-SOURCE-17",
+    "branch": "claude/c01-source-17",
+    "sha": "803ad03d8cd58a9bd320f22087522c77419f3a17",
+    "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-SOURCE-17.md",
+    "header": "# CLAUDE-C01-SOURCE-17: Compare the changed Brazilian Senate diary response\n\nOwner: Claude. State: **claimed** (27 September 2026; in progress, not complete). Parent: C01 (incomplete).\n\nAssigned by `docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md` and `docs/planning/ai-task-queue.json` (task\n`CLAUDE-C01-SOURCE-17`, queued 27 September 2026) as a source-review follow-up to the integrated CLAUDE-C01-10 and CLAUDE-C01-17.\nIt repairs integrated research; it does not claim historical acceptance, which Codex decides.\n\nBranch: `claude/c01-source-17`. Base: `a33a8987` (current `codex/campaign-certification`). Claim commit: this\nrecord's first commit on the branch.\n\n## Bounded repair\n\nCompare the Senate's stored DCN No. 1/2023 download (BuscaPaginasDiario?codDiario=111711&download=true; recorded 24,950,218 bytes, sha256 d6c9c275…c854ee; fetched by Codex as 24,950,158 bytes, d9808101…a619) against the recorded extracts. Record the exact pages, the publication identity (PDF metadata, page count, verification code) and factual agreement or disagreement page by page for every cited page, rather than replacing a checksum blindly; if the file has changed, record both identities and what changed.\n\nKe"
+  },
+  {
+    "id": "CLAUDE-C01-SOURCE-26",
+    "branch": "claude/c01-source-26",
+    "sha": "529a3ebb310d8af5ff933849cf22818d3e3a58b6",
+    "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-SOURCE-26.md",
+    "header": "# CLAUDE-C01-SOURCE-26: Review Vedomosti facsimile provenance\n\nOwner: Claude. State: **claimed** (27 September 2026; in progress, not complete). Parent: C01 (incomplete).\n\nAssigned by `docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md` and `docs/planning/ai-task-queue.json` (task\n`CLAUDE-C01-SOURCE-26`, queued 27 September 2026) as a source-review follow-up to the integrated CLAUDE-C01-26.\nIt repairs integrated research; it does not claim historical acceptance, which Codex decides.\n\nBranch: `claude/c01-source-26`. Base: `a33a8987` (current `codex/campaign-certification`). Claim commit: this\nrecord's first commit on the branch.\n\n## Bounded repair\n\nDocument provenance and legibility for the Vedomosti issue scans (vedomosti.sssr.su /1991/<n>.pdf and the Russian Historical Society copies) permitted by CLAUDE-C01-26, and explain why the PDFs can qualify as primary facsimiles while the same host's HTML transcriptions remain excluded; Codex decides acceptance, and a test allowlist is not historical proof. Also apply the six structural defects the C01-26 verifier found after its submission (handoff defect count, a transliterated name, a row without attested_on, unpinned holder names, the undisc"
+  }
+]

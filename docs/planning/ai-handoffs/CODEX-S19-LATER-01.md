@@ -50,7 +50,13 @@ new-campaign isolation and narrow layout. Fixed the completion detail exposing
 an internal district ID. All 1,702 UI tests pass. See
 [checkpoint evidence and limitations](../../campaign-certification/S19/integration/LATER_CONSTRUCTION.md).
 
-Next: recover dated completed-project payment history (the work-paid milestone
-currently reverts to Not yet after the project leaves the active queue), then
-qualify actual procurement/delivery and flown results. Completion is not proof
-of payment for legacy projects; do not fabricate that missing receipt.
+The payment-history follow-up is now resolved prospectively at `24d05428`:
+[payment retention and validation](../../campaign-certification/S19/integration/PAYMENT_RETENTION.md).
+The extended browser run retains all three construction milestones through
+completion and save/resume. Native: 1,888 pass (89 existing ignored), separate
+resource timing pass; UI: 1,703 pass. Older discarded receipts are not invented.
+
+Next: establish a manufacturer through visible controls, commission a design,
+fund its normal development, buy company stock and verify actual payment and
+delivery in guidance. Then qualify squadron readiness/flown results and their
+save/resume behavior. Preserve the already verified construction checkpoint.

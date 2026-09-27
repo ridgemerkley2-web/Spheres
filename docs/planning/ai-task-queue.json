@@ -6,45 +6,53 @@
       "id": "CLAUDE-C01-SOURCE-05",
       "owner": "Claude",
       "session": "C01",
-      "state": "queued",
+      "state": "claimed",
       "priority": 1,
       "title": "Recover and verify the Russian archive resolution",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
       "depends_on": [],
-      "next": "Follow the exact source-review scope and evidence requirements in the handoff; return a focused ready-for-review repair without claiming historical acceptance."
+      "next": "Follow the exact source-review scope and evidence requirements in the handoff; return a focused ready-for-review repair without claiming historical acceptance.",
+      "branch": "claude/c01-source-05",
+      "claim_revision": "d276830e9674daeea1e335cc4d01c982949ed510"
     },
     {
       "id": "CLAUDE-C01-SOURCE-06",
       "owner": "Claude",
       "session": "C01",
-      "state": "queued",
+      "state": "claimed",
       "priority": 2,
       "title": "Compare the changed Bush Library response",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
       "depends_on": [],
-      "next": "Follow the exact source-review scope and evidence requirements in the handoff; return a focused ready-for-review repair without claiming historical acceptance."
+      "next": "Follow the exact source-review scope and evidence requirements in the handoff; return a focused ready-for-review repair without claiming historical acceptance.",
+      "branch": "claude/c01-source-06",
+      "claim_revision": "629048f773a734f10a906b81f0031d9005a0d54f"
     },
     {
       "id": "CLAUDE-C01-SOURCE-17",
       "owner": "Claude",
       "session": "C01",
-      "state": "queued",
+      "state": "claimed",
       "priority": 3,
       "title": "Compare the changed Brazilian Senate diary response",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
       "depends_on": [],
-      "next": "Follow the exact source-review scope and evidence requirements in the handoff; return a focused ready-for-review repair without claiming historical acceptance."
+      "next": "Follow the exact source-review scope and evidence requirements in the handoff; return a focused ready-for-review repair without claiming historical acceptance.",
+      "branch": "claude/c01-source-17",
+      "claim_revision": "803ad03d8cd58a9bd320f22087522c77419f3a17"
     },
     {
       "id": "CLAUDE-C01-SOURCE-26",
       "owner": "Claude",
       "session": "C01",
-      "state": "queued",
+      "state": "claimed",
       "priority": 4,
       "title": "Review Vedomosti facsimile provenance",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
       "depends_on": [],
-      "next": "Follow the exact source-review scope and evidence requirements in the handoff; return a focused ready-for-review repair without claiming historical acceptance."
+      "next": "Follow the exact source-review scope and evidence requirements in the handoff; return a focused ready-for-review repair without claiming historical acceptance.",
+      "branch": "claude/c01-source-26",
+      "claim_revision": "529a3ebb310d8af5ff933849cf22818d3e3a58b6"
     },
     {
       "id": "CLAUDE-C01-23",
@@ -103,7 +111,7 @@
       "title": "Qualify real later guidance outcomes and save/resume",
       "handoff": "docs/planning/ai-handoffs/CODEX-S19-LATER-01.md",
       "depends_on": [],
-      "next": "Construction completion/output, save/load and Continue verified at 72d3414d; 1,702 UI tests pass. Next repair loss of the dated work-paid milestone after project completion, then qualify company payment/delivery and actual flown results. Do not infer payment from completion alone."
+      "next": "Construction payment, completion and output persist through save/load and Continue at 24d05428; 1,888 native and 1,703 UI tests pass. Next establish a manufacturer, fund normal development, purchase stock, verify payment/delivery, then qualify readiness and flown results with save/resume."
     },
     {
       "id": "CODEX-C01-ACCEPTANCE-01",
