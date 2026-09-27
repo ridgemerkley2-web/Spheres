@@ -41,3 +41,16 @@ or 240 days of aircraft development before certification, and roughly 182 days
 for the selected workshop. The later driver must retain those natural delays,
 record real delivery/output/mission outcomes and preserve the first-hour route's
 narrow assertions. No bypass or synthetic fixture was introduced in preflight.
+
+## Completed construction checkpoint
+
+On 27 September, runtime `72d3414d` passed the extended native/browser route:
+3 July workshop completion/output, named save/load, reload/Continue,
+new-campaign isolation and narrow layout. Fixed the completion detail exposing
+an internal district ID. All 1,702 UI tests pass. See
+[checkpoint evidence and limitations](../../campaign-certification/S19/integration/LATER_CONSTRUCTION.md).
+
+Next: recover dated completed-project payment history (the work-paid milestone
+currently reverts to Not yet after the project leaves the active queue), then
+qualify actual procurement/delivery and flown results. Completion is not proof
+of payment for legacy projects; do not fabricate that missing receipt.
