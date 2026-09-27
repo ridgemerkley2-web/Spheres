@@ -1,0 +1,125 @@
+{
+  "version": 1,
+  "updated": "2026-09-27",
+  "tasks": [
+    {
+      "id": "CLAUDE-C01-SOURCE-05",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "queued",
+      "priority": 1,
+      "title": "Recover and verify the Russian archive resolution",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "depends_on": [],
+      "next": "Follow the exact source-review scope and evidence requirements in the handoff; return a focused ready-for-review repair without claiming historical acceptance."
+    },
+    {
+      "id": "CLAUDE-C01-SOURCE-06",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "queued",
+      "priority": 2,
+      "title": "Compare the changed Bush Library response",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "depends_on": [],
+      "next": "Follow the exact source-review scope and evidence requirements in the handoff; return a focused ready-for-review repair without claiming historical acceptance."
+    },
+    {
+      "id": "CLAUDE-C01-SOURCE-17",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "queued",
+      "priority": 3,
+      "title": "Compare the changed Brazilian Senate diary response",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "depends_on": [],
+      "next": "Follow the exact source-review scope and evidence requirements in the handoff; return a focused ready-for-review repair without claiming historical acceptance."
+    },
+    {
+      "id": "CLAUDE-C01-SOURCE-26",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "queued",
+      "priority": 4,
+      "title": "Review Vedomosti facsimile provenance",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "depends_on": [],
+      "next": "Follow the exact source-review scope and evidence requirements in the handoff; return a focused ready-for-review repair without claiming historical acceptance."
+    },
+    {
+      "id": "CLAUDE-C01-23",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "claimed",
+      "priority": 5,
+      "title": "Finish existing claim: French presidents",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "branch": "claude/c01-fr-23",
+      "depends_on": [],
+      "next": "Preserve the existing claim, incorporate current integration, complete its bounded packet, and return exact commits plus research/campaign/atlas checks. Prioritize the source follow-ups first."
+    },
+    {
+      "id": "CLAUDE-C01-24",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "claimed",
+      "priority": 6,
+      "title": "Finish existing claim: Tongan Speakers",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "branch": "claude/c01-to-24",
+      "depends_on": [],
+      "next": "Preserve the existing claim, incorporate current integration, complete its bounded packet, and return exact commits plus research/campaign/atlas checks. Prioritize the source follow-ups first."
+    },
+    {
+      "id": "CLAUDE-C01-25",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "claimed",
+      "priority": 7,
+      "title": "Finish existing claim: Saudi council chairs",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "branch": "claude/c01-sa-25",
+      "depends_on": [],
+      "next": "Preserve the existing claim, incorporate current integration, complete its bounded packet, and return exact commits plus research/campaign/atlas checks. Prioritize the source follow-ups first."
+    },
+    {
+      "id": "CLAUDE-C01-27",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "claimed",
+      "priority": 8,
+      "title": "Finish existing claim: BJP presidents",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "branch": "claude/c01-in-27",
+      "depends_on": [],
+      "next": "Preserve the existing claim, incorporate current integration, complete its bounded packet, and return exact commits plus research/campaign/atlas checks. Prioritize the source follow-ups first."
+    },
+    {
+      "id": "CODEX-S19-LATER-01",
+      "owner": "Codex",
+      "session": "S19",
+      "state": "in_progress",
+      "priority": 1,
+      "title": "Qualify real later guidance outcomes and save/resume",
+      "handoff": "docs/planning/ai-handoffs/CODEX-S19-LATER-01.md",
+      "depends_on": [],
+      "next": "Preflight: 79 guidance tests pass. Extend real campaign browser coverage beyond 180/240-day development, then verify delivery, completed construction/output, flown receipts and save/resume. First-hour evidence alone remains insufficient."
+    },
+    {
+      "id": "CODEX-C01-ACCEPTANCE-01",
+      "owner": "Codex",
+      "session": "C01",
+      "state": "blocked",
+      "priority": 2,
+      "title": "Independently review source follow-ups before historical acceptance",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
+      "depends_on": [
+        "CLAUDE-C01-SOURCE-05",
+        "CLAUDE-C01-SOURCE-06",
+        "CLAUDE-C01-SOURCE-17",
+        "CLAUDE-C01-SOURCE-26"
+      ],
+      "next": "Independently compare the returned primary content, record unresolved limitations, and accept only the bounded claims supported by evidence. Passing technical tests alone does not close C01."
+    }
+  ]
+}

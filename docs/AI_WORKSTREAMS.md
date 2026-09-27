@@ -91,17 +91,28 @@ python tools/planning/workboard.py --owner Codex
 python tools/planning/workboard.py --session S19
 python tools/planning/workboard.py --session C01
 python tools/planning/workboard.py --check
+python tools/planning/workboard.py --tasks --owner Claude
+python tools/planning/workboard.py --tasks --owner Codex
+python tools/planning/workboard.py --task CLAUDE-C01-SOURCE-05
 ```
+
+The [bounded task queue](planning/ai-task-queue.json) records priority, owner,
+packet state and dependencies separately from canonical session status.
+[Claude's current task list](planning/ai-handoffs/CLAUDE-C01-NEXT.md) assigns four
+source-review follow-ups, then the existing C01-23/24/25/27 claims. Codex's next
+campaign task is [S19 later outcomes](planning/ai-handoffs/CODEX-S19-LATER-01.md):
+actual delivery, completed output, flown results and save/resume qualification.
 
 Copy this into Claude to continue bounded research:
 
 > Fetch origin/codex/campaign-certification and read docs/AI_WORKSTREAMS.md and
-> the accepted and pending C01 intake listed there. Do not repeat accepted
-> C01-01/02/03/04/07/08 or reclaim submitted C01-05/06. Review any requested fixes
-> on your pending packet first. For new work, propose a distinct bounded packet,
-> record its claim and current integration base in a separate branch, and follow
-> its source, file and evidence boundaries. Return a ready-for-review handoff
-> without changing the canonical roadmap status.
+> run `python tools/planning/workboard.py --tasks --owner Claude`. Read
+> docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md. Address the four source follow-ups
+> in priority order, then finish existing claims C01-23/24/25/27. Preserve their
+> branches and incorporate current integration. C01-05/06/09–22/26 are already
+> merged research, with historical acceptance pending; do not recreate them.
+> Return bounded ready-for-review commits with source evidence and full applicable
+> checks, including campaign census. Do not change canonical roadmap status.
 
 To ask either assistant for a status check:
 
