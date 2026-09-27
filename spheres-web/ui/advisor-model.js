@@ -289,7 +289,11 @@
     const mined=r=>{if(!obj(r))return BAD;const spent=own(r,"spent_bn"),last=own(r,"last_day"),d=dayOf(last,c.day),district=where(r),what=clip(own(r,"commodity"),30);
       if(!district||!what)return BAD;if(spent===null)return last===null?null:BAD;if(!finite(spent)||spent<0||d===BAD||spent>0&&d===null)return BAD;
       return spent>0&&typeof d==="number"?{day:null,detail:clip(`Paid mine work: ${money(spent)} for ${what.replace(/_/g," ")} in ${district} by ${iso(d)}.`)}:null;};
-    const work=scan("work_paid",[pre(projects,r=>payment(r,c,v=>`Paid ${money(v)} for ${place(r)}.`)),pre(mines,mined)],x=>x);
+    // Missing payments means an older native response with no retained receipts.
+    // Explicit malformed data still goes through the normal unknown-state guard.
+    const payments=own(sec,"payments")===undefined?{rows:[],over:false}:list(sec,"payments");
+    const work=scan("work_paid",[pre(projects,r=>payment(r,c,v=>`Paid ${money(v)} for ${place(r)}.`)),
+      pre(payments,r=>payment(r,c,v=>`Paid ${money(v)} for ${place(r)}.`)),pre(mines,mined)],x=>x);
     // district/kind are null when a headline cannot be mapped exactly; any other value is malformed.
     const completed=scan("project_completed",[ends],r=>{if(!obj(r))return BAD;const d=dayOf(own(r,"day"),c.day),district=own(r,"district"),kind=own(r,"kind");if(d===BAD)return BAD;
       if(!(district===null||str(district))||!(kind===null||str(kind))){unsure=true;return BAD;}if(typeof d!=="number")return null;

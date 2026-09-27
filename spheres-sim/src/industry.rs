@@ -57,6 +57,16 @@ pub struct ProjectFunding {
     pub last_day: Option<i32>,
 }
 fn zero_service_fee(v: &f64) -> bool { *v == 0.0 }
+/// Latest actual project payment per paying nation. Retained after completion
+/// or cancellation; never reconstructed from today's site ownership or legacy saves.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+pub struct ConstructionPayment {
+    pub project: u32,
+    pub district: String,
+    pub kind: K,
+    pub day: i32,
+    pub amount_bn: f64,
+}
 #[derive(Clone, Debug, Default, Serialize, Deserialize, PartialEq)]
 pub struct MineFunding {
     pub progress_days: f64,
@@ -162,6 +172,8 @@ pub struct Industry {
     pub goods: BTreeMap<NationId, Goods>,
     #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
     pub projects: BTreeMap<u32, ProjectFunding>,
+    #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
+    pub latest_construction_payments: BTreeMap<NationId, ConstructionPayment>,
     #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
     pub mines: BTreeMap<String, MineFunding>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
@@ -475,6 +487,12 @@ pub(crate) fn settle_project(
     f.company_fees_bn += plan.company_fee_bn;
     f.last_spent_bn = Some(plan.cash_bn);
     f.last_day = Some(today);
+    if plan.cash_bn.is_finite() && plan.cash_bn > 0.0 {
+        w.production.industry.latest_construction_payments.insert(p.nation, ConstructionPayment {
+            project: p.id, district: p.district.clone(), kind: p.kind,
+            day: today, amount_bn: plan.cash_bn,
+        });
+    }
     let row = w
         .production
         .projects
@@ -1973,12 +1991,39 @@ mod tests {
         assert!(w.production.projects.is_empty());
         assert_eq!(production::level(&w, &d, kind), 1);
         assert!(w.production.industry.projects.is_empty());
+        let receipt = &w.production.industry.latest_construction_payments[&USA];
+        assert_eq!(receipt.district, d);
+        assert_eq!(receipt.kind, kind);
+        assert_eq!(receipt.day, clock::absolute_day(&w));
+        assert!(receipt.amount_bn > 0.0);
+        let restored: Industry = serde_json::from_str(&serde_json::to_string(&w.production.industry).unwrap()).unwrap();
+        assert_eq!(restored.latest_construction_payments, w.production.industry.latest_construction_payments);
+        let legacy: Industry = serde_json::from_str("{}").unwrap();
+        assert!(legacy.latest_construction_payments.is_empty());
         assert_eq!(w.production.industry.goods, goods);
         assert_eq!(w.resources, raw);
         near(paid, work_cost_bn(kind));
         let once = save(&w);
         production::tick_day(&mut w);
         assert_eq!(save(&w), once);
+    }
+
+    #[test]
+    fn retained_payment_requires_spending_and_survives_paused_or_cancelled_work() {
+        let mut w = prepared();
+        let d = districts(&w)[0].clone();
+        let id = production::start_project(&mut w, USA, &d, K::Warehouse).unwrap();
+        assert!(w.production.industry.latest_construction_payments.is_empty());
+        production::tick_day(&mut w);
+        let paid = w.production.industry.latest_construction_payments.clone();
+        assert_eq!(paid.len(), 1);
+        assert!(paid[&USA].amount_bn > 0.0);
+        next_day(&mut w);
+        programs::set_construction_budget(&mut w, USA, 0.0).unwrap();
+        production::tick_day(&mut w);
+        assert_eq!(w.production.industry.latest_construction_payments, paid);
+        production::cancel_project(&mut w, USA, id).unwrap();
+        assert_eq!(w.production.industry.latest_construction_payments, paid);
     }
 
     #[test]

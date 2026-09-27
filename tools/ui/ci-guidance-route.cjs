@@ -877,7 +877,7 @@ async function verifyEmbeddedText(page,url,revision,index){
       assert(observed,'No matching completed and producing site after 540 ordinary campaign days; inspect progress evidence');
       await openGuide('later-construction');
       const result=await readRoute('later-construction');
-      for(const id of ['project_completed','site_producing']){
+      for(const id of ['work_paid','project_completed','site_producing']){
         const milestone=result.step('construction').milestones.find(m=>m.id===id);
         assert.equal(milestone?.status,'done',id+' must be recognized by live guidance');
         assert(milestone.date,id+' requires a dated native observation');
