@@ -1,0 +1,42 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_cec_res_106_1149_3_20000707",
+  "source_url": "https://web.archive.org/web/20140801070526id_/http://cikrf.ru:80/banners/vib_arhiv/president/2000/post_1149_pr_2000.html",
+  "original_url": "http://cikrf.ru/banners/vib_arhiv/president/2000/post_1149_pr_2000.html",
+  "archive_capture_utc": "2014-08-01T07:05:26Z",
+  "source_title": "Resolution of the Central Election Commission of the Russian Federation No. 106/1149-3 of 7 July 2000 on corrections to the protocols of three regional commissions and seven polling stations abroad (CEC election archive)",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "document_date": "2000-07-07",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20140801070526id_/http://cikrf.ru:80/banners/vib_arhiv/president/2000/post_1149_pr_2000.html",
+  "source_response_bytes": 32209,
+  "source_response_sha256": "b4752f246849c61c35d09a8013164e5d6715e6930a09176292d6ae1369f75358",
+  "source_response_encoding": "UTF-8 HTML, served without Content-Encoding; original Last-Modified 19 April 2012",
+  "source_response_checked_in": false,
+  "stability_check": "Found by the independent check: first downloaded at 2026-09-24T23:39-23:54Z and re-downloaded at 2026-09-25T00:23:27Z (30-44 minutes later); identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T00:35:19Z (32,209 bytes); identical SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of http://cikrf.ru/banners/vib_arhiv/president/2000/post_1149_pr_2000.html, captured at 2014-08-01T07:05:26Z, before the 7 September 2026 cutoff; the id_ form replays the archived bytes unchanged and is used because the Central Election Commission's hosts refused connections from this environment (ports 80 and 443). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Read: heading, preamble, points 1-2 (the revised national protocol data) and the start of point 3; the regional summary-table corrections were skimmed.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Archived HTML text read."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_cec_106_1149_3_result_correction_20000707",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-05",
+      "role_id": "ru_president",
+      "holder_name": "Владимир Владимирович Путин",
+      "printed_name": "Путин Владимир Владимирович",
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "result_correction",
+      "attested_on": "2000-07-07",
+      "text": "The CEC notes that corrections made by the Belgorod, Kaliningrad and Tula regional commissions and in repeat protocols of seven polling stations abroad do not affect the result of the election of the President of the Russian Federation, and sets revised data for 'протокола Центральной избирательной комиссии Российской Федерации от 5 апреля 2000 года о результатах выборов Президента Российской Федерации 26 марта 2000 года': 109,372,043 voters on the lists (instead of 109,372,046); Putin Vladimir Vladimirovich 39,740,467 (instead of 39,740,434); 75,181,073 took part in the election (instead of 75,181,071).",
+      "locator": "Heading ('От 7 июля 2000 года № 106/1149-3'); points 1-2"
+    }
+  ],
+  "bounded_scope": "Presidency observations for CLAUDE-C01-14 only. Election calling, voting, result determination, declaration, correction and publication, oath, stated assumption of office, inauguration ceremony, resignation, acting service and outgoing-holder statements stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-05 RSFSR roles and the USSR packet are outside this extract."
+}

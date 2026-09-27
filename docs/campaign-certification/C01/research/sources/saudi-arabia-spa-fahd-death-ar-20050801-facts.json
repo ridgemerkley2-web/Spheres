@@ -1,0 +1,58 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://www.spa.gov.sa/7be193c458",
+  "accessed_date": "2026-09-21",
+  "published_date": "2005-08-01",
+  "access_method": "downloaded_original_html_and_embedded_article_text_read",
+  "source_response_bytes": 173207,
+  "source_response_sha256": null,
+  "source_response_checked_in": false,
+  "article_content_sha256": "cc562d7e5d0edd92efc31bd2707af98d0cba287a22aa140263ee4392084e5327",
+  "article_content_field": "__NEXT_DATA__ props.pageProps.newsDetails.content, encoded as UTF-8",
+  "title_as_published": "عام / الديوان الملكي ينعي خادم الحرمين الشريفين الملك فهد",
+  "portal_metadata": {
+    "uuid": "7be193c458",
+    "locale": "ar",
+    "published_at_utc": "2005-08-01T08:04:03Z",
+    "date_hijri_field": "1426-06-26",
+    "legacy_ids": [
+      "280265"
+    ],
+    "filing_time_printed": "11:04 Makkah time"
+  },
+  "response_observations": [
+    {
+      "downloaded_by": "checker",
+      "url_form": "https://www.spa.gov.sa/7be193c458",
+      "bytes": 173207,
+      "sha256": "08d7e069ddbbf23514a1f9799bf6e6054dcd1b72ebb7b19b34f1c44ea7326392",
+      "views_count": 13,
+      "server_id": "S101"
+    },
+    {
+      "downloaded_by": "checker",
+      "url_form": "https://www.spa.gov.sa/280265",
+      "bytes": 173199,
+      "sha256": "77099026c02ff1c7a025dedbd0e53690c7d4e875b731c47f5025450c292c919f",
+      "views_count": 12,
+      "server_id": "S101"
+    }
+  ],
+  "provenance_note": "Downloaded with curl -L on 2026-09-21 by the packet's independent checker (2 responses; 173,199 and 173,207 bytes; SHA-256 08d7e069..., 77099026...). The response embeds a live views_count and a load-balancer server_id in its __NEXT_DATA__ JSON, so response bytes and SHA-256 vary between fetches and between URL forms; no response hash is asserted. article_content_sha256 is the SHA-256 of the UTF-8 newsDetails.content field; it was identical in every download and is the reproducible identity. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "sa_fahd_death_announced_20050801",
+      "text": "A Royal Court statement datelined Riyadh 26 Jumada II 1426 / 1 August 2005 mourns King Fahd bin Abdulaziz in the name of Crown Prince Abdullah bin Abdulaziz, all members of the family and on behalf of the nation, saying that death came to him after an illness. The funeral prayer is set for the next day, Tuesday, after Asr at Imam Turki bin Abdullah Mosque in Riyadh.",
+      "attested_on": "2005-08-01",
+      "locator": "Dateline; Royal Court statement, paragraphs 1 and 3; trailer (filed 11:04 Makkah time)",
+      "uncertainty": "The statement dates the announcement, not the death: it gives no day or hour of death. King Fahd's reign therefore ends at a death announced on 1 August 2005 (26/6/1426 AH), and no until date is recorded."
+    }
+  ],
+  "scope_note": "Arabic original of the Royal Court death statement (also served at legacy SPA ID 280265), located by the packet's independent checker. SPA's English release (sa_spa_fahd_death_20050801_en) is its translation. Used for SA-EXEC-01.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not visually rendered. HTML news article (not a scan or PDF); the article text was read from the embedded newsDetails JSON of the checker's downloaded response and re-read from that local copy for this packet."
+  }
+}

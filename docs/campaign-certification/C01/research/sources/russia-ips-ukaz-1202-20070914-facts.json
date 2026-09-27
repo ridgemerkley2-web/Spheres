@@ -1,0 +1,46 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_ukaz_1202_20070914",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102116627&page=1&rdk=0",
+  "source_title": "Decree of the President of the Russian Federation No. 1202 of 14 September 2007 \"О Председателе Правительства Российской Федерации\" (original edition)",
+  "accessed_date": "2026-09-25",
+  "published_date": "2007-09-18",
+  "document_date": "2007-09-14",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102116627&page=1&rdk=0",
+  "source_response_bytes": 23709,
+  "source_response_sha256": "d26dd6460991595db544dd2beb1cc7082da195ee265784c427f3ee67905a9173",
+  "source_response_encoding": "windows-1251",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded at 2026-09-25T12:02:56Z, 2026-09-25T12:22:20Z, 2026-09-25T12:56:16Z (UTC): byte-identical each time (23709 bytes, same SHA-256); first and last downloads 53 minutes apart. No date, session token or CSRF value in the body; no Wayback capture needed. Portal card: Downloaded at 2026-09-25T12:16:32Z, 2026-09-25T12:56:40Z (UTC): byte-identical each time (3129 bytes, same SHA-256); first and last downloads 40 minutes apart. Independent check: re-downloaded at 2026-09-25T13:12Z-13:14Z and again at 13:32Z-13:36Z (publication PDFs with a cache-busting query in the second round), at least 31 minutes after the last dossier download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:23:23Z and again at 2026-09-25T14:56:47Z (33 minutes later); identical 23,709 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a3=102000503&a3type=1&a8=1202&a8type=2&a7type=4&a7from=14.09.2007&a7to=14.09.2007&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3129,
+    "sha256": "6915f2853295251997b12205f06e6e1343a232dc8bcb1357f4a0750801862050",
+    "note": "Date-restricted single-document card (number and one-day date range, document type Указ): one hit, status \"Действует без изменений\"; publication citations: \"Российская газета\" 18.9.2007; Собрание законодательства РФ 2007 No. 38 art. 4540."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 25 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read in full. The date-restricted single-document portal card (portal_card_response) returns only this act.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in full in Russian after windows-1251 decoding."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_ukaz_1202_zubkov_appointed_20070914",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-08",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Виктор Алексеевич Зубков",
+      "printed_name": "Зубкова Виктора Алексеевича (accusative)",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "appointment",
+      "attested_on": "2007-09-14",
+      "text": "Under Article 83(a) of the Constitution the President appoints Viktor Alekseyevich Zubkov Chairman of the Government of the Russian Federation; the decree enters into force on the day of signing. Signed \"Президент Российской Федерации В.Путин\", Moscow, Kremlin, 14 September 2007, No. 1202.",
+      "locator": "Points 1-2; signature and date block"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

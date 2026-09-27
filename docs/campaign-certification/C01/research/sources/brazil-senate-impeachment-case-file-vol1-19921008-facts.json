@@ -1,0 +1,91 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_senado_autos_impeachment_vol1",
+  "source_url": "https://legis.senado.leg.br/sdleg-getter/documento?dm=3692507&disposition=inline",
+  "accessed_date": "2026-09-23",
+  "published_date": null,
+  "access_method": "downloaded_official_pdf_and_pages_rendered_for_visual_review",
+  "source_response_bytes": 47475991,
+  "source_response_sha256": "3e4ad563f4bfe236aaa4a506915c5ede3403b142b891b736a77527f1447d83be",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file from the Senate's document service, a static response. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Senate's compiled case file for Diversos nº 12/1992 (the impeachment process), volume I (Content-Disposition filename MATE_TI_189989.pdf; listed on the matter page https://www25.senado.leg.br/web/atividade/materias/-/materia/2390 as posted on 23 March 2016). It reproduces the Diário do Congresso Nacional, Seção II (Órgão Judiciário) of 8 October 1992, which is not a separate item in the Senate's diary archive. PDF pages 786-791 carry printed pages 787-792 of that issue; the cover has no printed number.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      786,
+      787,
+      788,
+      791
+    ],
+    "method": "The cover (PDF page 1) and PDF pages 786-788 and 791 (printed 787-789 and 792) rendered and read, including the handwritten time and date of the contra-fé; PDF pages 789-790 (printed 790-791, the Mesa minutes continued) read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "br_senate_mesa_formalizes_summons_19921001",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-03",
+      "role_id": "br_president",
+      "holder_name": "Fernando Collor de Mello",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "summons_issued",
+      "attested_on": "1992-10-01",
+      "text": "Minutes of the Senate Mesa meeting held at 12:00 on 1 October 1992 with the President of the Supreme Federal Court, Minister Sydney Sanches, to formalize the summons of the President of the Republic and give effect to his removal from the functions of President under Article 86 §2: the summons was approved and signed by the President of the Senate, Mauro Benevides, and by Sanches, who took over the presidency of the process.",
+      "locator": {
+        "pdf_page": 788,
+        "printed_page": 789,
+        "item": "ATA - MESA, Ata da reunião realizada às 12:00 horas do dia 1º de outubro de 1992 (continues on printed page 790)"
+      }
+    },
+    {
+      "claim_id": "br_senate_summons_mandado_suspension_terms_19921001",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-03",
+      "role_id": "br_president",
+      "holder_name": "Fernando Collor de Mello",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "summons_issued",
+      "attested_on": "1992-10-01",
+      "text": "The Mandado de Citação to President Fernando Affonso Collor de Mello, dated Senado Federal 1 October 1992 and signed by Sanches and Benevides, summons him to answer the accusation admitted by the Chamber and states that from receipt of the summons the process is instituted and he is suspended from the functions of President of the Republic under Article 86 §1(II) of the Constitution until the judgment is concluded or the period in §2 elapses.",
+      "locator": {
+        "pdf_page": 786,
+        "printed_page": 787,
+        "item": "MANDADO DE CITAÇÃO (continues on printed page 788)"
+      }
+    },
+    {
+      "claim_id": "br_vice_president_instructed_to_assume_19921001",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-03",
+      "role_id": "br_president",
+      "holder_name": "Itamar Franco",
+      "role_title": "Vice-President of the Republic in exercise of the office of President",
+      "event_kind": "vice_president_notified_to_exercise",
+      "attested_on": "1992-10-01",
+      "text": "Message SM nº 190/92, dated Senado Federal 1 October 1992 and signed by Sanches and Benevides, informs Vice-President Itamar A. C. Franco that the President has been summoned and in consequence is suspended from his functions until the judgment is concluded or the constitutional period elapses, and that the Vice-President is to assume the Presidency of the Republic immediately under Article 79.",
+      "locator": {
+        "pdf_page": 787,
+        "printed_page": 788,
+        "item": "SM/nº 190/92 (continues on printed page 789)"
+      }
+    },
+    {
+      "claim_id": "br_collor_receives_summons_suspended_19921002",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-03",
+      "role_id": "br_president",
+      "holder_name": "Fernando Collor de Mello",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "suspension",
+      "attested_on": "1992-10-02",
+      "text": "In the contra-fé, signed 'F. Collor' at the Palácio do Planalto on 2 October 1992, Fernando Affonso Collor de Mello acknowledges receiving at 10:20 that day the summons signed by the President of the Supreme Federal Court and the Senate Mesa, presented by the First Secretary, Senator Dirceu Carneiro; under the summons' own terms the process is instituted and the President suspended from his functions from its receipt.",
+      "locator": {
+        "pdf_page": 791,
+        "printed_page": 792,
+        "item": "CONTRA-FÉ (handwritten time '10.20' and dating line)"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+}

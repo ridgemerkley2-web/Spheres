@@ -1,0 +1,42 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_cec_res_112_845ii_19960719",
+  "source_url": "https://web.archive.org/web/20160401213450id_/http://www.cikrf.ru/law/decree_of_cec/1996/07/19/post_845_pr_1996.html",
+  "original_url": "http://www.cikrf.ru/law/decree_of_cec/1996/07/19/post_845_pr_1996.html",
+  "archive_capture_utc": "2016-04-01T21:34:50Z",
+  "source_title": "Resolution of the Central Election Commission of the Russian Federation No. 112/845-II of 19 July 1996 on the Dagestan Election Commission's resolution of 11 July 1996 amending its protocol",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "document_date": "1996-07-19",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20160401213450id_/http://www.cikrf.ru/law/decree_of_cec/1996/07/19/post_845_pr_1996.html",
+  "source_response_bytes": 22132,
+  "source_response_sha256": "0d10bf756926848f1328d2124b3a24ccd39cbeb6e0a738c6bfac1eee49d70c56",
+  "source_response_encoding": "utf-8",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded at 2026-09-24T22:04:37Z and again at 2026-09-24T22:38:42Z (at least 28 minutes later); identical 22,132 bytes and SHA-256. Independent check: re-downloaded at 2026-09-24T22:46:25Z-22:47:01Z, 38-58 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T00:32:59Z (22,132 bytes); identical SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of http://www.cikrf.ru/law/decree_of_cec/1996/07/19/post_845_pr_1996.html, captured at 2016-04-01T21:34:50Z, before the 7 September 2026 cutoff; the id_ form replays the archived bytes unchanged and is used because the Central Election Commission's hosts refused connections from this environment (ports 80 and 443). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Read in full (preamble, points 1-6 with the revised figures, signature block). Point 6 orders publication in the CEC Vestnik and dispatch to Rossiyskaya Gazeta; neither publication was inspected.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "HTML text read in full (preamble, points 1-6 with the revised figures, signature block)."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_cec_protocol_amended_dagestan_19960719",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-03",
+      "role_id": "ru_president",
+      "holder_name": "Борис Николаевич Ельцин",
+      "printed_name": "ЕЛЬЦИН Борис Николаевич",
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "result_correction",
+      "attested_on": "1996-07-19",
+      "text": "After the Dagestan commission corrected its protocol on 11 July 1996, the CEC notes that the changes to that protocol and to the CEC protocol on the results of the 3 July 1996 repeat voting do not affect the result of the election nationally, and sets revised data for the CEC protocol of 9 July 1996: 108,589,050 voters on the lists; 74,800,449 took part; 'ЕЛЬЦИН Борис Николаевич' 40,203,948 (instead of 40,208,384); 'ЗЮГАНОВ Геннадий Андреевич' 30,102,288 (instead of 30,113,306); against all 3,604,462.",
+      "locator": "Points 3-4; signature block (Moscow, 19 July 1996, No. 112/845-II)"
+    }
+  ],
+  "bounded_scope": "Presidency observations for CLAUDE-C01-14 only. Election calling, voting, result determination, declaration, correction and publication, oath, stated assumption of office, inauguration ceremony, resignation, acting service and outgoing-holder statements stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-05 RSFSR roles and the USSR packet are outside this extract."
+}

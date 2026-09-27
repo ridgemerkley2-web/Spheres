@@ -1,0 +1,55 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_duma_steno_19980911",
+  "source_url": "https://web.archive.org/web/20220615161227id_/http://transcript.duma.gov.ru/node/2506/",
+  "original_url": "http://transcript.duma.gov.ru/node/2506/",
+  "archive_capture_utc": "2022-06-15T16:12:27Z",
+  "source_title": "State Duma: stenogram of the sitting of 11 September 1998 (Transcripts database, node 2506), Internet Archive capture 20220615161227",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "document_date": "1998-09-11",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20220615161227id_/http://transcript.duma.gov.ru/node/2506/",
+  "source_response_bytes": 578566,
+  "source_response_sha256": "592cea0a85c14528c0f860ca6238dbcff4018612c3f91e4e408c293d5e140477",
+  "source_response_encoding": "UTF-8 (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded at 2026-09-25T12:27:44Z and again at 2026-09-25T13:00:15Z (more than 30 minutes later); identical 578,566 bytes and SHA-256. Independent check: re-downloaded at 2026-09-25T13:21Z-13:25Z, at least 40 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:20:13Z and again at 2026-09-25T14:53:26Z (33 minutes later); identical 578,566 bytes and SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of http://transcript.duma.gov.ru/node/2506/, captured at 2022-06-15T16:12:27Z, before the 7 September 2026 cutoff; requested without an Accept-Encoding header (curl without --compressed, i.e. identity) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Raw Internet Archive capture 20220615161227 of the official page, made before the cutoff.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "HTML (579 KB) searched for 'Примаков', 'внес в Государственную', 'согласие Президенту', 'Результаты голосования'; the opening, the President's representative's presentation, the vote on the form of voting and the consent vote were read. Not read in full."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_duma_steno_primakov_submitted_19980911",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-04",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Евгений Максимович Примаков",
+      "printed_name": "Примакова Евгения Максимовича (genitive)",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "nomination_presented",
+      "attested_on": "1998-09-11",
+      "text": "A. A. Kotenkov states that under Article 83(a) and Article 111 of the Constitution, after the Duma's second rejection of the candidacy presented, the President has submitted the candidacy of Primakov Yevgeny Maksimovich for consent to his appointment as Chairman of the Government.",
+      "locator": "Sitting after the break, chaired by Г.Н. Селезнев: statement of Котенков А.А. before Primakov's address"
+    },
+    {
+      "claim_id": "ru_duma_steno_primakov_consent_vote_19980911",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-04",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Евгений Максимович Примаков",
+      "printed_name": "Примакова Евгения Максимовича (genitive)",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "parliamentary_vote",
+      "attested_on": "1998-09-11",
+      "text": "The Duma adopts an open vote (18:47:46: 374 for, 0 against, 2 abstentions); the question 'дать согласие Президенту на назначение Примакова Евгения Максимовича на должность Председателя Правительства' is then carried (18:48:33: 315 for, 63 against, 15 abstentions, 393 voting, 'Результат: принято').",
+      "locator": "'Результаты голосования (18 час. 47 мин. 46 сек.)' and '(18 час. 48 мин. 33 сек.)'"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

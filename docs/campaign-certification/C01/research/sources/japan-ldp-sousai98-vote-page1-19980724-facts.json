@@ -1,0 +1,55 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_ldp_sousai98_vote_page1_19980724",
+  "source_url": "https://web.archive.org/web/20010701164749id_/http://www.jimin.or.jp:80/jimin/jimin/sousai98/pics-41.html",
+  "original_url": "http://www.jimin.or.jp/jimin/jimin/sousai98/pics-41.html",
+  "archive_capture_utc": "2001-07-01T16:47:49Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 3262,
+  "source_response_sha256": "5e1bd2dbbd7a6d13cc13b013290f2c28b534e85c9ae441fd11cf53d1f4950b20",
+  "source_response_content_encoding": "identity",
+  "source_response_sha1_base32": "WXTGYJLFVYRWVQF3SLXNXHXPDYAFF7UT",
+  "source_character_encoding": "Shift_JIS (no charset is declared in the page; the bytes decode cleanly as Shift_JIS)",
+  "source_response_checked_in": false,
+  "fetch_recipe": "curl -s -o FILE 'https://web.archive.org/web/20010701164749id_/http://www.jimin.or.jp:80/jimin/jimin/sousai98/pics-41.html' with no Accept-Encoding request header and no automatic decoding; hash the bytes as received.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2001-07-01T16:47:49Z; that form replays the archived bytes unchanged. The archived original's Last-Modified header is Wed, 28 Feb 2001 12:20:12 GMT. Researcher (part B): Raw Internet Archive capture (id_ form) of the original response; the id_ form replays the archived bytes unchanged. Fetched with Accept-Encoding: identity (curl without --compressed); the archived response had no Content-Encoding, so the recorded bytes and SHA-256 are the plain HTML body. SHA-1 of the body (base32) WXTGYJLFVYRWVQF3SLXNXHXPDYAFF7UT; equals the CDX digest of this capture and of the 20010907192131 capture. Archived original Last-Modified: Wed, 28 Feb 2001 12:20:12 GMT. Downloaded on 25 September 2026 at 12:14:20Z and 12:52:14Z, each time with the same byte count and SHA-256 (downloads at least 30 minutes apart). The part B check downloaded it again at 13:15:31Z and 13:57:20Z on 25 September 2026, each time with the same byte count and SHA-256. Downloaded on 25 September 2026 (UTC) by this packet at 14:16:25Z and 14:52:53Z, 36 minutes apart, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A caption page of the party's 1998 election site, recorded as a raw Internet Archive capture (the party's 2001 web copy, Last-Modified 28 February 2001). The captions print month and day only; the year comes from the 平成１０年総裁選挙情報 index. Photographs are not reused.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded and read in full (headings, date lines, captions and body); no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_ldp98p1_joint_plenary_convened_19980724",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-05",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": null,
+      "role_title": "総裁 — party president",
+      "event_kind": "joint_plenary_meeting_held",
+      "attested_on": "1998-07-24",
+      "text": "The party's page for the 18th presidential election's voting and count (page 1 of 3) captions the venue at 12:31 before the vote and at 13:59 before the joint plenary meeting (両院議員総会) began, on ７月２４日.",
+      "locator": {
+        "section": "photo captions ■７月２４日午後１２時３１分 and ■７月２４日午後１時５９分"
+      }
+    },
+    {
+      "claim_id": "jp_ldp98p1_hashimoto_greets_joint_plenary_19980724",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-04",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "橋本龍太郎",
+      "role_title": "総裁 — party president",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "1998-07-24",
+      "text": "The same page captions 橋本総裁 greeting the joint plenary meeting at 14:01 on ７月２４日 (両院議員総会における橋本総裁挨拶), before the vote.",
+      "locator": {
+        "section": "photo caption ■７月２４日午後２時１分"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations of the LDP president (総裁) for CLAUDE-C01-18 only, 1990-2009 (stacked on CLAUDE-C01-13). Party elections and selections (member and Diet-member votes, joint plenary meetings of party Diet members), notices, candidacies, declarations and reports of results, statements of assumption, in-office attestations, announced and prospective resignations, predecessor references and retrospective records stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this office (a notice, a filing, a schedule, an unnamed caption or a meeting). The prime-ministership (jp_pm) is excluded: no row feeds it, and no jp_pm claim feeds this office."
+}

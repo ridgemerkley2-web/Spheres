@@ -1,0 +1,68 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_portal_dutra_elected_20091125",
+  "source_url": "https://web.archive.org/web/20091129120106id_/http://www.pt.org.br:80/portalpt/noticias/institucional-3/dutra-e-eleito-presidente-do-pt;-quase-meio-milhao-de-petistas-participaram-do-ped-1926.html",
+  "original_url": "http://www.pt.org.br/portalpt/noticias/institucional-3/dutra-e-eleito-presidente-do-pt;-quase-meio-milhao-de-petistas-participaram-do-ped-1926.html",
+  "archive_capture_utc": "2009-11-29T12:01:06Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2009-11-25",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 21925,
+  "source_response_sha256": "59300480dc1a10c75baaaa0495f1b198f7d36bf36ab554f6aa830bd2ae144f27",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture (20091129120106). First downloaded 2026-09-25T13:11:14Z with a Python urllib client; downloaded again 2026-09-25T13:42:33Z with curl (no --compressed, Accept-Encoding: identity), more than 30 minutes later: 21925 bytes, SHA-256 identical. The independent check downloaded it again at 13:58-14:00 UTC and at 14:31-14:33 UTC on 25 September 2026 (at least 30 minutes after the earlier downloads) with Accept-Encoding: identity; every response had the same byte count and SHA-256 and no Content-Encoding.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2009-11-29T12:01:06Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Raw Internet Archive id_ replay of a fixed capture (20091129120106). First downloaded 2026-09-25T13:11:14Z with a Python urllib client; downloaded again 2026-09-25T13:42:33Z with curl (no --compressed, Accept-Encoding: identity), more than 30 minutes later: 21925 bytes, SHA-256 identical. The independent check downloaded it again at 13:58-14:00 UTC and at 14:31-14:33 UTC on 25 September 2026 (at least 30 minutes after the earlier downloads) with Accept-Encoding: identity; every response had the same byte count and SHA-256 and no Content-Encoding. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A Portal do PT item of 25 November 2009 (updated 28 November), captured 29 November 2009. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full in the original Portuguese; no images reviewed."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_ped2009_ballot_20091122",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-06",
+      "role_id": "br_pt_president",
+      "holder_name": null,
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "ped_ballot",
+      "attested_on": "2009-11-22",
+      "text": "The internal elections took place on Sunday 22 November 2009 in more than 4,000 municipalities.",
+      "locator": {
+        "section": "Item body, second paragraph"
+      }
+    },
+    {
+      "claim_id": "br_pt_dutra_declared_president_elect_20091125",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-06",
+      "role_id": "br_pt_president",
+      "holder_name": "José Eduardo Dutra",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "result_declaration",
+      "attested_on": "2009-11-25",
+      "text": "The PT portal says former senator José Eduardo Dutra was declared on Wednesday 25 November 2009 the president-elect of the PT.",
+      "locator": {
+        "section": "Item body, first paragraph ('foi declarado nesta quarta-feira (25) o presidente eleito do PT')"
+      }
+    },
+    {
+      "claim_id": "br_pt_dutra_posse_scheduled_february_2010_20091125",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-06",
+      "role_id": "br_pt_president",
+      "holder_name": "José Eduardo Dutra",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "assumption_scheduled",
+      "attested_on": "2009-11-25",
+      "text": "The same item says Dutra and the whole new leadership take office in February of the following year.",
+      "locator": {
+        "section": "Item body, first paragraph ('Ele e toda nova direção tomam posse em fevereiro do ano que vem')"
+      }
+    }
+  ]
+}

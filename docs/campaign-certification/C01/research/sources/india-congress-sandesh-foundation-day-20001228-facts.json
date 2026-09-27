@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_congress_sandesh_jan2001_foundation_day_resolution",
+  "source_url": "https://web.archive.org/web/20030708083003id_/http://www.congresssandesh.com:80/jan-2001/resolution.html",
+  "original_url": "http://www.congresssandesh.com/jan-2001/resolution.html",
+  "archive_capture_utc": "2003-07-08T08:30:03Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 8968,
+  "source_response_sha256": "52a6a7c4d0ae776bb88786fa20278eaf2347591b6ab7a4393676cdab79560b06",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2003-07-08T08:30:03Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl without --compressed, request header Accept-Encoding: identity). The researcher downloaded it at 12:20Z and again at 13:13Z on 25 September 2026, the Part B check downloaded it again between 13:28Z and 13:40Z, and this packet downloaded it again at 14:58Z, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party's Foundation Day resolution as printed in the party journal, recorded as a raw Internet Archive capture of 8 July 2003.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full."
+  },
+  "rows": [
+    {
+      "claim_id": "in_foundation_day_resolution_sonia_re_elected_20001228",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-05",
+      "role_id": "in_inc_president",
+      "holder_name": "Sonia Gandhi",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2000-12-28",
+      "text": "The INC's resolution on its 116th Foundation Day, 28 December 2000, says the party had invited Smt. Sonia Gandhi to head the Congress family, that she had been 're-elected ... as the Congress President by a near unanimous majority', and that the INC, 'under the dynamic leadership of Smt. Sonia Gandhi', renews its pledge.",
+      "locator": {
+        "section": "resolution, paragraphs 9-10"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-20 only: the role in_inc_president (President of the Indian National Congress) on the Indian National Congress recognition observation in_eci_20240323_np_05. Working Committee decisions, AICC sessions and ratifications, the Central Election Authority's schedules, notifications and declarations, certificates, handovers, resignations, withdrawals, farewells, interim arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, the Leader of the Opposition, the Congress Parliamentary Party and every other office are excluded."
+}

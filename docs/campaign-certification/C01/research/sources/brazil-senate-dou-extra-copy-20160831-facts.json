@@ -1,0 +1,99 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_senado_den1_2016_dou_20160831_extra",
+  "source_url": "https://legis.senado.leg.br/sdleg-getter/documento?dm=4654098",
+  "accessed_date": "2026-09-23",
+  "published_date": "2016-08-31",
+  "access_method": "downloaded_official_pdf_scan_rendered",
+  "source_response_bytes": 192778,
+  "source_response_sha256": "0096f80f529fbb4906a36ad5736ed569fce02663be7c421094a30a2815a24dd8",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file from the Senate's document service, a static response. The researcher downloaded it twice on 23 September 2026 with identical bytes, and the independent check downloaded it again the same day with the same byte count and SHA-256. The kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Senate's filed copy (case-record document 10 of 1 September 2016) of the Diário Oficial da União, Seção 1, Edição Extra nº 168-A of 31 August 2016, pages 1-2 (DOU verification codes 1000201608310001 and 1000201608310002). The Imprensa Nacional original was not fetched: its viewer address carries a CAPTCHA field.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "Both scanned pages rendered and read, with 3x crops of the middle column of page 1 and the first column of page 2."
+  },
+  "rows": [
+    {
+      "claim_id": "br_dou_publishes_resolution35_20160831",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-07",
+      "role_id": "br_president",
+      "holder_name": "Dilma Rousseff",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "removal_in_force",
+      "attested_on": "2016-08-31",
+      "text": "The extra edition of the DOU dated Wednesday 31 August 2016 publishes, under 'Atos do Senado Federal', Resolution No. 35 of 2016 imposing on Dilma Vana Rousseff the loss of the office of President, with the sentence.",
+      "locator": {
+        "pdf_page": 1,
+        "section": "masthead and first column 'Atos do Senado Federal'"
+      }
+    },
+    {
+      "claim_id": "br_sentence_records_suspension_20160512",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-07",
+      "role_id": "br_president",
+      "holder_name": "Dilma Rousseff",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "suspension_recorded_retrospective",
+      "attested_on": "2016-05-12",
+      "text": "The sentence's report states that on 12 May the accused was summoned, suspended from her functions under art. 86, §1, II of the Constitution, and the process formally instituted; it also records the Chamber's authorization by 367 votes at the session of 17 April 2016 and the Senate's admission at the session of 11 May by 55 votes.",
+      "locator": {
+        "pdf_page": 1,
+        "section": "Sentença, I - Relatório, middle column, paragraph beginning 'No dia 12 de maio, a acusada foi citada'"
+      }
+    },
+    {
+      "claim_id": "br_sentence_loss_of_office_61_20_20160831",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-07",
+      "role_id": "br_president",
+      "holder_name": "Dilma Rousseff",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "senate_judgment",
+      "attested_on": "2016-08-31",
+      "text": "The sentence, dated Brasília 31 August 2016 and signed by Minister Ricardo Lewandowski as President of the Supreme Federal Court and of the impeachment process, records that the Senate found the accused guilty and she was condemned to the loss of the office of President of the Federative Republic of Brazil by 61 votes, with 20 against and no abstentions, and that the decision formally closes the process instituted in the Senate on 12 May 2016.",
+      "locator": {
+        "pdf_page": 2,
+        "section": "first column, paragraphs 1, 3-5 and signature"
+      }
+    },
+    {
+      "claim_id": "br_sentence_disqualification_not_imposed_20160831",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-07",
+      "role_id": "br_president",
+      "holder_name": "Dilma Rousseff",
+      "role_title": "President of the Federative Republic of Brazil",
+      "event_kind": "disqualification_not_imposed",
+      "attested_on": "2016-08-31",
+      "text": "In a subsequent vote the Senate set aside the penalty of disqualification from public office because the two-thirds majority was not reached: 42 in favour of applying it, 36 against, 3 abstentions.",
+      "locator": {
+        "pdf_page": 2,
+        "section": "first column, paragraph beginning 'Em votação subsequente'"
+      }
+    },
+    {
+      "claim_id": "br_dou_masthead_temer_vp_in_exercise_20160831",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-PRES-07",
+      "role_id": "br_president",
+      "holder_name": "Michel Temer",
+      "role_title": "Vice-President of the Republic in exercise of the office of President",
+      "event_kind": "vice_president_exercising_office",
+      "attested_on": "2016-08-31",
+      "text": "The masthead of this DOU extra edition of 31 August 2016 names Michel Miguel Elias Temer Lulia as 'Vice-Presidente da República no Exercício do Cargo de Presidente da República'; the sentence orders communications to the President of the Republic in exercise.",
+      "locator": {
+        "pdf_page": 2,
+        "section": "first column, 'PRESIDÊNCIA DA REPÚBLICA - CASA CIVIL - IMPRENSA NACIONAL' block; sentence last paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-10 only. Election, diplomação, oath, posse, termo de posse, sash ceremony, authorization, summons, suspension, the Vice-President's exercise, resignation, vacancy, judgment, removal and disqualification stay separate rows; holder boundaries are decided in the packet, not by any row. Vice-presidents, ministers and party offices are excluded except the Vice-President's exercise of the office, recorded as rows only."
+}

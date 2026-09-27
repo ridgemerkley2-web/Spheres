@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_presidency_profile_motlanthe",
+  "source_url": "https://web.archive.org/web/20250814020016id_/https://www.thepresidency.gov.za/former-president-kgalema-motlanthe",
+  "original_url": "https://www.thepresidency.gov.za/former-president-kgalema-motlanthe",
+  "archive_capture_utc": "2025-08-14T02:00:16Z",
+  "accessed_date": "2026-09-22",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 65736,
+  "source_response_sha256": "e0c27b1b600bec2c0052dd14d940a67c43ace7441cbfcc0253257b6bfa90edde",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2025-08-14T02:00:16Z; that form replays the archived bytes unchanged and is used in place of the live page. The researcher downloaded it on 22 September 2026 and the independent check downloaded it again the same day; both copies matched the byte count and SHA-256 recorded here, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Retrospective official biography (captured August 2025; the live Drupal page is dynamic).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_motlanthe_sworn_in_president_20080925",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-05",
+      "role_id": "za_president_election",
+      "holder_name": "Kgalema Motlanthe",
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "oath_of_office",
+      "attested_on": "2008-09-25",
+      "text": "The Presidency's profile says Motlanthe was appointed Minister in the Presidency in July 2008 and 'on 25 September 2008 was sworn in as South Africa's third democratically elected President'.",
+      "locator": {
+        "section": "profile biography, final paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-09 only. Election, oath, inauguration, resignation announcement, resignation effect and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy presidents, ministers and party offices are excluded."
+}

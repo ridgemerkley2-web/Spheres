@@ -1,0 +1,85 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_sten_vs_bulletin1_19910826",
+  "source_url": "https://sten.vs.sssr.su/12/6/1.pdf",
+  "source_title": "Верховный Совет СССР, внеочередная сессия: Бюллетень No. 1 совместного заседания Совета Союза и Совета Национальностей, 26 августа 1991 г. (stenographic bulletin, morning sitting), scanned facsimile",
+  "accessed_date": "2026-09-26",
+  "published_date": null,
+  "document_date": "1991-08-26",
+  "access_method": "scanned_facsimile_downloaded_over_https",
+  "source_response_url": "https://sten.vs.sssr.su/12/6/1.pdf",
+  "source_response_bytes": 2252696,
+  "source_response_sha256": "849b9dae8c5d3580df911819ff466f9e6997e3119c326b1cf638b6e86239776a",
+  "source_response_encoding": "application/pdf (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier (part C): downloaded at 2026-09-26T01:59:23Z, 02:12:18Z, 02:53:16Z and 02:53:46Z (the last with a cache-busting '_cb=' query); identical bytes and SHA-256. Independent check (part C): re-downloaded at 02:57:48Z (cache-busting '_chk=' query) and 03:24:16Z; identical. This packet: re-downloaded at 2026-09-26T03:53:47Z and again at 2026-09-26T04:27:04Z (33 minutes later); identical 2,252,696 bytes and SHA-256.",
+  "provenance_note": "Static PDF file served by the non-official SSSR.SU project (Last-Modified Thu, 17 Mar 2016 04:33:11 GMT), requested without Accept-Encoding and served without Content-Encoding; cache-busting requests returned identical bytes, so it is a stored file, not one generated per request. No Internet Archive capture of it was found. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The official stenographic bulletin of the morning sitting of 26 August 1991, a page-image scan with an OCR layer, served as a static file by the non-official SSSR.SU project; no Internet Archive capture of it was found.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      3,
+      24,
+      25
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "PDF pages 3 and 25 rendered and read from the page images by the dossier; this packet read pp. 3 and 24-25 from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "su_sten_laptev_presiding_19910826",
+      "observation_id": "su_supreme_soviet",
+      "review_observation": "SU-GOV-08",
+      "role_id": "su_supreme_soviet_chair",
+      "holder_name": null,
+      "persons_named": [
+        "И. Д. Лаптев (Председатель Совета Союза)"
+      ],
+      "role_title": "Chairman of the USSR Supreme Soviet",
+      "event_kind": "presiding_officer_attestation",
+      "attested_on": "1991-08-26",
+      "text": "Morning sitting of 26 August 1991 (hall of the chambers of the Supreme Soviet in the Kremlin, 10:00): 'Председательствует Председатель Совета Союза Верховного Совета СССР И. Д. Лаптев.'",
+      "locator": "Printed p. 3 (PDF p. 3), sitting heading"
+    },
+    {
+      "claim_id": "su_sten_lukyanov_statement_19910824",
+      "observation_id": "su_supreme_soviet",
+      "review_observation": "SU-GOV-08",
+      "role_id": "su_supreme_soviet_chair",
+      "holder_name": "Анатолий Иванович Лукьянов",
+      "printed_name": "А. Лукьянов (initial and surname only)",
+      "role_title": "Chairman of the USSR Supreme Soviet",
+      "event_kind": "resignation_statement",
+      "attested_on": "1991-08-24",
+      "text": "The presiding officer reads a statement: '«В Верховный Совет СССР. В связи с обвинениями, которые выдвигаются против меня и которые я решительно отклоняю, считаю для себя невозможным оставаться в настоящее время на посту Председателя Верховного Совета СССР. Прошу, чтобы эти обвинения были тщательно и непредвзято расследованы, а мое человеческое достоинство законно защищено.»', signed 'А. Лукьянов, 24.08.1991 года'.",
+      "locator": "Printed p. 25 (PDF p. 25), presiding officer's reading"
+    },
+    {
+      "claim_id": "su_sten_request_to_president_reference_19910822",
+      "observation_id": "su_supreme_soviet",
+      "review_observation": "SU-GOV-08",
+      "role_id": "su_supreme_soviet_chair",
+      "holder_name": "Анатолий Иванович Лукьянов",
+      "printed_name": "А. Лукьянов (initial and surname only; the signatory)",
+      "role_title": "Chairman of the USSR Supreme Soviet",
+      "event_kind": "request_reference",
+      "attested_on": "1991-08-22",
+      "text": "The same statement adds: 'Аналогичная просьба направлена Президенту Союза ССР 22 августа 1991 года.'",
+      "locator": "Printed p. 25 (PDF p. 25)"
+    },
+    {
+      "claim_id": "su_sten_statement_read_out_19910826",
+      "observation_id": "su_supreme_soviet",
+      "review_observation": "SU-GOV-08",
+      "role_id": "su_supreme_soviet_chair",
+      "holder_name": "Анатолий Иванович Лукьянов",
+      "printed_name": "А. И. Лукьянова (genitive; initials and surname only)",
+      "role_title": "Chairman of the USSR Supreme Soviet",
+      "event_kind": "resignation_statement_read_out",
+      "attested_on": "1991-08-26",
+      "text": "In the agenda debate of the morning sitting, after deputy 'Сулакшин С. С.' asks that the question of stripping 'А. И. Лукьянова' of his deputy's immunity be put on the agenda, the presiding officer says he must read 'заявление Председателя Верховного Совета СССР, хотя я собирался это сделать при рассмотрении пункта 3', and reads it.",
+      "locator": "Printed pp. 24-25 (PDF pp. 24-25)"
+    }
+  ],
+  "bounded_scope": "Union head-of-government and Supreme Soviet chair observations for CLAUDE-C01-26 only. Election or approval, appointment, release decree, parliamentary consent, dismissal, no confidence, resignation statement, suspension, consent to arrest, release, acting or interim service, presiding arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The CLAUDE-C01-05 su_president holders and russia.json are outside this extract."
+}

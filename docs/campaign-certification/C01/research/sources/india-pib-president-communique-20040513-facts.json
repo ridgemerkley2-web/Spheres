@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_pib_president_communique_vajpayee_20040513",
+  "source_url": "https://web.archive.org/web/20140328131705id_/http://pib.nic.in/newsite/erelease.aspx?relid=1704",
+  "original_url": "http://pib.nic.in/newsite/erelease.aspx?relid=1704",
+  "archive_capture_utc": "2014-03-28T13:17:05Z",
+  "accessed_date": "2026-09-24",
+  "published_date": "2004-05-13",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 45914,
+  "source_response_sha256": "23af7200f26d3284a04dec252cf9f58683bdbb8b5c1887355a66b7e0c002d37d",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2014-03-28T13:17:05Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The check downloaded it at 12:39:46Z, 12:59:52Z and 13:27:36Z on 24 September 2026 with the same byte count and SHA-256 (48 minutes from first to last); the stored copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "PIB relid 1704 in PIB's newer 'newsite' form, captured by the Internet Archive on 28 March 2014 (the page's sidebar carries unrelated items of that week). The research recorded this relid as uncaptured; the Part C check found this capture. Corroboration only.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_pib_releases_president_communique_20040513",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-07",
+      "role_id": "in_pm",
+      "holder_name": "Atal Bihari Vajpayee",
+      "role_title": "Prime Minister of India",
+      "event_kind": "communique_released",
+      "attested_on": "2004-05-13",
+      "text": "PIB's archive carries the President's Secretariat press communique of 13 May 2004, timed 19:30 IST, in the same words as the President's website communique id 229: the Prime Minister, Shri Atal Bihari Vajpayee, has tendered his resignation and that of his colleagues, and the President has accepted it and requested him and his colleagues to continue in office till alternative arrangements are made.",
+      "locator": {
+        "item": "President's Secretariat, 13-May, 2004 19:30 IST, Press communique (Release ID :1704)"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

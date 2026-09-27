@@ -1,0 +1,115 @@
+[
+  {
+    "command": [
+      "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/campaign_research.py"
+    ],
+    "exit_code": 0,
+    "log": "merged-1.log",
+    "sha256": "ec0919153d55418f9032de6ad5c36cdc4db71e609665a495e841da0131497834"
+  },
+  {
+    "command": [
+      "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/avatars/campaign_research.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "log": "merged-2.log",
+    "sha256": "06864a3a07b2806cf125cf2c82df9b4eda434b57ceac43ba284ec818aa7d26bb"
+  },
+  {
+    "command": [
+      "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_*research*.py"
+    ],
+    "exit_code": 0,
+    "log": "merged-3.log",
+    "sha256": "4a4945a587569e0be39f2086ed33a6d44b148067b3b3990a4cd5eec910c627e0"
+  },
+  {
+    "command": [
+      "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_*c01*.py"
+    ],
+    "exit_code": 0,
+    "log": "merged-4.log",
+    "sha256": "a540d9d8cf74aac2b406bb693f4d39ba59b9a381bdd6810edeb2c6c1460944b8"
+  },
+  {
+    "command": [
+      "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_campaign*.py"
+    ],
+    "exit_code": 0,
+    "log": "merged-5.log",
+    "sha256": "307cc62a1903d5bec69e9d90941b56da84ae0ca39d8aabdaaee511ab98b93c02"
+  },
+  {
+    "command": [
+      "node",
+      "--test",
+      "tools/ui/check_leadership_research_review.cjs"
+    ],
+    "exit_code": 0,
+    "log": "merged-6.log",
+    "sha256": "0a139b416dea775f5851a8b6117159e35d56dbf5ce217b6b679b54fbbb911446"
+  },
+  {
+    "command": [
+      "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "tools/planning/workboard.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "log": "merged-7.log",
+    "sha256": "6cc71a3c645534f8525319dc992aaa9aafa512dab30b47fc6c1c7a998c1f30b6"
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--check",
+      "HEAD"
+    ],
+    "exit_code": 0,
+    "log": "merged-8.log",
+    "sha256": "b6d4a28d64613f31e882144ad8ee3da93438def55c37a83cc1fecbe18eb3906c"
+  }
+]

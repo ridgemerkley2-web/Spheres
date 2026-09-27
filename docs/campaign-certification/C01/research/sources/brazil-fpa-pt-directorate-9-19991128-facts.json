@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_fpa_dn9_composition",
+  "source_url": "https://fpabramo.org.br/wp-content/uploads/2010/02/9diretorionacional.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_original_born_digital_pdf_text_layer_read",
+  "source_response_bytes": 21991,
+  "source_response_sha256": "a2f0a3ebb75531f8c93b7f9974419099d762143aeeffa6a61d3a335d7958eb23",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded (a cache-busting query string may be added to reach the origin and is not part of the recorded URL); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "First downloaded 2026-09-25T12:02Z (Cloudflare HIT); re-downloaded 2026-09-25T12:39Z (Cloudflare MISS) with a cache-busting query string (origin fetch) and got the same byte count and SHA-256. The independent check downloaded it again between 13:10 and 13:11 UTC on 25 September 2026, 30 to 68 minutes after the first download (cache-busted for the FPA and SIAC files), with the same byte count and SHA-256.",
+  "provenance_note": "Original born-digital PDF served by the party foundation (Cloudflare in front of the origin). First downloaded 2026-09-25T12:02Z (Cloudflare HIT); re-downloaded 2026-09-25T12:39Z (Cloudflare MISS) with a cache-busting query string (origin fetch) and got the same byte count and SHA-256. The independent check downloaded it again between 13:10 and 13:11 UTC on 25 September 2026, 30 to 68 minutes after the first download (cache-busted for the FPA and SIAC files), with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A later party compilation of the Diretório Nacional and Comissão Executiva Nacional compositions (PT and Fundação Perseu Abramo, digital edition of the party resolutions; Last-Modified 5 April 2017), served from fpabramo.org.br. Retrospective: its rows are claims, never boundaries; a meeting printed as a span of days carries no structured date. The Diretório Nacional and executive committee of the 1999/2001 term.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Born-digital PDF from the party compilation of directorate compositions; its text layer read in full (no scan). Each page is headed Partido dos Trabalhadores (www.pt.org.br) / Fundação Perseu Abramo. Pages 1-3 read."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_fpa_cen_1999_2001_presidente_dirceu",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-03",
+      "role_id": "br_pt_president",
+      "holder_name": "José Dirceu",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "retrospective_composition_list",
+      "attested_on": null,
+      "text": "The list 'COMISSÃO EXECUTIVA NACIONAL DO PT (1999/2001)' begins 'Presidente: José Dirceu'; the page gives no meeting or election date.",
+      "locator": {
+        "pdf_page": 3,
+        "item": "'COMISSÃO EXECUTIVA NACIONAL DO PT (1999/2001) Presidente: José Dirceu'"
+      }
+    }
+  ]
+}

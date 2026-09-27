@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_hc_plenary_19940510_hata_speech",
+  "source_url": "https://kokkai.ndl.go.jp/api/speech?speechID=112915254X01519940510_002&recordPacking=json",
+  "diet_record": {
+    "issueID": "112915254X01519940510",
+    "house": "参議院",
+    "meeting": "本会議",
+    "issue": "第15号",
+    "sitting_date": "1994-05-10",
+    "response": "single speech",
+    "speech_ids": [
+      "112915254X01519940510_002"
+    ],
+    "record_page_url": "https://kokkai.ndl.go.jp/txt/112915254X01519940510"
+  },
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "official_diet_minutes_api_json_download_and_read",
+  "source_response_bytes": 24236,
+  "source_response_sha256": "a19d3c4ee6c602715e979792f4374871b77204601a29d5c4b482a94931a4ab2b",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "UTF-8 JSON (the Content-Type header declares application/json;charset=UTF-8)",
+  "source_response_checked_in": false,
+  "provenance_note": "Official response of the National Diet Library's Diet minutes API (JSON, UTF-8), served with Cache-Control: no-cache, no-store; the JSON carries no timestamp, session token or request echo, so it is not generated per request. Downloaded on 24 September 2026 by the researcher at 18:26:22Z and 19:00:23Z; by the independent check at 19:02:53Z (cache-busting query) and 19:32:20Z; by this packet at 20:19:02Z, 20:39:50Z (cache-busting query) and 20:53:49Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Diet minutes API's JSON for one speech record of the 参議院 本会議 第15号 (1994-05-10), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/112915254X01519940510. The printed page images, served through a JavaScript viewer, were not viewed.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Machine-readable minute text read in full for the cited speeches; the printed page images were not viewed."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_hata_states_appointed_pm_19940510",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-04",
+      "role_id": "jp_pm",
+      "holder_name": "羽田孜",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1994-05-10",
+      "text": "Opening his policy speech (speaker position 内閣総理大臣; printed speaker label 国務大臣), 羽田孜 says that he has been appointed Prime Minister (このたび、私は内閣総理大臣に任命されました).",
+      "locator": {
+        "speechID": "112915254X01519940510_002",
+        "speechOrder": 2,
+        "printed_page": 1
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-12 only. Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, a cabinet's formation, its resignation en masse, any continued performance of duties and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role in this packet: an unnamed statement, agenda or ceremony record, an acting prime minister, the House of Councillors' 1998 designee or the successor at the closing boundary. Ministers, deputy prime ministers and party offices are excluded."
+}

@@ -1,0 +1,57 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_gazette_ext_so2318_assumption_20170725",
+  "source_url": "https://egazette.gov.in/writereaddata/2017/177617.pdf",
+  "accessed_date": "2026-09-24",
+  "published_date": "2017-07-25",
+  "access_method": "official_egazette_pdf_download_text_layer_read_and_page_rendered",
+  "source_response_bytes": 1356195,
+  "source_response_sha256": "7e0a5bbe67e01961938e41d4a820715b598399816c0d91cc47534a3e844f487e",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host. Official eGazette stored file (Last-Modified Tue, 25 Jul 2017 16:58:40 GMT; fixed ETag; PDF creation date of the publication day, no per-request ID). Downloaded 2026-09-24T21:49:13Z and again with a cache-busting query at 2026-09-24T22:29:10Z with identical bytes and SHA-256. Its MD5 also equals the Internet Archive copy in item in.gazette.central.e.2017-07-25.177617. The independent check downloaded it again at 23:09Z on 24 September 2026 with a cache-busting query, with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official eGazette stored file (Gazette ID 177617); its MD5 equals the Internet Archive copy in item in.gazette.central.e.2017-07-25.177617. The corrigendum S.O. 2487(E) of 4 August 2017 (in_gazette_ext_so2487_corrigendum_20170804) modifies the name printed in this resolution.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      4,
+      5,
+      6,
+      7
+    ],
+    "method": "PDF page 4 (English Resolution and Proclamation) rendered and read; pages 1, 5-7 read from the text layer (Hindi text and distribution lists)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_kovind_takes_seat_as_president_20170725",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-07",
+      "role_id": "in_president",
+      "holder_name": "Ram Nath Kovind",
+      "role_title": "President of India",
+      "event_kind": "assumption_statement",
+      "attested_on": "2017-07-25",
+      "text": "Ministry of Home Affairs Resolution S.O. 2318(E), New Delhi, 25 July 2017: Shri Ramnath Kovind, having been elected President of the Republic of India, takes his seat as President of India under a salute of 21 guns.",
+      "locator": {
+        "pdf_page": 4,
+        "item": "RESOLUTION, S.O. 2318(E)"
+      }
+    },
+    {
+      "claim_id": "in_kovind_entered_upon_office_proclaimed_20170725",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-07",
+      "role_id": "in_president",
+      "holder_name": "Ram Nath Kovind",
+      "role_title": "President of India",
+      "event_kind": "assumption_proclaimed",
+      "attested_on": "2017-07-25",
+      "text": "The Proclamation ordered by the same Resolution notifies that Shri Ramnath Kovind, having been elected President of India, has entered upon the said Office, and orders it sent to the principal military stations, Indian missions abroad, 64 ministries and bodies, and the State and Union territory governments.",
+      "locator": {
+        "pdf_page": 4,
+        "item": "PROCLAMATION and ORDERS (pp. 4-7)"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-15 only. The Election Commission's notices, the Returning Officer's declaration of the result and its Gazette publication, the programme for the ceremony of assumption of office, the oath administered by the Chief Justice, the Ministry of Home Affairs resolution and proclamation of the assumption of office, the holder's address on assumption, prospective term-expiry notices, farewells, stylings of a predecessor as former President and retrospective statements stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the Vice-President (including any service as acting President), ministers and party offices are excluded."
+}

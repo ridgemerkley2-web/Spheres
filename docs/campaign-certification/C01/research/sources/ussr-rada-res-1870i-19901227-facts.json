@@ -1,0 +1,42 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_rada_res_1870i_19901227",
+  "source_url": "https://web.archive.org/web/20250531195947id_/https://zakon.rada.gov.ua/laws/show/v1870400-90/print",
+  "original_url": "https://zakon.rada.gov.ua/laws/show/v1870400-90/print",
+  "archive_capture_utc": "2025-05-31T19:59:47Z",
+  "source_title": "Resolution of the USSR Congress of People's Deputies No. 1870-I of 27 December 1990 bringing into force the USSR Law on the nationwide vote (referendum of the USSR) (Ukrainian-language text, print view), Internet Archive capture 20250531195947",
+  "accessed_date": "2026-09-26",
+  "published_date": null,
+  "document_date": "1990-12-27",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20250531195947id_/https://zakon.rada.gov.ua/laws/show/v1870400-90/print",
+  "source_response_bytes": 11254,
+  "source_response_sha256": "a78b05aef067e23e578ce9663505461d33457e4fcde71d9fb971cda26ee6dc62",
+  "source_response_encoding": "text/html (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "stability_check": "Independent check (part A): downloaded at 2026-09-26T03:38:36Z and 03:40:30Z; identical (X-Page-Cache: MISS). This packet: re-downloaded at 2026-09-26T03:53:59Z and again at 2026-09-26T04:27:18Z (33 minutes later); identical 11,254 bytes and SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of https://zakon.rada.gov.ua/laws/show/v1870400-90/print, captured at 2025-05-31T19:59:47Z, before the 7 September 2026 cutoff; requested without an Accept-Encoding header (curl without --compressed, i.e. identity) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed (a request accepting gzip is served gzip-encoded, with different bytes). The live database page embeds a per-request statistics token and an update time, so it changes on every request and is not recorded. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The official Ukrainian database's Ukrainian-language text, read from a raw capture of 31 May 2025 from the same crawl as the Law 1861-I source; the live page embeds a per-request token. Found by the independent check of part A as a primary replacement for Rosarkhiv exhibit 09-32, whose 24 December 1990 attestation rests on a caption only and is now a lead.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Print-view HTML read in full in Ukrainian by the independent check of part A and by this packet."
+  },
+  "rows": [
+    {
+      "claim_id": "su_rada_1870i_lukyanov_signs_as_chairman_19901227",
+      "observation_id": "su_supreme_soviet",
+      "review_observation": "SU-GOV-02",
+      "role_id": "su_supreme_soviet_chair",
+      "holder_name": "Анатолий Иванович Лукьянов",
+      "printed_name": "А.ЛУК'ЯНОВ (initial and surname only; Ukrainian text)",
+      "role_title": "Chairman of the USSR Supreme Soviet",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1990-12-27",
+      "text": "Resolution No. 1870-I of the Congress of People's Deputies of the USSR puts into force from its adoption the USSR Law 'Про всенародне голосування (референдум СРСР)'; it is signed 'Голова Верховної Ради СРСР А.ЛУК'ЯНОВ' (initial and surname only, in the Ukrainian text), 'Москва, Кремль. 27 грудня 1990 р. N 1870-I'.",
+      "locator": "Operative sentence; signature, place, date and number block"
+    }
+  ],
+  "bounded_scope": "Union head-of-government and Supreme Soviet chair observations for CLAUDE-C01-26 only. Election or approval, appointment, release decree, parliamentary consent, dismissal, no confidence, resignation statement, suspension, consent to arrest, release, acting or interim service, presiding arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The CLAUDE-C01-05 su_president holders and russia.json are outside this extract."
+}

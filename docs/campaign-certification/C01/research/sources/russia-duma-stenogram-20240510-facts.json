@@ -1,0 +1,55 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_duma_steno_20240510",
+  "source_url": "https://web.archive.org/web/20240520233218id_/http://transcript.duma.gov.ru/api_search/?kodz=2125&kodvopr=2",
+  "original_url": "http://transcript.duma.gov.ru/api_search/?kodz=2125&kodvopr=2",
+  "archive_capture_utc": "2024-05-20T23:32:18Z",
+  "source_title": "State Duma: official stenogram fragment of sitting No. 210 of 10 May 2024, question 2 (draft resolution No. 622328-8 on approving Mishustin Mikhail Vladimirovich as Chairman of the Government), Internet Archive capture 20240520233218",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "document_date": "2024-05-10",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20240520233218id_/http://transcript.duma.gov.ru/api_search/?kodz=2125&kodvopr=2",
+  "source_response_bytes": 261112,
+  "source_response_sha256": "dfdff77f177e510a26a07d89535bd9f555de2dfb8644eb2d8fb5e57006f72e3e",
+  "source_response_encoding": "UTF-8 (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "stability_check": "Found by the independent check: identical bytes and SHA-256 at 2026-09-25T14:06:39Z (HTTPS). This packet: re-downloaded at 2026-09-25T14:25:24Z and again at 2026-09-25T14:59:10Z (33 minutes later); identical 261,112 bytes and SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of http://transcript.duma.gov.ru/api_search/?kodz=2125&kodvopr=2, captured at 2024-05-20T23:32:18Z, before the 7 September 2026 cutoff; requested without an Accept-Encoding header (curl without --compressed, i.e. identity) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Raw Internet Archive capture 20240520233218 of the official page, made before the cutoff. A single sitting-and-question fragment of the transcripts search service (sitting code 2125, question 2), frozen in the capture; not a growing search. A primary record found by the independent check.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "HTML fragment (lines 116-2121 of 2210) searched for 'внёс', 'Результаты голосования' and 'Мишустин'; the opening, the statement of the President's representative Г. В. Минх, the procedure vote and the approval vote were read. Not read in full."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_duma_steno_mishustin_submitted_20240509",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-10",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Михаил Владимирович Мишустин",
+      "printed_name": "Мишустина Михаила Владимировича (genitive)",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "nomination",
+      "attested_on": "2024-05-09",
+      "text": "At sitting No. 210 of 10 May 2024, on draft resolution No. 622328-8 'Об утверждении Мишустина Михаила Владимировича Председателем Правительства Российской Федерации', Г. В. Минх, the President's plenipotentiary representative in the State Duma, states that the President '9 мая текущего года внёс в Государственную Думу на утверждение кандидатуру Мишустина Михаила Владимировича' for appointment as Chairman of the Government. The fragment opens with the words 'наш президент Владимир Владимирович Путин внёс кандидатуру для утверждения Государственной Думой - Мишустина Михаила Владимировича' (the speaker is not labelled in the fragment).",
+      "locator": "Stenogram fragment of 10.05.2024, question 2: opening lines; statement of МИНХ Г. В."
+    },
+    {
+      "claim_id": "ru_duma_steno_mishustin_approval_vote_20240510",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-10",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Михаил Владимирович Мишустин",
+      "printed_name": "Мишустина Михаила Владимировича (genitive)",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "parliamentary_vote",
+      "attested_on": "2024-05-10",
+      "text": "The Duma first adopts the open form of voting (16:19:12: 431 for, 0 against, 0 abstaining, 'Результат: принято'); the draft resolution 'Об утверждении Мишустина Михаила Владимировича Председателем Правительства Российской Федерации' is then put to an open roll-call vote and carried (16:20:28: 375 for, 0 against, 57 abstaining, 432 voting, 'Результат: принято').",
+      "locator": "'РЕЗУЛЬТАТЫ ГОЛОСОВАНИЯ (16 час. 19 мин. 12 сек.)' and '(16 час. 20 мин. 28 сек.)'"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

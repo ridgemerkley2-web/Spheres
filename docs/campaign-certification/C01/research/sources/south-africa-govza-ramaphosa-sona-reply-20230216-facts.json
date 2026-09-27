@@ -1,0 +1,55 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_govza_ramaphosa_sona_reply_20230216",
+  "source_url": "https://web.archive.org/web/20260621183313id_/https://www.gov.za/news/speeches/president-cyril-ramaphosa-reply-debate-state-nation-address-16-feb-2023",
+  "original_url": "https://www.gov.za/news/speeches/president-cyril-ramaphosa-reply-debate-state-nation-address-16-feb-2023",
+  "archive_capture_utc": "2026-06-21T18:33:13Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2023-02-16",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 68292,
+  "source_response_sha256": "ce65860b2115b5bf9a844b91739890a1cf645e5b68ee4dda70e2011433aa314e",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header, or with Accept-Encoding: identity, and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that accepts gzip can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "First downloaded on 2026-09-25 at 12:33Z by the researcher and downloaded again at 13:06Z; the independent check downloaded it again at 13:14-13:18Z with Accept-Encoding: identity. Every download had the same byte count and SHA-256. Downloaded again for this packet at 2026-09-25T15:31Z (integration pass) with the same byte count and SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2026-06-21T18:33:13Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of the live page. Fetched without Accept-Encoding (curl without --compressed), the archive serves it uncompressed: the recorded byte count and SHA-256 are those of the uncompressed body. The response identity was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw capture (21 June 2026) of the gov.za copy of the President's speech (issuer The Presidency). Like other gov.za captures made in 2026, the page carries a site-wide keywords tag naming the 2026 office-holders; that template text is not an attestation and is not used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_mabuza_styled_dp_sona_reply_20230216",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-DP-09",
+      "role_id": "za_deputy_president",
+      "holder_name": "David Mabuza",
+      "role_title": "Deputy President of the Republic of South Africa",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2023-02-16",
+      "text": "The President's reply to the State of the Nation debate, dated 16 February 2023 and delivered at the Cape Town City Hall, addresses 'Deputy President David Mabuza' in its salutation.",
+      "locator": {
+        "section": "Salutation at the head of the reply",
+        "page_date": "16 Feb 2023"
+      }
+    },
+    {
+      "claim_id": "za_mabuza_step_down_request_sona_reply_20230216",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-DP-09",
+      "role_id": "za_deputy_president",
+      "holder_name": "David Mabuza",
+      "role_title": "Deputy President of the Republic of South Africa",
+      "event_kind": "step_down_request_announced",
+      "attested_on": "2023-02-16",
+      "text": "Closing the reply, the President thanks Deputy President David Mabuza for five years of support and says that Deputy President Mabuza has indicated his wish to step down from his position, a request that is being attended to.",
+      "locator": {
+        "section": "Concluding paragraphs, 'As I conclude, I wish to extend my appreciation to Deputy President David Mabuza'"
+      }
+    }
+  ],
+  "bounded_scope": "Deputy President observations for CLAUDE-C01-21 only (role za_deputy_president in za_presidency). Announcements, stated intentions, appointments and their notices, oaths and their scheduling, stated assumptions, releases, resignations and their stated effect, Assembly-seat events and in-office attestations stay separate rows; holder observations and any start or end are decided in the packet, not by any row. The President's roles (za_president_election, za_state_president) and the ANC's party office are excluded and no row feeds them."
+}

@@ -1,0 +1,54 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_portal_berzoini_press_conference_ped2009_20091124",
+  "source_url": "https://web.archive.org/web/20091128101545id_/http://www.pt.org.br:80/portalpt/noticias/institucional-3/berzoini-concede-coletiva-nesta-quarta-feira-para-falar-sobre-resultados-do-ped-1925.html",
+  "original_url": "http://www.pt.org.br/portalpt/noticias/institucional-3/berzoini-concede-coletiva-nesta-quarta-feira-para-falar-sobre-resultados-do-ped-1925.html",
+  "archive_capture_utc": "2009-11-28T10:15:45Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2009-11-24",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 21947,
+  "source_response_sha256": "fbc58c10646faba58fca5d75ed3b28c6ee37cbb83b771bc1b082547e83deb270",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture (20091128101545). First downloaded 2026-09-25T13:25:21Z with a Python urllib client; downloaded again 2026-09-25T13:56:49Z with curl (no --compressed, Accept-Encoding: identity), more than 30 minutes later: 21947 bytes, SHA-256 identical. The independent check downloaded it again at 13:58-14:00 UTC and at 14:31-14:33 UTC on 25 September 2026 (at least 30 minutes after the earlier downloads) with Accept-Encoding: identity; every response had the same byte count and SHA-256 and no Content-Encoding.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2009-11-28T10:15:45Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Raw Internet Archive id_ replay of a fixed capture (20091128101545). First downloaded 2026-09-25T13:25:21Z with a Python urllib client; downloaded again 2026-09-25T13:56:49Z with curl (no --compressed, Accept-Encoding: identity), more than 30 minutes later: 21947 bytes, SHA-256 identical. The independent check downloaded it again at 13:58-14:00 UTC and at 14:31-14:33 UTC on 25 September 2026 (at least 30 minutes after the earlier downloads) with Accept-Encoding: identity; every response had the same byte count and SHA-256 and no Content-Encoding. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A Portal do PT item of 24 November 2009, captured 28 November 2009. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full in the original Portuguese; no images reviewed."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_berzoini_styled_national_president_20091124",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-06",
+      "role_id": "br_pt_president",
+      "holder_name": "Ricardo Berzoini",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2009-11-24",
+      "text": "A PT portal item of 24 November 2009 says the national president of the PT, Ricardo Berzoini, would give a press conference at 15h on Wednesday 25 November about the result of the PED 2009 held the previous Sunday.",
+      "locator": {
+        "section": "Item body, first paragraph"
+      }
+    },
+    {
+      "claim_id": "br_pt_ped2009_partial_count_dutra_leads_20091124",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-06",
+      "role_id": "br_pt_president",
+      "holder_name": null,
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "ped_partial_result",
+      "attested_on": "2009-11-24",
+      "text": "The item reports that by 20h on 24 November 2009, with 65% of the votes counted, José Eduardo Dutra had 55.9% in the vote for national president, followed by José Eduardo Cardozo, Geraldo Magela, Iriny Lopes, Markus Sokol and Serge Goulart.",
+      "locator": {
+        "section": "Item body, count paragraph and list"
+      }
+    }
+  ]
+}

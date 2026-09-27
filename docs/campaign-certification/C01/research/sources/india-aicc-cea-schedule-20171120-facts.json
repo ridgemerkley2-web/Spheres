@@ -1,0 +1,38 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_cea_schedule_congress_president_election_20171120",
+  "source_url": "https://res.cloudinary.com/dkplc2mbj/image/upload/v1605788584/Schedule_of_election0001_8b1908f239.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": "2017-11-20",
+  "access_method": "party_stored_file_download_and_pages_rendered",
+  "source_response_bytes": 389967,
+  "source_response_sha256": "a132096435c0774be23decf1297cede662f9a012e4e2e50b430efebc171ec6ab",
+  "source_response_checked_in": false,
+  "provenance_note": "Stored file on the Indian National Congress's own media store (Cloudinary account dkplc2mbj): a versioned upload URL whose ETag equals the MD5 of the body, with Last-Modified at the upload time. Cloudinary's edge answers query-string variants from its cache, so a cache-busting download is not an origin test; stability rests on the ETag match and on downloads at least 30 minutes apart. The researcher downloaded it at 12:12Z and again at 13:16Z on 25 September 2026, the Part B check downloaded it again between 13:28Z and 13:40Z, and this packet downloaded it again at 14:59Z, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A stored file on the Indian National Congress's own media store, found through the INC press release 'Schedule for the election of Congress President'; the live inc.in release pages were used only as finding aids and were not hashed, because they are rebuilt per request. ETag equals the MD5 of the body; Last-Modified Thu, 19 Nov 2020 12:23:05 GMT. A scan uploaded in November 2020.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "Page 1 (a scan without a text layer) rendered and read in full; signature and handwritten date 20.11.17 seen."
+  },
+  "rows": [
+    {
+      "claim_id": "in_cwc_approves_congress_president_election_schedule_20171120",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-06",
+      "role_id": "in_inc_president",
+      "holder_name": null,
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "working_committee_schedule_approval",
+      "attested_on": "2017-11-20",
+      "text": "The Central Election Authority chairman's schedule, headed as approved by the Congress Working Committee on 20 November 2017, sets notification on 1 December, nominations until 4 December (3 p.m.), scrutiny and the list of valid nominations on 5 December, withdrawal until 11 December (3 p.m.), the final list of candidates on 11 December (4 p.m.), a poll if necessary on 16 December and counting and declaration of results on 19 December 2017.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "heading and table rows 1-8"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-20 only: the role in_inc_president (President of the Indian National Congress) on the Indian National Congress recognition observation in_eci_20240323_np_05. Working Committee decisions, AICC sessions and ratifications, the Central Election Authority's schedules, notifications and declarations, certificates, handovers, resignations, withdrawals, farewells, interim arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, the Leader of the Opposition, the Congress Parliamentary Party and every other office are excluded."
+}

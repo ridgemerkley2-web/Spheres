@@ -1,0 +1,752 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_ldp_history_presidents_list",
+  "source_url": "https://web.archive.org/web/20260509234631id_/https://www.jimin.jp/aboutus/history/",
+  "original_url": "https://www.jimin.jp/aboutus/history/",
+  "archive_capture_utc": "2026-05-09T23:46:31Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 159872,
+  "source_response_sha256": "dcbd1425ba61bbaf4601b52f68eadbddc0d3f413d15c68c355c3719cb5c1d7b4",
+  "source_response_content_encoding": "identity",
+  "source_response_sha1_base32": "WXZ3W6YQ6KUYRALTVYTT7GPRRELLPHTM",
+  "source_character_encoding": "UTF-8 (the page declares charset=UTF-8)",
+  "source_response_checked_in": false,
+  "fetch_recipe": "curl -s -o FILE 'https://web.archive.org/web/20260509234631id_/https://www.jimin.jp/aboutus/history/' with no Accept-Encoding request header and no automatic decoding; hash the bytes as received.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2026-05-09T23:46:31Z; that form replays the archived bytes unchanged. This capture is a Common Crawl record replayed by the Internet Archive (x-archive-src CC-MAIN-2026-21-1778213377201.76-0036/CC-MAIN-20260509221000-20260510011000-00734.warc.gz); the crawler stored the decoded body (x-archive-orig-x-crawler-content-encoding: gzip, crawler content length 15,636), so the archive replays it uncompressed. The archived original's Date header is Sun, 26 Apr 2026 12:04:17 GMT; no Last-Modified. The capture 20260825202443 of the same page is stored and served gzip-encoded (15,636 bytes, SHA-256 7e73af7267d5…ab16) and decodes to these same 159,872 bytes; the capture 20260208090814 (159,888 bytes) differs only in two header links. Neither is recorded. The live list will change when the next president is added; the recorded identity is this fixed capture. Researcher (part A): Raw capture first downloaded 2026-09-25 12:07:28Z (identity); re-downloaded 12:46:14Z (plain), same byte count and SHA-256. The live original https://www.jimin.jp/aboutus/history/ was downloaded at 11:58Z and again at 12:46:17Z with a cache-busting ?cb= query, identical to the capture. The SHA-1 of the bytes equals the capture's CDX digest. The part A check downloaded it again at 12:58Z-12:59Z and 13:40Z-13:42Z on 25 September 2026, each time with the same byte count and SHA-256. Downloaded on 25 September 2026 (UTC) by this packet at 14:15:39Z and 14:52:03Z, 36 minutes apart, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party's own list of its presidents (歴代総裁), recorded as the raw Internet Archive capture of 9 May 2026, made before the cutoff; a retrospective record. Rows 第14代 to 第24代 are used; every row is a claim with no structured date, never a boundary. The live list grows when a president is added, so only this fixed capture is the recorded identity.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded (UTF-8) and read in full for the rows 第14代 to 第24代 (and the neighbouring 第13代 and 第25代 rows for context); no portraits reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_ldp_list_kaifu_span_19890808_19911030",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-01",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "海部俊樹",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The LDP's list of its presidents (自民党の歴史) shows 第14代 海部 俊樹 with the period 平成元年8月8日～平成3年10月30日 (8 August 1989 to 30 October 1991).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第14代 海部 俊樹"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_kaifu_joint_plenary_election_19890808",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-01",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "海部俊樹",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_election_record",
+      "attested_on": null,
+      "text": "The list records that 海部 俊樹 was chosen by the joint plenary meeting of party Diet members held in place of a party convention (選出：党大会に代わる両院議員総会で決定), with 総裁選実施日 平成元年8月8日 (8 August 1989).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第14代 海部 俊樹",
+        "fields": "選出; 総裁選実施日"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_kaifu_result_19890808",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-01",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "海部俊樹",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_result_record",
+      "attested_on": null,
+      "text": "The same row gives the result with the winner marked ○: 海部 俊樹 279, 林 義郎 120, 石原 慎太郎 48.",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第14代 海部 俊樹",
+        "fields": "立候補者名（○印は当選者名）"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_kaifu_sole_candidate_notice_19891006",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-01",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": null,
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_election_notice_record",
+      "attested_on": null,
+      "text": "A second entry for 第14代 records selection with one candidate (選出：候補者１名; ○ 海部 俊樹) and the election notified (総裁選告示日) on 平成元年10月6日 (6 October 1989).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第14代 海部 俊樹 (second entry)",
+        "fields": "選出; 立候補者名; 総裁選告示日"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_kaifu_convention_approval_19891031",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-01",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "海部俊樹",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_convention_record",
+      "attested_on": null,
+      "text": "The second entry for 海部 俊樹 records approval by the 51st extraordinary party convention on 平成元年10月31日 (第51回臨時党大会 承認).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第14代 海部 俊樹 (second entry)",
+        "fields": "党大会"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_miyazawa_span_19911031_19930730",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-02",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "宮澤喜一",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The list shows 第15代 宮沢 喜一 (printed with 沢) with the period 平成3年10月31日～平成5年7月30日 (31 October 1991 to 30 July 1993).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第15代 宮沢 喜一"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_miyazawa_public_election_19911027",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-02",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "宮澤喜一",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_election_record",
+      "attested_on": null,
+      "text": "The list records the selection of 宮沢 喜一 by public election (選出：公選) with 総裁選実施日 平成3年10月27日 (27 October 1991).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第15代 宮沢 喜一",
+        "fields": "選出; 総裁選実施日"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_miyazawa_result_19911027",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-02",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "宮澤喜一",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_result_record",
+      "attested_on": null,
+      "text": "The same row gives the result with the winner marked ○: 宮沢 喜一 285, 渡辺 美智雄 120, 三塚 博 87.",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第15代 宮沢 喜一",
+        "fields": "立候補者名（○印は当選者名）"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_miyazawa_convention_approval_19911029",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-02",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "宮澤喜一",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_convention_record",
+      "attested_on": null,
+      "text": "The row for 宮沢 喜一 records approval by the 54th extraordinary party convention on 平成3年10月29日 (第54回臨時党大会 承認).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第15代 宮沢 喜一",
+        "fields": "党大会"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_kono_span_19930730_19950930",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-03",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "河野洋平",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The list shows 第16代 河野 洋平 with the period 平成5年7月30日～平成7年9月30日 (30 July 1993 to 30 September 1995).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第16代 河野 洋平"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_kono_joint_plenary_election_19930730",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-03",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "河野洋平",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_election_record",
+      "attested_on": null,
+      "text": "The list records the selection of 河野 洋平 by the joint plenary meeting of party Diet members held in place of a party convention (選出：党大会に代わる両院議員総会で決定), with 総裁選実施日 平成5年7月30日 (30 July 1993).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第16代 河野 洋平",
+        "fields": "選出; 総裁選実施日"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_kono_result_19930730",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-03",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "河野洋平",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_result_record",
+      "attested_on": null,
+      "text": "The same row gives the result with the winner marked ○: 河野 洋平 208, 渡辺 美智雄 159.",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第16代 河野 洋平",
+        "fields": "立候補者名（○印は当選者名）"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_kono_sole_candidate_notice_19930917",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-03",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": null,
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_election_notice_record",
+      "attested_on": null,
+      "text": "A second entry for 第16代 records selection with one candidate (選出：候補者1名; ○ 河野 洋平) and the election notified (総裁選告示日) on 平成5年9月17日 (17 September 1993).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第16代 河野 洋平 (second entry)",
+        "fields": "選出; 立候補者名; 総裁選告示日"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_kono_convention_decision_19930930",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-03",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "河野洋平",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_convention_record",
+      "attested_on": null,
+      "text": "The second entry for 河野 洋平 records a decision by the 57th extraordinary party convention on 平成5年9月30日 (第57回臨時党大会 決定).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第16代 河野 洋平 (second entry)",
+        "fields": "党大会"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_hashimoto_span_19951001_19980724",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-04",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "橋本龍太郎",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The list shows 第17代 橋本 龍太郎 with the period 平成7年10月1日～平成10年7月24日 (1 October 1995 to 24 July 1998).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第17代 橋本 龍太郎"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_hashimoto_public_election_19950922",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-04",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "橋本龍太郎",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_election_record",
+      "attested_on": null,
+      "text": "The list records the selection of 橋本 龍太郎 by public election (選出：公選) with 総裁選実施日 平成7年9月22日 (22 September 1995).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第17代 橋本 龍太郎",
+        "fields": "選出; 総裁選実施日"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_hashimoto_result_19950922",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-04",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "橋本龍太郎",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_result_record",
+      "attested_on": null,
+      "text": "The same row gives the result with the winner marked ○: 橋本 龍太郎 304, 小泉 純一郎 87.",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第17代 橋本 龍太郎",
+        "fields": "立候補者名（○印は当選者名）"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_hashimoto_convention_report_19950925",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-04",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "橋本龍太郎",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_convention_record",
+      "attested_on": null,
+      "text": "The row for 橋本 龍太郎 records a report to the 60th extraordinary party convention on 平成7年9月25日 (第60回臨時党大会 報告).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第17代 橋本 龍太郎",
+        "fields": "党大会"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_hashimoto_sole_candidate_notice_19970908",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-04",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": null,
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_election_notice_record",
+      "attested_on": null,
+      "text": "A second entry for 第17代 records selection with one candidate (選出：候補者１名; ○ 橋本 龍太郎) and the election notified (総裁選告示日) on 平成9年9月8日 (8 September 1997).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第17代 橋本 龍太郎 (second entry)",
+        "fields": "選出; 立候補者名; 総裁選告示日"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_hashimoto_joint_plenary_report_19970911",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-04",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "橋本龍太郎",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_convention_record",
+      "attested_on": null,
+      "text": "The second entry for 橋本 龍太郎 records 平成9年9月11日(党大会に代わる両院議員総会 報告): a report to the joint plenary meeting of party Diet members held in place of a party convention on 11 September 1997.",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第17代 橋本 龍太郎 (second entry)",
+        "fields": "党大会"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_obuchi_span_19980724_20000405",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-05",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "小渕恵三",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The list shows 第18代 小渕 恵三 with the period 平成10年7月24日～平成12年4月5日 (24 July 1998 to 5 April 2000).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第18代 小渕 恵三"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_obuchi_joint_plenary_decision_19980724",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-05",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "小渕恵三",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_election_record",
+      "attested_on": null,
+      "text": "The list records the 1998 selection of 小渕 恵三 as 選出：党大会に代わる両院議員総会で決定, with 総裁選実施日 平成10年7月24日 (24 July 1998).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第18代 小渕 恵三",
+        "fields": "選出; 総裁選実施日"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_obuchi_result_19980724",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-05",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "小渕恵三",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_result_record",
+      "attested_on": null,
+      "text": "The same row gives the result with the winner marked ○: 小渕 恵三 225, 梶山 静六 102, 小泉 純一郎 84.",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第18代 小渕 恵三",
+        "fields": "立候補者名（○印は当選者名）"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_obuchi_public_election_19990921",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-05",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "小渕恵三",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_election_record",
+      "attested_on": null,
+      "text": "A second entry for 第18代 小渕 恵三 records a public election (選出：公選) with 総裁選実施日 平成11年9月21日 (21 September 1999).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第18代 小渕 恵三 (second entry)",
+        "fields": "選出; 総裁選実施日"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_obuchi_result_19990921",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-05",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "小渕恵三",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_result_record",
+      "attested_on": null,
+      "text": "The second entry gives the result with the winner marked ○: 小渕 恵三 350, 加藤 紘一 113, 山崎 拓 51.",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第18代 小渕 恵三 (second entry)",
+        "fields": "立候補者名（○印は当選者名）"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_obuchi_convention_report_19990922",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-05",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "小渕恵三",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_convention_record",
+      "attested_on": null,
+      "text": "The second entry for 小渕 恵三 records 平成11年9月22日（第65回臨時党大会 報告）: the result was reported to the 65th extraordinary party convention on 22 September 1999.",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第18代 小渕 恵三 (second entry)",
+        "fields": "党大会"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_mori_span_20000405_20010424",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-06",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "森喜朗",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The list shows 第19代 森 喜朗 with the period 平成12年4月5日～平成13年4月24日 (5 April 2000 to 24 April 2001).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第19代 森 喜朗"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_mori_joint_plenary_decision_20000405",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-06",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "森喜朗",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_selection_record",
+      "attested_on": null,
+      "text": "The list records the selection of 森 喜朗 as 選出：党大会に代わる両院議員総会で決定 with the date 平成12年4月5日 (5 April 2000), listing no candidates or votes.",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第19代 森 喜朗",
+        "fields": "選出; date"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_koizumi_span_20010424_20060930",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-07",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "小泉純一郎",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The list shows 第20代 小泉 純一郎 with the period 平成13年4月24日～平成18年9月30日 (24 April 2001 to 30 September 2006).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第20代 小泉 純一郎"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_koizumi_joint_plenary_decision_20010424",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-07",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "小泉純一郎",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_election_record",
+      "attested_on": null,
+      "text": "The list records the 2001 selection of 小泉 純一郎 as 選出：党大会に代わる両院議員総会で決定, with 総裁選実施日 平成13年4月24日 (24 April 2001).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第20代 小泉 純一郎",
+        "fields": "選出; 総裁選実施日"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_koizumi_result_20010424",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-07",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "小泉純一郎",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_result_record",
+      "attested_on": null,
+      "text": "The same row gives the result with the winner marked ○: 小泉 純一郎 298, 橋本 龍太郎 155, 麻生 太郎 31, and 亀井 静香 (本選辞退, withdrew before the vote).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第20代 小泉 純一郎",
+        "fields": "立候補者名（○印は当選者名）"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_koizumi_reappointment_decided_20010810",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-07",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "小泉純一郎",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_reappointment_record",
+      "attested_on": null,
+      "text": "A second entry for 第20代 records selection with one candidate (選出：候補者1名; ○ 小泉 純一郎): the headquarters presidential election administration committee had fixed the election timetable, but as a special measure it first asked party Diet members whether they would stand; only one declared, so without waiting for the notice the joint plenary meeting in place of the party convention decided on 平成１３年８月１０日 (10 August 2001) to reappoint him (再任を決定).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第20代 小泉 純一郎 (second entry)",
+        "fields": "選出; 立候補者名; note"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_koizumi_public_election_20030920",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-07",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "小泉純一郎",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_election_record",
+      "attested_on": null,
+      "text": "A third entry for 第20代 小泉 純一郎 records a public election (選出：公選) with 総裁選実施日 平成15年9月20日 (20 September 2003).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第20代 小泉 純一郎 (third entry)",
+        "fields": "選出; 総裁選実施日"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_koizumi_result_20030920",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-07",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "小泉純一郎",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_result_record",
+      "attested_on": null,
+      "text": "The third entry gives the result with the winner marked ○: 小泉 純一郎 399 (Diet-member votes 194, member-derived votes 205), 亀井 静香 139 (66, 73), 藤井 孝男 65 (50, 15), 高村 正彦 54 (47, 7).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第20代 小泉 純一郎 (third entry)",
+        "fields": "立候補者名（○印は当選者名）"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_abe_span_20061001_20070923",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-08",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "安倍晋三",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The list shows 第21代 安倍 晋三 with the period 平成18年10月1日～平成19年9月23日 (1 October 2006 to 23 September 2007).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第21代 安倍 晋三"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_abe_public_election_20060920",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-08",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "安倍晋三",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_election_record",
+      "attested_on": null,
+      "text": "The list records the selection of 安倍 晋三 by public election (選出：公選) with 総裁選実施日 平成18年9月20日 (20 September 2006).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第21代 安倍 晋三",
+        "fields": "選出; 総裁選実施日"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_abe_result_20060920",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-08",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "安倍晋三",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_result_record",
+      "attested_on": null,
+      "text": "The same row gives the result with the winner marked ○: 安倍 晋三 464 (Diet-member votes 267, member-derived votes 197), 麻生 太郎 136 (69, 67), 谷垣 禎一 102 (66, 36).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第21代 安倍 晋三",
+        "fields": "立候補者名（○印は当選者名）"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_fukuda_span_20070923_20080922",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-08",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "福田康夫",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The list shows 第22代 福田 康夫 with the period 平成19年9月23日～平成20年9月22日 (23 September 2007 to 22 September 2008).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第22代 福田 康夫"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_fukuda_joint_plenary_decision_20070923",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-08",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "福田康夫",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_election_record",
+      "attested_on": null,
+      "text": "The list records the selection of 福田 康夫 as 選出：党大会に代わる両院議員総会で決定, with 総裁選実施日 平成19年9月23日 (23 September 2007).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第22代 福田 康夫",
+        "fields": "選出; 総裁選実施日"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_fukuda_result_20070923",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-08",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "福田康夫",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_result_record",
+      "attested_on": null,
+      "text": "The same row gives the result with the winner marked ○: 福田 康夫 330, 麻生 太郎 197.",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第22代 福田 康夫",
+        "fields": "立候補者名（○印は当選者名）"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_aso_span_20080922_20090930",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-09",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "麻生太郎",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The list shows 第23代 麻生 太郎 with the period 平成20年9月22日～平成21年9月30日 (22 September 2008 to 30 September 2009).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第23代 麻生 太郎"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_aso_joint_plenary_decision_20080922",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-09",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "麻生太郎",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_election_record",
+      "attested_on": null,
+      "text": "The list records the selection of 麻生 太郎 as 選出：党大会に代わる両院議員総会で決定, with 総裁選実施日 平成20年9月22日 (22 September 2008).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第23代 麻生 太郎",
+        "fields": "選出; 総裁選実施日"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_aso_result_20080922",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-09",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "麻生太郎",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_result_record",
+      "attested_on": null,
+      "text": "The same row gives the result with the winner marked ○: 麻生 太郎 351, 与謝野 馨 66, 小池 百合子 46, 石原 伸晃 37, 石破 茂 25.",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第23代 麻生 太郎",
+        "fields": "立候補者名（○印は当選者名）"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_tanigaki_span_20091001_20120930",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-10",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "谷垣禎一",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The list shows 第24代 谷垣 禎一 with the period 平成21年10月1日～平成24年9月30日 (1 October 2009 to 30 September 2012).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第24代 谷垣 禎一"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_tanigaki_public_election_20090928",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-10",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "谷垣禎一",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_election_record",
+      "attested_on": null,
+      "text": "The list records the selection of 谷垣 禎一 by public election (選出：公選) with 総裁選実施日 平成21年9月28日 (28 September 2009).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第24代 谷垣 禎一",
+        "fields": "選出; 総裁選実施日"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_list_tanigaki_result_20090928",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-10",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "谷垣禎一",
+      "role_title": "総裁 — party president",
+      "event_kind": "retrospective_result_record",
+      "attested_on": null,
+      "text": "The same row gives the result with the winner marked ○: 谷垣 禎一 300 (Diet-member votes 120, member-derived votes 180), 河野 太郎 144 (35, 109), 西村 康稔 54 (43, 11).",
+      "locator": {
+        "section": "歴代総裁 list",
+        "row": "第24代 谷垣 禎一",
+        "fields": "立候補者名（○印は当選者名）"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations of the LDP president (総裁) for CLAUDE-C01-18 only, 1990-2009 (stacked on CLAUDE-C01-13). Party elections and selections (member and Diet-member votes, joint plenary meetings of party Diet members), notices, candidacies, declarations and reports of results, statements of assumption, in-office attestations, announced and prospective resignations, predecessor references and retrospective records stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this office (a notice, a filing, a schedule, an unnamed caption or a meeting). The prime-ministership (jp_pm) is excluded: no row feeds it, and no jp_pm claim feeds this office."
+}

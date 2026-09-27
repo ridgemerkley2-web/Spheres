@@ -1,0 +1,70 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_inc_cwc_three_resolutions_20190810",
+  "source_url": "https://res.cloudinary.com/dkplc2mbj/image/upload/v1597476298/CWC_Resolution_e66166e08b.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": "2019-08-10",
+  "access_method": "party_stored_file_download_pdf_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 122977,
+  "source_response_sha256": "8038e45d57bfbf8bb5a6c49e0f414171c2922cde58f889a48e69db99a435053c",
+  "source_response_checked_in": false,
+  "provenance_note": "Stored file on the Indian National Congress's own media store (Cloudinary account dkplc2mbj): a versioned upload URL whose ETag equals the MD5 of the body, with Last-Modified at the upload time. Cloudinary's edge answers query-string variants from its cache, so a cache-busting download is not an origin test; stability rests on the ETag match and on downloads at least 30 minutes apart. The researcher downloaded it at 12:05:55Z and again at 12:56:13Z on 25 September 2026, the Part C check downloaded it again at 13:02-13:03Z and again after 13:33Z, and this packet downloaded it again at 14:59Z, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A stored file on the Indian National Congress's own media store, found through the INC press release 'Three resolutions passed by Congress Working Committee meeting at AICC HQ'; the live inc.in release pages were used only as finding aids and were not hashed, because they are rebuilt per request. ETag equals the MD5 of the body; Last-Modified Sat, 15 Aug 2020 07:24:59 GMT. The file is the INC's re-upload of August 2020, not the 2019 attachment: the original on cdn.inc.in no longer resolves and was never archived, and the archived 2019 release page that linked it is a lead.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2,
+      3
+    ],
+    "method": "Page 2 rendered and read (dated 10th August, 2019, New Delhi); pages 1 and 3 read from the text layer. Page 1 (the appreciation resolution) is undated; page 3 (Jammu and Kashmir) is not used."
+  },
+  "rows": [
+    {
+      "claim_id": "in_cwc_resolves_rahul_gandhi_continue_20190810",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-07",
+      "role_id": "in_inc_president",
+      "holder_name": "Rahul Gandhi",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "working_committee_decision_continue",
+      "attested_on": "2019-08-10",
+      "text": "The Working Committee resolution dated 10 August 2019 records that, having considered the views of PCC Presidents, CLP Leaders, AICC Secretaries and Members of Parliament, 'The CWC unanimously resolved that Shri Rahul Gandhi should continue as Congress President' and requested him to accept this decision.",
+      "locator": {
+        "pdf_page": 2,
+        "item": "resolution, first paragraph"
+      }
+    },
+    {
+      "claim_id": "in_rahul_gandhi_declines_to_withdraw_resignation_20190810",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-07",
+      "role_id": "in_inc_president",
+      "holder_name": "Rahul Gandhi",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "resignation_maintained",
+      "attested_on": "2019-08-10",
+      "text": "The same resolution states: 'However, Shri Rahul Gandhi declined to withdraw his resignation.'",
+      "locator": {
+        "pdf_page": 2,
+        "item": "resolution, first paragraph, last sentence"
+      }
+    },
+    {
+      "claim_id": "in_cwc_requests_sonia_gandhi_interim_president_20190810",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-07",
+      "role_id": "in_inc_president",
+      "holder_name": "Sonia Gandhi",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "interim_president_requested",
+      "attested_on": "2019-08-10",
+      "text": "The same resolution continues: 'Consequently, the CWC unanimously resolved to request Smt. Sonia Gandhi to take over as Interim President pending the election of a regular President by the AICC.'",
+      "locator": {
+        "pdf_page": 2,
+        "item": "resolution, second paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-20 only: the role in_inc_president (President of the Indian National Congress) on the Indian National Congress recognition observation in_eci_20240323_np_05. Working Committee decisions, AICC sessions and ratifications, the Central Election Authority's schedules, notifications and declarations, certificates, handovers, resignations, withdrawals, farewells, interim arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, the Leader of the Opposition, the Congress Parliamentary Party and every other office are excluded."
+}

@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_pib_photo_19980319_oath",
+  "source_url": "https://web.archive.org/web/20030108123604id_/http://pib.nic.in:80/archieve/phtgalry/pgyr98/pg0398/1903981.html",
+  "original_url": "http://pib.nic.in/archieve/phtgalry/pgyr98/pg0398/1903981.html",
+  "archive_capture_utc": "2003-01-08T12:36:04Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "1998-03-19",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 2279,
+  "source_response_sha256": "a470249326b0cab0e1575e50d4af568197c2aa38f4c3b6b4747ded660c761066",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2003-01-08T12:36:04Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The check downloaded it at 12:10:23 PDT and again at 12:42:04 PDT on 23 September 2026 with the same byte count and SHA-256; the stored copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A PIB photo-gallery caption page (caption only; the photograph was not retrieved or republished), recorded as a raw Internet Archive capture. Located by the Part B check, which examined the 19 March 1998 gallery that the research did not.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Caption text read; the photograph itself was not retrieved or reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_vajpayee_oath_of_office_19980319",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-06",
+      "role_id": "in_pm",
+      "holder_name": "Atal Bihari Vajpayee",
+      "role_title": "Prime Minister of India",
+      "event_kind": "oath_of_office",
+      "attested_on": "1998-03-19",
+      "text": "PIB's photo caption records the President, K. R. Narayanan, administering the oath of office of Prime Minister to Shri Atal Behari Vajpayee at a swearing-in ceremony in the forecourt of Rashtrapati Bhavan on 19 March 1998.",
+      "locator": {
+        "element": "caption"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

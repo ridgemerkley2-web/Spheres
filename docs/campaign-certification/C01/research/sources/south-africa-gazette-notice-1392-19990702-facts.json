@@ -1,0 +1,58 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_gazette_20261_19990702",
+  "source_url": "https://archive.gazettes.africa/archive/za/1999/za-government-gazette-dated-1999-07-02-no-20261.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": "1999-07-02",
+  "access_method": "downloaded_archived_government_gazette_pdf_and_page_rendered_for_visual_review",
+  "source_response_bytes": 1932684,
+  "source_response_sha256": "9e8e6237fdf81afb14cb0d54f35cbe6137fa7cca21a37f8907c28e4f85473be1",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly with no automatic decoding, then hash the bytes as received; Cloudflare may answer from its cache, and a cache-busting query reaches the origin with the same bytes.",
+  "source_response_checked_in": false,
+  "stability_check": "First downloaded on 2026-09-25 at 12:51Z by the researcher and downloaded again at 13:00 and 13:29 (plain and cache-busting)Z; the independent check downloaded it again at 13:42 and 14:13 (plain and cache-busting)Z. Every download had the same byte count and SHA-256. Downloaded again for this packet at 2026-09-25T15:28Z (integration pass) with the same byte count and SHA-256.",
+  "provenance_note": "Scanned Government Gazette PDF, a static file on the gazettes.africa public archive host (Last-Modified 28 May 2024; the ETag equals the MD5 of the bytes), served without content encoding. The response identity was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Scanned Government Gazette on the gazettes.africa public archive host, a static file (Last-Modified 28 May 2024; the ETag equals the MD5 of the downloaded bytes). The document landing pages sit behind a Cloudflare JavaScript challenge, which was not attempted. Archive defect: only page 1 belongs to No. 20261 (pages 2-8 are No. 20262, and no separate No. 20262 file exists), so the rest of Notice 1392, with any signature and decision date, was not seen. Plain and cache-busting requests matched.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "Page 1 rendered and read (masthead Vol. 409, No. 20261; Notice 1392 of 1999); pages 2-8 carry the running head 'No. 20262'."
+  },
+  "rows": [
+    {
+      "claim_id": "za_zuma_deputy_president_appointment_effective_19990617",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-DP-03",
+      "role_id": "za_deputy_president",
+      "holder_name": "Jacob Zuma",
+      "role_title": "Deputy President of the Republic of South Africa",
+      "event_kind": "appointment_effective",
+      "attested_on": "1999-06-17",
+      "text": "General Notice 1392 of 1999 (Office of the Presidency) notifies that the President, in accordance with sections 91(2) and 93 of the 1996 Constitution, decided '(a) to appoint Mr J. G. Zuma as Deputy President with effect from 17 June 1999', and to appoint listed Ministers with effect from the same day.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "Notice 1392 of 1999, paragraph (a)",
+        "gazette_no": 20261
+      }
+    },
+    {
+      "claim_id": "za_zuma_deputy_president_appointment_gazetted_19990702",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-DP-03",
+      "role_id": "za_deputy_president",
+      "holder_name": "Jacob Zuma",
+      "role_title": "Deputy President of the Republic of South Africa",
+      "event_kind": "appointment_notice_published",
+      "attested_on": "1999-07-02",
+      "text": "The appointment was notified for general information in Government Gazette No. 20261 dated Pretoria, 2 July 1999.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "Masthead (Vol. 409, 2 July 1999, No. 20261) and Notice 1392 of 1999",
+        "gazette_no": 20261
+      }
+    }
+  ],
+  "bounded_scope": "Deputy President observations for CLAUDE-C01-21 only (role za_deputy_president in za_presidency). Announcements, stated intentions, appointments and their notices, oaths and their scheduling, stated assumptions, releases, resignations and their stated effect, Assembly-seat events and in-office attestations stay separate rows; holder observations and any start or end are decided in the packet, not by any row. The President's roles (za_president_election, za_state_president) and the ANC's party office are excluded and no row feeds them."
+}

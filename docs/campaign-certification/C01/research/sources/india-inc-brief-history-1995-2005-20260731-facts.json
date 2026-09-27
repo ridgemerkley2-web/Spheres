@@ -1,0 +1,56 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_inc_brief_history_1995_2005_20260731",
+  "source_url": "https://web.archive.org/web/20260731211640id_/https://inc.in/brief-history-of-congress/1995-2005",
+  "original_url": "https://inc.in/brief-history-of-congress/1995-2005",
+  "archive_capture_utc": "2026-07-31T21:16:40Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_data_read",
+  "source_response_bytes": 18108,
+  "source_response_sha256": "e27b1786a0c26d8712c8293b97addb905e646c346eb825011eef0f3789844c6b",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "zstd",
+  "decoded_response_bytes": 98190,
+  "decoded_response_sha256": "cbcbd20d41eddcf26197d31a013f28c0f458324672aa10a8ec24118b549ecc53",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2026-07-31T21:16:40Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The Internet Archive serves this capture zstd-encoded (Content-Encoding: zstd, as archived), even to a request for identity encoding; source_response_bytes and source_response_sha256 are of the encoded body as transferred (curl without --compressed). The decoded HTML is 98,190 bytes, SHA-256 cbcbd20d41eddcf26197d31a013f28c0f458324672aa10a8ec24118b549ecc53. The researcher downloaded it at 12:48:02Z and again at 13:23:57Z on 25 September 2026, the Part A check downloaded it again between 13:33Z and 13:42Z, and this packet downloaded it again at 14:58Z, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A retrospective party history recorded as a raw Internet Archive capture, which the archive serves zstd-encoded. The entry's own date field (1996-01-12) is a site placeholder earlier than the election it describes and is not used. Claims only, never a boundary.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Decoded HTML parsed and the __NEXT_DATA__ entries (props.pageProps.lstData.brief_history_of_congresses) read in full, English and Hindi."
+  },
+  "rows": [
+    {
+      "claim_id": "in_inc_history_rao_resigned_presidentship_1996",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-09",
+      "role_id": "in_inc_president",
+      "holder_name": "P. V. Narasimha Rao",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "resignation_recalled_retrospective",
+      "attested_on": null,
+      "text": "The Congress's brief history says that the Congress lost the 1996 general elections, its tally dropping to 140, and P.V. Narasimha Rao resigned from the presidentship of the party.",
+      "locator": {
+        "json_path": "props.pageProps.lstData.brief_history_of_congresses",
+        "item": "entry 'Congress Loses General Elections'"
+      }
+    },
+    {
+      "claim_id": "in_inc_history_kesri_elected_president_1996",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-03",
+      "role_id": "in_inc_president",
+      "holder_name": "Sitaram Kesri",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "selection_recalled_retrospective",
+      "attested_on": null,
+      "text": "The same entry says Sitaram Kesri was elected as the new Congress president.",
+      "locator": {
+        "json_path": "props.pageProps.lstData.brief_history_of_congresses",
+        "item": "entry 'Congress Loses General Elections'"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-20 only: the role in_inc_president (President of the Indian National Congress) on the Indian National Congress recognition observation in_eci_20240323_np_05. Working Committee decisions, AICC sessions and ratifications, the Central Election Authority's schedules, notifications and declarations, certificates, handovers, resignations, withdrawals, farewells, interim arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, the Leader of the Opposition, the Congress Parliamentary Party and every other office are excluded."
+}

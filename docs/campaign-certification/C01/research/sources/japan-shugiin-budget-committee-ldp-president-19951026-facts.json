@@ -1,0 +1,52 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_ldp_diet_hr_yosan_19951026",
+  "source_url": "https://kokkai.ndl.go.jp/api/meeting?issueID=113405261X00519951026&recordPacking=json",
+  "diet_record": {
+    "issueID": "113405261X00519951026",
+    "house": "衆議院",
+    "meeting": "予算委員会",
+    "issue": "第5号",
+    "sitting_date": "1995-10-26",
+    "response": "whole meeting record",
+    "speeches_in_response": 358,
+    "record_page_url": "https://kokkai.ndl.go.jp/txt/113405261X00519951026"
+  },
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "official_diet_minutes_api_json_download_and_read",
+  "source_response_bytes": 521450,
+  "source_response_sha256": "098ac5caf4cc514304862982de8321da1e92e4c4891f8f9f9f63c865a9474bb7",
+  "source_response_content_encoding": "identity",
+  "source_response_sha1_base32": "5TEOS674JBPBFGU7QQ6BYD7DM6CLVHQQ",
+  "source_character_encoding": "UTF-8 JSON (the Content-Type header declares application/json;charset=UTF-8)",
+  "source_response_checked_in": false,
+  "fetch_recipe": "curl -s -o FILE 'https://kokkai.ndl.go.jp/api/meeting?issueID=113405261X00519951026&recordPacking=json' with no Accept-Encoding request header and no automatic decoding; hash the bytes as received.",
+  "provenance_note": "Official response of the National Diet Library's Diet minutes API (JSON, UTF-8), served with Cache-Control: no-cache, no-store; the JSON carries no timestamp, session token or request echo, so it is not generated per request. Researcher (part A): First download 2026-09-25 12:11:43Z-12:12:26Z (plain, identity); re-downloaded 12:49:51Z (plain) and 12:49:51Z (with a cache-busting &cb= query), each with the same byte count and SHA-256. The part A check downloaded it again at 12:58Z-12:59Z and 13:40Z-13:42Z on 25 September 2026 (the Diet API responses also with a cache-busting query), each time with the same byte count and SHA-256. Downloaded on 25 September 2026 (UTC) by this packet at 14:16:20Z and 14:52:48Z, 36 minutes apart, and at 14:57:15Z (cache-busting query), each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Diet minutes API's JSON for the whole meeting record of the 衆議院 予算委員会 第5号 (1995-10-26), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/113405261X00519951026. The printed page images, served through a JavaScript viewer, were not viewed. Statements are used only where a party officer speaks of the party office.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Machine-readable minute text read in full for the cited speeches and the surrounding questions; the printed page images were not viewed."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_ldp_diet_hashimoto_chosen_at_convention_19950925",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-04",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "橋本龍太郎",
+      "role_title": "総裁 — party president",
+      "event_kind": "convention_selection_recalled_by_holder",
+      "attested_on": "1995-09-25",
+      "text": "In the House of Representatives Budget Committee on 26 October 1995, 橋本 (printed ○橋本国務大臣) said he had been chosen as president at the party convention on 25 September (私は党大会で九月二十五日に総裁に選任をされた).",
+      "locator": {
+        "issueID": "113405261X00519951026",
+        "speechOrder": 196,
+        "speaker": "橋本龍太郎",
+        "question": "#195 石井啓一"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations of the LDP president (総裁) for CLAUDE-C01-18 only, 1990-2009 (stacked on CLAUDE-C01-13). Party elections and selections (member and Diet-member votes, joint plenary meetings of party Diet members), notices, candidacies, declarations and reports of results, statements of assumption, in-office attestations, announced and prospective resignations, predecessor references and retrospective records stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this office (a notice, a filing, a schedule, an unnamed caption or a meeting). The prime-ministership (jp_pm) is excluded: no row feeds it, and no jp_pm claim feeds this office."
+}

@@ -1,0 +1,47 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_bibpr_itamar_speech_19921005",
+  "source_url": "https://web.archive.org/web/20250421205127id_/http://www.biblioteca.presidencia.gov.br/presidencia/ex-presidentes/itamar-franco/discursos/1992/05-10-1992-discurso-do-sr-itamar-franco-vice-presidente-no-cargo-de-presidente-na-cerimonia-de-posse-ministerial",
+  "original_url": "http://www.biblioteca.presidencia.gov.br/presidencia/ex-presidentes/itamar-franco/discursos/1992/05-10-1992-discurso-do-sr-itamar-franco-vice-presidente-no-cargo-de-presidente-na-cerimonia-de-posse-ministerial",
+  "archive_capture_utc": "2025-04-21T20:51:27Z",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_pages_rendered_for_visual_review",
+  "source_response_bytes": 1616993,
+  "source_response_sha256": "4639b08f839700a669c2ef25012427074a3dc52d6ade6dae8ad97a045b2b2ab0",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2025-04-21T20:51:27Z; that form replays the archived bytes unchanged and is used in place of the live page. The researcher downloaded it on 24 September 2026 at 21:53 UTC and again at 22:32 UTC, more than 30 minutes later; the independent check downloaded it at 22:45 and 23:04 UTC. Every download had the same byte count and SHA-256 (the capture index lists 1,335,833 compressed bytes; the replayed response is 1,616,993 bytes). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Presidency Library's transcript of the address (a 2008 scan of a printed collection, 5 pages, ABBYY FineReader; printed page 15 on PDF page 3), captured by the Internet Archive on 21 April 2025. A later printed transcript, not the Congress or DOU record.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      2
+    ],
+    "method": "PDF page 2 (title block) rendered and read; pages 1 and 3 read from the text layer. The Library's 1992 speech list (capture 20240222080132) was used only to locate the item."
+  },
+  "rows": [
+    {
+      "claim_id": "br_itamar_vp_in_exercise_speech_19921005",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-03",
+      "role_id": "br_vice_president",
+      "holder_name": "Itamar Franco",
+      "role_title": "Vice-President of the Republic in exercise of the office of President",
+      "event_kind": "vice_president_exercising_office",
+      "attested_on": "1992-10-05",
+      "text": "The Presidency Library's transcript titles the address 'Discurso do Senhor Itamar Franco, Vice-Presidente da República, no exercício do cargo de Presidente da República, na cerimônia de posse ministerial, no Palácio do Planalto', dated Brasília, DF, 5 October 1992; in it he says that 'este Governo se inicia' in fulfilment of the Constitution.",
+      "locator": {
+        "pdf_page": [
+          2,
+          3
+        ],
+        "printed_page": [
+          null,
+          15
+        ],
+        "item": "title block; first paragraph of the address"
+      }
+    }
+  ],
+  "bounded_scope": "Vice-President observations for CLAUDE-C01-17 only (role br_vice_president of br_presidency). Election, diplomação, oath, posse, termo de posse, same-session styling, the Vice-President's exercise of the Presidency, his succession to the Presidency, vacancy and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Ministers and party offices are excluded; the office of President is CLAUDE-C01-10's br_president role."
+}

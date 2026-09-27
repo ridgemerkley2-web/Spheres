@@ -1,0 +1,46 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_ks_conclusion_19930323",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102022316&page=1&rdk=0",
+  "source_title": "Conclusion (Zaklyuchenie) of the Constitutional Court of the Russian Federation of 23 March 1993 on the conformity with the Constitution of the actions and decisions of the President of the Russian Federation B. N. Yeltsin connected with his Address to the citizens of Russia of 20 March 1993",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "document_date": "1993-03-23",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102022316&page=1&rdk=0",
+  "source_response_bytes": 55038,
+  "source_response_sha256": "bd3f3ddc5f300413858adfffaceb7282e04b5ad5d07d64a599f4d66dbe29885e",
+  "source_response_encoding": "windows-1251",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded at 2026-09-24T22:08:26Z and again at 2026-09-24T22:38:45Z (at least 28 minutes later); identical 55,038 bytes and SHA-256. A cache-busting re-download (&cb=20260924) at about 22:10Z also returned identical bytes. Independent check: re-downloaded at 2026-09-24T22:46:25Z-22:47:01Z, 38-58 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T00:32:32Z (55,038 bytes); identical SHA-256.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a7type=1&a7date=23.03.1993&sort=7&page=firstlast&lstsize=200",
+    "bytes": 9452,
+    "sha256": "c3902c4ebe6f993d13a313128d983900d9d6b806f12430bdbc33a6194b971a5d",
+    "note": "Portal date-search list for 23.03.1993; gives the Vedomosti 1993 No. 13 art. 466 citation."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 24 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Title, composition, the first findings paragraph and the heads of two separate opinions were read. The findings on the 20 March 1993 address are outside this packet and are not assessed.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "HTML text read: title, composition, the first findings paragraph, and the heads of the separate opinions of judges Ametistov and Vitruk. The findings on the address are outside this packet and were not assessed."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_ks_yeltsin_styled_president_rf_19930323",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-01",
+      "role_id": "ru_president",
+      "holder_name": "Борис Николаевич Ельцин",
+      "printed_name": "Б.Н.Ельцин",
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "retitled_office_attestation",
+      "attested_on": "1993-03-23",
+      "text": "The Court's conclusion of 23 March 1993 is titled as concerning the actions and decisions of 'Президента Российской Федерации Б.Н.Ельцина' and records that on 20 March 1993 'Президент Российской Федерации Б.Н.Ельцин' addressed the citizens of Russia on television.",
+      "locator": "Title; findings, first paragraph"
+    }
+  ],
+  "bounded_scope": "Presidency observations for CLAUDE-C01-14 only. Election calling, voting, result determination, declaration, correction and publication, oath, stated assumption of office, inauguration ceremony, resignation, acting service and outgoing-holder statements stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-05 RSFSR roles and the USSR packet are outside this extract."
+}

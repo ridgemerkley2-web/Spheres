@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_portal_tarso_first_press_conference_20050709",
+  "source_url": "https://web.archive.org/web/20050928134100id_/http://www.pt.org.br/site/noticias/noticias_int.asp?cod=36616",
+  "original_url": "http://www.pt.org.br/site/noticias/noticias_int.asp?cod=36616",
+  "archive_capture_utc": "2005-09-28T13:41:00Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2005-07-09",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 28683,
+  "source_response_sha256": "ba66c4cbd11c5a919b1fa1d00de49451fd0e938f8aa50bdc5e3356d6702177f0",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture (20050928134100). First downloaded 2026-09-25T12:28:36Z with a Python urllib client; downloaded again 2026-09-25T13:33:13Z with curl (no --compressed, Accept-Encoding: identity), more than 30 minutes later: 28683 bytes, SHA-256 identical. The independent check downloaded it again at 13:58-14:00 UTC and at 14:31-14:33 UTC on 25 September 2026 (at least 30 minutes after the earlier downloads) with Accept-Encoding: identity; every response had the same byte count and SHA-256 and no Content-Encoding.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2005-09-28T13:41:00Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Raw Internet Archive id_ replay of a fixed capture (20050928134100). First downloaded 2026-09-25T12:28:36Z with a Python urllib client; downloaded again 2026-09-25T13:33:13Z with curl (no --compressed, Accept-Encoding: identity), more than 30 minutes later: 28683 bytes, SHA-256 identical. The independent check downloaded it again at 13:58-14:00 UTC and at 14:31-14:33 UTC on 25 September 2026 (at least 30 minutes after the earlier downloads) with Accept-Encoding: identity; every response had the same byte count and SHA-256 and no Content-Encoding. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A Portal do PT item of 9 July 2005 on Tarso Genro's first press conference, captured 28 September 2005. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full in the original Portuguese; no images reviewed."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_tarso_styled_new_president_press_conference_20050709",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-05",
+      "role_id": "br_pt_president",
+      "holder_name": "Tarso Genro",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "styled_on_selection_day",
+      "attested_on": "2005-07-09",
+      "text": "The PT portal says that the new national president of the PT, Tarso Genro, announced on 9 July 2005, during his first press conference, that the party would prepare a study of its financial situation.",
+      "locator": {
+        "section": "Item body, first paragraph ('O novo presidente nacional do Partido dos Trabalhadores, Tarso Genro, anunciou hoje (9), durante sua primeira entrevista coletiva ...')"
+      }
+    }
+  ]
+}

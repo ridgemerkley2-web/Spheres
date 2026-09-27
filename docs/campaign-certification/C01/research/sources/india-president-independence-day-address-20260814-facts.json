@@ -1,0 +1,38 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rb_murmu_independence_day_address_20260814",
+  "source_url": "https://www.presidentofindia.gov.in/files/2023-06/sp14082026eng.pdf",
+  "accessed_date": "2026-09-24",
+  "published_date": "2026-08-14",
+  "access_method": "official_static_pdf_download_text_layer_read_and_page_rendered",
+  "source_response_bytes": 623615,
+  "source_response_sha256": "aed4c60f6792dc2ea391cd02be29fa6dfe0fd3b3d61da3883d07c82996146d19",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host. Static PDF attachment (Last-Modified Fri, 14 Aug 2026 14:31:26 GMT, ETag \"983ff-65902acf3a382\"; PDF creation date 2026-08-14 20:01:16 +05:30, no per-request ID), unlike the site's Drupal pages. Downloaded 2026-09-24T22:21:44Z and again with a cache-busting query at 2026-09-24T23:02:17Z with identical bytes and SHA-256. No Internet Archive capture exists. The independent check downloaded it again at 23:10Z on 24 September 2026 with a cache-busting query, with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A static PDF attachment on the President's website (Last-Modified 14 August 2026, fixed ETag, PDF CreationDate 14 August 2026), linked from its speech page; unlike the site's Drupal pages it is not regenerated per request. No Internet Archive capture exists.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "PDF page 1 rendered and read (heading, place and date); the remaining ten pages not reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_murmu_independence_day_eve_address_20260814",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-10",
+      "role_id": "in_president",
+      "holder_name": "Droupadi Murmu",
+      "role_title": "President of India",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2026-08-14",
+      "text": "The President's website publishes the address to the nation by the Hon'ble President of India Smt. Droupadi Murmu on the eve of the 80th Independence Day, dated New Delhi, 14 August 2026.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "title block"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-15 only. The Election Commission's notices, the Returning Officer's declaration of the result and its Gazette publication, the programme for the ceremony of assumption of office, the oath administered by the Chief Justice, the Ministry of Home Affairs resolution and proclamation of the assumption of office, the holder's address on assumption, prospective term-expiry notices, farewells, stylings of a predecessor as former President and retrospective statements stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the Vice-President (including any service as acting President), ministers and party offices are excluded."
+}

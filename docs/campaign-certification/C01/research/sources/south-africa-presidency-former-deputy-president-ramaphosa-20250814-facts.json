@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_presidency_profile_former_deputy_president_ramaphosa",
+  "source_url": "https://web.archive.org/web/20250814210606id_/https://www.thepresidency.gov.za/former-deputy-president-cyril-ramaphosa",
+  "original_url": "https://www.thepresidency.gov.za/former-deputy-president-cyril-ramaphosa",
+  "archive_capture_utc": "2025-08-14T21:06:06Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 68591,
+  "source_response_sha256": "dbf134ba7a7483f35db1f908e41c9b5db78c53f0b12623ec4d5c44a61e268f3e",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header, or with Accept-Encoding: identity, and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that accepts gzip can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "First downloaded on 2026-09-25 at 12:32Z by the researcher and downloaded again at 13:05Z; the independent check downloaded it again at 13:14-13:18Z with Accept-Encoding: identity. Every download had the same byte count and SHA-256. Downloaded again for this packet at 2026-09-25T15:30Z (integration pass) with the same byte count and SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2025-08-14T21:06:06Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of the live page. Fetched without Accept-Encoding (curl without --compressed), the archive serves it uncompressed: the recorded byte count and SHA-256 are those of the uncompressed body. The response identity was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw capture (14 August 2025) of the Presidency's retrospective, undated profile; a different page from the 'President Cyril Ramaphosa' profile cited as za_presidency_ramaphosa_profile.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_presidency_profile_ramaphosa_dp_appointed_20140525",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-DP-07",
+      "role_id": "za_deputy_president",
+      "holder_name": "Cyril Ramaphosa",
+      "role_title": "Deputy President of the Republic of South Africa",
+      "event_kind": "appointment_stated",
+      "attested_on": "2014-05-25",
+      "text": "The Presidency's 'Former Deputy President Cyril Ramaphosa' profile says he was appointed Deputy President of the Republic of South Africa on 25 May 2014.",
+      "locator": {
+        "section": "Profile body, sentence 'He was appointed Deputy President of the Republic of South Africa on 25 May 2014.'"
+      }
+    }
+  ],
+  "bounded_scope": "Deputy President observations for CLAUDE-C01-21 only (role za_deputy_president in za_presidency). Announcements, stated intentions, appointments and their notices, oaths and their scheduling, stated assumptions, releases, resignations and their stated effect, Assembly-seat events and in-office attestations stay separate rows; holder observations and any start or end are decided in the packet, not by any row. The President's roles (za_president_election, za_state_president) and the ANC's party office are excluded and no row feeds them."
+}

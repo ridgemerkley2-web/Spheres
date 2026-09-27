@@ -1,0 +1,634 @@
+{
+  "label": "loaded",
+  "rendered": {
+    "results_line": "Campaign results: 5 of 6 achieved · see Your first hour below",
+    "route_line": "Checked 6 Jul 1990. Only dated records from this campaign count.",
+    "refresh_label": "Refresh results",
+    "refresh_disabled": false,
+    "panel_text": "Optional route · campaign resultsYour first hourRefresh results Reading a lesson never completes a step. A step counts only when this campaign’s own dated records show it.Checked 6 Jul 1990. Only dated records from this campaign count.1Enact a yearly budgetReading: Read✓ Campaign: Achieved in this campaign · as of 6 Jul 1990Yearly budget enacted on 1990-01-01.DoneYearly budget enacted · 1990-01-01Ministry budget enacted.2Fund a useful construction projectReading: Skipped✓ Campaign: Achieved in this campaign · as of 6 Jul 1990Project completed on 1990-07-03.Not yetConstruction work paidDoneProject completed · 1990-07-03Completed starter industry in Île-de-France.DoneCompleted site producing · 1990-07-05Output recorded at starter industry in Île-de-France.3Research toward a designReading: Not read✓ Campaign: Achieved in this campaign · as of 6 Jul 1990Design saved on 1990-01-03.Not yetComponent research under wayNo component research selected.DoneDesign saved · 1990-01-03Saved \"S19 First Hour\".Not yetDesign commissionedNot yetDevelopment paidNot yetComponent research completed4Buy equipment from a companyReading: Not read○ Campaign: Not yetNot yet achieved in this campaign.Not yetManufacturer establishedNot yetCertified product availableNot yetPurchase placedNot yetPurchase paidNot yetEquipment deliveredCurrent obstacleEstablish a manufacturerEquipment is bought from companies. Without a manufacturer, nobody can develop or build your designs.Review companies ↗5Prepare an air forceReading: Not read✓ Campaign: Achieved in this campaign · as of 6 Jul 1990Airbase improvement completed on 1990-01-15.DoneAirbase work funded · 1990-01-15Paid through completion of capacity level 1.DoneAirbase improvement completed · 1990-01-15Completed capacity level 1.Not yetSquadron formedNeeds delivered aircraft.Not yetSquadron readyNeeds delivered aircraft and a base.Not yetMission flownNeeds ready aircraft and an eligible conflict.6Save and resumeReading: Not read✓ Campaign: Achieved in this campaign · as of 6 Jul 1990Resumed from a save on 1990-07-06.DoneCampaign saved · 1990-07-06Saved \"s19-first-hour\".DoneResumed from a save · 1990-07-06Loaded \"s19-first-hour\".",
+    "steps": [
+      {
+        "id": "finances",
+        "status": "achieved",
+        "title": "Enact a yearly budget",
+        "reading": "Reading: Read",
+        "campaign": "✓ Campaign: Achieved in this campaign · as of 6 Jul 1990",
+        "summary": "Yearly budget enacted on 1990-01-01.",
+        "milestones": [
+          {
+            "state": "Done",
+            "cls": "guidance-milestone--done",
+            "date": "1990-01-01",
+            "detail": "Ministry budget enacted.",
+            "text": "DoneYearly budget enacted · 1990-01-01Ministry budget enacted."
+          }
+        ],
+        "obstacle": null
+      },
+      {
+        "id": "construction",
+        "status": "achieved",
+        "title": "Fund a useful construction project",
+        "reading": "Reading: Skipped",
+        "campaign": "✓ Campaign: Achieved in this campaign · as of 6 Jul 1990",
+        "summary": "Project completed on 1990-07-03.",
+        "milestones": [
+          {
+            "state": "Not yet",
+            "cls": "guidance-milestone--pending",
+            "date": null,
+            "detail": null,
+            "text": "Not yetConstruction work paid"
+          },
+          {
+            "state": "Done",
+            "cls": "guidance-milestone--done",
+            "date": "1990-07-03",
+            "detail": "Completed starter industry in Île-de-France.",
+            "text": "DoneProject completed · 1990-07-03Completed starter industry in Île-de-France."
+          },
+          {
+            "state": "Done",
+            "cls": "guidance-milestone--done",
+            "date": "1990-07-05",
+            "detail": "Output recorded at starter industry in Île-de-France.",
+            "text": "DoneCompleted site producing · 1990-07-05Output recorded at starter industry in Île-de-France."
+          }
+        ],
+        "obstacle": null
+      },
+      {
+        "id": "research_design",
+        "status": "achieved",
+        "title": "Research toward a design",
+        "reading": "Reading: Not read",
+        "campaign": "✓ Campaign: Achieved in this campaign · as of 6 Jul 1990",
+        "summary": "Design saved on 1990-01-03.",
+        "milestones": [
+          {
+            "state": "Not yet",
+            "cls": "guidance-milestone--pending",
+            "date": null,
+            "detail": "No component research selected.",
+            "text": "Not yetComponent research under wayNo component research selected."
+          },
+          {
+            "state": "Done",
+            "cls": "guidance-milestone--done",
+            "date": "1990-01-03",
+            "detail": "Saved \"S19 First Hour\".",
+            "text": "DoneDesign saved · 1990-01-03Saved \"S19 First Hour\"."
+          },
+          {
+            "state": "Not yet",
+            "cls": "guidance-milestone--pending",
+            "date": null,
+            "detail": null,
+            "text": "Not yetDesign commissioned"
+          },
+          {
+            "state": "Not yet",
+            "cls": "guidance-milestone--pending",
+            "date": null,
+            "detail": null,
+            "text": "Not yetDevelopment paid"
+          },
+          {
+            "state": "Not yet",
+            "cls": "guidance-milestone--pending",
+            "date": null,
+            "detail": null,
+            "text": "Not yetComponent research completed"
+          }
+        ],
+        "obstacle": null
+      },
+      {
+        "id": "procurement",
+        "status": "not_yet",
+        "title": "Buy equipment from a company",
+        "reading": "Reading: Not read",
+        "campaign": "○ Campaign: Not yet",
+        "summary": "Not yet achieved in this campaign.",
+        "milestones": [
+          {
+            "state": "Not yet",
+            "cls": "guidance-milestone--pending",
+            "date": null,
+            "detail": null,
+            "text": "Not yetManufacturer established"
+          },
+          {
+            "state": "Not yet",
+            "cls": "guidance-milestone--pending",
+            "date": null,
+            "detail": null,
+            "text": "Not yetCertified product available"
+          },
+          {
+            "state": "Not yet",
+            "cls": "guidance-milestone--pending",
+            "date": null,
+            "detail": null,
+            "text": "Not yetPurchase placed"
+          },
+          {
+            "state": "Not yet",
+            "cls": "guidance-milestone--pending",
+            "date": null,
+            "detail": null,
+            "text": "Not yetPurchase paid"
+          },
+          {
+            "state": "Not yet",
+            "cls": "guidance-milestone--pending",
+            "date": null,
+            "detail": null,
+            "text": "Not yetEquipment delivered"
+          }
+        ],
+        "obstacle": {
+          "title": "Establish a manufacturer",
+          "reason": "Equipment is bought from companies. Without a manufacturer, nobody can develop or build your designs.",
+          "button": {
+            "tag": "BUTTON",
+            "type": "button",
+            "label": "Review companies: Buy equipment from a company",
+            "text": "Review companies ↗",
+            "disabled": false,
+            "tabIndex": 0
+          }
+        }
+      },
+      {
+        "id": "air_force",
+        "status": "achieved",
+        "title": "Prepare an air force",
+        "reading": "Reading: Not read",
+        "campaign": "✓ Campaign: Achieved in this campaign · as of 6 Jul 1990",
+        "summary": "Airbase improvement completed on 1990-01-15.",
+        "milestones": [
+          {
+            "state": "Done",
+            "cls": "guidance-milestone--done",
+            "date": "1990-01-15",
+            "detail": "Paid through completion of capacity level 1.",
+            "text": "DoneAirbase work funded · 1990-01-15Paid through completion of capacity level 1."
+          },
+          {
+            "state": "Done",
+            "cls": "guidance-milestone--done",
+            "date": "1990-01-15",
+            "detail": "Completed capacity level 1.",
+            "text": "DoneAirbase improvement completed · 1990-01-15Completed capacity level 1."
+          },
+          {
+            "state": "Not yet",
+            "cls": "guidance-milestone--pending",
+            "date": null,
+            "detail": "Needs delivered aircraft.",
+            "text": "Not yetSquadron formedNeeds delivered aircraft."
+          },
+          {
+            "state": "Not yet",
+            "cls": "guidance-milestone--pending",
+            "date": null,
+            "detail": "Needs delivered aircraft and a base.",
+            "text": "Not yetSquadron readyNeeds delivered aircraft and a base."
+          },
+          {
+            "state": "Not yet",
+            "cls": "guidance-milestone--pending",
+            "date": null,
+            "detail": "Needs ready aircraft and an eligible conflict.",
+            "text": "Not yetMission flownNeeds ready aircraft and an eligible conflict."
+          }
+        ],
+        "obstacle": null
+      },
+      {
+        "id": "save_resume",
+        "status": "achieved",
+        "title": "Save and resume",
+        "reading": "Reading: Not read",
+        "campaign": "✓ Campaign: Achieved in this campaign · as of 6 Jul 1990",
+        "summary": "Resumed from a save on 1990-07-06.",
+        "milestones": [
+          {
+            "state": "Done",
+            "cls": "guidance-milestone--done",
+            "date": "1990-07-06",
+            "detail": "Saved \"s19-first-hour\".",
+            "text": "DoneCampaign saved · 1990-07-06Saved \"s19-first-hour\"."
+          },
+          {
+            "state": "Done",
+            "cls": "guidance-milestone--done",
+            "date": "1990-07-06",
+            "detail": "Loaded \"s19-first-hour\".",
+            "text": "DoneResumed from a save · 1990-07-06Loaded \"s19-first-hour\"."
+          }
+        ],
+        "obstacle": null
+      }
+    ]
+  },
+  "accepted": {
+    "status": "ready",
+    "notice": "",
+    "route": {
+      "status": "ready",
+      "reason": null,
+      "as_of": {
+        "session_id": "164-1790551500724821000-5",
+        "player": "France",
+        "date": "6 Jul 1990",
+        "day": 186
+      },
+      "steps": [
+        {
+          "id": "finances",
+          "title": "Enact a yearly budget",
+          "lessons": [
+            "budget-treasury"
+          ],
+          "status": "achieved",
+          "summary": "Yearly budget enacted on 1990-01-01.",
+          "milestones": [
+            {
+              "id": "budget_enacted",
+              "label": "Yearly budget enacted",
+              "status": "done",
+              "day": 0,
+              "date": "1990-01-01",
+              "detail": "Ministry budget enacted."
+            }
+          ],
+          "obstacle": null
+        },
+        {
+          "id": "construction",
+          "title": "Fund a useful construction project",
+          "lessons": [
+            "construction-effects",
+            "industry-operations"
+          ],
+          "status": "achieved",
+          "summary": "Project completed on 1990-07-03.",
+          "milestones": [
+            {
+              "id": "work_paid",
+              "label": "Construction work paid",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": null
+            },
+            {
+              "id": "project_completed",
+              "label": "Project completed",
+              "status": "done",
+              "day": 183,
+              "date": "1990-07-03",
+              "detail": "Completed starter industry in Île-de-France."
+            },
+            {
+              "id": "site_producing",
+              "label": "Completed site producing",
+              "status": "done",
+              "day": 185,
+              "date": "1990-07-05",
+              "detail": "Output recorded at starter industry in Île-de-France."
+            }
+          ],
+          "obstacle": null
+        },
+        {
+          "id": "research_design",
+          "title": "Research toward a design",
+          "lessons": [
+            "research-components"
+          ],
+          "status": "achieved",
+          "summary": "Design saved on 1990-01-03.",
+          "milestones": [
+            {
+              "id": "research_active",
+              "label": "Component research under way",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": "No component research selected."
+            },
+            {
+              "id": "design_saved",
+              "label": "Design saved",
+              "status": "done",
+              "day": 2,
+              "date": "1990-01-03",
+              "detail": "Saved \"S19 First Hour\"."
+            },
+            {
+              "id": "design_commissioned",
+              "label": "Design commissioned",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": null
+            },
+            {
+              "id": "development_paid",
+              "label": "Development paid",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": null
+            },
+            {
+              "id": "research_completed",
+              "label": "Component research completed",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": null
+            }
+          ],
+          "obstacle": null
+        },
+        {
+          "id": "procurement",
+          "title": "Buy equipment from a company",
+          "lessons": [
+            "equipment-procurement"
+          ],
+          "status": "not_yet",
+          "summary": "Not yet achieved in this campaign.",
+          "milestones": [
+            {
+              "id": "manufacturer",
+              "label": "Manufacturer established",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": null
+            },
+            {
+              "id": "certified_product",
+              "label": "Certified product available",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": null
+            },
+            {
+              "id": "purchase_placed",
+              "label": "Purchase placed",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": null
+            },
+            {
+              "id": "purchase_paid",
+              "label": "Purchase paid",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": null
+            },
+            {
+              "id": "equipment_delivered",
+              "label": "Equipment delivered",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": null
+            }
+          ],
+          "obstacle": {
+            "title": "Establish a manufacturer",
+            "reason": "Equipment is bought from companies. Without a manufacturer, nobody can develop or build your designs.",
+            "action": {
+              "kind": "companies"
+            },
+            "actionLabel": "Review companies"
+          }
+        },
+        {
+          "id": "air_force",
+          "title": "Prepare an air force",
+          "lessons": [
+            "air-force"
+          ],
+          "status": "achieved",
+          "summary": "Airbase improvement completed on 1990-01-15.",
+          "milestones": [
+            {
+              "id": "base_funded",
+              "label": "Airbase work funded",
+              "status": "done",
+              "day": 14,
+              "date": "1990-01-15",
+              "detail": "Paid through completion of capacity level 1."
+            },
+            {
+              "id": "base_completed",
+              "label": "Airbase improvement completed",
+              "status": "done",
+              "day": 14,
+              "date": "1990-01-15",
+              "detail": "Completed capacity level 1."
+            },
+            {
+              "id": "squadron_formed",
+              "label": "Squadron formed",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": "Needs delivered aircraft."
+            },
+            {
+              "id": "squadron_ready",
+              "label": "Squadron ready",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": "Needs delivered aircraft and a base."
+            },
+            {
+              "id": "mission_flown",
+              "label": "Mission flown",
+              "status": "pending",
+              "day": null,
+              "date": null,
+              "detail": "Needs ready aircraft and an eligible conflict."
+            }
+          ],
+          "obstacle": null
+        },
+        {
+          "id": "save_resume",
+          "title": "Save and resume",
+          "lessons": [
+            "save-review"
+          ],
+          "status": "achieved",
+          "summary": "Resumed from a save on 1990-07-06.",
+          "milestones": [
+            {
+              "id": "campaign_saved",
+              "label": "Campaign saved",
+              "status": "done",
+              "day": 186,
+              "date": "1990-07-06",
+              "detail": "Saved \"s19-first-hour\"."
+            },
+            {
+              "id": "campaign_resumed",
+              "label": "Resumed from a save",
+              "status": "done",
+              "day": 186,
+              "date": "1990-07-06",
+              "detail": "Loaded \"s19-first-hour\"."
+            }
+          ],
+          "obstacle": null
+        }
+      ]
+    },
+    "routeChecked": "6 Jul 1990",
+    "routeStale": false,
+    "snapshot": {
+      "session_id": "164-1790551500724821000-5",
+      "player": "France",
+      "date": "6 Jul 1990",
+      "t": 6
+    },
+    "progress": {
+      "version": 1,
+      "done": [
+        "budget-treasury"
+      ],
+      "skipped": [
+        "construction-effects"
+      ],
+      "current": "industry-operations",
+      "started": true
+    }
+  },
+  "native_outcomes": {
+    "as_of_day": 186,
+    "aviation": {
+      "bases": [
+        {
+          "history": [
+            {
+              "completed_day": 14,
+              "started_day": 2,
+              "target_level": 1,
+              "track": "capacity"
+            }
+          ],
+          "id": "FRA_le-de-france",
+          "name": "Île-de-France airbase",
+          "project": null
+        }
+      ],
+      "missions": [],
+      "squadrons": []
+    },
+    "construction": {
+      "completions": [
+        {
+          "date": "3 Jul 1990",
+          "day": 183,
+          "district": "FRA_le-de-france",
+          "district_name": "Île-de-France",
+          "kind": "starter_industry",
+          "text": "France completes a 10.1388% Starter Industry module in FRA_le-de-france."
+        }
+      ],
+      "mines": [],
+      "operating": [
+        {
+          "day": 185,
+          "district": "FRA_le-de-france",
+          "district_name": "Île-de-France",
+          "kind": "starter_industry",
+          "output_daily": 0.101388
+        }
+      ],
+      "projects": []
+    },
+    "date": "6 Jul 1990",
+    "money": {
+      "decisions": [
+        {
+          "day": 0,
+          "id": 1,
+          "kind": "program_budget"
+        },
+        {
+          "day": 1,
+          "id": 2,
+          "kind": "construction_budget"
+        }
+      ],
+      "journal_available": true,
+      "program": {
+        "enabled": true,
+        "fiscal_year": 1990,
+        "settled_day": 185
+      }
+    },
+    "nation": "France",
+    "procurement": {
+      "certified_products": 0,
+      "companies": 0,
+      "deliveries": [],
+      "developing_products": 0,
+      "imports": []
+    },
+    "research": {
+      "active": null,
+      "drafts": [
+        {
+          "name": "S19 First Hour",
+          "updated_day": 2,
+          "valid": true
+        }
+      ],
+      "last_completed_day": null,
+      "learned": 0,
+      "projects": [],
+      "revisions": []
+    }
+  },
+  "native_state_identity": {
+    "session_id": "164-1790551500724821000-5",
+    "player": "France",
+    "date": "6 Jul 1990",
+    "t": 6
+  },
+  "receipts": {
+    "saves": [
+      {
+        "session_id": "164-1790551357192058900-1",
+        "player": "France",
+        "slot": "s19-first-hour",
+        "date": "6 Jul 1990",
+        "dispatches": 67
+      }
+    ],
+    "loads": [
+      {
+        "session_id": "164-1790551500724821000-5",
+        "player": "France",
+        "slot": "s19-first-hour",
+        "backup": false,
+        "date": "6 Jul 1990",
+        "dispatch_count": 67
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://www.bush41library.gov/digital-research-room/finding-aid/public-papers/address-nation-announcing-deployment-united-states",
+  "accessed_date": "2026-09-21",
+  "published_date": "1990-08-08",
+  "access_method": "downloaded_original_html_and_article_text_read",
+  "source_response_bytes": 31889,
+  "source_response_sha256": "539f115582aea3de304d4557c61bb18169f829616c04d72b50d591c5f91ba1c3",
+  "source_response_checked_in": false,
+  "provenance_note": "Downloaded with curl -L on 2026-09-21 by the researcher and again, independently, by the checker; both responses were 31,889 bytes with the same SHA-256, which is recorded as the original response identity. This checked-in file is a derived factual extract, not the original response or a pre-cutoff archived snapshot. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "claims": [
+    {
+      "id": "sa_fahd_king_obs_19900808",
+      "text": "In his 8 August 1990 address the U.S. President says that, after consulting with King Fahd, he sent the Secretary of Defense to discuss cooperative measures; the Public Papers editorial note identifies him as King Fahd bin Abd al-Aziz Al Saud of Saudi Arabia.",
+      "attested_on": "1990-08-08",
+      "locator": "Address body, consultation paragraph; closing editorial Note",
+      "uncertainty": "A foreign official record, not a Saudi royal record, read from a presidential-library web transcription of the Public Papers rather than the GPO print edition. It attests the title on this date only; it gives no accession date, term start or continuity."
+    }
+  ],
+  "scope_note": "Used only as the 1990 opening-window observation of King Fahd (SA-EXEC-01). No Saudi record from 1990 was retrieved.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not visually rendered. HTML transcription (not a scan or PDF); the address and editorial note were read from the downloaded response."
+  }
+}

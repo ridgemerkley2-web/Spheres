@@ -1,0 +1,45 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_ls_debates_19910306",
+  "source_url": "https://archive.org/download/eparlib.nic.in.3649/lsd_09_7_06-03-1991.pdf",
+  "mirror_of": "https://eparlib.sansad.in/bitstream/123456789/3649/1/lsd_09_7_06-03-1991.pdf",
+  "accessed_date": "2026-09-23",
+  "published_date": null,
+  "access_method": "downloaded_internet_archive_item_copy_pdf_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 18429324,
+  "source_response_sha256": "52d5806a84885d75c03d1dcb76a3d7843eba308f8306b2b6dab44c74665c08e8",
+  "source_response_checked_in": false,
+  "provenance_note": "Stored file in an Internet Archive item that mirrors the official document; archive.org redirects the download URL to a storage node and the final response body is the recorded identity. The researcher downloaded it twice on 23 September 2026 (16:52Z and 17:24Z, the second with a cache-busting query) and the check three more times (17:27Z, 17:54Z and 18:04Z, with cache-busting queries), each with the same byte count and SHA-256. PDF metadata: Adobe Scan-to-PDF, CreationDate 11 January 2015, ModDate 3 September 2015 (a static scan). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A third-party copy of the Lok Sabha Secretariat's PDF in the Internet Archive item eparlib.nic.in.3649, a private upload of July 2025 whose metadata names the handle page https://eparlib.sansad.in/handle/123456789/3649 as its source (item MD5 6186f3cfd6988f3cf05c21c3215f0cd1, SHA-1 1d6f81ef2f6541cb2162954bab2c89b23e41b0ac). Partial origin corroboration: the only capture of the official URL (20220523115114) is truncated at exactly 1,048,576 bytes, is the head of a linearized PDF whose /L declares 18,429,324 bytes, and equals the first 1,048,576 bytes of this copy; full equality with the origin is not claimed. The Rajya Sabha record of the same day (in_rs_debates_19910306) corroborates the announcement on an official host.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      405,
+      406,
+      410
+    ],
+    "method": "PDF pages 406 and 410 rendered and read by the researcher and page 405 by the check; pages 379, 407 and 409 read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "in_chandra_shekhar_announces_resignation_19910306",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-02",
+      "role_id": "in_pm",
+      "holder_name": "Chandra Shekhar",
+      "role_title": "Prime Minister of India",
+      "event_kind": "resignation_announced",
+      "attested_on": "1991-03-06",
+      "text": "Replying in the Lok Sabha on 6 March 1991 (English translation of a Hindi speech), the Prime Minister, Shri Chandra Shekhar, says his Government is going to resign and that he will call on the President to tender his resignation, and asks for the House to be adjourned; the Speaker, 'in view of the resignation announced by the Prime Minister on the floor of the House', treats the Motion of Thanks as infructuous and adjourns the House at 14.00 hrs until 11.00 on 7 March.",
+      "locator": {
+        "pdf_page": [
+          405,
+          410
+        ],
+        "columns": "804-814",
+        "item": "Re. Constitutional Crisis in the Country (cols 787-814); reply by Shri Chandra Shekhar from col 804 (PDF p.405, '[Translation] SHRI CHANDRA SHEKHAR:') to col 814 (PDF p.410); Speaker's ruling and adjournment at 14.00 hrs to 11.00 on 7 March"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

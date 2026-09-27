@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_gazette_ext_p1s2_no28_19980814",
+  "source_url": "https://archive.org/download/in.gazette.central.e.1998-08-14.5793/5793.pdf",
+  "mirror_of": "egazette.nic.in (Gazette of India, Extraordinary, 14 August 1998, CSL file 5793)",
+  "accessed_date": "2026-09-23",
+  "published_date": "1998-08-14",
+  "access_method": "downloaded_internet_archive_stored_gazette_pdf_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 43121,
+  "source_response_sha256": "909711304306ca7f5bd13b8d17e0cbef2cb458db3c04cbb163569a5776432333",
+  "source_response_checked_in": false,
+  "provenance_note": "Stored file in an Internet Archive item that mirrors the official document; archive.org redirects the download URL to a storage node and the final response body is the recorded identity. The check downloaded it twice on 23 September 2026 (10:58-11:08 PDT and 11:28 PDT with a cache-busting query) with the same byte count and SHA-256, and its SHA-1 equals archive.org's recorded file SHA-1; the stored copy was re-hashed for this packet with the same result. PDF CreationDate 12 March 2013 (iText, no ModDate), so it is not generated per request. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The stored original in the Internet Archive's Gazette of India collection (item in.gazette.central.e.1998-08-14.5793, a Public.Resource.Org copy of the egazette.nic.in file, uploaded 6 August 2018; archive.org SHA-1 1bb3fea58a0b4f82845ce9ef550a373963b4f47f). The egazette.nic.in host no longer resolves and the file name on egazette.gov.in is not known. Located by the Part B check.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "PDF page 1 rendered by the check and read; its text layer read by this packet."
+  },
+  "rows": [
+    {
+      "claim_id": "in_gazette_corrigendum_gujral_acceptance_19980814",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-05",
+      "role_id": "in_pm",
+      "holder_name": "I. K. Gujral",
+      "role_title": "Prime Minister of India",
+      "event_kind": "resignation_acceptance_corrigendum",
+      "attested_on": "1998-08-14",
+      "text": "Ministry of Home Affairs corrigendum F. No. 10/20/98-M&G of 14 August 1998 substitutes the first four lines of notification No. 10/1/98-M&G of 6 April 1998: the President has accepted the resignation of Shri I. K. Gujral of his office of the Prime Minister along with his colleagues in the Council of Ministers and 'advised them to continue till a new Government is formed', and 'the following members of the Council of Ministers have relinquished charge with effect from 19th March, 1998'.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "Corrigendum F. No. 10/20/98-M & G, New Delhi, the 14th August, 1998"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

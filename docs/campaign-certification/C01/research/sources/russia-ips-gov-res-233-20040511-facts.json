@@ -1,0 +1,46 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_gov_res_233_20040511",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102086705&page=1&rdk=0",
+  "source_title": "Resolution of the Government of the Russian Federation No. 233 of 11 May 2004 'О неприменении ставки вывозной таможенной пошлины в отношении слоистоклееного лесоматериала и изделий деревянных прочих' (original edition)",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "document_date": "2004-05-11",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102086705&page=1&rdk=0",
+  "source_response_bytes": 32704,
+  "source_response_sha256": "1c78b3382ba07aa0c4bdc704011cfa37bb4fb022cf5e106c9dc86637c7888267",
+  "source_response_encoding": "windows-1251",
+  "source_response_checked_in": false,
+  "stability_check": "Found by the independent check: document identical at 13:33Z and 14:06Z on 2026-09-25 (HTTP; windows-1251); the date-restricted card returned exactly one hit. This packet: re-downloaded at 2026-09-25T14:23:00Z and again at 2026-09-25T14:56:30Z (33 minutes later); identical 32,704 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=233&a8type=1&a7type=4&a7from=11.05.2004&a7to=11.05.2004&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3210,
+    "sha256": "1db411a6cf1229b8bf3c455ffc8af099401bd2af537205ed863db889e45d7632",
+    "note": "Date-restricted single-document card (number 233, date 11.05.2004): one hit, status 'Утратил силу'."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 25 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read (heading, operative text and signature block). The date-restricted single-document portal card (portal_card_response) returns only this act. A primary record found by the independent check.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in Russian after windows-1251 decoding (heading, operative text and signature block)."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_gov_res_233_fradkov_signs_as_acting_20040511",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-07",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Михаил Ефимович Фрадков",
+      "printed_name": "М.Фрадков",
+      "role_title": "Исполняющий обязанности Председателя Правительства — Acting Chairman of the Government",
+      "event_kind": "acting_service_attestation",
+      "attested_on": "2004-05-11",
+      "text": "Government resolution No. 233 of 11 May 2004 'О неприменении ставки вывозной таможенной пошлины в отношении слоистоклееного лесоматериала и изделий деревянных прочих' is signed 'И. о. Председателя Правительства Российской Федерации М.Фрадков'.",
+      "locator": "Heading ('от 11 мая 2004 г. N 233'); signature block"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

@@ -1,0 +1,63 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_rg_cec_res_98_1110_3_20000405",
+  "source_url": "https://web.archive.org/web/20010218034958id_/http://www.rg.ru:80/oficial/doc/vybor_99/98.htm",
+  "original_url": "http://www.rg.ru/oficial/doc/vybor_99/98.htm",
+  "archive_capture_utc": "2001-02-18T03:49:58Z",
+  "source_title": "Resolution of the Central Election Commission No. 98/1110-3 of 5 April 2000 'On the results of the election of the President of the Russian Federation', with the attached per-candidate data — Rossiyskaya Gazeta official-documents section",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "document_date": "2000-04-05",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20010218034958id_/http://www.rg.ru:80/oficial/doc/vybor_99/98.htm",
+  "source_response_bytes": 5684,
+  "source_response_sha256": "af2e5bf0e82b3513e4025f08a4e576311a8c1d6dc27ce0b3fb113846d9a94981",
+  "source_response_encoding": "windows-1251 HTML, served without Content-Encoding; original Last-Modified 26 June 2000; the SHA-1 equals the Internet Archive CDX digest 6L4JN7C7ZKZO765IGKAPQAGKF35BPVMT",
+  "source_response_checked_in": false,
+  "stability_check": "Found by the independent check: first downloaded at 2026-09-24T23:39-23:54Z and re-downloaded at 2026-09-25T00:23:24Z (30-44 minutes later); identical bytes and SHA-256, and the SHA-1 equals the archive's stored digest. This packet: re-downloaded at 2026-09-25T00:35:01Z (5,684 bytes); identical SHA-256.",
+  "annex_responses": [
+    {
+      "url": "https://web.archive.org/web/20010222113744id_/http://www.rg.ru:80/oficial/doc/vybor_99/98_pril.htm",
+      "bytes": 4893,
+      "sha256": "8279818e8003d650d1b4ceea5c828d4e0753b5deb0f5273efc6e7bca424e094e",
+      "note": "Attached page 'Данные о числе полученных каждым из зарегистрированных кандидатов голосов избирателей'; raw capture 20010222113744, windows-1251, original Last-Modified 26 June 2000; its SHA-1 equals the CDX digest CTKCJ3PZAEQXSA7NIEGT6TYMQUCSBE2F."
+    }
+  ],
+  "provenance_note": "Raw Internet Archive capture (id_ form) of http://www.rg.ru/oficial/doc/vybor_99/98.htm, captured at 2001-02-18T03:49:58Z, before the 7 September 2026 cutoff; the id_ form replays the archived bytes unchanged and is used because rg.ru answered HTTP 401 (a bot-protection page) to direct requests, which was not bypassed. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The page prints no issue date, so published_date is null; the server's Last-Modified (26 June 2000) is not a publication day. The resolution is numbered 98/1110-3 here and 97/1110-3 in the CEC's own April 2000 list (ru_fci_cec_resolutions_april_2000); both are recorded as printed. The first of eleven 2001-2005 captures; the 2001-2002 ones share this digest.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Archived HTML text of the resolution and of the attached data page read in full after windows-1251 decoding."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_rg_cec_98_1110_3_putin_elected_20000405",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-05",
+      "role_id": "ru_president",
+      "holder_name": "Владимир Владимирович Путин",
+      "printed_name": "Путин Владимир Владимирович",
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "result_declaration",
+      "attested_on": "2000-04-05",
+      "text": "Citing the CEC protocol of 5 April 2000 on the results of the presidential election (109,372,046 voters on the lists; 75,181,071 took part in the election, 68.74 per cent; 75,070,776 took part in the voting; registered candidate Putin Vladimir Vladimirovich 39,740,434 votes, 52.94 per cent), the CEC declares the election valid and deems 'Путина Владимира Владимировича' elected to the office of President of the Russian Federation, and orders publication in Rossiyskaya Gazeta, Parlamentskaya Gazeta and the CEC Vestnik. Headed 'Постановление ... от 5 апреля 2000 г. N 98/1110-3'; signed A. Veshnyakov (Chairman) and O. Zastrozhnaya (Secretary).",
+      "locator": "Heading; preamble; points 1-3; signature block"
+    },
+    {
+      "claim_id": "ru_rg_cec_98_1110_3_candidate_figures_20000405",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-05",
+      "role_id": "ru_president",
+      "holder_name": "Владимир Владимирович Путин",
+      "printed_name": "ПУТИН Владимир Владимирович",
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "result_figures",
+      "attested_on": "2000-04-05",
+      "text": "The attached data give votes per registered candidate: Govorukhin 328,723 (0.44%), Dzhabrailov 78,498 (0.10%), Zhirinovsky 2,026,513 (2.70%), Zyuganov 21,928,471 (29.21%), Pamfilova 758,966 (1.01%), Podberezkin 98,175 (0.13%), Putin 39,740,434 (52.94%), Skuratov 319,263 (0.43%), Titov 1,107,269 (1.47%), Tuleev 2,217,361 (2.95%), Yavlinsky 4,351,452 (5.80%); against all 1,414,648 (1.88%).",
+      "locator": "Attached data page (annex_responses[0])"
+    }
+  ],
+  "bounded_scope": "Presidency observations for CLAUDE-C01-14 only. Election calling, voting, result determination, declaration, correction and publication, oath, stated assumption of office, inauguration ceremony, resignation, acting service and outgoing-holder statements stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-05 RSFSR roles and the USSR packet are outside this extract."
+}
