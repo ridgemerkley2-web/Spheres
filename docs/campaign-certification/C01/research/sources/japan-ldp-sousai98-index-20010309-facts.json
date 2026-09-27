@@ -1,0 +1,55 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_ldp_sousai98_index",
+  "source_url": "https://web.archive.org/web/20010309225342id_/http://www.jimin.or.jp:80/jimin/jimin/sousai98/index.html",
+  "original_url": "http://www.jimin.or.jp/jimin/jimin/sousai98/index.html",
+  "archive_capture_utc": "2001-03-09T22:53:42Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 7704,
+  "source_response_sha256": "cdd05a24e17b2446c322c9753294ed44fb12640eea537740426f0c821dca2a3f",
+  "source_response_content_encoding": "identity",
+  "source_response_sha1_base32": "A5GN3ACAQQY6MTEWY7BZC7ZMIKQYPEKG",
+  "source_character_encoding": "Shift_JIS (no charset is declared in the page; the bytes decode cleanly as Shift_JIS)",
+  "source_response_checked_in": false,
+  "fetch_recipe": "curl -s -o FILE 'https://web.archive.org/web/20010309225342id_/http://www.jimin.or.jp:80/jimin/jimin/sousai98/index.html' with no Accept-Encoding request header and no automatic decoding; hash the bytes as received.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2001-03-09T22:53:42Z; that form replays the archived bytes unchanged. The archived original's Last-Modified header is Wed, 28 Feb 2001 12:20:09 GMT. A record the part B check found or asked to import: downloaded at 12:09:55Z (by the researcher, who listed it as a lead) and by the check at 14:01:19Z on 25 September 2026, with the same byte count and SHA-256; the SHA-1 of the body equals the CDX digest the researcher recorded for the capture. Downloaded on 25 September 2026 (UTC) by this packet at 14:19:42Z and 14:56:19Z, 36 minutes apart, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party's 1998 presidential election index, recorded as a raw Internet Archive capture (the party's 2001 web copy, Last-Modified 28 February 2001). It is the only 1998 party page that prints the year (平成１０年), and it supplies the year for the linked caption pages, which print only month and day.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded and read in full (headings, date lines, captions and body); no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_ldp98idx_candidacies_filed_19980721",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-05",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": null,
+      "role_title": "総裁 — party president",
+      "event_kind": "candidacy_filing",
+      "attested_on": "1998-07-21",
+      "text": "The party's 平成１０年総裁選挙情報 page for the 18th presidential election lists the candidates 梶山静六, 小泉純一郎 and 小渕恵三 in filing order and links a page on the filing of candidacies (総裁選挙候補者届け出の模様) dated ７月２１日 11:00.",
+      "locator": {
+        "section": "■総裁選挙候補者; link list"
+      }
+    },
+    {
+      "claim_id": "jp_ldp98idx_vote_session_listed_19980724",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-05",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": null,
+      "role_title": "総裁 — party president",
+      "event_kind": "election_session_listing",
+      "attested_on": "1998-07-24",
+      "text": "The same page links the page on the voting and count (総裁選挙投票・開票の模様) dated ７月２４日 14:00; its heading 平成１０年総裁選挙情報 and the 第１８代 heading give the year that the linked caption pages do not print.",
+      "locator": {
+        "section": "link list; page headings"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations of the LDP president (総裁) for CLAUDE-C01-18 only, 1990-2009 (stacked on CLAUDE-C01-13). Party elections and selections (member and Diet-member votes, joint plenary meetings of party Diet members), notices, candidacies, declarations and reports of results, statements of assumption, in-office attestations, announced and prospective resignations, predecessor references and retrospective records stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this office (a notice, a filing, a schedule, an unnamed caption or a meeting). The prime-ministership (jp_pm) is excluded: no row feeds it, and no jp_pm claim feeds this office."
+}

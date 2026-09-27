@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_inc_cwc_briefing_20200824",
+  "source_url": "https://res.cloudinary.com/dkplc2mbj/image/upload/v1598342927/Shri_Randeep_Singh_Surjewala_and_others_24_08_2020_349f52cf6f.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": "2020-08-24",
+  "access_method": "party_stored_file_download_pdf_text_layer_read",
+  "source_response_bytes": 216700,
+  "source_response_sha256": "45c5945dc3f58578f32352ae46f07d0a594e23723ca1b06b7d690969374c4e43",
+  "source_response_checked_in": false,
+  "provenance_note": "Stored file on the Indian National Congress's own media store (Cloudinary account dkplc2mbj): a versioned upload URL whose ETag equals the MD5 of the body, with Last-Modified at the upload time. Cloudinary's edge answers query-string variants from its cache, so a cache-busting download is not an origin test; stability rests on the ETag match and on downloads at least 30 minutes apart. The Part C check downloaded it at 13:12Z and 13:33Z on 25 September 2026, and this packet downloaded it again at 14:47Z and 14:59Z, at least 30 minutes after the check's first download, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A stored file on the Indian National Congress's own media store, found through the INC press release of the Working Committee briefing of 24 August 2020; the live inc.in release pages were used only as finding aids and were not hashed, because they are rebuilt per request. ETag equals the MD5 of the body; Last-Modified Tue, 25 Aug 2020 08:08:48 GMT. Uploaded on 25 August 2020.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "Pages 1-2 read from the text layer (English read-out of the resolution and its Hindi rendering)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_cwc_resolution_read_out_continue_20200824",
+      "observation_id": "in_eci_20240323_np_05",
+      "review_observation": "INC-PRES-07",
+      "role_id": "in_inc_president",
+      "holder_name": "Sonia Gandhi",
+      "role_title": "President of the Indian National Congress",
+      "event_kind": "interim_continuation_requested",
+      "attested_on": "2020-08-24",
+      "text": "At the AICC briefing of 24 August 2020 Shri K.C. Venugopal reads the resolution adopted that day, which ends: 'the CWC unanimously requests Smt. Sonia Gandhi to continue to lead the Indian National Congress until such time as circumstances will permit an AICC session to be convened.'",
+      "locator": {
+        "pdf_page": 2,
+        "item": "English read-out of the resolution, last paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-20 only: the role in_inc_president (President of the Indian National Congress) on the Indian National Congress recognition observation in_eci_20240323_np_05. Working Committee decisions, AICC sessions and ratifications, the Central Election Authority's schedules, notifications and declarations, certificates, handovers, resignations, withdrawals, farewells, interim arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, the Leader of the Opposition, the Congress Parliamentary Party and every other office are excluded."
+}

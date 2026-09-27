@@ -1,0 +1,72 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_ls_debates_19910311",
+  "source_url": "https://archive.org/download/eparlib.nic.in.1353/lsd_09_7_11-03-1991.pdf",
+  "mirror_of": "https://eparlib.sansad.in/bitstream/123456789/1353/1/lsd_09_7_11-03-1991.pdf",
+  "accessed_date": "2026-09-23",
+  "published_date": null,
+  "access_method": "downloaded_internet_archive_item_copy_pdf_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 6588530,
+  "source_response_sha256": "32eddc3a7648376194e2e628dce74e2a57c7ea138d90f453c18611325d882559",
+  "source_response_checked_in": false,
+  "provenance_note": "Stored file in an Internet Archive item that mirrors the official document; archive.org redirects the download URL to a storage node and the final response body is the recorded identity. The researcher downloaded it twice on 23 September 2026 (16:50Z and 17:24Z, the second with a cache-busting query) and the check three more times (17:27Z, 17:54Z and 18:04Z, with cache-busting queries), each with the same byte count and SHA-256. PDF metadata: Adobe Scan-to-PDF, CreationDate 11 January 2015, ModDate 13 August 2015 (a static scan). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Mirror-only provenance: a third-party copy of the Lok Sabha Secretariat's PDF in the Internet Archive item eparlib.nic.in.1353 (a private upload of July 2025 whose metadata names the Parliament Digital Library handle page for record 123456789/1353; item MD5 e9d5fcd0c321d7d13fbec6cb62317654, SHA-1 544e71366a9a481aea7ffa74b71ad67d668935f0). No capture of the official URL exists. The same two letters were laid in the Rajya Sabha on 7 March 1991 (in_rs_papers_19910307), an official-host record.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      33
+    ],
+    "method": "PDF page 33 (columns 43-44) rendered and read; page 2 (contents) read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "in_chandra_shekhar_resignation_letter_19910306",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-02",
+      "role_id": "in_pm",
+      "holder_name": "Chandra Shekhar",
+      "role_title": "Prime Minister of India",
+      "event_kind": "resignation_tendered",
+      "attested_on": "1991-03-06",
+      "text": "The Secretary-General lays on the Table (11 March 1991) a letter dated 6 March 1991 from the Prime Minister to the President tendering his own resignation and that of his Council of Ministers (Library No. LT-2215/91).",
+      "locator": {
+        "pdf_page": 33,
+        "columns": "43-44",
+        "item": "Resignation of Council of Ministers, paper (1)"
+      }
+    },
+    {
+      "claim_id": "in_president_accepts_chandra_shekhar_resignation_19910306",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-02",
+      "role_id": "in_pm",
+      "holder_name": "Chandra Shekhar",
+      "role_title": "Prime Minister of India",
+      "event_kind": "resignation_accepted",
+      "attested_on": "1991-03-06",
+      "text": "Also laid on 11 March 1991: a letter dated 6 March 1991 from the President to the Prime Minister accepting his resignation and the resignation of his colleagues from the Council of Ministers (Library No. LT-2216/91).",
+      "locator": {
+        "pdf_page": 33,
+        "columns": "43-44",
+        "item": "Resignation of Council of Ministers, paper (2)"
+      }
+    },
+    {
+      "claim_id": "in_president_requests_chandra_shekhar_continue_19910306",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-02",
+      "role_id": "in_pm",
+      "holder_name": "Chandra Shekhar",
+      "role_title": "Prime Minister of India",
+      "event_kind": "continuation_requested",
+      "attested_on": "1991-03-06",
+      "text": "The same letter of 6 March 1991 requests the Prime Minister to continue in office till a new Government is formed.",
+      "locator": {
+        "pdf_page": 33,
+        "columns": "43-44",
+        "item": "Resignation of Council of Ministers, paper (2): 'requesting him to continue in Office till a new Government is formed'"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

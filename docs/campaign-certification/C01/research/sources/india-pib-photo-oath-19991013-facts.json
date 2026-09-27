@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_pib_photo_19991013_oath",
+  "source_url": "https://web.archive.org/web/20020401115605id_/http://pib.nic.in:80/archieve/phtgalry/pg1099/pg13oc99/1310992.html",
+  "original_url": "http://pib.nic.in/archieve/phtgalry/pg1099/pg13oc99/1310992.html",
+  "archive_capture_utc": "2002-04-01T11:56:05Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "1999-10-13",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 1857,
+  "source_response_sha256": "9dadd19ca18d11dc6299722702a59d23e2f4fbda3ebfc0213c077f816c1dc606",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2002-04-01T11:56:05Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The researcher downloaded it 3 times on 23 September 2026 (local times, PDT, 09:44, 10:05, 10:44; first and last 60 minutes apart) with identical bytes, and the independent check downloaded it again at 11:53 PDT (with no-cache request headers, more than 50 minutes after the researcher's last download) with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A PIB photo-gallery caption page (caption only; the photograph was not retrieved or republished), recorded as a raw Internet Archive capture.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Caption text read; the photograph itself was not retrieved or reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_vajpayee_oath_of_office_19991013",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-06",
+      "role_id": "in_pm",
+      "holder_name": "Atal Bihari Vajpayee",
+      "role_title": "Prime Minister of India",
+      "event_kind": "oath_of_office",
+      "attested_on": "1999-10-13",
+      "text": "PIB's caption records the President, K. R. Narayanan, administering the oath of office of Prime Minister to Atal Bihari Vajpayee at a swearing-in ceremony in the forecourt of Rashtrapati Bhavan on 13 October 1999.",
+      "locator": {
+        "element": "caption"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

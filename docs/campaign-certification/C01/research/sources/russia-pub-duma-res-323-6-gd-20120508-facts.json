@@ -1,0 +1,57 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_pub_duma_res_323_6_gd_20120508",
+  "source_url": "https://publication.pravo.gov.ru/file/pdf?eoNumber=0001201205080001",
+  "source_title": "Resolution of the State Duma No. 323-6 GD of 8 May 2012 \"О даче согласия Президенту Российской Федерации на назначение Председателем Правительства Российской Федерации Медведева Дмитрия Анатольевича\" (official publication PDF)",
+  "accessed_date": "2026-09-25",
+  "published_date": "2012-05-08",
+  "document_date": "2012-05-08",
+  "access_method": "official_publication_portal_pdf_downloaded_over_http",
+  "source_response_url": "http://publication.pravo.gov.ru/file/pdf?eoNumber=0001201205080001",
+  "source_response_bytes": 48243,
+  "source_response_sha256": "85a8103b76a951afceb7baac23da2be2db647785e861c006f079884afa16f4a4",
+  "source_response_encoding": "application/pdf (image-only scan, no text layer)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded at 2026-09-25T12:17:08Z, 2026-09-25T12:57:00Z, 2026-09-25T12:57:01Z (UTC): byte-identical each time (48243 bytes, same SHA-256); first and last downloads 39 minutes apart. The last of these downloads added a cache-busting query (&nocache=<epoch>), more than 30 minutes after the first, and returned identical bytes; the PDF's internal CreationDate, where present, is a fixed past value (see encoding/visual_review), not the request day, so it is a stored file, not generated per request. Independent check: re-downloaded at 2026-09-25T13:12Z-13:14Z and again at 13:32Z-13:36Z (publication PDFs with a cache-busting query in the second round), at least 31 minutes after the last dossier download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:23:51Z and again at 2026-09-25T14:57:16Z (33 minutes later); identical 48,243 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=323-6%20%C3%C4&a8type=2&a7type=4&a7from=08.05.2012&a7to=08.05.2012&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3412,
+    "sha256": "5e0e254036a98b3f94513ac2fc858cf432098a38eceea0b692151859830d4e91",
+    "note": "Date-restricted single-document card (number and one-day date range): one hit, status \"Действует без изменений\"; publication citations: Собрание законодательства РФ 2012 No. 20 art. 2520; portal 8.5.2012 No. 0001201205080001; \"Парламентская газета\" 12.5.2012."
+  },
+  "corroborating_responses": [
+    {
+      "url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102156236&page=1&rdk=0",
+      "bytes": 24457,
+      "sha256": "506a9d9bede6c1447d507f7c1202ecc975803d4719479f9b76e25529626f84ec",
+      "note": "IPS original-edition text (rdk=0) of the same act, read over HTTP (port 443 refused) and decoded from windows-1251; read in full and agrees with the PDF. Stability: Downloaded at 2026-09-25T12:02:31Z, 2026-09-25T12:22:31Z, 2026-09-25T12:56:22Z (UTC): byte-identical each time (24457 bytes, same SHA-256); first and last downloads 53 minutes apart."
+    }
+  ],
+  "provenance_note": "The official-publication PDF was downloaded over HTTP because the official-publication section refused HTTPS from this environment on 25 September 2026 (port 443); the packet URL gives the same path on HTTPS, and the bytes and hash recorded here are those of the HTTP response. The PDF is a stored file, not one generated per request: its CreationDate, where present, is a fixed past value and cache-busting downloads returned identical bytes. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Official-publication PDF, rendered and viewed; the IPS original-edition text of the same act is attached as a corroborating response. The date-restricted single-document portal card (portal_card_response) returns only this act.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "PDF pages 1-2 rendered with pypdfium2 and viewed: Duma header (ШЕСТОГО СОЗЫВА), \"ПОСТАНОВЛЕНИЕ ГОСУДАРСТВЕННОЙ ДУМЫ\", title, preamble and points 1-2 on page 1; point 3, signature \"Председатель Государственной Думы Федерального Собрания Российской Федерации С.Е.Нарышкин\" with the Duma office stamp, and \"Москва 8 мая 2012 года № 323-6 ГД\" on page 2. Image-only scan; PDF CreationDate D:20120508173938+04'00' (Acrobat Distiller), the publication day."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_pub_duma_323_6_consent_medvedev_20120508",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-09",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Дмитрий Анатольевич Медведев",
+      "printed_name": "Медведева Дмитрия Анатольевича (genitive)",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "parliamentary_consent",
+      "attested_on": "2012-05-08",
+      "text": "Having considered the candidacy submitted by the President, the State Duma, citing Articles 103(1)(a) and 111 of the Constitution, consents to the President's appointment of Dmitry Anatolyevich Medvedev as Chairman of the Government; in force on adoption. Signed S. E. Naryshkin, Moscow, 8 May 2012, No. 323-6 GD.",
+      "locator": "PDF pages 1-2: title, preamble, points 1-3, signature and date block"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

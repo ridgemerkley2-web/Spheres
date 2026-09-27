@@ -1,0 +1,58 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_ukaz_983_19980823",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102055100&page=1&rdk=0",
+  "source_title": "Decree of the President of the Russian Federation No. 983 of 23 August 1998 'On the Government of the Russian Federation' (original edition)",
+  "accessed_date": "2026-09-25",
+  "published_date": "1998-08-25",
+  "document_date": "1998-08-23",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102055100&page=1&rdk=0",
+  "source_response_bytes": 23827,
+  "source_response_sha256": "8ee3465c50a15c97aa2044897c93be96084dee10d92e6a4132242b6c2830f438",
+  "source_response_encoding": "windows-1251",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded at 2026-09-25T12:01:26Z and again at 2026-09-25T12:41:33Z (more than 30 minutes later); identical 23,827 bytes and SHA-256. Portal card: Downloaded at 2026-09-25T12:04:30Z and again at 2026-09-25T12:41:57Z (more than 30 minutes later); identical 3,115 bytes and SHA-256. Independent check: re-downloaded at 2026-09-25T13:21Z-13:25Z, at least 40 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:19:56Z and again at 2026-09-25T14:53:14Z (33 minutes later); identical 23,827 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=983&a8type=1&a7type=4&a7from=23.08.1998&a7to=23.08.1998&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3115,
+    "sha256": "b391b5829312952fb32632708a2d2389716b614b46fd0ab9656625965c7baed9",
+    "note": "Date-restricted single-document card (number 983, date 23.08.1998): one hit, status 'Действует без изменений'."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 25 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read in full. The date-restricted single-document portal card (portal_card_response) returns only this act.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in full in Russian after windows-1251 decoding."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_ukaz_983_government_dismissed_19980823",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-04",
+      "role_id": "ru_government_chairman",
+      "holder_name": null,
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "government_resignation_announced",
+      "attested_on": "1998-08-23",
+      "text": "Citing Article 83(в) and Article 117(2) of the Constitution, the decree declares the resignation of the Government of the Russian Federation ('Объявить об отставке Правительства Российской Федерации'), with effect from the day of signing, 23 August 1998.",
+      "locator": "Points 1 and 3; signature block"
+    },
+    {
+      "claim_id": "ru_ukaz_983_chernomyrdin_acting_19980823",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-04",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Виктор Степанович Черномырдин",
+      "printed_name": "Черномырдина Виктора Степановича (accusative)",
+      "role_title": "Исполняющий обязанности Председателя Правительства — Acting Chairman of the Government",
+      "event_kind": "acting_service_designation",
+      "attested_on": "1998-08-23",
+      "text": "The decree entrusts the temporary performance of the duties of the Chairman of the Government to Chernomyrdin Viktor Stepanovich ('Временное исполнение обязанностей Председателя Правительства Российской Федерации возложить на Черномырдина Виктора Степановича'), with effect from the day of signing.",
+      "locator": "Points 2-3"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

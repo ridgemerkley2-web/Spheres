@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rb_pranab_appoints_modi_20140520",
+  "source_url": "https://web.archive.org/web/20140523042849id_/http://presidentofindia.nic.in:80/pr200514.html",
+  "original_url": "http://presidentofindia.nic.in/pr200514.html",
+  "archive_capture_utc": "2014-05-23T04:28:49Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "2014-05-20",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 6626,
+  "source_response_sha256": "9c5c4cfd89acc0db014c2f15da9ab07b527a510e7ae53f57873684f69ba70a69",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2014-05-23T04:28:49Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The researcher downloaded it at 2026-09-23T17:06:58Z and again at 2026-09-24T11:46:40Z with identical bytes (at least 30 minutes apart), and the independent check downloaded it again at 2026-09-24T12:23:52Z with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Static page of the President's 2014 website (President Pranab Mukherjee), raw Internet Archive capture made in May 2014. The same text is on the current Drupal archive at presidentofindia.nic.in/pranab-mukherjee/press_releases/..., whose responses are regenerated per request (see sources_attempted_failed).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_pranab_appoints_modi_pm_20140520",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-09",
+      "role_id": "in_pm",
+      "holder_name": "Narendra Modi",
+      "role_title": "Prime Minister of India",
+      "event_kind": "appointment",
+      "attested_on": "2014-05-20",
+      "text": "The release dated 20 May 2014 states that an NDA delegation led by Rajnath Singh met the President at 14:30 with a letter that Narendra Modi had been elected leader of the BJP Parliamentary Party, that Modi called on the President at 15:15, and that, as the BJP had majority support in the House of the People, the President appointed him as the Prime Minister of India and asked him to advise the names of other ministers.",
+      "locator": {
+        "section": "Release body, paragraphs 1-3"
+      }
+    },
+    {
+      "claim_id": "in_modi_oath_announced_20140520",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-09",
+      "role_id": "in_pm",
+      "holder_name": "Narendra Modi",
+      "role_title": "Prime Minister of India",
+      "event_kind": "oath_scheduled",
+      "attested_on": "2014-05-20",
+      "text": "The same release states that the President will administer the oath of office and secrecy on 26 May 2014 at 18:00 at Rashtrapati Bhavan.",
+      "locator": {
+        "section": "Release body, closing paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

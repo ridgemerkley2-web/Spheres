@@ -1,0 +1,67 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_sangiin_yosan_20110928_s112",
+  "source_url": "https://kokkai.ndl.go.jp/api/speech?speechID=117815261X00220110928_112&recordPacking=json",
+  "diet_record": {
+    "issueID": "117815261X00220110928",
+    "house": "参議院",
+    "meeting": "予算委員会",
+    "issue": "第2号",
+    "sitting_date": "2011-09-28",
+    "response": "single speech",
+    "speech_ids": [
+      "117815261X00220110928_112"
+    ],
+    "record_page_url": "https://kokkai.ndl.go.jp/txt/117815261X00220110928"
+  },
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "official_diet_minutes_api_json_download_and_read",
+  "source_response_bytes": 2147,
+  "source_response_sha256": "f29f84f547d1400edbae6171e0dea63dd303af5e085aa2759dc5944d49be671b",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "UTF-8 JSON (the Content-Type header declares application/json;charset=UTF-8)",
+  "source_response_checked_in": false,
+  "provenance_note": "Official response of the National Diet Library's Diet minutes API (JSON, UTF-8), served with Cache-Control: no-cache, no-store; the JSON carries no timestamp, session token or request echo, so it is not generated per request. Researcher (part B): Downloaded 4 times on 24 September 2026 UTC at 21:56:16Z, 22:17:52Z, 22:18:41Z (parameters reordered as a cache-bust), 23:07:59Z, each time with the same byte count and SHA-256; the first and last downloads are at least 30 minutes apart. The API response carries Cache-Control: no-cache, no-store and no timestamp, token or request echo; a reordered-parameter request is a cache-bust. The part B check downloaded it again from about 23:35Z on 24 September 2026 (the Diet API also with its parameters reordered, the Imperial Household Agency's pages also with a cache-busting query), each time with the same byte count and SHA-256. Downloaded on 25 September 2026 (UTC) by this packet at 01:33:19Z, 01:41:57Z (cache-busting query), 02:15:22Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Diet minutes API's JSON for the one speech record of the 参議院 予算委員会 第2号 (2011-09-28), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/117815261X00220110928. The printed page images, served through a JavaScript viewer, were not viewed.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Machine-readable minute text read in full for the cited speeches; the printed page images were not viewed."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_member_states_kan_cabinet_continued_duties_20110830_20110902",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM06-05",
+      "role_id": "jp_pm",
+      "holder_name": "菅直人",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "continued_performance_of_duties_recalled",
+      "attested_on": null,
+      "text": "A member (世耕弘成) said on 28 September 2011 that the Kan cabinet resigned en masse on the 30th (三十日に菅内閣が総辞職) and 野田 was designated, that the ministers' attestation ceremony took place only on the evening of the 2nd and the Noda cabinet's first meeting after 18:00 that day, and that in the meantime the Kan cabinet continued as a continued-duties cabinet (菅内閣が職務執行内閣として続いていた).",
+      "locator": {
+        "speechID": "117815261X00220110928_112",
+        "speechOrder": 112,
+        "speaker": "世耕弘成"
+      }
+    },
+    {
+      "claim_id": "jp_member_states_noda_cabinet_first_meeting_20110902",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM06-06",
+      "role_id": "jp_pm",
+      "holder_name": "野田佳彦",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "cabinet_formation_recalled",
+      "attested_on": "2011-09-02",
+      "text": "The same member said that the ministers' attestation ceremony (閣僚の認証式) was held on the evening of 2 September 2011 and the Noda cabinet's first cabinet meeting after 18:00 that day (野田内閣の初閣議は二日の午後六時過ぎ).",
+      "locator": {
+        "speechID": "117815261X00220110928_112",
+        "speechOrder": 112,
+        "speaker": "世耕弘成"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-13 only (stacked on CLAUDE-C01-12). Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, the Official Gazette's appointment and loss-of-office notices, the Cabinet's minutes, a cabinet's formation, its resignation en masse, any continued performance of duties and acting designations stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role: an unnamed statement or schedule row, a House of Councillors designee who never held the office, or a designation of acting ministers. Ministers, deputy prime ministers and party offices are excluded."
+}

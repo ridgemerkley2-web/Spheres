@@ -1,0 +1,54 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_gazette_ext_p2s3ii_no407_19970722",
+  "source_url": "https://egazette.gov.in/WriteReadData/1997/E-0260-1997-0407-9369.pdf",
+  "accessed_date": "2026-09-24",
+  "published_date": "1997-07-22",
+  "access_method": "official_egazette_pdf_download_text_layer_read_and_complete_visual_page_review",
+  "source_response_bytes": 60255,
+  "source_response_sha256": "06e047abc596a69b3083a3ab4a68e73d2e111a5f816db0f493102d094784b92b",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host. First download 2026-09-24 21:47 UTC. Official eGazette file (Directorate of Printing). Response headers: Content-Type application/pdf, Last-Modified Tue, 12 Mar 2013 06:25:02 GMT, fixed ETag \"0f3f353ea1ece1:0\"; no per-request tokens. MD5 613bb1fb304ffebae091b61480844b02 equals the stored originals in Internet Archive items in.gazette.e.1997.1295 (uploaded 9 October 2017) and in.gazette.central.e.1997-07-22.9369 (5 August 2018). Re-downloaded at 2026-09-24 22:44 UTC (with the cache-busting query ?cb=1790289878): identical byte count (60,255) and SHA-256. The independent check downloaded it again between 23:01Z and 23:03Z on 24 September 2026, 54-76 minutes after the researcher's first downloads, with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official eGazette file. MD5 613bb1fb304ffebae091b61480844b02 equals the stored originals in the Internet Archive items in.gazette.e.1997.1295 (uploaded 9 October 2017) and in.gazette.central.e.1997-07-22.9369 (5 August 2018).",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "Page 2 (English notification and declaration, with the Returning Officer's signature line) rendered and viewed; page 1 (masthead) read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "in_ro_declares_narayanan_elected_19970717",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-03",
+      "role_id": "in_president",
+      "holder_name": "K. R. Narayanan",
+      "role_title": "President of India",
+      "event_kind": "result_declaration",
+      "attested_on": "1997-07-17",
+      "text": "S. Gopalan, Returning Officer for the Presidential Election and Secretary General of the Lok Sabha, declares at New Delhi on 17 July 1997, under section 11 of the 1952 Act read with rule 35 of the 1974 Rules, that Shri Kocheril Raman Narayanan of 6, Maulana Azad Road, New Delhi has been duly elected to the office of the President of India.",
+      "locator": {
+        "pdf_page": 2,
+        "item": "DECLARATION, dated 'New Delhi, July, 17, 1997, Asadha 26, 1919 (Saka)', signed S. Gopalan"
+      }
+    },
+    {
+      "claim_id": "in_gazette_publishes_narayanan_declaration_19970722",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-03",
+      "role_id": "in_president",
+      "holder_name": "K. R. Narayanan",
+      "role_title": "President of India",
+      "event_kind": "result_publication",
+      "attested_on": "1997-07-22",
+      "text": "On 22 July 1997 the Ministry of Law and Justice publishes the declaration for general information under section 12 of the 1952 Act (S.O. 508(E), file No. 13(1)/97-Leg. II, K.L. Mohanpuria, Secretary).",
+      "locator": {
+        "pdf_page": 2,
+        "item": "NOTIFICATION, New Delhi, the 22nd July, 1997, S.O. 508(E)"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-15 only. The Election Commission's notices, the Returning Officer's declaration of the result and its Gazette publication, the programme for the ceremony of assumption of office, the oath administered by the Chief Justice, the Ministry of Home Affairs resolution and proclamation of the assumption of office, the holder's address on assumption, prospective term-expiry notices, farewells, stylings of a predecessor as former President and retrospective statements stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the Vice-President (including any service as acting President), ministers and party offices are excluded."
+}

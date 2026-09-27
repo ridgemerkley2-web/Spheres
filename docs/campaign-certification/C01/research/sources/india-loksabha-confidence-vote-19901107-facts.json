@@ -1,0 +1,66 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_ls_debates_19901107",
+  "source_url": "https://web.archive.org/web/20240928132810id_/https://eparlib.nic.in/bitstream/123456789/1334/1/lsd_09_04_07-11-1990.pdf",
+  "original_url": "https://eparlib.nic.in/bitstream/123456789/1334/1/lsd_09_04_07-11-1990.pdf",
+  "archive_capture_utc": "2024-09-28T13:28:10Z",
+  "accessed_date": "2026-09-23",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_pdf_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 6878854,
+  "source_response_sha256": "1a9a7964c8a8b3df0e2f0aa287eb48851b4d2a9a787e6e4da4d5e23d487467a9",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2024-09-28T13:28:10Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The researcher downloaded the byte-identical item copy twice on 23 September 2026 (16:49Z and 17:24Z, the second with a cache-busting query) and the check three more times (17:26Z to 18:04Z); the check downloaded this raw capture on 23 September and this packet downloaded it again at 2026-09-24T13:45:31Z, each with the same byte count and SHA-256. PDF metadata: ABBYY FineReader 11, CreationDate = ModDate 29 March 2016 (static). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Parliament Digital Library PDF, recorded as the raw Internet Archive capture of the official eparlib.nic.in bitstream made on 28 September 2024; the capture of eparlib.sansad.in at 20260107081822 returns the same bytes. The same file is stored in the Internet Archive item eparlib.nic.in.1334 (a private upload of 7 July 2025; MD5 41526f3a5c5d61ac663b090c043d5016, SHA-1 8cdd2194f30d0bae20198889cc1817a584948220), the researcher's first response.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      27,
+      36,
+      133,
+      144
+    ],
+    "method": "PDF pages 27, 133 and 144 rendered and read; pages 3 (contents) and 36 (motion moved) read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "in_vp_singh_moves_confidence_motion_19901107",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-01",
+      "role_id": "in_pm",
+      "holder_name": "Vishwanath Pratap Singh",
+      "role_title": "Prime Minister of India",
+      "event_kind": "confidence_motion_moved",
+      "attested_on": "1990-11-07",
+      "text": "On 7 November 1990 the Prime Minister, Shri Vishwanath Pratap Singh, moves in the Lok Sabha that the House expresses its confidence in the Council of Ministers; the Speaker records the motion as moved.",
+      "locator": {
+        "pdf_page": [
+          27,
+          36
+        ],
+        "columns": "11-12 and 29-30",
+        "item": "Motion of Confidence in the Council of Ministers; 'THE PRIME MINISTER (SHRI VISHWANATH PRATAP SINGH): Sir, I beg to move'; 'MR. SPEAKER: Motion moved'"
+      }
+    },
+    {
+      "claim_id": "in_ls_confidence_motion_negatived_19901107",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-01",
+      "role_id": "in_pm",
+      "holder_name": "Vishwanath Pratap Singh",
+      "role_title": "Prime Minister of India",
+      "event_kind": "confidence_vote_lost",
+      "attested_on": "1990-11-07",
+      "text": "The confidence motion moved by Shri Vishwanath Pratap Singh is put to a division (Division No. 1, 22.22 hrs); subject to correction the result is Ayes 142, Noes 346, and the motion is negatived. The House is then adjourned sine die.",
+      "locator": {
+        "pdf_page": [
+          133,
+          144
+        ],
+        "columns": "223-224 and 245-246",
+        "item": "'The Lok Sabha divided'; 'Ayes : 142 / Noes : 346 / The motion was negatived'"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

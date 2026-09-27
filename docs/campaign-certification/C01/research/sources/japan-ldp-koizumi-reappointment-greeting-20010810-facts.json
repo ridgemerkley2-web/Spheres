@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_ldp_koizumi_reappointment_greeting_20010810",
+  "source_url": "https://web.archive.org/web/20020221063322id_/http://www.jimin.jp:80/jimin/hatsugen/hatsugen-013.html",
+  "original_url": "http://www.jimin.jp/jimin/hatsugen/hatsugen-013.html",
+  "archive_capture_utc": "2002-02-21T06:33:22Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 1758,
+  "source_response_sha256": "c3cf6e8daf4dbcc3388f38f6c042849885ea4363ec07d0993f9c16606ea7c095",
+  "source_response_content_encoding": "identity",
+  "source_response_sha1_base32": "V2N2QC6MVDTNECXMZSRHTTCCYNG5FOTL",
+  "source_character_encoding": "Shift_JIS (no charset is declared in the page; the bytes decode cleanly as Shift_JIS)",
+  "source_response_checked_in": false,
+  "fetch_recipe": "curl -s -o FILE 'https://web.archive.org/web/20020221063322id_/http://www.jimin.jp:80/jimin/hatsugen/hatsugen-013.html' with no Accept-Encoding request header and no automatic decoding; hash the bytes as received.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2002-02-21T06:33:22Z; that form replays the archived bytes unchanged. The archived original's Last-Modified header is Wed, 14 Nov 2001 23:48:12 GMT. Researcher (part B): Raw Internet Archive capture (id_ form) of the original response; the id_ form replays the archived bytes unchanged. Fetched with Accept-Encoding: identity (curl without --compressed); the archived response had no Content-Encoding, so the recorded bytes and SHA-256 are the plain HTML body. SHA-1 of the body (base32) V2N2QC6MVDTNECXMZSRHTTCCYNG5FOTL; equals the CDX digest of this capture and of the jimin.jp captures through 20031014174759. The jimin.or.jp URL of the same page (listed on the 党役員発言 index captured 20010814021847 under 平成13年8月10日) has only a 302 capture. Archived original Last-Modified: Wed, 14 Nov 2001 23:48:12 GMT. Downloaded on 25 September 2026 at 12:35:00Z and 13:11:04Z, each time with the same byte count and SHA-256 (downloads at least 30 minutes apart). The part B check downloaded it again at 13:23:14Z and 13:58:59Z on 25 September 2026, each time with the same byte count and SHA-256. Downloaded on 25 September 2026 (UTC) by this packet at 14:16:47Z and 14:53:21Z, 36 minutes apart, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party's record of the president's reappointment greeting, recorded as a raw Internet Archive capture of the jimin.jp copy (Last-Modified 14 November 2001); the jimin.or.jp address of the same page has only a redirect capture.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded and read in full (headings, date lines, captions and body); no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_ldpsainin_koizumi_reappointment_greeting_20010810",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-07",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": "小泉純一郎",
+      "role_title": "総裁 — party president",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2001-08-10",
+      "text": "The party's record headed 小泉総裁再任挨拶 and dated 平成１３年８月１０日 has 小泉総裁 thank the members for their unanimous recommendation (満場一致のご推挙) and nomination as LDP president, describe it as confidence given without objection in the party presidential election held just after the national vote, and say that the ministers and the party and Diet officers would basically stay as they were (基本的に現体制で臨んでいきたい).",
+      "locator": {
+        "section": "heading 小泉総裁再任挨拶 and date line; paragraphs 1, 2 and 5"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations of the LDP president (総裁) for CLAUDE-C01-18 only, 1990-2009 (stacked on CLAUDE-C01-13). Party elections and selections (member and Diet-member votes, joint plenary meetings of party Diet members), notices, candidacies, declarations and reports of results, statements of assumption, in-office attestations, announced and prospective resignations, predecessor references and retrospective records stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this office (a notice, a filing, a schedule, an unnamed caption or a meeting). The prime-ministership (jp_pm) is excluded: no row feeds it, and no jp_pm claim feeds this office."
+}

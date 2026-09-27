@@ -1,0 +1,69 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_parliament_hansard_na_20080923",
+  "source_url": "https://www.parliament.gov.za/storage/app/media/Docs/hansard/177451_1.doc",
+  "accessed_date": "2026-09-22",
+  "published_date": null,
+  "access_method": "downloaded_original_msword_doc_from_parliament_document_store_and_text_read_with_antiword_0_37_w0",
+  "source_response_bytes": 662016,
+  "source_response_sha256": "38a1080eb98974dd58b61802a49a7e58d1cda752af9850cea8badeb086169e91",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file from Parliament's document store, served as a static file (Last-Modified 2 March 2026, before the historical cutoff); fetch it with GET, because the server rejects HEAD. The researcher downloaded it on 22 September 2026 and the independent check downloaded it again the same day; both copies matched the byte count and SHA-256 recorded here, and the kept copy was re-hashed for this packet with the same result. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official Hansard file from Parliament's document store (listed by https://www.parliament.gov.za/docsjson/hansard), served as a static file with Last-Modified 2 March 2026, before the historical cutoff; the server rejects HEAD requests, so use GET. Text read with antiword 0.37 -w 0 (unwrapped paragraphs); line locators refer to that output. No Minutes of Proceedings are listed for 22-25 September 2008 in the researcher's query of the document store (the independent check's repeat query met a technical-issues page). The file (244 pages) also holds Announcements, Tablings and Committee Reports, which were not read.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "MS Word binary; text read with antiword 0.37 -w 0 (line locators refer to that output); not rendered."
+  },
+  "rows": [
+    {
+      "claim_id": "za_mbeki_resignation_submitted_20080921",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-05",
+      "role_id": "za_president_election",
+      "holder_name": "Thabo Mbeki",
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "resignation_letter_submitted",
+      "attested_on": "2008-09-21",
+      "text": "The draft resolution moved by the Chief Whip of the Majority Party on 23 September 2008 notes that the President of the Republic submitted his resignation to the Speaker of the National Assembly on 21 September 2008, and that 'the letter by the President' makes it effective when Parliament has finalised the matter. The letter read to the House on 22 September 2008 is signed 'Thabo Mbeki', and in the debate on the resolution Dr C P Mulder and Mr S N Swart name Mr Mbeki.",
+      "locator": {
+        "heading": "RESIGNATION OF THE PRESIDENT OF THE REPUBLIC (Draft Resolution)",
+        "paragraphs": "(1) and (2)",
+        "antiword_w0_text_lines": "105-117, 153, 186"
+      }
+    },
+    {
+      "claim_id": "za_na_resolves_mbeki_resignation_effective_20080923",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-05",
+      "role_id": "za_president_election",
+      "holder_name": "Thabo Mbeki",
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "resignation_effective_date_resolution",
+      "attested_on": "2008-09-23",
+      "text": "The House agreed on division to the Chief Whip's motion, paragraph (3) of which 'agrees that the resignation of the President of the Republic of South Africa will take effect on 25 September 2008'; paragraph (4) thanks him for his service as Deputy President and President. The printed division is Ayes 298, Noes 10, Abstain 1; later that day the Chair announced that the result first reported (299 in favour, 10 against) had omitted the recorded abstention. In the debate Mr S N Swart refers to 'President Thabo Mbeki' and says 'this resignation is to take effect on Thursday, 25 September'.",
+      "locator": {
+        "heading": "RESIGNATION OF THE PRESIDENT OF THE REPUBLIC (Draft Resolution)",
+        "paragraphs": "(3) and (4)",
+        "antiword_w0_text_lines": "105-232, 186, 655-661"
+      }
+    },
+    {
+      "claim_id": "za_cj_vacancy_election_convened_20080923",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-HOS-05",
+      "role_id": "za_president_election",
+      "holder_name": null,
+      "role_title": "President of the Republic of South Africa",
+      "event_kind": "vacancy_election_convened",
+      "attested_on": "2008-09-23",
+      "text": "The Speaker read a letter from Chief Justice Pius Langa: he had been advised of the resignation of the President of the Republic and that 'it will take effect on 25 September 2008', and under section 86(3) he determined that the National Assembly would meet to fill the vacancy on Thursday 25 September 2008 at 11 o'clock.",
+      "locator": {
+        "heading": "LETTER FROM CHIEF JUSTICE OF THE REPUBLIC OF SOUTH AFRICA",
+        "antiword_w0_text_lines": "936-960",
+        "sitting": "after business resumed at 14:04"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-09 only. Election, oath, inauguration, resignation announcement, resignation effect and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy presidents, ministers and party offices are excluded."
+}

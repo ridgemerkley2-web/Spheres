@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_parliament_atc6_20140609",
+  "source_url": "https://www.parliament.gov.za/storage/app/media/Docs/atc/580592_1.pdf",
+  "accessed_date": "2026-09-25",
+  "published_date": "2014-06-09",
+  "access_method": "downloaded_original_pdf_from_parliament_document_store_and_text_layer_read",
+  "source_response_bytes": 126866,
+  "source_response_sha256": "1c4f61774139699c7cfa990adf7c6fed19e1035ebbc25bd4e53cde20bef87f30",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (the server rejects HEAD) with no automatic decoding, then hash the bytes as received; the file is static and a cache-busting query returns the same bytes.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded by the independent check on 2026-09-25 at 13:19-13:31Z and again at 14:02Z, with the same byte count, SHA-256 and Last-Modified; downloaded again for this packet at 14:55Z with the same identity. Downloaded again for this packet at 2026-09-25T15:30Z (integration pass) with the same byte count and SHA-256.",
+  "provenance_note": "Official file from Parliament's document store, served as a static file (Last-Modified 2 March 2026, before the historical cutoff) without content encoding; fetch it with GET. The response identity was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official file from Parliament's document store, located through the site's own paper index (https://www.parliament.gov.za/docsjson/, called with the paging parameters the site sends; the listing grows over time and is used only to locate files, never as a source). A static file with Last-Modified 2 March 2026, before the historical cutoff, and an ETag whose size part equals the byte count; use GET. PDF metadata creation date 9 June 2014. Located by the independent check.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Text PDF (four pages); the text layer of pages 1-3 read; no page rendered."
+  },
+  "rows": [
+    {
+      "claim_id": "za_ramaphosa_deputy_president_logb_letter_20140530",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-DP-07",
+      "role_id": "za_deputy_president",
+      "holder_name": "Cyril Ramaphosa",
+      "role_title": "Deputy President of the Republic of South Africa",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2014-05-30",
+      "text": "Announcements, Tablings and Committee Reports No 6 of Monday 9 June 2014 record that 'A letter dated 30 May 2014 has been received from the President of the Republic' informing members of the Assembly that he has appointed 'the Deputy President of the Republic, Mr M C Ramaphosa', as Leader of Government Business in the National Assembly under section 91(4) of the Constitution.",
+      "locator": {
+        "pdf_page": 3,
+        "printed_page": 30,
+        "section": "Announcements, National Assembly, item 2 'Appointment of Leader of Government Business'"
+      }
+    }
+  ],
+  "bounded_scope": "Deputy President observations for CLAUDE-C01-21 only (role za_deputy_president in za_presidency). Announcements, stated intentions, appointments and their notices, oaths and their scheduling, stated assumptions, releases, resignations and their stated effect, Assembly-seat events and in-office attestations stay separate rows; holder observations and any start or end are decided in the packet, not by any row. The President's roles (za_president_election, za_state_president) and the ANC's party office are excluded and no row feeds them."
+}

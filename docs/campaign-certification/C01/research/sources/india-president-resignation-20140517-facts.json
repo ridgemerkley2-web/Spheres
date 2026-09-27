@@ -1,0 +1,65 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rb_pranab_pm_resignation_20140517",
+  "source_url": "https://web.archive.org/web/20140520100258id_/http://presidentofindia.nic.in:80/pr170514.html",
+  "original_url": "http://presidentofindia.nic.in/pr170514.html",
+  "archive_capture_utc": "2014-05-20T10:02:58Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "2014-05-17",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 5669,
+  "source_response_sha256": "748d3ceb518d6efd220db355e3135447ab43601f95fe85847c99662f3563d37e",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2014-05-20T10:02:58Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The researcher downloaded it at 2026-09-23T16:50:54Z and again at 2026-09-23T17:46:56Z with identical bytes (at least 30 minutes apart), and the independent check downloaded it again at 2026-09-24T12:22:51Z with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Static page of the President's 2014 website (President Pranab Mukherjee), raw Internet Archive capture made in May 2014. The same text is on the current Drupal archive at presidentofindia.nic.in/pranab-mukherjee/press_releases/..., whose responses are regenerated per request (see sources_attempted_failed).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_mms_tenders_resignation_20140517",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-09",
+      "role_id": "in_pm",
+      "holder_name": "Manmohan Singh",
+      "role_title": "Prime Minister of India",
+      "event_kind": "resignation_tendered",
+      "attested_on": "2014-05-17",
+      "text": "The release dated 17 May 2014 states that Prime Minister Dr. Manmohan Singh met the President that day and tendered his resignation and that of his colleagues from the Council of Ministers.",
+      "locator": {
+        "section": "Release body, first sentence"
+      }
+    },
+    {
+      "claim_id": "in_pranab_accepts_mms_resignation_20140517",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-09",
+      "role_id": "in_pm",
+      "holder_name": "Manmohan Singh",
+      "role_title": "Prime Minister of India",
+      "event_kind": "resignation_accepted",
+      "attested_on": "2014-05-17",
+      "text": "The same release states that the President accepted the resignation.",
+      "locator": {
+        "section": "Release body, second sentence"
+      }
+    },
+    {
+      "claim_id": "in_mms_requested_to_continue_20140517",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-09",
+      "role_id": "in_pm",
+      "holder_name": "Manmohan Singh",
+      "role_title": "Prime Minister of India",
+      "event_kind": "continuation_requested",
+      "attested_on": "2014-05-17",
+      "text": "The same release states that the President requested Dr. Manmohan Singh and his colleagues to continue in office till the new Government assumes office.",
+      "locator": {
+        "section": "Release body, second sentence"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

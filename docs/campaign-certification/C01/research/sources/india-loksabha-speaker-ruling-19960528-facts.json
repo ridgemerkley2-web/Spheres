@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_ls_debates_19960528_printed",
+  "source_url": "https://web.archive.org/web/20250513155724id_/https://eparlib.nic.in/bitstream/123456789/379/1/lsd_11_1_28-05-1996.pdf",
+  "original_url": "https://eparlib.nic.in/bitstream/123456789/379/1/lsd_11_1_28-05-1996.pdf",
+  "archive_capture_utc": "2025-05-13T15:57:24Z",
+  "accessed_date": "2026-09-23",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_pdf_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 3318468,
+  "source_response_sha256": "ee5d24c029fb9c4cb9b1d20cc5051d51fccba21559473956a9d54d1063c85ed6",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2025-05-13T15:57:24Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The check downloaded it at 17:51:24Z and 18:07:23Z on 23 September 2026 and this packet again at 2026-09-24T13:37:21Z, each with the same byte count and SHA-256; the file was then deleted from scratch. PDF metadata: Adobe Acrobat 6.0 Paper Capture, CreationDate 24 June 2014 (static). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Parliament Digital Library PDF of the printed debates, recorded as the raw Internet Archive capture of the official eparlib.nic.in bitstream made on 13 May 2025 (x-archive-orig-last-modified 18 April 2017; an earlier capture of 6 August 2023 exists); its payload digest equals the Internet Archive item eparlib.nic.in.379. Located by the Part A check. Used only for the Speaker's retrospective statement about 1991; the 1996 events are taken from the online debate text (Part B sources).",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      9
+    ],
+    "method": "PDF page 9 (columns 11-12) rendered by the check and read; its text layer read by this packet."
+  },
+  "rows": [
+    {
+      "claim_id": "in_rao_swearing_in_recalled_by_speaker_19910621",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-03",
+      "role_id": "in_pm",
+      "holder_name": "P. V. Narasimha Rao",
+      "role_title": "Prime Minister of India",
+      "event_kind": "swearing_in_recalled_retrospective",
+      "attested_on": "1991-06-21",
+      "text": "Ruling in the Lok Sabha on 28 May 1996 on when a Prime Minister is recognised as Leader of the House, the Speaker says that in the Tenth Lok Sabha the P. V. Narasimha Rao Government was sworn in on 21 June 1991, and refers to 'the day the Prime Minister took oath, that is, 21st of June 1991'.",
+      "locator": {
+        "pdf_page": 9,
+        "columns": "11-12",
+        "item": "Speaker's ruling on the recognition of the Leader of the House"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_gleisi_elected_6th_congress_20170603",
+  "source_url": "https://web.archive.org/web/20170605161800id_/http://www.pt.org.br:80/gleisi-e-eleita-a-primeira-mulher-presidenta-nacional-do-pt/",
+  "original_url": "http://www.pt.org.br/gleisi-e-eleita-a-primeira-mulher-presidenta-nacional-do-pt/",
+  "archive_capture_utc": "2017-06-05T16:18:00Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2017-06-03",
+  "access_method": "downloaded_archived_raw_capture_id_form (curl with its default User-Agent, no Accept-Encoding header, no redirects followed)",
+  "source_response_bytes": 67962,
+  "source_response_sha256": "d50070c00044b97db0e974a679520273963c5fa2f2432cabb6619f5340245448",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-09-25T13:27:50Z and again at 2026-09-25T14:12:04Z from the same exact id_ URL (plain curl, no Accept-Encoding header, no decoding); both responses were 67962 bytes with SHA-256 d50070c00044b97db0e974a679520273963c5fa2f2432cabb6619f5340245448. The raw id_ form replays the stored capture. The independent check downloaded it again between 14:54 and 15:25 UTC on 25 September 2026 with Accept-Encoding: identity, at least 30 minutes after the researcher's last download; the response matched.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2017-06-05T16:18:00Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-09-25T13:27:50Z and again at 2026-09-25T14:12:04Z from the same exact id_ URL (plain curl, no Accept-Encoding header, no decoding); both responses were 67962 bytes with SHA-256 d50070c00044b97db0e974a679520273963c5fa2f2432cabb6619f5340245448. The raw id_ form replays the stored capture. The independent check downloaded it again between 14:54 and 15:25 UTC on 25 September 2026 with Accept-Encoding: identity, at least 30 minutes after the researcher's last download; the response matched. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "An Agência PT de Notícias item of 3 June 2017 (16h50, updated 19h49), captured 5 June 2017. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_gleisi_elected_6th_congress_20170603",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-08",
+      "role_id": "br_pt_president",
+      "holder_name": "Gleisi Hoffmann",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "congress_election",
+      "attested_on": "2017-06-03",
+      "text": "The 6th National Congress of the PT elected Gleisi Hoffmann national President on Saturday 3 June 2017, with 61.89% of the votes of the delegates present at the final plenary; Lindbergh Farias received 38.11%.",
+      "locator": {
+        "item": "article dated 03/06/2017 16h50 (updated 19h49), headline, subtitle and first two paragraphs"
+      }
+    }
+  ]
+}

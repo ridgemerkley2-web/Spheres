@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rb_patil_appoints_mms_20090520",
+  "source_url": "https://web.archive.org/web/20090619063712id_/http://presidentofindia.nic.in/pr200509.html",
+  "original_url": "http://presidentofindia.nic.in/pr200509.html",
+  "archive_capture_utc": "2009-06-19T06:37:12Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "2009-05-20",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 3751,
+  "source_response_sha256": "289ef715b8cee86eb9305f0c8b7421517c5759a2d745d48c7edf35180d3ce6a0",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2009-06-19T06:37:12Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The researcher downloaded it at 2026-09-23T17:03:55Z and again at 2026-09-24T11:43:33Z with identical bytes (at least 30 minutes apart), and the independent check downloaded it again at 2026-09-24T12:20:49Z with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Static page of the President's 2009 website (President Pratibha Devisingh Patil), raw Internet Archive capture. The same text is on the current Drupal archive at presidentofindia.nic.in/smt-pratibha-devisingh-patil/press_releases/..., whose responses are regenerated per request (see sources_attempted_failed).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_patil_appoints_mms_pm_20090520",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-08",
+      "role_id": "in_pm",
+      "holder_name": "Manmohan Singh",
+      "role_title": "Prime Minister of India",
+      "event_kind": "appointment",
+      "attested_on": "2009-05-20",
+      "text": "The release dated 20 May 2009 states that Dr. Manmohan Singh, chosen as leader of the Congress Parliamentary Party, called on the President at 5.00 p.m. with Smt. Sonia Gandhi and letters of support, and that the President, satisfied that the Congress-led UPA could command majority support in the 15th Lok Sabha, appointed him as the Prime Minister and asked him to indicate the members of the new Council of Ministers.",
+      "locator": {
+        "section": "Release body, first and second paragraphs"
+      }
+    },
+    {
+      "claim_id": "in_mms_oath_announced_20090520",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-08",
+      "role_id": "in_pm",
+      "holder_name": "Manmohan Singh",
+      "role_title": "Prime Minister of India",
+      "event_kind": "oath_scheduled",
+      "attested_on": "2009-05-20",
+      "text": "The same release states that the President will administer the oaths of office and secrecy on Friday, 22 May 2009, at a time to be decided.",
+      "locator": {
+        "section": "Release body, closing paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

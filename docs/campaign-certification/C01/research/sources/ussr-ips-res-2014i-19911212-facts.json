@@ -1,0 +1,36 @@
+{
+  "format": "spheres-primary-source-factual-extract/v1",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102013523&page=1&rdk=0",
+  "source_title": "Resolution of the RSFSR Supreme Soviet No. 2014-I of 12 December 1991 'On ratification of the Agreement on the creation of the Commonwealth of Independent States' (original edition)",
+  "accessed_date": "2026-09-21",
+  "published_date": null,
+  "document_date": "1991-12-12",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102013523&page=1&rdk=0",
+  "source_response_bytes": 24748,
+  "source_response_sha256": "5ec47cbe36709480a778dc097ddc7dfd0249391804ce2992e4afdcc6062f37c0",
+  "source_response_checked_in": false,
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=2014-I&a8type=1&sort=7&page=firstlast&lstsize=50",
+    "bytes": 9445,
+    "sha256": "264243dd79e4de2fc80ab5a47744829213da4133f13d8cc689481916642056db",
+    "note": "Portal search-result card listing the act, its status and its publication citation; read over HTTP. The check and this packet returned identical bytes."
+  },
+  "provenance_note": "The portal's document frame for the original edition (rdk=0, 'Исходная редакция') was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 21 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response. This packet's two retrievals on 21 September 2026 returned identical bytes. This checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "claims": [
+    {
+      "id": "su_rsfsr_minsk_ratification_19911212",
+      "text": "Citing point 15 of Article 109 of the RSFSR Constitution, the RSFSR Supreme Soviet ratifies the Agreement between the Republic of Belarus, the Russian Federation (RSFSR) and Ukraine on the creation of the Commonwealth of Independent States, signed at Minsk on 8 December 1991 (point 1). To give effect to Article 11 of the Agreement, it provides that until the corresponding RSFSR laws are adopted, norms of the former USSR apply in the RSFSR insofar as they do not contradict the RSFSR Constitution, RSFSR legislation and the Agreement (point 2). Signed R. I. Khasbulatov, Chairman of the RSFSR Supreme Soviet, Moscow, House of Soviets of the RSFSR, 12 December 1991, No. 2014-I.",
+      "locator": "Preamble, points 1-3; signature and date block",
+      "attested_on": "1991-12-12",
+      "uncertainty": "Ratification by one party, the RSFSR, on 12 December, separate from the 8 December signature. The resolution gives no entry-into-force date of its own and no date of deposit or notification; the Alma-Ata Protocol's rule that the Agreement enters into force for each party on ratification was signed later, on 21 December. The Belarus and Ukraine ratifications were not reviewed. An act of an RSFSR body, not of a USSR organ."
+    }
+  ],
+  "scope_note": "RSFSR ratification of the Minsk Agreement, filed in this packet because it dates the Agreement's effect for one party and qualifies Article 11. Gazette citation: Vedomosti 1991 No. 51, art. 1798. The portal text prints the republic's name without 'Soviet' in its preamble ('Российской Федеративной Социалистической Республики'); the signed original reads the full name.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Official HTML text read in full after windows-1251 decoding; the portal offers no facsimile."
+  }
+}

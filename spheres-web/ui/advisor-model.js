@@ -293,7 +293,11 @@
     // district/kind are null when a headline cannot be mapped exactly; any other value is malformed.
     const completed=scan("project_completed",[ends],r=>{if(!obj(r))return BAD;const d=dayOf(own(r,"day"),c.day),district=own(r,"district"),kind=own(r,"kind");if(d===BAD)return BAD;
       if(!(district===null||str(district))||!(kind===null||str(kind))){unsure=true;return BAD;}if(typeof d!=="number")return null;
-      if(district!==null&&kind!==null)sites.add(site(district,kind));return {day:d,detail:clip(own(r,"text"))};});
+      if(district!==null&&kind!==null)sites.add(site(district,kind));
+      // Native journal headlines retain internal district identifiers. Present
+      // the mapped site label instead; an unmapped headline still proves a
+      // dated completion, but cannot supply a readable location.
+      return {day:d,detail:kind!==null&&clip(own(r,"district_name"),60)?clip(`Completed ${place(r)}.`):"Construction project completed."};});
     // Output counts only at a site (exact district and kind) of one of this player's dated completions.
     const producing=scan("site_producing",[list(sec,"operating")],r=>{if(!obj(r))return BAD;const out=own(r,"output_daily"),district=own(r,"district"),kind=own(r,"kind"),d=dayOf(own(r,"day"),c.day);
       if(!finite(out)||out<0||!str(district)||!str(kind)||d===BAD)return BAD;if(!(out>0&&typeof d==="number"))return null;

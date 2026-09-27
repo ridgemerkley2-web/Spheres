@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_pib_president_communique_council_20040522",
+  "source_url": "https://web.archive.org/web/20040811175902id_/http://pib.nic.in:80/release/release.asp?relid=1741",
+  "original_url": "http://pib.nic.in/release/release.asp?relid=1741",
+  "archive_capture_utc": "2004-08-11T17:59:02Z",
+  "accessed_date": "2026-09-23",
+  "published_date": "2004-05-22",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 51513,
+  "source_response_sha256": "b65478a123744e88636ab833679e0b406b09833ee82cc59ee3cc5d2ca57201f8",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2004-08-11T17:59:02Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The researcher downloaded it at 2026-09-23T16:26:41Z and again at 2026-09-23T17:43:54Z with identical bytes (at least 30 minutes apart), and the independent check downloaded it again at 2026-09-24T12:17:47Z with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "PIB release of the President's Secretariat communique of 22 May 2004, recorded as a raw Internet Archive capture of pib.nic.in/release/release.asp.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_mms_appointed_pm_communique_20040522",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-07",
+      "role_id": "in_pm",
+      "holder_name": "Manmohan Singh",
+      "role_title": "Prime Minister of India",
+      "event_kind": "appointment_communique",
+      "attested_on": "2004-05-22",
+      "text": "The President's Secretariat communique of 22 May 2004 states that the President of India has appointed Dr. Manmohan Singh as the Prime Minister of India, and lists the members of the Council of Ministers appointed on his advice.",
+      "locator": {
+        "section": "Press Communique, first sentence"
+      }
+    },
+    {
+      "claim_id": "in_council_oath_administered_20040522",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-07",
+      "role_id": "in_pm",
+      "holder_name": null,
+      "role_title": "Prime Minister of India",
+      "event_kind": "council_oath_administered",
+      "attested_on": "2004-05-22",
+      "text": "The same communique states that the President administered the oaths of office and secrecy to 'the above members of the Council of Ministers' at a ceremony in Rashtrapati Bhavan 'today' (22 May 2004).",
+      "locator": {
+        "section": "Press Communique, closing sentence"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

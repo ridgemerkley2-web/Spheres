@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_rb_kovind_assumption_speech_20170725",
+  "source_url": "https://web.archive.org/web/20170725193433id_/http://presidentofindia.nic.in/speeches-detail.htm?321",
+  "original_url": "http://presidentofindia.nic.in/speeches-detail.htm?321",
+  "archive_capture_utc": "2017-07-25T19:34:33Z",
+  "accessed_date": "2026-09-24",
+  "published_date": "2017-07-25",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 90535,
+  "source_response_sha256": "6643fae1fc1db4d35926f3ffd85cf38c7037555d0e14465a62fc8835f54d488b",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2017-07-25T19:34:33Z; that form replays the archived bytes unchanged and is used in place of the live page or file. Raw Internet Archive capture (id_ form), replayed without Content-Encoding. Downloaded 2026-09-24T21:59:02Z and again at 2026-09-24T23:02:35Z with identical bytes and SHA-256. Captured the evening of the speech (19:34:33Z, 25 July 2017). The independent check downloaded it again at 23:10Z on 24 September 2026, with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The President's website page of the speech (speeches-detail.htm?321), recorded as a raw Internet Archive capture made the evening of the speech (19:34:33Z, 25 July 2017).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; linked PDFs and images not reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_kovind_assumption_address_20170725",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-07",
+      "role_id": "in_president",
+      "holder_name": "Ram Nath Kovind",
+      "role_title": "President of India",
+      "event_kind": "assumption_statement",
+      "attested_on": "2017-07-25",
+      "text": "The President's website publishes, under the heading of a speech by Shri Ram Nath Kovind on his assumption of office as President of India (Central Hall of Parliament, 25.07.2017), an address in which he thanks the electors and says he enters this office with humility; it opens by addressing Pranab Mukherjee, Hamid Ansari, Narendra Modi, Sumitra Mahajan and Justice J. S. Khehar.",
+      "locator": {
+        "element": "Speeches Detail: heading, place and date line, opening paragraphs"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-15 only. The Election Commission's notices, the Returning Officer's declaration of the result and its Gazette publication, the programme for the ceremony of assumption of office, the oath administered by the Chief Justice, the Ministry of Home Affairs resolution and proclamation of the assumption of office, the holder's address on assumption, prospective term-expiry notices, farewells, stylings of a predecessor as former President and retrospective statements stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the Vice-President (including any service as acting President), ministers and party offices are excluded."
+}

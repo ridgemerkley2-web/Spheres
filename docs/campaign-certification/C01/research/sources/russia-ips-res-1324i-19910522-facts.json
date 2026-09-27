@@ -1,0 +1,36 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102011540&page=1&rdk=0",
+  "source_title": "Resolution of the RSFSR Congress of People's Deputies No. 1324-I of 22 May 1991 approving the Law of the RSFSR 'On the President of the RSFSR' (original edition)",
+  "accessed_date": "2026-09-21",
+  "published_date": null,
+  "document_date": "1991-05-22",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102011540&page=1&rdk=0",
+  "source_response_bytes": 23707,
+  "source_response_sha256": "145bd8bd920247811a87a81aca6c490d01586f59586b39098f4ea21c08496a0b",
+  "source_response_checked_in": false,
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=1324-I&a8type=1&sort=7&page=firstlast&lstsize=50",
+    "bytes": 11572,
+    "sha256": "50288500b4c7baa64522b9738f8b255998690efa0573077873813e3663177893",
+    "note": "Portal search-result card listing the act, its status and its publication citation; read over HTTP. The check and this packet returned identical bytes."
+  },
+  "provenance_note": "The portal's document frame for the original edition (rdk=0, 'Исходная редакция') was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 21 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response. The dossier retrieval, the independent check and this packet's retrieval, all on 21 September 2026, returned identical bytes. This checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "claims": [
+    {
+      "id": "ru_rsfsr_president_law_congress_approval_19910522",
+      "text": "The Congress of People's Deputies of the RSFSR approves the Law of the RSFSR 'On the President of the RSFSR'; signed B. N. Yeltsin, Chairman of the RSFSR Supreme Soviet, Moscow, Kremlin, 22 May 1991, No. 1324-I.",
+      "locator": "Operative text; signature and date block",
+      "attested_on": "1991-05-22",
+      "uncertainty": "Approval by the Congress is a separate event from the Supreme Soviet's adoption on 24 April and from entry into force on publication."
+    }
+  ],
+  "scope_note": "Congress approval of Law 1098-I, as resolution 1099-I required. Gazette citation: Vedomosti 1991 No. 21, art. 708.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Official HTML text read in full after windows-1251 decoding; the portal offers no facsimile."
+  }
+}

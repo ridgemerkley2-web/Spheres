@@ -1,0 +1,38 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_kunaicho_schedule_202411",
+  "source_url": "https://www.kunaicho.go.jp/watch/activity/schedule01/202411/index.html",
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "downloaded_official_page_html_decoded_and_read",
+  "source_response_bytes": 78199,
+  "source_response_sha256": "79e8e33ffa8cda2cc445f6454607bd7e4666495eb067fb2ab6bd2c4de19a686a",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "UTF-8 (the page's meta tag declares UTF-8; the bytes decode cleanly as UTF-8)",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the Imperial Household Agency's own host as a stored static page with a fixed Last-Modified (Sun, 25 Jan 2026 01:38:34 GMT), before the cutoff; it carries no per-request token or timestamp, and a cache-busting request returned the same bytes. Researcher (part C): Official stored page (origin Last-Modified Sun, 25 Jan 2026 01:38:34 GMT, before the cutoff; ETag-stable static file) re-downloaded at least 30 minutes apart, the third time with a cache-busting query ?cb=<epoch> appended: 4 downloads at 2026-09-24T22:00:47Z, 2026-09-24T22:45:52Z, 2026-09-24T23:06:51Z, 2026-09-25T00:06:22Z UTC (first and last 125 minutes apart) gave the same byte count and SHA-256. The part C check downloaded it again on 25 September 2026 at 00:09Z-00:14Z (plain), at 00:10Z-00:11Z (the live hosts with a cache-busting query) and at 00:40Z-00:46Z (plain), each time with the same byte count and SHA-256. Downloaded on 25 September 2026 (UTC) by this packet at 01:37:46Z, 01:42:26Z (cache-busting query), 02:18:53Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Imperial Household Agency's schedule of the Emperor's engagements, served from the agency's own host as a stored static file; its Last-Modified header, given in the extract, precedes the cutoff. No Internet Archive capture of it was found or reached, so it was downloaded plain and with a cache-busting query, 30 minutes or more apart, with identical bytes. A schedule row names the ceremony and names the appointee only where the page prints the name. No photograph is reused.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Official HTML decoded and read in full for the cited passages; no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_kunaicho_ceremony_20241111",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM06-10",
+      "role_id": "jp_pm",
+      "holder_name": null,
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "imperial_appointment_ceremony",
+      "attested_on": "2024-11-11",
+      "text": "The Imperial Household Agency's monthly schedule for November 2024 lists for 11 November 2024 (月), after the report of the Speaker and the President (奏上), an Imperial appointment ceremony of the Prime Minister and an attestation ceremony for 22 ministers and others (親任式（内閣総理大臣）、認証官任命式（大臣等22名）（宮殿）).",
+      "locator": {
+        "section": "天皇ご一家のご日程（令和6年11月11日（月））",
+        "row": "天皇陛下 親任式（内閣総理大臣）、認証官任命式（大臣等22名）（宮殿）"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-13 only (stacked on CLAUDE-C01-12). Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, the Official Gazette's appointment and loss-of-office notices, the Cabinet's minutes, a cabinet's formation, its resignation en masse, any continued performance of duties and acting designations stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role: an unnamed statement or schedule row, a House of Councillors designee who never held the office, or a designation of acting ministers. Ministers, deputy prime ministers and party offices are excluded."
+}

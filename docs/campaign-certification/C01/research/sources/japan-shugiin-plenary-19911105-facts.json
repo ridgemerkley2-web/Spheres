@@ -1,0 +1,67 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_hr_plenary_19911105",
+  "source_url": "https://kokkai.ndl.go.jp/api/meeting?issueID=112205254X00119911105&recordPacking=json",
+  "diet_record": {
+    "issueID": "112205254X00119911105",
+    "house": "衆議院",
+    "meeting": "本会議",
+    "issue": "第1号",
+    "sitting_date": "1991-11-05",
+    "response": "whole meeting record",
+    "speeches_in_response": 29,
+    "record_page_url": "https://kokkai.ndl.go.jp/txt/112205254X00119911105"
+  },
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "official_diet_minutes_api_json_download_and_read",
+  "source_response_bytes": 41252,
+  "source_response_sha256": "b6b656d97dcee55119af9ed60015c2af1969ab98d83d30bac83e3f8f23e31960",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "UTF-8 JSON (the Content-Type header declares application/json;charset=UTF-8)",
+  "source_response_checked_in": false,
+  "provenance_note": "Official response of the National Diet Library's Diet minutes API (JSON, UTF-8), served with Cache-Control: no-cache, no-store; the JSON carries no timestamp, session token or request echo, so it is not generated per request. Downloaded on 24 September 2026 by the researcher at 18:15:00Z, 18:25:52Z, 18:57:24Z and 18:58:08Z (cache-busting query); by the independent check at 19:00:05Z, 19:00:54Z (cache-busting query) and 19:29:22Z; by this packet at 20:18:27Z, 20:39:39Z (cache-busting query) and 20:53:32Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Diet minutes API's JSON for the whole meeting record of the 衆議院 本会議 第1号 (1991-11-05), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/112205254X00119911105. The printed page images, served through a JavaScript viewer, were not viewed.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Machine-readable minute text read in full for the cited speeches; the printed page images were not viewed."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_hr_speaker_reports_kaifu_resignation_notice_19911105",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-02",
+      "role_id": "jp_pm",
+      "holder_name": "海部俊樹",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "cabinet_resignation_notice",
+      "attested_on": "1991-11-05",
+      "text": "On resuming at 15:03, Speaker 櫻内義雄 reports to the House of Representatives that he had received that day from Prime Minister Kaifu (海部内閣総理大臣) a written notice that the Cabinet had decided to resign en masse.",
+      "locator": {
+        "speech_order": 23,
+        "speech_id": "112205254X00119911105_023"
+      }
+    },
+    {
+      "claim_id": "jp_hr_designates_miyazawa_19911105",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-02",
+      "role_id": "jp_pm",
+      "holder_name": "宮澤喜一",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "designation_vote_house_of_representatives",
+      "attested_on": "1991-11-05",
+      "text": "The House of Representatives designates 宮澤喜一 as Prime Minister by named ballot: 492 votes cast, majority 247; 宮澤喜一 276, 田邊誠 140, 石田幸四郎 46, 不破哲三 15, 大内啓伍 13 and two invalid (one naming no nominee, and one reading only 宮沢君, invalid under precedent because two members share the surname).",
+      "locator": {
+        "speech_order": [
+          26,
+          27
+        ],
+        "speech_id": "112205254X00119911105_027",
+        "item": "内閣総理大臣の指名"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-12 only. Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, a cabinet's formation, its resignation en masse, any continued performance of duties and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role in this packet: an unnamed statement, agenda or ceremony record, an acting prime minister, the House of Councillors' 1998 designee or the successor at the closing boundary. Ministers, deputy prime ministers and party offices are excluded."
+}

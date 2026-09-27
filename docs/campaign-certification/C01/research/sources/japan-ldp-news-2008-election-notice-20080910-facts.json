@@ -1,0 +1,55 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_ldp_news_2008_election_notice_20080910",
+  "source_url": "https://web.archive.org/web/20080917044143id_/http://www.jimin.jp:80/jimin/daily/08_09/10/200910a.shtml",
+  "original_url": "http://www.jimin.jp/jimin/daily/08_09/10/200910a.shtml",
+  "archive_capture_utc": "2008-09-17T04:41:43Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_html_decoded_and_read",
+  "source_response_bytes": 25194,
+  "source_response_sha256": "dd33bfd974e14742fbcce8d8c1c9f26bc7542726fe579f6cebc2234f4afad9ef",
+  "source_response_content_encoding": "identity",
+  "source_response_sha1_base32": "U3Y2TVXGJXOCGCUJB2TTBO6KNATND6XS",
+  "source_character_encoding": "Shift_JIS (the page declares charset=Shift_JIS; the bytes decode cleanly as Shift_JIS)",
+  "source_response_checked_in": false,
+  "fetch_recipe": "curl -s -o FILE 'https://web.archive.org/web/20080917044143id_/http://www.jimin.jp:80/jimin/daily/08_09/10/200910a.shtml' with no Accept-Encoding request header and no automatic decoding; hash the bytes as received.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2008-09-17T04:41:43Z; that form replays the archived bytes unchanged. Researcher (part C): downloaded at 12:14:01Z on 25 September 2026, requested without Accept-Encoding; the SHA-1 of the bytes equals the Internet Archive CDX digest for this capture. The part C check downloaded it again at 13:27:44Z, 73 minutes later, with Accept-Encoding: identity (HTTP 200, no Content-Encoding) and the same byte count and SHA-256. Downloaded on 25 September 2026 (UTC) by this packet at 14:18:14Z and 14:54:41Z, 36 minutes apart, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A party news item (www.jimin.jp/jimin/daily/), recorded as a raw Internet Archive capture made before the cutoff; the page's own date line gives the day. Its month list of other items is part of the archived bytes and is not used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML decoded and read in full (headings, date lines, captions and body); no images reviewed or reused."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_ldp_2008_election_notice_20080910",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-09",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": null,
+      "role_title": "総裁 — party president",
+      "event_kind": "presidential_election_notice",
+      "attested_on": "2008-09-10",
+      "text": "The presidential election was notified (告示) on 10 September 2008, 臼井日出男総裁選挙管理委員長 declaring the notice at 11:00; voting was to take place at the joint plenary meeting on the 22nd.",
+      "locator": {
+        "section": "date line 【平成２０年 ９月１０日】; headline 総裁選挙告示、５候補が立候補; first paragraph"
+      }
+    },
+    {
+      "claim_id": "jp_ldp_2008_candidacies_filed_20080910",
+      "observation_id": "jp_sangiin_pr_2025_13",
+      "review_observation": "LDP-PRES-09",
+      "role_id": "jp_ldp_party_president",
+      "holder_name": null,
+      "role_title": "総裁 — party president",
+      "event_kind": "candidacy_filing",
+      "attested_on": "2008-09-10",
+      "text": "The same report says 石原伸晃, 小池百合子, 麻生太郎, 石破茂 and 与謝野馨 filed their candidacies in the order drawn by lot.",
+      "locator": {
+        "section": "first paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations of the LDP president (総裁) for CLAUDE-C01-18 only, 1990-2009 (stacked on CLAUDE-C01-13). Party elections and selections (member and Diet-member votes, joint plenary meetings of party Diet members), notices, candidacies, declarations and reports of results, statements of assumption, in-office attestations, announced and prospective resignations, predecessor references and retrospective records stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this office (a notice, a filing, a schedule, an unnamed caption or a meeting). The prime-ministership (jp_pm) is excluded: no row feeds it, and no jp_pm claim feeds this office."
+}

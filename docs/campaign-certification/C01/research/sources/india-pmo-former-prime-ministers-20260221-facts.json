@@ -1,0 +1,54 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_pmo_former_prime_ministers_page",
+  "source_url": "https://web.archive.org/web/20260221002548id_/https://www.pmindia.gov.in/en/former-prime-ministers/",
+  "original_url": "https://www.pmindia.gov.in/en/former-prime-ministers/",
+  "archive_capture_utc": "2026-02-21T00:25:48Z",
+  "accessed_date": "2026-09-23",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 14207,
+  "source_response_sha256": "9c191ce2b6aaa01e6fa7f1d9ba94141bd75f4a0f4fd9000a06c9a69d2317f69d",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "gzip",
+  "decoded_response_bytes": 71386,
+  "decoded_response_sha256": "71dac5225f5f880004db505d69feff270ae1f580fafa9e8325de418605ea94ef",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2026-02-21T00:25:48Z; that form replays the archived bytes unchanged and is used in place of the live page or file. The researcher downloaded it at 2026-09-23T17:11:33Z and again at 2026-09-24T11:49:42Z with identical bytes (at least 30 minutes apart), and the independent check downloaded it again at 2026-09-24T12:18:48Z with the same byte count and SHA-256. The Internet Archive serves this capture gzip-encoded (Content-Encoding: gzip, as archived), even to a request for identity encoding; source_response_bytes and source_response_sha256 are of the encoded body as transferred (curl without --compressed). The decoded HTML is 71,386 bytes, SHA-256 71dac5225f5f880004db505d69feff270ae1f580fafa9e8325de418605ea94ef. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Retrospective list of former prime ministers, captured on 21 February 2026. Used only for the spans of 1998-2014; the per-prime-minister PMO pages are separate sources. Claims only, never a boundary.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_pmo_list_span_vajpayee_19980319_20040522",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-07",
+      "role_id": "in_pm",
+      "holder_name": "Atal Bihari Vajpayee",
+      "role_title": "Prime Minister of India",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The PMO's former-prime-ministers page gives Atal Bihari Vajpayee's span as March 19, 1998 - May 22, 2004.",
+      "locator": {
+        "section": "Shri Atal Bihari Vajpayee entry, date line"
+      }
+    },
+    {
+      "claim_id": "in_pmo_list_span_mms_20040522_20140526",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-07",
+      "role_id": "in_pm",
+      "holder_name": "Manmohan Singh",
+      "role_title": "Prime Minister of India",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The same page gives Dr. Manmohan Singh's span as May 22, 2004 - May 26, 2014.",
+      "locator": {
+        "section": "Dr. Manmohan Singh entry, date line"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

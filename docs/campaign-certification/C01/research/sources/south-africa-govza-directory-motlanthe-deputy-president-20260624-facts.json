@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_govza_directory_motlanthe_deputy_president",
+  "source_url": "https://web.archive.org/web/20260624042057id_/https://www.gov.za/about-government/contact-directory/kgalema-petrus-motlanthe-mr",
+  "original_url": "https://www.gov.za/about-government/contact-directory/kgalema-petrus-motlanthe-mr",
+  "archive_capture_utc": "2026-06-24T04:20:57Z",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 35579,
+  "source_response_sha256": "88436ae8795b20d8c1e3cfc38b0a677a0e80a5855eee285214a51c2783c3780e",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header, or with Accept-Encoding: identity, and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that accepts gzip can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Downloaded again on 2026-09-25 by the part B researcher and by the part B check (13:52Z), each time with the byte count and SHA-256 recorded for this capture on 22 September 2026. Downloaded again for this packet at 2026-09-25T15:30Z (integration pass) with the same byte count and SHA-256. The response is the one the extract south-africa-govza-directory-motlanthe-20260624-facts.json records.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2026-06-24T04:20:57Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of the live page. Fetched without Accept-Encoding (curl without --compressed), the archive serves it uncompressed: the recorded byte count and SHA-256 are those of the uncompressed body. The response identity was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The same raw capture and the same response bytes as the source za_govza_directory_motlanthe, whose extract leaves the deputy-presidency line out of scope; this separate source record carries only that line, so that extract is unchanged. A retrospective directory biography (captured June 2026; the live Drupal page is dynamic); its spans are recorded as printed and never used as boundaries. Like other gov.za captures made in 2026, the page carries a site-wide keywords tag naming the 2026 office-holders; that template text is not an attestation and is not used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_govza_directory_motlanthe_deputy_span_20090511_20140525",
+      "observation_id": "za_presidency",
+      "review_observation": "ZA-DP-06",
+      "role_id": "za_deputy_president",
+      "holder_name": "Kgalema Motlanthe",
+      "role_title": "Deputy President of the Republic of South Africa",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "printed_range": "from 11 May 2009 to 25 May 2014",
+      "text": "The government contact directory says 'Mr Kgalema Petrus Motlanthe was the Deputy President of the Republic of South Africa from 11 May 2009 to 25 May 2014'.",
+      "locator": {
+        "section": "Positions last held in government, first paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Deputy President observations for CLAUDE-C01-21 only (role za_deputy_president in za_presidency). Announcements, stated intentions, appointments and their notices, oaths and their scheduling, stated assumptions, releases, resignations and their stated effect, Assembly-seat events and in-office attestations stay separate rows; holder observations and any start or end are decided in the packet, not by any row. The President's roles (za_president_election, za_state_president) and the ANC's party office are excluded and no row feeds them. This extract derives only the deputy-president rows of a response whose other rows docs/campaign-certification/C01/research/sources/south-africa-govza-directory-motlanthe-20260624-facts.json derives; that extract is unchanged."
+}

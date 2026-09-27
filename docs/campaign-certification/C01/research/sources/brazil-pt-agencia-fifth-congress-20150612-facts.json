@@ -1,0 +1,40 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_agencia_5th_congress_falcao_20150612",
+  "source_url": "https://web.archive.org/web/20150615034739id_/http://www.pt.org.br:80/5o-congresso-do-pt-foi-totalmente-bem-sucedido-avalia-rui-falcao",
+  "original_url": "http://www.pt.org.br/5o-congresso-do-pt-foi-totalmente-bem-sucedido-avalia-rui-falcao",
+  "archive_capture_utc": "2015-06-15T03:47:39Z",
+  "accessed_date": "2026-09-25",
+  "published_date": "2015-06-12",
+  "access_method": "downloaded_archived_raw_capture_id_form (curl with its default User-Agent, no Accept-Encoding header, no redirects followed)",
+  "source_response_bytes": 55662,
+  "source_response_sha256": "dced8c74fe33ba8f40f83d4926dcde79a902884d1223c1c0c65458452d674c49",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded with no Accept-Encoding request header and no automatic decoding (curl without --compressed); compare the byte count and SHA-256 of the body as received.",
+  "stability_check": "Downloaded at 2026-09-25T14:20:19Z and again at 2026-09-25T14:52:21Z from the same exact id_ URL (plain curl, no Accept-Encoding header, no decoding); both responses were 55662 bytes with SHA-256 dced8c74fe33ba8f40f83d4926dcde79a902884d1223c1c0c65458452d674c49. The raw id_ form replays the stored capture. The independent check downloaded it again between 14:54 and 15:25 UTC on 25 September 2026 with Accept-Encoding: identity, at least 30 minutes after the researcher's last download; the response matched.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2015-06-15T03:47:39Z; that form replays the archived bytes unchanged and is used in place of the live page. The recorded identity is the uncompressed body as served to a client that sends no Accept-Encoding header (curl without --compressed); a gzip-accepting client may receive a gzip-compressed body. Downloaded at 2026-09-25T14:20:19Z and again at 2026-09-25T14:52:21Z from the same exact id_ URL (plain curl, no Accept-Encoding header, no decoding); both responses were 55662 bytes with SHA-256 dced8c74fe33ba8f40f83d4926dcde79a902884d1223c1c0c65458452d674c49. The raw id_ form replays the stored capture. The independent check downloaded it again between 14:54 and 15:25 UTC on 25 September 2026 with Accept-Encoding: identity, at least 30 minutes after the researcher's last download; the response matched. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "An Agência PT de Notícias item of 12 June 2015 (17:56:15), captured 15 June 2015. Raw Internet Archive capture (served without Content-Encoding to a client that sends no Accept-Encoding; the recorded identity is the uncompressed body).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images, photographs or scans reused. The photo caption dated 29.10.2012 belongs to a reused file photo and was not used."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_falcao_styled_national_president_5th_congress_20150612",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-07",
+      "role_id": "br_pt_president",
+      "holder_name": "Rui Falcão",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2015-06-12",
+      "text": "Agência PT reports that 'the national President of the Workers' Party, Rui Falcão' gave a press conference on the second day of the 5th National Congress in Salvador; the report mentions no election of the President.",
+      "locator": {
+        "item": "byline 'Por: Agência PT, em 12 de junho de 2015 às 17:56:15', first paragraph"
+      }
+    }
+  ]
+}

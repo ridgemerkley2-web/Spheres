@@ -1,0 +1,57 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102011228&page=1&rdk=0",
+  "source_title": "Law of the RSFSR No. 1098-I of 24 April 1991 'On the President of the RSFSR' (original edition)",
+  "accessed_date": "2026-09-21",
+  "published_date": null,
+  "document_date": "1991-04-24",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102011228&page=1&rdk=0",
+  "source_response_bytes": 31645,
+  "source_response_sha256": "e49f34e8e2513b631205696fd495452f272871fd300df05db5ea67b8c2e7eb86",
+  "source_response_checked_in": false,
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=1098-I&a8type=1&sort=7&page=firstlast&lstsize=50",
+    "bytes": 11872,
+    "sha256": "36fcca0b189113c7dff7fa48d89142e752e4970aa523ee4b9df4202d52433b26",
+    "note": "Portal search-result card listing the act, its status and its publication citation; read over HTTP. The check and this packet returned identical bytes."
+  },
+  "provenance_note": "The portal's document frame for the original edition (rdk=0, 'Исходная редакция') was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 21 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response. The dossier retrieval, the independent check and this packet's retrieval, all on 21 September 2026, returned identical bytes. This checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "claims": [
+    {
+      "id": "ru_rsfsr_president_office_created_19910424",
+      "text": "Citing the will of the people expressed at the first RSFSR referendum of 17 March 1991, the RSFSR Supreme Soviet adopts a law under which the President of the RSFSR is the highest official of the RSFSR and the head of executive power in the RSFSR. The President may not be a people's deputy, suspends membership of political parties and public associations while in office and holds no other post.",
+      "locator": "Preamble; Article 1",
+      "attested_on": "1991-04-24",
+      "uncertainty": "Adoption day only. Resolution 1099-I of the same day put the law into force from the moment of publication, and that day is not verified. The referendum result was not reviewed from a primary record. The text does not use the term 'head of state'."
+    },
+    {
+      "id": "ru_rsfsr_president_election_term_rule_19910424",
+      "text": "A citizen aged 35 to 65 may be elected President for five years, and no one may be President for more than two consecutive terms. The President is elected by universal, equal and direct suffrage by secret ballot; any other election, appointment or assumption of the powers is unlawful and void. A Vice-President, whose candidacy the presidential candidate proposes, is elected at the same time.",
+      "locator": "Articles 2, 3 and 7",
+      "attested_on": "1991-04-24",
+      "uncertainty": "Statutory rules; not evidence of any election, term start or term end. Article 3 leaves the procedure for election and for assuming office to separate laws."
+    },
+    {
+      "id": "ru_rsfsr_president_oath_and_succession_rule_19910424",
+      "text": "Article 4 prescribes the oath the President takes on assuming office. Article 7 has the Vice-President substitute for the President in his absence, and Article 11 gives the Vice-President the President's powers on the President's removal, resignation, inability to exercise the powers or death.",
+      "locator": "Articles 4, 7 and 11",
+      "attested_on": "1991-04-24",
+      "uncertainty": "Rules only; no acting arrangement is attested by this text."
+    },
+    {
+      "id": "ru_yeltsin_ss_chair_signature_19910424",
+      "text": "The law is signed by B. N. Yeltsin as Chairman of the RSFSR Supreme Soviet, Moscow, House of Soviets of the RSFSR, 24 April 1991, No. 1098-I.",
+      "locator": "Signature and date block",
+      "attested_on": "1991-04-24",
+      "uncertainty": "One signed office observation, recorded as a claim only: this packet has no RSFSR Supreme Soviet institution, and a signature is not a chairmanship term."
+    }
+  ],
+  "scope_note": "Original edition (rdk=0) of the law creating the office. The portal card cites Rossiyskaya Gazeta of 27 April 1991 and Vedomosti 1991 No. 17, art. 512; neither issue was inspected, so 27 April is not recorded as the entry-into-force day, and 24 April is the adoption day only. The portal also carries an edition 1 annotated with Presidential Decree No. 2288 of 24 December 1993; that later status is outside this packet and is not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Official HTML text read in full after windows-1251 decoding; the portal offers no facsimile."
+  }
+}

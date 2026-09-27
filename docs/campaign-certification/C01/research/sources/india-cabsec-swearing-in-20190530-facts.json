@@ -1,0 +1,38 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_cabsec_modi_sworn_in_20190530",
+  "source_url": "https://cabsec.gov.in/writereaddata/swearingofnewministers/english/1_Upload_1857.pdf",
+  "accessed_date": "2026-09-23",
+  "published_date": "2019-05-30",
+  "access_method": "downloaded_official_pdf_and_rendered_page_review",
+  "source_response_bytes": 963210,
+  "source_response_sha256": "01af62f34e6d06c5b42d3f43d62d9ade756e1a1248d56b149039bab6884ddadf",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host. The researcher downloaded it at 2026-09-23T16:34:53Z and again at 2026-09-23T17:21:01Z, 2026-09-24T11:44:06Z with identical bytes (at least 30 minutes apart), and the independent check downloaded it again at 2026-09-24T12:15:16Z (and 12:15:19Z with a cache-busting query) with the same byte count and SHA-256. Static PDF served with Last-Modified 31 May 2019; its CreationDate is empty, not the access day, so it is not generated per request. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Cabinet Secretariat office memorandum published on cabsec.gov.in under Council of Ministers > Swearing of New Ministers (listing endpoint ajax_page_data.php?page_id=19 read on 23 September 2026). A Cabinet Secretariat record, not a Gazette notification.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "Image-only scanned PDF (no text layer, empty metadata, Last-Modified 31 May 2019). Page 1 rendered with pypdfium2 and read visually; pages 2-3 (list of ministers) not needed."
+  },
+  "rows": [
+    {
+      "claim_id": "in_cabsec_modi_sworn_in_as_pm_20190530",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-09",
+      "role_id": "in_pm",
+      "holder_name": "Narendra Modi",
+      "role_title": "Prime Minister of India",
+      "event_kind": "oath_of_office",
+      "attested_on": "2019-05-30",
+      "text": "The Cabinet Secretariat memorandum dated 30 May 2019 states that Shri Narendra Modi has been sworn in as the Prime Minister by the President at 1900 hours that day in Rashtrapati Bhavan, and that the listed ministers were sworn in at the same time.",
+      "locator": {
+        "pdf_page": 1,
+        "paragraph": "1 and 2"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_poi_narayanan_congratulates_kalam_20020718",
+  "source_url": "https://web.archive.org/web/20020823090957id_/http://presidentofindia.nic.in:80/S/html/press_release/press-new/pr407.htm",
+  "original_url": "http://presidentofindia.nic.in/S/html/press_release/press-new/pr407.htm",
+  "archive_capture_utc": "2002-08-23T09:09:57Z",
+  "accessed_date": "2026-09-24",
+  "published_date": "2002-07-18",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 2758,
+  "source_response_sha256": "622a91d47ab4a3f36235585731c021a86de51084aa72c71549ca50f7da2601de",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2002-08-23T09:09:57Z; that form replays the archived bytes unchanged and is used in place of the live page or file. Raw id_ capture downloaded 2026-09-24T22:15:35Z via https://web.archive.org, and again at 2026-09-24T22:47:14Z via the recorded https URL: identical byte count and SHA-256. The id_ form replays the archived bytes unchanged; no Content-Encoding was applied (Accept-Encoding: identity). The independent check downloaded it again at 23:18Z on 24 September 2026, with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The President's Secretariat's press release of 18 July 2002 (listed under that day in its July 2002 index), recorded as a raw Internet Archive capture; five captures from 23 August 2002 to 21 July 2003 share one Wayback digest. A first request returned a Wayback rate-limit page, which was discarded.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full; no images reviewed. Original Last-Modified 19 Jul 2002."
+  },
+  "rows": [
+    {
+      "claim_id": "in_narayanan_congratulates_kalam_on_election_20020718",
+      "observation_id": "in_presidency",
+      "review_observation": "IN-PRES-04",
+      "role_id": "in_president",
+      "holder_name": "A. P. J. Abdul Kalam",
+      "role_title": "President of India",
+      "event_kind": "election_acknowledged",
+      "attested_on": "2002-07-18",
+      "text": "The release dated Rashtrapati Bhavan, 18 July 2002 reports that President K. R. Narayanan and Smt. Usha Narayanan congratulated Dr. Abdul Kalam on his election as President of India, and quotes the President's congratulatory letter on his election to the office.",
+      "locator": {
+        "element": "Date line, headline paragraph and quoted letter"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-15 only. The Election Commission's notices, the Returning Officer's declaration of the result and its Gazette publication, the programme for the ceremony of assumption of office, the oath administered by the Chief Justice, the Ministry of Home Affairs resolution and proclamation of the assumption of office, the holder's address on assumption, prospective term-expiry notices, farewells, stylings of a predecessor as former President and retrospective statements stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the Vice-President (including any service as acting President), ministers and party offices are excluded."
+}

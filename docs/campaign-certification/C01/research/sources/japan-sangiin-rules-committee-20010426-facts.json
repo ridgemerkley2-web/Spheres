@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_sangiin_giun_20010426",
+  "source_url": "https://kokkai.ndl.go.jp/api/speech?issueID=115114024X02020010426&speechNumber=2&recordPacking=json",
+  "diet_record": {
+    "issueID": "115114024X02020010426",
+    "house": "参議院",
+    "meeting": "議院運営委員会",
+    "issue": "第20号",
+    "sitting_date": "2001-04-26",
+    "response": "single speech",
+    "speech_ids": [
+      "115114024X02020010426_002"
+    ],
+    "record_page_url": "https://kokkai.ndl.go.jp/txt/115114024X02020010426"
+  },
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "official_diet_minutes_api_json_download_and_read",
+  "source_response_bytes": 1030,
+  "source_response_sha256": "0c6a08900c54783d6bc2b209809135b81534ab416068c8098dc3f6f990557958",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "UTF-8 JSON (the Content-Type header declares application/json;charset=UTF-8)",
+  "source_response_checked_in": false,
+  "provenance_note": "Official response of the National Diet Library's Diet minutes API (JSON, UTF-8), served with Cache-Control: no-cache, no-store; the JSON carries no timestamp, session token or request echo, so it is not generated per request. Downloaded on 24 September 2026 by the independent check at 19:21:41Z, 19:39:42Z (cache-busting query) and 20:08:06Z; by this packet at 20:21:51Z, 20:42:14Z (cache-busting query) and 20:56:07Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Diet minutes API's JSON for one speech record of the 参議院 議院運営委員会 第20号 (2001-04-26), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/115114024X02020010426. The printed page images, served through a JavaScript viewer, were not viewed.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Machine-readable minute text read in full for the cited speeches; the printed page images were not viewed."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_sangiin_rules_receives_mori_resignation_notice_20010426",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-09",
+      "role_id": "jp_pm",
+      "holder_name": "森喜朗",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "cabinet_resignation_notice",
+      "attested_on": "2001-04-26",
+      "text": "The House of Councillors' Secretary General (堀川久士) reports that at 09:23 on 26 April 2001 the House received a notice from Prime Minister Mori (森内閣総理大臣), addressed to the President of the House, that the cabinet had decided to resign en masse that day.",
+      "locator": {
+        "issueID": "115114024X02020010426",
+        "speechOrder": 2,
+        "speaker": "堀川久士 (参議院事務総長)"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-12 only. Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, a cabinet's formation, its resignation en masse, any continued performance of duties and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role in this packet: an unnamed statement, agenda or ceremony record, an acting prime minister, the House of Councillors' 1998 designee or the successor at the closing boundary. Ministers, deputy prime ministers and party offices are excluded."
+}

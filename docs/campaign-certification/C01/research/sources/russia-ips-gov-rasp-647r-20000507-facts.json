@@ -1,0 +1,58 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_gov_rasp_647r_20000507",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102065738&page=1&rdk=0",
+  "source_title": "Order of the Government of the Russian Federation No. 647-r of 7 May 2000 (untitled; the Government surrenders its powers before the newly elected President)",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "document_date": "2000-05-07",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102065738&page=1&rdk=0",
+  "source_response_bytes": 31940,
+  "source_response_sha256": "49e80cb0e65e843a90d7bdbde6b79b852d202de2b1bb1ebe6b041441619c840c",
+  "source_response_encoding": "windows-1251",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded over HTTP at 2026-09-25T12:39:57Z and again at 2026-09-25T13:11:05Z (31 minutes later): identical 31,940 bytes and SHA-256. Portal card: Downloaded over HTTP at 2026-09-25T12:41:49Z and again at 2026-09-25T13:12:11Z (30 minutes later): identical 3,022 bytes and SHA-256. Independent check: re-downloaded at 2026-09-25T13:14Z-13:24Z and again at 13:47Z-13:55Z (portal URLs with a cache-busting query in the second round), 33-110 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:21:57Z and again at 2026-09-25T14:54:12Z (32 minutes later); identical 31,940 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=647-%F0&a8type=1&a7type=4&a7from=07.05.2000&a7to=07.05.2000&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3022,
+    "sha256": "f68aed24245beb804433ee4beb5e459ec9fd97371573073838a821a555c5fc94",
+    "note": "Date-restricted single-document card: a number search limited to the act's own date (a7from = a7to), returning exactly this one act with its title and the publications the portal cites."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 25 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read in full. The date-restricted single-document portal card (portal_card_response) returns only this act.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in full in Russian after windows-1251 decoding."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_gov_647r_government_surrenders_powers_20000507",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-06",
+      "role_id": "ru_government_chairman",
+      "holder_name": null,
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "government_powers_laid_down",
+      "attested_on": "2000-05-07",
+      "text": "Under Article 116 of the Constitution and Article 35 of the Federal Constitutional Law on the Government, Government order No. 647-r of 7 May 2000 states that the Government of the Russian Federation surrenders its powers ('слагает свои полномочия') before the newly elected President.",
+      "locator": "Heading ('от 7 мая 2000 г. № 647-р, Москва') and sole operative sentence"
+    },
+    {
+      "claim_id": "ru_gov_647r_kasyanov_signs_as_acting_20000507",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-06",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Михаил Михайлович Касьянов",
+      "printed_name": "М.Касьянов",
+      "role_title": "Исполняющий обязанности Председателя Правительства — Acting Chairman of the Government",
+      "event_kind": "acting_service_attestation",
+      "attested_on": "2000-05-07",
+      "text": "The order is signed 'И. о. Председателя Правительства Российской Федерации М.Касьянов' (acting Chairman of the Government).",
+      "locator": "Signature block"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

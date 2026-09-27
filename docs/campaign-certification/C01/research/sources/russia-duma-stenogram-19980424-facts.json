@@ -1,0 +1,53 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_duma_steno_19980424",
+  "source_url": "https://transcript.duma.gov.ru/node/2568/",
+  "source_title": "State Duma: stenogram of the sitting of 24 April 1998 (Transcripts database, node 2568)",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "document_date": "1998-04-24",
+  "access_method": "official_site_html_downloaded_over_http",
+  "source_response_url": "http://transcript.duma.gov.ru/node/2568/",
+  "source_response_bytes": 392612,
+  "source_response_sha256": "8293a8c9673dc9c08c6d2ef67dc17bfda08e9f1f10966fec08995bd03435b778",
+  "source_response_encoding": "utf-8",
+  "source_response_checked_in": false,
+  "stability_check": "Found by the independent check: Plain HTTP GET, no redirect followed. Downloaded at 2026-09-25T13:32:13Z and again at 14:05:07Z (33 minutes later): identical 392,612 bytes and SHA-256. The first attempt at 14:04Z got a 307 to /DDoS01/..., which was not followed; a plain retry 60 s later returned 200. A cache-busting request (?cb=) at 13:35:35Z also got the 307. The body carries no session token, but its footer reads '© ..., 2026'. This packet: re-downloaded at 2026-09-25T14:20:43Z and again at 2026-09-25T14:53:37Z (32 minutes later); identical 392,612 bytes and SHA-256.",
+  "provenance_note": "The State Duma transcripts server refused HTTPS from this environment on 25 September 2026 (port 443), so the page was read over HTTP with a plain request; the packet URL gives the same path on HTTPS, and the bytes and hash recorded here are those of the HTTP response. The server intermittently answers with a 307 redirect to a bot-protection path, which was never followed; a plain retry returned the page. The body carries no session token, but its footer prints the current year ('© Государственная Дума Федерального Собрания Российской Федерации, 2026'), so this recorded identity is expected to stop reproducing on 1 January 2027; no Internet Archive capture made before the cutoff exists (CDX lists none usable for this node). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The live official page (no usable Internet Archive capture made before the cutoff exists); the passages named in visual_review were read. Its recorded identity expires when the footer year changes. A primary record found by the independent check.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "HTML searched for 'Котенков', 'Кириенко', 'протокол' and 'Результаты голосования'; the opening, the presentation of the candidacy, the Counting Commission's report of protocol No. 4 and the 16:09:29 vote were read. Not read in full."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_duma_steno_kiriyenko_third_submission_presented_19980424",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-03",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Сергей Владиленович Кириенко",
+      "printed_name": "Кириенко Сергея Владиленовича (genitive)",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "nomination_presented",
+      "attested_on": "1998-04-24",
+      "text": "At the sitting of 24 April 1998 (agenda item 5, chaired by Г.Н.Селезнев), A. A. Kotenkov, the President's plenipotentiary representative in the State Duma, states that, the Duma having rejected the candidacy presented for consent, the President under Article 111(3) of the Constitution has submitted for the Duma's consent the candidacy of Kiriyenko Sergei Vladilenovich ('внес на рассмотрение Государственной Думы ... кандидатуру Кириенко Сергея Владиленовича'), and on the President's instruction presents him.",
+      "locator": "Morning session, agenda item 5: statement of Котенков А.А."
+    },
+    {
+      "claim_id": "ru_duma_steno_kiriyenko_secret_ballot_result_19980424",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-03",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Сергей Владиленович Кириенко",
+      "printed_name": "Кириенко Сергея Владиленовича (genitive)",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "parliamentary_vote",
+      "attested_on": "1998-04-24",
+      "text": "The Counting Commission's chairman И. М. Братищев reads protocol No. 4 on the secret ballot on consent to the appointment of Kiriyenko Sergei Vladilenovich as Chairman of the Government, 24 April 1998: 450 deputies in all, 315 received ballots, 276 ballots found in the boxes, none invalid; 'за - 251, против - 25'; the candidacy received a majority of the total number of deputies. The Duma approves protocol No. 4 (16:09:29: 342 for, 9 against, 1 abstention, 'Результат: принято').",
+      "locator": "Afternoon: report of Братищев И.М. on protocol No. 4; 'Результаты голосования (16 час. 09 мин. 29 сек.)'"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

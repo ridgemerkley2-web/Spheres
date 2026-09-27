@@ -1,0 +1,43 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_gazette_ext_p1s2_no14_19960524",
+  "source_url": "https://egazette.gov.in/WriteReadData/1996/E-0299-1996-0014-10612.pdf",
+  "accessed_date": "2026-09-23",
+  "published_date": "1996-05-24",
+  "access_method": "official_egazette_pdf_download_and_visual_page_review",
+  "source_response_bytes": 96678,
+  "source_response_sha256": "2dcf9b380eb6d52b231de786f483a99ed0159a8399a5b25b9ee057a57364465b",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file served by the publisher's own host. The researcher downloaded it twice on 23 September 2026 (the second time more than 30 minutes later, with a cache-busting query) and the independent check three more times that day (17:26Z to 18:04Z, each with a cache-busting query), all with the same byte count and SHA-256. The file is a static egazette.gov.in object (Last-Modified 12 March 2013, fixed ETag; PDF CreationDate in 2013, no per-request /ID or ModDate), so it is not generated per request. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Official eGazette file. MD5 12f645ed4f1a42f961eb4914b4263867 and SHA-1 15f3afa02844e077c05506238a467eff54097ea8 equal the copies in the Internet Archive items in.gazette.e.1996.235 and in.gazette.central.e.1996-05-24.10612 (the Part B check downloaded the latter with the same SHA-256); another mirror holds a different 149,699-byte rendering and is not used.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2,
+      3
+    ],
+    "method": "PDF pages 1 and 2 rendered and read; the list of Ministers and the signature on page 3 read from the text layer."
+  },
+  "rows": [
+    {
+      "claim_id": "in_president_accepts_rao_resignation_wef_19960516",
+      "observation_id": "in_prime_minister",
+      "review_observation": "IN-PM-03",
+      "role_id": "in_pm",
+      "holder_name": "P. V. Narasimha Rao",
+      "role_title": "Prime Minister of India",
+      "event_kind": "resignation_accepted_with_effect",
+      "attested_on": "1996-05-16",
+      "text": "Ministry of Home Affairs notification of 24 May 1996: the President has been pleased to accept the resignation of Shri P. V. Narasimha Rao of his office of Prime Minister, and of the listed members of the Council of Ministers, with effect from 16 May 1996.",
+      "locator": {
+        "pdf_page": [
+          2,
+          3
+        ],
+        "item": "Ministry of Home Affairs Notification No. 10/5/96-M&G(i), New Delhi, the 24th May, 1996 (Hindi text on page 1); signed V. K. Malhotra, Jt. Secy. (page 3)"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-11 only. The President's appointment, the oath or swearing-in, stated effective dates, confidence motions and votes, resignation announcements, letters and acceptances, requests to continue in office and attestations during a continuation stay separate rows; holder boundaries are decided in the packet, not by any row. Deputy prime ministers, ministers, the President and party offices are excluded."
+}

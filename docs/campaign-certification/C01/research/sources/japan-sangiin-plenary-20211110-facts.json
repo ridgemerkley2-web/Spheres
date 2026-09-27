@@ -1,0 +1,55 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_sangiin_honkaigi_20211110",
+  "source_url": "https://kokkai.ndl.go.jp/api/meeting?issueID=120615254X00120211110&recordPacking=json",
+  "diet_record": {
+    "issueID": "120615254X00120211110",
+    "house": "参議院",
+    "meeting": "本会議",
+    "issue": "第1号",
+    "sitting_date": "2021-11-10",
+    "response": "whole meeting record",
+    "speeches_in_response": 23,
+    "record_page_url": "https://kokkai.ndl.go.jp/txt/120615254X00120211110"
+  },
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "official_diet_minutes_api_json_download_and_read",
+  "source_response_bytes": 19518,
+  "source_response_sha256": "f0cb15dc80af88851e0619f35781b28c2674ef42a0e68aa25da9a2c02d7dfb30",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "UTF-8 JSON (the Content-Type header declares application/json;charset=UTF-8)",
+  "source_response_checked_in": false,
+  "provenance_note": "Official response of the National Diet Library's Diet minutes API (JSON, UTF-8), served with Cache-Control: no-cache, no-store; the JSON carries no timestamp, session token or request echo, so it is not generated per request. Researcher (part C): Re-downloaded from the API, the third time with a cache-busting query parameter cb=<epoch> appended; the JSON carries no timestamp, session token or request echo and is served with Cache-Control: no-cache, no-store: 4 downloads at 2026-09-24T21:44:37Z, 2026-09-24T22:13:18Z, 2026-09-24T22:33:01Z, 2026-09-25T00:06:04Z UTC (first and last 141 minutes apart) gave the same byte count and SHA-256. The part C check downloaded it again on 25 September 2026 at 00:09Z-00:14Z (plain), at 00:10Z-00:11Z (the live hosts with a cache-busting query) and at 00:40Z-00:46Z (plain), each time with the same byte count and SHA-256. Downloaded on 25 September 2026 (UTC) by this packet at 01:35:24Z, 01:42:13Z (cache-busting query), 02:16:46Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Diet minutes API's JSON for the whole meeting record of the 参議院 本会議 第1号 (2021-11-10), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/120615254X00120211110. The printed page images, served through a JavaScript viewer, were not viewed.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Machine-readable minute text read in full for the cited speeches; the printed page images were not viewed."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_sangiin_designates_kishida_20211110",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM06-09",
+      "role_id": "jp_pm",
+      "holder_name": "岸田文雄",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "designation_vote_house_of_councillors",
+      "attested_on": "2021-11-10",
+      "text": "After reopening at 14:46 on 10 November 2021, the House of Councillors designated 岸田文雄 on the first named ballot: 141 of 242 votes (majority 122), with 枝野幸男 60, 片山虎之助 15, 玉木雄一郎 15, 山本太郎 3, 嘉田由紀子 2, 渡辺喜美 2, 伊藤孝恵 1, 伊波洋一 1 and 2 blank. The sitting adjourned at 15:16.",
+      "locator": {
+        "speech_order": [
+          18,
+          21
+        ],
+        "speech_id": [
+          "120615254X00120211110_018",
+          "120615254X00120211110_021"
+        ],
+        "item": "日程第三 内閣総理大臣の指名"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-13 only (stacked on CLAUDE-C01-12). Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, the Official Gazette's appointment and loss-of-office notices, the Cabinet's minutes, a cabinet's formation, its resignation en masse, any continued performance of duties and acting designations stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role: an unnamed statement or schedule row, a House of Councillors designee who never held the office, or a designation of acting ministers. Ministers, deputy prime ministers and party offices are excluded."
+}

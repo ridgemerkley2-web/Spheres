@@ -1,0 +1,38 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_pt_tse_sgip_cen_2014_2017",
+  "source_url": "https://sgip3.tse.jus.br/sgip3-consulta/api/v1/orgaoPartidario/comAnotacoesEMembros?idOrgaoPartidario=70954&isMembrosAtivos=false",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "access_method": "downloaded_live_public_json (no login; the SGIP consultation page's own API endpoint); www.tse.jus.br pages refused curl (Akamai 403)",
+  "source_response_bytes": 18797,
+  "source_response_sha256": "723f11fd942f494415cf35a1712c2a6cd4eaa17a3610d614f0c1431464f982ca",
+  "source_response_checked_in": false,
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the url exactly as recorded, without login, with no Accept-Encoding request header; compare the byte count and SHA-256 of the JSON body as received. Do not copy any personal field of the response.",
+  "stability_check": "Downloaded at about 12:59 UTC and again at about 13:31 UTC on 25 September 2026 (31 minutes later) from the same URL; the independent check downloaded it again at 14:54-14:55 UTC. Every response had the same byte count and SHA-256. The JSON is generated per request by the TSE public SGIP consultation service but carries no timestamp, token or session value; the organ is closed (Não Vigente), so the record is not expected to change, but a later annotation by the court would change its bytes.",
+  "provenance_note": "Public JSON response of the Superior Electoral Court's SGIP consultation service, read without login. Downloaded at about 12:59 UTC and again at about 13:31 UTC on 25 September 2026 (31 minutes later) from the same URL; the independent check downloaded it again at 14:54-14:55 UTC. Every response had the same byte count and SHA-256. The JSON is generated per request by the TSE public SGIP consultation service but carries no timestamp, token or session value; the organ is closed (Não Vigente), so the record is not expected to change, but a later annotation by the court would change its bytes. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images, registry records and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures, scanned pages, personal registry data or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Superior Electoral Court's public SGIP record (anotação de órgão partidário) of a closed PT national organ with its members, read through the consultation page's own JSON endpoint without login. PRIVACY: the public response also carries members' CPF and voter-registration numbers, contact data and credential-like fields of a party user account; only the organ's dates and the names, offices, exercise dates and status printed for the President are extracted, and the raw body was deleted after hashing. Registry exercise periods follow the organ's registered term, not the party's posse days: claims only. Organ 70954: Comissão executiva, Nacional, vigência 19/02/2014-09/10/2017, record altered 09/10/2017.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "JSON registry record; the organ fields and the President entry read programmatically and checked by eye."
+  },
+  "bounded_scope": "PT national-president observations for CLAUDE-C01-22 only (role br_pt_president of the PT funding observation br_tse_fefc_2024_party_03). National meetings, direct elections and their counts, Diretório Nacional selections, posse, resignations and leaves, interim and acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Presidency of the Republic (br_presidency) and state offices are outside these rows; holder_name is normalised and the printed form stays in the text.",
+  "rows": [
+    {
+      "claim_id": "br_pt_tse_sgip_falcao_cen_registered_exercise_20140219_20171009",
+      "observation_id": "br_tse_fefc_2024_party_03",
+      "review_observation": "PT-PRES-07",
+      "role_id": "br_pt_president",
+      "holder_name": "Rui Falcão",
+      "role_title": "Presidente Nacional do Partido dos Trabalhadores",
+      "event_kind": "registry_exercise_period",
+      "attested_on": null,
+      "text": "The TSE's annotation of the PT national executive committee (organ 70954, vigência 19/02/2014-09/10/2017, 'Inativado por decisão do partido') lists 'RUI GOETHE DA COSTA FALCAO' as PRESIDENTE with registered exercise 19/02/2014 to 09/10/2017, status Inativo.",
+      "locator": {
+        "item": "membros[] entry nomeCargo 'PRESIDENTE'"
+      }
+    }
+  ]
+}

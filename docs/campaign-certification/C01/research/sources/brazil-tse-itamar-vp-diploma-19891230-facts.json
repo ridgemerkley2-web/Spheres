@@ -1,0 +1,49 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "br_tse_diploma_itamar_19891230",
+  "source_url": "https://bibliotecadigital.tse.jus.br/server/api/core/bitstreams/6b2f6066-4e87-40b9-b5c8-4cb26682d51f/content",
+  "accessed_date": "2026-09-24",
+  "published_date": "1989-12-30",
+  "access_method": "downloaded_repository_image_and_viewed",
+  "source_response_bytes": 677161,
+  "source_response_sha256": "cc83b74299e99287ce120b4b8966786d7c70dfac4f1ae4adfc06dba786dd73af",
+  "source_response_checked_in": false,
+  "provenance_note": "Official file from the TSE digital library's repository service, a stored bitstream (its ETag and the repository's recorded checksum equal the MD5 of the bytes, 613d7e8ebef0b557526b03f1591235a1). The researcher downloaded it on 24 September 2026 at 21:59 UTC and again at 22:32 UTC; the independent check downloaded it at 22:44, 22:45 and 23:05 UTC, twice with cache-busting queries. Every download had the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, seals, coats of arms, signatures, diploma images or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Photograph (JPEG, 764x1024; bitstream 1989_diploma_itamar_franco.JPG) of the diploma in the TSE digital library, item bdtse/5202 (http://bibliotecadigital.tse.jus.br/handle/bdtse/5202); a static bitstream whose ETag equals the MD5 of the bytes (Last-Modified 9 November 2018). The item's catalogue record (https://bibliotecadigital.tse.jus.br/server/api/core/items/e0633b12-fadc-4cab-8b14-4aeaf9a5a899; 6,166 bytes, SHA-256 da1fefe7552fa785b34e2baf702f835e1b2948177513a92b7534faa3e6ff3f2f, stable across two downloads) dates the item 1989-12-30, names the Casa da Moeda do Brasil as publisher and places it in bdtse/539, the 1989 diplomação ceremony (CLAUDE-C01-10's br_tse_catalogue_diplomacao_1989). Unlike Collor's bdtse/1942 it states no acquisition mode or date: it is the TSE's collection exemplar, and nothing shows it is the exemplar handed to Itamar Franco. published_date is the date printed on the diploma.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "The whole image viewed at full resolution and the printed text read (heading, ballots, name, investiture clause, date line and signature captions); not a PDF. The coat of arms and signatures are visible in the image and are not reproduced."
+  },
+  "rows": [
+    {
+      "claim_id": "br_itamar_vp_tse_diploma_issued_19891230",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-02",
+      "role_id": "br_vice_president",
+      "holder_name": "Itamar Franco",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "diplomacao",
+      "attested_on": "1989-12-30",
+      "text": "The Superior Electoral Court's diploma, dated Brasília 30 December 1989 and signed by its President, Minister Francisco Rezek, and the Court's other ministers, states that the Electoral Justice issued it in witness that Itamar Augusto Cautiero Franco was elected Vice-President of the Republic, and that it qualifies him for investiture in the office before the National Congress on 15 March 1990 under the Constitution.",
+      "locator": {
+        "item": "date line 'Brasília, aos 30 de dezembro de 1989'; investiture clause 'que o habilita à investidura no cargo perante o Congresso Nacional em 15 de março de 1990'; signature captions"
+      }
+    },
+    {
+      "claim_id": "br_itamar_vp_elected_ballots_19891217",
+      "observation_id": "br_presidency",
+      "review_observation": "BR-VP-02",
+      "role_id": "br_vice_president",
+      "holder_name": "Itamar Franco",
+      "role_title": "Vice-President of the Federative Republic of Brazil",
+      "event_kind": "popular_election",
+      "attested_on": "1989-12-17",
+      "text": "The diploma states that by the will of the Brazilian people, expressed at the ballots of 15 November and 17 December 1989, Itamar Augusto Cautiero Franco was elected Vice-President of the Republic.",
+      "locator": {
+        "item": "'Pela vontade do povo brasileiro, expressa nas urnas em 15 de novembro e 17 de dezembro de 1989, Itamar Augusto Cautiero Franco foi eleito Vice-Presidente da República'"
+      }
+    }
+  ],
+  "bounded_scope": "Vice-President observations for CLAUDE-C01-17 only (role br_vice_president of br_presidency). Election, diplomação, oath, posse, termo de posse, same-session styling, the Vice-President's exercise of the Presidency, his succession to the Presidency, vacancy and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Ministers and party offices are excluded; the office of President is CLAUDE-C01-10's br_president role."
+}

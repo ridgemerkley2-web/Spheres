@@ -1,0 +1,48 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "jp_hr_budget_committee_19900409",
+  "source_url": "https://kokkai.ndl.go.jp/api/meeting?issueID=111805261X00619900409&recordPacking=json",
+  "diet_record": {
+    "issueID": "111805261X00619900409",
+    "house": "衆議院",
+    "meeting": "予算委員会",
+    "issue": "第6号",
+    "sitting_date": "1990-04-09",
+    "response": "whole meeting record",
+    "speeches_in_response": 302,
+    "record_page_url": "https://kokkai.ndl.go.jp/txt/111805261X00619900409"
+  },
+  "accessed_date": "2026-09-24",
+  "published_date": null,
+  "access_method": "official_diet_minutes_api_json_download_and_read",
+  "source_response_bytes": 555162,
+  "source_response_sha256": "28a60fff8bab6a8ec7963fbd33f9f3db2ffd4e279b0ecb0a020895c76e141a64",
+  "source_response_content_encoding": "identity",
+  "source_character_encoding": "UTF-8 JSON (the Content-Type header declares application/json;charset=UTF-8)",
+  "source_response_checked_in": false,
+  "provenance_note": "Official response of the National Diet Library's Diet minutes API (JSON, UTF-8), served with Cache-Control: no-cache, no-store; the JSON carries no timestamp, session token or request echo, so it is not generated per request. Downloaded on 24 September 2026 by the researcher at 18:24:33Z, 18:25:40Z, 18:57:14Z and 18:57:56Z (cache-busting query); by the independent check at 18:59:55Z, 19:00:43Z (cache-busting query) and 19:29:13Z; by this packet at 20:18:03Z, 20:38:38Z (cache-busting query) and 20:53:24Z, each time with the same byte count and SHA-256; at least two downloads were 30 minutes or more apart. Bytes and SHA-256 are of the identity-encoded body, requested without Accept-Encoding (the Diet API and the Internet Archive send gzip when a client asks for it, which changes the transferred bytes but not the content). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The Diet minutes API's JSON for the whole meeting record of the 衆議院 予算委員会 第6号 (1990-04-09), a transcription of the House's printed minutes; the exact API URL whose bytes were hashed is recorded, and the readable minutes page is https://kokkai.ndl.go.jp/txt/111805261X00619900409. The printed page images, served through a JavaScript viewer, were not viewed.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Machine-readable minute text read in full for the cited speeches; the printed page images were not viewed."
+  },
+  "rows": [
+    {
+      "claim_id": "jp_member_states_second_kaifu_cabinet_formed_19900228",
+      "observation_id": "jp_prime_minister",
+      "review_observation": "JP-PM-01",
+      "role_id": "jp_pm",
+      "holder_name": "海部俊樹",
+      "role_title": "内閣総理大臣 — Prime Minister of Japan",
+      "event_kind": "cabinet_formation_recalled",
+      "attested_on": "1990-02-28",
+      "text": "Questioning Minister of Posts and Telecommunications 深谷隆司 in the House of Representatives Budget Committee on 9 April 1990 (the Prime Minister answering next), member 市川雄一 states that the second Kaifu cabinet (海部第二次内閣) was formed (成立) on 28 February.",
+      "locator": {
+        "speech_order": 34,
+        "speech_id": "111805261X00619900409_034"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-government observations for CLAUDE-C01-12 only. Each House's designation vote, any joint committee and the House of Representatives' prevailing resolution, the Imperial appointment ceremony, Kantei statements and accounts, a cabinet's formation, its resignation en masse, any continued performance of duties and acting service stay separate rows; holder boundaries are decided in the packet, not by any row. A null holder_name means the source names no holder of this role in this packet: an unnamed statement, agenda or ceremony record, an acting prime minister, the House of Councillors' 1998 designee or the successor at the closing boundary. Ministers, deputy prime ministers and party offices are excluded."
+}

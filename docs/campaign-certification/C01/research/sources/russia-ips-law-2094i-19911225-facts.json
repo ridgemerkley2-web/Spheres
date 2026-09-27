@@ -1,0 +1,43 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102013769&page=1&rdk=0",
+  "source_title": "Law of the RSFSR No. 2094-I of 25 December 1991 'On changing the name of the state Russian Soviet Federative Socialist Republic' (original edition)",
+  "accessed_date": "2026-09-21",
+  "published_date": null,
+  "document_date": "1991-12-25",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102013769&page=1&rdk=0",
+  "source_response_bytes": 20875,
+  "source_response_sha256": "18db383ad8a42245f7bed952490206145fa8a788f1ef282f17badac37bf49935",
+  "source_response_checked_in": false,
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=2094-I&a8type=1&sort=7&page=firstlast&lstsize=50",
+    "bytes": 9458,
+    "sha256": "f42c82081b51b888a7003acc583cf9ed6ff9f552ae796c3db9f8cdbe4a721d2f",
+    "note": "Portal search-result card listing the act, its status and its publication citation; read over HTTP. The check and this packet returned identical bytes."
+  },
+  "provenance_note": "The portal's document frame for the original edition (rdk=0, 'Исходная редакция') was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 21 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response. The dossier retrieval, the independent check and this packet's retrieval, all on 21 September 2026, returned identical bytes. This checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "claims": [
+    {
+      "id": "ru_law_2094i_rename_19911225",
+      "text": "The RSFSR Supreme Soviet enacts that the state Russian Soviet Federative Socialist Republic (RSFSR) is henceforth to be called the Russian Federation (Russia), a name to be used in official acts, in state symbols and in the names of state bodies; the former names may be used in official paperwork (forms, seals and stamps) during 1992; a draft law amending the Constitution and the Declaration of State Sovereignty is to be put to the Congress of People's Deputies; the law enters into force on the day of its adoption, 25 December 1991.",
+      "locator": "Points 1-5; date block",
+      "attested_on": "1991-12-25",
+      "uncertainty": "A renaming of the RSFSR, not a succession from the USSR and not an act of a USSR organ. Adoption and entry into force fall on the same day under point 5. The constitutional amendment it asks the Congress to adopt was not reviewed."
+    },
+    {
+      "id": "ru_law_2094i_published_signature_19911225",
+      "text": "The portal text prints the signature block 'Президент Российской Федерации Б.Ельцин, Москва, Дом Советов России, 25 декабря 1991 года, № 2094-I'.",
+      "locator": "Signature and date block (portal text)",
+      "attested_on": "1991-12-25",
+      "uncertainty": "Published text only. The signed GARF original (ru_garf_law_2094i_original_19911225) reads 'Президент РСФСР' and 'Дом Советов РСФСР'. The published title is not evidence of the title under which the law was signed, and neither form is used as a holder observation."
+    }
+  ],
+  "scope_note": "The renaming law; it is why the RSFSR presidency is filed in this packet. Gazette citation: Vedomosti 1992 No. 2, art. 62. Its published signature title differs from the signed original (see ru_garf_exhibit_law_2094i).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Official HTML text read in full after windows-1251 decoding; the portal offers no facsimile."
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "runtime_revision": "72d3414d6b79e8d35ba54440c13d21b6ef04db31",
+  "driver_revision": "72d3414d6b79e8d35ba54440c13d21b6ef04db31",
+  "driver_committed_blob_sha256": "ec99271b74ff348b2a6c46acd7746df559d911bf46e2f3b09fc8ad7c83bb308f",
+  "driver_provenance_note": "The original driver hardcodes source.driver_committed=false. This independent check proves captured driver bytes normalize only CRLF to the committed source at driver_revision; raw evidence is retained unchanged.",
+  "save_archives": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s19-later-construction-fixed-20260927\\france-JexM0l\\server-KRsO94\\saves\\auto-1.json",
+      "bytes": 26150939,
+      "sha256": "e19dc81ee4e17454be234cb3d0902a9a674361acd55da92f224fbdb059438397"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s19-later-construction-fixed-20260927\\france-JexM0l\\server-KRsO94\\saves\\auto-2.json",
+      "bytes": 23204359,
+      "sha256": "a217a0cd2b36133017c0f8eeeee567faab05ea171fff9518aa02f2e5a85069cf"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s19-later-construction-fixed-20260927\\france-JexM0l\\server-KRsO94\\saves\\auto-3.json",
+      "bytes": 24762951,
+      "sha256": "81d2c4d394e378a5b430f54c107101ba935510a4a911e80a211f4450f70d2287"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s19-later-construction-fixed-20260927\\france-JexM0l\\server-KRsO94\\saves\\s19-first-hour.json",
+      "bytes": 26899607,
+      "sha256": "96bdde182f261b6966bb99a65b810645eab5ef37b3038eaf0853cb9a505c4728"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s19-later-construction-fixed-20260927\\france-JexM0l\\server-KRsO94\\saves\\s19-preview-after.json",
+      "bytes": 13529675,
+      "sha256": "fd8a2b89be0711eeb1a37422ed42907f2e74e9d667827ce1152ee7df0201630c"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s19-later-construction-fixed-20260927\\france-JexM0l\\server-KRsO94\\saves\\s19-preview-before.json",
+      "bytes": 13529675,
+      "sha256": "c198a816b4878cd36acf67dada7d6c447be96e8fc30504a0f1adad985812a2a6"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s19-later-construction-fixed-20260927\\france-JexM0l\\server-KRsO94\\saves\\s19-read-after.json",
+      "bytes": 13181864,
+      "sha256": "de96cd992c3a481826119bb09bec1d5857c92f004318b1f4856062d352a7f30d"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s19-later-construction-fixed-20260927\\france-JexM0l\\server-KRsO94\\saves\\s19-read-before.json",
+      "bytes": 13181864,
+      "sha256": "6dbf7442397f80706cf4e1fe9c8947fb7b2baa89d40745b94cf2f8d5926e1aaf"
+    }
+  ],
+  "files": {
+    ".gitattributes": "ffe82f3c5b968ed009c2577fa38f32c83be167799ee565d40a18e3440c57b342",
+    "before-fix-failed-result.json": "8cec97e06bebb3332c19074a2d9eafe8f6f6ecaa2ec33d0afb8afb79c914d7c4",
+    "guidance-later-construction.json": "000d3b5195a3706c1773a33d89e0ab8bf7c6b7b663f04e9e93f81bb12966a34b",
+    "guidance-loaded.json": "3a0734928290fd1511f7ff8f7e3038cbea21b2bc4b53441f3d6e7b97a3710707",
+    "guidance-narrow.json": "111f5db4f33e73e17973fe74b915c2830f5c089ea06269df7317a37d5f81577c",
+    "narrow-route-panel.png": "605b98bf56fce11b522c73febb1ca0d04b761e085f7147d21509ed04838b70ba",
+    "progress.jsonl": "f6874078fa43f5d343b022200cdfe77e8938ed864950d0915b5d96f41c5be898",
+    "result.json": "0def7974cb491491a9d152ed317a2b91843eb6fa30b376b526716b60175b8515",
+    "route-later-construction-desktop.png": "e718afcc208aac5ac2b88d8fa06791207687c3bf1b5fa037d7e44310dfa7b65d",
+    "route-loaded-desktop.png": "b6577cb48fa03afe006bddf71dc24ef9b2f322de54bb0bc5bb9fb2f8a7727467",
+    "s19-later-all-ui-tests-20260927.log": "d6b4ac6806cadb9b1fea038791c518e3eae14d13315dc5e01015917729984abc",
+    "s19-later-contract-tests-20260927.log": "68c1ca8234a0fca47482c4851b5ed68515c531d88cc8f88d1181cae5688f5706",
+    "s19-later-fixed-driver-20260927.log": "af1085b73bede76fd74b257dcf3bdfe0d1e6c5e970630f5ecde3cd7882a70be8"
+  }
+}
