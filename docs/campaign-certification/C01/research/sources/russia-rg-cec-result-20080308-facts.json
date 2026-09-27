@@ -1,0 +1,63 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_rg_cec_res_104_777_5_20080308",
+  "source_url": "https://web.archive.org/web/20080310004304id_/http://www.rg.ru:80/2008/03/08/cik-president-dok.html",
+  "original_url": "http://www.rg.ru/2008/03/08/cik-president-dok.html",
+  "archive_capture_utc": "2008-03-10T00:43:04Z",
+  "source_title": "Resolution of the Central Election Commission No. 104/777-5 of 7 March 2008 'On the results of the election of the President of the Russian Federation', official publication in Rossiyskaya Gazeta No. 4608 of 8 March 2008",
+  "accessed_date": "2026-09-24",
+  "published_date": "2008-03-08",
+  "document_date": "2008-03-07",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20080310004304id_/http://www.rg.ru:80/2008/03/08/cik-president-dok.html",
+  "source_response_bytes": 41974,
+  "source_response_sha256": "9d871e47a8ee5d74604b65e8d9ce34808bdd3904c9683a9d8f176d68922734d9",
+  "source_response_encoding": "windows-1251 HTML, served without Content-Encoding",
+  "source_response_checked_in": false,
+  "stability_check": "Found by the independent check: first downloaded at 2026-09-24T23:23Z-00:03Z and re-downloaded at least 30 minutes later (by 2026-09-25T00:03Z); identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T00:43:01Z (41,974 bytes); identical SHA-256.",
+  "annex_responses": [
+    {
+      "url": "https://web.archive.org/web/20080829163127id_/http://www.rg.ru/pril/21/38/55/4608_1a.gif",
+      "bytes": 11240,
+      "sha256": "25a076d2ea7e69ded51dfc64ed3ede75177bc3f1b6f2faf92195793e20804ce1",
+      "note": "The per-candidate table attached to the publication, an image (image/gif) linked from the page; raw capture 20080829163127; viewed."
+    }
+  ],
+  "provenance_note": "Raw Internet Archive capture (id_ form) of http://www.rg.ru/2008/03/08/cik-president-dok.html, captured at 2008-03-10T00:43:04Z, before the 7 September 2026 cutoff; the id_ form replays the archived bytes unchanged and is used because rg.ru answered HTTP 401 (a bot-protection page) to direct requests, which was not bypassed. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The page prints 'Опубликовано 8 марта 2008 г.' and 'N4608 от 8 марта 2008 г.'; the resolution text matches the CEC's page (ru_cec_res_104_777_5_20080307). Editorial links on the page are not used.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Archived HTML text read in full after windows-1251 decoding; the attached table image viewed."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_rg_104_777_5_published_20080308",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-07",
+      "role_id": "ru_president",
+      "holder_name": "Дмитрий Анатольевич Медведев",
+      "printed_name": "Медведев Дмитрий Анатольевич",
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "result_publication",
+      "attested_on": "2008-03-08",
+      "text": "Rossiyskaya Gazeta prints CEC resolution No. 104/777-5 of 7 March 2008 'О результатах выборов Президента Российской Федерации' under 'Опубликовано 8 марта 2008 г.' in the federal issue N4608 of 8 March 2008: 74,746,649 voters took part; 'Медведев Дмитрий Анатольевич' received 52,530,712 votes (70.28 per cent) and is deemed elected President of the Russian Federation.",
+      "locator": "Heading; 'Опубликовано' line; issue line; text of points 1-3"
+    },
+    {
+      "claim_id": "ru_rg_104_777_5_candidate_figures_20080307",
+      "observation_id": "ru_rsfsr_presidency",
+      "review_observation": "RU-PRES-07",
+      "role_id": "ru_president",
+      "holder_name": "Дмитрий Анатольевич Медведев",
+      "printed_name": "МЕДВЕДЕВ Дмитрий Анатольевич",
+      "role_title": "Президент Российской Федерации — President of the Russian Federation",
+      "event_kind": "result_figures",
+      "attested_on": "2008-03-07",
+      "text": "The attached table 'Данные о числе голосов избирателей, полученных каждым из зарегистрированных кандидатов на должность Президента Российской Федерации' gives: Bogdanov Andrei Vladimirovich 968,344 (1.30%), Zhirinovsky Vladimir Volfovich 6,988,510 (9.35%), Zyuganov Gennady Andreyevich 13,243,550 (17.72%), Medvedev Dmitry Anatolyevich 52,530,712 (70.28%).",
+      "locator": "Attached table image (annex_responses[0])"
+    }
+  ],
+  "bounded_scope": "Presidency observations for CLAUDE-C01-14 only. Election calling, voting, result determination, declaration, correction and publication, oath, stated assumption of office, inauguration ceremony, resignation, acting service and outgoing-holder statements stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-05 RSFSR roles and the USSR packet are outside this extract."
+}

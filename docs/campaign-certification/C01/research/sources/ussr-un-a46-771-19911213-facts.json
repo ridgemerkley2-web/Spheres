@@ -1,0 +1,49 @@
+{
+  "format": "spheres-primary-source-factual-extract/v1",
+  "source_url": "https://documents.un.org/api/symbol/access?s=A/46/771&l=en&t=pdf",
+  "source_title": "UN General Assembly document A/46/771 (13 December 1991): letter of 12 December 1991 from Belarus transmitting the Minsk Declaration and the Agreement establishing the Commonwealth of Independent States of 8 December 1991",
+  "accessed_date": "2026-09-21",
+  "published_date": "1991-12-13",
+  "document_date": "1991-12-13",
+  "access_method": "downloaded_original_pdf",
+  "source_response_url": "https://documents.un.org/doc/undoc/gen/n91/491/00/pdf/n9149100.pdf",
+  "source_response_bytes": 389492,
+  "source_response_sha256": "3a7726bd6cbb0203a9821f29cebb0393490c5e153b7db9381b8f552ecd8ccf93",
+  "source_response_checked_in": false,
+  "provenance_note": "Downloaded from the UN symbol link, which redirects to the recorded PDF. The dossier, the independent check and this packet returned identical bytes. This checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "claims": [
+    {
+      "id": "su_minsk_declaration_19911208",
+      "text": "Annex I: the leaders of the Republic of Belarus, the RSFSR and Ukraine proclaim the establishment of the Commonwealth of Independent States; signed S. Shushkevich (Chairman of the Supreme Soviet of the Republic of Belarus), B. Yeltsin (President of the RSFSR) and L. Kravchuk (President of Ukraine), Minsk, 8 December 1991.",
+      "locator": "PDF page 2, Annex I and signature block",
+      "attested_on": "1991-12-08",
+      "uncertainty": "A political declaration in UN English translation. The office titles are signature observations only and are not used as holder observations."
+    },
+    {
+      "id": "su_minsk_agreement_ussr_statement_19911208",
+      "text": "Annex II, preamble: the Republic of Belarus, the Russian Federation (RSFSR) and Ukraine, as founder states of the USSR and signatories of the Union Treaty of 1922, declare that the USSR as a subject of international law and a geopolitical reality no longer exists; Article 1 establishes the Commonwealth of Independent States.",
+      "locator": "PDF page 3, preamble and Article 1",
+      "attested_on": "1991-12-08",
+      "uncertainty": "A statement by three republics, not an act of a USSR organ, and it does not end the USSR Presidency. The English 'no longer exists' renders the Russian present tense 'прекращает свое существование' ('ceases its existence'), shown by the GARF copy (su_garf_belovezha_copy_19911208). Signature is not entry into force."
+    },
+    {
+      "id": "su_minsk_agreement_art11_14_19911208",
+      "text": "Article 11: from the moment of signature, the laws of third states, including the former USSR, may not be applied in the signatories' territories. Article 14: Minsk is the official seat of the coordinating bodies, and the activity of bodies of the former USSR in the territories of member states ceases. Done at Minsk, 8 December 1991; signed for the RSFSR by B. Yeltsin and G. Burbulis.",
+      "locator": "PDF page 6, Articles 11-14 and signature block",
+      "attested_on": "1991-12-08",
+      "uncertainty": "Signature date only. Under the Alma-Ata Protocol of 21 December the Agreement enters into force for each party on ratification. The RSFSR ratified it on 12 December 1991 (su_rsfsr_minsk_ratification_19911212); point 2 of that ratification qualifies Article 11 by applying former-USSR norms in the RSFSR, until RSFSR legislation is adopted, insofar as they do not contradict the RSFSR Constitution, RSFSR legislation and the Agreement. The Belarus and Ukraine ratifications were not reviewed."
+    }
+  ],
+  "scope_note": "UN English translation of a Russian original, circulated on 13 December 1991 at the request of Belarus under a covering letter dated 12 December 1991 from its Permanent Representative. Circulation and transmission are neither signature nor ratification. Scanned PDF with an OCR layer.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2,
+      3,
+      6
+    ],
+    "facsimile_pages_one_based": [],
+    "method": "PDF pages 1, 2, 3 and 6 rendered and read in the dossier; page 3 viewed again for this packet."
+  }
+}

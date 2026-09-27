@@ -1,0 +1,42 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_ips_cm_res_27_19910110",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102010316&page=1&rdk=0",
+  "source_title": "Resolution of the USSR Council of Ministers No. 27 of 10 January 1991 'Об установлении на 1991 год ставок налога на экспорт и импорт по внешнеторговым операциям' (original edition)",
+  "accessed_date": "2026-09-26",
+  "published_date": null,
+  "document_date": "1991-01-10",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102010316&page=1&rdk=0",
+  "source_response_bytes": 20265,
+  "source_response_sha256": "09ae8fe92970994ed7e108f0da959a1242fcbe388fe681b59da1cba3f29f123f",
+  "source_response_encoding": "windows-1251",
+  "source_response_checked_in": false,
+  "stability_check": "Found by this packet (no dossier or independent check): first downloaded at 2026-09-26T03:51:02Z. This packet: re-downloaded at 2026-09-26T03:52:21Z and again at 2026-09-26T04:25:57Z (33 minutes later); identical 20,265 bytes and SHA-256.",
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 26 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read in full; the portal offers no facsimile. Found by this packet in the portal's date list for January 1991, used for discovery only and not recorded; that list shows no later Council of Ministers act and a first Cabinet of Ministers act on 18 January 1991 (order 1р, not imported).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in full in Russian after windows-1251 decoding by this packet."
+  },
+  "rows": [
+    {
+      "claim_id": "su_ips_cm_27_deputy_chairman_signs_19910110",
+      "observation_id": "su_government",
+      "review_observation": "SU-GOV-04",
+      "role_id": "su_government_head",
+      "holder_name": null,
+      "persons_named": [
+        "Л. ВОРОНИН (Зам. Председателя Совета Министров СССР; initial and surname only)"
+      ],
+      "role_title": "Председатель Совета Министров СССР / Премьер-министр СССР — Head of the Union government",
+      "event_kind": "government_act_signed_by_deputy",
+      "attested_on": "1991-01-10",
+      "text": "USSR Council of Ministers resolution No. 27, headed 'СОВЕТ МИНИСТРОВ СССР ПОСТАНОВЛЕНИЕ от 10 января 1991 г. N 27, Москва, Кремль', on 1991 export and import tax rates, is signed 'Зам. Председателя Совета Министров СССР Л. ВОРОНИН' and countersigned 'Управляющий Делами Совета Министров СССР М. ШКАБАРДНЯ'.",
+      "locator": "Heading block; signature block after point 6"
+    }
+  ],
+  "bounded_scope": "Union head-of-government and Supreme Soviet chair observations for CLAUDE-C01-26 only. Election or approval, appointment, release decree, parliamentary consent, dismissal, no confidence, resignation statement, suspension, consent to arrest, release, acting or interim service, presiding arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The CLAUDE-C01-05 su_president holders and russia.json are outside this extract."
+}

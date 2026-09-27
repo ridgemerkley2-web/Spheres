@@ -1,0 +1,74 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_izvestia_19910115_no13_p1",
+  "source_url": "https://yandex.ru/archive/catalog/91392bb5-0841-4352-8d7f-55d76c362683/1",
+  "source_title": "Известия Советов народных депутатов СССР, No. 13 (23279), Tuesday 15 January 1991, Moscow evening edition, page 1 (Yandex archive page view with OCR text)",
+  "accessed_date": "2026-09-26",
+  "published_date": "1991-01-15",
+  "document_date": "1991-01-15",
+  "access_method": "yandex_archive_page_html_with_embedded_ocr_text",
+  "source_response_url": "https://yandex.ru/archive/catalog/91392bb5-0841-4352-8d7f-55d76c362683/1",
+  "source_response_bytes": 171140,
+  "source_response_sha256": "db9ec251483c04cfb54e78b02bb8d570115fb57b9586e7b375924b1eccea6847",
+  "source_response_encoding": "UTF-8 HTML, dynamic rendering (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "request_note": "Reproduces only with this request: GET with User-Agent 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36', no cookies and no Accept-Encoding header. curl's default User-Agent and python-requests receive HTTP 403 and a 3,375-byte anti-robot page ('Доступ к сервису временно запрещён'), per the independent check of part B.",
+  "supplementary_responses": [
+    {
+      "url": "https://yandex.ru/archive/api/image?id=86b7add9-3ef0-42f7-8fa0-5184415ddb19&type=preview",
+      "bytes": 161461,
+      "sha256": "cf0204c6c9431629553ca7cc1e630022efb16f403a2d26a2483793802acbbe88",
+      "note": "Preview image of page 1 (564 x 800 px JPEG, served with Cache-Control max-age=86400, immutable): masthead and the position of the resolution block, lower left."
+    }
+  ],
+  "stability_check": "Dossier: downloaded at 2026-09-26T01:54:56Z, 01:55:27Z, 02:26:16Z and 02:57:36Z; identical; cache-busting requests returned 171,158 bytes differing only in the echoed query parameter. Independent check: 03:14:45Z and 03:28:02Z with a browser User-Agent; identical (a cache-busting request returned 171,161 bytes, the echoed query only). Preview image: dossier at 02:02:38Z and 02:57:42Z, check at 03:14:52Z and 03:28:05Z; identical. This packet: re-downloaded at 2026-09-26T03:52:57Z and again at 2026-09-26T04:26:33Z (33 minutes later); identical 171,140 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "provenance_note": "Yandex's archive page is a dynamic HTML rendering, not a stored file: it is served with 'Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate', sets tracking cookies and embeds the site's front-end build id (OlmOZleFDzl7N-_VvEEGR), so a redeploy would change the bytes without changing the text, and it reproduces only with the request in request_note. No Internet Archive capture made before the cutoff was found. The full-resolution page image is served only through the viewer's time-limited signed URL and has no recorded identity; the preview image (supplementary_responses) is an immutable file. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Page 1 of Izvestia No. 13 of 15 January 1991, which prints the Supreme Soviet's resolution 'О премьер-министре СССР' of 14 January 1991. Izvestia is used only as the official publication of that act; the session report on the same page and page 2 are news and stay leads. The recorded identity is a dynamic rendering reproducible only with the recorded request (see provenance_note).",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "The OCR text embedded in the recorded HTML (lines 12-16 of 111) was read by the dossier, the check and this packet; the preview image was viewed by this packet (masthead 'No 13 (23279)', 'Московский вечерний выпуск', 'Вторник, 15 января 1991 года', and the resolution block at lower left). The dossier also read the resolution at full resolution in the site's viewer; that image is not a recorded identity."
+  },
+  "rows": [
+    {
+      "claim_id": "su_izv13_president_submission_recited_19910114",
+      "observation_id": "su_government",
+      "review_observation": "SU-GOV-05",
+      "role_id": "su_government_head",
+      "holder_name": null,
+      "role_title": "Председатель Совета Министров СССР / Премьер-министр СССР — Head of the Union government",
+      "event_kind": "nomination_recited",
+      "attested_on": "1991-01-14",
+      "text": "The Supreme Soviet resolution 'О премьер-министре СССР', printed on page 1 of Izvestia No. 13 (23279) of 15 January 1991, opens 'Рассмотрев представление Президента СССР, Верховный Совет СССР постановляет:'.",
+      "locator": "Page 1, lower left: 'Постановление Верховного Совета СССР. О премьер-министре СССР', preamble (embedded OCR, where the two text columns are interleaved; read in the order of the page image)"
+    },
+    {
+      "claim_id": "su_izv13_vs_approves_pavlov_premier_19910114",
+      "observation_id": "su_government",
+      "review_observation": "SU-GOV-05",
+      "role_id": "su_government_head",
+      "holder_name": "Валентин Сергеевич Павлов",
+      "printed_name": "товарища Павлова Валентина Сергеевича (genitive)",
+      "role_title": "Председатель Совета Министров СССР / Премьер-министр СССР — Head of the Union government",
+      "event_kind": "appointment_approval",
+      "attested_on": "1991-01-14",
+      "text": "The resolution, dated 'Москва, Кремль. 14 января 1991 г.', resolves 'Утвердить премьер-министром СССР товарища Павлова Валентина Сергеевича'.",
+      "locator": "Page 1, lower left: resolution 'О премьер-министре СССР', operative clause and date line"
+    },
+    {
+      "claim_id": "su_izv13_lukyanov_signs_as_vs_chair_19910114",
+      "observation_id": "su_supreme_soviet",
+      "review_observation": "SU-GOV-02",
+      "role_id": "su_supreme_soviet_chair",
+      "holder_name": "Анатолий Иванович Лукьянов",
+      "printed_name": "А. ЛУКЬЯНОВ (initial and surname only)",
+      "role_title": "Chairman of the USSR Supreme Soviet",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1991-01-14",
+      "text": "The resolution of 14 January 1991 is signed 'Председатель Верховного Совета СССР А. ЛУКЬЯНОВ' (initial and surname only).",
+      "locator": "Page 1, lower left: signature of the resolution 'О премьер-министре СССР'"
+    }
+  ],
+  "bounded_scope": "Union head-of-government and Supreme Soviet chair observations for CLAUDE-C01-26 only. Election or approval, appointment, release decree, parliamentary consent, dismissal, no confidence, resignation statement, suspension, consent to arrest, release, acting or interim service, presiding arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The CLAUDE-C01-05 su_president holders and russia.json are outside this extract."
+}

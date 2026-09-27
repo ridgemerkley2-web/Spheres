@@ -1,0 +1,70 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_ukaz_580_19990512",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102059649&page=1&rdk=0",
+  "source_title": "Decree of the President of the Russian Federation No. 580 of 12 May 1999 'On the Chairman of the Government of the Russian Federation' (О Председателе Правительства Российской Федерации)",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "document_date": "1999-05-12",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102059649&page=1&rdk=0",
+  "source_response_bytes": 24115,
+  "source_response_sha256": "0988a28cdc6c43bb734a3ccc45a9454460a95a06b5ae5f7213f87f6a47af3568",
+  "source_response_encoding": "windows-1251",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded over HTTP at 2026-09-25T11:58:46Z and again at 2026-09-25T12:35:03Z (36 minutes later): identical 24,115 bytes and SHA-256. Portal card: Downloaded over HTTP at 2026-09-25T12:41:43Z and again at 2026-09-25T13:12:06Z (30 minutes later): identical 3,128 bytes and SHA-256. Independent check: re-downloaded at 2026-09-25T13:14Z-13:24Z and again at 13:47Z-13:55Z (portal URLs with a cache-busting query in the second round), 33-110 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:21:24Z and again at 2026-09-25T14:53:46Z (32 minutes later); identical 24,115 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=580&a8type=1&a7type=4&a7from=12.05.1999&a7to=12.05.1999&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3128,
+    "sha256": "a87cbcab281737d3abb7847f803131641c98a6084eac20ec26082c303b646246",
+    "note": "Date-restricted single-document card: a number search limited to the act's own date (a7from = a7to), returning exactly this one act with its title and the publications the portal cites."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 25 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read in full. The date-restricted single-document portal card (portal_card_response) returns only this act.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in full in Russian after windows-1251 decoding."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_ukaz_580_government_dismissal_announced_19990512",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-05",
+      "role_id": "ru_government_chairman",
+      "holder_name": null,
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "government_resignation_announced",
+      "attested_on": "1999-05-12",
+      "text": "Citing Articles 83 and 117 of the Constitution, Decree No. 580 of 12 May 1999, titled 'On the Chairman of the Government', announces the dismissal ('Объявляю об отставке') of the Government of the Russian Federation. It enters into force on signature and is signed 'Президент Российской Федерации Б.Ельцин', Moscow, Kremlin, 12 May 1999, No. 580.",
+      "locator": "Point 1; point 4; signature block"
+    },
+    {
+      "claim_id": "ru_ukaz_580_stepashin_acting_19990512",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-05",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Сергей Вадимович Степашин",
+      "printed_name": "Степашина Сергея Вадимовича (accusative)",
+      "role_title": "Исполняющий обязанности Председателя Правительства — Acting Chairman of the Government",
+      "event_kind": "acting_service_designation",
+      "attested_on": "1999-05-12",
+      "text": "Point 2 entrusts the temporary performance of the duties of the Chairman of the Government to the First Deputy Chairman of the Government and Minister of Internal Affairs, Stepashin Sergei Vadimovich (printed in the accusative).",
+      "locator": "Point 2"
+    },
+    {
+      "claim_id": "ru_ukaz_580_members_continue_19990512",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-05",
+      "role_id": "ru_government_chairman",
+      "holder_name": null,
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "continuation_of_duties",
+      "attested_on": "1999-05-12",
+      "text": "Point 3 asks the members of the Government to continue performing their duties until a new Government is formed.",
+      "locator": "Point 3"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

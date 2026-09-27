@@ -1,0 +1,52 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://projects.rusarchives.ru/statehood/09-36-zakon-prezident.shtml",
+  "source_title": "Rosarkhiv virtual exhibition item 09-36: Law of the RSFSR 'On the President of the RSFSR', 24 April 1991 (GARF original)",
+  "accessed_date": "2026-09-21",
+  "published_date": null,
+  "document_date": "1991-04-24",
+  "access_method": "internet_archive_capture_of_official_exhibition_page_and_preview_images",
+  "source_response_url": "https://web.archive.org/web/20201130233931id_/https://projects.rusarchives.ru/statehood/09-36-zakon-prezident.shtml",
+  "source_response_bytes": 18664,
+  "source_response_sha256": "9ead61c87155ad91637c39bb479fcb9dc50244a92748d05ef7d65bb627d55298",
+  "source_response_checked_in": false,
+  "facsimile_responses": [
+    {
+      "leaf": 75,
+      "image": "pre09-36-1",
+      "url": "https://web.archive.org/web/20200917102205id_/http://projects.rusarchives.ru/statehood/images/pre09-36-1-zakon-prezident.jpg",
+      "bytes": 28081,
+      "sha256": "3b0322a144ba0ef03ec78cf5c205b2e22b20c1fe22cc41c687f3f0dca13e89b9",
+      "content_type": "image/jpeg"
+    },
+    {
+      "leaf": 79,
+      "image": "pre09-36-5",
+      "url": "https://web.archive.org/web/20200917102206id_/http://projects.rusarchives.ru/statehood/images/pre09-36-5-zakon-prezident.jpg",
+      "bytes": 23640,
+      "sha256": "03839340274da90caf121fde6e1803e2ed4e0e74d5b287cc1919b50fb614273c",
+      "content_type": "image/jpeg"
+    }
+  ],
+  "attempted_full_size_images": "images/09-36-1..5-zakon-prezident.jpg: each capture tried returned a 4,688-byte HTTP 404 page; none was used.",
+  "provenance_note": "The official host (projects.rusarchives.ru) refused connections from this environment, so the exhibition page and its images were read from Internet Archive raw captures (id_). The packet URL is the official page; the capture actually read is the recorded response. The page hash matched on the dossier retrieval, the independent check and this packet. The preview images were located by the check and re-downloaded by this packet from the recorded captures with identical bytes. This checked-in file is a derived factual extract, not the original response or an archived snapshot of it. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "claims": [
+    {
+      "id": "ru_garf_law_1098i_original_19910424",
+      "text": "Rosarkhiv describes the item as the typescript original bearing the autograph signature of Supreme Soviet Chairman B. N. Yeltsin (GARF F. 10026, Op. 1, D. 480, L. 75-79). The exhibition previews of leaf 75 (heading, a preamble citing the referendum of 17 March 1991, Articles 1-3) and leaf 79 (Articles 9-11, Yeltsin's signature and 'Москва, Дом Советов РСФСР, 24 апреля 1991 года, № 1098-I') agree with the portal text.",
+      "locator": "Exhibit caption; preview images of L. 75 and L. 79",
+      "attested_on": "1991-04-24",
+      "uncertainty": "The previews are low-resolution exhibition thumbnails; the full-size images return HTTP 404 from every capture tried. Leaves 76-78 were not viewed."
+    }
+  ],
+  "scope_note": "The 2012 exhibition page (caption and transcribed extracts of Articles 1, 5 and 10) and two preview images, read from Internet Archive captures because the official host refused connections. The transcribed extracts agree with the portal text of Law 1098-I.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [
+      75,
+      79
+    ],
+    "method": "Low-resolution previews of leaves 75 and 79 viewed in the independent check and again for this packet; they are consistent with the portal text."
+  }
+}

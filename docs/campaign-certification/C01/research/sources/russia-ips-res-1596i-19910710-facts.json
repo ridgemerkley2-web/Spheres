@@ -1,0 +1,36 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102012050&page=1&rdk=0",
+  "source_title": "Resolution of the RSFSR Congress of People's Deputies No. 1596-I of 10 July 1991 releasing A. V. Rutskoi from the duties of member of the RSFSR Supreme Soviet and terminating his deputy's powers (original edition)",
+  "accessed_date": "2026-09-21",
+  "published_date": null,
+  "document_date": "1991-07-10",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102012050&page=1&rdk=0",
+  "source_response_bytes": 24498,
+  "source_response_sha256": "056f17a400f86373c0c4964fe78ac02645b1bced61085ef5703d516bda8e013b",
+  "source_response_checked_in": false,
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=1596-I&a8type=1&sort=7&page=firstlast&lstsize=50",
+    "bytes": 9517,
+    "sha256": "3efa195af9592e0967b681b17ffe347a71b455a045fe7e270024bc48c88ef8b2",
+    "note": "Portal search-result card listing the act, its status and its publication citation; read over HTTP. The check and this packet returned identical bytes."
+  },
+  "provenance_note": "The portal's document frame for the original edition (rdk=0, 'Исходная редакция') was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 21 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response. The dossier retrieval, the independent check and this packet's retrieval, all on 21 September 2026, returned identical bytes. This checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "claims": [
+    {
+      "id": "ru_res_1596i_rutskoi_release_19910710",
+      "text": "Citing Rutskoi's assumption of office as Vice-President of the RSFSR under Article 121-7 of the RSFSR Constitution and Article 3 of the law on the assumption of office, the Congress releases Alexander Vladimirovich Rutskoi from the duties of member of the RSFSR Supreme Soviet and deems his powers as people's deputy for Kursk national-territorial district No. 52 terminated; signed R. I. Khasbulatov, Moscow, Kremlin, 10 July 1991, No. 1596-I.",
+      "locator": "Preamble, points 1-2; signature and date block",
+      "attested_on": "1991-07-10",
+      "uncertainty": "A same-day act that gives no hour. A vice-presidential observation only; no term end."
+    }
+  ],
+  "scope_note": "Gazette citation: Vedomosti 1991 No. 28, art. 971.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Official HTML text read in full after windows-1251 decoding; the portal offers no facsimile."
+  }
+}

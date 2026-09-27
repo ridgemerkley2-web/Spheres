@@ -8,10 +8,10 @@
     "country_packets": 9,
     "countries_without_new_discovery_packet": 151,
     "organization_observations": 841,
-    "institution_observations": 31,
-    "sources": 1123,
-    "source_claims": 3370,
-    "discovery_batches": 92,
+    "institution_observations": 34,
+    "sources": 1329,
+    "source_claims": 3731,
+    "discovery_batches": 93,
     "exhaustive_country_censuses": 0
   },
   "interpretation": "Source-backed discovery observations are not verified game parties, complete office histories or permission to create portraits. Reporting years do not establish organization lifespans. Unknown representation is not absence.",
@@ -293,10 +293,10 @@
       "nation": "Russia",
       "packet": "docs/campaign-certification/C01/research/russia.json",
       "organization_observations": 14,
-      "institution_observations": 5,
-      "role_observations": 5,
-      "source_claims": 24,
-      "mapping_pending": 19,
+      "institution_observations": 7,
+      "role_observations": 9,
+      "source_claims": 295,
+      "mapping_pending": 21,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
       "coverage": {
@@ -332,7 +332,11 @@
           "The five faction memberships are reported as 324, 57, 28, 23 and 15. They are preserved without forcing a chamber-capacity total or treating them as party election results.",
           "All game-party mappings and faction constituent links remain empty. Shared names do not create an automatic legal identity match.",
           "Russia and USSR organizations, predecessor states, renames, mergers, dissolutions and regional party histories require separate sourced reconciliation; no continuity is assumed.",
-          "This packet does not establish a September 2026 current roster, complete country census, succession eligibility or artwork completion. No post-cutoff facts or fictional successors are populated."
+          "This packet does not establish a September 2026 current roster, complete country census, succession eligibility or artwork completion. No post-cutoff facts or fictional successors are populated.",
+          "CLAUDE-C01-05 adds one institution, ru_rsfsr_presidency, from RSFSR acts of 1991. It is filed here because Law 2094-I renamed the RSFSR the Russian Federation; it is not mapped from, and does not continue, the USSR Presidency in ussr.json.",
+          "The RSFSR Supreme Soviet, its Chairman and the RSFSR Congress of People's Deputies are not institutions in this packet. Yeltsin's 1991 signatures as Supreme Soviet Chairman and his release from that post on 10 July 1991 are recorded as claims only.",
+          "CLAUDE-C01-14 adds the role ru_president (President of the Russian Federation, head_of_state) to ru_rsfsr_presidency, with seven holder observations from 1996 to 2024 drawn from official records of 1992-2026. It does not change the C01-05 holders, does not merge holders across the RSFSR and Russian Federation titles, records acting service (1999-2000) as claims only and establishes no current roster, succession eligibility or artwork claim.",
+          "CLAUDE-C01-19 adds one institution, ru_government (Government of the Russian Federation), with one role, ru_government_chairman (head_of_government), and fifteen holder observations from 1992 to 2024 drawn from official records of 1991-2026. It does not change the presidency holders, records acting service and the Government's continued duties as claims only, gives no holder an end (no reviewed source states the day a Chairman's office ended) and establishes no current roster, succession eligibility or artwork claim."
         ]
       }
     },
@@ -455,10 +459,10 @@
       "nation": "USSR",
       "packet": "docs/campaign-certification/C01/research/ussr.json",
       "organization_observations": 1,
-      "institution_observations": 3,
-      "role_observations": 5,
-      "source_claims": 8,
-      "mapping_pending": 4,
+      "institution_observations": 4,
+      "role_observations": 6,
+      "source_claims": 98,
+      "mapping_pending": 5,
       "country_census_complete": false,
       "unrepresented_organization_count": null,
       "coverage": {
@@ -471,11 +475,13 @@
         "unrepresented_organization_total": null,
         "art_completion_claim": false,
         "unresolved": [
-          "This is a bounded 1990 source inventory: one party and three state institutions, not an exhaustive USSR party, faction, opposition, republic or coalition census.",
+          "This is a bounded 1990-1991 source inventory: one party and three state institutions, not an exhaustive USSR party, faction, opposition, republic or coalition census.",
           "The packet does not establish absence of other organizations. Discover original party registers, congresses, candidate organizations and opposition movements with separate union/republic jurisdiction.",
           "Exact party election dates, acting roles, original spelling and full leadership intervals remain unresolved; contemporary Japanese diplomatic reporting is not an original CPSU election protocol.",
           "1991 office changes, emergency claims, resignations, suspensions and dissolution require their own source review. No legal or organizational continuity through 2026 is inferred.",
-          "The USSR packet remains separate from Russia. Existing game party mappings, historical avatar eligibility, likeness approval and post-cutoff fictional succession are not changed."
+          "The USSR packet remains separate from Russia. Existing game party mappings, historical avatar eligibility, likeness approval and post-cutoff fictional succession are not changed.",
+          "CLAUDE-C01-05 reviews only the December 1991 records bearing on the Presidency (SURU-TR91-04 to 08). The August 1991 events, the CPSU suspension and the September 1991 changes to the Congress and Supreme Soviet remain unreviewed.",
+          "CLAUDE-C01-26 adds a fourth state institution, su_government (the Council of Ministers and, from 1991, the Cabinet of Ministers of the USSR), with one head-of-government role, and extends su_supreme_soviet_chair; it reviews the Union government's head and the Supreme Soviet's chair from 1 January 1990 to December 1991 (SU-GOV-01 to 10), including the August 1991 release decree, suspension and no-confidence vote and the September 1991 reorganisation of the Supreme Soviet. The CPSU's 1991 suspension and dissolution, the Congress's own end and the chamber chairmanships remain unreviewed, and no holder in either role has a from or an until."
         ]
       }
     }
@@ -2418,7 +2424,23 @@
         "ru_duma_faction_20211012_kprf",
         "ru_duma_faction_20211012_srzp",
         "ru_duma_faction_20211012_ldpr",
-        "ru_duma_faction_20211012_nl"
+        "ru_duma_faction_20211012_nl",
+        "ru_rsfsr_presidency"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-Russia-DISC-B003",
+      "nation": "Russia",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-Russia-ORG-001",
+        "C01-Russia-ROLE-001"
+      ],
+      "members": [
+        "ru_government"
       ],
       "maximum_reviewed_records": 10,
       "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
@@ -2636,7 +2658,8 @@
         "su_cpsu",
         "su_presidency",
         "su_congress_peoples_deputies",
-        "su_supreme_soviet"
+        "su_supreme_soviet",
+        "su_government"
       ],
       "maximum_reviewed_records": 10,
       "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
@@ -2665,8 +2688,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/russia.json",
-      "bytes": 56106,
-      "sha256": "3ff8b214e21092420135927b0913e2a51b15baa08687444834d204cbb0fe12a1"
+      "bytes": 573475,
+      "sha256": "02a014ccb98351f623a627d40b45938944edca2160ff8172a7f79f37527dd647"
     },
     {
       "path": "docs/campaign-certification/C01/research/saudi-arabia.json",
@@ -2685,8 +2708,8 @@
     },
     {
       "path": "docs/campaign-certification/C01/research/ussr.json",
-      "bytes": 19923,
-      "sha256": "7130e97ff0fbfa8224e787b167835395cea2127fa3e567ae75e6604a752c3f57"
+      "bytes": 191099,
+      "sha256": "b3b0939207b742a6141f0c4386efebf292152b923697528981aa8afa911b7062"
     },
     {
       "path": "tools/avatars/campaign_research.py",

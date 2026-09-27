@@ -1,0 +1,46 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "ru_ukaz_1052_19990816",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102061345&page=1&rdk=0",
+  "source_title": "Decree of the President of the Russian Federation No. 1052 of 16 August 1999 'On the Chairman of the Government of the Russian Federation'",
+  "accessed_date": "2026-09-25",
+  "published_date": null,
+  "document_date": "1999-08-16",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102061345&page=1&rdk=0",
+  "source_response_bytes": 23754,
+  "source_response_sha256": "71c634af6f1c8a75537a4912825c3b843a87329f7930bc04bda85169d14857a1",
+  "source_response_encoding": "windows-1251",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: Downloaded over HTTP at 2026-09-25T11:59:59Z and again at 2026-09-25T12:35:10Z (35 minutes later): identical 23,754 bytes and SHA-256. An immediate re-download of decree 1052 (nd 102061345) with a cache-busting query (&cb=20260925) at 2026-09-25T12:27:46Z returned identical bytes; the response carries Content-Length and no session cookie. Portal card: Downloaded over HTTP at 2026-09-25T12:41:47Z and again at 2026-09-25T13:12:10Z (30 minutes later): identical 3,129 bytes and SHA-256. Independent check: re-downloaded at 2026-09-25T13:14Z-13:24Z and again at 13:47Z-13:55Z (portal URLs with a cache-busting query in the second round), 33-110 minutes after the first download; identical bytes and SHA-256. This packet: re-downloaded at 2026-09-25T14:21:48Z and again at 2026-09-25T14:54:02Z (32 minutes later); identical 23,754 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=1052&a8type=1&a7type=4&a7from=16.08.1999&a7to=16.08.1999&sort=7&page=firstlast&lstsize=50",
+    "bytes": 3129,
+    "sha256": "f52cb6061a70441867d5655b7b7e0866c21e2b9a1653c375f520558f282a4320",
+    "note": "Date-restricted single-document card: a number search limited to the act's own date (a7from = a7to), returning exactly this one act with its title and the publications the portal cites."
+  },
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 25 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read in full. The date-restricted single-document portal card (portal_card_response) returns only this act.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in full in Russian after windows-1251 decoding."
+  },
+  "rows": [
+    {
+      "claim_id": "ru_ukaz_1052_putin_appointed_19990816",
+      "observation_id": "ru_government",
+      "review_observation": "RU-GOV-05",
+      "role_id": "ru_government_chairman",
+      "holder_name": "Владимир Владимирович Путин",
+      "printed_name": "Путина Владимира Владимировича (accusative)",
+      "role_title": "Председатель Правительства — Chairman of the Government",
+      "event_kind": "appointment",
+      "attested_on": "1999-08-16",
+      "text": "Under Article 83(a) of the Constitution, Decree No. 1052 appoints Putin Vladimir Vladimirovich Chairman of the Government; point 2 states that the decree enters into force on the day of its signature; signed 'Президент Российской Федерации Б.Ельцин', Moscow, Kremlin, 16 August 1999, No. 1052.",
+      "locator": "Points 1-2; signature block"
+    }
+  ],
+  "bounded_scope": "Chairman of the Government observations for CLAUDE-C01-19 only. Nomination, presentation at a sitting, parliamentary consent, approval or refusal, votes, appointment, the Government's resignation, dismissal or laying down of powers, continued duties, acting service and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The presidency roles of CLAUDE-C01-05 and C01-14 and the USSR packet are outside this extract."
+}

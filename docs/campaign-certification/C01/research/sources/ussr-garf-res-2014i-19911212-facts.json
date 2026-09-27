@@ -1,0 +1,43 @@
+{
+  "format": "spheres-primary-source-factual-extract/v1",
+  "source_url": "https://projects.rusarchives.ru/statehood/10-03-postanovlenie-ratifikaciya-sng.shtml",
+  "source_title": "Rosarkhiv virtual exhibition item 10-03: Resolution of the RSFSR Supreme Soviet 'On ratification of the Agreement on the creation of the Commonwealth of Independent States', 12 December 1991 (GARF original)",
+  "accessed_date": "2026-09-21",
+  "published_date": null,
+  "document_date": "1991-12-12",
+  "access_method": "internet_archive_capture_of_official_exhibition_page_and_facsimile_image",
+  "source_response_url": "https://web.archive.org/web/20191207090109id_/https://projects.rusarchives.ru/statehood/10-03-postanovlenie-ratifikaciya-sng.shtml",
+  "source_response_bytes": 13596,
+  "source_response_sha256": "aab8fb84c6ebef13036950c8e708718a6b79b2b2480aa8bbb602f640f90d867a",
+  "source_response_checked_in": false,
+  "facsimile_responses": [
+    {
+      "image": 1,
+      "role": "signed original, folio 175",
+      "url": "https://web.archive.org/web/20191207090121id_/https://projects.rusarchives.ru/statehood/images/10-03-postanovlenie-ratifikaciya-sng.jpg",
+      "bytes": 155943,
+      "sha256": "94792a1df535d101d4db52af2f3b88c92fb4e6f13daf501d82d850c5d7b7d65b",
+      "content_type": "image/jpeg"
+    }
+  ],
+  "capture_note": "The independent check did not record which capture of the page it read. This packet requested the capture nearest the facsimile's (20191207090121); the archive served 20191207090109, whose bytes match the check's copy.",
+  "provenance_note": "The official host (projects.rusarchives.ru) refused connections from this environment, so the exhibition page and its images were read from Internet Archive raw captures (id_). The packet URL is the official page; the capture actually read is the recorded response. The page and image were first downloaded by the independent check; this packet re-downloaded both from the recorded captures with identical bytes and viewed the image. This checked-in file is a derived factual extract, not the original response or an archived snapshot of it. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "claims": [
+    {
+      "id": "su_garf_res_2014i_original_19911212",
+      "text": "Rosarkhiv describes the item as the typescript original with the autograph signature of R. I. Khasbulatov, Chairman of the RSFSR Supreme Soviet (GARF F. 10026, Op. 1, D. 576, L. 175). The facsimile shows points 1-3 as in the portal text and 'Москва, Дом Советов РСФСР, 12 декабря 1991 года, № 2014-I'.",
+      "locator": "Exhibit caption; facsimile image (folio 175)",
+      "attested_on": "1991-12-12",
+      "uncertainty": "Corroborates the ratification date and text; it is not an instrument of deposit and gives no entry-into-force date."
+    }
+  ],
+  "scope_note": "The 2012 exhibition page (caption and transcription) and the facsimile of the signed original, read from Internet Archive captures because the official host refused connections. The facsimile was viewed at full size.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [
+      1
+    ],
+    "method": "The facsimile was viewed at full size in the check and again for this packet: points 1-3, the Chairman's signature block and the date and number."
+  }
+}

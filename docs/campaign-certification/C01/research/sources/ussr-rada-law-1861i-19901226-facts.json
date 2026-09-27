@@ -1,0 +1,53 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_rada_law_1861i_19901226",
+  "source_url": "https://web.archive.org/web/20250531192616id_/https://zakon.rada.gov.ua/laws/show/v1861400-90/print",
+  "original_url": "https://zakon.rada.gov.ua/laws/show/v1861400-90/print",
+  "archive_capture_utc": "2025-05-31T19:26:16Z",
+  "source_title": "USSR Law No. 1861-I of 26 December 1990 on amendments to the Constitution in connection with the improvement of the system of state administration (Ukrainian-language text, print view), Internet Archive capture 20250531192616",
+  "accessed_date": "2026-09-26",
+  "published_date": null,
+  "document_date": "1990-12-26",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20250531192616id_/https://zakon.rada.gov.ua/laws/show/v1861400-90/print",
+  "source_response_bytes": 42384,
+  "source_response_sha256": "c7919fd209edeb9dc9532796d93a7632c54b6beb9ad59149a9aedaa476705b35",
+  "source_response_encoding": "text/html (served uncompressed; identity)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier: downloaded at 2026-09-26T02:15:47Z and again at 02:49:05Z; identical. Independent check: 02:55:45Z and 03:37:59Z; identical; a control request accepting gzip was served gzip-encoded (14,596 bytes). This packet: re-downloaded at 2026-09-26T03:53:57Z and again at 2026-09-26T04:27:16Z (33 minutes later); identical 42,384 bytes and SHA-256.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of https://zakon.rada.gov.ua/laws/show/v1861400-90/print, captured at 2025-05-31T19:26:16Z, before the 7 September 2026 cutoff; requested without an Accept-Encoding header (curl without --compressed, i.e. identity) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed (a request accepting gzip is served gzip-encoded, with different bytes). The live database page embeds a per-request statistics token and an update time, so it changes on every request and is not recorded. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "The official Ukrainian database's Ukrainian-language text of this USSR act, read from a raw capture of 31 May 2025 because the live pages embed a per-request token. The capture's footer reads 'Законодавство України станом на 31.05.2025' and marks the act as not applied in Ukraine from 2022 under Law 2215-IX, a later Ukrainian status note that is not used. The Russian text as officially published is in the Congress stenographic report (su_snd4_steno_vol3), which carries the Premier and no-confidence procedure claims.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Print-view HTML read in full in Ukrainian by the dossier and the check; items 2, 4, 10, 11 and 17-29 and the signature block read again by this packet."
+  },
+  "rows": [
+    {
+      "claim_id": "su_rada_1861i_cabinet_chapter_19901226",
+      "observation_id": "su_government",
+      "review_observation": "SU-GOV-03",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "procedure",
+      "attested_on": "1990-12-26",
+      "text": "USSR Law No. 1861-I of 26 December 1990, adopted by the Congress of People's Deputies, renames Chapter 16 of the Constitution 'Кабінет Міністрів СРСР' (item 19) and rewrites Articles 128-136 (items 20-28): new Article 128 makes the Cabinet of Ministers the executive and administrative body of the USSR, subordinate to the President; new Article 129 composes it of the Prime Minister ('Прем'єр-міністр'), his deputies and USSR ministers, its structure set by the Supreme Soviet on the President's proposal; Article 134 is deleted; new Article 136 leaves the Cabinet's competence and procedure to a USSR law. Items 2, 4, 10, 11 and 29 substitute the Cabinet of Ministers for the 'Government of the USSR' in Article 77 and for the Council of Ministers in Articles 96, 122, 124 and 140. Signed 'Президент Союзу Радянських Соціалістичних Республік М.ГОРБАЧОВ', Moscow, Kremlin, 26 December 1990, No. 1861-I.",
+      "locator": "Items 2, 4, 10, 11, 19-21, 26, 28 and 29; signature and date block"
+    },
+    {
+      "claim_id": "su_rada_1861i_supreme_soviet_chair_provisions_19901226",
+      "observation_id": "su_supreme_soviet",
+      "review_observation": "SU-GOV-03",
+      "role_id": "su_supreme_soviet_chair",
+      "holder_name": null,
+      "role_title": "Chairman of the USSR Supreme Soviet",
+      "event_kind": "procedure",
+      "attested_on": "1990-12-26",
+      "text": "Item 17 renumbers Article 127-10 as 127-7 and replaces 'до Голови Верховної Ради СРСР' and 'до Голови Ради Міністрів СРСР' with 'до Віце-президента СРСР' and 'до Голови Верховної Ради СРСР' respectively, so that the article names the Vice-President and then the Chairman of the Supreme Soviet where it named the Chairman of the Supreme Soviet and then the Chairman of the Council of Ministers. Item 18 adds Chapter 15-2 'Рада Федерації', whose new Article 127-10 provides that the Chairman of the Supreme Soviet may take part in the sittings of the Federation Council.",
+      "locator": "Items 17 and 18 (new Article 127-10, last sentence)"
+    }
+  ],
+  "bounded_scope": "Union head-of-government and Supreme Soviet chair observations for CLAUDE-C01-26 only. Election or approval, appointment, release decree, parliamentary consent, dismissal, no confidence, resignation statement, suspension, consent to arrest, release, acting or interim service, presiding arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The CLAUDE-C01-05 su_president holders and russia.json are outside this extract."
+}

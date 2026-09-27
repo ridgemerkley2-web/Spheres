@@ -1,0 +1,36 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102011227&page=1&rdk=0",
+  "source_title": "Resolution of the RSFSR Supreme Soviet No. 1099-I of 24 April 1991 on the procedure for putting the Law of the RSFSR 'On the President of the RSFSR' into force (original edition)",
+  "accessed_date": "2026-09-21",
+  "published_date": null,
+  "document_date": "1991-04-24",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102011227&page=1&rdk=0",
+  "source_response_bytes": 23820,
+  "source_response_sha256": "5442288fee517dc41c53178cbe8319220daa74471e978aba26bb963ac1aea832",
+  "source_response_checked_in": false,
+  "portal_card_response": {
+    "url": "http://pravo.gov.ru/proxy/ips/?list_itself=&bpas=cd00000&a8=1099-I&a8type=1&sort=7&page=firstlast&lstsize=50",
+    "bytes": 11558,
+    "sha256": "85ea325e1ffbeff108347a65bdf576a60f697771decd5a24ef6bb358352f6c5b",
+    "note": "Portal search-result card listing the act, its status and its publication citation; read over HTTP. The check and this packet returned identical bytes."
+  },
+  "provenance_note": "The portal's document frame for the original edition (rdk=0, 'Исходная редакция') was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 21 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response. The dossier retrieval, the independent check and this packet's retrieval, all on 21 September 2026, returned identical bytes. This checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "claims": [
+    {
+      "id": "ru_rsfsr_president_law_in_force_on_publication_19910424",
+      "text": "The Supreme Soviet puts the Law of the RSFSR 'On the President of the RSFSR' into force from the moment of its publication and submits the law to the Congress of People's Deputies for approval; signed B. N. Yeltsin, Chairman of the RSFSR Supreme Soviet, Moscow, House of Soviets of the RSFSR, 24 April 1991, No. 1099-I.",
+      "locator": "Operative text; signature and date block",
+      "attested_on": "1991-04-24",
+      "uncertainty": "24 April is the date of this resolution, not the day the law entered into force. The publication that brought the law into force is not identified: the portal card for 1098-I cites Rossiyskaya Gazeta of 27 April 1991, which was not inspected, so no entry-into-force date is recorded."
+    }
+  ],
+  "scope_note": "Resolution setting entry into force from publication. Its own gazette citation is Vedomosti 1991 No. 17, art. 513 (the law itself is art. 512). The operative text prints the law's title with a typographical slip ('О Президента РСФСР').",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Official HTML text read in full after windows-1251 decoding; the portal offers no facsimile."
+  }
+}

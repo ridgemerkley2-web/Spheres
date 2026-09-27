@@ -1,0 +1,39 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "su_rsfsr_ukaz_299_19911219",
+  "source_url": "https://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102013665&page=1&rdk=0",
+  "source_title": "Decree of the President of the RSFSR No. 299 of 19 December 1991 'О Комитете по оперативному управлению народным хозяйством СССР и Межгосударственном экономическом комитете' (original edition)",
+  "accessed_date": "2026-09-26",
+  "published_date": null,
+  "document_date": "1991-12-19",
+  "access_method": "official_portal_original_edition_text_downloaded_over_http",
+  "source_response_url": "http://pravo.gov.ru/proxy/ips/?doc_itself=&nd=102013665&page=1&rdk=0",
+  "source_response_bytes": 24105,
+  "source_response_sha256": "b73a9d55970f26cacdcb2292adf48506a1c57ea27f573b37d2856f480224bf7e",
+  "source_response_encoding": "windows-1251",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier (part C): downloaded at 2026-09-26T01:48:11Z, 02:12:30Z, 02:53:25Z and 02:53:57Z (the last with a cache-busting '_cb=' query); identical bytes and SHA-256. Independent check (part C): re-downloaded at 02:57:58Z (cache-busting '_chk=' query) and 03:24:35Z; identical. This packet: re-downloaded at 2026-09-26T03:52:45Z and again at 2026-09-26T04:26:21Z (33 minutes later); identical 24,105 bytes and SHA-256.",
+  "provenance_note": "The portal's original-edition document frame (rdk=0) was downloaded over HTTP and decoded from windows-1251. The portal's HTTPS origin timed out from this environment on 26 September 2026 (port 443), so the packet URL gives the same path on HTTPS, the only scheme the register accepts; the bytes and hash recorded here are those of the HTTP response (source_response_url). The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
+  "scope_note": "Original-edition text read in full; the portal offers no facsimile. An RSFSR act about Union bodies, filed in ussr.json as a claim on su_government; russia.json is not changed.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Original-edition HTML text read in full in Russian after windows-1251 decoding by the dossier, the independent check and this packet."
+  },
+  "rows": [
+    {
+      "claim_id": "su_rsfsr_ukaz_299_abolishes_committee_19911219",
+      "observation_id": "su_government",
+      "review_observation": "SU-GOV-10",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "abolition_decreed_by_republic",
+      "attested_on": "1991-12-19",
+      "text": "In connection with the creation of the Commonwealth of Independent States, the President of the RSFSR decrees that the Committee for Operational Management of the National Economy of the USSR be abolished ('Упразднить') and that the activity of the Interstate Economic Committee on RSFSR territory cease, its apparatus and structures on RSFSR territory passing to the RSFSR Government; signed 'Президент РСФСР Б.Ельцин', Moscow, Kremlin, 19 December 1991, No. 299.",
+      "locator": "Full text and signature block"
+    }
+  ],
+  "bounded_scope": "Union head-of-government and Supreme Soviet chair observations for CLAUDE-C01-26 only. Election or approval, appointment, release decree, parliamentary consent, dismissal, no confidence, resignation statement, suspension, consent to arrest, release, acting or interim service, presiding arrangements and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The CLAUDE-C01-05 su_president holders and russia.json are outside this extract."
+}
