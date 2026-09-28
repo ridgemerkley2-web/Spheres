@@ -80,17 +80,20 @@ al-Awwal 1430 = 28 February and 1 March 2009), with a stated fallback to null.
 All 32 checker defects are handled (all applied), and 20 of the 27 missing primary records the checks found are imported;
 the other seven are two duplicate pages, three optional English companions and two unreachable texts.
 
-Touched paths: this record; `docs/campaign-certification/C01/research/saudi-arabia.json` (71 sources, 108 claims, four
+Touched paths: this record; `docs/campaign-certification/C01/research/saudi-arabia.json` (71 sources, 110 claims, four
 holder tenures and 29 holder observations on the two roles, a scope note on each role, four coverage notes on `sa_shura`,
 two on `sa_succession_commission` and one packet coverage note; existing content unchanged); 71 new
 `docs/campaign-certification/C01/research/sources/saudi-arabia-*-facts.json` extracts (no existing extract edited, and the
-Bush Library source record and its extract, under repair by CLAUDE-C01-SOURCE-06, untouched); new
+Bush Library source record and its extract, under repair by CLAUDE-C01-SOURCE-06, untouched; the verifier fixes edit two
+of these new extracts in place, with their snapshots updated:
+`sources/saudi-arabia-embassy-shura-second-term-19970706-facts.json` and
+`sources/saudi-arabia-spa-orders-ar-20201018-facts.json`); new
 `docs/campaign-certification/C01/research/saudi-shura-allegiance-chairs-1990-2026-25.md`; new
 `tools/avatars/test_saudi_shura_allegiance_c01_25.py`; `tools/avatars/test_saudi_executive_c01_06.py` (new exact totals,
 the C01-06 source-order guard re-expressed and the packet-wide `until` guard extended to the two pinned deaths; none
 loosened). Separate commit: `docs/campaign-certification/C01/research-index.json` only.
 
-Checks (27-28 September 2026): research-index regeneration and `--check` (1,400 sources, 3,839 claims); `campaign_census.py
+Checks (27-28 September 2026): research-index regeneration and `--check` (1,400 sources, 3,841 claims); `campaign_census.py
 --check` (exit 0); the Saudi tests (17, 9 of them new); the research tests (79); the campaign tests (16, census included;
 the sparse checkout has the game data and was not widened); the atlas Node check (11); `workboard.py --check` (44
 markers); `git diff --check` on this packet's paths. The new test's 45 mutations each fail on the rule they break.

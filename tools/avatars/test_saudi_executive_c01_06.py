@@ -185,7 +185,7 @@ class SaudiExecutiveChronologyTests(unittest.TestCase):
 
     def test_new_records_are_bounded_reuse_ids_and_every_claim_is_cited(self):
         ids = self.validate()
-        self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (103, 156, 12, 10))
+        self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (103, 158, 12, 10))
         # The C01-06 sources end at position 32; only the 71 CLAUDE-C01-25 sources follow them.
         self.assertEqual([s['id'] for s in self.packet['sources'][32 - len(NEW_SOURCES):32]], NEW_SOURCES)
         self.assertEqual({c['id'] for sid in NEW_SOURCES for c in self.sources[sid]['claims']}, NEW_CLAIMS)
@@ -446,7 +446,7 @@ class SaudiExecutiveChronologyTests(unittest.TestCase):
             self.assertIn(phrase, handoff)
         index = research.build()
         country = next(p for p in index['countries'] if p['nation'] == 'SaudiArabia')
-        self.assertEqual((country['source_claims'], country['role_observations']), (156, 10))
+        self.assertEqual((country['source_claims'], country['role_observations']), (158, 10))
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
         batches = [row for row in index['work_orders'] if row['nation'] == 'SaudiArabia']

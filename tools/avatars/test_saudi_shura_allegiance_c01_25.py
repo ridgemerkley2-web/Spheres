@@ -117,7 +117,9 @@ EVENTS = {
     'sa_shura_membership_90_a63_19970705': ('1997-07-05', 'membership_change', 'SA-CHR-03', None),
     'sa_jubair_first_term_end_19970706': ('1997-07-06', 'attestation', 'SA-CHR-03', JUB),
     'sa_jubair_extension_a90_19970706': ('1997-07-06', 'continuation', 'SA-CHR-03', JUB),
+    'sa_jubair_extension_effective_19970707': ('1997-07-07', 'continuation', 'SA-CHR-03', JUB),
     'sa_order_a72_second_term_19970706': ('1997-07-06', 'council_formation_naming_chair', 'SA-CHR-03', JUB),
+    'sa_shura_term_start_19970707': ('1997-07-07', 'council_term_start', 'SA-CHR-03', None),
     'sa_first_council_a16_cited_19930820': ('1993-08-20', 'council_formation', 'SA-CHR-03', None),
     'sa_jubair_oath_second_term_19970714': ('1997-07-14', 'oath', 'SA-CHR-03', JUB),
     'sa_second_term_inaugurated_19970714': ('1997-07-14', 'council_term_opening', 'SA-CHR-03', None),
@@ -408,7 +410,7 @@ UNTOUCHED = {
     'sa_cabinet_ministers': (['sa_basic_law_boe', 'sa_spa_pm_2022', 'sa_spa_orders_20260813'],
                              ['sa_basic_pm_rule', 'sa_king_cabinet_chair_exception', 'sa_mbs_cp_pm_obs_20260813']),
 }
-# Existing records that stay first, byte for byte, on the two filled roles and their institutions.
+# Existing source and claim IDs that stay first, in order, on the two filled roles and their institutions (IDs only).
 BASE_PREFIX = {
     CHAIR: (['sa_boe_shura_law'], ['sa_shura_composition']),
     BCHAIR: (['sa_boe_succession_law'], ['sa_succession_membership']),
@@ -521,8 +523,8 @@ class SaudiShuraAllegianceChairTests(unittest.TestCase):
 
     def test_new_records_are_bounded_appended_and_every_claim_is_classified(self):
         ids = self.validate()
-        self.assertEqual((len(NEW_SOURCES), len(EVENTS)), (71, 108))
-        self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (103, 156, 12, 10))
+        self.assertEqual((len(NEW_SOURCES), len(EVENTS)), (71, 110))
+        self.assertEqual((len(ids['sources']), len(ids['claims']), len(ids['entries']), len(ids['roles'])), (103, 158, 12, 10))
         self.assertEqual([s['id'] for s in self.packet['sources'][BASE_SOURCES:]], NEW_SOURCES)
         self.assertEqual([c['id'] for sid in NEW_SOURCES for c in self.sources[sid]['claims']], list(EVENTS))
         self.assertEqual({v[1] for v in EVENTS.values()}, HOLDER_KINDS | NEVER_HOLDER_KINDS)
@@ -620,9 +622,13 @@ class SaudiShuraAllegianceChairTests(unittest.TestCase):
         text = lambda cid: self.claims[cid]['text']
         doubt = lambda cid: self.claims[cid]['uncertainty']
         # 1997: the order, its stated effective day, the extension and the oath are separate claims on separate days.
-        self.assertEqual([EVENTS[c][0] for c in ('sa_order_a72_second_term_19970706', 'sa_jubair_extension_a90_19970706',
-                                                 'sa_jubair_oath_second_term_19970714')], ['1997-07-06', '1997-07-06', '1997-07-14'])
+        self.assertEqual([EVENTS[c][0] for c in ('sa_order_a72_second_term_19970706', 'sa_shura_term_start_19970707',
+                                                 'sa_jubair_extension_a90_19970706', 'sa_jubair_extension_effective_19970707',
+                                                 'sa_jubair_oath_second_term_19970714')],
+                         ['1997-07-06', '1997-07-07', '1997-07-06', '1997-07-07', '1997-07-14'])
         self.assertIn('effective from 3/3/1418 H (July 7, 1997)', text('sa_order_a72_second_term_19970706'))
+        self.assertIn('from 3/3/1418 H (July 7, 1997)', text('sa_shura_term_start_19970707'))
+        self.assertIn('as from 3/3/1418 H (July 7, 1997)', text('sa_jubair_extension_effective_19970707'))
         self.assertIn('not a from', doubt('sa_order_a72_second_term_19970706'))
         # 2001: the order (24 May), the oath (4 June), the announced term start and the first session (5 June).
         self.assertLess(EVENTS['sa_order_a80_third_term_20010524'][0], EVENTS['sa_jubair_oath_third_term_20010604'][0])
@@ -927,7 +933,7 @@ class SaudiShuraAllegianceChairTests(unittest.TestCase):
         country = next(p for p in index['countries'] if p['nation'] == 'SaudiArabia')
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
-        self.assertEqual((country['source_claims'], country['role_observations'], country['mapping_pending']), (156, 10, 12))
+        self.assertEqual((country['source_claims'], country['role_observations'], country['mapping_pending']), (158, 10, 12))
         self.assertEqual([w['status'] for w in index['work_orders'] if w['nation'] == 'SaudiArabia'], ['open', 'open'])
         self.assertFalse(index['c01_complete'])
 

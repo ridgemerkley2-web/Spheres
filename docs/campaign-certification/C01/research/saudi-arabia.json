@@ -1221,11 +1221,25 @@
           "uncertainty": "An extension, so a continuation claim only: never a new holder, a from or an until. 7 July 1997 is the start of the extension, not of his chairmanship."
         },
         {
+          "id": "sa_jubair_extension_effective_19970707",
+          "text": "Decree A/90 extends the listed ministerial-level appointments, including 'Sheikh Muhammad Ibn Jubair as Chairman of the Shura Council', 'for a period of four years, as from 3/3/1418 H (July 7, 1997)'.",
+          "attested_on": "1997-07-07",
+          "locator": "Item ROYAL DECREES ON MINISTERIAL AND TOP-LEVEL APPOINTMENTS, decree A/90",
+          "uncertainty": "A/90's stated effective day, kept separate from the order of 6 July 1997 (sa_jubair_extension_a90_19970706): the start of an extension, so a continuation claim only and never a new holder, a from or an until."
+        },
+        {
           "id": "sa_order_a72_second_term_19970706",
           "text": "Item dated July 6, 1997: King Fahd 'today issued royal decree number A/72 announcing, effective from 3/3/1418 H (July 7, 1997), the composition' of the Council with a Chairman and ninety members for a term of four years from the end of the current period of the Council; the list begins 'Sheikh Muhammad Ibn Ibrahim Ibn Uthman Ibn Jubair (Chairman of the Shura Council)'.",
           "attested_on": "1997-07-06",
           "locator": "Item ROYAL DECREE ON APPOINTMENTS TO SHURA COUNCIL, opening sentence and first entry",
           "uncertainty": "A council-formation order naming the sitting Chairman again, cited by the 1422 AH orders as A/72 of 2/3/1418. Its stated effective day is the new council's, not the start of his chairmanship, so it is not a from. The Arabic text was not read."
+        },
+        {
+          "id": "sa_shura_term_start_19970707",
+          "text": "Under A/72 the composition of the second council, a Chairman and ninety members, takes effect 'from 3/3/1418 H (July 7, 1997)', for a term of four years from the end of the current period of the Council.",
+          "attested_on": "1997-07-07",
+          "locator": "Item ROYAL DECREE ON APPOINTMENTS TO SHURA COUNCIL, opening sentence",
+          "uncertainty": "A/72's stated effective day, the start of the second council's term, kept separate from the order of 6 July 1997 (sa_order_a72_second_term_19970706) and from the oath of 14 July 1997; never a holder boundary. The Council's statistics count the second term from the same Hijri day (sa_shura_term_years_listed)."
         },
         {
           "id": "sa_first_council_a16_cited_19930820",
@@ -1238,8 +1252,8 @@
       "scope_note": "A news release of the Royal Embassy of Saudi Arabia in Washington (Information Office), filed on its site under press_release/97_spa/; an official Saudi government publication in English, not the Arabic original. A weekly page whose items are dated 5 to 11 July 1997; published_date is its last item. Located by the independent check of part A.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-embassy-shura-second-term-19970706-facts.json",
-        "bytes": 7182,
-        "sha256": "df4d0b4f7a3c95ada617e1564a3db9e40c220d88ad4b41efb6f6b1944c166e22",
+        "bytes": 8540,
+        "sha256": "0a2ec4d3617da81495ba94a10f0d1b23e2b4ec9cb20b6594d33982177075eaa3",
         "kind": "derived_factual_extract"
       }
     },
@@ -2244,11 +2258,11 @@
           "uncertainty": "Gregorian day from sa_calendar_14420303_20201020. A council-term start, never a holder boundary."
         }
       ],
-      "scope_note": "Additions served inside the lead item's JSON (related_news). Legacy ID 2145890 redirects to the A/145 addition (10ddc4a914#aaa25a5ec3) and 2145893 to the English release.",
+      "scope_note": "Additions served inside the lead item's JSON (related_news). Legacy ID 2145890 redirects (HTTP 308) to the A/145 addition (10ddc4a914#aaa25a5ec3); legacy ID 2145893 serves the English release (dcaf51c67d) at its own address, without a redirect.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/saudi-arabia-spa-orders-ar-20201018-facts.json",
-        "bytes": 5604,
-        "sha256": "f0497f6358acac4813be50f700a3fad3e3d23db4f4920ca4a77c62d1133f0438",
+        "bytes": 5678,
+        "sha256": "3089abf7b650e286714e9495ec2ee42cd77521e18d3bb89b28fd671ab4d6dfc6",
         "kind": "derived_factual_extract"
       }
     },
@@ -3737,6 +3751,7 @@
             "sa_jubair_speech_second_term_opening",
             "sa_jubair_first_term_end_19970706",
             "sa_jubair_extension_a90_19970706",
+            "sa_jubair_extension_effective_19970707",
             "sa_order_a72_second_term_19970706",
             "sa_jubair_oath_second_term_19970714",
             "sa_order_a80_third_term_20010524",
@@ -3922,6 +3937,7 @@
         "sa_shura_term_years_listed",
         "sa_jubair_dates_first_term_opening_16_7_1414",
         "sa_shura_membership_90_a63_19970705",
+        "sa_shura_term_start_19970707",
         "sa_first_council_a16_cited_19930820",
         "sa_second_term_inaugurated_19970714",
         "sa_order_a72_a62_second_term_cited",
