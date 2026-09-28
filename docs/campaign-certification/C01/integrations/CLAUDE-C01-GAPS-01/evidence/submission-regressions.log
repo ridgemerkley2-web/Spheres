@@ -1,0 +1,37 @@
+test_acceptance_requires_an_explicit_decision_not_a_directory (test_certified_gap_ledger.FixtureLedger.test_acceptance_requires_an_explicit_decision_not_a_directory) ... FAIL
+test_acceptance_records_are_pinned_and_changes_stale_the_ledger (test_certified_gap_ledger.FixtureLedger.test_acceptance_records_are_pinned_and_changes_stale_the_ledger) ... FAIL
+test_markdown_input_hashes_ignore_checkout_line_endings (test_certified_gap_ledger.FixtureLedger.test_markdown_input_hashes_ignore_checkout_line_endings) ... FAIL
+
+======================================================================
+FAIL: test_acceptance_requires_an_explicit_decision_not_a_directory (test_certified_gap_ledger.FixtureLedger.test_acceptance_requires_an_explicit_decision_not_a_directory)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\review-c01-gaps-b4d95396\tools/avatars\test_certified_gap_ledger.py", line 210, in test_acceptance_requires_an_explicit_decision_not_a_directory
+    with self.assertRaisesRegex(ValueError, 'Missing explicit acceptance record'):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_acceptance_records_are_pinned_and_changes_stale_the_ledger (test_certified_gap_ledger.FixtureLedger.test_acceptance_records_are_pinned_and_changes_stale_the_ledger)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\review-c01-gaps-b4d95396\tools/avatars\test_certified_gap_ledger.py", line 218, in test_acceptance_records_are_pinned_and_changes_stale_the_ledger
+    self.assertIn(ledger.sha(relative, self.root), self.result['inputs'])
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Verified: all three regression tests fail on b4d95396; they pass on the repaired implementation.
+AssertionError: {'path': 'docs/campaign-certification/C01/integrations/CLAUDE-C01-01/README.md', 'bytes': 52, 'sha256': '01a033a3a4e94f77179b8858d418ee04da98f0b4ae28c639a37593450d7496ad'} not found in [{'path': 'docs/campaign-certification/C01/census.json', 'bytes': 432, 'sha256': '8da26e1edfe64a3ca27151d195ec7683005262c7659e22ea46a1bc6ad8526d30'}, {'path': 'docs/campaign-certification/C01/countries.json', 'bytes': 485, 'sha256': 'b96ca02c50f8a77654f0e2c21d39965b53411d6438eac8609fca3ec66c9bbfed'}, {'path': 'docs/campaign-certification/C01/represented-organizations.json', 'bytes': 2107, 'sha256': 'b16f42a3ffec0ab48aaf5ddd2e8d4ba835b0b56610e2e3a0fba8f5f9a63991d8'}, {'path': 'docs/campaign-certification/C01/roles-and-lifecycle.json', 'bytes': 2077, 'sha256': '82898619e0a09eef6fd79006fdae45001e32801e3cb17e03b84fbb4d4b9364ff'}, {'path': 'docs/campaign-certification/C01/work-orders.json', 'bytes': 126, 'sha256': 'c3afb8d6e7169dcd54cae6b2577d7222eb772ddfe7798bb4782d4096129a821d'}, {'path': 'docs/campaign-certification/C01/research-index.json', 'bytes': 518, 'sha256': 'acc4149f333bd9d8799a88c022eca64b0c2d2b6b205061a94e4c5ca606adf8f8'}, {'path': 'docs/campaign-certification/verification/2026-09-27-claude-integration.md', 'bytes': 96, 'sha256': 'ae83057503e71b7caf923cd8d67451a5072178a070709e45d6f81dcd9c96433b'}, {'path': 'docs/campaign-certification/verification/evidence/2026-09-27-claude-integration/premerge-source-audit.json', 'bytes': 62, 'sha256': 'ea4de3c385136ace8f3868b3f362f2d1bdab54c33b508a386b3fc1484388a0bd'}, {'path': 'docs/planning/ai-task-queue.json', 'bytes': 1182, 'sha256': '666a5cfa727eb8eac5fb772731185458d0dfe009bb61ec0e232c79967fd1ced0'}, {'path': 'docs/campaign-certification/C01/research/saudiarabia.json', 'bytes': 1104, 'sha256': '4ae990a183ad19e3d1f1068a6d60b78b5a34dbe7d67b57c0d4ea367e9d448d29'}, {'path': 'docs/campaign-certification/C01/research/southafrica.json', 'bytes': 3108, 'sha256': '0b8f8291e9cf555717398db9ac4884608630cf1c53002609e57cc98b73f6d569'}, {'path': 'docs/campaign-certification/C01/research/tonga.json', 'bytes': 1668, 'sha256': '5ebe32b75b3195d0252aa7df7ff6cb91f1ef01c960fe83d72fc4599ac30c495c'}, {'path': 'docs/campaign-certification/C01/research/ussr.json', 'bytes': 1227, 'sha256': '59caa919338670de6c6cd26ba4ce5ebb647c7993159ff86e85aeaa2a9c4daa05'}]
+
+======================================================================
+FAIL: test_markdown_input_hashes_ignore_checkout_line_endings (test_certified_gap_ledger.FixtureLedger.test_markdown_input_hashes_ignore_checkout_line_endings)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\review-c01-gaps-b4d95396\tools/avatars\test_certified_gap_ledger.py", line 233, in test_markdown_input_hashes_ignore_checkout_line_endings
+    self.assertEqual(ledger.outputs(self.root, self.attribution), before)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {Wind[3212 chars]s": 96,\n      "sha256": "ae83057503e71b7caf92[72054 chars]u\n"} != {Wind[3212 chars]s": 93,\n      "sha256": "00f3c9e8f3dd067fd0fd[72054 chars]u\n"}
+Diff is 659161 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.472s
+
+FAILED (failures=3)
