@@ -1,0 +1,21 @@
+{
+  "candidate_revision": "594c7ce1356a9c5a393e1079e4b7abff48cf093d",
+  "started_utc": "2026-09-28T05:32:18.5453061Z",
+  "finished_utc": "2026-09-28T05:41:25.6170144Z",
+  "command": "cargo test --locked --release --workspace -- --test-threads=2",
+  "binaries": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_sim-de8a2e7790f15db6.exe",
+      "sha256": "c4cc47a6e3d8a9e7987ef2a490c53d4af3cc2b4bde640dcebb95d36bbcc44617"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+      "sha256": "db979eba5fdcf33fb93861805d5338edccfff19fa0e0f51d1f4d21aad16c195c"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\http_connections-8051dd677c5ff060.exe",
+      "sha256": "735a3b84d6155954b74d72b5b7e024bf9bf8fabf7797bc8d5bd124eb2fa4b61d"
+    }
+  ],
+  "exit_code": 0
+}
