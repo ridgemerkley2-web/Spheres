@@ -8,12 +8,16 @@
   "authority": [
     {
       "path": "docs/campaign-certification/S01/PERFORMANCE_BASELINE.md",
-      "sha256": "5732cddde6bb4ce379d405fa1c2221cf6bd69e9c39935127de1f0492bb887a59",
+      "sha256": "ff126d0e46544f913483ca22df9ac157f5c49c166b821135b4d2a1229df86ac0",
+      "hash_scope": "Exact Git blob bytes at source_revision; portable across checkout line endings",
+      "previous_worktree_sha256": "5732cddde6bb4ce379d405fa1c2221cf6bd69e9c39935127de1f0492bb887a59",
       "scope": "S01 frozen native, memory, map and UI targets and reference profiles"
     },
     {
       "path": "docs/art/3D_MODEL_MASTER_ROADMAP.md",
-      "sha256": "140a4ae01281649ff803be547bb22015f2f20c6b911b49cc39deef4e23050dae",
+      "sha256": "f4c171a6f5d6132ef8071588d0bae0c3b0d2b57d30fd9b7f34f0eae4755f33d0",
+      "hash_scope": "Exact Git blob bytes at source_revision; portable across checkout line endings",
+      "previous_worktree_sha256": "140a4ae01281649ff803be547bb22015f2f20c6b911b49cc39deef4e23050dae",
       "scope": "Existing 60 FPS focused-viewer target, detailed aircraft and unchanged current art ceilings"
     }
   ],
