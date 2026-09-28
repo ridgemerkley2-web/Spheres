@@ -60,12 +60,14 @@ fn s22_observed_day(
             if *name == "resources" { spheres_sim::resources::tick_observed(w, &mut observe); }
             else { spheres_sim::war::tick_observed(w, &mut observe); }
             stages.push((format!("system.{name}"), ms(start)));
-        } else if *name == "economic_ai" {
+        } else if *name == "economic_ai" || *name == "military_ai" {
             let start = Instant::now();
-            spheres_sim::economic_ai::tick_observed_detailed(w, &mut |stage, nation, elapsed| {
-                stages.push((format!("detail.economic_ai.{stage}.{}", nation.map_or("all", |id| id.name())),
+            let mut observe = |stage: &str, nation: Option<NationId>, elapsed: std::time::Duration| {
+                stages.push((format!("detail.{name}.{stage}.{}", nation.map_or("all", |id| id.name())),
                     elapsed.as_secs_f64() * 1000.0));
-            });
+            };
+            if *name == "economic_ai" { spheres_sim::economic_ai::tick_observed_detailed(w, &mut observe); }
+            else { spheres_sim::military_ai::tick_observed_detailed(w, &mut observe); }
             stages.push((format!("system.{name}"), ms(start)));
         } else {
             timed!(format!("system.{name}"), system(w));
@@ -129,7 +131,8 @@ fn s22_daily_subsystem_diagnosis() {
         "system_order":spheres_sim::SYSTEMS.iter().map(|(name,_)|*name).collect::<Vec<_>>(),
         "timing_hierarchy":{"detail.market.*":"Nested inside prelude.arsenal_spot_market; never add to its enclosing time.",
             "detail.market.dispatch_*":"Nested inside detail.market.orders_and_dispatch for the same commodity; sub-timers also overlap (source search/assembly within dispatch_plan). Zero-duration count/buffer labels are observations, not measured work.",
-            "detail.economic_ai.*":"Nested inside system.economic_ai; never add to its enclosing time."},
+            "detail.economic_ai.*":"Nested inside system.economic_ai; never add to its enclosing time.",
+            "detail.military_ai.*":"Nested inside system.military_ai; review stages are also nested inside review.total for the same nation. Never add nested measurements to their enclosing time."},
         "scope":"Diagnostic only. Instrumented daily schedule followed by ordinary Game advancement on independent worlds and independent persistent route pools. No authored state, pending-import assertion, seed/date rewrite or grants. Existing budgets may renew through the shared S22 normal command helper. Clone, command preflight, exact world serialization, facts and report I/O are outside stage clocks. Native Game timing includes its actual tick, event logging and history; those components are not inferred by subtracting independent timings. Detail timers are nested inside system timers and must not be added to them. This is neither S22 latency acceptance nor a memory measurement; the outer runner records cryptographic provenance."});
     s08_diagnostic_write(&mut report_file, &report);
     for index in 0..31 {
@@ -228,6 +231,7 @@ fn s22_observed_schedule_matches_native_commands_airbases_and_headlines() {
         assert!(stages.iter().any(|(name,_)|name=="detail.market.prices_and_finance.all"));
         assert!(stages.iter().any(|(name,_)|name=="detail.resources.post_market_flows"));
         assert!(stages.iter().any(|(name,_)|name=="detail.war.resolve_conflicts"));
+        assert!(stages.iter().any(|(name,_)|name=="detail.military_ai.review.selection.all"));
         for (name,_) in spheres_sim::SYSTEMS {
             assert_eq!(stages.iter().filter(|(stage,_)|stage==&format!("system.{name}")).count(),1);
         }

@@ -983,12 +983,30 @@ fn basing(w: &mut WorldState, n: NationId) -> Result<String, String> {
     Ok("Squadrons retain their bases. Transfers, service and access are checked again for every mission.".into())
 }
 
+type DetailedObserver<'a> = Option<&'a mut dyn FnMut(&str, Option<NationId>, std::time::Duration)>;
+
+// Diagnostics never enter saved state or decisions. The ordinary path does not
+// read a clock or invoke an observer.
+fn observe<T>(observer: &mut DetailedObserver<'_>, stage: &str, nation: Option<NationId>,
+    work: impl FnOnce() -> T) -> T {
+    let started = observer.as_ref().map(|_| std::time::Instant::now());
+    let result = work();
+    if let (Some(observer), Some(started)) = (observer.as_deref_mut(), started) {
+        observer(stage, nation, started.elapsed());
+    }
+    result
+}
+
 fn review(w: &mut WorldState, n: NationId) {
+    review_impl(w, n, &mut None);
+}
+
+fn review_impl(w: &mut WorldState, n: NationId, observer: &mut DetailedObserver<'_>) {
     let today = clock::absolute_day(w);
     let mut plan = w.military_ai.plans.get(&n).cloned().unwrap_or_default();
     plan.last_review_day = Some(today);
     plan.reviews = plan.reviews.saturating_add(1);
-    let setup = (|| -> Result<(), String> {
+    let setup = observe(observer, "review.setup", Some(n), || -> Result<(), String> {
         if !programs::enrolled(w, n)
             || w.nation(n)
                 .program_budget
@@ -1011,25 +1029,25 @@ fn review(w: &mut WorldState, n: NationId) {
             act(w, n, co::CompanyOrder::EnableImports { quote: q.token })?;
         }
         Ok(())
-    })();
+    });
     if let Err(why) = setup {
         plan.procurement = why;
         w.military_ai.plans.insert(n, plan);
         return;
     }
-    plan.support = support(w, n).unwrap_or_else(|why| why);
+    plan.support = observe(observer, "review.support", Some(n), || support(w, n)).unwrap_or_else(|why| why);
     let mut allowance = review_limit(w, n);
     plan.purchase_limit_bn = allowance;
     // Delivered stock is useful before starting another long development.
-    plan.procurement = procure(w, n, &mut allowance).unwrap_or_else(|why| why);
-    let stores = ground_stores(w, n, &mut allowance).unwrap_or_else(|why| why);
+    plan.procurement = observe(observer, "review.procure", Some(n), || procure(w, n, &mut allowance)).unwrap_or_else(|why| why);
+    let stores = observe(observer, "review.ground_stores", Some(n), || ground_stores(w, n, &mut allowance)).unwrap_or_else(|why| why);
     plan.support.push(' ');
     plan.support.push_str(&stores);
-    plan.development = rotate_supplier_work(w, n)
-        .and_then(|_| develop(w, n, &mut allowance))
+    plan.development = observe(observer, "review.rotate_and_develop", Some(n), || rotate_supplier_work(w, n)
+        .and_then(|_| develop(w, n, &mut allowance)))
         .unwrap_or_else(|why| why);
     plan.committed_bn = (plan.purchase_limit_bn - allowance).max(0.0);
-    plan.basing = basing(w, n).unwrap_or_else(|why| why);
+    plan.basing = observe(observer, "review.basing", Some(n), || basing(w, n)).unwrap_or_else(|why| why);
     w.military_ai.plans.insert(n, plan);
 }
 
@@ -1115,9 +1133,22 @@ fn operations(w: &mut WorldState, n: NationId, defense: bool) -> String {
 }
 
 pub fn tick(w: &mut WorldState) {
+    tick_impl(w, None);
+}
+
+/// Diagnostic observer only. `review.total` includes its nested stages and
+/// observer callbacks; these measurements must not be added to their parents.
+#[doc(hidden)]
+pub fn tick_observed_detailed(w: &mut WorldState,
+    observer: &mut dyn FnMut(&str, Option<NationId>, std::time::Duration)) {
+    tick_impl(w, Some(observer));
+}
+
+fn tick_impl(w: &mut WorldState, mut observer: DetailedObserver<'_>) {
     if !w.military_ai.enabled || !economic_ai::enabled(w) {
         return;
     }
+    let selection_started = observer.as_ref().map(|_| std::time::Instant::now());
     let today = clock::absolute_day(w);
     let mut ids: Vec<_> = w
         .nations
@@ -1147,8 +1178,16 @@ pub fn tick(w: &mut WorldState) {
             (directed(w, *n) && scheduled).then_some(*n)
         })
         .collect();
+    if let (Some(observer), Some(started)) = (observer.as_deref_mut(), selection_started) {
+        observer("review.selection", None, started.elapsed());
+    }
     for n in due {
-        review(w, n);
+        let started = observer.as_ref().map(|_| std::time::Instant::now());
+        if observer.is_some() { review_impl(w, n, &mut observer); }
+        else { review(w, n); }
+        if let (Some(observer), Some(started)) = (observer.as_deref_mut(), started) {
+            observer("review.total", Some(n), started.elapsed());
+        }
     }
     if !ids.is_empty() {
         let offset = today.rem_euclid(ids.len() as i32) as usize;
@@ -1170,7 +1209,7 @@ pub fn tick(w: &mut WorldState) {
         })
         .collect();
     for n in &due {
-        let result = operations(w, *n, false);
+        let result = observe(&mut observer, "operations.offense", Some(*n), || operations(w, *n, false));
         let p = w.military_ai.plans.entry(*n).or_default();
         p.last_operations_day = Some(today);
         p.operations = result;
@@ -1194,7 +1233,7 @@ pub fn tick(w: &mut WorldState) {
         {
             continue;
         }
-        let result = operations(w, n, true);
+        let result = observe(&mut observer, "operations.defense", Some(n), || operations(w, n, true));
         let p = w.military_ai.plans.get_mut(&n).unwrap();
         p.operations.push_str(" Defense: ");
         p.operations.push_str(&result);
