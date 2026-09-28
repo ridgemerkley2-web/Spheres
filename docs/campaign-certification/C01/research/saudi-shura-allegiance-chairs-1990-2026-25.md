@@ -12,7 +12,7 @@ September 2026 (US Pacific). The historical cutoff stays **7 September 2026**.
 This packet reviews ten observations, SA-CHR-01 to SA-CHR-10, in [saudi-arabia.json](saudi-arabia.json). It fills the
 two existing empty roles, `sa_shura_chair` (Chairman of the Shura Council) of `sa_shura` and `sa_succession_chair`
 (Chairman) of `sa_succession_commission`, with four holder tenures (three Shura Chairmen and one Allegiance Commission
-chairman) and 29 dated holder observations. It adds 71 sources and 108 claims, one derived extract per source, a scope
+chairman) and 29 dated holder observations. It adds 71 sources and 110 claims, one derived extract per source, a scope
 note on each of the two roles and seven coverage items (four on `sa_shura`, two on `sa_succession_commission`, one for the
 packet). It adds no organization, institution or role. The CLAUDE-C01-06 King, Crown Prince and Prime Minister holders and
 every other role are unchanged, and the Bush Library source record and its extract, which CLAUDE-C01-SOURCE-06 is
@@ -59,8 +59,14 @@ and never a new holder.
 
 Holder names are one English form per person without honorifics, from SPA's English copy where it exists (Jubair from the
 Royal Court announcement's English release, Humaid and Al Al-Sheikh from SPA English, Mishaal from SPA's English death
-item). Claim text names each person only as the source prints him, in Arabic where the source is Arabic, and each extract
-row keeps that form in `printed_name` (the personal name as printed, without honorifics or titles) beside `holder_name`.
+item). Claim text names each chair holder only as the source prints him, quoting the Arabic where the source is Arabic;
+the one exception is the reception item of 10 December 2007 (`sa_allegiance_formation_reception_20071209`), which does
+not style Prince Mishaal chairman and whose claim gives his name in English. The Council magazine's account of the Vice
+Chairman presiding (`sa_vice_chair_presides_55th_20020210`) also quotes his Arabic name. Names from English sources keep
+their printed spelling. Other people named in Arabic sources (the Kings, the Crown Princes, the Vice Chairman in the 2001
+orders, the Secretary-General and other officials) are given English renderings of their printed names, without adding
+name parts; A/79 also quotes the Vice Chairman's printed name. Each extract row with a `holder_name` keeps the personal
+name as printed in `printed_name` (without honorifics or titles) beside it.
 
 ### Date ledger
 
@@ -75,7 +81,8 @@ an oath, an acting presiding officer, a relief and a death are never merged, eve
 | 1414-1415 AH | Jubair speaks as Chairman at the first term's opening (no day printed) | `sa_jubair_speech_first_term_opening` (period) |
 | 5 Jul 1997 | A/63: Council of a Chairman and 90 members | `sa_shura_membership_90_a63_19970705`, `sa_shura_membership_90_19970705` |
 | 6 Jul 1997 | King's letter to the Chairman; his last meeting of the first term | `sa_jubair_first_term_end_19970706`; Jubair `attested_on` |
-| 6 Jul 1997 | A/72 names him Chairman of the second council, effective 7 Jul 1997; A/90 extends his appointment from 7 Jul | `sa_order_a72_second_term_19970706`, `sa_jubair_extension_a90_19970706` |
+| 6 Jul 1997 | A/72 names him Chairman of the second council; A/90 extends his appointment | `sa_order_a72_second_term_19970706`, `sa_jubair_extension_a90_19970706` |
+| 3/3/1418 AH = 7 Jul 1997 | A/72's stated effective day, the start of the second council's term; A/90's stated effective day | `sa_shura_term_start_19970707`, `sa_jubair_extension_effective_19970707` |
 | 14 Jul 1997 | Oath before the King; second term inaugurated | `sa_jubair_oath_second_term_19970714`, `sa_second_term_inaugurated_19970714` |
 | 1/3/1422 AH = 24 May 2001 | A/80 names him Chairman of the third council; A/78 (120 members); A/79 (Vice Chairman from 3/3/1422); the King's message | `sa_order_a80_third_term_20010524`, `sa_order_a78_art3_120_20010524`, `sa_order_a79_vice_chair_20010524`, `sa_fahd_letter_chair_end_second_term`, `sa_fahd_message_chair_20010524` |
 | 3/3/1422 AH | The Council's count start of the third term (retrospective index) | `sa_shura_term_years_listed` |
@@ -147,8 +154,8 @@ Evidence:
   Shura Council in its new framework". The dossier had attributed that sentence to the Chairman; it is the King's.
 - `sa_jubair_dates_first_term_opening_16_7_1414`: in his speech at the second term's opening he dates the first council's
   opening to 16 Rajab 1414 AH; the Council's English page gives 29 December 1993.
-- `sa_first_council_a16_cited_19930820`: the 1997 A/72 release says the first council had been formed by "royal decree
-  number A/16 dated 3/3/1414 H (August 20, 1993)".
+- Cross-reference: the 1997 A/72 release (`sa_first_council_a16_cited_19930820`, a claim filed under SA-CHR-03) says the
+  first council had been formed by "royal decree number A/16 dated 3/3/1414 H (August 20, 1993)".
 
 Decision: accepted in part. Jubair is Chairman at the first term's opening by the Council's own record, but that record is a
 2009 publication with no day, so it is a claim, not his `attested_on`. No order of his first appointment was read, so his
@@ -156,7 +163,8 @@ Decision: accepted in part. Jubair is Chairman at the first term's opening by th
 
 Limits: A/16 of 3/3/1414 was not read, nor A/14 of the same day, which A/79 (2001) and A/13 (2009) cite when appointing
 the Vice Chairman and the Chairman at ministerial rank and which may be the first Chairman's appointment. Umm al-Qura issues
-of 1412-1422 AH are not online and the old SPA archive has no captures from before about 2001.
+of 1412-1422 AH are not online and the old SPA archive's Internet Archive captures begin in November 1999, with item pages
+dated only from February 2000.
 
 ### SA-CHR-03 — Reappointments, the end of the first chairmanship and the successor
 
@@ -167,10 +175,13 @@ Evidence for 1997 (Royal Embassy releases of 5, 6 and 14 July 1997):
   earliest dated attestation of him as Chairman and his holder's `attested_on`.
 - `sa_order_a72_second_term_19970706` and `sa_jubair_extension_a90_19970706`: A/72 announces, "effective from 3/3/1418 H
   (July 7, 1997)", the second council with him first "(Chairman of the Shura Council)"; A/90 extends his ministerial-rank
-  appointment as Chairman for four years from the same day. Both are continuations: neither is a `from`.
+  appointment as Chairman for four years from the same day. Both are continuations: neither is a `from`. Their stated
+  effective day, 7 July 1997, is kept as separate claims: the second council's term start (`sa_shura_term_start_19970707`)
+  and the start of the extension (`sa_jubair_extension_effective_19970707`).
 - `sa_jubair_oath_second_term_19970714` and `sa_second_term_inaugurated_19970714`: on 14 July 1997 he and the members swore
   the oath before the King, who then inaugurated the second term. The Council's 2009 page of second-term speeches
-  (`sa_jubair_speech_second_term_opening`) matches this ceremony but prints no day, so its period is not changed.
+  (cross-reference: `sa_jubair_speech_second_term_opening`, a claim filed under SA-CHR-02) matches this ceremony but prints
+  no day, so its period is not changed.
 
 Evidence for 2001:
 
@@ -209,9 +220,11 @@ Decision: accepted. Jubair's tenure ends on 24 January 2002 (death while in offi
 February 2002 (`attested_on`) and his stated first day of 11 February 2002 (`from`); the undated oath is never a `from`.
 
 Limits: the 24 January announcement and the 7 February decree are read in the Royal Embassy's English releases; the Arabic
-Royal Court statement and the decree text, number and any effective day were not found (the old SPA archive has no
-captures for 16 January to 1 February or 3 to 11 February 2002). If the integrator does not accept the embassy releases as
-official Saudi records, Jubair's `until` reverts to null and Humaid's `attested_on` to the next dated record (11 February).
+Royal Court statement and the decree text, number and any effective day were not found (the old SPA archive's only
+capture for 16 January to 1 February 2002 is its English Last News listing of 24 January, messages 52-59 of the evening
+bulletin, without the announcement, and no item is captured for 3 to 11 February 2002). If the integrator does not accept
+the embassy releases as official Saudi records, Jubair's `until` reverts to null and Humaid's `attested_on` to the next
+dated record (11 February).
 
 ### SA-CHR-04 — The 2009 appointment of a new Chairman
 
@@ -368,7 +381,7 @@ C1-C9 (part C).
 | A9 | SA-CHR-03 (2001) | The third term's oath, first session, announced start and count start were available | **Applied.** `sa_jubair_oath_third_term_20010604`, `sa_jubair_chairs_first_session_20010605`, `sa_third_term_start_announced_20010604` and `sa_shura_term_years_listed` added; none is a boundary |
 | A10 | Sources attempted (embassy; old SPA) | The failure notes were inaccurate, and SPA's own English story of 12 February 2002 exists | **Applied.** Corrected in [Sources attempted](#sources-attempted); `sa_spa_english_news_20020212` added |
 | A11 | A/91 dates | SPA English 1997 agrees with 1 March 1992 | **Applied.** Noted in both date claims; procedure only |
-| A12 | `attested_period` key on four claims | Not the packet's key; the extract rows need `attested_on` | **Applied.** The packet's `period` key is used; rows give `attested_on` null plus `period`; pinned in the new test. The two speech pages are retrospective claims and never feed a holder |
+| A12 | `attested_period` key on four claims | Not the packet's key; the extract rows need `attested_on` | **Applied.** The packet's `period` key is used on the three speech-page claims, whose rows give `attested_on` null plus `period`; the Secretary-General's column (`sa_jubair_death_stated_sg_column`) is left undated: the claim has neither `attested_on` nor `period`, and its row gives `attested_on` null; pinned in the new test. The two speech pages are retrospective claims and never feed a holder |
 | A13 | `sa_order_a80_third_term_20010524` | The 24 May dateline belongs to another item | **Applied.** Reworded, and the Royal Embassy's release is cited |
 | B1 | Claim texts naming Al Al-Sheikh | "Al ash-Sheikh" is not a form any source prints | **Applied.** Claim text quotes the Arabic name as printed or SPA's English "Abdullah bin Mohammed bin Ibrahim Al Al-Sheikh"; rows carry `holder_name` and `printed_name` |
 | B2 | Forming orders labelled reappointment | The orders use no reappointment wording | **Applied.** A/72, A/80, A/15, A/45, A/54, A/146 and A/84 are all `council_formation_naming_chair`; the continuation is stated in the uncertainty and the role's scope note |
@@ -430,8 +443,12 @@ Every source has a checked-in derived factual extract under [sources/](sources/)
 `saudi-arabia-<publisher>-<topic>-<yyyymmdd>-facts.json`. Its rows repeat the packet's claims keyed by `claim_id`, with
 `observation_id` (the institution), `review_observation` (SA-CHR-xx), `role_id`, `holder_name` and `printed_name`,
 `role_title`, `event_kind` and `attested_on` (or `period`). The date in a source ID and file name is the publication date
-where the page prints one, otherwise the Internet Archive capture date; claim IDs keep their event dates. Original responses
-are not checked in, and no emblem, photograph or expressive text is republished.
+of a single dated item (SPA items, single Royal Embassy releases, and the Council's and Umm al-Qura's republications of A/54
+and A/84); for the two weekly Royal Embassy pages of July 1997 it is the date of the latest release used (their
+`published_date` is the week-ending day); otherwise it is the Internet Archive capture date, including for the Council's
+news-listing pages and the Bureau of Experts' Arabic law record, whose `published_date` is their latest dateline or the
+law's publication date. Claim IDs keep their event dates. Original responses are not checked in, and no emblem, photograph
+or expressive text is republished.
 
 | Source ID | What | Recorded response |
 |---|---|---|
@@ -570,9 +587,12 @@ are not checked in, and no emblem, photograph or expressive text is republished.
   2009-2020 orders were not located. The site's official-access login was not attempted.
 - `https://www.saudiembassy.net/`: TLS certificate failure (and HTTP 404); its releases are read through Internet Archive
   captures.
-- The old SPA archive (`spa.gov.sa/html/archive.asp`): captures exist for a few days of December 2001 to April 2002 only;
-  none for 16 January to 1 February or 3 to 11 February 2002. SPA's legacy story URLs (`viewfullstory.php`) return a
-  247-byte "Request Rejected" page, and `sp.spa.gov.sa` is unreachable.
+- The old SPA archive (`spa.gov.sa/html/archive.asp` and `archive_e.asp`): Internet Archive captures begin in November
+  1999 and cover scattered item days from February 2000 onward. For 16 January to 1 February 2002 the only capture is
+  SPA's English Last News listing of 24 January (20020126130924, messages 52-59 of the evening bulletin), which does not
+  carry the Royal Court announcement; the 20020208140327 capture of the archive index is a database error page, and no
+  item is captured for 3 to 11 February 2002. SPA's legacy story URLs (`viewfullstory.php`) return a 247-byte "Request
+  Rejected" page, and `sp.spa.gov.sa` is unreachable.
 - The SPA portal's search API was used only to find items; its listings are never recorded as sources. The part C dossier's
   helper sent `start=1` for the first page and so dropped each query's top result; the check re-ran the queries with
   `start=0`, found the 2008 interview items that way, and confirmed that no chairman of the Commission appears after May 2017.
@@ -601,13 +621,19 @@ These are proposals for the integrator. They are not created in `work-orders.jso
 - Claim commit `5b80d442`; integration `a33a8987` merged at `c7caa2b8` before this work, with no newer integration commit at
   the 27 September 2026 fetch. The packet commit and a separate commit regenerating `research-index.json` follow on
   `claude/c01-sa-25`.
-- `research-index.json` new totals: 1,400 sources and 3,839 claims (previously 1,329 and 3,731); country packets, organization and institution observations and the 93 discovery batches are unchanged. Saudi Arabia now has 103 sources and 156 claims (previously 32 and 48); its
+- `research-index.json` new totals: 1,400 sources and 3,841 claims (previously 1,329 and 3,731); country packets, organization and institution observations and the 93 discovery batches are unchanged. Saudi Arabia now has 103 sources and 158 claims (previously 32 and 48); its
   organization, institution, role and mapping-pending counts (6, 6, 10 and 12) and its two open batches,
   `C01-SaudiArabia-DISC-B001` and `-B002`, are unchanged.
 - `test_saudi_executive_c01_06.py` pins Saudi totals and orders, so it is updated without loosening: the source and claim
-  counts (32 → 103, 48 → 156, in two places); the check that the C01-06 sources are the packet's last 22 is re-expressed as
+  counts (32 → 103, 48 → 158, in two places); the check that the C01-06 sources are the packet's last 22 is re-expressed as
   "sources 10-31, before the C01-25 sources"; and its packet-wide rule that every `until` ends on a pinned end claim now
   also lists this packet's two stated deaths, with their text pinned. No other test pins the Saudi packet.
+- **Verifier fixes (checked 28 September 2026 UTC):** two of this packet's own extracts are edited in place and their
+  snapshots updated in `saudi-arabia.json`: `sources/saudi-arabia-embassy-shura-second-term-19970706-facts.json` (two new
+  rows for the stated effective day of A/90 and A/72, `sa_jubair_extension_effective_19970707` and
+  `sa_shura_term_start_19970707`) and `sources/saudi-arabia-spa-orders-ar-20201018-facts.json` (its scope note: legacy ID
+  2145893 serves the English release at its own address, without a redirect). Both recorded responses were re-downloaded
+  and still match. No holder, boundary or holder observation changes.
 - CLAUDE-C01-SOURCE-06 is repairing the Bush Library source record `sa_bush41_address_19900808` and its extract on another
   branch. This packet does not touch either, and the new test does not pin them, so the two branches do not conflict there.
   Both edit `saudi-arabia.json`, so the second to merge must regenerate `research-index.json` and re-run the Saudi tests.
@@ -629,7 +655,7 @@ Run from `C:/Users/ridge/Spheres-c01-sa25` with `PYTHONDONTWRITEBYTECODE=1`. The
 `spheres-sim/data` and `spheres-web/data`, so the census runs instead of being skipped.
 
 ```text
-python -X utf8 tools/avatars/campaign_research.py            # regenerate: 1,400 sources, 3,839 claims, 93 batches
+python -X utf8 tools/avatars/campaign_research.py            # regenerate: 1,400 sources, 3,841 claims, 93 batches
 python -X utf8 tools/avatars/campaign_research.py --check    # pass
 python -X utf8 tools/avatars/campaign_census.py --check      # exit 0, "check": true
 python -X utf8 -m unittest discover -s tools/avatars -p "test_saudi*.py"         # 17 pass (9 new, 8 C01-06)
