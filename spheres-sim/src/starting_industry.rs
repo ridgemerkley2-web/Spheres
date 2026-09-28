@@ -493,8 +493,17 @@ fn add_groups(total: &mut [GroupSnapshot], rows: &[GroupSnapshot]) {
 }
 
 pub fn snapshot(w: &WorldState, nation: NationId) -> Option<NationSnapshot> {
-    let state = w.starting_industry.as_ref()?;
+    w.starting_industry.as_ref()?;
     let economy = province_economy::snapshot(w, nation)?;
+    snapshot_with_economy(w, nation, &economy)
+}
+
+/// Same immutable national ledger already read by the caller for this response.
+/// Public snapshots still obtain a fresh ledger; no view survives a world edit.
+pub(crate) fn snapshot_with_economy(w: &WorldState, nation: NationId,
+    economy: &province_economy::NationSnapshot) -> Option<NationSnapshot> {
+    debug_assert_eq!(economy.nation, nation);
+    let state = w.starting_industry.as_ref()?;
     let mut result = empty_groups();
     let mut origins = BTreeSet::new();
     let mut province_count = 0;
@@ -541,9 +550,18 @@ pub fn snapshot(w: &WorldState, nation: NationId) -> Option<NationSnapshot> {
     })
 }
 pub fn province(w: &WorldState, district: &str) -> Option<ProvinceSnapshot> {
+    w.starting_industry.as_ref()?.provinces.get(district)?;
+    let economy = province_economy::province(w, district)?;
+    province_with_economy(w, district, &economy)
+}
+
+/// Format the same native inherited reading from a province in the caller's
+/// fresh national snapshot, without reconstructing that whole ledger again.
+pub(crate) fn province_with_economy(w: &WorldState, district: &str,
+    economy: &province_economy::ProvinceSnapshot) -> Option<ProvinceSnapshot> {
+    debug_assert_eq!(economy.id, district);
     let state = w.starting_industry.as_ref()?;
     let assets = state.provinces.get(district)?;
-    let economy = province_economy::province(w, district)?;
     let groups = groups(state, assets, economy.inherited_gdp_bn);
     let capacity = groups.iter().map(|g| g.capacity_annual_bn).sum();
     let current = groups.iter().map(|g| g.current_output_annual_bn).sum();
