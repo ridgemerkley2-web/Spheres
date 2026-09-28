@@ -1720,7 +1720,16 @@ pub fn save(w: &WorldState) -> String {
     } else { serde_json::to_string_pretty(w).expect("serialize") }
 }
 pub fn load(s: &str) -> Result<WorldState, String> {
-    let mut w = company_save::decode(s)?;
+    finish_load(company_save::decode(s)?)
+}
+
+/// Restore an already parsed save through the same capability checks and
+/// migrations as [`load`], consuming its JSON tree rather than copying it.
+pub fn load_value(value: serde_json::Value) -> Result<WorldState, String> {
+    finish_load(company_save::decode_value(value)?)
+}
+
+fn finish_load(mut w: WorldState) -> Result<WorldState, String> {
     migrate_legacy_wars(&mut w);
     if w.theatres.is_empty() {
         w.theatres = theatre::default_theatres();

@@ -53,7 +53,7 @@ pub(crate) fn decode(text: &str) -> Result<Game, String> {
     if value.get("format").is_none() || matches!(value["format"].as_str(), Some("spheres-equipment-save" | "spheres-party-leadership-save" | "spheres-economy-save" | "spheres-companies-save" | "spheres-integrated-save")) {
         // The original CLI/browser format is still supported and uses every
         // simulation migration. It cannot invent an archive it never recorded.
-        let mut g = crate::loaded_play_game(crate::load(text)?);
+        let mut g = crate::loaded_play_game(spheres_sim::load_value(value)?);
         g.storage_notice=Some("Simulation save restored. Earlier history was not recorded in this file; new campaign saves preserve it.".into());
         return Ok(g);
     }
@@ -64,7 +64,7 @@ pub(crate) fn decode(text: &str) -> Result<Game, String> {
     }
     let file: Campaign =
         serde_json::from_value(value).map_err(|e| format!("Invalid campaign archive: {e}"))?;
-    let world = crate::load(&serde_json::to_string(&file.world).map_err(|e| e.to_string())?)?;
+    let world = spheres_sim::load_value(file.world)?;
     let mut g = crate::loaded_play_game(world);
     let current = Snapshot::from_world(&g.world).t;
     if file.history.iter().any(|s| {
@@ -244,6 +244,31 @@ pub(crate) fn autosave(root: &Path, g: &mut Game) {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn consuming_archive_world_matches_string_import_and_keeps_paid_timeline() {
+        let crate::s05_campaign_api_tests::PaidWorkFixture{mut game,..}=crate::s05_campaign_api_tests::paid_work_fixture();
+        game.record("Preserve the paid campaign archive through consuming decode.".into());
+        let archived=encode(&game).unwrap();
+        let file:Campaign=serde_json::from_str(&archived).unwrap();
+        // This is the former world import boundary: serialize the already parsed
+        // world and reload it. The new consuming boundary must preserve its bytes.
+        let original_world=crate::load(&serde_json::to_string(&file.world).unwrap()).unwrap();
+        let mut restored=decode(&archived).unwrap();
+        assert_eq!(crate::save(&restored.world),crate::save(&original_world));
+        assert_eq!(restored.history,file.history);
+        assert_eq!(restored.log,file.log);
+        assert_eq!(restored.history_epoch,file.history_epoch);
+        assert_eq!(serde_json::to_value(&restored.journey).unwrap(),serde_json::to_value(&file.journey).unwrap());
+        game.advance_days(1,vec![]);
+        restored.advance_days(1,vec![]);
+        assert_eq!(crate::save(&restored.world),crate::save(&game.world));
+        assert_eq!(restored.history,game.history);
+        assert_eq!(restored.log,game.log);
+        let mut bad:Value=serde_json::from_str(&archived).unwrap();
+        bad["world"]["supplier_operations_version"]=json!(999);
+        let world_error=crate::load(&bad["world"].to_string()).unwrap_err();
+        assert_eq!(decode(&bad.to_string()).err().unwrap(),world_error);
+    }
     #[test]
     fn integrated_paid_work_survives_interrupted_write_and_valid_backup_recovery() {
         let crate::s05_campaign_api_tests::PaidWorkFixture{mut game,formation,assignment,..}=crate::s05_campaign_api_tests::paid_work_fixture();
