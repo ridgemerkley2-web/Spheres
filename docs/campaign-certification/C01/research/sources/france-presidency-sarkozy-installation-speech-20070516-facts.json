@@ -1,0 +1,38 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_cc_sarkozy_installation_speech_20070516",
+  "source_url": "https://www.conseil-constitutionnel.fr/sites/default/files/as/root/bank_mm/dossiers_thematiques/presidentielle_2007/disc-investiture-16-05-07.pdf",
+  "accessed_date": "2026-09-27",
+  "published_date": "2007-05-16",
+  "access_method": "downloaded_original_pdf_text_and_page_render_review",
+  "source_response_bytes": 231349,
+  "source_response_sha256": "95ba3192fd30e8bdbba949f2d7a2def61d96a2a3b88081f99d2f95ea7a421583",
+  "source_response_checked_in": false,
+  "provenance_note": "A stored file downloaded directly from the publisher; this packet requested it with curl's default User-Agent and Accept-Encoding: identity, and the response had no Content-Encoding. The part B researcher recorded this identity on 26 September 2026 (UTC) and re-downloaded it 32 to 38 minutes later; the part B check downloaded it again that day with the same result. This packet downloaded it at 2026-09-27 23:47Z and again at 2026-09-28 00:22Z, and with a cache-busting query at 2026-09-28 00:24Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Static PDF in the Conseil constitutionnel's file store (Last-Modified 4 January 2010, ETag \"4b423114-387b5\"; embedded CreationDate 23 September 2007). The host answered HTTP 403 to every request for some hours on 26 September 2026 and HTTP 200 to curl's default User-Agent on 27-28 September 2026; no block was bypassed. A later-hosted copy of a Présidence print; the Élysée's own page reproduces the same address (not recorded twice).",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "Both pages read from the text layer; page 1 (banner, heading and first paragraph) rendered and read by the part B researcher."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_sarkozy_takes_office_statement_20070516",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-04",
+      "role_id": "fr_president",
+      "holder_name": "M. Nicolas Sarkozy",
+      "role_title": "Président de la République française",
+      "event_kind": "holder_assumption_statement",
+      "attested_on": "2007-05-16",
+      "text": "Headed as the installation-ceremony address of M. Nicolas Sarkozy, Président de la République, Palais de l'Elysée, 16 May 2007, the speech opens 'En ce jour où je prends officiellement mes fonctions de Président de la République française'.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "heading block and first paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

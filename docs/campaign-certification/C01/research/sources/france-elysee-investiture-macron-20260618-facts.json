@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_elysee_investiture_macron",
+  "source_url": "https://web.archive.org/web/20260618043729id_/https://www.elysee.fr/linvestiture-demmanuel-macron",
+  "original_url": "https://www.elysee.fr/linvestiture-demmanuel-macron",
+  "archive_capture_utc": "2026-06-18T04:37:29Z",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 267860,
+  "source_response_sha256": "240cc9757e95507b49ff1f1da5933fa79228668765be80b703e5f4490eff72e3",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2026-06-18T04:37:29Z; that form replays the archived bytes unchanged and is used in place of the live address. Requested with Accept-Encoding: identity and served without Content-Encoding, so the recorded identity is the body as received. Located by the part B check, which downloaded it on 26 September 2026 (UTC) and again 8 to 52 minutes later with the same result. This packet downloaded it at 2026-09-27 23:49Z and again at 2026-09-28 00:23Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture of 18 June 2026 (ArchiveTeam crawl, served without Content-Encoding) of a live Élysée page that prints 'Mis à jour le : 14 décembre 2022'; the live page carries rotating 'Derniers articles' menu blocks and is not a reproducible identity, so the pre-cutoff capture is recorded. Its main text matches the live page. The account is the office's own retrospective narrative, not a record made on the day. Only the section 'Premier mandat - 14 mai 2017' is imported; the 2022 section duplicates the Élysée's page of 7 May 2022.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML section 'Premier mandat - 14 mai 2017' read; no images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_elysee_macron_received_by_hollande_20170514",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-06",
+      "role_id": "fr_president",
+      "holder_name": "M. Emmanuel Macron",
+      "role_title": "Président de la République",
+      "event_kind": "handover_meeting",
+      "attested_on": "2017-05-14",
+      "text": "The Élysée states that 'M. François Hollande a accueilli au Palais de l'Élysée, à 10 heures le dimanche 14 mai 2017, M. Emmanuel Macron, élu le 7 mai 2017 Président de la République', and that after a meeting of nearly an hour M. Emmanuel Macron accompanied him to his car.",
+      "locator": {
+        "html": "section 'Premier mandat - 14 mai 2017', first paragraph and the first clause of the second"
+      }
+    },
+    {
+      "claim_id": "fr_elysee_macron_2017_investiture_ceremony_20170514",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-06",
+      "role_id": "fr_president",
+      "holder_name": "M. Emmanuel Macron",
+      "role_title": "Président de la République",
+      "event_kind": "investiture_ceremony",
+      "attested_on": "2017-05-14",
+      "text": "It states that he then went to the Salon des ambassadeurs, where he received the insignia of Grand Master of the Legion of Honour, and entered the Salle des Fêtes, where the President of the Constitutional Council, Laurent Fabius, proclaimed the official results of the presidential election.",
+      "locator": {
+        "html": "section 'Premier mandat - 14 mai 2017', second paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

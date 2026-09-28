@@ -1,0 +1,56 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_an_jo_debats_19900827",
+  "source_url": "https://archives.assemblee-nationale.fr/9/cri/1989-1990-extraordinaire2/001.pdf",
+  "accessed_date": "2026-09-27",
+  "published_date": "1990-08-28",
+  "access_method": "downloaded_original_pdf_text_and_page_render_review",
+  "source_response_bytes": 1491105,
+  "source_response_sha256": "765b7c0919dcfd1351e030c1f36b3192f2d15c8484bdff258f4d807c1dc031db",
+  "source_response_checked_in": false,
+  "provenance_note": "A stored file downloaded directly from the publisher; this packet requested it with curl's default User-Agent and Accept-Encoding: identity, and the response had no Content-Encoding. The part A researcher recorded this identity on 26 September 2026 (UTC) and re-downloaded it 35 to 50 minutes later; the part A check downloaded it again that day with the same result. This packet downloaded it at 2026-09-27 23:46Z and again at 2026-09-28 00:21Z, and with a cache-busting query at 2026-09-28 00:24Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Static PDF of a scanned issue on the Assemblée nationale's archive host (Apache; Last-Modified 6 February 2021, ETag \"16c0a1-5baa721ec6ac0\"), linked from https://archives.assemblee-nationale.fr/9/cri/9-1989-1990-extraordinaire2.html. The text layer is OCR of the scan, so printed page 3213 was rendered and read. The Journal officiel of 23 August 1990 that printed the decree was not retrieved.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      3
+    ],
+    "method": "Page 1 (masthead) and page 3 (printed page 3213: decree, signature block, letter and message) rendered and read; the OCR text layer was not relied on alone."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_mitterrand_signs_convocation_decree_as_president_19900822",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-01",
+      "role_id": "fr_president",
+      "holder_name": "FRANÇOIS MITTERRAND",
+      "role_title": "Président de la République",
+      "event_kind": "in_office_signature_as_president",
+      "attested_on": "1990-08-22",
+      "text": "The President of the Assembly reads the decree of the President of the Republic convening Parliament in extraordinary session from Monday 27 August 1990, 'Fait à Paris, le 22 août 1990', signed FRANÇOIS MITTERRAND with 'Par le Président de la République :' and 'Le Premier ministre, MICHEL ROCARD'; he states that it appeared in the Journal officiel of 23 August 1990.",
+      "locator": {
+        "pdf_page": 3,
+        "printed_page": 3213,
+        "item": "1 - Ouverture de la deuxième session extraordinaire de 1989-1990"
+      }
+    },
+    {
+      "claim_id": "fr_mitterrand_message_to_parliament_read_19900827",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-01",
+      "role_id": "fr_president",
+      "holder_name": "FRANÇOIS MITTERRAND",
+      "role_title": "Président de la République",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1990-08-27",
+      "text": "At the sitting of 27 August 1990 the President of the Assembly reads a letter from the President of the Republic dated 'Paris, le 27 août 1990', sent under Article 18 of the Constitution and signed FRANÇOIS MITTERRAND, and the message it transmits; the Assembly takes note ('donne acte') of the message of the President of the Republic.",
+      "locator": {
+        "pdf_page": 3,
+        "printed_page": 3213,
+        "item": "2 - Message de M. le Président de la République"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

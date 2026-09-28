@@ -1,0 +1,36 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_jorf_dila_opendata_20260904",
+  "source_url": "https://echanges.dila.gouv.fr/OPENDATA/JORF/JORF_20260904-212554.tar.gz",
+  "accessed_date": "2026-09-27",
+  "published_date": "2026-09-04",
+  "access_method": "downloaded_official_open_data_archive_and_xml_member_read",
+  "source_response_bytes": 2473426,
+  "source_response_sha256": "5d8811542a11d9e5bcad7a14bb6cc218aea77d956323d820680afd148d02fa19",
+  "source_response_checked_in": false,
+  "provenance_note": "A stored file downloaded directly from the publisher; this packet requested it with curl's default User-Agent and Accept-Encoding: identity, and the response had no Content-Encoding. The part C researcher recorded this identity on 26 September 2026 (UTC) and re-downloaded it 31 to 85 minutes later; the part C check downloaded it again that day with the same result. This packet downloaded it at 2026-09-27 23:50Z and again at 2026-09-28 00:23Z, and with a cache-busting query at 2026-09-28 00:24Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A daily Journal officiel open-data export, a static file in DILA's open-data directory (Last-Modified 4 September 2026 19:30:18 GMT; ETag \"25bdd2-65aad4c6e6e56\"); the .tar.gz is the file itself, not a Content-Encoding. The member read is 20260904-212554/jorf/global/texte/version/JORF/TEXT/00/00/54/79/43/JORFTEXT000054794375.xml (5 587 bytes, SHA-256 809e762eae8431954fb71f626cc9fe3d031fe74011d1518232a32fefc70f0ced), a TEXTE_VERSION record whose Légifrance identifiers are JORFTEXT000054794375 and NOR JUSB2615657D. Retention caveat: the directory lists daily files back to 13 July 2025, so daily exports appear to be removed after about fourteen months; re-verify before mid-2027. Légifrance itself refuses automated access, which was not bypassed. The named civil servant or magistrate the decree concerns is not recorded.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Structured XML record read directly (metadata, visas and signature block); no rendering needed."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_jorf_decree_signed_macron_20260903",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-10",
+      "role_id": "fr_president",
+      "holder_name": "Emmanuel MACRON",
+      "role_title": "Président de la République",
+      "event_kind": "in_office_signature_as_president",
+      "attested_on": "2026-09-03",
+      "text": "A decree of 3 September 2026 keeping a magistrate on secondment, published in JORF n°0206 of 4 September 2026 (NOR JUSB2615657D, JORFTEXT000054794375), opens 'Le Président de la République, ... Décrète' and closes 'Fait le 3 septembre 2026.', signed 'Emmanuel MACRON', with 'Par le Président de la République :' and 'Le Premier ministre,' 'Sébastien LECORNU'.",
+      "locator": {
+        "archive_member": "20260904-212554/jorf/global/texte/version/JORF/TEXT/00/00/54/79/43/JORFTEXT000054794375.xml",
+        "item": "DATE_TEXTE 2026-09-03; ORIGINE_PUBLI 'JORF n°0206 du 4 septembre 2026'; VISAS; SIGNATAIRES"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

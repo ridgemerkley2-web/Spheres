@@ -1,0 +1,53 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_cc_debre_investiture_address_20070516",
+  "source_url": "https://www.conseil-constitutionnel.fr/sites/default/files/2019-03/invest1.pdf",
+  "accessed_date": "2026-09-27",
+  "published_date": "2007-05-16",
+  "access_method": "downloaded_original_pdf_text_and_page_render_review",
+  "source_response_bytes": 15108,
+  "source_response_sha256": "891028cb791b4be6dcbc1b3ecd1df721005892512704a83ab4c0a72e0c1c5f56",
+  "source_response_checked_in": false,
+  "provenance_note": "A stored file downloaded directly from the publisher; this packet requested it with curl's default User-Agent and Accept-Encoding: identity, and the response had no Content-Encoding. Located by the part B check, which downloaded it on 26 September 2026 (UTC) and again 8 to 52 minutes later with the same result. This packet downloaded it at 2026-09-27 23:46Z and again at 2026-09-28 00:22Z, and with a cache-busting query at 2026-09-28 00:24Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Static PDF in the Conseil constitutionnel's file store (Last-Modified 7 March 2019, ETag \"5c8127d7-3b04\"; embedded CreationDate 16 May 2007, 12:25). The host answered HTTP 403 to every request for some hours on 26 September 2026 and HTTP 200 to curl's default User-Agent on 27-28 September 2026; no block was bypassed. The Council's 2007 election page links it as the President of the Council's proclamation of the final results. Located by the part B check.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1
+    ],
+    "method": "The single page read from the text layer and rendered and read by the part B check."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_cc_debre_2007_investiture_ceremony_20070516",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-04",
+      "role_id": "fr_president",
+      "holder_name": null,
+      "role_title": "Président de la République",
+      "event_kind": "investiture_ceremony",
+      "attested_on": "2007-05-16",
+      "text": "Address headed as that of the President of the Constitutional Council 'au Président de la République à l'occasion de la cérémonie d'investiture au Palais de l'Elysée le 16 mai 2007', recalling that on 6 May 2007 'vous avez recueilli 18.983.138 voix' and that the Council proclaimed him elected 'le 10 mai dernier'.",
+      "locator": {
+        "pdf_page": 1,
+        "item": "heading and first two paragraphs"
+      }
+    },
+    {
+      "claim_id": "fr_cc_debre_2007_from_this_day_20070516",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-04",
+      "role_id": "fr_president",
+      "holder_name": null,
+      "role_title": "Président de la République",
+      "event_kind": "start_stated_at_investiture",
+      "attested_on": "2007-05-16",
+      "text": "The address states: 'vous devenez ainsi le sixième Président de la Cinquième République' and 'A compter de ce jour, et pour la durée de votre mandat, vous incarnez la France, symbolisez la République et représentez l'ensemble des Français.'",
+      "locator": {
+        "pdf_page": 1,
+        "item": "third and fourth body paragraphs"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

@@ -1,0 +1,56 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_cc_rapport_activite_2017",
+  "source_url": "https://www.conseil-constitutionnel.fr/sites/default/files/2018-09/rapport_cc_2017.pdf",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "downloaded_original_pdf_text_and_page_render_review",
+  "source_response_bytes": 4686844,
+  "source_response_sha256": "ef5a5144037f7d6942bfc66905c22af13b7fd779471f38556071fb47ba67f547",
+  "source_response_checked_in": false,
+  "provenance_note": "A stored file downloaded directly from the publisher; this packet requested it with curl's default User-Agent and Accept-Encoding: identity, and the response had no Content-Encoding. The part B researcher recorded this identity on 26 September 2026 (UTC) and re-downloaded it 32 to 38 minutes later; the part B check downloaded it again that day with the same result. This packet downloaded it at 2026-09-27 23:49Z and again at 2026-09-28 00:23Z, and with a cache-busting query at 2026-09-28 00:24Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Static PDF in the Conseil constitutionnel's file store (Last-Modified 26 September 2018, ETag \"5bab46a1-4783fc\"; embedded CreationDate 27 September 2017). The host answered HTTP 403 to every request for some hours on 26 September 2026 and HTTP 200 to curl's default User-Agent on 27-28 September 2026; no block was bypassed. A retrospective annual report: its statements are claims only. A download on 26 September 2026 ended early at 4,573,046 bytes (a truncated transfer, not a changed file); every complete download matched the recorded identity.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      12,
+      15
+    ],
+    "method": "Text layer of all 82 pages searched; PDF pages 12 and 15 (printed pages 9 and 12) rendered and read by the part B researcher."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_cc_rapport2017_officially_invested_20170514",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-06",
+      "role_id": "fr_president",
+      "holder_name": null,
+      "role_title": "Président de la République",
+      "event_kind": "investiture_ceremony_retrospective",
+      "attested_on": "2017-05-14",
+      "text": "The report states that on 10 May 2017 the Council proclaimed the official second-round results and that 'Le 14 mai, à l'Élysée, Laurent Fabius a officiellement investi le nouveau Président de la République.'",
+      "locator": {
+        "pdf_page": 12,
+        "printed_page": 9,
+        "item": "photo caption headed '10 MAI 2017'"
+      }
+    },
+    {
+      "claim_id": "fr_cc_rapport2017_transfer_of_powers_20170514",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-06",
+      "role_id": "fr_president",
+      "holder_name": "Emmanuel Macron",
+      "role_title": "Président de la République",
+      "event_kind": "transfer_of_powers_retrospective",
+      "attested_on": "2017-05-14",
+      "text": "Under the entry '7 mai' ('second tour de scrutin') the report states that the Council 'a proclamé élu Emmanuel Macron le 10 mai' and that 'La passation des pouvoirs entre l'ancien et le nouveau Président de la République a eu lieu à l'Élysée le 14 mai.'",
+      "locator": {
+        "pdf_page": 15,
+        "printed_page": 12,
+        "item": "'2017 résumé en 5 dates clés', entry '7 mai'"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

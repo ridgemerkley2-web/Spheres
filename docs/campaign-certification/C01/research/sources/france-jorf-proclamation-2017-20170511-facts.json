@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_jorf_proclamation_20170511",
+  "source_url": "https://web.archive.org/web/20210216045704id_/https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000034674096",
+  "original_url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000034674096",
+  "archive_capture_utc": "2021-02-16T04:57:04Z",
+  "accessed_date": "2026-09-27",
+  "published_date": "2017-05-11",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 103631,
+  "source_response_sha256": "0616f940d3009d3f6be425cf41586f0b89bd118d87576e2682f041069f7022fc",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original page, captured at 2021-02-16T04:57:04Z; that form replays the archived bytes unchanged and is used in place of the live address. Requested with Accept-Encoding: identity and served without Content-Encoding, so the recorded identity is the body as received. Located by the part B check, which downloaded it on 26 September 2026 (UTC) and again 8 to 52 minutes later with the same result. This packet downloaded it at 2026-09-27 23:48Z and again at 2026-09-28 00:22Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture of 16 February 2021 of Légifrance's Journal officiel text page (NOR CSCL1714218S); Légifrance itself refuses automated access, which was not bypassed. Located by the part B check.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read in full (reference block and the decision text); no images relied on."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_jorf_publishes_2017_proclamation_20170511",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-06",
+      "role_id": "fr_president",
+      "holder_name": "M. Emmanuel MACRON",
+      "role_title": "Président de la République française",
+      "event_kind": "result_publication",
+      "attested_on": "2017-05-11",
+      "text": "The Journal officiel n°0110 of 11 May 2017 publishes as its text no. 1 decision no. 2017-171 PDR, proclaiming 'M. Emmanuel MACRON élu Président de la République française', who 'prendra ses fonctions à compter de la cessation de celles de M. François HOLLANDE'.",
+      "locator": {
+        "item": "reference block ('NOR : CSCL1714218S', 'JORF n°0110 du 11 mai 2017', 'Texte n° 1') and the dispositif"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

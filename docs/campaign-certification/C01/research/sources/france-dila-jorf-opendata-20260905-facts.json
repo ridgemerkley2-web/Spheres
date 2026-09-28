@@ -1,0 +1,36 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_jorf_dila_opendata_20260905",
+  "source_url": "https://echanges.dila.gouv.fr/OPENDATA/JORF/JORF_20260905-213606.tar.gz",
+  "accessed_date": "2026-09-27",
+  "published_date": "2026-09-05",
+  "access_method": "downloaded_official_open_data_archive_and_xml_member_read",
+  "source_response_bytes": 4271518,
+  "source_response_sha256": "e63c469405887a58d37a92b4dd96fbf0922198a630c85bcd840a68f33c61ae49",
+  "source_response_checked_in": false,
+  "provenance_note": "A stored file downloaded directly from the publisher; this packet requested it with curl's default User-Agent and Accept-Encoding: identity, and the response had no Content-Encoding. The part C researcher recorded this identity on 26 September 2026 (UTC) and re-downloaded it 31 to 85 minutes later; the part C check downloaded it again that day with the same result. This packet downloaded it at 2026-09-27 23:50Z and again at 2026-09-28 00:23Z, and with a cache-busting query at 2026-09-28 00:24Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A daily Journal officiel open-data export, a static file in DILA's open-data directory (Last-Modified 5 September 2026 19:39:53 GMT; ETag \"412d9e-65ac18c8f16a8\"); the .tar.gz is the file itself, not a Content-Encoding. The member read is 20260905-213606/jorf/global/texte/version/JORF/TEXT/00/00/54/79/71/JORFTEXT000054797136.xml (5 613 bytes, SHA-256 fff3a4461ee5e5c37501a98a8d48d5cc88fd2e4378fec13353679fc106dfa898), a TEXTE_VERSION record whose Légifrance identifiers are JORFTEXT000054797136 and NOR CPPE2619837D. Retention caveat: the directory lists daily files back to 13 July 2025, so daily exports appear to be removed after about fourteen months; re-verify before mid-2027. Légifrance itself refuses automated access, which was not bypassed. The named civil servant or magistrate the decree concerns is not recorded.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Structured XML record read directly (metadata, visas and signature block); no rendering needed."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_jorf_decree_signed_macron_20260904",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-10",
+      "role_id": "fr_president",
+      "holder_name": "Emmanuel MACRON",
+      "role_title": "Président de la République",
+      "event_kind": "in_office_signature_as_president",
+      "attested_on": "2026-09-04",
+      "text": "A decree of 4 September 2026 making an appointment in a regional public-finance directorate, published in JORF n°0207 of 5 September 2026 (NOR CPPE2619837D, JORFTEXT000054797136), opens 'Le Président de la République, ... Décrète' and closes 'Fait le 4 septembre 2026.', signed 'Emmanuel MACRON', with 'Par le Président de la République :' and 'Le Premier ministre,' 'Sébastien LECORNU' and the countersigning minister.",
+      "locator": {
+        "archive_member": "20260905-213606/jorf/global/texte/version/JORF/TEXT/00/00/54/79/71/JORFTEXT000054797136.xml",
+        "item": "DATE_TEXTE 2026-09-04; ORIGINE_PUBLI 'JORF n°0207 du 5 septembre 2026'; VISAS; SIGNATAIRES"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}

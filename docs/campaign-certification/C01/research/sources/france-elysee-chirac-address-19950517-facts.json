@@ -1,0 +1,69 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "fr_elysee_chirac_address_elysee_19950517",
+  "source_url": "https://www.elysee.fr/front/pdf/elysee-module-8257-fr.pdf",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "downloaded_presidency_archive_pdf_text_and_page_render_review",
+  "source_response_bytes": 142308,
+  "source_response_sha256": "034e3bc470008764ff1bcc2d89b46bf409392faf25e9fec19cb8f66d3a1e07d3",
+  "source_response_checked_in": false,
+  "provenance_note": "A stored file downloaded directly from the publisher; this packet requested it with curl's default User-Agent and Accept-Encoding: identity, and the response had no Content-Encoding. The part A researcher recorded this identity on 26 September 2026 (UTC) and re-downloaded it 35 to 50 minutes later; the part A check downloaded it again that day with the same result. This packet downloaded it at 2026-09-27 23:46Z and again at 2026-09-28 00:21Z, and with a cache-busting query at 2026-09-28 00:24Z (UTC), each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Élysée archive per-item PDF rendering of the archived page (wkhtmltopdf 0.12.5, embedded CreationDate 23 June 2023), served through Cloudflare. The server's Last-Modified header is generated per request and is not evidence; byte stability rests on identical SHA-256 across the recorded download of 26 September 2026 and this packet's plain and cache-busted downloads of 27-28 September 2026 (UTC). The date line reads '17 mai 1995 - Seul le prononcé fait foi' (only the delivered text is authoritative). Speaker styling and titles in the archive headings are catalogue labels added later, not part of the original text (the same archive heads Jacques Chirac's election-night declaration of 7 May 1995 'Président de la République' ten days before he took office); dates come from the date line.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      2
+    ],
+    "method": "Pages 1 (date line and heading) and 2 (the address) rendered and read by the part A researcher; text layer re-read."
+  },
+  "rows": [
+    {
+      "claim_id": "fr_chirac_address_cites_election_day_19950507",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-02",
+      "role_id": "fr_president",
+      "holder_name": null,
+      "role_title": "Président de la République",
+      "event_kind": "election_reference",
+      "attested_on": "1995-05-07",
+      "text": "In the address dated 17 May 1995 the speaker says: 'Le 7 mai, le peuple français a exprimé sa volonté de changement.'",
+      "locator": {
+        "page": 2,
+        "section": "third paragraph after the salutation"
+      }
+    },
+    {
+      "claim_id": "fr_chirac_assumes_office_statement_19950517",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-02",
+      "role_id": "fr_president",
+      "holder_name": "M. Jacques Chirac",
+      "role_title": "Président de la République",
+      "event_kind": "holder_assumption_statement",
+      "attested_on": "1995-05-17",
+      "text": "In the address at the Élysée dated 17 May 1995 M. Jacques Chirac says 'En ce jour où je prends la responsabilité d'assumer la plus haute charge de l'Etat' and, later, 'Un nouveau septennat commence'.",
+      "locator": {
+        "page": 2,
+        "section": "first and twelfth paragraphs after the salutation"
+      }
+    },
+    {
+      "claim_id": "fr_chirac_predecessor_departure_statement_19950517",
+      "observation_id": "fr_presidency",
+      "review_observation": "FR-PRES-08",
+      "role_id": "fr_president",
+      "holder_name": "François Mitterrand",
+      "role_title": "Président de la République",
+      "event_kind": "predecessor_departure_statement",
+      "attested_on": "1995-05-17",
+      "text": "The same address says: 'Le Président François Mitterrand a marqué de son empreinte les quatorze ans qui viennent de s'écouler.'",
+      "locator": {
+        "page": 2,
+        "section": "eleventh paragraph after the salutation"
+      }
+    }
+  ],
+  "bounded_scope": "Head-of-state observations for CLAUDE-C01-23 only (Président de la République, 1 January 1990 to the 7 September 2026 cutoff). Election rounds, the Constitutional Council's proclamation, its publication, the investiture ceremony, a stated start of term, an outer limit and any stated end stay separate rows; holder boundaries are decided in the packet, not by any row. Prime ministers, ministers, party offices and the President of the Senate's interim office are excluded."
+}
