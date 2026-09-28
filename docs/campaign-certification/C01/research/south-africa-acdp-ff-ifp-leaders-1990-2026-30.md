@@ -568,7 +568,7 @@ three parties' own hosts and rejects search, API, feed, listing and cache-bustin
   Christmas message `kersboodskap-pieter-groenewald-vf-plus-leier` (24 December 2018): further Groenewald attestations
   left out to keep the set compact (the English twin of the latter is bylined Pieter Mulder); the Afrikaans version of
   the 25 March 2026 release (capture 20260326034627, 379,776 bytes, `90179f01…`): intermittently replayed as HTTP 404 on
-  28 September 2026; the first capture of the English release (20260325190953): now redirects to 20260325202348; the
+  28 September 2026; the first capture of the English release (20260325190953): redirected to 20260325202348 at times on 28 September 2026 and otherwise serves the same 377,918 bytes (`91fbac0a…`) with the same CDX digest; the
   homepage capture 20250225124553 with embedded social posts on Corné Mulder's election: a growing listing page with
   rotating blocks; the executive-management rosters of October 2024, April 2025 and January 2026: undated; items of
   December 2024 to June 2026 bylined by the leader: bylines are not attestations.
@@ -621,7 +621,7 @@ These are proposals for the integrator. They are not created in `work-orders.jso
   pending packet; the claim commit `68535825` holds only the handoff. Before committing, `codex/campaign-certification`
   was fetched: it had moved to `3ec6e155`, which was merged (merge commit `b69e579a`, whose tree equals `3ec6e155`).
   The only conflict was an add/add on the handoff: the integration copy is the claim record of `68535825` byte for byte
-  plus Codex's appended registration note, so it was taken unchanged and this packet's result appended after it. After
+  plus Codex's appended registration note, so it was taken unchanged in the merge; the packet commit `033f098d` then changed only its header (the State line to `ready_for_review`, the Report link and the claim-commit hash) and appended this packet's result after Codex's note. After
   the packet and index commits, the integration branch moved again, to `5d970f6d`; it was merged in `a39f1ac8`, whose
   only conflict, `research-index.json`, was regenerated, and every check was rerun on the merged tree. The
   central task queue (`docs/planning/ai-task-queue.json`) still lists CLAUDE-C01-30 as claimed; it is outside this
@@ -644,8 +644,8 @@ These are proposals for the integrator. They are not created in `work-orders.jso
     role count (10) and the index totals (10, 406).
 - The new test `test_south_africa_party_leaders_c01_30.py` pins the ANC holders literally rather than importing them, so
   the earlier tests can import its response pins without a circular import.
-- `test_campaign_census` needs `spheres-sim/data`, which is absent from this sparse worktree; see the handoff for what was
-  run. The sparse checkout was not widened.
+- `test_campaign_census` needs `spheres-sim/data`, which is present in this sparse worktree; it ran and passed with the
+  other campaign tests (see the handoff). The sparse checkout was not widened.
 - New extract fields match CLAUDE-C01-16 (`source_response_sha1_base32`, `source_response_content_encoding`,
   `decoded_response_bytes`/`decoded_response_sha256` for the gzip captures, `fetch_recipe`, `stability_check`,
   `review_observation`, `printed_range`); rows of organization claims carry `role_id` and `role_title` null.
@@ -666,4 +666,10 @@ python tools/planning/workboard.py --check
 git diff --check
 ```
 
-Results are recorded in the handoff.
+Results are recorded in the handoff. Known failures outside the listed checks, not fixed: `tools/avatars/test_certified_gap_ledger.py` errors on a new
+packet's sources ("no pinned attribution") until Codex classifies the packet's commit in `COMMIT_PACKETS` at
+integration; `tools/avatars/test_certified_boundary_matrix.py` (S23) needs `spheres-web/src`, which the sparse checkout
+lacks, and in a full checkout reports the packet as `unclassified_packet` with stale boundary-matrix files, so Codex must
+list the packet and regenerate `docs/campaign-certification/S23/preparation/boundary-matrix/` on integration. Both
+already fail on the merged base `5d970f6d` (the gap ledger stops first at "Missing explicit acceptance record for
+CLAUDE-C01-23").
