@@ -1,0 +1,66 @@
+   Compiling spheres-web v0.6.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-web)
+warning: unused import: `path::PathBuf`
+ --> spheres-web\vendor\tiny_http\src\connection.rs:7:5
+  |
+7 |     path::PathBuf,
+  |     ^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `SequentialWriter`
+ --> spheres-web\vendor\tiny_http\src\util\mod.rs:7:28
+  |
+7 | pub use self::sequential::{SequentialWriter, SequentialWriterBuilder};
+  |                            ^^^^^^^^^^^^^^^^
+
+warning: trait `MustBeShareDummy` is never used
+   --> spheres-web\vendor\tiny_http\src\lib.rs:164:7
+    |
+164 | trait MustBeShareDummy: Sync + Send {}
+    |       ^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `tiny_http` (lib) generated 3 warnings (run `cargo fix --lib -p tiny_http` to apply 2 suggestions)
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+error[E0425]: cannot find function `enabled` in this scope
+   --> spheres-sim\src\military_import_command_tests.rs:25:17
+    |
+ 25 |         assert!(enabled(&actual), "checkpoint must exercise military procurement");
+    |                 ^^^^^^^
+    |
+   ::: spheres-sim\src\military_ai.rs:50:1
+    |
+ 50 | pub fn enable(w: &mut WorldState) -> Result<(), String> {
+    | ------------------------------------------------------- similarly named function `enable` defined here
+    |
+note: these functions exist but are inaccessible
+   --> spheres-sim\src\armed_security.rs:86:1
+    |
+ 86 | fn enabled(w: &WorldState) -> bool { w.rules.ideology_blocs && w.rules.ideology_takeover }
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::armed_security::enabled`: not accessible
+    |
+   ::: spheres-sim\src\manufacturing.rs:868:5
+    |
+868 |     fn enabled() -> (WorldState, NationId, String) {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::manufacturing::tests::enabled`: not accessible
+help: a function with a similar name exists
+    |
+ 25 -         assert!(enabled(&actual), "checkpoint must exercise military procurement");
+ 25 +         assert!(enable(&actual), "checkpoint must exercise military procurement");
+    |
+help: consider importing one of these functions
+    |
+  5 +     use crate::campaign::enabled;
+    |
+  5 +     use crate::commerce::enabled;
+    |
+  5 +     use crate::economic_ai::enabled;
+    |
+  5 +     use crate::fiscal_recovery::enabled;
+    |
+    = and 6 other candidates
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `spheres-sim` (lib test) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
