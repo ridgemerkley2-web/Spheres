@@ -220,7 +220,7 @@ module.exports=async function navigationCloseout({page,tap,state,read,shot,evide
   await closeProvince('Close recovered province');
 
   const production=record('navigation-production',await read('production'));
-  const facility=production.completed.find(r=>r.outcome_actions?.some(a=>a.kind==='arms_plant'));
+  const facility=production.completed.find(r=>r.province?.id!==paris&&r.outcome_actions?.some(a=>a.kind==='arms_plant'));
   assert(facility?.province?.id&&facility.province.id!==paris,'Earned Arms Plant in a second province');
   const other=facility.province.id,otherName=facility.province.name||other;
   await parisCity('touch');const cross=await holdPopulation(paris,'cross-province');await cityProvince('touch');await cross.seen();
