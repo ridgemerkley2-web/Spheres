@@ -57,3 +57,9 @@ Checks: research-index `--check`; `campaign_census.py --check`; the Russia/USSR,
 (census included); the atlas Node check; `workboard.py --check`; `git diff --check`.
 
 Mark the packet `ready_for_review` when done. C01 and all parent gates stay open.
+
+## Integration claim registration — 28 September 2026
+
+Codex mirrored this existing claim into the central queue after S22. The original
+claim above remains in progress; no research content or historical acceptance
+was imported. Inspected remote head: `2c4d5bd7`. Do not duplicate this work.

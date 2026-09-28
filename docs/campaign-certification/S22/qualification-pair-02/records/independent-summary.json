@@ -1,0 +1,330 @@
+{
+  "reviewed_utc": "2026-09-28T12:17:15.291Z",
+  "reviewer": "Codex /root/review_source05",
+  "candidate": "5d11dd6dae436eeca105dbaf0d02732cd768b35b",
+  "manifest_sha256": "536da5d948d2123d45ca6072d2cb8233f4e172daf9ac177d9d716dca948cf92e",
+  "independent_verdict_sha256": "d9660d3d7903fbc38eff3e03bb07d96c7a44f3ae607a862765737d7c7f0d9b48",
+  "original_verdict_sha256": "7ffa590f9134b2d27ede07fbcd12d8b163d3966ac0a146ef53ec3127e2a2019b",
+  "independent_verdict_matches_except_timestamp": true,
+  "identity": {
+    "files_rehashed": 83,
+    "runtime_tree_unchanged": true,
+    "lineage": {
+      "reviewed_by": "Codex /root/review_gap_submission",
+      "reviewed_utc": "2026-09-28T06:56:31.515Z",
+      "links": 4,
+      "scope": "Hashes and recorded checkpoint/date linkage independently checked against an explicit reviewed provenance record. This does not independently replay the intervening campaign years."
+    }
+  },
+  "cells": 18,
+  "passed": 18,
+  "rounds": [
+    {
+      "round": "initial_full_qualification",
+      "complete": true,
+      "passed": true
+    },
+    {
+      "round": "second_full_confirmation",
+      "complete": true,
+      "passed": true
+    }
+  ],
+  "start_utc": "2026-09-28T11:35:48.236Z",
+  "last_cell_end_utc": "2026-09-28T12:11:19.665Z",
+  "minimum_measured_cell_gap_ms": 2643,
+  "journal_launches": 18,
+  "journal_exits": 18,
+  "native": [
+    {
+      "id": "r1-early-france-1999-native",
+      "start_date": "13 May 1999",
+      "end_date": "13 Jun 1999",
+      "simulation_p95_ms": 182.24509999999998,
+      "whole_p95_ms": 243.0344,
+      "whole_max_ms": 243.8629,
+      "max_private_bytes": 458428416,
+      "os_peak_working_set_bytes": 416329728,
+      "memory_samples": 243,
+      "batch_days_per_second": 8.812838452085762,
+      "final_world_fnv64": "5e2885a23e03ba8e",
+      "real_control_commands": 0
+    },
+    {
+      "id": "r1-mid-france-2015-native",
+      "start_date": "1 Jan 2015",
+      "end_date": "1 Feb 2015",
+      "simulation_p95_ms": 257.4512,
+      "whole_p95_ms": 314.1968,
+      "whole_max_ms": 458.5752,
+      "max_private_bytes": 852783104,
+      "os_peak_working_set_bytes": 781721600,
+      "memory_samples": 551,
+      "batch_days_per_second": 5.488463806776897,
+      "final_world_fnv64": "5c486d0c186f921e",
+      "real_control_commands": 1
+    },
+    {
+      "id": "r1-late-france-2035-native",
+      "start_date": "30 Nov 2035",
+      "end_date": "31 Dec 2035",
+      "simulation_p95_ms": 251.31320000000002,
+      "whole_p95_ms": 344.3258,
+      "whole_max_ms": 444.8095,
+      "max_private_bytes": 902717440,
+      "os_peak_working_set_bytes": 898027520,
+      "memory_samples": 779,
+      "batch_days_per_second": 4.5790361356409175,
+      "final_world_fnv64": "3c3f21d9d67bd7b8",
+      "real_control_commands": 0
+    },
+    {
+      "id": "r2-early-france-1999-native",
+      "start_date": "13 May 1999",
+      "end_date": "13 Jun 1999",
+      "simulation_p95_ms": 204.7656,
+      "whole_p95_ms": 252.47809999999998,
+      "whole_max_ms": 278.2701,
+      "max_private_bytes": 457187328,
+      "os_peak_working_set_bytes": 402300928,
+      "memory_samples": 240,
+      "batch_days_per_second": 9.271831341918432,
+      "final_world_fnv64": "5e2885a23e03ba8e",
+      "real_control_commands": 0
+    },
+    {
+      "id": "r2-mid-france-2015-native",
+      "start_date": "1 Jan 2015",
+      "end_date": "1 Feb 2015",
+      "simulation_p95_ms": 255.59510000000003,
+      "whole_p95_ms": 312.0435,
+      "whole_max_ms": 658.3375,
+      "max_private_bytes": 978538496,
+      "os_peak_working_set_bytes": 840454144,
+      "memory_samples": 542,
+      "batch_days_per_second": 5.352750302676446,
+      "final_world_fnv64": "5c486d0c186f921e",
+      "real_control_commands": 1
+    },
+    {
+      "id": "r2-late-france-2035-native",
+      "start_date": "30 Nov 2035",
+      "end_date": "31 Dec 2035",
+      "simulation_p95_ms": 237.4,
+      "whole_p95_ms": 323.1374,
+      "whole_max_ms": 409.3736,
+      "max_private_bytes": 901349376,
+      "os_peak_working_set_bytes": 891039744,
+      "memory_samples": 727,
+      "batch_days_per_second": 5.832747361735477,
+      "final_world_fnv64": "3c3f21d9d67bd7b8",
+      "real_control_commands": 0
+    }
+  ],
+  "browser": [
+    {
+      "id": "r1-early-france-1999-map",
+      "layouts": [
+        "390x844",
+        "3440x1440"
+      ],
+      "trace_sha256": "282a27e9c3ee7fcdbb2f36216ca6d8611d8bdf7be6553a2015b66a842da3a91b",
+      "cold_page_ms": 153.2547999999997,
+      "save_load_ms": 2246.8453000000004,
+      "read_only_save_hash_unchanged": true,
+      "min_map_fps": 36.936592183413886,
+      "max_control_p95_ms": 43
+    },
+    {
+      "id": "r1-early-france-1999-renderer",
+      "layouts": [
+        "390x844",
+        "3440x1440"
+      ],
+      "trace_sha256": "ea255720484081b03bb1993132eb2e33611c76b006bae08527748b6d2d42fe93",
+      "cold_page_ms": 139.86670000000004,
+      "save_load_ms": 2203.876,
+      "read_only_save_hash_unchanged": true,
+      "fighter_fps": 99.99750006246119,
+      "triangles": [
+        200446,
+        200446,
+        200446,
+        200446,
+        200446,
+        200446
+      ],
+      "lifecycle_observations": 47
+    },
+    {
+      "id": "r1-mid-france-2015-map",
+      "layouts": [
+        "390x844",
+        "3440x1440"
+      ],
+      "trace_sha256": "7ba901796527dea0cf4434755480d04fd315f264c78af387da5f5d5947283c58",
+      "cold_page_ms": 133.6984,
+      "save_load_ms": 4910.6875,
+      "read_only_save_hash_unchanged": true,
+      "min_map_fps": 32.0651270975245,
+      "max_control_p95_ms": 49.599999994039536
+    },
+    {
+      "id": "r1-mid-france-2015-renderer",
+      "layouts": [
+        "390x844",
+        "3440x1440"
+      ],
+      "trace_sha256": "5e625b0df8b54727316e34bf8335ba7c39c588a20fbac9a7136e02f7e52c8d13",
+      "cold_page_ms": 216.6192000000001,
+      "save_load_ms": 4952.2472,
+      "read_only_save_hash_unchanged": true,
+      "fighter_fps": 99.91333622213834,
+      "triangles": [
+        200446,
+        200446,
+        200446,
+        200446,
+        200446,
+        200446
+      ],
+      "lifecycle_observations": 47
+    },
+    {
+      "id": "r1-late-france-2035-map",
+      "layouts": [
+        "390x844",
+        "3440x1440"
+      ],
+      "trace_sha256": "57564e16c71fb48d57f3f70768b65c59bb547d05a3afa9b5256cf7f28590a43b",
+      "cold_page_ms": 140.34019999999987,
+      "save_load_ms": 13061.0174,
+      "read_only_save_hash_unchanged": true,
+      "min_map_fps": 34.482471410362116,
+      "max_control_p95_ms": 51.5
+    },
+    {
+      "id": "r1-late-france-2035-renderer",
+      "layouts": [
+        "390x844",
+        "3440x1440"
+      ],
+      "trace_sha256": "7df895a96148d75135f54696525b25966fd0a7b075e5775a4f1b358d512160c1",
+      "cold_page_ms": 146.2011,
+      "save_load_ms": 13646.3094,
+      "read_only_save_hash_unchanged": true,
+      "fighter_fps": 99.91333622207631,
+      "triangles": [
+        200446,
+        200446,
+        200446,
+        200446,
+        200446,
+        200446
+      ],
+      "lifecycle_observations": 47
+    },
+    {
+      "id": "r2-early-france-1999-map",
+      "layouts": [
+        "390x844",
+        "3440x1440"
+      ],
+      "trace_sha256": "94176606ea9bc262ec8ea9561b17a54558d187fda7ebc8a0fd3bed3caa80f08e",
+      "cold_page_ms": 147.8194000000001,
+      "save_load_ms": 2216.0775,
+      "read_only_save_hash_unchanged": true,
+      "min_map_fps": 37.017934981523446,
+      "max_control_p95_ms": 40.29999999701977
+    },
+    {
+      "id": "r2-early-france-1999-renderer",
+      "layouts": [
+        "390x844",
+        "3440x1440"
+      ],
+      "trace_sha256": "4fe436e19dfce1a34c3034193a80fa523290452ab8cb320af7fd13b988cbc4fc",
+      "cold_page_ms": 147.00329999999985,
+      "save_load_ms": 2229.2774,
+      "read_only_save_hash_unchanged": true,
+      "fighter_fps": 99.99666677778649,
+      "triangles": [
+        200446,
+        200446,
+        200446,
+        200446,
+        200446,
+        200446
+      ],
+      "lifecycle_observations": 47
+    },
+    {
+      "id": "r2-mid-france-2015-map",
+      "layouts": [
+        "390x844",
+        "3440x1440"
+      ],
+      "trace_sha256": "0ef36a53c818b5ca63f2156d4dfb2dca2ab624d6b18f9cd1fb26c2d573793905",
+      "cold_page_ms": 141.13480000000004,
+      "save_load_ms": 4559.2332,
+      "read_only_save_hash_unchanged": true,
+      "min_map_fps": 34.58073977785429,
+      "max_control_p95_ms": 50.400000005960464
+    },
+    {
+      "id": "r2-mid-france-2015-renderer",
+      "layouts": [
+        "390x844",
+        "3440x1440"
+      ],
+      "trace_sha256": "b5c9f43e5fc50a9bc1e2d57b906659efe9f48e5b8753b101bd21e6797cdafc22",
+      "cold_page_ms": 138.34910000000013,
+      "save_load_ms": 4934.1263,
+      "read_only_save_hash_unchanged": true,
+      "fighter_fps": 99.91583403470398,
+      "triangles": [
+        200446,
+        200446,
+        200446,
+        200446,
+        200446,
+        200446
+      ],
+      "lifecycle_observations": 47
+    },
+    {
+      "id": "r2-late-france-2035-map",
+      "layouts": [
+        "390x844",
+        "3440x1440"
+      ],
+      "trace_sha256": "f4ae28d7c851a1aa0514ab58900ae99ea1e3a0c574435bb40b3291f9490f4ea0",
+      "cold_page_ms": 137.60280000000012,
+      "save_load_ms": 12551.3581,
+      "read_only_save_hash_unchanged": true,
+      "min_map_fps": 35.197497066879606,
+      "max_control_p95_ms": 48.899999998509884
+    },
+    {
+      "id": "r2-late-france-2035-renderer",
+      "layouts": [
+        "390x844",
+        "3440x1440"
+      ],
+      "trace_sha256": "d3be7cea0a014fb58990d71c632cf34d222754ea0a4b66a9de2fa00b470b0e3b",
+      "cold_page_ms": 141.74410000000012,
+      "save_load_ms": 12023.8996,
+      "read_only_save_hash_unchanged": true,
+      "fighter_fps": 99.91333622207631,
+      "triangles": [
+        200446,
+        200446,
+        200446,
+        200446,
+        200446,
+        200446
+      ],
+      "lifecycle_observations": 47
+    }
+  ]
+}

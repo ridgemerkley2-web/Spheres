@@ -1,0 +1,16 @@
+{
+  "format": "s22-diagnostic-provenance/v1",
+  "started_utc": "2026-09-28T05:36:23.6907654Z",
+  "finished_utc": "2026-09-28T05:37:12.9977327Z",
+  "candidate_revision": "594c7ce1356a9c5a393e1079e4b7abff48cf093d",
+  "concurrent_work": "Legacy multi-seed native regression sweeps; these diagnostic timings cannot qualify S22",
+  "binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+  "binary_sha256": "db979eba5fdcf33fb93861805d5338edccfff19fa0e0f51d1f4d21aad16c195c",
+  "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-2006-01-01.json",
+  "source_sha256_before": "7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325",
+  "source_sha256_after": "7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325",
+  "copied_input_sha256": "7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325",
+  "test": "performance::s22_daily_subsystem_diagnosis --exact --ignored --nocapture --test-threads=1",
+  "exit_code": 0,
+  "qualification": false
+}

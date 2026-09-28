@@ -1,0 +1,9 @@
+{
+  "format": "s22-focused-validation/v1",
+  "candidate_revision": "6de1d9972fb3b1a7d5b67f4b73e08420687508d8",
+  "started_utc": "2026-09-28T07:34:51.7859077Z",
+  "finished_utc": "2026-09-28T07:36:15.2501446Z",
+  "command": "cargo test --locked --release -p spheres-sim --lib sovereignty::candidate_tests -- --test-threads=1",
+  "exit_code": 0,
+  "qualification": false
+}

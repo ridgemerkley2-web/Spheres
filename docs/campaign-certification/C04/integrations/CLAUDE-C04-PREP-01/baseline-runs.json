@@ -1,0 +1,35 @@
+[
+  {
+    "id": "baseline-validator",
+    "command": [
+      "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+      "-X",
+      "utf8",
+      "tools/avatars/check_successor_proposals.py",
+      "--json"
+    ],
+    "started_utc": "2026-09-28T13:42:39.180080+00:00",
+    "finished_utc": "2026-09-28T13:42:40.520115+00:00",
+    "exit_code": 0,
+    "log": "baseline-validator.log"
+  },
+  {
+    "id": "baseline-tests",
+    "command": [
+      "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_successor_proposals.py"
+    ],
+    "started_utc": "2026-09-28T13:42:40.520133+00:00",
+    "finished_utc": "2026-09-28T13:42:58.513787+00:00",
+    "exit_code": 0,
+    "log": "baseline-tests.log"
+  }
+]

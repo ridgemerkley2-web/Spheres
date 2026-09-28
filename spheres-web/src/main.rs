@@ -14,9 +14,9 @@ use spheres_sim::resources::{self, Commodity, Leg, Verdict, ALL};
 use spheres_sim::stratagems;
 use spheres_sim::theatre::TheatreId;
 use spheres_sim::world::*;
-use spheres_sim::{apply_command, load, save, tick_month, Command};
+use spheres_sim::{apply_command, save, tick_month, Command};
 #[cfg(test)]
-use spheres_sim::tick_day;
+use spheres_sim::{load, tick_day};
 use std::collections::BTreeMap;
 use std::sync::Mutex;
 use tiny_http::{Header, Method, Response, Server};
@@ -72,10 +72,16 @@ mod s17_fixture_tests;
 mod performance;
 #[cfg(test)]
 mod s08_route_pool_tests;
+#[cfg(test)]
+mod s22_ministry_curve_tests;
+#[cfg(test)]
+mod s25_stability_tests;
 use history::{Event, Snapshot};
 
 fn build_info()->serde_json::Value {serde_json::json!({
     "version":env!("CARGO_PKG_VERSION"),"revision":env!("SPHERES_REVISION"),
+    "full_revision":env!("SPHERES_FULL_REVISION"),
+    "target_os":std::env::consts::OS,"target_arch":std::env::consts::ARCH,
     "branch":env!("SPHERES_BRANCH"),"built_at_unix_seconds":env!("SPHERES_BUILD_EPOCH").parse::<u64>().ok(),
     "save_directory":std::env::current_dir().ok().map(|p|p.display().to_string()),
     "campaign_format":"versioned world, event archive and retained history; legacy raw worlds remain readable",
@@ -5949,6 +5955,11 @@ fn policy_json(w: &WorldState, me: NationId) -> serde_json::Value {
         })
         .collect();
     let books = spheres_sim::economy::Fiscal::of(n, &now);
+    let real_rate = n.interest_rate - n.inflation;
+    // Ask the same simulator rate function for the zero-spread base. The
+    // real-rate floor is not a sovereign premium caused by the debt ratio.
+    let real_rate_after_floor =
+        spheres_sim::economy::effective_interest_rate(n.interest_rate, n.inflation, 0.0);
     let (revenue_bn, spend_bn, balance_bn) = books.in_billions(n.gdp);
     let rate_terms: Vec<spheres_sim::economy::GrowthTerms> = (0..=POLICY_CURVE_STEPS)
         .map(|i| {
@@ -6031,8 +6042,10 @@ fn policy_json(w: &WorldState, me: NationId) -> serde_json::Value {
             "balance_bn": round(balance_bn, 3),
             "effective_rate": round(books.effective_rate, 6),
             "policy_rate": round(n.interest_rate, 6),
-            "real_rate": round(n.interest_rate - n.inflation, 6),
-            "spread": round(books.effective_rate - (n.interest_rate - n.inflation), 6),
+            "real_rate": round(real_rate, 6),
+            "real_rate_after_floor": round(real_rate_after_floor, 6),
+            "real_rate_floor_adjustment": round(real_rate_after_floor - real_rate, 6),
+            "spread": round(books.effective_rate - real_rate_after_floor, 6),
             "treasury_bn": n.treasury_bn.map(|x| round(x, 3)),
             "debt_bn": n.debt_bn.map(|x| round(x, 3)),
             "net_position_bn": n.net_position_bn().map(|x| round(x, 3)),
@@ -6105,18 +6118,25 @@ fn ministries_json(w: &WorldState, me: NationId) -> serde_json::Value {
     let list: Vec<serde_json::Value> = (0..spheres_sim::world::BUDGET_MINISTRIES)
         .map(|m| {
             let here = at(m, n.budget_for(w.year).allocations[m]);
+            // Each evaluation already returns every arm. Reuse its immutable
+            // values for all curves instead of repeating the same whole-vector
+            // calculation for each arm. Keep share + 0.01 exactly: shifting a
+            // grid index can differ at floating-point rounding boundaries.
+            let sampled: Vec<_> = if here.is_empty() { Vec::new() } else {
+                (0..=MINISTRY_CURVE_STEPS).map(|i| {
+                    let share = sample(m, i);
+                    (at(m, share), at(m, share + 0.01))
+                }).collect()
+            };
             let arms: Vec<serde_json::Value> = here
                 .iter()
                 .enumerate()
                 .map(|(a, arm)| {
-                    let curve: Vec<f64> = (0..=MINISTRY_CURVE_STEPS)
-                        .map(|i| round(at(m, sample(m, i))[a].value, 6))
+                    let curve: Vec<f64> = sampled.iter()
+                        .map(|(base, _)| round(base[a].value, 6))
                         .collect();
-                    let per_point: Vec<f64> = (0..=MINISTRY_CURVE_STEPS)
-                        .map(|i| {
-                            let share = sample(m, i);
-                            round(at(m, share + 0.01)[a].value - at(m, share)[a].value, 6)
-                        })
+                    let per_point: Vec<f64> = sampled.iter()
+                        .map(|(base, ahead)| round(ahead[a].value - base[a].value, 6))
                         .collect();
                     serde_json::json!({
                         "id": arm.id,
@@ -7309,6 +7329,12 @@ fn wants_browser(args: &[String]) -> bool {
 
 fn main() {
     let args: Vec<String> = std::env::args().collect();
+    // Packaging must inspect this executable before any campaign, listener,
+    // browser or save-directory writes are created.
+    if args.iter().any(|argument| argument == "--build-info") {
+        println!("{}", build_info());
+        return;
+    }
     let env_port = std::env::var("PORT").ok();
     let port = listen_port(&args, env_port.as_deref());
 
@@ -10932,10 +10958,12 @@ mod tests {
             round(n.interest_rate - n.inflation, 6)
         );
         assert!(
-            (money["spread"].as_f64().unwrap() - (rate - money["real_rate"].as_f64().unwrap()))
+            (money["spread"].as_f64().unwrap()
+                + money["real_rate_floor_adjustment"].as_f64().unwrap()
+                + money["real_rate"].as_f64().unwrap() - rate)
                 .abs()
-                < 1e-6,
-            "the spread on the card is not the difference it is drawn as"
+                < 2e-6,
+            "the real rate, floor adjustment and sovereign spread must reconcile to the rate paid"
         );
         println!(
             "Brazil 1990 on the books: debt ${debt:.1}bn at {:.3}%/yr -> ${interest_bn:.2}bn/yr, \
@@ -10943,6 +10971,39 @@ mod tests {
             rate * 100.0,
             money["interest_gdp"].as_f64().unwrap() * 100.0
         );
+    }
+
+    #[test]
+    fn the_money_card_separates_the_rate_floor_from_sovereign_risk() {
+        let mut g = Game::new(1990, Some(NationId::Brazil));
+        for (inflation, debt_ratio, expected_base, expected_adjustment, expected_spread) in [
+            (0.399, 0.28, -0.02, 0.329, 0.0),
+            (0.399, 0.90, -0.02, 0.329, 0.018),
+            (0.02, 0.28, 0.03, 0.0, 0.0),
+            (0.02, 1.80, 0.03, 0.0, 0.06),
+        ] {
+            let n = g.world.nation_mut(NationId::Brazil);
+            n.interest_rate = 0.05;
+            n.inflation = inflation;
+            n.debt_gdp = debt_ratio;
+            n.debt_bn = Some(n.gdp * debt_ratio);
+            n.treasury_bn = Some(0.0);
+            let expected_rate = spheres_sim::economy::effective_interest_rate(
+                n.interest_rate, inflation, debt_ratio,
+            );
+            let expected_interest = n.debt_bn.unwrap() * expected_rate;
+            let money = &policy_json(&g.world, NationId::Brazil)["money"];
+            for (key, expected) in [
+                ("real_rate_after_floor", expected_base),
+                ("real_rate_floor_adjustment", expected_adjustment),
+                ("spread", expected_spread),
+                ("effective_rate", expected_rate),
+            ] {
+                assert!((money[key].as_f64().unwrap() - expected).abs() < 1e-6,
+                    "{key}: {money}");
+            }
+            assert!((money["interest_bn"].as_f64().unwrap() - expected_interest).abs() < 0.001);
+        }
     }
 
     /// ONE BALANCE, ONE SIGN, and the interest row above the ten dials.

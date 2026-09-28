@@ -1,0 +1,779 @@
+{
+  "schema": "spheres-company-pilot-dossier-v1",
+  "id": "jp_toyota_motor",
+  "display_name": "Toyota Motor Corporation",
+  "native_name": "トヨタ自動車株式会社 (TOYOTA JIDOSHA KABUSHIKI KAISHA)",
+  "nation": "Japan",
+  "status": "research_only",
+  "research_window": {
+    "from": "1990-01-01",
+    "through": "2026-09-07"
+  },
+  "activities": [
+    "civilian_industrial",
+    "ground"
+  ],
+  "selection": {
+    "reason": "Japan's largest civilian manufacturer, with a sourced French plant (TMMF, Valenciennes) that links the pilot's two countries, and the maker of the JGSDF High Mobility Vehicle. The game's sourced 1990 lean-production technology for Japan names the Toyota Production System, so this dossier extends an existing reference.",
+    "existing_game_references": [
+      {
+        "kind": "tech_source",
+        "path": "spheres-sim/data/nations/japan.json",
+        "id": "Japan:matl_lean_production",
+        "note": "Evidence text names the Toyota Production System."
+      },
+      {
+        "kind": "sector_contractors",
+        "path": "spheres-sim/src/sector_contractors.rs",
+        "id": "Japan:manufacturing",
+        "note": "Generated fictional contractors only."
+      }
+    ]
+  },
+  "summary": "Toyota Motor Corporation (formed by the 1982 merger of Toyota Motor Company and Toyota Motor Sales) kept its name through the window. It reorganised its European operations in 1990, completed its first UK car in 1992, launched the Prius in 1997, made Daihatsu (1998) and Hino (2001) consolidated subsidiaries, started Yaris production in France in 2001, made Daihatsu wholly owned in 2016 and took full ownership of the Czech Kolin plant in 2021. Hino left the consolidated group on 1 April 2026. Toyota also makes the JGSDF High Mobility Vehicle and 1½-ton truck.",
+  "entities": [
+    {
+      "id": "jp_toyota_company",
+      "kind": "company",
+      "subject": true,
+      "registration": {
+        "register": "Corporate Number (National Tax Agency, Japan)",
+        "number": "1180301018771",
+        "claims": [
+          "jp_toyota_motor_c03"
+        ]
+      },
+      "names": [
+        {
+          "name": "Toyota Motor Corporation",
+          "native": "トヨタ自動車株式会社",
+          "from": "1990-01-01",
+          "from_basis": "window_start",
+          "until": null,
+          "claims": [
+            "jp_toyota_motor_c02",
+            "jp_toyota_motor_c04",
+            "jp_toyota_motor_c03",
+            "jp_toyota_motor_c01",
+            "jp_toyota_motor_c05"
+          ]
+        }
+      ],
+      "roles": [
+        {
+          "role": "automobile manufacturer and group parent company",
+          "from": "1990-01-01",
+          "from_basis": "window_start",
+          "until": null,
+          "claims": [
+            "jp_toyota_motor_c04",
+            "jp_toyota_motor_c05"
+          ]
+        }
+      ],
+      "note": "No change of name in the window."
+    }
+  ],
+  "lineage": [
+    {
+      "id": "jp_toyota_motor_l01",
+      "kind": "acquisition",
+      "entity": "jp_toyota_company",
+      "date": "1998-09",
+      "counterparties": [
+        {
+          "name": "Daihatsu Motor Co., Ltd.",
+          "relation": "stake raised to 51.2%; consolidated subsidiary"
+        }
+      ],
+      "claims": [
+        "jp_toyota_motor_c06"
+      ]
+    },
+    {
+      "id": "jp_toyota_motor_l02",
+      "kind": "business_transfer",
+      "entity": "jp_toyota_company",
+      "date": "2001-04",
+      "counterparties": [
+        {
+          "name": "Toyota Industries Corporation (then Toyoda Automatic Loom Works)",
+          "relation": "received the industrial-vehicle and logistics-systems business"
+        }
+      ],
+      "claims": [
+        "jp_toyota_motor_c20"
+      ]
+    },
+    {
+      "id": "jp_toyota_motor_l03",
+      "kind": "acquisition",
+      "entity": "jp_toyota_company",
+      "date": "2001-08",
+      "counterparties": [
+        {
+          "name": "Hino Motors, Ltd.",
+          "relation": "stake raised to 50.1%; consolidated subsidiary"
+        }
+      ],
+      "claims": [
+        "jp_toyota_motor_c08"
+      ]
+    },
+    {
+      "id": "jp_toyota_motor_l04",
+      "kind": "stake_change",
+      "entity": "jp_toyota_company",
+      "date": "2016-08-01",
+      "counterparties": [
+        {
+          "name": "Daihatsu Motor Co., Ltd.",
+          "relation": "became wholly owned by share exchange"
+        }
+      ],
+      "claims": [
+        "jp_toyota_motor_c07"
+      ]
+    },
+    {
+      "id": "jp_toyota_motor_l05",
+      "kind": "merger",
+      "entity": "jp_toyota_company",
+      "date": "2018-04-01",
+      "counterparties": [
+        {
+          "name": "Toyota Marketing Japan (株式会社トヨタマーケティングジャパン)",
+          "relation": "absorbed"
+        }
+      ],
+      "claims": [
+        "jp_toyota_motor_c10"
+      ]
+    },
+    {
+      "id": "jp_toyota_motor_l06",
+      "kind": "merger",
+      "entity": "jp_toyota_company",
+      "date": "2019-04-01",
+      "counterparties": [
+        {
+          "name": "Toyota IT Development Center (株式会社トヨタＩＴ開発センター)",
+          "relation": "absorbed"
+        }
+      ],
+      "claims": [
+        "jp_toyota_motor_c10"
+      ]
+    },
+    {
+      "id": "jp_toyota_motor_l07",
+      "kind": "stake_change",
+      "entity": "jp_toyota_company",
+      "date": "2021-01-01",
+      "counterparties": [
+        {
+          "name": "TPCA (Kolin plant)",
+          "relation": "joint venture with Groupe PSA became fully owned by Toyota Motor Europe and was renamed Toyota Motor Manufacturing Czech Republic"
+        },
+        {
+          "name": "Groupe PSA",
+          "relation": "former joint-venture partner"
+        }
+      ],
+      "claims": [
+        "jp_toyota_motor_c14"
+      ]
+    },
+    {
+      "id": "jp_toyota_motor_l08",
+      "kind": "stake_change",
+      "entity": "jp_toyota_company",
+      "date": "2026-03-24",
+      "counterparties": [
+        {
+          "name": "Toyota Industries Corporation",
+          "relation": "Toyota Fudosan completed a tender offer; Toyota reclassified its own Toyota Industries shares as held for sale"
+        }
+      ],
+      "claims": [
+        "jp_toyota_motor_c11"
+      ],
+      "note": "The squeeze-out and the sale of Toyota's shares were expected in the year to 31 March 2027; completion was not verified by the cutoff."
+    },
+    {
+      "id": "jp_toyota_motor_l09",
+      "kind": "divestiture",
+      "entity": "jp_toyota_company",
+      "date": "2026-04-01",
+      "counterparties": [
+        {
+          "name": "Hino Motors, Ltd.",
+          "relation": "ceased to be a consolidated subsidiary on its business integration with Mitsubishi Fuso Truck and Bus Corporation"
+        }
+      ],
+      "claims": [
+        "jp_toyota_motor_c09"
+      ]
+    }
+  ],
+  "ownership": [
+    {
+      "holder": "Toyota Motor Corporation in Daihatsu Motor Co., Ltd.",
+      "share": "51.2%",
+      "date": "1998-09",
+      "claims": [
+        "jp_toyota_motor_c06"
+      ]
+    },
+    {
+      "holder": "Toyota Motor Corporation in Hino Motors, Ltd.",
+      "share": "50.1%",
+      "date": "2001-08",
+      "claims": [
+        "jp_toyota_motor_c08"
+      ]
+    },
+    {
+      "holder": "Toyota Motor Europe Manufacturing in Toyota Motor Manufacturing France",
+      "share": "100%",
+      "date": "2001-01-31",
+      "claims": [
+        "jp_toyota_motor_c13"
+      ]
+    }
+  ],
+  "country_links": [
+    {
+      "country": "Belgium",
+      "kind": "regional_headquarters",
+      "date": "1990-10",
+      "claims": [
+        "jp_toyota_motor_c04"
+      ],
+      "note": "Toyota Motor Europe Manufacturing & Engineering (now Toyota Motor Europe)."
+    },
+    {
+      "country": "United Kingdom",
+      "kind": "plant",
+      "date": "1992-12",
+      "claims": [
+        "jp_toyota_motor_c12"
+      ],
+      "note": "TMUK, Burnaston: first Carina E completed."
+    },
+    {
+      "country": "France",
+      "kind": "plant",
+      "date": "2001-01-31",
+      "claims": [
+        "jp_toyota_motor_c13"
+      ],
+      "note": "TMMF, Valenciennes: first full-scale vehicle plant on the European continent."
+    },
+    {
+      "country": "Czech Republic",
+      "kind": "plant",
+      "date": "2021-01-01",
+      "claims": [
+        "jp_toyota_motor_c14"
+      ],
+      "note": "Kolin plant fully owned by Toyota Motor Europe."
+    },
+    {
+      "country": "Japan",
+      "kind": "headquarters",
+      "date": "2019-04-23",
+      "claims": [
+        "jp_toyota_motor_c03"
+      ],
+      "note": "Registered head office in Toyota City, Aichi."
+    }
+  ],
+  "products": [
+    {
+      "id": "jp_toyota_carina_e_tmuk",
+      "name": "Carina E built at TMUK (Burnaston)",
+      "reality": "historical",
+      "category": "passenger car",
+      "milestones": [
+        {
+          "event": "production_milestone",
+          "date": "1992-12",
+          "maker_entity": "jp_toyota_company",
+          "maker_name": "Toyota Motor Corporation",
+          "claims": [
+            "jp_toyota_motor_c12"
+          ],
+          "note": "First car completed at the UK plant."
+        }
+      ]
+    },
+    {
+      "id": "jp_toyota_mega_cruiser",
+      "name": "Mega Cruiser",
+      "reality": "historical",
+      "category": "off-road vehicle",
+      "milestones": [
+        {
+          "event": "market_launch",
+          "date": "1996-01-09",
+          "maker_entity": "jp_toyota_company",
+          "maker_name": "Toyota Motor Corporation",
+          "claims": [
+            "jp_toyota_motor_c19"
+          ],
+          "note": "Civilian version of a vehicle first developed for the JGSDF."
+        },
+        {
+          "event": "terminated",
+          "date": "2001-08",
+          "maker_entity": "jp_toyota_company",
+          "maker_name": "Toyota Motor Corporation",
+          "claims": [
+            "jp_toyota_motor_c19"
+          ],
+          "note": "Production discontinued."
+        }
+      ]
+    },
+    {
+      "id": "jp_toyota_prius",
+      "name": "Prius hybrid passenger car",
+      "reality": "historical",
+      "category": "hybrid passenger car",
+      "milestones": [
+        {
+          "event": "market_launch",
+          "date": "1997-12",
+          "maker_entity": "jp_toyota_company",
+          "maker_name": "Toyota Motor Corporation",
+          "claims": [
+            "jp_toyota_motor_c15"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "jp_toyota_yaris_tmmf",
+      "name": "Yaris built at TMMF (Valenciennes)",
+      "reality": "historical",
+      "category": "passenger car",
+      "milestones": [
+        {
+          "event": "production_milestone",
+          "date": "2001-01-31",
+          "maker_entity": "jp_toyota_company",
+          "maker_name": "Toyota Motor Corporation",
+          "claims": [
+            "jp_toyota_motor_c13"
+          ],
+          "note": "Start-of-production ceremony at the French plant."
+        }
+      ]
+    },
+    {
+      "id": "jp_toyota_mirai",
+      "name": "Mirai fuel-cell sedan",
+      "reality": "historical",
+      "category": "fuel-cell passenger car",
+      "milestones": [
+        {
+          "event": "announced",
+          "date": "2014-11-18",
+          "maker_entity": "jp_toyota_company",
+          "maker_name": "Toyota Motor Corporation",
+          "claims": [
+            "jp_toyota_motor_c16"
+          ],
+          "note": "Announcement that the Japanese launch would follow on 15 December 2014; the launch itself is not separately sourced here."
+        }
+      ]
+    },
+    {
+      "id": "jp_toyota_hmv",
+      "name": "High Mobility Vehicle (高機動車) for the JGSDF",
+      "reality": "historical",
+      "category": "military utility vehicle",
+      "milestones": [
+        {
+          "event": "operational",
+          "date": "2024-05-28",
+          "maker_entity": "jp_toyota_company",
+          "maker_name": "Toyota Motor Corporation",
+          "claims": [
+            "jp_toyota_motor_c17"
+          ],
+          "note": "Listed as JGSDF equipment on a page last modified on this date; the adoption year was not sourced."
+        },
+        {
+          "event": "operational",
+          "date": "2026-01-22",
+          "maker_entity": "jp_toyota_company",
+          "maker_name": "Toyota Motor Corporation",
+          "claims": [
+            "jp_toyota_motor_c18"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "jp_toyota_truck_1_5t",
+      "name": "1½-ton truck for the JGSDF",
+      "reality": "historical",
+      "category": "military truck",
+      "milestones": [
+        {
+          "event": "operational",
+          "date": "2026-01-22",
+          "maker_entity": "jp_toyota_company",
+          "maker_name": "Toyota Motor Corporation",
+          "claims": [
+            "jp_toyota_motor_c18"
+          ],
+          "note": "Listed as JGSDF equipment on a page last modified on this date."
+        }
+      ]
+    }
+  ],
+  "game_mapping": {
+    "proposed": [
+      {
+        "target_kind": "tech_node",
+        "target_id": "Japan:matl_lean_production",
+        "flow": "reference_only",
+        "confidence": "high",
+        "existing_reference": {
+          "path": "spheres-sim/data/nations/japan.json",
+          "match_text": "Toyota Production System"
+        },
+        "uncertainty": "The existing 1990 evidence cites the Toyota Production System; the link is identity only and grants no mechanic."
+      },
+      {
+        "target_kind": "sector_contractor_slot",
+        "target_id": "Japan:manufacturing",
+        "flow": "sector_contractor_service",
+        "confidence": "medium",
+        "uncertainty": "Cars have no product consumer; a real identity would replace one generated manufacturing contractor, not add a firm with sales."
+      }
+    ],
+    "duplicates_avoided": [
+      "Toyota Industries (forklifts since the 2001 transfer), Daihatsu, Hino and other Toyota Group companies are separate legal persons; their products are not Toyota Motor Corporation products.",
+      "Nissan (the Renault alliance partner in fr_renault) and Mitsubishi Motors are separate carmakers not researched here.",
+      "The Hino and Mitsubishi Fuso integration is not a Toyota merger."
+    ],
+    "integration_flow": {
+      "route": "existing_supplier_flow",
+      "summary": "A later, reviewed integration could attach this sourced identity to a company created through the existing orders. Design stays with the commissioning country; Defense R&D pays development as work is performed; the company funds tooling, national-warehouse inputs and fabrication from its own settled cash; the buyer purchases whole finished units from company stock; delivery follows fiscal settlement and seven accessible days. No company order builds civilian cars or soft-skinned military trucks; a Toyota identity would first appear only as a sector contractor serving funded work.",
+      "steps": [
+        {
+          "order": "Establish",
+          "note": "Paid capitalisation from Defense procurement (political capital price applies); leases one existing completed Arms Plant slot. No historical factory, balance or stock is granted."
+        },
+        {
+          "order": "Capitalize",
+          "note": "Further paid working capital; unsettled receivables are not spendable cash."
+        },
+        {
+          "order": "Develop",
+          "note": "Frozen design revision; Defense R&D pays engineering, prototype and trials work day by day; prototypes are never saleable."
+        },
+        {
+          "order": "Inventory",
+          "note": "Finite company-owned stock target (0-12 units); a target is never a government order."
+        },
+        {
+          "order": "Purchase",
+          "note": "Government buys whole units from existing company stock; settlement then seven accessible delivery days."
+        }
+      ],
+      "not_introduced": [
+        "government production capacity",
+        "free or opening stock",
+        "a parallel financial ledger",
+        "sourced opening corporate balances (none researched)"
+      ]
+    },
+    "constraints": {
+      "government_production_capacity": false,
+      "free_stock": false,
+      "parallel_financial_ledger": false,
+      "opening_balances_or_stock": "not_sourced_not_proposed"
+    },
+    "unmapped": [
+      "Passenger cars, hybrids and fuel-cell vehicles: no civilian product consumer.",
+      "High Mobility Vehicle and 1½-ton truck: unarmoured utility vehicles; no designer platform or kit represents soft-skinned transport.",
+      "Overseas plants: no company-to-company ownership or foreign plant model exists."
+    ]
+  },
+  "gaps": [
+    "An old JGSDF vehicles address answered HTTP 403 to a single untimed pre-check; the current page was used, so no inaccessible record is claimed.",
+    "The name of the Hino-Mitsubishi Fuso holding company (ARCHION) is known only from news leads.",
+    "NUMMI and the 2002 PSA joint-venture formation appear in the Japanese securities report but are recorded only through the Toyota Europe newsroom (TPCA, 2021)."
+  ],
+  "future_policy": {
+    "after": "2026-09-07",
+    "real_history": "not_predicted",
+    "later_products": "fictional_or_unknown",
+    "note": "Nothing after the frozen cutoff is predicted. Any later product, successor or business in a campaign must be authored as explicitly fictional game content (labelled \"(fictional)\") or left unknown."
+  },
+  "claims": [
+    {
+      "id": "jp_toyota_motor_c01",
+      "source": "jp_toyota_20f_fy2026",
+      "attests": [
+        "2026-06-10"
+      ],
+      "text": "The FY2026 Form 20-F gives the registrant's exact name TOYOTA JIDOSHA KABUSHIKI KAISHA, English translation TOYOTA MOTOR CORPORATION, incorporated in Japan; it was filed on 10 June 2026.",
+      "locator": {
+        "section": "Cover page",
+        "page": 1
+      },
+      "anchor": "TOYOTA JIDOSHA KABUSHIKI KAISHA"
+    },
+    {
+      "id": "jp_toyota_motor_c02",
+      "source": "jp_toyota_20f_fy2026",
+      "attests": [
+        "1937-08",
+        "1982"
+      ],
+      "text": "Toyota started as the automobile division of Toyota Industries, was incorporated separately in August 1937, and in 1982 Toyota Motor Company and Toyota Motor Sales merged to form the present Toyota Motor Corporation.",
+      "locator": {
+        "section": "Item 4.A History and Development of the Company",
+        "page": 12
+      },
+      "anchor": "merged to form the present Toyota Motor Corporation",
+      "context_before_window": true
+    },
+    {
+      "id": "jp_toyota_motor_c03",
+      "source": "jp_toyota_nta_register",
+      "attests": [
+        "2019-04-23"
+      ],
+      "text": "The corporate-number registry (no. 1180301018771) lists トヨタ自動車株式会社 at 1 Toyota-cho, Toyota City, Aichi; the record was last updated on 23 April 2019 and its change history shows two absorption mergers and no name change.",
+      "locator": {
+        "section": "最新情報; 変更履歴情報",
+        "record": "corporate number 1180301018771"
+      },
+      "anchor": "平成31年4月23日"
+    },
+    {
+      "id": "jp_toyota_motor_c04",
+      "source": "jp_toyota_75y_europe_1990",
+      "attests": [
+        "1990-10"
+      ],
+      "text": "In October 1990 Toyota reorganised its European sales companies and offices and established Toyota Motor Europe Manufacturing & Engineering in Belgium.",
+      "locator": {
+        "section": "Item 4. Europe, body text"
+      },
+      "anchor": "reorganized in October 1990"
+    },
+    {
+      "id": "jp_toyota_motor_c05",
+      "source": "jp_toyota_20f_fy2026",
+      "attests": [
+        "2026-03-31"
+      ],
+      "text": "Toyota sold 9,595 thousand vehicles on a consolidated basis in fiscal 2026 and operated through 602 consolidated subsidiaries at 31 March 2026.",
+      "locator": {
+        "section": "Item 4.A and 4.B",
+        "page": 12
+      },
+      "anchor": "Toyota operates through 602 consolidated subsidiaries"
+    },
+    {
+      "id": "jp_toyota_motor_c06",
+      "source": "jp_toyota_75y_product_strategy",
+      "attests": [
+        "1998-09"
+      ],
+      "text": "In September 1998 TMC raised its stake in Daihatsu Motor to 51.2 percent, making it a consolidated subsidiary.",
+      "locator": {
+        "section": "Item 3, tab 'New initiatives in the compact car market'"
+      },
+      "anchor": "TMC increased its financial stake in Daihatsu Motor to 51.2 percent"
+    },
+    {
+      "id": "jp_toyota_motor_c07",
+      "source": "jp_toyota_20f_fy2017",
+      "attests": [
+        "2016-08-01"
+      ],
+      "text": "Under a share exchange agreement Daihatsu became a wholly owned subsidiary of Toyota as of 1 August 2016.",
+      "locator": {
+        "section": "Item 4.B Business Overview, automotive operations",
+        "page": 19
+      },
+      "anchor": "share exchange agreement to make Daihatsu a wholly-owned subsidiary"
+    },
+    {
+      "id": "jp_toyota_motor_c08",
+      "source": "jp_toyota_75y_restructuring",
+      "attests": [
+        "2001-08"
+      ],
+      "text": "In August 2001 TMC raised its stake in Hino Motors to 50.1 percent, making Hino a consolidated subsidiary.",
+      "locator": {
+        "section": "Item 1, body text"
+      },
+      "anchor": "Hino Motor Co., Ltd. to 50.1 percent in August 2001"
+    },
+    {
+      "id": "jp_toyota_motor_c09",
+      "source": "jp_toyota_20f_fy2026",
+      "attests": [
+        "2026-04-01"
+      ],
+      "text": "With effect from 1 April 2026 Hino ceased to be a consolidated subsidiary of Toyota because of its business integration with Mitsubishi Fuso Truck and Bus Corporation.",
+      "locator": {
+        "section": "Item 4.B, Legal Proceedings; 4.C table footnote",
+        "page": 74
+      },
+      "anchor": "Hino ceased to be a consolidated subsidiary of Toyota"
+    },
+    {
+      "id": "jp_toyota_motor_c10",
+      "source": "jp_toyota_nta_register",
+      "attests": [
+        "2018-04-01",
+        "2019-04-01"
+      ],
+      "text": "The registry records the absorption of Toyota Marketing Japan on 1 April 2018 and of Toyota IT Development Center on 1 April 2019.",
+      "locator": {
+        "section": "変更履歴情報 No.1 and No.2 (吸収合併)"
+      },
+      "anchor": "トヨタＩＴ開発センター（9010401052572）を合併"
+    },
+    {
+      "id": "jp_toyota_motor_c11",
+      "source": "jp_toyota_20f_fy2026",
+      "attests": [
+        "2026-03-24"
+      ],
+      "text": "On 24 March 2026 Toyota Fudosan completed a tender offer for Toyota Industries shares; Toyota reclassified its Toyota Industries shares as held for sale, with the squeeze-out and planned sale expected in the year to 31 March 2027.",
+      "locator": {
+        "section": "Notes, 11. Assets held for sale, (2)",
+        "page": 190
+      },
+      "anchor": "Toyota Fudosan Co., Ltd. completed a tender offer"
+    },
+    {
+      "id": "jp_toyota_motor_c12",
+      "source": "jp_toyota_75y_europe_1990",
+      "attests": [
+        "1992-09",
+        "1992-12",
+        "1993-06"
+      ],
+      "text": "At TMUK (Burnaston, Derbyshire) the first engine came off the line in September 1992, the first Carina E was completed in December 1992 and the plant was formally opened in June 1993.",
+      "locator": {
+        "section": "Item 4. Europe, body text"
+      },
+      "anchor": "the first Carina E sedan was completed in December"
+    },
+    {
+      "id": "jp_toyota_motor_c13",
+      "source": "jp_toyota_pr_tmmf_2001",
+      "attests": [
+        "1998-10",
+        "2001-01-31"
+      ],
+      "text": "On 31 January 2001 Toyota marked the start of Yaris production at Toyota Motor Manufacturing France (Valenciennes), established in October 1998 and 100% owned by Toyota Motor Europe Manufacturing.",
+      "locator": {
+        "section": "Release body; Outline of TMMF table"
+      },
+      "anchor": "start of Yaris compact car production at Toyota Motor Manufacturing France"
+    },
+    {
+      "id": "jp_toyota_motor_c14",
+      "source": "jp_toyota_tme_tmmcz_2021",
+      "attests": [
+        "2002",
+        "2021-01-01"
+      ],
+      "text": "TPCA, the Kolin plant formed in 2002 as a joint venture of Groupe PSA and Toyota, became fully owned by Toyota Motor Europe from 1 January 2021 as Toyota Motor Manufacturing Czech Republic.",
+      "locator": {
+        "section": "News item headline and body"
+      },
+      "anchor": "Toyota assumes full ownership of Kolin plant"
+    },
+    {
+      "id": "jp_toyota_motor_c15",
+      "source": "jp_toyota_75y_prius",
+      "attests": [
+        "1997-12"
+      ],
+      "text": "The Prius, the first mass-produced hybrid passenger car, was launched in December 1997.",
+      "locator": {
+        "section": "Item 1, opening paragraph"
+      },
+      "anchor": "The Prius was launched in December 1997"
+    },
+    {
+      "id": "jp_toyota_motor_c16",
+      "source": "jp_toyota_pr_mirai_2014",
+      "attests": [
+        "2014-11-18"
+      ],
+      "text": "On 18 November 2014 Toyota announced it would launch the Mirai hydrogen fuel-cell vehicle in Japan on 15 December.",
+      "locator": {
+        "section": "Release lead paragraph"
+      },
+      "anchor": "hydrogen fuel cell vehicle (FCV) in Japan on December 15."
+    },
+    {
+      "id": "jp_toyota_motor_c17",
+      "source": "jp_gsdf_6d_vehicles",
+      "attests": [
+        "2024-05-28"
+      ],
+      "text": "The JGSDF 6th Division vehicle page (last modified 28 May 2024) says Toyota developed the High Mobility Vehicle, modelled on the US HMMWV, as a four-wheel-drive utility truck adopted to improve infantry mobility.",
+      "locator": {
+        "section": "高機動車 entry",
+        "field": "HTTP Last-Modified 2024-05-28 (response header)"
+      },
+      "anchor": "トヨタ自動車が米国のハンヴィをモデルに開発"
+    },
+    {
+      "id": "jp_toyota_motor_c18",
+      "source": "jp_gsdf_vehicles",
+      "attests": [
+        "2026-01-22"
+      ],
+      "text": "The JGSDF vehicle page (last modified 22 January 2026) lists Toyota as maker of the High Mobility Vehicle and of the 1½-ton truck.",
+      "locator": {
+        "section": "高機動車 and １ １／２ｔトラック entries: 製造 fields",
+        "field": "HTTP Last-Modified 2026-01-22 (response header)"
+      },
+      "anchor": "１ １／２ｔトラック"
+    },
+    {
+      "id": "jp_toyota_motor_c19",
+      "source": "jp_toyota_75y_megacruiser",
+      "attests": [
+        "1996-01-09",
+        "2001-08"
+      ],
+      "text": "The Mega Cruiser, originally developed as a high-mobility infantry transport for the JGSDF, was released on 9 January 1996; production ended in August 2001.",
+      "locator": {
+        "section": "Vehicle Lineage: header and description"
+      },
+      "anchor": "Production of the Mega Cruiser was discontinued in August 2001."
+    },
+    {
+      "id": "jp_toyota_motor_c20",
+      "source": "jp_toyota_yuho_fy2025",
+      "attests": [
+        "2001-04"
+      ],
+      "text": "In April 2001 Toyota transferred its industrial-vehicle and logistics-systems business to Toyoda Automatic Loom Works (now Toyota Industries).",
+      "locator": {
+        "section": "第1 企業の概況, 2 沿革",
+        "page": 8
+      },
+      "anchor": "産業車両および物流システム事業を譲渡"
+    }
+  ]
+}

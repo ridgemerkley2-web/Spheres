@@ -1,0 +1,154 @@
+{
+  "format": "spheres-research-review/v1",
+  "task": "CLAUDE-E05-RESEARCH-01",
+  "status": "accepted_for_integration",
+  "reviewer": "Codex",
+  "review_agent": "/root/review_source05",
+  "reviewed_commit": "1fe45b2cae22538240a58ad2407f31d0c0fa213e",
+  "scoped_import_commit": "13a6b5b4c648698cacfb693851488d0181bdca56",
+  "repair_commit": "8c2b3e1d235c1dfea223e5e7e4d27641ce6775b2",
+  "scope": "research_preparation_only",
+  "decision": "Accept eight-company research preparation and corrected offline validator. No broad E05 closure, historical certification of all claims, runtime integration or licence grant. Explicit claim-level content limits and access failures are retained.",
+  "evidence": [
+    {
+      "path": ".gitattributes",
+      "bytes": 20,
+      "sha256": "e97602ab9cac70102245345c5ab0fc9830df8b17f1072b188265a662a3a547ae"
+    },
+    {
+      "path": "check-after-repairs.log",
+      "bytes": 1201,
+      "sha256": "4cfb3fd4132c184a2c21c2bcdbdfe9938ed033b6a6cf9dbbca0bfce29cf30a85"
+    },
+    {
+      "path": "claim-review.json",
+      "bytes": 134495,
+      "sha256": "ed1cadb1b0933a29f6a03af4f80bc0cbe815e6c25c9eba404ad40c2805531e4c"
+    },
+    {
+      "path": "commands.json",
+      "bytes": 1163,
+      "sha256": "b69fb331c639736d2101696bf0704892085ae0b4ccfacfc78a09a2297ef1aba4"
+    },
+    {
+      "path": "extraction-corrections.json",
+      "bytes": 1581,
+      "sha256": "fc32b1981a2d67dc239265ee925f1191150fac44e93a32e01eafbbc59b524250"
+    },
+    {
+      "path": "final-check.log",
+      "bytes": 1201,
+      "sha256": "4cfb3fd4132c184a2c21c2bcdbdfe9938ed033b6a6cf9dbbca0bfce29cf30a85"
+    },
+    {
+      "path": "final-tests.log",
+      "bytes": 165,
+      "sha256": "95f972d32c568c043ffe274a2665895cfe95d059bdf6ccf50370b291b2df6e6f"
+    },
+    {
+      "path": "README.md",
+      "bytes": 6686,
+      "sha256": "4d9af438af3e97eb4c45af26e6f14c4362167e910bf87879f278872e6e8cdf17"
+    },
+    {
+      "path": "retrieval-initial-syntax.log",
+      "bytes": 338,
+      "sha256": "d6fbba0b42f220aa14ad4032e479abbaaa94f6f525de5222fe655f7a49816ee0"
+    },
+    {
+      "path": "retrieval.log",
+      "bytes": 6060,
+      "sha256": "90fd20a5addba516668c865fce17a1897b8c081ec2c104dae8340ad91973cf58"
+    },
+    {
+      "path": "retrievals.json",
+      "bytes": 218826,
+      "sha256": "6dbe891fda4bcfc9710ba691260c4238dfa15806ae16a8e419758ae7e6dd0a29"
+    },
+    {
+      "path": "retrieve.py",
+      "bytes": 4419,
+      "sha256": "9aa2dd1cd35ce3182e9c7e7c53dc09899f07ddb6f91f7042938b299916674067"
+    },
+    {
+      "path": "reviewed-inputs/docs/research/company-pilot/dossiers/fr_dassault_aviation.json",
+      "bytes": 23333,
+      "sha256": "6685c374dffae4e1d41219ed2e19852db2558195fd0cfea53b8cb8bd3aa95d9d"
+    },
+    {
+      "path": "reviewed-inputs/docs/research/company-pilot/dossiers/fr_knds_france.json",
+      "bytes": 28901,
+      "sha256": "5cdd427464666273c63aa668d61df71d87828577bb70c7821e8c9365ce734fa2"
+    },
+    {
+      "path": "reviewed-inputs/docs/research/company-pilot/dossiers/fr_naval_group.json",
+      "bytes": 27780,
+      "sha256": "3dbe51f4463be8227382bac6afbfa817d25e44a958ce83ad754e2165199e7f3a"
+    },
+    {
+      "path": "reviewed-inputs/docs/research/company-pilot/dossiers/fr_renault.json",
+      "bytes": 18412,
+      "sha256": "e0a26fb99eeafbb0090d8a1291c51d28c121e4c6b0313c8a076aaeac32889877"
+    },
+    {
+      "path": "reviewed-inputs/docs/research/company-pilot/dossiers/jp_kawasaki_heavy_industries.json",
+      "bytes": 46197,
+      "sha256": "4756191a8fffc224afe05da3a8f7e88936061502b095f086b8e1b1e0879ca102"
+    },
+    {
+      "path": "reviewed-inputs/docs/research/company-pilot/dossiers/jp_komatsu.json",
+      "bytes": 29124,
+      "sha256": "e0e8845681c2424d588615f3031607aa9de6a7e9e6f24bdc4311962a1fa711e3"
+    },
+    {
+      "path": "reviewed-inputs/docs/research/company-pilot/dossiers/jp_mitsubishi_heavy_industries.json",
+      "bytes": 43176,
+      "sha256": "8c23989dee91c68db7c567ceb83f1056f0aa3e2f7226d65a3f898e839ba81866"
+    },
+    {
+      "path": "reviewed-inputs/docs/research/company-pilot/dossiers/jp_toyota_motor.json",
+      "bytes": 27193,
+      "sha256": "4a758de976c7f7944a213a3a89689a24aca87a240f022eb7d7ac786c4b845ac0"
+    },
+    {
+      "path": "reviewed-inputs/docs/research/company-pilot/README.md",
+      "bytes": 16391,
+      "sha256": "fecea01fe3ff92dd798665cd8919b81c62502829ffd55bd3cd1937fff032801f"
+    },
+    {
+      "path": "reviewed-inputs/docs/research/company-pilot/sources.json",
+      "bytes": 155439,
+      "sha256": "bedd7163b245d062a7dfc2c558bd19daf05333e7abc074a5c36a42840e2422d6"
+    },
+    {
+      "path": "reviewed-inputs/tools/planning/check_company_pilot.py",
+      "bytes": 40685,
+      "sha256": "1db79ec8adc85196fef93f69786e4c3970a2a657d14f371e885617395b7107d7"
+    },
+    {
+      "path": "reviewed-inputs/tools/planning/test_company_pilot.py",
+      "bytes": 27548,
+      "sha256": "3215941820c9f24d4b40fa80746a29741e3fa11a0be3f2173c15ef56bf90ef72"
+    },
+    {
+      "path": "reviewed-inputs.json",
+      "bytes": 2664,
+      "sha256": "2bcd448369824087e75d337468689fab5e1b88553b6cb1611bdb567b881ef501"
+    },
+    {
+      "path": "tests-after-repairs.log",
+      "bytes": 165,
+      "sha256": "7c24cd596c2ce27b2bebdb53e0b62332a5ede864ad23403280a491603e441727"
+    },
+    {
+      "path": "tests-before-repairs.log",
+      "bytes": 11102,
+      "sha256": "5b2712c78a8b7f8a62d3c34d47f1e3b15a83001dd9bffad5b454c7fffc18cd2f"
+    },
+    {
+      "path": "verify_packet.py",
+      "bytes": 3770,
+      "sha256": "cb9434b793f4fc38ef4a294b571ea195259da0ba9de0eca759535eaf97475c00"
+    }
+  ]
+}

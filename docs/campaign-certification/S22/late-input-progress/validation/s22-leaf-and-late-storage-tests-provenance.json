@@ -1,0 +1,18 @@
+{
+  "format": "s22-focused-regression-provenance/v1",
+  "recorded_utc": "2026-09-28T06:58:58.1264101Z",
+  "candidate_revision": "9c7cf934308e8fa394a75eb8b06740d274a9f4df",
+  "web_binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-9c7cf934\\native-tests.exe",
+  "web_binary_sha256": "99056ead0c45a856977e21dc382f826ffa00b7a8d5cc374126ad0aca29e8473d",
+  "sim_binary_sha256": "6656987b1b9e45bb3319d6d8d4c5d1745d116cf399ceb59074f018d9b716a0de",
+  "actual_late_input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2035-11-30.json",
+  "actual_late_input_sha256": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb",
+  "scope": "Retrospective command record from task tool calls; actual copied native hash equals retained concurrent 9c diagnosis hash; sim read before subsequent rebuild. All functional regressions, not timing qualification. Two initial filters matched zero tests; their corrected named runs each passed one test.",
+  "commands": [
+    "spheres_sim-de8a2e7790f15db6.exe military_ai::tests::procurement_leaf_observations_preserve_native_decisions_allowance_and_complete_world --exact --nocapture --test-threads=1",
+    "spheres_sim-de8a2e7790f15db6.exe preparation_observer_preserves_opening_world_and_same_date_guard --nocapture --test-threads=1",
+    "spheres_web-55caf82b2dcec446.exe s22_observed_schedule_matches_native_commands_airbases_and_headlines --nocapture --test-threads=1",
+    "SPHERES_S22_INPUT=actual-2035-campaign native-tests.exe storage::tests::typed_campaign_decode_matches_actual_checkpoint_value_oracle --exact --ignored --nocapture --test-threads=1"
+  ],
+  "qualification": false
+}

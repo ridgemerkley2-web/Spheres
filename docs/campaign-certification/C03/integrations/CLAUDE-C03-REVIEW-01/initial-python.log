@@ -1,0 +1,21 @@
+.................F.....
+======================================================================
+FAIL: test_committed_export_is_current_deterministic_and_read_only (test_cartoon_review.Repository.test_committed_export_is_current_deterministic_and_read_only)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\avatars\test_cartoon_review.py", line 447, in test_committed_export_is_current_deterministic_and_read_only
+    self.assertEqual(cr.stale(files, cr.ROOT), [], 'regenerate with: python -X utf8 tools/avatars/cartoon_review.py')
+AssertionError: Lists differ: ['docs/campaign-certification/C03/preparat[115 chars].md'] != []
+
+First list contains 2 additional elements.
+First extra element 0:
+'docs/campaign-certification/C03/preparation/cartoon-review/cartoon-review.json'
+
++ []
+- ['docs/campaign-certification/C03/preparation/cartoon-review/cartoon-review.json',
+-  'docs/campaign-certification/C03/preparation/cartoon-review/cartoon-review.md'] : regenerate with: python -X utf8 tools/avatars/cartoon_review.py
+
+----------------------------------------------------------------------
+Ran 23 tests in 4.922s
+
+FAILED (failures=1)

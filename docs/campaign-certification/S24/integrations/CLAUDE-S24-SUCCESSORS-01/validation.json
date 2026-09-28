@@ -1,0 +1,159 @@
+{
+  "scope": "Independent strict revalidation of retained evidence, not a new native/browser run or S24 qualification.",
+  "validator_revision": "321357702e9bea0ac6b01c29b46a9edb9178237a",
+  "attempts": [
+    {
+      "name": "independent-01",
+      "validation_errors": [],
+      "exit_code_from_cases": 1,
+      "summary": {
+        "selection_guard": {
+          "passed": 23,
+          "failed": 0,
+          "blocked": 0,
+          "unrun": 0
+        },
+        "activation_save_load": {
+          "passed": 21,
+          "failed": 0,
+          "blocked": 0,
+          "unrun": 2
+        },
+        "browser_ui": {
+          "passed": 0,
+          "failed": 0,
+          "blocked": 4,
+          "unrun": 19
+        }
+      },
+      "fixture_count": 3,
+      "fixture_gzip_count": 7,
+      "browser_cases": [],
+      "cross_checks": [
+        {
+          "name": "H1 staged recipe (with the served Prosperity aim command) versus the native S21 exporter fixture, USSR",
+          "informational": true,
+          "staged_fixture": "h1-ussr-aim",
+          "native_fixture": "n1-ussr-succession",
+          "world_bytes_equal": true,
+          "world_keys_compared": 38,
+          "differing_world_keys": [],
+          "envelope_fields_differing": [
+            "history",
+            "log"
+          ],
+          "staged_dissolution": {
+            "date": "2 Jan 1990",
+            "flag_set": true,
+            "parent_dead": true,
+            "journey_status": "succession",
+            "offered_continuations": [
+              "Russia",
+              "Ukraine",
+              "Belarus",
+              "Moldova",
+              "Georgia",
+              "Armenia",
+              "Azerbaijan",
+              "Kazakhstan",
+              "Uzbekistan",
+              "Turkmenistan",
+              "Kyrgyzstan",
+              "Tajikistan",
+              "Lithuania",
+              "Latvia",
+              "Estonia"
+            ],
+            "interrupt": "Your government no longer exists. Open Campaign to review its history and available continuation choices."
+          },
+          "note": "Compares the simulation world value of both post-dissolution archives key by key as raw bytes. Envelope history/log may differ by construction: the served aim command records its headline in the archive log, while the exporter calls campaign_aims::choose directly."
+        }
+      ],
+      "cleanup": {
+        "server_stopped": true,
+        "discarded_archives": 49,
+        "remaining_saves": [],
+        "note": "Every disposable archive was hashed and then deleted; logs, results, screenshots and verified original fixture gzip archives remain."
+      }
+    },
+    {
+      "name": "independent-02",
+      "validation_errors": [],
+      "exit_code_from_cases": 0,
+      "summary": {
+        "selection_guard": {
+          "passed": 23,
+          "failed": 0,
+          "blocked": 0,
+          "unrun": 0
+        },
+        "activation_save_load": {
+          "passed": 21,
+          "failed": 0,
+          "blocked": 0,
+          "unrun": 2
+        },
+        "browser_ui": {
+          "passed": 4,
+          "failed": 0,
+          "blocked": 0,
+          "unrun": 19
+        }
+      },
+      "fixture_count": 3,
+      "fixture_gzip_count": 7,
+      "browser_cases": [
+        "Croatia",
+        "Kazakhstan",
+        "Russia",
+        "Serbia"
+      ],
+      "cross_checks": [
+        {
+          "name": "H1 staged recipe (with the served Prosperity aim command) versus the native S21 exporter fixture, USSR",
+          "informational": true,
+          "staged_fixture": "h1-ussr-aim",
+          "native_fixture": "n1-ussr-succession",
+          "world_bytes_equal": true,
+          "world_keys_compared": 38,
+          "differing_world_keys": [],
+          "envelope_fields_differing": [
+            "history",
+            "log"
+          ],
+          "staged_dissolution": {
+            "date": "2 Jan 1990",
+            "flag_set": true,
+            "parent_dead": true,
+            "journey_status": "succession",
+            "offered_continuations": [
+              "Russia",
+              "Ukraine",
+              "Belarus",
+              "Moldova",
+              "Georgia",
+              "Armenia",
+              "Azerbaijan",
+              "Kazakhstan",
+              "Uzbekistan",
+              "Turkmenistan",
+              "Kyrgyzstan",
+              "Tajikistan",
+              "Lithuania",
+              "Latvia",
+              "Estonia"
+            ],
+            "interrupt": "Your government no longer exists. Open Campaign to review its history and available continuation choices."
+          },
+          "note": "Compares the simulation world value of both post-dissolution archives key by key as raw bytes. Envelope history/log may differ by construction: the served aim command records its headline in the archive log, while the exporter calls campaign_aims::choose directly."
+        }
+      ],
+      "cleanup": {
+        "server_stopped": true,
+        "discarded_archives": 61,
+        "remaining_saves": [],
+        "note": "Every disposable archive was hashed and then deleted; logs, results, screenshots and verified original fixture gzip archives remain."
+      }
+    }
+  ]
+}

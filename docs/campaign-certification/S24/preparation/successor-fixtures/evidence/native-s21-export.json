@@ -1,0 +1,39 @@
+{
+  "what": "Existing native S21 fixture exporter, reused unchanged as the USSR dissolution fixture source (recipe N1).",
+  "command": "cargo test --locked --release -p spheres-web campaign_journey::tests::s21_export_review_fixtures -- --ignored --exact --nocapture",
+  "env": {
+    "CARGO_TARGET_DIR": "D:/spheres-target-s24",
+    "SPHERES_S21_FIXTURE_DIR": "<a new absolute directory per run>"
+  },
+  "revision": "26d5d63ae97b0efc2cf5ddbb8a8260ed6e80d0c8",
+  "tracked_tree_clean": true,
+  "test_binary": "release/deps/spheres_web-55caf82b2dcec446.exe",
+  "test_binary_sha256": "e10716c8488799a0934292ab0fc5abfee4feb7da2dfca9f70d73fd0fed324c32",
+  "test_output": "test campaign_journey::tests::s21_export_review_fixtures ... ok; test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 455 filtered out",
+  "files_written": [
+    "active.json",
+    "endpoint.json",
+    "succession.json (used)"
+  ],
+  "runs": [
+    {
+      "directory": "D:/spheres-scratch/s24/runs/native-s21-26d5-1",
+      "succession_sha256": "89fd727fc07accab6887264cb24153788ae3e84b1c89425cb014a11bcf96b89a",
+      "projection_sha256": "810292a432f5d839ae02f3ad14da96254f57429b2de2327a48f3ecd68b5cce48",
+      "bytes": 13648610
+    },
+    {
+      "directory": "D:/spheres-scratch/s24/runs/native-s21-26d5-2",
+      "succession_sha256": "f32aedda46476c6afabcb92bab668d05b1092d21ba7fb83468a4183592547709",
+      "projection_sha256": "810292a432f5d839ae02f3ad14da96254f57429b2de2327a48f3ecd68b5cce48",
+      "bytes": 13648610
+    }
+  ],
+  "reproducible_projection": true,
+  "earlier_revision_check": {
+    "revision": "e18d3b5d76bd3e83664afda8dd3a393362f64630",
+    "projection_sha256": "810292a432f5d839ae02f3ad14da96254f57429b2de2327a48f3ecd68b5cce48",
+    "equal_to_this_revision": true
+  },
+  "note": "The archives differ only in the wall-clock saved_unix field; projection_sha256 excludes it. The 13.6 MB archives are not committed: re-run the command at the revision to regenerate byte-identical content."
+}

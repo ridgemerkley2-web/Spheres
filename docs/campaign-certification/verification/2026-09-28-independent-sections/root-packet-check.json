@@ -1,0 +1,92 @@
+{
+  "scope": "Root independent raw-file and decoded fixture verification, not campaign replay",
+  "successor_manifest_files_verified": 57,
+  "successor_original_inputs_verified": [
+    {
+      "attempt": "independent-01",
+      "fixture": "n1-ussr-succession",
+      "role": "archive",
+      "raw_sha256": "745b95035ee84110e9b60881e5b2da7cf0e56027812559759001029e8e88a5d7"
+    },
+    {
+      "attempt": "independent-01",
+      "fixture": "h1-yugoslavia",
+      "role": "base",
+      "raw_sha256": "73560d5f659753f2d0c44563232f44c87f716860dec58ac50d5ff855cbde6d08"
+    },
+    {
+      "attempt": "independent-01",
+      "fixture": "h1-yugoslavia",
+      "role": "staged",
+      "raw_sha256": "927d12863e5a71c1ad54c53a501122648fd55f6bf430d9410fa5b71d0585c787"
+    },
+    {
+      "attempt": "independent-01",
+      "fixture": "h1-yugoslavia",
+      "role": "archive",
+      "raw_sha256": "034a0e9f0e821aba831ca08624b059e9fa5ee465b09e8c190d058b017c87948b"
+    },
+    {
+      "attempt": "independent-01",
+      "fixture": "h1-ussr-aim",
+      "role": "base",
+      "raw_sha256": "09374c19ae63946e7dd5b78d6bd4dcbd16128d26289dd3c378ee71a457f23c9e"
+    },
+    {
+      "attempt": "independent-01",
+      "fixture": "h1-ussr-aim",
+      "role": "staged",
+      "raw_sha256": "11352fd42bb7ebb100f054dfbba0a0fa4893ddd408187174972a71fdad2000b7"
+    },
+    {
+      "attempt": "independent-01",
+      "fixture": "h1-ussr-aim",
+      "role": "archive",
+      "raw_sha256": "0486f4d3f8329c8eea1e917b4d756bebbe4abc19aa0cf9b0f858a8ef3e25363f"
+    },
+    {
+      "attempt": "independent-02",
+      "fixture": "n1-ussr-succession",
+      "role": "archive",
+      "raw_sha256": "745b95035ee84110e9b60881e5b2da7cf0e56027812559759001029e8e88a5d7"
+    },
+    {
+      "attempt": "independent-02",
+      "fixture": "h1-yugoslavia",
+      "role": "base",
+      "raw_sha256": "bd925b561e404a1ba558d4771110d963de13a5fbc9f3c64a3179cbdf40224f1d"
+    },
+    {
+      "attempt": "independent-02",
+      "fixture": "h1-yugoslavia",
+      "role": "staged",
+      "raw_sha256": "bf2d2c76c411ee3ef9b449b7ac25255ee64ce706bd5a1b197542bee37d8a02e4"
+    },
+    {
+      "attempt": "independent-02",
+      "fixture": "h1-yugoslavia",
+      "role": "archive",
+      "raw_sha256": "4b362f0cbd9b64548bfd42af303d426f756e5220bbe9d9e38733b466107999fc"
+    },
+    {
+      "attempt": "independent-02",
+      "fixture": "h1-ussr-aim",
+      "role": "base",
+      "raw_sha256": "adb072bf6c9a5b392a69c7ac88d0ac991edab53d2d4c615f66bf6d6a725b8578"
+    },
+    {
+      "attempt": "independent-02",
+      "fixture": "h1-ussr-aim",
+      "role": "staged",
+      "raw_sha256": "061788a49cd011b46695383163b255d6a196210c42bf742bc22fa00efe0cc536"
+    },
+    {
+      "attempt": "independent-02",
+      "fixture": "h1-ussr-aim",
+      "role": "archive",
+      "raw_sha256": "f579f1c9c29bf98008c8dc54d339f834aecb575a1b50a2586af9d95f2660d385"
+    }
+  ],
+  "budget_evidence_files_verified": 11,
+  "passed": true
+}

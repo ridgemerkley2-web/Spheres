@@ -1,0 +1,483 @@
+{
+  "schema": "spheres-art-preflight/v1",
+  "started_utc": "2026-09-28T11:20:16.296Z",
+  "revision": "5d11dd6dae436eeca105dbaf0d02732cd768b35b",
+  "node": "v24.12.0",
+  "node_path": "C:\\Program Files\\nodejs\\node.exe",
+  "scope": "Offline generated geometry, payload accounting, byte reproduction and contract limits. No browser, FPS, driver VRAM or campaign timing measurement.",
+  "status_before": "",
+  "source_before": [
+    {
+      "file": "docs/art/3D_MODEL_MASTER_ROADMAP.md",
+      "bytes": 33582,
+      "sha256": "16d761755034115340736d94b962e8590c11e86363edbeab40541bdea6b75072"
+    },
+    {
+      "file": "docs/art/P0_BUDGETS.md",
+      "bytes": 41445,
+      "sha256": "f2144d76933460269736fbab71c78c0c2860f63e8fd0c34b060c597e563922e5"
+    },
+    {
+      "file": "docs/art/P0_MEASUREMENTS.json",
+      "bytes": 354435,
+      "sha256": "f1da435fe2eaa119e016baa7c1f88d6531e50567730b05248d3cc16702cbf443"
+    },
+    {
+      "file": "docs/art/P0_MANIFEST.md",
+      "bytes": 4330,
+      "sha256": "7cf5d1aa59debdde01d77832bf41d324a0b59d6a96ddb8e4ae1cf235524c3267"
+    },
+    {
+      "file": "docs/art/P0_MANIFEST.json",
+      "bytes": 99223,
+      "sha256": "53d6b09253499394f5dfa55ccbf883c02ffe2dd80d0bc001ced28037d01a7f20"
+    },
+    {
+      "file": "docs/art/TOWN_SCENE_RENDERING.md",
+      "bytes": 7751,
+      "sha256": "994743b835e2062080d095bfc0df59dfb72969a08e54e002cb76e22addff9aa2"
+    },
+    {
+      "file": "tools/ui/bench_art.cjs",
+      "bytes": 54024,
+      "sha256": "bfe22280149eede0bad8dca70316e2c2747ae88847fc7eb36aedd68f48645af9"
+    },
+    {
+      "file": "tools/ui/build_art_manifest.cjs",
+      "bytes": 10488,
+      "sha256": "9b892e61a0ad2670533b939f31a00a58f4e0c4611b3ea8c271a4d56b83ed3d02"
+    },
+    {
+      "file": "tools/ui/build_equipment_models.cjs",
+      "bytes": 11454,
+      "sha256": "39655a00ce8f9a244c862446887f12face0f9b935bb0385b01acb29875c2688c"
+    },
+    {
+      "file": "tools/ui/mesh-accounting.cjs",
+      "bytes": 1923,
+      "sha256": "8e6f18892e89b31a0d032051939913157c96e68a17457e71f2cb465c0a0a109b"
+    },
+    {
+      "file": "tools/ui/art-budget-units.cjs",
+      "bytes": 3264,
+      "sha256": "45bbd7338b93f17b6991a8e219a242c337a45a53d232c3fd558ac3642d4bf84a"
+    },
+    {
+      "file": "tools/ui/check_art_budget_contract.cjs",
+      "bytes": 1686,
+      "sha256": "4bd1f12b4e17bd05a0680000be09b5423b6358b002f357aed10f2fc5c48470f5"
+    },
+    {
+      "file": "tools/ui/check_mesh_accounting.cjs",
+      "bytes": 1867,
+      "sha256": "1a87a6f993e8d94acdaf545b79c512c6084d738ff6f9fc5b0e37ccc95b8347b4"
+    },
+    {
+      "file": "tools/ui/check_art_budget_units.cjs",
+      "bytes": 1836,
+      "sha256": "2661fd6dbacce76b02e2c37030199baeef23b5c2de9c670042e9ed54d7656189"
+    },
+    {
+      "file": "tools/ui/check_art_worst_spec.cjs",
+      "bytes": 3342,
+      "sha256": "5073a0ea648e54318880d0eb3776300ca128ee230de081c496b7dde2abcb8a16"
+    },
+    {
+      "file": "tools/ui/check_town_scene_budget.cjs",
+      "bytes": 2439,
+      "sha256": "9052a42304caf3e436a4170889b107e9dd96434fcfd9c1c5d0cdd84247bda78e"
+    },
+    {
+      "file": "tools/ui/check_equipment_export.cjs",
+      "bytes": 11917,
+      "sha256": "c3e23c31117af1bc9bfbc055957605157a33bf8f619c000a195895019a5766a9"
+    },
+    {
+      "file": "tools/ui/check_equipment_mesh.cjs",
+      "bytes": 47766,
+      "sha256": "0a16456c72b3844371a6f22d71f2e2e80fb890c02704b9d4610b303505a563f0"
+    },
+    {
+      "file": "tools/ui/check_s16_fighter_mesh.cjs",
+      "bytes": 9343,
+      "sha256": "ecd0c6ce43dcf15242bb4ff7f0760569ece041dd66628917265bc376fa742ebb"
+    },
+    {
+      "file": "tools/ui/check_art_gallery.cjs",
+      "bytes": 11291,
+      "sha256": "fd1a970aa0aefa4cba3272e58cf482010659e4171947579b1498972b0a61a9ab"
+    },
+    {
+      "file": "spheres-web/ui/equipment-mesh.js",
+      "bytes": 180994,
+      "sha256": "4f8a6b30fbc575578785525fa131862765afd36736c41d37799ef77a1f0b9921"
+    },
+    {
+      "file": "spheres-web/ui/equipment-export.js",
+      "bytes": 8868,
+      "sha256": "f73e322a577f95b23968c4166a4d4338de12736e652e33e2bf9aa81cacb192fd"
+    },
+    {
+      "file": "spheres-web/ui/site-mesh.js",
+      "bytes": 308376,
+      "sha256": "2269bb2dadc41676cc17f915c8ed20022d5fd7ba9746540c7492967d2065dede"
+    },
+    {
+      "file": "spheres-web/ui/town-mesh.js",
+      "bytes": 178182,
+      "sha256": "1d1636de92fa3fd05ff09af581b8e2b47404ef9e8d80163b27561b09b34de27b"
+    },
+    {
+      "file": "spheres-web/ui/arsenal3d.js",
+      "bytes": 58592,
+      "sha256": "c5dac9ce0d40a609dc5d59265da789ba43effaa5ca8412bd58ff441da8edb7ab"
+    },
+    {
+      "file": "spheres-web/ui/equipment-models/README.md",
+      "bytes": 7750,
+      "sha256": "3122c0f8eeaf7061018ea24afb4ef80d4faa78a386b55154261004d44076e2bc"
+    },
+    {
+      "file": "spheres-web/ui/equipment-models/spheres-air-fighter.glb",
+      "bytes": 21653740,
+      "sha256": "b62c2b9994084aece379f1321e5068d91cdbb88de81d37af7fb19987945cdae3"
+    },
+    {
+      "file": "spheres-web/ui/equipment-models/spheres-air-light-attack.glb",
+      "bytes": 21532596,
+      "sha256": "e11e502589fe06ec5c56a8780238374eb1703d7a4fdd3db7d3fded52df3eb36c"
+    },
+    {
+      "file": "spheres-web/ui/equipment-models/spheres-air-tactical-strike.glb",
+      "bytes": 24698664,
+      "sha256": "edb1000d7b32688f9d7f08aaf631c4b644c66f141732616b9e6ded1c153f43b8"
+    },
+    {
+      "file": "spheres-web/ui/equipment-models/spheres-ground-air-defense.glb",
+      "bytes": 4279020,
+      "sha256": "a8ff6528bf66a4a96504e74c95ba138c1fe7afa296600349df3b6c008003e774"
+    },
+    {
+      "file": "spheres-web/ui/equipment-models/spheres-ground-apc.glb",
+      "bytes": 2893352,
+      "sha256": "f892318351367f5828c4fe78373a2659ca6e984e25f2f270096874378aba9579"
+    },
+    {
+      "file": "spheres-web/ui/equipment-models/spheres-ground-artillery.glb",
+      "bytes": 4709572,
+      "sha256": "eb757203936e5f2f1c158df765d237061134ba29d36843a10ff698f81e022159"
+    },
+    {
+      "file": "spheres-web/ui/equipment-models/spheres-ground-ifv.glb",
+      "bytes": 4605232,
+      "sha256": "5025499c4e574b25e66f13ee75aab6b42371add94f55e0ffe6fd98d1b405b4e0"
+    },
+    {
+      "file": "spheres-web/ui/equipment-models/spheres-ground-recon.glb",
+      "bytes": 2567168,
+      "sha256": "a2e15620db5bb4a52f9e4e197fa95c4aab9e72c6a973136e9b3b357f1bf04490"
+    },
+    {
+      "file": "spheres-web/ui/equipment-models/spheres-tank-balanced.glb",
+      "bytes": 7101240,
+      "sha256": "622fe5c2d4a2228611f36a59d0298381d2464e38a901bc19ae5fc6517ee7233a"
+    },
+    {
+      "file": "spheres-web/ui/equipment-models/spheres-tank-destroyer.glb",
+      "bytes": 6997576,
+      "sha256": "058187bb6626b952e5743052af8dd53a1394514b500e115d003b90a9a7c55a45"
+    },
+    {
+      "file": "spheres-web/ui/equipment-models/spheres-tank-heavy.glb",
+      "bytes": 7635652,
+      "sha256": "e697f363f0d6bfb41b00a0bfbab1116cdb88341343a30271444670fee82d6787"
+    },
+    {
+      "file": "spheres-web/ui/equipment-models/spheres-tank-light.glb",
+      "bytes": 7100044,
+      "sha256": "aba1ea321e0c840633df955b513afd6ac7287c52272fa1329d04ce28a79230a2"
+    },
+    {
+      "file": "spheres-web/ui/equipment-models/spheres-tank-mobile.glb",
+      "bytes": 7059768,
+      "sha256": "9664223b0fcc876b0a2ff1a5a9e275fb875d66131f086fd3683781c0b8704fba"
+    }
+  ],
+  "commands": [
+    {
+      "name": "budget-and-records",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tools/ui/bench_art.cjs",
+        "--check"
+      ],
+      "started_utc": "2026-09-28T11:20:16.625Z",
+      "finished_utc": "2026-09-28T11:21:27.098Z",
+      "exit_code": 0,
+      "signal": null,
+      "error": null,
+      "log": "budget-and-records.log",
+      "log_bytes": 130,
+      "log_sha256": "c98654ddc5a43118d93e9a6b4d59a9e2b4824c868ac0365b8d4b36694d304c86"
+    },
+    {
+      "name": "manifest",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tools/ui/build_art_manifest.cjs",
+        "--check"
+      ],
+      "started_utc": "2026-09-28T11:21:27.099Z",
+      "finished_utc": "2026-09-28T11:21:28.698Z",
+      "exit_code": 0,
+      "signal": null,
+      "error": null,
+      "log": "manifest.log",
+      "log_bytes": 28,
+      "log_sha256": "0cd9f5728cdd3c6eeba3b61f250b5b387c13ceace2cc7c33150cfd711d6853a5"
+    },
+    {
+      "name": "canonical-exports",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "tools/ui/build_equipment_models.cjs",
+        "--check"
+      ],
+      "started_utc": "2026-09-28T11:21:28.698Z",
+      "finished_utc": "2026-09-28T11:21:29.818Z",
+      "exit_code": 0,
+      "signal": null,
+      "error": null,
+      "log": "canonical-exports.log",
+      "log_bytes": 335,
+      "log_sha256": "516e2a0b689a66f9714cedcfc95ef0d96994beeb159426af22ce2aca6a384403"
+    },
+    {
+      "name": "focused-contract-accounting-quality",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "--test",
+        "--test-concurrency=1",
+        "tools/ui/check_art_budget_contract.cjs",
+        "tools/ui/check_mesh_accounting.cjs",
+        "tools/ui/check_art_budget_units.cjs",
+        "tools/ui/check_art_worst_spec.cjs",
+        "tools/ui/check_town_scene_budget.cjs",
+        "tools/ui/check_equipment_export.cjs",
+        "tools/ui/check_equipment_mesh.cjs",
+        "tools/ui/check_s16_fighter_mesh.cjs",
+        "tools/ui/check_art_gallery.cjs"
+      ],
+      "started_utc": "2026-09-28T11:21:29.818Z",
+      "finished_utc": "2026-09-28T11:23:24.695Z",
+      "exit_code": 0,
+      "signal": null,
+      "error": null,
+      "log": "focused-contract-accounting-quality.log",
+      "log_bytes": 6506,
+      "log_sha256": "d6df52ef4cb2ef9a51fba1863199c54f3127a39b45ca67308cc874346cc3982a"
+    }
+  ],
+  "passed": true,
+  "source_after": [
+    {
+      "file": "docs/art/3D_MODEL_MASTER_ROADMAP.md",
+      "bytes": 33582,
+      "sha256": "16d761755034115340736d94b962e8590c11e86363edbeab40541bdea6b75072"
+    },
+    {
+      "file": "docs/art/P0_BUDGETS.md",
+      "bytes": 41445,
+      "sha256": "f2144d76933460269736fbab71c78c0c2860f63e8fd0c34b060c597e563922e5"
+    },
+    {
+      "file": "docs/art/P0_MEASUREMENTS.json",
+      "bytes": 354435,
+      "sha256": "f1da435fe2eaa119e016baa7c1f88d6531e50567730b05248d3cc16702cbf443"
+    },
+    {
+      "file": "docs/art/P0_MANIFEST.md",
+      "bytes": 4330,
+      "sha256": "7cf5d1aa59debdde01d77832bf41d324a0b59d6a96ddb8e4ae1cf235524c3267"
+    },
+    {
+      "file": "docs/art/P0_MANIFEST.json",
+      "bytes": 99223,
+      "sha256": "53d6b09253499394f5dfa55ccbf883c02ffe2dd80d0bc001ced28037d01a7f20"
+    },
+    {
+      "file": "docs/art/TOWN_SCENE_RENDERING.md",
+      "bytes": 7751,
+      "sha256": "994743b835e2062080d095bfc0df59dfb72969a08e54e002cb76e22addff9aa2"
+    },
+    {
+      "file": "tools/ui/bench_art.cjs",
+      "bytes": 54024,
+      "sha256": "bfe22280149eede0bad8dca70316e2c2747ae88847fc7eb36aedd68f48645af9"
+    },
+    {
+      "file": "tools/ui/build_art_manifest.cjs",
+      "bytes": 10488,
+      "sha256": "9b892e61a0ad2670533b939f31a00a58f4e0c4611b3ea8c271a4d56b83ed3d02"
+    },
+    {
+      "file": "tools/ui/build_equipment_models.cjs",
+      "bytes": 11454,
+      "sha256": "39655a00ce8f9a244c862446887f12face0f9b935bb0385b01acb29875c2688c"
+    },
+    {
+      "file": "tools/ui/mesh-accounting.cjs",
+      "bytes": 1923,
+      "sha256": "8e6f18892e89b31a0d032051939913157c96e68a17457e71f2cb465c0a0a109b"
+    },
+    {
+      "file": "tools/ui/art-budget-units.cjs",
+      "bytes": 3264,
+      "sha256": "45bbd7338b93f17b6991a8e219a242c337a45a53d232c3fd558ac3642d4bf84a"
+    },
+    {
+      "file": "tools/ui/check_art_budget_contract.cjs",
+      "bytes": 1686,
+      "sha256": "4bd1f12b4e17bd05a0680000be09b5423b6358b002f357aed10f2fc5c48470f5"
+    },
+    {
+      "file": "tools/ui/check_mesh_accounting.cjs",
+      "bytes": 1867,
+      "sha256": "1a87a6f993e8d94acdaf545b79c512c6084d738ff6f9fc5b0e37ccc95b8347b4"
+    },
+    {
+      "file": "tools/ui/check_art_budget_units.cjs",
+      "bytes": 1836,
+      "sha256": "2661fd6dbacce76b02e2c37030199baeef23b5c2de9c670042e9ed54d7656189"
+    },
+    {
+      "file": "tools/ui/check_art_worst_spec.cjs",
+      "bytes": 3342,
+      "sha256": "5073a0ea648e54318880d0eb3776300ca128ee230de081c496b7dde2abcb8a16"
+    },
+    {
+      "file": "tools/ui/check_town_scene_budget.cjs",
+      "bytes": 2439,
+      "sha256": "9052a42304caf3e436a4170889b107e9dd96434fcfd9c1c5d0cdd84247bda78e"
+    },
+    {
+      "file": "tools/ui/check_equipment_export.cjs",
+      "bytes": 11917,
+      "sha256": "c3e23c31117af1bc9bfbc055957605157a33bf8f619c000a195895019a5766a9"
+    },
+    {
+      "file": "tools/ui/check_equipment_mesh.cjs",
+      "bytes": 47766,
+      "sha256": "0a16456c72b3844371a6f22d71f2e2e80fb890c02704b9d4610b303505a563f0"
+    },
+    {
+      "file": "tools/ui/check_s16_fighter_mesh.cjs",
+      "bytes": 9343,
+      "sha256": "ecd0c6ce43dcf15242bb4ff7f0760569ece041dd66628917265bc376fa742ebb"
+    },
+    {
+      "file": "tools/ui/check_art_gallery.cjs",
+      "bytes": 11291,
+      "sha256": "fd1a970aa0aefa4cba3272e58cf482010659e4171947579b1498972b0a61a9ab"
+    },
+    {
+      "file": "spheres-web/ui/equipment-mesh.js",
+      "bytes": 180994,
+      "sha256": "4f8a6b30fbc575578785525fa131862765afd36736c41d37799ef77a1f0b9921"
+    },
+    {
+      "file": "spheres-web/ui/equipment-export.js",
+      "bytes": 8868,
+      "sha256": "f73e322a577f95b23968c4166a4d4338de12736e652e33e2bf9aa81cacb192fd"
+    },
+    {
+      "file": "spheres-web/ui/site-mesh.js",
+      "bytes": 308376,
+      "sha256": "2269bb2dadc41676cc17f915c8ed20022d5fd7ba9746540c7492967d2065dede"
+    },
+    {
+      "file": "spheres-web/ui/town-mesh.js",
+      "bytes": 178182,
+      "sha256": "1d1636de92fa3fd05ff09af581b8e2b47404ef9e8d80163b27561b09b34de27b"
+    },
+    {
+      "file": "spheres-web/ui/arsenal3d.js",
+      "bytes": 58592,
+      "sha256": "c5dac9ce0d40a609dc5d59265da789ba43effaa5ca8412bd58ff441da8edb7ab"
+    },
+    {
+      "file": "spheres-web/ui/equipment-models/README.md",
+      "bytes": 7750,
+      "sha256": "3122c0f8eeaf7061018ea24afb4ef80d4faa78a386b55154261004d44076e2bc"
+    },
+    {
+      "file": "spheres-web/ui/equipment-models/spheres-air-fighter.glb",
+      "bytes": 21653740,
+      "sha256": "b62c2b9994084aece379f1321e5068d91cdbb88de81d37af7fb19987945cdae3"
+    },
+    {
+      "file": "spheres-web/ui/equipment-models/spheres-air-light-attack.glb",
+      "bytes": 21532596,
+      "sha256": "e11e502589fe06ec5c56a8780238374eb1703d7a4fdd3db7d3fded52df3eb36c"
+    },
+    {
+      "file": "spheres-web/ui/equipment-models/spheres-air-tactical-strike.glb",
+      "bytes": 24698664,
+      "sha256": "edb1000d7b32688f9d7f08aaf631c4b644c66f141732616b9e6ded1c153f43b8"
+    },
+    {
+      "file": "spheres-web/ui/equipment-models/spheres-ground-air-defense.glb",
+      "bytes": 4279020,
+      "sha256": "a8ff6528bf66a4a96504e74c95ba138c1fe7afa296600349df3b6c008003e774"
+    },
+    {
+      "file": "spheres-web/ui/equipment-models/spheres-ground-apc.glb",
+      "bytes": 2893352,
+      "sha256": "f892318351367f5828c4fe78373a2659ca6e984e25f2f270096874378aba9579"
+    },
+    {
+      "file": "spheres-web/ui/equipment-models/spheres-ground-artillery.glb",
+      "bytes": 4709572,
+      "sha256": "eb757203936e5f2f1c158df765d237061134ba29d36843a10ff698f81e022159"
+    },
+    {
+      "file": "spheres-web/ui/equipment-models/spheres-ground-ifv.glb",
+      "bytes": 4605232,
+      "sha256": "5025499c4e574b25e66f13ee75aab6b42371add94f55e0ffe6fd98d1b405b4e0"
+    },
+    {
+      "file": "spheres-web/ui/equipment-models/spheres-ground-recon.glb",
+      "bytes": 2567168,
+      "sha256": "a2e15620db5bb4a52f9e4e197fa95c4aab9e72c6a973136e9b3b357f1bf04490"
+    },
+    {
+      "file": "spheres-web/ui/equipment-models/spheres-tank-balanced.glb",
+      "bytes": 7101240,
+      "sha256": "622fe5c2d4a2228611f36a59d0298381d2464e38a901bc19ae5fc6517ee7233a"
+    },
+    {
+      "file": "spheres-web/ui/equipment-models/spheres-tank-destroyer.glb",
+      "bytes": 6997576,
+      "sha256": "058187bb6626b952e5743052af8dd53a1394514b500e115d003b90a9a7c55a45"
+    },
+    {
+      "file": "spheres-web/ui/equipment-models/spheres-tank-heavy.glb",
+      "bytes": 7635652,
+      "sha256": "e697f363f0d6bfb41b00a0bfbab1116cdb88341343a30271444670fee82d6787"
+    },
+    {
+      "file": "spheres-web/ui/equipment-models/spheres-tank-light.glb",
+      "bytes": 7100044,
+      "sha256": "aba1ea321e0c840633df955b513afd6ac7287c52272fa1329d04ce28a79230a2"
+    },
+    {
+      "file": "spheres-web/ui/equipment-models/spheres-tank-mobile.glb",
+      "bytes": 7059768,
+      "sha256": "9664223b0fcc876b0a2ff1a5a9e275fb875d66131f086fd3683781c0b8704fba"
+    }
+  ],
+  "source_unchanged": true,
+  "finished_utc": "2026-09-28T11:23:24.775Z",
+  "head_after": "5d11dd6dae436eeca105dbaf0d02732cd768b35b",
+  "status_after": ""
+}

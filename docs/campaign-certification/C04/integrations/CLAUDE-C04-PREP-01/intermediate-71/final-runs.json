@@ -1,0 +1,39 @@
+[
+  {
+    "id": "final-validator",
+    "command": [
+      "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+      "-X",
+      "utf8",
+      "tools/avatars/check_successor_proposals.py",
+      "--json"
+    ],
+    "started_utc": "2026-09-28T13:46:15.044171+00:00",
+    "finished_utc": "2026-09-28T13:46:16.438925+00:00",
+    "exit_code": 0,
+    "log": "final-validator.log",
+    "bytes": 9330,
+    "sha256": "63178d14b63dc6002205e4108a433ae48cd8be184ca128b4e3752e6b6c5703d4"
+  },
+  {
+    "id": "final-tests",
+    "command": [
+      "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_successor_proposals.py"
+    ],
+    "started_utc": "2026-09-28T13:46:16.438991+00:00",
+    "finished_utc": "2026-09-28T13:46:37.059968+00:00",
+    "exit_code": 0,
+    "log": "final-tests.log",
+    "bytes": 171,
+    "sha256": "6dedd86c5e10b87b41997f6daa76dc837b17df66e265edcfca27d6db74a4ce9f"
+  }
+]

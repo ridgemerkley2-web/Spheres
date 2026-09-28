@@ -1,0 +1,44 @@
+{
+  "candidate_revision": "697448c160a53cadd8b6132717a0df22ed430eb8",
+  "binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-697448c1\\sim-tests.exe",
+  "binary_sha256": "7f5d0cb941994b7f40867a8255188aa610e244ffcb690ab3b1bda16dff91ddd1",
+  "arguments": "FILTER --nocapture --test-threads=2",
+  "runs": [
+    {
+      "filter": "sovereignty::candidate_tests",
+      "started_utc": "2026-09-28T09:15:42.2078899Z",
+      "finished_utc": "2026-09-28T09:15:42.3792741Z",
+      "exit_code": 0,
+      "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-focused-scalar.log"
+    },
+    {
+      "filter": "campaign_supply::permission_scope_tests",
+      "started_utc": "2026-09-28T09:15:42.3891333Z",
+      "finished_utc": "2026-09-28T09:15:42.8427621Z",
+      "exit_code": 0,
+      "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-focused-permission.log"
+    },
+    {
+      "filter": "connected_snapshot_",
+      "started_utc": "2026-09-28T09:15:42.8511891Z",
+      "finished_utc": "2026-09-28T09:15:43.4513354Z",
+      "exit_code": 0,
+      "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-focused-ledger.log"
+    },
+    {
+      "filter": "logistics::terminal_assembly_tests",
+      "started_utc": "2026-09-28T09:15:43.4588415Z",
+      "finished_utc": "2026-09-28T09:15:43.5605706Z",
+      "exit_code": 0,
+      "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-focused-terminal.log"
+    },
+    {
+      "filter": "logistics::tests::s08_clearing_assembly_reuses_static_segments_and_keeps_terminal_xp_live",
+      "started_utc": "2026-09-28T09:15:43.5671282Z",
+      "finished_utc": "2026-09-28T09:15:43.7049430Z",
+      "exit_code": 0,
+      "log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-pass-local-focused-terminal-xp.log"
+    }
+  ],
+  "qualification": false
+}

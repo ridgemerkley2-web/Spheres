@@ -1,0 +1,835 @@
+{
+  "schema": "spheres-company-pilot-dossier-v1",
+  "id": "fr_naval_group",
+  "display_name": "Naval Group",
+  "native_name": "Naval Group SA (DCN Developpement, DCN, DCNS); predecessor the state directorate DCN",
+  "nation": "France",
+  "status": "research_only",
+  "research_window": {
+    "from": "1990-01-01",
+    "through": "2026-09-07"
+  },
+  "activities": [
+    "naval"
+  ],
+  "selection": {
+    "reason": "The French naval shipbuilder. It covers the naval side of the mix and is the clearest case where a state directorate (1990-2003) must not be turned into government production capacity when a company identity is attached.",
+    "existing_game_references": [
+      {
+        "kind": "arsenal_kits",
+        "path": "spheres-sim/src/arsenal.rs",
+        "id": "nav_escort",
+        "note": "Generic escort kit built through public manufacturing lines; no company ship flow exists."
+      },
+      {
+        "kind": "sector_contractors",
+        "path": "spheres-sim/src/sector_contractors.rs",
+        "id": "France:defense",
+        "note": "Generated fictional defense contractors only."
+      }
+    ]
+  },
+  "summary": "In 1990 naval construction was a directorate of the Ministry of Defence (DCN), which became a national-competence service in 2000. A company, DCN Developpement, was created on 28 February 2002 and received the directorate's industrial rights, assets and obligations on 1 June 2003; it operated as DCN. On 29 March 2007 Thales contributed its naval activities, took 25% and the company became DCNS; Thales rose to 35% in 2011. The register shows the name NAVAL GROUP from 2017. The Suffren SSN was delivered in 2020, the first FDI frigate in 2025, and Australia's Attack-class programme was terminated in 2021.",
+  "entities": [
+    {
+      "id": "fr_dcn_directorate",
+      "kind": "state_administration",
+      "subject": false,
+      "names": [
+        {
+          "name": "Direction des constructions navales (DCN)",
+          "from": "1990-01-01",
+          "from_basis": "window_start",
+          "until": "2003-06-01",
+          "claims": [
+            "fr_naval_group_c01",
+            "fr_naval_group_c02",
+            "fr_naval_group_c05"
+          ]
+        }
+      ],
+      "roles": [
+        {
+          "role": "state naval-construction directorate of the Ministry of Defence (commerce account 904-05)",
+          "from": "1990-01-01",
+          "from_basis": "window_start",
+          "until": "2003-06-01",
+          "claims": [
+            "fr_naval_group_c01",
+            "fr_naval_group_c05"
+          ]
+        }
+      ],
+      "note": "A government administration, not a company. Its 1990-2003 work must not become a company history, government production capacity or free fleet in the game."
+    },
+    {
+      "id": "fr_naval_group_sa",
+      "kind": "company",
+      "subject": true,
+      "registration": {
+        "register": "RCS",
+        "number": "441 133 808",
+        "claims": [
+          "fr_naval_group_c10",
+          "fr_naval_group_c12"
+        ]
+      },
+      "names": [
+        {
+          "name": "DCN Développement",
+          "from": "2002-02-28",
+          "until": "2003",
+          "claims": [
+            "fr_naval_group_c03",
+            "fr_naval_group_c04",
+            "fr_naval_group_c05"
+          ]
+        },
+        {
+          "name": "DCN",
+          "from": "2003",
+          "until": "2007-03-29",
+          "claims": [
+            "fr_naval_group_c04",
+            "fr_naval_group_c06",
+            "fr_naval_group_c16"
+          ]
+        },
+        {
+          "name": "DCNS",
+          "from": "2007-03-29",
+          "until": "2017",
+          "claims": [
+            "fr_naval_group_c06",
+            "fr_naval_group_c10",
+            "fr_naval_group_c11"
+          ]
+        },
+        {
+          "name": "Naval Group",
+          "from": "2017",
+          "until": null,
+          "claims": [
+            "fr_naval_group_c12",
+            "fr_naval_group_c13",
+            "fr_naval_group_c14"
+          ]
+        }
+      ],
+      "roles": [
+        {
+          "role": "naval defence shipbuilder and systems company",
+          "from": "2003-06-01",
+          "until": null,
+          "claims": [
+            "fr_naval_group_c05",
+            "fr_naval_group_c13"
+          ]
+        }
+      ]
+    }
+  ],
+  "lineage": [
+    {
+      "id": "fr_naval_group_l01",
+      "kind": "business_transfer",
+      "entity": "fr_naval_group_sa",
+      "date": "2003-06-01",
+      "counterparties": [
+        {
+          "name": "Direction des constructions navales (DCN)",
+          "entity": "fr_dcn_directorate",
+          "relation": "State contribution of the directorate's rights, assets and obligations"
+        },
+        {
+          "name": "DCN International",
+          "relation": "acquired in full from the State"
+        }
+      ],
+      "claims": [
+        "fr_naval_group_c05"
+      ]
+    },
+    {
+      "id": "fr_naval_group_l02",
+      "kind": "rename",
+      "entity": "fr_naval_group_sa",
+      "date": "2003",
+      "from_name": "DCN Développement",
+      "to_name": "DCN",
+      "claims": [
+        "fr_naval_group_c04"
+      ]
+    },
+    {
+      "id": "fr_naval_group_l03",
+      "kind": "business_transfer",
+      "entity": "fr_naval_group_sa",
+      "date": "2007-03-29",
+      "counterparties": [
+        {
+          "name": "Thales",
+          "relation": "contributed Thales Naval France (excluding equipment activities) and its stakes in Armaris and MOPA2"
+        }
+      ],
+      "claims": [
+        "fr_naval_group_c06",
+        "fr_naval_group_c08"
+      ]
+    },
+    {
+      "id": "fr_naval_group_l04",
+      "kind": "rename",
+      "entity": "fr_naval_group_sa",
+      "date": "2007-03-29",
+      "from_name": "DCN",
+      "to_name": "DCNS",
+      "claims": [
+        "fr_naval_group_c06"
+      ]
+    },
+    {
+      "id": "fr_naval_group_l05",
+      "kind": "stake_change",
+      "entity": "fr_naval_group_sa",
+      "date": "2007-03-29",
+      "counterparties": [
+        {
+          "name": "Thales",
+          "relation": "acquired 25% of the capital from the French State"
+        }
+      ],
+      "claims": [
+        "fr_naval_group_c06",
+        "fr_naval_group_c08"
+      ]
+    },
+    {
+      "id": "fr_naval_group_l06",
+      "kind": "stake_change",
+      "entity": "fr_naval_group_sa",
+      "date": "2011",
+      "counterparties": [
+        {
+          "name": "Thales",
+          "relation": "raised its stake to 35%"
+        }
+      ],
+      "claims": [
+        "fr_naval_group_c09"
+      ]
+    },
+    {
+      "id": "fr_naval_group_l07",
+      "kind": "rename",
+      "entity": "fr_naval_group_sa",
+      "date": "2017",
+      "from_name": "DCNS",
+      "to_name": "Naval Group",
+      "claims": [
+        "fr_naval_group_c11",
+        "fr_naval_group_c12"
+      ]
+    }
+  ],
+  "ownership": [
+    {
+      "holder": "French State (majority), Thales 25%, employees just over 1%",
+      "share": "State majority",
+      "date": "2011-08-09",
+      "claims": [
+        "fr_naval_group_c07"
+      ]
+    },
+    {
+      "holder": "French State",
+      "share": "62.25%",
+      "date": "2025-12-31",
+      "claims": [
+        "fr_naval_group_c14"
+      ]
+    },
+    {
+      "holder": "Thales",
+      "share": "35%",
+      "date": "2025-12-31",
+      "claims": [
+        "fr_naval_group_c14"
+      ]
+    }
+  ],
+  "country_links": [
+    {
+      "country": "France",
+      "kind": "headquarters",
+      "date": "2026-07-21",
+      "claims": [
+        "fr_naval_group_c13"
+      ],
+      "note": "Registered in Paris."
+    },
+    {
+      "country": "Pakistan",
+      "kind": "export_customer",
+      "date": "1995-01",
+      "claims": [
+        "fr_naval_group_c24"
+      ],
+      "note": "Agosta 90B contract started under the state directorate."
+    },
+    {
+      "country": "Chile",
+      "kind": "export_customer",
+      "date": "1998-04",
+      "claims": [
+        "fr_naval_group_c24"
+      ]
+    },
+    {
+      "country": "Malaysia",
+      "kind": "export_customer",
+      "date": "2002-10",
+      "claims": [
+        "fr_naval_group_c24"
+      ]
+    },
+    {
+      "country": "Australia",
+      "kind": "customer_programme_terminated",
+      "date": "2021-09-16",
+      "claims": [
+        "fr_naval_group_c21",
+        "fr_naval_group_c23"
+      ]
+    },
+    {
+      "country": "Greece",
+      "kind": "export_customer",
+      "date": "2025-10-17",
+      "claims": [
+        "fr_naval_group_c20"
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "fr_naval_snle_ng",
+      "name": "Le Vigilant and Le Terrible ballistic-missile submarines (SNLE-NG)",
+      "reality": "historical",
+      "category": "nuclear ballistic-missile submarine",
+      "milestones": [
+        {
+          "event": "contract",
+          "date": "1993-12",
+          "maker_entity": "fr_dcn_directorate",
+          "maker_name": "Direction des constructions navales (DCN)",
+          "claims": [
+            "fr_naval_group_c24"
+          ],
+          "note": "Contract start in the DCN-SA workload table; the state directorate held the work until 2003."
+        }
+      ]
+    },
+    {
+      "id": "fr_naval_scorpene_chile",
+      "name": "Scorpene submarines for Chile",
+      "reality": "historical",
+      "category": "conventional submarine (export)",
+      "milestones": [
+        {
+          "event": "contract",
+          "date": "1998-04",
+          "maker_entity": "fr_dcn_directorate",
+          "maker_name": "Direction des constructions navales (DCN)",
+          "claims": [
+            "fr_naval_group_c24"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fr_naval_suffren",
+      "name": "Suffren nuclear attack submarine (Barracuda programme)",
+      "reality": "historical",
+      "category": "nuclear attack submarine",
+      "milestones": [
+        {
+          "event": "contract",
+          "date": "2006",
+          "maker_entity": "fr_naval_group_sa",
+          "maker_name": "DCN",
+          "claims": [
+            "fr_naval_group_c18"
+          ],
+          "note": "Development contract notified at the end of 2006."
+        },
+        {
+          "event": "production_milestone",
+          "date": "2007-12-10",
+          "maker_entity": "fr_naval_group_sa",
+          "maker_name": "DCNS",
+          "claims": [
+            "fr_naval_group_c18"
+          ],
+          "note": "First metal sheet cut."
+        },
+        {
+          "event": "delivery",
+          "date": "2020-11-06",
+          "maker_entity": "fr_naval_group_sa",
+          "maker_name": "Naval Group",
+          "claims": [
+            "fr_naval_group_c17"
+          ],
+          "note": "First of six; TechnicAtome is prime for the nuclear boiler room."
+        }
+      ]
+    },
+    {
+      "id": "fr_naval_fdi",
+      "name": "FDI defence and intervention frigate (Amiral Ronarc'h)",
+      "reality": "historical",
+      "category": "frigate",
+      "milestones": [
+        {
+          "event": "first_delivery",
+          "date": "2025-10-17",
+          "maker_entity": "fr_naval_group_sa",
+          "maker_name": "Naval Group",
+          "claims": [
+            "fr_naval_group_c19"
+          ],
+          "note": "First of five for France; further hulls for France and Greece under construction."
+        }
+      ]
+    },
+    {
+      "id": "fr_naval_attack_class",
+      "name": "Attack-class submarine programme for Australia",
+      "reality": "cancelled",
+      "category": "conventional submarine programme",
+      "milestones": [
+        {
+          "event": "selected",
+          "date": "2016-04-26",
+          "maker_entity": "fr_naval_group_sa",
+          "maker_name": "DCNS",
+          "name_as_written": "Naval Group",
+          "retrospective_label": true,
+          "claims": [
+            "fr_naval_group_c21"
+          ],
+          "note": "The 2023 audit sheet uses the later name for a 2016 event; the register name then was DCNS."
+        },
+        {
+          "event": "contract",
+          "date": "2016-09-30",
+          "maker_entity": "fr_naval_group_sa",
+          "maker_name": "DCNS",
+          "name_as_written": "Naval Group",
+          "retrospective_label": true,
+          "claims": [
+            "fr_naval_group_c21"
+          ]
+        },
+        {
+          "event": "terminated",
+          "date": "2021-09-16",
+          "maker_entity": "fr_naval_group_sa",
+          "maker_name": "Naval Group",
+          "claims": [
+            "fr_naval_group_c23"
+          ]
+        }
+      ]
+    }
+  ],
+  "game_mapping": {
+    "proposed": [
+      {
+        "target_kind": "arsenal_kit",
+        "target_id": "nav_escort",
+        "flow": "no_company_consumer",
+        "confidence": "medium",
+        "basis_products": [
+          "fr_naval_fdi"
+        ],
+        "uncertainty": "Frigates exist only as the generic escort arsenal kit built through public manufacturing lines. There is no ship designer platform or company ship stock before E04; a future ship supplier must not be modeled as government production capacity or a free fleet."
+      },
+      {
+        "target_kind": "arsenal_kit",
+        "target_id": "msl_deterrent",
+        "flow": "no_company_consumer",
+        "confidence": "low",
+        "basis_products": [
+          "fr_naval_snle_ng"
+        ],
+        "uncertainty": "The strategic-deterrent kit is a generic force tier. SSBN work in 1993-2003 belonged to a state directorate, not to a company."
+      },
+      {
+        "target_kind": "sector_contractor_slot",
+        "target_id": "France:defense",
+        "flow": "sector_contractor_service",
+        "confidence": "medium",
+        "uncertainty": "Generated contractors are fictional; a real identity would replace one, not add a parallel firm."
+      }
+    ],
+    "duplicates_avoided": [
+      "The DCN directorate (1990-2003) and the company (from 2002/2003) are separate records; the directorate is never a company or a production line owner in the game.",
+      "Thales is a shareholder and contributor, not a predecessor name of Naval Group."
+    ],
+    "integration_flow": {
+      "route": "existing_supplier_flow",
+      "summary": "A later, reviewed integration could attach this sourced identity to a company created through the existing orders. Design stays with the commissioning country; Defense R&D pays development as work is performed; the company funds tooling, national-warehouse inputs and fabrication from its own settled cash; the buyer purchases whole finished units from company stock; delivery follows fiscal settlement and seven accessible days. Ships have no designer platform, company stock or delivery consumer today; naval use waits for E04 and must still avoid state production capacity.",
+      "steps": [
+        {
+          "order": "Establish",
+          "note": "Paid capitalisation from Defense procurement (political capital price applies); leases one existing completed Arms Plant slot. No historical factory, balance or stock is granted."
+        },
+        {
+          "order": "Capitalize",
+          "note": "Further paid working capital; unsettled receivables are not spendable cash."
+        },
+        {
+          "order": "Develop",
+          "note": "Frozen design revision; Defense R&D pays engineering, prototype and trials work day by day; prototypes are never saleable."
+        },
+        {
+          "order": "Inventory",
+          "note": "Finite company-owned stock target (0-12 units); a target is never a government order."
+        },
+        {
+          "order": "Purchase",
+          "note": "Government buys whole units from existing company stock; settlement then seven accessible delivery days."
+        }
+      ],
+      "not_introduced": [
+        "government production capacity",
+        "free or opening stock",
+        "a parallel financial ledger",
+        "sourced opening corporate balances (none researched)"
+      ]
+    },
+    "constraints": {
+      "government_production_capacity": false,
+      "free_stock": false,
+      "parallel_financial_ledger": false,
+      "opening_balances_or_stock": "not_sourced_not_proposed"
+    },
+    "unmapped": [
+      "Suffren-class SSN: no suitable kit; la_ssn is the US Los Angeles class and must not be relabelled.",
+      "Scorpene exports: aip_ssk would be wrong for the Chilean boats; no air-independent propulsion is sourced here."
+    ]
+  },
+  "gaps": [
+    "DCN International creation date conflicts: the Naval Group history says 1991 (fr_naval_history_en), while the 2005 Senate report says the early 1970s (fr_senat_r04_405). Neither date is used.",
+    "The exact day of the DCN Developpement to DCN name change in 2003 was not found; the 2011 ministry answer names DCN Developpement at 1 June 2003.",
+    "The register records the NAVAL GROUP name by 12 October 2017 (still D C N S on 26 August 2017); announcement-day press coverage is a lead only.",
+    "La Cour des comptes website was unreachable; its findings were read only as reproduced in the Senate report."
+  ],
+  "future_policy": {
+    "after": "2026-09-07",
+    "real_history": "not_predicted",
+    "later_products": "fictional_or_unknown",
+    "note": "Nothing after the frozen cutoff is predicted. Any later product, successor or business in a campaign must be authored as explicitly fictional game content (labelled \"(fictional)\") or left unknown."
+  },
+  "claims": [
+    {
+      "id": "fr_naval_group_c01",
+      "source": "fr_senat_r04_405",
+      "attests": [
+        "1990"
+      ],
+      "text": "Business-tax relief granted to DCN covered claims for the period 1990-1999, placing DCN industrial naval activity inside the Ministry of Defence in 1990.",
+      "locator": {
+        "section": "II. L'operation d'apport, taxe professionnelle"
+      },
+      "anchor": "portant sur la période 1990-1999"
+    },
+    {
+      "id": "fr_naval_group_c02",
+      "source": "fr_senat_r04_405",
+      "attests": [
+        "2000-04-12"
+      ],
+      "text": "DCN became a national-competence service of the Ministry of Defence by decree of 12 April 2000 and was managed until 2003 within commerce account 904-05.",
+      "locator": {
+        "section": "I-A situation patrimoniale et financiere du SCN DCN, cadre comptable"
+      },
+      "anchor": "par décret du 12 avril 2000"
+    },
+    {
+      "id": "fr_naval_group_c03",
+      "source": "fr_senat_r04_405",
+      "attests": [
+        "2002-02-28"
+      ],
+      "text": "DCN-Developpement, a societe anonyme created on 28 February 2002, prepared the contribution to a national company.",
+      "locator": {
+        "section": "Introduction: changement de statut"
+      },
+      "anchor": "DCN-Développement, société anonyme créée le 28 février 2002"
+    },
+    {
+      "id": "fr_naval_group_c04",
+      "source": "fr_senat_r04_405",
+      "attests": [
+        "2003"
+      ],
+      "text": "The report tabulates DCN-Developpement for 2002-2003 and DCN SA, under article 78 of the amended 2001 finance law, from 2003.",
+      "locator": {
+        "section": "structures table (Structure / Texte juridique / Dates)"
+      },
+      "anchor": "DCN SA LFR 2001 (Art78) 2003"
+    },
+    {
+      "id": "fr_naval_group_c05",
+      "source": "fr_an_q13_103471",
+      "attests": [
+        "2003-06-01"
+      ],
+      "text": "On 1 June 2003 the DCN directorate of the Ministry of Defence was transformed into a public enterprise through contributions of State rights, assets and obligations, becoming the company DCN Developpement, which acquired all of DCN International.",
+      "locator": {
+        "page": 1,
+        "section": "Texte de la reponse"
+      },
+      "anchor": "Le 1er juin 2003, la direction des constructions navales (DCN)"
+    },
+    {
+      "id": "fr_naval_group_c06",
+      "source": "fr_an_q13_103471",
+      "attests": [
+        "2007-03-29"
+      ],
+      "text": "On 29 March 2007 DCN and Thales implemented with the State the agreements grouping their naval defence activities in DCN, renamed DCNS; Thales contributed Thales Naval France (excluding equipment) and its Armaris and MOPA2 stakes and took 25%.",
+      "locator": {
+        "page": 1,
+        "section": "Texte de la reponse"
+      },
+      "anchor": "au sein de la société DCN, désormais rebaptisée DCNS"
+    },
+    {
+      "id": "fr_naval_group_c07",
+      "source": "fr_an_q13_103471",
+      "attests": [
+        "2011-08-09"
+      ],
+      "text": "At the time of the answer the State was majority shareholder, Thales held 25% and employees just over 1%; Thales could add 10% until March 2012.",
+      "locator": {
+        "page": 1,
+        "section": "Texte de la reponse, final paragraph"
+      },
+      "anchor": "exercée jusqu'en mars 2012"
+    },
+    {
+      "id": "fr_naval_group_c08",
+      "source": "fr_thales_urd2023",
+      "attests": [
+        "2007"
+      ],
+      "text": "In 2007 Thales transferred its French surface naval activities to DCNS (now Naval Group) and acquired 25% of DCNS from the French State.",
+      "locator": {
+        "page": 253,
+        "section": "6.5 Historique (printed page 251)"
+      },
+      "anchor": "acquisition de 25 % du capital de DCNS (devenue Naval Group)"
+    },
+    {
+      "id": "fr_naval_group_c09",
+      "source": "fr_thales_urd2023",
+      "attests": [
+        "2011"
+      ],
+      "text": "In 2011 Thales raised its stake in DCNS (now Naval Group) to 35%.",
+      "locator": {
+        "page": 253,
+        "section": "6.5 Historique (printed page 251)"
+      },
+      "anchor": "Montée au capital de DCNS (devenue Naval Group)"
+    },
+    {
+      "id": "fr_naval_group_c10",
+      "source": "fr_bodacc_dcns_2008",
+      "attests": [
+        "2008-04-03"
+      ],
+      "text": "A BODACC notice of 3 April 2008 lists D C N S, societe anonyme, RCS Paris 441 133 808.",
+      "locator": {
+        "record": "B200800572144",
+        "field": "commercant / registre"
+      },
+      "anchor": "D C N S"
+    },
+    {
+      "id": "fr_naval_group_c11",
+      "source": "fr_bodacc_dcns_accounts_2017",
+      "attests": [
+        "2017-08-26"
+      ],
+      "text": "An accounts notice of 26 August 2017 still lists the company as D C N S (441 133 808).",
+      "locator": {
+        "record": "C201700866539",
+        "field": "commercant"
+      },
+      "anchor": "D C N S"
+    },
+    {
+      "id": "fr_naval_group_c12",
+      "source": "fr_bodacc_naval_group_name_2017",
+      "attests": [
+        "2017-10-12"
+      ],
+      "text": "Notice 1118 of 12 October 2017 records a change of name to NAVAL GROUP for 441 133 808, a societe anonyme with EUR 563 million capital.",
+      "locator": {
+        "record": "B201701961118",
+        "field": "modificationsgenerales.descriptif"
+      },
+      "anchor": "modification survenue sur la dénomination"
+    },
+    {
+      "id": "fr_naval_group_c13",
+      "source": "fr_bodacc_naval_group_2026",
+      "attests": [
+        "2026-07-21"
+      ],
+      "text": "A notice of 21 July 2026 records an administration change for NAVAL GROUP, societe anonyme, 441 133 808, seated in Paris.",
+      "locator": {
+        "record": "B202601364577",
+        "field": "modificationsgenerales.descriptif"
+      },
+      "anchor": "modification survenue sur l'administration"
+    },
+    {
+      "id": "fr_naval_group_c14",
+      "source": "fr_naval_discover_en",
+      "attests": [
+        "2025-12-31"
+      ],
+      "text": "As of 31 December 2025 Naval Group's capital was held 62.25% by the State and 35% by Thales, the rest by employee funds and treasury shares.",
+      "locator": {
+        "section": "Shareholders"
+      },
+      "anchor": "held 62.25% by the State, 35% by Thales"
+    },
+    {
+      "id": "fr_naval_group_c16",
+      "source": "fr_naval_history_en",
+      "attests": [
+        "2003"
+      ],
+      "text": "The company history dates the transition into a public limited company to 2003.",
+      "locator": {
+        "section": "21st century: international expansion"
+      },
+      "anchor": "In 2003, the transition into a public limited company"
+    },
+    {
+      "id": "fr_naval_group_c17",
+      "source": "fr_naval_pr_suffren_2020",
+      "attests": [
+        "2020-11-06"
+      ],
+      "text": "On 6 November 2020 Naval Group delivered the Suffren nuclear attack submarine, first of six, to the DGA at Toulon; TechnicAtome is prime contractor for the nuclear boiler room.",
+      "locator": {
+        "page": 1,
+        "section": "lead paragraph"
+      },
+      "anchor": "Naval Group delivered today the Suffren nuclear attack submarine"
+    },
+    {
+      "id": "fr_naval_group_c18",
+      "source": "fr_naval_pr_suffren_2020",
+      "attests": [
+        "2006",
+        "2007-12-10"
+      ],
+      "text": "The Barracuda development contract was notified at the end of 2006 and the first metal sheet was cut on 10 December 2007.",
+      "locator": {
+        "page": 1,
+        "section": "Barracuda programme paragraph and CEO quotation"
+      },
+      "anchor": "first metal sheet was cut on December 10"
+    },
+    {
+      "id": "fr_naval_group_c19",
+      "source": "fr_naval_pr_fdi_2025",
+      "attests": [
+        "2025-10-17"
+      ],
+      "text": "On 17 October 2025 Naval Group delivered the first defence and intervention frigate, Amiral Ronarc'h, ordered by the DGA for the French Navy, the first of five.",
+      "locator": {
+        "page": 1,
+        "section": "lead paragraph"
+      },
+      "anchor": "On 17 October 2025, Naval Group delivered the first defence and intervention"
+    },
+    {
+      "id": "fr_naval_group_c20",
+      "source": "fr_naval_pr_fdi_2025",
+      "attests": [
+        "2025-10-17"
+      ],
+      "text": "Five further FDI ships for the French and Hellenic navies were under construction at Lorient.",
+      "locator": {
+        "page": 1,
+        "section": "production paragraph"
+      },
+      "anchor": "intended for the French Navy and the Greek Navy"
+    },
+    {
+      "id": "fr_naval_group_c21",
+      "source": "au_anao_future_sub_pdss_2023",
+      "attests": [
+        "2016-04-26",
+        "2016-09-30"
+      ],
+      "text": "On 26 April 2016 the Australian Government announced the selection of \"Naval Group of France\" as partner for the Future Submarines; the Design and Mobilisation Contract was signed on 30 September 2016.",
+      "locator": {
+        "page": 2,
+        "section": "Project background"
+      },
+      "anchor": "Naval Group of France had been selected"
+    },
+    {
+      "id": "fr_naval_group_c22",
+      "source": "au_anao_future_sub_pdss_2023",
+      "attests": [
+        "2019-02-11"
+      ],
+      "text": "The Strategic Partnering Agreement between the Commonwealth and Naval Group was signed on 11 February 2019.",
+      "locator": {
+        "page": 2,
+        "section": "Project background"
+      },
+      "anchor": "was signed on 11 February 2019"
+    },
+    {
+      "id": "fr_naval_group_c23",
+      "source": "au_anao_future_sub_pdss_2023",
+      "attests": [
+        "2021-09-16"
+      ],
+      "text": "Contracts with Naval Group and Lockheed Martin Australia were terminated for convenience on 16 September 2021 after the Government ended the Attack Class programme.",
+      "locator": {
+        "page": 2,
+        "section": "Project background"
+      },
+      "anchor": "terminated for convenience on 16 September 2021"
+    },
+    {
+      "id": "fr_naval_group_c24",
+      "source": "fr_senat_r04_405",
+      "attests": [
+        "1993-12",
+        "1995-01",
+        "1998-04",
+        "2002-10"
+      ],
+      "text": "The DCN-SA workload table gives contract starts: Vigilant and Terrible SSBNs (December 1993), Agosta Pakistan (January 1995), Scorpene Chile (April 1998) and Scorpene Malaysia (October 2002).",
+      "locator": {
+        "section": "II. Plan de charge de DCN-SA (table: Programme / Debut contrat / Fin contrat)"
+      },
+      "anchor": "Scorpene Chili Avril 1998"
+    }
+  ]
+}

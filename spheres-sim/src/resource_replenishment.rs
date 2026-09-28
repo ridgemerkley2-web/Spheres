@@ -26,9 +26,9 @@ pub struct RawPurchaseReceipt {
 /// ensures the second caller neither resets freight capacity nor credits twice.
 fn begin_raw_freight(w: &mut WorldState, market: &mut MarketState) {
     if crate::logistics::enabled(w) {
-        for cargo in crate::logistics::begin_month(w) {
-            change_market_stock(market, cargo.buyer, cargo.commodity, cargo.quantity);
-        }
+        crate::logistics::for_new_arrivals(w, |buyer, commodity, quantity| {
+            change_market_stock(market, buyer, commodity, quantity);
+        });
     }
 }
 

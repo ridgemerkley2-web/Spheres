@@ -1,0 +1,18 @@
+{
+  "triangles": 200446,
+  "platform": "air_fighter",
+  "spec": {
+    "name": "Defensive fighter",
+    "platform": "air_fighter",
+    "components": {
+      "air_engine": "air_engine_interceptor",
+      "air_wing": "air_wing_interceptor",
+      "air_radar": "air_radar_interceptor",
+      "air_avionics": "air_avionics_interceptor",
+      "air_countermeasures": "air_countermeasures_basic",
+      "air_hardpoints": "air_hardpoints_interceptor",
+      "air_payload": "air_payload_short_range",
+      "air_fuel": "air_fuel_standard"
+    }
+  }
+}

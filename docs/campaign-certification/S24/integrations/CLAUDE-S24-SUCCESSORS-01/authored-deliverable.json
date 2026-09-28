@@ -1,0 +1,169 @@
+{
+  "authored_revision": "5a23ebe018612ab008a6ac911af6c2ca498231f6",
+  "unchanged_import_revision": "9c8453c03df51a8c9c14c8050367ac3352781a6f",
+  "scope": "Exact owned-file import, excluding global handoff; original authored receipts remain unchanged.",
+  "files": [
+    {
+      "path": "docs/campaign-certification/S24/preparation/successor-fixtures/.gitattributes",
+      "bytes": 30,
+      "sha256": "acec6a532b4bcce3d7deba50ca3eb70936c1611dc8568dbf46112b47e1ab2176",
+      "git_blob": "d9c61e709c575c9a0d2f12a081650871879cac58"
+    },
+    {
+      "path": "docs/campaign-certification/S24/preparation/successor-fixtures/README.md",
+      "bytes": 7630,
+      "sha256": "2afa03fd7d3bbacb57ef4939097b7b2cb4a5caa1783af285a9cda170484b77ff",
+      "git_blob": "1112884c3be8ffe80253330212fe4444dee3244b"
+    },
+    {
+      "path": "docs/campaign-certification/S24/preparation/successor-fixtures/evidence/native-s21-export.json",
+      "bytes": 1987,
+      "sha256": "3fb168d6b30d4ba4b19680f48c3aab03144031a8e00d7344c8a0cd9ebdeac79e",
+      "git_blob": "d507b439936396ce15ee55d45d91344a6b937ea9"
+    },
+    {
+      "path": "docs/campaign-certification/S24/preparation/successor-fixtures/evidence/native-s21-export.log",
+      "bytes": 2976,
+      "sha256": "cd361a9909ce5b1c7214e80400bcbd21843d5735276f1d00c5c6247d66dd25bf",
+      "git_blob": "1a3c8d19eade7853c0ae73b54a1815447f277486"
+    },
+    {
+      "path": "docs/campaign-certification/S24/preparation/successor-fixtures/evidence/progress.jsonl",
+      "bytes": 81804,
+      "sha256": "f973618c7202528ee6e7064da022b75ded5875df9a4479b5048dc4c1867ebeb9",
+      "git_blob": "52422ee3676b9642e8f8c2c959f341aa56fd2460"
+    },
+    {
+      "path": "docs/campaign-certification/S24/preparation/successor-fixtures/evidence/result.json",
+      "bytes": 521759,
+      "sha256": "f78271a0694e08c115d7ba67d3618e28c9272c85b491b2179a9c24506da46221",
+      "git_blob": "68650d641722d1474c594c19ff60e1d7018d1a19"
+    },
+    {
+      "path": "docs/campaign-certification/S24/preparation/successor-fixtures/evidence/run.log",
+      "bytes": 1354,
+      "sha256": "75fcb8adbe65c84931a705cc1f1771b849f0868f4dc1a1c2a58518fe6eacc5dd",
+      "git_blob": "f2a428e68a89934f581b8976312f27f044d2fd1b"
+    },
+    {
+      "path": "docs/campaign-certification/S24/preparation/successor-fixtures/evidence/screenshots/croatia-after_activation-budget.jpg",
+      "bytes": 80864,
+      "sha256": "446352efbabbee3dd5e2a7c7a5cfdd797073089be2a1a8ae171b93835eb95bdb",
+      "git_blob": "57f606e46885d05db471b8f49b82d276eae30076"
+    },
+    {
+      "path": "docs/campaign-certification/S24/preparation/successor-fixtures/evidence/screenshots/croatia-after_activation-government.jpg",
+      "bytes": 96222,
+      "sha256": "7aed533b5b08d064d94f38c4e762d3bad32d7b7fd5125fe1012ea791f6261e37",
+      "git_blob": "7c8d081445148ae1a9e2417a9685d77fb74d8569"
+    },
+    {
+      "path": "docs/campaign-certification/S24/preparation/successor-fixtures/evidence/screenshots/croatia-after_reload-guidance.jpg",
+      "bytes": 44455,
+      "sha256": "56064bdad0903873b5672ec7cb0660759dc25af4eea3e96f8faf09bb1a7679d1",
+      "git_blob": "d1e4a3c85cd733f9f300e659f2c29183e91964e2"
+    },
+    {
+      "path": "docs/campaign-certification/S24/preparation/successor-fixtures/evidence/screenshots/kazakhstan-after_activation-budget.jpg",
+      "bytes": 80681,
+      "sha256": "8fd87aa7642a51d527d374443b7e20983325fb982ac63965f48cb1b9b6bb9df4",
+      "git_blob": "b0dc34f322ce139a71d59f2025d78506cdadd37d"
+    },
+    {
+      "path": "docs/campaign-certification/S24/preparation/successor-fixtures/evidence/screenshots/kazakhstan-after_activation-government.jpg",
+      "bytes": 100895,
+      "sha256": "0884bdf81b5843ef0ffe5e53ee540e09718d01c69c3bdae168aae085c6f06ec1",
+      "git_blob": "cda66a948f2ff4ab8c449d7f327d4748126f3832"
+    },
+    {
+      "path": "docs/campaign-certification/S24/preparation/successor-fixtures/evidence/screenshots/kazakhstan-after_reload-guidance.jpg",
+      "bytes": 44666,
+      "sha256": "0f439ce4a74b179d3bbba6d950f5525687e33627ba4d2045b975fdc932177a7c",
+      "git_blob": "a5eb4c698769cd9f9f5e11abeaaff02ee5a8b026"
+    },
+    {
+      "path": "docs/campaign-certification/S24/preparation/successor-fixtures/evidence/screenshots/russia-after_activation-budget.jpg",
+      "bytes": 81066,
+      "sha256": "76f0d8601191056c008706942373266810d4cff515fc02cc774cf4a050eeeefd",
+      "git_blob": "ec2f5f333b59380f2389301e05f6819fca8a10ee"
+    },
+    {
+      "path": "docs/campaign-certification/S24/preparation/successor-fixtures/evidence/screenshots/russia-after_activation-government.jpg",
+      "bytes": 102088,
+      "sha256": "796b0ae213b486cabed087e7674f4f1106fa09ab7517a0ed5947dd085553f0ef",
+      "git_blob": "aeab54caa4feff9059f4d1b5d128b37f35526947"
+    },
+    {
+      "path": "docs/campaign-certification/S24/preparation/successor-fixtures/evidence/screenshots/russia-after_reload-guidance.jpg",
+      "bytes": 44386,
+      "sha256": "f415cc6c975c73f98763a1dee1859ddef648295257c4ee25d901ac5a06581a38",
+      "git_blob": "b7537a5965b14d1ae68cb45b5267a520d182e182"
+    },
+    {
+      "path": "docs/campaign-certification/S24/preparation/successor-fixtures/evidence/screenshots/serbia-after_activation-budget.jpg",
+      "bytes": 80566,
+      "sha256": "d95199115a58e8e339d73bc420be5f73382b6c40136a904e08b626a16ff4f6dd",
+      "git_blob": "bb21c3337c9456cf1bc9a5a27c846a75b38a69cf"
+    },
+    {
+      "path": "docs/campaign-certification/S24/preparation/successor-fixtures/evidence/screenshots/serbia-after_activation-government.jpg",
+      "bytes": 96729,
+      "sha256": "13801b57fbefd9411a70080f1f64bed9d6c62792af41b9686596698aa6e7a955",
+      "git_blob": "f728f64d519d6373a34db8955d6918acb61a3328"
+    },
+    {
+      "path": "docs/campaign-certification/S24/preparation/successor-fixtures/evidence/screenshots/serbia-after_reload-guidance.jpg",
+      "bytes": 44417,
+      "sha256": "debed0bc696d1fab15149a274f35426528223cc1b1a1479911a43b3960b09eb2",
+      "git_blob": "f1e100a1efee093067baef8d5fcc34b239e3a325"
+    },
+    {
+      "path": "docs/campaign-certification/S24/preparation/successor-fixtures/evidence/server.log",
+      "bytes": 78,
+      "sha256": "b13262ed0d22bb8dc17b2505a9b1020f428cd8f72ea6d87b0e19efa8ee3990e3",
+      "git_blob": "64344f3e48974824355e15058f41668064cbeb98"
+    },
+    {
+      "path": "docs/campaign-certification/S24/preparation/successor-fixtures/integration-proposal.md",
+      "bytes": 6389,
+      "sha256": "5e5b1ebee17679c378252d3dfc15761d277faf3009f314688e80fc5201a78f0f",
+      "git_blob": "a017326a89f579690cd065c4083c1d05d0b4f148"
+    },
+    {
+      "path": "docs/campaign-certification/S24/preparation/successor-fixtures/inventory.json",
+      "bytes": 23469,
+      "sha256": "2f6122ad0c4ae514eefb905f3e7e644b76e5da24aad167ad27bdfa793360c08a",
+      "git_blob": "3abf7467bec3d549d5ed5513c5002a2228ec6c71"
+    },
+    {
+      "path": "tools/ui/check_successor_fixtures.cjs",
+      "bytes": 15349,
+      "sha256": "663066ff3fc535f912218b6decf223e36f568b025ebab8d0e34180a694c3fcc7",
+      "git_blob": "e17108ed043969f5610c6cc209904384240486ad"
+    },
+    {
+      "path": "tools/ui/successor-fixtures/README.md",
+      "bytes": 10132,
+      "sha256": "edf208fcf97cacf80ddc0f2aeea8e8ebbb996279caca15e3758fb494bba90476",
+      "git_blob": "b85621b68d348db594944e6ac0a98d6dee460b73"
+    },
+    {
+      "path": "tools/ui/successor-fixtures/inventory.cjs",
+      "bytes": 16078,
+      "sha256": "191ac39cd892c8df22969bca95c6c99686cba789925129ca4d785463438158fb",
+      "git_blob": "6ba9404c851001faa29b88ef96a9ae4aa629a57f"
+    },
+    {
+      "path": "tools/ui/successor-fixtures/lib.cjs",
+      "bytes": 29070,
+      "sha256": "9193f23af7a5b32c32f38a494bfeb24cdd936e19343f11303923c2d9669572bf",
+      "git_blob": "6c69e9363e62978ece2b7e3f9636286479768b1e"
+    },
+    {
+      "path": "tools/ui/successor-fixtures/run.cjs",
+      "bytes": 55791,
+      "sha256": "eee470455c7c92a9e6a8b626c1b7bb9b0f1486b2d1579a47e03918f114c2f177",
+      "git_blob": "9d5c0d370a48ee863a6ebefcd354491076aa9d7f"
+    }
+  ]
+}

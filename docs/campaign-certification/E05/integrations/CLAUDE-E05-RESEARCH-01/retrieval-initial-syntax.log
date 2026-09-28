@@ -1,0 +1,4 @@
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\evidence\e05-pilot-review-20260928\retrieve.py", line 8
+    claims=[c for p in sorted((DATA/'dossiers').glob('*.json')) for c in json.loads(p.read_text(encoding='utf-8'))['claims']
+           ^
+SyntaxError: '[' was never closed

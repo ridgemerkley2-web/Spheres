@@ -1,0 +1,143 @@
+{
+  "time_origin_ms": 1790577495510.8,
+  "phase": "inspection-first-fighter",
+  "phases": [
+    {
+      "name": "uncached-page-entry",
+      "at_ms": 10.399999998509884
+    },
+    {
+      "name": "campaign-save-load",
+      "at_ms": 708.3999999985099
+    },
+    {
+      "name": "inspection-first-entry",
+      "at_ms": 9944.10000000149
+    },
+    {
+      "name": "inspection-first-fighter",
+      "at_ms": 10887.30000000447
+    }
+  ],
+  "contexts": [
+    {
+      "id": 0,
+      "type": "webgl2",
+      "created_ms": 1857.6000000014901,
+      "first_draw": {
+        "phase": "campaign-save-load",
+        "method": "drawArrays",
+        "count": 3,
+        "started_ms": 2043.6000000014901,
+        "completed_ms": 2043.6000000014901,
+        "canvas_id": "glmap",
+        "inspection_canvas": false,
+        "connected": true,
+        "width": 1920,
+        "height": 792,
+        "rendered_platform": null,
+        "model_key": null,
+        "design_platform": null
+      },
+      "first_draw_by_phase": [
+        {
+          "phase": "campaign-save-load",
+          "method": "drawArrays",
+          "count": 3,
+          "started_ms": 2043.6000000014901,
+          "completed_ms": 2043.6000000014901,
+          "canvas_id": "glmap",
+          "inspection_canvas": false,
+          "connected": true,
+          "width": 1920,
+          "height": 792,
+          "rendered_platform": null,
+          "model_key": null,
+          "design_platform": null
+        },
+        {
+          "phase": "inspection-first-entry",
+          "method": "drawArrays",
+          "count": 3,
+          "started_ms": 9970.10000000149,
+          "completed_ms": 9970.10000000149,
+          "canvas_id": "glmap",
+          "inspection_canvas": false,
+          "connected": true,
+          "width": 1920,
+          "height": 792,
+          "rendered_platform": null,
+          "model_key": null,
+          "design_platform": null
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "type": "webgl",
+      "created_ms": 10261,
+      "first_draw": {
+        "phase": "inspection-first-entry",
+        "method": "drawArrays",
+        "count": 197112,
+        "started_ms": 10848.20000000298,
+        "completed_ms": 10848.20000000298,
+        "canvas_id": "",
+        "inspection_canvas": true,
+        "connected": true,
+        "width": 629,
+        "height": 360,
+        "rendered_platform": "tank_standard",
+        "model_key": "{\"platform\":\"tank_standard\",\"components\":{\"active_protection\":\"aps_none\",\"ammunition\":\"ammo_mixed\",\"armament\":\"gun_105\",\"communications\":\"comms_radio\",\"fire_control\":\"fcs_basic\",\"mobility\":\"engine_diesel_900\",\"protection\":\"protection_standard\",\"sensors\":\"optics_day\",\"suspension\":\"suspension_torsion\",\"tracks\":\"tracks_standard\",\"transmission\":\"transmission_manual\",\"turret\":\"turret_standard\"},\"name\":\"Main battle tank\"}",
+        "design_platform": "tank_standard"
+      },
+      "first_draw_by_phase": [
+        {
+          "phase": "inspection-first-entry",
+          "method": "drawArrays",
+          "count": 197112,
+          "started_ms": 10848.20000000298,
+          "completed_ms": 10848.20000000298,
+          "canvas_id": "",
+          "inspection_canvas": true,
+          "connected": true,
+          "width": 629,
+          "height": 360,
+          "rendered_platform": "tank_standard",
+          "model_key": "{\"platform\":\"tank_standard\",\"components\":{\"active_protection\":\"aps_none\",\"ammunition\":\"ammo_mixed\",\"armament\":\"gun_105\",\"communications\":\"comms_radio\",\"fire_control\":\"fcs_basic\",\"mobility\":\"engine_diesel_900\",\"protection\":\"protection_standard\",\"sensors\":\"optics_day\",\"suspension\":\"suspension_torsion\",\"tracks\":\"tracks_standard\",\"transmission\":\"transmission_manual\",\"turret\":\"turret_standard\"},\"name\":\"Main battle tank\"}",
+          "design_platform": "tank_standard"
+        },
+        {
+          "phase": "inspection-first-fighter",
+          "method": "drawArrays",
+          "count": 235842,
+          "started_ms": 11056.5,
+          "completed_ms": 11056.5,
+          "canvas_id": "",
+          "inspection_canvas": true,
+          "connected": true,
+          "width": 629,
+          "height": 360,
+          "rendered_platform": "air_light_attack",
+          "model_key": "{\"platform\":\"air_light_attack\",\"components\":{\"air_engine\":\"air_engine_economical\",\"air_wing\":\"air_wing_straight\",\"air_radar\":\"air_radar_basic\",\"air_avionics\":\"air_avionics_analog\",\"air_countermeasures\":\"air_countermeasures_basic\",\"air_hardpoints\":\"air_hardpoints_light\",\"air_payload\":\"air_payload_unguided\",\"air_fuel\":\"air_fuel_standard\"},\"name\":\"Light attack aircraft\"}",
+          "design_platform": "air_light_attack"
+        },
+        {
+          "phase": "inspection-first-fighter",
+          "method": "drawArrays",
+          "count": 237282,
+          "started_ms": 11192.60000000149,
+          "completed_ms": 11192.60000000149,
+          "canvas_id": "",
+          "inspection_canvas": true,
+          "connected": true,
+          "width": 629,
+          "height": 360,
+          "rendered_platform": "air_fighter",
+          "model_key": "{\"platform\":\"air_fighter\",\"components\":{\"air_engine\":\"air_engine_interceptor\",\"air_wing\":\"air_wing_interceptor\",\"air_radar\":\"air_radar_interceptor\",\"air_avionics\":\"air_avionics_interceptor\",\"air_countermeasures\":\"air_countermeasures_basic\",\"air_hardpoints\":\"air_hardpoints_interceptor\",\"air_payload\":\"air_payload_short_range\",\"air_fuel\":\"air_fuel_standard\"},\"name\":\"Defensive fighter\"}",
+          "design_platform": "air_fighter"
+        }
+      ]
+    }
+  ]
+}

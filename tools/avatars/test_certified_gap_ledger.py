@@ -165,10 +165,19 @@ class FixtureLedger(unittest.TestCase):
                   'reviewer': 'Codex', 'reviewed_commit': HEX, 'decision': 'Bounded source identity only.',
                   'evidence': [{'path': 'receipt.txt', 'bytes': len(payload),
                                 'sha256': hashlib.sha256(payload).hexdigest()}]}
+        if 'source_snapshots' in spec:
+            for sid, relative in spec['source_snapshots'].items():
+                snapshot = folder / relative
+                snapshot.parent.mkdir(parents=True, exist_ok=True)
+                data = json.dumps({'source_id': sid}).encode('utf-8')
+                snapshot.write_bytes(data)
+                review['evidence'].append({'path': relative, 'bytes': len(data),
+                                           'sha256': hashlib.sha256(data).hexdigest()})
+        else:
+            snapshot = self.root / spec['snapshot']
+            snapshot.parent.mkdir(parents=True, exist_ok=True)
+            snapshot.write_text('{}\n', encoding='utf-8')
         (folder / 'manifest.json').write_text(json.dumps(review), encoding='utf-8')
-        snapshot = self.root / spec['snapshot']
-        snapshot.parent.mkdir(parents=True, exist_ok=True)
-        snapshot.write_text('{}\n', encoding='utf-8')
         return folder
 
     def test_completed_source_repairs_are_pinned_without_accepting_parent_or_adding_work(self):
@@ -180,6 +189,9 @@ class FixtureLedger(unittest.TestCase):
         self.assertFalse(set(ledger.SOURCE_REPAIRS) & {t['task'] for t in result['in_flight']})
         self.assertEqual({r['task'] for r in result['completed_source_repairs']}, set(ledger.SOURCE_REPAIRS))
         for repair in result['completed_source_repairs']:
+            spec = ledger.SOURCE_REPAIRS[repair['task']]
+            expected_sources = list(spec['source_snapshots']) if 'source_snapshots' in spec else [spec['source']]
+            self.assertEqual(repair['source_ids'], expected_sources)
             self.assertEqual(repair['parent_evidence_class'], 'c01_integrated_pending')
             self.assertFalse(repair['parent_acceptance_changed'])
             self.assertFalse(repair['historical_coverage_changed'])
@@ -187,6 +199,21 @@ class FixtureLedger(unittest.TestCase):
             self.assertTrue(any(e['path'].endswith('/manifest.json') for e in repair['evidence']))
             self.assertTrue(any(e['path'].endswith('/receipt.txt') for e in repair['evidence']))
         self.assertIn('Completed source repairs', ledger.render(result))
+
+    def test_group_source_repair_requires_every_reviewed_snapshot(self):
+        tid = 'CLAUDE-C01-SOURCE-26'
+        folder = self.complete_source_repair(tid)
+        manifest = folder / 'manifest.json'
+        review = json.loads(manifest.read_text(encoding='utf-8'))
+        missing = review['evidence'].pop()
+        manifest.write_text(json.dumps(review), encoding='utf-8')
+        with self.assertRaisesRegex(ValueError, 'lacks reviewed extract evidence'):
+            ledger.build(self.root, self.attribution)
+        review['evidence'].append(missing)
+        manifest.write_text(json.dumps(review), encoding='utf-8')
+        (folder / missing['path']).write_bytes(b'Changed reviewed extract')
+        with self.assertRaisesRegex(ValueError, 'Source repair evidence changed'):
+            ledger.build(self.root, self.attribution)
 
     def test_completed_source_repair_requires_accepted_intact_review(self):
         tid = 'CLAUDE-C01-SOURCE-05'
@@ -411,6 +438,12 @@ class CheckedInLedger(unittest.TestCase):
         for excluded in ('India/in_bjp', 'to_legislative_assembly#to_speaker', 'sa_shura#sa_shura_chair',
                          'sa_succession_commission#sa_succession_chair', 'institution:fr_presidency'):
             self.assertNotIn(excluded, entities)
+        for target in ledger.IN_FLIGHT['CLAUDE-C01-28']['targets'] + ledger.IN_FLIGHT['CLAUDE-C01-29']['targets']:
+            self.assertNotIn(target.removeprefix('party:'), entities)
+        claims = {row['task']: row for row in self.data['in_flight']}
+        for tid in ('CLAUDE-C01-28', 'CLAUDE-C01-29'):
+            self.assertEqual(claims[tid]['state'], 'claimed')
+            self.assertFalse(claims[tid]['accepted'])
         self.assertIn('institution:fr_prime_minister', entities)
         self.assertTrue(all(len(b['items']) <= ledger.MAX_BATCH for b in self.data['next_batches']))
         roles = {(r['nation'], r['id']): r for c in self.data['cases'] for r in c['research_roles']}

@@ -1,0 +1,9 @@
+
+running 4 tests
+test economic_ai::mine_forecast_tests::mine_review_matches_actual_checkpoint_for_31_complete_days ... ignored, explicit immutable actual-checkpoint 31-day original mine-read parity; no timing assertions
+test economic_ai::mine_forecast_tests::mine_review_never_reuses_a_forecast_across_budget_renewal ... ok
+test economic_ai::mine_forecast_tests::mine_review_preserves_eager_selection_and_exact_public_forecast ... ok
+test economic_ai::mine_forecast_tests::mine_review_reuses_only_no_command_reads_and_matches_full_original_review ... ok
+
+test result: ok. 3 passed; 0 failed; 1 ignored; 0 measured; 1072 filtered out; finished in 0.54s
+

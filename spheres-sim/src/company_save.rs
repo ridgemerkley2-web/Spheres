@@ -4,8 +4,14 @@ use crate::{companies, company_network, connected_economy, equipment_save_versio
 use serde_json::Value;
 
 pub(crate) fn decode(s: &str) -> Result<WorldState, String> {
-    let shape: Value = serde_json::from_str(s).map_err(|e| e.to_string())?;
-    let format = shape.get("format").and_then(Value::as_str);
+    decode_value(serde_json::from_str(s).map_err(|e| e.to_string())?)
+}
+
+pub(crate) fn decode_value(mut shape: Value) -> Result<WorldState, String> {
+    // Retain only the small envelope metadata. Moving the payload into serde
+    // avoids keeping a second complete JSON world alive during typed decoding.
+    let format_name = shape.get("format").and_then(Value::as_str).map(str::to_owned);
+    let format = format_name.as_deref();
     let integrated = format == Some("spheres-integrated-save");
     let combined = format == Some("spheres-companies-save")
         || (integrated && shape["company_network_version"].as_u64() == Some(1));
@@ -42,7 +48,14 @@ pub(crate) fn decode(s: &str) -> Result<WorldState, String> {
         _ => false,
     };
     if !valid { return Err("This save format or version is not supported by this build.".into()); }
-    let mut payload = if format.is_some() { shape["world"].clone() } else { shape.clone() };
+    let supplier_operations_version = shape["supplier_operations_version"].as_u64();
+    let mut payload = if format.is_some() {
+        let payload = shape.get_mut("world").map(Value::take).unwrap_or(Value::Null);
+        drop(shape);
+        payload
+    } else {
+        shape
+    };
     if !payload.is_object() { return Err("The saved campaign must be an object.".into()); }
     // Serde also accepts sequences for defaulted structs. Military books have
     // object identities, so classify their outer shape before typed decoding.
@@ -130,11 +143,83 @@ pub(crate) fn decode(s: &str) -> Result<WorldState, String> {
     if combined != company_network::has_state(&w) && !master {
         return Err("Company identities, operating contracts and service receipts require their versioned combined company save envelope.".into());
     }
-    if (combined || integrated) && shape["supplier_operations_version"].as_u64() != Some(w.supplier_operations.version as u64) {
+    if (combined || integrated) && supplier_operations_version != Some(w.supplier_operations.version as u64) {
         return Err("Supplier operating property requires its declared capability version.".into());
     }
     if integrated != crate::operational_warfare::has_state(&w) && !master_warfare {
         return Err("Operational orders, forces, supplies and peace require their integrated save capability or the recognized original master dialect.".into());
     }
     Ok(w)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::world::{GameRules, NationId};
+    use serde_json::json;
+
+    #[test]
+    fn consumed_save_tree_preserves_each_capability_envelope_and_refusal() {
+        let mut w = crate::init::world_1990(GameRules {
+            daily_simulation: true, military_operations: true, ideology_blocs: true,
+            production_system: true, manufacturing_system: true, resource_market: true,
+            ..Default::default()
+        });
+        w.player = Some(NationId::France);
+        for expected in [None, Some("spheres-equipment-save"), Some("spheres-party-leadership-save"),
+            Some("spheres-economy-save"), Some("spheres-companies-save"), Some("spheres-integrated-save")] {
+            match expected {
+                Some("spheres-equipment-save") => w.nation_mut(NationId::France).equipment = Some(Default::default()),
+                Some("spheres-party-leadership-save") => crate::party_leadership::enable_campaign(&mut w).unwrap(),
+                Some("spheres-economy-save") => crate::connected_economy::enable(&mut w).unwrap(),
+                Some("spheres-companies-save") => {
+                    crate::resources::tick(&mut w);
+                    crate::company_network::enable(&mut w).unwrap();
+                }
+                Some("spheres-integrated-save") => crate::operational_warfare::enable(&mut w).unwrap(),
+                _ => {}
+            }
+            let saved = crate::save(&w);
+            let tree: Value = serde_json::from_str(&saved).unwrap();
+            assert_eq!(tree.get("format").and_then(Value::as_str), expected);
+            assert_eq!(crate::save(&crate::load_value(tree.clone()).unwrap()), saved);
+            assert_eq!(crate::save(&crate::load(&saved).unwrap()), saved);
+            if expected.is_some() {
+                for key in ["version", "equipment_version", "party_leadership_version", "economy_version",
+                    "company_network_version", "supplier_operations_version", "warfare_version"] {
+                    if tree.get(key).is_none() { continue; }
+                    let mut bad = tree.clone();
+                    bad[key] = json!(999);
+                    let original_error = crate::load(&bad.to_string()).unwrap_err();
+                    assert_eq!(crate::load_value(bad).unwrap_err(), original_error, "{expected:?}: {key}");
+                }
+            }
+        }
+    }
+
+    #[test]
+    fn consumed_save_tree_keeps_legacy_migrations_and_shape_errors() {
+        let mut legacy = serde_json::to_value(crate::init::world_1990(GameRules::default())).unwrap();
+        for field in ["districts", "district_population", "district_population_scale", "theatres"] {
+            legacy.as_object_mut().unwrap().remove(field);
+        }
+        let expected = crate::load(&legacy.to_string()).unwrap();
+        let migrated = crate::load_value(legacy.clone()).unwrap();
+        assert!(!migrated.districts.is_empty());
+        assert!(!migrated.theatres.is_empty());
+        assert_eq!(crate::save(&migrated), crate::save(&expected));
+        for (key, value, error) in [
+            ("format", Value::Null, "This save format or version is not supported by this build."),
+            ("campaign", json!([]), "The saved campaign book must be an object or empty null."),
+            ("military_ai", json!([]), "The saved military staff book must be an object."),
+            ("companies", json!({"unknown": 0}), "Mixed or unknown company property cannot be migrated. Keep supplier assets and service contractor identities in separate books."),
+        ] {
+            let mut bad = legacy.clone();
+            bad[key] = value;
+            assert_eq!(crate::load(&bad.to_string()).unwrap_err(), error);
+            assert_eq!(crate::load_value(bad).unwrap_err(), error);
+        }
+        assert_eq!(crate::load_value(json!({"format":"spheres-equipment-save", "version":1})).unwrap_err(),
+            "The saved campaign must be an object.");
+    }
 }

@@ -1,0 +1,11 @@
+{
+  "format": "s22-focused-regression-provenance/v1",
+  "started_utc": "2026-09-28T06:43:21.0783428Z",
+  "finished_utc": "2026-09-28T06:43:36.0205247Z",
+  "candidate_revision": "568e5a0b2abff43d55e916016bf27549809f60d4",
+  "web_binary_sha256": "246b5198991f62e95ed90f7d5315d9a9e60316ab1ee11d0851d2d21a6c492398",
+  "actual_source_sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+  "scope": "Save decoder legacy/value oracle; overlaps preparation/browser functional checks; no performance qualification",
+  "exit_code": 0,
+  "qualification": false
+}

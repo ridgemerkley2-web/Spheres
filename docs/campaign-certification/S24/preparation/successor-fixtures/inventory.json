@@ -1,0 +1,849 @@
+{
+  "format": "spheres-s24-successor-inventory/v1",
+  "scope": "S24 preparation only. Identity inventory for the successor-country fixture harness; it certifies nothing.",
+  "expectation": {
+    "successor_identities": 23,
+    "sources": [
+      "docs/planning/campaign-pathway.json sessions[S24].accept (\"All N successor identities ...\")",
+      "docs/campaign-certification/C01/census.json counts.successor_nations"
+    ]
+  },
+  "expected_ids": [
+    "Armenia",
+    "Azerbaijan",
+    "Belarus",
+    "Bosnia",
+    "Croatia",
+    "EastTimor",
+    "Estonia",
+    "Georgia",
+    "Kazakhstan",
+    "Kyrgyzstan",
+    "Latvia",
+    "Lithuania",
+    "Macedonia",
+    "Moldova",
+    "Montenegro",
+    "Namibia",
+    "Russia",
+    "Serbia",
+    "Slovenia",
+    "Tajikistan",
+    "Turkmenistan",
+    "Ukraine",
+    "Uzbekistan"
+  ],
+  "counts": {
+    "pathway_s24_expectation": 23,
+    "census_successor_nations": 23,
+    "c01_start_1990_false": 23,
+    "roster_start_1990_false": 23,
+    "successor_parent_pairs": 21,
+    "native_activation_paths": 21,
+    "player_continuation_targets": 21,
+    "no_native_hook": 2
+  },
+  "context": {
+    "census_nation_identities": 160,
+    "census_starting_nations": 137,
+    "c01_rows": 160,
+    "c01_start_1990_true": 137,
+    "roster_rows": 160,
+    "roster_start_1990_true": 137,
+    "pathway_s24_statement": "All 23 successor identities receive labeled activation/load/UI fixtures; no fixture is claimed as organic history."
+  },
+  "families": {
+    "USSR": {
+      "parent_name": "Soviet Union",
+      "dissolution": "politics::dissolve_ussr",
+      "flag": "ussr_dissolved",
+      "trigger": {
+        "stability_below": 25,
+        "separatism_above": 0.9,
+        "unless_flag": "ussr_dissolved",
+        "site": "politics::tick regime-collapse block"
+      },
+      "heirs": [
+        "Russia",
+        "Ukraine",
+        "Belarus",
+        "Kazakhstan",
+        "Uzbekistan",
+        "Georgia",
+        "Armenia",
+        "Azerbaijan",
+        "Lithuania",
+        "Latvia",
+        "Estonia",
+        "Moldova",
+        "Kyrgyzstan",
+        "Tajikistan",
+        "Turkmenistan"
+      ],
+      "continuation_family": [
+        "Russia",
+        "Ukraine",
+        "Belarus",
+        "Moldova",
+        "Georgia",
+        "Armenia",
+        "Azerbaijan",
+        "Kazakhstan",
+        "Uzbekistan",
+        "Turkmenistan",
+        "Kyrgyzstan",
+        "Tajikistan",
+        "Lithuania",
+        "Latvia",
+        "Estonia"
+      ]
+    },
+    "Yugoslavia": {
+      "parent_name": "Yugoslavia",
+      "dissolution": "politics::dissolve_yugoslavia",
+      "flag": "yugoslavia_dissolved",
+      "trigger": {
+        "stability_below": 25,
+        "separatism_above": 0.9,
+        "unless_flag": "yugoslavia_dissolved",
+        "site": "politics::tick regime-collapse block"
+      },
+      "heirs": [
+        "Serbia",
+        "Croatia",
+        "Slovenia",
+        "Bosnia",
+        "Macedonia",
+        "Montenegro"
+      ],
+      "continuation_family": [
+        "Serbia",
+        "Croatia",
+        "Slovenia",
+        "Bosnia",
+        "Macedonia",
+        "Montenegro"
+      ]
+    }
+  },
+  "selection_guard": {
+    "source": "spheres-web/src/main.rs fn new_game",
+    "refusal_text_present": true,
+    "refusal_fragment": "is not on the board in January 1990"
+  },
+  "rows": [
+    {
+      "id": "Armenia",
+      "name": "Armenia",
+      "c01_name": "Armenia",
+      "region": "Eurasia",
+      "certified_case": false,
+      "certified_identity": false,
+      "roster_start_1990": false,
+      "c01_start_1990": false,
+      "parent": "USSR",
+      "dissolution": "politics::dissolve_ussr",
+      "heir_position": 7,
+      "continuation_state": false,
+      "player_continuation": true,
+      "map_districts": 11,
+      "districts_listed_under_1990_starters": [
+        "USSR"
+      ],
+      "native_activation_path": true,
+      "recipes": [
+        "G0",
+        "H1",
+        "N1",
+        "B1"
+      ]
+    },
+    {
+      "id": "Azerbaijan",
+      "name": "Azerbaijan",
+      "c01_name": "Azerbaijan",
+      "region": "Eurasia",
+      "certified_case": false,
+      "certified_identity": false,
+      "roster_start_1990": false,
+      "c01_start_1990": false,
+      "parent": "USSR",
+      "dissolution": "politics::dissolve_ussr",
+      "heir_position": 8,
+      "continuation_state": false,
+      "player_continuation": true,
+      "map_districts": 10,
+      "districts_listed_under_1990_starters": [
+        "USSR"
+      ],
+      "native_activation_path": true,
+      "recipes": [
+        "G0",
+        "H1",
+        "N1",
+        "B1"
+      ]
+    },
+    {
+      "id": "Belarus",
+      "name": "Belarus",
+      "c01_name": "Belarus",
+      "region": "Eurasia",
+      "certified_case": false,
+      "certified_identity": false,
+      "roster_start_1990": false,
+      "c01_start_1990": false,
+      "parent": "USSR",
+      "dissolution": "politics::dissolve_ussr",
+      "heir_position": 3,
+      "continuation_state": false,
+      "player_continuation": true,
+      "map_districts": 7,
+      "districts_listed_under_1990_starters": [
+        "USSR"
+      ],
+      "native_activation_path": true,
+      "recipes": [
+        "G0",
+        "H1",
+        "N1",
+        "B1"
+      ]
+    },
+    {
+      "id": "Bosnia",
+      "name": "Bosnia",
+      "c01_name": "Bosnia",
+      "region": "Balkans",
+      "certified_case": false,
+      "certified_identity": false,
+      "roster_start_1990": false,
+      "c01_start_1990": false,
+      "parent": "Yugoslavia",
+      "dissolution": "politics::dissolve_yugoslavia",
+      "heir_position": 4,
+      "continuation_state": false,
+      "player_continuation": true,
+      "map_districts": 18,
+      "districts_listed_under_1990_starters": [
+        "Yugoslavia"
+      ],
+      "native_activation_path": true,
+      "recipes": [
+        "G0",
+        "H1",
+        "B1"
+      ]
+    },
+    {
+      "id": "Croatia",
+      "name": "Croatia",
+      "c01_name": "Croatia",
+      "region": "Balkans",
+      "certified_case": false,
+      "certified_identity": false,
+      "roster_start_1990": false,
+      "c01_start_1990": false,
+      "parent": "Yugoslavia",
+      "dissolution": "politics::dissolve_yugoslavia",
+      "heir_position": 2,
+      "continuation_state": false,
+      "player_continuation": true,
+      "map_districts": 21,
+      "districts_listed_under_1990_starters": [
+        "Yugoslavia"
+      ],
+      "native_activation_path": true,
+      "recipes": [
+        "G0",
+        "H1",
+        "B1"
+      ]
+    },
+    {
+      "id": "EastTimor",
+      "name": "East Timor",
+      "c01_name": "East Timor",
+      "region": "SoutheastAsia",
+      "certified_case": false,
+      "certified_identity": false,
+      "roster_start_1990": false,
+      "c01_start_1990": false,
+      "parent": null,
+      "dissolution": null,
+      "heir_position": null,
+      "continuation_state": false,
+      "player_continuation": false,
+      "map_districts": 13,
+      "districts_listed_under_1990_starters": [],
+      "native_activation_path": false,
+      "recipes": [
+        "G0"
+      ]
+    },
+    {
+      "id": "Estonia",
+      "name": "Estonia",
+      "c01_name": "Estonia",
+      "region": "EasternEurope",
+      "certified_case": false,
+      "certified_identity": false,
+      "roster_start_1990": false,
+      "c01_start_1990": false,
+      "parent": "USSR",
+      "dissolution": "politics::dissolve_ussr",
+      "heir_position": 11,
+      "continuation_state": false,
+      "player_continuation": true,
+      "map_districts": 15,
+      "districts_listed_under_1990_starters": [
+        "USSR"
+      ],
+      "native_activation_path": true,
+      "recipes": [
+        "G0",
+        "H1",
+        "N1",
+        "B1"
+      ]
+    },
+    {
+      "id": "Georgia",
+      "name": "Georgia",
+      "c01_name": "Georgia",
+      "region": "Eurasia",
+      "certified_case": false,
+      "certified_identity": false,
+      "roster_start_1990": false,
+      "c01_start_1990": false,
+      "parent": "USSR",
+      "dissolution": "politics::dissolve_ussr",
+      "heir_position": 6,
+      "continuation_state": false,
+      "player_continuation": true,
+      "map_districts": 12,
+      "districts_listed_under_1990_starters": [
+        "USSR"
+      ],
+      "native_activation_path": true,
+      "recipes": [
+        "G0",
+        "H1",
+        "N1",
+        "B1"
+      ]
+    },
+    {
+      "id": "Kazakhstan",
+      "name": "Kazakhstan",
+      "c01_name": "Kazakhstan",
+      "region": "Eurasia",
+      "certified_case": false,
+      "certified_identity": false,
+      "roster_start_1990": false,
+      "c01_start_1990": false,
+      "parent": "USSR",
+      "dissolution": "politics::dissolve_ussr",
+      "heir_position": 4,
+      "continuation_state": false,
+      "player_continuation": true,
+      "map_districts": 16,
+      "districts_listed_under_1990_starters": [
+        "USSR"
+      ],
+      "native_activation_path": true,
+      "recipes": [
+        "G0",
+        "H1",
+        "N1",
+        "B1"
+      ]
+    },
+    {
+      "id": "Kyrgyzstan",
+      "name": "Kyrgyzstan",
+      "c01_name": "Kyrgyzstan",
+      "region": "Eurasia",
+      "certified_case": false,
+      "certified_identity": false,
+      "roster_start_1990": false,
+      "c01_start_1990": false,
+      "parent": "USSR",
+      "dissolution": "politics::dissolve_ussr",
+      "heir_position": 13,
+      "continuation_state": false,
+      "player_continuation": true,
+      "map_districts": 8,
+      "districts_listed_under_1990_starters": [
+        "USSR"
+      ],
+      "native_activation_path": true,
+      "recipes": [
+        "G0",
+        "H1",
+        "N1",
+        "B1"
+      ]
+    },
+    {
+      "id": "Latvia",
+      "name": "Latvia",
+      "c01_name": "Latvia",
+      "region": "EasternEurope",
+      "certified_case": false,
+      "certified_identity": false,
+      "roster_start_1990": false,
+      "c01_start_1990": false,
+      "parent": "USSR",
+      "dissolution": "politics::dissolve_ussr",
+      "heir_position": 10,
+      "continuation_state": false,
+      "player_continuation": true,
+      "map_districts": 5,
+      "districts_listed_under_1990_starters": [
+        "USSR"
+      ],
+      "native_activation_path": true,
+      "recipes": [
+        "G0",
+        "H1",
+        "N1",
+        "B1"
+      ]
+    },
+    {
+      "id": "Lithuania",
+      "name": "Lithuania",
+      "c01_name": "Lithuania",
+      "region": "EasternEurope",
+      "certified_case": false,
+      "certified_identity": false,
+      "roster_start_1990": false,
+      "c01_start_1990": false,
+      "parent": "USSR",
+      "dissolution": "politics::dissolve_ussr",
+      "heir_position": 9,
+      "continuation_state": false,
+      "player_continuation": true,
+      "map_districts": 10,
+      "districts_listed_under_1990_starters": [
+        "USSR"
+      ],
+      "native_activation_path": true,
+      "recipes": [
+        "G0",
+        "H1",
+        "N1",
+        "B1"
+      ]
+    },
+    {
+      "id": "Macedonia",
+      "name": "Macedonia",
+      "c01_name": "Macedonia",
+      "region": "Balkans",
+      "certified_case": false,
+      "certified_identity": false,
+      "roster_start_1990": false,
+      "c01_start_1990": false,
+      "parent": "Yugoslavia",
+      "dissolution": "politics::dissolve_yugoslavia",
+      "heir_position": 5,
+      "continuation_state": false,
+      "player_continuation": true,
+      "map_districts": 9,
+      "districts_listed_under_1990_starters": [
+        "Yugoslavia"
+      ],
+      "native_activation_path": true,
+      "recipes": [
+        "G0",
+        "H1",
+        "B1"
+      ]
+    },
+    {
+      "id": "Moldova",
+      "name": "Moldova",
+      "c01_name": "Moldova",
+      "region": "EasternEurope",
+      "certified_case": false,
+      "certified_identity": false,
+      "roster_start_1990": false,
+      "c01_start_1990": false,
+      "parent": "USSR",
+      "dissolution": "politics::dissolve_ussr",
+      "heir_position": 12,
+      "continuation_state": false,
+      "player_continuation": true,
+      "map_districts": 40,
+      "districts_listed_under_1990_starters": [
+        "USSR"
+      ],
+      "native_activation_path": true,
+      "recipes": [
+        "G0",
+        "H1",
+        "N1",
+        "B1"
+      ]
+    },
+    {
+      "id": "Montenegro",
+      "name": "Montenegro",
+      "c01_name": "Montenegro",
+      "region": "Balkans",
+      "certified_case": false,
+      "certified_identity": false,
+      "roster_start_1990": false,
+      "c01_start_1990": false,
+      "parent": "Yugoslavia",
+      "dissolution": "politics::dissolve_yugoslavia",
+      "heir_position": 6,
+      "continuation_state": false,
+      "player_continuation": true,
+      "map_districts": 21,
+      "districts_listed_under_1990_starters": [
+        "Yugoslavia"
+      ],
+      "native_activation_path": true,
+      "recipes": [
+        "G0",
+        "H1",
+        "B1"
+      ]
+    },
+    {
+      "id": "Namibia",
+      "name": "Namibia",
+      "c01_name": "Namibia",
+      "region": "SouthernAfrica",
+      "certified_case": false,
+      "certified_identity": false,
+      "roster_start_1990": false,
+      "c01_start_1990": false,
+      "parent": null,
+      "dissolution": null,
+      "heir_position": null,
+      "continuation_state": false,
+      "player_continuation": false,
+      "map_districts": 13,
+      "districts_listed_under_1990_starters": [],
+      "native_activation_path": false,
+      "recipes": [
+        "G0"
+      ]
+    },
+    {
+      "id": "Russia",
+      "name": "Russia",
+      "c01_name": "Russia",
+      "region": "Eurasia",
+      "certified_case": true,
+      "certified_identity": true,
+      "roster_start_1990": false,
+      "c01_start_1990": false,
+      "parent": "USSR",
+      "dissolution": "politics::dissolve_ussr",
+      "heir_position": 1,
+      "continuation_state": true,
+      "player_continuation": true,
+      "map_districts": 86,
+      "districts_listed_under_1990_starters": [
+        "USSR"
+      ],
+      "native_activation_path": true,
+      "recipes": [
+        "G0",
+        "H1",
+        "N1",
+        "B1"
+      ]
+    },
+    {
+      "id": "Serbia",
+      "name": "Serbia",
+      "c01_name": "Serbia",
+      "region": "Balkans",
+      "certified_case": false,
+      "certified_identity": false,
+      "roster_start_1990": false,
+      "c01_start_1990": false,
+      "parent": "Yugoslavia",
+      "dissolution": "politics::dissolve_yugoslavia",
+      "heir_position": 1,
+      "continuation_state": true,
+      "player_continuation": true,
+      "map_districts": 25,
+      "districts_listed_under_1990_starters": [
+        "Yugoslavia"
+      ],
+      "native_activation_path": true,
+      "recipes": [
+        "G0",
+        "H1",
+        "B1"
+      ]
+    },
+    {
+      "id": "Slovenia",
+      "name": "Slovenia",
+      "c01_name": "Slovenia",
+      "region": "Balkans",
+      "certified_case": false,
+      "certified_identity": false,
+      "roster_start_1990": false,
+      "c01_start_1990": false,
+      "parent": "Yugoslavia",
+      "dissolution": "politics::dissolve_yugoslavia",
+      "heir_position": 3,
+      "continuation_state": false,
+      "player_continuation": true,
+      "map_districts": 12,
+      "districts_listed_under_1990_starters": [
+        "Yugoslavia"
+      ],
+      "native_activation_path": true,
+      "recipes": [
+        "G0",
+        "H1",
+        "B1"
+      ]
+    },
+    {
+      "id": "Tajikistan",
+      "name": "Tajikistan",
+      "c01_name": "Tajikistan",
+      "region": "Eurasia",
+      "certified_case": false,
+      "certified_identity": false,
+      "roster_start_1990": false,
+      "c01_start_1990": false,
+      "parent": "USSR",
+      "dissolution": "politics::dissolve_ussr",
+      "heir_position": 14,
+      "continuation_state": false,
+      "player_continuation": true,
+      "map_districts": 5,
+      "districts_listed_under_1990_starters": [
+        "USSR"
+      ],
+      "native_activation_path": true,
+      "recipes": [
+        "G0",
+        "H1",
+        "N1",
+        "B1"
+      ]
+    },
+    {
+      "id": "Turkmenistan",
+      "name": "Turkmenistan",
+      "c01_name": "Turkmenistan",
+      "region": "Eurasia",
+      "certified_case": false,
+      "certified_identity": false,
+      "roster_start_1990": false,
+      "c01_start_1990": false,
+      "parent": "USSR",
+      "dissolution": "politics::dissolve_ussr",
+      "heir_position": 15,
+      "continuation_state": false,
+      "player_continuation": true,
+      "map_districts": 5,
+      "districts_listed_under_1990_starters": [
+        "USSR"
+      ],
+      "native_activation_path": true,
+      "recipes": [
+        "G0",
+        "H1",
+        "N1",
+        "B1"
+      ]
+    },
+    {
+      "id": "Ukraine",
+      "name": "Ukraine",
+      "c01_name": "Ukraine",
+      "region": "Eurasia",
+      "certified_case": false,
+      "certified_identity": false,
+      "roster_start_1990": false,
+      "c01_start_1990": false,
+      "parent": "USSR",
+      "dissolution": "politics::dissolve_ussr",
+      "heir_position": 2,
+      "continuation_state": false,
+      "player_continuation": true,
+      "map_districts": 25,
+      "districts_listed_under_1990_starters": [
+        "USSR"
+      ],
+      "native_activation_path": true,
+      "recipes": [
+        "G0",
+        "H1",
+        "N1",
+        "B1"
+      ]
+    },
+    {
+      "id": "Uzbekistan",
+      "name": "Uzbekistan",
+      "c01_name": "Uzbekistan",
+      "region": "Eurasia",
+      "certified_case": false,
+      "certified_identity": false,
+      "roster_start_1990": false,
+      "c01_start_1990": false,
+      "parent": "USSR",
+      "dissolution": "politics::dissolve_ussr",
+      "heir_position": 5,
+      "continuation_state": false,
+      "player_continuation": true,
+      "map_districts": 14,
+      "districts_listed_under_1990_starters": [
+        "USSR"
+      ],
+      "native_activation_path": true,
+      "recipes": [
+        "G0",
+        "H1",
+        "N1",
+        "B1"
+      ]
+    }
+  ],
+  "discrepancies": [
+    {
+      "id": "D-activation",
+      "kind": "no_native_activation",
+      "detected_by": "automatic",
+      "identities": [
+        "EastTimor",
+        "Namibia"
+      ],
+      "summary": "23 successor identities are expected, but only 21 have a native activation path (a politics.rs dissolution that seats them, a districts::SUCCESSOR_PARENTS entry and a campaign_journey continuation family). The rest cannot be activated by any existing entry point; their activation cases are recorded unrun with an integration proposal. The expectation is not reduced.",
+      "missing": {
+        "EastTimor": {
+          "successor_parent": null,
+          "dissolution": null,
+          "player_continuation": false
+        },
+        "Namibia": {
+          "successor_parent": null,
+          "dissolution": null,
+          "player_continuation": false
+        }
+      },
+      "expectation_unchanged": true,
+      "proposal": "docs/campaign-certification/S24/preparation/successor-fixtures/integration-proposal.md"
+    },
+    {
+      "id": "D-map",
+      "kind": "map_ownership",
+      "detected_by": "automatic",
+      "identities": [
+        "EastTimor",
+        "Namibia"
+      ],
+      "summary": "These successors have district lists in spheres-sim/data/districts.json, but no 1990 starter lists those districts, so the territory has no start owner on the 1 January 1990 board and no parent to dissolve from.",
+      "expectation_unchanged": true
+    }
+  ],
+  "observations": [
+    {
+      "id": "O1",
+      "kind": "documentation",
+      "detected_by": "manual_review",
+      "identities": [
+        "Namibia",
+        "EastTimor"
+      ],
+      "summary": "spheres-web/src/main.rs sources_json says the twenty-three successors are \"transcribed and sourced where the sim seats them\"; the simulation seats only the 21 Soviet and Yugoslav republics. Namibia and East Timor are never seated (nations.rs records East Timor's \"mechanism gap\"; Namibia's row is a successor by date only).",
+      "evidence": [
+        "spheres-web/src/main.rs fn sources_json doc comment",
+        "spheres-sim/src/nations.rs EastTimor row comment \"A GAP THE INTEGRATOR SHOULD SEE\"",
+        "spheres-sim/src/nations.rs Namibia row comment \"NAMIBIA IS A SUCCESSOR, NOT A STARTER\""
+      ]
+    },
+    {
+      "id": "O2",
+      "kind": "conflation_hazard",
+      "detected_by": "manual_review",
+      "identities": [],
+      "summary": "census.json counts.existing_lifecycle_records is also 23, but it counts party lifecycle disclosures in roles-and-lifecycle.json (registry bounds and future editorial disclosures), not successor identities. Do not use it as the successor count.",
+      "evidence": [
+        "docs/campaign-certification/C01/census.json counts.existing_lifecycle_records",
+        "docs/campaign-certification/C01/roles-and-lifecycle.json lifecycle_disclosures"
+      ]
+    },
+    {
+      "id": "O3",
+      "kind": "historical_parent",
+      "detected_by": "manual_review",
+      "identities": [
+        "Namibia",
+        "EastTimor"
+      ],
+      "summary": "Namibia (independent 21 March 1990 from South African administration) and East Timor (independent 20 May 2002 after Indonesian occupation) are successors by start date, not federation breakups. Activating them needs a design ruling and a sourced opening state, not only a fixture hook; inventing a trigger would script history.",
+      "evidence": [
+        "spheres-sim/src/nations.rs Namibia and EastTimor row comments",
+        "spheres-sim/src/data/embedded.rs notes on the missing Namibia and East Timor data files"
+      ]
+    }
+  ],
+  "generated": {
+    "by": "tools/ui/successor-fixtures/inventory.cjs",
+    "from_revision": "26d5d63ae97b0efc2cf5ddbb8a8260ed6e80d0c8",
+    "inputs": [
+      {
+        "path": "docs/planning/campaign-pathway.json",
+        "sha256_lf": "34d398b59c056644d06f4aeccd7a99243e41c61d772dc22fe24f45aefc163b28",
+        "bytes_lf": 48632
+      },
+      {
+        "path": "docs/campaign-certification/C01/countries.json",
+        "sha256_lf": "3f3ea61354fadbf85d182b6593f5cdf13e13a856d3fe59b64e1f3305c6622ca4",
+        "bytes_lf": 89406
+      },
+      {
+        "path": "docs/campaign-certification/C01/census.json",
+        "sha256_lf": "3bd35544f2cc363e9a45ef317169b461d3d98a9ef3841a7e8fb5f3f127e87244",
+        "bytes_lf": 6105
+      },
+      {
+        "path": "spheres-sim/src/nations.rs",
+        "sha256_lf": "8b847b6a843e6a41a82f80446c41ef0e2abccbb6172cc956207859cf71edab08",
+        "bytes_lf": 214148
+      },
+      {
+        "path": "spheres-sim/src/districts.rs",
+        "sha256_lf": "27ea1ea9ac476ed5a61fd4606f21f17ff10c379b6245f374dac6c567f0f16b92",
+        "bytes_lf": 59379
+      },
+      {
+        "path": "spheres-sim/src/politics.rs",
+        "sha256_lf": "3c817af7c78c9cca6518f0e193c375a2f7b102a254fb498afec2a4b9aeaa03fa",
+        "bytes_lf": 117500
+      },
+      {
+        "path": "spheres-web/src/campaign_journey.rs",
+        "sha256_lf": "ccb195bc61ebf09d0a7e17a7abbb2b9bb3232b052514b6d038e98f34c485010c",
+        "bytes_lf": 21468
+      },
+      {
+        "path": "spheres-sim/data/districts.json",
+        "sha256_lf": "b6b1a88c891ccc4fa02f877cc73786d96bf81ea4269ecd8915a6759fac480f46",
+        "bytes_lf": 844035
+      },
+      {
+        "path": "spheres-web/src/main.rs",
+        "sha256_lf": "e6664806bb8a7be82fdd98f80bc3e015933bf0681852d2a1343fcb44586bcbba",
+        "bytes_lf": 982411
+      }
+    ],
+    "note": "Input hashes use LF-normalised text; they are provenance only and are excluded from --check."
+  }
+}

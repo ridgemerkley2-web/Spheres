@@ -673,12 +673,28 @@ pub fn tick_day(w: &mut WorldState) {
 }
 
 pub fn snapshot(w: &WorldState, nation: NationId) -> OperationsSnapshot {
-    let inherited = starting_industry::snapshot(w, nation);
+    snapshot_impl(w, nation, true)
+}
+fn snapshot_impl(w: &WorldState, nation: NationId, reuse_economy: bool) -> OperationsSnapshot {
+    // Every inherited province previously rebuilt this same complete national
+    // ledger. Hold one owned read only inside this immutable snapshot call.
+    let economy = if reuse_economy && w.starting_industry.is_some() {
+        crate::province_economy::snapshot(w, nation)
+    } else { None };
+    let inherited = if reuse_economy {
+        economy.as_ref().and_then(|ledger| starting_industry::snapshot_with_economy(w, nation, ledger))
+    } else { starting_industry::snapshot(w, nation) };
     let mut facilities = vec![];
     if let Some(state) = &w.starting_industry {
         for (d, asset) in &state.provinces {
             if w.districts.get(d) != Some(&nation) { continue; }
-            let Some(p) = starting_industry::province(w, d) else { continue; };
+            let province = if reuse_economy {
+                economy.as_ref().and_then(|ledger| ledger.provinces.iter().find(|p| p.id == *d))
+                    .and_then(|p| starting_industry::province_with_economy(w, d, p))
+            } else { starting_industry::province(w, d) };
+            let Some(p) = province else { continue; };
+            #[cfg(test)]
+            if reuse_economy { snapshot_read_tests::ELIMINATED.with(|count| count.set(count.get() + 1)); }
             let group_equivalents: f64 = p.groups.iter().map(|g| g.factory_equivalents).sum();
             let population_jobs = if crate::population::active(w) {
                 w.population_system.provinces.get(d).map(|people| {
@@ -765,6 +781,11 @@ pub fn snapshot(w: &WorldState, nation: NationId) -> OperationsSnapshot {
             "Factory equivalents, staffing, qualification and spare power are explicit model estimates. Inherited value added is already inside GDP; only actual new production reaches the existing province ledger, then normal fiscal taxes. New jobs use the available hiring pool without adding a second growth multiplier. Power totals show supply available to additional activity after inherited demand; dated output is a receipt, operating capacity is today's conditional forecast."
         }.into() }
 }
+
+
+#[cfg(test)]
+#[path = "industry_operations_snapshot_tests.rs"]
+mod snapshot_read_tests;
 
 
 /// Validate the new sparse industry state before allowing a save to continue.

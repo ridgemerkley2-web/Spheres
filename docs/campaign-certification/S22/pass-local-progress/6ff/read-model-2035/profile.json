@@ -1,0 +1,109 @@
+{
+  "date": "30 Nov 2035",
+  "input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2035-11-30.json",
+  "pure": true,
+  "revision": "6ff13350e809",
+  "rows": [
+    {
+      "bytes": 2697386,
+      "component": "nations",
+      "elapsed_ms": 29.5772
+    },
+    {
+      "bytes": 119582,
+      "component": "connected_economy",
+      "elapsed_ms": 33.8183
+    },
+    {
+      "bytes": 1656,
+      "component": "fiscal_recovery",
+      "elapsed_ms": 0.0329
+    },
+    {
+      "bytes": 979,
+      "component": "operations",
+      "elapsed_ms": 0.081
+    },
+    {
+      "bytes": 372,
+      "component": "warfare_adoption",
+      "elapsed_ms": 0.007
+    },
+    {
+      "bytes": 5423,
+      "component": "theatres",
+      "elapsed_ms": 0.0858
+    },
+    {
+      "bytes": 714,
+      "component": "stratagems",
+      "elapsed_ms": 0.0294
+    },
+    {
+      "bytes": 10978,
+      "component": "research",
+      "elapsed_ms": 0.358
+    },
+    {
+      "bytes": 66324,
+      "component": "resources",
+      "elapsed_ms": 25.0203
+    },
+    {
+      "bytes": 264,
+      "component": "logistics_summary",
+      "elapsed_ms": 0.022699999999999998
+    },
+    {
+      "bytes": 280,
+      "component": "production_summary",
+      "elapsed_ms": 0.0496
+    },
+    {
+      "bytes": 270,
+      "component": "manufacturing_summary",
+      "elapsed_ms": 0.0356
+    },
+    {
+      "bytes": 28632,
+      "component": "programs",
+      "elapsed_ms": 0.4364
+    },
+    {
+      "bytes": 8306,
+      "component": "domination",
+      "elapsed_ms": 2.5003
+    },
+    {
+      "bytes": 6098,
+      "component": "agency",
+      "elapsed_ms": 0.044700000000000004
+    },
+    {
+      "bytes": 1894,
+      "component": "campaign_aims",
+      "elapsed_ms": 0.8062
+    },
+    {
+      "bytes": 28077,
+      "component": "policy",
+      "elapsed_ms": 0.4837
+    },
+    {
+      "bytes": 27829,
+      "component": "ministries",
+      "elapsed_ms": 1.6417000000000002
+    },
+    {
+      "bytes": 3694828,
+      "component": "whole_state",
+      "elapsed_ms": 100.7149
+    },
+    {
+      "bytes": 620917,
+      "component": "equipment",
+      "elapsed_ms": 100.2545
+    }
+  ],
+  "scope": "Single read-only diagnostic sample, including serialization; not an acceptance measurement."
+}

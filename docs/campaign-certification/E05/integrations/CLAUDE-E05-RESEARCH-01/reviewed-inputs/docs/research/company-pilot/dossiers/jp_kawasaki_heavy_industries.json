@@ -1,0 +1,1312 @@
+{
+  "schema": "spheres-company-pilot-dossier-v1",
+  "id": "jp_kawasaki_heavy_industries",
+  "display_name": "Kawasaki Heavy Industries",
+  "native_name": "川崎重工業株式会社 (Kawasaki Heavy Industries, Ltd.)",
+  "nation": "Japan",
+  "status": "research_only",
+  "research_window": {
+    "from": "1990-01-01",
+    "through": "2026-09-07"
+  },
+  "activities": [
+    "aerospace",
+    "naval",
+    "civilian_industrial"
+  ],
+  "selection": {
+    "reason": "Japan's other heavy-industry prime: P-1 patrol and C-2 transport aircraft, the OH-1 helicopter, submarines, rolling stock, motorcycles and industrial robots. The game's sourced 1990 industrial-robotics technology for Japan already names Kawasaki Heavy Industries, so this dossier extends an existing reference.",
+    "existing_game_references": [
+      {
+        "kind": "tech_source",
+        "path": "spheres-sim/data/nations/japan.json",
+        "id": "Japan:matl_industrial_robotics",
+        "note": "Evidence text names Kawasaki Heavy Industries among 1990 robot builders."
+      },
+      {
+        "kind": "sector_contractors",
+        "path": "spheres-sim/src/sector_contractors.rs",
+        "id": "Japan:manufacturing",
+        "note": "Generated fictional contractors only."
+      }
+    ]
+  },
+  "summary": "KHI has carried its name since 1939 and was operating across ships, aircraft and rolling stock in 1990. It split off shipbuilding (Kawasaki Shipbuilding Corporation) and precision machinery in October 2002, and the plant business in April 2005, and merged all three back in October 2010; it spun off KCM in 2009 and sold it to Hitachi Construction Machinery in 2015. In October 2021 rolling stock became Kawasaki Railcar Manufacturing and motorcycles and engines Kawasaki Motors, of which KHI sold 20% on 1 April 2025 (ITOCHU took the stake). Products in the window include the first production P-1 (2013) and C-2 (2016), the OH-1 (first flight 1996), the submarine Hakugei (2023), Boeing 787 forward fuselages, Shinkansen and export trains, the Ninja H2 (2015) and industrial robots.",
+  "entities": [
+    {
+      "id": "jp_khi_company",
+      "kind": "company",
+      "subject": true,
+      "registration": {
+        "register": "Corporate Number (National Tax Agency, Japan)",
+        "number": "1140001005719",
+        "claims": [
+          "jp_kawasaki_heavy_industries_c01"
+        ]
+      },
+      "names": [
+        {
+          "name": "Kawasaki Heavy Industries, Ltd.",
+          "native": "川崎重工業株式会社",
+          "from": "1990-01-01",
+          "from_basis": "window_start",
+          "until": null,
+          "claims": [
+            "jp_kawasaki_heavy_industries_c22",
+            "jp_kawasaki_heavy_industries_c26",
+            "jp_kawasaki_heavy_industries_c02",
+            "jp_kawasaki_heavy_industries_c01",
+            "jp_kawasaki_heavy_industries_c03",
+            "jp_kawasaki_heavy_industries_c31"
+          ]
+        }
+      ],
+      "roles": [
+        {
+          "role": "diversified manufacturer (aircraft, ships and submarines, rolling stock, motorcycles, robots, energy plant)",
+          "from": "1990-01-01",
+          "from_basis": "window_start",
+          "until": null,
+          "claims": [
+            "jp_kawasaki_heavy_industries_c02",
+            "jp_kawasaki_heavy_industries_c26",
+            "jp_kawasaki_heavy_industries_c03",
+            "jp_kawasaki_heavy_industries_c04"
+          ]
+        }
+      ],
+      "note": "Named Kawasaki Heavy Industries since 1939; founded in 1896 as 株式会社川崎造船所 (Kawasaki Dockyard)."
+    },
+    {
+      "id": "jp_khi_kawasaki_shipbuilding",
+      "kind": "subsidiary",
+      "subject": false,
+      "names": [
+        {
+          "name": "Kawasaki Shipbuilding Corporation",
+          "native": "株式会社川崎造船",
+          "from": "2002-10",
+          "from_basis": "event",
+          "until": "2010-10",
+          "until_basis": "ended",
+          "claims": [
+            "jp_kawasaki_heavy_industries_c27",
+            "jp_kawasaki_heavy_industries_c05",
+            "jp_kawasaki_heavy_industries_c28",
+            "jp_kawasaki_heavy_industries_c06"
+          ]
+        }
+      ],
+      "roles": [
+        {
+          "role": "KHI shipbuilding subsidiary, merged back into KHI",
+          "from": "2002-10",
+          "from_basis": "event",
+          "until": "2010-10",
+          "until_basis": "ended",
+          "claims": [
+            "jp_kawasaki_heavy_industries_c27",
+            "jp_kawasaki_heavy_industries_c28"
+          ]
+        }
+      ],
+      "note": "Not the 1896 founding company 株式会社川崎造船所 (claim c35)."
+    },
+    {
+      "id": "jp_khi_kawasaki_railcar",
+      "kind": "subsidiary",
+      "subject": false,
+      "names": [
+        {
+          "name": "Kawasaki Railcar Manufacturing Co., Ltd.",
+          "native": "川崎車両株式会社",
+          "from": "2021-10-01",
+          "from_basis": "event",
+          "until": null,
+          "claims": [
+            "jp_kawasaki_heavy_industries_c10",
+            "jp_kawasaki_heavy_industries_c29",
+            "jp_kawasaki_heavy_industries_c37"
+          ]
+        }
+      ],
+      "roles": [
+        {
+          "role": "KHI rolling-stock subsidiary (100%)",
+          "from": "2021-10-01",
+          "from_basis": "event",
+          "until": null,
+          "claims": [
+            "jp_kawasaki_heavy_industries_c10",
+            "jp_kawasaki_heavy_industries_c37"
+          ]
+        }
+      ],
+      "note": "Distinct from the historic 川崎車輌, which merged into KHI in 1969 (claim c22)."
+    },
+    {
+      "id": "jp_khi_kawasaki_motors",
+      "kind": "subsidiary",
+      "subject": false,
+      "names": [
+        {
+          "name": "Kawasaki Motors, Ltd.",
+          "native": "カワサキモータース株式会社",
+          "from": "2021-02-12",
+          "from_basis": "event",
+          "until": null,
+          "claims": [
+            "jp_kawasaki_heavy_industries_c11",
+            "jp_kawasaki_heavy_industries_c12"
+          ]
+        }
+      ],
+      "roles": [
+        {
+          "role": "KHI subsidiary running the motorcycle & engine (now powersports & engine) business",
+          "from": "2021-10",
+          "from_basis": "event",
+          "until": null,
+          "claims": [
+            "jp_kawasaki_heavy_industries_c29",
+            "jp_kawasaki_heavy_industries_c12"
+          ]
+        }
+      ],
+      "note": "Distinct from Kawasaki Motors Corp., U.S.A. (founded 1966 as American Kawasaki Motorcycle Corp., claim c36)."
+    }
+  ],
+  "lineage": [
+    {
+      "id": "jp_kawasaki_heavy_industries_l01",
+      "kind": "spin_off",
+      "entity": "jp_khi_company",
+      "date": "2002-10",
+      "counterparties": [
+        {
+          "name": "Kawasaki Shipbuilding Corporation",
+          "entity": "jp_khi_kawasaki_shipbuilding",
+          "relation": "shipbuilding business split off"
+        },
+        {
+          "name": "Kawasaki Precision Machinery",
+          "relation": "precision-machinery (hydraulics) business split off"
+        }
+      ],
+      "claims": [
+        "jp_kawasaki_heavy_industries_c27",
+        "jp_kawasaki_heavy_industries_c05"
+      ]
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_l02",
+      "kind": "spin_off",
+      "entity": "jp_khi_company",
+      "date": "2005-04",
+      "counterparties": [
+        {
+          "name": "Kawasaki Plant Systems",
+          "relation": "plant business split off"
+        }
+      ],
+      "claims": [
+        "jp_kawasaki_heavy_industries_c32",
+        "jp_kawasaki_heavy_industries_c06"
+      ]
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_l03",
+      "kind": "spin_off",
+      "entity": "jp_khi_company",
+      "date": "2009-04",
+      "counterparties": [
+        {
+          "name": "KCM Corporation",
+          "relation": "construction-machinery business split off"
+        }
+      ],
+      "claims": [
+        "jp_kawasaki_heavy_industries_c33",
+        "jp_kawasaki_heavy_industries_c08"
+      ]
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_l04",
+      "kind": "merger",
+      "entity": "jp_khi_company",
+      "date": "2010-10",
+      "counterparties": [
+        {
+          "name": "Kawasaki Shipbuilding Corporation",
+          "entity": "jp_khi_kawasaki_shipbuilding",
+          "relation": "merged into KHI"
+        },
+        {
+          "name": "Kawasaki Precision Machinery",
+          "relation": "merged into KHI"
+        },
+        {
+          "name": "Kawasaki Plant Systems",
+          "relation": "merged into KHI"
+        }
+      ],
+      "claims": [
+        "jp_kawasaki_heavy_industries_c28",
+        "jp_kawasaki_heavy_industries_c06"
+      ]
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_l05",
+      "kind": "divestiture",
+      "entity": "jp_khi_company",
+      "date": "2015-10",
+      "counterparties": [
+        {
+          "name": "KCM Corporation",
+          "relation": "all shares transferred"
+        },
+        {
+          "name": "Hitachi Construction Machinery",
+          "relation": "buyer"
+        }
+      ],
+      "claims": [
+        "jp_kawasaki_heavy_industries_c30",
+        "jp_kawasaki_heavy_industries_c08"
+      ]
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_l06",
+      "kind": "joint_venture",
+      "entity": "jp_khi_company",
+      "date": "1995",
+      "counterparties": [
+        {
+          "name": "China Ocean Shipping (Group) Company (COSCO)",
+          "relation": "partner in the NACKS shipyard joint venture (Nantong)"
+        }
+      ],
+      "claims": [
+        "jp_kawasaki_heavy_industries_c14"
+      ]
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_l07",
+      "kind": "business_transfer",
+      "entity": "jp_khi_company",
+      "date": "2000",
+      "counterparties": [
+        {
+          "name": "Kobe Steel",
+          "relation": "transferred its painting-robot business to KHI"
+        }
+      ],
+      "claims": [
+        "jp_kawasaki_heavy_industries_c24"
+      ]
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_l08",
+      "kind": "joint_venture",
+      "entity": "jp_khi_company",
+      "date": "2013",
+      "counterparties": [
+        {
+          "name": "Sysmex Corporation",
+          "relation": "partner in Medicaroid Corporation (medical robots)"
+        }
+      ],
+      "claims": [
+        "jp_kawasaki_heavy_industries_c07"
+      ]
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_l09",
+      "kind": "spin_off",
+      "entity": "jp_khi_company",
+      "date": "2021-10-01",
+      "counterparties": [
+        {
+          "name": "Kawasaki Railcar Manufacturing Co., Ltd.",
+          "entity": "jp_khi_kawasaki_railcar",
+          "relation": "rolling-stock business split off"
+        }
+      ],
+      "claims": [
+        "jp_kawasaki_heavy_industries_c10",
+        "jp_kawasaki_heavy_industries_c29"
+      ]
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_l10",
+      "kind": "spin_off",
+      "entity": "jp_khi_company",
+      "date": "2021-10",
+      "counterparties": [
+        {
+          "name": "Kawasaki Motors, Ltd.",
+          "entity": "jp_khi_kawasaki_motors",
+          "relation": "motorcycle & engine business split off"
+        }
+      ],
+      "claims": [
+        "jp_kawasaki_heavy_industries_c29",
+        "jp_kawasaki_heavy_industries_c11",
+        "jp_kawasaki_heavy_industries_c09"
+      ]
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_l11",
+      "kind": "stake_change",
+      "entity": "jp_khi_company",
+      "date": "2025-04-01",
+      "counterparties": [
+        {
+          "name": "Kawasaki Motors, Ltd.",
+          "entity": "jp_khi_kawasaki_motors",
+          "relation": "20% of its shares sold back to it by KHI"
+        },
+        {
+          "name": "ITOCHU Corporation",
+          "relation": "took a 20% stake"
+        }
+      ],
+      "claims": [
+        "jp_kawasaki_heavy_industries_c12"
+      ]
+    }
+  ],
+  "ownership": [
+    {
+      "holder": "Kawasaki Heavy Industries in Kawasaki Motors, Ltd.",
+      "share": "80% of voting rights (100% a year earlier)",
+      "date": "2026-03-31",
+      "claims": [
+        "jp_kawasaki_heavy_industries_c12"
+      ]
+    },
+    {
+      "holder": "Kawasaki Heavy Industries in Kawasaki Railcar Manufacturing Co., Ltd.",
+      "share": "100% of voting rights",
+      "date": "2026-03-31",
+      "claims": [
+        "jp_kawasaki_heavy_industries_c37"
+      ]
+    }
+  ],
+  "country_links": [
+    {
+      "country": "United States",
+      "kind": "subsidiary",
+      "date": "1990",
+      "claims": [
+        "jp_kawasaki_heavy_industries_c23"
+      ],
+      "note": "Kawasaki Robotics (USA), Inc. set up in Detroit."
+    },
+    {
+      "country": "China",
+      "kind": "joint_venture",
+      "date": "1995",
+      "claims": [
+        "jp_kawasaki_heavy_industries_c14"
+      ],
+      "note": "NACKS shipyard with COSCO; a second yard (DACKS, Dalian) followed in 2007."
+    },
+    {
+      "country": "United States",
+      "kind": "export_order",
+      "date": "1997",
+      "claims": [
+        "jp_kawasaki_heavy_industries_c15"
+      ],
+      "note": "400 R142A subway cars for New York City Transit."
+    },
+    {
+      "country": "United States",
+      "kind": "plant",
+      "date": "2001",
+      "claims": [
+        "jp_kawasaki_heavy_industries_c15"
+      ],
+      "note": "Integrated railcar factory; 2,000 cars built in Nebraska by 2017."
+    },
+    {
+      "country": "Taiwan",
+      "kind": "export_delivery",
+      "date": "2004",
+      "claims": [
+        "jp_kawasaki_heavy_industries_c20"
+      ],
+      "note": "700T trains for Taiwan High Speed Rail."
+    },
+    {
+      "country": "China",
+      "kind": "export_order",
+      "date": "2004",
+      "claims": [
+        "jp_kawasaki_heavy_industries_c20"
+      ],
+      "note": "480 CRH2 cars for the Ministry of Railways."
+    },
+    {
+      "country": "United States",
+      "kind": "supplier_partnership",
+      "date": "2019-12-16",
+      "claims": [
+        "jp_kawasaki_heavy_industries_c13"
+      ],
+      "note": "Boeing 787 forward fuselage, wheel well and wing fixed trailing edge."
+    }
+  ],
+  "products": [
+    {
+      "id": "jp_khi_p1",
+      "name": "P-1 maritime patrol aircraft",
+      "reality": "historical",
+      "category": "maritime patrol aircraft",
+      "milestones": [
+        {
+          "event": "selected",
+          "date": "2001-11",
+          "maker_entity": "jp_khi_company",
+          "maker_name": "Kawasaki Heavy Industries, Ltd.",
+          "claims": [
+            "jp_kawasaki_heavy_industries_c17"
+          ],
+          "note": "Named lead contractor for the joint XP-1/XC-2 development."
+        },
+        {
+          "event": "first_flight",
+          "date": "2007-09",
+          "maker_entity": "jp_khi_company",
+          "maker_name": "Kawasaki Heavy Industries, Ltd.",
+          "claims": [
+            "jp_kawasaki_heavy_industries_c17"
+          ],
+          "note": "XP-1 prototype No. 1."
+        },
+        {
+          "event": "contract",
+          "date": "2009-03",
+          "maker_entity": "jp_khi_company",
+          "maker_name": "Kawasaki Heavy Industries, Ltd.",
+          "claims": [
+            "jp_kawasaki_heavy_industries_c17"
+          ],
+          "note": "First production contract."
+        },
+        {
+          "event": "first_delivery",
+          "date": "2013-03-26",
+          "maker_entity": "jp_khi_company",
+          "maker_name": "Kawasaki Heavy Industries, Ltd.",
+          "claims": [
+            "jp_kawasaki_heavy_industries_c16"
+          ],
+          "note": "First production aircraft, Gifu Works."
+        }
+      ]
+    },
+    {
+      "id": "jp_khi_c2",
+      "name": "C-2 transport aircraft",
+      "reality": "historical",
+      "category": "military transport aircraft",
+      "milestones": [
+        {
+          "event": "first_delivery",
+          "date": "2016-06-30",
+          "maker_entity": "jp_khi_company",
+          "maker_name": "Kawasaki Heavy Industries, Ltd.",
+          "claims": [
+            "jp_kawasaki_heavy_industries_c18"
+          ],
+          "note": "First production aircraft, Gifu Works."
+        }
+      ]
+    },
+    {
+      "id": "jp_khi_oh1",
+      "name": "OH-1 observation helicopter",
+      "reality": "historical",
+      "category": "military helicopter",
+      "milestones": [
+        {
+          "event": "development_start",
+          "date": "1992",
+          "maker_entity": "jp_khi_company",
+          "maker_name": "Kawasaki Heavy Industries, Ltd.",
+          "claims": [
+            "jp_kawasaki_heavy_industries_c19"
+          ]
+        },
+        {
+          "event": "first_flight",
+          "date": "1996-08",
+          "maker_entity": "jp_khi_company",
+          "maker_name": "Kawasaki Heavy Industries, Ltd.",
+          "claims": [
+            "jp_kawasaki_heavy_industries_c19"
+          ]
+        }
+      ],
+      "note": "KHI is the airframe maker; the JGSDF page lists Mitsubishi Heavy Industries as engine maker."
+    },
+    {
+      "id": "jp_khi_chu_mat",
+      "name": "Middle-range multi-purpose missile (中距離多目的誘導弾) and launcher",
+      "reality": "historical",
+      "category": "vehicle-mounted guided missile",
+      "milestones": [
+        {
+          "event": "operational",
+          "date": "2024-05-28",
+          "maker_entity": "jp_khi_company",
+          "maker_name": "Kawasaki Heavy Industries, Ltd.",
+          "claims": [
+            "jp_kawasaki_heavy_industries_c38"
+          ],
+          "note": "Listed as JGSDF equipment on a page last modified on this date; mounted on a Toyota High Mobility Vehicle. Service-entry year not sourced."
+        }
+      ]
+    },
+    {
+      "id": "jp_khi_hakugei",
+      "name": "Hakugei (second boat of the Taigei-class submarines)",
+      "reality": "historical",
+      "category": "diesel-electric submarine",
+      "milestones": [
+        {
+          "event": "launch",
+          "date": "2021-10-14",
+          "maker_entity": "jp_khi_company",
+          "maker_name": "Kawasaki Heavy Industries, Ltd.",
+          "claims": [
+            "jp_kawasaki_heavy_industries_c34"
+          ]
+        },
+        {
+          "event": "delivery",
+          "date": "2023-03-20",
+          "maker_entity": "jp_khi_company",
+          "maker_name": "Kawasaki Heavy Industries, Ltd.",
+          "claims": [
+            "jp_kawasaki_heavy_industries_c34"
+          ],
+          "note": "Delivered at the Kobe Works; the 30th submarine KHI built since the Second World War."
+        }
+      ]
+    },
+    {
+      "id": "jp_khi_b787_forward_fuselage",
+      "name": "Boeing 787 forward fuselage section",
+      "reality": "historical",
+      "category": "aerostructure",
+      "milestones": [
+        {
+          "event": "production_milestone",
+          "date": "2019-12-16",
+          "maker_entity": "jp_khi_company",
+          "maker_name": "Kawasaki Heavy Industries, Ltd.",
+          "claims": [
+            "jp_kawasaki_heavy_industries_c13"
+          ],
+          "note": "Forward fuselage for the 1,000th 787 completed at Nagoya Works 1."
+        }
+      ]
+    },
+    {
+      "id": "jp_khi_series_300_prototype",
+      "name": "Tokaido Shinkansen Series 300 prototype train",
+      "reality": "historical",
+      "category": "high-speed train",
+      "milestones": [
+        {
+          "event": "delivery",
+          "date": "1990",
+          "maker_entity": "jp_khi_company",
+          "maker_name": "Kawasaki Heavy Industries, Ltd.",
+          "claims": [
+            "jp_kawasaki_heavy_industries_c02"
+          ],
+          "note": "Delivered to JR Central."
+        }
+      ]
+    },
+    {
+      "id": "jp_khi_700t",
+      "name": "700T high-speed train for Taiwan High Speed Rail",
+      "reality": "historical",
+      "category": "high-speed train",
+      "milestones": [
+        {
+          "event": "first_delivery",
+          "date": "2004",
+          "maker_entity": "jp_khi_company",
+          "maker_name": "Kawasaki Heavy Industries, Ltd.",
+          "claims": [
+            "jp_kawasaki_heavy_industries_c20"
+          ],
+          "note": "Deliveries began."
+        }
+      ]
+    },
+    {
+      "id": "jp_khi_e5_preproduction",
+      "name": "Tohoku Shinkansen Series E5 pre-production train",
+      "reality": "historical",
+      "category": "high-speed train",
+      "milestones": [
+        {
+          "event": "delivery",
+          "date": "2009",
+          "maker_entity": "jp_khi_company",
+          "maker_name": "Kawasaki Heavy Industries, Ltd.",
+          "claims": [
+            "jp_kawasaki_heavy_industries_c21"
+          ],
+          "note": "Delivered to JR East."
+        }
+      ]
+    },
+    {
+      "id": "jp_khi_r142a",
+      "name": "R142A subway cars for New York City Transit",
+      "reality": "historical",
+      "category": "metro car",
+      "milestones": [
+        {
+          "event": "export_order",
+          "date": "1997",
+          "maker_entity": "jp_khi_company",
+          "maker_name": "Kawasaki Heavy Industries, Ltd.",
+          "claims": [
+            "jp_kawasaki_heavy_industries_c15"
+          ],
+          "note": "400 cars ordered."
+        }
+      ]
+    },
+    {
+      "id": "jp_khi_ninja_h2",
+      "name": "Ninja H2 / H2R supercharged motorcycle",
+      "reality": "historical",
+      "category": "motorcycle",
+      "milestones": [
+        {
+          "event": "market_launch",
+          "date": "2015",
+          "maker_entity": "jp_khi_company",
+          "maker_name": "Kawasaki Heavy Industries, Ltd.",
+          "claims": [
+            "jp_kawasaki_heavy_industries_c35"
+          ],
+          "note": "Launched while motorcycles were still a KHI division (before the 2021 spin-off)."
+        }
+      ]
+    },
+    {
+      "id": "jp_khi_r_series_robot",
+      "name": "R series small and medium general-purpose industrial robots",
+      "reality": "historical",
+      "category": "industrial robot",
+      "milestones": [
+        {
+          "event": "market_launch",
+          "date": "2008",
+          "maker_entity": "jp_khi_company",
+          "maker_name": "Kawasaki Heavy Industries, Ltd.",
+          "claims": [
+            "jp_kawasaki_heavy_industries_c25"
+          ]
+        }
+      ]
+    }
+  ],
+  "game_mapping": {
+    "proposed": [
+      {
+        "target_kind": "tech_node",
+        "target_id": "Japan:matl_industrial_robotics",
+        "flow": "reference_only",
+        "confidence": "high",
+        "existing_reference": {
+          "path": "spheres-sim/data/nations/japan.json",
+          "match_text": "Kawasaki Heavy Industries"
+        },
+        "uncertainty": "The existing 1990 evidence names KHI among robot builders; the link is identity only and grants no mechanic."
+      },
+      {
+        "target_kind": "sector_contractor_slot",
+        "target_id": "Japan:manufacturing",
+        "flow": "sector_contractor_service",
+        "confidence": "medium",
+        "uncertainty": "Generated contractors are fictional; rolling stock, motorcycles and robots have no product consumer, so a real identity would only replace one generated manufacturing contractor."
+      },
+      {
+        "target_kind": "sector_contractor_slot",
+        "target_id": "Japan:defense",
+        "flow": "sector_contractor_service",
+        "confidence": "low",
+        "uncertainty": "KHI defence products (patrol and transport aircraft, helicopters, submarines, missiles) have no designer platform; a defense contractor slot is the only service route, and MHI is proposed for the same sector."
+      }
+    ],
+    "duplicates_avoided": [
+      "Kawasaki Kisen Kaisha (K Line, 1919) and Kawasaki Steel (1950) were separated before the window and are not KHI businesses.",
+      "Kawasaki Shipbuilding Corporation (2002-2010 subsidiary) is not the 1896 founding company 株式会社川崎造船所.",
+      "Kawasaki Railcar Manufacturing (2021) is not the historic 川崎車輌 merged into KHI in 1969; Kawasaki Motors, Ltd. (2021) is not Kawasaki Motors Corp., U.S.A.",
+      "Hakugei is attributed to KHI and the lead boat Taigei to MHI; the OH-1 engines are MHI products.",
+      "Medicaroid is a joint venture with Sysmex and NACKS a joint venture with COSCO; neither is a wholly owned KHI unit."
+    ],
+    "integration_flow": {
+      "route": "existing_supplier_flow",
+      "summary": "A later, reviewed integration could attach this sourced identity to a company created through the existing orders. Design stays with the commissioning country; Defense R&D pays development as work is performed; the company funds tooling, national-warehouse inputs and fabrication from its own settled cash; the buyer purchases whole finished units from company stock; delivery follows fiscal settlement and seven accessible days. KHI products in this dossier have no designer platform, so a reviewed integration would first need new platform families (a later ruling), not a scripted product.",
+      "steps": [
+        {
+          "order": "Establish",
+          "note": "Paid capitalisation from Defense procurement (political capital price applies); leases one existing completed Arms Plant slot. No historical factory, balance or stock is granted."
+        },
+        {
+          "order": "Capitalize",
+          "note": "Further paid working capital; unsettled receivables are not spendable cash."
+        },
+        {
+          "order": "Develop",
+          "note": "Frozen design revision; Defense R&D pays engineering, prototype and trials work day by day; prototypes are never saleable."
+        },
+        {
+          "order": "Inventory",
+          "note": "Finite company-owned stock target (0-12 units); a target is never a government order."
+        },
+        {
+          "order": "Purchase",
+          "note": "Government buys whole units from existing company stock; settlement then seven accessible delivery days."
+        }
+      ],
+      "not_introduced": [
+        "government production capacity",
+        "free or opening stock",
+        "a parallel financial ledger",
+        "sourced opening corporate balances (none researched)"
+      ]
+    },
+    "constraints": {
+      "government_production_capacity": false,
+      "free_stock": false,
+      "parallel_financial_ledger": false,
+      "opening_balances_or_stock": "not_sourced_not_proposed"
+    },
+    "unmapped": [
+      "P-1 and C-2: no maritime-patrol or airlift platform in the designer.",
+      "OH-1 and the middle-range multi-purpose missile: no helicopter or vehicle-missile platform.",
+      "Hakugei: the only submarine kit (aip_ssk) assumes air-independent propulsion, which MHI does not describe for this class.",
+      "Rolling stock, motorcycles, robots and Boeing aerostructures: no civilian product consumer."
+    ]
+  },
+  "gaps": [
+    "The KHI corporate history and timeline pages returned HTTP 403 and are recorded as inaccessible.",
+    "The official chronology and the securities report disagree on the date of the crusher-business transfer (2003 joint venture versus April 2005); it is not recorded.",
+    "Kawasaki Motors dates the Ninja H2/H2R to 2014 in its own history, while the KHI chronology gives the 2015 launch used here.",
+    "The first P-1 and C-2 export or later production figures were not researched."
+  ],
+  "future_policy": {
+    "after": "2026-09-07",
+    "real_history": "not_predicted",
+    "later_products": "fictional_or_unknown",
+    "note": "Nothing after the frozen cutoff is predicted. Any later product, successor or business in a campaign must be authored as explicitly fictional game content (labelled \"(fictional)\") or left unknown."
+  },
+  "claims": [
+    {
+      "id": "jp_kawasaki_heavy_industries_c01",
+      "source": "jp_khi_nta_register",
+      "attests": [
+        "2020-06-15"
+      ],
+      "text": "The corporate-number registry (no. 1140001005719) lists 川崎重工業株式会社, English name Kawasaki Heavy Industries, Ltd., head office Higashikawasaki-cho, Chuo-ku, Kobe; the record was last updated on 15 June 2020 and its change history has no name change.",
+      "locator": {
+        "section": "最新情報; 変更履歴情報",
+        "record": "corporate number 1140001005719"
+      },
+      "anchor": "令和2年6月15日"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c02",
+      "source": "jp_khi_rs_history",
+      "attests": [
+        "1990"
+      ],
+      "text": "Under 1990 the rolling-stock timeline lists delivery of the Tokaido Shinkansen Series 300 prototype train to JR Central and of bilevel commuter coaches to the Massachusetts Bay Transportation Authority.",
+      "locator": {
+        "section": "沿革: year 1990年"
+      },
+      "anchor": "東海道新幹線300系試作電車"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c03",
+      "source": "jp_khi_fr_fy2025_en",
+      "attests": [
+        "2026-03-31"
+      ],
+      "text": "The English financial report covers the consolidated group for the year ended 31 March 2026 and describes the company as incorporated in Japan.",
+      "locator": {
+        "section": "Notes, 1. Reporting Entity",
+        "page": 11
+      },
+      "anchor": "is a company incorporated in Japan"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c04",
+      "source": "jp_khi_pr_list",
+      "attests": [
+        "2026-09-07"
+      ],
+      "text": "A press-release list item dated 7 September 2026 reports completion of installation work for a 30 MW-class gas turbine fired only on hydrogen.",
+      "locator": {
+        "section": "プレスリリース一覧: item dated 2026年09月07日"
+      },
+      "anchor": "30MW級水素専焼ガスタービンの設置工事が完了"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c05",
+      "source": "jp_khi_genealogy",
+      "attests": [
+        "2002"
+      ],
+      "text": "In 2002 the shipbuilding division became the subsidiary Kawasaki Shipbuilding Corporation and the precision-machinery division became Kawasaki Precision Machinery.",
+      "locator": {
+        "section": "年表: year 2002"
+      },
+      "anchor": "船舶部門が（株）川崎造船として分社独立"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c06",
+      "source": "jp_khi_genealogy",
+      "attests": [
+        "2005",
+        "2010"
+      ],
+      "text": "The plant division was split off as Kawasaki Plant Systems in 2005; in 2010 Kawasaki Shipbuilding, Kawasaki Precision Machinery and Kawasaki Plant Systems were re-integrated.",
+      "locator": {
+        "section": "年表: years 2005 and 2010"
+      },
+      "anchor": "カワサキプラントシステムズを再統合"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c07",
+      "source": "jp_khi_genealogy_en",
+      "attests": [
+        "2013",
+        "2020"
+      ],
+      "text": "In 2013 KHI and Sysmex jointly established Medicaroid Corporation for medical robots; in 2020 its hinotori surgical robot received manufacturing and sales approval.",
+      "locator": {
+        "section": "Chronology Table: years 2013 and 2020"
+      },
+      "anchor": "is jointly established with Sysmex Corporation"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c08",
+      "source": "jp_khi_genealogy_en",
+      "attests": [
+        "2009",
+        "2015"
+      ],
+      "text": "The construction-machinery division was spun off as KCM Corporation in 2009, and the KCM shares were transferred to the Hitachi Construction Machinery group in 2015.",
+      "locator": {
+        "section": "Chronology Table: years 2009 and 2015"
+      },
+      "anchor": "Transferring of KCM Corporation shares to Hitachi Construction Machinery Group"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c09",
+      "source": "jp_khi_genealogy_en",
+      "attests": [
+        "2021"
+      ],
+      "text": "In 2021 the rolling-stock division was spun off as Kawasaki Railcar Manufacturing Co., Ltd. and the motorcycle & engine division as Kawasaki Motors, Ltd.",
+      "locator": {
+        "section": "Chronology Table: year 2021"
+      },
+      "anchor": "Spinning off of Motorcycle & Engine Division"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c10",
+      "source": "jp_khi_krm_message_en",
+      "attests": [
+        "2021-10-01"
+      ],
+      "text": "The president's message of Kawasaki Railcar Manufacturing dates its new start to 1 October 2021 after the split from KHI, as a member of the KHI group.",
+      "locator": {
+        "section": "Message from the President"
+      },
+      "anchor": "115 years on October 1, 2021"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c11",
+      "source": "jp_khi_pr_mc_split_2021_en",
+      "attests": [
+        "2021-02-12",
+        "2021-03-31"
+      ],
+      "text": "KHI set up Kawasaki Motors, Ltd. on 12 February 2021 as a wholly owned preparatory company and on 31 March 2021 signed the split agreement transferring the motorcycle & engine business to it (effective date then planned for 1 October 2021).",
+      "locator": {
+        "section": "Opening paragraph; 2. Overview (1) Schedule",
+        "page": 1
+      },
+      "anchor": "on February 12, 2021 as a preparatory company"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c12",
+      "source": "jp_khi_fr_fy2025_en",
+      "attests": [
+        "2025-04-01",
+        "2026-03-31"
+      ],
+      "text": "On 1 April 2025 KHI sold 20% of Kawasaki Motors, Ltd. to Kawasaki Motors, which allotted a 20% stake to ITOCHU Corporation; the subsidiary table shows KHI voting rights of 80% at 31 March 2026 against 100% a year earlier.",
+      "locator": {
+        "section": "Notes 5, Change in subsidiaries (p.23); Notes 23, Consolidation (p.56)",
+        "page": 23
+      },
+      "anchor": "to Kawasaki Motors on April 1, 2025."
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c13",
+      "source": "jp_khi_pr_b787_1000",
+      "attests": [
+        "2019-12-16"
+      ],
+      "text": "On 16 December 2019 KHI completed the forward fuselage for the 1,000th Boeing 787 at Nagoya Works 1; KHI makes the 787 forward fuselage, main landing-gear wheel well and wing fixed trailing edge.",
+      "locator": {
+        "section": "Press release body"
+      },
+      "anchor": "前部胴体、主脚格納部および主翼固定後縁を担当しています"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c14",
+      "source": "jp_khi_ship_history",
+      "attests": [
+        "1995",
+        "2007"
+      ],
+      "text": "In 1995 KHI set up the joint venture Nantong COSCO KHI Ship Engineering (NACKS) in China with COSCO; a second joint-venture yard, DACKS in Dalian, followed in 2007.",
+      "locator": {
+        "section": "沿革: years 1995 and 2007"
+      },
+      "anchor": "南通中遠川崎船舶工程有限公司（NACKS）"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c15",
+      "source": "jp_khi_rs_history",
+      "attests": [
+        "1997",
+        "2001",
+        "2017"
+      ],
+      "text": "In 1997 KHI won an order for 400 R-142A subway cars from New York City Transit; in 2001 it completed an integrated railcar factory in North America; by 2017 its Nebraska plant had built 2,000 cars.",
+      "locator": {
+        "section": "沿革: years 1997, 2001 and 2017"
+      },
+      "anchor": "米国ネブラスカ州車両工場で鉄道車両製造累計2,000両を達成"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c16",
+      "source": "jp_khi_pr_p1_delivery",
+      "attests": [
+        "2013-03-26"
+      ],
+      "text": "On 26 March 2013 KHI delivered the first production P-1 maritime patrol aircraft for the JMSDF to the Ministry of Defense.",
+      "locator": {
+        "section": "Press release body, first paragraph"
+      },
+      "anchor": "Ｐ－１固定翼哨戒機の量産初号機を防衛省に納入しました"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c17",
+      "source": "jp_khi_pr_p1_delivery",
+      "attests": [
+        "2001-11",
+        "2007-09",
+        "2009-03"
+      ],
+      "text": "KHI was named lead contractor for the simultaneous XP-1/XC-2 development in November 2001; the first XP-1 prototype flew in September 2007; KHI signed the first P-1 production contract in March 2009.",
+      "locator": {
+        "section": "Press release body, development history paragraphs"
+      },
+      "anchor": "２機種同時開発の主担当企業に指名され"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c18",
+      "source": "jp_khi_pr_c2_delivery",
+      "attests": [
+        "2016-06-30"
+      ],
+      "text": "On 30 June 2016 KHI delivered the first production C-2 transport aircraft for the JASDF, successor to the C-1, to the Ministry of Defense.",
+      "locator": {
+        "section": "Press release body"
+      },
+      "anchor": "Ｃ－２輸送機の量産初号機を防衛省に納入しました"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c19",
+      "source": "jp_gsdf_aircraft",
+      "attests": [
+        "1992",
+        "1996-08"
+      ],
+      "text": "The JGSDF aircraft page says OH-1 development as an all-Japanese aircraft began in 1992 and its first flight test succeeded in August 1996; it lists Kawasaki Heavy Industries as airframe maker and Mitsubishi Heavy Industries for the TSI-M-10 engine.",
+      "locator": {
+        "section": "観測ヘリコプター（OH-1）: 機体 and エンジン maker fields"
+      },
+      "anchor": "純国産機として平成4年から開発に着手"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c20",
+      "source": "jp_khi_rs_history",
+      "attests": [
+        "2004"
+      ],
+      "text": "In 2004 KHI began delivering 700T trains to Taiwan High Speed Rail and won an order for 480 CRH2 cars from the Chinese Ministry of Railways.",
+      "locator": {
+        "section": "沿革: year 2004年"
+      },
+      "anchor": "台湾高速鐵路700T型列車の納入を開始"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c21",
+      "source": "jp_khi_rs_history",
+      "attests": [
+        "2009"
+      ],
+      "text": "In 2009 KHI delivered pre-production Series E5 Tohoku Shinkansen trains to JR East.",
+      "locator": {
+        "section": "沿革: year 2009年"
+      },
+      "anchor": "東北新幹線E5系新幹線電車（量産先行車）"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c22",
+      "source": "jp_khi_genealogy",
+      "attests": [
+        "1939",
+        "1969"
+      ],
+      "text": "The company took the name 川崎重工業株式会社 in 1939; in 1969 it merged with Kawasaki Rolling Stock and Kawasaki Aircraft.",
+      "locator": {
+        "section": "年表: years 1939 and 1969"
+      },
+      "anchor": "川崎重工業株式会社として社名変更",
+      "context_before_window": true
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c23",
+      "source": "jp_khi_robot_history",
+      "attests": [
+        "1990"
+      ],
+      "text": "In 1990 KHI set up Kawasaki Robotics (USA), Inc. in Detroit.",
+      "locator": {
+        "section": "沿革: year 1990年"
+      },
+      "anchor": "現地法人Kawasaki Robotics (USA), Inc.を設立"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c24",
+      "source": "jp_khi_robot_history",
+      "attests": [
+        "2000"
+      ],
+      "text": "In 2000 KHI took over the painting-robot business of Kobe Steel.",
+      "locator": {
+        "section": "沿革: year 2000年"
+      },
+      "anchor": "神戸製鋼所より塗装ロボット事業を継承"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c25",
+      "source": "jp_khi_robot_history",
+      "attests": [
+        "2008"
+      ],
+      "text": "In 2008 KHI launched the R series of small and medium general-purpose robots.",
+      "locator": {
+        "section": "沿革: year 2008年"
+      },
+      "anchor": "中・小型汎用ロボット（Rシリーズ）を発売"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c26",
+      "source": "jp_khi_yuho_fy2025",
+      "attests": [
+        "1990-03"
+      ],
+      "text": "KHI opened its Seishin Works in March 1990.",
+      "locator": {
+        "section": "第1 企業の概況, 2 沿革 (printed p.5)",
+        "page": 7
+      },
+      "anchor": "西神工場を開設"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c27",
+      "source": "jp_khi_yuho_fy2025",
+      "attests": [
+        "2002-10"
+      ],
+      "text": "In October 2002 KHI split off its ship business into the consolidated subsidiary Kawasaki Shipbuilding Corporation and its precision-machinery business into Kawasaki Precision Machinery.",
+      "locator": {
+        "section": "2 沿革 (printed p.5)",
+        "page": 7
+      },
+      "anchor": "船舶事業を分離し、株式会社川崎造船"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c28",
+      "source": "jp_khi_yuho_fy2025",
+      "attests": [
+        "2010-10"
+      ],
+      "text": "In October 2010 KHI merged Kawasaki Shipbuilding, Kawasaki Precision Machinery and Kawasaki Plant Systems.",
+      "locator": {
+        "section": "2 沿革 (printed p.5)",
+        "page": 7
+      },
+      "anchor": "カワサキプレシジョンマシナリ及びカワサキプラントシステムズ"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c29",
+      "source": "jp_khi_yuho_fy2025",
+      "attests": [
+        "2021-10"
+      ],
+      "text": "In October 2021 KHI split off rolling stock into Kawasaki Railcar Manufacturing (川崎車両株式会社) and the motorcycle & engine business into Kawasaki Motors, both consolidated subsidiaries.",
+      "locator": {
+        "section": "2 沿革 (printed p.5)",
+        "page": 7
+      },
+      "anchor": "車両事業を分離し、川崎車両株式会社"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c30",
+      "source": "jp_khi_yuho_fy2025",
+      "attests": [
+        "2015-10"
+      ],
+      "text": "In October 2015 KHI transferred all shares of KCM to Hitachi Construction Machinery.",
+      "locator": {
+        "section": "2 沿革 (printed p.5)",
+        "page": 7
+      },
+      "anchor": "株式会社ＫＣＭの全株式を日立建機株式会社に譲渡"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c31",
+      "source": "jp_khi_yuho_fy2025",
+      "attests": [
+        "2026-03-31",
+        "2026-06-19"
+      ],
+      "text": "The 203rd Annual Securities Report of 川崎重工業株式会社 (English name Kawasaki Heavy Industries, Ltd.) for the year to 31 March 2026 was submitted on 19 June 2026.",
+      "locator": {
+        "section": "表紙 (cover)",
+        "page": 3
+      },
+      "anchor": "【提出日】 2026年６月19日"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c32",
+      "source": "jp_khi_yuho_fy2025",
+      "attests": [
+        "2005-04"
+      ],
+      "text": "In April 2005 KHI split off its plant business into Kawasaki Plant Systems.",
+      "locator": {
+        "section": "2 沿革 (printed p.5)",
+        "page": 7
+      },
+      "anchor": "プラント事業を分離し"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c33",
+      "source": "jp_khi_yuho_fy2025",
+      "attests": [
+        "2009-04"
+      ],
+      "text": "In April 2009 KHI split off its construction-machinery business into KCM.",
+      "locator": {
+        "section": "2 沿革 (printed p.5)",
+        "page": 7
+      },
+      "anchor": "建設機械事業を分離し"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c34",
+      "source": "jp_khi_pr_hakugei_delivery",
+      "attests": [
+        "2019-01-25",
+        "2021-10-14",
+        "2023-03-20"
+      ],
+      "text": "On 20 March 2023 KHI delivered the submarine Hakugei, the second Taigei-class boat and its 30th submarine since the war, to the Ministry of Defense at the Kobe Works; it was laid down on 25 January 2019 and launched on 14 October 2021.",
+      "locator": {
+        "section": "Press release body; 工程 table"
+      },
+      "anchor": "防衛省向け潜水艦「はくげい」の引渡式を"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c35",
+      "source": "jp_khi_genealogy",
+      "attests": [
+        "2015"
+      ],
+      "text": "In 2015 KHI launched the Ninja H2/H2R, described as the only mass-production motorcycles with a supercharged engine.",
+      "locator": {
+        "section": "年表: year 2015"
+      },
+      "anchor": "スーパーチャージドエンジンを搭載した二輪車"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c36",
+      "source": "jp_khi_yuho_fy2025",
+      "attests": [
+        "1896-10",
+        "1919-04",
+        "1950-08",
+        "1966-03"
+      ],
+      "text": "The company was founded as 株式会社川崎造船所 in October 1896; Kawasaki Kisen Kaisha was set up in April 1919 and Kawasaki Steel split off in August 1950; American Kawasaki Motorcycle Corp. (now Kawasaki Motors Corp., U.S.A.) was set up in March 1966.",
+      "locator": {
+        "section": "2 沿革 (printed p.5)",
+        "page": 7
+      },
+      "anchor": "株式会社川崎造船所を設立",
+      "context_before_window": true
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c37",
+      "source": "jp_khi_fr_fy2025_en",
+      "attests": [
+        "2026-03-31"
+      ],
+      "text": "The consolidation note lists Kawasaki Railcar Manufacturing Co., Ltd. (Hyogo-ku, Kobe; Rolling Stock) with KHI voting rights of 100% at 31 March 2025 and 2026.",
+      "locator": {
+        "section": "Notes 23, Consolidation: subsidiaries table",
+        "page": 56
+      },
+      "anchor": "Kawasaki Railcar Manufacturing Co.,"
+    },
+    {
+      "id": "jp_kawasaki_heavy_industries_c38",
+      "source": "jp_gsdf_6d_vehicles",
+      "attests": [
+        "2024-05-28"
+      ],
+      "text": "The JGSDF 6th Division vehicle page (last modified 28 May 2024) lists the middle-range multi-purpose missile, missile and launcher made by Kawasaki Heavy Industries, carried on a Toyota High Mobility Vehicle.",
+      "locator": {
+        "section": "中距離多目的誘導弾 entry: 製作 and 車体 fields",
+        "field": "HTTP Last-Modified 2024-05-28 (response header)"
+      },
+      "anchor": "川﨑重工業(発射装置含む)"
+    }
+  ]
+}

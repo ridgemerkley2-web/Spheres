@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "scope": "Budget interest explanation repair only; no S24 or CP1 qualification",
+  "candidate": "52e1c2ab7aa2965fe5bfbb2685354231da9773fa",
+  "binary_sha256": "5dcf49151c520e89c13724dd42bb6d9b812f487b7498440a8aa6c2aead1c8460",
+  "source_files": {
+    "spheres-web/src/main.rs": {
+      "revision": "52e1c2ab7aa2965fe5bfbb2685354231da9773fa",
+      "sha256": "6ee99c0212f8b5ccb4f054ec892b03c7fb8f7b342652335bb63fc4882cb7b979",
+      "bytes": 984478
+    },
+    "spheres-web/ui/index.html": {
+      "revision": "52e1c2ab7aa2965fe5bfbb2685354231da9773fa",
+      "sha256": "6410f848acba6b8c480f164db9e3c82f214880a1efc0a6ddb81384778238d90c",
+      "bytes": 1143896
+    },
+    "tools/ui/check_cabinet.cjs": {
+      "revision": "52e1c2ab7aa2965fe5bfbb2685354231da9773fa",
+      "sha256": "64202cf49727d42297f1d5061580156e70d07ab63c4b90c7f0d5083b3f668017",
+      "bytes": 31944
+    },
+    "tools/ui/ci-integrated.cjs": {
+      "revision": "52e1c2ab7aa2965fe5bfbb2685354231da9773fa",
+      "sha256": "b7f4ed1406a6d4c07ca675f7aa5e139468fb400d219e7730f4ac8cbb386aaa1f",
+      "bytes": 15391
+    },
+    "tools/ui/check_budget_interest_browser.cjs": {
+      "kind": "added verification runner; raw and LF-normalized source bytes",
+      "sha256": "f77f28bec2e6fe195ee70b8d81b47d7761352caaec7987b5e25ad0d5eb940a0b",
+      "bytes": 5896,
+      "lf_normalized": {
+        "sha256": "f77f28bec2e6fe195ee70b8d81b47d7761352caaec7987b5e25ad0d5eb940a0b",
+        "bytes": 5896
+      }
+    }
+  },
+  "evidence": {
+    ".gitattributes": {
+      "sha256": "155348a89d5e749f50d336f8f164a39bf8415179177b36e8b51766f3ab9a16d3",
+      "bytes": 26
+    },
+    "brazil-1440.png": {
+      "sha256": "9effda503cf9db3ff8066c486d557a612ea0a197e77de38d4d56eec10a63d90a",
+      "bytes": 229144
+    },
+    "brazil-390.png": {
+      "sha256": "aab858b2237ba6c1d55055417967e1df4e6507b53f5c7ab5568ba6de1c1bcbec",
+      "bytes": 86050
+    },
+    "browser-result.json": {
+      "sha256": "9d42c7f11e4ec30a015776b46fa561344a6e703232b2e2843500de2c57d94de6",
+      "bytes": 19770
+    },
+    "france-1440.png": {
+      "sha256": "2291ba1374ecf63a9ad309d0fe74cb1d5f496453b049343c1ed324dda8549735",
+      "bytes": 225786
+    },
+    "france-390.png": {
+      "sha256": "a74b70d3f22b7be716cc5dc4d5aeb19836e7b3cae0353e248d79465b5a1f6c13",
+      "bytes": 75525
+    },
+    "README.md": {
+      "sha256": "d0114a7f3f1392e5a3f04813435e0330d19da78d42521004fed7a2b74fcc790c",
+      "bytes": 2278
+    },
+    "s24-budget-floor-before.log": {
+      "sha256": "85ec5b67f449f0d7a6b2481b55dded1cf202da93a816d1c6a731b779d2fbcbc2",
+      "bytes": 2380
+    },
+    "s24-budget-floor-build.log": {
+      "sha256": "43dbf5aff574a078eac358acf6036d94b1274b51ceb6c15d173bc26d56e005d8",
+      "bytes": 911
+    },
+    "s24-budget-floor-native.log": {
+      "sha256": "0f5e5347d1213e5fa5a33dc7a84df81e47f6ea5554987b8a26144966b8217c7f",
+      "bytes": 1956
+    },
+    "s24-budget-floor-ui-tests.log": {
+      "sha256": "1cbb090a6267d2515cea0075fb35a80010bba9a264af287d9fd980c68f75cee5",
+      "bytes": 2520
+    }
+  },
+  "validation": {
+    "cabinet_ui": {
+      "passed": 25,
+      "failed": 0
+    },
+    "native_money_card": {
+      "passed": 2,
+      "failed": 0,
+      "filtered_out": 455
+    },
+    "native_release_build": "passed",
+    "real_browser": {
+      "countries": [
+        "Brazil",
+        "France"
+      ],
+      "widths": [
+        1440,
+        390
+      ],
+      "passed": true
+    },
+    "pre_fix_regression": "expected failure retained"
+  },
+  "limitations": [
+    "No simulation formula change.",
+    "S22 evidence remains scoped to its previously qualified 5d11dd6d candidate.",
+    "This repair does not complete S24, S26 or CP1."
+  ]
+}

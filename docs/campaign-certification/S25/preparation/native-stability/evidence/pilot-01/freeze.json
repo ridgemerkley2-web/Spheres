@@ -1,0 +1,36 @@
+{
+  "format": "spheres-stability-freeze/v1",
+  "created_utc": "2026-09-28T16:30:21.382057+00:00",
+  "candidate_revision": "0106ecedfb4968bf3b10d55768a5ece08713882b",
+  "expected_compiled_revision": "0106ecedfb49",
+  "binary": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+    "bytes": 353088690,
+    "sha256": "cdde22f6b845845e654fe2d7e940c3214d2d27d4f38e8afa781bfa459f1b9968"
+  },
+  "plan": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\campaign\\stability-pilot.json",
+    "bytes": 331,
+    "sha256": "6b014db59b160cc7966874c3f08f097095c4a3a98aed67c735b671cbbf59a316"
+  },
+  "frozen_plan": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\plan.json",
+    "bytes": 331,
+    "sha256": "6b014db59b160cc7966874c3f08f097095c4a3a98aed67c735b671cbbf59a316"
+  },
+  "harness": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\campaign\\stability_matrix.py",
+    "bytes": 35774,
+    "sha256": "26edcf8e6630c59e544d9b929465bec685e23d81866062431bf291e2e9ee147d"
+  },
+  "frozen_harness": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\stability-pilot-01\\stability_matrix.py",
+    "bytes": 35774,
+    "sha256": "26edcf8e6630c59e544d9b929465bec685e23d81866062431bf291e2e9ee147d"
+  },
+  "native_test": "s25_stability_tests::s25_stability_cell",
+  "scope": "pilot",
+  "through_semantics": "Inclusive last settled date; native end is through + one calendar day.",
+  "qualification": false,
+  "s25_complete": false
+}

@@ -1,0 +1,41 @@
+✖ debt-rate floor and debt-ratio spread are distinct in both budget explanations (3.4687ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 50.9947
+
+✖ failing tests:
+
+test at tools\ui\check_cabinet.cjs:568:1
+✖ debt-rate floor and debt-ratio spread are distinct in both budget explanations (3.4687ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /debt-rate floor/i. Input:
+  
+  '<div class="ministry-dial interest-row">\n' +
+    '    <span class="ministry-art" aria-hidden="true">※</span>\n' +
+    '    <span class="ministry-copy"><b>Debt service</b><small>not a choice · paid before any ministry is</small></span>\n' +
+    '    <span class="dial-control">\n' +
+    '      <span class="dial-read wide"><b>-0.6%</b><small>$-0.56bn/yr</small></span>\n' +
+    '    </span>\n' +
+    '    <span class="ministry-arms"><div class="arm-line">\n' +
+    '      <span class="an">Rate paid</span>\n' +
+    '      <span class="av">-2.00%</span>\n' +
+    '      <span class="ax">real -34.90% · no spread below 60% of GDP</span>\n' +
+    '    </div></span>\n' +
+    '  </div>'
+  
+      at TestContext.<anonymous> (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\check_cabinet.cjs:577:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.start (node:internal/test_runner/test:1003:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '<div class="ministry-dial interest-row">\n    <span class="ministry-art" aria-hidden="true">※</span>\n    <span class="ministry-copy"><b>Debt service</b><small>not a choice · paid before any ministry is</small></span>\n    <span class="dial-control">\n      <span class="dial-read wide"><b>-0.6%</b><small>$-0.56bn/yr</small></span>\n    </span>\n    <span class="ministry-arms"><div class="arm-line">\n      <span class="an">Rate paid</span>\n      <span class="av">-2.00%</span>\n      <span class="ax">real -34.90% · no spread below 60% of GDP</span>\n    </div></span>\n  </div>',
+    expected: /debt-rate floor/i,
+    operator: 'match',
+    diff: 'simple'
+  }

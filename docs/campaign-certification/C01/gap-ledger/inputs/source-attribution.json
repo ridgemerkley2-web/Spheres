@@ -1,6 +1,6 @@
 {
   "format": "spheres-c01-gap-source-attribution/v1",
-  "generated_from": "5324614593da8694e1fb9848ea79002830b2723e",
+  "generated_from": "1c5f129faae0579703ceefb12ae49b435be8e6dc",
   "rule": "Each source is attributed to the commit that first added its extract, or, for extract-less sources, the first commit whose packet file mentions its id. Commits are classified by hash in COMMIT_PACKETS.",
   "sources": {
     "Brazil": {
@@ -6501,11 +6501,6 @@
         "via": "extract_first_added"
       },
       "su_ips_cm_res_525_19900526": {
-        "commit": "8701a28e",
-        "packet": "CLAUDE-C01-26",
-        "via": "extract_first_added"
-      },
-      "su_izvestia_19910115_no13_p1": {
         "commit": "8701a28e",
         "packet": "CLAUDE-C01-26",
         "via": "extract_first_added"

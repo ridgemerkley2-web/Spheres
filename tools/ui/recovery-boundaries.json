@@ -1,0 +1,71 @@
+{
+  "format": "spheres-work-recovery-boundaries/v1",
+  "scope": "Five retained authored France fixtures. Their original opening grants and conflicts remain disclosed in the pinned manifests. Current native imports and ordinary visible daily advancement are tested; this is not an unassisted or historical campaign claim.",
+  "cases": [
+    {
+      "id": "construction",
+      "source": "docs/campaign-certification/S15/evidence/attempts/S15-fixture-final1/expected-funded_foundations.json.gz",
+      "gzip_sha256": "de66c3f9a0e55536acefb242bf10df129d78e0accfbe300811be27d9f1f27a0f",
+      "raw_sha256": "a7b8f1db504073ce91ab884e892b58743678b083f544a8725c001c484031f313",
+      "manifest": "docs/campaign-certification/S15/evidence/attempts/S15-fixture-final1/manifest.json",
+      "manifest_sha256": "744c8e15091907f3770579d212f5bb74f14398e2d83c8303920ad4cf33724474",
+      "compiled_revision": "4c4129abeeec",
+      "stage": "funded_foundations",
+      "marker": {"base": "FRA_auvergne-rh-ne-alpes", "project": 1},
+      "max_preparation_days": 3,
+      "preparation": "Advance ordinarily until the booked airbase foundation has positive paid work; lose the following day response."
+    },
+    {
+      "id": "delivery",
+      "source": "docs/campaign-certification/S15/evidence/attempts/S15-fixture-final1/expected-purchased_and_assigned.json.gz",
+      "gzip_sha256": "5790b05245ee8c6b0cc44dbf3dbf018261c09e8c803f87a37359b7996dd07d36",
+      "raw_sha256": "acc69dbc83b6400bf0fb513c52278188050b58a886245fbe37a0109df7647132",
+      "manifest": "docs/campaign-certification/S15/evidence/attempts/S15-fixture-final1/manifest.json",
+      "manifest_sha256": "744c8e15091907f3770579d212f5bb74f14398e2d83c8303920ad4cf33724474",
+      "compiled_revision": "4c4129abeeec",
+      "stage": "purchased_and_assigned",
+      "marker": {"delivery": 587, "revision": "France-design-2", "quantity": 2},
+      "max_preparation_days": 14,
+      "preparation": "Settle the actual paid aircraft purchase, advance through transit to its actual due day, then lose the arrival-day response."
+    },
+    {
+      "id": "refit",
+      "source": "docs/campaign-certification/S11/evidence/attempts/S11-final2-native-fixture/expected-service_day_1.json.gz",
+      "gzip_sha256": "655da76c55b73d702a275db79e4a1e115b63a98af0316930633059bce38ef0c9",
+      "raw_sha256": "d5a1337678513baa389efbbfbac74a8141eba579acda2a95ef207707befa22f6",
+      "manifest": "docs/campaign-certification/S11/evidence/attempts/S11-final2-native-fixture/manifest.json",
+      "manifest_sha256": "0319e2778c1ce39903cdb2e04a97dbbeb62e4cda251224dffdb61ae96fb8cfa0",
+      "compiled_revision": "d9afd1604219",
+      "stage": "service_day_1",
+      "marker": {"company": 1, "refit": 265},
+      "max_preparation_days": 0,
+      "preparation": "The source already contains settled escrow and seven of forty days of actual conversion work."
+    },
+    {
+      "id": "rebasing",
+      "source": "docs/campaign-certification/S15/evidence/attempts/S15-fixture-final1/expected-foreign_transit.json.gz",
+      "gzip_sha256": "851f3347340e10d7ab8d746a11808b9cce0c2730e33d1db15527e24cfc2e1b64",
+      "raw_sha256": "a65fb19c01662e77987962891d9f1c7568b5ce1767098efebe31e6417c3dcaed",
+      "manifest": "docs/campaign-certification/S15/evidence/attempts/S15-fixture-final1/manifest.json",
+      "manifest_sha256": "744c8e15091907f3770579d212f5bb74f14398e2d83c8303920ad4cf33724474",
+      "compiled_revision": "4c4129abeeec",
+      "stage": "foreign_transit",
+      "marker": {"squadron": 1, "destination": "GBR_south-east"},
+      "max_preparation_days": 3,
+      "preparation": "Advance normally to the recorded transit arrival day; lose the day that actually moves the squadron into the consenting foreign base."
+    },
+    {
+      "id": "mission",
+      "source": "docs/campaign-certification/S15/evidence/attempts/S15-fixture-final1/expected-missions_queued.json.gz",
+      "gzip_sha256": "d61ace656ee163cfda0d5ded3907d5a1cdf98795f79bf9cab8cc20e1583f5282",
+      "raw_sha256": "73ede367f4c6258c984eb8a17988d763da8b837aac4cc2fcb12091fae9689021",
+      "manifest": "docs/campaign-certification/S15/evidence/attempts/S15-fixture-final1/manifest.json",
+      "manifest_sha256": "744c8e15091907f3770579d212f5bb74f14398e2d83c8303920ad4cf33724474",
+      "compiled_revision": "4c4129abeeec",
+      "stage": "missions_queued",
+      "marker": {"missions": [2, 3]},
+      "max_preparation_days": 2,
+      "preparation": "Advance normally to both queued orders' launch day; lose the actual mission execution reply. Both must produce flown reports with positive stores use."
+    }
+  ]
+}

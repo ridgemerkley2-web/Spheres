@@ -1,0 +1,21 @@
+✔ committed inventory identities and activation paths match the current sources (27.5417ms)
+✔ the inventory holds each of the 23 expected successor identities exactly once (1.0689ms)
+✔ mapping discrepancies are flagged without reducing the expectation (0.7773ms)
+✔ the inventory validator rejects missing, duplicate, misclassified and unflagged identities (1.0235ms)
+✔ committed results are complete, labelled and tied to this exact inventory and build (10.2045ms)
+✔ committed results were produced by the committed harness files (17.9566ms)
+✔ at least three representative activations ran, including USSR -> Russia, with inspection after save/reload (3.5749ms)
+✔ passed, failed, blocked and unrun are reported independently for every layer (3.4161ms)
+✔ the result validator rejects mislabelled or inconsistent results (127.8524ms)
+✔ staging splices only the two parent values and preserves unrepresentable integers (0.8175ms)
+✔ staging refuses missing, duplicated, dead or malformed parent records (0.4181ms)
+✔ Rust readers ignore comments, strings and lifetimes (0.3765ms)
+✔ the native exporter input is reproducible and is the one the results consumed (4.0517ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 284.1439

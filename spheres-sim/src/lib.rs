@@ -714,6 +714,11 @@ fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
         // world-before-price refusal order without copying unrelated history.
         Command::Equipment { nation, order: EquipmentOrder::Research { component } }
             => equipment::research_refusal(w, *nation, component),
+        // Routine support has a complete read-only check, including the guards
+        // for its optional initial maintenance plan. Opponent reviews use this
+        // ordinary order too; validating it must not copy the whole campaign.
+        Command::Equipment { nation, order: EquipmentOrder::AirSupport { daily_budget_mn, target_days, automatic } }
+            => equipment::air_support_refusal(w, *nation, *daily_budget_mn, *target_days, *automatic),
         Command::Equipment { nation, order } => apply_equipment_order(&mut w.clone(), *nation, order).err(),
         Command::AirSquadron {nation,order} => aviation::refusal(w,*nation,order),
         Command::AirBase {nation,order} => airbases::refusal(w,*nation,order),
@@ -889,7 +894,19 @@ pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
     apply_command_impl(w, c, true)
 }
 
+#[cfg(test)]
+thread_local! {
+    static TEST_ORIGINAL_IMPORT_TRIAL: std::cell::Cell<bool> = const { std::cell::Cell::new(false) };
+    static TEST_IDLE_IMPORT_SUCCESSES: std::cell::Cell<u64> = const { std::cell::Cell::new(0) };
+}
+
 fn apply_command_impl(w: &mut WorldState, c: &Command, retain_company_trial: bool) -> Result<(), String> {
+    // Test-only oracle selects the original full trial for just these orders
+    // during an otherwise identical complete native tick. No release toggle.
+    #[cfg(test)]
+    let retain_company_trial = retain_company_trial && !(matches!(c,
+        Command::Company { order: companies::CompanyOrder::ImportPurchase { ammunition: false, .. }, .. })
+        && TEST_ORIGINAL_IMPORT_TRIAL.with(|flag| flag.get()));
     // Priced before anything happens, so a command that cannot be afforded also
     // cannot take effect — and charged only once the act itself has gone
     // through. A government that asks for something the world refuses it (a
@@ -919,6 +936,39 @@ fn apply_command_impl(w: &mut WorldState, c: &Command, retain_company_trial: boo
                 && fiscal_journal::before_policy(w, c).is_none()
             {
                 if let Some(result) = companies::try_apply_idle_capitalization(w, *nation, order) {
+                    return result;
+                }
+            }
+        }
+    }
+    // An equipment import may commit directly only when its global fiscal
+    // hooks are proven idle and no post-payment refusal remains. Quote/stale
+    // checks still execute in their original order. Any standing or policy
+    // journal effect, ammunition import or active hook keeps the full trial.
+    if retain_company_trial {
+        if let Command::Company { nation, order: order @ companies::CompanyOrder::ImportPurchase { ammunition: false, .. } } = c {
+            if command_price(w, c).filter(|(_, price, _)| *price > 0.0).is_none()
+                && fiscal_journal::before_policy(w, c).is_none()
+            {
+                if let Some(result) = companies::try_apply_idle_equipment_import(w, *nation, order) {
+                    #[cfg(test)]
+                    if result.is_ok() { TEST_IDLE_IMPORT_SUCCESSES.with(|count| count.set(count.get() + 1)); }
+                    return result;
+                }
+            }
+        }
+    }
+    // Inventory ceilings have no partial refusal effects or financial hooks.
+    // Keep the original trial if the public command ever gains a standing bill
+    // or journal entry; purchases and all other corporate orders are excluded.
+    if retain_company_trial {
+        if let Command::Company { nation, order: order @ (companies::CompanyOrder::Inventory { .. }
+            | companies::CompanyOrder::AmmoInventory { .. }) } = c
+        {
+            if command_price(w, c).filter(|(_, price, _)| *price > 0.0).is_none()
+                && fiscal_journal::before_policy(w, c).is_none()
+            {
+                if let Some(result) = companies::try_apply_stock_target(w, *nation, order) {
                     return result;
                 }
             }
@@ -1720,7 +1770,16 @@ pub fn save(w: &WorldState) -> String {
     } else { serde_json::to_string_pretty(w).expect("serialize") }
 }
 pub fn load(s: &str) -> Result<WorldState, String> {
-    let mut w = company_save::decode(s)?;
+    finish_load(company_save::decode(s)?)
+}
+
+/// Restore an already parsed save through the same capability checks and
+/// migrations as [`load`], consuming its JSON tree rather than copying it.
+pub fn load_value(value: serde_json::Value) -> Result<WorldState, String> {
+    finish_load(company_save::decode_value(value)?)
+}
+
+fn finish_load(mut w: WorldState) -> Result<WorldState, String> {
     migrate_legacy_wars(&mut w);
     if w.theatres.is_empty() {
         w.theatres = theatre::default_theatres();
@@ -1831,6 +1890,10 @@ fn migrate_legacy_wars(w: &mut WorldState) {
         });
     }
 }
+
+#[cfg(test)]
+#[path = "air_support_command_tests.rs"]
+mod air_support_command_tests;
 
 #[cfg(test)]
 mod tests {

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spheres · Cartoon review workbench</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="cartoon-review.css">
+  <script src="cartoon-review.js" defer></script>
+</head>
+<body data-state="loading">
+  <a class="skip" href="#sheet">Skip to the contact sheet</a>
+  <header class="masthead">
+    <p class="eyebrow">Spheres · C03 preparation · read-only</p>
+    <h1>Cartoon review workbench</h1>
+    <p class="lede">Every existing cartoon file side by side at the game's card sizes and at full size, with its identity binding, appearance interval, provenance and rights. Fictional people, missing artwork and unknown identities stay labelled. <strong>Automated findings are not visual approval.</strong> This page approves, replaces or edits no artwork, manifest or saved campaign.</p>
+    <p id="status" class="status" role="status" aria-live="polite">Loading the export…</p>
+    <div id="summary" class="summary" aria-label="Export summary"></div>
+  </header>
+  <section class="refs" aria-labelledby="refs-heading">
+    <h2 id="refs-heading">Style references</h2>
+    <div id="refs-list" class="refs-list"></div>
+  </section>
+  <form id="filters" class="filters" role="search" aria-label="Filter the contact sheet">
+    <label>Person, ID or country<input id="f-search" type="search" autocomplete="off" spellcheck="false" placeholder="Search…"></label>
+    <label>Country<select id="f-country"><option value="all">All countries</option></select></label>
+    <label>Era<select id="f-era"><option value="all">All eras</option></select></label>
+    <label>Shown on date<input id="f-date" type="date" min="1990-01-01" max="2035-12-31"></label>
+    <label>Collection<select id="f-collection"><option value="all">Everything</option></select></label>
+    <label>Label or finding<select id="f-label"><option value="all">Any label or finding</option></select></label>
+    <button type="reset">Clear filters</button>
+  </form>
+  <p id="count" class="count" aria-live="polite"></p>
+  <p class="keys">Keyboard: arrow keys, Home, End, Page Up and Page Down move through the sheet; Enter or Space opens a card; [ and ] step to the previous or next card; Escape closes the narrow-screen detail.</p>
+  <div class="layout">
+    <main>
+      <h2 class="visually-hidden">Contact sheet</h2>
+      <ol id="sheet" class="sheet" aria-label="Contact sheet at government-card size"></ol>
+      <p id="empty" class="empty" hidden>No items match these filters.</p>
+    </main>
+    <section id="detail" class="detail" role="region" aria-labelledby="detail-name" hidden>
+      <div class="detail-bar">
+        <label class="compare"><input id="compare-anchor" type="checkbox"> Compare with the style references</label>
+        <button id="detail-close" type="button" class="close" hidden>Close</button>
+      </div>
+      <div id="detail-body"></div>
+    </section>
+  </div>
+  <p id="announce" class="visually-hidden" aria-live="polite"></p>
+  <footer>
+    <p>Data: <code>docs/campaign-certification/C03/preparation/cartoon-review/cartoon-review.json</code>, written by <code>python -X utf8 tools/avatars/cartoon_review.py</code> and checked with <code>--check</code>. The page re-verifies every pinned input by SHA-256 before it shows anything, and verifies each full-size file's bytes when it opens. All images come from this repository; reference photographs appear only inside labelled provenance panels and are never shown as avatars.</p>
+    <p>Serve the repository root over a local address, for example <code>python -m http.server 8790 --bind 127.0.0.1</code>, then open <code>/tools/ui/cartoon-review/</code>.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,164 @@
+{
+  "format": "spheres-research-review/v1",
+  "task": "CLAUDE-S23-MATRIX-01",
+  "status": "accepted_for_integration",
+  "reviewed_commit": "8c9f6ce1d533504143419af483e4435cde21835b",
+  "reviewer": "Codex /root/review_gap_submission",
+  "reviewed_utc": "2026-09-28T13:54:48.912907+00:00",
+  "scoped_import_commit": "cd9d50669ba4a842375163723ac60ff723e22868",
+  "qualified_tool_commit": "e39dd476c758d049dd3e1cc581f9fdaf68caf88b",
+  "current_integration_audit_revision": "01c68fe17b03391edc18b244932c3b56080d1f26",
+  "decision": "Accept only this corrected preparation audit. S23 remains planned pending C06; no historical, art, country or campaign acceptance is granted.",
+  "qualification": false,
+  "s23_complete": false,
+  "c06_complete": false,
+  "checks": {
+    "original_tests": 23,
+    "reviewed_tests": 36,
+    "added_regression_methods": 13,
+    "negative_control": {
+      "expected_exit": 1,
+      "failed_assertions_including_subtests": 25,
+      "errors": 3
+    },
+    "matrix_check": true,
+    "census_check": true,
+    "research_check": true,
+    "current_integration_outputs_identical": true,
+    "current_integration_input_hashes_unchanged": true,
+    "actual_saves_unchanged": 2,
+    "decoded_audit_gz_verified": 10
+  },
+  "evidence": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "original-handoff.md",
+      "bytes": 12077,
+      "sha256": "59164bbd6b5fe27e3ff493fdeeb328ee2ea42a61c1a0871d4e89b006265a62f0"
+    },
+    {
+      "path": "original-tests-record.json",
+      "bytes": 1020,
+      "sha256": "0c15116ccc76d5d5165e487dabc742a582acd0007d23bb1a79daeb819708bf09"
+    },
+    {
+      "path": "original-tests.log",
+      "bytes": 4107,
+      "sha256": "0a8d61ea1b5985b1eb828f57a8eeb619c7c9b1d6a55dd23617dc95eb6f07e30f"
+    },
+    {
+      "path": "README.md",
+      "bytes": 6808,
+      "sha256": "3cb53076e70ab74491e8b59a423345ea7120f7086857408e52560058a36af0b1"
+    },
+    {
+      "path": "review.py",
+      "bytes": 8437,
+      "sha256": "97830381d2be5cae82caafeb97ed40d38f224471bb3d041bfb0252d1694d8cde"
+    },
+    {
+      "path": "submitted-blobs.json",
+      "bytes": 4918,
+      "sha256": "aaf5a089097dabd4095a19e7794c121d754e9f3644322af1b7bc37c6568dcff7"
+    },
+    {
+      "path": "validation/actual-campaign-1.json",
+      "bytes": 44205,
+      "sha256": "6f94f538505143fa29bbaf616845477c2a8cd538cc1293895d8515325ade08a5"
+    },
+    {
+      "path": "validation/actual-campaign-2.json",
+      "bytes": 42795,
+      "sha256": "0f2bf514648bb8a93b734e09851ef6951a252cbf5e617aa51b2707a7c82277e2"
+    },
+    {
+      "path": "validation/census-check.log",
+      "bytes": 1462,
+      "sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+    },
+    {
+      "path": "validation/current-integration/cases-brazil.json.gz",
+      "bytes": 24934,
+      "sha256": "703751b12ab4df2587906760cb3786335fd910bb22b7874349de92541f889109"
+    },
+    {
+      "path": "validation/current-integration/cases-france.json.gz",
+      "bytes": 19213,
+      "sha256": "5ffe918f7d28d747c4f17aa98d66b019bd9ab04b9c9f0771d6682e2446966ae4"
+    },
+    {
+      "path": "validation/current-integration/cases-india.json.gz",
+      "bytes": 22679,
+      "sha256": "d52cfa86cee0fba146c3634b747a43d66fca39c97458c5f8b7cb18fa91b72540"
+    },
+    {
+      "path": "validation/current-integration/cases-japan.json.gz",
+      "bytes": 29702,
+      "sha256": "cb3483ae6e6308c8aa2ccbb000165442b7f97aeec58d6c4795149a2786322948"
+    },
+    {
+      "path": "validation/current-integration/cases-saudi-arabia.json.gz",
+      "bytes": 7888,
+      "sha256": "63bf3262b6aeb87517f3932f40ae42e1e1ea42a8d763513e3c791ee14ae5c87f"
+    },
+    {
+      "path": "validation/current-integration/cases-south-africa.json.gz",
+      "bytes": 21526,
+      "sha256": "231702e01cb7c9c06068dd5835beefccefb732baca9bb1bd5ff4b980b8fb1771"
+    },
+    {
+      "path": "validation/current-integration/cases-tonga.json.gz",
+      "bytes": 13557,
+      "sha256": "3416c3e74e97cc21934a661f7e5205144b13889ed8078712bbc5b013fd662f91"
+    },
+    {
+      "path": "validation/current-integration/cases-ussr-russia.json.gz",
+      "bytes": 21318,
+      "sha256": "fc716a87c867877593b56b064bb6e3041609b088fc8e1c61dc5af62b1b3c15de"
+    },
+    {
+      "path": "validation/current-integration/README.md.gz",
+      "bytes": 7955,
+      "sha256": "ed2ec37789431bf645d0d39b8d19824f036deb11313ab3e8b6b7a271d8b8c0c8"
+    },
+    {
+      "path": "validation/current-integration/summary.json.gz",
+      "bytes": 12533,
+      "sha256": "9446ddb44225f5bf34a569e820581f9b9dfa67b36b18905e1a3ccc3383abccd7"
+    },
+    {
+      "path": "validation/current-integration-audit.json",
+      "bytes": 4082,
+      "sha256": "ef47fc9c9f47d117aa8725415118ff17065790472256e060192e799a0b41bc17"
+    },
+    {
+      "path": "validation/matrix-check.log",
+      "bytes": 235,
+      "sha256": "2112a443bc92e50ee91ee90924a8495328278243269895eee717a73c8a0e6a59"
+    },
+    {
+      "path": "validation/research-check.log",
+      "bytes": 251,
+      "sha256": "06864a3a07b2806cf125cf2c82df9b4eda434b57ceac43ba284ec818aa7d26bb"
+    },
+    {
+      "path": "validation/reviewed-tests.log",
+      "bytes": 6659,
+      "sha256": "425f05879e631904f4e2710996f3e4e9daeba07f5c394946cd6649d5a4b5a54f"
+    },
+    {
+      "path": "validation/submitted-implementation-negative-control.log",
+      "bytes": 32442,
+      "sha256": "dfa86276840148b3365edee6ca8bfac7495f1a3db32ded67db9ff42e739ea051"
+    },
+    {
+      "path": "validation/validation.json",
+      "bytes": 6317,
+      "sha256": "e133b085013472f052a7c9a6047adf328cbdf4fd1c754844e8cfe77fced73298"
+    }
+  ]
+}

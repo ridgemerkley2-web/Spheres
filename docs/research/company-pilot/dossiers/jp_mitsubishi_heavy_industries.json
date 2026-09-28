@@ -1,0 +1,1148 @@
+{
+  "schema": "spheres-company-pilot-dossier-v1",
+  "id": "jp_mitsubishi_heavy_industries",
+  "display_name": "Mitsubishi Heavy Industries",
+  "native_name": "三菱重工業株式会社 (Mitsubishi Heavy Industries, Ltd.)",
+  "nation": "Japan",
+  "status": "research_only",
+  "research_window": {
+    "from": "1990-01-01",
+    "through": "2026-09-07"
+  },
+  "activities": [
+    "ground",
+    "aerospace",
+    "naval",
+    "civilian_industrial"
+  ],
+  "selection": {
+    "reason": "Japan's broadest defence manufacturer (Type 90 and Type 10 tanks, the F-2 support fighter, H-IIA launch vehicles, Taigei-class submarines and Mogami-class frigates) with civilian shipbuilding and power businesses. Japan's only supplier programme in the game is an aircraft slot, so researching MHI prevents a duplicate Japanese aircraft or armour exporter.",
+    "existing_game_references": [
+      {
+        "kind": "supplier_programme",
+        "path": "spheres-sim/src/supplier_catalogue.rs",
+        "id": "Japan:air_light_attack",
+        "note": "Modeled export programme created at runtime as a generic \"<code> Export Works\" firm; explicitly not a historical company."
+      },
+      {
+        "kind": "sector_contractors",
+        "path": "spheres-sim/src/sector_contractors.rs",
+        "id": "Japan:defense",
+        "note": "Generated fictional contractors only."
+      },
+      {
+        "kind": "tech_comment",
+        "path": "spheres-sim/src/tech/aerospace.rs",
+        "id": "aerospace AESA comment",
+        "note": "A code comment names Mitsubishi's J/APG-1 radar. Its maker was not researched here and it is not attached to MHI."
+      }
+    ]
+  },
+  "summary": "The present MHI was formed in 1964 by the merger of three successor companies and kept its name through the window. Mass production of the Type 90 tank began in 1991 and of the Type 10 in 2011; the F-2 first flew in 1995, was first delivered in 2000 and last delivered in 2011. MHI ran H-IIA launches from Flight 13 (2007) to the final Flight 50 (29 June 2025). It formed Mitsubishi Hitachi Power Systems with Hitachi in 2014, renamed it Mitsubishi Power in 2020 and absorbed its thermal power business in 2021. SpaceJet development by its subsidiary Mitsubishi Aircraft was discontinued in 2023. Taigei (2022) and Mogami (2022) were delivered to the Ministry of Defense; an Australian contract for three upgraded Mogami-class frigates (April 2026) is announced only.",
+  "entities": [
+    {
+      "id": "jp_mhi_company",
+      "kind": "company",
+      "subject": true,
+      "registration": {
+        "register": "Corporate Number (National Tax Agency, Japan)",
+        "number": "8010401050387",
+        "claims": [
+          "jp_mitsubishi_heavy_industries_c01"
+        ]
+      },
+      "names": [
+        {
+          "name": "Mitsubishi Heavy Industries, Ltd.",
+          "native": "三菱重工業株式会社",
+          "from": "1990-01-01",
+          "from_basis": "window_start",
+          "until": null,
+          "claims": [
+            "jp_mitsubishi_heavy_industries_c22",
+            "jp_mitsubishi_heavy_industries_c02",
+            "jp_mitsubishi_heavy_industries_c01",
+            "jp_mitsubishi_heavy_industries_c03",
+            "jp_mitsubishi_heavy_industries_c31"
+          ]
+        }
+      ],
+      "roles": [
+        {
+          "role": "diversified heavy-industry manufacturer (ships, aircraft, space systems, defence equipment, power systems, machinery)",
+          "from": "1990-01-01",
+          "from_basis": "window_start",
+          "until": null,
+          "claims": [
+            "jp_mitsubishi_heavy_industries_c02",
+            "jp_mitsubishi_heavy_industries_c03",
+            "jp_mitsubishi_heavy_industries_c31"
+          ]
+        }
+      ],
+      "note": "No change of trade name in the window; the registry change history (from 2015) records mergers and one head-office move only."
+    },
+    {
+      "id": "jp_mhi_power_company",
+      "kind": "joint_venture",
+      "subject": false,
+      "names": [
+        {
+          "name": "Mitsubishi Hitachi Power Systems, Ltd.",
+          "native": "三菱日立パワーシステムズ株式会社",
+          "from": "2014-02",
+          "from_basis": "event",
+          "until": "2020-09-01",
+          "claims": [
+            "jp_mitsubishi_heavy_industries_c25",
+            "jp_mitsubishi_heavy_industries_c05",
+            "jp_mitsubishi_heavy_industries_c06"
+          ]
+        },
+        {
+          "name": "Mitsubishi Power, Ltd.",
+          "native": "三菱パワー株式会社",
+          "from": "2020-09-01",
+          "until": "2021-10-01",
+          "until_basis": "last_observed",
+          "claims": [
+            "jp_mitsubishi_heavy_industries_c06",
+            "jp_mitsubishi_heavy_industries_c07"
+          ]
+        }
+      ],
+      "roles": [
+        {
+          "role": "thermal power systems company (joint venture with Hitachi, 100% MHI-owned by September 2020)",
+          "from": "2014-02",
+          "from_basis": "event",
+          "until": "2021-10-01",
+          "until_basis": "ended",
+          "claims": [
+            "jp_mitsubishi_heavy_industries_c25",
+            "jp_mitsubishi_heavy_industries_c06",
+            "jp_mitsubishi_heavy_industries_c07"
+          ]
+        }
+      ],
+      "note": "One legal person under two names. Hitachi was a joint-venture partner, not an MHI predecessor. The entity's existence after the 2021 business transfer was not researched."
+    },
+    {
+      "id": "jp_mhi_mitsubishi_aircraft",
+      "kind": "subsidiary",
+      "subject": false,
+      "names": [
+        {
+          "name": "Mitsubishi Aircraft Corporation",
+          "native": "三菱航空機株式会社",
+          "from": "2008",
+          "from_basis": "event",
+          "until": "2023-02-07",
+          "until_basis": "last_observed",
+          "claims": [
+            "jp_mitsubishi_heavy_industries_c23",
+            "jp_mitsubishi_heavy_industries_c08"
+          ]
+        }
+      ],
+      "roles": [
+        {
+          "role": "consolidated MHI subsidiary developing the MRJ / SpaceJet regional jet",
+          "from": "2008",
+          "from_basis": "event",
+          "until": "2023-02-07",
+          "until_basis": "ended",
+          "claims": [
+            "jp_mitsubishi_heavy_industries_c23",
+            "jp_mitsubishi_heavy_industries_c08"
+          ]
+        }
+      ],
+      "note": "Its later fate is reported only by news (lead) and is not recorded."
+    }
+  ],
+  "lineage": [
+    {
+      "id": "jp_mitsubishi_heavy_industries_l01",
+      "kind": "joint_venture",
+      "entity": "jp_mhi_company",
+      "date": "2014-02",
+      "counterparties": [
+        {
+          "name": "Hitachi, Ltd.",
+          "relation": "joint-venture partner in thermal power systems"
+        },
+        {
+          "name": "Mitsubishi Hitachi Power Systems, Ltd.",
+          "entity": "jp_mhi_power_company",
+          "relation": "joint-venture company that started operations"
+        }
+      ],
+      "claims": [
+        "jp_mitsubishi_heavy_industries_c25",
+        "jp_mitsubishi_heavy_industries_c05"
+      ]
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_l02",
+      "kind": "rename",
+      "entity": "jp_mhi_power_company",
+      "date": "2020-09-01",
+      "from_name": "Mitsubishi Hitachi Power Systems, Ltd.",
+      "to_name": "Mitsubishi Power, Ltd.",
+      "claims": [
+        "jp_mitsubishi_heavy_industries_c06"
+      ],
+      "note": "A subsidiary rename, not an MHI rename."
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_l03",
+      "kind": "business_transfer",
+      "entity": "jp_mhi_company",
+      "date": "2021-10-01",
+      "counterparties": [
+        {
+          "name": "Mitsubishi Power, Ltd.",
+          "entity": "jp_mhi_power_company",
+          "relation": "thermal power systems business absorbed into MHI"
+        }
+      ],
+      "claims": [
+        "jp_mitsubishi_heavy_industries_c07",
+        "jp_mitsubishi_heavy_industries_c28"
+      ]
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_l04",
+      "kind": "spin_off",
+      "entity": "jp_mhi_company",
+      "date": "2018-01",
+      "counterparties": [
+        {
+          "name": "Mitsubishi Shipbuilding Co., Ltd.",
+          "relation": "new wholly owned company for ferries, government and special ships"
+        },
+        {
+          "name": "Mitsubishi Heavy Industries Marine Structure Co., Ltd.",
+          "relation": "new wholly owned company announced with it (large ships, marine structures)"
+        }
+      ],
+      "claims": [
+        "jp_mitsubishi_heavy_industries_c26",
+        "jp_mitsubishi_heavy_industries_c09"
+      ],
+      "note": "Mitsubishi Shipbuilding (2018) is not the pre-1964 predecessor with the same Japanese name (三菱造船㈱)."
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_l05",
+      "kind": "acquisition",
+      "entity": "jp_mhi_company",
+      "date": "2020-06",
+      "counterparties": [
+        {
+          "name": "Bombardier Inc.",
+          "relation": "seller of the Canadair Regional Jet (CRJ) programme"
+        },
+        {
+          "name": "MHI RJ Aviation Inc.",
+          "relation": "MHI company that started operating in June 2020"
+        }
+      ],
+      "claims": [
+        "jp_mitsubishi_heavy_industries_c27",
+        "jp_mitsubishi_heavy_industries_c12"
+      ]
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_l06",
+      "kind": "acquisition",
+      "entity": "jp_mhi_company",
+      "date": "2021-10",
+      "counterparties": [
+        {
+          "name": "Mitsui E&S Holdings / Mitsui E&S Shipbuilding",
+          "relation": "sellers of the naval and government-ship business"
+        },
+        {
+          "name": "Mitsubishi Heavy Industries Maritime Systems Co., Ltd.",
+          "relation": "new wholly owned company that succeeded the business"
+        }
+      ],
+      "claims": [
+        "jp_mitsubishi_heavy_industries_c29",
+        "jp_mitsubishi_heavy_industries_c10"
+      ]
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_l07",
+      "kind": "divestiture",
+      "entity": "jp_mhi_company",
+      "date": "2026-05-01",
+      "counterparties": [
+        {
+          "name": "Logisnext Co., Ltd. (formerly Mitsubishi Logisnext Co., Ltd.)",
+          "relation": "consolidated subsidiary taken private and transferred out of the group"
+        },
+        {
+          "name": "LVJ Holdings 2",
+          "relation": "tender offeror; MHI reinvested in it"
+        }
+      ],
+      "claims": [
+        "jp_mitsubishi_heavy_industries_c11"
+      ]
+    }
+  ],
+  "ownership": [
+    {
+      "holder": "Mitsubishi Heavy Industries in Mitsubishi Power, Ltd.",
+      "share": "100%",
+      "date": "2020-09-01",
+      "claims": [
+        "jp_mitsubishi_heavy_industries_c06"
+      ]
+    },
+    {
+      "holder": "Mitsubishi Heavy Industries in Mitsubishi Shipbuilding Co., Ltd. (planned at announcement)",
+      "share": "100% of 3,000 million yen capital",
+      "date": "2017-12-01",
+      "claims": [
+        "jp_mitsubishi_heavy_industries_c09"
+      ]
+    }
+  ],
+  "country_links": [
+    {
+      "country": "Japan",
+      "kind": "headquarters",
+      "date": "2019-01-08",
+      "claims": [
+        "jp_mitsubishi_heavy_industries_c04"
+      ],
+      "note": "Registered head office moved from Minato-ku to Marunouchi, Chiyoda-ku, Tokyo."
+    },
+    {
+      "country": "United States",
+      "kind": "joint_development",
+      "date": "1995-10",
+      "claims": [
+        "jp_mitsubishi_heavy_industries_c14"
+      ],
+      "note": "F-2 developed jointly by Japan and the US from the F-16, with Lockheed Martin cooperating."
+    },
+    {
+      "country": "Canada",
+      "kind": "acquisition_agreement",
+      "date": "2020-05-07",
+      "claims": [
+        "jp_mitsubishi_heavy_industries_c12"
+      ],
+      "note": "CRJ programme bought from Bombardier; MHI RJ Aviation Group headquartered in Mirabel, Quebec."
+    },
+    {
+      "country": "United States",
+      "kind": "subsidiary",
+      "date": "2020-06",
+      "claims": [
+        "jp_mitsubishi_heavy_industries_c27"
+      ],
+      "note": "MHI RJ Aviation Inc. (USA) started operations."
+    },
+    {
+      "country": "Australia",
+      "kind": "export_contract",
+      "date": "2026-04-18",
+      "claims": [
+        "jp_mitsubishi_heavy_industries_c13"
+      ],
+      "note": "General Purpose Frigate contract; announced, outcome unknown."
+    }
+  ],
+  "products": [
+    {
+      "id": "jp_mhi_type90_tank",
+      "name": "Type 90 main battle tank",
+      "reality": "historical",
+      "category": "main battle tank",
+      "milestones": [
+        {
+          "event": "production_milestone",
+          "date": "1991",
+          "maker_entity": "jp_mhi_company",
+          "maker_name": "Mitsubishi Heavy Industries, Ltd.",
+          "claims": [
+            "jp_mitsubishi_heavy_industries_c15"
+          ],
+          "note": "Mass production began at the Sagamihara Machinery Works."
+        }
+      ]
+    },
+    {
+      "id": "jp_mhi_type10_tank",
+      "name": "Type 10 main battle tank",
+      "reality": "historical",
+      "category": "main battle tank",
+      "milestones": [
+        {
+          "event": "production_milestone",
+          "date": "2011",
+          "maker_entity": "jp_mhi_company",
+          "maker_name": "Mitsubishi Heavy Industries, Ltd.",
+          "claims": [
+            "jp_mitsubishi_heavy_industries_c16"
+          ],
+          "note": "Mass production began at the Sagamihara Machinery Works."
+        }
+      ]
+    },
+    {
+      "id": "jp_mhi_f2",
+      "name": "F-2 support fighter",
+      "reality": "historical",
+      "category": "combat aircraft",
+      "milestones": [
+        {
+          "event": "first_flight",
+          "date": "1995-10",
+          "maker_entity": "jp_mhi_company",
+          "maker_name": "Mitsubishi Heavy Industries, Ltd.",
+          "claims": [
+            "jp_mitsubishi_heavy_industries_c14"
+          ],
+          "note": "Prototype (XF-2)."
+        },
+        {
+          "event": "first_delivery",
+          "date": "2000-09",
+          "maker_entity": "jp_mhi_company",
+          "maker_name": "Mitsubishi Heavy Industries, Ltd.",
+          "claims": [
+            "jp_mitsubishi_heavy_industries_c14"
+          ],
+          "note": "First production aircraft."
+        },
+        {
+          "event": "delivery",
+          "date": "2011",
+          "maker_entity": "jp_mhi_company",
+          "maker_name": "Mitsubishi Heavy Industries, Ltd.",
+          "claims": [
+            "jp_mitsubishi_heavy_industries_c24"
+          ],
+          "note": "Final aircraft delivered (完納)."
+        }
+      ]
+    },
+    {
+      "id": "jp_mhi_h2a",
+      "name": "H-IIA launch vehicle",
+      "reality": "historical",
+      "category": "space launch vehicle",
+      "milestones": [
+        {
+          "event": "launch",
+          "date": "2007-09",
+          "maker_entity": "jp_mhi_company",
+          "maker_name": "Mitsubishi Heavy Industries, Ltd.",
+          "claims": [
+            "jp_mitsubishi_heavy_industries_c17"
+          ],
+          "note": "Flight 13, the first H-IIA launch run by MHI after the technology transfer from JAXA."
+        },
+        {
+          "event": "launch",
+          "date": "2025-06-29",
+          "maker_entity": "jp_mhi_company",
+          "maker_name": "Mitsubishi Heavy Industries, Ltd.",
+          "claims": [
+            "jp_mitsubishi_heavy_industries_c18"
+          ],
+          "note": "Flight 50, the final flight of the programme."
+        }
+      ]
+    },
+    {
+      "id": "jp_mhi_h3",
+      "name": "H3 launch vehicle",
+      "reality": "historical",
+      "category": "space launch vehicle",
+      "milestones": [
+        {
+          "event": "launch",
+          "date": "2024-02",
+          "maker_entity": "jp_mhi_company",
+          "maker_name": "Mitsubishi Heavy Industries, Ltd.",
+          "claims": [
+            "jp_mitsubishi_heavy_industries_c18"
+          ],
+          "note": "Test Flight No. 2."
+        }
+      ],
+      "note": "JAXA's 2014 selection of MHI as prime contractor for the next flagship launcher (claim c17) predates the H3 name in that source and is not linked here."
+    },
+    {
+      "id": "jp_mhi_taigei",
+      "name": "Taigei (lead boat of the Taigei-class submarines)",
+      "reality": "historical",
+      "category": "diesel-electric submarine",
+      "milestones": [
+        {
+          "event": "production_milestone",
+          "date": "2018-03-16",
+          "maker_entity": "jp_mhi_company",
+          "maker_name": "Mitsubishi Heavy Industries, Ltd.",
+          "claims": [
+            "jp_mitsubishi_heavy_industries_c19"
+          ],
+          "note": "Laid down."
+        },
+        {
+          "event": "launch",
+          "date": "2020-10-14",
+          "maker_entity": "jp_mhi_company",
+          "maker_name": "Mitsubishi Heavy Industries, Ltd.",
+          "claims": [
+            "jp_mitsubishi_heavy_industries_c19"
+          ]
+        },
+        {
+          "event": "delivery",
+          "date": "2022-03-09",
+          "maker_entity": "jp_mhi_company",
+          "maker_name": "Mitsubishi Heavy Industries, Ltd.",
+          "claims": [
+            "jp_mitsubishi_heavy_industries_c19",
+            "jp_mitsubishi_heavy_industries_c20"
+          ],
+          "note": "Delivered to the Ministry of Defense at the Kobe Shipyard."
+        }
+      ],
+      "note": "Hull by hull: the second boat, Hakugei, was built by Kawasaki Heavy Industries (jp_kawasaki_heavy_industries)."
+    },
+    {
+      "id": "jp_mhi_mogami",
+      "name": "Mogami (name ship of the 3,900-ton Mogami-class frigates)",
+      "reality": "historical",
+      "category": "frigate",
+      "milestones": [
+        {
+          "event": "production_milestone",
+          "date": "2019-10-29",
+          "maker_entity": "jp_mhi_company",
+          "maker_name": "Mitsubishi Heavy Industries, Ltd.",
+          "claims": [
+            "jp_mitsubishi_heavy_industries_c21"
+          ],
+          "note": "Laid down."
+        },
+        {
+          "event": "launch",
+          "date": "2021-03-03",
+          "maker_entity": "jp_mhi_company",
+          "maker_name": "Mitsubishi Heavy Industries, Ltd.",
+          "claims": [
+            "jp_mitsubishi_heavy_industries_c21"
+          ]
+        },
+        {
+          "event": "delivery",
+          "date": "2022-04-28",
+          "maker_entity": "jp_mhi_company",
+          "maker_name": "Mitsubishi Heavy Industries, Ltd.",
+          "claims": [
+            "jp_mitsubishi_heavy_industries_c21"
+          ],
+          "note": "Delivered at the Nagasaki Shipyard."
+        }
+      ]
+    },
+    {
+      "id": "jp_mhi_gpf_australia",
+      "name": "Upgraded Mogami-class frigates for the Australian General Purpose Frigate programme",
+      "reality": "announced",
+      "category": "frigate",
+      "outcome": "unknown_after_cutoff",
+      "milestones": [
+        {
+          "event": "selected",
+          "date": "2025-08",
+          "maker_entity": "jp_mhi_company",
+          "maker_name": "Mitsubishi Heavy Industries, Ltd.",
+          "claims": [
+            "jp_mitsubishi_heavy_industries_c13"
+          ],
+          "note": "Australia chose the design as preferred platform."
+        },
+        {
+          "event": "contract",
+          "date": "2026-04-18",
+          "maker_entity": "jp_mhi_company",
+          "maker_name": "Mitsubishi Heavy Industries, Ltd.",
+          "claims": [
+            "jp_mitsubishi_heavy_industries_c13"
+          ],
+          "note": "Three ships to be built at Nagasaki. The first-ship delivery target (December 2029) is a plan and is not recorded as history."
+        }
+      ]
+    },
+    {
+      "id": "jp_mhi_spacejet",
+      "name": "MRJ / Mitsubishi SpaceJet regional jet",
+      "reality": "cancelled",
+      "category": "regional airliner",
+      "milestones": [
+        {
+          "event": "development_start",
+          "date": "2008",
+          "maker_entity": "jp_mhi_mitsubishi_aircraft",
+          "maker_name": "Mitsubishi Aircraft Corporation",
+          "claims": [
+            "jp_mitsubishi_heavy_industries_c23"
+          ],
+          "note": "MRJ commercialisation decided and Mitsubishi Aircraft established."
+        },
+        {
+          "event": "development_discontinued",
+          "date": "2023-02-07",
+          "maker_entity": "jp_mhi_mitsubishi_aircraft",
+          "maker_name": "Mitsubishi Aircraft Corporation",
+          "claims": [
+            "jp_mitsubishi_heavy_industries_c08"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "jp_mhi_crystal_harmony",
+      "name": "Crystal Harmony cruise ship",
+      "reality": "historical",
+      "category": "passenger cruise ship",
+      "milestones": [
+        {
+          "event": "delivery",
+          "date": "1990",
+          "maker_entity": "jp_mhi_company",
+          "maker_name": "Mitsubishi Heavy Industries, Ltd.",
+          "claims": [
+            "jp_mitsubishi_heavy_industries_c02"
+          ],
+          "note": "Recorded as completed (竣工) at the Nagasaki Shipyard; year only."
+        }
+      ]
+    }
+  ],
+  "game_mapping": {
+    "proposed": [
+      {
+        "target_kind": "designer_platform",
+        "target_id": "tank_standard",
+        "flow": "supplier_equipment_flow",
+        "confidence": "medium",
+        "basis_products": [
+          "jp_mhi_type90_tank",
+          "jp_mhi_type10_tank"
+        ],
+        "uncertainty": "A generic main-battle-tank envelope, not a Type 90 or Type 10 replica; components and performance stay the commissioning country's design."
+      },
+      {
+        "target_kind": "designer_platform",
+        "target_id": "air_tactical_strike",
+        "flow": "supplier_equipment_flow",
+        "confidence": "medium",
+        "basis_products": [
+          "jp_mhi_f2"
+        ],
+        "uncertainty": "The F-2 is a \"support fighter\" derived from the F-16 and developed jointly with the US; the game strike airframe has no interception role, so the air-defence half of the type is not represented."
+      },
+      {
+        "target_kind": "supplier_catalogue_roster",
+        "target_id": "Japan:air_light_attack",
+        "flow": "supplier_programme_slot",
+        "confidence": "low",
+        "basis_products": [
+          "jp_mhi_f2"
+        ],
+        "uncertainty": "Japan's only supplier programme is a modeled light-attack exporter created at runtime, not a historical firm. The F-2 is a larger support fighter and no Japanese light-attack type was researched; attaching a real identity needs a ruling so that Japan does not gain two aircraft exporters."
+      },
+      {
+        "target_kind": "arsenal_kit",
+        "target_id": "arm_gen3",
+        "flow": "no_company_consumer",
+        "confidence": "medium",
+        "basis_products": [
+          "jp_mhi_type90_tank"
+        ],
+        "uncertainty": "Arsenal kits are generic capability tiers with no company stock; the Type 90 informs flavour only."
+      },
+      {
+        "target_kind": "arsenal_kit",
+        "target_id": "nav_escort",
+        "flow": "no_company_consumer",
+        "confidence": "medium",
+        "basis_products": [
+          "jp_mhi_mogami"
+        ],
+        "uncertainty": "Generic escort tier; kits have no company stock or shipyard ownership."
+      },
+      {
+        "target_kind": "sector_contractor_slot",
+        "target_id": "Japan:defense",
+        "flow": "sector_contractor_service",
+        "confidence": "medium",
+        "uncertainty": "Generated contractors are fictional; a real identity would replace one generated defense contractor, not add a parallel firm."
+      },
+      {
+        "target_kind": "sector_contractor_slot",
+        "target_id": "Japan:energy",
+        "flow": "sector_contractor_service",
+        "confidence": "low",
+        "uncertainty": "MHI builds thermal power systems (Mitsubishi Power until 2021); energy contractors improve funded energy-facility work, which is only loosely the same activity."
+      }
+    ],
+    "duplicates_avoided": [
+      "Mitsubishi Motors (automobile division independent since 1970) is a separate company; it is the Renault-Nissan alliance member named in fr_renault, not MHI.",
+      "Mitsubishi Electric and other Mitsubishi-named companies are not merged into this dossier; the J/APG-1 radar comment in the game code is not attributed to MHI.",
+      "Taigei-class boats are attributed hull by hull: Taigei to MHI, Hakugei to Kawasaki Heavy Industries.",
+      "Mitsubishi Hitachi Power Systems and Mitsubishi Power are one legal person under two names; Hitachi is recorded only as a joint-venture partner."
+    ],
+    "integration_flow": {
+      "route": "existing_supplier_flow",
+      "summary": "A later, reviewed integration could attach this sourced identity to a company created through the existing orders. Design stays with the commissioning country; Defense R&D pays development as work is performed; the company funds tooling, national-warehouse inputs and fabrication from its own settled cash; the buyer purchases whole finished units from company stock; delivery follows fiscal settlement and seven accessible days. No company order builds launch vehicles, airliners or civilian ships; an export such as the Australian frigate would use the existing ImportPurchase route from company stock, never a scripted contract.",
+      "steps": [
+        {
+          "order": "Establish",
+          "note": "Paid capitalisation from Defense procurement (political capital price applies); leases one existing completed Arms Plant slot. No historical factory, balance or stock is granted."
+        },
+        {
+          "order": "Capitalize",
+          "note": "Further paid working capital; unsettled receivables are not spendable cash."
+        },
+        {
+          "order": "Develop",
+          "note": "Frozen design revision; Defense R&D pays engineering, prototype and trials work day by day; prototypes are never saleable."
+        },
+        {
+          "order": "Inventory",
+          "note": "Finite company-owned stock target (0-12 units); a target is never a government order."
+        },
+        {
+          "order": "Purchase",
+          "note": "Government buys whole units from existing company stock; settlement then seven accessible delivery days."
+        }
+      ],
+      "not_introduced": [
+        "government production capacity",
+        "free or opening stock",
+        "a parallel financial ledger",
+        "sourced opening corporate balances (none researched)"
+      ]
+    },
+    "constraints": {
+      "government_production_capacity": false,
+      "free_stock": false,
+      "parallel_financial_ledger": false,
+      "opening_balances_or_stock": "not_sourced_not_proposed"
+    },
+    "unmapped": [
+      "H-IIA and H3 launch vehicles: no space-launch product consumer.",
+      "Taigei-class submarine: the only submarine kit (aip_ssk) assumes air-independent propulsion, while MHI describes the class as diesel-electric with lithium-ion batteries.",
+      "SpaceJet regional jet (cancelled) and Crystal Harmony cruise ship: no civilian aircraft or shipbuilding consumer.",
+      "Thermal power systems: no power-equipment product consumer beyond sector contractors."
+    ]
+  },
+  "gaps": [
+    "No official dated milestone was captured for the Type 16 maneuver combat vehicle or the Soryu class; MHI product pages list them without dates.",
+    "The MHI/Hitachi shareholding in Mitsubishi Hitachi Power Systems (2014-2020) is known only from a lead.",
+    "The fate of Mitsubishi Aircraft Corporation after February 2023 is reported only by news.",
+    "JMSDF naming and launch pages were blocked by a bot challenge and are recorded as inaccessible.",
+    "The GCAP next-generation fighter was not researched."
+  ],
+  "future_policy": {
+    "after": "2026-09-07",
+    "real_history": "not_predicted",
+    "later_products": "fictional_or_unknown",
+    "note": "Nothing after the frozen cutoff is predicted. Any later product, successor or business in a campaign must be authored as explicitly fictional game content (labelled \"(fictional)\") or left unknown."
+  },
+  "claims": [
+    {
+      "id": "jp_mitsubishi_heavy_industries_c01",
+      "source": "jp_mhi_nta_houjin",
+      "attests": [
+        "2023-03-22"
+      ],
+      "text": "The corporate-number registry (no. 8010401050387) lists the trade name 三菱重工業株式会社 with English name Mitsubishi Heavy Industries, Ltd.; the record was last updated on 22 March 2023 and its change history lists mergers and one head-office change but no change of trade name.",
+      "locator": {
+        "section": "最新情報 (商号又は名称, 英語表記, 最終更新年月日); 変更履歴情報",
+        "record": "corporate number 8010401050387"
+      },
+      "anchor": "令和5年3月22日"
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_c02",
+      "source": "jp_mhi_loc_nagasaki_hist_ja",
+      "attests": [
+        "1990"
+      ],
+      "text": "The Nagasaki Shipyard & Machinery Works timeline records the completion of the cruise ship Crystal Harmony in 1990.",
+      "locator": {
+        "section": "沿革: timeline entry 1990"
+      },
+      "anchor": "クリスタルハーモニー"
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_c03",
+      "source": "jp_mhi_profile_en",
+      "attests": [
+        "2026-03-31"
+      ],
+      "text": "MHI reports consolidated revenue of 4,974.1 billion yen for the year to 31 March 2026 and 78,793 consolidated employees at that date.",
+      "locator": {
+        "section": "Corporate Profile: Revenue (consolidated); Number of Employees (consolidated)"
+      },
+      "anchor": "78,793 (As of March 31, 2026)"
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_c04",
+      "source": "jp_mhi_nta_houjin",
+      "attests": [
+        "2019-01-08"
+      ],
+      "text": "The registered head office is Marunouchi 3-chome, Chiyoda-ku, Tokyo, after a head-office change recorded on 8 January 2019 from Konan 2-chome, Minato-ku.",
+      "locator": {
+        "section": "最新情報 (所在地); 変更履歴情報 No.3"
+      },
+      "anchor": "平成31年1月8日"
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_c05",
+      "source": "jp_mhi_pr_mhps_group_2014_ja",
+      "attests": [
+        "2014-01-28"
+      ],
+      "text": "On 28 January 2014 MHI announced the group companies of Mitsubishi Hitachi Power Systems, the thermal power systems company being established by MHI and Hitachi, Ltd., with its launch set for 1 February 2014.",
+      "locator": {
+        "section": "Press information body, first paragraph"
+      },
+      "anchor": "日立製作所が設立する火力発電システム事業会社"
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_c06",
+      "source": "jp_mhi_pr_mitsubishipower_rename_2020_ja",
+      "attests": [
+        "2020-09-01"
+      ],
+      "text": "On 1 September 2020 Mitsubishi Hitachi Power Systems (MHPS) changed its name to Mitsubishi Power, Ltd., described as a core group company 100% owned by MHI.",
+      "locator": {
+        "section": "Press release, paragraphs 1-2"
+      },
+      "anchor": "（MHPS）から社名を変更しました"
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_c07",
+      "source": "jp_mhi_pr_mitsubishipower_transfer_done_2021_en",
+      "attests": [
+        "2021-10-01"
+      ],
+      "text": "On 1 October 2021 MHI completed the absorption of Mitsubishi Power's thermal power business into a new Energy Transition & Power headquarters within MHI.",
+      "locator": {
+        "section": "Headline and lead paragraph"
+      },
+      "anchor": "Transfer of Mitsubishi Power Business to MHI Completed"
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_c08",
+      "source": "jp_mhi_notice_spacejet_2023_ja",
+      "attests": [
+        "2023-02-07"
+      ],
+      "text": "On 7 February 2023 MHI announced that its consolidated subsidiary Mitsubishi Aircraft Corporation would discontinue SpaceJet development.",
+      "locator": {
+        "section": "Notice body"
+      },
+      "anchor": "開発活動を中止することとしました"
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_c09",
+      "source": "jp_mhi_pr_shipbuilding_reorg_2017_ja",
+      "attests": [
+        "2017-12-01"
+      ],
+      "text": "On 1 December 2017 MHI announced two wholly owned shipbuilding companies to be set up on 1 January 2018: Mitsubishi Shipbuilding Co., Ltd. (capital 3,000 million yen, 100% MHI) and Mitsubishi Heavy Industries Marine Structure Co., Ltd.",
+      "locator": {
+        "section": "Press information body; outline of Mitsubishi Shipbuilding (設立日, 資本金)"
+      },
+      "anchor": "Mitsubishi Shipbuilding Co.,Ltd."
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_c10",
+      "source": "jp_mhi_pr_maritime_systems_2021_ja",
+      "attests": [
+        "2021-03-29",
+        "2021-09-28"
+      ],
+      "text": "On 28 September 2021 MHI announced that, under a share transfer agreement of 29 March 2021 with Mitsui E&S Holdings, the naval and government-ship business of Mitsui E&S Shipbuilding would pass to a new wholly owned company, Mitsubishi Heavy Industries Maritime Systems, from 1 October 2021.",
+      "locator": {
+        "section": "Press information body and outline of the new company"
+      },
+      "anchor": "三井E&S造船株式会社の艦艇・官公庁船事業"
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_c11",
+      "source": "jp_mhi_notice_logisnext_complete_2026_en",
+      "attests": [
+        "2026-05-01"
+      ],
+      "text": "On 1 May 2026 MHI completed the transactions to take Logisnext Co., Ltd. (formerly Mitsubishi Logisnext) private and transfer it out of the consolidated group; MHI reinvested in the offeror LVJ Holdings 2.",
+      "locator": {
+        "section": "Notice title and body"
+      },
+      "anchor": "it has completed the procedures related to the Transactions"
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_c12",
+      "source": "jp_mhi_pr_crj_closing_2020_en",
+      "attests": [
+        "2020-05-07"
+      ],
+      "text": "On 7 May 2020 MHI and Bombardier Inc. of Canada agreed that the acquisition of the CRJ programme would close on 1 June 2020, run by the new MHI RJ Aviation Group headquartered in Mirabel, Quebec.",
+      "locator": {
+        "section": "Lead paragraph; About MHI RJ Aviation Group"
+      },
+      "anchor": "Program will close on June 1, 2020"
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_c13",
+      "source": "jp_mhi_pr_australia_gpf_2026_ja",
+      "attests": [
+        "2025-08",
+        "2026-04-18"
+      ],
+      "text": "On 18 April 2026 MHI announced a contract with the Australian Government to build three upgraded Mogami-class frigates for the General Purpose Frigate programme; Australia had chosen the design as preferred platform in August 2025.",
+      "locator": {
+        "section": "Press information, paragraphs 1-3"
+      },
+      "anchor": "能力向上型3隻の建造契約を締結しました"
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_c14",
+      "source": "jp_mhi_prod_f2_ja",
+      "attests": [
+        "1995-10",
+        "2000-09"
+      ],
+      "text": "The F-2 was developed jointly by Japan and the US from the F-16 with MHI as prime contractor and Lockheed Martin, Kawasaki Heavy Industries and Fuji Heavy Industries cooperating; the prototype first flew in October 1995 and the first production aircraft was delivered in September 2000.",
+      "locator": {
+        "section": "プログラム計画; 開発プログラム沿革; 生産プログラム沿革"
+      },
+      "anchor": "三菱重工業株式会社を主契約社"
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_c15",
+      "source": "jp_mhi_loc_sagamihara_hist_ja",
+      "attests": [
+        "1991"
+      ],
+      "text": "The Sagamihara Machinery Works began mass production of the Type 90 tank in 1991.",
+      "locator": {
+        "section": "沿革: timeline entry 1991"
+      },
+      "anchor": "90式戦車量産開始"
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_c16",
+      "source": "jp_mhi_loc_sagamihara_hist_ja",
+      "attests": [
+        "2011"
+      ],
+      "text": "The Sagamihara Machinery Works began mass production of the Type 10 tank in 2011.",
+      "locator": {
+        "section": "沿革: timeline entry 2011"
+      },
+      "anchor": "10式戦車量産開始"
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_c17",
+      "source": "jp_mhi_pr_h3_prime_2014_ja",
+      "attests": [
+        "2007-09",
+        "2014-03-25"
+      ],
+      "text": "After technology transfer from JAXA, MHI has run H-IIA launches from Flight 13 (launched September 2007); on 25 March 2014 JAXA selected MHI as prime contractor for the next flagship launch vehicle.",
+      "locator": {
+        "section": "Press information, paragraphs 1 and 5"
+      },
+      "anchor": "H-IIAは13号機（2007年9月打上げ）から"
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_c18",
+      "source": "jp_mhi_report2025_ads_en",
+      "attests": [
+        "2024-02",
+        "2025-06-29"
+      ],
+      "text": "H-IIA Flight 50, the final flight of the programme, launched on 29 June 2025; the H3 had its Test Flight No. 2 in February 2024.",
+      "locator": {
+        "section": "Aircraft, Defense & Space (report p.41): FOCUS, transition from H-IIA to H3",
+        "page": 2
+      },
+      "anchor": "was launched at 1:33:03 a.m. JST on Sunday, June 29, 2025."
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_c19",
+      "source": "jp_mhi_pr_taigei_delivery_2022_ja",
+      "attests": [
+        "2018-03-16",
+        "2020-10-14",
+        "2022-03-09"
+      ],
+      "text": "MHI delivered the submarine Taigei, lead boat of the 3,000-ton class succeeding the Soryu class, to the Ministry of Defense at its Kobe Shipyard on 9 March 2022; it was laid down on 16 March 2018 and launched on 14 October 2020.",
+      "locator": {
+        "section": "Press information body; 主要目・工程 table"
+      },
+      "anchor": "「たいげい」の引渡式を、当社神戸造船所"
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_c20",
+      "source": "jp_mhi_pr_taigei_delivery_2022_ja",
+      "attests": [
+        "2022-03-09"
+      ],
+      "text": "The same release describes the Taigei class as conventional diesel-electric submarines that run submerged on power stored in lithium-ion batteries.",
+      "locator": {
+        "section": "Press information body, second paragraph"
+      },
+      "anchor": "リチウムイオン蓄電池に蓄えた電力を動力として潜航します"
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_c21",
+      "source": "jp_mhi_pr_mogami_delivery_2022_ja",
+      "attests": [
+        "2019-10-29",
+        "2021-03-03",
+        "2022-04-28"
+      ],
+      "text": "MHI delivered the 3,900-ton frigate Mogami, name ship of its class, to the Ministry of Defense at the Nagasaki Shipyard on 28 April 2022; it was laid down on 29 October 2019 and launched on 3 March 2021.",
+      "locator": {
+        "section": "Press information body; 主要目・工程 table"
+      },
+      "anchor": "「もがみ」の引渡式を当社長崎造船所長崎工場"
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_c22",
+      "source": "jp_mhi_history_ja",
+      "attests": [
+        "1964",
+        "1970"
+      ],
+      "text": "The present MHI was formed in 1964 when three successor companies merged; in 1970 the automobile division became independent as Mitsubishi Motors Corporation.",
+      "locator": {
+        "section": "沿革 page text"
+      },
+      "anchor": "新生三菱重工業株式会社が誕生しました",
+      "context_before_window": true
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_c23",
+      "source": "jp_mhi_loc_nagoyaaero_hist_ja",
+      "attests": [
+        "2008"
+      ],
+      "text": "In 2008 MHI decided to commercialise the MRJ and established Mitsubishi Aircraft Corporation.",
+      "locator": {
+        "section": "沿革: timeline entry 2008"
+      },
+      "anchor": "MRJ事業化決定。三菱航空機株式会社を設立"
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_c24",
+      "source": "jp_mhi_loc_nagoyaaero_hist_ja",
+      "attests": [
+        "2011"
+      ],
+      "text": "In 2011 the last F-2 fighter was delivered.",
+      "locator": {
+        "section": "沿革: timeline entry 2011"
+      },
+      "anchor": "F-2戦闘機最終号機完納"
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_c25",
+      "source": "jp_mhi_yuho_fy2025",
+      "attests": [
+        "2014-02"
+      ],
+      "text": "Mitsubishi Hitachi Power Systems (now Mitsubishi Power) started operations in February 2014.",
+      "locator": {
+        "section": "第1 企業の概況, 2 沿革 (printed p.4)",
+        "page": 7
+      },
+      "anchor": "三菱日立パワーシステムズ㈱（現 三菱パワー㈱）が営業開始"
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_c26",
+      "source": "jp_mhi_yuho_fy2025",
+      "attests": [
+        "2018-01"
+      ],
+      "text": "Mitsubishi Shipbuilding Co., Ltd. started operations in January 2018.",
+      "locator": {
+        "section": "2 沿革 (printed p.5)",
+        "page": 8
+      },
+      "anchor": "三菱造船㈱が営業開始"
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_c27",
+      "source": "jp_mhi_yuho_fy2025",
+      "attests": [
+        "2020-06"
+      ],
+      "text": "MHI RJ Aviation Inc. (United States) started operations in June 2020.",
+      "locator": {
+        "section": "2 沿革 (printed p.5)",
+        "page": 8
+      },
+      "anchor": "MHI RJ Aviation Inc.（米国）が営業開始"
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_c28",
+      "source": "jp_mhi_yuho_fy2025",
+      "attests": [
+        "2021-10"
+      ],
+      "text": "In October 2021 MHI succeeded to the thermal power systems business of Mitsubishi Power.",
+      "locator": {
+        "section": "2 沿革 (printed p.5)",
+        "page": 8
+      },
+      "anchor": "火力発電システム事業等を三菱パワー㈱から承継"
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_c29",
+      "source": "jp_mhi_yuho_fy2025",
+      "attests": [
+        "2021-10"
+      ],
+      "text": "Mitsubishi Heavy Industries Maritime Systems started operations in October 2021.",
+      "locator": {
+        "section": "2 沿革 (printed p.5)",
+        "page": 8
+      },
+      "anchor": "三菱重工マリタイムシステムズ㈱が営業開始"
+    },
+    {
+      "id": "jp_mitsubishi_heavy_industries_c31",
+      "source": "jp_mhi_yuho_fy2025",
+      "attests": [
+        "2026-03-31",
+        "2026-06-24"
+      ],
+      "text": "三菱重工業株式会社 submitted its Annual Securities Report for 1 April 2025 to 31 March 2026 through EDINET on 24 June 2026.",
+      "locator": {
+        "section": "Cover and note on the EDINET submission",
+        "page": 2
+      },
+      "anchor": "2026年６月24日に提出"
+    }
+  ]
+}

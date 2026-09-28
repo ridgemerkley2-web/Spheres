@@ -1,0 +1,15 @@
+C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\evidence\s22-browser-guards-preflight\browser-3FEH58
+C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\evidence\s22-browser-guards-preflight\browser-3FEH58\result.json
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert(returned.visible&&returned.tag!=='BODY'&&!returned.inert)
+
+    at layout (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\s22-layout-browser.cjs:78:5)
+    at async run (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\s22-performance-browser.cjs:227:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}

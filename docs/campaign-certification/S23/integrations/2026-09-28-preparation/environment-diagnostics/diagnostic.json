@@ -1,0 +1,82 @@
+{
+  "format": "spheres-cnccfp-extractor-diagnostic/v1",
+  "scope": "Exact existing PDF audit test on the existing PATH interpreter. No importer, assertion, source PDF, publication data or dependency package was changed. This targeted result is not the final combined suite.",
+  "reviewer": "Codex /root/s20_preflight",
+  "root_head_at_run": "1c5f129faae0579703ceefb12ae49b435be8e6dc",
+  "source_inputs": [
+    {
+      "path": "tools/avatars/test_import_cnccfp_census.py",
+      "bytes": 9480,
+      "sha256": "d65bdadb669435944f1df1c2147f3364371f3eff09680434549ed2dfe737f51e",
+      "hash_scope": "raw"
+    },
+    {
+      "path": "tools/avatars/import_cnccfp_census.py",
+      "bytes": 21317,
+      "sha256": "4a8df4c840e57a40c646d8fce582bf9e0ca54712771759bfc9f1d7843ebe479c",
+      "hash_scope": "raw"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/cnccfp-obligations-2024.pdf",
+      "bytes": 695861,
+      "sha256": "127fc6028a49240e41a204db7bcb4a6258c23280a7316af93542b920a471899d",
+      "hash_scope": "raw"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/sources/cnccfp-publication-2024.json",
+      "bytes": 105818,
+      "sha256": "4c3596200e805d0a9335a57f7dc2bf5bf9513bc215208fc069511691c381c487",
+      "hash_scope": "raw"
+    }
+  ],
+  "command": [
+    "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "test_import_cnccfp_census.CnccfpImportTests.test_all_sixty_pdf_absence_rows_match_the_numbered_table_and_locators",
+    "-v"
+  ],
+  "working_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\avatars",
+  "started_utc": "2026-09-28T14:10:14.961026+00:00",
+  "finished_utc": "2026-09-28T14:10:15.868108+00:00",
+  "duration_seconds": 0.907,
+  "python_version": "3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]",
+  "python_executable": "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+  "pypdf_version": "6.17.0",
+  "pypdf_module": {
+    "path": "C:\\Users\\ridge\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\pypdf\\__init__.py",
+    "bytes": 1283,
+    "sha256": "612ff566b4378c13c7b1180cb2da89ac0b6cde5500a63fe530e30ae6a88b1b9c",
+    "hash_scope": "raw"
+  },
+  "pypdf_page_module": {
+    "path": "C:\\Users\\ridge\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\pypdf\\_page.py",
+    "bytes": 101577,
+    "sha256": "2859c7385bd4292e2c0f95b211d24de6258a8a1eeb432406072d5c47bfce312b",
+    "hash_scope": "raw"
+  },
+  "returncode": 0,
+  "log": {
+    "path": "pypdf-6.17-targeted.log",
+    "bytes": 296,
+    "sha256": "fcb93c2fcb7249a998035f42618975eabb1769e7b805bbccc3f40613ecbdddec",
+    "hash_scope": "raw"
+  },
+  "source_inputs_unchanged": true,
+  "original_combined_failure": {
+    "log": {
+      "path": "docs/campaign-certification/S23/integrations/2026-09-28-preparation/validation/avatar-suite.log",
+      "bytes": 1280,
+      "sha256": "924f8dced76dd9a7bb03aed0d1272a1f415c42976f3053cb388592faf45b29df",
+      "hash_scope": "raw"
+    },
+    "python_version": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "python_executable": "C:\\Users\\ridge\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "pypdf_version": "6.10.0",
+    "pypdf_version_source": "Separately inspected the exact recorded executable with import pypdf; version 6.10.0.",
+    "result": "469 tests, 1 failure at test_import_cnccfp_census.py:169; old layout extraction interleaves wrapped table-name cells."
+  },
+  "passed": true
+}

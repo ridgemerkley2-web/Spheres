@@ -5,7 +5,7 @@ const {test}=require('node:test');
 const root=path.resolve(__dirname,'../../spheres-web/ui');
 const source=fs.readFileSync(path.join(root,'campaign-ui.js'),'utf8').replace(/\r\n/g,'\n');
 const page=fs.readFileSync(path.join(root,'index.html'),'utf8').replace(/\r\n/g,'\n');
-function fn(text,name){const start=new RegExp('^async function '+name+'\\(','m').exec(text);assert(start);const end=text.indexOf('\n}',start.index);assert(end>start.index);return text.slice(start.index,end+2);}
+function fn(text,name){const start=new RegExp('^(?:async )?function '+name+'\\(','m').exec(text);assert(start);const end=text.indexOf('\n}',start.index);assert(end>start.index);return text.slice(start.index,end+2);}
 const declaration=/^let saveSlotsRead=0;$/m.exec(source)?.[0];assert(declaration);
 const entry=slot=>({slot,player:'France',date:'1 Feb 1990',readable:true,backup:false});
 const packet=(...slots)=>({slots:slots.map(entry),autosave:'Three rotating autosaves'});
@@ -26,7 +26,7 @@ function fixture(){
     async enterCampaign(value,replacing){adoptions.push({value,replacing});c.S=value;},
     api(url,body){if(url==='/api/saves'){const task=deferred();reads.push(task);return task.promise;}
       assert.equal(url,'/api/load');loads.push(JSON.parse(JSON.stringify(body)));return Promise.resolve({...state,session_id:'loaded'});}});
-  vm.runInContext(declaration+'\n'+fn(source,'refreshSaveSlots')+'\n'+fn(page,'loadCampaign'),c);
+  vm.runInContext(declaration+'\n'+fn(source,'campaignSaveLabel')+'\n'+fn(source,'refreshSaveSlots')+'\n'+fn(page,'loadCampaign'),c);
   return {c,select,status,state,reads,loads,confirmations,adoptions,get renders(){return renders;},
     refresh:()=>vm.runInContext('refreshSaveSlots()',c),load:()=>vm.runInContext('loadCampaign(false)',c)};
 }
@@ -75,4 +75,13 @@ test('empty inventories keep their honest placeholder and removed choices fall b
   assert.deepEqual(JSON.parse(JSON.stringify(f.c.SESSION.saves)),[]);
   const fresh=f.refresh();f.reads[1].resolve(packet('remaining'));await fresh;
   assert.equal(f.select.value,'remaining');assert.deepEqual(f.loads,[]);
+});
+
+test('a backup-only refresh retains the selected recovery slot and shows the backup date',async()=>{
+  const f=fixture(),pending=f.refresh();f.select.value='ci-smoke';
+  f.reads[0].resolve({slots:[{...entry('ci-smoke'),current_exists:false,readable:false,backup:true,metadata_from_backup:true}],autosave:'Three rotating autosaves'});
+  await pending;
+  assert.equal(f.select.value,'ci-smoke');assert.equal(f.select.options[0].dataset.backup,'true');
+  assert.match(f.select.options[0].textContent,/backup dated 1 Feb 1990.*main save missing.*backup available/);
+  assert.equal(f.status.textContent,'Three rotating autosaves');assert.deepEqual(f.loads,[]);
 });

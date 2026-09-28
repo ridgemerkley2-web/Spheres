@@ -1,0 +1,71 @@
+{
+  "format": "spheres-s26-preparation-validation/v1",
+  "scope": "Synthetic bookkeeping and CLI tests only; no humans observed, no native game or browser run, no S26 qualification.",
+  "base_revision": "d2b21c15ad8070ad9bde5363d888a31e1c4dc63c",
+  "runs": [
+    {
+      "name": "python313",
+      "command": [
+        "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/playtests",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "started_utc": "2026-09-28T14:36:13.352842+00:00",
+      "finished_utc": "2026-09-28T14:36:13.984863+00:00",
+      "returncode": 0,
+      "log": "python313-tests.log",
+      "log_sha256": "3c06412950a16a18da5040b90e096322d8fecaae462d4735ca57b064b1c7a0f5",
+      "python": "Python 3.13.12"
+    },
+    {
+      "name": "python312",
+      "command": [
+        "C:/Users/ridge/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/playtests",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "started_utc": "2026-09-28T14:36:14.009739+00:00",
+      "finished_utc": "2026-09-28T14:36:14.576822+00:00",
+      "returncode": 0,
+      "log": "python312-tests.log",
+      "log_sha256": "e7ec5bcb31a7ac63b5db8d76735b87b6d5f52d5ef3ba8e4d4b143a84929d9365",
+      "python": "Python 3.12.14"
+    }
+  ],
+  "initial_failure": {
+    "log": "initial-tests.log",
+    "sha256": "7f34af95b490e924d5f395aa1f83a8a1db85f500af7bab998c4bd0b80d7f3eb8",
+    "scope": "Reproduced pre-repair Windows redirected-stdout encoding error; 21 tests, one CLI error, preserved. No test assertion was weakened."
+  },
+  "source_inputs": [
+    {
+      "path": "tools/playtests/s26_playtest.py",
+      "bytes": 27430,
+      "sha256": "36b166ee36febe9b8ac1f67a074045bbe77e21858bc9df68258d7b7eb3fa7987",
+      "hash_scope": "raw"
+    },
+    {
+      "path": "tools/playtests/test_s26_playtest.py",
+      "bytes": 17072,
+      "sha256": "22821150d07fab8185678afe7ebfd615da71dbcdaf9a1e7b0a88214f3e801247",
+      "hash_scope": "raw"
+    }
+  ],
+  "passed": true
+}

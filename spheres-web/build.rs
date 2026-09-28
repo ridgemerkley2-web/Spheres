@@ -2,8 +2,10 @@ use std::process::Command;
 fn git(args:&[&str])->String{Command::new("git").args(args).output().ok().filter(|o|o.status.success()).map(|o|String::from_utf8_lossy(&o.stdout).trim().to_string()).unwrap_or_default()}
 fn main(){
     let sha=git(&["rev-parse","--short=12","HEAD"]);
+    let full_sha=git(&["rev-parse","HEAD"]);
     let dirty=!git(&["status","--porcelain","--untracked-files=no"]).is_empty();
     println!("cargo:rustc-env=SPHERES_REVISION={}{}",if sha.is_empty(){"source-archive"}else{&sha},if dirty{"-modified"}else{""});
+    println!("cargo:rustc-env=SPHERES_FULL_REVISION={}{}",if full_sha.is_empty(){"source-archive"}else{&full_sha},if dirty{"-modified"}else{""});
     let branch_name=git(&["rev-parse","--abbrev-ref","HEAD"]);
     println!("cargo:rustc-env=SPHERES_BRANCH={}",if branch_name.is_empty(){"source-archive"}else{&branch_name});
     let epoch=std::env::var("SOURCE_DATE_EPOCH").ok().and_then(|v|v.parse::<u64>().ok()).unwrap_or_else(||std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap_or_default().as_secs());

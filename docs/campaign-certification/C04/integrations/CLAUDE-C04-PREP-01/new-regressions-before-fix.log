@@ -1,0 +1,173 @@
+.......................................FFF.....FF.....F...FFFFFFFF.............
+======================================================================
+FAIL: test_packet_cannot_invent_role_to_bypass_pilot_constraints (test_successor_proposals.ProposalPacketTests.test_packet_cannot_invent_role_to_bypass_pilot_constraints)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 457, in test_packet_cannot_invent_role_to_bypass_pilot_constraints
+    self.assertFlags('E_ROLE_CONTRACT', doc)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 36, in assertFlags
+    self.assertTrue(hits, f'expected {code}{" containing " + contains if contains else ""}, got {errors}')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true : expected E_ROLE_CONTRACT, got []
+
+======================================================================
+FAIL: test_packet_cannot_lower_its_own_pilot_count (test_successor_proposals.ProposalPacketTests.test_packet_cannot_lower_its_own_pilot_count)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 431, in test_packet_cannot_lower_its_own_pilot_count
+    self.assertFlags('E_COUNT', doc)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 36, in assertFlags
+    self.assertTrue(hits, f'expected {code}{" containing " + contains if contains else ""}, got {errors}')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true : expected E_COUNT, got []
+
+======================================================================
+FAIL: test_packet_cannot_weaken_sourced_role_age (test_successor_proposals.ProposalPacketTests.test_packet_cannot_weaken_sourced_role_age)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 449, in test_packet_cannot_weaken_sourced_role_age
+    self.assertFlags('E_ROLE_CONTRACT', doc)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 36, in assertFlags
+    self.assertTrue(hits, f'expected {code}{" containing " + contains if contains else ""}, got {errors}')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true : expected E_ROLE_CONTRACT, got []
+
+======================================================================
+FAIL: test_ps_pilot_cannot_use_pre_cutoff_membership_or_unreviewed_waiver (test_successor_proposals.ProposalPacketTests.test_ps_pilot_cannot_use_pre_cutoff_membership_or_unreviewed_waiver) (draft='draft_c04_fr_01')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 466, in test_ps_pilot_cannot_use_pre_cutoff_membership_or_unreviewed_waiver
+    self.assertFlags('E_WINDOW', doc, contains='membership')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 36, in assertFlags
+    self.assertTrue(hits, f'expected {code}{" containing " + contains if contains else ""}, got {errors}')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true : expected E_WINDOW containing membership, got []
+
+======================================================================
+FAIL: test_ps_pilot_cannot_use_pre_cutoff_membership_or_unreviewed_waiver (test_successor_proposals.ProposalPacketTests.test_ps_pilot_cannot_use_pre_cutoff_membership_or_unreviewed_waiver) (draft='draft_c04_fr_03')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 466, in test_ps_pilot_cannot_use_pre_cutoff_membership_or_unreviewed_waiver
+    self.assertFlags('E_WINDOW', doc, contains='membership')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 36, in assertFlags
+    self.assertTrue(hits, f'expected {code}{" containing " + contains if contains else ""}, got {errors}')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true : expected E_WINDOW containing membership, got []
+
+======================================================================
+FAIL: test_required_gate_cannot_have_empty_text (test_successor_proposals.ProposalPacketTests.test_required_gate_cannot_have_empty_text)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 444, in test_required_gate_cannot_have_empty_text
+    self.assertFlags('E_ROLE_GATE', doc)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 36, in assertFlags
+    self.assertTrue(hits, f'expected {code}{" containing " + contains if contains else ""}, got {errors}')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true : expected E_ROLE_GATE, got []
+
+======================================================================
+FAIL: test_role_specific_gates_cannot_be_replaced_by_vacancy_alone (test_successor_proposals.ProposalPacketTests.test_role_specific_gates_cannot_be_replaced_by_vacancy_alone) (role='fr_ps_first_secretary')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 439, in test_role_specific_gates_cannot_be_replaced_by_vacancy_alone
+    self.assertFlags('E_ROLE_GATE', doc)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 36, in assertFlags
+    self.assertTrue(hits, f'expected {code}{" containing " + contains if contains else ""}, got {errors}')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true : expected E_ROLE_GATE, got []
+
+======================================================================
+FAIL: test_role_specific_gates_cannot_be_replaced_by_vacancy_alone (test_successor_proposals.ProposalPacketTests.test_role_specific_gates_cannot_be_replaced_by_vacancy_alone) (role='fr_pcf_national_secretary')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 439, in test_role_specific_gates_cannot_be_replaced_by_vacancy_alone
+    self.assertFlags('E_ROLE_GATE', doc)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 36, in assertFlags
+    self.assertTrue(hits, f'expected {code}{" containing " + contains if contains else ""}, got {errors}')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true : expected E_ROLE_GATE, got []
+
+======================================================================
+FAIL: test_role_specific_gates_cannot_be_replaced_by_vacancy_alone (test_successor_proposals.ProposalPacketTests.test_role_specific_gates_cannot_be_replaced_by_vacancy_alone) (role='fr_president_contender')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 439, in test_role_specific_gates_cannot_be_replaced_by_vacancy_alone
+    self.assertFlags('E_ROLE_GATE', doc)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 36, in assertFlags
+    self.assertTrue(hits, f'expected {code}{" containing " + contains if contains else ""}, got {errors}')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true : expected E_ROLE_GATE, got []
+
+======================================================================
+FAIL: test_role_specific_gates_cannot_be_replaced_by_vacancy_alone (test_successor_proposals.ProposalPacketTests.test_role_specific_gates_cannot_be_replaced_by_vacancy_alone) (role='fr_national_assembly_deputy')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 439, in test_role_specific_gates_cannot_be_replaced_by_vacancy_alone
+    self.assertFlags('E_ROLE_GATE', doc)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 36, in assertFlags
+    self.assertTrue(hits, f'expected {code}{" containing " + contains if contains else ""}, got {errors}')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true : expected E_ROLE_GATE, got []
+
+======================================================================
+FAIL: test_role_specific_gates_cannot_be_replaced_by_vacancy_alone (test_successor_proposals.ProposalPacketTests.test_role_specific_gates_cannot_be_replaced_by_vacancy_alone) (role='to_peoples_representative')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 439, in test_role_specific_gates_cannot_be_replaced_by_vacancy_alone
+    self.assertFlags('E_ROLE_GATE', doc)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 36, in assertFlags
+    self.assertTrue(hits, f'expected {code}{" containing " + contains if contains else ""}, got {errors}')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true : expected E_ROLE_GATE, got []
+
+======================================================================
+FAIL: test_role_specific_gates_cannot_be_replaced_by_vacancy_alone (test_successor_proposals.ProposalPacketTests.test_role_specific_gates_cannot_be_replaced_by_vacancy_alone) (role='to_prime_minister_via_peoples_seat')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 439, in test_role_specific_gates_cannot_be_replaced_by_vacancy_alone
+    self.assertFlags('E_ROLE_GATE', doc)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 36, in assertFlags
+    self.assertTrue(hits, f'expected {code}{" containing " + contains if contains else ""}, got {errors}')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true : expected E_ROLE_GATE, got []
+
+======================================================================
+FAIL: test_role_specific_gates_cannot_be_replaced_by_vacancy_alone (test_successor_proposals.ProposalPacketTests.test_role_specific_gates_cannot_be_replaced_by_vacancy_alone) (role='to_nonelected_cabinet_minister')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 439, in test_role_specific_gates_cannot_be_replaced_by_vacancy_alone
+    self.assertFlags('E_ROLE_GATE', doc)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 36, in assertFlags
+    self.assertTrue(hits, f'expected {code}{" containing " + contains if contains else ""}, got {errors}')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true : expected E_ROLE_GATE, got []
+
+======================================================================
+FAIL: test_role_specific_gates_cannot_be_replaced_by_vacancy_alone (test_successor_proposals.ProposalPacketTests.test_role_specific_gates_cannot_be_replaced_by_vacancy_alone) (role='to_ptoa_party_leader')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 439, in test_role_specific_gates_cannot_be_replaced_by_vacancy_alone
+    self.assertFlags('E_ROLE_GATE', doc)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\c04-successor-review\tools\avatars\test_successor_proposals.py", line 36, in assertFlags
+    self.assertTrue(hits, f'expected {code}{" containing " + contains if contains else ""}, got {errors}')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true : expected E_ROLE_GATE, got []
+
+----------------------------------------------------------------------
+Ran 71 tests in 27.932s
+
+FAILED (failures=14)

@@ -1,0 +1,8 @@
+
+running 3 tests
+test resources::purchase_route_tests::purchase_route_memo_matches_actual_checkpoint_for_31_complete_days ... ignored, actual immutable 2015/2035 checkpoint fresh monthly route bools for31days; no timing claim
+test resources::purchase_route_tests::purchase_route_memo_is_local_and_later_waves_read_changed_access_and_policy ... ok
+test resources::purchase_route_tests::purchase_route_memo_matches_full_waves_signings_offers_refusals_and_cooldowns ... ok
+
+test result: ok. 2 passed; 0 failed; 1 ignored; 0 measured; 1108 filtered out; finished in 0.07s
+

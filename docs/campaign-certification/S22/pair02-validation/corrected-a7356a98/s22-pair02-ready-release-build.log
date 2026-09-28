@@ -1,0 +1,91 @@
+   Compiling spheres-web v0.6.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-web)
+warning: unused import: `path::PathBuf`
+ --> spheres-web\vendor\tiny_http\src\connection.rs:7:5
+  |
+7 |     path::PathBuf,
+  |     ^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `SequentialWriter`
+ --> spheres-web\vendor\tiny_http\src\util\mod.rs:7:28
+  |
+7 | pub use self::sequential::{SequentialWriter, SequentialWriterBuilder};
+  |                            ^^^^^^^^^^^^^^^^
+
+warning: trait `MustBeShareDummy` is never used
+   --> spheres-web\vendor\tiny_http\src\lib.rs:164:7
+    |
+164 | trait MustBeShareDummy: Sync + Send {}
+    |       ^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `tiny_http` (lib) generated 3 warnings (run `cargo fix --lib -p tiny_http` to apply 2 suggestions)
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+    Finished `release` profile [optimized] target(s) in 1m 39s
+  Executable unittests src\main.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_cli-5f49f29ff8ac500c.exe)
+  Executable unittests src\lib.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_sim-de8a2e7790f15db6.exe)
+  Executable tests\agency.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\agency-a3a8c9a157e8ccc4.exe)
+  Executable tests\ammunition_reserves.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\ammunition_reserves-3b21317465587fd0.exe)
+  Executable tests\aviation_ammunition.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\aviation_ammunition-60f253769cc7a907.exe)
+  Executable tests\bloc_census.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\bloc_census-b35be4d742aae476.exe)
+  Executable tests\campaign_aims.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\campaign_aims-2be19e47a88ff554.exe)
+  Executable tests\campaign_identity.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\campaign_identity-0966ffdf9a4be971.exe)
+  Executable tests\campaign_movement_audit.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\campaign_movement_audit-b4f77a617ddb3a6b.exe)
+  Executable tests\campaign_operations.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\campaign_operations-b8e5a9d3c1f42d71.exe)
+  Executable tests\campaign_peace.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\campaign_peace-173c85cd2d91706a.exe)
+  Executable tests\campaign_peace_audit.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\campaign_peace_audit-453b48c35ba3626f.exe)
+  Executable tests\campaign_population.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\campaign_population-55dc9aa0af33f98a.exe)
+  Executable tests\capital_damage_audit.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\capital_damage_audit-5a4f2806f5fd2509.exe)
+  Executable tests\companies_integration.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\companies_integration-b294d37d0a85b120.exe)
+  Executable tests\company_ammunition.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\company_ammunition-1bf48242777f9167.exe)
+  Executable tests\company_refits.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\company_refits-63b8194ed38c206a.exe)
+  Executable tests\daily.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\daily-928f866bbd1ec015.exe)
+  Executable tests\daily_balance.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\daily_balance-25927ce9b4edb6c4.exe)
+  Executable tests\economic_ai_supply.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\economic_ai_supply-a9527e9cd276d171.exe)
+  Executable tests\economic_competition.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\economic_competition-9a74937bbf658ef8.exe)
+  Executable tests\economic_sovereignty.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\economic_sovereignty-bcfdd3bb9f7d99b3.exe)
+  Executable tests\economic_sphere_intervention.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\economic_sphere_intervention-e2f04fc665d7a877.exe)
+  Executable tests\endowment_channel_probe.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\endowment_channel_probe-e27348ab24ae1963.exe)
+  Executable tests\endowment_margin_probe.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\endowment_margin_probe-488fbc7e5941f1ce.exe)
+  Executable tests\equipment_integration.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\equipment_integration-000a867ef2a8afc0.exe)
+  Executable tests\equipment_supply_automation.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\equipment_supply_automation-3c9e371ffd8bfaa5.exe)
+  Executable tests\ground_equipment_integration.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\ground_equipment_integration-c54337aa7a4381ac.exe)
+  Executable tests\growth_decomposition.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\growth_decomposition-28aebc30560859e1.exe)
+  Executable tests\industry_planning.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\industry_planning-af3421fc92732ad0.exe)
+  Executable tests\materials.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\materials-b069f1a00077503a.exe)
+  Executable tests\materials_accounting.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\materials_accounting-10d9daa8956f91cd.exe)
+  Executable tests\materials_ai_bootstrap.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\materials_ai_bootstrap-91eefffad94fb461.exe)
+  Executable tests\materials_ai_timing.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\materials_ai_timing-7bd75d32cbd8413a.exe)
+  Executable tests\materials_ai_warehouse.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\materials_ai_warehouse-5fde6aee6983f189.exe)
+  Executable tests\materials_planning.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\materials_planning-87bfa331f849c626.exe)
+  Executable tests\military_operations.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\military_operations-30db56be7c17a0dc.exe)
+  Executable tests\ministries.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\ministries-11cf09cc663b3986.exe)
+  Executable tests\research.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\research-290821f29a7ed850.exe)
+  Executable tests\research_centers.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\research_centers-265720260bb38e3d.exe)
+  Executable tests\s02_entitlements.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\s02_entitlements-f560c6e762c86022.exe)
+  Executable tests\s02_fiscal.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\s02_fiscal-6f8cc425dedc70c9.exe)
+  Executable tests\s02_industry.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\s02_industry-a9523e9a56a0f0e0.exe)
+  Executable tests\s02_integration.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\s02_integration-f4a3ea4c718394b0.exe)
+  Executable tests\s02_population.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\s02_population-291e33abbb7c36b5.exe)
+  Executable tests\s02_succession.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\s02_succession-38cec10ea73ae792.exe)
+  Executable tests\s03_integration.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\s03_integration-112960696656434a.exe)
+  Executable tests\s03_supplier_operations.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\s03_supplier_operations-55b159e94df0414a.exe)
+  Executable tests\s04_integration.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\s04_integration-8a825a18c3e02c46.exe)
+  Executable tests\s04_peace_boundaries.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\s04_peace_boundaries-f1dd253f304e7815.exe)
+  Executable tests\s05_master_fiscal.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\s05_master_fiscal-0e6ba7122416bd50.exe)
+  Executable tests\s06_money_journal.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\s06_money_journal-7f3b2e72085e9b56.exe)
+  Executable tests\s07_construction_operations.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\s07_construction_operations-aace449c529ecf98.exe)
+  Executable tests\s08_supplier_catalogue.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\s08_supplier_catalogue-13c4e9c062328d0f.exe)
+  Executable tests\s08_supplier_lifecycle.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\s08_supplier_lifecycle-7dac88676a2dc052.exe)
+  Executable tests\sample_size_audit.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\sample_size_audit-d292f348eb8d20d4.exe)
+  Executable tests\sector_profiles.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\sector_profiles-366adc4735173778.exe)
+  Executable tests\small_country_modules.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\small_country_modules-253d11de2bf01184.exe)
+  Executable tests\starting_industry.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\starting_industry-d4ea265ce4461bca.exe)
+  Executable tests\starting_industry_planning.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\starting_industry_planning-bef8a055eb400e0b.exe)
+  Executable tests\starting_industry_priority.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\starting_industry_priority-0db4f80fa1587b37.exe)
+  Executable tests\strategic_raw_supply.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\strategic_raw_supply-4ff13bf138af2e37.exe)
+  Executable tests\treasury.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\treasury-99e44355339c4fd9.exe)
+  Executable unittests src\main.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_web-55caf82b2dcec446.exe)
+  Executable tests\http_connections.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\http_connections-8051dd677c5ff060.exe)

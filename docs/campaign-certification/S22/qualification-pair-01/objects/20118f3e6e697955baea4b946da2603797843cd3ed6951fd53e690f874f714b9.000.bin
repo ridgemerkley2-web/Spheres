@@ -1,0 +1,23 @@
+{
+  "candidate_revision": "d50f7ee1a3440b00c8968b530e8e8b45aa0899fd",
+  "captured_utc": "2026-09-28T09:43:50.5508751Z",
+  "binaries": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-d50f7ee1\\sim-tests.exe",
+      "bytes": 50236587,
+      "sha256": "3ac557cf1111764fe99e69bea01476af7360f5499cb104b65e1442bd43a72470"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-d50f7ee1\\native-tests.exe",
+      "bytes": 352824621,
+      "sha256": "7ebfec4991c40e3a3a15211f6766760da180fa5bf4687d0d8d2c3898c40a77c2"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-d50f7ee1\\spheres-web.exe",
+      "bytes": 358577739,
+      "sha256": "baac797e3f018f16aae9fa4f9eae3754fdf6fdd43983caf02602ca225d7db910"
+    }
+  ],
+  "qualification": false,
+  "scope": "Immutable successfully compiled candidate, no test or speed claim."
+}

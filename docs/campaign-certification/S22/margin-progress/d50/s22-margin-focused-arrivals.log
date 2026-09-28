@@ -1,0 +1,8 @@
+
+running 3 tests
+test logistics::arrival_payload_tests::arrival_payload_raw_purchase_and_ordinary_posting_match_original_credits ... ok
+test logistics::arrival_payload_tests::arrival_payload_reuse_matches_actual_checkpoint_for_31_complete_days ... ignored, actual immutable 2015/2035 checkpoint 31-day full freight payload oracle; no timing claim
+test logistics::arrival_payload_tests::arrival_payload_callbacks_preserve_public_results_order_and_all_guard_paths ... ok
+
+test result: ok. 2 passed; 0 failed; 1 ignored; 0 measured; 1095 filtered out; finished in 0.27s
+

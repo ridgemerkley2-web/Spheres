@@ -1,0 +1,25 @@
+{
+  "candidate_revision": "9823b070efea06a4f6e63e955d8ae23445108054",
+  "captured_utc": "2026-09-28T07:24:28.4513987Z",
+  "regression": {
+    "ignored": 96,
+    "suites": 66,
+    "passed": 1922,
+    "failed": 0
+  },
+  "files": [
+    {
+      "name": "native-tests.exe",
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+      "copied": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-9823b070\\native-tests.exe",
+      "sha256": "7b4039626cfe75fa151b7f46a28053bb9f90e2a2b648d8ae5ad0bcdefe0ada07"
+    },
+    {
+      "name": "spheres-web.exe",
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\spheres-web.exe",
+      "copied": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-9823b070\\spheres-web.exe",
+      "sha256": "4f785b29e2565edbf85df38714328f35cbe38f86ea2125d9ad2b2a31112ad0d6"
+    }
+  ],
+  "scope": "Immutable runtime copies after the complete release workspace regression. Native dated runs below are isolated preflights, not qualification."
+}

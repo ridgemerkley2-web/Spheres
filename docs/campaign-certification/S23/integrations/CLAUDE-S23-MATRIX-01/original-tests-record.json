@@ -1,0 +1,26 @@
+{
+  "source_commit": "cd9d50669ba4a842375163723ac60ff723e22868",
+  "source_files_equal_submission": true,
+  "command": [
+    "py",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/avatars",
+    "-p",
+    "test_certified_boundary_matrix.py",
+    "-v"
+  ],
+  "cwd": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s22-economic-ranking",
+  "exit_code": 0,
+  "tests_passed": 23,
+  "log_source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s23-matrix-original-tests.log",
+  "log": {
+    "bytes": 4107,
+    "sha256": "0a8d61ea1b5985b1eb828f57a8eeb619c7c9b1d6a55dd23617dc95eb6f07e30f"
+  },
+  "scope": "Retrospective record of the original command observed before edits; log bytes preserved. Exact start/end times and executable identity were not separately captured for this initial run. Final validation independently pins its interpreter and commands."
+}

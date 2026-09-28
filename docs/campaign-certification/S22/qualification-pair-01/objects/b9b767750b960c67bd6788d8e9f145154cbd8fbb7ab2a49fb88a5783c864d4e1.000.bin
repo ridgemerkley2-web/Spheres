@@ -1,0 +1,5570 @@
+{
+  "certified_profile_required": true,
+  "checkpoints": [
+    {
+      "bytes": 130222370,
+      "facts": {
+        "absolute_day": 9131,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "31 Dec 2014",
+          "last_snapshot": "1 Jan 2015",
+          "lifespan_milestones": 5
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 156,
+          "economic_reviews": 31087,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 156,
+          "military_reviews": 29150,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          2015,
+          1,
+          1
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "1 Jan 2015",
+        "dispatches": 21975,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 27,
+          "executive_bindings": 2,
+          "government_performance_records": 158,
+          "government_records": 158,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 155,
+          "party_leadership_assignments": 622,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 35.54010580167061,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 876,
+          "world_assigned_aircraft": 40,
+          "world_military_strength": 1807.0634581712484,
+          "world_squadrons": 32
+        },
+        "history_epoch": 264,
+        "history_points": 1311,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 882.132995801,
+          "contractor_assignments": 828,
+          "contractor_roster": 1145,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 125,
+          "operational_supply_receipt_day": 9130,
+          "operational_transfers": 5349,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 751920,
+          "supplier_development": 2,
+          "supplier_equipment_stock": 0,
+          "supplier_equipment_wip": 5,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 9130,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 5,
+          "suppliers": 6
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 9130,
+          "capacity_daily": 0.11346019759736226,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 24.627239689692814,
+          "inherited_used_daily": 24.627239689692814,
+          "required_daily": 0.0
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 0,
+        "world_fnv64": "ab5b305e7fb2454f"
+      },
+      "file_fnv64": "c5d3b0cfa4143e19",
+      "receipt": {
+        "date": "1 Jan 2015",
+        "dispatches": 21975,
+        "history_points": 1311,
+        "ok": true,
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-resume-input.json",
+        "slot": "s22-resume-input"
+      }
+    },
+    {
+      "bytes": 130989239,
+      "facts": {
+        "absolute_day": 9496,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "31 Dec 2015",
+          "last_snapshot": "1 Jan 2016",
+          "lifespan_milestones": 5
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 156,
+          "economic_reviews": 33102,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 156,
+          "military_reviews": 31035,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          2016,
+          1,
+          1
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "1 Jan 2016",
+        "dispatches": 23111,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 30,
+          "executive_bindings": 2,
+          "government_performance_records": 158,
+          "government_records": 158,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 155,
+          "party_leadership_assignments": 622,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 35.73772134502243,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 882,
+          "world_assigned_aircraft": 46,
+          "world_military_strength": 1858.917986126902,
+          "world_squadrons": 36
+        },
+        "history_epoch": 276,
+        "history_points": 1311,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 1019.71489933,
+          "contractor_assignments": 841,
+          "contractor_roster": 1158,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 125,
+          "operational_supply_receipt_day": 9495,
+          "operational_transfers": 5349,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 743640,
+          "supplier_development": 2,
+          "supplier_equipment_stock": 0,
+          "supplier_equipment_wip": 6,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 9495,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 5,
+          "suppliers": 6
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 9495,
+          "capacity_daily": 0.11346019759736226,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 24.608014939436398,
+          "inherited_used_daily": 24.608014939436398,
+          "required_daily": 0.0
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 0,
+        "world_fnv64": "cf29808a67f68f1e"
+      },
+      "file_fnv64": "0f2228106e6bc784",
+      "receipt": {
+        "date": "1 Jan 2016",
+        "dispatches": 23111,
+        "history_points": 1311,
+        "ok": true,
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2016-01-01.json",
+        "slot": "s22-2016-01-01"
+      }
+    },
+    {
+      "bytes": 129994022,
+      "facts": {
+        "absolute_day": 9862,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "31 Dec 2016",
+          "last_snapshot": "1 Jan 2017",
+          "lifespan_milestones": 5
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 156,
+          "economic_reviews": 35117,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 156,
+          "military_reviews": 32930,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          2017,
+          1,
+          1
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "1 Jan 2017",
+        "dispatches": 24049,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 34,
+          "executive_bindings": 2,
+          "government_performance_records": 158,
+          "government_records": 158,
+          "operational_orders": 5,
+          "operational_reports": 6,
+          "operational_reserves": 155,
+          "party_leadership_assignments": 622,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 35.92688584511447,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 887,
+          "world_assigned_aircraft": 53,
+          "world_military_strength": 1910.9700133618403,
+          "world_squadrons": 40
+        },
+        "history_epoch": 288,
+        "history_points": 1313,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 1172.109769726,
+          "contractor_assignments": 848,
+          "contractor_roster": 1166,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 125,
+          "operational_supply_receipt_day": 9861,
+          "operational_transfers": 5349,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 743190,
+          "supplier_development": 2,
+          "supplier_equipment_stock": 0,
+          "supplier_equipment_wip": 6,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 9861,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 5,
+          "suppliers": 6
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 9861,
+          "capacity_daily": 0.11346019759736226,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 24.71952473330639,
+          "inherited_used_daily": 24.71952473330639,
+          "required_daily": 0.0
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 0,
+        "world_fnv64": "2eaf7b4975546800"
+      },
+      "file_fnv64": "b171e5cea0b326f8",
+      "receipt": {
+        "date": "1 Jan 2017",
+        "dispatches": 24049,
+        "history_points": 1313,
+        "ok": true,
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2017-01-01.json",
+        "slot": "s22-2017-01-01"
+      }
+    },
+    {
+      "bytes": 131296563,
+      "facts": {
+        "absolute_day": 10227,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "31 Dec 2017",
+          "last_snapshot": "1 Jan 2018",
+          "lifespan_milestones": 5
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 156,
+          "economic_reviews": 37132,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 156,
+          "military_reviews": 34815,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          2018,
+          1,
+          1
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "1 Jan 2018",
+        "dispatches": 24790,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 38,
+          "executive_bindings": 2,
+          "government_performance_records": 158,
+          "government_records": 158,
+          "operational_orders": 5,
+          "operational_reports": 6,
+          "operational_reserves": 155,
+          "party_leadership_assignments": 622,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 36.03212820080648,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 891,
+          "world_assigned_aircraft": 59,
+          "world_military_strength": 1963.873284128049,
+          "world_squadrons": 44
+        },
+        "history_epoch": 300,
+        "history_points": 1314,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 1276.100653716,
+          "contractor_assignments": 857,
+          "contractor_roster": 1177,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 125,
+          "operational_supply_receipt_day": 10226,
+          "operational_transfers": 5349,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 742716,
+          "supplier_development": 2,
+          "supplier_equipment_stock": 0,
+          "supplier_equipment_wip": 6,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 10226,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 5,
+          "suppliers": 6
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 10226,
+          "capacity_daily": 0.11346019759736226,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 24.829194869523,
+          "inherited_used_daily": 24.829194869523,
+          "required_daily": 0.0
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 0,
+        "world_fnv64": "1a4624265881fc61"
+      },
+      "file_fnv64": "8ed314c9e83d85bc",
+      "receipt": {
+        "date": "1 Jan 2018",
+        "dispatches": 24790,
+        "history_points": 1314,
+        "ok": true,
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2018-01-01.json",
+        "slot": "s22-2018-01-01"
+      }
+    },
+    {
+      "bytes": 132887138,
+      "facts": {
+        "absolute_day": 10592,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "31 Dec 2018",
+          "last_snapshot": "1 Jan 2019",
+          "lifespan_milestones": 5
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 156,
+          "economic_reviews": 39147,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 156,
+          "military_reviews": 36696,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          2019,
+          1,
+          1
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "1 Jan 2019",
+        "dispatches": 25556,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 39,
+          "executive_bindings": 2,
+          "government_performance_records": 158,
+          "government_records": 158,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 155,
+          "party_leadership_assignments": 622,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 36.00555523763325,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 895,
+          "world_assigned_aircraft": 65,
+          "world_military_strength": 2015.0326969747493,
+          "world_squadrons": 47
+        },
+        "history_epoch": 312,
+        "history_points": 1315,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 1334.87384583,
+          "contractor_assignments": 863,
+          "contractor_roster": 1186,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 125,
+          "operational_supply_receipt_day": 10591,
+          "operational_transfers": 5221,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 738266,
+          "supplier_development": 2,
+          "supplier_equipment_stock": 0,
+          "supplier_equipment_wip": 6,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 10591,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 5,
+          "suppliers": 6
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 10591,
+          "capacity_daily": 0.11346019759736226,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 24.876263424607437,
+          "inherited_used_daily": 24.876263424607437,
+          "required_daily": 0.0
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 0,
+        "world_fnv64": "84716ceb4e99f90d"
+      },
+      "file_fnv64": "918510854f74dfc7",
+      "receipt": {
+        "date": "1 Jan 2019",
+        "dispatches": 25556,
+        "history_points": 1315,
+        "ok": true,
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2019-01-01.json",
+        "slot": "s22-2019-01-01"
+      }
+    },
+    {
+      "bytes": 131316226,
+      "facts": {
+        "absolute_day": 10957,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "31 Dec 2019",
+          "last_snapshot": "1 Jan 2020",
+          "lifespan_milestones": 5
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 156,
+          "economic_reviews": 41162,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 156,
+          "military_reviews": 38583,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          2020,
+          1,
+          1
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "1 Jan 2020",
+        "dispatches": 26298,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 42,
+          "executive_bindings": 2,
+          "government_performance_records": 158,
+          "government_records": 158,
+          "operational_orders": 5,
+          "operational_reports": 6,
+          "operational_reserves": 155,
+          "party_leadership_assignments": 622,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 35.90079162483379,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 904,
+          "world_assigned_aircraft": 75,
+          "world_military_strength": 2065.8286442236863,
+          "world_squadrons": 55
+        },
+        "history_epoch": 324,
+        "history_points": 1315,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 1352.3266219329998,
+          "contractor_assignments": 864,
+          "contractor_roster": 1191,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 125,
+          "operational_supply_receipt_day": 10956,
+          "operational_transfers": 5221,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 725792,
+          "supplier_development": 2,
+          "supplier_equipment_stock": 0,
+          "supplier_equipment_wip": 4,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 10956,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 5,
+          "suppliers": 6
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 10956,
+          "capacity_daily": 0.11346019759736226,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 24.91240578044646,
+          "inherited_used_daily": 24.91240578044646,
+          "required_daily": 0.0
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 0,
+        "world_fnv64": "99a7527d6ce955ed"
+      },
+      "file_fnv64": "0f8a98368a26497c",
+      "receipt": {
+        "date": "1 Jan 2020",
+        "dispatches": 26298,
+        "history_points": 1315,
+        "ok": true,
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2020-01-01.json",
+        "slot": "s22-2020-01-01"
+      }
+    },
+    {
+      "bytes": 131129069,
+      "facts": {
+        "absolute_day": 11323,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "31 Dec 2020",
+          "last_snapshot": "1 Jan 2021",
+          "lifespan_milestones": 5
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 156,
+          "economic_reviews": 43177,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 156,
+          "military_reviews": 40475,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          2021,
+          1,
+          1
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "1 Jan 2021",
+        "dispatches": 27059,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 45,
+          "executive_bindings": 2,
+          "government_performance_records": 158,
+          "government_records": 158,
+          "operational_orders": 5,
+          "operational_reports": 6,
+          "operational_reserves": 155,
+          "party_leadership_assignments": 622,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 35.75719149521316,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 907,
+          "world_assigned_aircraft": 84,
+          "world_military_strength": 2114.802601934248,
+          "world_squadrons": 57
+        },
+        "history_epoch": 336,
+        "history_points": 1317,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 1362.155786522,
+          "contractor_assignments": 875,
+          "contractor_roster": 1200,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 125,
+          "operational_supply_receipt_day": 11322,
+          "operational_transfers": 5221,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 713552,
+          "supplier_development": 2,
+          "supplier_equipment_stock": 0,
+          "supplier_equipment_wip": 5,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 11322,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 5,
+          "suppliers": 6
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 11322,
+          "capacity_daily": 0.11346019759736226,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 24.939480194947674,
+          "inherited_used_daily": 24.939480194947674,
+          "required_daily": 0.0
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 0,
+        "world_fnv64": "36c6b384be4e0f4f"
+      },
+      "file_fnv64": "7217636aac9aa68a",
+      "receipt": {
+        "date": "1 Jan 2021",
+        "dispatches": 27059,
+        "history_points": 1317,
+        "ok": true,
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2021-01-01.json",
+        "slot": "s22-2021-01-01"
+      }
+    },
+    {
+      "bytes": 132936438,
+      "facts": {
+        "absolute_day": 11688,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "31 Dec 2021",
+          "last_snapshot": "1 Jan 2022",
+          "lifespan_milestones": 5
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 156,
+          "economic_reviews": 45192,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 156,
+          "military_reviews": 42361,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          2022,
+          1,
+          1
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "1 Jan 2022",
+        "dispatches": 27798,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 50,
+          "executive_bindings": 2,
+          "government_performance_records": 158,
+          "government_records": 158,
+          "operational_orders": 5,
+          "operational_reports": 6,
+          "operational_reserves": 155,
+          "party_leadership_assignments": 622,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 35.62010292136948,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 913,
+          "world_assigned_aircraft": 93,
+          "world_military_strength": 2164.0047257740744,
+          "world_squadrons": 62
+        },
+        "history_epoch": 348,
+        "history_points": 1318,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 1374.243456388,
+          "contractor_assignments": 878,
+          "contractor_roster": 1204,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 125,
+          "operational_supply_receipt_day": 11687,
+          "operational_transfers": 5250,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 701528,
+          "supplier_development": 2,
+          "supplier_equipment_stock": 0,
+          "supplier_equipment_wip": 6,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 11687,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 5,
+          "suppliers": 6
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 11687,
+          "capacity_daily": 0.11346019759736226,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 24.969344644347437,
+          "inherited_used_daily": 24.969344644347437,
+          "required_daily": 0.0
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 0,
+        "world_fnv64": "ac2ca152b18f1177"
+      },
+      "file_fnv64": "fb92e75f3e2862cb",
+      "receipt": {
+        "date": "1 Jan 2022",
+        "dispatches": 27798,
+        "history_points": 1318,
+        "ok": true,
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2022-01-01.json",
+        "slot": "s22-2022-01-01"
+      }
+    },
+    {
+      "bytes": 134198872,
+      "facts": {
+        "absolute_day": 12053,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "31 Dec 2022",
+          "last_snapshot": "1 Jan 2023",
+          "lifespan_milestones": 5
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 156,
+          "economic_reviews": 47207,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 156,
+          "military_reviews": 44251,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          2023,
+          1,
+          1
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "1 Jan 2023",
+        "dispatches": 28547,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 52,
+          "executive_bindings": 2,
+          "government_performance_records": 158,
+          "government_records": 158,
+          "operational_orders": 5,
+          "operational_reports": 6,
+          "operational_reserves": 155,
+          "party_leadership_assignments": 622,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 35.61440895265665,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 915,
+          "world_assigned_aircraft": 102,
+          "world_military_strength": 2220.508151325422,
+          "world_squadrons": 64
+        },
+        "history_epoch": 360,
+        "history_points": 1319,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 1385.350475841,
+          "contractor_assignments": 884,
+          "contractor_roster": 1211,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 125,
+          "operational_supply_receipt_day": 12052,
+          "operational_transfers": 5221,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 689552,
+          "supplier_development": 2,
+          "supplier_equipment_stock": 0,
+          "supplier_equipment_wip": 6,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 12052,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 5,
+          "suppliers": 6
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 12052,
+          "capacity_daily": 0.11346019759736226,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 25.018849903093972,
+          "inherited_used_daily": 25.018849903093972,
+          "required_daily": 0.0
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 0,
+        "world_fnv64": "3487f5026ad65ab6"
+      },
+      "file_fnv64": "ca30fdd31708a235",
+      "receipt": {
+        "date": "1 Jan 2023",
+        "dispatches": 28547,
+        "history_points": 1319,
+        "ok": true,
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2023-01-01.json",
+        "slot": "s22-2023-01-01"
+      }
+    },
+    {
+      "bytes": 135300158,
+      "facts": {
+        "absolute_day": 12418,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "31 Dec 2023",
+          "last_snapshot": "1 Jan 2024",
+          "lifespan_milestones": 5
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 156,
+          "economic_reviews": 49222,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 156,
+          "military_reviews": 46134,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          2024,
+          1,
+          1
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "1 Jan 2024",
+        "dispatches": 29288,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 56,
+          "executive_bindings": 2,
+          "government_performance_records": 158,
+          "government_records": 158,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 155,
+          "party_leadership_assignments": 622,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 35.48687996043428,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 921,
+          "world_assigned_aircraft": 111,
+          "world_military_strength": 2276.4845031280765,
+          "world_squadrons": 70
+        },
+        "history_epoch": 372,
+        "history_points": 1319,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 1396.348355826,
+          "contractor_assignments": 889,
+          "contractor_roster": 1218,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 125,
+          "operational_supply_receipt_day": 12417,
+          "operational_transfers": 5221,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 677552,
+          "supplier_development": 1,
+          "supplier_equipment_stock": 0,
+          "supplier_equipment_wip": 6,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 12417,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 5,
+          "suppliers": 6
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 12417,
+          "capacity_daily": 0.11346019759736226,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 25.07384843922122,
+          "inherited_used_daily": 25.07384843922122,
+          "required_daily": 0.0
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 0,
+        "world_fnv64": "903d9b5262a785f3"
+      },
+      "file_fnv64": "78524e3cc6b6de87",
+      "receipt": {
+        "date": "1 Jan 2024",
+        "dispatches": 29288,
+        "history_points": 1319,
+        "ok": true,
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2024-01-01.json",
+        "slot": "s22-2024-01-01"
+      }
+    },
+    {
+      "bytes": 139451059,
+      "facts": {
+        "absolute_day": 12784,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "31 Dec 2024",
+          "last_snapshot": "1 Jan 2025",
+          "lifespan_milestones": 5
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 156,
+          "economic_reviews": 51237,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 156,
+          "military_reviews": 48023,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          2025,
+          1,
+          1
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "1 Jan 2025",
+        "dispatches": 30006,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 57,
+          "executive_bindings": 2,
+          "government_performance_records": 158,
+          "government_records": 158,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 155,
+          "party_leadership_assignments": 622,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 35.633625580654545,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 926,
+          "world_assigned_aircraft": 120,
+          "world_military_strength": 2335.5391808870527,
+          "world_squadrons": 72
+        },
+        "history_epoch": 384,
+        "history_points": 1321,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 1407.376449766,
+          "contractor_assignments": 899,
+          "contractor_roster": 1219,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 125,
+          "operational_supply_receipt_day": 12783,
+          "operational_transfers": 5349,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 667442,
+          "supplier_development": 1,
+          "supplier_equipment_stock": 0,
+          "supplier_equipment_wip": 6,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 12783,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 5,
+          "suppliers": 6
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 12783,
+          "capacity_daily": 0.11346019759736226,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 25.13200430322542,
+          "inherited_used_daily": 25.13200430322542,
+          "required_daily": 0.0
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 0,
+        "world_fnv64": "a25251504bc96cf5"
+      },
+      "file_fnv64": "87e4306c87e286ee",
+      "receipt": {
+        "date": "1 Jan 2025",
+        "dispatches": 30006,
+        "history_points": 1321,
+        "ok": true,
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2025-01-01.json",
+        "slot": "s22-2025-01-01"
+      }
+    },
+    {
+      "bytes": 136688645,
+      "facts": {
+        "absolute_day": 13149,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "31 Dec 2025",
+          "last_snapshot": "1 Jan 2026",
+          "lifespan_milestones": 5
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 156,
+          "economic_reviews": 53252,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 156,
+          "military_reviews": 49910,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          2026,
+          1,
+          1
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "1 Jan 2026",
+        "dispatches": 30746,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 59,
+          "executive_bindings": 2,
+          "government_performance_records": 158,
+          "government_records": 158,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 155,
+          "party_leadership_assignments": 622,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 35.69914369910865,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 933,
+          "world_assigned_aircraft": 129,
+          "world_military_strength": 2388.8090402099583,
+          "world_squadrons": 76
+        },
+        "history_epoch": 396,
+        "history_points": 1322,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 1418.37432975,
+          "contractor_assignments": 903,
+          "contractor_roster": 1225,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 125,
+          "operational_supply_receipt_day": 13148,
+          "operational_transfers": 5349,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 655358,
+          "supplier_development": 1,
+          "supplier_equipment_stock": 0,
+          "supplier_equipment_wip": 6,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 13148,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 5,
+          "suppliers": 6
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 13148,
+          "capacity_daily": 0.11346019759736226,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 25.196680022124532,
+          "inherited_used_daily": 25.196680022124532,
+          "required_daily": 0.0
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 0,
+        "world_fnv64": "72e0f0f623ef514d"
+      },
+      "file_fnv64": "84d2c28ece33a13d",
+      "receipt": {
+        "date": "1 Jan 2026",
+        "dispatches": 30746,
+        "history_points": 1322,
+        "ok": true,
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2026-01-01.json",
+        "slot": "s22-2026-01-01"
+      }
+    },
+    {
+      "bytes": 137910917,
+      "facts": {
+        "absolute_day": 13514,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "31 Dec 2026",
+          "last_snapshot": "1 Jan 2027",
+          "lifespan_milestones": 5
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 156,
+          "economic_reviews": 55267,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 156,
+          "military_reviews": 51795,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          2027,
+          1,
+          1
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "1 Jan 2027",
+        "dispatches": 31485,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 63,
+          "executive_bindings": 6,
+          "government_performance_records": 158,
+          "government_records": 158,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 155,
+          "party_leadership_assignments": 622,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 35.76506673177784,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 944,
+          "world_assigned_aircraft": 138,
+          "world_military_strength": 2439.8764090988425,
+          "world_squadrons": 81
+        },
+        "history_epoch": 408,
+        "history_points": 1323,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 1429.3722097339999,
+          "contractor_assignments": 905,
+          "contractor_roster": 1230,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 125,
+          "operational_supply_receipt_day": 13513,
+          "operational_transfers": 5337,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 639328,
+          "supplier_development": 1,
+          "supplier_equipment_stock": 0,
+          "supplier_equipment_wip": 6,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 13513,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 5,
+          "suppliers": 6
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 13513,
+          "capacity_daily": 0.11346019759736226,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 25.25479096932916,
+          "inherited_used_daily": 25.25479096932916,
+          "required_daily": 0.0
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 0,
+        "world_fnv64": "80c38c589e787b0a"
+      },
+      "file_fnv64": "8e3978e8e7803f34",
+      "receipt": {
+        "date": "1 Jan 2027",
+        "dispatches": 31485,
+        "history_points": 1323,
+        "ok": true,
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2027-01-01.json",
+        "slot": "s22-2027-01-01"
+      }
+    },
+    {
+      "bytes": 138944762,
+      "facts": {
+        "absolute_day": 13879,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "31 Dec 2027",
+          "last_snapshot": "1 Jan 2028",
+          "lifespan_milestones": 5
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 156,
+          "economic_reviews": 57282,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 156,
+          "military_reviews": 53682,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          2028,
+          1,
+          1
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "1 Jan 2028",
+        "dispatches": 32203,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 66,
+          "executive_bindings": 11,
+          "government_performance_records": 158,
+          "government_records": 158,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 155,
+          "party_leadership_assignments": 622,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 35.686119511393784,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 952,
+          "world_assigned_aircraft": 146,
+          "world_military_strength": 2496.4340844606286,
+          "world_squadrons": 85
+        },
+        "history_epoch": 420,
+        "history_points": 1323,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 1440.370089717,
+          "contractor_assignments": 912,
+          "contractor_roster": 1232,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 125,
+          "operational_supply_receipt_day": 13878,
+          "operational_transfers": 5221,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 627352,
+          "supplier_development": 2,
+          "supplier_equipment_stock": 0,
+          "supplier_equipment_wip": 5,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 13878,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 5,
+          "suppliers": 6
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 13878,
+          "capacity_daily": 0.11346019759736226,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 25.327357395220528,
+          "inherited_used_daily": 25.327357395220528,
+          "required_daily": 0.0
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 0,
+        "world_fnv64": "0c0dd379d6923422"
+      },
+      "file_fnv64": "a88ee235f40a7137",
+      "receipt": {
+        "date": "1 Jan 2028",
+        "dispatches": 32203,
+        "history_points": 1323,
+        "ok": true,
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2028-01-01.json",
+        "slot": "s22-2028-01-01"
+      }
+    },
+    {
+      "bytes": 139958678,
+      "facts": {
+        "absolute_day": 14245,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "31 Dec 2028",
+          "last_snapshot": "1 Jan 2029",
+          "lifespan_milestones": 5
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 156,
+          "economic_reviews": 59297,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 156,
+          "military_reviews": 55575,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          2029,
+          1,
+          1
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "1 Jan 2029",
+        "dispatches": 32929,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 69,
+          "executive_bindings": 15,
+          "government_performance_records": 158,
+          "government_records": 158,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 155,
+          "party_leadership_assignments": 622,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 35.591875806968694,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 957,
+          "world_assigned_aircraft": 155,
+          "world_military_strength": 2546.942081408191,
+          "world_squadrons": 90
+        },
+        "history_epoch": 432,
+        "history_points": 1325,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 1445.983787984,
+          "contractor_assignments": 916,
+          "contractor_roster": 1237,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 125,
+          "operational_supply_receipt_day": 14244,
+          "operational_transfers": 5221,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 615328,
+          "supplier_development": 2,
+          "supplier_equipment_stock": 0,
+          "supplier_equipment_wip": 5,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 14244,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 5,
+          "suppliers": 6
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 14244,
+          "capacity_daily": 0.11346019759736226,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 25.46058602058488,
+          "inherited_used_daily": 25.46058602058488,
+          "required_daily": 0.0
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 0,
+        "world_fnv64": "4887559fabf614e0"
+      },
+      "file_fnv64": "fe0681dc189e5671",
+      "receipt": {
+        "date": "1 Jan 2029",
+        "dispatches": 32929,
+        "history_points": 1325,
+        "ok": true,
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2029-01-01.json",
+        "slot": "s22-2029-01-01"
+      }
+    },
+    {
+      "bytes": 140928992,
+      "facts": {
+        "absolute_day": 14610,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "31 Dec 2029",
+          "last_snapshot": "1 Jan 2030",
+          "lifespan_milestones": 5
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 156,
+          "economic_reviews": 61312,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 156,
+          "military_reviews": 57457,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          2030,
+          1,
+          1
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "1 Jan 2030",
+        "dispatches": 33642,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 70,
+          "executive_bindings": 16,
+          "government_performance_records": 158,
+          "government_records": 158,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 155,
+          "party_leadership_assignments": 622,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 35.40093578372199,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 961,
+          "world_assigned_aircraft": 163,
+          "world_military_strength": 2594.9788831534656,
+          "world_squadrons": 93
+        },
+        "history_epoch": 444,
+        "history_points": 1326,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 1445.983787984,
+          "contractor_assignments": 915,
+          "contractor_roster": 1240,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 125,
+          "operational_supply_receipt_day": 14609,
+          "operational_transfers": 5221,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 603352,
+          "supplier_development": 2,
+          "supplier_equipment_stock": 0,
+          "supplier_equipment_wip": 5,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 14609,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 5,
+          "suppliers": 6
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 14609,
+          "capacity_daily": 0.11346019759736226,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 25.594321700242393,
+          "inherited_used_daily": 25.594321700242393,
+          "required_daily": 0.0
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 0,
+        "world_fnv64": "60fb5fa48c66bb1c"
+      },
+      "file_fnv64": "c0a4f5ef0cfc5c75",
+      "receipt": {
+        "date": "1 Jan 2030",
+        "dispatches": 33642,
+        "history_points": 1326,
+        "ok": true,
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2030-01-01.json",
+        "slot": "s22-2030-01-01"
+      }
+    },
+    {
+      "bytes": 146814744,
+      "facts": {
+        "absolute_day": 14975,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "31 Dec 2030",
+          "last_snapshot": "1 Jan 2031",
+          "lifespan_milestones": 5
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 156,
+          "economic_reviews": 63327,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 156,
+          "military_reviews": 59343,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          2031,
+          1,
+          1
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "1 Jan 2031",
+        "dispatches": 34364,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 76,
+          "executive_bindings": 21,
+          "government_performance_records": 158,
+          "government_records": 158,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 155,
+          "party_leadership_assignments": 622,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 35.826259794662825,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 973,
+          "world_assigned_aircraft": 172,
+          "world_military_strength": 2682.1263255873296,
+          "world_squadrons": 101
+        },
+        "history_epoch": 456,
+        "history_points": 1327,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 1445.983787984,
+          "contractor_assignments": 919,
+          "contractor_roster": 1241,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 125,
+          "operational_supply_receipt_day": 14974,
+          "operational_transfers": 5349,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 592181,
+          "supplier_development": 1,
+          "supplier_equipment_stock": 0,
+          "supplier_equipment_wip": 5,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 14974,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 5,
+          "suppliers": 6
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 14974,
+          "capacity_daily": 0.11346019759736226,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 25.73001604860723,
+          "inherited_used_daily": 25.73001604860723,
+          "required_daily": 0.0
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 0,
+        "world_fnv64": "bd45bb801dfc1ad0"
+      },
+      "file_fnv64": "65472de0e01c4849",
+      "receipt": {
+        "date": "1 Jan 2031",
+        "dispatches": 34364,
+        "history_points": 1327,
+        "ok": true,
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2031-01-01.json",
+        "slot": "s22-2031-01-01"
+      }
+    },
+    {
+      "bytes": 152149012,
+      "facts": {
+        "absolute_day": 15340,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "31 Dec 2031",
+          "last_snapshot": "1 Jan 2032",
+          "lifespan_milestones": 5
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 156,
+          "economic_reviews": 65342,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 156,
+          "military_reviews": 61230,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          2032,
+          1,
+          1
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "1 Jan 2032",
+        "dispatches": 35070,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 77,
+          "executive_bindings": 22,
+          "government_performance_records": 158,
+          "government_records": 158,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 155,
+          "party_leadership_assignments": 622,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 36.43042602558988,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 981,
+          "world_assigned_aircraft": 178,
+          "world_military_strength": 2794.030460890049,
+          "world_squadrons": 103
+        },
+        "history_epoch": 468,
+        "history_points": 1327,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 1445.983787985,
+          "contractor_assignments": 920,
+          "contractor_roster": 1245,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 125,
+          "operational_supply_receipt_day": 15339,
+          "operational_transfers": 5349,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 579400,
+          "supplier_development": 1,
+          "supplier_equipment_stock": 0,
+          "supplier_equipment_wip": 5,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 15339,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 4,
+          "suppliers": 6
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 15339,
+          "capacity_daily": 0.11346019759736226,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 25.86823579657161,
+          "inherited_used_daily": 25.86823579657161,
+          "required_daily": 0.0
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 0,
+        "world_fnv64": "9e598bec16b0b829"
+      },
+      "file_fnv64": "5a77c3db43e181df",
+      "receipt": {
+        "date": "1 Jan 2032",
+        "dispatches": 35070,
+        "history_points": 1327,
+        "ok": true,
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2032-01-01.json",
+        "slot": "s22-2032-01-01"
+      }
+    },
+    {
+      "bytes": 155209371,
+      "facts": {
+        "absolute_day": 15706,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "31 Dec 2032",
+          "last_snapshot": "1 Jan 2033",
+          "lifespan_milestones": 5
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 156,
+          "economic_reviews": 67357,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 156,
+          "military_reviews": 63120,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          2033,
+          1,
+          1
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "1 Jan 2033",
+        "dispatches": 35779,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 78,
+          "executive_bindings": 23,
+          "government_performance_records": 158,
+          "government_records": 158,
+          "operational_orders": 5,
+          "operational_reports": 6,
+          "operational_reserves": 155,
+          "party_leadership_assignments": 622,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 36.95044588031867,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 992,
+          "world_assigned_aircraft": 184,
+          "world_military_strength": 2887.512687701047,
+          "world_squadrons": 108
+        },
+        "history_epoch": 480,
+        "history_points": 1329,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 1445.983787984,
+          "contractor_assignments": 921,
+          "contractor_roster": 1247,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 125,
+          "operational_supply_receipt_day": 15705,
+          "operational_transfers": 5349,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 567352,
+          "supplier_development": 1,
+          "supplier_equipment_stock": 0,
+          "supplier_equipment_wip": 6,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 15705,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 5,
+          "suppliers": 6
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 15705,
+          "capacity_daily": 0.11346019759736226,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 26.016416624999962,
+          "inherited_used_daily": 26.016416624999962,
+          "required_daily": 0.0
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 0,
+        "world_fnv64": "f8c886847c05bbe5"
+      },
+      "file_fnv64": "49a0aeb450069fd3",
+      "receipt": {
+        "date": "1 Jan 2033",
+        "dispatches": 35779,
+        "history_points": 1329,
+        "ok": true,
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2033-01-01.json",
+        "slot": "s22-2033-01-01"
+      }
+    },
+    {
+      "bytes": 157793510,
+      "facts": {
+        "absolute_day": 16071,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "31 Dec 2033",
+          "last_snapshot": "1 Jan 2034",
+          "lifespan_milestones": 5
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 156,
+          "economic_reviews": 69372,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 156,
+          "military_reviews": 65009,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          2034,
+          1,
+          1
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "1 Jan 2034",
+        "dispatches": 36512,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 79,
+          "executive_bindings": 24,
+          "government_performance_records": 158,
+          "government_records": 158,
+          "operational_orders": 3,
+          "operational_reports": 4,
+          "operational_reserves": 155,
+          "party_leadership_assignments": 622,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 37.343745398149316,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 1000,
+          "world_assigned_aircraft": 190,
+          "world_military_strength": 2973.4093066813753,
+          "world_squadrons": 110
+        },
+        "history_epoch": 492,
+        "history_points": 1330,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 1445.983787984,
+          "contractor_assignments": 927,
+          "contractor_roster": 1249,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 125,
+          "operational_supply_receipt_day": 16070,
+          "operational_transfers": 5349,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 555371,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 0,
+          "supplier_equipment_wip": 4,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 16070,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 4,
+          "suppliers": 6
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 16070,
+          "capacity_daily": 0.11346019759736226,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 26.174936391846284,
+          "inherited_used_daily": 26.174936391846284,
+          "required_daily": 0.0
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 0,
+        "world_fnv64": "555339419a780348"
+      },
+      "file_fnv64": "3231af52da0fc960",
+      "receipt": {
+        "date": "1 Jan 2034",
+        "dispatches": 36512,
+        "history_points": 1330,
+        "ok": true,
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2034-01-01.json",
+        "slot": "s22-2034-01-01"
+      }
+    },
+    {
+      "bytes": 156458082,
+      "facts": {
+        "absolute_day": 16436,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "31 Dec 2034",
+          "last_snapshot": "1 Jan 2035",
+          "lifespan_milestones": 5
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 156,
+          "economic_reviews": 71387,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 156,
+          "military_reviews": 66895,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          2035,
+          1,
+          1
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "1 Jan 2035",
+        "dispatches": 37252,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 79,
+          "executive_bindings": 25,
+          "government_performance_records": 158,
+          "government_records": 158,
+          "operational_orders": 7,
+          "operational_reports": 8,
+          "operational_reserves": 155,
+          "party_leadership_assignments": 622,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 37.79508616907754,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 1007,
+          "world_assigned_aircraft": 195,
+          "world_military_strength": 3062.472923505816,
+          "world_squadrons": 112
+        },
+        "history_epoch": 504,
+        "history_points": 1331,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 1445.983787984,
+          "contractor_assignments": 932,
+          "contractor_roster": 1252,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 125,
+          "operational_supply_receipt_day": 16435,
+          "operational_transfers": 5349,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 755460,
+          "supplier_development": 0,
+          "supplier_equipment_stock": 0,
+          "supplier_equipment_wip": 4,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 16435,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 4,
+          "suppliers": 6
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 16435,
+          "capacity_daily": 0.11346019759736226,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 26.354482570675227,
+          "inherited_used_daily": 26.354482570675227,
+          "required_daily": 0.0
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 0,
+        "world_fnv64": "ca9f700cc3115109"
+      },
+      "file_fnv64": "07a5e649b1318435",
+      "receipt": {
+        "date": "1 Jan 2035",
+        "dispatches": 37252,
+        "history_points": 1331,
+        "ok": true,
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2035-01-01.json",
+        "slot": "s22-2035-01-01"
+      }
+    },
+    {
+      "bytes": 145134799,
+      "facts": {
+        "absolute_day": 16769,
+        "alive": true,
+        "archive": {
+          "first_dispatch": "1 Jan 1990",
+          "first_snapshot": "1 Jan 1990",
+          "last_dispatch": "29 Nov 2035",
+          "last_snapshot": "30 Nov 2035",
+          "lifespan_milestones": 5
+        },
+        "autonomous_policies": {
+          "economic_active": true,
+          "economic_competition": true,
+          "economic_plans": 156,
+          "economic_reviews": 73247,
+          "military_active": true,
+          "military_enabled": true,
+          "military_plans": 156,
+          "military_reviews": 68613,
+          "supplier_catalogue_active": true,
+          "supplier_catalogue_enabled": true,
+          "supplier_plans": 6,
+          "supplier_reviewed_plans": 6
+        },
+        "calendar": [
+          2035,
+          11,
+          30
+        ],
+        "capabilities": {
+          "campaign_initialized": true,
+          "fiscal_recovery": true,
+          "industry_rebuild": true,
+          "operational_warfare": 1,
+          "party_leadership": true,
+          "population": true,
+          "sector_contractors": true,
+          "supplier_operations_version": 1
+        },
+        "date": "30 Nov 2035",
+        "dispatches": 37893,
+        "feature_workload": {
+          "air_mission_orders": 1,
+          "airbases": 80,
+          "executive_bindings": 25,
+          "government_performance_records": 158,
+          "government_records": 158,
+          "operational_orders": 5,
+          "operational_reports": 6,
+          "operational_reserves": 155,
+          "party_leadership_assignments": 622,
+          "player_arsenal_holdings": 14,
+          "player_assigned_aircraft": 1,
+          "player_equipment_revisions": 2,
+          "player_military_strength": 38.131280975087414,
+          "player_squadrons": 1,
+          "world_arsenal_holding_rows": 1017,
+          "world_assigned_aircraft": 198,
+          "world_military_strength": 3140.2150186940653,
+          "world_squadrons": 113
+        },
+        "history_epoch": 514,
+        "history_points": 1360,
+        "journey": {
+          "beyond_2035": false,
+          "observing": false,
+          "transitions": []
+        },
+        "owned_work": {
+          "advanced_components": 1445.983787983,
+          "contractor_assignments": 934,
+          "contractor_roster": 1253,
+          "operational_sectors": 6,
+          "operational_supply_buffers": 6,
+          "operational_supply_cargo": 125,
+          "operational_supply_receipt_day": 16768,
+          "operational_transfers": 5349,
+          "supplier_active_refits": 0,
+          "supplier_ammunition_stock": 743420,
+          "supplier_development": 1,
+          "supplier_equipment_stock": 0,
+          "supplier_equipment_wip": 5,
+          "supplier_pending_ammunition_deliveries": 0,
+          "supplier_pending_equipment_deliveries": 0,
+          "supplier_receipt_day": 16768,
+          "supplier_receivables": 0,
+          "supplier_refit_escrow_bn": -0.0,
+          "supplier_refit_locked_capital_bn": -0.0,
+          "supplier_retained_operation_receipts": 5,
+          "suppliers": 6
+        },
+        "pause_reason": null,
+        "player": "France",
+        "player_power": {
+          "as_of_day": 16768,
+          "capacity_daily": 0.11346019759736226,
+          "completed_grid_levels": 1,
+          "facility_used_daily": 26.531256637034065,
+          "inherited_used_daily": 26.531256637034065,
+          "required_daily": 0.0
+        },
+        "player_projects": 0,
+        "rules": {
+          "ai_aggression": 1.0,
+          "crisis_intensity": 1.0,
+          "daily_simulation": true,
+          "economic_competition": true,
+          "fiscal_recovery": true,
+          "historical_party_leadership": true,
+          "ideology_blocs": true,
+          "industry_rebuild": true,
+          "logistics_routes": true,
+          "manufacturing_system": true,
+          "military_operations": true,
+          "operational_warfare": 1,
+          "physical_logistics": true,
+          "production_system": true,
+          "resource_market": true,
+          "seed": 1990
+        },
+        "seed": 1990,
+        "shooting_wars": 0,
+        "world_fnv64": "d80100ad9735c60b"
+      },
+      "file_fnv64": "f847e8064c0b972b",
+      "receipt": {
+        "date": "30 Nov 2035",
+        "dispatches": 37893,
+        "history_points": 1360,
+        "ok": true,
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2035-11-30.json",
+        "slot": "s22-2035-11-30"
+      }
+    }
+  ],
+  "competition_adoption": null,
+  "control_commands": [
+    {
+      "commands": [
+        {
+          "SetProgramBudget": {
+            "allocations": [
+              0.053500000000000006,
+              0.038520000000000006,
+              0.042800000000000005,
+              0.059920000000000015,
+              0.020900000000000002,
+              0.011399999999999999,
+              0.005699999999999999,
+              0.036,
+              0.014980000000000004,
+              0.004280000000000001
+            ],
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                1500,
+                1500,
+                4000,
+                1500,
+                1500
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "fiscal_year": 2015,
+            "nation": "France"
+          }
+        }
+      ],
+      "date": "1 Jan 2015",
+      "prices_pc": [
+        0.0
+      ]
+    },
+    {
+      "commands": [
+        {
+          "SetProgramBudget": {
+            "allocations": [
+              0.053500000000000006,
+              0.038520000000000006,
+              0.042800000000000005,
+              0.059920000000000015,
+              0.020900000000000002,
+              0.011399999999999999,
+              0.005699999999999999,
+              0.036,
+              0.014980000000000004,
+              0.004280000000000001
+            ],
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                1500,
+                1500,
+                4000,
+                1500,
+                1500
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "fiscal_year": 2016,
+            "nation": "France"
+          }
+        }
+      ],
+      "date": "1 Jan 2016",
+      "prices_pc": [
+        0.0
+      ]
+    },
+    {
+      "commands": [
+        {
+          "SetProgramBudget": {
+            "allocations": [
+              0.053500000000000006,
+              0.038520000000000006,
+              0.042800000000000005,
+              0.059920000000000015,
+              0.020900000000000002,
+              0.011399999999999999,
+              0.005699999999999999,
+              0.036,
+              0.014980000000000004,
+              0.004280000000000001
+            ],
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                1500,
+                1500,
+                4000,
+                1500,
+                1500
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "fiscal_year": 2017,
+            "nation": "France"
+          }
+        }
+      ],
+      "date": "1 Jan 2017",
+      "prices_pc": [
+        0.0
+      ]
+    },
+    {
+      "commands": [
+        {
+          "SetProgramBudget": {
+            "allocations": [
+              0.053500000000000006,
+              0.038520000000000006,
+              0.042800000000000005,
+              0.059920000000000015,
+              0.020900000000000002,
+              0.011399999999999999,
+              0.005699999999999999,
+              0.036,
+              0.014980000000000004,
+              0.004280000000000001
+            ],
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                1500,
+                1500,
+                4000,
+                1500,
+                1500
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "fiscal_year": 2018,
+            "nation": "France"
+          }
+        }
+      ],
+      "date": "1 Jan 2018",
+      "prices_pc": [
+        0.0
+      ]
+    },
+    {
+      "commands": [
+        {
+          "SetProgramBudget": {
+            "allocations": [
+              0.053500000000000006,
+              0.038520000000000006,
+              0.042800000000000005,
+              0.059920000000000015,
+              0.020900000000000002,
+              0.011399999999999999,
+              0.005699999999999999,
+              0.036,
+              0.014980000000000004,
+              0.004280000000000001
+            ],
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                1500,
+                1500,
+                4000,
+                1500,
+                1500
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "fiscal_year": 2019,
+            "nation": "France"
+          }
+        }
+      ],
+      "date": "1 Jan 2019",
+      "prices_pc": [
+        0.0
+      ]
+    },
+    {
+      "commands": [
+        {
+          "SetProgramBudget": {
+            "allocations": [
+              0.053500000000000006,
+              0.038520000000000006,
+              0.042800000000000005,
+              0.059920000000000015,
+              0.020900000000000002,
+              0.011399999999999999,
+              0.005699999999999999,
+              0.036,
+              0.014980000000000004,
+              0.004280000000000001
+            ],
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                1500,
+                1500,
+                4000,
+                1500,
+                1500
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "fiscal_year": 2020,
+            "nation": "France"
+          }
+        }
+      ],
+      "date": "1 Jan 2020",
+      "prices_pc": [
+        0.0
+      ]
+    },
+    {
+      "commands": [
+        {
+          "SetProgramBudget": {
+            "allocations": [
+              0.053500000000000006,
+              0.038520000000000006,
+              0.042800000000000005,
+              0.059920000000000015,
+              0.020900000000000002,
+              0.011399999999999999,
+              0.005699999999999999,
+              0.036,
+              0.014980000000000004,
+              0.004280000000000001
+            ],
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                1500,
+                1500,
+                4000,
+                1500,
+                1500
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "fiscal_year": 2021,
+            "nation": "France"
+          }
+        }
+      ],
+      "date": "1 Jan 2021",
+      "prices_pc": [
+        0.0
+      ]
+    },
+    {
+      "commands": [
+        {
+          "SetProgramBudget": {
+            "allocations": [
+              0.053500000000000006,
+              0.038520000000000006,
+              0.042800000000000005,
+              0.059920000000000015,
+              0.020900000000000002,
+              0.011399999999999999,
+              0.005699999999999999,
+              0.036,
+              0.014980000000000004,
+              0.004280000000000001
+            ],
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                1500,
+                1500,
+                4000,
+                1500,
+                1500
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "fiscal_year": 2022,
+            "nation": "France"
+          }
+        }
+      ],
+      "date": "1 Jan 2022",
+      "prices_pc": [
+        0.0
+      ]
+    },
+    {
+      "commands": [
+        {
+          "SetProgramBudget": {
+            "allocations": [
+              0.053500000000000006,
+              0.038520000000000006,
+              0.042800000000000005,
+              0.059920000000000015,
+              0.020900000000000002,
+              0.011399999999999999,
+              0.005699999999999999,
+              0.036,
+              0.014980000000000004,
+              0.004280000000000001
+            ],
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                1500,
+                1500,
+                4000,
+                1500,
+                1500
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "fiscal_year": 2023,
+            "nation": "France"
+          }
+        }
+      ],
+      "date": "1 Jan 2023",
+      "prices_pc": [
+        0.0
+      ]
+    },
+    {
+      "commands": [
+        {
+          "SetProgramBudget": {
+            "allocations": [
+              0.053500000000000006,
+              0.038520000000000006,
+              0.042800000000000005,
+              0.059920000000000015,
+              0.020900000000000002,
+              0.011399999999999999,
+              0.005699999999999999,
+              0.036,
+              0.014980000000000004,
+              0.004280000000000001
+            ],
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                1500,
+                1500,
+                4000,
+                1500,
+                1500
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "fiscal_year": 2024,
+            "nation": "France"
+          }
+        }
+      ],
+      "date": "1 Jan 2024",
+      "prices_pc": [
+        0.0
+      ]
+    },
+    {
+      "commands": [
+        {
+          "SetProgramBudget": {
+            "allocations": [
+              0.053500000000000006,
+              0.038520000000000006,
+              0.042800000000000005,
+              0.059920000000000015,
+              0.020900000000000002,
+              0.011399999999999999,
+              0.005699999999999999,
+              0.036,
+              0.014980000000000004,
+              0.004280000000000001
+            ],
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                1500,
+                1500,
+                4000,
+                1500,
+                1500
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "fiscal_year": 2025,
+            "nation": "France"
+          }
+        }
+      ],
+      "date": "1 Jan 2025",
+      "prices_pc": [
+        0.0
+      ]
+    },
+    {
+      "commands": [
+        {
+          "SetProgramBudget": {
+            "allocations": [
+              0.053500000000000006,
+              0.038520000000000006,
+              0.042800000000000005,
+              0.059920000000000015,
+              0.020900000000000002,
+              0.011399999999999999,
+              0.005699999999999999,
+              0.036,
+              0.014980000000000004,
+              0.004280000000000001
+            ],
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                1500,
+                1500,
+                4000,
+                1500,
+                1500
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "fiscal_year": 2026,
+            "nation": "France"
+          }
+        }
+      ],
+      "date": "1 Jan 2026",
+      "prices_pc": [
+        0.0
+      ]
+    },
+    {
+      "commands": [
+        {
+          "SetProgramBudget": {
+            "allocations": [
+              0.053500000000000006,
+              0.038520000000000006,
+              0.042800000000000005,
+              0.059920000000000015,
+              0.020900000000000002,
+              0.011399999999999999,
+              0.005699999999999999,
+              0.036,
+              0.014980000000000004,
+              0.004280000000000001
+            ],
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                1500,
+                1500,
+                4000,
+                1500,
+                1500
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "fiscal_year": 2027,
+            "nation": "France"
+          }
+        }
+      ],
+      "date": "1 Jan 2027",
+      "prices_pc": [
+        0.0
+      ]
+    },
+    {
+      "commands": [
+        {
+          "SetProgramBudget": {
+            "allocations": [
+              0.053500000000000006,
+              0.038520000000000006,
+              0.042800000000000005,
+              0.059920000000000015,
+              0.020900000000000002,
+              0.011399999999999999,
+              0.005699999999999999,
+              0.036,
+              0.014980000000000004,
+              0.004280000000000001
+            ],
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                1500,
+                1500,
+                4000,
+                1500,
+                1500
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "fiscal_year": 2028,
+            "nation": "France"
+          }
+        }
+      ],
+      "date": "1 Jan 2028",
+      "prices_pc": [
+        0.0
+      ]
+    },
+    {
+      "commands": [
+        {
+          "SetProgramBudget": {
+            "allocations": [
+              0.053500000000000006,
+              0.038520000000000006,
+              0.042800000000000005,
+              0.059920000000000015,
+              0.020900000000000002,
+              0.011399999999999999,
+              0.005699999999999999,
+              0.036,
+              0.014980000000000004,
+              0.004280000000000001
+            ],
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                1500,
+                1500,
+                4000,
+                1500,
+                1500
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "fiscal_year": 2029,
+            "nation": "France"
+          }
+        }
+      ],
+      "date": "1 Jan 2029",
+      "prices_pc": [
+        0.0
+      ]
+    },
+    {
+      "commands": [
+        {
+          "SetProgramBudget": {
+            "allocations": [
+              0.053500000000000006,
+              0.038520000000000006,
+              0.042800000000000005,
+              0.059920000000000015,
+              0.020900000000000002,
+              0.011399999999999999,
+              0.005699999999999999,
+              0.036,
+              0.014980000000000004,
+              0.004280000000000001
+            ],
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                1500,
+                1500,
+                4000,
+                1500,
+                1500
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "fiscal_year": 2030,
+            "nation": "France"
+          }
+        }
+      ],
+      "date": "1 Jan 2030",
+      "prices_pc": [
+        0.0
+      ]
+    },
+    {
+      "commands": [
+        {
+          "SetProgramBudget": {
+            "allocations": [
+              0.053500000000000006,
+              0.038520000000000006,
+              0.042800000000000005,
+              0.059920000000000015,
+              0.020900000000000002,
+              0.011399999999999999,
+              0.005699999999999999,
+              0.036,
+              0.014980000000000004,
+              0.004280000000000001
+            ],
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                1500,
+                1500,
+                4000,
+                1500,
+                1500
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "fiscal_year": 2031,
+            "nation": "France"
+          }
+        }
+      ],
+      "date": "1 Jan 2031",
+      "prices_pc": [
+        0.0
+      ]
+    },
+    {
+      "commands": [
+        {
+          "SetProgramBudget": {
+            "allocations": [
+              0.053500000000000006,
+              0.038520000000000006,
+              0.042800000000000005,
+              0.059920000000000015,
+              0.020900000000000002,
+              0.011399999999999999,
+              0.005699999999999999,
+              0.036,
+              0.014980000000000004,
+              0.004280000000000001
+            ],
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                1500,
+                1500,
+                4000,
+                1500,
+                1500
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "fiscal_year": 2032,
+            "nation": "France"
+          }
+        }
+      ],
+      "date": "1 Jan 2032",
+      "prices_pc": [
+        0.0
+      ]
+    },
+    {
+      "commands": [
+        {
+          "SetProgramBudget": {
+            "allocations": [
+              0.053500000000000006,
+              0.038520000000000006,
+              0.042800000000000005,
+              0.059920000000000015,
+              0.020900000000000002,
+              0.011399999999999999,
+              0.005699999999999999,
+              0.036,
+              0.014980000000000004,
+              0.004280000000000001
+            ],
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                1500,
+                1500,
+                4000,
+                1500,
+                1500
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "fiscal_year": 2033,
+            "nation": "France"
+          }
+        }
+      ],
+      "date": "1 Jan 2033",
+      "prices_pc": [
+        0.0
+      ]
+    },
+    {
+      "commands": [
+        {
+          "SetProgramBudget": {
+            "allocations": [
+              0.053500000000000006,
+              0.038520000000000006,
+              0.042800000000000005,
+              0.059920000000000015,
+              0.020900000000000002,
+              0.011399999999999999,
+              0.005699999999999999,
+              0.036,
+              0.014980000000000004,
+              0.004280000000000001
+            ],
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                1500,
+                1500,
+                4000,
+                1500,
+                1500
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "fiscal_year": 2034,
+            "nation": "France"
+          }
+        }
+      ],
+      "date": "1 Jan 2034",
+      "prices_pc": [
+        0.0
+      ]
+    },
+    {
+      "commands": [
+        {
+          "SetProgramBudget": {
+            "allocations": [
+              0.053500000000000006,
+              0.038520000000000006,
+              0.042800000000000005,
+              0.059920000000000015,
+              0.020900000000000002,
+              0.011399999999999999,
+              0.005699999999999999,
+              0.036,
+              0.014980000000000004,
+              0.004280000000000001
+            ],
+            "departments": [
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                1500,
+                1500,
+                4000,
+                1500,
+                1500
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ],
+              [
+                2000,
+                2000,
+                2000,
+                2000,
+                2000
+              ]
+            ],
+            "fiscal_year": 2035,
+            "nation": "France"
+          }
+        }
+      ],
+      "date": "1 Jan 2035",
+      "prices_pc": [
+        0.0
+      ]
+    }
+  ],
+  "current": {
+    "absolute_day": 16769,
+    "alive": true,
+    "archive": {
+      "first_dispatch": "1 Jan 1990",
+      "first_snapshot": "1 Jan 1990",
+      "last_dispatch": "29 Nov 2035",
+      "last_snapshot": "30 Nov 2035",
+      "lifespan_milestones": 5
+    },
+    "autonomous_policies": {
+      "economic_active": true,
+      "economic_competition": true,
+      "economic_plans": 156,
+      "economic_reviews": 73247,
+      "military_active": true,
+      "military_enabled": true,
+      "military_plans": 156,
+      "military_reviews": 68613,
+      "supplier_catalogue_active": true,
+      "supplier_catalogue_enabled": true,
+      "supplier_plans": 6,
+      "supplier_reviewed_plans": 6
+    },
+    "calendar": [
+      2035,
+      11,
+      30
+    ],
+    "capabilities": {
+      "campaign_initialized": true,
+      "fiscal_recovery": true,
+      "industry_rebuild": true,
+      "operational_warfare": 1,
+      "party_leadership": true,
+      "population": true,
+      "sector_contractors": true,
+      "supplier_operations_version": 1
+    },
+    "date": "30 Nov 2035",
+    "dispatches": 37893,
+    "feature_workload": {
+      "air_mission_orders": 1,
+      "airbases": 80,
+      "executive_bindings": 25,
+      "government_performance_records": 158,
+      "government_records": 158,
+      "operational_orders": 5,
+      "operational_reports": 6,
+      "operational_reserves": 155,
+      "party_leadership_assignments": 622,
+      "player_arsenal_holdings": 14,
+      "player_assigned_aircraft": 1,
+      "player_equipment_revisions": 2,
+      "player_military_strength": 38.131280975087414,
+      "player_squadrons": 1,
+      "world_arsenal_holding_rows": 1017,
+      "world_assigned_aircraft": 198,
+      "world_military_strength": 3140.2150186940653,
+      "world_squadrons": 113
+    },
+    "history_epoch": 514,
+    "history_points": 1360,
+    "journey": {
+      "beyond_2035": false,
+      "observing": false,
+      "transitions": []
+    },
+    "owned_work": {
+      "advanced_components": 1445.983787983,
+      "contractor_assignments": 934,
+      "contractor_roster": 1253,
+      "operational_sectors": 6,
+      "operational_supply_buffers": 6,
+      "operational_supply_cargo": 125,
+      "operational_supply_receipt_day": 16768,
+      "operational_transfers": 5349,
+      "supplier_active_refits": 0,
+      "supplier_ammunition_stock": 743420,
+      "supplier_development": 1,
+      "supplier_equipment_stock": 0,
+      "supplier_equipment_wip": 5,
+      "supplier_pending_ammunition_deliveries": 0,
+      "supplier_pending_equipment_deliveries": 0,
+      "supplier_receipt_day": 16768,
+      "supplier_receivables": 0,
+      "supplier_refit_escrow_bn": -0.0,
+      "supplier_refit_locked_capital_bn": -0.0,
+      "supplier_retained_operation_receipts": 5,
+      "suppliers": 6
+    },
+    "pause_reason": null,
+    "player": "France",
+    "player_power": {
+      "as_of_day": 16768,
+      "capacity_daily": 0.11346019759736226,
+      "completed_grid_levels": 1,
+      "facility_used_daily": 26.531256637034065,
+      "inherited_used_daily": 26.531256637034065,
+      "required_daily": 0.0
+    },
+    "player_projects": 0,
+    "rules": {
+      "ai_aggression": 1.0,
+      "crisis_intensity": 1.0,
+      "daily_simulation": true,
+      "economic_competition": true,
+      "fiscal_recovery": true,
+      "historical_party_leadership": true,
+      "ideology_blocs": true,
+      "industry_rebuild": true,
+      "logistics_routes": true,
+      "manufacturing_system": true,
+      "military_operations": true,
+      "operational_warfare": 1,
+      "physical_logistics": true,
+      "production_system": true,
+      "resource_market": true,
+      "seed": 1990
+    },
+    "seed": 1990,
+    "shooting_wars": 0,
+    "world_fnv64": "d80100ad9735c60b"
+  },
+  "final": {
+    "absolute_day": 16769,
+    "alive": true,
+    "archive": {
+      "first_dispatch": "1 Jan 1990",
+      "first_snapshot": "1 Jan 1990",
+      "last_dispatch": "29 Nov 2035",
+      "last_snapshot": "30 Nov 2035",
+      "lifespan_milestones": 5
+    },
+    "autonomous_policies": {
+      "economic_active": true,
+      "economic_competition": true,
+      "economic_plans": 156,
+      "economic_reviews": 73247,
+      "military_active": true,
+      "military_enabled": true,
+      "military_plans": 156,
+      "military_reviews": 68613,
+      "supplier_catalogue_active": true,
+      "supplier_catalogue_enabled": true,
+      "supplier_plans": 6,
+      "supplier_reviewed_plans": 6
+    },
+    "calendar": [
+      2035,
+      11,
+      30
+    ],
+    "capabilities": {
+      "campaign_initialized": true,
+      "fiscal_recovery": true,
+      "industry_rebuild": true,
+      "operational_warfare": 1,
+      "party_leadership": true,
+      "population": true,
+      "sector_contractors": true,
+      "supplier_operations_version": 1
+    },
+    "date": "30 Nov 2035",
+    "dispatches": 37893,
+    "feature_workload": {
+      "air_mission_orders": 1,
+      "airbases": 80,
+      "executive_bindings": 25,
+      "government_performance_records": 158,
+      "government_records": 158,
+      "operational_orders": 5,
+      "operational_reports": 6,
+      "operational_reserves": 155,
+      "party_leadership_assignments": 622,
+      "player_arsenal_holdings": 14,
+      "player_assigned_aircraft": 1,
+      "player_equipment_revisions": 2,
+      "player_military_strength": 38.131280975087414,
+      "player_squadrons": 1,
+      "world_arsenal_holding_rows": 1017,
+      "world_assigned_aircraft": 198,
+      "world_military_strength": 3140.2150186940653,
+      "world_squadrons": 113
+    },
+    "history_epoch": 514,
+    "history_points": 1360,
+    "journey": {
+      "beyond_2035": false,
+      "observing": false,
+      "transitions": []
+    },
+    "owned_work": {
+      "advanced_components": 1445.983787983,
+      "contractor_assignments": 934,
+      "contractor_roster": 1253,
+      "operational_sectors": 6,
+      "operational_supply_buffers": 6,
+      "operational_supply_cargo": 125,
+      "operational_supply_receipt_day": 16768,
+      "operational_transfers": 5349,
+      "supplier_active_refits": 0,
+      "supplier_ammunition_stock": 743420,
+      "supplier_development": 1,
+      "supplier_equipment_stock": 0,
+      "supplier_equipment_wip": 5,
+      "supplier_pending_ammunition_deliveries": 0,
+      "supplier_pending_equipment_deliveries": 0,
+      "supplier_receipt_day": 16768,
+      "supplier_receivables": 0,
+      "supplier_refit_escrow_bn": -0.0,
+      "supplier_refit_locked_capital_bn": -0.0,
+      "supplier_retained_operation_receipts": 5,
+      "suppliers": 6
+    },
+    "pause_reason": null,
+    "player": "France",
+    "player_power": {
+      "as_of_day": 16768,
+      "capacity_daily": 0.11346019759736226,
+      "completed_grid_levels": 1,
+      "facility_used_daily": 26.531256637034065,
+      "inherited_used_daily": 26.531256637034065,
+      "required_daily": 0.0
+    },
+    "player_projects": 0,
+    "rules": {
+      "ai_aggression": 1.0,
+      "crisis_intensity": 1.0,
+      "daily_simulation": true,
+      "economic_competition": true,
+      "fiscal_recovery": true,
+      "historical_party_leadership": true,
+      "ideology_blocs": true,
+      "industry_rebuild": true,
+      "logistics_routes": true,
+      "manufacturing_system": true,
+      "military_operations": true,
+      "operational_warfare": 1,
+      "physical_logistics": true,
+      "production_system": true,
+      "resource_market": true,
+      "seed": 1990
+    },
+    "seed": 1990,
+    "shooting_wars": 0,
+    "world_fnv64": "d80100ad9735c60b"
+  },
+  "format": "spheres-s22-preparation/v1",
+  "immutable_source_facts": {
+    "absolute_day": 9131,
+    "alive": true,
+    "archive": {
+      "first_dispatch": "1 Jan 1990",
+      "first_snapshot": "1 Jan 1990",
+      "last_dispatch": "31 Dec 2014",
+      "last_snapshot": "1 Jan 2015",
+      "lifespan_milestones": 5
+    },
+    "autonomous_policies": {
+      "economic_active": true,
+      "economic_competition": true,
+      "economic_plans": 156,
+      "economic_reviews": 31087,
+      "military_active": true,
+      "military_enabled": true,
+      "military_plans": 156,
+      "military_reviews": 29150,
+      "supplier_catalogue_active": true,
+      "supplier_catalogue_enabled": true,
+      "supplier_plans": 6,
+      "supplier_reviewed_plans": 6
+    },
+    "calendar": [
+      2015,
+      1,
+      1
+    ],
+    "capabilities": {
+      "campaign_initialized": true,
+      "fiscal_recovery": true,
+      "industry_rebuild": true,
+      "operational_warfare": 1,
+      "party_leadership": true,
+      "population": true,
+      "sector_contractors": true,
+      "supplier_operations_version": 1
+    },
+    "date": "1 Jan 2015",
+    "dispatches": 21975,
+    "feature_workload": {
+      "air_mission_orders": 1,
+      "airbases": 27,
+      "executive_bindings": 2,
+      "government_performance_records": 158,
+      "government_records": 158,
+      "operational_orders": 3,
+      "operational_reports": 4,
+      "operational_reserves": 155,
+      "party_leadership_assignments": 622,
+      "player_arsenal_holdings": 14,
+      "player_assigned_aircraft": 1,
+      "player_equipment_revisions": 2,
+      "player_military_strength": 35.54010580167061,
+      "player_squadrons": 1,
+      "world_arsenal_holding_rows": 876,
+      "world_assigned_aircraft": 40,
+      "world_military_strength": 1807.0634581712484,
+      "world_squadrons": 32
+    },
+    "history_epoch": 264,
+    "history_points": 1311,
+    "journey": {
+      "beyond_2035": false,
+      "observing": false,
+      "transitions": []
+    },
+    "owned_work": {
+      "advanced_components": 882.132995801,
+      "contractor_assignments": 828,
+      "contractor_roster": 1145,
+      "operational_sectors": 6,
+      "operational_supply_buffers": 6,
+      "operational_supply_cargo": 125,
+      "operational_supply_receipt_day": 9130,
+      "operational_transfers": 5349,
+      "supplier_active_refits": 0,
+      "supplier_ammunition_stock": 751920,
+      "supplier_development": 2,
+      "supplier_equipment_stock": 0,
+      "supplier_equipment_wip": 5,
+      "supplier_pending_ammunition_deliveries": 0,
+      "supplier_pending_equipment_deliveries": 0,
+      "supplier_receipt_day": 9130,
+      "supplier_receivables": 0,
+      "supplier_refit_escrow_bn": -0.0,
+      "supplier_refit_locked_capital_bn": -0.0,
+      "supplier_retained_operation_receipts": 5,
+      "suppliers": 6
+    },
+    "pause_reason": null,
+    "player": "France",
+    "player_power": {
+      "as_of_day": 9130,
+      "capacity_daily": 0.11346019759736226,
+      "completed_grid_levels": 1,
+      "facility_used_daily": 24.627239689692814,
+      "inherited_used_daily": 24.627239689692814,
+      "required_daily": 0.0
+    },
+    "player_projects": 0,
+    "rules": {
+      "ai_aggression": 1.0,
+      "crisis_intensity": 1.0,
+      "daily_simulation": true,
+      "economic_competition": true,
+      "fiscal_recovery": true,
+      "historical_party_leadership": true,
+      "ideology_blocs": true,
+      "industry_rebuild": true,
+      "logistics_routes": true,
+      "manufacturing_system": true,
+      "military_operations": true,
+      "operational_warfare": 1,
+      "physical_logistics": true,
+      "production_system": true,
+      "resource_market": true,
+      "seed": 1990
+    },
+    "seed": 1990,
+    "shooting_wars": 0,
+    "world_fnv64": "ab5b305e7fb2454f"
+  },
+  "input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\input.json",
+  "input_bytes": 130222370,
+  "input_fnv64": "12a9e4419784d623",
+  "method": "Actual daily Game advancement from an unchanged archived France save; no redating, reseeding, grants or authored outcomes. Existing allocations/shares optionally renewed through ordinary priced commands. Every January checkpoint and requested final date saved with the native envelope. Preparation has no performance claim.",
+  "mode": "prepare_only",
+  "ordinary_days": 7638,
+  "passed": true,
+  "renew_existing_budget": true,
+  "revision": "a4e246e4399e",
+  "source_unchanged": true,
+  "starting": {
+    "absolute_day": 9131,
+    "alive": true,
+    "archive": {
+      "first_dispatch": "1 Jan 1990",
+      "first_snapshot": "1 Jan 1990",
+      "last_dispatch": "31 Dec 2014",
+      "last_snapshot": "1 Jan 2015",
+      "lifespan_milestones": 5
+    },
+    "autonomous_policies": {
+      "economic_active": true,
+      "economic_competition": true,
+      "economic_plans": 156,
+      "economic_reviews": 31087,
+      "military_active": true,
+      "military_enabled": true,
+      "military_plans": 156,
+      "military_reviews": 29150,
+      "supplier_catalogue_active": true,
+      "supplier_catalogue_enabled": true,
+      "supplier_plans": 6,
+      "supplier_reviewed_plans": 6
+    },
+    "calendar": [
+      2015,
+      1,
+      1
+    ],
+    "capabilities": {
+      "campaign_initialized": true,
+      "fiscal_recovery": true,
+      "industry_rebuild": true,
+      "operational_warfare": 1,
+      "party_leadership": true,
+      "population": true,
+      "sector_contractors": true,
+      "supplier_operations_version": 1
+    },
+    "date": "1 Jan 2015",
+    "dispatches": 21975,
+    "feature_workload": {
+      "air_mission_orders": 1,
+      "airbases": 27,
+      "executive_bindings": 2,
+      "government_performance_records": 158,
+      "government_records": 158,
+      "operational_orders": 3,
+      "operational_reports": 4,
+      "operational_reserves": 155,
+      "party_leadership_assignments": 622,
+      "player_arsenal_holdings": 14,
+      "player_assigned_aircraft": 1,
+      "player_equipment_revisions": 2,
+      "player_military_strength": 35.54010580167061,
+      "player_squadrons": 1,
+      "world_arsenal_holding_rows": 876,
+      "world_assigned_aircraft": 40,
+      "world_military_strength": 1807.0634581712484,
+      "world_squadrons": 32
+    },
+    "history_epoch": 264,
+    "history_points": 1311,
+    "journey": {
+      "beyond_2035": false,
+      "observing": false,
+      "transitions": []
+    },
+    "owned_work": {
+      "advanced_components": 882.132995801,
+      "contractor_assignments": 828,
+      "contractor_roster": 1145,
+      "operational_sectors": 6,
+      "operational_supply_buffers": 6,
+      "operational_supply_cargo": 125,
+      "operational_supply_receipt_day": 9130,
+      "operational_transfers": 5349,
+      "supplier_active_refits": 0,
+      "supplier_ammunition_stock": 751920,
+      "supplier_development": 2,
+      "supplier_equipment_stock": 0,
+      "supplier_equipment_wip": 5,
+      "supplier_pending_ammunition_deliveries": 0,
+      "supplier_pending_equipment_deliveries": 0,
+      "supplier_receipt_day": 9130,
+      "supplier_receivables": 0,
+      "supplier_refit_escrow_bn": -0.0,
+      "supplier_refit_locked_capital_bn": -0.0,
+      "supplier_retained_operation_receipts": 5,
+      "suppliers": 6
+    },
+    "pause_reason": null,
+    "player": "France",
+    "player_power": {
+      "as_of_day": 9130,
+      "capacity_daily": 0.11346019759736226,
+      "completed_grid_levels": 1,
+      "facility_used_daily": 24.627239689692814,
+      "inherited_used_daily": 24.627239689692814,
+      "required_daily": 0.0
+    },
+    "player_projects": 0,
+    "rules": {
+      "ai_aggression": 1.0,
+      "crisis_intensity": 1.0,
+      "daily_simulation": true,
+      "economic_competition": true,
+      "fiscal_recovery": true,
+      "historical_party_leadership": true,
+      "ideology_blocs": true,
+      "industry_rebuild": true,
+      "logistics_routes": true,
+      "manufacturing_system": true,
+      "military_operations": true,
+      "operational_warfare": 1,
+      "physical_logistics": true,
+      "production_system": true,
+      "resource_market": true,
+      "seed": 1990
+    },
+    "seed": 1990,
+    "shooting_wars": 0,
+    "world_fnv64": "ab5b305e7fb2454f"
+  },
+  "target": [
+    2035,
+    11,
+    30
+  ]
+}

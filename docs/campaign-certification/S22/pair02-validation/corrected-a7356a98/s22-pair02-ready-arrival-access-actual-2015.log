@@ -1,0 +1,7 @@
+
+running 1 test
+31 exact native days: avoided 113506 owned route-key vectors, 3367464 node-string copies/28604415 content bytes; 105868 repeated-key hits (not timing/allocator measurements).
+test logistics::arrival_access_tests::arrival_access_borrowed_keys_match_actual_checkpoint_for_31_complete_days ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 1110 filtered out; finished in 51.95s
+
