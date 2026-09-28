@@ -437,6 +437,16 @@ function retainedArchive(record, readBytes) {
   if (!Buffer.from(raw.toString('utf8'), 'utf8').equals(raw)) throw new Error('retained archive is not UTF-8');
   return raw;
 }
+function verifyServedText(committed, served) {
+  if (!Buffer.isBuffer(committed) || !Buffer.isBuffer(served)) throw new Error('Asset verification requires bytes');
+  const text = served.toString('utf8');
+  if (!Buffer.from(text, 'utf8').equals(served)) throw new Error('Served asset is not exact UTF-8');
+  const normalized = Buffer.from(text.replace(/\r\n/g, '\n'), 'utf8');
+  if (!normalized.equals(committed)) throw new Error('Served asset differs from exact committed source after CRLF-to-LF normalization');
+  return { served_sha256: sha256(served), served_bytes: served.length, committed_sha256: sha256(committed), committed_bytes: committed.length,
+    canonical_served_sha256: sha256(normalized), crlf_pairs: (text.match(/\r\n/g) || []).length,
+    comparison: 'Exact UTF-8 bytes, with CRLF-to-LF only on served text. No claim that this review checkout equals the original build checkout raw bytes.' };
+}
 function resultExitCode(result, errors) {
   return errors.length || (result.cases || []).some(c => c.status === 'failed' || c.status === 'blocked')
     || (result.fixture_inputs || []).some(f => f.status === 'failed') ? 1 : 0;
@@ -557,7 +567,7 @@ function validateResults(result, inventory, { requireFinal = false, exists = () 
 }
 
 module.exports = {
-  REQUIRED_ASSETS, requiredChecks, safeRelative, retainedArchive, resultExitCode, FORMAT_INVENTORY, FORMAT_RESULT, STATUSES, LAYERS, UNRUN_REASONS, DISCLAIMER, PROPOSAL, KINDS,
+  verifyServedText, REQUIRED_ASSETS, requiredChecks, safeRelative, retainedArchive, resultExitCode, FORMAT_INVENTORY, FORMAT_RESULT, STATUSES, LAYERS, UNRUN_REASONS, DISCLAIMER, PROPOSAL, KINDS,
   label, sha256, canonical, digest, fileSha256, stripRustComments, scanBalanced, splitTopLevel, rosterRows, successorParents,
   dissolutionFamilies, journeyFamilies, stageNationFields, verifyOnlyPatched, archiveProjection, locateNation,
   objectEntries, worldEntries, validateInventory, validateResults, summarize, inventorySemantic, inventoryDigest

@@ -156,3 +156,5 @@ identities are browser-driven; the other 17 activatable successors are covered a
 served-API level. The map is checked through served district ownership, not the
 WebGL globe. Guidance checks bind the reading to the successor; they do not judge
 advice quality. Money semantics are not asserted (see the evidence README's findings).
+
+Served JavaScript/CSS/HTML verification compares exact expected-revision Git bytes with UTF-8 embedded content after CRLF-to-LF normalization only. Each asset retains raw served and Git hashes, byte counts, canonical served hash and CRLF count. A separate review worktree need not reproduce the original Windows build checkout’s mixed newline bytes; content changes, invalid UTF-8 and lone-CR changes are rejected.

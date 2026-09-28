@@ -281,3 +281,14 @@ test('command options reject unknown recipes and duplicate requested identities'
   const base = ['--binary', 'unused.exe', '--expected-revision', '0'.repeat(40), '--out', path.resolve('unused-output')];
   for (const extra of [['--browser', 'Russia:invented'], ['--browser', 'Russia:N1:ignored'], ['--browser', 'Russia:N1,Russia:H1'], ['--api', 'Russia,Russia']]) assert.throws(() => harness.parseArgs([...base, ...extra]), /recipe|duplicate/);
 });
+
+test('frozen served asset identity permits only explicit CRLF transport differences', () => {
+  const committed = Buffer.from('first\nsecond\n'), raw = Buffer.from('first\r\nsecond\n');
+  const proof = lib.verifyServedText(committed, raw);
+  assert.equal(proof.crlf_pairs, 1);
+  assert.notEqual(proof.served_sha256, proof.committed_sha256);
+  assert.equal(proof.canonical_served_sha256, proof.committed_sha256);
+  assert.throws(() => lib.verifyServedText(committed, Buffer.from('first\r\nCHANGED\n')), /differs from exact committed/);
+  assert.throws(() => lib.verifyServedText(committed, Buffer.from([0xff])), /not exact UTF-8/);
+  assert.throws(() => lib.verifyServedText(committed, Buffer.from('first\rsecond\n')), /differs from exact committed/);
+});

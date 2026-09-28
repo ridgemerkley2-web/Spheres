@@ -17,7 +17,7 @@ const { buildInventory, ROOT } = require('./inventory.cjs');
 
 const CLIENT = 's24-successor-fixtures';
 const DEFAULT_BROWSER = 'Russia:N1,Kazakhstan:N1,Serbia:H1,Croatia:H1';
-const HARNESS_FILES = ['tools/ui/successor-fixtures/run.cjs', 'tools/ui/successor-fixtures/lib.cjs', 'tools/ui/successor-fixtures/inventory.cjs', 'tools/ui/ci-integrated.cjs'];
+const HARNESS_FILES = ['tools/ui/successor-fixtures/run.cjs', 'tools/ui/successor-fixtures/lib.cjs', 'tools/ui/successor-fixtures/inventory.cjs'];
 const RUNTIME_PATHS = ['spheres-sim', 'spheres-cli', 'spheres-web', 'Cargo.toml', 'Cargo.lock'];
 const MINISTRIES = ['health', 'education', 'housing', 'pensions', 'infrastructure', 'industry', 'science', 'defense', 'security', 'diplomacy'];
 // Opening macro readings retained for review (not pass/fail criteria).
@@ -124,6 +124,22 @@ async function api(ctx, route, body) {
   return { status: r.status, json, text };
 }
 async function ok(ctx, route, body) { const r = await api(ctx, route, body); if (r.status !== 200 || !r.json) throw new Error(route + ' returned ' + r.status + ': ' + r.text.slice(0, 400)); return r.json; }
+
+// A frozen binary may have been built from a Windows checkout with mixed LF/
+// CRLF. Compare embedded content to the exact Git revision, retaining both raw
+// hashes and the narrow normalization proof instead of assuming this separate
+// review worktree reproduces every original build-input newline byte.
+async function verifyServedAssets(ctx, page) {
+  const details = {};
+  for (const name of lib.REQUIRED_ASSETS) {
+    const original = cp.spawnSync('git', ['show', ctx.expected + ':spheres-web/ui/' + name], { cwd: ROOT, windowsHide: true, maxBuffer: 1 << 26 });
+    assert.equal(original.status, 0, 'Cannot read exact committed asset ' + name);
+    const response = await page.request.get(ctx.url + (name === 'index.html' ? '/' : '/' + name));
+    assert(response.ok(), 'Missing served asset ' + name);
+    details[name] = lib.verifyServedText(original.stdout, await response.body());
+  }
+  return { revision: ctx.expected, binary_sha256: lib.fileSha256(ctx.binary), assets: Object.fromEntries(Object.entries(details).map(([name, proof]) => [name, proof.served_sha256])), source_details: details };
+}
 
 // Saves are written by the server into <out>/server/saves only; slots are
 // harness-chosen literals, so nothing can resolve outside the run directory.
@@ -683,9 +699,7 @@ async function main() {
           result.harness.browser = { version: browser.version(), channel: process.env.SPHERES_BROWSER_CHANNEL || 'bundled chromium' };
           try {
             const page = await (await browser.newContext()).newPage();
-            process.env.SPHERES_EXPECTED_REVISION = o.expected;
-            const verified = await require('../ci-integrated.cjs').verifyBuild({ page, url: ctx.url, root: ROOT, run, binary });
-            result.build.served_assets_verified = { revision: verified.revision, binary_sha256: verified.binary_sha256, assets: Object.fromEntries(Object.entries(verified.assets).map(([k, v]) => [k, v.served_sha256])) };
+            result.build.served_assets_verified = await verifyServedAssets(ctx, page);
             await page.context().close();
           } catch (error) { result.build.served_assets_verified = { error: String(error.stack || error).slice(0, 2000) }; throw error; }
         }
