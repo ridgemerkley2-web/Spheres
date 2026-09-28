@@ -185,7 +185,7 @@
     ],
     "lifecycle": "Measure inspection and CityMesh/cache bounds, lazy loading, repeated room visits, context loss/recovery and disposal using actual buffer/cache/draw observations. The separate gallery TownMesh plan does not qualify the campaign CityMesh path.",
     "cold_loading": "Fresh disposable browser profile/context and uncached page entry; report navigation-to-usable and first actual map/inspection draw separately, retaining requests and trace. Do not mix warm reloads or save-load latency with cold page loading.",
-    "memory": "Record JS heap availability/method, browser process observations when available, actual GL buffer/texture allocation payloads and cache counters separately. Neither allocation payloads nor OS process bytes are driver VRAM measurements; no total-VRAM claim.",
+    "memory": "Record JS heap availability/method, browser process observations when available, queried GL buffer sizes, API-declared texture texel payloads and cache counters separately. Texture declarations are not verified successful physical allocations; unknown layouts remain unknown/null rather than zero. Neither these payload counters nor OS process bytes are physical driver VRAM measurements; no total-VRAM claim.",
     "evidence": [
       "raw per-frame draws/completion/intervals",
       "all control latencies",

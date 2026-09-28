@@ -1,0 +1,19 @@
+
+running 14 tests
+test companies::tests::ammunition_license_is_sparse_free_of_stock_and_preserves_old_equipment_schema ... ok
+test companies::tests::ordinary_transactions_do_not_upgrade_old_tank_books_and_unsupported_designs_are_atomic ... ok
+test companies::tests::s08_development_working_capital_matches_original_quote_arithmetic_and_token ... ok
+test companies::tests::s08_disposable_company_trial_preserves_refusals_and_never_settles_live_money ... ok
+test companies::tests::all_implemented_families_freeze_the_existing_profile_without_another_factory_or_free_stock ... ok
+test companies::tests::s08_idle_capitalization_falls_back_for_global_budget_and_receipt_effects ... ok
+test companies::tests::s08_idle_capitalization_preserves_other_buyers_import_settlement_and_refunds ... ok
+test companies::tests::s08_idle_capitalization_matches_native_errors_and_future_settlement ... ok
+test companies::tests::stock_target_tests::stock_target_shortcut_excludes_other_corporate_orders_without_writes ... ok
+test companies::tests::s08_retained_company_trial_matches_native_dispatch_and_future_settlement ... ok
+test companies::tests::stock_target_tests::stock_targets_preserve_player_ai_replay_and_pending_finance ... ok
+test companies::tests::unavailable_quotes_and_refused_orders_do_not_enroll_the_company_layer ... ok
+test companies::tests::unused_company_book_is_sparse_and_does_not_move_the_world ... ok
+test companies::tests::stock_target_tests::stock_targets_preserve_full_world_and_native_refusal_precedence ... ok
+
+test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 1027 filtered out; finished in 0.80s
+
