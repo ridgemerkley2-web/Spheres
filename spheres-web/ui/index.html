@@ -13633,7 +13633,8 @@ let hoverNation = null, hoverDistrict = null, detailTimer = 0;
 function onMapHover(e) {
   let nation = null, district = null;
   if (e) {
-    const w = GLOBE && GLOBE.worldAt(e.clientX, e.clientY);
+    nation = GLOBE?.nationLabelAt(e.clientX, e.clientY) || null;
+    const w = !nation && GLOBE && GLOBE.worldAt(e.clientX, e.clientY);
     if (w) {
       const code = countryAt(w[0], w[1]);
       if (code) {
@@ -13799,8 +13800,11 @@ function drawMapOverlay(ctx, view, globe) {
   const mapRect = GLCV.getBoundingClientRect();
   for (const element of document.querySelectorAll('#mapControls, #mapCityCard, #flightMapCard, #provinceDossier[aria-hidden="false"]')) {
     const box = element.getBoundingClientRect();
-    if (box.width && box.height) globe.labelBoxes.push([
-      (box.left-mapRect.left+box.width/2)*r, (box.top-mapRect.top+box.height/2)*r, box.width*r, box.height*r]);
+    if (box.width && box.height) {
+      const blocked = [(box.left-mapRect.left+box.width/2)*r, (box.top-mapRect.top+box.height/2)*r, box.width*r, box.height*r];
+      globe.labelBoxes.push(blocked);
+      globe.nationLabelOcclusions.push(blocked);
+    }
   }
   ctx.textBaseline = "middle";
   ctx.textAlign = "center";
@@ -13894,6 +13898,11 @@ function drawMapOverlay(ctx, view, globe) {
     ctx.strokeText(text, p[0], p[1]);
     ctx.fillStyle = isMe ? "#e8c87e" : hot ? "#fff6e0" : "#e8edf4";
     ctx.fillText(text, p[0], p[1]);
+    // Small islands absent from the basemap remain selectable by their real
+    // drawn labels. Existing land/province picks retain their current path.
+    if (!(TERRITORY[n.id] || []).some(code => WORLD.countries[code])) {
+      globe.nationLabelHits.push({id: n.id, text, box: [p[0], p[1], width, size]});
+    }
     if (sub) {
       ctx.font = `${10 * r}px Inter, system-ui, sans-serif`;
       ctx.lineWidth = 3.6 * r;
@@ -13997,6 +14006,8 @@ function onMapPick(e) {
       (e.clientX - rect.left) * (size?.ratio || 1), (e.clientY - rect.top) * (size?.ratio || 1));
     if (city) { selectMapCity(city, false); return; }
   }
+  const label = GLOBE?.nationLabelAt(e.clientX, e.clientY);
+  if (label && nationById(label)) { openNation(label); return; }
   const w = GLOBE && GLOBE.worldAt(e.clientX, e.clientY);
   if (!w) return;
   ui.selectedCity = null; renderMapCity();
