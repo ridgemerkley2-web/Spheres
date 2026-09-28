@@ -1,0 +1,28 @@
+{
+  "format": "spheres-1994-subsystem-diagnostic-execution/v1",
+  "source_revision": "ae8084e853a8eb01ef4d834017af3e94c8e2cc82",
+  "binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\codex-next-matrix-binary\\spheres-web-test.exe",
+  "binary_sha256_before": "e90b8f0cb34603f5290c8a19b106a0d6dc31e3ea7ad293eb0135199fe1fd59e2",
+  "original_input": "D:\\spheres-offload\\codex-next-20260928\\matrix-full-ssd-02-interrupted\\cells\\france-1990\\native\\resumed\\saves\\monthly.json",
+  "input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\codex-next-native-profile-1994-01\\input.json",
+  "input_bytes": 135739703,
+  "input_sha256_before": "5480ccc296c2fe67ef2234871d1ef5fc9f098184ca1c83d885b07010a1368b20",
+  "args": [
+    "performance::s22_daily_subsystem_diagnosis",
+    "--ignored",
+    "--exact",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "started_utc": "2026-09-28T21:42:40.4048179Z",
+  "environment": {
+    "SPHERES_S22_INPUT": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\codex-next-native-profile-1994-01\\input.json",
+    "SPHERES_S22_OUT": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\codex-next-native-profile-1994-01\\profile.json",
+    "SPHERES_S22_DIAGNOSTIC_EXPECT_DATE": "1994-01-01",
+    "SPHERES_S22_RENEW_BUDGET": "1",
+    "SPHERES_S22_REQUIRE_CERTIFIED": "1",
+    "SPHERES_S22_ADOPT_COMPETITION": null
+  },
+  "qualification": false,
+  "scope": "31-day timing diagnosis on the immutable interrupted France/1990 Jan1994 checkpoint; independent observed/native worlds. This is not a full matrix, latency qualification or single-server memory benchmark. No source or simulation policy changes."
+}

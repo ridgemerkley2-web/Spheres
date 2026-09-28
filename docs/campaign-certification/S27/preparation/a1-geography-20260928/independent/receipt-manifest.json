@@ -1,0 +1,59 @@
+{
+  "format": "spheres-independent-review-receipt/v1",
+  "reviewer": "Codex /root/review_source05",
+  "passed": true,
+  "native_executed": false,
+  "qualification": false,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 3272,
+      "sha256": "eef0aa8bebd2a30331625770251a6c49648fca49817cc1c1af9bb9110cdfd638"
+    },
+    {
+      "path": "reproduced/all-funding-actions.json",
+      "bytes": 88359,
+      "sha256": "0a1dc67a3a4c4b81df705650e6393b7e4c389ec8eb7cef7456a0e72e6efb5740"
+    },
+    {
+      "path": "reproduced/countries.json",
+      "bytes": 228806,
+      "sha256": "6fe7677535aecf41fea18950ee6a8790fc70a2ee3e358f860341fba843e67d9f"
+    },
+    {
+      "path": "reproduced/summary.json",
+      "bytes": 6505,
+      "sha256": "bc68138e998fc6c63d8154e2332b8b03d6fa07c669542ca9ca83ed2f5f1b4120"
+    },
+    {
+      "path": "reproduction.log",
+      "bytes": 6761,
+      "sha256": "2ae4174aac4747bdab374a547c1ba5abcff1647e0a923b00ff485deb4c34798d"
+    },
+    {
+      "path": "rounding-note.json",
+      "bytes": 937,
+      "sha256": "8fa6b737d0e2f1320c1064b9fb3af5171aed721f58a8873707c4bb50bedadf49"
+    },
+    {
+      "path": "supplement-verification.json",
+      "bytes": 564,
+      "sha256": "26029daa632fa27eb6a84c261d53e5427adc6d48062bcd22dda1b3fc4edbfe41"
+    },
+    {
+      "path": "verification.json",
+      "bytes": 4628,
+      "sha256": "b115a53949b5b8b18829a2b4d53303e8cac8fa390a649f2c6fd99f07c1eae00e"
+    },
+    {
+      "path": "verify_geography.py",
+      "bytes": 10534,
+      "sha256": "ce6aae71bc8c7cec6690e35ef69fa29edc19f9adac10741ff517e6b03e44edd7"
+    },
+    {
+      "path": "verify_supplement.py",
+      "bytes": 4961,
+      "sha256": "b9b9dc9d00e13d15db3fad17805989abec2a372ed1da0383b519f9f0a4a522a6"
+    }
+  ]
+}

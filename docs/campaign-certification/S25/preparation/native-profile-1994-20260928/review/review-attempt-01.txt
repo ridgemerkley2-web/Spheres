@@ -1,0 +1,8 @@
+The first offline analysis script stopped at an overly broad reviewer assertion:
+assert row['history_after'] >= row['history_before']
+AssertionError
+
+Retained native row 31 reports ordinary month-end history compaction: 1140 -> 1111
+rows and history_epoch 12 -> 13. No native comparison/validation failed. The
+review assertion was corrected to preserve actual row counts and check continuity
+across rows instead; native output/source was not changed or rerun.

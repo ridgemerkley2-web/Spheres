@@ -1,0 +1,16 @@
+# Independent A1 geography verification
+
+**PASS — no actionable claim or reproducibility defect found.** Reviewer: Codex `/root/review_source05`. This is a read-only review of `a1-geography-analysis-01` against the existing integration portable observer packet, not a native simulation, calibration trial, holdout, or A1 qualification.
+
+All **28 payload hashes**, **14 copied-input pins** (including their original sources), and **six raw/source Git-byte pairs** at `6818e4f0d94b01c86d7a9acc4252260947d13504` verified. The exact retained observations gzip and its decoded **240,585,752 bytes** verified. The observer executable was rehashed at **27f282ad02daeaf9fcd527682387b0615c833a9a326a521cc5c029432ef78071** (51,475,482 bytes) against the retained before/after execution binding; it was not executed.
+
+The packet's main Python analysis ran successfully into fresh `reproduced/`. `countries.json` and `all-funding-actions.json` reproduced byte-for-byte. `summary.json` differed only in the two explicitly recorded input path strings; all other fields matched exactly. Original packet hashes remained unchanged afterward.
+
+An independent pass through the original rows confirmed **146,525 snapshots**, **25,769 electoral checks**, **118 exposed country IDs**, **six firing countries**, all four actual branch totals, all **18 joint guard patterns**, and the published eligible live-condition counts. It separately counted **151 actual before/after military-share increases in 13 countries**, matching the reported action identities. None occurred in the **29 non-firing countries with eligible crises**. Their **3,552 checks**, **3,550 targets at/above .35**, **2,390 saturated resource baskets**, **629 zero penalties**, and **433 zero leverage observations** agree. The supplementary resource records for all **35 represented countries**, **118 table rows**, and the Peru/Philippines/Azerbaijan/Pakistan/Thailand examples also agree.
+
+**El Salvador witness:** original line **11740**, date **1991-12-01**, has PDC/12 settled months, loyalty **.33880055075691395**, discontent **.40406468087279657**, pressure **.16178330466356525**, and actual branch `trigger_pressure_not_ready`. The retained January ARENA/record-age-1/zero-penalty observation, February pressure **.24942763380274532**, March loyalty recovery/cooling, and constant .034 military share/zero fiscal headroom all match the original rows. All **198 distinct published witness rows** were checked against their original line identities.
+
+Limits are preserved: these are repeated exposures from **one already-used development seed (0), 252 legacy months**. They do not establish a causal treatment effect, historical realism, cross-seed performance, or a justified model repair. The 252 native parity comparisons are retained native-report evidence; this review did not replay them. The supplementary `resource_context.py` has disclosed fixed local paths and was source-inspected, not executed; its outputs were independently recomputed here. No source or evidence input was modified.
+
+Receipt files: `verification.json`, `supplement-verification.json`, both independent check scripts, main-analysis `reproduction.log` and three reproduced reports. `receipt-manifest.json` pins this complete receipt.
+
