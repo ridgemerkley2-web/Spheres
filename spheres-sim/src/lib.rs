@@ -714,6 +714,11 @@ fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
         // world-before-price refusal order without copying unrelated history.
         Command::Equipment { nation, order: EquipmentOrder::Research { component } }
             => equipment::research_refusal(w, *nation, component),
+        // Routine support has a complete read-only check, including the guards
+        // for its optional initial maintenance plan. Opponent reviews use this
+        // ordinary order too; validating it must not copy the whole campaign.
+        Command::Equipment { nation, order: EquipmentOrder::AirSupport { daily_budget_mn, target_days, automatic } }
+            => equipment::air_support_refusal(w, *nation, *daily_budget_mn, *target_days, *automatic),
         Command::Equipment { nation, order } => apply_equipment_order(&mut w.clone(), *nation, order).err(),
         Command::AirSquadron {nation,order} => aviation::refusal(w,*nation,order),
         Command::AirBase {nation,order} => airbases::refusal(w,*nation,order),
@@ -1840,6 +1845,10 @@ fn migrate_legacy_wars(w: &mut WorldState) {
         });
     }
 }
+
+#[cfg(test)]
+#[path = "air_support_command_tests.rs"]
+mod air_support_command_tests;
 
 #[cfg(test)]
 mod tests {
