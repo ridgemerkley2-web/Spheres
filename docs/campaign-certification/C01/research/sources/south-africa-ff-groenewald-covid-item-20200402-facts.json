@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_ff_groenewald_covid_item_20200402",
+  "source_url": "https://web.archive.org/web/20211201072721id_/https://www.vfplus.org.za/latest-news/ff-plus-leader-dr-pieter-groenewald-tests-negative-for-covid-19",
+  "original_url": "https://www.vfplus.org.za/latest-news/ff-plus-leader-dr-pieter-groenewald-tests-negative-for-covid-19",
+  "archive_capture_utc": "2021-12-01T07:27:21Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2020-04-02",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 24703,
+  "source_response_sha256": "0f604a2289f730f2883fd8bdc5236028e68dd028ceb4db3416cfba4e43fd3355",
+  "source_response_sha1_base32": "RXOOID3VYGWBWKRQZUP2LMIH7AK464CW",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture, fetched with plain curl (no Accept-Encoding, no decoding). First downloaded on 2026-09-28T17:38:27Z; downloaded again at 2026-09-28T18:26:11Z, 2026-09-28T19:05:20Z, the last at least 30 minutes after the first, each with the same byte count and SHA-256 (24703 bytes). The base32 SHA-1 of the bytes equals the Internet Archive's CDX digest for the capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the Freedom Front's or Freedom Front Plus's original page, captured at 2021-12-01T07:27:21Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the old www.vryheidsfront.co.za pages are no longer served, and the current www.vfplus.org.za pages carry rotating embedded blocks). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture made 1 December 2021 of the item dated \"2020-04-02\" (byline \"Die Redaksie\"). Served without content encoding.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_ff_item_leader_groenewald_20200402",
+      "observation_id": "za_iec_n2024_051",
+      "review_observation": "ZA-FF-06",
+      "role_id": "za_ff_leader",
+      "holder_name": "Pieter Groenewald",
+      "role_title": "Leader of the Freedom Front Plus (Vryheidsfront Plus)",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2020-04-02",
+      "text": "The Freedom Front Plus item dated 2020-04-02 says \"Dr Pieter Groenewald, leader of the FF Plus, tested negative for the coronavirus\".",
+      "locator": {
+        "section": "Headline and first paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Freedom Front and Freedom Front Plus leader observations for CLAUDE-C01-30 only (role za_ff_leader on the VRYHEIDSFRONT PLUS observation). Founding, merger, renaming and another party's joining are organization claims (role_id null) and set no lifecycle or identity; elections, selection, re-election, retirement, death, the parliamentary leader office and in-office attestations stay separate rows; holder observations are decided in the packet, not by any row. State and parliamentary offices are excluded and no row feeds them."
+}

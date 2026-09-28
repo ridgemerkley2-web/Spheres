@@ -6683,6 +6683,1341 @@
           "uncertainty": "Dates the holder observation: an official in-office attestation eight days before the cutoff. It is not an appointment, oath or boundary; the body refers to 'the Deputy President' without repeating the name given in the heading."
         }
       ]
+    },
+    {
+      "id": "za_acdp_party_history_page_2004",
+      "title": "The History of the ACDP (ACDP website party-history page)",
+      "url": "https://web.archive.org/web/20040113080431id_/http://www.acdp.org.za:80/information/party_history.htm",
+      "original_url": "http://www.acdp.org.za/information/party_history.htm",
+      "publisher": "African Christian Democratic Party (archived www.acdp.org.za page)",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "party_history_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 13 January 2004; archived Last-Modified Tue, 11 Nov 2003 21:39:03 GMT. The page carries no date of its own; its history is retrospective. The page title element reads \"Meaning of the ACDP Logo\" although the body heading is \"THE HISTORY OF THE ACDP\". Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-acdp-party-history-20040113-facts.json",
+        "bytes": 4176,
+        "sha256": "a25b2b7a7c4384f8863a4c83f36917df28b0f96146cc75bd418c6387ebfb97f8"
+      },
+      "claims": [
+        {
+          "id": "za_acdp_history_party_launched_december_1993",
+          "text": "The ACDP's history page says that Christians from diverse backgrounds were prompted \"to launch a new political party in December 1993\", so that the African Christian Democratic Party \"was established exactly a hundred days prior to South Africa's first democratic elections in 1994\".",
+          "locator": {
+            "section": "Heading \"THE HISTORY OF THE ACDP\", first paragraph"
+          },
+          "uncertainty": "Retrospective and month-precise, so no structured date is stored. The \"hundred days\" wording would give a different day from any day in December 1993 and is not used to derive one. The page names no founder, leader or President. An organization claim only: it sets no lifecycle start for this reporting identity and never dates the party office."
+        }
+      ]
+    },
+    {
+      "id": "za_acdp_kzn_newsletter_199805",
+      "title": "KwaZulu Provincial News, May 1998, Vol 1 No 3, electronic edition (ACDP KwaZulu-Natal newsletter)",
+      "url": "https://web.archive.org/web/19990904001603id_/http://www.acdp.org.za:80/provincial/kzn/provinci.htm",
+      "original_url": "http://www.acdp.org.za/provincial/kzn/provinci.htm",
+      "publisher": "African Christian Democratic Party, KwaZulu-Natal (provincial newsletter on the archived www.acdp.org.za site)",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "party_newsletter_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 4 September 1999; archived Last-Modified Sun, 09 May 1999 09:47:58 GMT. The newsletter is dated only \"May 1998\" (month precision). Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-acdp-kzn-newsletter-19990904-facts.json",
+        "bytes": 4142,
+        "sha256": "befb67c074ecfdc95b045a9816963a3e3c9a5f7aff77b3b79de6f37a7386f5a0"
+      },
+      "claims": [
+        {
+          "id": "za_acdp_kzn_newsletter_word_from_president_meshoe_199805",
+          "text": "The ACDP KwaZulu-Natal newsletter headed \"May 1998 Vol 1 No 3\" carries \"A word from our President (Rev Dr Kenneth Meshoe M.P. Leader of the A.C.D.P)\", a message to churches and Christians about the property clause.",
+          "locator": {
+            "section": "Masthead (\"KWAZULU PROVINCIAL NEWS May 1998 Vol 1 No 3 Electronic edition\") and the box \"A word from our President\""
+          },
+          "uncertainty": "The earliest ACDP record found that names its President, but dated to the month only, so no structured date is stored and it never dates a holder observation. It states no start. \"M.P.\" is his parliamentary seat, a state office that is not used for the party office."
+        }
+      ]
+    },
+    {
+      "id": "za_acdp_home_page_19990501",
+      "title": "ACDP home page (default.asp), as served on 1 May 1999",
+      "url": "https://web.archive.org/web/19990501020807id_/http://www.acdp.org.za:80/default.asp",
+      "original_url": "http://www.acdp.org.za/default.asp",
+      "publisher": "African Christian Democratic Party (archived www.acdp.org.za page)",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "party_web_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 1 May 1999, 02:08 UTC; the archived response Date header is Sat, 01 May 1999 02:06:51 GMT. The page is an ASP page whose body text \"Voting Day is 32 days away!\" was generated when it was served, so the body is the page as served that day. Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-acdp-home-page-19990501-facts.json",
+        "bytes": 4105,
+        "sha256": "1fa53056a54aa3a93318af97f19b0becdf090b75e451f5ccd2d6ed4f219b07cb"
+      },
+      "claims": [
+        {
+          "id": "za_acdp_home_page_president_meshoe_19990501",
+          "text": "The ACDP home page as served on 1 May 1999, which counts down \"Voting Day is 32 days away!\", presents \"Rev Kenneth Meshoe, MP (President ACDP)\" beside a quotation from him on \"servant leadership\".",
+          "attested_on": "1999-05-01",
+          "locator": {
+            "section": "Home page body, the line under the countdown \"Voting Day is 32 days away!\""
+          },
+          "uncertainty": "Dated by the day the page was served (the archived Date header, 1 May 1999), not by a dateline: the page has none, and its countdown text was generated at that request. It attests the office as the ACDP presented it that day and states no start and no end. \"MP\" is a state office and is not used. Dates the holder observation only; not a start."
+        }
+      ]
+    },
+    {
+      "id": "za_acdp_meshoe_nepad_speech_20011031",
+      "title": "ACDP Response to Address by President Thabo Mbeki, New Partnership for Africa's Development: speech by Rev Dr KRJ Meshoe MP, President of the African Christian Democratic Party (31 October 2001)",
+      "url": "https://web.archive.org/web/20060925055108id_/http://www.acdp.org.za/oldpress/MbekiResponse1Nov01.htm",
+      "original_url": "http://www.acdp.org.za/oldpress/MbekiResponse1Nov01.htm",
+      "publisher": "African Christian Democratic Party (archived www.acdp.org.za press archive page)",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_party_speech_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 25 September 2006 of the ACDP's old press archive; archived Last-Modified Tue, 24 Jan 2006 19:59:34 GMT. The dateline \"Wednesday, 31 October 2001\" is the speech's own date; the file name says \"1Nov01\" and the web page's own publication date is unknown. Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-acdp-meshoe-nepad-speech-20011031-facts.json",
+        "bytes": 4177,
+        "sha256": "5a037b720403bf3ae280185b027825487bbce2a142838f4430dc39403e7081db"
+      },
+      "claims": [
+        {
+          "id": "za_acdp_meshoe_speech_as_president_20011031",
+          "text": "The ACDP's response to President Thabo Mbeki's address on the New Partnership for Africa's Development is headed as a speech \"by Rev Dr KRJ Meshoe MP, President of the African Christian Democratic Party\", dated Wednesday, 31 October 2001.",
+          "attested_on": "2001-10-31",
+          "locator": {
+            "section": "Heading block: title, speaker line and dateline"
+          },
+          "uncertainty": "Dated by the speech's dateline (31 October 2001); the file name's \"1Nov01\" is not used. It attests the party office on that day and states no start and no end. Thabo Mbeki's title \"President\" in the same heading is the state office of the Republic and is not read into the party office, and the speaker's \"MP\" is his seat. Dates the holder observation only; not a start."
+        }
+      ]
+    },
+    {
+      "id": "za_acdp_manifesto_launch_notice_20140218",
+      "title": "ACDP Manifesto Launch, Soweto (ACDP website post, 18 February 2014)",
+      "url": "https://web.archive.org/web/20180113011359id_/http://www.acdp.org.za/17022014-acdp-to-launch-manifesto-on-saturday-2202-in-soweto/",
+      "original_url": "http://www.acdp.org.za/17022014-acdp-to-launch-manifesto-on-saturday-2202-in-soweto/",
+      "publisher": "African Christian Democratic Party (archived www.acdp.org.za page)",
+      "published_date": "2014-02-18",
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_party_statement_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 13 January 2018 of the post dated \"February 18, 2014\"; the address slug begins \"17022014\". The post announces an event for 22 February 2014. Sidebar feeds, tag clouds and related-post lists are excluded. Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-acdp-manifesto-launch-notice-20140218-facts.json",
+        "bytes": 4203,
+        "sha256": "3b4eb272a1e4d1dbc7730c845ae5c7d9b9ac2248440bc9dc5b83d48823f74ca3"
+      },
+      "claims": [
+        {
+          "id": "za_acdp_manifesto_notice_president_meshoe_20140218",
+          "text": "The ACDP's post dated February 18, 2014 invites the public to the launch of its 2014 election manifesto in Soweto on 22 February 2014 and says \"ACDP President Dr Kenneth Meshoe will address the crowd\".",
+          "attested_on": "2014-02-18",
+          "locator": {
+            "section": "Post \"ACDP Manifesto Launch, Soweto\", invitation paragraph and correction line"
+          },
+          "uncertainty": "Dated by the post's own date (18 February 2014); the address slug's \"17022014\" is not used, and the announced address of 22 February 2014 is prospective and not recorded as an event. It attests the party office on the post's date and states no start and no end. Dates the holder observation only; not a start."
+        }
+      ]
+    },
+    {
+      "id": "za_acdp_leader_statement_20180214",
+      "title": "ACDP Leader calls on Zuma to place the country above himself (ACDP press article, 14 February 2018)",
+      "url": "https://web.archive.org/web/20190509205419id_/https://www.acdp.org.za/acdp_leader_calls_on_zuma_to_place_the_country_above_himself",
+      "original_url": "https://www.acdp.org.za/acdp_leader_calls_on_zuma_to_place_the_country_above_himself",
+      "publisher": "African Christian Democratic Party (archived www.acdp.org.za page)",
+      "published_date": "2018-02-14",
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_party_statement_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 9 May 2019 of the ACDP's press article signed \"ISSUED BY: REV KENNETH MESHOE MP 14 February 2018\". The \"More articles\" list is excluded. Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-acdp-leader-statement-20180214-facts.json",
+        "bytes": 4166,
+        "sha256": "13774b5e58394d4a1c69008cbcad5221a2211a612fb07666bbfd76789f1a0a76"
+      },
+      "claims": [
+        {
+          "id": "za_acdp_leader_meshoe_statement_20180214",
+          "text": "In a press article issued by \"REV KENNETH MESHOE MP\" on 14 February 2018, the ACDP says \"ACDP Leader Rev Kenneth Meshoe\" called on President Zuma \"to place the country and our people's welfare\" above himself.",
+          "attested_on": "2018-02-14",
+          "locator": {
+            "section": "Article \"ACDP Leader calls on Zuma to place the country above himself\": first paragraph and the \"ISSUED BY\" line"
+          },
+          "uncertainty": "Dated by the article's own \"ISSUED BY\" date (14 February 2018). \"ACDP Leader\" is read as the party's leading office, which the ACDP's own pages title President. It states no start and no end. The article's account of the Presidency of the Republic, the ANC's recall and Parliament's procedure concerns state and other-party offices and is not used; no za_presidency claim is fed. Dates the holder observation only; not a start."
+        }
+      ]
+    },
+    {
+      "id": "za_acdp_our_leadership_page_20190401",
+      "title": "Our Leadership - ACDP (ACDP website leadership page)",
+      "url": "https://web.archive.org/web/20190401103633id_/https://www.acdp.org.za/our-leadership/",
+      "original_url": "https://www.acdp.org.za/our-leadership/",
+      "publisher": "African Christian Democratic Party (archived www.acdp.org.za page)",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "party_web_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 1 April 2019, 10:36 UTC. The page carries no date of its own; it is read as served that day. Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-acdp-our-leadership-page-20190401-facts.json",
+        "bytes": 3961,
+        "sha256": "a1fed61db1914e9880f16cf25b5cab0663e768e5dd79c02c26370dc00de2af03"
+      },
+      "claims": [
+        {
+          "id": "za_acdp_leadership_page_president_meshoe_20190401",
+          "text": "The ACDP's \"Our Leadership\" page, as served on 1 April 2019, lists \"Rev Kenneth Meshoe MP\" as \"President\" at the head of its \"National Executive Commitee\" (sic).",
+          "attested_on": "2019-04-01",
+          "locator": {
+            "section": "\"Our Leadership\" page, heading \"National Executive Commitee\", first entry"
+          },
+          "uncertainty": "An undated page read as served on the capture day. A continuation attestation of the 14 February 2018 observation, never a holder date; it states no start and no end. The other offices on the list are not researched here."
+        }
+      ]
+    },
+    {
+      "id": "za_acdp_meshoe_profile_page_2021",
+      "title": "Rev Kenneth Meshoe (ACDP website member profile page)",
+      "url": "https://web.archive.org/web/20211207181933id_/https://www.acdp.org.za/member/kenneth-meshoe/",
+      "original_url": "https://www.acdp.org.za/member/kenneth-meshoe/",
+      "publisher": "African Christian Democratic Party (archived www.acdp.org.za page)",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "party_biography_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 7 December 2021 of the ACDP's profile page for its President. The \"ABOUT\" paragraph is retrospective; the \"CURRENTLY\" and \"FORMERLY\" lists of parliamentary, committee and election-list positions are state or parliamentary roles and are excluded. Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-acdp-meshoe-profile-20211207-facts.json",
+        "bytes": 4086,
+        "sha256": "09bec42035139d0f85039c46057bb3ca17133f83b29a9a779b2762a5eb63d4fb"
+      },
+      "claims": [
+        {
+          "id": "za_acdp_profile_meshoe_founded_party_december_1993",
+          "text": "The ACDP's profile page of Rev Kenneth Meshoe says \"Rev Meshoe founded the African Christian Democratic Party in December 1993 and has been a member of the National Assembly since 1994\".",
+          "locator": {
+            "section": "Profile \"Rev Kenneth Meshoe\", paragraph under \"ABOUT\""
+          },
+          "uncertainty": "Retrospective and month-precise, so no structured date is stored. An organization claim only: founding the party does not state that he became, or from what day he was, its President, sets no lifecycle start, and never dates or starts the party office. Membership of the National Assembly is a state office and is not used."
+        }
+      ]
+    },
+    {
+      "id": "za_acdp_president_statement_lekota_20260304",
+      "title": "ACDP President pays tribute to the late COPE President, Mosiuoa Lekota (statement by ACDP President, Rev Kenneth Meshoe MP, 4 March 2026)",
+      "url": "https://web.archive.org/web/20260304132154id_/https://acdp.org.za/acdp-president-pays-tribute-to-the-late-cope-president-mosiuoa-lekota/",
+      "original_url": "https://acdp.org.za/acdp-president-pays-tribute-to-the-late-cope-president-mosiuoa-lekota/",
+      "publisher": "African Christian Democratic Party (official website acdp.org.za, archived page)",
+      "published_date": "2026-03-04",
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_party_statement_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 4 March 2026, 13:21 UTC, the statement's own date; archived Last-Modified Wed, 04 Mar 2026 12:23:54 GMT; before the 7 September 2026 cutoff. The \"Older Statements\" list and subscription panels are excluded. The live site was not used. Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-acdp-president-statement-20260304-facts.json",
+        "bytes": 4293,
+        "sha256": "9995bc2022fa2bf4dd500cce1ea5c41ff3dab52c72f9b8b18b25c8c900a396e4"
+      },
+      "claims": [
+        {
+          "id": "za_acdp_president_meshoe_statement_20260304",
+          "text": "The ACDP's statement dated Mar 4, 2026, headed \"Statement by ACDP President, Rev Kenneth Meshoe MP\" and \"ACDP President pays tribute to the late COPE President, Mosiuoa Lekota\", is issued by the African Christian Democratic Party.",
+          "attested_on": "2026-03-04",
+          "locator": {
+            "section": "Statement header: byline \"Statement by ACDP President, Rev Kenneth Meshoe MP\", title and date line"
+          },
+          "uncertainty": "Dated by the statement's date line (4 March 2026), the latest ACDP record found before the cutoff that names its President. It states no start and no end. \"COPE President\" is another party's office and \"MP\" is a state office; neither is used. Dates the holder observation only; not a start."
+        }
+      ]
+    },
+    {
+      "id": "za_ff_viljoen_media_release_19970826",
+      "title": "Mediaverklaring: Reaksie op mnr F.W. de Klerk se bedanking (Freedom Front media release issued by Genl. C.L. Viljoen, 26 August 1997)",
+      "url": "https://web.archive.org/web/19980613213641id_/http://www.vryheidsfront.co.za:80/media/970826b.html",
+      "original_url": "http://www.vryheidsfront.co.za/media/970826b.html",
+      "publisher": "Freedom Front (Vryheidsfront) (archived www.vryheidsfront.co.za page)",
+      "published_date": "1997-08-26",
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_party_statement_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 13 June 1998; archived Last-Modified Sat, 13 Jun 1998 21:29:47 GMT. Afrikaans, Windows-1252. The release reacts to another party leader's resignation; that office is not researched here. Served without content encoding. The capture was archived from a chunked response, so its CDX digest does not equal the base32 SHA-1 of the de-chunked body served; the byte count and SHA-256 were stable across downloads.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-ff-viljoen-media-release-19970826-facts.json",
+        "bytes": 4569,
+        "sha256": "dce490629a32ecf9679f94cff4f1962a3684239e8e81e4f720a5e2a22b0d5d19"
+      },
+      "claims": [
+        {
+          "id": "za_ff_viljoen_media_release_leader_19970826",
+          "text": "A Freedom Front media release is \"Uitgereik deur : Genl. C.L. Viljoen\" with \"Hoedanigheid : Leier: Vryheidsfront\" (issued by Gen. C.L. Viljoen in the capacity of Leader of the Freedom Front), \"Datum : 26 Augustus 1997\".",
+          "attested_on": "1997-08-26",
+          "locator": {
+            "section": "Header block: \"Uitgereik deur\", \"Hoedanigheid\" and \"Datum\" lines"
+          },
+          "uncertainty": "Dated by the release's own date line (26 August 1997), the only day-dated Freedom Front record found of Viljoen in the office (the party's site was first archived in 1998). It states no start and no end. Dates the holder observation only; not a start."
+        }
+      ]
+    },
+    {
+      "id": "za_ff_viljoen_profile_page_2003",
+      "title": "VF - Geskiedenis - Genl Constand Viljoen (Freedom Front website biography page)",
+      "url": "https://web.archive.org/web/20030504130710id_/http://www.vryheidsfront.co.za:80/a/viljoen.asp",
+      "original_url": "http://www.vryheidsfront.co.za/a/viljoen.asp",
+      "publisher": "Freedom Front (Vryheidsfront) (archived www.vryheidsfront.co.za page)",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "party_biography_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 4 May 2003 of an undated, retrospective Afrikaans biography. Military and other offices in it are not researched. Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-ff-viljoen-profile-20030504-facts.json",
+        "bytes": 4869,
+        "sha256": "e0a33c85d89c8213f8db660bc719e1c80a1d78884497018ddf6d01335f9670fd"
+      },
+      "claims": [
+        {
+          "id": "za_ff_viljoen_profile_founded_freedom_front",
+          "text": "The Freedom Front's biography of Gen. Constand Viljoen says political developments led to \"Generaal Viljoen die Vryheidsfront gestig het, en aan die April 1994 verkiesing deelgeneem het\" (General Viljoen founded the Freedom Front, which took part in the April 1994 election).",
+          "locator": {
+            "section": "Paragraph beginning \"Politieke verwikkelinge\""
+          },
+          "uncertainty": "Retrospective and undated, so no structured date is stored. An organization claim only: founding the party does not state that or from what day he was its Leader, sets no lifecycle start and never starts the office."
+        },
+        {
+          "id": "za_ff_viljoen_profile_retired_as_leader_2001",
+          "text": "The same biography says \"In 2001 tree genl. Viljoen uit as leier van die Vryheidsfront\" (in 2001 Gen. Viljoen retired as leader of the Freedom Front).",
+          "locator": {
+            "section": "Final paragraph"
+          },
+          "uncertainty": "Retrospective and year-only, so no structured date is stored. No announcement or handover day is printed, and no end is inferred from his successor's election. Never an until."
+        }
+      ]
+    },
+    {
+      "id": "za_ff_mulder_profile_page_af_2003",
+      "title": "VF - Leierskap: Uitvoerende Dagbestuur: Dr. Pieter W.A. Mulder (Freedom Front website curriculum vitae, Afrikaans)",
+      "url": "https://web.archive.org/web/20030429154123id_/http://www.vryheidsfront.co.za:80/a/leierskap_p_mulder.asp",
+      "original_url": "http://www.vryheidsfront.co.za/a/leierskap_p_mulder.asp",
+      "publisher": "Freedom Front (Vryheidsfront) (archived www.vryheidsfront.co.za page)",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "party_biography_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 29 April 2003 of an undated, retrospective Afrikaans curriculum vitae. His parliamentary seat and spokesperson roles are not used. Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-ff-mulder-profile-af-20030429-facts.json",
+        "bytes": 4904,
+        "sha256": "666da66764a146bba3232dc0cb19fbfd0140c5f169e27595aa349ef5ee462a5c"
+      },
+      "claims": [
+        {
+          "id": "za_ff_mulder_cv_af_freedom_front_founded_199403",
+          "text": "Dr Pieter Mulder's Afrikaans curriculum vitae says \"In Maart 1994 is hy betrokke by die stigting van die Vryheidsfront waar hy tot voorsitter verkies is\" (in March 1994 he took part in founding the Freedom Front, where he was elected chairman).",
+          "locator": {
+            "section": "Curriculum vitae paragraph beginning \"In Maart 1994\""
+          },
+          "uncertainty": "Retrospective and month-precise, so no structured date is stored; no party record found gives the founding or registration day. The chairman's office is a different party office. An organization claim only: it sets no lifecycle start and never dates the leader office."
+        },
+        {
+          "id": "za_ff_mulder_cv_af_elected_leader_200104",
+          "text": "The same curriculum vitae says \"In April 2001 is hy tot leier van die Vryheidsfront verkies\" (in April 2001 he was elected leader of the Freedom Front).",
+          "locator": {
+            "section": "Curriculum vitae paragraph beginning \"In April 2001\""
+          },
+          "uncertainty": "A retrospective, month-precise election reference, so no structured date is stored. It conflicts with the English curriculum vitae and his own speech of 21 June 2001, which both say March; the conflict is kept open. An election is never a start. Never a holder date or start."
+        }
+      ]
+    },
+    {
+      "id": "za_ff_mulder_profile_page_en_2003",
+      "title": "FF - Leadership: Dr. Pieter W.A. Mulder (Freedom Front website curriculum vitae, English)",
+      "url": "https://web.archive.org/web/20030904113907id_/http://www.vryheidsfront.co.za:80/english/leadership_p_mulder.asp",
+      "original_url": "http://www.vryheidsfront.co.za/english/leadership_p_mulder.asp",
+      "publisher": "Freedom Front (Vryheidsfront) (archived www.vryheidsfront.co.za page)",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "party_biography_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 4 September 2003 of an undated, retrospective English curriculum vitae. His parliamentary seat and spokesperson roles are not used. Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-ff-mulder-profile-en-20030904-facts.json",
+        "bytes": 4841,
+        "sha256": "f8d92f4964eb52207a66b6128596a4bff888524bc7bcbe1f3eecaa6a8b39f874"
+      },
+      "claims": [
+        {
+          "id": "za_ff_mulder_cv_en_freedom_front_founded_199403",
+          "text": "Dr Pieter Mulder's English curriculum vitae says \"In March 1994 he was a founder member of the Freedom Front (Vryheidsfront) and was elected chairperson of the Freedom Front\".",
+          "locator": {
+            "section": "Curriculum vitae paragraph beginning \"In March 1994\""
+          },
+          "uncertainty": "Retrospective and month-precise, so no structured date is stored. An organization claim only: it sets no lifecycle start and never dates the leader office; the chairperson is a different party office."
+        },
+        {
+          "id": "za_ff_mulder_cv_en_elected_leader_200103",
+          "text": "The same curriculum vitae says \"In March 2001 he was elected leader of the Freedom Front after General Constand Viljoen retired from politics\".",
+          "locator": {
+            "section": "Curriculum vitae paragraph beginning \"In March 2001\""
+          },
+          "uncertainty": "A retrospective, month-precise election reference, so no structured date is stored; it conflicts with the Afrikaans curriculum vitae (April 2001). Viljoen's retirement \"from politics\" is undated here and is not used as his end. An election is never a start. Never a holder date or start."
+        }
+      ]
+    },
+    {
+      "id": "za_ff_mulder_budget_debate_speech_20010621",
+      "title": "Pres. Mbeki budget debate: speech by Dr. Pieter Mulder (Freedom Front website speeches page, 21 June 2001)",
+      "url": "https://web.archive.org/web/20061007034931id_/http://www.vryheidsfront.co.za/english/speach.asp?id=14",
+      "original_url": "http://www.vryheidsfront.co.za/english/speach.asp?id=14",
+      "publisher": "Freedom Front (Vryheidsfront) (archived www.vryheidsfront.co.za page)",
+      "published_date": "2001-06-21",
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_party_speech_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 7 October 2006 of the party's speech-archive page (\"Speaker : Dr. Pieter Mulder\", \"Occasion : Parliamentary Debate: Pres. Mbeki budget debate\", \"Date : 21/06/2001\"). The parliamentary debate is the occasion; the office relied on is the party's. Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-ff-mulder-budget-debate-speech-20010621-facts.json",
+        "bytes": 5058,
+        "sha256": "0906d6709c8d9bbe8f16dea35dac6c777fce2ebba0807b30d765c4cb3316f1d4"
+      },
+      "claims": [
+        {
+          "id": "za_ff_mulder_speech_newly_elected_party_leader_20010621",
+          "text": "In his speech dated 21/06/2001 in the budget debate on President Mbeki's office, Dr Pieter Mulder says \"I am also a newly elected party leader. Of course I also want to make a success of my leadership\".",
+          "attested_on": "2001-06-21",
+          "locator": {
+            "section": "Speech header (\"Date : 21/06/2001\") and first paragraph"
+          },
+          "uncertainty": "Dated by the speech's date line (21 June 2001). \"Newly elected\" states no day of the election or of taking office, so there is no start. The President of the Republic's office discussed in the speech is a state office and is not used; no za_presidency claim is fed. Dates the holder observation only; not a start."
+        },
+        {
+          "id": "za_ff_mulder_speech_elected_leader_in_march_2001",
+          "text": "In the same speech he says \"When I was elected as leader of the Freedom Front in March I committed myself to try to get win win solutions\".",
+          "locator": {
+            "section": "Second paragraph, beginning \"When I was elected as leader of the Freedom Front in March\""
+          },
+          "uncertainty": "A month-only election reference, so no structured date is stored; it agrees with the English curriculum vitae and conflicts with the Afrikaans one (April 2001). An election is never a start. Never a holder date or start."
+        }
+      ]
+    },
+    {
+      "id": "za_ff_vfplus_media_release_20030928",
+      "title": "Mediaverklarings: VF+: Groter Afrikaner politieke-eenheid (Freedom Front media release, 28/9/2003)",
+      "url": "https://web.archive.org/web/20060929152114id_/http://www.vryheidsfront.co.za/a/media.asp?id=308",
+      "original_url": "http://www.vryheidsfront.co.za/a/media.asp?id=308",
+      "publisher": "Freedom Front (Vryheidsfront) (archived www.vryheidsfront.co.za page)",
+      "published_date": "2003-09-28",
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_party_statement_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 29 September 2006 of the release dated \"28/9/2003\". Afrikaans; a backtick is used as an apostrophe. The attached agreement's \"Op 30 Julie 2004\" is evidently a misprint for 2003 and is not used. Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-ff-vfplus-media-release-20030928-facts.json",
+        "bytes": 6211,
+        "sha256": "0543550ab1ea0e86d1c91dbda8015094b1036288808cf91b542f9edd0f24499d"
+      },
+      "claims": [
+        {
+          "id": "za_ff_release_mulder_vf_leader_20030928",
+          "text": "The Freedom Front's release dated 28/9/2003 opens \"Dr Pieter Mulder, VF leier,\" naming him as the Freedom Front's leader beside the leaders of the Konserwatiewe Party and the Afrikaner Eenheidsbeweging.",
+          "attested_on": "2003-09-28",
+          "locator": {
+            "section": "Title line, date and first paragraph"
+          },
+          "uncertainty": "Dated by the release's date (28 September 2003). It states no start and no end. Dates the holder observation only; not a start."
+        },
+        {
+          "id": "za_ff_vf_kp_aeb_single_unit_announced_20030927",
+          "text": "The release says the three leaders \"het Saterdag (27/9/2003) in Pretoria aangekondig\" that the three parties would take part in the 2004 election as one unit, and that \"Die name KP, AEB en VF sal verdwyn en met VF+ vervang word\" (the names KP, AEB and VF will disappear and be replaced by VF+).",
+          "attested_on": "2003-09-27",
+          "locator": {
+            "section": "First paragraph"
+          },
+          "uncertainty": "An announcement of a merger, dated by the day the release gives for it (Saturday 27 September 2003); the merging of assets and staff was left to a technical committee, and no day on which the merger took legal effect is printed. An organization claim only: the three organizations are not merged into one identity here, no lifecycle start or end is set, and it never dates the leader office."
+        },
+        {
+          "id": "za_ff_name_vryheidsfront_plus_announced_20030927",
+          "text": "The same release says the three parties would take part in the election \"met die naam Vryheidsfront Plus (VF+)\" (under the name Freedom Front Plus).",
+          "attested_on": "2003-09-27",
+          "locator": {
+            "section": "First paragraph"
+          },
+          "uncertainty": "A renaming announced on 27 September 2003; no effective or registration day for the name is printed. An organization claim only: it does not merge identities and sets no lifecycle boundary. Never dates the leader office."
+        },
+        {
+          "id": "za_ff_kp_aeb_leaders_pledge_loyalty_to_mulder_20030927",
+          "text": "The release says the Konserwatiewe Party and AEB leaders \"het hulle lojaliteit teenoor dr Mulder as leier van die Vryheidsfront Plus betuig\" (pledged their loyalty to Dr Mulder as leader of the Freedom Front Plus).",
+          "attested_on": "2003-09-27",
+          "locator": {
+            "section": "Second paragraph"
+          },
+          "uncertainty": "An acceptance of his leadership by the leaders of the merging parties at the announcement, not an election; it states no day on which he took up leadership of the combined party. Never a holder date or start."
+        }
+      ]
+    },
+    {
+      "id": "za_ff_mulder_reelected_release_20131118",
+      "title": "Dr. Pieter Mulder eenparig herkies tot leier van die Vryheidsfront Plus (Freedom Front Plus media release, 2013-11-18)",
+      "url": "https://web.archive.org/web/20190511232924id_/https://www.vfplus.org.za/media-releases/dr-pieter-mulder-eenparig-herkies-tot-leier-van-die-vryheidsfront-plus",
+      "original_url": "https://www.vfplus.org.za/media-releases/dr-pieter-mulder-eenparig-herkies-tot-leier-van-die-vryheidsfront-plus",
+      "publisher": "Freedom Front Plus (Vryheidsfront Plus) (archived www.vfplus.org.za page)",
+      "published_date": "2013-11-18",
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_party_statement_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 11 May 2019 of the release dated \"2013-11-18\". Its opening paragraph appears lost in a site migration: the body begins with the chairperson's re-election. Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-ff-mulder-reelected-release-20131118-facts.json",
+        "bytes": 4339,
+        "sha256": "295d4d21b9bf4e8aaaf068e543244eac7240dd16964c15d7f1ad71e2c0758fd6"
+      },
+      "claims": [
+        {
+          "id": "za_ff_mulder_unanimously_reelected_published_20131118",
+          "text": "The Freedom Front Plus release dated 2013-11-18 is headed \"Dr. Pieter Mulder eenparig herkies tot leier van die Vryheidsfront Plus\" (Dr Pieter Mulder unanimously re-elected leader of the Freedom Front Plus).",
+          "attested_on": "2013-11-18",
+          "locator": {
+            "section": "Headline and date line"
+          },
+          "uncertainty": "A result publication dated by the release; the day of the meeting that re-elected him is not printed. A re-election is never a start and does not date a holder observation. Never a holder date or start."
+        }
+      ]
+    },
+    {
+      "id": "za_ff_mulder_not_available_release_20161112",
+      "title": "Mulder nie verder as leier beskikbaar nie (Freedom Front Plus media release, 2016-11-12)",
+      "url": "https://web.archive.org/web/20190511235549id_/https://www.vfplus.org.za/media-releases/mulder-nie-verder-as-leier-beskikbaar-nie",
+      "original_url": "https://www.vfplus.org.za/media-releases/mulder-nie-verder-as-leier-beskikbaar-nie",
+      "publisher": "Freedom Front Plus (Vryheidsfront Plus) (archived www.vfplus.org.za page)",
+      "published_date": "2016-11-12",
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_party_statement_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 11 May 2019 of the release dated \"2016-11-12\", bylined Dr Pieter Mulder. The attached abridged curriculum vitae calls the party \"Vryheidsfront Plus\" for 2001, before the 2003 renaming; that anachronism is not used. Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-ff-mulder-not-available-release-20161112-facts.json",
+        "bytes": 5887,
+        "sha256": "1d54a510fcf46057ae6143bf1afde9c2d42a0eafd9efcb9ca00e448cd2878e67"
+      },
+      "claims": [
+        {
+          "id": "za_ff_release_mulder_vf_plus_leader_20161112",
+          "text": "The release dated 2016-11-12 says \"Dr. Pieter Mulder, VF Plus-leier, het homself nie weer as leier verkiesbaar gestel\" at the party's triennial elective congress taking place that weekend in Johannesburg.",
+          "attested_on": "2016-11-12",
+          "locator": {
+            "section": "First paragraph"
+          },
+          "uncertainty": "Dated by the release (12 November 2016), the last Freedom Front Plus record found of him in the office; he is styled \"VF Plus-leier\" (Freedom Front Plus leader). It states no start and no end. Dates the holder observation only; not a start."
+        },
+        {
+          "id": "za_ff_mulder_not_standing_again_20161112",
+          "text": "The same release says he did not stand again at the party's \"driejaarlikse verkiesingskongres wat hierdie naweek in Johannesburg plaasvind\" (triennial elective congress taking place this weekend in Johannesburg), and that the meeting would now have to designate a new leader.",
+          "attested_on": "2016-11-12",
+          "locator": {
+            "section": "First paragraph"
+          },
+          "uncertainty": "A decision not to stand again, dated by the release; it states no day on which his office ended, and no end is inferred from his successor's designation. Never a holder date or an until."
+        },
+        {
+          "id": "za_ff_mulder_led_party_since_2001_unopposed",
+          "text": "The release says \"Dr. Mulder is vanjaar 15 jaar lank leier van die VF plus nadat hy in 2001 onbestrede as leier gekies is na genl. Constand Viljoen se uittrede\" (he has led the party for 15 years, after being chosen unopposed in 2001 following Gen. Constand Viljoen's retirement).",
+          "locator": {
+            "section": "Second paragraph"
+          },
+          "uncertainty": "A retrospective span and year-only election reference, so no structured date is stored; it gives no start and no end for either leader. Never a holder date or boundary."
+        }
+      ]
+    },
+    {
+      "id": "za_ff_new_leadership_release_20161112",
+      "title": "VF Plus wys nuwe leierskap aan (Freedom Front Plus media release, 2016-11-12)",
+      "url": "https://web.archive.org/web/20190511235549id_/https://www.vfplus.org.za/media-releases/vf-plus-wys-nuwe-leierskap-aan",
+      "original_url": "https://www.vfplus.org.za/media-releases/vf-plus-wys-nuwe-leierskap-aan",
+      "publisher": "Freedom Front Plus (Vryheidsfront Plus) (archived www.vfplus.org.za page)",
+      "published_date": "2016-11-12",
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_party_statement_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 11 May 2019 of the release dated \"2016-11-12\", bylined Dr Pieter Groenewald. Other offices filled at the congress are not researched here. Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-ff-new-leadership-release-20161112-facts.json",
+        "bytes": 4310,
+        "sha256": "6613079c128c12f17d16d500f748d7e308582601de83676b68d879ec6bfb8c72"
+      },
+      "claims": [
+        {
+          "id": "za_ff_groenewald_designated_new_leader_20161112",
+          "text": "The release dated 2016-11-12 says \"Dr. Pieter Groenewald, voormalige voorsitter van die VF Plus, is vandag aangewys as nuwe leier van die VF Plus\" (Dr Pieter Groenewald, former chairperson of the Freedom Front Plus, was today designated as the new leader of the Freedom Front Plus).",
+          "attested_on": "2016-11-12",
+          "locator": {
+            "section": "First paragraph"
+          },
+          "uncertainty": "A designation by the congress, dated by the release; the release states no day on which he took up the office, so the designation is never a start and is not used as his predecessor's end. Never a holder date or start."
+        }
+      ]
+    },
+    {
+      "id": "za_ff_groenewald_farm_visit_release_20161227",
+      "title": "FF Plus leader visits victims of farm attacks in hospital (Freedom Front Plus media release, 2016-12-27)",
+      "url": "https://web.archive.org/web/20170511222502id_/http://www.vfplus.org.za/media-releases/ff-plus-leader-visits-victims-of-farm-attacks-in-hospital",
+      "original_url": "http://www.vfplus.org.za/media-releases/ff-plus-leader-visits-victims-of-farm-attacks-in-hospital",
+      "publisher": "Freedom Front Plus (Vryheidsfront Plus) (archived www.vfplus.org.za page)",
+      "published_date": "2016-12-27",
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_party_statement_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 11 May 2017 of the release dated \"2016-12-27\", bylined Dr Pieter Groenewald. Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-ff-groenewald-farm-visit-release-20161227-facts.json",
+        "bytes": 4167,
+        "sha256": "334b19c762952c885be2815876c47c62f132711eb3eb420a77923aec570ffcb0"
+      },
+      "claims": [
+        {
+          "id": "za_ff_release_leader_groenewald_20161227",
+          "text": "The release dated 2016-12-27 says \"The leader of the Freedom Front Plus, Dr. Pieter Groenewald, today visited\" a victim of a farm attack in hospital.",
+          "attested_on": "2016-12-27",
+          "locator": {
+            "section": "First paragraph"
+          },
+          "uncertainty": "Dated by the release (27 December 2016), the first Freedom Front Plus record found of him in the office after the November 2016 congress. It states no start and no end. Dates the holder observation only; not a start."
+        }
+      ]
+    },
+    {
+      "id": "za_ff_groenewald_covid_item_20200402",
+      "title": "FF Plus leader, Dr. Pieter Groenewald, tests negative for Covid-19 (Freedom Front Plus news item, 2020-04-02)",
+      "url": "https://web.archive.org/web/20211201072721id_/https://www.vfplus.org.za/latest-news/ff-plus-leader-dr-pieter-groenewald-tests-negative-for-covid-19",
+      "original_url": "https://www.vfplus.org.za/latest-news/ff-plus-leader-dr-pieter-groenewald-tests-negative-for-covid-19",
+      "publisher": "Freedom Front Plus (Vryheidsfront Plus) (archived www.vfplus.org.za page)",
+      "published_date": "2020-04-02",
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_party_statement_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 1 December 2021 of the item dated \"2020-04-02\" (byline \"Die Redaksie\"). Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-ff-groenewald-covid-item-20200402-facts.json",
+        "bytes": 4158,
+        "sha256": "2e0ef9e1568b719031ab9712ec6f84c3beb06567a2b470737e0d8afb762075f2"
+      },
+      "claims": [
+        {
+          "id": "za_ff_item_leader_groenewald_20200402",
+          "text": "The Freedom Front Plus item dated 2020-04-02 says \"Dr Pieter Groenewald, leader of the FF Plus, tested negative for the coronavirus\".",
+          "attested_on": "2020-04-02",
+          "locator": {
+            "section": "Headline and first paragraph"
+          },
+          "uncertainty": "Dated by the item (2 April 2020). It states no start and no end. Dates the holder observation only; not a start."
+        }
+      ]
+    },
+    {
+      "id": "za_ff_viljoen_death_release_20200403",
+      "title": "News of the passing of Gen. Constand Viljoen, former leader of the Freedom Front, received with great sorrow (Freedom Front Plus release, 2020-04-03)",
+      "url": "https://web.archive.org/web/20200814200230id_/https://www.vfplus.org.za/latest-news/news-of-the-passing-of-gen-constand-viljoen-former-leader-of-the-freedom-front-received-with-great-sorrow",
+      "original_url": "https://www.vfplus.org.za/latest-news/news-of-the-passing-of-gen-constand-viljoen-former-leader-of-the-freedom-front-received-with-great-sorrow",
+      "publisher": "Freedom Front Plus (Vryheidsfront Plus) (archived www.vfplus.org.za page)",
+      "published_date": "2020-04-03",
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_party_statement_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 14 August 2020 of the release dated \"2020-04-03\", bylined Dr Pieter Groenewald. His military career described in it is not used. Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-ff-viljoen-death-release-20200403-facts.json",
+        "bytes": 4978,
+        "sha256": "78699ff2e13e539d755ab3a6c6e5c69ac14fcc93cf629f7b3d3359796178994d"
+      },
+      "claims": [
+        {
+          "id": "za_ff_passing_of_former_leader_viljoen_reported_20200403",
+          "text": "The release dated 2020-04-03 says \"the FF Plus learnt today of the passing of Gen. Constand Viljoen, former leader of the Freedom Front, as the party was known at the time\".",
+          "attested_on": "2020-04-03",
+          "locator": {
+            "section": "First paragraph"
+          },
+          "uncertainty": "The day the party learnt of his death, dated by the release; the day of death itself is not printed. He is described as a former leader, so the death ends no holder observation and is never an end. Never a holder date or boundary."
+        },
+        {
+          "id": "za_ff_viljoen_very_first_leader_of_the_party",
+          "text": "The same release says \"Seeing as he was the very first leader of the party\" the sacrifices of his family are appreciated.",
+          "locator": {
+            "section": "Final paragraph"
+          },
+          "uncertainty": "A retrospective predecessor reference with no dates, so no structured date is stored; it gives neither a start nor an end. Never a holder date or boundary."
+        }
+      ]
+    },
+    {
+      "id": "za_ff_minister_post_release_20240722",
+      "title": "Ministerspos vir VF Plus-leier noodsaak geringe skuiwe aan party se parlementêre leierskorps (Freedom Front Plus media release, 22-07-2024)",
+      "url": "https://web.archive.org/web/20240803012225id_/https://www.vfplus.org.za/af/mediaverklarings/ministerspos-vir-vf-plus-leier-noodsaak-geringe-skuiwe-aan-party-se-parlementere-leierskorps/",
+      "original_url": "https://www.vfplus.org.za/af/mediaverklarings/ministerspos-vir-vf-plus-leier-noodsaak-geringe-skuiwe-aan-party-se-parlementere-leierskorps/",
+      "publisher": "Freedom Front Plus (Vryheidsfront Plus) (archived www.vfplus.org.za page)",
+      "published_date": "2024-07-22",
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_party_statement_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 3 August 2024 of the Afrikaans release dated \"22-07-2024\"; archived Last-Modified Sat, 03 Aug 2024 01:22:24 GMT. Sidebar social-media embeds are excluded; only the article text is used. The release mixes the party office with a state office (a ministerial appointment) and a parliamentary caucus office. Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-ff-minister-post-release-20240722-facts.json",
+        "bytes": 5392,
+        "sha256": "b2fd4c57a44bd9f5eff79c0fcc6e13e6bb1f1fcce6c3f9cdba12d98e3404aef7"
+      },
+      "claims": [
+        {
+          "id": "za_ff_release_vf_plus_leader_groenewald_appointed_minister_20240722",
+          "text": "The release dated 22-07-2024 begins \"Die aanwysing van die VF Plus se leier, dr. Pieter Groenewald, as minister van korrektiewe dienste\" (the appointment of the Freedom Front Plus's leader, Dr Pieter Groenewald, as Minister of Correctional Services) required minor changes to the party's parliamentary team.",
+          "attested_on": "2024-07-22",
+          "locator": {
+            "section": "First paragraph"
+          },
+          "uncertainty": "Only the words \"die VF Plus se leier\" are read as the party office. His appointment as Minister of Correctional Services in the same sentence is a state office, never used for the party office and not recorded as a party claim. Because the two offices are mixed, this is a continuation attestation of the 2024 observation, never a holder date."
+        },
+        {
+          "id": "za_ff_corne_mulder_designated_parliamentary_leader_20240722",
+          "text": "The same release says that Dr. Corné Mulder \"is aangewys as die party se parlementêre leier. Hy was voorheen die hoofsweep\" (was designated as the party's parliamentary leader; he was previously the chief whip).",
+          "attested_on": "2024-07-22",
+          "locator": {
+            "section": "Second paragraph"
+          },
+          "uncertainty": "The parliamentary (caucus) leader is a different office from the party leader. This designation is never a holder observation of the party leader role, never a start of his later leadership of the party, and never an end for the party leader then in office."
+        }
+      ]
+    },
+    {
+      "id": "za_ff_da_ff_leaders_release_20240822",
+      "title": "DA and FF Plus party leaders committed to stabilising Western Cape coalitions (joint media release on the Freedom Front Plus website, 22-08-2024)",
+      "url": "https://web.archive.org/web/20240904150336id_/https://www.vfplus.org.za/latest-news/da-and-ff-plus-party-leaders-committed-to-stabilising-western-cape-coalitions/",
+      "original_url": "https://www.vfplus.org.za/latest-news/da-and-ff-plus-party-leaders-committed-to-stabilising-western-cape-coalitions/",
+      "publisher": "Freedom Front Plus (Vryheidsfront Plus) (archived www.vfplus.org.za page)",
+      "published_date": "2024-08-22",
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_party_statement_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 4 September 2024 of the joint media release dated \"22-08-2024\", bylined Dr Pieter Groenewald; archived Last-Modified Wed, 04 Sep 2024 13:42:33 GMT. Sidebar social-media embeds are excluded. The other party's leader named in it is not used for that party's roles. Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-ff-da-ff-leaders-release-20240822-facts.json",
+        "bytes": 4492,
+        "sha256": "112c713fe3ec194d4cc5f8d94199321cfa1bdbff6a2760db2d1fd616a050bf0b"
+      },
+      "claims": [
+        {
+          "id": "za_ff_joint_release_national_party_leader_groenewald_20240822",
+          "text": "A joint media release dated 22-08-2024 says the DA and FF Plus national party leaders met that day, and that \"the FF Plus national party leader, Dr Groenewald, will meet with the federal and provincial leadership of the DA\".",
+          "attested_on": "2024-08-22",
+          "locator": {
+            "section": "First and third paragraphs"
+          },
+          "uncertainty": "Dated by the release (22 August 2024), the last Freedom Front Plus record found of him in the office. It states no start and no end. It names no state office; the other party's leader is not used for za_da_federal_leader. Dates the holder observation only; not a start."
+        }
+      ]
+    },
+    {
+      "id": "za_ff_presidency_budget_debate_item_20250716",
+      "title": "President moet ag slaan op VF Plus-voorstelle om Suid-Afrika ’n wenland te maak (Freedom Front Plus news item, 16-07-2025)",
+      "url": "https://web.archive.org/web/20250722073536id_/https://www.vfplus.org.za/af/jongste-nuus/president-moet-ag-slaan-op-vf-plus-voorstelle-om-suid-afrika-n-wenland-te-maak/",
+      "original_url": "https://www.vfplus.org.za/af/jongste-nuus/president-moet-ag-slaan-op-vf-plus-voorstelle-om-suid-afrika-n-wenland-te-maak/",
+      "publisher": "Freedom Front Plus (Vryheidsfront Plus) (archived www.vfplus.org.za page)",
+      "published_date": "2025-07-16",
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_party_statement_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 22 July 2025 of the Afrikaans item dated \"16-07-2025\" (\"Begrotingsdebat: Presidensie\"); archived Last-Modified Tue, 22 Jul 2025 06:44:38 GMT. The parliamentary budget debate on the Presidency is the occasion; the office relied on is the party's. Sidebar social-media embeds are excluded. Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-ff-presidency-budget-debate-item-20250716-facts.json",
+        "bytes": 4639,
+        "sha256": "34e4b9578bd873b55b798cf3fdd01d4c9d378cec70d83507c4140eb9bf676cd2"
+      },
+      "claims": [
+        {
+          "id": "za_ff_item_leader_corne_mulder_20250716",
+          "text": "The Freedom Front Plus item dated 16-07-2025 says its message is that of \"dr. Corné Mulder, leier van die VF Plus, vandag aan pres. Cyril Ramaphosa met die begrotingsdebat van die presidensie\" (Dr Corné Mulder, leader of the Freedom Front Plus, today to President Cyril Ramaphosa in the budget debate on the Presidency).",
+          "attested_on": "2025-07-16",
+          "locator": {
+            "section": "Paragraph beginning \"Dit is die kern van die boodskap\""
+          },
+          "uncertainty": "Dated by the item (16 July 2025), the first Freedom Front Plus record found of him as party leader. No party record found states the day he was elected or took up the office, or the day his predecessor's office ended. The Presidency of the Republic addressed in the debate is a state office; no za_presidency claim is fed. Dates the holder observation only; not a start."
+        }
+      ]
+    },
+    {
+      "id": "za_ff_new_members_release_20260325",
+      "title": "New members and strong growth for the Freedom Front Plus (Freedom Front Plus release, 25-03-2026)",
+      "url": "https://web.archive.org/web/20260325202348id_/https://www.vfplus.org.za/latest-news/new-members-and-strong-growth-for-the-vf-plus/",
+      "original_url": "https://www.vfplus.org.za/latest-news/new-members-and-strong-growth-for-the-vf-plus/",
+      "publisher": "Freedom Front Plus (Vryheidsfront Plus) (archived www.vfplus.org.za page)",
+      "published_date": "2026-03-25",
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_party_statement_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 25 March 2026, 20:23 UTC, of the English release dated \"25-03-2026\", bylined Dr Corne Mulder; archived Last-Modified Wed, 25 Mar 2026 15:15:21 GMT; before the 7 September 2026 cutoff. An earlier capture of the same page (25 March 2026, 19:09 UTC) with identical bytes redirected to this one on 28 September 2026 and is not used; the Afrikaans version of the release (capture of 26 March 2026) intermittently replayed as HTTP 404 and is a lead. Sidebar social-media embeds are excluded. Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-ff-new-members-release-20260325-facts.json",
+        "bytes": 5319,
+        "sha256": "a9010ace693f694b92b373f9597898c013bffba563383ea8ed5f55f2346e917a"
+      },
+      "claims": [
+        {
+          "id": "za_ff_release_leader_corne_mulder_20260325",
+          "text": "The Freedom Front Plus release dated 25-03-2026 says \"According to Dr Corné Mulder, leader of the Freedom Front Plus, it is becoming more and more evident that voters increasingly regard the Freedom Front Plus as a steadfast and principled party\".",
+          "attested_on": "2026-03-25",
+          "locator": {
+            "section": "Paragraph beginning \"According to Dr Corné Mulder\""
+          },
+          "uncertainty": "Dated by the release (25 March 2026), the latest Freedom Front Plus record found before the cutoff that names its leader. It states no start and no end. Dates the holder observation only; not a start."
+        },
+        {
+          "id": "za_ff_referendum_party_dissolves_into_ff_plus_20260325",
+          "text": "The same release says the party's growth \"gained further momentum today with the Referendum Party’s decision to dissolve and throw its weight behind the Freedom Front Plus\".",
+          "attested_on": "2026-03-25",
+          "locator": {
+            "section": "First paragraph"
+          },
+          "uncertainty": "Another party's decision to dissolve and join, dated by the release; an organization claim only. It merges no identity into this observation, sets no lifecycle boundary and never dates the leader office."
+        }
+      ]
+    },
+    {
+      "id": "za_ifp_history_profile_page_1997",
+      "title": "History & Profile of the Inkatha Freedom Party (IFP) (IFP website question-and-answer profile page)",
+      "url": "https://web.archive.org/web/19970702032307id_/http://www.ifp.org.za:80/history/ifphist.htm",
+      "original_url": "http://www.ifp.org.za/history/ifphist.htm",
+      "publisher": "Inkatha Freedom Party (archived www.ifp.org.za page)",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "party_history_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 2 July 1997; archived Last-Modified Fri, 07 Jun 1996 00:05:48 GMT. An undated, retrospective question-and-answer profile on the first IFP website. Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-ifp-history-profile-19970702-facts.json",
+        "bytes": 4229,
+        "sha256": "0d4476682cd495837f5ef8ca304c1c9db01c3dd1c6636883933eae6c6a10d461"
+      },
+      "claims": [
+        {
+          "id": "za_ifp_profile_inkatha_became_party_19900714",
+          "text": "The IFP's history and profile page answers the question \"When did Inkatha transform itself into a modern political party and open its doors to all races?\" with \"14 July 1990 at Inkatha's 15th annual general conference\".",
+          "locator": {
+            "section": "Question-and-answer item beginning \"When did Inkatha transform itself into a modern political party\""
+          },
+          "uncertainty": "Retrospective, so no structured date is stored. The IFP's 2000 history page calls the 14 July 1990 meeting \"a special conference in Ulundi\", and the IFP's later Buthelezi timeline gives 10 July 1990; the conflict is kept open. An organization claim only: the transformation is not recorded as a merger or a new identity, sets no lifecycle start for this reporting identity and never dates the party office."
+        }
+      ]
+    },
+    {
+      "id": "za_ifp_historical_perspective_page_2000",
+      "title": "Inkatha Freedom Party - Historical Perspective (IFP website history page)",
+      "url": "https://web.archive.org/web/20000930003618id_/http://www.ifp.org.za:80/History/history.htm",
+      "original_url": "http://www.ifp.org.za/History/history.htm",
+      "publisher": "Inkatha Freedom Party (archived www.ifp.org.za page)",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "party_history_page_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 30 September 2000; archived Last-Modified Thu, 02 Mar 2000 12:20:44 GMT. An undated, retrospective history page. Served without content encoding. The base32 SHA-1 of the served body does not equal the capture's CDX digest (an early ARC record); the body length equals the archived original Content-Length (31,247 bytes), and the byte count and SHA-256 were stable across downloads.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-ifp-historical-perspective-20000930-facts.json",
+        "bytes": 5209,
+        "sha256": "1c2331cd17dbafe7d494b5f0610a7836a6c831405df9b8b43180322ddc84d69b"
+      },
+      "claims": [
+        {
+          "id": "za_ifp_history_party_came_into_being_19900714",
+          "text": "The IFP's historical perspective says \"On the 14th July 1990 at a special conference in Ulundi the Inkatha Freedom Party (IFP) came into being\", transformed from the Inkatha National Cultural Liberation Movement.",
+          "locator": {
+            "section": "Section \"The birth of the Inkatha Freedom Party (IFP)\", paragraph beginning \"On the 14th July 1990\""
+          },
+          "uncertainty": "Retrospective, so no structured date is stored; the 1997 profile calls the meeting Inkatha's 15th annual general conference and the later timeline gives 10 July 1990. An organization claim only: it sets no lifecycle start for this reporting identity, is not a merger or a new identity, and never dates the party office."
+        },
+        {
+          "id": "za_ifp_history_buthelezi_elected_president_1990",
+          "text": "The same passage says \"Dr. Mangosuthu Buthelezi was unanimously elected President of the IFP\" at that conference.",
+          "locator": {
+            "section": "Same paragraph, sentence beginning \"Dr. Mangosuthu Buthelezi was unanimously elected\""
+          },
+          "uncertainty": "A retrospective election reference with no structured date; an election is never a start, and this page is not an in-office attestation. Never a holder date or start."
+        }
+      ]
+    },
+    {
+      "id": "za_ifp_press_release_19951024",
+      "title": "Six IFP Candidates Shot in Mpumalanga - One Dead and One Missing (IFP press release, 24 October 1995)",
+      "url": "https://web.archive.org/web/19970702040121id_/http://www.ifp.org.za:80/Press/241095.htm",
+      "original_url": "http://www.ifp.org.za/Press/241095.htm",
+      "publisher": "Inkatha Freedom Party (archived www.ifp.org.za page)",
+      "published_date": "1995-10-24",
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_party_statement_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 2 July 1997; archived Last-Modified Tue, 18 Jun 1996 19:18:15 GMT. The release is headed \"Press Release Immediate 24 October 1995\". It says both that the rally is \"a day before\" and that the meeting is \"this evening\". Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-ifp-press-release-19951024-facts.json",
+        "bytes": 4417,
+        "sha256": "f2b204557cd7e4bde1d108f7f2f49e66296aab5f77a5ee27cfe579cd51ae47a5"
+      },
+      "claims": [
+        {
+          "id": "za_ifp_press_release_president_buthelezi_19951024",
+          "text": "An IFP press release dated 24 October 1995 says the shooting of six IFP candidates in Mpumalanga \"comes a day before IFP President, Dr M G Buthelezi, addresses an election rally\", and that the meeting to be addressed by \"IFP President, Dr M G Buthelezi\" will go ahead.",
+          "attested_on": "1995-10-24",
+          "locator": {
+            "section": "Second paragraph (beginning \"The ambush was carefully planned\") and final paragraph (beginning \"The meeting this evening\")"
+          },
+          "uncertainty": "Dated by the release's own date line (24 October 1995), the earliest IFP record found inside the period that names its President (the archived IFP site holds nothing dated before late August 1995). It states no start and no end. No state office appears in the text. Dates the holder observation only; not a start."
+        }
+      ]
+    },
+    {
+      "id": "za_ifp_elective_conference_resolutions_2012",
+      "title": "Elective National Conference - 15 December 2012: Resolutions of the 2012 Elective National Conference of the IFP (IFP website resolutions page)",
+      "url": "https://web.archive.org/web/20190512041138id_/http://www.ifp.org.za/documents/resolutions/annual-special-general-conference-resolutions/elective-national-conference-15-december-2012/",
+      "original_url": "http://www.ifp.org.za/documents/resolutions/annual-special-general-conference-resolutions/elective-national-conference-15-december-2012/",
+      "publisher": "Inkatha Freedom Party (archived www.ifp.org.za page)",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_party_record_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 12 May 2019 of the IFP's resolutions page. The page heading says \"15 December 2012\", the resolutions are headed \"14th – 16th December 2012\" and they end \"Date: Sunday, 16 December 2012\". Served without content encoding. The capture was archived from a chunked response, so its CDX digest does not equal the base32 SHA-1 of the de-chunked body served; the byte count and SHA-256 were stable across downloads.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-ifp-elective-conference-resolutions-20121216-facts.json",
+        "bytes": 6244,
+        "sha256": "54f5eed0c7520f3d3d00f2a2e47b2012c53c7e3777ab8ab9e39fc6ad7b36350b"
+      },
+      "claims": [
+        {
+          "id": "za_ifp_2012_conference_session_dates",
+          "text": "The resolutions of the IFP's 2012 Elective National Conference are headed \"14th – 16th December 2012\", while the web page's heading reads \"Elective National Conference – 15 December 2012\".",
+          "locator": {
+            "section": "Page heading and the heading of the resolutions"
+          },
+          "uncertainty": "A conference span with no single day, so no structured date is stored; the page heading's 15 December 2012 is kept as text only. Never a holder date or boundary."
+        },
+        {
+          "id": "za_ifp_2012_conference_acclaims_buthelezi_reelection_20121216",
+          "text": "In resolutions dated Sunday, 16 December 2012, the conference records \"Acclaiming the re-election of His Excellency Prince Mangosuthu Buthelezi to the presidency of the Party he founded 37 years ago\".",
+          "attested_on": "2012-12-16",
+          "locator": {
+            "section": "Resolution 9, item 9.2, and the closing date line"
+          },
+          "uncertainty": "An election reference dated by the resolutions' date line; the day of the vote is not printed. Never a holder date or start."
+        },
+        {
+          "id": "za_ifp_2012_resolutions_mandate_president_buthelezi_20121216",
+          "text": "The same resolutions give \"a full and unqualified mandate to its President, Prince Mangosuthu Buthelezi\" and pledge continued support to \"the leadership, principles and politics of its President\"; they end \"Date: Sunday, 16 December 2012\".",
+          "attested_on": "2012-12-16",
+          "locator": {
+            "section": "Operative part of resolution 6, resolution 9 item (c), and the closing date line"
+          },
+          "uncertainty": "Dated by the resolutions' own date line (16 December 2012). It states no start and no end. The heading \"HIS EXCELLENCY THE PRESIDENT, PRINCE MANGOSUTHU BUTHELEZI MP\" adds his parliamentary seat, a state office that is not used. Dates the holder observation only; not a start."
+        }
+      ]
+    },
+    {
+      "id": "za_ifp_extended_nc_statement_buthelezi_20190120",
+      "title": "Following a Meeting of the IFP's Extended National Council: statement by Prince Mangosuthu Buthelezi MP, President of the Inkatha Freedom Party (20 January 2019)",
+      "url": "https://web.archive.org/web/20190123104637id_/http://www.ifp.org.za:80/newsroom/following-meeting-ifps-extended-national-council/",
+      "original_url": "http://www.ifp.org.za/newsroom/following-meeting-ifps-extended-national-council/",
+      "publisher": "Inkatha Freedom Party (archived www.ifp.org.za page)",
+      "published_date": "2019-01-20",
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_party_statement_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 23 January 2019 of the post dated \"20 January, 2019 - Press Releases\". Navigation and related-post panels are excluded. Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-ifp-extended-nc-statement-20190120-facts.json",
+        "bytes": 5920,
+        "sha256": "c415eb72802c0756d16df92d70a1fdee3fad5fe4894eab7b007d8eac3b17abe8"
+      },
+      "claims": [
+        {
+          "id": "za_ifp_statement_president_buthelezi_20190120",
+          "text": "A statement dated 20 January 2019 is headed \"STATEMENT BY PRINCE MANGOSUTHU BUTHELEZI MP PRESIDENT OF THE INKATHA FREEDOM PARTY\", and in it he says \"I have been asked to lead the campaign as the Party's President\".",
+          "attested_on": "2019-01-20",
+          "locator": {
+            "section": "Heading block and the paragraph containing \"I have been asked to lead the campaign\""
+          },
+          "uncertainty": "Dated by the post's date (20 January 2019). It states no start and no end. \"MP\" is a state office and is not used. Dates the holder observation only; not a start."
+        },
+        {
+          "id": "za_ifp_buthelezi_recalls_october_2017_announcement",
+          "text": "In the same statement he recalls intentions \"which I expressed to a meeting of our Extended National Council in October 2017\", that \"I would not stand for re-election to the position of Party President at the next elective conference\".",
+          "locator": {
+            "section": "Paragraph beginning \"The structures of our Party were well aware\""
+          },
+          "uncertainty": "A retrospective, month-precise report of an announcement, so no structured date is stored. An intention not to stand again is not an end: the same statement shows him still President. Never a holder date or an until."
+        },
+        {
+          "id": "za_ifp_extended_nc_conference_after_2019_elections_20190120",
+          "text": "The statement says the Extended National Council decided that day to engage the election campaign before holding conference: \"We now know that conference will take place immediately after the 2019 elections\".",
+          "attested_on": "2019-01-20",
+          "locator": {
+            "section": "Paragraphs beginning \"But the unanimous decision taken today\" and \"We now know that conference will take place\""
+          },
+          "uncertainty": "A scheduling decision about the elective conference, dated by the statement; it names no date for the conference and changes no holder. Never a holder date or boundary."
+        }
+      ]
+    },
+    {
+      "id": "za_ifp_conference_address_buthelezi_20190824",
+      "title": "National Elective Conference of the Inkatha Freedom Party: address by Prince Mangosuthu Buthelezi MP, President of the Inkatha Freedom Party (Ulundi, 24 August 2019)",
+      "url": "https://web.archive.org/web/20190827151121id_/http://www.ifp.org.za/national-elective-conference-of-the-inkatha-freedom-party-address-by-prince-mangosuthu-buthelezi-mp/",
+      "original_url": "http://www.ifp.org.za/national-elective-conference-of-the-inkatha-freedom-party-address-by-prince-mangosuthu-buthelezi-mp/",
+      "publisher": "Inkatha Freedom Party (archived www.ifp.org.za page)",
+      "published_date": "2019-08-24",
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_party_speech_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 27 August 2019 of the post dated \"24 August, 2019 - Press Releases\"; the address is datelined \"Ulundi: Saturday, 24 August 2019\". Quotations of third parties inside the address are not used. Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-ifp-conference-address-buthelezi-20190824-facts.json",
+        "bytes": 5994,
+        "sha256": "5da8b3a9d738dbabbef3064a6c243c0a528ab019e9bc8e952319f4c3ccd9c495"
+      },
+      "claims": [
+        {
+          "id": "za_ifp_conference_address_president_buthelezi_20190824",
+          "text": "The address headed \"ADDRESS BY PRINCE MANGOSUTHU BUTHELEZI MP PRESIDENT OF THE INKATHA FREEDOM PARTY\", datelined \"Ulundi: Saturday, 24 August 2019\", says \"this will be the last time I address a national conference of the Inkatha Freedom Party as your President\".",
+          "attested_on": "2019-08-24",
+          "locator": {
+            "section": "Heading block, date line and the paragraph beginning \"I plead for your patience\""
+          },
+          "uncertainty": "Dated by the address's date line (24 August 2019), the last IFP record found of Buthelezi in the office. It states no start and no end: the address precedes the result and names no day on which his office ended. \"MP\" is a state office and is not used. Dates the holder observation only; not a start."
+        },
+        {
+          "id": "za_ifp_buthelezi_time_as_president_finished_20190824",
+          "text": "In the same address he says \"But my time as the President of the IFP is finished. I am handing the baton to a new leader\", and recalls that he announced in October 2017 that he would not stand for re-election.",
+          "attested_on": "2019-08-24",
+          "locator": {
+            "section": "Paragraphs beginning \"But my time as the President of the IFP is finished\" and \"When I announced in October 2017\""
+          },
+          "uncertainty": "A valedictory statement, dated by the address; it does not state the day his office ended, and no end is inferred from it or from his successor's election. Never a holder date or an until."
+        },
+        {
+          "id": "za_ifp_extended_nc_single_candidate_for_president_20190824",
+          "text": "The address says \"our Extended National Council put forward only one candidate to stand for election as Party President\", a unanimous decision; it does not name the candidate.",
+          "attested_on": "2019-08-24",
+          "locator": {
+            "section": "Paragraph beginning \"I think we can be proud\""
+          },
+          "uncertainty": "A nomination reference dated by the address; the day of the nomination is not printed and no one is named. Never a holder date."
+        }
+      ]
+    },
+    {
+      "id": "za_ifp_conference_address_hlabisa_20190824",
+      "title": "Building on a strong legacy in a new season of struggle for economic and social justice structured on democratic ideals: address by the Honourable Velenkosini Hlabisa MPL (Ulundi, 24 August 2019)",
+      "url": "https://web.archive.org/web/20190827150556id_/http://www.ifp.org.za/building-on-a-strong-legacy-in-a-new-season-of-struggle-for-economic-and-social-justice-structured-on-democratic-ideals/",
+      "original_url": "http://www.ifp.org.za/building-on-a-strong-legacy-in-a-new-season-of-struggle-for-economic-and-social-justice-structured-on-democratic-ideals/",
+      "publisher": "Inkatha Freedom Party (archived www.ifp.org.za page)",
+      "published_date": "2019-08-25",
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_party_speech_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 27 August 2019 of the post dated \"25 August, 2019 - Press Releases\"; the address is datelined \"Ulundi: 24 August 2019\" and its heading, published on 25 August, styles the speaker President of the Inkatha Freedom Party. Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-ifp-conference-address-hlabisa-20190824-facts.json",
+        "bytes": 5310,
+        "sha256": "daff81d9e248114e17f9487b7781b82e33b6cfa7580231b5b2a9bc19aa97acf9"
+      },
+      "claims": [
+        {
+          "id": "za_ifp_hlabisa_accepts_election_20190824",
+          "text": "In his address datelined \"Ulundi: 24 August 2019\" and headed as by \"THE HONOURABLE VELENKOSINI HLABISA MPL PRESIDENT OF THE INKATHA FREEDOM PARTY\", he says \"I stand here, elected by you to lead, and I accept\".",
+          "attested_on": "2019-08-24",
+          "locator": {
+            "section": "Heading block, date line and the paragraph beginning \"I am also fully conscious\""
+          },
+          "uncertainty": "An acceptance of the election, dated by the address. The heading was published on 25 August 2019 and the address states no day on which he assumed the office, so this is not used to date a holder observation; the election is never a start. \"MPL\" is a provincial legislature seat, a state office that is not used. Never a holder date or start."
+        },
+        {
+          "id": "za_ifp_conference_declares_buthelezi_president_emeritus_20190824",
+          "text": "The same address says that \"as the newly elected President of the IFP\" he asked \"that conference pass a resolution today declaring Prince Buthelezi “President Emeritus of the IFP”\", and that this was done.",
+          "attested_on": "2019-08-24",
+          "locator": {
+            "section": "Paragraph beginning \"Therefore, as the newly elected President of the IFP\""
+          },
+          "uncertainty": "An honorary title conferred by resolution, a separate title from the party presidency; it is not an end of Buthelezi's office or a start of his successor's. Never a holder date or boundary."
+        }
+      ]
+    },
+    {
+      "id": "za_ifp_newly_elected_leadership_20190825",
+      "title": "Newly elected IFP national leadership (IFP press release issued by the IFP Director of Communications, 25 August 2019)",
+      "url": "https://web.archive.org/web/20190827151253id_/http://www.ifp.org.za/newly-elected-ifp-national-leadership/",
+      "original_url": "http://www.ifp.org.za/newly-elected-ifp-national-leadership/",
+      "publisher": "Inkatha Freedom Party (archived www.ifp.org.za page)",
+      "published_date": "2019-08-25",
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_party_statement_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 27 August 2019 of the post dated \"25 August, 2019 - Press Releases\". Offices other than the President on the list are not researched here. Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-ifp-newly-elected-leadership-20190825-facts.json",
+        "bytes": 5017,
+        "sha256": "38c133ed0e5aa52fa21013afec5a0aa53901e476ce9763a08025ca2842960292"
+      },
+      "claims": [
+        {
+          "id": "za_ifp_conference_elected_hlabisa_president_published_20190825",
+          "text": "The IFP's release dated 25 August 2019 says \"The 2019 IFP National General Conference last night at the Prince Mangosuthu Regional Stadium in Ulundi elected the following office bearers\", beginning \"President: Velenkosini F. Hlabisa MPL\".",
+          "attested_on": "2019-08-25",
+          "locator": {
+            "section": "First paragraph and the first line of the list of office bearers"
+          },
+          "uncertainty": "A result publication dated by the release. \"Last night\" would place the vote on the night of 24 August 2019, but that day is derived and not stored. The election is never a start. \"MPL\" is a state office and is not used. Never a holder date or start."
+        },
+        {
+          "id": "za_ifp_former_president_buthelezi_made_president_emeritus_20190825",
+          "text": "The same release says the conference resolved \"to bestow an honour unto former IFP President, Prince Mangosuthu Buthelezi MP with the title: President Emeritus\".",
+          "attested_on": "2019-08-25",
+          "locator": {
+            "section": "Paragraph beginning \"Furthermore, the IFP National General Conference\""
+          },
+          "uncertainty": "\"Former\" states no day on which his office ended, and President Emeritus is a separate honorary title; no end is inferred. Never a holder date or an until."
+        }
+      ]
+    },
+    {
+      "id": "za_ifp_nec_statement_20190827",
+      "title": "IFP National Executive Committee Statement, Tuesday, 27 August 2019 (IFP National Spokesperson)",
+      "url": "https://web.archive.org/web/20190827151236id_/http://www.ifp.org.za/ifp-national-executive-committee-statementtuesday-27-august-2019/",
+      "original_url": "http://www.ifp.org.za/ifp-national-executive-committee-statementtuesday-27-august-2019/",
+      "publisher": "Inkatha Freedom Party (archived www.ifp.org.za page)",
+      "published_date": "2019-08-27",
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_party_statement_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 27 August 2019 of the post dated \"27 August, 2019\". Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-ifp-nec-statement-20190827-facts.json",
+        "bytes": 4246,
+        "sha256": "39e7589a10f9f242ead86142037545dd8a8d879aebe81a6f7dffd86cf5822fe2"
+      },
+      "claims": [
+        {
+          "id": "za_ifp_35th_national_general_conference_dates",
+          "text": "The IFP National Executive Committee's statement of 27 August 2019 thanks the delegates of \"the 35thNational General Conference (elective) that was convened 23-25 August 2019 in Ulundi\" and says the newly elected NEC held its first meeting \"yesterday\".",
+          "locator": {
+            "section": "First and second paragraphs"
+          },
+          "uncertainty": "A conference span with no single day, so no structured date is stored; the NEC meeting \"yesterday\" is not stored as a day either. Neither is a holder date or boundary."
+        }
+      ]
+    },
+    {
+      "id": "za_ifp_rally_advisory_20190912",
+      "title": "IFP President Velenkosini Hlabisa to address Umkhanyakude district rally (IFP media advisory, 12 September 2019)",
+      "url": "https://web.archive.org/web/20190913050337id_/http://www.ifp.org.za/ifp-president-velenkosini-hlabisa-to-address-umkhanyakude-district-rally/",
+      "original_url": "http://www.ifp.org.za/ifp-president-velenkosini-hlabisa-to-address-umkhanyakude-district-rally/",
+      "publisher": "Inkatha Freedom Party (archived www.ifp.org.za page)",
+      "published_date": "2019-09-12",
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_party_statement_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 13 September 2019 of the post dated \"12 September, 2019 - Press Releases\". The rally it announces (15 September 2019) is prospective. Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-ifp-rally-advisory-20190912-facts.json",
+        "bytes": 4356,
+        "sha256": "e06e1a5fac4f7a1945fdbf694550f78e24aff7f99518c7006a39d6dea0563959"
+      },
+      "claims": [
+        {
+          "id": "za_ifp_advisory_president_hlabisa_20190912",
+          "text": "The IFP's media advisory dated 12 September 2019, titled \"IFP President Velenkosini Hlabisa to address Umkhanyakude district rally\", says \"IFP President Velenkosini Hlabisa MPL will deliver a key note address at his very first rally as President\" on 15 September 2019.",
+          "attested_on": "2019-09-12",
+          "locator": {
+            "section": "Title and first paragraph of the media advisory"
+          },
+          "uncertainty": "Dated by the post's date (12 September 2019), the first IFP record found after the 2019 conference that attests him in the office; the rally is prospective and not recorded. It states no start. \"MPL\" is a state office and is not used. Dates the holder observation only; not a start."
+        }
+      ]
+    },
+    {
+      "id": "za_ifp_statement_passing_buthelezi_20230909",
+      "title": "On the Passing of Prince Mangosuthu Buthelezi MP, Founder and President Emeritus of the Inkatha Freedom Party (statement by the Hon. Mr Velenkosini Hlabisa MPL, 9 September 2023)",
+      "url": "https://web.archive.org/web/20230909123509id_/https://www.ifp.org.za/newsroom/on-the-passing-of-prince-mangosuthu-buthelezi/",
+      "original_url": "https://www.ifp.org.za/newsroom/on-the-passing-of-prince-mangosuthu-buthelezi/",
+      "publisher": "Inkatha Freedom Party (archived www.ifp.org.za page)",
+      "published_date": "2023-09-09",
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_party_statement_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 9 September 2023, 12:35 UTC, the statement's own date; archived Last-Modified Sat, 09 Sep 2023 10:18:44 GMT. The capture is stored and served gzip-encoded (Content-Encoding: gzip) even to a request without Accept-Encoding; its identity is the gzip bytes as served, and the decoded body identity is recorded beside it. The title contains soft hyphens.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-ifp-statement-passing-buthelezi-20230909-facts.json",
+        "bytes": 5230,
+        "sha256": "03bcbb8d5fbd427ed32a8df657a53482fe5b671498022d13f41016cc48e08413"
+      },
+      "claims": [
+        {
+          "id": "za_ifp_death_founder_president_emeritus_buthelezi_20230909",
+          "text": "The IFP's statement dated 9 September 2023 says \"The Founder and President Emeritus of the Inkatha Freedom Party passed away peacefully in the early hours of this morning\", naming Prince Mangosuthu Buthelezi MP.",
+          "attested_on": "2023-09-09",
+          "locator": {
+            "section": "Title block and first body paragraph"
+          },
+          "uncertainty": "A death, dated by the statement (\"this morning\", 9 September 2023). He then held the honorary title President Emeritus, not the party presidency, so the death ends no holder observation and is never an end for anyone. Never a holder date or boundary."
+        },
+        {
+          "id": "za_ifp_statement_president_hlabisa_20230909",
+          "text": "The same statement is issued as a \"Statement by the Hon. Mr Velenkosini Hlabisa MPL President of the IFP and Leader of the Official Opposition in KwaZulu-Natal\".",
+          "attested_on": "2023-09-09",
+          "locator": {
+            "section": "Byline block under the title"
+          },
+          "uncertainty": "Dated by the statement (9 September 2023). The byline also names a legislature office (Leader of the Official Opposition in KwaZulu-Natal) and \"MPL\"; only the words \"President of the IFP\" are relied on, and the legislature office never feeds the party office. It states no start and no end. Dates the holder observation only; not a start."
+        }
+      ]
+    },
+    {
+      "id": "za_ifp_buthelezi_timeline_page_2024",
+      "title": "Prince Mangosuthu Buthelezi - Timeline (IFP website page)",
+      "url": "https://web.archive.org/web/20240403000605id_/https://www.ifp.org.za/prince-mangosuthu-buthelezi/prince-mangosuthu-buthelezi-timeline/",
+      "original_url": "https://www.ifp.org.za/prince-mangosuthu-buthelezi/prince-mangosuthu-buthelezi-timeline/",
+      "publisher": "Inkatha Freedom Party (archived www.ifp.org.za page)",
+      "published_date": null,
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "party_biography_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 3 April 2024 of an undated, retrospective timeline. Year headings sit in a separate column from the entries; the \"24 August\" entry sits in the 2019 block. The timeline's references to acting as President of the Republic concern a state office and are not used. Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-ifp-buthelezi-timeline-20240403-facts.json",
+        "bytes": 5828,
+        "sha256": "3892f9543328f3a9bc16d6e46c915e5cdbcf554026f07c81b36763420c00305f"
+      },
+      "claims": [
+        {
+          "id": "za_ifp_timeline_inkatha_becomes_ifp_19900710",
+          "text": "The IFP's Buthelezi timeline says, under \"A political party is born.\", that \"Inkatha yeNkululeko yeSizwe becomes the IFP on 10 July 1990\".",
+          "locator": {
+            "section": "1990 block, entry \"A political party is born.\""
+          },
+          "uncertainty": "Retrospective, so no structured date is stored. It conflicts with the 14 July 1990 of the IFP's 1997 and 2000 history pages; the conflict is kept open. An organization claim only: it sets no lifecycle start, is not a merger or a new identity, and never dates the party office."
+        },
+        {
+          "id": "za_ifp_timeline_buthelezi_elected_president_1990",
+          "text": "The same entry says \"Buthelezi is unanimously elected as President of the Party.\"",
+          "locator": {
+            "section": "1990 block, entry \"A political party is born.\", second sentence"
+          },
+          "uncertainty": "A retrospective election reference with no structured date; never a start. Never a holder date or start."
+        },
+        {
+          "id": "za_ifp_timeline_buthelezi_retires_presidency_24_august",
+          "text": "Under \"24 August\" in its 2019 block, headed \"Handing the baton to a new generation.\", the timeline says \"At the IFP's National Elective Conference, Buthelezi officially retires from the presidency of the Party\" and is awarded the title President Emeritus.",
+          "locator": {
+            "section": "2019 block, entry \"24 August / Handing the baton to a new generation.\""
+          },
+          "uncertainty": "A retrospective timeline entry whose year comes only from the block heading, so no structured date is stored. Retrospective lists are claims, never boundaries: it is not used as an end (until) for Buthelezi or as a start for anyone. Never an until."
+        }
+      ]
+    },
+    {
+      "id": "za_ifp_extended_nc_resolutions_20240810",
+      "title": "Resolutions of the Meeting of the IFP Extended National Council (Empangeni, 10 August 2024)",
+      "url": "https://web.archive.org/web/20240911231127id_/https://ifp.org.za/newsroom/resolutions-of-the-meeting-of-the-ifp-extended-national-council/",
+      "original_url": "https://ifp.org.za/newsroom/resolutions-of-the-meeting-of-the-ifp-extended-national-council/",
+      "publisher": "Inkatha Freedom Party (official website ifp.org.za, archived page)",
+      "published_date": "2024-08-12",
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_party_record_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 11 September 2024 of the post dated \"Aug 12, 2024\"; the resolutions are datelined \"Empangeni, City of Umhlathuze: Saturday, 10 August 2024\". Archived Last-Modified Wed, 11 Sep 2024 00:55:43 GMT. Served without content encoding.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-ifp-extended-nc-resolutions-20240810-facts.json",
+        "bytes": 5079,
+        "sha256": "e0b98e6165ba766767c1825fbf3990022c8ee2855f0b7bad915efeaad2e82bfe"
+      },
+      "claims": [
+        {
+          "id": "za_ifp_extended_nc_thanks_president_hlabisa_20240810",
+          "text": "In resolutions datelined Saturday, 10 August 2024, \"The Extended NC expressed its appreciation to the IFP President Hon. Velenkosini Hlabisa MP, for the comprehensive Political Report delivered at the meeting\".",
+          "attested_on": "2024-08-10",
+          "locator": {
+            "section": "Section \"GENERAL\", first item, and the date line"
+          },
+          "uncertainty": "Dated by the meeting's date line (10 August 2024); the post is dated 12 August 2024. It states no start and no end. \"MP\" is a state office; the resolutions do not mention any ministry, and no state office is used. Dates the holder observation only; not a start."
+        },
+        {
+          "id": "za_ifp_extended_nc_conferences_due_20240810",
+          "text": "The same resolutions record \"The Extended NC noting the IFP Conferences are due as per the IFP Constitution\" and direct the NEC and National Council to finalise an IFP Conference Roadmap by the end of August 2024.",
+          "attested_on": "2024-08-10",
+          "locator": {
+            "section": "Section \"IFP STRUCTURES AND CONFERENCES\""
+          },
+          "uncertainty": "A decision about conferences that were due, dated by the meeting; no National General Conference or election of a President after August 2019 was found in IFP records up to the cutoff. The IFP Constitution is referred to as procedure only. Never a holder date or boundary."
+        }
+      ]
+    },
+    {
+      "id": "za_ifp_rally_advisory_abaqulusi_20260201",
+      "title": "IFP President to Lead a Rally Ahead of Abaqulusi By-Election (IFP press release, 1 February 2026)",
+      "url": "https://web.archive.org/web/20260217210214id_/https://ifp.org.za/newsroom/ifp-president-to-lead-a-rally-ahead-of-abaqulusi-by-election/",
+      "original_url": "https://ifp.org.za/newsroom/ifp-president-to-lead-a-rally-ahead-of-abaqulusi-by-election/",
+      "publisher": "Inkatha Freedom Party (official website ifp.org.za, archived page)",
+      "published_date": "2026-02-01",
+      "accessed_date": "2026-09-28",
+      "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+      "source_type": "primary_party_statement_archived",
+      "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+      "scope_note": "Raw Internet Archive capture made 17 February 2026 of the post dated \"Feb 1, 2026 | Press Releases\"; archived Last-Modified Tue, 17 Feb 2026 21:02:17 GMT; before the 7 September 2026 cutoff. The capture is stored and served gzip-encoded (Content-Encoding: gzip) even to a request without Accept-Encoding; its identity is the gzip bytes as served, and the decoded body identity is recorded beside it. The \"Recent Headlines\" sidebar is a rotating block and is not used.",
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/south-africa-ifp-rally-advisory-abaqulusi-20260201-facts.json",
+        "bytes": 4711,
+        "sha256": "3a280fc0c36bc472f6c22f757bd84c4572498229ce3e5329a9cfe935c1156202"
+      },
+      "claims": [
+        {
+          "id": "za_ifp_advisory_president_hlabisa_20260201",
+          "text": "The IFP's release dated Feb 1, 2026 says \"The President of the Inkatha Freedom Party, Hon. Velenkosini Hlabisa, will deliver a keynote address at the party’s rally ahead of a by-election in Ward 12 under Abaqulusi Local Municipality\".",
+          "attested_on": "2026-02-01",
+          "locator": {
+            "section": "Title and first paragraph of the article"
+          },
+          "uncertainty": "Dated by the post's date (1 February 2026), the latest article found in an IFP record before the cutoff that names its President; the rally is prospective and not recorded. It states no start and no end. No state office is named. Dates the holder observation only; not a start."
+        }
+      ]
     }
   ],
   "organizations": [
@@ -7180,7 +8515,104 @@
         "until": null,
         "note": "These observations do not establish founding, dissolution, legal continuity, mergers, splits or exact terms."
       },
-      "roles": [],
+      "roles": [
+        {
+          "id": "za_acdp_president",
+          "title": "President of the African Christian Democratic Party",
+          "kind": "party_leader",
+          "sources": [
+            "za_acdp_kzn_newsletter_199805",
+            "za_acdp_home_page_19990501",
+            "za_acdp_meshoe_nepad_speech_20011031",
+            "za_acdp_manifesto_launch_notice_20140218",
+            "za_acdp_leader_statement_20180214",
+            "za_acdp_our_leadership_page_20190401",
+            "za_acdp_president_statement_lekota_20260304"
+          ],
+          "claim_ids": [
+            "za_acdp_kzn_newsletter_word_from_president_meshoe_199805",
+            "za_acdp_home_page_president_meshoe_19990501",
+            "za_acdp_meshoe_speech_as_president_20011031",
+            "za_acdp_manifesto_notice_president_meshoe_20140218",
+            "za_acdp_leader_meshoe_statement_20180214",
+            "za_acdp_leadership_page_president_meshoe_20190401",
+            "za_acdp_president_meshoe_statement_20260304"
+          ],
+          "holder_claims": [
+            {
+              "name": "Kenneth Meshoe",
+              "attested_on": "1999-05-01",
+              "from": null,
+              "until": null,
+              "sources": [
+                "za_acdp_home_page_19990501"
+              ],
+              "claim_ids": [
+                "za_acdp_home_page_president_meshoe_19990501"
+              ],
+              "note": "Observed on 1 May 1999: the ACDP home page as served that day presents him as \"President ACDP\".",
+              "uncertainty": "No start: no ACDP record found states the day he became President; the December 1993 founding and his founding of the party are organization claims, and the May 1998 newsletter is month-only. No end: none is stated."
+            },
+            {
+              "name": "Kenneth Meshoe",
+              "attested_on": "2001-10-31",
+              "from": null,
+              "until": null,
+              "sources": [
+                "za_acdp_meshoe_nepad_speech_20011031"
+              ],
+              "claim_ids": [
+                "za_acdp_meshoe_speech_as_president_20011031"
+              ],
+              "note": "Observed on 31 October 2001: his speech on NEPAD is headed as by the President of the African Christian Democratic Party.",
+              "uncertainty": "No start and no end: no ACDP record found states either, and no ACDP election of its President was found."
+            },
+            {
+              "name": "Kenneth Meshoe",
+              "attested_on": "2014-02-18",
+              "from": null,
+              "until": null,
+              "sources": [
+                "za_acdp_manifesto_launch_notice_20140218"
+              ],
+              "claim_ids": [
+                "za_acdp_manifesto_notice_president_meshoe_20140218"
+              ],
+              "note": "Observed on 18 February 2014: the ACDP's manifesto-launch notice names \"ACDP President Dr Kenneth Meshoe\".",
+              "uncertainty": "No start and no end: none is stated; the announced address of 22 February 2014 is prospective and not recorded."
+            },
+            {
+              "name": "Kenneth Meshoe",
+              "attested_on": "2018-02-14",
+              "from": null,
+              "until": null,
+              "sources": [
+                "za_acdp_leader_statement_20180214"
+              ],
+              "claim_ids": [
+                "za_acdp_leader_meshoe_statement_20180214"
+              ],
+              "note": "Observed on 14 February 2018: the ACDP's press article issued by him that day calls him \"ACDP Leader\".",
+              "uncertainty": "No start and no end: none is stated. The leadership page as served on 1 April 2019 is a continuation claim."
+            },
+            {
+              "name": "Kenneth Meshoe",
+              "attested_on": "2026-03-04",
+              "from": null,
+              "until": null,
+              "sources": [
+                "za_acdp_president_statement_lekota_20260304"
+              ],
+              "claim_ids": [
+                "za_acdp_president_meshoe_statement_20260304"
+              ],
+              "note": "Observed on 4 March 2026: the ACDP's statement of that day is headed \"Statement by ACDP President, Rev Kenneth Meshoe MP\".",
+              "uncertainty": "No start and no end: none is stated. No acting President, vacancy or change was found in ACDP statements read between March and September 2026."
+            }
+          ],
+          "scope_note": "President of the African Christian Democratic Party (printed \"President ACDP\", \"ACDP President\" or \"ACDP Leader\"). CLAUDE-C01-30 records ACDP in-office attestations as dated observations (attested_on), one per reviewed observation; month-only and continuation attestations are claims that never date a holder. No ACDP record found states the day the office was assumed or ended or records an election of its President, so no holder has a start or an end. Do not fill the interval between observations. The party's founding in December 1993 and its founder are organization claims, never a start of the office. The party office and state or parliamentary offices (a seat in the National Assembly) never feed each other; no za_presidency claim or source feeds this role."
+        }
+      ],
       "electoral_observations": [
         {
           "kind": "national_ballot_result",
@@ -7211,11 +8643,29 @@
       ],
       "sources": [
         "za_iec_national_results_20240621",
-        "za_iec_national_seats_20240606"
+        "za_iec_national_seats_20240606",
+        "za_acdp_party_history_page_2004",
+        "za_acdp_kzn_newsletter_199805",
+        "za_acdp_home_page_19990501",
+        "za_acdp_meshoe_nepad_speech_20011031",
+        "za_acdp_manifesto_launch_notice_20140218",
+        "za_acdp_leader_statement_20180214",
+        "za_acdp_our_leadership_page_20190401",
+        "za_acdp_meshoe_profile_page_2021",
+        "za_acdp_president_statement_lekota_20260304"
       ],
       "claim_ids": [
         "za_n2024_ballot_008",
-        "za_n2024_seats_008"
+        "za_n2024_seats_008",
+        "za_acdp_history_party_launched_december_1993",
+        "za_acdp_kzn_newsletter_word_from_president_meshoe_199805",
+        "za_acdp_home_page_president_meshoe_19990501",
+        "za_acdp_meshoe_speech_as_president_20011031",
+        "za_acdp_manifesto_notice_president_meshoe_20140218",
+        "za_acdp_leader_meshoe_statement_20180214",
+        "za_acdp_leadership_page_president_meshoe_20190401",
+        "za_acdp_profile_meshoe_founded_party_december_1993",
+        "za_acdp_president_meshoe_statement_20260304"
       ],
       "coverage": {
         "status": "reporting_identity_only",
@@ -7226,7 +8676,8 @@
         "unresolved": [
           "Reconcile legal registration, precise organization identity, renames, alliances, mergers and splits against original records.",
           "Research all independently dated party, parliamentary and executive leadership roles before character or succession eligibility.",
-          "No game-party mapping is asserted. An electoral entry is not automatically a parliamentary caucus, coalition or umbrella affiliation."
+          "No game-party mapping is asserted. An electoral entry is not automatically a parliamentary caucus, coalition or umbrella affiliation.",
+          "ACDP Presidents 1990-2026 (CLAUDE-C01-30, ZA-ACDP-01..05): role za_acdp_president holds five dated observations of Kenneth Meshoe from ACDP records (1 May 1999 to 4 March 2026) with no stated start or end. Still open: any ACDP record of an election or re-election of its President, the day he assumed the office, and the party's founding day (its own pages give only December 1993). The founding claims are recorded on this observation without changing its IEC reporting identity, unknown lifecycle or empty game mapping."
         ]
       }
     },
@@ -9465,7 +10916,169 @@
         "until": null,
         "note": "These observations do not establish founding, dissolution, legal continuity, mergers, splits or exact terms."
       },
-      "roles": [],
+      "roles": [
+        {
+          "id": "za_ifp_president",
+          "title": "President of the Inkatha Freedom Party",
+          "kind": "party_leader",
+          "sources": [
+            "za_ifp_historical_perspective_page_2000",
+            "za_ifp_press_release_19951024",
+            "za_ifp_elective_conference_resolutions_2012",
+            "za_ifp_extended_nc_statement_buthelezi_20190120",
+            "za_ifp_conference_address_buthelezi_20190824",
+            "za_ifp_conference_address_hlabisa_20190824",
+            "za_ifp_newly_elected_leadership_20190825",
+            "za_ifp_nec_statement_20190827",
+            "za_ifp_rally_advisory_20190912",
+            "za_ifp_statement_passing_buthelezi_20230909",
+            "za_ifp_buthelezi_timeline_page_2024",
+            "za_ifp_extended_nc_resolutions_20240810",
+            "za_ifp_rally_advisory_abaqulusi_20260201"
+          ],
+          "claim_ids": [
+            "za_ifp_history_buthelezi_elected_president_1990",
+            "za_ifp_press_release_president_buthelezi_19951024",
+            "za_ifp_2012_conference_session_dates",
+            "za_ifp_2012_conference_acclaims_buthelezi_reelection_20121216",
+            "za_ifp_2012_resolutions_mandate_president_buthelezi_20121216",
+            "za_ifp_statement_president_buthelezi_20190120",
+            "za_ifp_buthelezi_recalls_october_2017_announcement",
+            "za_ifp_extended_nc_conference_after_2019_elections_20190120",
+            "za_ifp_conference_address_president_buthelezi_20190824",
+            "za_ifp_buthelezi_time_as_president_finished_20190824",
+            "za_ifp_extended_nc_single_candidate_for_president_20190824",
+            "za_ifp_hlabisa_accepts_election_20190824",
+            "za_ifp_conference_declares_buthelezi_president_emeritus_20190824",
+            "za_ifp_conference_elected_hlabisa_president_published_20190825",
+            "za_ifp_former_president_buthelezi_made_president_emeritus_20190825",
+            "za_ifp_35th_national_general_conference_dates",
+            "za_ifp_advisory_president_hlabisa_20190912",
+            "za_ifp_death_founder_president_emeritus_buthelezi_20230909",
+            "za_ifp_statement_president_hlabisa_20230909",
+            "za_ifp_timeline_buthelezi_elected_president_1990",
+            "za_ifp_timeline_buthelezi_retires_presidency_24_august",
+            "za_ifp_extended_nc_thanks_president_hlabisa_20240810",
+            "za_ifp_extended_nc_conferences_due_20240810",
+            "za_ifp_advisory_president_hlabisa_20260201"
+          ],
+          "holder_claims": [
+            {
+              "name": "Mangosuthu Buthelezi",
+              "attested_on": "1995-10-24",
+              "from": null,
+              "until": null,
+              "sources": [
+                "za_ifp_press_release_19951024"
+              ],
+              "claim_ids": [
+                "za_ifp_press_release_president_buthelezi_19951024"
+              ],
+              "note": "Observed on 24 October 1995: an IFP press release of that day refers to \"IFP President, Dr M G Buthelezi\".",
+              "uncertainty": "No start: the IFP's retrospective pages say he was unanimously elected President when Inkatha became the IFP in July 1990 (14 July on the 1997 and 2000 pages, 10 July on the later timeline), but they are election references with no structured date and never a start. No end: none is stated. His posts as a Minister and his parliamentary seat are state offices and are not used."
+            },
+            {
+              "name": "Mangosuthu Buthelezi",
+              "attested_on": "2012-12-16",
+              "from": null,
+              "until": null,
+              "sources": [
+                "za_ifp_elective_conference_resolutions_2012"
+              ],
+              "claim_ids": [
+                "za_ifp_2012_resolutions_mandate_president_buthelezi_20121216"
+              ],
+              "note": "Observed on 16 December 2012: the resolutions of the 2012 Elective National Conference, dated that day, mandate \"its President, Prince Mangosuthu Buthelezi\".",
+              "uncertainty": "No start and no end: the resolutions acclaim his re-election but print no day of the vote or of taking office."
+            },
+            {
+              "name": "Mangosuthu Buthelezi",
+              "attested_on": "2019-01-20",
+              "from": null,
+              "until": null,
+              "sources": [
+                "za_ifp_extended_nc_statement_buthelezi_20190120"
+              ],
+              "claim_ids": [
+                "za_ifp_statement_president_buthelezi_20190120"
+              ],
+              "note": "Observed on 20 January 2019: his statement of that day is headed as by the President of the Inkatha Freedom Party.",
+              "uncertainty": "No start and no end: his October 2017 intention not to stand again, recalled here, is a claim and never an end."
+            },
+            {
+              "name": "Mangosuthu Buthelezi",
+              "attested_on": "2019-08-24",
+              "from": null,
+              "until": null,
+              "sources": [
+                "za_ifp_conference_address_buthelezi_20190824"
+              ],
+              "claim_ids": [
+                "za_ifp_conference_address_president_buthelezi_20190824"
+              ],
+              "note": "Observed on 24 August 2019: his address to the 35th National General Conference, datelined that day, is headed as by the President of the Inkatha Freedom Party and is his last as President.",
+              "uncertainty": "No start. No end: his valedictory statement, the result published on 25 August 2019, the \"former IFP President\" reference and the later timeline's \"officially retires\" entry state no day his office ended, or are retrospective; his successor's election is not used as his end, and his death on 9 September 2023 (as President Emeritus) is a separate claim."
+            },
+            {
+              "name": "Velenkosini Hlabisa",
+              "attested_on": "2019-09-12",
+              "from": null,
+              "until": null,
+              "sources": [
+                "za_ifp_rally_advisory_20190912"
+              ],
+              "claim_ids": [
+                "za_ifp_advisory_president_hlabisa_20190912"
+              ],
+              "note": "Observed on 12 September 2019: the IFP's media advisory of that day names \"IFP President Velenkosini Hlabisa\".",
+              "uncertainty": "No start: the conference result (published 25 August 2019, \"last night\") and his acceptance address of 24 August 2019 are claims, and no IFP record found states the day he assumed the office. No end: none is stated. His seat in the provincial legislature is a state office and is not used."
+            },
+            {
+              "name": "Velenkosini Hlabisa",
+              "attested_on": "2023-09-09",
+              "from": null,
+              "until": null,
+              "sources": [
+                "za_ifp_statement_passing_buthelezi_20230909"
+              ],
+              "claim_ids": [
+                "za_ifp_statement_president_hlabisa_20230909"
+              ],
+              "note": "Observed on 9 September 2023: the IFP's statement on Buthelezi's death is issued by him as President of the IFP.",
+              "uncertainty": "No start and no end: none is stated. The same byline's legislature office is not used."
+            },
+            {
+              "name": "Velenkosini Hlabisa",
+              "attested_on": "2024-08-10",
+              "from": null,
+              "until": null,
+              "sources": [
+                "za_ifp_extended_nc_resolutions_20240810"
+              ],
+              "claim_ids": [
+                "za_ifp_extended_nc_thanks_president_hlabisa_20240810"
+              ],
+              "note": "Observed on 10 August 2024: the Extended National Council's resolutions of that day thank \"the IFP President Hon. Velenkosini Hlabisa MP\".",
+              "uncertainty": "No start and no end: none is stated. His post as a Minister from 2024 is a state office and never feeds the party office."
+            },
+            {
+              "name": "Velenkosini Hlabisa",
+              "attested_on": "2026-02-01",
+              "from": null,
+              "until": null,
+              "sources": [
+                "za_ifp_rally_advisory_abaqulusi_20260201"
+              ],
+              "claim_ids": [
+                "za_ifp_advisory_president_hlabisa_20260201"
+              ],
+              "note": "Observed on 1 February 2026: the IFP's release of that day names \"The President of the Inkatha Freedom Party, Hon. Velenkosini Hlabisa\".",
+              "uncertainty": "No start and no end: none is stated. No National General Conference, acting President or change was found in IFP records up to the cutoff."
+            }
+          ],
+          "scope_note": "President of the Inkatha Freedom Party, the party office elected by the IFP National General Conference. CLAUDE-C01-30 keeps each election reference, the 2019 result publication, acceptance, valedictory and retirement statements, the President Emeritus title, Buthelezi's death, conference scheduling and in-office attestations as separate dated claims. A holder has a start only where a source states the day the office was assumed or took effect, and an end only where a source states the day it ended; no source reviewed does (the timeline's retrospective '24 August' retirement entry is a claim, never a boundary), so every holder is a dated observation (attested_on), one per reviewed observation. Do not fill the interval between observations or infer an outgoing holder's last day from a successor's election. The 1990 transformation of Inkatha into the IFP is an organization claim (14 or 10 July 1990 in the IFP's own pages), never a start of the office. Party office and state office stay separate: ministerial posts, parliamentary and provincial legislature seats and the office of Leader of the Official Opposition never feed this role, and no za_presidency claim or source feeds it."
+        }
+      ],
       "electoral_observations": [
         {
           "kind": "national_ballot_result",
@@ -9496,11 +11109,52 @@
       ],
       "sources": [
         "za_iec_national_results_20240621",
-        "za_iec_national_seats_20240606"
+        "za_iec_national_seats_20240606",
+        "za_ifp_history_profile_page_1997",
+        "za_ifp_historical_perspective_page_2000",
+        "za_ifp_press_release_19951024",
+        "za_ifp_elective_conference_resolutions_2012",
+        "za_ifp_extended_nc_statement_buthelezi_20190120",
+        "za_ifp_conference_address_buthelezi_20190824",
+        "za_ifp_conference_address_hlabisa_20190824",
+        "za_ifp_newly_elected_leadership_20190825",
+        "za_ifp_nec_statement_20190827",
+        "za_ifp_rally_advisory_20190912",
+        "za_ifp_statement_passing_buthelezi_20230909",
+        "za_ifp_buthelezi_timeline_page_2024",
+        "za_ifp_extended_nc_resolutions_20240810",
+        "za_ifp_rally_advisory_abaqulusi_20260201"
       ],
       "claim_ids": [
         "za_n2024_ballot_034",
-        "za_n2024_seats_034"
+        "za_n2024_seats_034",
+        "za_ifp_profile_inkatha_became_party_19900714",
+        "za_ifp_history_party_came_into_being_19900714",
+        "za_ifp_history_buthelezi_elected_president_1990",
+        "za_ifp_press_release_president_buthelezi_19951024",
+        "za_ifp_2012_conference_session_dates",
+        "za_ifp_2012_conference_acclaims_buthelezi_reelection_20121216",
+        "za_ifp_2012_resolutions_mandate_president_buthelezi_20121216",
+        "za_ifp_statement_president_buthelezi_20190120",
+        "za_ifp_buthelezi_recalls_october_2017_announcement",
+        "za_ifp_extended_nc_conference_after_2019_elections_20190120",
+        "za_ifp_conference_address_president_buthelezi_20190824",
+        "za_ifp_buthelezi_time_as_president_finished_20190824",
+        "za_ifp_extended_nc_single_candidate_for_president_20190824",
+        "za_ifp_hlabisa_accepts_election_20190824",
+        "za_ifp_conference_declares_buthelezi_president_emeritus_20190824",
+        "za_ifp_conference_elected_hlabisa_president_published_20190825",
+        "za_ifp_former_president_buthelezi_made_president_emeritus_20190825",
+        "za_ifp_35th_national_general_conference_dates",
+        "za_ifp_advisory_president_hlabisa_20190912",
+        "za_ifp_death_founder_president_emeritus_buthelezi_20230909",
+        "za_ifp_statement_president_hlabisa_20230909",
+        "za_ifp_timeline_inkatha_becomes_ifp_19900710",
+        "za_ifp_timeline_buthelezi_elected_president_1990",
+        "za_ifp_timeline_buthelezi_retires_presidency_24_august",
+        "za_ifp_extended_nc_thanks_president_hlabisa_20240810",
+        "za_ifp_extended_nc_conferences_due_20240810",
+        "za_ifp_advisory_president_hlabisa_20260201"
       ],
       "coverage": {
         "status": "reporting_identity_only",
@@ -9511,7 +11165,8 @@
         "unresolved": [
           "Reconcile legal registration, precise organization identity, renames, alliances, mergers and splits against original records.",
           "Research all independently dated party, parliamentary and executive leadership roles before character or succession eligibility.",
-          "No game-party mapping is asserted. An electoral entry is not automatically a parliamentary caucus, coalition or umbrella affiliation."
+          "No game-party mapping is asserted. An electoral entry is not automatically a parliamentary caucus, coalition or umbrella affiliation.",
+          "IFP Presidents 1990-2026 (CLAUDE-C01-30, ZA-IFP-01..08): role za_ifp_president holds eight dated observations from IFP records, Mangosuthu Buthelezi (24 October 1995 to 24 August 2019) and Velenkosini Hlabisa (12 September 2019 to 1 February 2026), with no stated start or end. Still open: an IFP record from July 1990 to October 1995, the day of the 1990 transformation (14 July or 10 July 1990 in the IFP's own pages), the day each President assumed or left the office, and any National General Conference after August 2019. The renaming claims are recorded on this observation without changing its IEC reporting identity, unknown lifecycle or empty game mapping."
         ]
       }
     },
@@ -10621,7 +12276,184 @@
         "until": null,
         "note": "These observations do not establish founding, dissolution, legal continuity, mergers, splits or exact terms."
       },
-      "roles": [],
+      "roles": [
+        {
+          "id": "za_ff_leader",
+          "title": "Leader of the Freedom Front Plus (Vryheidsfront Plus)",
+          "kind": "party_leader",
+          "sources": [
+            "za_ff_viljoen_media_release_19970826",
+            "za_ff_viljoen_profile_page_2003",
+            "za_ff_mulder_profile_page_af_2003",
+            "za_ff_mulder_profile_page_en_2003",
+            "za_ff_mulder_budget_debate_speech_20010621",
+            "za_ff_vfplus_media_release_20030928",
+            "za_ff_mulder_reelected_release_20131118",
+            "za_ff_mulder_not_available_release_20161112",
+            "za_ff_new_leadership_release_20161112",
+            "za_ff_groenewald_farm_visit_release_20161227",
+            "za_ff_groenewald_covid_item_20200402",
+            "za_ff_viljoen_death_release_20200403",
+            "za_ff_minister_post_release_20240722",
+            "za_ff_da_ff_leaders_release_20240822",
+            "za_ff_presidency_budget_debate_item_20250716",
+            "za_ff_new_members_release_20260325"
+          ],
+          "claim_ids": [
+            "za_ff_viljoen_media_release_leader_19970826",
+            "za_ff_viljoen_profile_retired_as_leader_2001",
+            "za_ff_mulder_cv_af_elected_leader_200104",
+            "za_ff_mulder_cv_en_elected_leader_200103",
+            "za_ff_mulder_speech_newly_elected_party_leader_20010621",
+            "za_ff_mulder_speech_elected_leader_in_march_2001",
+            "za_ff_release_mulder_vf_leader_20030928",
+            "za_ff_kp_aeb_leaders_pledge_loyalty_to_mulder_20030927",
+            "za_ff_mulder_unanimously_reelected_published_20131118",
+            "za_ff_release_mulder_vf_plus_leader_20161112",
+            "za_ff_mulder_not_standing_again_20161112",
+            "za_ff_mulder_led_party_since_2001_unopposed",
+            "za_ff_groenewald_designated_new_leader_20161112",
+            "za_ff_release_leader_groenewald_20161227",
+            "za_ff_item_leader_groenewald_20200402",
+            "za_ff_passing_of_former_leader_viljoen_reported_20200403",
+            "za_ff_viljoen_very_first_leader_of_the_party",
+            "za_ff_release_vf_plus_leader_groenewald_appointed_minister_20240722",
+            "za_ff_corne_mulder_designated_parliamentary_leader_20240722",
+            "za_ff_joint_release_national_party_leader_groenewald_20240822",
+            "za_ff_item_leader_corne_mulder_20250716",
+            "za_ff_release_leader_corne_mulder_20260325"
+          ],
+          "holder_claims": [
+            {
+              "name": "Constand Viljoen",
+              "attested_on": "1997-08-26",
+              "from": null,
+              "until": null,
+              "sources": [
+                "za_ff_viljoen_media_release_19970826"
+              ],
+              "claim_ids": [
+                "za_ff_viljoen_media_release_leader_19970826"
+              ],
+              "note": "Observed on 26 August 1997: a Freedom Front media release of that day is issued by him in the capacity \"Leier: Vryheidsfront\".",
+              "uncertainty": "No start: his founding of the party (before the April 1994 election) is an organization claim, and no party record found states the day he became Leader. No end: his retirement is dated only \"2001\", and his successor's election is not used as his end; his death, reported on 3 April 2020 as a former leader, is a separate claim."
+            },
+            {
+              "name": "Pieter Mulder",
+              "attested_on": "2001-06-21",
+              "from": null,
+              "until": null,
+              "sources": [
+                "za_ff_mulder_budget_debate_speech_20010621"
+              ],
+              "claim_ids": [
+                "za_ff_mulder_speech_newly_elected_party_leader_20010621"
+              ],
+              "note": "Observed on 21 June 2001: in his speech of that day he calls himself \"a newly elected party leader\".",
+              "uncertainty": "No start: the party's records date his election only to March 2001 (English curriculum vitae and this speech) or April 2001 (Afrikaans curriculum vitae), and no day of taking office is printed. No end: none is stated."
+            },
+            {
+              "name": "Pieter Mulder",
+              "attested_on": "2003-09-28",
+              "from": null,
+              "until": null,
+              "sources": [
+                "za_ff_vfplus_media_release_20030928"
+              ],
+              "claim_ids": [
+                "za_ff_release_mulder_vf_leader_20030928"
+              ],
+              "note": "Observed on 28 September 2003: the Freedom Front's release of that day names him \"VF leier\".",
+              "uncertainty": "No start and no end: none is stated. The merger and the name Vryheidsfront Plus announced on 27 September 2003 are organization claims, and the pledge of loyalty to him as leader of the Freedom Front Plus is a claim, not an election or a start."
+            },
+            {
+              "name": "Pieter Mulder",
+              "attested_on": "2016-11-12",
+              "from": null,
+              "until": null,
+              "sources": [
+                "za_ff_mulder_not_available_release_20161112"
+              ],
+              "claim_ids": [
+                "za_ff_release_mulder_vf_plus_leader_20161112"
+              ],
+              "note": "Observed on 12 November 2016: the release of that day styles him \"VF Plus-leier\" as he declines to stand again at the triennial elective congress.",
+              "uncertainty": "No start. No end: his decision not to stand again and his successor's designation the same day state no day on which his office ended; the 2013 re-election is a claim."
+            },
+            {
+              "name": "Pieter Groenewald",
+              "attested_on": "2016-12-27",
+              "from": null,
+              "until": null,
+              "sources": [
+                "za_ff_groenewald_farm_visit_release_20161227"
+              ],
+              "claim_ids": [
+                "za_ff_release_leader_groenewald_20161227"
+              ],
+              "note": "Observed on 27 December 2016: the release of that day calls him \"The leader of the Freedom Front Plus\".",
+              "uncertainty": "No start: his designation as new leader on 12 November 2016 states no day on which he took up the office. No end: none is stated."
+            },
+            {
+              "name": "Pieter Groenewald",
+              "attested_on": "2020-04-02",
+              "from": null,
+              "until": null,
+              "sources": [
+                "za_ff_groenewald_covid_item_20200402"
+              ],
+              "claim_ids": [
+                "za_ff_item_leader_groenewald_20200402"
+              ],
+              "note": "Observed on 2 April 2020: the party's item of that day calls him \"leader of the FF Plus\".",
+              "uncertainty": "No start and no end: none is stated."
+            },
+            {
+              "name": "Pieter Groenewald",
+              "attested_on": "2024-08-22",
+              "from": null,
+              "until": null,
+              "sources": [
+                "za_ff_da_ff_leaders_release_20240822"
+              ],
+              "claim_ids": [
+                "za_ff_joint_release_national_party_leader_groenewald_20240822"
+              ],
+              "note": "Observed on 22 August 2024: a joint media release of that day calls him \"the FF Plus national party leader\".",
+              "uncertainty": "No start. No end: no party record found states the day his office ended; his successor's first attestation (16 July 2025) is not used as his end. His appointment as Minister of Correctional Services (22 July 2024 release) is a state office and never feeds the party office."
+            },
+            {
+              "name": "Corné Mulder",
+              "attested_on": "2025-07-16",
+              "from": null,
+              "until": null,
+              "sources": [
+                "za_ff_presidency_budget_debate_item_20250716"
+              ],
+              "claim_ids": [
+                "za_ff_item_leader_corne_mulder_20250716"
+              ],
+              "note": "Observed on 16 July 2025: the party's item of that day calls him \"leier van die VF Plus\".",
+              "uncertainty": "No start: no party record found of his election or of the day he took up the office; his designation as parliamentary leader on 22 July 2024 is a different office. No end: none is stated."
+            },
+            {
+              "name": "Corné Mulder",
+              "attested_on": "2026-03-25",
+              "from": null,
+              "until": null,
+              "sources": [
+                "za_ff_new_members_release_20260325"
+              ],
+              "claim_ids": [
+                "za_ff_release_leader_corne_mulder_20260325"
+              ],
+              "note": "Observed on 25 March 2026: the party's release of that day calls him \"leader of the Freedom Front Plus\".",
+              "uncertainty": "No start and no end: none is stated. No acting leader, vacancy or change was found in Freedom Front Plus records up to the cutoff."
+            }
+          ],
+          "scope_note": "Leader of the party that the 2024 IEC ballot names VRYHEIDSFRONT PLUS: the Freedom Front (Vryheidsfront) until the announcement of 27 September 2003 that it would, with the Konserwatiewe Party and the Afrikaner Eenheidsbeweging, use the name Vryheidsfront Plus (VF+). Rows before that announcement carry the printed title Leader of the Freedom Front; the founding, merger, renaming and the Referendum Party's joining are organization claims, never merged identities or boundaries. CLAUDE-C01-30 keeps each election reference, re-election, selection by congress, retirement and non-candidacy statement, death and in-office attestation as separate dated claims. A holder has a start only where a source states the day the office was assumed or took effect, and an end only where a source states the day it ended; no source reviewed does, so every holder is a dated observation (attested_on), one per reviewed observation. Do not fill the interval between observations or infer an outgoing holder's last day from a successor's election or designation. The parliamentary leader (parlementêre leier) is a different office and never a holder of this role. Party office and state office stay separate: ministerial posts and parliamentary seats never feed this role, and no za_presidency claim or source feeds it."
+        }
+      ],
       "electoral_observations": [
         {
           "kind": "national_ballot_result",
@@ -10652,11 +12484,55 @@
       ],
       "sources": [
         "za_iec_national_results_20240621",
-        "za_iec_national_seats_20240606"
+        "za_iec_national_seats_20240606",
+        "za_ff_viljoen_media_release_19970826",
+        "za_ff_viljoen_profile_page_2003",
+        "za_ff_mulder_profile_page_af_2003",
+        "za_ff_mulder_profile_page_en_2003",
+        "za_ff_mulder_budget_debate_speech_20010621",
+        "za_ff_vfplus_media_release_20030928",
+        "za_ff_mulder_reelected_release_20131118",
+        "za_ff_mulder_not_available_release_20161112",
+        "za_ff_new_leadership_release_20161112",
+        "za_ff_groenewald_farm_visit_release_20161227",
+        "za_ff_groenewald_covid_item_20200402",
+        "za_ff_viljoen_death_release_20200403",
+        "za_ff_minister_post_release_20240722",
+        "za_ff_da_ff_leaders_release_20240822",
+        "za_ff_presidency_budget_debate_item_20250716",
+        "za_ff_new_members_release_20260325"
       ],
       "claim_ids": [
         "za_n2024_ballot_051",
-        "za_n2024_seats_051"
+        "za_n2024_seats_051",
+        "za_ff_viljoen_media_release_leader_19970826",
+        "za_ff_viljoen_profile_founded_freedom_front",
+        "za_ff_viljoen_profile_retired_as_leader_2001",
+        "za_ff_mulder_cv_af_freedom_front_founded_199403",
+        "za_ff_mulder_cv_af_elected_leader_200104",
+        "za_ff_mulder_cv_en_freedom_front_founded_199403",
+        "za_ff_mulder_cv_en_elected_leader_200103",
+        "za_ff_mulder_speech_newly_elected_party_leader_20010621",
+        "za_ff_mulder_speech_elected_leader_in_march_2001",
+        "za_ff_release_mulder_vf_leader_20030928",
+        "za_ff_vf_kp_aeb_single_unit_announced_20030927",
+        "za_ff_name_vryheidsfront_plus_announced_20030927",
+        "za_ff_kp_aeb_leaders_pledge_loyalty_to_mulder_20030927",
+        "za_ff_mulder_unanimously_reelected_published_20131118",
+        "za_ff_release_mulder_vf_plus_leader_20161112",
+        "za_ff_mulder_not_standing_again_20161112",
+        "za_ff_mulder_led_party_since_2001_unopposed",
+        "za_ff_groenewald_designated_new_leader_20161112",
+        "za_ff_release_leader_groenewald_20161227",
+        "za_ff_item_leader_groenewald_20200402",
+        "za_ff_passing_of_former_leader_viljoen_reported_20200403",
+        "za_ff_viljoen_very_first_leader_of_the_party",
+        "za_ff_release_vf_plus_leader_groenewald_appointed_minister_20240722",
+        "za_ff_corne_mulder_designated_parliamentary_leader_20240722",
+        "za_ff_joint_release_national_party_leader_groenewald_20240822",
+        "za_ff_item_leader_corne_mulder_20250716",
+        "za_ff_release_leader_corne_mulder_20260325",
+        "za_ff_referendum_party_dissolves_into_ff_plus_20260325"
       ],
       "coverage": {
         "status": "reporting_identity_only",
@@ -10667,7 +12543,8 @@
         "unresolved": [
           "Reconcile legal registration, precise organization identity, renames, alliances, mergers and splits against original records.",
           "Research all independently dated party, parliamentary and executive leadership roles before character or succession eligibility.",
-          "No game-party mapping is asserted. An electoral entry is not automatically a parliamentary caucus, coalition or umbrella affiliation."
+          "No game-party mapping is asserted. An electoral entry is not automatically a parliamentary caucus, coalition or umbrella affiliation.",
+          "Freedom Front / Freedom Front Plus leaders 1994-2026 (CLAUDE-C01-30, ZA-FF-01..09): role za_ff_leader holds nine dated observations from party records, Constand Viljoen (26 August 1997), Pieter Mulder (21 June 2001 to 12 November 2016), Pieter Groenewald (27 December 2016 to 22 August 2024) and Corné Mulder (16 July 2025 and 25 March 2026), with no stated start or end. Still open: the founding and registration day (party records say March 1994), the month and day of the 2001 election (March or April), the day any leader assumed or left the office, Groenewald's re-elections, and any party record of the 2025 election of Corné Mulder. The 2003 merger and renaming and the Referendum Party's joining are recorded on this observation without changing its IEC reporting identity, unknown lifecycle or empty game mapping."
         ]
       }
     },
@@ -11733,6 +13610,7 @@
       "Names containing Alliance, Congress or Movement are retained exactly as electoral reporting names. Organizational form, coalition membership, caucus identity and underlying component parties remain unresolved.",
       "DA offices have dated observations only; their relationships and continuity require further evidence. Presidency election does not establish party leadership or inauguration.",
       "Heads of state 1990-2024 (CLAUDE-C01-09): the State President under the 1983 Constitution and the President of the Republic are separate roles in za_presidency; holder observations are dated from primary records with only stated starts and ends. Deputy presidents, acting presidents during travel, ministers and party offices remain outside this review, and no game identity or portrait permission is granted.",
+      "ACDP, Freedom Front and IFP leaders 1990-2026 (CLAUDE-C01-30, ZA-ACDP-01..05, ZA-FF-01..09, ZA-IFP-01..08): three party-leader roles, za_acdp_president, za_ff_leader and za_ifp_president, on the AFRICAN CHRISTIAN DEMOCRATIC PARTY, VRYHEIDSFRONT PLUS and INKATHA FREEDOM PARTY observations, with 22 holder observations of seven people (Kenneth Meshoe; Constand Viljoen, Pieter Mulder, Pieter Groenewald and Corné Mulder; Mangosuthu Buthelezi and Velenkosini Hlabisa) dated by the parties' own in-office attestations and no start or end. No party record found states the day any leader assumed or left the office; elections, selections, acceptances, result publications, retirement and valedictory statements, the President Emeritus title, deaths and the parliamentary leader office are claims only. The founding, renaming and merger claims (December 1993; March 1994 and 27 September 2003; 14 or 10 July 1990) are organization claims that set no lifecycle or identity. Ministerial, parliamentary and legislature offices never feed the party roles, no party role feeds za_presidency, and no game identity or portrait permission is granted.",
       "Deputy Presidents 1994-2026 (CLAUDE-C01-21, ZA-DP-01..10): the Deputy President is a separate role, za_deputy_president, in za_presidency, with twelve holder observations from primary records; only Jacob Zuma's start (17 June 1999) is stated and no holder has a stated end. Announcements, appointments and their notices, scheduled oaths, releases, resignations and their stated effect, Assembly-seat events and retrospective lists are claims only; acting service as President is never a holder; the President's roles and the ANC's party office are unchanged, and no game identity or portrait permission is granted.",
       "ANC Presidents 1990-2026 (CLAUDE-C01-16, ZA-ANC-01..10): the party office is a separate role, za_anc_president, on the AFRICAN NATIONAL CONGRESS observation, with ten holder observations dated by ANC in-office attestations and no start or end; conference elections, result publications, handovers, departures, deputy and chair offices are claims only. No ANC record found states the day any President assumed or left the party office or the day a National Conference declared its result; the only stated election day (18 December 2017, in the ANC's later biography of Ramaphosa) and the 2007 voting and publication days (18 and 19 December 2007) are claims only, never boundaries; the Presidency of the Republic and the party office never feed each other, and no game identity or portrait permission is granted."
     ]

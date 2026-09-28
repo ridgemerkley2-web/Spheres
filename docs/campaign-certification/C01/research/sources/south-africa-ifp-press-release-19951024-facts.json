@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_ifp_press_release_19951024",
+  "source_url": "https://web.archive.org/web/19970702040121id_/http://www.ifp.org.za:80/Press/241095.htm",
+  "original_url": "http://www.ifp.org.za/Press/241095.htm",
+  "archive_capture_utc": "1997-07-02T04:01:21Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "1995-10-24",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 3399,
+  "source_response_sha256": "1e52bd314a935dd879dac6db100c384bc4f63a76b82d6541ee8943d91c55279f",
+  "source_response_sha1_base32": "W3RJCODFWNZBYR4SQ33NWMGNBAEDC63L",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture, fetched with plain curl (no Accept-Encoding, no decoding). First downloaded on 2026-09-28T17:32:41Z; downloaded again at 2026-09-28T18:03:54Z, 2026-09-28T18:50:45Z, the last at least 30 minutes after the first, each with the same byte count and SHA-256 (3399 bytes). The base32 SHA-1 of the bytes equals the Internet Archive's CDX digest for the capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the IFP's original page, captured at 1997-07-02T04:01:21Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the old www.ifp.org.za pages are no longer served, and the current ifp.org.za site is served behind a bot challenge and is not used live). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture made 2 July 1997; archived Last-Modified Tue, 18 Jun 1996 19:18:15 GMT. The release is headed \"Press Release Immediate 24 October 1995\". It says both that the rally is \"a day before\" and that the meeting is \"this evening\". Served without content encoding.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_ifp_press_release_president_buthelezi_19951024",
+      "observation_id": "za_iec_n2024_034",
+      "review_observation": "ZA-IFP-01",
+      "role_id": "za_ifp_president",
+      "holder_name": "Mangosuthu Buthelezi",
+      "role_title": "President of the Inkatha Freedom Party",
+      "event_kind": "in_office_attestation",
+      "attested_on": "1995-10-24",
+      "text": "An IFP press release dated 24 October 1995 says the shooting of six IFP candidates in Mpumalanga \"comes a day before IFP President, Dr M G Buthelezi, addresses an election rally\", and that the meeting to be addressed by \"IFP President, Dr M G Buthelezi\" will go ahead.",
+      "locator": {
+        "section": "Second paragraph (beginning \"The ambush was carefully planned\") and final paragraph (beginning \"The meeting this evening\")"
+      }
+    }
+  ],
+  "bounded_scope": "IFP President observations for CLAUDE-C01-30 only (role za_ifp_president on the INKATHA FREEDOM PARTY observation). The 1990 transformation of Inkatha into the IFP is an organization claim (role_id null) and sets no lifecycle; elections, acceptance, result publication, valedictory and retirement statements, the President Emeritus title, the death of the former President and in-office attestations stay separate rows; holder observations are decided in the packet, not by any row. State, legislature and ministerial offices are excluded and no row feeds them."
+}

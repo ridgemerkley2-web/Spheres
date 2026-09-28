@@ -1,0 +1,70 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_ifp_extended_nc_statement_buthelezi_20190120",
+  "source_url": "https://web.archive.org/web/20190123104637id_/http://www.ifp.org.za:80/newsroom/following-meeting-ifps-extended-national-council/",
+  "original_url": "http://www.ifp.org.za/newsroom/following-meeting-ifps-extended-national-council/",
+  "archive_capture_utc": "2019-01-23T10:46:37Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2019-01-20",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 69503,
+  "source_response_sha256": "2d1ace2d5163aeacdd574cc730f82469a2f0e61ff524961ddb0b6d4c11b22302",
+  "source_response_sha1_base32": "L7HLMIJ7F6WXMGFIEM4IXA3CLKRFMVWC",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture, fetched with plain curl (no Accept-Encoding, no decoding). First downloaded on 2026-09-28T17:47:00Z; downloaded again at 2026-09-28T18:18:50Z, 2026-09-28T18:51:23Z, the last at least 30 minutes after the first, each with the same byte count and SHA-256 (69503 bytes). The base32 SHA-1 of the bytes equals the Internet Archive's CDX digest for the capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the IFP's original page, captured at 2019-01-23T10:46:37Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the old www.ifp.org.za pages are no longer served, and the current ifp.org.za site is served behind a bot challenge and is not used live). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture made 23 January 2019 of the post dated \"20 January, 2019 - Press Releases\". Navigation and related-post panels are excluded. Served without content encoding.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_ifp_statement_president_buthelezi_20190120",
+      "observation_id": "za_iec_n2024_034",
+      "review_observation": "ZA-IFP-03",
+      "role_id": "za_ifp_president",
+      "holder_name": "Mangosuthu Buthelezi",
+      "role_title": "President of the Inkatha Freedom Party",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2019-01-20",
+      "text": "A statement dated 20 January 2019 is headed \"STATEMENT BY PRINCE MANGOSUTHU BUTHELEZI MP PRESIDENT OF THE INKATHA FREEDOM PARTY\", and in it he says \"I have been asked to lead the campaign as the Party's President\".",
+      "locator": {
+        "section": "Heading block and the paragraph containing \"I have been asked to lead the campaign\""
+      }
+    },
+    {
+      "claim_id": "za_ifp_buthelezi_recalls_october_2017_announcement",
+      "observation_id": "za_iec_n2024_034",
+      "review_observation": "ZA-IFP-03",
+      "role_id": "za_ifp_president",
+      "holder_name": "Mangosuthu Buthelezi",
+      "role_title": "President of the Inkatha Freedom Party",
+      "event_kind": "retirement_announcement_retrospective",
+      "attested_on": null,
+      "printed_range": "October 2017",
+      "text": "In the same statement he recalls intentions \"which I expressed to a meeting of our Extended National Council in October 2017\", that \"I would not stand for re-election to the position of Party President at the next elective conference\".",
+      "locator": {
+        "section": "Paragraph beginning \"The structures of our Party were well aware\""
+      }
+    },
+    {
+      "claim_id": "za_ifp_extended_nc_conference_after_2019_elections_20190120",
+      "observation_id": "za_iec_n2024_034",
+      "review_observation": "ZA-IFP-03",
+      "role_id": "za_ifp_president",
+      "holder_name": null,
+      "role_title": "President of the Inkatha Freedom Party",
+      "event_kind": "conference_scheduling_decision",
+      "attested_on": "2019-01-20",
+      "text": "The statement says the Extended National Council decided that day to engage the election campaign before holding conference: \"We now know that conference will take place immediately after the 2019 elections\".",
+      "locator": {
+        "section": "Paragraphs beginning \"But the unanimous decision taken today\" and \"We now know that conference will take place\""
+      }
+    }
+  ],
+  "bounded_scope": "IFP President observations for CLAUDE-C01-30 only (role za_ifp_president on the INKATHA FREEDOM PARTY observation). The 1990 transformation of Inkatha into the IFP is an organization claim (role_id null) and sets no lifecycle; elections, acceptance, result publication, valedictory and retirement statements, the President Emeritus title, the death of the former President and in-office attestations stay separate rows; holder observations are decided in the packet, not by any row. State, legislature and ministerial offices are excluded and no row feeds them."
+}

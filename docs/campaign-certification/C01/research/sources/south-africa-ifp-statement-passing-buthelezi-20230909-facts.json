@@ -1,0 +1,57 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_ifp_statement_passing_buthelezi_20230909",
+  "source_url": "https://web.archive.org/web/20230909123509id_/https://www.ifp.org.za/newsroom/on-the-passing-of-prince-mangosuthu-buthelezi/",
+  "original_url": "https://www.ifp.org.za/newsroom/on-the-passing-of-prince-mangosuthu-buthelezi/",
+  "archive_capture_utc": "2023-09-09T12:35:09Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2023-09-09",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 21125,
+  "source_response_sha256": "db02a7f143dd2bcc2088108dd78f367a4ba557e211ec47362554025cbd8453f0",
+  "source_response_sha1_base32": "2GH5ZYACAREUHZB4V4TN5P7BXLULZJGU",
+  "source_response_content_encoding": "gzip",
+  "decoded_response_bytes": 100551,
+  "decoded_response_sha256": "fd4e39bc3bfacd90d965444ac057cdb3986c6d0d75d2d7703cbbd5b9e90e6ae7",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture, fetched with plain curl (no Accept-Encoding, no decoding). First downloaded on 2026-09-28T17:32:48Z; downloaded again at 2026-09-28T18:04:01Z, 2026-09-28T18:52:31Z, the last at least 30 minutes after the first, each with the same byte count and SHA-256 (21125 bytes). The base32 SHA-1 of the bytes equals the Internet Archive's CDX digest for the capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the IFP's original page, captured at 2023-09-09T12:35:09Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the old www.ifp.org.za pages are no longer served, and the current ifp.org.za site is served behind a bot challenge and is not used live). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture made 9 September 2023, 12:35 UTC, the statement's own date; archived Last-Modified Sat, 09 Sep 2023 10:18:44 GMT. The capture is stored and served gzip-encoded (Content-Encoding: gzip) even to a request without Accept-Encoding; its identity is the gzip bytes as served, and the decoded body identity is recorded beside it. The title contains soft hyphens.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_ifp_death_founder_president_emeritus_buthelezi_20230909",
+      "observation_id": "za_iec_n2024_034",
+      "review_observation": "ZA-IFP-06",
+      "role_id": "za_ifp_president",
+      "holder_name": "Mangosuthu Buthelezi",
+      "role_title": "President Emeritus of the Inkatha Freedom Party",
+      "event_kind": "death",
+      "attested_on": "2023-09-09",
+      "text": "The IFP's statement dated 9 September 2023 says \"The Founder and President Emeritus of the Inkatha Freedom Party passed away peacefully in the early hours of this morning\", naming Prince Mangosuthu Buthelezi MP.",
+      "locator": {
+        "section": "Title block and first body paragraph"
+      }
+    },
+    {
+      "claim_id": "za_ifp_statement_president_hlabisa_20230909",
+      "observation_id": "za_iec_n2024_034",
+      "review_observation": "ZA-IFP-06",
+      "role_id": "za_ifp_president",
+      "holder_name": "Velenkosini Hlabisa",
+      "role_title": "President of the Inkatha Freedom Party",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2023-09-09",
+      "text": "The same statement is issued as a \"Statement by the Hon. Mr Velenkosini Hlabisa MPL President of the IFP and Leader of the Official Opposition in KwaZulu-Natal\".",
+      "locator": {
+        "section": "Byline block under the title"
+      }
+    }
+  ],
+  "bounded_scope": "IFP President observations for CLAUDE-C01-30 only (role za_ifp_president on the INKATHA FREEDOM PARTY observation). The 1990 transformation of Inkatha into the IFP is an organization claim (role_id null) and sets no lifecycle; elections, acceptance, result publication, valedictory and retirement statements, the President Emeritus title, the death of the former President and in-office attestations stay separate rows; holder observations are decided in the packet, not by any row. State, legislature and ministerial offices are excluded and no row feeds them."
+}
