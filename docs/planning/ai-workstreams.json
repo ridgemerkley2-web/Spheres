@@ -37,7 +37,7 @@
         "S20",
         "S21"
       ],
-      "next": "Retain S18/S20/S21 qualification; reopen only a reproduced defect. G4 is earned. Codex is executing S22 under docs/campaign-certification/S22/measurement-protocol.json."
+      "next": "Retain S18/S20/S21 qualification; reopen only a reproduced defect. G4 is earned, and S22 performance qualification is complete on its separately recorded candidate and evidence."
     },
     {
       "id": "guidance",
@@ -62,7 +62,7 @@
         "S23"
       ],
       "handoff": "docs/planning/ai-handoffs/CLAUDE-EXPANDED-NEXT.md",
-      "next": "C01-GAPS-01 and SOURCE-05/06 are accepted bounded deliveries. SOURCE-17/26 and C01-23/24/25/27 await independent review; latest C01-27 submission 0765c590 was inspected after S20 closure. The remaining five expanded sections are claimed, including C03 cartoon review, C04 fictional successors and S23 boundary audit. Query --tasks --owner Claude; preserve those claims. Parent historical coverage remains open and the research cutoff stays 2026-09-07."
+      "next": "C01-GAPS-01 and SOURCE-05/06 are accepted bounded deliveries. SOURCE-17/26 and C01-23/24/25/27 await independent review; latest C01-27 submission 0765c590 was inspected after S20 closure. The remaining five expanded sections are claimed, including C03 cartoon review, C04 fictional successors and S23 boundary audit. Query --tasks --owner Claude; preserve those claims. Parent historical coverage remains open and the research cutoff stays 2026-09-07. S23 is the next canonical session, remains planned and is owned by Claude; its C06 cast-coverage dependency is still open. Continue the existing bounded S23 preparation claim without treating it as final content qualification."
     },
     {
       "id": "qualification",
@@ -76,7 +76,7 @@
         "S29",
         "S30"
       ],
-      "next": "Execute the S22 plan and frozen measurement protocol in docs/campaign-certification/S22/. The fresh offline audit at final 5d11dd6d passes 245 configurations, 33 assets, 13 canonical exports and 35 Node entries with no bound changes; retain 33 historical diagnostic overages. Actual France 1999/2015/end-2035 inputs are complete and reviewed. Final 5d11dd6d passes 1,963 release tests, nine focused tests, eight actual 31-day comparisons and both isolated native preflights. Preserve complete failed qualification pair01 (17/18 cells; confirmation end-2035 simulation/history p95 323.6552 ms and whole-turn p95 406.1905 ms) and all initial validation failures. Freeze final candidate and actual inputs under fresh attempt IDs, then execute a new complete 18-cell pair02, which has not launched. No selected-cell retries, threshold changes or substitution of preflights. S22 and human qualification remain open. Preserve every source, failed attempt and restoration record. Claude owns independent CLAUDE-S24-SUCCESSORS-01 preparation; Codex retains canonical S24 ownership and final qualification."
+      "next": "S22 is complete on 5d11dd6dae436eeca105dbaf0d02732cd768b35b; docs/campaign-certification/S22/manifest.json indexes the evidence. Both complete rounds of qualification pair02 passed all 18 declared cells, and independent frozen-helper verification passed under the unchanged protocol. End-2035 confirmation simulation/history and whole-turn p95 are 237.4 / 323.1374 ms. Final validation passed 1,963 release tests (0 failed, 112 ignored), nine focused tests, eight actual 31-day comparisons, 35 Node entries, 245 art configurations, 33 assets and 13 canonical GLB exports. Preserve the failed 17/18 pair01, all prior validation/preflight failures, 33 historical diagnostic art overages, source scopes and restoration records. S23 is next, Claude-owned and planned pending C06; Codex-owned S24 awaits S23. Claude retains the independent CLAUDE-S24-SUCCESSORS-01 preparation claim. G5, CP1 and human qualification remain unearned."
     },
     {
       "id": "human-playtests",

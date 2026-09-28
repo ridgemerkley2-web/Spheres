@@ -609,7 +609,7 @@
       "id": "S22",
       "phase": "qualification",
       "title": "Repair art measurement and qualify performance",
-      "status": "in_progress",
+      "status": "complete",
       "claim": {
         "owner": "Codex",
         "base": "846df4797712935efb5a221e188d410b09f0d083",
@@ -627,7 +627,18 @@
         "Repair vertex-layout accounting, distinguish resident buffers from frame geometry, and regenerate measured records.",
         "Validate inspection/city cache limits, lazy loading, context recovery and repeated room visits; do not silently widen budgets to pass.",
         "Measure agreed map FPS, control latency, day-tick throughput, cold loading and memory at early/mid/late dates; keep logs and traces."
-      ]
+      ],
+      "completed_date": "2026-09-28",
+      "closure": {
+        "candidate_revision": "5d11dd6dae436eeca105dbaf0d02732cd768b35b",
+        "evidence": "docs/campaign-certification/S22/manifest.json",
+        "completed_utc": "2026-09-28T12:24:22.576Z",
+        "qualification": "Two complete frozen-candidate rounds passed all 18 declared early/mid/end-2035 native, map and renderer cells; independent frozen-helper verification passed. End-2035 confirmation simulation/history p95 237.4 ms and whole-turn p95 323.1374 ms remain within the unchanged limits.",
+        "validation": "1,963 release tests passed, 0 failed, 112 ignored; nine focused tests and eight actual 31-day world/headline comparisons passed. Offline art audit passed 35 Node entries, 245 configurations, 33 assets and 13 canonical GLB exports.",
+        "retained_failures": "Complete failed pair01 remains failed at 17/18, including end-2035 confirmation simulation/history p95 323.6552 ms and whole-turn p95 406.1905 ms. Earlier failed preflights, fixture/coverage attempts, diagnostic art overages and source scopes remain retained.",
+        "g5_earned": false,
+        "cp1_earned": false
+      }
     },
     {
       "id": "S23",
@@ -1000,11 +1011,11 @@
       }
     ]
   },
-  "last_completed_session": "S20",
-  "next_session": "S22",
+  "last_completed_session": "S22",
+  "next_session": "S23",
   "execution": {
     "status": "in_progress",
-    "instruction": "Continue authorized open-task/session work: S22 is claimed for actual early/mid/end-2035 performance qualification under the frozen S01 limits and a two-full-round confirmation policy. S19/S20 remain complete and G4 earned; S22 is not yet complete.",
+    "instruction": "Continue authorized open-task repairs and session closeout. S22 is complete on candidate 5d11dd6dae436eeca105dbaf0d02732cd768b35b after two complete passing qualification rounds under the unchanged frozen protocol. S23 is next and remains planned, owned by Claude, with C06 still incomplete; S24 awaits S23. Preserve existing bounded preparation claims. G4 remains earned; G5 and CP1 remain unearned.",
     "instruction_date": "2026-09-28",
     "next_session_requires_instruction": false,
     "historical_boundary": {

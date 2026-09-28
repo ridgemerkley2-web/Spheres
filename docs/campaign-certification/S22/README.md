@@ -1,6 +1,15 @@
 # S22 — art accounting and performance qualification
 
-**Status: in progress. Owner: Codex.**
+**Status: complete. Owner: Codex. Qualified candidate: `5d11dd6d`.**
+
+Both complete qualification rounds passed **18/18 declared cells** under the
+unchanged frozen limits. An independent verifier and raw-observation review
+also passed. End-2035 confirmation simulation/history p95 was **237.4 ms** and
+whole-turn p95 **323.1374 ms**. Across the full pair, the lowest map rate was
+**32.0651 FPS**, largest control p95 **51.5 ms**, and lowest aircraft orbit rate
+**99.9133 FPS**. See the [closeout](CLOSEOUT.md), [closure manifest](manifest.json)
+and [passing pair02 archive](qualification-pair-02/README.md). G5 and CP1 remain
+unearned; S23 is next, with its C06 content dependency still open.
 
 Actual input preparation is complete through **30 November 2035**. The first
 full qualification pair at `d50f7ee1` is complete and **failed: 17 of 18 cells
@@ -15,14 +24,15 @@ The final follow-up candidate, `5d11dd6d`, passes **1,963 release tests, zero
 failures, 112 ignored across 66 suites**, nine focused tests and eight actual
 31-day comparisons. A fresh art audit and both isolated 2015/end-2035 native
 preflights pass all unchanged limits. Initial fixture and coverage failures are
-preserved in the [pair02 validation packet](pair02-validation/README.md). The new
-complete 18-cell pair02 has not launched; S22, G5 and CP1 remain unearned.
+preserved in the [pair02 validation packet](pair02-validation/README.md). Its
+pre-qualification status is historical: the subsequent complete pair02 now
+qualifies S22 on this exact candidate.
 
 The [plan](PLAN.md) and [frozen measurement protocol](measurement-protocol.json)
-start the next canonical session after S20/G4. They preserve the engineering
+record the session's pre-qualification commitments after S20/G4. They preserve the engineering
 targets from [S01](../S01/PERFORMANCE_BASELINE.md) and the existing
-[art contract](../../art/3D_MODEL_MASTER_ROADMAP.md). No session-level performance
-qualification is earned by this packet.
+[art contract](../../art/3D_MODEL_MASTER_ROADMAP.md). Their original status and
+requirements remain frozen; the closeout records the later qualification decision.
 
 A pre-qualification clarification fixes the 31-click local camera sequence and
 labels its measured endpoint as paint opportunity plus GPU completion, not proven
@@ -39,10 +49,10 @@ regressions, so its timings remain diagnostic. Neither counter is driver VRAM.
 | --- | --- |
 | Current offline art, accounting and reproduction audit | **Complete and passing at 5d11dd6d:** 245 configurations, 33 assets, 13 canonical exports, 35 Node entries; all 39 source pins unchanged during the clean run |
 | Actual France 1999 / 2015 / end-2035 inputs | **Complete.** Reviewed original/adopted/2006/2015/2035 hash/date linkage and unchanged sources retained; this is record review, not an independent replay |
-| Native 31-day timing and headless memory | Final 5d11dd6d isolated 2015/end-2035 preflights pass all limits. Failed pair01 remains retained; a new complete qualification pair is required |
-| Actual rendered map, aircraft and UI performance | All six map and six renderer cells pass in complete pair01 on d50f7ee1; the overall pair remains failed by native latency |
-| City/inspection caches, context recovery, loading and layouts | Pair01's two rounds pass actual draw attribution, cache/context/cleanup, loading, 390px/3440px layouts, navigation and read-only state checks |
-| S22 closure | **Not earned** |
+| Native 31-day timing and headless memory | **Complete:** all six pair02 native cells pass latency, both memory limits, immutable inputs and exact ordinary/batch final-state checks |
+| Actual rendered map, aircraft and UI performance | **Complete:** all six map and six renderer cells pass in pair02 on 5d11dd6d |
+| City/inspection caches, context recovery, loading and layouts | **Complete:** both pair02 rounds pass actual draw attribution, cache/context/cleanup, loading, 390px/3440px layouts, navigation and read-only state checks |
+| S22 closure | **Earned on the recorded reference hardware, candidate and three actual France dates; no G5 or CP1 award** |
 
 The original S19 save has economic competition disabled, which also gates
 supplier/military AI ticks despite their enabled flags. Qualification first
@@ -63,7 +73,7 @@ Its isolated native preflights pass: 2015 simulation/whole-turn p95
 **282.2180 / 382.0407 ms**, maximum **392.1018 ms**. Sampled private/OS peaks are
 867,627,008 / 864,006,144 bytes for 2015 and 902,393,856 / 886,210,560 for 2035.
 Input hashes and final world fingerprints remain exact. These are preflights;
-new full-pair qualification remains required without changing any limit.
+the later passing pair02 supplies the separately required full qualification.
 
 The [pair01 archive](qualification-pair-01/README.md) preserves every one of the
 18 declared cells, including the failed confirmation, without retries or selected
@@ -311,7 +321,8 @@ textures, driver overhead and application heap. It is neither live residency
 nor a frame-rate result. Aircraft are measured separately from the hypothetical
 ground/site/town inventory. The gallery **TownMesh** path is separate from the
 campaign globe **CityMesh** path. Both map and renderer paths subsequently pass
-both pair01 browser rounds; the overall S22 pair still fails native latency.
+both pair01 browser rounds; pair01 still fails native latency. The later pair02
+passes both complete rounds, including every native cell.
 
 ## Evidence preservation and next action
 
@@ -321,8 +332,13 @@ retained as captured: its original staging layout was
 `work/campaign-certification/evidence/s22-preflight-art/`, next to `integration`.
 The exact portable command arguments and source hashes are in `result.json`.
 
-Next, freeze the reviewed actual inputs and final candidate under fresh attempt
-IDs, then execute the new complete 18-cell pair02. Preserve pair01 and every
-other failed attempt; no cell substitution or threshold change is allowed.
-Final correctness, art and native preflight passes do not replace two qualifying
-rounds. No G5, CP1, worldwide-history or human-playtest completion is awarded here.
+The new pair02 was frozen before its first measurement and completed all 18
+declared cells without retries, substitution or threshold changes. The archive
+preserves original records, decoded byte identities and restoration mappings;
+external runtime binaries remain explicitly hash-pinned. Pair01 and every prior
+failed attempt retain their original results. Archive-byte verification does not
+claim a full physical restoration or an independent replay of campaign years.
+
+Next is Claude-owned S23, still planned pending C06. Codex-owned S24 awaits
+that content gate. No G5, CP1, worldwide-history or human-playtest completion
+is awarded by this bounded performance closeout.
