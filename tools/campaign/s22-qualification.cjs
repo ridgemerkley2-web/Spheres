@@ -322,11 +322,20 @@ function mapMemory(row){
   for(const name of ['documents','nodes','jsEventListeners'])integer(row.dom?.[name],'Observed DOM '+name);
   need(row.contexts?.length>0,'Actual map allocation observations missing');for(const c of row.contexts){buffers(c.buffer_payload);texture(c.declared_texture_payload);same(c.texture_diagnostics,[]);}
 }
-function cameraChange(key, before, after) {
+function cameraChange(key, before, after, beforeMap, afterMap) {
   for (const c of [before, after]) for (const k of ['yaw','pitch','zoom']) need(typeof c?.[k] === 'number' && Number.isFinite(c[k]), 'Finite actual camera values required');
   const yaw = Math.atan2(Math.sin(after.yaw-before.yaw), Math.cos(after.yaw-before.yaw));
   if (key === 'west' || key === 'east') { need(key === 'west' ? yaw < 0 : yaw > 0, 'Control must change yaw in requested direction'); same(after.pitch, before.pitch); same(after.zoom, before.zoom); }
-  else { need(key === 'zoom-in' ? after.zoom > before.zoom : after.zoom < before.zoom, 'Control must change zoom in requested direction'); same(after.yaw, before.yaw); same(after.pitch, before.pitch); }
+  else {
+    need(key === 'zoom-in' ? after.zoom > before.zoom : after.zoom < before.zoom, 'Control must change zoom in requested direction');
+    // The 24-step Robinson inverse can round the first globe/map round trip.
+    // An exactly unchanged map centre is required before accepting this bound.
+    if (after.yaw !== before.yaw || after.pitch !== before.pitch) {
+      for (const c of [beforeMap,afterMap]) for (const k of ['cx','cy']) need(typeof c?.[k] === 'number' && Number.isFinite(c[k]), 'Finite unchanged zoom centre required');
+      same(afterMap.cx,beforeMap.cx); same(afterMap.cy,beforeMap.cy);
+      need(Math.abs(yaw)<=1e-7 && Math.abs(after.pitch-before.pitch)<=1e-7, 'Zoom must preserve centre within Robinson inverse precision');
+    }
+  }
 }
 function inputs(rows) {
   same(rows?.length, 31, 'Exactly 31 ordered controls required');
@@ -334,7 +343,7 @@ function inputs(rows) {
     same(row.key, CONTROLS[i%4], 'Control sequence changed'); same(row.trusted, true);
     num(row.event_timestamp, 'Trusted event timestamp'); num(row.start, 'Listener entry'); num(row.complete, 'Completion');
     need(row.start >= row.event_timestamp && row.complete >= row.start, 'Control timestamps out of order');
-    close(row.elapsed_ms, row.complete-row.event_timestamp, 'Raw control latency'); cameraChange(row.key, row.before_globe, row.after_globe);
+    close(row.elapsed_ms, row.complete-row.event_timestamp, 'Raw control latency'); cameraChange(row.key, row.before_globe, row.after_globe,row.before_camera,row.after_camera);
     if (i) { need(row.event_timestamp >= rows[i-1].complete, 'Control observations overlap'); same(row.before_globe, rows[i-1].after_globe, 'Camera changed outside ordered workload'); }
     else same(row.before_globe.zoom, 8, 'Controls must start at frozen national zoom');
   }

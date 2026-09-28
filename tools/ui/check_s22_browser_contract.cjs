@@ -15,6 +15,16 @@ test('qualification reference GPU gate accepts only the declared hardware and ve
   const gpu={version:'WebGL 2.0 (OpenGL ES 3.0 Chromium)',unmasked:'ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Direct3D11 vs_5_0 ps_5_0, D3D11)'};
   assert(referenceGpu(gpu));for(const value of [null,{...gpu,version:null},{...gpu,unmasked:null},{...gpu,unmasked:'ANGLE (Google, Vulkan SwiftShader)'},{...gpu,unmasked:gpu.unmasked.replace('5070','4090')},{...gpu,unmasked:gpu.unmasked+' software'}])assert(!referenceGpu(value));
 });
+test('zoom preserves the exact map centre across bounded Robinson inverse rounding',()=>{
+  const before={yaw:-.04105363466540979,pitch:.8527085313298616,zoom:8};
+  const after={yaw:-.04105363496913128,pitch:.8527085512769383,zoom:10.8};
+  const centre={cx:1213.7113132067784,cy:217.6780759386204};
+  assert(requestedCameraChange('zoom-in',before,after,centre,{...centre}));
+  assert(!requestedCameraChange('zoom-in',before,after));
+  assert(!requestedCameraChange('zoom-in',before,after,centre,{...centre,cx:centre.cx+.001}));
+  assert(!requestedCameraChange('zoom-in',before,{...after,pitch:before.pitch+1e-6},centre,centre));
+  assert(!requestedCameraChange('zoom-in',before,{...after,zoom:8},centre,centre));
+});
 test('missing or failed trace cannot retain a passing verdict',()=>{
   const trace={file:'chrome-trace.json.gz',raw_bytes:10,compressed_bytes:20,sha256:'a'.repeat(64)};assert(completeTrace(trace));
   for(const value of [null,{...trace,raw_bytes:0},{...trace,compressed_bytes:0},{...trace,sha256:''}])assert(!completeTrace(value));

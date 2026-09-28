@@ -87,6 +87,18 @@ test('camera controls require all 31 exact trusted actions, actual direction and
   assert.throws(()=>q.inputs(controlRows().slice(1)),/31/);
   const slow=controlRows();for(const i of [29,30]){slow[i].elapsed_ms=200.000001;slow[i].complete=slow[i].event_timestamp+slow[i].elapsed_ms;}assert.throws(()=>q.inputs(slow),/200 ms/);
 });
+test('zoom round-trip precision requires unchanged raw map centre and rejects real drift',()=>{
+  const rows=controlRows(),r=rows[2],centre={cx:1213.7113132067784,cy:217.6780759386204};
+  r.before_camera={...centre};r.after_camera={...centre};
+  for(let i=2;i<rows.length;i++){
+    rows[i].after_globe.pitch+=2e-8;
+    if(i>2)rows[i].before_globe.pitch+=2e-8;
+  }
+  assert.equal(q.inputs(rows).count,31);
+  const moved=structuredClone(rows);moved[2].after_camera.cx+=.001;assert.throws(()=>q.inputs(moved));
+  const absent=structuredClone(rows);delete absent[2].before_camera;assert.throws(()=>q.inputs(absent),/centre/);
+  const drift=structuredClone(rows);drift[2].after_globe.pitch+=1e-6;assert.throws(()=>q.inputs(drift),/precision/);
+});
 test('draw validator counts actual completed frames using the full measured interval',()=>{
   assert.equal(q.mapPhase(mapPhase(12000,30),12000),30);
   const invalid=mapPhase(12000,30);invalid.frames[0].draw_calls=0;assert.throws(()=>q.mapPhase(invalid,12000),/draw calls/);
