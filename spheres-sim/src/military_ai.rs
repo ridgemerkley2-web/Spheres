@@ -415,11 +415,38 @@ fn procure(w: &mut WorldState, n: NationId, allowance: &mut f64) -> Result<Strin
     procure_observed(w, n, allowance, &mut None)
 }
 
+#[cfg(test)]
+thread_local! {
+    static TEST_ORIGINAL_PROCUREMENT_IMPORT_LISTS: std::cell::Cell<bool> = const { std::cell::Cell::new(false) };
+    static TEST_EMPTY_PROCUREMENT_IMPORT_SKIPS: std::cell::Cell<u64> = const { std::cell::Cell::new(0) };
+}
+
+fn procurement_import_offers(w: &WorldState, n: NationId) -> Vec<co::ImportOffer> {
+    #[cfg(test)]
+    if TEST_ORIGINAL_PROCUREMENT_IMPORT_LISTS.with(|flag| flag.get()) {
+        return co::import_offers(w, n);
+    }
+    // Procurement immediately discards ammunition and equipment with no ready
+    // stock. If every foreign equipment product is empty, constructing its
+    // complete public catalogue (including route quotes) cannot supply a row.
+    // A positive stock is deliberately enough to keep the entire native path:
+    // do not pre-judge certification, access, cancellation or affordability.
+    // Public listings and ground ammunition procurement remain unchanged.
+    if !w.companies.firms.iter().filter(|c| c.nation != n)
+        .any(|c| c.products.iter().any(|p| p.stock > 0))
+    {
+        #[cfg(test)]
+        TEST_EMPTY_PROCUREMENT_IMPORT_SKIPS.with(|count| count.set(count.get() + 1));
+        return Vec::new();
+    }
+    co::import_offers(w, n)
+}
+
 fn procure_observed(
     w: &mut WorldState, n: NationId, allowance: &mut f64, observer: &mut DetailedObserver<'_>,
 ) -> Result<String, String> {
     let mut offers = observe(observer, "review.procure.offers.domestic", Some(n), || co::domestic_offers(w, n));
-    offers.extend(observe(observer, "review.procure.offers.import", Some(n), || co::import_offers(w, n)));
+    offers.extend(observe(observer, "review.procure.offers.import", Some(n), || procurement_import_offers(w, n)));
     offers.retain(|o| !o.ammunition && o.ready_stock > 0);
     observe(observer, "review.procure.sort", Some(n), || offers.sort_by(|a, b| {
         // Meet missing roles before growing an existing one, then prefer domestic
