@@ -72,6 +72,8 @@ mod s17_fixture_tests;
 mod performance;
 #[cfg(test)]
 mod s08_route_pool_tests;
+#[cfg(test)]
+mod s22_ministry_curve_tests;
 use history::{Event, Snapshot};
 
 fn build_info()->serde_json::Value {serde_json::json!({
@@ -6105,18 +6107,25 @@ fn ministries_json(w: &WorldState, me: NationId) -> serde_json::Value {
     let list: Vec<serde_json::Value> = (0..spheres_sim::world::BUDGET_MINISTRIES)
         .map(|m| {
             let here = at(m, n.budget_for(w.year).allocations[m]);
+            // Each evaluation already returns every arm. Reuse its immutable
+            // values for all curves instead of repeating the same whole-vector
+            // calculation for each arm. Keep share + 0.01 exactly: shifting a
+            // grid index can differ at floating-point rounding boundaries.
+            let sampled: Vec<_> = if here.is_empty() { Vec::new() } else {
+                (0..=MINISTRY_CURVE_STEPS).map(|i| {
+                    let share = sample(m, i);
+                    (at(m, share), at(m, share + 0.01))
+                }).collect()
+            };
             let arms: Vec<serde_json::Value> = here
                 .iter()
                 .enumerate()
                 .map(|(a, arm)| {
-                    let curve: Vec<f64> = (0..=MINISTRY_CURVE_STEPS)
-                        .map(|i| round(at(m, sample(m, i))[a].value, 6))
+                    let curve: Vec<f64> = sampled.iter()
+                        .map(|(base, _)| round(base[a].value, 6))
                         .collect();
-                    let per_point: Vec<f64> = (0..=MINISTRY_CURVE_STEPS)
-                        .map(|i| {
-                            let share = sample(m, i);
-                            round(at(m, share + 0.01)[a].value - at(m, share)[a].value, 6)
-                        })
+                    let per_point: Vec<f64> = sampled.iter()
+                        .map(|(base, ahead)| round(ahead[a].value - base[a].value, 6))
                         .collect();
                     serde_json::json!({
                         "id": arm.id,
