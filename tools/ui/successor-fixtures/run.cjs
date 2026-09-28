@@ -381,11 +381,24 @@ async function shot(ctx, c, locator, name) {
   const page = locator.page(), rel = 'screenshots/' + c.identity.toLowerCase() + '-' + name + '.jpg', file = path.join(ctx.out, rel);
   fs.mkdirSync(path.dirname(file), { recursive: true });
   await locator.evaluate(e => e.scrollIntoView({ block: 'start', inline: 'nearest', behavior: 'instant' }));
+  // Fresh contexts have no image cache: wait (bounded) for the room's art to
+  // load and decode so the capture shows what a player sees.
+  const images = await locator.evaluate(e => {
+    const shown = [...e.querySelectorAll('img')].filter(img => {
+      const r = img.getBoundingClientRect(), s = getComputedStyle(img);
+      return r.width > 0 && r.height > 0 && s.display !== 'none' && s.visibility !== 'hidden' && r.bottom > 0 && r.right > 0 && r.top < innerHeight && r.left < innerWidth;
+    });
+    return Promise.race([
+      Promise.all(shown.map(img => (img.complete ? Promise.resolve() : new Promise(done => { img.addEventListener('load', done, { once: true }); img.addEventListener('error', done, { once: true }); }))
+        .then(() => (img.decode ? img.decode().catch(() => {}) : null)))).then(() => 'complete'),
+      new Promise(done => setTimeout(() => done('timeout'), 10000))
+    ]).then(state => ({ state, in_viewport: shown.length, loaded: shown.filter(img => img.complete && img.naturalWidth > 0).length }));
+  });
   const box = await locator.boundingBox(), vp = page.viewportSize();
   const x = Math.max(0, box.x), y = Math.max(0, box.y);
   const clip = { x, y, width: Math.min(box.x + box.width, vp.width) - x, height: Math.min(box.y + box.height, vp.height) - y };
   await page.screenshot({ path: file, type: 'jpeg', quality: 72, clip, animations: 'disabled' });
-  c.screenshots.push({ file: rel, sha256: lib.fileSha256(file), bytes: fs.statSync(file).size, viewport: vp, clip, stage: name });
+  c.screenshots.push({ file: rel, sha256: lib.fileSha256(file), bytes: fs.statSync(file).size, viewport: vp, clip, images, stage: name });
 }
 // A room that cannot be opened or read is a product failure for this identity,
 // recorded as a failed check with the error, not an environment block.
