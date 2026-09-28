@@ -1,0 +1,52 @@
+{
+  "format": "spheres-political-trial-archive/v1",
+  "task": "CODEX-S27-A1-01",
+  "base_revision": "30410e55217c7461937ad42564678c59d34f53b1",
+  "status": "failed_baseline_and_rejected_trial_restored",
+  "files": [
+    {
+      "path": "evidence/baseline-gates.log",
+      "bytes": 13350,
+      "sha256": "bfe85a9571f98cb1fcba3de148f5192915e84246bd4cd0773b5e1c91159a99f0"
+    },
+    {
+      "path": "evidence/baseline-revision.txt",
+      "bytes": 42,
+      "sha256": "755c3a9bb7319ab3b9cd9509a7a7f66bc24cd22b1fbb48290d6bda9851727f6e"
+    },
+    {
+      "path": "evidence/trial-01-plan.md",
+      "bytes": 1902,
+      "sha256": "695afae2e692dd89ac6176bb4222abbe2985227d466b4f4fe996e864cc9bfb62"
+    },
+    {
+      "path": "evidence/trial-01-source.json",
+      "bytes": 363,
+      "sha256": "823a4241b4509a685ec5e6c3edd2981b8d331e3a0de5d35f2e4477cdb202807a"
+    },
+    {
+      "path": "evidence/trial-01-gates.log",
+      "bytes": 13664,
+      "sha256": "8d746b22d26ce277003416a9ffa5a696ef23c86fc9e25a5d868dcf2b24ec5847"
+    },
+    {
+      "path": "evidence/trial-01-candidate.patch",
+      "bytes": 952,
+      "sha256": "4fff296c45d05d03062d509b018b4d20f85de03f50a5466e7ef708771380ca23"
+    },
+    {
+      "path": "evidence/trial-01-result.json",
+      "bytes": 620,
+      "sha256": "d689e5e2a7c4281223b998eacb1070a651bca701cdec1ca167b94058300810ff"
+    }
+  ],
+  "archive_checks": {
+    "captured_files_byte_exact": true,
+    "restored_government_matches_before_bytes": true,
+    "restored_government_sha256": "0e2dbdefe5ed1909804b81d43b736c94315be647d615bda85e62e1fe78a2b73f",
+    "acceptance_test_sha256": "4d0b0c242d12933b1bd23e11cd2185c97656315820e2f9c72a7c671f5eb9bf56"
+  },
+  "executable_limit": "At rejection the candidate executable had not been rebuilt after source restoration. The preserved candidate hash identifies the rejected binary, not a restored-source build. A subsequent build requires its own receipt.",
+  "omitted": "trial-01-government-before.rs duplicates the Git baseline source; its exact raw hash is retained in source/result records and verified against restored source during packaging.",
+  "reserved_cohort_run": false
+}

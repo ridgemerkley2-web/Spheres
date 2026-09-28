@@ -234,27 +234,29 @@
       "id": "CLAUDE-C01-28",
       "owner": "Claude",
       "session": "C01",
-      "state": "claimed",
+      "state": "ready_for_review",
       "priority": 15,
       "title": "Research five Russian party-leader chains",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-28.md",
       "depends_on": [],
       "branch": "claude/c01-ru-28",
       "claim_revision": "2c4d5bd725b84161fd742adec75febc6241b8c92",
-      "next": "Existing remote claim inspected at 2c4d5bd725b84161fd742adec75febc6241b8c92. Preserve this in-progress research and its owned scope; no content imported or accepted. Return ready_for_review with primary sources and focused tests."
+      "next": "Remote handoff now declares ready_for_review at 16153784875006149a68e69c5e83b925e51ca294. Preserve original claim and five-party scope; no research content imported or accepted. Independent source, chronology, scope and test review remains pending outside the eight-task Codex order.",
+      "submission_revision": "16153784875006149a68e69c5e83b925e51ca294"
     },
     {
       "id": "CLAUDE-C01-29",
       "owner": "Claude",
       "session": "C01",
-      "state": "claimed",
+      "state": "ready_for_review",
       "priority": 16,
       "title": "Research Japanese Socialist / Social Democratic Party chairs",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-29.md",
       "depends_on": [],
       "branch": "claude/c01-jp-29",
       "claim_revision": "2d65b680a24eef1fcbc2425bb92c02b9b8217587",
-      "next": "Existing remote claim inspected at 2d65b680a24eef1fcbc2425bb92c02b9b8217587. Preserve this in-progress research and its owned scope; no content imported or accepted. Return ready_for_review with primary sources and focused tests."
+      "next": "Independent technical review passes 150 passing test executions; 35 of 54 original responses reproduced exactly, 19 archived party responses unavailable. Merge and acceptance held. Resume docs/campaign-certification/C01/reviews/CLAUDE-C01-29/README.md, preserving completed tests, source receipts and the tested election-count wording repair c98d1d56 on codex/review-c01-jp29. Russia C01-28 is separately submitted; South Africa C01-30 is claimed. Neither is accepted.",
+      "submission_revision": "3b30478562ec78c2392d0472061e773e23cb25dd"
     },
     {
       "id": "CODEX-S24-BUDGET-01",
@@ -316,6 +318,119 @@
         "CODEX-S25-RUNNER-01"
       ],
       "next": "Closed: verified package tools,18Python/5Node guards, identical actual Windows ZIPs,two extracted offline local passes,and Windows/Linux package CI passes at a2cf1dcc. Evidence: docs/campaign-certification/S28/preparation/portable-release/README.md. Full S28 qualification and existing A1 calibration remain open."
+    },
+    {
+      "id": "CLAUDE-C01-30",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "claimed",
+      "priority": 17,
+      "title": "Research ACDP, Freedom Front and IFP party leaders",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-30.md",
+      "depends_on": [],
+      "branch": "claude/c01-za-30",
+      "claim_revision": "68535825eca53986feb5b6d9bf5ad44981bc6543",
+      "next": "Existing remote claim inspected at 68535825eca53986feb5b6d9bf5ad44981bc6543. Preserve the three-party, at-most-ten-person scope and existing branch; no submitted research, integration or acceptance. Return ready_for_review with primary evidence and focused tests."
+    },
+    {
+      "id": "CODEX-S27-A1-01",
+      "owner": "Codex",
+      "session": "S27",
+      "state": "blocked",
+      "priority": 1,
+      "title": "Repair the unchanged A1 political calibration gate",
+      "handoff": "docs/planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md",
+      "depends_on": [],
+      "next": "Baseline and trial 01 retain the unchanged A1 failure; trial worsened concentration and was rejected with source restored. Diagnosed without a justified remaining runtime repair; no holdout run. Resume only from new causal evidence or an explicitly reviewed policy proposal. Evidence: docs/campaign-certification/S27/preparation/a1-20260928/README.md. Not complete; S27/CP1 remain unqualified."
+    },
+    {
+      "id": "CODEX-S24-STARTUP-01",
+      "owner": "Codex",
+      "session": "S24",
+      "state": "in_progress",
+      "priority": 2,
+      "title": "Refresh all 137 starters and complete browser startup coverage",
+      "handoff": "docs/planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md",
+      "depends_on": [],
+      "next": "After the recorded blocked A1 attempt, continue independent engineering in the requested order. Rebuild/pin the restored current source, refresh all 137 native starters and add ordinary browser selection/map/government/budget/guidance, seven-day and save/reload coverage. A1 remains failed; this preflight grants no aggregate CI or S24 qualification."
+    },
+    {
+      "id": "CODEX-S25-SUCCESSION-01",
+      "owner": "Codex",
+      "session": "S25",
+      "state": "queued",
+      "priority": 3,
+      "title": "Prove controlled paired USSR-to-Russia continuity",
+      "handoff": "docs/planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md",
+      "depends_on": [
+        "CODEX-S24-STARTUP-01"
+      ],
+      "next": "Extend existing labeled successor fixtures into full uninterrupted/resumed comparisons around actual dissolution and ordinary Russia continuation. Require a real transition; no observer fallback or organic-history claim. S25 remains planned."
+    },
+    {
+      "id": "CODEX-S25-MATRIX-01",
+      "owner": "Codex",
+      "session": "S25",
+      "state": "queued",
+      "priority": 4,
+      "title": "Run the complete 24-cell 1990-2035 engineering preflight",
+      "handoff": "docs/planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md",
+      "depends_on": [
+        "CODEX-S25-SUCCESSION-01"
+      ],
+      "next": "Freeze and execute stability-full.json: eight countries times three seeds, full horizon, paired save/resume, invariants and independent retained-evidence verification. Pilot results are not matrix completion; formal S25 qualification remains dependent on S24."
+    },
+    {
+      "id": "CODEX-C01-23-REVIEW",
+      "owner": "Codex",
+      "session": "C01",
+      "state": "queued",
+      "priority": 5,
+      "title": "Independently review French presidents submission",
+      "handoff": "docs/planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md",
+      "depends_on": [
+        "CODEX-S25-MATRIX-01"
+      ],
+      "next": "Review submitted CLAUDE-C01-23 on claude/c01-fr-23; preserve source evidence, historical uncertainties and original authorship. Record bounded accepted/held/rejected decision with tests and exact commits; no automatic historical coverage or runtime installation."
+    },
+    {
+      "id": "CODEX-C01-24-REVIEW",
+      "owner": "Codex",
+      "session": "C01",
+      "state": "queued",
+      "priority": 6,
+      "title": "Independently review Tongan Speakers submission",
+      "handoff": "docs/planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md",
+      "depends_on": [
+        "CODEX-C01-23-REVIEW"
+      ],
+      "next": "Review submitted CLAUDE-C01-24 on claude/c01-to-24 after the French review. Verify source content, office/date distinctions and focused checks; retain bounded decision and limits. C01 remains open."
+    },
+    {
+      "id": "CODEX-C01-25-REVIEW",
+      "owner": "Codex",
+      "session": "C01",
+      "state": "queued",
+      "priority": 7,
+      "title": "Independently review Saudi council chairs submission",
+      "handoff": "docs/planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md",
+      "depends_on": [
+        "CODEX-C01-24-REVIEW"
+      ],
+      "next": "Review submitted CLAUDE-C01-25 on claude/c01-sa-25 after the Tongan review. Verify primary evidence and separate council roles; preserve uncertainty, focused validation and scoped decision. No parent closure."
+    },
+    {
+      "id": "CODEX-C01-27-REVIEW",
+      "owner": "Codex",
+      "session": "C01",
+      "state": "queued",
+      "priority": 8,
+      "title": "Independently review BJP presidents submission",
+      "handoff": "docs/planning/ai-handoffs/CODEX-NEXT-ENGINEERING.md",
+      "depends_on": [
+        "CODEX-C01-25-REVIEW"
+      ],
+      "next": "Review submitted CLAUDE-C01-27 on claude/c01-in-27 after the Saudi review. Verify party-office evidence, dates, source provenance and focused tests; record bounded acceptance or explicit hold. No C01/C06/S23 closure."
     }
   ]
 }

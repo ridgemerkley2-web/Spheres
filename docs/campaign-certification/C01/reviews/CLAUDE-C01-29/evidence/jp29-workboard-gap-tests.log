@@ -1,0 +1,17 @@
+...F......................
+======================================================================
+FAIL: test_real_cases_windows_and_in_flight_exclusions (test_certified_gap_ledger.CheckedInLedger.test_real_cases_windows_and_in_flight_exclusions)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\avatars\test_certified_gap_ledger.py", line 445, in test_real_cases_windows_and_in_flight_exclusions
+    self.assertEqual(claims[tid]['state'], 'claimed')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'ready_for_review' != 'claimed'
+- ready_for_review
++ claimed
+
+
+----------------------------------------------------------------------
+Ran 26 tests in 3.017s
+
+FAILED (failures=1)

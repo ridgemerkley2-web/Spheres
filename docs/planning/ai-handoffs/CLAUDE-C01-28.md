@@ -1,6 +1,6 @@
 # CLAUDE-C01-28: Russian party leaders, 1990–2026
 
-Owner: Claude. State: **claimed** (28 September 2026; in progress, not complete). Parent: C01 (incomplete).
+Owner: Claude. State: **ready_for_review** (remote submission inspected 28 September 2026; not accepted). Parent: C01 (incomplete).
 
 Origin: the first five items of the gap ledger's batch `GAP-USSR-Russia-B001`
 (`docs/campaign-certification/C01/gap-ledger/ledger.md`), claimed on the user's 28 September 2026 instruction to
@@ -63,3 +63,13 @@ Mark the packet `ready_for_review` when done. C01 and all parent gates stay open
 Codex mirrored this existing claim into the central queue after S22. The original
 claim above remains in progress; no research content or historical acceptance
 was imported. Inspected remote head: `2c4d5bd7`. Do not duplicate this work.
+
+## Remote submission inventory — 28 September 2026
+
+The preceding claim-registration paragraph records the earlier claim state. The
+remote handoff now declares ready_for_review at
+`16153784875006149a68e69c5e83b925e51ca294`, with original claim
+`2c4d5bd725b84161fd742adec75febc6241b8c92` preserved. Codex inspected that
+[remote handoff](https://github.com/ridgemerkley2-web/Spheres/blob/16153784875006149a68e69c5e83b925e51ca294/docs/planning/ai-handoffs/CLAUDE-C01-28.md)
+for inventory only. Its source/test claims are not independently accepted; no
+research files, mappings, history or art were imported by this update.

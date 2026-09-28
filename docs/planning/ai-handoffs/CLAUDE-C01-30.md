@@ -37,3 +37,12 @@ Checks: research-index `--check`; `campaign_census.py --check`; the SouthAfrica,
 (census included); the atlas Node check; `workboard.py --check`; `git diff --check`.
 
 Mark the packet `ready_for_review` when done. C01 and all parent gates stay open.
+
+## Integration claim registration — 28 September 2026
+
+The preceding text is the authored remote claim, preserved from
+`68535825eca53986feb5b6d9bf5ad44981bc6543`. Its original statement that the
+claim was not yet registered is historical: Codex has now mirrored the claim
+into the central task queue. No research content, tests, runtime changes or
+source/identity acceptance were imported. The claim remains in progress;
+continue its existing branch and bounded three-party scope.

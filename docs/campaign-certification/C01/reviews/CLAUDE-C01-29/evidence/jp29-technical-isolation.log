@@ -1,0 +1,43 @@
+{
+  "scope": "Structural source-only comparison; historical source accuracy reviewed separately; no gate awarded",
+  "base": "41f8b976d5d617f39e41c7a445df53f0e49fb87f",
+  "head": "e0bb7a01930b08a9b8b6d3b78caf3fc93af199d7",
+  "utc": "2026-09-28T17:16:58.832708+00:00",
+  "changed_paths": 63,
+  "original_japan_values_unchanged": true,
+  "appended_ranges": [
+    {
+      "path": "$.sources",
+      "before": 418,
+      "after": 472
+    },
+    {
+      "path": "$.organizations[9].roles",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "path": "$.organizations[9].sources",
+      "before": 1,
+      "after": 55
+    },
+    {
+      "path": "$.organizations[9].claim_ids",
+      "before": 1,
+      "after": 112
+    },
+    {
+      "path": "$.organizations[9].coverage.unresolved",
+      "before": 3,
+      "after": 4
+    },
+    {
+      "path": "$.coverage.unresolved",
+      "before": 11,
+      "after": 12
+    }
+  ],
+  "runtime_and_shared_generators_unchanged": true,
+  "new_source_count": 54,
+  "new_claim_count": 111
+}

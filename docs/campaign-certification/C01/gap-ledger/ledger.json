@@ -65,8 +65,8 @@
     },
     {
       "path": "docs/planning/ai-task-queue.json",
-      "bytes": 13812,
-      "sha256": "c5a3fd44c6f4aee50c289abdfc543d9aa210d4c46ac92a62a1e343098d15e696"
+      "bytes": 21545,
+      "sha256": "d18060508fc3e736da303dd51174d158ab5040bfbc1ecc348d494b01c8b4ada6"
     },
     {
       "path": "docs/campaign-certification/C01/research/brazil.json",
@@ -736,10 +736,10 @@
     },
     {
       "task": "CLAUDE-C01-28",
-      "state": "claimed",
+      "state": "ready_for_review",
       "branch": "claude/c01-ru-28",
       "case": "USSR -> Russia",
-      "scope": "Five Russian party-leader chains; active research claim, no accepted mapping",
+      "scope": "Five Russian party-leader chains; submitted for review, no accepted mapping",
       "targets": [
         "party:Russia/ru_kprf",
         "party:Russia/ru_ldpr",
@@ -751,14 +751,27 @@
     },
     {
       "task": "CLAUDE-C01-29",
-      "state": "claimed",
+      "state": "ready_for_review",
       "branch": "claude/c01-jp-29",
       "case": "Japan",
-      "scope": "Japan Socialist Party / Social Democratic Party chairs; active research claim, no accepted mapping",
+      "scope": "Japan Socialist Party / Social Democratic Party chairs; submitted with source review held, no accepted mapping",
       "targets": [
         "party:Japan/jp_jsp",
         "party:Japan/jp_jsp/jp_jsp_1945",
         "party:Japan/jp_jsp/jp_sdp_1996"
+      ],
+      "accepted": false
+    },
+    {
+      "task": "CLAUDE-C01-30",
+      "state": "claimed",
+      "branch": "claude/c01-za-30",
+      "case": "SouthAfrica",
+      "scope": "ACDP, Freedom Front and IFP party leaders; active research claim, no accepted mapping",
+      "targets": [
+        "party:SouthAfrica/za_acdp",
+        "party:SouthAfrica/za_ff",
+        "party:SouthAfrica/za_ifp"
       ],
       "accepted": false
     }
@@ -12609,7 +12622,7 @@
           "related_work_orders": [
             "CH-SouthAfrica-B001"
           ],
-          "in_flight": null,
+          "in_flight": "CLAUDE-C01-30",
           "uncertain_research_candidates": [
             {
               "organization": "za_iec_n2024_008",
@@ -13146,7 +13159,7 @@
           "related_work_orders": [
             "CH-SouthAfrica-B001"
           ],
-          "in_flight": null,
+          "in_flight": "CLAUDE-C01-30",
           "uncertain_research_candidates": []
         },
         {
@@ -13254,7 +13267,7 @@
           "related_work_orders": [
             "CH-SouthAfrica-B001"
           ],
-          "in_flight": null,
+          "in_flight": "CLAUDE-C01-30",
           "uncertain_research_candidates": [
             {
               "organization": "za_iec_n2024_034",
@@ -24946,83 +24959,6 @@
         {
           "item": "party_leader_chain",
           "nation": "SouthAfrica",
-          "entity": "SouthAfrica/za_acdp",
-          "title": "African Christian Democratic Party",
-          "role": "party leader (census term records)",
-          "priority": 0,
-          "unresolved_days": 11969,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1993-12-01",
-              "through": "1993-12-30",
-              "current_status": "boundary_imprecise"
-            },
-            {
-              "field": "holder",
-              "from": "1993-12-31",
-              "through": "2026-09-07",
-              "current_status": "open_end"
-            },
-            {
-              "field": "dates",
-              "holder": "kenneth_meshoe",
-              "record": "za_acdp_kenneth_meshoe_199312",
-              "missing": [
-                "from (known only to month)",
-                "until (open in registry; continuity to cutoff unconfirmed)"
-              ]
-            }
-          ],
-          "declared_gaps": [
-            {
-              "from": {
-                "kind": "day",
-                "value": "1990-01-01"
-              },
-              "until": {
-                "kind": "month",
-                "value": "1993-12"
-              },
-              "reason": "Party did not yet exist.",
-              "sources": [
-                "https://www.parliament.gov.za/storage/app/media/ProjectsAndEvents/20_years_of_the_constitution/books/Final_Bill_of_Rights_Book_PRINTv3.pdf"
-              ]
-            },
-            {
-              "from": {
-                "kind": "day",
-                "value": "2025-08-22"
-              },
-              "until": {
-                "kind": "day",
-                "value": "2026-09-07"
-              },
-              "reason": "Obtain a near-cutoff party official list rather than assume continuity from the 2025 statement.",
-              "sources": [
-                "https://acdp.org.za/violent-attack-on-mps-in-philippi-condemned/"
-              ]
-            }
-          ],
-          "uncertain_research_candidates": [
-            "za_iec_n2024_008"
-          ],
-          "leads": [
-            "https://www.parliament.gov.za/storage/app/media/ProjectsAndEvents/20_years_of_the_constitution/books/Final_Bill_of_Rights_Book_PRINTv3.pdf",
-            "https://acdp.org.za/violent-attack-on-mps-in-philippi-condemned/"
-          ],
-          "related_work_orders": [
-            "CH-SouthAfrica-B001"
-          ],
-          "window": {
-            "from": "1993-12-01",
-            "until": "2026-09-07",
-            "pinned": true
-          }
-        },
-        {
-          "item": "party_leader_chain",
-          "nation": "SouthAfrica",
           "entity": "SouthAfrica/za_pac",
           "title": "Pan Africanist Congress",
           "role": "party leader (census term records)",
@@ -25115,127 +25051,6 @@
         {
           "item": "party_leader_chain",
           "nation": "SouthAfrica",
-          "entity": "SouthAfrica/za_ff",
-          "title": "Freedom Front",
-          "role": "party leader (census term records)",
-          "priority": 0,
-          "unresolved_days": 3979,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "1994-03-01",
-              "through": "1994-03-30",
-              "current_status": "boundary_imprecise"
-            },
-            {
-              "field": "holder",
-              "from": "2001-01-02",
-              "through": "2001-12-30",
-              "current_status": "boundary_imprecise"
-            },
-            {
-              "field": "holder",
-              "from": "2016-11-13",
-              "through": "2025-07-15",
-              "current_status": "no_evidence"
-            },
-            {
-              "field": "holder",
-              "from": "2025-07-16",
-              "through": "2026-09-07",
-              "current_status": "open_end"
-            },
-            {
-              "field": "dates",
-              "holder": "constand_viljoen",
-              "record": "za_ff_constand_viljoen_199403",
-              "missing": [
-                "from (known only to month)",
-                "until (known only to year)"
-              ]
-            },
-            {
-              "field": "dates",
-              "holder": "corne_mulder",
-              "record": "za_ff_corne_mulder_20250716",
-              "missing": [
-                "until (open in registry; continuity to cutoff unconfirmed)"
-              ]
-            },
-            {
-              "field": "dates",
-              "holder": "pieter_mulder",
-              "record": "za_ff_pieter_mulder_2001",
-              "missing": [
-                "from (known only to year)"
-              ]
-            }
-          ],
-          "declared_gaps": [
-            {
-              "from": {
-                "kind": "day",
-                "value": "1990-01-01"
-              },
-              "until": {
-                "kind": "month",
-                "value": "1994-03"
-              },
-              "reason": "Party did not yet exist.",
-              "sources": [
-                "https://comsec-web-static.s3.eu-west-1.amazonaws.com/s3fs-public/ilibrary/pdfs/9168.pdf?VersionId=BKqZHJq62lL5oA5MW.AU5dzLiK.QvyUI"
-              ]
-            },
-            {
-              "from": {
-                "kind": "year",
-                "value": "2001"
-              },
-              "until": {
-                "kind": "year",
-                "value": "2001"
-              },
-              "reason": "Exact Viljoen/Mulder handover remains unresolved.",
-              "sources": [
-                "https://www.vfplus.org.za/media-releases/dr-pieter-mulder-not-available-as-ff-plus-leader/"
-              ]
-            },
-            {
-              "from": {
-                "kind": "day",
-                "value": "2016-11-12"
-              },
-              "until": {
-                "kind": "day",
-                "value": "2025-07-16"
-              },
-              "reason": "Recover Groenewald election, 2025 handover and exact leadership intervals; July 2024 observation alone is not complete coverage.",
-              "sources": [
-                "https://www.vfplus.org.za/media-releases/dr-pieter-mulder-not-available-as-ff-plus-leader/",
-                "https://www.vfplus.org.za/media-releases/ministers-post-for-ff-plus-leader-necessitates-minor-changes-to-partys-parliamentary-leadership/",
-                "https://www.vfplus.org.za/latest-news/president-needs-to-take-note-of-freedom-front-plus-proposals-to-make-south-africa-a-winning-country/"
-              ]
-            }
-          ],
-          "uncertain_research_candidates": [],
-          "leads": [
-            "https://comsec-web-static.s3.eu-west-1.amazonaws.com/s3fs-public/ilibrary/pdfs/9168.pdf?VersionId=BKqZHJq62lL5oA5MW.AU5dzLiK.QvyUI",
-            "https://www.vfplus.org.za/media-releases/dr-pieter-mulder-not-available-as-ff-plus-leader/",
-            "https://www.vfplus.org.za/media-releases/ministers-post-for-ff-plus-leader-necessitates-minor-changes-to-partys-parliamentary-leadership/",
-            "https://www.vfplus.org.za/latest-news/president-needs-to-take-note-of-freedom-front-plus-proposals-to-make-south-africa-a-winning-country/"
-          ],
-          "related_work_orders": [
-            "CH-SouthAfrica-B001"
-          ],
-          "window": {
-            "from": "1994-03-01",
-            "until": "2026-09-07",
-            "pinned": true
-          }
-        },
-        {
-          "item": "party_leader_chain",
-          "nation": "SouthAfrica",
           "entity": "SouthAfrica/za_anc",
           "title": "African National Congress",
           "role": "party leader (census term records)",
@@ -25313,63 +25128,6 @@
             "https://www.derebus.org.za/wp-content/uploads/2020/11/S-v-Zuma-and-Another-and-a-related-matter-2020-2-BCLR-153-KZD.pdf",
             "https://www.gov.za/about-sa/history",
             "https://www.anc1912.org.za/officials/"
-          ],
-          "related_work_orders": [
-            "CH-SouthAfrica-B001"
-          ],
-          "window": {
-            "from": "1990-01-01",
-            "until": "2026-09-07",
-            "pinned": false
-          }
-        },
-        {
-          "item": "party_leader_chain",
-          "nation": "SouthAfrica",
-          "entity": "SouthAfrica/za_ifp",
-          "title": "Inkatha Freedom Party",
-          "role": "party leader (census term records)",
-          "priority": 0,
-          "unresolved_days": 2571,
-          "missing_fields": [
-            {
-              "field": "holder",
-              "from": "2019-08-25",
-              "through": "2026-09-07",
-              "current_status": "open_end"
-            },
-            {
-              "field": "dates",
-              "holder": "velenkosini_hlabisa",
-              "record": "za_ifp_velenkosini_hlabisa_20190824",
-              "missing": [
-                "until (open in registry; continuity to cutoff unconfirmed)"
-              ]
-            }
-          ],
-          "declared_gaps": [
-            {
-              "from": {
-                "kind": "year",
-                "value": "1990"
-              },
-              "until": {
-                "kind": "year",
-                "value": "1990"
-              },
-              "reason": "Exact movement-to-party legal conversion date remains under review.",
-              "sources": [
-                "https://ifp.org.za/who-we-are/our-history/"
-              ]
-            }
-          ],
-          "uncertain_research_candidates": [
-            "za_iec_n2024_034"
-          ],
-          "leads": [
-            "https://ifp.org.za/who-we-are/our-history/",
-            "https://ifp.org.za/newsroom/building-on-a-strong-legacy-in-a-new-season-of-struggle-for-economic-and-social-justice-structured-on-democratic-ideals/",
-            "https://ifp.org.za/newsroom/ifp-marks-51-years-as-president-velenkosini-hlabisa-leads-human-rights-day-commemoration-in-mpumalanga/"
           ],
           "related_work_orders": [
             "CH-SouthAfrica-B001"
@@ -25851,15 +25609,7 @@
             "pinned": true
           },
           "first_evidence": "1994-05-10"
-        }
-      ]
-    },
-    {
-      "id": "GAP-SouthAfrica-B002",
-      "case": "SouthAfrica",
-      "status": "open",
-      "maximum_items": 10,
-      "items": [
+        },
         {
           "item": "research_role_chain",
           "nation": "SouthAfrica",
@@ -28138,7 +27888,7 @@
     "party_chains_with_unresolved_days": 50,
     "research_roles": 58,
     "research_roles_with_unresolved_days": 49,
-    "next_batches": 12,
-    "next_items": 83
+    "next_batches": 11,
+    "next_items": 80
   }
 }

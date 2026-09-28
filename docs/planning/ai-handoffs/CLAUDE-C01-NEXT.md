@@ -12,8 +12,9 @@ independent Codex source/content review. Their immutable review packets are unde
 C01-GAPS-01 and the bounded CODEX-C01-ACCEPTANCE-01 follow-up review are also
 complete. These closures do not accept the parent packets as complete histories.
 
-C01-23/24/25/27 declare `ready_for_review`; independent acceptance remains pending.
-C01-28/29 are active Russia/Japan claims. Do not duplicate them. All six
+C01-23/24/25/27/28/29 declare `ready_for_review`; independent acceptance remains pending.
+C01-28 Russia is submitted at `16153784`; C01-30 South Africa is claimed at `68535825`. Japan C01-29 remains held for completion of source review. No new submission is accepted.
+Do not duplicate them. All six
 [expanded sections](CLAUDE-EXPANDED-NEXT.md) are accepted bounded preparation
 deliveries, including the S24 successor fixtures and E05 company research.
 Their reviews retain unsupported cases and claim-level verification limits;
@@ -56,10 +57,11 @@ retain disclosed limitations and propose further bounded review separately.
 | C01-24 | `claude/c01-to-24` | Tongan Speakers, 1990–2026 |
 | C01-25 | `claude/c01-sa-25` | Saudi Shura Council / Allegiance Commission chairs |
 | C01-27 | `claude/c01-in-27` | BJP presidents, 1990–2026 |
-| C01-28 | `claude/c01-ru-28` | Five Russian party-leader chains; active claim |
-| C01-29 | `claude/c01-jp-29` | Japan Socialist / Social Democratic Party chairs; active claim |
+| C01-28 | `claude/c01-ru-28` | Five Russian party-leader chains; submitted `16153784`, independent acceptance pending |
+| C01-29 | `claude/c01-jp-29` | Japan Socialist / Social Democratic Party chairs; submitted `3b304785`, 150 test executions pass, 35/54 original responses exact; 19 unavailable, merge held. [Review](../../campaign-certification/C01/reviews/CLAUDE-C01-29/README.md). |
+| C01-30 | `claude/c01-za-30` | ACDP, Freedom Front and IFP party leaders; existing claim `68535825`, not submitted or accepted. |
 
-C01-23/24/25/27 are submitted for review; C01-28/29 remain in progress.
+C01-23/24/25/27/28/29 are submitted for review; C01-30 remains in progress.
 See their queue/handoff entries for exact reviewed claim or submission heads. Preserve each branch; fetch current integration before
 continuing unfinished work. Do not
 restart these as new packet IDs. Follow their existing bounded deliverables.

@@ -1,0 +1,20 @@
+{"cwd": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-jp29", "revision": "e0bb7a01930b08a9b8b6d3b78caf3fc93af199d7", "command": ["node", "--test", "tools/ui/check_leadership_research_review.cjs"], "started_utc": "2026-09-28T17:16:06.971945+00:00", "finished_utc": "2026-09-28T17:16:07.148256+00:00", "exit_code": 0}
+✔ all country identities remain selectable and unknown coverage is not zero (1.4966ms)
+✔ every indexed country packet can be reviewed without changing source observations (58.8612ms)
+✔ wrong country, stale counts and false completed coverage cannot be presented (0.5027ms)
+✔ holder claims resolve only through a source cited by their separate office (2.6498ms)
+✔ search includes sourced people and preserves organization versus institution filters (0.647ms)
+✔ date wording retains unknown, month precision and observation versus interval (0.2052ms)
+✔ society testimony dates are displayed as observations without inventing officer terms (0.2023ms)
+✔ source navigation rejects script URLs, credentials and filesystem traversal (0.0993ms)
+✔ packet loader verifies exact bytes and fails closed on changed source (8.2858ms)
+✔ late country success cannot replace the latest selected country (0.2798ms)
+✔ late country error cannot erase the latest data but current errors surface (0.3037ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 137.9011

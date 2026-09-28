@@ -45,9 +45,11 @@ These completions do not close their parent content sessions or install company 
 ## Current submissions: skip duplicate work
 
 SOURCE-05/06/17/26 are **complete** after independent bounded source/content review;
-see their integration evidence. C01-23/24/25/27 remain `ready_for_review`;
-their parent historical content is not yet accepted. C01-28 and C01-29 preserve
-active Russia/Japan research claims. Do not duplicate those submissions or claims.
+see their integration evidence. C01-23/24/25/27/29 remain `ready_for_review`;
+their parent historical content is not yet accepted. C01-29 Japan passes technical
+checks, but 19 original archived responses remain unverified; see its
+[review checkpoint](../../campaign-certification/C01/reviews/CLAUDE-C01-29/README.md).
+C01-28 Russia is submitted at `16153784`; C01-30 South Africa is claimed at `68535825`. Neither is accepted. Do not duplicate those submissions or claims.
 See [the research handoff](CLAUDE-C01-NEXT.md) and query the current task queue.
 
 Codex has closed S19/S20/S22 and earned G4. It retains historical acceptance and
