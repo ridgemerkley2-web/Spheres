@@ -1,0 +1,187 @@
+#requires -Version 7.0
+<#
+.SYNOPSIS
+Runs S22 preparation or 31-day measurement in one isolated, already-built native test process.
+.DESCRIPTION
+InputSave must match InputSha256 and is copied byte-for-byte into a new EvidenceRoot.
+Preparation is ordinary advancement and makes no timing acceptance claim. Measurement
+uses the frozen S01/S22 limits; raw timings and both observed memory counters are retained.
+Run measurement without concurrent builds, fixture preparation or other benchmarks.
+#>
+[CmdletBinding()]
+param(
+    [Parameter(Mandatory)][string]$TestBinary,
+    [Parameter(Mandatory)][string]$CandidateRevision,
+    [Parameter(Mandatory)][string]$InputSave,
+    [Parameter(Mandatory)][string]$InputSha256,
+    [Parameter(Mandatory)][string]$EvidenceRoot,
+    [ValidateSet('prepare','measure')][string]$Mode = 'measure',
+    [ValidatePattern('^\d{4}-\d{2}-\d{2}$')][string]$Until = '2035-11-30',
+    [switch]$RenewBudget
+)
+Set-StrictMode -Version Latest
+$ErrorActionPreference = 'Stop'
+$failures = [Collections.Generic.List[string]]::new()
+$checkpoints = [Collections.Generic.List[object]]::new()
+$memory = [ordered]@{
+    nominal_interval_ms=100; samples=0; failed_samples=0
+    max_sampled_private_bytes=$null; max_sampled_working_set_bytes=$null
+    os_peak_working_set_bytes=$null; max_observed_sample_gap_ms=$null
+    scope='Whole isolated native test process, including loading, both independent measurement passes, room reads and report work. Sampled private bytes can miss short peaks; observed OS working-set high water is distinct from private peak. No browser/GPU memory is included.'
+}
+$limits = [ordered]@{simulation_history_p95_ms=300; whole_turn_p95_ms=400; whole_turn_max_ms=750; sampled_private_bytes=1073741824; observed_os_peak_working_set_bytes=1073741824}
+$result = [ordered]@{
+    format='spheres-s22-runner/v1'; mode=$Mode; candidate_revision=$CandidateRevision
+    started_utc=[DateTime]::UtcNow.ToString('o'); finished_utc=$null
+    test_binary=$null; test_binary_sha256=$null; wrapper_sha256=$null
+    original_input=$null; original_input_sha256_before=$null; original_input_sha256_after=$null
+    copied_input=$null; copied_input_sha256_before=$null; copied_input_sha256_after=$null
+    source_unchanged=$false; evidence_root=$null; profile_json=$null
+    arguments=$null; child_environment=$null; runtime=$PSVersionTable.PSVersion.ToString()
+    machine=[ordered]@{name=[Environment]::MachineName; logical_processors=[Environment]::ProcessorCount; os=[Environment]::OSVersion.ToString()}
+    exit_code=$null; wall_seconds=$null; memory=$memory; frozen_limits=$limits
+    latency=$null; numerical_acceptance=$null; checkpoints=$checkpoints
+    passed=$false; failures=$failures
+}
+$process=$null; $started=$false; $created=$false
+$stdoutFile=$null; $stderrFile=$null; $sampleWriter=$null; $stdoutCopy=$null; $stderrCopy=$null
+$watch=[Diagnostics.Stopwatch]::new(); $script:lastSample=$null
+function File-Hash([string]$Path) { (Get-FileHash -LiteralPath $Path -Algorithm SHA256).Hash.ToLowerInvariant() }
+function Sample-Memory {
+    try {
+        $process.Refresh()
+        $private=$process.PrivateMemorySize64; $working=$process.WorkingSet64; $peak=$process.PeakWorkingSet64
+        if ($peak -gt 0 -and ($null -eq $memory.os_peak_working_set_bytes -or $peak -gt $memory.os_peak_working_set_bytes)) { $memory.os_peak_working_set_bytes=$peak }
+        if ($private -le 0 -or $working -le 0) { $memory.failed_samples++; return }
+        $elapsed=$watch.Elapsed.TotalMilliseconds
+        if ($null -ne $script:lastSample) {
+            $gap=$elapsed-$script:lastSample
+            if ($null -eq $memory.max_observed_sample_gap_ms -or $gap -gt $memory.max_observed_sample_gap_ms) { $memory.max_observed_sample_gap_ms=$gap }
+        }
+        $script:lastSample=$elapsed
+        if ($null -eq $memory.max_sampled_private_bytes -or $private -gt $memory.max_sampled_private_bytes) { $memory.max_sampled_private_bytes=$private }
+        if ($null -eq $memory.max_sampled_working_set_bytes -or $working -gt $memory.max_sampled_working_set_bytes) { $memory.max_sampled_working_set_bytes=$working }
+        $memory.samples++
+        $sampleWriter.WriteLine('{0},{1},{2},{3}', $elapsed.ToString('F3',[Globalization.CultureInfo]::InvariantCulture), $private, $working, $peak)
+    } catch { $memory.failed_samples++ }
+}
+function Raw-Summary($Rows, [string]$Field) {
+    $values=@($Rows | ForEach-Object {
+        if ($null -eq $_.$Field) { throw "Missing raw $Field" }
+        $v=[double]$_.$Field
+        if (-not [double]::IsFinite($v) -or $v -lt 0) { throw "Invalid raw $Field" }
+        $v
+    } | Sort-Object)
+    if ($values.Count -ne 31) { throw "Expected 31 raw $Field samples" }
+    [ordered]@{samples=$values.Count; median_ms=$values[15]; p95_ms=$values[29]; max_ms=$values[30]}
+}
+try {
+    if ($CandidateRevision -notmatch '^[0-9a-f]{40}$' -or $InputSha256 -notmatch '^[0-9a-fA-F]{64}$') { throw 'Supply the full pinned Git revision and source SHA256.' }
+    $binary=(Resolve-Path -LiteralPath $TestBinary).ProviderPath
+    $source=(Resolve-Path -LiteralPath $InputSave).ProviderPath
+    if (-not (Test-Path -LiteralPath $binary -PathType Leaf) -or -not (Test-Path -LiteralPath $source -PathType Leaf)) { throw 'Binary and input must be existing files.' }
+    $output=[IO.Path]::GetFullPath($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($EvidenceRoot))
+    if (Test-Path -LiteralPath $output) { throw 'EvidenceRoot already exists; failed and completed runs are never replaced.' }
+    $result.original_input=$source; $result.original_input_sha256_before=File-Hash $source
+    if ($result.original_input_sha256_before -ne $InputSha256.ToLowerInvariant()) { throw 'Original checkpoint SHA256 does not match the pinned input.' }
+    $result.test_binary=$binary; $result.test_binary_sha256=File-Hash $binary
+    $result.wrapper_sha256=File-Hash $PSCommandPath; $result.evidence_root=$output
+    New-Item -ItemType Directory -Path $output -ErrorAction Stop | Out-Null
+    $created=$true
+    $result.copied_input=Join-Path $output 'input.json'
+    Copy-Item -LiteralPath $source -Destination $result.copied_input -ErrorAction Stop
+    $result.copied_input_sha256_before=File-Hash $result.copied_input
+    if ($result.copied_input_sha256_before -ne $result.original_input_sha256_before) { throw 'Copied checkpoint differs from immutable source.' }
+    $result.profile_json=Join-Path $output 'profile.json'
+    $testName=if ($Mode -eq 'prepare') {'performance::s22_prepare_checkpoints'} else {'performance::s22_measure_checkpoint'}
+    $result.arguments=@($testName,'--ignored','--exact','--nocapture','--test-threads=1')
+    $result.child_environment=[ordered]@{SPHERES_S22_INPUT=$result.copied_input; SPHERES_S22_OUT=$result.profile_json}
+    if ($Mode -eq 'prepare') { $result.child_environment.SPHERES_S22_UNTIL=$Until }
+    if ($RenewBudget) { $result.child_environment.SPHERES_S22_RENEW_BUDGET='1' }
+    # Retain invocation metadata even if the long preparation is interrupted.
+    $result | ConvertTo-Json -Depth 12 | Set-Content -LiteralPath (Join-Path $output 'invocation.json') -Encoding utf8
+    $stdoutFile=[IO.File]::Open((Join-Path $output 'stdout.log'),[IO.FileMode]::CreateNew,[IO.FileAccess]::Write,[IO.FileShare]::Read)
+    $stderrFile=[IO.File]::Open((Join-Path $output 'stderr.log'),[IO.FileMode]::CreateNew,[IO.FileAccess]::Write,[IO.FileShare]::Read)
+    $sampleWriter=[IO.StreamWriter]::new([IO.File]::Open((Join-Path $output 'memory-samples.csv'),[IO.FileMode]::CreateNew,[IO.FileAccess]::Write,[IO.FileShare]::Read))
+    $sampleWriter.AutoFlush=$true; $sampleWriter.WriteLine('elapsed_ms,private_bytes,working_set_bytes,os_peak_working_set_bytes')
+    $start=[Diagnostics.ProcessStartInfo]::new()
+    $start.FileName=$binary; $start.WorkingDirectory=$output
+    $start.UseShellExecute=$false; $start.CreateNoWindow=$true; $start.WindowStyle=[Diagnostics.ProcessWindowStyle]::Hidden
+    $start.RedirectStandardOutput=$true; $start.RedirectStandardError=$true
+    foreach ($a in $result.arguments) { $start.ArgumentList.Add($a) }
+    foreach ($key in @($start.Environment.Keys)) {
+        if ($key.StartsWith('SPHERES_PROFILE_',[StringComparison]::OrdinalIgnoreCase) -or $key.StartsWith('SPHERES_S22_',[StringComparison]::OrdinalIgnoreCase)) { [void]$start.Environment.Remove($key) }
+    }
+    foreach ($entry in $result.child_environment.GetEnumerator()) { $start.Environment[$entry.Key]=$entry.Value }
+    $process=[Diagnostics.Process]::new(); $process.StartInfo=$start; $watch.Start()
+    if (-not $process.Start()) { throw 'Native process failed to start.' }
+    $started=$true
+    $stdoutCopy=$process.StandardOutput.BaseStream.CopyToAsync($stdoutFile)
+    $stderrCopy=$process.StandardError.BaseStream.CopyToAsync($stderrFile)
+    Sample-Memory
+    while (-not $process.WaitForExit(100)) {
+        if ($stdoutCopy.IsFaulted -or $stderrCopy.IsFaulted) { throw 'Native log capture failed.' }
+        Sample-Memory
+    }
+    $watch.Stop(); Sample-Memory
+    $result.exit_code=$process.ExitCode
+    if ($process.ExitCode -ne 0) { $failures.Add("Native process exited with code $($process.ExitCode).") }
+} catch { $failures.Add($_.Exception.Message) }
+finally {
+    if ($started) {
+        try {
+            if (-not $process.HasExited) { $process.Kill($true); $process.WaitForExit(); $failures.Add('Runner error terminated the native process; retained annual checkpoints may be resumed in a new run.') }
+            $result.exit_code=$process.ExitCode
+        } catch { $failures.Add("Process finalization: $($_.Exception.Message)") }
+    }
+    $watch.Stop(); if ($started) { $result.wall_seconds=$watch.Elapsed.TotalSeconds }
+    foreach ($copy in @($stdoutCopy,$stderrCopy)) { if ($null -ne $copy) { try { $copy.GetAwaiter().GetResult() } catch { $failures.Add("Log finalization: $($_.Exception.Message)") } } }
+    foreach ($handle in @($sampleWriter,$stdoutFile,$stderrFile,$process)) { if ($null -ne $handle) { try { $handle.Dispose() } catch { $failures.Add("Handle finalization: $($_.Exception.Message)") } } }
+    if ($null -ne $result.original_input_sha256_before) {
+        try {
+            $result.original_input_sha256_after=File-Hash $result.original_input
+            $result.source_unchanged=$result.original_input_sha256_after -eq $result.original_input_sha256_before
+            if (-not $result.source_unchanged) { $failures.Add('Original checkpoint changed.') }
+            if ($null -ne $result.copied_input_sha256_before) {
+                $result.copied_input_sha256_after=File-Hash $result.copied_input
+                if ($result.copied_input_sha256_after -ne $result.copied_input_sha256_before) { $failures.Add('Copied checkpoint changed.') }
+            }
+        } catch { $failures.Add("Input hash verification: $($_.Exception.Message)") }
+    }
+}
+if ($created) {
+    $savePath=Join-Path $output 'campaigns/saves'
+    if (Test-Path -LiteralPath $savePath) {
+        foreach ($file in Get-ChildItem -LiteralPath $savePath -Filter '*.json' -File) {
+            $checkpoints.Add([ordered]@{path=$file.FullName; bytes=$file.Length; sha256=(File-Hash $file.FullName)})
+        }
+    }
+}
+if ($started -and $result.exit_code -eq 0) {
+    try {
+        $profile=Get-Content -LiteralPath $result.profile_json -Raw | ConvertFrom-Json
+        if ($profile.revision -ne $CandidateRevision.Substring(0,12)) { throw 'Embedded native revision differs from pinned candidate.' }
+        if (-not $profile.passed -or -not $profile.source_unchanged) { throw 'Native structural validation did not pass.' }
+        if ($Mode -eq 'prepare') {
+            if ($profile.mode -ne 'prepare_only') { throw 'Expected preparation-only profile.' }
+        } else {
+            if ($profile.mode -ne 'measure_input' -or @($profile.samples).Count -ne 31 -or $profile.batch.ordinary_days -ne 31 -or -not $profile.batch.same_final_facts) { throw 'Expected 31 raw daily measurements and an equivalent independent 31-day batch.' }
+            $sim=Raw-Summary $profile.samples 'simulation_history_ms'; $whole=Raw-Summary $profile.samples 'whole_turn_ms'
+            foreach ($field in @('state_read_model_ms','state_serialization_ms','history_delta_serialization_ms')) { $null=Raw-Summary $profile.samples $field }
+            $result.latency=[ordered]@{simulation_history=$sim; whole_turn=$whole; batch=$profile.batch}
+            if ($sim.p95_ms -gt $limits.simulation_history_p95_ms) { $failures.Add('Simulation/history p95 exceeds frozen 300 ms limit.') }
+            if ($whole.p95_ms -gt $limits.whole_turn_p95_ms) { $failures.Add('Whole-turn p95 exceeds frozen 400 ms limit.') }
+            if ($whole.max_ms -gt $limits.whole_turn_max_ms) { $failures.Add('Whole-turn maximum exceeds frozen 750 ms limit.') }
+            if ($memory.samples -eq 0 -or $null -eq $memory.max_sampled_private_bytes -or $null -eq $memory.os_peak_working_set_bytes) { $failures.Add('Missing valid memory observations.') }
+            elseif ($memory.max_sampled_private_bytes -gt $limits.sampled_private_bytes -or $memory.os_peak_working_set_bytes -gt $limits.observed_os_peak_working_set_bytes) { $failures.Add('Observed native memory exceeds the frozen 1 GiB ceiling.') }
+            $result.numerical_acceptance=$failures.Count -eq 0
+        }
+    } catch { $failures.Add("Native evidence validation: $($_.Exception.Message)") }
+}
+$result.finished_utc=[DateTime]::UtcNow.ToString('o')
+$result.passed=$started -and $result.exit_code -eq 0 -and $failures.Count -eq 0
+$json=$result | ConvertTo-Json -Depth 16
+if ($created) { $json | Set-Content -LiteralPath (Join-Path $output 'runner-result.json') -Encoding utf8 }
+Write-Output $json
+if (-not $result.passed) { exit 1 }
+exit 0
