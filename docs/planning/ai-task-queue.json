@@ -204,27 +204,29 @@
       "id": "CLAUDE-S24-SUCCESSORS-01",
       "owner": "Claude",
       "session": "S24",
-      "state": "claimed",
+      "state": "ready_for_review",
       "priority": 13,
       "title": "Build successor-country fixture coverage",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-S24-SUCCESSORS-01.md",
       "depends_on": [],
-      "next": "Remote claim inspected at 328db12863fffe35378102b54e952d4c43fdca8c. Follow the owned scope and next checkpoint in the handoff; return ready_for_review with evidence. This is an active claim, not an accepted delivery.",
+      "next": "New remote ready_for_review submission inspected at 5a23ebe018612ab008a6ac911af6c2ca498231f6 after preparation closeout 43373d2e. Handoff mirrored only; implementation/research remains unmerged and independently unverified. Preserve the delivery and avoid duplicate work. Parent session remains open.",
       "branch": "claude/s24-successors-01",
-      "claim_revision": "328db12863fffe35378102b54e952d4c43fdca8c"
+      "claim_revision": "328db12863fffe35378102b54e952d4c43fdca8c",
+      "submission_revision": "5a23ebe018612ab008a6ac911af6c2ca498231f6"
     },
     {
       "id": "CLAUDE-E05-RESEARCH-01",
       "owner": "Claude",
       "session": "E05",
-      "state": "claimed",
+      "state": "ready_for_review",
       "priority": 14,
       "title": "Research important French and Japanese companies",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-E05-RESEARCH-01.md",
       "depends_on": [],
-      "next": "Remote claim inspected at 1966fb06e0e7c9653910abfe40a9d9662bfdaf21. Follow the owned scope and next checkpoint in the handoff; return ready_for_review with evidence. This is an active claim, not an accepted delivery.",
+      "next": "New remote ready_for_review submission inspected at 1fe45b2cae22538240a58ad2407f31d0c0fa213e after preparation closeout 43373d2e. Handoff mirrored only; implementation/research remains unmerged and independently unverified. Preserve the delivery and avoid duplicate work. Parent session remains open.",
       "branch": "claude/e05-research-01",
-      "claim_revision": "1966fb06e0e7c9653910abfe40a9d9662bfdaf21"
+      "claim_revision": "1966fb06e0e7c9653910abfe40a9d9662bfdaf21",
+      "submission_revision": "1fe45b2cae22538240a58ad2407f31d0c0fa213e"
     },
     {
       "id": "CLAUDE-C01-28",

@@ -15,7 +15,8 @@ complete. These closures do not accept the parent packets as complete histories.
 C01-23/24/25/27 declare `ready_for_review`; independent acceptance remains pending.
 C01-28/29 are active Russia/Japan claims. Do not duplicate them. Four of the six
 [expanded sections](CLAUDE-EXPANDED-NEXT.md) are accepted bounded deliveries;
-S24 successor fixtures and E05 company research remain claimed.
+S24 successor fixtures and E05 company research are newly submitted for review;
+their content remains unmerged and unaccepted.
 
 ## Existing source-review follow-ups
 

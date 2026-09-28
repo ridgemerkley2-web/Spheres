@@ -8,7 +8,8 @@ Updated 28 September 2026 UTC after S22 closure and independent preparation revi
 **Four bounded deliveries are complete:** C01-GAPS-01, C03-REVIEW-01,
 C04-PREP-01 and S23-MATRIX-01. Follow their updated handoffs for accepted scope
 and retained evidence. These completions do not close their parent content sessions.
-S24 `328db128` and E05 `1966fb06` remain **claimed**, with no accepted implementation.
+S24 `5a23ebe0` and E05 `1fe45b2c` are now **ready_for_review** after the latest
+fetch. Only their handoffs are mirrored; content remains unmerged and unaccepted.
 
 | Order | Task / handoff | Concrete deliverable |
 |---|---|---|

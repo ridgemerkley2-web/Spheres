@@ -17,7 +17,7 @@ G5, CP1 certification and worldwide character coverage remain open. S23 is next:
 | C03 cartoon reviewer | **CLAUDE-C03-REVIEW-01 complete.** Browser, narrow layout, keyboard and portable input checks pass. | [Review](campaign-certification/C03/integrations/CLAUDE-C03-REVIEW-01/README.md). 411 missing portraits remain visible; no new art approval. |
 | C04 successor pilot | **CLAUDE-C04-PREP-01 complete.** Eight explicitly fictional France/Tonga proposals, 73 tests passing. | [Review](campaign-certification/C04/integrations/CLAUDE-C04-PREP-01/README.md). No runtime installation, portraits or automatic appointments. |
 | S23 boundary audit | **CLAUDE-S23-MATRIX-01 complete.** Corrected date/role/art audit, 36 tests passing. | [S23 progress and remaining work](campaign-certification/S23/README.md). Preparation does not complete S23 or C06. |
-| Pending Claude work | C01-23/24/25/27 await independent review. C01-28/29 preserve active Russia/Japan research claims; S24 successor fixtures and E05 company research remain claimed. | Query the bounded task queue; avoid duplicate work and review each new remote delivery. |
+| Pending Claude work | C01-23/24/25/27 await independent review. New S24 successor fixtures `5a23ebe0` and E05 company research `1fe45b2c` are also submitted for review. C01-28/29 preserve active Russia/Japan claims. | Handoffs mirrored; new S24/E05 content remains unmerged and unaccepted. Query the task queue and avoid duplicate work. |
 
 S19 closure does not award CP1. The flight proof records an actual launch and store
 consumption with no opposing target contact, so it does not claim combat damage.
@@ -67,7 +67,7 @@ handoff plan, not a claim that Claude has started work or permission to run ever
 | Integration, performance and qualification | Codex | S22, S24, S25, S27–S30 | S22 complete under the unchanged frozen protocol; Codex-owned S24 awaits Claude-owned S23 and its open C06 dependency. Claude retains bounded S24 successor-fixture preparation; Codex owns final qualification. G5 and CP1 remain unearned. |
 | Independent human playtests | User / human testers | S26 | Codex prepares reproducible builds and tasks; Claude may review observations. AI testing cannot substitute for human sessions. |
 | Later aircraft/naval expansion | Codex | E01–E04, E06 | Parked until CP1; preserve the current three supported mission families. |
-| Later company identity/history | Claude | E05 | Eight-company France/Japan research pilot claimed. Runtime expansion stays after CP1; current supplier economy stays with Codex. |
+| Later company identity/history | Claude | E05 | Eight-company France/Japan pilot submitted at `1fe45b2c`; independent review pending. Runtime expansion stays after CP1; current supplier economy stays with Codex. |
 | Completed foundation | Codex / retained evidence | S00–S17 | Reference only. Reopen only for a specific reproduced defect; retain the original qualification records. |
 
 ## Six additional Claude sections — four bounded deliveries complete
@@ -89,8 +89,8 @@ review and submission rules. Suggested order for one worker:
 
 Each task has its own allowed files, deliverables and acceptance checks.
 C01-GAPS-01, C03-REVIEW-01, C04-PREP-01 and S23-MATRIX-01 are complete as bounded
-deliveries after independent review and repairs. S24 `328db128` and E05 `1966fb06`
-remain active claims with no accepted implementation. C01-28/29 are separately
+deliveries after independent review and repairs. S24 `5a23ebe0` and E05 `1fe45b2c`
+are newly submitted for review, with no accepted implementation. C01-28/29 are separately
 registered Russia/Japan research claims. This work does not complete historical
 coverage. A parent session may still have unmet dependencies: only
 its named independent preparation is authorized here. The canonical roadmap and
@@ -184,8 +184,8 @@ Copy this into Claude to resume its claimed sections:
 > Fetch origin/codex/campaign-certification. Read docs/AI_WORKSTREAMS.md and
 > docs/planning/ai-handoffs/CLAUDE-EXPANDED-NEXT.md, then run
 > `python tools/planning/workboard.py --tasks --owner Claude`. Start with
-> one of your existing active claims: S24 successor fixtures, E05 company research,
-> C01-28 Russia or C01-29 Japan. Skip the four completed expanded deliveries.
+> one of your existing active claims: C01-28 Russia or C01-29 Japan.
+> Skip the four completed expanded deliveries and the new S24/E05 submissions awaiting review.
 > Read that task's handoff, record your branch/base and claim, and build its bounded
 > deliverables with the required checks. The six new sections do not wait on unrelated
 > source repairs. Keep existing claims, skip completed SOURCE-05/06/17/26, and do not duplicate pending submissions.

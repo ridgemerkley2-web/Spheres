@@ -58,6 +58,10 @@ research-to-runtime identity mappings remain incomplete.
    that country's certificate.
 
 C01-23/24/25/27 remain submitted for independent review. Preserve the active
-C01-28 Russia and C01-29 Japan claims, plus S24 successor-fixture and E05
-company-research preparation. Query the [task queue](../../planning/ai-task-queue.json)
+C01-28 Russia and C01-29 Japan claims. New S24 successor-fixture and E05
+company-research submissions await independent review and remain unmerged.
+Query the [task queue](../../planning/ai-task-queue.json)
 before starting a new research batch.
+
+The [latest receipt](integrations/2026-09-28-remote-receipts.md) records these two
+submissions after validated preparation checkpoint `43373d2e`.
