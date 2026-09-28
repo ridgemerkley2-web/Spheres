@@ -22,6 +22,49 @@
     "note": "The live static file on the non-official SSSR.SU host, byte-identical to the recorded capture; requested without Accept-Encoding and served without Content-Encoding."
   },
   "stability_check": "Dossier: live file downloaded at 2026-09-26T01:53:13Z, 02:26:08Z/02:26:12Z (plain and cache-busting '?cb=') and 02:57:19Z/02:57:31Z (plain and cache-busting), capture at 02:30:39Z; identical. Independent check: live file at 03:14:29Z, 03:14:40Z (cache-busting) and 03:27:45Z; identical; the base32 SHA-1 of the bytes equals the Internet Archive CDX digest 7FKJGSKA5SUVY2VPDTY2YTHHQFKEWWKD. This packet: re-downloaded at 2026-09-26T03:54:51Z and again at 2026-09-26T04:27:31Z (32 minutes later); identical 12,653,342 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "source_review": {
+    "review": "CLAUDE-C01-SOURCE-26",
+    "method": "Every response recorded here was downloaded again twice with plain curl 8.16.0: curl's own User-Agent, an explicit 'Accept-Encoding: identity' header, no cookies and no cache-busting query. The first pass ran 2026-09-27T23:40:28Z-23:42:16Z and the second 2026-09-28T00:15:03Z-00:18:32Z, so each response's two downloads are more than 30 minutes apart; byte counts and SHA-256 were compared with this extract. No browser User-Agent was sent to any host.",
+    "downloads": [
+      {
+        "response": "source_response",
+        "url": "https://web.archive.org/web/20250718143642id_/https://snd.sssr.su/IV/III.pdf",
+        "downloaded_at": [
+          "2026-09-27T23:40:40Z",
+          "2026-09-28T00:15:46Z"
+        ],
+        "bytes": 12653342,
+        "sha256": "398d2fa58abd61bfb5e466841d3ba18de6aa0c9170443f73123a4df2a349b897",
+        "result": "identical to the recorded identity on both downloads"
+      },
+      {
+        "response": "live_file_response",
+        "url": "https://snd.sssr.su/IV/III.pdf",
+        "downloaded_at": [
+          "2026-09-27T23:40:42Z",
+          "2026-09-28T00:15:51Z"
+        ],
+        "bytes": 12653342,
+        "sha256": "398d2fa58abd61bfb5e466841d3ba18de6aa0c9170443f73123a4df2a349b897",
+        "result": "identical to the recorded identity on both downloads"
+      }
+    ],
+    "provenance": {
+      "host": "snd.sssr.su (SSSR.SU portal; see the Vedomosti sources).",
+      "edition": "Четвертый съезд народных депутатов СССР, 17-27 декабря 1990 г. Стенографический отчет. Том III. Издание Верховного Совета СССР (cover); signature line 'Четвертый съезд народных депутатов СССР. Стенотчет, том III' (printed p. 321); 404 PDF pages, printed p. N on PDF p. N + 2 for the cited pages.",
+      "relation_to_print": "Full-page images of the printed volume (300 dpi) with an invisible ABBYY FineReader 11 OCR layer; not a re-typeset text.",
+      "legibility": "Cited PDF pp. 5, 7, 42, 143, 155, 165, 179, 316, 317, 320, 323 and 324 (printed pp. 3, 5, 40, 141, 153, 163, 177, 314, 315, 318, 321 and 322) rendered and read from the page images: legible."
+    },
+    "content_comparison": "The recorded bytes are unchanged. The cited PDF pages were rendered from them and read from the page images, not the OCR layer, and every quotation in the rows was compared with the image; dashes, the Roman numeral of act numbers and guillemets are normalised as elsewhere in this packet.",
+    "corrections": [
+      {
+        "claim_id": "su_steno4_pavlov_reports_for_government_19901227",
+        "was": "and that Gorbachev supplemented the report.",
+        "now": "and that 'М. С. Горбачев дополнил его сообщение'.",
+        "evidence": "Printed p. 163 (PDF p. 165) prints 'М. С. Горбачев дополнил его сообщение'; the claim named him in English transliteration and now quotes the printed form (structural check, defect 2)."
+      }
+    ]
+  },
   "provenance_note": "Raw Internet Archive capture (id_ form) of https://snd.sssr.su/IV/III.pdf, captured at 2025-07-18T14:36:42Z, before the 7 September 2026 cutoff; requested without an Accept-Encoding header (curl without --compressed, i.e. identity) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed (a request accepting gzip is served gzip-encoded, with different bytes). The same bytes are served as a static file by the live host (live_file_response); the capture is recorded as the identity because it is fixed before the cutoff. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
   "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
   "scope_note": "The official stenographic report, volume III, as a page-image scan with an OCR layer (404 PDF pages). The sittings of 26 and 27 December 1990 and the texts of Laws 1861-I and 1862-I (printed pp. 314-322) were read. The scan is hosted by the non-official SSSR.SU project; the recorded identity is a raw Internet Archive capture made before the cutoff, byte-identical to the live static file (live_file_response). The volume also prints Law 1861-I's Russian text; its chapter and Supreme Soviet chair provisions are claimed from the Ukrainian database text (su_rada_law_1861i_19901226) and are not repeated here.",
@@ -87,7 +130,7 @@
       "role_title_note": "The passage prints no office title for him.",
       "event_kind": "report_on_behalf_of_government",
       "attested_on": "1990-12-27",
-      "text": "At the nineteenth sitting (27 December 1990, 'Председательствует Председатель Верховного Совета СССР А. И. Лукьянов') the presiding officer says that, in execution of the Congress's decision, 'было предложено В. С. Павлову доложить от имени правительства, потому что Н. И. Рыжков болен', and that Gorbachev supplemented the report. The speaker line of that report reads 'Павлов В. С., Министр финансов СССР'.",
+      "text": "At the nineteenth sitting (27 December 1990, 'Председательствует Председатель Верховного Совета СССР А. И. Лукьянов') the presiding officer says that, in execution of the Congress's decision, 'было предложено В. С. Павлову доложить от имени правительства, потому что Н. И. Рыжков болен', and that 'М. С. Горбачев дополнил его сообщение'. The speaker line of that report reads 'Павлов В. С., Министр финансов СССР'.",
       "locator": "Nineteenth sitting: heading, printed p. 141 (PDF p. 143); Pavlov's report, printed p. 153 (PDF p. 155); presiding officer's remarks, printed p. 163 (PDF p. 165)"
     },
     {

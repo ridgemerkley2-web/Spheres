@@ -22,6 +22,50 @@
     "note": "The live static file on the non-official SSSR.SU host, byte-identical to the recorded capture; requested without Accept-Encoding and served without Content-Encoding."
   },
   "stability_check": "Dossier (parts B and C): live file downloaded at 2026-09-26T01:48:18Z, 01:57:17Z, 02:10:58Z (cache-busting '?cb='), 02:12:13Z, 02:26:04Z/02:26:06Z (plain and cache-busting), 02:53:11Z, 02:53:41Z (cache-busting '_cb=') and 02:57:07Z/02:57:14Z; capture at 02:30:38Z; identical. Independent checks: live file at 02:57:43Z (cache-busting '_chk='), 03:14:19Z, 03:14:25Z (cache-busting), 03:24:11Z and 03:27:43Z; identical; the CDX digest RG5TINDLZDABIRTQX3XQBQC477EQ5NQ3 equals the base32 SHA-1 of these bytes for every capture from 2017-01-13 to 2025-08-20. This packet: re-downloaded at 2026-09-26T03:54:48Z and again at 2026-09-26T04:27:29Z (32 minutes later); identical 1,303,663 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "source_review": {
+    "review": "CLAUDE-C01-SOURCE-26",
+    "method": "Every response recorded here was downloaded again twice with plain curl 8.16.0: curl's own User-Agent, an explicit 'Accept-Encoding: identity' header, no cookies and no cache-busting query. The first pass ran 2026-09-27T23:40:28Z-23:42:16Z and the second 2026-09-28T00:15:03Z-00:18:32Z, so each response's two downloads are more than 30 minutes apart; byte counts and SHA-256 were compared with this extract. No browser User-Agent was sent to any host.",
+    "downloads": [
+      {
+        "response": "source_response",
+        "url": "https://web.archive.org/web/20250820135020id_/https://vedomosti.sssr.su/1991/36.pdf",
+        "downloaded_at": [
+          "2026-09-27T23:41:01Z",
+          "2026-09-28T00:16:38Z"
+        ],
+        "bytes": 1303663,
+        "sha256": "87abb4c154470c0681cd0867ef63119675b249d323372fdcbfe87a34ab075b6f",
+        "result": "identical to the recorded identity on both downloads"
+      },
+      {
+        "response": "live_file_response",
+        "url": "https://vedomosti.sssr.su/1991/36.pdf",
+        "downloaded_at": [
+          "2026-09-27T23:41:02Z",
+          "2026-09-28T00:16:42Z"
+        ],
+        "bytes": 1303663,
+        "sha256": "87abb4c154470c0681cd0867ef63119675b249d323372fdcbfe87a34ab075b6f",
+        "result": "identical to the recorded identity on both downloads"
+      }
+    ],
+    "archive_cross_check": "Internet Archive CDX digest RG5TINDLZDABIRTQX3XQBQC477EQ5NQ3 equals the base32 SHA-1 of the recorded 1,303,663 bytes for every HTTP 200 capture of the same URL from 2017-01-13 to 2025-08-20, except one capture of 2021-12-04 that has a different digest.",
+    "provenance": {
+      "host": "vedomosti.sssr.su. The SSSR.SU portal, which calls itself '(прообраз официального сайта)', is non-commercial and is registered as the media outlet 'Информационное агентство «СССР»' (Roskomnadzor ИА № ФС77-40345, 30 June 2010); it is not a state body or the publisher. The live file is static (Apache; Last-Modified Sun, 01 Jan 2017 22:40:50 GMT). The host's index (https://vedomosti.sssr.su/) offers page-image PDFs only of 1991 Nos. 35, 36, 37, 38 and 41 and sends readers to naukaprava.ru (paid) for the other issues' scans; its HTML pages are a separate retyped transcription. The recorded identity is the Internet Archive's raw capture of the same URL made on 20 August 2025.",
+      "edition": "Ведомости Съезда народных депутатов СССР и Верховного Совета СССР, No. 36, 4 September 1991. The cover prints 'ISSN 0235-9936', '№ 36', '4 сентября 1991 г.' and 'ИЗДАНИЕ ВЕРХОВНОГО СОВЕТА СССР МОСКВА'; the contents page 'ГОД ИЗДАНИЯ 3-й'; the imprint (printed p. 1435, PDF p. 5) 'Еженедельное издание Верховного Совета СССР', 'Отдел опубликования актов Секретариата Верховного Совета СССР: 103795, ГСП, Москва, Центр, улица Чехова, 3' and 'Ордена Трудового Красного Знамени типография «Известий Советов народных депутатов СССР» имени И. И. Скворцова-Степанова', with '04.09 91.' and 'Зак 3385'; the back cover '20 к.' and 'Индекс 70163'. Arts. 1028-1068. PDF pp. 3-40 carry printed pp. 1433-1470 (running heads: PDF page + 1430); PDF pp. 41-42 are blank and PDF pp. 1-2 and 43-44 the covers (44 PDF pages).",
+      "relation_to_print": "Full-page images of the printed issue, not a re-typeset text: every printed page (PDF pp. 3-42) is one 300 dpi bitonal page image (the covers are layered colour images), with an invisible OCR text layer made by ABBYY FineReader 11 (PDF metadata Producer). The images show the running heads, article numbers, signature, date and number blocks and the imprint as printed. The OCR layer is a search aid only, not a transcription of record: this review found it misreading printed characters (see corrections), so every quotation is checked against the image. PDF metadata Title 'Ведомости СНД СССР и ВС СССР, № 36, 4 сентября 1991', created 1 January 2017.",
+      "legibility": "Cited PDF pp. 13, 15, 17, 38, 39 and 40 (printed pp. 1443, 1445, 1447, 1468, 1469 and 1470), the cover and the imprint page rendered at 150 dpi (half the page images' native 300 dpi) and read: every cited passage is legible."
+    },
+    "content_comparison": "The recorded bytes are unchanged. The cited PDF pages were rendered from them and read from the page images, not the OCR layer, and every quotation in the rows was compared with the image; dashes, the Roman numeral of act numbers and guillemets are normalised as elsewhere in this packet.",
+    "corrections": [
+      {
+        "claim_id": "su_ved36_consent_to_pavlov_release_reported_19910828",
+        "was": "В. И Щербаков и В. X. Догужиев",
+        "now": "В. И Щербаков и В. Х. Догужиев",
+        "evidence": "The initial of Догужиев is the Cyrillic letter Х in the printed Russian text (printed p. 1469, PDF p. 39); the OCR layer gave a Latin X, which had been copied into the claim and the row's persons_named."
+      }
+    ]
+  },
   "provenance_note": "Raw Internet Archive capture (id_ form) of https://vedomosti.sssr.su/1991/36.pdf, captured at 2025-08-20T13:50:20Z, before the 7 September 2026 cutoff; requested without an Accept-Encoding header (curl without --compressed, i.e. identity) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed (a request accepting gzip is served gzip-encoded, with different bytes). The same bytes are served as a static file by the live host (live_file_response); the capture is recorded as the identity because it is fixed before the cutoff. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
   "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
   "scope_note": "A page-image scan of the official gazette (ABBYY FineReader PDF with an OCR layer used only to search), hosted by the non-official SSSR.SU project; the recorded identity is a raw Internet Archive capture made before the cutoff, byte-identical to the live static file (live_file_response). Parts B and C of the dossier recorded the same file under two identifiers; this packet keeps one source and one set of claims per article or paragraph.",
@@ -126,12 +170,12 @@
       "holder_name": "Валентин Сергеевич Павлов",
       "printed_name": "В. С. Павлова (genitive; initials and surname only)",
       "persons_named": [
-        "В. И Щербаков и В. X. Догужиев (первые заместители Премьер-министра СССР; initials and surname only)"
+        "В. И Щербаков и В. Х. Догужиев (первые заместители Премьер-министра СССР; initials and surname only)"
       ],
       "role_title": "Председатель Совета Министров СССР / Премьер-министр СССР — Head of the Union government",
       "event_kind": "session_record_consent_to_release",
       "attested_on": "1991-08-28",
-      "text": "The same paragraph reports that at the agenda item on confidence in the Cabinet, after the first deputy Premiers 'В. И Щербаков и В. X. Догужиев' addressed the sitting, 'Верховный Совет согласился с Указом Президента СССР об освобождении В. С. Павлова от обязанностей Премьер-министра СССР'.",
+      "text": "The same paragraph reports that at the agenda item on confidence in the Cabinet, after the first deputy Premiers 'В. И Щербаков и В. Х. Догужиев' addressed the sitting, 'Верховный Совет согласился с Указом Президента СССР об освобождении В. С. Павлова от обязанностей Премьер-министра СССР'.",
       "locator": "Section Three, paragraph beginning '28 августа', printed p. 1469 (PDF p. 39)"
     },
     {

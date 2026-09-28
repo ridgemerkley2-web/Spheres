@@ -34,6 +34,52 @@
     }
   ],
   "stability_check": "Independent check (part C): live file downloaded at 2026-09-26T03:05:58Z, 03:13:02Z (cache-busting query) and 03:37:05Z, capture at 03:39:16Z without Accept-Encoding; identical. Acts publication: live file at 03:06:21Z, 03:13:05Z (cache-busting) and 03:37:08Z, capture at 03:39:38Z; identical. This packet: re-downloaded at 2026-09-26T03:54:19Z and again at 2026-09-26T04:27:34Z (33 minutes later); identical 1,620,327 bytes and SHA-256; the attached responses also matched on both downloads.",
+  "source_review": {
+    "review": "CLAUDE-C01-SOURCE-26",
+    "method": "Every response recorded here was downloaded again twice with plain curl 8.16.0: curl's own User-Agent, an explicit 'Accept-Encoding: identity' header, no cookies and no cache-busting query. The first pass ran 2026-09-27T23:40:28Z-23:42:16Z and the second 2026-09-28T00:15:03Z-00:18:32Z, so each response's two downloads are more than 30 minutes apart; byte counts and SHA-256 were compared with this extract. No browser User-Agent was sent to any host.",
+    "downloads": [
+      {
+        "response": "source_response",
+        "url": "https://web.archive.org/web/20240901125154id_/https://snd.sssr.su/V/5.pdf",
+        "downloaded_at": [
+          "2026-09-27T23:41:04Z",
+          "2026-09-28T00:16:47Z"
+        ],
+        "bytes": 1620327,
+        "sha256": "9ea2c89395488a0214c38345333b504b30542563ebfa1af0646975a6ff227a65",
+        "result": "identical to the recorded identity on both downloads"
+      },
+      {
+        "response": "live_file_response",
+        "url": "https://snd.sssr.su/V/5.pdf",
+        "downloaded_at": [
+          "2026-09-27T23:41:07Z",
+          "2026-09-28T00:16:51Z"
+        ],
+        "bytes": 1620327,
+        "sha256": "9ea2c89395488a0214c38345333b504b30542563ebfa1af0646975a6ff227a65",
+        "result": "identical to the recorded identity on both downloads"
+      },
+      {
+        "response": "corroborating_responses[0]",
+        "url": "https://web.archive.org/web/20240901194604id_/https://snd.sssr.su/V/7.pdf",
+        "downloaded_at": [
+          "2026-09-27T23:41:09Z",
+          "2026-09-28T00:16:56Z"
+        ],
+        "bytes": 544323,
+        "sha256": "236b00bd04599034c2175b4b05492be88c1eaa077cba2b96179575e8221e77a4",
+        "result": "identical to the recorded identity on both downloads"
+      }
+    ],
+    "provenance": {
+      "host": "snd.sssr.su (SSSR.SU portal; see the Vedomosti sources).",
+      "edition": "Внеочередной пятый Съезд народных депутатов СССР. Бюллетень № 5 (running heads), morning sitting of 4 September 1991; 32 PDF pages. The attached acts publication ('Законы, постановления и др. акты', 16 PDF pages) prints resolution 2389-I from the same typesetting as Vedomosti 1991 No. 37, p. 1485.",
+      "relation_to_print": "Full-page images of the printed bulletin (300 dpi) with an invisible ABBYY FineReader 12 OCR layer; not a re-typeset text.",
+      "legibility": "Cited PDF pp. 3, 5 and 6 (printed pp. 3, 5 and 6) and the acts publication's PDF p. 9 rendered and read from the page images: legible, including the vote table (1113, 1702, 20, 78, 1800, 44)."
+    },
+    "content_comparison": "The recorded bytes are unchanged. The cited PDF pages were rendered from them and read from the page images, not the OCR layer, and every quotation in the rows was compared with the image; dashes, the Roman numeral of act numbers and guillemets are normalised as elsewhere in this packet."
+  },
   "provenance_note": "Raw Internet Archive capture (id_ form) of https://snd.sssr.su/V/5.pdf, captured at 2024-09-01T12:51:54Z, before the 7 September 2026 cutoff; requested without an Accept-Encoding header (curl without --compressed, i.e. identity) and served without Content-Encoding, so the recorded identity is the uncompressed body as replayed (a request accepting gzip is served gzip-encoded, with different bytes). The same bytes are served as a static file by the live host (live_file_response); the capture is recorded as the identity because it is fixed before the cutoff. The original response is not checked into this repository; this checked-in file is a derived factual extract, not the original response. Its own checksum is recorded separately in the packet.",
   "rights_note": "Attributed factual paraphrases only; no source artwork or portrait copied, and no photograph, emblem, signature image or expressive source text is republished. No open license is asserted. No portrait permission or likeness approval is established.",
   "scope_note": "The official stenographic bulletin of the Fifth Congress's sitting of 4 September 1991, a page-image scan with an OCR layer, hosted by the non-official SSSR.SU project; the recorded identity is a raw Internet Archive capture made before the cutoff, byte-identical to the live static file (live_file_response). Found by the independent check of part C, as was the acts publication attached as a corroborating response. The presiding officer's summary of the Supreme Soviet's earlier decisions is not imported: those decisions have their own claims.",
