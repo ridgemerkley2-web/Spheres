@@ -1,0 +1,69 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_ifp_conference_address_buthelezi_20190824",
+  "source_url": "https://web.archive.org/web/20190827151121id_/http://www.ifp.org.za/national-elective-conference-of-the-inkatha-freedom-party-address-by-prince-mangosuthu-buthelezi-mp/",
+  "original_url": "http://www.ifp.org.za/national-elective-conference-of-the-inkatha-freedom-party-address-by-prince-mangosuthu-buthelezi-mp/",
+  "archive_capture_utc": "2019-08-27T15:11:21Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2019-08-24",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 131553,
+  "source_response_sha256": "4a17dae160556bb76bea97a0aa2353e1bbfe2e6680ec7caef58c8beab5af568f",
+  "source_response_sha1_base32": "DGU2B5GKO67YBBQOJVIU6IAFB4A7U2ZR",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture, fetched with plain curl (no Accept-Encoding, no decoding). First downloaded on 2026-09-28T17:28:09Z; downloaded again at 2026-09-28T17:59:18Z, 2026-09-28T18:51:29Z, the last at least 30 minutes after the first, each with the same byte count and SHA-256 (131553 bytes). The base32 SHA-1 of the bytes equals the Internet Archive's CDX digest for the capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the IFP's original page, captured at 2019-08-27T15:11:21Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the old www.ifp.org.za pages are no longer served, and the current ifp.org.za site is served behind a bot challenge and is not used live). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture made 27 August 2019 of the post dated \"24 August, 2019 - Press Releases\"; the address is datelined \"Ulundi: Saturday, 24 August 2019\". Quotations of third parties inside the address are not used. Served without content encoding.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_ifp_conference_address_president_buthelezi_20190824",
+      "observation_id": "za_iec_n2024_034",
+      "review_observation": "ZA-IFP-04",
+      "role_id": "za_ifp_president",
+      "holder_name": "Mangosuthu Buthelezi",
+      "role_title": "President of the Inkatha Freedom Party",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2019-08-24",
+      "text": "The address headed \"ADDRESS BY PRINCE MANGOSUTHU BUTHELEZI MP PRESIDENT OF THE INKATHA FREEDOM PARTY\", datelined \"Ulundi: Saturday, 24 August 2019\", says \"this will be the last time I address a national conference of the Inkatha Freedom Party as your President\".",
+      "locator": {
+        "section": "Heading block, date line and the paragraph beginning \"I plead for your patience\""
+      }
+    },
+    {
+      "claim_id": "za_ifp_buthelezi_time_as_president_finished_20190824",
+      "observation_id": "za_iec_n2024_034",
+      "review_observation": "ZA-IFP-04",
+      "role_id": "za_ifp_president",
+      "holder_name": "Mangosuthu Buthelezi",
+      "role_title": "President of the Inkatha Freedom Party",
+      "event_kind": "valedictory_statement",
+      "attested_on": "2019-08-24",
+      "text": "In the same address he says \"But my time as the President of the IFP is finished. I am handing the baton to a new leader\", and recalls that he announced in October 2017 that he would not stand for re-election.",
+      "locator": {
+        "section": "Paragraphs beginning \"But my time as the President of the IFP is finished\" and \"When I announced in October 2017\""
+      }
+    },
+    {
+      "claim_id": "za_ifp_extended_nc_single_candidate_for_president_20190824",
+      "observation_id": "za_iec_n2024_034",
+      "review_observation": "ZA-IFP-04",
+      "role_id": "za_ifp_president",
+      "holder_name": null,
+      "role_title": "President of the Inkatha Freedom Party",
+      "event_kind": "nomination_reference",
+      "attested_on": "2019-08-24",
+      "text": "The address says \"our Extended National Council put forward only one candidate to stand for election as Party President\", a unanimous decision; it does not name the candidate.",
+      "locator": {
+        "section": "Paragraph beginning \"I think we can be proud\""
+      }
+    }
+  ],
+  "bounded_scope": "IFP President observations for CLAUDE-C01-30 only (role za_ifp_president on the INKATHA FREEDOM PARTY observation). The 1990 transformation of Inkatha into the IFP is an organization claim (role_id null) and sets no lifecycle; elections, acceptance, result publication, valedictory and retirement statements, the President Emeritus title, the death of the former President and in-office attestations stay separate rows; holder observations are decided in the packet, not by any row. State, legislature and ministerial offices are excluded and no row feeds them."
+}

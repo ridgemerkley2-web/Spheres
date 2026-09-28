@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_acdp_leader_statement_20180214",
+  "source_url": "https://web.archive.org/web/20190509205419id_/https://www.acdp.org.za/acdp_leader_calls_on_zuma_to_place_the_country_above_himself",
+  "original_url": "https://www.acdp.org.za/acdp_leader_calls_on_zuma_to_place_the_country_above_himself",
+  "archive_capture_utc": "2019-05-09T20:54:19Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2018-02-14",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 35076,
+  "source_response_sha256": "0cbd8f55400ce012758b5da23ca8f86f70c256fa51e49431dd996115f5f7cee0",
+  "source_response_sha1_base32": "WGXGSXBR7DI53RBA6UBH4LACCTYUCAVB",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture, fetched with plain curl (no Accept-Encoding, no decoding). First downloaded on 2026-09-28T17:28:06Z; downloaded again at 2026-09-28T17:59:08Z, the last at least 30 minutes after the first, each with the same byte count and SHA-256 (35076 bytes). The base32 SHA-1 of the bytes equals the Internet Archive's CDX digest for the capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the ACDP's original page, captured at 2019-05-09T20:54:19Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the old www.acdp.org.za pages are no longer served, and the current acdp.org.za WordPress pages are not used live). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture made 9 May 2019 of the ACDP's press article signed \"ISSUED BY: REV KENNETH MESHOE MP 14 February 2018\". The \"More articles\" list is excluded. Served without content encoding.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_acdp_leader_meshoe_statement_20180214",
+      "observation_id": "za_iec_n2024_008",
+      "review_observation": "ZA-ACDP-04",
+      "role_id": "za_acdp_president",
+      "holder_name": "Kenneth Meshoe",
+      "role_title": "President of the African Christian Democratic Party",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2018-02-14",
+      "text": "In a press article issued by \"REV KENNETH MESHOE MP\" on 14 February 2018, the ACDP says \"ACDP Leader Rev Kenneth Meshoe\" called on President Zuma \"to place the country and our people's welfare\" above himself.",
+      "locator": {
+        "section": "Article \"ACDP Leader calls on Zuma to place the country above himself\": first paragraph and the \"ISSUED BY\" line"
+      }
+    }
+  ],
+  "bounded_scope": "ACDP President observations for CLAUDE-C01-30 only (role za_acdp_president on the AFRICAN CHRISTIAN DEMOCRATIC PARTY observation). Founding claims are organization claims (role_id null) and set no lifecycle; in-office, month-only and continuation attestations stay separate rows; holder observations are decided in the packet, not by any row. State and parliamentary offices are excluded and no row feeds them."
+}

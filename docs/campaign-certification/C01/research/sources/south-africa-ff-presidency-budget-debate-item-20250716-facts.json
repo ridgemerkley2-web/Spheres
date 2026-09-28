@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_ff_presidency_budget_debate_item_20250716",
+  "source_url": "https://web.archive.org/web/20250722073536id_/https://www.vfplus.org.za/af/jongste-nuus/president-moet-ag-slaan-op-vf-plus-voorstelle-om-suid-afrika-n-wenland-te-maak/",
+  "original_url": "https://www.vfplus.org.za/af/jongste-nuus/president-moet-ag-slaan-op-vf-plus-voorstelle-om-suid-afrika-n-wenland-te-maak/",
+  "archive_capture_utc": "2025-07-22T07:35:36Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2025-07-16",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 352158,
+  "source_response_sha256": "5bfd2c09e79b7b515099b63ee1684c363c4fb0979f9aa7a9a2dcd9cd51b10bb1",
+  "source_response_sha1_base32": "G4IZ6LUQFPCXBEXKLPAGDK2KMJ674CVK",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture, fetched with plain curl (no Accept-Encoding, no decoding). First downloaded on 2026-09-28T17:53:48Z; downloaded again at 2026-09-28T18:26:31Z, 2026-09-28T19:05:43Z, the last at least 30 minutes after the first, each with the same byte count and SHA-256 (352158 bytes). The base32 SHA-1 of the bytes equals the Internet Archive's CDX digest for the capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the Freedom Front's or Freedom Front Plus's original page, captured at 2025-07-22T07:35:36Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the old www.vryheidsfront.co.za pages are no longer served, and the current www.vfplus.org.za pages carry rotating embedded blocks). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture made 22 July 2025 of the Afrikaans item dated \"16-07-2025\" (\"Begrotingsdebat: Presidensie\"); archived Last-Modified Tue, 22 Jul 2025 06:44:38 GMT. The parliamentary budget debate on the Presidency is the occasion; the office relied on is the party's. Sidebar social-media embeds are excluded. Served without content encoding.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_ff_item_leader_corne_mulder_20250716",
+      "observation_id": "za_iec_n2024_051",
+      "review_observation": "ZA-FF-08",
+      "role_id": "za_ff_leader",
+      "holder_name": "Corné Mulder",
+      "role_title": "Leader of the Freedom Front Plus (Vryheidsfront Plus)",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2025-07-16",
+      "text": "The Freedom Front Plus item dated 16-07-2025 says its message is that of \"dr. Corné Mulder, leier van die VF Plus, vandag aan pres. Cyril Ramaphosa met die begrotingsdebat van die presidensie\" (Dr Corné Mulder, leader of the Freedom Front Plus, today to President Cyril Ramaphosa in the budget debate on the Presidency).",
+      "locator": {
+        "section": "Paragraph beginning \"Dit is die kern van die boodskap\""
+      }
+    }
+  ],
+  "bounded_scope": "Freedom Front and Freedom Front Plus leader observations for CLAUDE-C01-30 only (role za_ff_leader on the VRYHEIDSFRONT PLUS observation). Founding, merger, renaming and another party's joining are organization claims (role_id null) and set no lifecycle or identity; elections, selection, re-election, retirement, death, the parliamentary leader office and in-office attestations stay separate rows; holder observations are decided in the packet, not by any row. State and parliamentary offices are excluded and no row feeds them."
+}

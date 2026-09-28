@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_acdp_manifesto_launch_notice_20140218",
+  "source_url": "https://web.archive.org/web/20180113011359id_/http://www.acdp.org.za/17022014-acdp-to-launch-manifesto-on-saturday-2202-in-soweto/",
+  "original_url": "http://www.acdp.org.za/17022014-acdp-to-launch-manifesto-on-saturday-2202-in-soweto/",
+  "archive_capture_utc": "2018-01-13T01:13:59Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2014-02-18",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 46513,
+  "source_response_sha256": "bd196b45b00a384845d0aaee864079795fdbc0dec500aef9b76099646ea09fdb",
+  "source_response_sha1_base32": "WKWNORWUBN2CPX6PLXX6T4BJQYOC3S4F",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture, fetched with plain curl (no Accept-Encoding, no decoding). First downloaded on 2026-09-28T17:28:34Z; downloaded again at 2026-09-28T17:59:03Z, the last at least 30 minutes after the first, each with the same byte count and SHA-256 (46513 bytes). The base32 SHA-1 of the bytes equals the Internet Archive's CDX digest for the capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the ACDP's original page, captured at 2018-01-13T01:13:59Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the old www.acdp.org.za pages are no longer served, and the current acdp.org.za WordPress pages are not used live). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture made 13 January 2018 of the post dated \"February 18, 2014\"; the address slug begins \"17022014\". The post announces an event for 22 February 2014. Sidebar feeds, tag clouds and related-post lists are excluded. Served without content encoding.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_acdp_manifesto_notice_president_meshoe_20140218",
+      "observation_id": "za_iec_n2024_008",
+      "review_observation": "ZA-ACDP-03",
+      "role_id": "za_acdp_president",
+      "holder_name": "Kenneth Meshoe",
+      "role_title": "President of the African Christian Democratic Party",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2014-02-18",
+      "text": "The ACDP's post dated February 18, 2014 invites the public to the launch of its 2014 election manifesto in Soweto on 22 February 2014 and says \"ACDP President Dr Kenneth Meshoe will address the crowd\".",
+      "locator": {
+        "section": "Post \"ACDP Manifesto Launch, Soweto\", invitation paragraph and correction line"
+      }
+    }
+  ],
+  "bounded_scope": "ACDP President observations for CLAUDE-C01-30 only (role za_acdp_president on the AFRICAN CHRISTIAN DEMOCRATIC PARTY observation). Founding claims are organization claims (role_id null) and set no lifecycle; in-office, month-only and continuation attestations stay separate rows; holder observations are decided in the packet, not by any row. State and parliamentary offices are excluded and no row feeds them."
+}

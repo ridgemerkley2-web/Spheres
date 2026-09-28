@@ -1,0 +1,55 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_ifp_newly_elected_leadership_20190825",
+  "source_url": "https://web.archive.org/web/20190827151253id_/http://www.ifp.org.za/newly-elected-ifp-national-leadership/",
+  "original_url": "http://www.ifp.org.za/newly-elected-ifp-national-leadership/",
+  "archive_capture_utc": "2019-08-27T15:12:53Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2019-08-25",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 79219,
+  "source_response_sha256": "c4e8e66ac60124020fd8cce2f2e3c87b267fc7c803117e0b4b9255e4543f8f87",
+  "source_response_sha1_base32": "MLZCO22SEWSG3GKOEQ4DLDHD4ZDTJ3UU",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture, fetched with plain curl (no Accept-Encoding, no decoding). First downloaded on 2026-09-28T17:28:15Z; downloaded again at 2026-09-28T17:59:25Z, 2026-09-28T18:52:12Z, the last at least 30 minutes after the first, each with the same byte count and SHA-256 (79219 bytes). The base32 SHA-1 of the bytes equals the Internet Archive's CDX digest for the capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the IFP's original page, captured at 2019-08-27T15:12:53Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the old www.ifp.org.za pages are no longer served, and the current ifp.org.za site is served behind a bot challenge and is not used live). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture made 27 August 2019 of the post dated \"25 August, 2019 - Press Releases\". Offices other than the President on the list are not researched here. Served without content encoding.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_ifp_conference_elected_hlabisa_president_published_20190825",
+      "observation_id": "za_iec_n2024_034",
+      "review_observation": "ZA-IFP-04",
+      "role_id": "za_ifp_president",
+      "holder_name": "Velenkosini Hlabisa",
+      "role_title": "President of the Inkatha Freedom Party",
+      "event_kind": "result_publication",
+      "attested_on": "2019-08-25",
+      "text": "The IFP's release dated 25 August 2019 says \"The 2019 IFP National General Conference last night at the Prince Mangosuthu Regional Stadium in Ulundi elected the following office bearers\", beginning \"President: Velenkosini F. Hlabisa MPL\".",
+      "locator": {
+        "section": "First paragraph and the first line of the list of office bearers"
+      }
+    },
+    {
+      "claim_id": "za_ifp_former_president_buthelezi_made_president_emeritus_20190825",
+      "observation_id": "za_iec_n2024_034",
+      "review_observation": "ZA-IFP-04",
+      "role_id": "za_ifp_president",
+      "holder_name": "Mangosuthu Buthelezi",
+      "role_title": "President of the Inkatha Freedom Party",
+      "event_kind": "predecessor_reference",
+      "attested_on": "2019-08-25",
+      "text": "The same release says the conference resolved \"to bestow an honour unto former IFP President, Prince Mangosuthu Buthelezi MP with the title: President Emeritus\".",
+      "locator": {
+        "section": "Paragraph beginning \"Furthermore, the IFP National General Conference\""
+      }
+    }
+  ],
+  "bounded_scope": "IFP President observations for CLAUDE-C01-30 only (role za_ifp_president on the INKATHA FREEDOM PARTY observation). The 1990 transformation of Inkatha into the IFP is an organization claim (role_id null) and sets no lifecycle; elections, acceptance, result publication, valedictory and retirement statements, the President Emeritus title, the death of the former President and in-office attestations stay separate rows; holder observations are decided in the packet, not by any row. State, legislature and ministerial offices are excluded and no row feeds them."
+}

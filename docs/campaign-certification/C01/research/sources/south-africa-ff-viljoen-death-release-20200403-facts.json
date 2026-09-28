@@ -1,0 +1,56 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_ff_viljoen_death_release_20200403",
+  "source_url": "https://web.archive.org/web/20200814200230id_/https://www.vfplus.org.za/latest-news/news-of-the-passing-of-gen-constand-viljoen-former-leader-of-the-freedom-front-received-with-great-sorrow",
+  "original_url": "https://www.vfplus.org.za/latest-news/news-of-the-passing-of-gen-constand-viljoen-former-leader-of-the-freedom-front-received-with-great-sorrow",
+  "archive_capture_utc": "2020-08-14T20:02:30Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2020-04-03",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 28106,
+  "source_response_sha256": "656c79b87d33b87adce694bbb9baa649600f7f624453f047da358473afb48ebc",
+  "source_response_sha1_base32": "7CX3MVVCQ5RKHZN4L3IKFO2IZ6YRHJBA",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture, fetched with plain curl (no Accept-Encoding, no decoding). First downloaded on 2026-09-28T17:38:05Z; downloaded again at 2026-09-28T18:26:16Z, 2026-09-28T19:05:25Z, the last at least 30 minutes after the first, each with the same byte count and SHA-256 (28106 bytes). The base32 SHA-1 of the bytes equals the Internet Archive's CDX digest for the capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the Freedom Front's or Freedom Front Plus's original page, captured at 2020-08-14T20:02:30Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the old www.vryheidsfront.co.za pages are no longer served, and the current www.vfplus.org.za pages carry rotating embedded blocks). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture made 14 August 2020 of the release dated \"2020-04-03\", bylined Dr Pieter Groenewald. His military career described in it is not used. Served without content encoding.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_ff_passing_of_former_leader_viljoen_reported_20200403",
+      "observation_id": "za_iec_n2024_051",
+      "review_observation": "ZA-FF-06",
+      "role_id": "za_ff_leader",
+      "holder_name": "Constand Viljoen",
+      "role_title": "Leader of the Freedom Front (Vryheidsfront)",
+      "event_kind": "death_reported",
+      "attested_on": "2020-04-03",
+      "text": "The release dated 2020-04-03 says \"the FF Plus learnt today of the passing of Gen. Constand Viljoen, former leader of the Freedom Front, as the party was known at the time\".",
+      "locator": {
+        "section": "First paragraph"
+      }
+    },
+    {
+      "claim_id": "za_ff_viljoen_very_first_leader_of_the_party",
+      "observation_id": "za_iec_n2024_051",
+      "review_observation": "ZA-FF-06",
+      "role_id": "za_ff_leader",
+      "holder_name": "Constand Viljoen",
+      "role_title": "Leader of the Freedom Front (Vryheidsfront)",
+      "event_kind": "predecessor_reference",
+      "attested_on": null,
+      "printed_range": "the very first leader of the party (no dates)",
+      "text": "The same release says \"Seeing as he was the very first leader of the party\" the sacrifices of his family are appreciated.",
+      "locator": {
+        "section": "Final paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Freedom Front and Freedom Front Plus leader observations for CLAUDE-C01-30 only (role za_ff_leader on the VRYHEIDSFRONT PLUS observation). Founding, merger, renaming and another party's joining are organization claims (role_id null) and set no lifecycle or identity; elections, selection, re-election, retirement, death, the parliamentary leader office and in-office attestations stay separate rows; holder observations are decided in the packet, not by any row. State and parliamentary offices are excluded and no row feeds them."
+}

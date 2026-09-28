@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_acdp_meshoe_nepad_speech_20011031",
+  "source_url": "https://web.archive.org/web/20060925055108id_/http://www.acdp.org.za/oldpress/MbekiResponse1Nov01.htm",
+  "original_url": "http://www.acdp.org.za/oldpress/MbekiResponse1Nov01.htm",
+  "archive_capture_utc": "2006-09-25T05:51:08Z",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 5392,
+  "source_response_sha256": "368641b66dfd518bfe35ba066235eff29f0c7466a160396c0d4123aeca29ddaf",
+  "source_response_sha1_base32": "UB2IFUK3RFQ7UL3WOAMLUSMSBDYIOAAQ",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture, fetched with plain curl (no Accept-Encoding, no decoding). First downloaded on 2026-09-28T17:25:12Z; downloaded again at 2026-09-28T17:58:59Z, the last at least 30 minutes after the first, each with the same byte count and SHA-256 (5392 bytes). The base32 SHA-1 of the bytes equals the Internet Archive's CDX digest for the capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the ACDP's original page, captured at 2006-09-25T05:51:08Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the old www.acdp.org.za pages are no longer served, and the current acdp.org.za WordPress pages are not used live). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture made 25 September 2006 of the ACDP's old press archive; archived Last-Modified Tue, 24 Jan 2006 19:59:34 GMT. The dateline \"Wednesday, 31 October 2001\" is the speech's own date; the file name says \"1Nov01\" and the web page's own publication date is unknown. Served without content encoding.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_acdp_meshoe_speech_as_president_20011031",
+      "observation_id": "za_iec_n2024_008",
+      "review_observation": "ZA-ACDP-02",
+      "role_id": "za_acdp_president",
+      "holder_name": "Kenneth Meshoe",
+      "role_title": "President of the African Christian Democratic Party",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2001-10-31",
+      "text": "The ACDP's response to President Thabo Mbeki's address on the New Partnership for Africa's Development is headed as a speech \"by Rev Dr KRJ Meshoe MP, President of the African Christian Democratic Party\", dated Wednesday, 31 October 2001.",
+      "locator": {
+        "section": "Heading block: title, speaker line and dateline"
+      }
+    }
+  ],
+  "bounded_scope": "ACDP President observations for CLAUDE-C01-30 only (role za_acdp_president on the AFRICAN CHRISTIAN DEMOCRATIC PARTY observation). Founding claims are organization claims (role_id null) and set no lifecycle; in-office, month-only and continuation attestations stay separate rows; holder observations are decided in the packet, not by any row. State and parliamentary offices are excluded and no row feeds them."
+}

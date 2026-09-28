@@ -1,0 +1,42 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_acdp_kzn_newsletter_199805",
+  "source_url": "https://web.archive.org/web/19990904001603id_/http://www.acdp.org.za:80/provincial/kzn/provinci.htm",
+  "original_url": "http://www.acdp.org.za/provincial/kzn/provinci.htm",
+  "archive_capture_utc": "1999-09-04T00:16:03Z",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 28926,
+  "source_response_sha256": "6a8775063f3b78d6d740788b751ab9da74e4915dc5979278dc24404bf38d40ee",
+  "source_response_sha1_base32": "XM2T5GKEQSNJHX7BBIUJLIFXFSXFI4NP",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture, fetched with plain curl (no Accept-Encoding, no decoding). First downloaded on 2026-09-28T17:26:34Z; downloaded again at 2026-09-28T17:58:49Z, the last at least 30 minutes after the first, each with the same byte count and SHA-256 (28926 bytes). The base32 SHA-1 of the bytes equals the Internet Archive's CDX digest for the capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the ACDP's original page, captured at 1999-09-04T00:16:03Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the old www.acdp.org.za pages are no longer served, and the current acdp.org.za WordPress pages are not used live). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture made 4 September 1999; archived Last-Modified Sun, 09 May 1999 09:47:58 GMT. The newsletter is dated only \"May 1998\" (month precision). Served without content encoding.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_acdp_kzn_newsletter_word_from_president_meshoe_199805",
+      "observation_id": "za_iec_n2024_008",
+      "review_observation": "ZA-ACDP-01",
+      "role_id": "za_acdp_president",
+      "holder_name": "Kenneth Meshoe",
+      "role_title": "President of the African Christian Democratic Party",
+      "event_kind": "in_office_attestation_month_only",
+      "attested_on": null,
+      "printed_range": "May 1998",
+      "text": "The ACDP KwaZulu-Natal newsletter headed \"May 1998 Vol 1 No 3\" carries \"A word from our President (Rev Dr Kenneth Meshoe M.P. Leader of the A.C.D.P)\", a message to churches and Christians about the property clause.",
+      "locator": {
+        "section": "Masthead (\"KWAZULU PROVINCIAL NEWS May 1998 Vol 1 No 3 Electronic edition\") and the box \"A word from our President\""
+      }
+    }
+  ],
+  "bounded_scope": "ACDP President observations for CLAUDE-C01-30 only (role za_acdp_president on the AFRICAN CHRISTIAN DEMOCRATIC PARTY observation). Founding claims are organization claims (role_id null) and set no lifecycle; in-office, month-only and continuation attestations stay separate rows; holder observations are decided in the packet, not by any row. State and parliamentary offices are excluded and no row feeds them."
+}
