@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_bjp_site_naidu_first_press_conference_20020711",
+  "source_url": "https://web.archive.org/web/20030115222731id_/http://www.bjp.org:80/news/July%201102.htm",
+  "original_url": "http://www.bjp.org/news/July%201102.htm",
+  "archive_capture_utc": "2003-01-15T22:27:31Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2002-07-11",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 17606,
+  "source_response_sha256": "e379da92f8bff0219ac6f529fb184fd8bb2e8c531a8ac4be126264c75a566dde",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2003-01-15T22:27:31Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl with its default User-Agent and without --compressed, request header Accept-Encoding: identity), so the identity is the uncompressed body. The research part downloaded it at 02:22:03Z and 03:46:18Z on 26 September 2026, and the Part B check again at 03:58:56Z and 04:33:36Z on 26 September 2026, and this packet downloaded it at 01:53:39Z and 02:44:59Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party website's statement (archived Last-Modified Thu, 11 Jul 2002 07:37:28 GMT), recorded as a raw Internet Archive capture of 15 January 2003.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full by this packet (tags stripped; the heading block and every passage cited read)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_bjp_naidu_president_first_press_conference_20020711",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-05",
+      "role_id": "in_bjp_president",
+      "holder_name": "M. Venkaiah Naidu",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2002-07-11",
+      "text": "The party heads the statement of 11 July 2002 'Satement issued by Shri M. Venkaiah Naidu President of the BJP' (sic) and 'At his first press conference on becoming President of the BJP'.",
+      "locator": {
+        "section": "heading block"
+      }
+    },
+    {
+      "claim_id": "in_bjp_naidu_entrusted_and_accepted_recalled_2002",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-05",
+      "role_id": "in_bjp_president",
+      "holder_name": "M. Venkaiah Naidu",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "selection_recalled_retrospective",
+      "attested_on": null,
+      "text": "In the statement he says 'I have been entrusted with the responsibility of leading the Bharatiya Janata Party' and 'I have accepted this responsibility in all humility'.",
+      "locator": {
+        "section": "first paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}

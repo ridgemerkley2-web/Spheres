@@ -1,0 +1,52 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_bjp_site_amit_shah_re_elected_national_president_20160124",
+  "source_url": "https://web.archive.org/web/20160125083201id_/http://www.bjp.org/en/media-resources/press-releases/press-shri-amit-shah-re-elected-as-bjp-national-president",
+  "original_url": "http://www.bjp.org/en/media-resources/press-releases/press-shri-amit-shah-re-elected-as-bjp-national-president",
+  "archive_capture_utc": "2016-01-25T08:32:01Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2016-01-24",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 72410,
+  "source_response_sha256": "805c932deaa508f32577bd2f88eee416ee73134e1e6ada0e396407b7fb0f33ec",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2016-01-25T08:32:01Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl with its default User-Agent and without --compressed, request header Accept-Encoding: identity), so the identity is the uncompressed body. The research part downloaded it at 02:52:57Z and 04:14:30Z on 26 September 2026, and the Part C check again at 23:49:09Z on 27 September 2026, and this packet downloaded it at 02:23:28Z and 02:53:35Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party website's release, recorded as a raw Internet Archive capture of 25 January 2016. The 2014-2016 bjp.org pages print the release's date line; the site template's current office-bearer sidebar is never used as evidence.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full by this packet (tags stripped; the dated heading and every passage cited read). The Hindi body was read in the original Devanagari."
+  },
+  "rows": [
+    {
+      "claim_id": "in_bjp_amit_shah_nomination_filed_national_president_20160124",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-08",
+      "role_id": "in_bjp_president",
+      "holder_name": "Amit Shah",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "nomination_filed",
+      "attested_on": "2016-01-24",
+      "text": "The Hindi release says nominations were filed for 'श्री अमित भाई शाह' (Shri Amit Bhai Shah) for the election to the post of BJP National President, and that proposals supporting him, including one from the parliamentary party signed by the Prime Minister and senior ministers ('20 राज्यों से 17 प्रस्ताव', as printed), were handed to the National Election Officer, 'श्री अविनाश राय खन्ना जी' (Shri Avinash Rai Khanna).",
+      "locator": {
+        "section": "press release body (Hindi), first paragraph",
+        "language": "hi"
+      }
+    },
+    {
+      "claim_id": "in_bjp_amit_shah_re_elected_heading_20160124",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-08",
+      "role_id": "in_bjp_president",
+      "holder_name": "Amit Shah",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "election_result",
+      "attested_on": "2016-01-24",
+      "text": "The release is headed 'Press : Shri Amit Shah re-elected as BJP National President' and dated 'Sunday, 24 January 2016'.",
+      "locator": {
+        "section": "page heading and date line"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}

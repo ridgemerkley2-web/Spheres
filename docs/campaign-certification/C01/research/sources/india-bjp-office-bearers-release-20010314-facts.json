@@ -1,0 +1,65 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_bjp_site_office_bearers_press_release_20010314",
+  "source_url": "https://web.archive.org/web/20010407074954id_/http://www.bjp.org/news/Mar1401.htm",
+  "original_url": "http://www.bjp.org/news/Mar1401.htm",
+  "archive_capture_utc": "2001-04-07T07:49:54Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2001-03-14",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 5816,
+  "source_response_sha256": "b9261b7f54969d294a8aae7f75a7377adc2f9f06a72ffb30a4ff39c9f148fe5b",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2001-04-07T07:49:54Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl with its default User-Agent and without --compressed, request header Accept-Encoding: identity), so the identity is the uncompressed body. The research part downloaded it at 02:16:15Z and 03:41:05Z on 26 September 2026, and the Part B check again at 03:53:08Z and 04:30:52Z on 26 September 2026, and this packet downloaded it at 01:46:19Z and 02:43:29Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party website's press release, signed by the Office Secretary (archived Last-Modified Wed, 14 Mar 2001 12:06:31 GMT), recorded as a raw Internet Archive capture of 7 April 2001.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full by this packet (tags stripped; the heading block and every passage cited read)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_bjp_office_bearers_consider_laxman_letter_20010314",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-04",
+      "role_id": "in_bjp_president",
+      "holder_name": "Bangaru Laxman",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "resignation_considered",
+      "attested_on": "2001-03-14",
+      "text": "The available central office bearers, meeting at the Central Office at 3.00 p.m. on 14 March 2001 with Vice-president Shri K. Jana Krishnamurthi presiding, 'considered the letter from Shri Bangaru Laxman addressed to Shri K. Jana Krishnamurthi, Vice President offering to step down from the office of the president of the party pending enquiry'.",
+      "locator": {
+        "section": "Press Release March 14, 2001, first and second paragraphs"
+      }
+    },
+    {
+      "claim_id": "in_bjp_office_bearers_accept_laxman_resignation_immediate_effect_20010314",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-04",
+      "role_id": "in_bjp_president",
+      "holder_name": "Bangaru Laxman",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "end_of_office_stated",
+      "attested_on": "2001-03-14",
+      "text": "The same meeting of the office bearers on 14 March 2001, having considered Shri Bangaru Laxman's letter, 'unanimously decided to accept the resignation with immediate effect' (release signed by Dr. Ram Kripal Sinha, Office Secretary).",
+      "locator": {
+        "section": "sentence 'The meeting unanimously decided to accept the resignation with immediate effect.'"
+      }
+    },
+    {
+      "claim_id": "in_bjp_jana_krishnamurthi_designated_acting_president_20010314",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-05",
+      "role_id": "in_bjp_president",
+      "holder_name": "K. Jana Krishnamurthi",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "acting_president_designated",
+      "attested_on": "2001-03-14",
+      "text": "The same meeting 'also decided that Shri K. Jana Krishnamurthi, Vice President will be the acting president to head the party'.",
+      "locator": {
+        "section": "final sentence of the release"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}

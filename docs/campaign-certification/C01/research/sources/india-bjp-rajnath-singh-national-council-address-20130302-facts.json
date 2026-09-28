@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_bjp_site_rajnath_singh_presidential_address_national_council_20130302",
+  "source_url": "https://web.archive.org/web/20130310032553id_/http://www.bjp.org:80/index.php?option=com_content&view=article&id=8592:speech-sh-rajnath-singh-in-bjp-national-council-meeting-at-talkatora-stadium&catid=68:press-releases&Itemid=494",
+  "original_url": "http://www.bjp.org/index.php?option=com_content&view=article&id=8592:speech-sh-rajnath-singh-in-bjp-national-council-meeting-at-talkatora-stadium&catid=68:press-releases&Itemid=494",
+  "archive_capture_utc": "2013-03-10T03:25:53Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2013-03-02",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 159181,
+  "source_response_sha256": "9d046824395207416f23a1d6e0dc0579d6a0657e2b1a8346fc953c8b785c49c7",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2013-03-10T03:25:53Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl with its default User-Agent and without --compressed, request header Accept-Encoding: identity), so the identity is the uncompressed body. The research part downloaded it at 04:11:19Z and 04:47:15Z on 26 September 2026, and the Part C check again at 23:46:58Z on 27 September 2026, and this packet downloaded it at 02:02:18Z and 02:51:44Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party website's English text of the address, recorded as a raw Internet Archive capture of 10 March 2013. The page's date line is 'Saturday, 02 March 2013'; the heading gives the meeting as '2-3 March, 2013', and the party's Hindi text of the same address is filed as 'March 03, 2013' (a lead). The 2009-2013 bjp.org pages are served by a content-management system that prints the item's date line; the archive records the capture time as the page's Last-Modified. Rotating sidebars (for example a current 'President' block) are never used as evidence.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full by this packet (tags stripped; the dated heading and every passage cited read)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_bjp_rajnath_singh_presidential_address_national_council_20130302",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-07",
+      "role_id": "in_bjp_president",
+      "holder_name": "Rajnath Singh",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2013-03-02",
+      "text": "The party's item dated 'Saturday, 02 March 2013' is headed 'Presidential speech by Shri Rajnath Singh at BJP National Council Meeting at Talkatora Stadium' (National Council Meeting, 2-3 March, 2013, Talkatora Stadium, New Delhi), with the sub-heading 'Presidential Address'.",
+      "locator": {
+        "section": "item heading, date line and heading block"
+      }
+    },
+    {
+      "claim_id": "in_bjp_rajnath_singh_took_over_again_recalled_2013",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-07",
+      "role_id": "in_bjp_president",
+      "holder_name": "Rajnath Singh",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "assumption_recalled_retrospective",
+      "attested_on": null,
+      "text": "The address opens: 'Friends, aftertaking over the responsibility of the national president again, I am meeting for the first time with the Karyakartas' ('aftertaking' run together as printed).",
+      "locator": {
+        "section": "first paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}

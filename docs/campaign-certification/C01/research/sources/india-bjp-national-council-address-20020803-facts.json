@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_bjp_site_naidu_national_council_address_20020803",
+  "source_url": "https://web.archive.org/web/20021018112710id_/http://www.bjp.org:80/news/Aug0302.htm",
+  "original_url": "http://www.bjp.org/news/Aug0302.htm",
+  "archive_capture_utc": "2002-10-18T11:27:10Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2002-08-03",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 86460,
+  "source_response_sha256": "b864c13744e4a6707d14eb4fae549967a57f5d3846fda9de8521ea4b194a79ca",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2002-10-18T11:27:10Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl with its default User-Agent and without --compressed, request header Accept-Encoding: identity), so the identity is the uncompressed body. The Part B check downloaded it at 03:59:42Z and 04:43:34Z on 26 September 2026, and this packet downloaded it at 01:54:27Z and 02:45:47Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party website's text of the address (archived Last-Modified Wed, 07 Aug 2002 06:44:35 GMT), recorded as a raw Internet Archive capture of 18 October 2002. Imported on the Part B check, which downloaded it twice with identical bytes. The page names no speaker anywhere (no title element), so its rows have holder_name null.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full by this packet (tags stripped; the heading block and every passage cited read)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_bjp_national_council_address_endorsement_stated_20020803",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-05",
+      "role_id": "in_bjp_president",
+      "holder_name": null,
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "national_council_endorsement_statement",
+      "attested_on": "2002-08-03",
+      "text": "In the presidential address to the National Council dated 3 August 2002 the speaker, whom the page does not name, thanks 'the Party leadership for entrusting me with the responsibility of leading the Bharatiya Janata Party, and to millions of my fellow workers for having accepted and endorsed this decision', and says 'All of you have whole-heartedly blessed me on my assumption of the office of our Party President'.",
+      "locator": {
+        "section": "first paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}

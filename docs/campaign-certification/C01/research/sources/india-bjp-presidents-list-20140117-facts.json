@@ -1,0 +1,65 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_bjp_site_bjp_presidents_1980_2013_list_20140117",
+  "source_url": "https://web.archive.org/web/20140117184748id_/http://www.bjp.org:80/leadership/bjp-presidents",
+  "original_url": "http://www.bjp.org/leadership/bjp-presidents",
+  "archive_capture_utc": "2014-01-17T18:47:48Z",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 60215,
+  "source_response_sha256": "ccbb3f8afa3129fb2033480b687556250ca04c041f5108978ba90e0eb15086f3",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2014-01-17T18:47:48Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl with its default User-Agent and without --compressed, request header Accept-Encoding: identity), so the identity is the uncompressed body. The research part downloaded it at 03:41:26Z and 04:22:35Z on 26 September 2026, and the Part C check again at 23:47:24Z on 27 September 2026, and this packet downloaded it at 02:02:25Z and 02:51:51Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party website's list of its presidents, recorded as a raw Internet Archive capture of 17 January 2014. A retrospective list with years only: its entries are claims, never boundaries, and the capture date is not a date the page prints. The list's other entries (for example '1986 to 1990 Shri Lal Krishna Advani') are not imported.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full by this packet (tags stripped; the dated heading and every passage cited read)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_bjp_presidents_list_jana_krishnamurthy_2001_to_2002",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-05",
+      "role_id": "in_bjp_president",
+      "holder_name": "K. Jana Krishnamurthi",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The party's list 'BJP Presidents from 1980 to 2013', as captured on 17 January 2014, gives '2001 to 2002 Late Shri K. Jana Krishnamurthy'.",
+      "locator": {
+        "section": "list, seventh entry"
+      }
+    },
+    {
+      "claim_id": "in_bjp_presidents_list_gadkari_2010_to_2013",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-07",
+      "role_id": "in_bjp_president",
+      "holder_name": "Nitin Gadkari",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The same list gives '2010 to 2013 Shri Nitin Gadkari'.",
+      "locator": {
+        "section": "list, eleventh entry"
+      }
+    },
+    {
+      "claim_id": "in_bjp_presidents_list_rajnath_singh_2013_to_present",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-07",
+      "role_id": "in_bjp_president",
+      "holder_name": "Rajnath Singh",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "retrospective_term_span",
+      "attested_on": null,
+      "text": "The same list gives '2013 to Present Shri Rajnath Singh' (and '2005 to 2009 Shri Rajnath Singh' for his first term).",
+      "locator": {
+        "section": "list, twelfth and tenth entries"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}

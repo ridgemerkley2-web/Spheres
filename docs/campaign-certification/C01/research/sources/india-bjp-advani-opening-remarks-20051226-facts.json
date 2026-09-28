@@ -1,0 +1,51 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_bjp_site_advani_opening_remarks_ne_20051226",
+  "source_url": "https://web.archive.org/web/20060628134007id_/http://www.bjp.org:80/Press/dec_2005_press/dec_2605.htm",
+  "original_url": "http://www.bjp.org/Press/dec_2005_press/dec_2605.htm",
+  "archive_capture_utc": "2006-06-28T13:40:07Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2005-12-26",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 13330,
+  "source_response_sha256": "b6f4e69e65b89f13240e43631ceb39c72c058e0792937280f7cc5b9e20bbe304",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2006-06-28T13:40:07Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl with its default User-Agent and without --compressed, request header Accept-Encoding: identity), so the identity is the uncompressed body. The research part downloaded it at 02:12:15Z and 03:47:53Z on 26 September 2026, and the Part B check again at 04:00:14Z and 04:34:54Z on 26 September 2026, and this packet downloaded it at 01:55:55Z and 02:47:08Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party website's text of the remarks (archived Last-Modified Mon, 26 Dec 2005 13:15:21 GMT), recorded as a raw Internet Archive capture of 28 June 2006.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full by this packet (tags stripped; the heading block and every passage cited read)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_bjp_advani_styled_president_opening_remarks_20051226",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-06",
+      "role_id": "in_bjp_president",
+      "holder_name": "L. K. Advani",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "in_office_continuation_attestation",
+      "attested_on": "2005-12-26",
+      "text": "The party heads his remarks of 26 December 2005 'OPENING REMARKS BY BJP PRESIDENT SHRI L.K. ADVANI AT NATIONAL EXECUTIVE MEETING IN MUMBAI'.",
+      "locator": {
+        "section": "page heading and date line"
+      }
+    },
+    {
+      "claim_id": "in_bjp_advani_last_meeting_he_will_preside_20051226",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-06",
+      "role_id": "in_bjp_president",
+      "holder_name": "L. K. Advani",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "outgoing_president_statement",
+      "attested_on": "2005-12-26",
+      "text": "In the remarks he says the meeting, held as a prelude to the Rajat Jayanti (Silver Jubilee) Session, 'is going to be the last meeting of this Executive, and the last meeting which I shall be presiding over'.",
+      "locator": {
+        "section": "first and second paragraphs"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}

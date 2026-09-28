@@ -1,0 +1,37 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_bjp_site_ne_resolution_political_situation_20010324",
+  "source_url": "https://web.archive.org/web/20010407072805id_/http://bjp.org:80/news/Mar2401c.htm",
+  "original_url": "http://bjp.org/news/Mar2401c.htm",
+  "archive_capture_utc": "2001-04-07T07:28:05Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2001-03-24",
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 16071,
+  "source_response_sha256": "2d45d7b043094324437189fb65c1867f8fc946b50f644e94fd8a34c0f7cbf01a",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2001-04-07T07:28:05Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl with its default User-Agent and without --compressed, request header Accept-Encoding: identity), so the identity is the uncompressed body. The research part downloaded it at 02:23:19Z and 03:42:08Z on 26 September 2026, and the Part B check again at 03:54:01Z and 04:32:44Z on 26 September 2026, and this packet downloaded it at 01:47:20Z and 02:43:55Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The party website's text of the National Executive's resolution (archived Last-Modified Sat, 24 Mar 2001 11:36:19 GMT), recorded as a raw Internet Archive capture of 7 April 2001.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML read in full by this packet (tags stripped; the heading block and every passage cited read)."
+  },
+  "rows": [
+    {
+      "claim_id": "in_bjp_ne_resolution_laxman_resigned_as_president_20010324",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-04",
+      "role_id": "in_bjp_president",
+      "holder_name": "Bangaru Laxman",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "resignation_recorded",
+      "attested_on": "2001-03-24",
+      "text": "The National Executive's resolution of 24 March 2001 on the current political situation says 'A high tradition has been followed by Shri Bangaru Laxman while resigning from the post of president of the party the moment a charge was levelled against him'.",
+      "locator": {
+        "section": "paragraph beginning 'A high tradition has been followed by Shri Bangaru Laxman'"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}

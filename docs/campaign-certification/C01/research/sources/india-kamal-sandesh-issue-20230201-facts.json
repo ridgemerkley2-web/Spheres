@@ -1,0 +1,74 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "in_kamal_sandesh_vol18_no03_20230201",
+  "source_url": "https://web.archive.org/web/20240807131117id_/https://www.bjp.org/files/kamal-sandesh-documents/KS_ENG_Feb%202023_1_Web.pdf",
+  "original_url": "https://www.bjp.org/files/kamal-sandesh-documents/KS_ENG_Feb%202023_1_Web.pdf",
+  "archive_capture_utc": "2024-08-07T13:11:17Z",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_pdf_text_layer_read_and_pages_rendered",
+  "source_response_bytes": 3893800,
+  "source_response_sha256": "86b4773c6eb826ddd38ce3668824f99a55c44849d2a61852be5513e4fdf5251a",
+  "source_response_checked_in": false,
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the original response, captured at 2024-08-07T13:11:17Z, before the cutoff; that form replays the archived bytes unchanged and is used in place of the live page or file. The recorded byte count and SHA-256 are of the body served with no Content-Encoding (curl with its default User-Agent and without --compressed, request header Accept-Encoding: identity), so the identity is the uncompressed body. The Part C check downloaded it at 00:49:12Z and 01:26:09Z on 28 September 2026, and this packet downloaded it at 02:18:25Z and 02:54:21Z on 28 September 2026, at least 30 minutes apart, each time with the same byte count and SHA-256. This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies, PDFs, images and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "The issue PDF of the party organ stored on www.bjp.org (files/kamal-sandesh-documents), recorded as a raw Internet Archive capture made before the cutoff; the printed issue gives the volume, number, fortnight and publication date, and it replaces the research's live WordPress API response for the same articles. 36 pages, text layer; PDF CreationDate 27 January 2023, recorded as a raw Internet Archive capture of 7 August 2024. Imported on the Part C check in place of the web post 25282, whose report it prints on page 8.",
+  "visual_review": {
+    "pdf_pages_one_based": [
+      1,
+      8
+    ],
+    "method": "Text layer read by this packet on the cited pages."
+  },
+  "rows": [
+    {
+      "claim_id": "in_ks_national_executive_extends_nadda_tenure_to_june_2024_20230117",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-09",
+      "role_id": "in_bjp_president",
+      "holder_name": "J. P. Nadda",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "term_extension",
+      "attested_on": "2023-01-17",
+      "text": "The issue reports: 'On the second day of the National Executive Meet on 17 January 2023, BJP National President Shri JP Nadda's tenure was extended unanimously till June 2024. Defence Minister Shri Rajnath Singh moved the resolution and the National Executive endorsed it unanimously'.",
+      "locator": {
+        "pdf_page": 8,
+        "printed_page": 8,
+        "item": "first paragraph"
+      }
+    },
+    {
+      "claim_id": "in_ks_amit_shah_announces_extension_20230117",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-09",
+      "role_id": "in_bjp_president",
+      "holder_name": "J. P. Nadda",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "extension_announcement",
+      "attested_on": "2023-01-17",
+      "text": "The report says Union Home and Cooperation Minister Shri Amit Shah announced the decision, 'Addressing the media on 17 January, 2023 outside the NDMC Convention Hall'.",
+      "locator": {
+        "pdf_page": 8,
+        "printed_page": 8,
+        "item": "first and second paragraphs"
+      }
+    },
+    {
+      "claim_id": "in_ks_nadda_took_charge_20200120_recalled",
+      "observation_id": "in_eci_20240323_np_03",
+      "review_observation": "BJP-PRES-09",
+      "role_id": "in_bjp_president",
+      "holder_name": "J. P. Nadda",
+      "role_title": "National President of the Bharatiya Janata Party",
+      "event_kind": "assumption_recalled_retrospective",
+      "attested_on": "2020-01-20",
+      "text": "The report recalls: 'Noteworthy, Shri JP Nadda took charge as the National President of BJP on January 20 2020'.",
+      "locator": {
+        "pdf_page": 8,
+        "printed_page": 8,
+        "item": "'Noteworthy' paragraph"
+      }
+    }
+  ],
+  "bounded_scope": "Party-office observations for CLAUDE-C01-27 only: the role in_bjp_president (National President of the Bharatiya Janata Party) on the Bharatiya Janata Party recognition observation in_eci_20240323_np_03. National Council and National Executive decisions, elections, nominations, declarations and endorsements, assumptions of charge, acting and working presidencies, extensions, handovers, resignations, farewells and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The Prime Minister, the President of India, ministers, parliamentary offices, the Indian National Congress President and every other office are excluded."
+}
