@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_humaid_received_20020212",
+  "source_url": "https://web.archive.org/web/20020221003944id_/http://www.spa.gov.sa:80/html/archive.asp?srcfile=495549&NDay=12/02/2002&Ryes=2&wcatg=63434",
+  "original_url": "http://www.spa.gov.sa:80/html/archive.asp?srcfile=495549&NDay=12/02/2002&Ryes=2&wcatg=63434",
+  "archive_capture_utc": "2002-02-21T00:39:44Z",
+  "source_title": "عام/ معالي رئيس مجلس الشورى/ استقبال (SPA item 0153 of 12 February 2002), old spa.gov.sa archive (Internet Archive capture 20020221003944)",
+  "accessed_date": "2026-09-27",
+  "published_date": "2002-02-12",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20020221003944id_/http://www.spa.gov.sa:80/html/archive.asp?srcfile=495549&NDay=12/02/2002&Ryes=2&wcatg=63434",
+  "source_response_bytes": 2723,
+  "source_response_sha256": "1b7e40468e2b282d02f7855d495e22390a7cffbc509b127a6e260557159bd147",
+  "source_response_encoding": "identity (served without Content-Encoding)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier (part A): downloaded on 2026-09-26 between 02:04 and 02:44 UTC and again 54 to 94 minutes later, identical; its independent check re-downloaded it at 03:37-03:43 UTC, identical. This packet: downloaded at 2026-09-27T23:47:53Z and again at 2026-09-28T00:30:35Z, 42 minutes later; both identical (2723 bytes, SHA-256 1b7e40468e2b282d02f7855d495e22390a7cffbc509b127a6e260557159bd147).",
+  "provenance_note": "Raw Internet Archive capture (id_) 20020221003944 of http://www.spa.gov.sa:80/html/archive.asp?srcfile=495549&NDay=12/02/2002&Ryes=2&wcatg=63434, made before the 7 September 2026 cutoff and fetched with curl (default User-Agent) and Accept-Encoding: identity. It was served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A server-generated SPA archive page, used through a fixed capture.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: archived HTML text read from the downloaded capture; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_spa_humaid_chair_received_20020212",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-03",
+      "role_id": "sa_shura_chair",
+      "holder_name": "Saleh bin Abdullah bin Humaid",
+      "printed_name": "صالح بن عبدالله بن حميد",
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "attestation",
+      "attested_on": "2002-02-12",
+      "text": "SPA, Riyadh 29 Dhu al-Qa'da 1422 / 12 February 2002: 'معالي رئيس مجلس الشورى الشيخ الدكتور صالح بن عبدالله بن حميد' received the Deputy President of the Board of Grievances, the President of the General Auditing Bureau, the President of the Control and Investigation Board and the head of the Riyadh Chamber of Commerce, who congratulated him on 'the royal trust in appointing him Chairman of the Shura Council'.",
+      "locator": "Item 0153, dateline and paragraphs 1-2 (filed 16:28)"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

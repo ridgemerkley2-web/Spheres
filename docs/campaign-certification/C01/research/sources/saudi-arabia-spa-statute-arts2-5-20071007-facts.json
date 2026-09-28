@@ -1,0 +1,60 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_statute_arts2_5_20071007",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/c6933762ab",
+  "original_url": "https://www.spa.gov.sa/c6933762ab",
+  "portal_metadata": {
+    "uuid": "c6933762ab",
+    "locale": "ar",
+    "published_at_utc": "2007-10-08T00:07:51Z",
+    "date_hijri_field": "1428-09-26"
+  },
+  "title_as_published": "عام/صدور أمر ملكي بإصدار اللائحة التنفيذية لنظام هيئة البيعة / نص اللائحة التنفيذية إضافة ثانية",
+  "source_title": "اللائحة التنفيذية لنظام هيئة البيعة، إضافة ثانية: executive regulations, Articles 2-5 (7 October 2007 release)",
+  "accessed_date": "2026-09-27",
+  "published_date": "2007-10-07",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/c6933762ab",
+  "source_response_bytes": 2777,
+  "source_response_sha256": "d470638aac267e874f9d963f29852841c6234ce9f40a9ca6c76c9b2707ebf387",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "f9df17606c1b53c0015b97972f8fa0b7a48fd942d2b93076792d874bd23efbbc",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "Dossier (part C): downloaded 2026-09-26T02:00:06Z and again at 02:31:15Z with a cache-busting query (Cloudflare MISS), identical; its independent check re-downloaded it in four runs between 02:44 and 03:02 UTC, identical. This packet: downloaded at 2026-09-27T23:51:50Z and again at 2026-09-28T00:35:26Z, 43 minutes later with a cache-busting query (Cloudflare MISS, served by the origin); both identical (2777 bytes, SHA-256 d470638aac267e874f9d963f29852841c6234ce9f40a9ca6c76c9b2707ebf387).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/c6933762ab loads, fetched with curl (default User-Agent, no cookies, Accept-Encoding: identity). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time, and repeated downloads, including cache-busting requests, were byte-identical. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Second addition of the 7 October 2007 release (filed 03:07 Makkah time on 8 October); no dateline of its own.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_allegiance_statute_art3_term",
+      "observation_id": "sa_succession_commission",
+      "review_observation": "SA-CHR-07",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "procedure",
+      "attested_on": null,
+      "text": "Regulation Article 3: without prejudice to Article 1 of the Law, membership lasts four years, not renewable, from the date set in the royal order appointing the member; exceptionally it may be renewed if the member's brothers agree, with the King's approval.",
+      "locator": "Executive regulations, Article 3"
+    },
+    {
+      "claim_id": "sa_allegiance_statute_art4_chair_committee",
+      "observation_id": "sa_succession_commission",
+      "review_observation": "SA-CHR-07",
+      "role_id": "sa_succession_chair",
+      "holder_name": null,
+      "role_title": "رئيس هيئة البيعة — Chairman of the Allegiance Commission",
+      "event_kind": "procedure",
+      "attested_on": null,
+      "text": "Regulation Article 4: a breach of membership duties is investigated by a committee of three members chosen by the Commission's chairman; removal needs two-thirds of the members and is referred to the King.",
+      "locator": "Executive regulations, Article 4"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

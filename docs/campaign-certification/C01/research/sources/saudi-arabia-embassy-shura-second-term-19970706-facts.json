@@ -1,0 +1,91 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_embassy_shura_second_term_19970706",
+  "source_url": "https://web.archive.org/web/19991004234358id_/http://www.saudiembassy.net:80/press_release/97_spa/97_07_2.html",
+  "original_url": "http://www.saudiembassy.net:80/press_release/97_spa/97_07_2.html",
+  "archive_capture_utc": "1999-10-04T23:43:58Z",
+  "source_title": "Week ending Friday, July 11 [1997]: King Fahd Announces Expansion of Shura Council (07/05/97); Shura Council Ends First Four-Year Term, Royal Decrees On Ministerial And Top-Level Appointments and Royal Decree On Appointments To Shura Council (07/06/97)",
+  "accessed_date": "2026-09-27",
+  "published_date": "1997-07-11",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/19991004234358id_/http://www.saudiembassy.net:80/press_release/97_spa/97_07_2.html",
+  "source_response_bytes": 24777,
+  "source_response_sha256": "0f41939977da960ee62121d097dd7f3924aecaddd1ce16059134e02eac93c271",
+  "source_response_encoding": "identity (served without Content-Encoding)",
+  "source_response_checked_in": false,
+  "stability_check": "Found by the independent check of part A, which downloaded it twice on 2026-09-26 UTC, the second time (04:36-04:38 UTC) at least 30 minutes after the first, identical. This packet: downloaded at 2026-09-27T23:48:10Z and again at 2026-09-28T00:30:55Z, 42 minutes later; both identical (24777 bytes, SHA-256 0f41939977da960ee62121d097dd7f3924aecaddd1ce16059134e02eac93c271).",
+  "provenance_note": "Raw Internet Archive capture (id_) 19991004234358 of http://www.saudiembassy.net:80/press_release/97_spa/97_07_2.html, made before the 7 September 2026 cutoff and fetched with curl (default User-Agent) and Accept-Encoding: identity. It was served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A news release of the Royal Embassy of Saudi Arabia in Washington (Information Office), filed on its site under press_release/97_spa/; an official Saudi government publication in English, not the Arabic original. A weekly page whose items are dated 5 to 11 July 1997; published_date is its last item. Located by the independent check of part A.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: archived HTML text read from the downloaded capture; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_shura_membership_90_a63_19970705",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-03",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "membership_change",
+      "attested_on": "1997-07-05",
+      "text": "Item dated July 5, 1997: King Fahd 'today issued royal decree number A/63' increasing the Consultative Council to ninety members in addition to the Chairman by amending Article 3; the decree recites 'the two royal decrees A/90 and A/91 dated 27/8/1412 H (March 1, 1992)'.",
+      "locator": "Item KING FAHD ANNOUNCES EXPANSION OF SHURA COUNCIL"
+    },
+    {
+      "claim_id": "sa_jubair_first_term_end_19970706",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-03",
+      "role_id": "sa_shura_chair",
+      "holder_name": "Muhammad bin Ibrahim bin Jubair",
+      "printed_name": "Muhammad Ibn Ibrahim Ibn Jubair",
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "attestation",
+      "attested_on": "1997-07-06",
+      "text": "Item dated July 6, 1997: King Fahd sent a letter to 'Chairman of the Shura Council Sheikh Muhammad Ibn Ibrahim Ibn Jubair' on the end of the Council's first term and the formation of the second, and the Chairman 'today presided over the final meeting of the fourth session of the first four-year term'.",
+      "locator": "Item SHURA COUNCIL ENDS FIRST FOUR-YEAR TERM"
+    },
+    {
+      "claim_id": "sa_jubair_extension_a90_19970706",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-03",
+      "role_id": "sa_shura_chair",
+      "holder_name": "Muhammad bin Ibrahim bin Jubair",
+      "printed_name": "Muhammad Ibn Jubair",
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "continuation",
+      "attested_on": "1997-07-06",
+      "text": "Item dated July 6, 1997: decree A/90 'extends for a period of four years, as from 3/3/1418 H (July 7, 1997)' the ministerial-level appointments of listed officials, including 'Sheikh Muhammad Ibn Jubair as Chairman of the Shura Council'.",
+      "locator": "Item ROYAL DECREES ON MINISTERIAL AND TOP-LEVEL APPOINTMENTS, decree A/90"
+    },
+    {
+      "claim_id": "sa_order_a72_second_term_19970706",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-03",
+      "role_id": "sa_shura_chair",
+      "holder_name": "Muhammad bin Ibrahim bin Jubair",
+      "printed_name": "Muhammad Ibn Ibrahim Ibn Uthman Ibn Jubair",
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "council_formation_naming_chair",
+      "attested_on": "1997-07-06",
+      "text": "Item dated July 6, 1997: King Fahd 'today issued royal decree number A/72 announcing, effective from 3/3/1418 H (July 7, 1997), the composition' of the Council with a Chairman and ninety members for a term of four years from the end of the current period of the Council; the list begins 'Sheikh Muhammad Ibn Ibrahim Ibn Uthman Ibn Jubair (Chairman of the Shura Council)'.",
+      "locator": "Item ROYAL DECREE ON APPOINTMENTS TO SHURA COUNCIL, opening sentence and first entry"
+    },
+    {
+      "claim_id": "sa_first_council_a16_cited_19930820",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-03",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "council_formation",
+      "attested_on": "1993-08-20",
+      "text": "The same A/72 item says the Council then ending had been 'formed by royal decree number A/16 dated 3/3/1414 H (August 20, 1993)'.",
+      "locator": "Item ROYAL DECREE ON APPOINTMENTS TO SHURA COUNCIL, opening sentence"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

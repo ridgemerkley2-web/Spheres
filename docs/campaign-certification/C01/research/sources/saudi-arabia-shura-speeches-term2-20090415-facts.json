@@ -1,0 +1,61 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_shura_speeches_term2_20090415",
+  "source_url": "https://web.archive.org/web/20090415050338id_/http://www.shura.gov.sa:80/wps/wcm/connect/ShuraArabic/internet/Royal+Speeches/2nd+Term+1st+Year,+1418+-+1419+A.H./",
+  "original_url": "http://www.shura.gov.sa:80/wps/wcm/connect/ShuraArabic/internet/Royal+Speeches/2nd+Term+1st+Year,+1418+-+1419+A.H./",
+  "archive_capture_utc": "2009-04-15T05:03:38Z",
+  "source_title": "الخطب الملكية: الدورة الثانية السنة الأولى 1418هـ-1419هـ (royal speeches, second term, first year), Shura Council portal (Internet Archive capture 20090415050338)",
+  "accessed_date": "2026-09-27",
+  "published_date": null,
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20090415050338id_/http://www.shura.gov.sa:80/wps/wcm/connect/ShuraArabic/internet/Royal+Speeches/2nd+Term+1st+Year,+1418+-+1419+A.H./",
+  "source_response_bytes": 32811,
+  "source_response_sha256": "c00d4dd0c0d838a329bd3d1f1a7b67aef895541f36c8b4072356b268e6c8e189",
+  "source_response_encoding": "identity (served without Content-Encoding)",
+  "source_response_checked_in": false,
+  "stability_check": "Dossier (part A): downloaded on 2026-09-26 between 02:04 and 02:44 UTC and again 54 to 94 minutes later, identical; its independent check re-downloaded it at 03:37-03:43 UTC, identical. This packet: downloaded at 2026-09-27T23:55:56Z and again at 2026-09-28T00:29:49Z, 33 minutes later; both identical (32811 bytes, SHA-256 c00d4dd0c0d838a329bd3d1f1a7b67aef895541f36c8b4072356b268e6c8e189).",
+  "provenance_note": "Raw Internet Archive capture (id_) 20090415050338 of http://www.shura.gov.sa:80/wps/wcm/connect/ShuraArabic/internet/Royal+Speeches/2nd+Term+1st+Year,+1418+-+1419+A.H./, made before the 7 September 2026 cutoff and fetched with curl (default User-Agent) and Accept-Encoding: identity. It was served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A 2009 publication by the Council of speeches from its second term, first year. It prints no day.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: archived HTML text read from the downloaded capture; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_jubair_speech_second_term_opening",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-02",
+      "role_id": "sa_shura_chair",
+      "holder_name": "Muhammad bin Ibrahim bin Jubair",
+      "printed_name": "محمد بن ابراهيم بن جبير",
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "retrospective_statement",
+      "attested_on": null,
+      "period": {
+        "from": "1997-05-08",
+        "through": "1999-04-16"
+      },
+      "text": "At the opening of the Council's second term King Fahd commends 'the Chairman of the Shura Council, his deputy and the Council's staff'; the page then prints the speech of 'the Chairman of the Shura Council Sheikh محمد بن ابراهيم بن جبير'.",
+      "locator": "King's speech (opening of الدورة الثانية), closing paragraphs; heading كلمة معالي رئيس مجلس الشورى الشيخ محمد بن ابراهيم بن جبير"
+    },
+    {
+      "claim_id": "sa_jubair_dates_first_term_opening_16_7_1414",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-02",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "council_inauguration",
+      "attested_on": null,
+      "period": {
+        "from": "1993-12-29",
+        "through": "1993-12-30"
+      },
+      "text": "In that speech the Chairman says the current council began with a historic opening under the King's patronage on 16 Rajab 1414 AH, held its first session four days later and formed eight committees, and he summarises its work up to 2/3/1418.",
+      "locator": "Chairman's speech, paragraph بدأت مسيرة المجلس الحالي بافتتاح تاريخي"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

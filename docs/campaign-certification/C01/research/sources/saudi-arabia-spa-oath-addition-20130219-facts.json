@@ -1,0 +1,48 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_oath_addition_20130219",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/c656945f06",
+  "original_url": "https://www.spa.gov.sa/c656945f06",
+  "portal_metadata": {
+    "uuid": "c656945f06",
+    "locale": "ar",
+    "published_at_utc": "2013-02-19T14:28:51Z",
+    "date_hijri_field": "1434-04-09"
+  },
+  "title_as_published": "عام / رئيس وأعضاء المجلس يتشرفون بأداء القسم أمام خادم الحرمين الشريفين ويتفضل رعاه الله بافتتاح أعمال السنة الأولى من الدورة السادسة للمجلس",
+  "source_title": "عام / رئيس وأعضاء المجلس يتشرفون بأداء القسم ... ويتفضل بافتتاح أعمال السنة الأولى من الدورة السادسة للمجلس (first addition, 19 February 2013)",
+  "accessed_date": "2026-09-27",
+  "published_date": "2013-02-19",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/c656945f06",
+  "source_response_bytes": 3612,
+  "source_response_sha256": "49813626e83895cd47ab63710ce99dcc85ad4f8c4799688905eb60815e6e8687",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "e1e58de2e3a673dbd0d3b2299d4c73c8188c59744f19ebbdeb3e66099e9be9bf",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "Found by the independent check of part B, which downloaded it three or four times on 2026-09-26 UTC (plain and cache-busting requests), the last at least 30 minutes after the first, identical. This packet: downloaded at 2026-09-27T23:51:14Z and again at 2026-09-28T00:34:34Z, 43 minutes later with a cache-busting query (Cloudflare MISS, served by the origin); both identical (3612 bytes, SHA-256 49813626e83895cd47ab63710ce99dcc85ad4f8c4799688905eb60815e6e8687).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/c656945f06 loads, fetched with curl (default User-Agent, no cookies, Accept-Encoding: identity). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time, and repeated downloads, including cache-busting requests, were byte-identical. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "First addition of the 19 February 2013 report; no dateline of its own. Located by the independent check of part B.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_sixth_term_opened_20130219",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-05",
+      "role_id": null,
+      "holder_name": null,
+      "role_title": null,
+      "event_kind": "council_term_opening",
+      "attested_on": "2013-02-19",
+      "text": "The first addition says the ceremony of the oath and of the opening of the first year of the Council's sixth term (افتتاح أعمال السنة الأولى من الدورة السادسة للمجلس) began with Quran recitation, and prints King Abdullah's address opening that year, the first term in which women take part.",
+      "locator": "Addition 1, paragraphs 1-4; trailer 17:28 Makkah time"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

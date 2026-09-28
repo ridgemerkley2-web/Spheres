@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_embassy_humaid_statement_20020207",
+  "source_url": "https://web.archive.org/web/20020619221611id_/http://saudiembassy.net:80/press_release/02-spa/02-07-shura2.htm",
+  "original_url": "http://saudiembassy.net:80/press_release/02-spa/02-07-shura2.htm",
+  "archive_capture_utc": "2002-06-19T22:16:11Z",
+  "source_title": "New Shura Council Chairman Issues Statement (February 7, 2002)",
+  "accessed_date": "2026-09-27",
+  "published_date": "2002-02-07",
+  "access_method": "internet_archive_raw_capture",
+  "source_response_url": "https://web.archive.org/web/20020619221611id_/http://saudiembassy.net:80/press_release/02-spa/02-07-shura2.htm",
+  "source_response_bytes": 1930,
+  "source_response_sha256": "86a11955bb33d7e5f7e8eb7eb14aef34486a5872df972d0cde79ef709e6d813f",
+  "source_response_encoding": "identity (served without Content-Encoding)",
+  "source_response_checked_in": false,
+  "stability_check": "Found by the independent check of part A, which downloaded it twice on 2026-09-26 UTC, the second time (04:36-04:38 UTC) at least 30 minutes after the first, identical. This packet: downloaded at 2026-09-27T23:56:48Z and again at 2026-09-28T00:32:00Z, 35 minutes later; both identical (1930 bytes, SHA-256 86a11955bb33d7e5f7e8eb7eb14aef34486a5872df972d0cde79ef709e6d813f).",
+  "provenance_note": "Raw Internet Archive capture (id_) 20020619221611 of http://saudiembassy.net:80/press_release/02-spa/02-07-shura2.htm, made before the 7 September 2026 cutoff and fetched with curl (default User-Agent) and Accept-Encoding: identity. It was served without Content-Encoding, so the recorded identity is the uncompressed body as replayed. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "A news release of the Royal Embassy of Saudi Arabia in Washington (Information Office), filed on its site under press_release/02-spa/; an official Saudi government publication in English, not the Arabic original. Located by the independent check of part A.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: archived HTML text read from the downloaded capture; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_humaid_statement_20020207",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-03",
+      "role_id": "sa_shura_chair",
+      "holder_name": "Saleh bin Abdullah bin Humaid",
+      "printed_name": "Saleh bin Abdullah bin Humaid",
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "attestation",
+      "attested_on": "2002-02-07",
+      "text": "Release dated February 7, 2002: 'Newly-appointed Chairman of the Consultative Council (Majlis Al-Shura) Dr. Saleh bin Abdullah bin Humaid issued a statement today' thanking the King and hoping the Council would continue on the path of 'his predecessor, the late Shaikh Muhammad bin Ibrahim bin Jubair'; he 'has been a member of the Shura Council for eight years'.",
+      "locator": "Paragraphs 1-2"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}

@@ -1,0 +1,49 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "sa_spa_order_a45_20130111",
+  "source_url": "https://portalapi.spa.gov.sa/api/v1/news/193b5adb44",
+  "original_url": "https://www.spa.gov.sa/193b5adb44",
+  "portal_metadata": {
+    "uuid": "193b5adb44",
+    "locale": "ar",
+    "published_at_utc": "2013-01-11T10:24:24Z",
+    "date_hijri_field": "1434-02-29"
+  },
+  "title_as_published": "عام / أمران ملكيان بتعديل مواد في نظام مجلس الشورى وتكوين المجلس لمدة أربع سنوات تبدأ من تاريخ انتهاء مدة المجلس الحالي إضافة ثانية",
+  "source_title": "Royal Order A/45 of 29/2/1434 AH constituting the Shura Council (second addition)",
+  "accessed_date": "2026-09-27",
+  "published_date": "2013-01-11",
+  "access_method": "spa_portal_news_api_json",
+  "source_response_url": "https://portalapi.spa.gov.sa/api/v1/news/193b5adb44",
+  "source_response_bytes": 3578,
+  "source_response_sha256": "749692cd10b0f47779cf303bdd05a3417ec9a66cf36136fe2624fc53d7baa023",
+  "source_response_encoding": "identity (application/json; charset=utf-8, uncompressed)",
+  "source_response_checked_in": false,
+  "article_content_sha256": "64c92bbc680a18439fe00bc913b63d09abfc8d4bc04e04d56cb61d33bf772f04",
+  "article_content_field": "data.content of the API JSON, encoded as UTF-8",
+  "stability_check": "Dossier (part B): four downloads on 2026-09-26 between 02:04 and 02:44 UTC, two of them with a cache-busting query served by the origin (Cloudflare MISS), identical; its independent check re-downloaded it at 02:50 UTC, identical. This packet: downloaded at 2026-09-27T23:50:10Z and again at 2026-09-28T00:33:06Z, 42 minutes later with a cache-busting query (Cloudflare MISS, served by the origin); both identical (3578 bytes, SHA-256 749692cd10b0f47779cf303bdd05a3417ec9a66cf36136fe2624fc53d7baa023).",
+  "provenance_note": "The SPA portal's news-detail API response that the public page https://www.spa.gov.sa/193b5adb44 loads, fetched with curl (default User-Agent, no cookies, Accept-Encoding: identity). Unlike the HTML page, which embeds a live views_count and per-request tokens, the JSON carries no view counter, session token or request time, and repeated downloads, including cache-busting requests, were byte-identical. article_content_sha256 is the SHA-256 of the UTF-8 data.content field. The original response is not checked into this repository; this checked-in file is a derived factual extract, and its own checksum is recorded separately in the packet.",
+  "rights_note": "Attributed factual observations only; short quotations and names as printed. No photographs, artwork, emblems, signatures or expressive source text are republished. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Second addition of the 11 January 2013 release; the member list ends in the eighth addition.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "facsimile_pages_one_based": [],
+    "method": "Not rendered: born-digital news text read from the JSON content fields; no scan, PDF or image reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "sa_alsheikh_named_a45_20130111",
+      "observation_id": "sa_shura",
+      "review_observation": "SA-CHR-05",
+      "role_id": "sa_shura_chair",
+      "holder_name": "Abdullah bin Mohammed bin Ibrahim Al Al-Sheikh",
+      "printed_name": "عبدالله بن محمد بن إبراهيم آل الشيخ",
+      "role_title": "رئيس مجلس الشورى — Chairman of the Shura Council",
+      "event_kind": "council_formation_naming_chair",
+      "attested_on": "2013-01-11",
+      "text": "Royal Order A/45 dated 29/2/1434 AH, issued by King Abdullah, constitutes the Shura Council of 'الرئيس معالي الشيخ الدكتور / عبدالله بن محمد بن إبراهيم آل الشيخ' and named members for four Hijri years beginning when the term of the current council, formed by A/15 of 19/2/1430 AH, ends.",
+      "locator": "Order number and date; recitals; item First; trailer 13:26 Makkah time"
+    }
+  ],
+  "bounded_scope": "Chair observations for CLAUDE-C01-25 only (sa_shura_chair and sa_succession_chair). Appointment orders, stated effective days, stated first days in office, oaths, council-formation orders, term starts and openings, acting presiding, deaths, translations, republications and in-office attestations stay separate rows; holder boundaries are decided in the packet, not by any row. The C01-06 king, crown-prince and prime-minister roles are outside this extract."
+}
