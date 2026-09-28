@@ -23,10 +23,10 @@ async function install(page){
     window.s22Inputs=[];window.s22CaptureInputs=false;
     document.addEventListener('click',event=>{
       if(!s22CaptureInputs||!event.isTrusted||!event.target.closest('#mapControls button'))return;
-      const button=event.target.closest('button'),row={key:button.dataset.mapFocus,start:performance.now(),event_timestamp:event.timeStamp};
+      const button=event.target.closest('button'),row={key:button.dataset.mapFocus,start:performance.now(),event_timestamp:event.timeStamp,before_camera:{...ui.cam}};
       requestAnimationFrame(()=>requestAnimationFrame(()=>{
         if(typeof GL!=='undefined'&&GL.gl&&!GL.gl.isContextLost())GL.gl.finish();
-        row.complete=performance.now();row.elapsed_ms=row.complete-row.event_timestamp;s22Inputs.push(row);
+        row.complete=performance.now();row.elapsed_ms=row.complete-row.event_timestamp;row.after_camera={...ui.cam};s22Inputs.push(row);
       }));
     },true);
   });
@@ -57,7 +57,19 @@ async function run(){
   fs.writeFileSync(path.join(out,'webgl-measurement.js'),probeBytes);evidence.probe_sha256=hash(probeBytes);
   const serverStart=performance.now(),server=cp.spawn(binary,['--port',String(port),'--no-open'],{cwd:serverRoot,windowsHide:true,stdio:['ignore','pipe','pipe']});
   const serverLog=fs.createWriteStream(path.join(out,'server.log'));server.stdout.pipe(serverLog);server.stderr.pipe(serverLog);
-  let browser,page,launchError;server.on('error',e=>{launchError=e;});
+  let browser,page,launchError,traceSession,traceActive=false;server.on('error',e=>{launchError=e;});
+  async function finishTrace(){
+    if(!traceActive)return;traceActive=false;
+    const completed=new Promise(resolve=>traceSession.once('Tracing.tracingComplete',resolve));await traceSession.send('Tracing.end');
+    const {stream}=await completed;assert(stream,'Chrome trace stream');
+    const file='chrome-trace.json.gz',output=fs.createWriteStream(path.join(out,file)),gzip=zlib.createGzip();gzip.pipe(output);
+    const closed=new Promise((resolve,reject)=>{output.on('finish',resolve);output.on('error',reject);gzip.on('error',reject);});
+    let rawBytes=0;
+    for(;;){const chunk=await traceSession.send('IO.read',{handle:stream,size:1048576}),data=Buffer.from(chunk.data,chunk.base64Encoded?'base64':'utf8');rawBytes+=data.length;
+      if(!gzip.write(data))await new Promise(resolve=>gzip.once('drain',resolve));if(chunk.eof)break;}
+    await traceSession.send('IO.close',{handle:stream});gzip.end();await closed;
+    evidence.trace={file,raw_bytes:rawBytes,compressed_bytes:fs.statSync(path.join(out,file)).size,sha256:hash(fs.readFileSync(path.join(out,file))),categories:'benchmark,cc,viz,gpu,blink.user_timing'};
+  }
   try{
     let ready=false;
     for(let i=0;i<600;i++){
@@ -68,6 +80,8 @@ async function run(){
     assert(ready);evidence.server_start_ready_ms=performance.now()-serverStart;
     browser=await chromium.launch({headless:true,channel:process.env.SPHERES_BROWSER_CHANNEL||'msedge'});evidence.browser=browser.version();
     page=await browser.newPage({viewport:{width:1920,height:1080},deviceScaleFactor:1,reducedMotion:'reduce',hasTouch:true});
+    traceSession=await page.context().newCDPSession(page);await traceSession.send('Performance.enable');
+    await traceSession.send('Tracing.start',{categories:'benchmark,cc,viz,gpu,blink.user_timing',transferMode:'ReturnAsStream'});traceActive=true;
     if(process.env.SPHERES_S22_RENDERERS==='1')await require('./s22-renderer-browser.cjs').install(page);else await install(page);
     page.on('pageerror',e=>evidence.errors.push(e.message));
     page.on('request',r=>{if(r.method()==='POST')evidence.requests.push({path:new URL(r.url()).pathname,body:r.postDataJSON()});});
@@ -101,7 +115,7 @@ async function run(){
     if(process.env.SPHERES_S22_RENDERERS==='1'){
       await require('./s22-renderer-browser.cjs')({page,tap,state,shot,evidence,expectedRevision:expected});
     }else{
-      const cdp=await page.context().newCDPSession(page);await cdp.send('Performance.enable');
+      const cdp=traceSession;
       async function memory(){return {metrics:await cdp.send('Performance.getMetrics'),dom:await cdp.send('Memory.getDOMCounters'),
         contexts:await page.evaluate(()=>s22Probes.map(p=>({connected:p.gl.canvas.isConnected,id:p.gl.canvas.id,buffer_payload:p.metrics.snapshot()})))};}
       evidence.gpu=await page.evaluate(()=>{const gl=GL.gl,e=gl.getExtension('WEBGL_debug_renderer_info');return {vendor:gl.getParameter(gl.VENDOR),renderer:gl.getParameter(gl.RENDERER),unmasked:e?gl.getParameter(e.UNMASKED_RENDERER_WEBGL):null};});
@@ -118,6 +132,7 @@ async function run(){
         await tap(`[data-map-preset="${detail}"]`);await page.keyboard.press('Escape');
         const cell={detail,viewport:page.viewportSize(),dpr:await page.evaluate(()=>devicePixelRatio),views:[]};evidence.cells.push(cell);
         for(const view of views){
+          await page.evaluate(name=>performance.mark('s22:view:'+name),detail+':'+view.name);
           const loadView=performance.now();
           await page.evaluate(v=>{GLOBE.lookAt(2.3522,48.8566,v.zoom);GLOBE.render();},view);
           if(detail==='standard'&&view.zoom>=12)await page.waitForFunction(()=>GLR?.surface?.ready&&!GLR.surface.loading,null,{timeout:120000});
@@ -160,7 +175,7 @@ async function run(){
           await tap(`[data-map-action="${actions[i%actions.length]}"]`);await page.waitForFunction(n=>s22Inputs.length===n,i+1);
         }
         cell.inputs=await page.evaluate(()=>{s22CaptureInputs=false;return s22Inputs;});cell.input_summary=summary(cell.inputs.map(i=>i.elapsed_ms));
-        cell.input_passed=cell.input_summary.p95<=200;cell.memory=await memory();
+        cell.input_passed=cell.input_summary.p95<=200&&cell.inputs.every(i=>JSON.stringify(i.before_camera)!==JSON.stringify(i.after_camera));cell.memory=await memory();
       }
       evidence.layout=[];
       for(const viewport of [{width:390,height:844},{width:3440,height:1440}]){
@@ -181,9 +196,10 @@ async function run(){
     assert.equal(hash(fs.readFileSync(checkpoint)),hash(bytes));assert.equal(hash(fs.readFileSync(binary)),evidence.binary_sha256);
     evidence.passed=process.env.SPHERES_S22_RENDERERS==='1'?evidence.renderer?.passed===true:
       evidence.cells.length===2&&evidence.cells.every(c=>c.views.length===4&&c.inputs.length===31&&c.input_passed&&c.views.every(v=>v.passed))&&evidence.layout.length===2&&evidence.layout.every(r=>r.passed);
+    await finishTrace();
     if(evidence.qualification)assert(evidence.passed,'Frozen browser performance/layout limits failed; raw evidence retained');
   }catch(error){evidence.failure=error.stack;if(page)try{await page.screenshot({path:path.join(out,'failure.png')});fs.writeFileSync(path.join(out,'failure.txt'),await page.locator('body').innerText());}catch{}throw error;}
-  finally{evidence.finished_utc=new Date().toISOString();fs.writeFileSync(path.join(out,'result.json'),JSON.stringify(evidence,null,2)+'\n');if(browser)await browser.close();if(server.exitCode===null)server.kill();serverLog.end();console.log(path.join(out,'result.json'));}
+  finally{if(traceActive)try{await finishTrace();}catch(error){evidence.trace_failure=String(error);evidence.passed=false;}evidence.finished_utc=new Date().toISOString();fs.writeFileSync(path.join(out,'result.json'),JSON.stringify(evidence,null,2)+'\n');if(browser)await browser.close();if(server.exitCode===null)server.kill();serverLog.end();console.log(path.join(out,'result.json'));}
 }
 if(require.main===module)run().catch(e=>{console.error(e);process.exitCode=1;});
 module.exports={install,summary};
