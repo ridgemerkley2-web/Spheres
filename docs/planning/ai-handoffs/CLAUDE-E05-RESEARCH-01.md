@@ -1,7 +1,8 @@
 # CLAUDE-E05-RESEARCH-01 — important-company research pilot
 
-Owner: Claude. State: **queued**. Parent: E05, **research preparation only**.
-Suggested branch: `claude/e05-research-01`.
+Owner: Claude. State: **claimed** (27 September 2026; in progress, not complete). Parent: E05, **research preparation only**.
+Branch: `claude/e05-research-01`. Base: `e41aa18d` (current `codex/campaign-certification`). Claim commit: this record's first commit on
+the branch. Touched paths: only the owned paths below. Next checkpoint: eight sourced dossiers, a readable catalog and the validator with tests, submitted `ready_for_review`.
 Follow the [expanded working contract](CLAUDE-EXPANDED-NEXT.md).
 
 ## Build
