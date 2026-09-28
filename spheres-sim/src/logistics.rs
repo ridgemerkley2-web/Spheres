@@ -551,6 +551,49 @@ fn terminal_company(w: &WorldState, e: &Edge) -> Option<(NationId, crate::sector
     }))
 }
 
+/// Static terminal assembly inputs for ONE clearing/posting pass. Neither
+/// caller changes ownership, access, calendar, installed facilities, assignment
+/// identity/order or roster identity/order while it holds ClearingRoutes.
+/// Receipts DO change company experience, so never retain its modifiers.
+#[derive(Clone)]
+struct TerminalAssemblyRead {
+    base_capacity: f64,
+    label: String,
+    company_index: Option<usize>,
+}
+
+impl TerminalAssemblyRead {
+    fn new(w: &WorldState, e: &Edge) -> Self {
+        debug_assert_eq!(e.kind, "terminal");
+        let net = network();
+        let (a, b) = (&net.nodes[net.index[&e.a]], &net.nodes[net.index[&e.b]]);
+        // Literal terminal branch of segment_capacity. Do not recover this
+        // base by dividing a previously rounded company-adjusted capacity.
+        let monthly = 45_000.0 * (1.0 + production::level(w,
+            if a.kind == "district" { &a.id } else { &b.id },
+            production::ProjectKind::FreightTerminal) as f64 * 0.25);
+        let label = format!("{} freight terminal", if a.kind == "district" { &a.name } else { &b.name });
+        let company_index = terminal_company(w, e).and_then(|(owner, target)| {
+            // Resolve through the public read once, preserving its first
+            // assignment, target-validity and first matching company rules,
+            // including malformed/duplicate saved IDs. The second lookup
+            // identifies that exact row; no mutation occurs between reads.
+            let id = crate::sector_contractors::modifiers(w, owner, &target).company_id?;
+            Some(w.sector_contractors.roster.iter().position(|company|
+                company.id == id && company.nation == owner && company.sector == target.sector())
+                .expect("modifier company must resolve to the same immutable roster row"))
+        });
+        Self { base_capacity: monthly * crate::clock::month_fraction(w), label, company_index }
+    }
+
+    fn capacity(&self, w: &WorldState) -> f64 {
+        let operator = self.company_index.map_or(1.0, |index|
+            w.sector_contractors.roster[index].modifiers().work_rate);
+        // Same left-associated monthly * fraction * live operator expression.
+        self.base_capacity * operator
+    }
+}
+
 /// MODEL handling basis: $10 per tonne at each contracted terminal. The
 /// contractor's quoted percentage is billed only when cargo actually moves.
 pub const COMPANY_HANDLING_BN_PER_TONNE: f64 = 0.00000001;
@@ -629,6 +672,9 @@ pub(crate) struct ClearingRoutes {
     /// One bounded slot per graph edge, filled only for non-terminal edges.
     /// Terminal company experience changes during dispatch and stays live.
     assembly_segments: Vec<Option<(f64, String)>>,
+    /// Bounded to visited terminal edges in this context only. Resolved roster
+    /// rows remain fixed, while Company::modifiers is read anew for live XP.
+    assembly_terminals: BTreeMap<usize, TerminalAssemblyRead>,
     /// One reusable membership bit per graph node. Clear only the preceding
     /// goal list; these are scratch inputs for the current immutable request.
     goal_membership: Vec<bool>,
@@ -776,6 +822,7 @@ impl ClearingRoutes {
         Self { access: Default::default(), trace: None, owned_nodes, effective_owners,
             military_operations: w.rules.military_operations,
             owner_access: vec![None; crate::nations::nation_count()], assembly_segments: vec![None; net.edges.len()],
+            assembly_terminals: BTreeMap::new(),
             goal_membership: vec![false; net.nodes.len()], current_goals: vec![],
             trees: BTreeMap::new(), tree_clock: 0,
             #[cfg(test)]
@@ -1025,8 +1072,13 @@ impl ClearingRoutes {
         let reuse_segments = true;
         #[cfg(test)]
         let reuse_segments = self.reuse_pure_plan_reads;
+        #[cfg(not(test))]
+        let reuse_terminals = true;
+        #[cfg(test)]
+        let reuse_terminals = !terminal_assembly_tests::ORIGINAL_TERMINAL_ASSEMBLY.with(|flag| flag.get());
         let result = if reuse_segments {
-            assemble_plan_with_segments(w, finish, &tree.prev, Some(&mut self.assembly_segments))
+            assemble_plan_with_reads(w, finish, &tree.prev, Some(&mut self.assembly_segments),
+                reuse_terminals.then_some(&mut self.assembly_terminals))
         } else { assemble_plan_with_segments(w, finish, &tree.prev, None) };
         if let (Some(trace), Some(started)) = (&mut self.trace, assembly_started) {
             trace.assembly += started.elapsed();
@@ -1178,8 +1230,14 @@ fn consider_cached_bottleneck(bottleneck: &mut (f64, String), candidate: &(f64, 
     }
 }
 
-fn assemble_plan_with_segments<P: PredecessorRead + ?Sized>(w: &WorldState, mut at: usize, prev: &P,
-    mut segments_read: Option<&mut [Option<(f64, String)>]>) -> Result<RoutePlan, String> {
+fn assemble_plan_with_segments<P: PredecessorRead + ?Sized>(w: &WorldState, at: usize, prev: &P,
+    segments_read: Option<&mut [Option<(f64, String)>]>) -> Result<RoutePlan, String> {
+    assemble_plan_with_reads(w, at, prev, segments_read, None)
+}
+
+fn assemble_plan_with_reads<P: PredecessorRead + ?Sized>(w: &WorldState, mut at: usize, prev: &P,
+    mut segments_read: Option<&mut [Option<(f64, String)>]>,
+    mut terminals_read: Option<&mut BTreeMap<usize, TerminalAssemblyRead>>) -> Result<RoutePlan, String> {
     let net = network();
     let mut ids = vec![at];
     let mut edge_ids = vec![];
@@ -1213,7 +1271,18 @@ fn assemble_plan_with_segments<P: PredecessorRead + ?Sized>(w: &WorldState, mut 
     let mut segments = if segments_read.is_some() { Vec::with_capacity(edge_ids.len()) } else { vec![] };
     for ei in edge_ids {
         let e = &net.edges[ei];
-        match segments_read.as_deref_mut() {
+        if let Some(read) = terminals_read.as_deref_mut().filter(|_| e.kind == "terminal") {
+            #[cfg(test)]
+            if read.contains_key(&ei) {
+                terminal_assembly_tests::REUSED_TERMINAL_ASSEMBLY.with(|count| count.set(count.get() + 1));
+            }
+            let terminal = read.entry(ei).or_insert_with(|| TerminalAssemblyRead::new(w, e));
+            let capacity = terminal.capacity(w);
+            // Preserve the original first strict minimum and its label. All
+            // company coefficients, including nonfinite values, use the live
+            // public Company's existing normalization on every read.
+            if capacity < bottleneck.0 { bottleneck = (capacity, terminal.label.clone()); }
+        } else { match segments_read.as_deref_mut() {
             Some(read) if e.kind != "terminal" => {
                 let candidate = read[ei].get_or_insert_with(|| segment_capacity(w, e));
                 consider_cached_bottleneck(&mut bottleneck, candidate);
@@ -1226,7 +1295,7 @@ fn assemble_plan_with_segments<P: PredecessorRead + ?Sized>(w: &WorldState, mut 
                     bottleneck = (cap, name)
                 }
             }
-        }
+        }}
         if let Some(c) = &e.chokepoint {
             chokes.insert(c.clone());
         }
@@ -1602,6 +1671,10 @@ fn dispatch_bundle_impl(w: &mut WorldState,
 #[cfg(test)]
 #[path = "logistics_contract_dispatch_tests.rs"]
 mod contract_dispatch_tests;
+
+#[cfg(test)]
+#[path = "logistics_terminal_assembly_tests.rs"]
+mod terminal_assembly_tests;
 
 fn route_segment_capacity(w: &WorldState, key: &str) -> Option<f64> {
     route_segment_capacity_with(w, key, None)
@@ -2597,6 +2670,8 @@ mod tests {
             assert_eq!(cached_routes.plan(&cached, seller, buyer), plan(&cached, seller, buyer));
             assert_eq!(cached_routes.plan(&cached, seller, buyer), original_routes.plan(&original, seller, buyer));
             assert!(cached_routes.assembly_segments.iter().enumerate().all(|(i, value)| value.is_none() || network().edges[i].kind != "terminal"));
+            assert!(!cached_routes.assembly_terminals.is_empty(), "real dispatch routes must populate terminal identity reads");
+            assert!(original_routes.assembly_terminals.is_empty(), "original route assembly stays fresh");
             assert!(original_routes.assembly_segments.iter().all(Option::is_none));
             assert_eq!(cached_routes.search_nodes_left, original_routes.search_nodes_left);
             assert_eq!(crate::save(&cached), crate::save(&original),
@@ -2616,6 +2691,7 @@ mod tests {
             assert_eq!(resumed.trees.len(), retained, "terminal work and construction do not invalidate pure paths");
             assert_eq!(resumed.capacities, cold.capacities);
             assert!(resumed.assembly_segments.iter().all(Option::is_none));
+            assert!(resumed.assembly_terminals.is_empty(), "terminal identity never survives the clearing in a route pool");
             for quantity in [-0.0, 0.125, 1e8, 1.0] {
                 assert_eq!(dispatch_in_clearing(&mut cached, seller, buyer, Commodity::Copper, quantity, &mut resumed),
                     dispatch_in_clearing(&mut original, seller, buyer, Commodity::Copper, quantity, &mut cold));
