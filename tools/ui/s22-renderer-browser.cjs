@@ -220,6 +220,7 @@ async function run({page,tap,state,shot,evidence,expectedRevision}) {
     await loseRestore('arsenal');await observe('s22-city-card-restored');await shot('s22-city-card-restored');
     // Repeated actual city cards must not retain canvases removed by room/map redraw.
     for(let visit=0;visit<6;visit++){
+      const visitStarted=performance.now();
       await findCity(visit%2?'Paris':'Delhi');await tap('[data-map-detail-focus="city-close"]');await settle();
       const row=await observe('s22-city-room-closed-'+visit);assert.equal(row.arsenal.mounted,0);assert.equal(row.arsenal.pending,0);
     }
@@ -238,9 +239,11 @@ async function run({page,tap,state,shot,evidence,expectedRevision}) {
       await page.locator('[data-model-canvas]').scrollIntoViewIfNeeded();
       await page.waitForFunction(()=>document.querySelector('[data-model-status]')?.textContent.includes('3D model ready'));
       await settle();const inspection=await observe('s22-aircraft-visit-'+visit);
-      const mesh=await page.evaluate(()=>({triangles:EquipmentMesh.build(EQUIP.draft).triangleCount,platform:EQUIP.draft.platform}));
+      const mesh=await page.evaluate(()=>({triangles:EquipmentMesh.build(EQUIP.draft).triangleCount,platform:EQUIP.draft.platform,spec:structuredClone(EQUIP.draft)}));
       assert.equal(mesh.platform,'air_fighter');assert(mesh.triangles>=100000&&mesh.triangles<=250000);record('s22-aircraft-mesh-'+visit,mesh);
       const current=inspection.contexts.filter(row=>row.type==='webgl'&&row.connected);assert.equal(current.length,1,'one live native inspection canvas');
+      assert(current[0].metrics.draw_calls>0,'Ready inspection must have submitted actual geometry');
+      proof.inspection_loads??=[];proof.inspection_loads.push({visit,elapsed_ms:performance.now()-visitStarted,kind:visit===0?'first native inspection visit':'repeat visit',method:'Visible room and family navigation to ready released fighter with actual GPU draw submissions; includes Playwright interaction/observation overhead, not compositor presentation time.'});
       if(visit===0){await measureFighterOrbit();await loseRestore('inspection');await shot('s22-aircraft-restored');}
       if(visit===5){await page.setViewportSize({width:390,height:844});await settle();
         assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await shot('s22-aircraft-390');await page.setViewportSize({width:1920,height:1080});}

@@ -57,7 +57,15 @@ async function run(){
   fs.writeFileSync(path.join(out,'webgl-measurement.js'),probeBytes);evidence.probe_sha256=hash(probeBytes);
   const serverStart=performance.now(),server=cp.spawn(binary,['--port',String(port),'--no-open'],{cwd:serverRoot,windowsHide:true,stdio:['ignore','pipe','pipe']});
   const serverLog=fs.createWriteStream(path.join(out,'server.log'));server.stdout.pipe(serverLog);server.stderr.pipe(serverLog);
-  let browser,page,launchError,traceSession,traceActive=false;server.on('error',e=>{launchError=e;});
+  let browser,page,launchError,traceSession,browserSession,traceActive=false;server.on('error',e=>{launchError=e;});
+  async function processMemory(){
+    const observed=await browserSession.send('SystemInfo.getProcessInfo'),ids=observed.processInfo.map(p=>p.id);
+    assert(ids.length&&ids.every(id=>Number.isSafeInteger(id)&&id>0));
+    const script='$s22Ids=@('+ids.join(',')+'); @(Get-Process -Id $s22Ids -ErrorAction SilentlyContinue | Select-Object Id,ProcessName,PrivateMemorySize64,WorkingSet64,PeakWorkingSet64) | ConvertTo-Json -Compress';
+    const counters=JSON.parse(cp.execFileSync('pwsh',['-NoProfile','-NonInteractive','-Command',script],{encoding:'utf8',windowsHide:true}));
+    return {captured_utc:new Date().toISOString(),browser_owned_processes:observed.processInfo,windows_counters:counters,
+      scope:'Snapshot OS private/working-set counters for this disposable browser process tree, including its GPU process. These are CPU-addressable process memory, not graphics-card VRAM. PeakWorkingSet64 is each observed process OS high water, not a sum of simultaneous peaks; transient exited children may be absent.'};
+  }
   async function finishTrace(){
     if(!traceActive)return;traceActive=false;
     const completed=new Promise(resolve=>traceSession.once('Tracing.tracingComplete',resolve));await traceSession.send('Tracing.end');
@@ -79,6 +87,7 @@ async function run(){
     }
     assert(ready);evidence.server_start_ready_ms=performance.now()-serverStart;
     browser=await chromium.launch({headless:true,channel:process.env.SPHERES_BROWSER_CHANNEL||'msedge'});evidence.browser=browser.version();
+    browserSession=await browser.newBrowserCDPSession();evidence.browser_launch={headless:true,channel:process.env.SPHERES_BROWSER_CHANNEL||'msedge',extra_flags:[]};
     page=await browser.newPage({viewport:{width:1920,height:1080},deviceScaleFactor:1,reducedMotion:'reduce',hasTouch:true});
     traceSession=await page.context().newCDPSession(page);await traceSession.send('Performance.enable');
     await traceSession.send('Tracing.start',{categories:'benchmark,cc,viz,gpu,blink.user_timing',transferMode:'ReturnAsStream'});traceActive=true;
@@ -112,6 +121,7 @@ async function run(){
       return hash(JSON.stringify(v));
     }
     evidence.before_save=await save('s22-before');
+    evidence.browser_process_memory_before=await processMemory();
     if(process.env.SPHERES_S22_RENDERERS==='1'){
       await require('./s22-renderer-browser.cjs')({page,tap,state,shot,evidence,expectedRevision:expected});
     }else{
@@ -190,6 +200,7 @@ async function run(){
     }
     for(const [panel,close] of [['#equipmentRoom','[data-equipment-close]'],['#guidanceDialog','#guidanceDialog [data-guidance-close]'],['#productionPanel','#productionClose'],['#cabinetDrawer','#cabinetDrawer [data-close-drawers]']])
       if(await page.locator(panel).isVisible())await tap(close);
+    evidence.browser_process_memory_after=await processMemory();
     evidence.after_save=await save('s22-after');assert.equal(evidence.after_save,evidence.before_save,'Complete saved campaign unchanged except wall-clock envelope timestamp');
     assert.equal((await state()).date,before.date);assert.deepEqual(evidence.errors,[]);
     assert(!evidence.requests.some(r=>['/api/advance','/api/command'].includes(r.path)),'Presentation measurement cannot settle or command the campaign');
