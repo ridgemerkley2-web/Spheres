@@ -1,0 +1,1017 @@
+{
+  "schema": "spheres-s22-raw-copy-restore/v1",
+  "status": "all_37_verified_before_removal",
+  "created_utc": "2026-09-28T08:06:59.0947156Z",
+  "base": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence",
+  "count": 37,
+  "raw_bytes": 2753814871,
+  "free_bytes_before": 8077037568,
+  "script_sha256": "a5ef022956c042df5c77f2804b6cf8c5fb7b40eddd5117bf6797eb91e808318c",
+  "entries": [
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2006-isolated-01\\input.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2006-isolated-01",
+      "kind": "native",
+      "slot": "input",
+      "bytes": 114060874,
+      "sha256": "7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T05:08:16.7583906Z",
+        "last_write_utc": "2026-09-28T05:07:52.3947441Z",
+        "last_access_utc": "2026-09-28T08:05:32.3849458Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2006-isolated-01\\runner-result.json",
+        "sha256": "db8286a655155f89a161f5bd1f1bef64b849a5f386a033d4112326e30cbff56a",
+        "completed_utc": "2026-09-28T05:09:35.3276209Z"
+      },
+      "restore": {
+        "method": "copy",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-2006-01-01.json",
+        "source_bytes": 114060874,
+        "source_sha256": "7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325",
+        "expanded_bytes": 114060874,
+        "expanded_sha256": "7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2006-loadfix-01\\input.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2006-loadfix-01",
+      "kind": "native",
+      "slot": "input",
+      "bytes": 114060874,
+      "sha256": "7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T05:20:49.9503066Z",
+        "last_write_utc": "2026-09-28T05:07:52.3947441Z",
+        "last_access_utc": "2026-09-28T08:05:32.7047930Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2006-loadfix-01\\runner-result.json",
+        "sha256": "485914eefa47ff0d879635a0346e3489282fdbbbad1ee60d367fcedd70cb77bb",
+        "completed_utc": "2026-09-28T05:22:02.7790234Z"
+      },
+      "restore": {
+        "method": "copy",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-2006-01-01.json",
+        "source_bytes": 114060874,
+        "source_sha256": "7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325",
+        "expanded_bytes": 114060874,
+        "expanded_sha256": "7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2006-ministry-isolated-01\\input.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2006-ministry-isolated-01",
+      "kind": "native",
+      "slot": "input",
+      "bytes": 114060874,
+      "sha256": "7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T06:04:02.8897268Z",
+        "last_write_utc": "2026-09-28T05:07:52.3947441Z",
+        "last_access_utc": "2026-09-28T08:05:33.0116772Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2006-ministry-isolated-01\\runner-result.json",
+        "sha256": "55b81d72fb682aa01f60e8d4d02197f5b763de8318f565a27d3fbb7e1d6aee91",
+        "completed_utc": "2026-09-28T06:04:57.3985347Z"
+      },
+      "restore": {
+        "method": "copy",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-2006-01-01.json",
+        "source_bytes": 114060874,
+        "source_sha256": "7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325",
+        "expanded_bytes": 114060874,
+        "expanded_sha256": "7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2006-stockfix-isolated-01\\input.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2006-stockfix-isolated-01",
+      "kind": "native",
+      "slot": "input",
+      "bytes": 114060874,
+      "sha256": "7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T05:52:44.1140001Z",
+        "last_write_utc": "2026-09-28T05:07:52.3947441Z",
+        "last_access_utc": "2026-09-28T08:05:33.3087435Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2006-stockfix-isolated-01\\runner-result.json",
+        "sha256": "55dd1a90e7196ab3e1858ab2cf1902ba2e12f4fe197486bb5b5673d29d3fc302",
+        "completed_utc": "2026-09-28T05:53:41.8581578Z"
+      },
+      "restore": {
+        "method": "copy",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-2006-01-01.json",
+        "source_bytes": 114060874,
+        "source_sha256": "7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325",
+        "expanded_bytes": 114060874,
+        "expanded_sha256": "7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-idle-import-isolated-01\\input.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-idle-import-isolated-01",
+      "kind": "native",
+      "slot": "input",
+      "bytes": 130222370,
+      "sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T07:24:28.9429778Z",
+        "last_write_utc": "2026-09-28T05:56:12.8225590Z",
+        "last_access_utc": "2026-09-28T08:05:33.6089980Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-idle-import-isolated-01\\runner-result.json",
+        "sha256": "39f9e97ac42266f0631b6932c05f3e602816cc893fd6b7f3f89bb7650909be8a",
+        "completed_utc": "2026-09-28T07:25:40.0181446Z"
+      },
+      "restore": {
+        "method": "copy",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\campaigns\\saves\\s22-2015-01-01.json",
+        "source_bytes": 130222370,
+        "source_sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+        "expanded_bytes": 130222370,
+        "expanded_sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-ministry-isolated-01\\input.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-ministry-isolated-01",
+      "kind": "native",
+      "slot": "input",
+      "bytes": 130222370,
+      "sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T06:05:20.0558874Z",
+        "last_write_utc": "2026-09-28T05:56:12.8225590Z",
+        "last_access_utc": "2026-09-28T08:05:33.9646777Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2015-ministry-isolated-01\\runner-result.json",
+        "sha256": "0e3b7bfea49b556ac763fd92ede92bdc34efd56ad138fd2d112cde1b84698cbc",
+        "completed_utc": "2026-09-28T06:06:36.9523423Z"
+      },
+      "restore": {
+        "method": "copy",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-02\\campaigns\\saves\\s22-2015-01-01.json",
+        "source_bytes": 130222370,
+        "source_sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11",
+        "expanded_bytes": 130222370,
+        "expanded_sha256": "e786ffb67a26c6ae28bd917d5d8dc26f857e441dd6a58d60adc1a1107937ca11"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2035-idle-import-isolated-01\\input.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2035-idle-import-isolated-01",
+      "kind": "native",
+      "slot": "input",
+      "bytes": 145134799,
+      "sha256": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T07:26:01.9012968Z",
+        "last_write_utc": "2026-09-28T06:52:49.9364930Z",
+        "last_access_utc": "2026-09-28T08:05:34.3145068Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-2035-idle-import-isolated-01\\runner-result.json",
+        "sha256": "dfeb81a9f3c2509e928d3cbce506e5bfbffbae60eaaf29b637d70f7deff5ed5b",
+        "completed_utc": "2026-09-28T07:28:07.1324088Z"
+      },
+      "restore": {
+        "method": "copy",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-03\\campaigns\\saves\\s22-2035-11-30.json",
+        "source_bytes": 145134799,
+        "source_sha256": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb",
+        "expanded_bytes": 145134799,
+        "expanded_sha256": "67aadca2f55280abc0e4ad97944a654ec7d173ffb65cb7d71dd59090e10503cb"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-early-01\\input.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-early-01",
+      "kind": "native",
+      "slot": "input",
+      "bytes": 63066434,
+      "sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T04:57:44.6889435Z",
+        "last_write_utc": "2026-09-28T04:50:34.0930563Z",
+        "last_access_utc": "2026-09-28T08:05:34.6189664Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-early-01\\runner-result.json",
+        "sha256": "12b511205d07128a61dc2909a70a25217b821c4649cb154c5eda505dc6c875dd",
+        "completed_utc": "2026-09-28T04:58:22.6256828Z"
+      },
+      "restore": {
+        "method": "copy",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-adopted-input.json",
+        "source_bytes": 63066434,
+        "source_sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+        "expanded_bytes": 63066434,
+        "expanded_sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-early-isolated-01\\input.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-early-isolated-01",
+      "kind": "native",
+      "slot": "input",
+      "bytes": 63066434,
+      "sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T05:01:57.9338320Z",
+        "last_write_utc": "2026-09-28T04:50:34.0930563Z",
+        "last_access_utc": "2026-09-28T08:05:34.7980489Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-native-preflight-early-isolated-01\\runner-result.json",
+        "sha256": "416f86c06a31403870391a0d25536098ecd4effe2037b1f713c2f7c1d51233a6",
+        "completed_utc": "2026-09-28T05:02:28.380041Z"
+      },
+      "restore": {
+        "method": "copy",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-adopted-input.json",
+        "source_bytes": 63066434,
+        "source_sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+        "expanded_bytes": 63066434,
+        "expanded_sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-06mwgM\\server\\saves\\s22-input.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-06mwgM",
+      "kind": "browser",
+      "slot": "s22-input",
+      "bytes": 63066434,
+      "sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T06:20:03.6748491Z",
+        "last_write_utc": "2026-09-28T06:20:03.7309359Z",
+        "last_access_utc": "2026-09-28T08:05:35.2095500Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-06mwgM\\result.json",
+        "sha256": "556c7012552ca951f836261ca9d974a9479c08da8d2c2e0055db0aac2f89de75",
+        "completed_utc": "2026-09-28T06:20:17.296Z"
+      },
+      "restore": {
+        "method": "copy",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-adopted-input.json",
+        "source_bytes": 63066434,
+        "source_sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+        "expanded_bytes": 63066434,
+        "expanded_sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-06mwgM\\server\\saves\\s22-before.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-06mwgM",
+      "kind": "browser",
+      "slot": "s22-before",
+      "bytes": 63066434,
+      "sha256": "1d41867693c32504e75828cecfa87f2a94765bfad749b107d353db1e923191f2",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T06:20:09.7256095Z",
+        "last_write_utc": "2026-09-28T06:20:09.7765198Z",
+        "last_access_utc": "2026-09-28T08:05:35.6450828Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-06mwgM\\result.json",
+        "sha256": "556c7012552ca951f836261ca9d974a9479c08da8d2c2e0055db0aac2f89de75",
+        "completed_utc": "2026-09-28T06:20:17.296Z"
+      },
+      "restore": {
+        "method": "gunzip",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-06mwgM\\s22-before.json.gz",
+        "source_bytes": 15339016,
+        "source_sha256": "8501532d34fedeb63b577a44d8c57d68ded61287b92c41191a7f5fca09db6b28",
+        "expanded_bytes": 63066434,
+        "expanded_sha256": "1d41867693c32504e75828cecfa87f2a94765bfad749b107d353db1e923191f2"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\server\\saves\\s22-input.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58",
+      "kind": "browser",
+      "slot": "s22-input",
+      "bytes": 63066434,
+      "sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T06:24:18.4500930Z",
+        "last_write_utc": "2026-09-28T06:24:18.4944160Z",
+        "last_access_utc": "2026-09-28T08:05:36.5439794Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\result.json",
+        "sha256": "3cd10e75e5e58751a8b6df47207c22cc75620d9819c6556a2dc5d58f23a6396c",
+        "completed_utc": "2026-09-28T06:25:12.252Z"
+      },
+      "restore": {
+        "method": "copy",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-adopted-input.json",
+        "source_bytes": 63066434,
+        "source_sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+        "expanded_bytes": 63066434,
+        "expanded_sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\server\\saves\\s22-before.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58",
+      "kind": "browser",
+      "slot": "s22-before",
+      "bytes": 63066434,
+      "sha256": "73c347cf716c1f75ebf77ec3cedbee8a65add092aa9e925a190647d05bd8c9c9",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T06:24:23.8742693Z",
+        "last_write_utc": "2026-09-28T06:24:23.9103600Z",
+        "last_access_utc": "2026-09-28T08:05:37.1692495Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\result.json",
+        "sha256": "3cd10e75e5e58751a8b6df47207c22cc75620d9819c6556a2dc5d58f23a6396c",
+        "completed_utc": "2026-09-28T06:25:12.252Z"
+      },
+      "restore": {
+        "method": "gunzip",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-3FEH58\\s22-before.json.gz",
+        "source_bytes": 15339016,
+        "source_sha256": "5c9834ff3aed708e1c8744c16a2fcad24a78ecb7a89fa727e1a9b1cac9098322",
+        "expanded_bytes": 63066434,
+        "expanded_sha256": "73c347cf716c1f75ebf77ec3cedbee8a65add092aa9e925a190647d05bd8c9c9"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\server\\saves\\s22-input.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW",
+      "kind": "browser",
+      "slot": "s22-input",
+      "bytes": 63066434,
+      "sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T06:38:14.0923548Z",
+        "last_write_utc": "2026-09-28T06:38:14.1223121Z",
+        "last_access_utc": "2026-09-28T08:05:37.9792104Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\result.json",
+        "sha256": "87a6c8ca990173fecd44279f5a72a0dfd94c34f48d1e976f5f405736e6314110",
+        "completed_utc": "2026-09-28T06:39:19.202Z"
+      },
+      "restore": {
+        "method": "copy",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-adopted-input.json",
+        "source_bytes": 63066434,
+        "source_sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+        "expanded_bytes": 63066434,
+        "expanded_sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\server\\saves\\s22-before.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW",
+      "kind": "browser",
+      "slot": "s22-before",
+      "bytes": 63066434,
+      "sha256": "3fdec6d88e6d3bb3b0654989350e547bf91fc5f02a6adfc360cb64942b840989",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T06:38:20.0986806Z",
+        "last_write_utc": "2026-09-28T06:38:20.1440417Z",
+        "last_access_utc": "2026-09-28T08:05:38.8293087Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\result.json",
+        "sha256": "87a6c8ca990173fecd44279f5a72a0dfd94c34f48d1e976f5f405736e6314110",
+        "completed_utc": "2026-09-28T06:39:19.202Z"
+      },
+      "restore": {
+        "method": "gunzip",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-before.json.gz",
+        "source_bytes": 15339016,
+        "source_sha256": "f9bde323b831a56ffc509f8eaf8d65bba7e50d5cf9a87af4befc8064ad0880ab",
+        "expanded_bytes": 63066434,
+        "expanded_sha256": "3fdec6d88e6d3bb3b0654989350e547bf91fc5f02a6adfc360cb64942b840989"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\server\\saves\\s22-after.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW",
+      "kind": "browser",
+      "slot": "s22-after",
+      "bytes": 63066434,
+      "sha256": "7576d3ad83ee5709febc6320246ad2487fbe3f473c0bb97b8556ef4af311ee34",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T06:39:00.0283883Z",
+        "last_write_utc": "2026-09-28T06:39:00.0784524Z",
+        "last_access_utc": "2026-09-28T08:05:39.7078261Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\result.json",
+        "sha256": "87a6c8ca990173fecd44279f5a72a0dfd94c34f48d1e976f5f405736e6314110",
+        "completed_utc": "2026-09-28T06:39:19.202Z"
+      },
+      "restore": {
+        "method": "gunzip",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-guards-preflight\\browser-LP4hVW\\s22-after.json.gz",
+        "source_bytes": 15339016,
+        "source_sha256": "62204460a5f31378dcd48209fa46abccfec869997f3a29b3c3cee1b90690356e",
+        "expanded_bytes": 63066434,
+        "expanded_sha256": "7576d3ad83ee5709febc6320246ad2487fbe3f473c0bb97b8556ef4af311ee34"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\server\\saves\\s22-input.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7",
+      "kind": "browser",
+      "slot": "s22-input",
+      "bytes": 63066434,
+      "sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T06:40:01.4203166Z",
+        "last_write_utc": "2026-09-28T06:40:01.4672831Z",
+        "last_access_utc": "2026-09-28T08:05:40.0039102Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\result.json",
+        "sha256": "453e51a0694a2e80ea8b755254f709816fce2f606ebfa63249607ece14118a7d",
+        "completed_utc": "2026-09-28T06:43:27.743Z"
+      },
+      "restore": {
+        "method": "copy",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-adopted-input.json",
+        "source_bytes": 63066434,
+        "source_sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+        "expanded_bytes": 63066434,
+        "expanded_sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\server\\saves\\s22-before.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7",
+      "kind": "browser",
+      "slot": "s22-before",
+      "bytes": 63066434,
+      "sha256": "e7f194ecc69d3f5997b59f6a6ac825f0850df51bddcea285538543bdb2404fbe",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T06:40:06.8675041Z",
+        "last_write_utc": "2026-09-28T06:40:06.9175181Z",
+        "last_access_utc": "2026-09-28T08:05:40.2792833Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\result.json",
+        "sha256": "453e51a0694a2e80ea8b755254f709816fce2f606ebfa63249607ece14118a7d",
+        "completed_utc": "2026-09-28T06:43:27.743Z"
+      },
+      "restore": {
+        "method": "gunzip",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\s22-before.json.gz",
+        "source_bytes": 15339016,
+        "source_sha256": "e9fbe187262cc1da9c35612386b9e6ad0c85fc1297b9585fa82581e77d28bfaa",
+        "expanded_bytes": 63066434,
+        "expanded_sha256": "e7f194ecc69d3f5997b59f6a6ac825f0850df51bddcea285538543bdb2404fbe"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\server\\saves\\s22-after.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7",
+      "kind": "browser",
+      "slot": "s22-after",
+      "bytes": 63066434,
+      "sha256": "4a58c8dbc56b4ac1a1c9d91a42b2e6c12b37838350ea01721b5c808a008edab5",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T06:42:25.7031603Z",
+        "last_write_utc": "2026-09-28T06:42:25.7451581Z",
+        "last_access_utc": "2026-09-28T08:05:40.5751157Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\result.json",
+        "sha256": "453e51a0694a2e80ea8b755254f709816fce2f606ebfa63249607ece14118a7d",
+        "completed_utc": "2026-09-28T06:43:27.743Z"
+      },
+      "restore": {
+        "method": "gunzip",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-guards-preflight\\browser-Mm2QB7\\s22-after.json.gz",
+        "source_bytes": 15339016,
+        "source_sha256": "028eeaa1ebaeb337ff53034ad227a437609d8a1c9955f95e2d66670857509fb5",
+        "expanded_bytes": 63066434,
+        "expanded_sha256": "4a58c8dbc56b4ac1a1c9d91a42b2e6c12b37838350ea01721b5c808a008edab5"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-roundtrip-preflight\\browser-3VKqAe\\server\\saves\\s22-input.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-roundtrip-preflight\\browser-3VKqAe",
+      "kind": "browser",
+      "slot": "s22-input",
+      "bytes": 63066434,
+      "sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T06:54:11.8757466Z",
+        "last_write_utc": "2026-09-28T06:54:11.9071742Z",
+        "last_access_utc": "2026-09-28T08:05:40.8709605Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-roundtrip-preflight\\browser-3VKqAe\\result.json",
+        "sha256": "74d2c5ea71d0297543ed8ab8e5eb7647083c0d1f9a7b9a7db3b3b6fa77138ff4",
+        "completed_utc": "2026-09-28T06:57:31.416Z"
+      },
+      "restore": {
+        "method": "copy",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-adopted-input.json",
+        "source_bytes": 63066434,
+        "source_sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+        "expanded_bytes": 63066434,
+        "expanded_sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-roundtrip-preflight\\browser-3VKqAe\\server\\saves\\s22-before.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-roundtrip-preflight\\browser-3VKqAe",
+      "kind": "browser",
+      "slot": "s22-before",
+      "bytes": 63066434,
+      "sha256": "b5659f7155a447269fb826d13561abba61b348128bdb2fdc8be6e42e5ecb7acc",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T06:54:17.3964356Z",
+        "last_write_utc": "2026-09-28T06:54:17.4362435Z",
+        "last_access_utc": "2026-09-28T08:05:41.1638114Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-roundtrip-preflight\\browser-3VKqAe\\result.json",
+        "sha256": "74d2c5ea71d0297543ed8ab8e5eb7647083c0d1f9a7b9a7db3b3b6fa77138ff4",
+        "completed_utc": "2026-09-28T06:57:31.416Z"
+      },
+      "restore": {
+        "method": "gunzip",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-roundtrip-preflight\\browser-3VKqAe\\s22-before.json.gz",
+        "source_bytes": 15339016,
+        "source_sha256": "8c8f3fa75ee8dc84da04f57748699f86a8f82c17fbba2afadc69318f99e43efd",
+        "expanded_bytes": 63066434,
+        "expanded_sha256": "b5659f7155a447269fb826d13561abba61b348128bdb2fdc8be6e42e5ecb7acc"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-roundtrip-preflight\\browser-3VKqAe\\server\\saves\\s22-after.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-roundtrip-preflight\\browser-3VKqAe",
+      "kind": "browser",
+      "slot": "s22-after",
+      "bytes": 63066434,
+      "sha256": "cc58ca05244687ff5429612a3eaa629c93c92825c5c1897adc70d4a46ce617fe",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T06:56:34.0276219Z",
+        "last_write_utc": "2026-09-28T06:56:34.0626356Z",
+        "last_access_utc": "2026-09-28T08:05:41.4275793Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-roundtrip-preflight\\browser-3VKqAe\\result.json",
+        "sha256": "74d2c5ea71d0297543ed8ab8e5eb7647083c0d1f9a7b9a7db3b3b6fa77138ff4",
+        "completed_utc": "2026-09-28T06:57:31.416Z"
+      },
+      "restore": {
+        "method": "gunzip",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-roundtrip-preflight\\browser-3VKqAe\\s22-after.json.gz",
+        "source_bytes": 15339016,
+        "source_sha256": "1e1d341a4474ab58cf66a74080e195137c1c0c82c111647eeb5c6e9f72e45a03",
+        "expanded_bytes": 63066434,
+        "expanded_sha256": "cc58ca05244687ff5429612a3eaa629c93c92825c5c1897adc70d4a46ce617fe"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-roundtrip-preflight\\browser-BaJ828\\server\\saves\\s22-input.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-roundtrip-preflight\\browser-BaJ828",
+      "kind": "browser",
+      "slot": "s22-input",
+      "bytes": 63066434,
+      "sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T06:51:38.1241078Z",
+        "last_write_utc": "2026-09-28T06:51:38.1582097Z",
+        "last_access_utc": "2026-09-28T08:05:41.6493672Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-map-roundtrip-preflight\\browser-BaJ828\\result.json",
+        "sha256": "a7fd792d86ba4332bcec2f191c5c8894a325acaf63464fe97b4c8fca22077970",
+        "completed_utc": "2026-09-28T06:51:40.269Z"
+      },
+      "restore": {
+        "method": "copy",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-adopted-input.json",
+        "source_bytes": 63066434,
+        "source_sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+        "expanded_bytes": 63066434,
+        "expanded_sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-3Svnul\\server\\saves\\s22-input.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-3Svnul",
+      "kind": "browser",
+      "slot": "s22-input",
+      "bytes": 63066434,
+      "sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T05:04:22.6441759Z",
+        "last_write_utc": "2026-09-28T05:04:22.6937288Z",
+        "last_access_utc": "2026-09-28T08:05:41.9170219Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-3Svnul\\result.json",
+        "sha256": "e003e610821e720c23ad69d34c0072f8a7cbb0bb4a372b4c7498b85f77b0620b",
+        "completed_utc": "2026-09-28T05:07:41.649Z"
+      },
+      "restore": {
+        "method": "copy",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-adopted-input.json",
+        "source_bytes": 63066434,
+        "source_sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+        "expanded_bytes": 63066434,
+        "expanded_sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-3Svnul\\server\\saves\\s22-before.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-3Svnul",
+      "kind": "browser",
+      "slot": "s22-before",
+      "bytes": 63066434,
+      "sha256": "b65bec9cf8c45424e087a3e89a5b5507648bbf3b58b92bb9330cacbc69707c52",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T05:04:28.7224918Z",
+        "last_write_utc": "2026-09-28T05:04:28.7531003Z",
+        "last_access_utc": "2026-09-28T08:05:42.1594064Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-3Svnul\\result.json",
+        "sha256": "e003e610821e720c23ad69d34c0072f8a7cbb0bb4a372b4c7498b85f77b0620b",
+        "completed_utc": "2026-09-28T05:07:41.649Z"
+      },
+      "restore": {
+        "method": "gunzip",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-3Svnul\\s22-before.json.gz",
+        "source_bytes": 15339016,
+        "source_sha256": "18afbc6ec638190237794249357368f9f012f32cd19d104fe21d3cdc749f1fba",
+        "expanded_bytes": 63066434,
+        "expanded_sha256": "b65bec9cf8c45424e087a3e89a5b5507648bbf3b58b92bb9330cacbc69707c52"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-3Svnul\\server\\saves\\s22-after.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-3Svnul",
+      "kind": "browser",
+      "slot": "s22-after",
+      "bytes": 63066434,
+      "sha256": "4f41ca8fac6c71d36f3219e22296e48e3b65ec888027142a50e1228bed86fafb",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T05:06:42.3605461Z",
+        "last_write_utc": "2026-09-28T05:06:42.3912935Z",
+        "last_access_utc": "2026-09-28T08:05:42.4194281Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-3Svnul\\result.json",
+        "sha256": "e003e610821e720c23ad69d34c0072f8a7cbb0bb4a372b4c7498b85f77b0620b",
+        "completed_utc": "2026-09-28T05:07:41.649Z"
+      },
+      "restore": {
+        "method": "gunzip",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-3Svnul\\s22-after.json.gz",
+        "source_bytes": 15339016,
+        "source_sha256": "a48d9dac49fe8b2b2e4e80956d4e2418327f0eaff80332b78d1910b6dc1db35d",
+        "expanded_bytes": 63066434,
+        "expanded_sha256": "4f41ca8fac6c71d36f3219e22296e48e3b65ec888027142a50e1228bed86fafb"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-ebQ8t2\\server\\saves\\s22-input.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-ebQ8t2",
+      "kind": "browser",
+      "slot": "s22-input",
+      "bytes": 63066434,
+      "sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T05:34:23.3472179Z",
+        "last_write_utc": "2026-09-28T05:34:23.4073551Z",
+        "last_access_utc": "2026-09-28T08:05:43.0394842Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-ebQ8t2\\result.json",
+        "sha256": "f2a67691a7f5b82d76d423e6781f9961ba6ac6a0d7b571f94f1f6f266d125bb1",
+        "completed_utc": "2026-09-28T05:35:22.514Z"
+      },
+      "restore": {
+        "method": "copy",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-adopted-input.json",
+        "source_bytes": 63066434,
+        "source_sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27",
+        "expanded_bytes": 63066434,
+        "expanded_sha256": "fc094d539a52273a7861f942bbd04fb6ddfa42effacbf21edf1632a5fab24f27"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-ebQ8t2\\server\\saves\\s22-before.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-ebQ8t2",
+      "kind": "browser",
+      "slot": "s22-before",
+      "bytes": 63066434,
+      "sha256": "83c4f6852a53db8dd424e2786106815144423203eea64632170af6a814dcd937",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T05:34:28.6753128Z",
+        "last_write_utc": "2026-09-28T05:34:28.7076861Z",
+        "last_access_utc": "2026-09-28T08:05:43.6295161Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-ebQ8t2\\result.json",
+        "sha256": "f2a67691a7f5b82d76d423e6781f9961ba6ac6a0d7b571f94f1f6f266d125bb1",
+        "completed_utc": "2026-09-28T05:35:22.514Z"
+      },
+      "restore": {
+        "method": "gunzip",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-ebQ8t2\\s22-before.json.gz",
+        "source_bytes": 15339016,
+        "source_sha256": "e92d4fcccbce63dcd75fefc2c1372c474f8e48f8727c7bcf89ca14fa8ad254d6",
+        "expanded_bytes": 63066434,
+        "expanded_sha256": "83c4f6852a53db8dd424e2786106815144423203eea64632170af6a814dcd937"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-ebQ8t2\\server\\saves\\s22-after.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-ebQ8t2",
+      "kind": "browser",
+      "slot": "s22-after",
+      "bytes": 63066434,
+      "sha256": "a43c5bea055759254837013f6a50a9afc0054acfe66aef6982a31a9f2ae7b352",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T05:35:04.4495718Z",
+        "last_write_utc": "2026-09-28T05:35:04.4850188Z",
+        "last_access_utc": "2026-09-28T08:05:44.2553981Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-ebQ8t2\\result.json",
+        "sha256": "f2a67691a7f5b82d76d423e6781f9961ba6ac6a0d7b571f94f1f6f266d125bb1",
+        "completed_utc": "2026-09-28T05:35:22.514Z"
+      },
+      "restore": {
+        "method": "gunzip",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-ebQ8t2\\s22-after.json.gz",
+        "source_bytes": 15339016,
+        "source_sha256": "55fc8779966d87823c921ddc38524d79f92b1d5906c5e2dba8ccfa9c916c6a55",
+        "expanded_bytes": 63066434,
+        "expanded_sha256": "a43c5bea055759254837013f6a50a9afc0054acfe66aef6982a31a9f2ae7b352"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-18KktL\\server\\saves\\s22-input.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-18KktL",
+      "kind": "browser",
+      "slot": "s22-input",
+      "bytes": 63066286,
+      "sha256": "1af599ec1568a5b2148354de25cb800780d8ce69d352664f0a944242fac5ca8c",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T04:47:17.5513711Z",
+        "last_write_utc": "2026-09-28T04:47:17.5914115Z",
+        "last_access_utc": "2026-09-28T08:05:44.4791904Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-18KktL\\result.json",
+        "sha256": "4fa7c38a27eafb22771fa09f5ad6aa1a28c23a45ad2dda491ac7edfe2ae2b2e3",
+        "completed_utc": "2026-09-28T04:48:00.536Z"
+      },
+      "restore": {
+        "method": "copy",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s19-flight-funded-recovery\\france-t9dIxt\\server\\saves\\s19-flight-qualified.json",
+        "source_bytes": 63066286,
+        "source_sha256": "1af599ec1568a5b2148354de25cb800780d8ce69d352664f0a944242fac5ca8c",
+        "expanded_bytes": 63066286,
+        "expanded_sha256": "1af599ec1568a5b2148354de25cb800780d8ce69d352664f0a944242fac5ca8c"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-18KktL\\server\\saves\\s22-before.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-18KktL",
+      "kind": "browser",
+      "slot": "s22-before",
+      "bytes": 63066286,
+      "sha256": "a83a03f839fcd451a0ff09921274516e72d9b451c94698e9ebca95256016b061",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T04:47:25.1017570Z",
+        "last_write_utc": "2026-09-28T04:47:25.1529786Z",
+        "last_access_utc": "2026-09-28T08:05:44.6596961Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-18KktL\\result.json",
+        "sha256": "4fa7c38a27eafb22771fa09f5ad6aa1a28c23a45ad2dda491ac7edfe2ae2b2e3",
+        "completed_utc": "2026-09-28T04:48:00.536Z"
+      },
+      "restore": {
+        "method": "gunzip",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-18KktL\\s22-before.json.gz",
+        "source_bytes": 15338925,
+        "source_sha256": "8d4be4036c8ef2ee3062efd0369193613f77e3bde2cec89e644ba118dd4b2039",
+        "expanded_bytes": 63066286,
+        "expanded_sha256": "a83a03f839fcd451a0ff09921274516e72d9b451c94698e9ebca95256016b061"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-kVBuhT\\server\\saves\\s22-input.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-kVBuhT",
+      "kind": "browser",
+      "slot": "s22-input",
+      "bytes": 63066286,
+      "sha256": "1af599ec1568a5b2148354de25cb800780d8ce69d352664f0a944242fac5ca8c",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T04:54:29.3064433Z",
+        "last_write_utc": "2026-09-28T04:54:29.3410970Z",
+        "last_access_utc": "2026-09-28T08:05:45.3366883Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-kVBuhT\\result.json",
+        "sha256": "2f8080e93d5b6e9691e8bd85a9239ece153f8d4318d742cca72790a687bf77fe",
+        "completed_utc": "2026-09-28T04:55:28.156Z"
+      },
+      "restore": {
+        "method": "copy",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s19-flight-funded-recovery\\france-t9dIxt\\server\\saves\\s19-flight-qualified.json",
+        "source_bytes": 63066286,
+        "source_sha256": "1af599ec1568a5b2148354de25cb800780d8ce69d352664f0a944242fac5ca8c",
+        "expanded_bytes": 63066286,
+        "expanded_sha256": "1af599ec1568a5b2148354de25cb800780d8ce69d352664f0a944242fac5ca8c"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-kVBuhT\\server\\saves\\s22-before.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-kVBuhT",
+      "kind": "browser",
+      "slot": "s22-before",
+      "bytes": 63066286,
+      "sha256": "2347a575f32fe678adff4244db00125885c00cf999f1417d77293771348f3429",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T04:54:35.1173846Z",
+        "last_write_utc": "2026-09-28T04:54:35.2173945Z",
+        "last_access_utc": "2026-09-28T08:05:46.0102188Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-kVBuhT\\result.json",
+        "sha256": "2f8080e93d5b6e9691e8bd85a9239ece153f8d4318d742cca72790a687bf77fe",
+        "completed_utc": "2026-09-28T04:55:28.156Z"
+      },
+      "restore": {
+        "method": "gunzip",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-kVBuhT\\s22-before.json.gz",
+        "source_bytes": 15338925,
+        "source_sha256": "0c76b4897706737b9f22fd4b213cb0daa82a8206c6520e4b5bce5bf9f4c2e332",
+        "expanded_bytes": 63066286,
+        "expanded_sha256": "2347a575f32fe678adff4244db00125885c00cf999f1417d77293771348f3429"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-kVBuhT\\server\\saves\\s22-after.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-kVBuhT",
+      "kind": "browser",
+      "slot": "s22-after",
+      "bytes": 63066286,
+      "sha256": "3f8f35ccaf1f078dfa37eb992aec721949b676b1cdcb815175f354d9c2f8a021",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T04:55:10.6714017Z",
+        "last_write_utc": "2026-09-28T04:55:10.7169352Z",
+        "last_access_utc": "2026-09-28T08:05:46.5798688Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-kVBuhT\\result.json",
+        "sha256": "2f8080e93d5b6e9691e8bd85a9239ece153f8d4318d742cca72790a687bf77fe",
+        "completed_utc": "2026-09-28T04:55:28.156Z"
+      },
+      "restore": {
+        "method": "gunzip",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-kVBuhT\\s22-after.json.gz",
+        "source_bytes": 15338925,
+        "source_sha256": "f02e46cca88b6a64981896cabe638b2de296d6d41cd0fc3d3ef17e60eabc8ebf",
+        "expanded_bytes": 63066286,
+        "expanded_sha256": "3f8f35ccaf1f078dfa37eb992aec721949b676b1cdcb815175f354d9c2f8a021"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-Sp0bs8\\server\\saves\\s22-input.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-Sp0bs8",
+      "kind": "browser",
+      "slot": "s22-input",
+      "bytes": 63066286,
+      "sha256": "1af599ec1568a5b2148354de25cb800780d8ce69d352664f0a944242fac5ca8c",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T04:51:04.7168709Z",
+        "last_write_utc": "2026-09-28T04:51:04.7748494Z",
+        "last_access_utc": "2026-09-28T08:05:46.9498579Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-Sp0bs8\\result.json",
+        "sha256": "0858ad2522b5d5550035a53d4ecd78f1783139efecf61bc9b5fd146d62446f0c",
+        "completed_utc": "2026-09-28T04:53:32.113Z"
+      },
+      "restore": {
+        "method": "copy",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s19-flight-funded-recovery\\france-t9dIxt\\server\\saves\\s19-flight-qualified.json",
+        "source_bytes": 63066286,
+        "source_sha256": "1af599ec1568a5b2148354de25cb800780d8ce69d352664f0a944242fac5ca8c",
+        "expanded_bytes": 63066286,
+        "expanded_sha256": "1af599ec1568a5b2148354de25cb800780d8ce69d352664f0a944242fac5ca8c"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-Sp0bs8\\server\\saves\\s22-before.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-Sp0bs8",
+      "kind": "browser",
+      "slot": "s22-before",
+      "bytes": 63066286,
+      "sha256": "4549a80cfef2d67e8627e6172b98931794eb0a0654091cf0acca0803a89a4071",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T04:51:11.8778039Z",
+        "last_write_utc": "2026-09-28T04:51:11.9262484Z",
+        "last_access_utc": "2026-09-28T08:05:47.2201432Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-Sp0bs8\\result.json",
+        "sha256": "0858ad2522b5d5550035a53d4ecd78f1783139efecf61bc9b5fd146d62446f0c",
+        "completed_utc": "2026-09-28T04:53:32.113Z"
+      },
+      "restore": {
+        "method": "gunzip",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-Sp0bs8\\s22-before.json.gz",
+        "source_bytes": 15338925,
+        "source_sha256": "3f81083e3f850989affd8bcb4a138f1867589b38df93ddd7f9f7f752d60a5bab",
+        "expanded_bytes": 63066286,
+        "expanded_sha256": "4549a80cfef2d67e8627e6172b98931794eb0a0654091cf0acca0803a89a4071"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    },
+    {
+      "target_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-Sp0bs8\\server\\saves\\s22-after.json",
+      "allowed_completed_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-Sp0bs8",
+      "kind": "browser",
+      "slot": "s22-after",
+      "bytes": 63066286,
+      "sha256": "4f9d4df113b18acdcedbff88fec7dca3ad218bd038325fac3faae4208c6d3401",
+      "original_timestamps": {
+        "creation_utc": "2026-09-28T04:53:26.0566974Z",
+        "last_write_utc": "2026-09-28T04:53:26.1038246Z",
+        "last_access_utc": "2026-09-28T08:05:47.4698352Z"
+      },
+      "completed_receipt": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-Sp0bs8\\result.json",
+        "sha256": "0858ad2522b5d5550035a53d4ecd78f1783139efecf61bc9b5fd146d62446f0c",
+        "completed_utc": "2026-09-28T04:53:32.113Z"
+      },
+      "restore": {
+        "method": "gunzip",
+        "source_absolute": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-browser-preflight\\browser-Sp0bs8\\s22-after.json.gz",
+        "source_bytes": 15338925,
+        "source_sha256": "ec1e397d218917c43d1b86c08e936b4171fa456a2292e8d1a0677d360fe8a905",
+        "expanded_bytes": 63066286,
+        "expanded_sha256": "4f9d4df113b18acdcedbff88fec7dca3ad218bd038325fac3faae4208c6d3401"
+      },
+      "reason": "Disposable raw copy from an explicitly named completed, nonqualification S22 preflight; exact bytes independently restorable from retained canonical input or existing gzip."
+    }
+  ],
+  "restoration_instructions": [
+    "For method copy, copy source_absolute byte-for-byte to target_absolute. For method gunzip, decompress source_absolute directly into target_absolute; never parse/reserialize JSON.",
+    "Verify restored byte count and SHA256 equal bytes/sha256, then restore original creation/last-write/last-access UTC timestamps.",
+    "Before restoring, verify source_bytes/source_sha256. Gzip expanded_bytes/expanded_sha256 record a verified exact round trip. Refuse to overwrite an unrelated or changed target.",
+    "Canonical sources and gzip files must remain retained. This manifest and the completion journal are metadata, not replacements for those sources."
+  ]
+}

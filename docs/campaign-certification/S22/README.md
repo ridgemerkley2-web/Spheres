@@ -7,7 +7,12 @@ This progress snapshot includes completed actual input preparation through
 isolated 2015/2035 latency preflights, and sovereignty parity checks at
 `6de1d997`. Combined contract/campaign routing passed focused and actual-input
 checks at `8de6f2a0`; the newer `992bc99a` stock guard passed both actual-input
-oracles and the full release workspace regression. No complete
+oracles and the full release workspace regression. Its subsequent isolated
+2015/2035 runs still fail latency. The newer combined repair at `2774b0c5`
+compiled, but mine-test coverage assertions failed. Corrected fixtures at
+`6ff13350` pass three focused tests, four actual-campaign oracles, and the full
+release regression (**1,938 passed, 0 failed, 102 ignored**). Its isolated
+2015 preflight passes; 2035 still fails both p95 latency limits. No complete
 qualification pair has started and neither S22, G5 nor CP1 is earned.
 
 The [plan](PLAN.md) and [frozen measurement protocol](measurement-protocol.json)
@@ -31,7 +36,7 @@ regressions, so its timings remain diagnostic. Neither counter is driver VRAM.
 | --- | --- |
 | Current offline art, accounting and reproduction audit | **Complete and passing**, bounded to the scope below |
 | Actual France 1999 / 2015 / end-2035 inputs | **Complete.** Reviewed original/adopted/2006/2015/2035 hash/date linkage and unchanged sources retained; this is record review, not an independent replay |
-| Native 31-day timing and headless memory | Both isolated 9823b070 cases complete with memory below both limits but fail latency; newer combined repairs pass correctness checks and require fresh measurements |
+| Native 31-day timing and headless memory | At 6ff13350, isolated 2015 passes; 2035 passes maximum and memory limits but fails both p95 limits. Complete qualification remains required |
 | Actual rendered map, aircraft and UI performance | Early map preflight at 5c650991 and renderer preflight at 1a8c07d7 pass functional checks; both full isolated qualification rounds remain required |
 | City/inspection caches, context recovery, loading and layouts | Actual draw attribution, touch/keyboard navigation and equipment focus repaired; current functional evidence retained, final-candidate qualification required |
 | S22 closure | **Not earned** |
@@ -109,6 +114,27 @@ checkpoints now stored losslessly in adjacent local gzip files. The first attemp
 changed no files; the successful attempt recovered 3.60 GB of payload. Canonical
 1999/2006/2015/end-2035 saves, both resume inputs and original S19 remain unchanged.
 This local storage operation does not qualify runtime performance.
+
+The [latency follow-up packet](final-latency-progress/README.md) records the
+later isolated 992bc99a attempts: 2015 simulation/whole-turn p95 **276.1008 /
+387.2577 ms**, maximum **790.7846 ms**; 2035 p95 **383.565 / 507.0357 ms**,
+maximum **641.5211 ms**. Both memory ceilings pass, but 2015 fails the maximum
+and 2035 fails both p95 limits. Concurrent diagnostics preserve exact native
+world/headline parity for all 31 days. At 2774b0c5, terminal/dependency checks
+and both actual dependency oracles pass, while mine coverage assertions fail
+in the synthetic fixture and actual-2035 oracle. Test-only corrections at
+6ff13350 pass three focused checks and all four actual mine/dependency oracles,
+then the full release workspace: **1,938 passed, 0 failed, 102 ignored across
+66 suites**. The packet also retains recovery records for
+37 redundant old preflight raw copies; canonical inputs remain unchanged.
+
+The latest isolated 6ff13350 preflights bring 2015 within every native limit:
+simulation/whole-turn p95 **274.4605 / 368.194 ms**, maximum **522.5872 ms**.
+The 2035 run still fails both p95 limits at **334.0103 / 463.9538 ms**, while
+its **494.237 ms** maximum and both memory limits pass. Observed private/OS peaks
+are 854,024,192 / 825,348,096 bytes for 2015 and 915,517,440 / 910,614,528 for
+2035. Final world fingerprints match the earlier exact diagnoses. These are
+preflights; they do not substitute for two complete qualification rounds.
 
 The [qualification verifier](QUALIFICATION_VERIFIER.md) now reserves and checks
 all 18 cells across two unchanged-candidate rounds, with raw evidence, complete

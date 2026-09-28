@@ -1,0 +1,16 @@
+{
+  "schema": "spheres-s22-raw-copy-cleanup/v1",
+  "started_utc": "2026-09-28T08:05:32.2352704Z",
+  "finished_utc": "2026-09-28T08:05:47.6311204Z",
+  "passed": false,
+  "expected_count": 37,
+  "verified_count": 37,
+  "removed_count": 0,
+  "removed_raw_bytes": 0,
+  "manifest": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preflight-raw-dedup-01\\restore-manifest.json",
+  "journal": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preflight-raw-dedup-01\\completion-journal.jsonl",
+  "free_bytes_before": 8079646720,
+  "free_bytes_after": 8079069184,
+  "failure": "System.Management.Automation.PSArgumentException: Cannot process argument because the value of argument \"bytes\" is not valid. Change the value of the \"bytes\" argument and run the operation again.",
+  "rollback_failures": []
+}
