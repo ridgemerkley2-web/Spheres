@@ -680,8 +680,9 @@ packet's report), all resting on the Senate's stored DCN nº 1/2023 issue at
   embedded signature dictionary. Every page prints "ARQUIVO ASSINADO DIGITALMENTE. CÓDIGO DE VERIFICAÇÃO:
   E08D962B004C6AB2.", the address http://www.senado.gov.br/sigadweb/v.aspx, a QR code and document number
   00100.000338/2023-38. SHA-1 `eddaedae4f8441ede9f475be27a44d2c803f4898`, MD5 `f889639b0eb685451e896204206524ae`.
-- **Stored file, not rebuilt.** The same bytes were served in January 2023 and on 23-28 September 2026. Only the
-  viewer's page-range form is rebuilt per request: the two surviving copies of pages 1-8 from CLAUDE-C01-10's check
+- **Reproduced stored response.** The compared January 2023 and September 2026 bodies match. This observation
+  does not guarantee endpoint immutability or identify the cause of the unavailable earlier mismatch. The compared
+  viewer page-range responses were rebuilt: the two surviving copies of pages 1-8 from CLAUDE-C01-10's check
   and verification (4,301,947 bytes each) differ in 38 bytes, the Aspose.PDF for Java 23.6 CreationDate and ModDate
   (09:25:06 against 11:00:05 -03:00 on 23 September 2026) and the trailer /ID. No alternative identity is needed; the
   capture above is an independent pre-cutoff reproduction.
@@ -767,3 +768,11 @@ Page by page for this packet's claims (`br_vice_president` rows):
   service (sigadweb/v.aspx) was not queried and the QR codes were not decoded; only the printed code is recorded. The
   review compares the file with the claims; it does not add sources or decide historical acceptance, which stays with
   Codex.
+
+### Codex independent qualification, 28 September 2026
+
+Codex independently retrieved the exact current official URL and the stated raw 2023 Archive capture on 28 September 2026 with ordinary requests; both returned the recorded 24,950,218-byte SHA-256 identity. This supports reproducibility of these observations, not an endpoint immutability guarantee. An Age: 0 header alone does not prove direct origin contact. The former d9808101...f6a619 body is unavailable: its differing bytes and cause remain unresolved; it must not be classified as damaged or content-equivalent without the body. Any future mismatch should be retained with headers and UTC before a separately recorded retry. No signature-service or QR validation was performed.
+
+The historical review above retains its original download log and former snapshot sizes. Current extract pins are
+updated in `brazil.json`; the bounded acceptance packet records these final snapshots. No claim, date, holder,
+response identity, or uncertainty boundary is changed by this qualification.
