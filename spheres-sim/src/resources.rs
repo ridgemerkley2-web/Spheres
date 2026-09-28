@@ -1512,6 +1512,9 @@ fn post_market_flows_traced(w: &mut WorldState, mut observer: Option<&mut dyn Fn
         (0..obligations.len()).map(|_| None).collect();
     let mut physical_supply_limited = vec![false; obligations.len()];
     if physical {
+        // Only this immutable-topology pass shares nominal route searches.
+        // Dispatch still observes live capacity, congestion and terminal XP.
+        let mut contract_routes = crate::logistics::ContractDispatchRoutes::default();
         let mut start = 0;
         while start < obligations.len() {
             let contract = obligations[start].0;
@@ -1524,7 +1527,7 @@ fn post_market_flows_traced(w: &mut WorldState, mut observer: Option<&mut dyn Fn
                 else { ratios.get(&(o.1, o.3)).copied().unwrap_or(0.0) }
             }).fold(1.0_f64, f64::min);
             if w.rules.military_operations {
-                let (capacity_fraction, dispatches) = crate::logistics::dispatch_bundle(w, &legs, stock_fraction, contract);
+                let (capacity_fraction, dispatches) = contract_routes.dispatch(w, &legs, stock_fraction, contract);
                 for (i, dispatched) in (start..end).zip(dispatches) {
                     physical_supply_limited[i] = stock_fraction < 1.0 && stock_fraction <= capacity_fraction;
                     if obligations[i].6.is_none() { physical_dispatches[i] = Some(dispatched); }

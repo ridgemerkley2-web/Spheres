@@ -754,6 +754,10 @@ impl SearchTree {
 
 impl ClearingRoutes {
     pub(crate) fn new(w: &WorldState) -> Self {
+        Self::new_with_capacities(w, true)
+    }
+
+    fn new_with_capacities(w: &WorldState, snapshot_capacities: bool) -> Self {
         let net = network();
         let mut owned_nodes = vec![vec![]; crate::nations::nation_count()];
         // Preserve the exact BTreeMap district/start ordering of plan_impl.
@@ -763,7 +767,7 @@ impl ClearingRoutes {
             }
         }
         let effective_owners = net.nodes.iter().map(|n| freight_controller(w, &n.id)).collect();
-        let capacities = if w.rules.military_operations { net.edges.iter().map(|e| segment_capacity(w, e).0).collect() } else { vec![] };
+        let capacities = if snapshot_capacities && w.rules.military_operations { net.edges.iter().map(|e| segment_capacity(w, e).0).collect() } else { vec![] };
         Self { access: Default::default(), trace: None, owned_nodes, effective_owners,
             military_operations: w.rules.military_operations,
             owner_access: vec![None; crate::nations::nation_count()], assembly_segments: vec![None; net.edges.len()],
@@ -1535,7 +1539,45 @@ fn dispatch_impl(
 pub(crate) fn dispatch_bundle(w: &mut WorldState,
     legs: &[(NationId, NationId, Commodity, f64)], stock_fraction: f64, contract: u32,
 ) -> (f64, Vec<Dispatch>) {
-    let bundle = freight_routing::prepare_bundle(w, legs, &w.logistics.usage_tonnes);
+    dispatch_bundle_impl(w, legs, stock_fraction, contract, None)
+}
+
+/// One resource-posting pass's nominal search trees. Contract dispatch changes
+/// cargo, usage, finance and terminal experience, never calendar, ownership,
+/// access, infrastructure or routing policy. Drop this before leaving that
+/// pass. Unlike a forecast, it must NOT retain capacities or whole RoutePlans:
+/// assembly rereads every XP-sensitive terminal, and congestion uses live
+/// usage/capacity with the original per-search limit and no spot-market budget.
+#[derive(Default)]
+pub(crate) struct ContractDispatchRoutes {
+    nominal: Option<ClearingRoutes>,
+}
+
+impl ContractDispatchRoutes {
+    pub(crate) fn dispatch(&mut self, w: &mut WorldState,
+        legs: &[(NationId, NationId, Commodity, f64)], stock_fraction: f64, contract: u32,
+    ) -> (f64, Vec<Dispatch>) {
+        #[cfg(test)]
+        if contract_dispatch_tests::ORIGINAL_CONTRACT_ROUTES.with(|flag| flag.get()) {
+            return dispatch_bundle(w, legs, stock_fraction, contract);
+        }
+        let routes = self.nominal.get_or_insert_with(|| ClearingRoutes::new_with_capacities(w, false));
+        let result = dispatch_bundle_impl(w, legs, stock_fraction, contract, Some(routes));
+        #[cfg(test)]
+        contract_dispatch_tests::REUSED_CONTRACT_FREIGHT.with(|count|
+            count.set(count.get() + result.1.iter().filter(|d| d.quantity > 0.0).count() as u64));
+        result
+    }
+}
+
+fn dispatch_bundle_impl(w: &mut WorldState,
+    legs: &[(NationId, NationId, Commodity, f64)], stock_fraction: f64, contract: u32,
+    nominal: Option<&mut ClearingRoutes>,
+) -> (f64, Vec<Dispatch>) {
+    let bundle = match nominal {
+        Some(routes) => freight_routing::prepare_bundle_with_nominal(w, legs, &w.logistics.usage_tonnes, routes),
+        None => freight_routing::prepare_bundle(w, legs, &w.logistics.usage_tonnes),
+    };
     let service = stock_fraction.clamp(0.0, 1.0).min(bundle.ratio);
     let mut dispatches = Vec::with_capacity(legs.len());
     for (&(seller, buyer, commodity, quantity), route) in legs.iter().zip(bundle.routes) {
@@ -1550,6 +1592,10 @@ pub(crate) fn dispatch_bundle(w: &mut WorldState,
     }
     (bundle.ratio, dispatches)
 }
+
+#[cfg(test)]
+#[path = "logistics_contract_dispatch_tests.rs"]
+mod contract_dispatch_tests;
 
 fn route_segment_capacity(w: &WorldState, key: &str) -> Option<f64> {
     route_segment_capacity_with(w, key, None)
