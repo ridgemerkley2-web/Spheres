@@ -621,7 +621,9 @@ These are proposals for the integrator. They are not created in `work-orders.jso
   pending packet; the claim commit `68535825` holds only the handoff. Before committing, `codex/campaign-certification`
   was fetched: it had moved to `3ec6e155`, which was merged (merge commit `b69e579a`, whose tree equals `3ec6e155`).
   The only conflict was an add/add on the handoff: the integration copy is the claim record of `68535825` byte for byte
-  plus Codex's appended registration note, so it was taken unchanged and this packet's result appended after it. The
+  plus Codex's appended registration note, so it was taken unchanged and this packet's result appended after it. After
+  the packet and index commits, the integration branch moved again, to `5d970f6d`; it was merged in `a39f1ac8`, whose
+  only conflict, `research-index.json`, was regenerated, and every check was rerun on the merged tree. The
   central task queue (`docs/planning/ai-task-queue.json`) still lists CLAUDE-C01-30 as claimed; it is outside this
   packet's allowed files and is left for the integrator.
 - `research-index.json` is regenerated in a **separate commit** and is the only file this packet shares with other
