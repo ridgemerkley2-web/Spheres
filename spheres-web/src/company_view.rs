@@ -538,6 +538,14 @@ fn company_board_from_reads(w:&WorldState,me:NationId,raw:&Value,market:&Value)-
             company_cash_input("capital_mn","Initial working capital",25.0),
         ]);
         establish["detail"]=json!("A new state contractor leases one existing completed plant slot. Choose an explicit initial investment; its own account pays for tooling and finished stock.");
+        if !site_options.iter().any(|s|s["enabled"]==true) {
+            establish["enabled"]=json!(false);
+            establish["reason"]=json!(if site_options.is_empty() {
+                "Build and complete an Arms Plant before establishing a manufacturer. Use Build an arms plant below."
+            } else {
+                "No completed Arms Plant slot is available. Review existing commitments or build another arms plant."
+            });
+        }
         actions.push(establish);
     } else {actions.push(nav("Design a vehicle",json!({"action":"equipment","tab":"designer"})));}
     actions.push(nav("Review procurement funding",json!({"action":"budget","ministry":"defense","department":3})));
@@ -633,7 +641,11 @@ fn company_board_from_reads(w:&WorldState,me:NationId,raw:&Value,market:&Value)-
     product_rows.extend(ammunition_products);deliveries.extend(ammunition_deliveries);
     actions.push(nav("Buy ammunition and manage reserves",json!({"action":"equipment","tab":"ammunition"})));
     let total_cash:f64=firms.iter().map(|f|company_amount(f,"cash_bn")).sum();
-    let warnings:Vec<_>=raw["reason"].as_str().filter(|r|!r.is_empty()).map(str::to_string).into_iter().collect();
+    let mut warnings:Vec<_>=raw["reason"].as_str().filter(|r|!r.is_empty()).map(str::to_string).into_iter().collect();
+    if let Some(reason)=actions.iter().find(|a|a["command"]["kind"]=="company_establish" && a["enabled"]==false)
+        .and_then(|a|a["reason"].as_str()) {
+        warnings.push(reason.to_string());
+    }
     json!({"nation":me,"date":w.date_str(),"as_of_day":spheres_sim::clock::absolute_day(w),
         "overview":{"title":"Companies & Procurement","status":if firms.is_empty(){"Establish your first manufacturer"}else{"Domestic equipment procurement"},
         "detail":"Design the vehicle and commission its development. Buy finished equipment and compatible ammunition from your manufacturer's stock.",
@@ -719,6 +731,24 @@ mod company_view_tests {
             "annual_procurement_bn_at_review":annual_procurement_bn,
             "no_immediate_cash_debt_authority_property_or_research_grant":true,
             "tradeoff":"Transfer 2.5 percentage points of GDP from Infrastructure to Defense, prioritising procurement while preserving absolute personnel, operations and maintenance funding. This deliberately reduces infrastructure appropriations; future authority must accrue through actual days."})
+    }
+    #[test]
+    fn contractor_without_a_plant_explains_construction_before_review() {
+        let mut g=super::super::Game::new(1990,Some(ME));
+        super::super::play_rules(&mut g);
+        spheres_sim::programs::set_construction_budget(&mut g.world,ME,0.0).unwrap();
+        let before=spheres_sim::save(&g.world);
+        let board=view(&g.world,ME,&g.session_id);
+        let actions=board["companies"]["overview"]["actions"].as_array().unwrap();
+        let establish=actions.iter().find(|a|a["command"]["kind"]=="company_establish").unwrap();
+        assert_eq!(establish["enabled"],false);
+        assert!(establish["reason"].as_str().unwrap().contains("Build and complete an Arms Plant"));
+        assert!(board["companies"]["overview"]["warnings"].as_array().unwrap().contains(&establish["reason"]));
+        assert!(actions.iter().any(|a|a["enabled"]==true && a["navigate"]["kind"]=="arms_plant"));
+        let quote=preview(&g.world,ME,&g.session_id,&json!({"command":establish_command("")})).unwrap();
+        assert_eq!(quote["valid"],false);
+        assert!(quote["blockers"][0].as_str().unwrap().contains("Build an arms plant first"),"{quote}");
+        assert_eq!(spheres_sim::save(&g.world),before);
     }
     #[test]
     fn company_board_and_review_are_pure_and_do_not_grant_opening_assets() {
