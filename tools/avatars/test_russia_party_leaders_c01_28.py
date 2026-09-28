@@ -349,6 +349,25 @@ ROLES = {
     'ru_dvr_chairman': ('ru_dvr_party_self_record', 'Председатель партии «Демократический выбор России» — Chairman of Democratic Choice of Russia'),
 }
 SOURCE_TOTAL, CLAIM_TOTAL = 68, 137
+# Rows keeping an earlier printed title on the party role: two retrospective rows, and the 1998 holder row and the 2001
+# continuation row of the association «Объединение ЯБЛОКО», which became a party only on 22 December 2001.
+AS_PRINTED_TITLES = {
+    'ru_kprf_retro_zyuganov_elected_cec_chairman_1993':
+        'Председатель ЦИК КПРФ — Chairman of the Central Executive Committee of the KPRF (as printed)',
+    'ru_ldpr_history2010_ldpss_chairman_elected_19900331': 'Председатель ЛДПСС — Chairman of the LDPSS (as printed)',
+    'ru_yabloko_yavlinsky_chairman_report_vi_congress_19980314':
+        'Председатель общественной политической организации «Объединение ЯБЛОКО» — Chairman of the public political '
+        'organisation «Объединение ЯБЛОКО» (as printed)',
+    'ru_yabloko_x_congress_association_chairman_report_20011222':
+        'Председатель Объединения «ЯБЛОКО» — Chairman of the association «Объединение ЯБЛОКО» (as printed)',
+}
+# A 1996 reference-book passage (Коргунюк and Заславский) that the party site republished as its history: not a party
+# record, so it is cited by no observation; its claims stay on the role as retrospective claims.
+REPUBLISHED_REFERENCE = {'ru_dvr_history_page_1998': 'party_republished_reference_text'}
+DVR_OBSERVATION = (['ru_dvr_supporters_protocol_19940519', 'ru_dvr_founding_congress_edition_1994',
+                    'ru_dvr_information_bulletin_1_1994', 'ru_dvr_newspaper_demvybor_21_2001'],
+                   ['ru_dvr_supporters_meeting_working_name_19940519', 'ru_dvr_founding_declaration_19940612',
+                    'ru_dvr_charter_registered_19940809', 'ru_dvr_x_congress_self_dissolution_decision_2001'])
 # Every dated claim day that is not a holder day (generated from the claims above).
 CLAIM_DATES_OFF_HOLDERS = {
     '1990-03-31', '1991-04-12', '1993-02-13', '1993-02-26', '1993-04-09', '1993-10-17', '1994-05-19', '1994-06-12',
@@ -638,7 +657,7 @@ class RussianPartyLeadersTests(unittest.TestCase):
                     row = self.rows[cid]
                     self.assertEqual((row['holder_name'], row['role_id'], row['event_kind']),
                                      (holder['name'], rid, 'in_office_attestation'), cid)
-                    self.assertEqual(row['role_title'], ROLES[rid][1], cid)
+                    self.assertEqual(row['role_title'], AS_PRINTED_TITLES.get(cid, ROLES[rid][1]), cid)
         # One canonical name per person; the printed form stays beside it; rows naming nobody carry no holder.
         for cid, row in self.rows.items():
             self.assertNotIn('name', row)
@@ -646,13 +665,9 @@ class RussianPartyLeadersTests(unittest.TestCase):
             self.assertEqual('printed_name' in row, row['holder_name'] is not None, cid)
         self.assertEqual({cid for cid, row in self.rows.items() if row['holder_name'] is None}, NAMELESS)
         self.assertTrue(all(EVENTS[c][1] not in HOLDER_KINDS for c in NAMELESS))
-        # Two earlier titles are kept on their own retrospective rows only.
+        # Four earlier titles are kept as printed, on these rows only, and stay on the party roles.
         self.assertEqual({cid: row['role_title'] for cid, row in self.rows.items()
-                          if row['role_id'] and row['role_title'] != ROLES[row['role_id']][1]},
-                         {'ru_kprf_retro_zyuganov_elected_cec_chairman_1993':
-                              'Председатель ЦИК КПРФ — Chairman of the Central Executive Committee of the KPRF (as printed)',
-                          'ru_ldpr_history2010_ldpss_chairman_elected_19900331':
-                              'Председатель ЛДПСС — Chairman of the LDPSS (as printed)'})
+                          if row['role_id'] and row['role_title'] != ROLES[row['role_id']][1]}, AS_PRINTED_TITLES)
 
     def test_no_start_or_end_is_stated_or_inferred(self):
         for rid in ROLES:
@@ -678,8 +693,9 @@ class RussianPartyLeadersTests(unittest.TestCase):
         for cid in TEMPTING_ENDS:
             self.assertRegex(self.claims[cid]['uncertainty'], r"(?i)(not an end|not the end|no `?until|never a holder|not "
                                                              r"the holder's `until`|never .*boundary|not a statement of the day|never \S+ end)", cid)
-        death = self.claims['ru_ldpr_history2026_zhirinovsky_death_20220406']
-        self.assertIn('an integrator ruling is requested', death['uncertainty'])
+        for cid in ('ru_ldpr_history2026_zhirinovsky_death_20220406', 'ru_ldpr_news_zhirinovsky_died_today_20220406'):
+            self.assertRegex(self.claims[cid]['uncertainty'],
+                             '(?i)' + re.escape("by the user's ruling of 28 September 2026 the holder has no `until`"), cid)
         self.assertIn('Retrospective lists are claims', self.section('Integration notes') + self.section('Outcome'))
 
     def test_extracts_match_packet_claims_and_record_original_responses(self):
@@ -692,7 +708,10 @@ class RussianPartyLeadersTests(unittest.TestCase):
                                                           source['published_date'], source['document_date']))
             self.assertEqual((extract['accessed_date'], source['accessed_date']), ('2026-09-28', '2026-09-28'))
             self.assertEqual(source['access_method'], 'internet_archive_raw_capture')
-            self.assertTrue(source['source_type'].startswith('primary_'), sid)
+            if sid in REPUBLISHED_REFERENCE:
+                self.assertEqual(source['source_type'], REPUBLISHED_REFERENCE[sid])
+            else:
+                self.assertTrue(source['source_type'].startswith('primary_'), sid)
             self.assertFalse(extract['source_response_checked_in'])
             self.assertEqual((extract['source_response_bytes'], extract['source_response_sha256']), RESPONSES[sid], sid)
             self.assertEqual(extract['source_response_url'], source['url'])
@@ -779,6 +798,14 @@ class RussianPartyLeadersTests(unittest.TestCase):
             self.assertIn('name match is never a game mapping', entry['coverage']['unresolved'][-1])
             for sid in entry['sources']:
                 self.assertTrue(self.sources[sid]['source_type'].startswith('primary_'), sid)
+        # The DVR observation rests only on the party's own records; the republished reference text feeds the role only.
+        dvr = next(o for o in self.packet['organizations'] if o['id'] == 'ru_dvr_party_self_record')
+        self.assertEqual((dvr['sources'], dvr['claim_ids']), DVR_OBSERVATION)
+        entries = [e for g in ('organizations', 'institutions') for e in self.packet[g]]
+        for sid in REPUBLISHED_REFERENCE:
+            reference_claims = {c['id'] for c in self.sources[sid]['claims']}
+            self.assertTrue(reference_claims <= set(self.roles['ru_dvr_chairman']['claim_ids']), sid)
+            self.assertFalse(any(sid in e['sources'] or reference_claims & set(e['claim_ids']) for e in entries), sid)
         self.assertEqual(sum('CLAUDE-C01-28' in u for u in self.packet['coverage']['unresolved']), 1)
         note = self.packet['coverage']['unresolved'][-1]
         self.assertTrue(note.startswith('CLAUDE-C01-28 adds five party-leader roles'))
@@ -830,7 +857,7 @@ class RussianPartyLeadersTests(unittest.TestCase):
 
         invariant_cases = [
             ('successor election used as an end (Zhirinovsky)', lambda p: holder(p, 'ru_ldpr_chairman', 1).update(until='2022-05-27')),
-            ('death used as an end (Zhirinovsky)', lambda p: holder(p, 'ru_ldpr_chairman', 1).update(until='2022-04-06')),
+            ('interim issue used as an end (Zhirinovsky)', lambda p: holder(p, 'ru_ldpr_chairman', 1).update(until='2022-05-06')),
             ('successor election used as an end (Yavlinsky)', lambda p: holder(p, 'ru_yabloko_chairman', 2).update(until='2008-06-22')),
             ('successor attestation used as an end (Mitrokhin)', lambda p: holder(p, 'ru_yabloko_chairman', 4).update(until='2015-12-20')),
             ('contemporaneous death statement used as an end (Zhirinovsky)', lambda p: holder(p, 'ru_ldpr_chairman', 1).update(until='2022-04-06')),
@@ -849,7 +876,7 @@ class RussianPartyLeadersTests(unittest.TestCase):
                                                                       'ru_ldpr_newspaper_interim_issue_no_chairman_20220506', 2)),
             ('retrospective election added as a holder (Zhirinovsky 1990)', add_holder('ru_ldpr_chairman', 'Владимир Вольфович Жириновский',
                                                                                     '1990-03-31', 'ru_ldpr_party_history_20100922',
-                                                                                    'ru_ldpr_history2010_ldpss_founding_congress_chairman_19900331')),
+                                                                                    'ru_ldpr_history2010_ldpss_chairman_elected_19900331')),
             ('election cited by a holder (KPRF 1997)', lambda p: (holder(p, 'ru_kprf_chairman', 0)['claim_ids'].append('ru_kprf_i_plenum_zyuganov_elected_chairman_19970420'),
                                                                     holder(p, 'ru_kprf_chairman', 0)['sources'].append('ru_kprf_i_plenum_notice_19970420'))),
             ('undated attestation cited by a holder (Gaidar)', lambda p: (holder(p, 'ru_dvr_chairman', 0)['claim_ids'].append('ru_dvr_statement_signed_by_chairman_199412'),

@@ -6074,7 +6074,7 @@
           "text": "In the timeline's year block 2022, the entry \"6 апреля\" says \"Глава ЛДПР Владимир Жириновский скончался после продолжительной болезни в возрасте 75 лет\".",
           "locator": "year block \"2022\", entry \"6 апреля\"",
           "attested_on": "2022-04-06",
-          "uncertainty": "The party's retrospective account of the death; the party's news item of the same day is a separate claim. A retrospective entry is never a boundary, so the stated day is not the holder's `until` (an integrator ruling is requested). The same block's entry \"24 февраля\" describes the party \"во главе с Леонидом Слуцким\", which other party records contradict for that day, so this timeline dates no office."
+          "uncertainty": "The party's retrospective account of the death; the party's news item of the same day is a separate claim. A retrospective entry is never a boundary, so the stated day is not the holder's `until` (by the user's ruling of 28 September 2026 the holder has no `until`). The same block's entry \"24 февраля\" describes the party \"во главе с Леонидом Слуцким\", which other party records contradict for that day, so this timeline dates no office."
         },
         {
           "id": "ru_ldpr_history2026_slutsky_elected_chairman_20220527",
@@ -6134,18 +6134,18 @@
       "claims": [
         {
           "id": "ru_ldpr_news_zhirinovsky_died_today_20220406",
-          "text": "An item dated 06.04.2022 headed \"Из жизни ушел бессменный лидер ЛДПР Владимир Жириновский\" ends \"Но сегодня его не стало\".",
+          "text": "An item dated 06.04.2022 headed \"Из жизни ушел бессменный лидер ЛДПР Владимир Жириновский\" ends \"Но сегодня его не стало и сегодня мы будем скорбеть…\".",
           "locator": "headline, date field \"06.04.2022\" and last paragraph",
           "attested_on": "2022-04-06",
-          "uncertainty": "A contemporaneous party statement of the death on the day it is dated. It states a death, not in words the end of an office, so the holder has no `until`: an integrator ruling is requested on whether a stated death day ends a party office (the same rule would apply to every holder)."
+          "uncertainty": "A contemporaneous party statement of the death on the day it is dated. It states a death, not in words the end of an office: the item never calls him Председатель and never mentions the office ending, and its only captures date from October 2025 onward. By the user's ruling of 28 September 2026 the holder has no `until` and the death stays a distinct dated claim; if Codex decides at integration that a stated death day ends a party office, this claim alone is the anchor (the same rule would apply to every holder)."
         }
       ],
       "scope_note": "A page of the federal party site, tagged to a regional branch, read from a capture of 12 October 2025, so edits between publication and capture cannot be excluded. Found by the independent check (downloaded twice by it) and re-downloaded twice by this packet.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/russia-ldpr-news-death-20220406-facts.json",
         "kind": "derived_factual_extract",
-        "bytes": 3945,
-        "sha256": "8989fc6e50d0444fc5792ddd0ba0ea509a7597486d61e14e627014466e065fa7"
+        "bytes": 3999,
+        "sha256": "1fea4cf624b8f0eda20a32dab2706f063b7b53e7ec6703e42a8a0afe4a93c86f"
       }
     },
     {
@@ -6521,8 +6521,8 @@
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/russia-yabloko-vi-congress-report-19980314-facts.json",
         "kind": "derived_factual_extract",
-        "bytes": 3926,
-        "sha256": "0e5591f2d47e5bbe9e8226d2b1384395bba7e0d2fb0ab855384b152a99028fbe"
+        "bytes": 4088,
+        "sha256": "acbb713ab42408f22c358100c8860b75f677baef95a2695ce376ee5aa7a90bc1"
       }
     },
     {
@@ -6562,8 +6562,8 @@
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/russia-yabloko-x-congress-section-20020123-facts.json",
         "kind": "derived_factual_extract",
-        "bytes": 5305,
-        "sha256": "5e02ba56cd0c76bc02427313407803f794a3028f05c4badb9903ccce7b35bf13"
+        "bytes": 5376,
+        "sha256": "e867b83f8f60bbfba454c448bae80db5c53bc828d1114d66cb27eb02b881e6b4"
       }
     },
     {
@@ -7812,7 +7812,7 @@
       "published_date": null,
       "accessed_date": "2026-09-28",
       "access_method": "internet_archive_raw_capture",
-      "source_type": "primary_party_record_archived_web_page",
+      "source_type": "party_republished_reference_text",
       "claims": [
         {
           "id": "ru_dvr_history_created_on_basis_of_movement",
@@ -8218,7 +8218,7 @@
                 "ru_ldpr_newspaper_chairman_zhirinovsky_contacts_20220330"
               ],
               "note": "Observed on 30 March 2022: the contacts block of party newspaper No. 04 (382)/2022, signed to press that day, lists \"Председатель ЛДПР Владимир Вольфович ЖИРИНОВСКИЙ\".",
-              "uncertainty": "No `until`: the party's news item of 6 April 2022 says \"Но сегодня его не стало\", and its later timeline dates the death to that day, but a death is not stated in words as the end of the office; the integrator is asked to rule, and ru_ldpr_news_zhirinovsky_died_today_20220406 alone would be the anchor. The interim issue of 6 May 2022 names no chairman and no acting chairman. Slutsky's election is not used as an end."
+              "uncertainty": "No `until`: the party's news item of 6 April 2022 says \"Но сегодня его не стало и сегодня мы будем скорбеть…\", and its later timeline dates the death to that day, but a death is not stated in words as the end of the office. By the user's ruling of 28 September 2026 there is no `until`; if Codex decides at integration that a stated death day ends the office, ru_ldpr_news_zhirinovsky_died_today_20220406 alone would be the anchor. The interim issue of 6 May 2022 names no chairman and no acting chairman. Slutsky's election is not used as an end."
             },
             {
               "name": "Леонид Эдуардович Слуцкий",
@@ -8265,7 +8265,7 @@
               "uncertainty": "An attestation 27 days before the cutoff, not a start, an end or a term. The XXXVIII (extraordinary) congress of 23 June 2026 is not reviewed: its archived pages are 403 captures and the live page is not byte-stable."
             }
           ],
-          "scope_note": "Party office of the LDPR, attached to the 2021 ballot-list observation ru_duma_ballot_list_2021_03 as the handoff directs; the attachment does not reconcile the organization's identity, lifecycle or game mapping, and the LDPSS (1990-1992) appears only in retrospective claims under its own printed title. The evidence is the party's own records (raw Internet Archive captures of ldpr.ru and of the party newspaper «ЛДПР» on hub.ldpr.ru). One holder observation per reviewed attestation, each citing only in-office attestations of its own day. Elections, election reports, congress spans, retrospective, registration and interim statements and continuation claims never feed a holder. Acting and interim service are claims only, never holders. Charters are procedure only, never a date. No holder has a from or an until: no reviewed record states the day the office was assumed or ended, and no end is taken from a successor's election or a retrospective list. The death of 6 April 2022, stated that day by a party news item and later by the retrospective timeline, is a claim: it states a death, not in words the end of the office, so it is no until pending an integrator ruling. The Supreme Council's recommendation of 26 May 2022 is a nomination, not acting service. The State Duma faction head of 2021 (ru_duma_faction_20211012_ldpr_head) and the faction posts listed beside the party chairman in the newspaper are separate parliamentary offices; no presidency, government or faction claim feeds this role."
+          "scope_note": "Party office of the LDPR, attached to the 2021 ballot-list observation ru_duma_ballot_list_2021_03 as the handoff directs; the attachment does not reconcile the organization's identity, lifecycle or game mapping, and the LDPSS (1990-1992) appears only in retrospective claims under its own printed title. The evidence is the party's own records (raw Internet Archive captures of ldpr.ru and of the party newspaper «ЛДПР» on hub.ldpr.ru). One holder observation per reviewed attestation, each citing only in-office attestations of its own day. Elections, election reports, congress spans, retrospective, registration and interim statements and continuation claims never feed a holder. Acting and interim service are claims only, never holders. Charters are procedure only, never a date. No holder has a from or an until: no reviewed record states the day the office was assumed or ended, and no end is taken from a successor's election or a retrospective list. The death of 6 April 2022, stated that day by a party news item and later by the retrospective timeline, is a claim: it states a death, not in words the end of the office, so it is no until (the user's ruling of 28 September 2026; Codex may still decide at integration that a stated death day ends the office). The Supreme Council's recommendation of 26 May 2022 is a nomination, not acting service. The State Duma faction head of 2021 (ru_duma_faction_20211012_ldpr_head) and the faction posts listed beside the party chairman in the newspaper are separate parliamentary offices; no presidency, government or faction claim feeds this role."
         }
       ],
       "sources": [
@@ -9236,24 +9236,19 @@
               "uncertainty": "No end: the Political Council's statement of 16 December 2000 is signed only \"Председатель\" (a claim), and the X congress's decision on the party's self-dissolution (19 May, in an undated issue captured on 7 June 2001) is an organization event, not the end of his office; no record states the day his chairmanship ended."
             }
           ],
-          "scope_note": "Party office of Democratic Choice of Russia, on a new organization observation made only from the party's own records (scans of its documents in the Yegor Gaidar Archive and raw Internet Archive captures of dvr.ru). The 1993 electoral association «Выбор России» is a separate observation from its own programme; the party's working name «Выбор России» (May 1994) and its history page's statement that it was created on the basis of the movement «Выбор России» tie the party's name to that name, neither names the 1993 electoral association, and neither observation is mapped to a simulation party: a name match is never a game mapping. One holder observation per reviewed attestation, each citing only in-office attestations of its own day. The Political Council's election, the 1996 chairmanship ballot record, undated pages, a bare-title signature, founding, registration and dissolution statements never feed a holder. Acting and interim service are claims only, never holders (none was found). Charters are procedure only, never a date. No holder has a from or an until: no reviewed record states the day the office was assumed or ended, and the 2001 dissolution decision is no end. No government, parliamentary-faction or other state-office claim feeds this role."
+          "scope_note": "Party office of Democratic Choice of Russia, on a new organization observation made only from the party's own records (scans of its documents in the Yegor Gaidar Archive and raw Internet Archive captures of dvr.ru). The 1993 electoral association «Выбор России» is a separate observation from its own programme; the party's working name «Выбор России» (May 1994) and its history page's statement (a 1996 reference-book passage the party republished) that it was created on the basis of the movement «Выбор России» tie the party's name to that name, neither names the 1993 electoral association, and neither observation is mapped to a simulation party: a name match is never a game mapping. One holder observation per reviewed attestation, each citing only in-office attestations of its own day. The Political Council's election, the 1996 chairmanship ballot record, undated pages, a bare-title signature, founding, registration and dissolution statements never feed a holder. Acting and interim service are claims only, never holders (none was found). Charters are procedure only, never a date. No holder has a from or an until: no reviewed record states the day the office was assumed or ended, and the 2001 dissolution decision is no end. No government, parliamentary-faction or other state-office claim feeds this role."
         }
       ],
       "sources": [
         "ru_dvr_supporters_protocol_19940519",
         "ru_dvr_founding_congress_edition_1994",
         "ru_dvr_information_bulletin_1_1994",
-        "ru_dvr_history_page_1998",
         "ru_dvr_newspaper_demvybor_21_2001"
       ],
       "claim_ids": [
         "ru_dvr_supporters_meeting_working_name_19940519",
         "ru_dvr_founding_declaration_19940612",
         "ru_dvr_charter_registered_19940809",
-        "ru_dvr_history_created_on_basis_of_movement",
-        "ru_dvr_history_founded_and_named_1994",
-        "ru_dvr_history_registered_19940809",
-        "ru_dvr_history_programme_adopted_19941119",
         "ru_dvr_x_congress_self_dissolution_decision_2001"
       ],
       "coverage": {

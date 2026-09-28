@@ -201,7 +201,7 @@ PRESIDENT_HOLDERS = [
     ('Mikhail Gorbachev', '1990-03-20', None, None, ['su_gorbachev_president_letter_19900320']),
     ('Mikhail Gorbachev', '1991-12-25', None, None, ['su_telcon_gorbachev_title_19911225']),
 ]
-# SHA-256 of every Russia role and holder (name, attested_on, from, until) at the base (CLAUDE-C01-19); russia.json is unchanged.
+# SHA-256 of every Russia role and holder (name, attested_on, from, until) at the base (CLAUDE-C01-19); CLAUDE-C01-28's five party-leader roles are excluded below and pinned in test_russia_party_leaders_c01_28.
 RUSSIA_HOLDERS_SHA256 = '8575fda3b3069ed498377c3b66df29822c33a47cd4c7ead9fe07e30f7edc27cd'
 ARCHIVED = {
     'su_garf_exhibit_res_1362i_19900315': '20191207080438',
