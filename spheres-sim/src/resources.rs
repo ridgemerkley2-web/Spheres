@@ -5677,6 +5677,34 @@ fn purchase_route_open(w: &WorldState, seller: NationId, buyer: NationId) -> boo
     crate::logistics::plan(w, seller, buyer).is_ok()
 }
 
+/// Route availability for one synchronous monthly purchasing wave. Its asks
+/// contain only money/material legs: they can update contracts, offers,
+/// refusals, relations, standing and headlines, but never ownership, living
+/// governments, sanctions, belligerency, access, route policy, facilities or
+/// contractor experience. Those are the path planner's inputs; relation and
+/// available commercial supply are deliberately NOT cached here.
+#[derive(Default)]
+struct PurchaseRoutes {
+    open: BTreeMap<(NationId, NationId), bool>,
+}
+impl PurchaseRoutes {
+    fn is_open(&mut self, w: &WorldState, seller: NationId, buyer: NationId) -> bool {
+        #[cfg(test)]
+        if purchase_route_tests::ORIGINAL.with(|flag| flag.get()) {
+            return purchase_route_open(w, seller, buyer);
+        }
+        #[cfg(test)]
+        if self.open.contains_key(&(seller, buyer)) {
+            purchase_route_tests::REUSED.with(|count| count.set(count.get() + 1));
+        }
+        *self.open.entry((seller, buyer)).or_insert_with(|| purchase_route_open(w, seller, buyer))
+    }
+}
+
+#[cfg(test)]
+#[path = "resource_purchase_route_tests.rs"]
+mod purchase_route_tests;
+
 // The eager arm retains the old seller-list construction as a parity oracle.
 fn buy_pass_impl(w: &mut WorldState, lazy_routes: bool) {
     if !(w.rules.resource_gates && w.rules.resource_market) {
@@ -5685,6 +5713,7 @@ fn buy_pass_impl(w: &mut WorldState, lazy_routes: bool) {
     let player = w.player;
     let buyers: Vec<NationId> = w.resources.cover.iter().map(|r| r.nation).collect();
     let mut memo: BTreeMap<NationId, [f64; 12]> = BTreeMap::new();
+    let mut routes = PurchaseRoutes::default();
     for b in buyers {
         if Some(b) == player || !w.nation_opt(b).is_some_and(|n| n.alive) {
             continue;
@@ -5733,7 +5762,7 @@ fn buy_pass_impl(w: &mut WorldState, lazy_routes: bool) {
                 // Failed asks below change only refusal memory/headlines; a
                 // signing or offer ends this search. Route inputs therefore
                 // match the original eager list for every seller reached.
-                if lazy_routes && !purchase_route_open(w, s, b) { continue; }
+                if lazy_routes && !routes.is_open(w, s, b) { continue; }
                 let outcome = ask(w, b, s, c, short, capped, &mut memo);
                 #[cfg(test)]
                 meter::count(&outcome);
@@ -5771,7 +5800,7 @@ fn buy_pass_impl(w: &mut WorldState, lazy_routes: bool) {
             }
         }
     }
-    civilian_recurring_buy_pass_impl(w, player, &mut memo, lazy_routes);
+    civilian_recurring_buy_pass_with_routes(w, player, &mut memo, lazy_routes, &mut routes);
 }
 
 /// At most one additional civilian recurring-material intent per eligible AI
@@ -5787,11 +5816,22 @@ fn civilian_recurring_buy_pass(
     civilian_recurring_buy_pass_impl(w, player, memo, true);
 }
 
+#[cfg(test)]
 fn civilian_recurring_buy_pass_impl(
     w: &mut WorldState,
     player: Option<NationId>,
     memo: &mut BTreeMap<NationId, [f64; 12]>,
     lazy_routes: bool,
+) {
+    civilian_recurring_buy_pass_with_routes(w, player, memo, lazy_routes, &mut PurchaseRoutes::default());
+}
+
+fn civilian_recurring_buy_pass_with_routes(
+    w: &mut WorldState,
+    player: Option<NationId>,
+    memo: &mut BTreeMap<NationId, [f64; 12]>,
+    lazy_routes: bool,
+    routes: &mut PurchaseRoutes,
 ) {
     if !crate::economic_ai::enabled(w) || !w.rules.production_system {
         return;
@@ -5889,7 +5929,7 @@ fn civilian_recurring_buy_pass_impl(
         // only when a reachable producer exists. Preserve that distinction;
         // after finding the first open route, later routes can remain lazy.
         let first_reachable = if lazy_routes {
-            let Some(index) = sellers.iter().position(|seller| purchase_route_open(w, *seller, buyer))
+            let Some(index) = sellers.iter().position(|seller| routes.is_open(w, *seller, buyer))
                 else { continue; };
             index
         } else { 0 };
@@ -5916,7 +5956,7 @@ fn civilian_recurring_buy_pass_impl(
             {
                 continue;
             }
-            if lazy_routes && index != first_reachable && !purchase_route_open(w, seller, buyer) { continue; }
+            if lazy_routes && index != first_reachable && !routes.is_open(w, seller, buyer) { continue; }
             let outcome = ask(
                 w,
                 buyer,
