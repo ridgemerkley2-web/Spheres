@@ -1536,6 +1536,7 @@ fn dispatch_impl(
 
 /// Execute an atomic contract service fraction against frozen route choices.
 /// The resource ledger owns stock/cash; this function reserves capacity only.
+#[cfg(test)]
 pub(crate) fn dispatch_bundle(w: &mut WorldState,
     legs: &[(NationId, NationId, Commodity, f64)], stock_fraction: f64, contract: u32,
 ) -> (f64, Vec<Dispatch>) {
