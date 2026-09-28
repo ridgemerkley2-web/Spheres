@@ -1,0 +1,228 @@
+{
+  "schema": "spheres-s22-measurement-protocol/v1",
+  "session": "S22",
+  "status": "frozen_before_qualification",
+  "recorded_utc": "2026-09-28T04:39:01Z",
+  "source_revision": "846df4797712935efb5a221e188d410b09f0d083",
+  "owner": "Codex",
+  "authority": [
+    {
+      "path": "docs/campaign-certification/S01/PERFORMANCE_BASELINE.md",
+      "sha256": "5732cddde6bb4ce379d405fa1c2221cf6bd69e9c39935127de1f0492bb887a59",
+      "scope": "S01 frozen native, memory, map and UI targets and reference profiles"
+    },
+    {
+      "path": "docs/art/3D_MODEL_MASTER_ROADMAP.md",
+      "sha256": "140a4ae01281649ff803be547bb22015f2f20c6b911b49cc39deef4e23050dae",
+      "scope": "Existing 60 FPS focused-viewer target, detailed aircraft and unchanged current art ceilings"
+    }
+  ],
+  "reference": {
+    "id": "SPHERES-REF-WIN-01",
+    "prior_hardware_record": "docs/campaign-certification/S01/evidence/hardware.json",
+    "expected_cpu": "AMD Ryzen 7 9800X3D",
+    "expected_discrete_gpu": "NVIDIA GeForce RTX 5070",
+    "capture_current": [
+      "UTC time",
+      "OS/build",
+      "CPU",
+      "physical RAM",
+      "GPU and driver",
+      "browser/version/channel/flags",
+      "WebGL vendor/renderer/version",
+      "viewport",
+      "devicePixelRatio",
+      "power/background workload observations"
+    ],
+    "concurrent_work_policy": "No task compilation, tests, fixture aging or other qualification lane during authoritative timing. Record existing user applications; do not terminate them or unrelated processes. Close only disposable test-owned processes during normal cleanup.",
+    "unavailable_or_software_gpu": "Record explicitly. It cannot silently stand in for the agreed discrete reference GPU. Keep the affected reference-hardware cell open."
+  },
+  "source_campaign": {
+    "country": "France",
+    "actual_date": "1999-05-13",
+    "path": "docs/campaign-certification/S19/integration/flight-closeout-evidence/recorded-flight-qualified.json.gz",
+    "gzip_sha256": "7f5b3594f41c213a1567ed82039778174dea9a89b2142f4907285038db40ce23",
+    "uncompressed_sha256": "1af599ec1568a5b2148354de25cb800780d8ce69d352664f0a944242fac5ca8c",
+    "uncompressed_bytes": 63066286,
+    "provenance": "Actual S19 funded construction, company procurement, delivered aircraft, supported flight and readiness recovery; preserved original save. This proves those recorded outcomes, not that every current feature rule is active.",
+    "preparation": "After the recorded ordinary enable adoption, age copies through actual native daily simulation with the enabled qualification rules and retained history. No edited dates, fabricated age labels, grants, removed history or invented feature activity. Record commands, dates, rules and active ledger/force/company/AI counts. Preserve original-source, adopted-early and prepared-input hashes.",
+    "observed_rule_gap": "The earned France source has economic_competition=false. Supplier/military AI enable flags do not establish active planning because their ticks are gated by economic competition.",
+    "required_adoption": {
+      "command": "EnableEconomicCompetition",
+      "political_capital_cost": 0,
+      "date": "1999-05-13",
+      "method": "Apply the ordinary native command once to a disposable source copy; preserve the original. Record command result, date, before/after rules and complete save hashes. The adopted early checkpoint is a new input identity, not the original raw save hash.",
+      "qualification": "Require the enabled economic-competition rule and inspect actual supplier/military AI planning/workload receipts during subsequent daily preparation. Flags alone are not proof of executed work."
+    },
+    "superseded_preparation": "The original passive prepare01 lineage is retained as a diagnostic attempt and cannot serve as qualification. Restart or resume from the declared adopted lineage with explicit before/after provenance."
+  },
+  "cases": [
+    {
+      "id": "early-france-1999",
+      "anchor_date": "1999-05-13",
+      "samples": 31,
+      "sample_end_date": "1999-06-13",
+      "meaning": "Early feature-rich recorded campaign; not a claim of 1990 startup coverage"
+    },
+    {
+      "id": "mid-france-2015",
+      "anchor_date": "2015-01-01",
+      "samples": 31,
+      "sample_end_date": "2015-02-01",
+      "meaning": "Actual mid-2010s campaign aged from the preserved source"
+    },
+    {
+      "id": "late-france-2035",
+      "anchor_date": "2035-11-30",
+      "samples": 31,
+      "sample_end_date": "2035-12-31",
+      "meaning": "Actual end-2035 campaign; last measured day is the CP1 endpoint"
+    }
+  ],
+  "native": {
+    "configuration": "Already-built release native executable, dedicated process, one lane at a time; no Cargo/build time in daily samples",
+    "samples_per_case": 31,
+    "sample_order": "All consecutive one-day samples after each actual anchor; retain every sample including spikes",
+    "percentile": {
+      "method": "nearest_rank",
+      "p95_rank_for_31": 30
+    },
+    "limits": {
+      "simulation_plus_history_p95_ms": 300,
+      "whole_server_turn_p95_ms": 400,
+      "whole_server_turn_max_ms": 750,
+      "observed_os_peak_working_set_bytes": 1073741824,
+      "max_sampled_private_bytes": 1073741824
+    },
+    "whole_turn": "Measure each complete server turn around simulation/history, state read-model generation, JSON serialization, and selected-country history delta query/serialization. Never sum stage percentiles.",
+    "memory": "Retain raw samples at nominal 100 ms or finer, observed OS peak working set, maximum sampled private bytes, actual gaps and failed/final sample availability. Apply both 1 GiB limits across the dedicated process. Sampled private bytes are not a guaranteed instantaneous peak.",
+    "throughput": "Record completed days divided by actual full timed daily-loop elapsed seconds, plus raw loop boundaries; keep fixture preparation, loading, process startup, disk autosave and network/browser work separately labeled. Do not use 1000/median as sustained throughput.",
+    "raw_fields": [
+      "sample index",
+      "actual before/after date",
+      "simulation/history ms",
+      "read-model ms",
+      "serialization ms",
+      "history delta ms",
+      "whole-turn ms",
+      "batch elapsed ms",
+      "memory observations",
+      "input/output hashes",
+      "rules and workload counts"
+    ]
+  },
+  "browser": {
+    "cases": "All three declared actual anchor inputs from the adopted lineage: 1999-05-13, 2015-01-01 and 2035-11-30, loaded unedited into disposable servers. Browser late coverage is explicitly 30 November; the native 31-day window supplies actual 31 December endpoint timing and state facts. Do not label the browser input as 31 December.",
+    "map_profiles": [
+      {
+        "id": "ordinary",
+        "css_width": 1920,
+        "css_height": 1080,
+        "device_pixel_ratio": 1
+      },
+      {
+        "id": "low_detail",
+        "css_width": 1920,
+        "css_height": 1080,
+        "device_pixel_ratio": 1
+      }
+    ],
+    "profile_freeze": "Record exact visible settings and camera workload parameters in the candidate input/configuration manifest before the first qualification round; reuse them unchanged for confirmation. Do not add flags or lower detail after observing a failure without retaining it and starting a new candidate pair.",
+    "map_views": [
+      "world overview",
+      "national France view",
+      "regional Paris province view",
+      "Paris city view"
+    ],
+    "settle_seconds_each_view": 3,
+    "measured_active_navigation_seconds_each_view": 12,
+    "settle_policy": "Record the first 3 s settling/cold-view work separately. It is an explicit predefined phase, not a retrospectively removed slow interval.",
+    "map_fps_minimum": 30,
+    "fps_definition": "Count actual completed globe redraws during the complete 12 s active-navigation window and divide by its full elapsed seconds, including blocked time and scheduling gaps. Invoke the real WebGL finish after each actual draw to confirm completed GPU work; retain raw draw durations, completion times, intervals and draw-call confirmations. This conservative synchronization is part of the frozen method. Idle requestAnimationFrame callbacks do not count.",
+    "inspection": {
+      "model": "One released aircraft from the actual source campaign with at least 100,000 inspection triangles; record revision/specification and measured mesh count",
+      "minimum_triangles": 100000,
+      "existing_fps_target": 60,
+      "workload": "3 s separately recorded settling followed by 12 s actual focused-model orbit/navigation, using the same completed-draw/full-window principle; retain actual CPU/GPU cadence and model cost",
+      "comparison": "Use the unrounded observed value; 59.x does not pass 60. No invented tolerance or waiver."
+    },
+    "ui_controls": {
+      "p95_limit_ms": 200,
+      "samples_per_case_profile": 31,
+      "percentile": "nearest_rank;30th sorted sample of 31",
+      "boundary": "Real input dispatch through the corresponding visible control state/content and its completed paint, including required read-response latency; do not measure only event dispatch or idle callbacks",
+      "workload": "Freeze the ordered 31-control sequence before qualification using ordinary navigation/read controls; retain control identity, before/after state, timestamps and every latency"
+    },
+    "layout_only_profiles": [
+      {
+        "css_width": 390,
+        "css_height": 844,
+        "device_pixel_ratio": 1,
+        "checks": [
+          "keyboard/touch controls",
+          "focus and return",
+          "scroll/overflow",
+          "readable map/province/equipment content"
+        ]
+      },
+      {
+        "css_width": 3440,
+        "css_height": 1440,
+        "device_pixel_ratio": 1,
+        "checks": [
+          "workstation desktop layout",
+          "visible controls",
+          "room/map framing"
+        ]
+      }
+    ],
+    "lifecycle": "Measure inspection and CityMesh/cache bounds, lazy loading, repeated room visits, context loss/recovery and disposal using actual buffer/cache/draw observations. The separate gallery TownMesh plan does not qualify the campaign CityMesh path.",
+    "cold_loading": "Fresh disposable browser profile/context and uncached page entry; report navigation-to-usable and first actual map/inspection draw separately, retaining requests and trace. Do not mix warm reloads or save-load latency with cold page loading.",
+    "memory": "Record JS heap availability/method, browser process observations when available, actual GL buffer/texture allocation payloads and cache counters separately. Neither allocation payloads nor OS process bytes are driver VRAM measurements; no total-VRAM claim.",
+    "evidence": [
+      "raw per-frame draws/completion/intervals",
+      "all control latencies",
+      "trace",
+      "screenshots",
+      "served asset hashes",
+      "binary hash",
+      "browser/GPU metadata",
+      "input save hashes",
+      "settings/camera manifest",
+      "read errors/context recovery observations"
+    ],
+    "cache_contract": "Pin the existing inspection and CityMesh cache limits from source/tests in the candidate manifest before timing. Compare actual observed counters with those limits; do not widen them to pass or substitute the hypothetical offline inventory. A renderer/cache implementation change starts a new full qualification pair."
+  },
+  "acceptance": {
+    "rounds_required": [
+      "initial_full_qualification",
+      "second_full_confirmation"
+    ],
+    "all_cells_required_each_round": true,
+    "identical_candidate_required": [
+      "runtime source and binary",
+      "served assets",
+      "native and browser harness source",
+      "three input save hashes",
+      "configuration and workload manifests",
+      "reference hardware/browser flags"
+    ],
+    "comparison": "Evaluate every cell independently using raw unrounded measurements; no pooled p95 or fast-case averaging hides a failed case. Both complete rounds must meet every applicable existing limit and functional/lifecycle requirement.",
+    "failure_policy": "Retain failed, timed-out, interrupted and preflight attempts under distinct identities. Diagnose and fix. A changed candidate/harness/input/configuration starts a new complete initial+confirmation pair. An unchanged-candidate retry also starts a new full pair; never select only favorable attempts or replace a failed cell in an earlier round.",
+    "preflight": "Debugging, fixture preparation and the completed offline art audit remain explicitly separate from authoritative timing. They do not substitute for either full round.",
+    "invalid_attempt": "Retain evidence and the objective reason for interruption/contamination. Rerun the entire pair when conditions are restored; do not relabel poor timings as invalid merely because they missed a limit.",
+    "required_artifacts": [
+      "immutable attempt index including failures",
+      "candidate/configuration/input manifest frozen before timing",
+      "native raw samples and memory CSV",
+      "browser raw frame/control data",
+      "trace and screenshots",
+      "per-cell unrounded verdicts",
+      "full round verdicts",
+      "hash manifest and exact commands"
+    ],
+    "session_completion": "S22 remains in_progress until both full rounds and all required accounting/lifecycle/layout cells are accepted. This protocol and offline audit award no S22, G5, CP1 or human-playtest completion.",
+    "designation": "Declare immutable attempt IDs and round roles before launch. A completed preflight or diagnostic run cannot be promoted into qualification after its measurements are known."
+  },
+  "frozen_utc": "2026-09-28T04:48:40Z"
+}

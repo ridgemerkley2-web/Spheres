@@ -609,12 +609,20 @@
       "id": "S22",
       "phase": "qualification",
       "title": "Repair art measurement and qualify performance",
-      "status": "planned",
+      "status": "in_progress",
+      "claim": {
+        "owner": "Codex",
+        "base": "846df4797712935efb5a221e188d410b09f0d083",
+        "plan": "docs/campaign-certification/S22/PLAN.md",
+        "protocol": "docs/campaign-certification/S22/measurement-protocol.json",
+        "scope": "Preserve S01 limits, audit current art/accounting, prepare actual France 1999/2015/end-2035 inputs and require two complete unchanged-candidate native/browser qualification rounds."
+      },
       "depends": [
         "S18",
         "S20"
       ],
       "output": "A current art/memory audit and measured performance on the agreed reference machine and low-detail profile.",
+      "evidence": "../campaign-certification/S22/README.md",
       "accept": [
         "Repair vertex-layout accounting, distinguish resident buffers from frame geometry, and regenerate measured records.",
         "Validate inspection/city cache limits, lazy loading, context recovery and repeated room visits; do not silently widen budgets to pass.",
@@ -995,8 +1003,8 @@
   "last_completed_session": "S20",
   "next_session": "S22",
   "execution": {
-    "status": "checkpoint_complete",
-    "instruction": "Close outstanding tasks: S19 and S20 completed, G4 earned, synchronized reviewed tasks published. Next canonical session: S22 performance qualification.",
+    "status": "in_progress",
+    "instruction": "Continue authorized open-task/session work: S22 is claimed for actual early/mid/end-2035 performance qualification under the frozen S01 limits and a two-full-round confirmation policy. S19/S20 remain complete and G4 earned; S22 is not yet complete.",
     "instruction_date": "2026-09-28",
     "next_session_requires_instruction": false,
     "historical_boundary": {

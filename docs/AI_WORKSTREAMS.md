@@ -2,7 +2,7 @@
 
 Updated 28 September 2026 UTC. **Integration branch: `codex/campaign-certification`.**
 Start from this branch, not `master` or an older Claude branch. S01–S21 are complete.
-Codex closed S19 and S20 with actual campaign evidence. [G4 is earned](campaign-certification/G4/README.md); S22 performance qualification is next.
+Codex closed S19 and S20 with actual campaign evidence. [G4 is earned](campaign-certification/G4/README.md); [S22 performance qualification](campaign-certification/S22/README.md) is in progress.
 CP1 certification and worldwide character coverage remain open.
 
 ## Latest checkpoint — 28 September
@@ -11,6 +11,7 @@ CP1 certification and worldwide character coverage remain open.
 |---|---|---|
 | S19 tutorial/advisors | **Complete.** Actual budget, paid construction/output, company purchases/delivery and a supported flown mission are recognized; save/load/Continue and fresh-campaign isolation pass. | [Codex closeout](campaign-certification/S19/integration/CLOSEOUT.md), runtime `c8a59bfd`. |
 | S20 shared interface | **Complete.** Native keyboard/touch journey, retries, focus, campaign isolation and full save integrity passed. | [S20 closeout](campaign-certification/S20/README.md); 1,717 UI and 420 native tests passed (21 existing native tests ignored). |
+| S22 art and performance | **In progress.** Current offline art/accounting audit passes; existing limits and two complete qualification rounds are frozen before timing. | Codex: [plan](campaign-certification/S22/PLAN.md), [protocol](campaign-certification/S22/measurement-protocol.json). Actual France 1999/2015/end-2035 performance and runtime cache/lifecycle cells remain open. |
 | C01 gap audit | **CLAUDE-C01-GAPS-01 complete**, accepted with provenance and portable-hash repairs. | [Review](campaign-certification/C01/integrations/CLAUDE-C01-GAPS-01/INTEGRATION.md). Historical C01 coverage remains open. |
 | C01 source repairs | **SOURCE-05 and SOURCE-06 complete**, with independently reproduced primary bodies/content; **CODEX-C01-SOURCE-06-REVIEW complete**. | [Russian archive review](campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-05/README.md), [Bush Library review](campaign-certification/C01/integrations/CLAUDE-C01-SOURCE-06/README.md). Other claims are not automatically accepted. |
 | Pending Claude work | SOURCE-17/26 and C01-23/24/25/27 await review. All five remaining expanded sections are now claimed on their own branches; remote handoffs inspected after S19 closure; C01-27 refreshed to `0765c590` after S20 closure. | Query the bounded task queue; new remote heads require independent review before acceptance. |
@@ -28,10 +29,10 @@ handoff plan, not a claim that Claude has started work or permission to run ever
 
 | Workstream | Owner | Session markers | Boundary and next step |
 |---|---|---|---|
-| Flight and player journey | Codex | S18, S20, S21 | S18–S21 complete. G4 earned; S22 performance qualification next. |
+| Flight and player journey | Codex | S18, S20, S21 | S18–S21 complete. G4 earned; S22 performance qualification is in progress. |
 | Tutorial and advisors | Claude | S19 | Submission `7de62539` integrated at `2400800b`; Codex completed ordinary later-outcome qualification; S19 is closed. |
 | Historical characters and cartoons | Claude | C01–C07, S23 | C01-01/02/03/04/07/08 accepted as bounded research; C01-05/06/09–22/26 integrated after technical verification, historical acceptance pending. C01-23/24/25/27 are submitted for review. C01 remains incomplete. |
-| Integration, performance and qualification | Codex | S22, S24, S25, S27–S30 | Claude owns a bounded S24 successor-fixture preparation packet; Codex owns final qualification. Integrate reviewed work and run exact-build checks. Neither a content batch nor a unit-test pass earns CP1. |
+| Integration, performance and qualification | Codex | S22, S24, S25, S27–S30 | Codex is executing the frozen S22 protocol; no timing threshold is relaxed. Claude owns a bounded S24 successor-fixture preparation packet; Codex owns final qualification. Neither a content batch nor a unit-test pass earns CP1. |
 | Independent human playtests | User / human testers | S26 | Codex prepares reproducible builds and tasks; Claude may review observations. AI testing cannot substitute for human sessions. |
 | Later aircraft/naval expansion | Codex | E01–E04, E06 | Parked until CP1; preserve the current three supported mission families. |
 | Later company identity/history | Claude | E05 | Eight-company France/Japan research pilot claimed. Runtime expansion stays after CP1; current supplier economy stays with Codex. |
@@ -140,7 +141,7 @@ independent sections. The [existing research list](planning/ai-handoffs/CLAUDE-C
 tracks the remaining source/content submissions. SOURCE-05/06 and C01-GAPS-01
 are closed as bounded tasks; their parent C01 remains incomplete. Codex completed
 [S19 later outcomes](planning/ai-handoffs/CODEX-S19-LATER-01.md) and has completed
-S20's combined map, province and room navigation. S22 performance qualification is next.
+S20's combined map, province and room navigation. S22 performance qualification is in progress.
 
 Copy this into Claude to resume its claimed sections:
 
@@ -190,7 +191,7 @@ campaign pathway; this is a work split, not a replacement roadmap.
 
 Codex completed the independently ready [S21 campaign journey](campaign-certification/S21/README.md) while S19 remained claimed. It adds campaign goals/history/continuation and repairs first-day successor saves. S19 and S20 are now complete, and the dated G4 decision records the earned player-journey gate.
 
-Codex completed [CODEX-S22-PREP-01](planning/ai-handoffs/CODEX-S22-PREP-01.md): repaired art accounting, restored compiled equipment self-shadows, and validated the isolated renderer. Its original 42-overrun finding remains in the historical preparation record. The [current art audit](art/P0_BUDGETS.md) now grades 245 configurations with 166 passes, 79 advisory density notes and no ceiling or required-quality-floor failures. The [adaptive town renderer](art/TOWN_SCENE_RENDERING.md) preserves the original close meshes and measures actual submissions within the unchanged scene ceiling; raw full-block overages remain explicit diagnostics. This is independent preparation: S22 is now the next ready canonical session after S20, and full campaign performance and human qualification remain open. See the [current completion follow-up](campaign-certification/verification/2026-09-22-completion.md) for exact local and hosted validation status.
+Codex completed [CODEX-S22-PREP-01](planning/ai-handoffs/CODEX-S22-PREP-01.md): repaired art accounting, restored compiled equipment self-shadows, and validated the isolated renderer. Its original 42-overrun finding remains in the historical preparation record. The [current art audit](art/P0_BUDGETS.md) now grades 245 configurations with 166 passes, 79 advisory density notes and no ceiling or required-quality-floor failures. The [adaptive town renderer](art/TOWN_SCENE_RENDERING.md) preserves the original close meshes and measures actual submissions within the unchanged scene ceiling; raw full-block overages remain explicit diagnostics. This is retained independent preparation. Codex has now claimed S22 and frozen its measurement protocol; current offline accounting passes while full campaign performance and human qualification remain open. See the [current completion follow-up](campaign-certification/verification/2026-09-22-completion.md) for exact local and hosted validation status.
 
 The [six-session development journal](campaign-certification/development/2026-09-21-six-sessions/README.md)
 records the subsequent equipment picker, province activity overview, local timing
