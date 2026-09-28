@@ -15,7 +15,7 @@ function archive(bytes){
   assert(Number.isSafeInteger(value.saved_unix)&&value.saved_unix>0);
   const pattern=/(,"saved_unix":)\d+(?=\}\s*$)/;assert(pattern.test(text),'Expected terminal native saved_unix');
   assert.equal(value.world?.format,'spheres-integrated-save');const world=value.world.world;assert(world&&typeof world.player==='string');
-  return {bytes:bytes.length,sha256:hash(bytes),campaign_sha256:hash(text.replace(pattern,'$1<TIMESTAMP>')),player:value.player,date:value.saved_date,world_player:world.player,world_date:{year:world.year,month:world.month,day:world.day}};
+  return {bytes:bytes.length,sha256:hash(bytes),campaign_sha256:hash(text.replace(pattern,'$1<TIMESTAMP>')),player:value.player,date:value.saved_date,world_player:world.player,world_seed:world.rules?.seed,world_date:{year:world.year,month:world.month,day:world.day}};
 }
 function roster(rows){
   assert(Array.isArray(rows));const values=rows.filter(row=>row.alive!==false).map(row=>({id:row.id,name:row.name})).sort((a,b)=>a.id.localeCompare(b.id));
@@ -67,7 +67,7 @@ function verifyEvidence(result,root){
   assert.deepEqual((result.harness?.sources||[]).map(p=>p.source_path).sort(),[...SOURCES].sort(),'Retain every harness dependency');for(const pin of result.harness.sources)file(pin,false);
   const nations=file(result.canonical_roster,false);assert.equal(crypto.createHash('sha1').update(Buffer.from('blob '+nations.length+'\0')).update(nations).digest('hex'),result.canonical_roster.git_blob);assert.deepEqual(canonicalRoster(nations),result.roster,'Served roster differs from the retained native source');
   const geometry=file(result.canonical_geometry,false);assert.equal(crypto.createHash('sha1').update(Buffer.from('blob '+geometry.length+'\0')).update(geometry).digest('hex'),result.canonical_geometry.git_blob);assert.deepEqual(zeroDistricts(geometry,result.roster),result.canonical_geometry.zero_district_ids);
-  for(const c of result.cases){for(const pin of [c.before_save,c.after_save]){const raw=zlib.gunzipSync(file(pin,true)),observed=archive(raw);for(const key of ['sha256','bytes','campaign_sha256','player','date','world_player','world_date'])assert.deepEqual(observed[key],pin[key],c.nation+' archive '+key);assert.equal(observed.player,c.name);assert.equal(observed.world_player,c.nation);assert.deepEqual(observed.world_date,{year:1990,month:1,day:8});assert.equal(observed.date,'8 Jan 1990');}for(const shot of c.screenshots)file(shot,false);}
+  for(const c of result.cases){for(const pin of [c.before_save,c.after_save]){const raw=zlib.gunzipSync(file(pin,true)),observed=archive(raw);for(const key of ['sha256','bytes','campaign_sha256','player','date','world_player','world_seed','world_date'])assert.deepEqual(observed[key],pin[key],c.nation+' archive '+key);assert.equal(observed.player,c.name);assert.equal(observed.world_player,c.nation);assert.equal(observed.world_seed,result.seed);assert.deepEqual(observed.world_date,{year:1990,month:1,day:8});assert.equal(observed.date,'8 Jan 1990');}for(const shot of c.screenshots)file(shot,false);}
   return {passed:true,files_verified:files,retained_bytes:bytes,cases_verified:result.cases.length,all_137_passed:result.coverage==='all_starters',qualification:false};
 }
 module.exports={hash,day,archive,roster,validate,verifyEvidence,CHECKS,MINISTRIES,SOURCES,canonicalRoster,zeroDistricts};
