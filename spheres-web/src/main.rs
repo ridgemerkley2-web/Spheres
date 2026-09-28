@@ -80,6 +80,8 @@ use history::{Event, Snapshot};
 
 fn build_info()->serde_json::Value {serde_json::json!({
     "version":env!("CARGO_PKG_VERSION"),"revision":env!("SPHERES_REVISION"),
+    "full_revision":env!("SPHERES_FULL_REVISION"),
+    "target_os":std::env::consts::OS,"target_arch":std::env::consts::ARCH,
     "branch":env!("SPHERES_BRANCH"),"built_at_unix_seconds":env!("SPHERES_BUILD_EPOCH").parse::<u64>().ok(),
     "save_directory":std::env::current_dir().ok().map(|p|p.display().to_string()),
     "campaign_format":"versioned world, event archive and retained history; legacy raw worlds remain readable",
@@ -7327,6 +7329,12 @@ fn wants_browser(args: &[String]) -> bool {
 
 fn main() {
     let args: Vec<String> = std::env::args().collect();
+    // Packaging must inspect this executable before any campaign, listener,
+    // browser or save-directory writes are created.
+    if args.iter().any(|argument| argument == "--build-info") {
+        println!("{}", build_info());
+        return;
+    }
     let env_port = std::env::var("PORT").ok();
     let port = listen_port(&args, env_port.as_deref());
 
