@@ -1,0 +1,592 @@
+{
+  "schema": "spheres-company-pilot-dossier-v1",
+  "id": "fr_renault",
+  "display_name": "Renault Group",
+  "native_name": "Renault SA (Regie Nationale des Usines Renault until 1990)",
+  "nation": "France",
+  "status": "research_only",
+  "research_window": {
+    "from": "1990-01-01",
+    "through": "2026-09-07"
+  },
+  "activities": [
+    "civilian_industrial"
+  ],
+  "selection": {
+    "reason": "The major French civilian manufacturer, with a sourced cross-country link to Japan through the Renault-Nissan alliance. It gives the pilot a civilian industrial identity and an alliance case that must not be confused with a merger.",
+    "existing_game_references": [
+      {
+        "kind": "sector_contractors",
+        "path": "spheres-sim/src/sector_contractors.rs",
+        "id": "France:manufacturing",
+        "note": "Generated fictional manufacturing contractors only; no real identity or car product consumer exists."
+      }
+    ]
+  },
+  "summary": "The Regie Renault became a state-owned societe anonyme in 1990 and its privatisation became effective from 1996. Renault took 51% of Dacia in 1999 and 36.8% of Nissan in the 1999 alliance; Mitsubishi joined the alliance in 2016. Renault sold Nissan shares in 2023-2024, and from 30 June 2025 it no longer equity-accounts Nissan. Products in the window include the Clio (1990), Twingo (1992), ZOE (2012) and Renault 5 E-Tech (2024).",
+  "entities": [
+    {
+      "id": "fr_renault_sa",
+      "kind": "company",
+      "subject": true,
+      "names": [
+        {
+          "name": "Régie Nationale des Usines Renault",
+          "from": "1990-01-01",
+          "from_basis": "window_start",
+          "until": "1990",
+          "claims": [
+            "fr_renault_c01"
+          ]
+        },
+        {
+          "name": "Renault SA",
+          "from": "1990",
+          "until": null,
+          "claims": [
+            "fr_renault_c01",
+            "fr_renault_c16"
+          ]
+        }
+      ],
+      "roles": [
+        {
+          "role": "vehicle manufacturer and group parent company",
+          "from": "1990-01-01",
+          "from_basis": "window_start",
+          "until": null,
+          "claims": [
+            "fr_renault_c03",
+            "fr_renault_c16"
+          ]
+        }
+      ],
+      "note": "The 1990 source records the change to a societe anonyme without spelling the new corporate name; later filings use Renault SA."
+    }
+  ],
+  "lineage": [
+    {
+      "id": "fr_renault_l01",
+      "kind": "status_change",
+      "entity": "fr_renault_sa",
+      "date": "1990",
+      "from_name": "Régie Nationale des Usines Renault",
+      "to_name": "Renault SA",
+      "claims": [
+        "fr_renault_c01"
+      ]
+    },
+    {
+      "id": "fr_renault_l02",
+      "kind": "stake_change",
+      "entity": "fr_renault_sa",
+      "date": "1996",
+      "counterparties": [
+        {
+          "name": "French State",
+          "relation": "privatisation became effective"
+        }
+      ],
+      "claims": [
+        "fr_renault_c02"
+      ]
+    },
+    {
+      "id": "fr_renault_l03",
+      "kind": "acquisition",
+      "entity": "fr_renault_sa",
+      "date": "1999",
+      "counterparties": [
+        {
+          "name": "Dacia",
+          "relation": "51% majority stake"
+        }
+      ],
+      "claims": [
+        "fr_renault_c05"
+      ]
+    },
+    {
+      "id": "fr_renault_l04",
+      "kind": "alliance",
+      "entity": "fr_renault_sa",
+      "date": "1999",
+      "counterparties": [
+        {
+          "name": "Nissan",
+          "relation": "cross-shareholding alliance; Renault took 36.8% of Nissan"
+        }
+      ],
+      "claims": [
+        "fr_renault_c06"
+      ],
+      "note": "An alliance and shareholding, not a merger: Nissan stays a separate Japanese company."
+    },
+    {
+      "id": "fr_renault_l05",
+      "kind": "alliance",
+      "entity": "fr_renault_sa",
+      "date": "2016",
+      "counterparties": [
+        {
+          "name": "Mitsubishi (Japanese carmaker)",
+          "relation": "joined the Renault-Nissan alliance"
+        }
+      ],
+      "claims": [
+        "fr_renault_c07"
+      ],
+      "note": "The Japanese carmaker, not Mitsubishi Heavy Industries."
+    },
+    {
+      "id": "fr_renault_l06",
+      "kind": "divestiture",
+      "entity": "fr_renault_sa",
+      "date": "2022-05-16",
+      "counterparties": [
+        {
+          "name": "Renault Russia",
+          "relation": "sale to the City of Moscow approved"
+        },
+        {
+          "name": "AVTOVAZ",
+          "relation": "67.69% stake to be sold"
+        }
+      ],
+      "claims": [
+        "fr_renault_c09"
+      ],
+      "note": "Board approval of the sale agreements; completion is not recorded here."
+    },
+    {
+      "id": "fr_renault_l07",
+      "kind": "joint_venture",
+      "entity": "fr_renault_sa",
+      "date": "2024",
+      "counterparties": [
+        {
+          "name": "Geely",
+          "relation": "co-founded HORSE Powertrain Limited"
+        }
+      ],
+      "claims": [
+        "fr_renault_c10"
+      ]
+    },
+    {
+      "id": "fr_renault_l08",
+      "kind": "stake_change",
+      "entity": "fr_renault_sa",
+      "date": "2024-09-27",
+      "counterparties": [
+        {
+          "name": "Nissan",
+          "relation": "Renault sold 195,473,600 Nissan shares (about 5.0%) to Nissan"
+        }
+      ],
+      "claims": [
+        "fr_renault_c14"
+      ]
+    }
+  ],
+  "ownership": [
+    {
+      "holder": "Renault Group stake in Nissan (15.00% direct, 28.40% in a French trust)",
+      "share": "43.40% of Nissan",
+      "date": "2023-11-08",
+      "claims": [
+        "fr_renault_c13"
+      ]
+    }
+  ],
+  "country_links": [
+    {
+      "country": "Brazil",
+      "kind": "plant",
+      "date": "1998",
+      "claims": [
+        "fr_renault_c12"
+      ]
+    },
+    {
+      "country": "Romania",
+      "kind": "subsidiary",
+      "date": "1999",
+      "claims": [
+        "fr_renault_c05"
+      ]
+    },
+    {
+      "country": "Japan",
+      "kind": "alliance",
+      "date": "1999",
+      "claims": [
+        "fr_renault_c06"
+      ]
+    },
+    {
+      "country": "Japan",
+      "kind": "accounting_change",
+      "date": "2025-06-30",
+      "claims": [
+        "fr_renault_c15"
+      ],
+      "note": "Nissan stake measured at fair value instead of by the equity method; cooperation continues."
+    },
+    {
+      "country": "Russia",
+      "kind": "divestiture",
+      "date": "2022-05-16",
+      "claims": [
+        "fr_renault_c09"
+      ]
+    },
+    {
+      "country": "China",
+      "kind": "joint_venture",
+      "date": "2024",
+      "claims": [
+        "fr_renault_c10"
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "fr_renault_clio",
+      "name": "Renault Clio",
+      "reality": "historical",
+      "category": "passenger car",
+      "milestones": [
+        {
+          "event": "market_launch",
+          "date": "1990",
+          "maker_entity": "fr_renault_sa",
+          "maker_name": "Renault SA",
+          "claims": [
+            "fr_renault_c03"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fr_renault_twingo",
+      "name": "Renault Twingo",
+      "reality": "historical",
+      "category": "passenger car",
+      "milestones": [
+        {
+          "event": "market_launch",
+          "date": "1992",
+          "maker_entity": "fr_renault_sa",
+          "maker_name": "Renault SA",
+          "claims": [
+            "fr_renault_c04"
+          ],
+          "note": "Presented at the Paris motor show; the source labels the year as its launch."
+        }
+      ]
+    },
+    {
+      "id": "fr_renault_zoe",
+      "name": "Renault ZOE",
+      "reality": "historical",
+      "category": "electric passenger car",
+      "milestones": [
+        {
+          "event": "market_launch",
+          "date": "2012",
+          "maker_entity": "fr_renault_sa",
+          "maker_name": "Renault SA",
+          "claims": [
+            "fr_renault_c08"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fr_renault_5_etech",
+      "name": "Renault 5 E-Tech electric",
+      "reality": "historical",
+      "category": "electric passenger car",
+      "milestones": [
+        {
+          "event": "market_launch",
+          "date": "2024",
+          "maker_entity": "fr_renault_sa",
+          "maker_name": "Renault SA",
+          "claims": [
+            "fr_renault_c11"
+          ]
+        }
+      ]
+    }
+  ],
+  "game_mapping": {
+    "proposed": [
+      {
+        "target_kind": "sector_contractor_slot",
+        "target_id": "France:manufacturing",
+        "flow": "sector_contractor_service",
+        "confidence": "medium",
+        "uncertainty": "Cars have no product consumer: the supplier flow covers military designer platforms only. Manufacturing contractors improve funded industrial work; a real identity would replace one generated contractor, not add a firm with sales."
+      }
+    ],
+    "duplicates_avoided": [
+      "Renault SA is not proposed for France:ground_apc; no Renault military product was researched and the VAB carrier line is not attributed to Renault SA.",
+      "Nissan, Dacia and Mitsubishi Motors are counterparties with their own identities, never Renault names."
+    ],
+    "integration_flow": {
+      "route": "existing_supplier_flow",
+      "summary": "A later, reviewed integration could attach this sourced identity to a company created through the existing orders. Design stays with the commissioning country; Defense R&D pays development as work is performed; the company funds tooling, national-warehouse inputs and fabrication from its own settled cash; the buyer purchases whole finished units from company stock; delivery follows fiscal settlement and seven accessible days. No existing company order produces civilian cars; a Renault identity would first appear only as a sector contractor serving funded work.",
+      "steps": [
+        {
+          "order": "Establish",
+          "note": "Paid capitalisation from Defense procurement (political capital price applies); leases one existing completed Arms Plant slot. No historical factory, balance or stock is granted."
+        },
+        {
+          "order": "Capitalize",
+          "note": "Further paid working capital; unsettled receivables are not spendable cash."
+        },
+        {
+          "order": "Develop",
+          "note": "Frozen design revision; Defense R&D pays engineering, prototype and trials work day by day; prototypes are never saleable."
+        },
+        {
+          "order": "Inventory",
+          "note": "Finite company-owned stock target (0-12 units); a target is never a government order."
+        },
+        {
+          "order": "Purchase",
+          "note": "Government buys whole units from existing company stock; settlement then seven accessible delivery days."
+        }
+      ],
+      "not_introduced": [
+        "government production capacity",
+        "free or opening stock",
+        "a parallel financial ledger",
+        "sourced opening corporate balances (none researched)"
+      ]
+    },
+    "constraints": {
+      "government_production_capacity": false,
+      "free_stock": false,
+      "parallel_financial_ledger": false,
+      "opening_balances_or_stock": "not_sourced_not_proposed"
+    },
+    "unmapped": [
+      "Passenger cars and electric vehicles: no civilian product consumer.",
+      "Alliance cross-shareholding: no company-to-company ownership model exists."
+    ]
+  },
+  "gaps": [
+    "The exact 1990 corporate name and effective date of the status change were not retrieved.",
+    "The Busan plant entry on the history page describes Samsung Motors in 1995 without dating Renault ownership; it is not used."
+  ],
+  "future_policy": {
+    "after": "2026-09-07",
+    "real_history": "not_predicted",
+    "later_products": "fictional_or_unknown",
+    "note": "Nothing after the frozen cutoff is predicted. Any later product, successor or business in a campaign must be authored as explicitly fictional game content (labelled \"(fictional)\") or left unknown."
+  },
+  "claims": [
+    {
+      "id": "fr_renault_c01",
+      "source": "fr_renault_histoire",
+      "attests": [
+        "1990"
+      ],
+      "text": "In 1990 the Regie Renault changed status and became a societe anonyme with State capital.",
+      "locator": {
+        "section": "history grid, 1990: Privatisation de la Regie Nationale des Usines Renault"
+      },
+      "anchor": "la régie Renault change de statut et devient une société anonyme"
+    },
+    {
+      "id": "fr_renault_c02",
+      "source": "fr_renault_histoire",
+      "attests": [
+        "1996"
+      ],
+      "text": "The same entry states that the privatisation became effective from 1996.",
+      "locator": {
+        "section": "history grid, 1990 entry text"
+      },
+      "anchor": "à partir de 1996"
+    },
+    {
+      "id": "fr_renault_c03",
+      "source": "fr_renault_histoire",
+      "attests": [
+        "1990"
+      ],
+      "text": "The Clio was launched in 1990.",
+      "locator": {
+        "section": "history grid, 1990: Lancement de Clio"
+      },
+      "anchor": "emblématique Clio"
+    },
+    {
+      "id": "fr_renault_c04",
+      "source": "fr_renault_histoire",
+      "attests": [
+        "1992"
+      ],
+      "text": "The Twingo was launched in 1992 after its presentation at the Paris motor show.",
+      "locator": {
+        "section": "history grid, 1992: Lancement de Twingo"
+      },
+      "anchor": "Lancement de Twingo"
+    },
+    {
+      "id": "fr_renault_c05",
+      "source": "fr_renault_histoire",
+      "attests": [
+        "1999"
+      ],
+      "text": "In 1999 Renault became the 51% majority shareholder of the Romanian brand Dacia.",
+      "locator": {
+        "section": "history grid, 1999: Prise de controle de DACIA"
+      },
+      "anchor": "Renault devient actionnaire majoritaire à 51 % de la marque roumaine Dacia"
+    },
+    {
+      "id": "fr_renault_c06",
+      "source": "fr_renault_histoire",
+      "attests": [
+        "1999"
+      ],
+      "text": "In 1999 Renault and Nissan signed the alliance agreement combining cross-shareholding and industrial collaboration; Renault took 36.8% of Nissan.",
+      "locator": {
+        "section": "history grid, 1999: Signature de l'Alliance Renault-Nissan"
+      },
+      "anchor": "Renault prend 36,8 % du capital de Nissan"
+    },
+    {
+      "id": "fr_renault_c07",
+      "source": "fr_renault_histoire",
+      "attests": [
+        "2016"
+      ],
+      "text": "In 2016 the Japanese carmaker Mitsubishi joined the Renault-Nissan alliance.",
+      "locator": {
+        "section": "history grid, 2016: Mitsubishi rejoint l'Alliance"
+      },
+      "anchor": "Mitsubishi rejoint"
+    },
+    {
+      "id": "fr_renault_c08",
+      "source": "fr_renault_histoire",
+      "attests": [
+        "2012"
+      ],
+      "text": "Renault launched the ZOE electric car in 2012, revealed at the Geneva motor show.",
+      "locator": {
+        "section": "history grid, 2012: Lancement de Renault ZOE"
+      },
+      "anchor": "Lancement de Renault ZOE"
+    },
+    {
+      "id": "fr_renault_c09",
+      "source": "fr_renault_histoire",
+      "attests": [
+        "2022-05-16"
+      ],
+      "text": "On 16 May 2022 the Board approved agreements to sell 100% of Renault Russia to the City of Moscow and the 67.69% stake in AVTOVAZ.",
+      "locator": {
+        "section": "history grid, 2022: cession de Renault Russie et AVTOVAZ"
+      },
+      "anchor": "Le 16 mai 2022"
+    },
+    {
+      "id": "fr_renault_c10",
+      "source": "fr_renault_histoire",
+      "attests": [
+        "2024"
+      ],
+      "text": "In 2024 Renault Group and Geely formally created HORSE Powertrain Limited.",
+      "locator": {
+        "section": "history grid, 2024: Creation de HORSE Powertrain Limited"
+      },
+      "anchor": "créent officiellement HORSE Powertrain Limited"
+    },
+    {
+      "id": "fr_renault_c11",
+      "source": "fr_renault_histoire",
+      "attests": [
+        "2024"
+      ],
+      "text": "Renault launched the Renault 5 E-Tech electric in 2024.",
+      "locator": {
+        "section": "history grid, 2024: Lancement de Renault 5 E-Tech electric"
+      },
+      "anchor": "5 E-Tech electric"
+    },
+    {
+      "id": "fr_renault_c12",
+      "source": "fr_renault_histoire",
+      "attests": [
+        "1998"
+      ],
+      "text": "In 1998 the Ayrton Senna industrial complex at Curitiba, Renault's first plant in Brazil, was inaugurated.",
+      "locator": {
+        "section": "history grid, 1998: Inauguration du complexe Ayrton Senna"
+      },
+      "anchor": "Inauguration du complexe Ayrton Senna au Brésil"
+    },
+    {
+      "id": "fr_renault_c13",
+      "source": "fr_renault_pr_nissan_shares_2024",
+      "attests": [
+        "2023-11-08"
+      ],
+      "text": "As of 8 November 2023 Renault Group held 43.40% of Nissan's capital, 15.00% directly and 28.40% through a French trust.",
+      "locator": {
+        "page": 2,
+        "section": "table: Evolution of Nissan capital held by Renault Group"
+      },
+      "anchor": "Situation as of November 8, 2023"
+    },
+    {
+      "id": "fr_renault_c14",
+      "source": "fr_renault_pr_nissan_shares_2024",
+      "attests": [
+        "2023-12-13",
+        "2024-03-28",
+        "2024-09-27"
+      ],
+      "text": "After sales of Nissan shares on 13 December 2023 and 28 March 2024, Renault Group sold 195,473,600 Nissan shares (about 5.0%) to Nissan on 27 September 2024.",
+      "locator": {
+        "page": 1,
+        "section": "lead paragraph"
+      },
+      "anchor": "sold to Nissan 195 473 600 Nissan shares"
+    },
+    {
+      "id": "fr_renault_c15",
+      "source": "fr_renault_pr_nissan_accounting_2025",
+      "attests": [
+        "2025-06-30",
+        "2025-07-01"
+      ],
+      "text": "From 30 June 2025 Renault Group accounts for its Nissan stake as a financial asset at fair value instead of by the equity method; the operational cooperation remains.",
+      "locator": {
+        "page": 1,
+        "section": "summary bullets"
+      },
+      "anchor": "Previously accounted for using the equity method"
+    },
+    {
+      "id": "fr_renault_c16",
+      "source": "fr_renault_pr_h1_2026",
+      "attests": [
+        "2026-07-30"
+      ],
+      "text": "Renault SA filed its 2026 Half-Year Financial Report with the AMF on 30 July 2026.",
+      "locator": {
+        "page": 1,
+        "section": "body"
+      },
+      "anchor": "Renault SA announces that the 2026 Half-Year Financial Report"
+    }
+  ]
+}
