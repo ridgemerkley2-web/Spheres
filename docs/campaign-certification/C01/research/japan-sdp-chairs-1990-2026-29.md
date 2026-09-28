@@ -288,12 +288,12 @@ December 2003. 社会新報 reports her uncontested fourth election on 4 Decembe
 press conferences on 9 December 2009 and 24 January 2012 (`jp_sdp_fukushima_in_office_20091209`, `jp_sdp_fukushima_in_office_20120124`).
 The party's page of 25 July 2013 reports that she stated her intention to resign at the standing committee, which accepted it and
 decided to appoint an acting leader, and quotes her press conference: 'その敗北の責任を取って本日で辞任する'
-(`jp_sdp_fukushima_end_stated_20130725`); it adds that she was re-elected unopposed five times after 2003.
+(`jp_sdp_fukushima_end_stated_20130725`); it adds that she won five consecutive uncontested leader elections.
 
 Decision: accepted in part: from 15 November 2003 (her own statement of the day); observations of 9 December 2009 and 24 January
 2012; until 25 July 2013 on the 2012 observation.
 
-Limits: the 2005 and 2007 elections were not found (the page of 2013 counts five uncontested re-elections); the 2003 and 2009
+Limits: the 2005 and 2007 elections were not found. The 2013 wording does not establish five additional re-elections after the initial election; the January 2012 record explicitly calls that election her fifth. The 2003 and 2009
 observations have no end, and no end is inferred from the next election.
 
 ### SDP-CHAIR-08 — 2013-2018: the acting leader and 吉田忠智
