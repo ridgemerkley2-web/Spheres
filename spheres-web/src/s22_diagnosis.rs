@@ -192,6 +192,9 @@ fn s22_daily_subsystem_diagnosis() {
 fn s22_observed_schedule_matches_native_commands_airbases_and_headlines() {
     let mut g = Game::new_fresh(1990,Some(NationId::France));
     fresh_play_rules(&mut g).unwrap();
+    // Ordinary enrollment settles before the explicit competition adoption,
+    // just as in the existing S22 adoption regression and real source lineage.
+    g.advance_days(1,vec![]);
     s22_adopt_competition(&mut g).unwrap();
     let mut observed = g.world.clone();
     let mut routes = logistics::NominalRoutePool::default();
