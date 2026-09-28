@@ -817,14 +817,38 @@ pub fn accounted_force(w: &WorldState, nation: NationId) -> f64 {
 }
 
 pub(crate) fn prepare(w: &mut WorldState, snapshot: &operations::Snapshot) -> Opening {
-    #[cfg(test)]
-    if transfer_path_tests::UNCACHED_PATHS.with(|uncached| uncached.get()) {
-        return prepare_with_paths::<false>(w, snapshot);
-    }
-    prepare_with_paths::<true>(w, snapshot)
+    prepare_traced(w, snapshot, None)
 }
 
-fn prepare_with_paths<const CACHE_PATHS: bool>(w: &mut WorldState, snapshot: &operations::Snapshot) -> Opening {
+/// Nested stage observations for the native war diagnostic. The normal path
+/// supplies no observer and reads no clocks; neither path reorders preparation.
+#[doc(hidden)]
+pub(crate) fn prepare_observed(w: &mut WorldState, snapshot: &operations::Snapshot,
+    observer: &mut dyn FnMut(&'static str, std::time::Duration)) -> Opening {
+    prepare_traced(w, snapshot, Some(observer))
+}
+
+fn prepare_traced(w: &mut WorldState, snapshot: &operations::Snapshot,
+    observer: Option<&mut dyn FnMut(&'static str, std::time::Duration)>) -> Opening {
+    #[cfg(test)]
+    if transfer_path_tests::UNCACHED_PATHS.with(|uncached| uncached.get()) {
+        return prepare_with_paths::<false>(w, snapshot, observer);
+    }
+    prepare_with_paths::<true>(w, snapshot, observer)
+}
+
+fn prepare_with_paths<const CACHE_PATHS: bool>(w: &mut WorldState, snapshot: &operations::Snapshot,
+    mut observer: Option<&mut dyn FnMut(&'static str, std::time::Duration)>) -> Opening {
+    let mut stage_start = observer.as_ref().map(|_| std::time::Instant::now());
+    macro_rules! stage {
+        ($name:expr) => {
+            if let (Some(start), Some(observe)) = (stage_start, observer.as_deref_mut()) {
+                observe($name, start.elapsed());
+                // Exclude callback/report overhead from the next child stage.
+                stage_start = Some(std::time::Instant::now());
+            }
+        };
+    }
     w.campaign.conflict_id_high_water = conflict_id_high_water(w);
     // First retain their identities above; closed-war intent is no longer an
     // active policy. Historic agreements and conserved return journeys live
@@ -842,11 +866,13 @@ fn prepare_with_paths<const CACHE_PATHS: bool>(w: &mut WorldState, snapshot: &op
         .last_proposal
         .retain(|key, _| live_key(key));
     let day = clock::absolute_day(w);
+    stage!("resolve.campaign_prepare.setup");
     let owners: BTreeMap<_, _> = w
         .districts
         .keys()
         .map(|d| (d.clone(), control::controller(w, d)))
         .collect();
+    stage!("resolve.campaign_prepare.ownership");
     let mut state = std::mem::take(&mut w.campaign);
     let migration = !state.initialized;
     let migration_conflicts = state
@@ -872,6 +898,7 @@ fn prepare_with_paths<const CACHE_PATHS: bool>(w: &mut WorldState, snapshot: &op
             orders.insert(key, o);
         }
     }
+    stage!("resolve.campaign_prepare.orders");
     if state.last_prepared != Some(day) {
         // Disbanded/conflict-ended troops return on a dated journey; their
         // fatigue and force cannot be laundered by closing/reopening a war.
@@ -941,6 +968,7 @@ fn prepare_with_paths<const CACHE_PATHS: bool>(w: &mut WorldState, snapshot: &op
                 r.cohesion += (1.0 - r.cohesion) * 0.025;
             }
         }
+        stage!("resolve.campaign_prepare.normalize_reserves");
         let transit = std::mem::take(&mut state.transfers);
         // This pass changes only the detached campaign book: control, military
         // access and naval holdings remain immutable until all journeys have
@@ -1000,6 +1028,7 @@ fn prepare_with_paths<const CACHE_PATHS: bool>(w: &mut WorldState, snapshot: &op
                 _ => add_reserve(&mut state, t.nation, t.strength, t.cohesion),
             }
         }
+        stage!("resolve.campaign_prepare.transfer_advance");
         let mut desired: BTreeMap<String, (u32, NationId, String, f64)> = BTreeMap::new();
         for ((cid, n), row) in &snapshot.rows {
             let Some(c) = w.conflict(*cid) else { continue };
@@ -1016,6 +1045,7 @@ fn prepare_with_paths<const CACHE_PATHS: bool>(w: &mut WorldState, snapshot: &op
                 );
             }
         }
+        stage!("resolve.campaign_prepare.desired_positions");
         // Only local campaign state changes during movement planning. Reuse
         // one lazy freight graph while the world it quotes stays immutable.
         let mut deployment_routes = crate::campaign_supply::DeploymentRoutes::new(w);
@@ -1135,6 +1165,7 @@ fn prepare_with_paths<const CACHE_PATHS: bool>(w: &mut WorldState, snapshot: &op
                 });
             }
         }
+        stage!("resolve.campaign_prepare.route_deploy");
         state.sectors.retain(|_, s| s.strength > EPS);
         state
             .orders
@@ -1148,6 +1179,7 @@ fn prepare_with_paths<const CACHE_PATHS: bool>(w: &mut WorldState, snapshot: &op
     }
     let sectors = state.sectors.clone();
     w.campaign = state;
+    stage!("resolve.campaign_prepare.cleanup");
     let mut requests = vec![];
     for (key, s) in &sectors {
         let Some(c) = w.conflict(s.conflict) else {
@@ -1205,7 +1237,11 @@ fn prepare_with_paths<const CACHE_PATHS: bool>(w: &mut WorldState, snapshot: &op
         });
     }
     requests.extend(crate::campaign_peace::garrison_requests(w, snapshot));
+    stage!("resolve.campaign_prepare.supply_requests");
     let supply = crate::campaign_supply::prepare(w, &requests);
+    if let (Some(start), Some(observe)) = (stage_start, observer.as_deref_mut()) {
+        observe("resolve.campaign_prepare.supply_prepare", start.elapsed());
+    }
     Opening {
         sectors,
         control: owners,
@@ -2420,14 +2456,36 @@ mod transfer_path_tests {
             &opening.orders, &opening.assets)).unwrap()
     }
     #[test]
+    fn preparation_observer_preserves_opening_world_and_same_date_guard() {
+        let mut observed = fixture();
+        let mut ordinary = observed.clone();
+        for repeated in [false, true] {
+            let snapshot = operations::Snapshot::new(&ordinary);
+            let mut stages = Vec::new();
+            let actual = prepare_observed(&mut observed, &snapshot, &mut |name, elapsed| stages.push((name, elapsed)));
+            let expected = prepare(&mut ordinary, &snapshot);
+            assert_eq!(opening_bytes(&actual), opening_bytes(&expected));
+            assert_eq!(crate::save(&observed), crate::save(&ordinary));
+            assert_eq!(observed.headlines, ordinary.headlines);
+            let expected_stages = if repeated {
+                vec!["setup", "ownership", "orders", "cleanup", "supply_requests", "supply_prepare"]
+            } else {
+                vec!["setup", "ownership", "orders", "normalize_reserves", "transfer_advance",
+                    "desired_positions", "route_deploy", "cleanup", "supply_requests", "supply_prepare"]
+            };
+            assert_eq!(stages.iter().map(|(name,_)|name.strip_prefix("resolve.campaign_prepare.").unwrap())
+                .collect::<Vec<_>>(), expected_stages);
+        }
+    }
+    #[test]
     fn transfer_path_cache_preserves_prepare_receipts_and_refreshes_after_access_changes() {
         let mut cached = fixture();
         let mut original = cached.clone();
         for day in 0..15 {
             change_access(&mut cached, day); change_access(&mut original, day);
             let snapshot = operations::Snapshot::new(&cached);
-            let actual = prepare_with_paths::<true>(&mut cached, &snapshot);
-            let expected = prepare_with_paths::<false>(&mut original, &snapshot);
+            let actual = prepare_with_paths::<true>(&mut cached, &snapshot, None);
+            let expected = prepare_with_paths::<false>(&mut original, &snapshot, None);
             assert_eq!(opening_bytes(&actual), opening_bytes(&expected), "opening day {day}");
             assert_eq!(crate::save(&cached), crate::save(&original), "world day {day}");
             assert_eq!(cached.headlines, original.headlines, "headlines day {day}");

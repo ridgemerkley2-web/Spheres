@@ -132,6 +132,7 @@ fn s22_daily_subsystem_diagnosis() {
         "timing_hierarchy":{"detail.market.*":"Nested inside prelude.arsenal_spot_market; never add to its enclosing time.",
             "detail.market.dispatch_*":"Nested inside detail.market.orders_and_dispatch for the same commodity; sub-timers also overlap (source search/assembly within dispatch_plan). Zero-duration count/buffer labels are observations, not measured work.",
             "detail.economic_ai.*":"Nested inside system.economic_ai; never add to its enclosing time.",
+            "detail.war.resolve.campaign_prepare.*":"Sequential child stages inside detail.war.resolve.campaign_prepare, itself inside detail.war.resolve_conflicts and system.war. Never add child and parent times. Advance-only stages are absent on a repeated same-date preparation; observer callback overhead belongs only to enclosing timers.",
             "detail.military_ai.*":"Nested inside system.military_ai; review stages are also nested inside review.total for the same nation. Never add nested measurements to their enclosing time."},
         "scope":"Diagnostic only. Instrumented daily schedule followed by ordinary Game advancement on independent worlds and independent persistent route pools. No authored state, pending-import assertion, seed/date rewrite or grants. Existing budgets may renew through the shared S22 normal command helper. Clone, command preflight, exact world serialization, facts and report I/O are outside stage clocks. Native Game timing includes its actual tick, event logging and history; those components are not inferred by subtracting independent timings. Detail timers are nested inside system timers and must not be added to them. This is neither S22 latency acceptance nor a memory measurement; the outer runner records cryptographic provenance."});
     s08_diagnostic_write(&mut report_file, &report);
@@ -231,6 +232,12 @@ fn s22_observed_schedule_matches_native_commands_airbases_and_headlines() {
         assert!(stages.iter().any(|(name,_)|name=="detail.market.prices_and_finance.all"));
         assert!(stages.iter().any(|(name,_)|name=="detail.resources.post_market_flows"));
         assert!(stages.iter().any(|(name,_)|name=="detail.war.resolve_conflicts"));
+        let prepare_stages = ["setup", "ownership", "orders", "normalize_reserves", "transfer_advance",
+            "desired_positions", "route_deploy", "cleanup", "supply_requests", "supply_prepare"];
+        let actual_prepare_stages: Vec<_> = stages.iter().filter_map(|(name,_)|
+            name.strip_prefix("detail.war.resolve.campaign_prepare.")).collect();
+        assert_eq!(actual_prepare_stages, prepare_stages, "Each native preparation stage occurs once in original order");
+        assert_eq!(stages.iter().filter(|(name,_)|name=="detail.war.resolve.campaign_prepare").count(),1);
         assert!(stages.iter().any(|(name,_)|name=="detail.military_ai.review.selection.all"));
         for (name,_) in spheres_sim::SYSTEMS {
             assert_eq!(stages.iter().filter(|(stage,_)|stage==&format!("system.{name}")).count(),1);

@@ -713,7 +713,11 @@ fn resolve_conflicts_traced(w: &mut WorldState, mut observer: Option<&mut dyn Fn
     // national force, and later theatres cannot reuse or reread earlier losses.
     let mut operations = measured!("resolve.operations_snapshot", w.rules.military_operations.then(|| crate::operations::Snapshot::new(w)));
     let opening_campaign = measured!("resolve.campaign_prepare", if crate::campaign::enabled(w) {
-        operations.as_ref().map(|snapshot| crate::campaign::prepare(w, snapshot))
+        operations.as_ref().map(|snapshot| {
+            if let Some(observe) = observer.as_deref_mut() {
+                crate::campaign::prepare_observed(w, snapshot, observe)
+            } else { crate::campaign::prepare(w, snapshot) }
+        })
     } else { None });
     let conflicts = std::mem::take(&mut w.conflicts);
 
