@@ -796,12 +796,12 @@
   ],
   "generated": {
     "by": "tools/ui/successor-fixtures/inventory.cjs",
-    "from_revision": "328db12863fffe35378102b54e952d4c43fdca8c",
+    "from_revision": "26d5d63ae97b0efc2cf5ddbb8a8260ed6e80d0c8",
     "inputs": [
       {
         "path": "docs/planning/campaign-pathway.json",
-        "sha256_lf": "a916464312fded4d568bc7d9c8609d538b79215f4844255eb30268dade59061f",
-        "bytes_lf": 45145
+        "sha256_lf": "34d398b59c056644d06f4aeccd7a99243e41c61d772dc22fe24f45aefc163b28",
+        "bytes_lf": 48632
       },
       {
         "path": "docs/campaign-certification/C01/countries.json",
@@ -840,8 +840,8 @@
       },
       {
         "path": "spheres-web/src/main.rs",
-        "sha256_lf": "f954638dbdc4db92d838c8aeaa0bd471a029b9ebe662256f327d685ac6876709",
-        "bytes_lf": 981930
+        "sha256_lf": "e6664806bb8a7be82fdd98f80bc3e015933bf0681852d2a1343fcb44586bcbba",
+        "bytes_lf": 982411
       }
     ],
     "note": "Input hashes use LF-normalised text; they are provenance only and are excluded from --check."
