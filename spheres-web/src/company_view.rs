@@ -522,14 +522,14 @@ fn company_board(w: &WorldState, me: NationId) -> Value {
 }
 // Reuse the simulation's exact next-work input quote. Historical status text is
 // not a supply estimate, and another product's scheduled packet is not this one's.
-fn company_input_recovery(operation:&Value, metrics:&mut Vec<Value>, actions:&mut Vec<Value>) {
-    let Some(inputs)=operation["next_packet"]["inputs"].as_array() else {return};
-    if operation["grandfathered"]==true || inputs.is_empty() {return;}
-    metrics.push(metric("Input quantities", "Next scheduled work only; shared warehouse stock is not reserved"));
+fn company_input_recovery(operation:&Value, actions:&mut Vec<Value>)->Vec<Value> {
+    let Some(inputs)=operation["next_packet"]["inputs"].as_array() else {return vec![]};
+    if operation["grandfathered"]==true {return vec![];}
+    let mut rows=vec![];
     for input in inputs {
         let (Some(required),Some(available),Some(missing))=(input["required"].as_f64(),input["available"].as_f64(),input["missing"].as_f64()) else {continue};
         if ![required,available,missing].iter().all(|n|n.is_finite()&&*n>=0.0) {continue;}
-        metrics.push(metric(company_text(input,"name"),format!("{required:.4} needed / {available:.4} available / {missing:.4} missing {}",company_text(input,"unit"))));
+        rows.push(input.clone());
         if missing>0.0 && input["key"]=="advanced_components" {
             actions.push(nav("Inspect operating industry",json!({"action":"industry"})));
             actions.push(nav("Review advanced-components plant",json!({"action":"construction","kind":"advanced_industry"})));
@@ -538,6 +538,7 @@ fn company_input_recovery(operation:&Value, metrics:&mut Vec<Value>, actions:&mu
             actions.push(nav(&format!("Inspect {} supply",company_text(input,"name")),json!({"action":"resources","commodity":input["key"]})));
         }
     }
+    rows
 }
 fn company_board_from_reads(w:&WorldState,me:NationId,raw:&Value,market:&Value)->Value {
     let operations=spheres_sim::supplier_operations::snapshot(w,me);
@@ -629,15 +630,16 @@ fn company_board_from_reads(w:&WorldState,me:NationId,raw:&Value,market:&Value)-
                 metrics.push(metric("Compatible mission stores",eq::ammo_def(&air.store_family).map_or(air.store_family.as_str(),|def|def.name)));
                 metrics.push(metric("Mission stores included","None · acquire separately"));
             }
+            let mut supply_inputs=vec![];
             if operations["enabled"]==true && !cancelled {
                 if let Some(operation)=operations["companies"].as_array().and_then(|rows|rows.iter().find(|op|
                     op["company"].as_u64()==Some(id) && op["work_id"].as_u64()==Some(pid) && op["work_kind"]=="equipment")) {
-                    company_input_recovery(operation,&mut metrics,&mut product_actions);
+                    supply_inputs=company_input_recovery(operation,&mut product_actions);
                 }
             }
             product_rows.push(json!({"id":format!("{}:{}",id,pid),"company":id,"product":pid,"name":p["name"],"supplier_name":firm["name"],
                 "family":p["family"],"platform_name":p["platform_name"],"unit_label":p["unit_label"],
-                "source_revision":revision,"spec":p["spec"],"phase":phase,"status":status,"detail":p["reason"],
+                "source_revision":revision,"spec":p["spec"],"phase":phase,"status":status,"detail":p["reason"],"supply_inputs":supply_inputs,
                 "progress":if !certified&&dev_days>0.0{Some((dev_work/dev_days).clamp(0.0,1.0))}else{None},
                 "milestones":[{"label":"Engineering and trials","value":if certified{"Certified".to_string()}else{format!("{dev_work:.1} / {dev_days:.0} work days")},"detail":"Government-funded development"},
                     {"label":"Production readiness","value":format!("{:.1} / {} tooling days",company_amount(p,"tooling_work_days"),company_count(p,"tooling_days")),"detail":"Company-funded tooling"},
@@ -698,19 +700,19 @@ mod company_view_tests {
                 "required":0.4441,"available":0.1,"missing":0.3441},
             {"key":"iron","name":"Iron","unit":"resource units","required":55.0,"available":100.0,"missing":0.0}
         ]}});
-        let before=operation.clone();let mut metrics=vec![];let mut actions=vec![];
-        company_input_recovery(&operation,&mut metrics,&mut actions);
+        let before=operation.clone();let mut actions=vec![];
+        let inputs=company_input_recovery(&operation,&mut actions);
         assert_eq!(operation,before);
-        assert!(metrics.iter().any(|m|m["label"]=="Advanced components" && m["value"].as_str().unwrap().contains("0.4441 needed / 0.1000 available / 0.3441 missing")));
+        assert_eq!(inputs,operation["next_packet"]["inputs"].as_array().unwrap().clone());
         assert!(actions.iter().all(|a|a.get("command").is_none()));
         assert!(actions.iter().any(|a|a["navigate"]["kind"]=="advanced_industry"));
         assert!(actions.iter().any(|a|a["navigate"]["good"]=="advanced_components" && a["navigate"]["quantity"]==0.3441));
         operation["next_packet"]["inputs"][0]["missing"]=json!(0.0);
-        actions.clear();metrics.clear();company_input_recovery(&operation,&mut metrics,&mut actions);
+        actions.clear();company_input_recovery(&operation,&mut actions);
         assert!(actions.is_empty(),"Available stock does not need recovery navigation");
         operation["grandfathered"]=json!(true);
-        metrics.clear();company_input_recovery(&operation,&mut metrics,&mut actions);
-        assert!(metrics.is_empty(),"Legacy paid work must retain its original input terms");
+        let inputs=company_input_recovery(&operation,&mut actions);
+        assert!(inputs.is_empty(),"Legacy paid work must retain its original input terms");
     }
     fn fixture()->(super::super::Game,String) {
         let mut g=super::super::Game::new(1990,Some(ME));

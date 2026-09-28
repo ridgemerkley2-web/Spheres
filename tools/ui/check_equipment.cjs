@@ -1278,6 +1278,18 @@ test('supplier input recovery preserves industry, component and construction tar
   assert.equal(c.requests.length,0);
 });
 
+test('supplier input cards preserve small shortages, compact large stock and disclose missing readings',()=>{
+  const c=fixture();
+  const rows=[{name:'Advanced components',unit:'components',required:0.4441,available:0,missing:0.4441},
+    {name:'Iron <untrusted>',unit:'resource units',required:55,available:30554889.0925,missing:null}];
+  const before=plain(rows),html=c.equipmentSupplierInputsHtml(rows);
+  assert.match(html,/0\.4441/);assert.match(html,/30\.5549M/);
+  assert.match(html,/title="30554889\.0925"/);assert.match(html,/eq-supplier-input--short/);
+  assert.match(html,/Iron &lt;untrusted&gt;/);assert.match(html,/>—<\/dd>/);
+  assert(!html.includes('NaN'));assert.deepEqual(rows,before);
+  assert.equal(c.equipmentSupplierInputsHtml([]),'');
+});
+
 test('s12-s15 air shell sends all reviewed kinds through protected receipts and returns to flight',async()=>{
   const c=shellFixture();loaded(c,flightSnapshot());c.room.hidden=false;c.eq.draft.name='Unfinished aircraft';
   const commands=[
