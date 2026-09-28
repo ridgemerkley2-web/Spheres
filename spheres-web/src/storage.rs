@@ -679,10 +679,22 @@ mod tests {
         fs::remove_dir_all(root).unwrap();
     }
 
+    // Match new_game's playable capabilities and first history point. Legacy
+    // Game::new defaults intentionally migrate on load and are not a byte-exact
+    // roundtrip fixture for current campaign recovery.
+    fn recovery_game() -> Game {
+        let mut game = Game::new_fresh(1990, Some(crate::NationId::France));
+        crate::fresh_play_rules(&mut game).unwrap();
+        crate::resources::warm(&mut game.world);
+        game.history.clear();
+        game.snapshot();
+        game
+    }
+
     #[test]
     fn recovery_backup_only_default_and_named_slots_remain_discoverable() {
         let root = root();
-        let mut game = Game::new(1990, Some(crate::NationId::France));
+        let mut game = recovery_game();
         game.record("Earlier recoverable point.".into());
         let old_world = crate::save(&game.world);
         let old_log = game.log.clone();
@@ -707,8 +719,8 @@ mod tests {
             assert!(row["bytes"].is_null());
             assert!(read(&root, slot, false).is_err());
             let recovered = read(&root, slot, true).unwrap();
-            assert_eq!(crate::save(&recovered.world), old_world);
-            assert_eq!(recovered.log, old_log);
+            assert!(crate::save(&recovered.world) == old_world, "Recovered world must match the earlier point exactly");
+            assert!(recovered.log == old_log, "Recovered log must match the earlier point exactly");
             assert_ne!(recovered.session_id, game.session_id);
         }
         fs::remove_dir_all(root).unwrap();
@@ -717,7 +729,7 @@ mod tests {
     #[test]
     fn recovery_listing_uses_backup_metadata_without_claiming_backup_validity() {
         let root = root();
-        let mut game = Game::new(1990, Some(crate::NationId::France));
+        let mut game = recovery_game();
         write(&root, "France-recovery", &game).unwrap();
         game.world.day = 2;
         game.record("A later primary.".into());
@@ -759,14 +771,14 @@ mod tests {
     #[test]
     fn recovery_timestamp_only_repeated_save_preserves_the_prior_point() {
         let root = root();
-        let mut game = Game::new(1990, Some(crate::NationId::France));
+        let mut game = recovery_game();
         write(&root, "default", &game).unwrap();
         let path = slot_path(&root, "default").unwrap();
         let previous = fs::read(&path).unwrap();
         game.world.nation_mut(crate::NationId::France).gdp += 0.25;
         game.record("Current point with an interior saved_unix: 9 and a quoted \"saved_unix\" label.".into());
         write(&root, "default", &game).unwrap();
-        assert_eq!(fs::read(path.with_extension("json.bak")).unwrap(), previous);
+        assert!(fs::read(path.with_extension("json.bak")).unwrap() == previous, "Changed state must retain the prior archive bytes exactly");
         let text = fs::read_to_string(&path).unwrap();
         let (prefix, _) = text.rsplit_once(",\"saved_unix\":").unwrap();
         let timestamp_only = format!("{prefix},\"saved_unix\":0}}");
@@ -776,19 +788,19 @@ mod tests {
         let history = game.history.clone();
         let log = game.log.clone();
         for _ in 0..2 { write(&root, "default", &game).unwrap(); }
-        assert_eq!(fs::read(path.with_extension("json.bak")).unwrap(), previous,
+        assert!(fs::read(path.with_extension("json.bak")).unwrap() == previous,
             "A lost save response followed by retry cannot replace the earlier recovery point");
         let restored = read(&root, "default", false).unwrap();
-        assert_eq!(crate::save(&restored.world), world);
-        assert_eq!(restored.history, history);
-        assert_eq!(restored.log, log);
+        assert!(crate::save(&restored.world) == world, "Repeated save must roundtrip the full world exactly");
+        assert!(restored.history == history, "Repeated save must roundtrip all history exactly");
+        assert!(restored.log == log, "Repeated save must roundtrip the complete log exactly");
         fs::remove_dir_all(root).unwrap();
     }
 
     #[test]
     fn recovery_same_day_world_history_log_and_journey_changes_still_rotate() {
         let root = root();
-        let mut game = Game::new(1990, Some(crate::NationId::France));
+        let mut game = recovery_game();
         write(&root, "default", &game).unwrap();
         let path = slot_path(&root, "default").unwrap();
         let date = game.world.date_str();
@@ -803,14 +815,14 @@ mod tests {
             }
             assert_eq!(game.world.date_str(), date);
             write(&root, "default", &game).unwrap();
-            assert_eq!(fs::read(path.with_extension("json.bak")).unwrap(), previous,
+            assert!(fs::read(path.with_extension("json.bak")).unwrap() == previous,
                 "Same-day change {change} must create a distinct recovery point");
             let restored = read(&root, "default", false).unwrap();
-            assert_eq!(crate::save(&restored.world), crate::save(&game.world));
-            assert_eq!(restored.history, game.history);
-            assert_eq!(restored.log, game.log);
+            assert!(crate::save(&restored.world) == crate::save(&game.world), "Same-day change {change} must roundtrip the full world exactly");
+            assert!(restored.history == game.history, "Same-day change {change} must roundtrip all history exactly");
+            assert!(restored.log == game.log, "Same-day change {change} must roundtrip the complete log exactly");
             assert_eq!(restored.history_epoch, game.history_epoch);
-            assert_eq!(restored.journey, game.journey);
+            assert!(restored.journey == game.journey, "Same-day change {change} must roundtrip the complete journey exactly");
         }
         fs::remove_dir_all(root).unwrap();
     }
@@ -818,7 +830,7 @@ mod tests {
     #[test]
     fn recovery_noncanonical_and_legacy_valid_saves_keep_normal_rotation() {
         let root = root();
-        let game = Game::new(1990, Some(crate::NationId::France));
+        let game = recovery_game();
         let path = slot_path(&root, "default").unwrap();
         let compact = encode(&game).unwrap();
         let value: Value = serde_json::from_str(&compact).unwrap();
@@ -827,7 +839,7 @@ mod tests {
             assert!(decode(&text).is_ok());
             fs::write(&path, &text).unwrap();
             write(&root, "default", &game).unwrap();
-            assert_eq!(fs::read(path.with_extension("json.bak")).unwrap(), text.as_bytes(),
+            assert!(fs::read(path.with_extension("json.bak")).unwrap() == text.as_bytes(),
                 "Conservative duplicate detection must not canonicalize legacy or reordered input");
         }
         fs::remove_dir_all(root).unwrap();
@@ -836,7 +848,7 @@ mod tests {
     #[test]
     fn recovery_invalid_primary_never_replaces_the_retained_valid_backup() {
         let root = root();
-        let mut game = Game::new(1990, Some(crate::NationId::France));
+        let mut game = recovery_game();
         write(&root, "default", &game).unwrap();
         let path = slot_path(&root, "default").unwrap();
         let good = fs::read(&path).unwrap();
@@ -846,8 +858,8 @@ mod tests {
             assert!(decode(&bad).is_err());
             fs::write(&path, bad).unwrap();
             write(&root, "default", &game).unwrap();
-            assert_eq!(fs::read(path.with_extension("json.bak")).unwrap(), good);
-            assert_eq!(crate::save(&read(&root, "default", false).unwrap().world), crate::save(&game.world));
+            assert!(fs::read(path.with_extension("json.bak")).unwrap() == good, "Invalid primary must preserve the valid backup bytes exactly");
+            assert!(crate::save(&read(&root, "default", false).unwrap().world) == crate::save(&game.world), "Replacement primary must roundtrip the full world exactly");
         }
         fs::remove_dir_all(root).unwrap();
     }
@@ -868,7 +880,7 @@ mod tests {
     #[test]
     fn recovery_backup_promotion_failure_keeps_primary_and_cleans_owned_temps() {
         let root = root();
-        let mut game = Game::new(1990, Some(crate::NationId::France));
+        let mut game = recovery_game();
         write(&root, "default", &game).unwrap();
         let path = slot_path(&root, "default").unwrap();
         let primary = fs::read(&path).unwrap();
@@ -878,7 +890,7 @@ mod tests {
         fs::write(&sentinel, b"Directory blocks backup rename").unwrap();
         game.record("Would be a new save, but backup promotion fails.".into());
         assert!(write(&root, "default", &game).is_err());
-        assert_eq!(fs::read(&path).unwrap(), primary);
+        assert!(fs::read(&path).unwrap() == primary, "Failed backup promotion must leave primary bytes unchanged");
         assert_eq!(fs::read(&sentinel).unwrap(), b"Directory blocks backup rename");
         assert!(!fs::read_dir(&root).unwrap().any(|e| e.unwrap().file_name().to_string_lossy().contains("tmp-")));
         assert!(read(&root, "default", false).is_ok());
@@ -889,7 +901,7 @@ mod tests {
     #[test]
     fn recovery_first_repeated_save_establishes_backup_then_keeps_it() {
         let root = root();
-        let game = Game::new(1990, Some(crate::NationId::France));
+        let game = recovery_game();
         write(&root, "default", &game).unwrap();
         let path = slot_path(&root, "default").unwrap();
         let backup = path.with_extension("json.bak");
@@ -899,14 +911,14 @@ mod tests {
         let first = format!("{prefix},\"saved_unix\":0}}");
         fs::write(&path, &first).unwrap();
         write(&root, "default", &game).unwrap();
-        assert_eq!(fs::read(&backup).unwrap(), first.as_bytes(),
+        assert!(fs::read(&backup).unwrap() == first.as_bytes(),
             "The first retry can establish a backup when none exists");
         let second = format!("{prefix},\"saved_unix\":1}}");
         fs::write(&path, second).unwrap();
         write(&root, "default", &game).unwrap();
-        assert_eq!(fs::read(&backup).unwrap(), first.as_bytes(),
+        assert!(fs::read(&backup).unwrap() == first.as_bytes(),
             "Further identical saves keep the established recovery copy");
-        assert_eq!(crate::save(&read(&root, "default", true).unwrap().world), crate::save(&game.world));
+        assert!(crate::save(&read(&root, "default", true).unwrap().world) == crate::save(&game.world), "First repeated-save backup must roundtrip the full world exactly");
         fs::remove_dir_all(root).unwrap();
     }
 
