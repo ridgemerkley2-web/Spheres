@@ -52,7 +52,15 @@ fn s22_observed_day(
                 });
             stages.push(("prelude.arsenal_spot_market".into(), ms(start)));
         }
-        if *name == "economic_ai" {
+        if *name == "resources" || *name == "war" {
+            let start = Instant::now();
+            let mut observe = |stage, elapsed: std::time::Duration| {
+                stages.push((format!("detail.{name}.{stage}"), elapsed.as_secs_f64() * 1000.0));
+            };
+            if *name == "resources" { spheres_sim::resources::tick_observed(w, &mut observe); }
+            else { spheres_sim::war::tick_observed(w, &mut observe); }
+            stages.push((format!("system.{name}"), ms(start)));
+        } else if *name == "economic_ai" {
             let start = Instant::now();
             spheres_sim::economic_ai::tick_observed_detailed(w, &mut |stage, nation, elapsed| {
                 stages.push((format!("detail.economic_ai.{stage}.{}", nation.map_or("all", |id| id.name())),
@@ -218,6 +226,8 @@ fn s22_observed_schedule_matches_native_commands_airbases_and_headlines() {
         assert_eq!(stages.iter().filter(|(name,_)|name=="prelude.arsenal_spot_market").count(),1);
         assert!(stages.iter().any(|(name,_)|name=="detail.market.opening_and_enrolled_draws.all"));
         assert!(stages.iter().any(|(name,_)|name=="detail.market.prices_and_finance.all"));
+        assert!(stages.iter().any(|(name,_)|name=="detail.resources.post_market_flows"));
+        assert!(stages.iter().any(|(name,_)|name=="detail.war.resolve_conflicts"));
         for (name,_) in spheres_sim::SYSTEMS {
             assert_eq!(stages.iter().filter(|(stage,_)|stage==&format!("system.{name}")).count(),1);
         }

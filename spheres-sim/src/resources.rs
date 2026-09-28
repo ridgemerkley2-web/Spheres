@@ -994,6 +994,25 @@ pub fn have_table(w: &WorldState) -> Have {
 /// before tech and arsenal read it. Rebuilds on an ownership or roster change;
 /// otherwise refreshes the oil column, which moves monthly.
 pub fn tick(w: &mut WorldState) {
+    tick_traced(w, None);
+}
+
+/// Diagnostic observations of the unchanged resource tick. Child durations
+/// overlap their enclosing SYSTEMS timer and are not additional daily work.
+#[doc(hidden)]
+pub fn tick_observed(w: &mut WorldState, observer: &mut dyn FnMut(&'static str, std::time::Duration)) {
+    tick_traced(w, Some(observer));
+}
+
+fn tick_traced(w: &mut WorldState, mut observer: Option<&mut dyn FnMut(&'static str, std::time::Duration)>) {
+    macro_rules! measured {
+        ($name:expr, $body:expr) => {{
+            let start = observer.as_ref().map(|_| std::time::Instant::now());
+            let value = $body;
+            if let (Some(start), Some(observe)) = (start, observer.as_deref_mut()) { observe($name, start.elapsed()); }
+            value
+        }};
+    }
     if crate::clock::is_daily(w) {
         let today = crate::clock::absolute_day(w);
         if w.resources.last_tick_day == Some(today) { return; }
@@ -1005,15 +1024,15 @@ pub fn tick(w: &mut WorldState) {
     // because the flows it lifts are computed in `have_table` and there is
     // nowhere else for them to enter. They do not interact -- one moves mine
     // projects, the other a stock -- so the order is upstream's, unchanged.
-    advance_mines(w);
-    let infra = infrastructure_stock(w);
+    measured!("advance_mines", advance_mines(w));
+    let infra = measured!("infrastructure_stock", infrastructure_stock(w));
     let stamp = alive_stamp(w);
     let stale = !w.resource_have.built
         || w.resource_have.epoch != w.districts_epoch
         || w.resource_have.alive_stamp != stamp
         || infra;
     if stale {
-        w.resource_have = have_table(w);
+        w.resource_have = measured!("have_table", have_table(w));
     } else {
         for n in w.nations.iter().filter(|n| n.alive) {
             w.resource_have.flow[n.id.index()][OIL] = n.oil_mbd * 1000.0;
@@ -1032,11 +1051,11 @@ pub fn tick(w: &mut WorldState) {
     // after technology in `arsenal::tick`, against the exact recipe that will
     // be consumed there.
     if w.rules.resource_market {
-        post_market_flows(w);
+        measured!("post_market_flows", post_market_flows(w));
     }
-    deliver_contracts(w);
-    expire_offers(w);
-    cool_grievances(w);
+    measured!("deliver_contracts", deliver_contracts(w));
+    measured!("expire_offers", expire_offers(w));
+    measured!("cool_grievances", cool_grievances(w));
 }
 
 const MARKET_PRICE_FLOOR: f64 = 0.4;
