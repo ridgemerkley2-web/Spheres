@@ -3,13 +3,12 @@
 **Status: in progress. Owner: Codex.**
 
 Actual input preparation is complete through **30 November 2035**. The latest
-candidate, `697448c1`, passes 13 focused tests, eight actual-input comparisons
-and the full release workspace regression: **1,948 passed, 0 failed, 105 ignored
-across 66 suites**. Its isolated 2015 preflight passes all native limits.
-The 2035 run fails only simulation/history p95, at **302.2232 ms against 300 ms**;
-whole-turn p95, maximum and both memory limits pass. Earlier failures remain
-unchanged in the linked packets. No complete qualification pair has started,
-and neither S22, G5 nor CP1 is earned.
+candidate, `d50f7ee1`, passes seven focused tests, six actual 31-day comparisons
+and the full release workspace regression: **1,954 passed, 0 failed, 108 ignored
+across 66 suites**. Both isolated 2015 and end-2035 native preflights now pass
+every unchanged latency and memory limit. Earlier failures remain unchanged
+in the linked packets. The full 18-cell native/browser qualification pair has
+not started, and neither S22, G5 nor CP1 is earned.
 
 The [plan](PLAN.md) and [frozen measurement protocol](measurement-protocol.json)
 start the next canonical session after S20/G4. They preserve the engineering
@@ -32,7 +31,7 @@ regressions, so its timings remain diagnostic. Neither counter is driver VRAM.
 | --- | --- |
 | Current offline art, accounting and reproduction audit | **Complete and passing**, bounded to the scope below |
 | Actual France 1999 / 2015 / end-2035 inputs | **Complete.** Reviewed original/adopted/2006/2015/2035 hash/date linkage and unchanged sources retained; this is record review, not an independent replay |
-| Native 31-day timing and headless memory | At 697448c1, isolated 2015 passes; 2035 fails simulation/history p95 only (302.2232 ms > 300 ms). Whole-turn p95, maximum and memory pass. Complete qualification remains required |
+| Native 31-day timing and headless memory | At d50f7ee1, isolated 2015 and end-2035 pass all unchanged native latency and memory limits. These are preflights; the complete 18-cell qualification pair remains required |
 | Actual rendered map, aircraft and UI performance | Early map preflight at 5c650991 and renderer preflight at 1a8c07d7 pass functional checks; both full isolated qualification rounds remain required |
 | City/inspection caches, context recovery, loading and layouts | Actual draw attribution, touch/keyboard navigation and equipment focus repaired; current functional evidence retained, final-candidate qualification required |
 | S22 closure | **Not earned** |
@@ -132,7 +131,7 @@ are 854,024,192 / 825,348,096 bytes for 2015 and 915,517,440 / 910,614,528 for
 2035. Final world fingerprints match the earlier exact diagnoses. These are
 preflights; they do not substitute for two complete qualification rounds.
 
-The [latest reuse and validation packet](pass-local-progress/README.md) retains
+The [reuse and validation packet](pass-local-progress/README.md) retains
 the completed 6ff13350 end-2035 subsystem/read-model diagnoses, attributed source reviews,
 and all validation of `697448c1`. That candidate reuses immutable permission,
 terminal-identity and connected-economy reads within one pass, while preserving
@@ -151,6 +150,21 @@ remain unchanged. These are isolated preflights, not a declared qualification
 pair. The same packet retains lossless restore records for 11 retired executable
 copies and seven redundant input copies, including the original null freed-byte
 tally and its separate correction; no binary or save bodies are duplicated.
+
+The [latest native margin packet](margin-progress/README.md) preserves the
+subsequent 697 end-2035 diagnosis and the reviewed ammunition, arrival-payload
+and population course-merge repairs at `d50f7ee1`. Seven focused tests and six
+actual-input 31-day original-path comparisons pass with complete native worlds,
+headlines and source hashes unchanged. The full release workspace passes
+**1,954 tests, zero failures, 108 ignored across 66 suites**.
+
+Both isolated native preflights then pass: 2015 simulation/whole-turn p95
+**260.5369 / 316.5608 ms**, maximum **478.3212 ms**; end-2035 p95
+**240.6596 / 312.8513 ms**, maximum **433.3893 ms**. Private/OS peaks are
+996,524,032 / 858,603,520 bytes for 2015 and 905,084,928 / 897,794,048 for 2035.
+The original inputs and final world fingerprints match prior runs. This closes
+these bounded preflight defects, not S22: the full 18-cell declared pair has
+not yet started and remains required without threshold or workload changes.
 
 The [qualification verifier](QUALIFICATION_VERIFIER.md) now reserves and checks
 all 18 cells across two unchanged-candidate rounds, with raw evidence, complete
@@ -269,7 +283,7 @@ retained as captured: its original staging layout was
 `work/campaign-certification/evidence/s22-preflight-art/`, next to `integration`.
 The exact portable command arguments and source hashes are in `result.json`.
 
-Next, finish the remaining 2035 latency repair, then freeze all completed dated
+Next, freeze all completed, reviewed dated
 inputs, candidate/configuration manifest and attempt IDs before executing the
 protocol's two complete qualification rounds. Preserve every
 failed attempt and fix the cause without raising a threshold. S22 completion
