@@ -5,6 +5,14 @@ packaging. These bounded engineering tasks do not depend on additional Claude
 research. They do not replace S23, the complete S24/S25 qualification matrices,
 independent S26 human sessions, or the S27/S28 frozen release requirements.
 
+All three bounded tasks are closed in the authorized order. Evidence:
+[recovery](../../campaign-certification/S24/repairs/campaign-recovery/README.md),
+[paired stability pilot](../../campaign-certification/S25/preparation/native-stability/README.md),
+and [portable tooling/local proof](../../campaign-certification/S28/preparation/portable-release/README.md).
+The Windows and Linux package CI jobs also passed on candidate `a2cf1dcc`.
+The existing political A1 calibration failure and canonical campaign
+prerequisites remain open; this is not an all-green aggregate CI result.
+
 ## CODEX-S24-RECOVERY-01
 
 Repair reproduced save/recovery defects. Keep missing-primary backups visible,

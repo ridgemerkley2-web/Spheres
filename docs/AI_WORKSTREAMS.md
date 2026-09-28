@@ -11,10 +11,16 @@ Codex is executing the user's independent engineering order: recovery, long-camp
 stability, then packaging. **CODEX-S24-RECOVERY-01 is complete** with native, UI
 and actual five-boundary browser recovery evidence. **CODEX-S25-RUNNER-01 is
 complete**: both annual save/resume pilots and independent retained-evidence
-verification pass. **CODEX-S28-PACKAGE-01 is in progress**. These bounded tasks do not change canonical
+verification pass. **CODEX-S28-PACKAGE-01 is complete for tooling/local proof**:
+identical Windows packages and both extracted offline browser checks passed;
+the new Windows and Linux CI package jobs also passed on candidate `a2cf1dcc`.
+These bounded tasks do not change canonical
 S24/S25/S28 dependencies. [Scope](planning/ai-handoffs/CODEX-INDEPENDENT-ENGINEERING.md)
 and [recovery closeout](campaign-certification/S24/repairs/campaign-recovery/README.md),
-plus the [stability runner and pilot](campaign-certification/S25/preparation/native-stability/README.md).
+plus the [stability runner and pilot](campaign-certification/S25/preparation/native-stability/README.md)
+and [portable release closeout](campaign-certification/S28/preparation/portable-release/README.md).
+The existing A1 political-calibration concentration gate remains failed under
+its unchanged limit; no complete CI or campaign qualification is claimed.
 
 | Area | Verified state | Next owner / action |
 |---|---|---|

@@ -308,14 +308,14 @@
       "id": "CODEX-S28-PACKAGE-01",
       "owner": "Codex",
       "session": "S28",
-      "state": "in_progress",
+      "state": "complete",
       "priority": 21,
       "title": "Verify portable release identity and recovery",
       "handoff": "docs/planning/ai-handoffs/CODEX-INDEPENDENT-ENGINEERING.md",
       "depends_on": [
         "CODEX-S25-RUNNER-01"
       ],
-      "next": "Implement cross-platform package identity, deterministic archives, license inclusion, safe extraction and actual offline browser recovery checks. Canonical S28 remains dependent on frozen-candidate and both-platform qualification."
+      "next": "Closed: verified package tools,18Python/5Node guards, identical actual Windows ZIPs,two extracted offline local passes,and Windows/Linux package CI passes at a2cf1dcc. Evidence: docs/campaign-certification/S28/preparation/portable-release/README.md. Full S28 qualification and existing A1 calibration remain open."
     }
   ]
 }
