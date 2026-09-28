@@ -2596,7 +2596,8 @@
       <div class="menu-eyebrow">YOUR CAMPAIGNS</div><h1 id="savedCampaignTitle" tabindex="-1">Pick up where you left off.</h1>
       <p class="menu-section-intro">Load a saved world with its history and dispatches.</p>
       <div class="menu-save-panel">
-        <label class="menu-field">Saved campaign<select id="saveSlots" aria-label="Saved campaign"><option value="default">Checking saved campaigns…</option></select></label>
+        <label class="menu-field">Saved campaign<select id="saveSlots" aria-label="Saved campaign" aria-describedby="saveRecoveryStatus"><option value="default">Checking saved campaigns…</option></select></label>
+        <p id="saveRecoveryStatus" class="menu-save-note" role="status" hidden></p>
         <div class="menu-save-actions"><button class="menu-primary" id="loadBtn">Load campaign →</button><button class="menu-secondary" id="loadBackupBtn">Load previous backup</button></div>
         <p id="menuSaveEmpty" class="menu-empty" hidden>No saved campaigns yet. Start a new campaign to begin your story.</p>
         <div id="menuSaveCurrent" hidden><div class="menu-save-rule"></div><h2>Save your current campaign</h2><div class="menu-save-form"><label class="menu-field">Campaign name<input id="saveName" maxlength="64" placeholder="My-campaign" aria-label="New save name"></label><button class="menu-secondary" id="saveNamedBtn">Save campaign</button></div></div>
@@ -3721,8 +3722,13 @@ function renderMainMenuState() {
   $("#menuSaveEmpty").hidden = !Array.isArray(saves) || saves.length > 0;
   $("#loadBtn").hidden = !saves?.length;
   const locked = SESSION.busy || advancing || !!pendingAdvance || !!COMMAND_CHANNEL.pending || !!COMMAND_CHANNEL.busy;
-  $("#loadBtn").disabled = !saves?.length || locked;
   const slot = saves?.find(entry => entry.slot === $("#saveSlots").value);
+  $("#loadBtn").disabled = !slot || slot.current_exists === false || slot.readable === false || locked;
+  const problem = slot?.current_exists === false ? "The main save is missing." : slot?.readable === false ? "The main save is unreadable." : "";
+  $("#saveRecoveryStatus").hidden = !problem;
+  $("#saveRecoveryStatus").textContent = problem ? problem + (slot.backup
+    ? ` Try loading the previous backup${slot.metadata_from_backup && slot.date ? ` from ${slot.date}` : ""}.`
+    : " No previous backup is available.") : "";
   $("#loadBackupBtn").hidden = !slot?.backup;
   $("#loadBackupBtn").disabled = !slot?.backup || locked;
   $("#saveSlots").disabled = !saves?.length || SESSION.busy;

@@ -7,6 +7,13 @@ G5, CP1 certification and worldwide character coverage remain open. S23 is next:
 
 ## Latest checkpoint — 28 September
 
+Codex is executing the user's independent engineering order: recovery, long-campaign
+stability, then packaging. **CODEX-S24-RECOVERY-01 is complete** with native, UI
+and actual five-boundary browser recovery evidence. The stability runner/pilot
+is next; packaging follows it. These bounded tasks do not change canonical
+S24/S25/S28 dependencies. [Scope](planning/ai-handoffs/CODEX-INDEPENDENT-ENGINEERING.md)
+and [recovery closeout](campaign-certification/S24/repairs/campaign-recovery/README.md).
+
 | Area | Verified state | Next owner / action |
 |---|---|---|
 | S19 tutorial/advisors | **Complete.** Actual budget, paid construction/output, company purchases/delivery and a supported flown mission are recognized; save/load/Continue and fresh-campaign isolation pass. | [Codex closeout](campaign-certification/S19/integration/CLOSEOUT.md), runtime `c8a59bfd`. |

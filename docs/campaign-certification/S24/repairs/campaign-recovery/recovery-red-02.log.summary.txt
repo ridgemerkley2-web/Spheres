@@ -1,0 +1,18 @@
+test storage::tests::recovery_backup_only_default_and_named_slots_remain_discoverable ... FAILED
+test storage::tests::recovery_backup_promotion_failure_keeps_primary_and_cleans_owned_temps ... ok
+test storage::tests::recovery_invalid_primary_never_replaces_the_retained_valid_backup ... FAILED
+test storage::tests::recovery_listing_uses_backup_metadata_without_claiming_backup_validity ... FAILED
+test storage::tests::recovery_noncanonical_and_legacy_valid_saves_keep_normal_rotation ... ok
+test storage::tests::recovery_preexisting_temporary_candidate_is_not_ours_to_delete ... FAILED
+test storage::tests::recovery_same_day_world_history_log_and_journey_changes_still_rotate ... FAILED
+test storage::tests::recovery_timestamp_only_repeated_save_preserves_the_prior_point ... FAILED
+failures:
+failures:
+    storage::tests::recovery_backup_only_default_and_named_slots_remain_discoverable
+    storage::tests::recovery_invalid_primary_never_replaces_the_retained_valid_backup
+    storage::tests::recovery_listing_uses_backup_metadata_without_claiming_backup_validity
+    storage::tests::recovery_preexisting_temporary_candidate_is_not_ours_to_delete
+    storage::tests::recovery_same_day_world_history_log_and_journey_changes_still_rotate
+    storage::tests::recovery_timestamp_only_repeated_save_preserves_the_prior_point
+test result: FAILED. 2 passed; 6 failed; 0 ignored; 0 measured; 457 filtered out; finished in 0.57s
+error: test failed, to rerun pass `-p spheres-web --bin spheres-web`

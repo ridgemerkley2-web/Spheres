@@ -172,16 +172,27 @@ fn stage(
     path: &Path,
     write: impl FnOnce(&mut File) -> std::io::Result<()>,
 ) -> std::io::Result<PathBuf> {
-    let temp = temporary(path);
+    stage_at(temporary(path), write)
+}
+// Separate the chosen path so collision/error ownership can be tested without
+// racing the process-wide unique-name counter. This extraction changes no IO.
+fn stage_at(
+    temp: PathBuf,
+    write: impl FnOnce(&mut File) -> std::io::Result<()>,
+) -> std::io::Result<PathBuf> {
+    // Until exclusive creation succeeds this path belongs to somebody else
+    // (for example an interrupted process whose PID has since been reused).
+    // Never clean up a candidate that this operation did not create.
+    let mut file = OpenOptions::new()
+        .write(true)
+        .create_new(true)
+        .open(&temp)?;
     let result = (|| {
-        let mut file = OpenOptions::new()
-            .write(true)
-            .create_new(true)
-            .open(&temp)?;
         write(&mut file)?;
         file.sync_all()?;
         Ok(())
     })();
+    drop(file);
     match result {
         Ok(()) => Ok(temp),
         Err(e) => {
@@ -224,14 +235,41 @@ fn atomic_write(
     }
     result
 }
+// Only our compact archive's terminal wall-clock field is excluded. Compare
+// the entire remaining envelope byte-for-byte: world, history, log, journey and
+// metadata all participate. This is called only after the old archive decodes;
+// legacy, pretty, reordered and other noncanonical saves keep normal rotation.
+fn compact_archive_content(text: &str) -> Option<&str> {
+    if !text.starts_with("{\"format\":\"spheres-campaign\",\"version\":1,\"world\":") {
+        return None;
+    }
+    let (content, tail) = text.rsplit_once(",\"saved_unix\":")?;
+    let timestamp = tail.strip_suffix('}')?;
+    if timestamp.is_empty() || !timestamp.bytes().all(|b| b.is_ascii_digit())
+        || (timestamp.len() > 1 && timestamp.starts_with('0'))
+        || timestamp.parse::<u64>().is_err()
+    {
+        return None;
+    }
+    Some(content)
+}
+
 pub(crate) fn write(root: &Path, slot: &str, g: &Game) -> Result<Value, String> {
     let path = slot_path(root, slot)?;
     let bytes = encode(g)?;
     // A damaged current file must never overwrite the last known-good backup.
-    let valid_previous = fs::read_to_string(&path)
+    // Nor may retrying an already completed save erase the earlier recovery
+    // point just because this encode has a newer wall-clock timestamp. If no
+    // backup exists yet, an identical second save still establishes that copy.
+    let backup_exists = path.with_extension("json.bak").is_file();
+    let backup_previous = fs::read_to_string(&path)
         .ok()
-        .is_some_and(|text| decode(&text).is_ok());
-    atomic_write(&path, valid_previous, |f| f.write_all(bytes.as_bytes()))
+        .is_some_and(|text| decode(&text).is_ok() && (!backup_exists || match
+            (compact_archive_content(&text), compact_archive_content(&bytes)) {
+                (Some(previous), Some(next)) => previous != next,
+                _ => true,
+            }));
+    atomic_write(&path, backup_previous, |f| f.write_all(bytes.as_bytes()))
         .map_err(|e| format!("Could not save campaign: {e}"))?;
     Ok(
         json!({"ok":true,"slot":slot,"path":path.to_string_lossy(),"date":g.world.date_str(),
@@ -249,30 +287,48 @@ pub(crate) fn read(root: &Path, slot: &str, backup: bool) -> Result<Game, String
     decode(&text)
 }
 pub(crate) fn list(root: &Path) -> Value {
-    let mut slots = vec![("default".to_string(), root.join("save.json"))];
+    let mut slots = std::collections::BTreeMap::from([
+        ("default".to_string(), root.join("save.json")),
+    ]);
     if let Ok(files) = fs::read_dir(root.join("saves")) {
         for entry in files.flatten() {
             let path = entry.path();
-            if path.extension().is_some_and(|s| s == "json") {
-                if let Some(name) = path.file_stem().and_then(|s| s.to_str()) {
-                    slots.push((name.to_string(), path));
-                }
+            if !path.is_file() { continue; }
+            let Some(file) = path.file_name().and_then(|s| s.to_str()) else { continue; };
+            let Some(name) = file.strip_suffix(".json.bak").or_else(|| file.strip_suffix(".json")) else { continue; };
+            // `default` is the root save.json alias, never saves/default.json.
+            // Enumerate only names that the ordinary load endpoint can address.
+            if name.is_empty() || name == "default" { continue; }
+            if let Ok(primary) = slot_path(root, name) {
+                slots.insert(name.to_string(), primary);
             }
         }
     }
-    slots.sort_by(|a, b| a.0.cmp(&b.0));
     let records = slots
         .into_iter()
-        .filter(|(_, p)| p.is_file())
+        .filter(|(_, p)| p.is_file() || p.with_extension("json.bak").is_file())
         .map(|(slot, path)| {
+            let current_exists = path.is_file();
+            let backup_path = path.with_extension("json.bak");
+            let backup = backup_path.is_file();
             let data = fs::read_to_string(&path)
                 .ok()
                 .and_then(|s| serde_json::from_str::<Value>(&s).ok());
-            let envelope = data.as_ref().is_some_and(|v| v.get("format").is_some());
-            json!({"slot":slot,"date":data.as_ref().and_then(|v|v.get("saved_date")),
-            "player":data.as_ref().and_then(|v|v.get("player")),"legacy":!envelope,
-            "readable":data.is_some(),"backup":path.with_extension("json.bak").is_file(),
-            "autosave":slot.starts_with("auto-"),"bytes":fs::metadata(&path).ok().map(|m|m.len())})
+            // Listing describes JSON metadata without decoding every potentially
+            // large campaign. A backup's presence is not a validity promise;
+            // explicit Load previous backup still performs the full decoder.
+            let backup_data = if data.is_none() && backup {
+                fs::read_to_string(&backup_path).ok()
+                    .and_then(|s| serde_json::from_str::<Value>(&s).ok())
+            } else { None };
+            let metadata_from_backup = backup_data.is_some();
+            let metadata = data.as_ref().or(backup_data.as_ref());
+            let envelope = metadata.is_some_and(|v| v.get("format").is_some());
+            json!({"slot":slot,"date":metadata.and_then(|v|v.get("saved_date")),
+            "player":metadata.and_then(|v|v.get("player")),"legacy":!envelope,
+            "readable":data.is_some(),"backup":backup,"current_exists":current_exists,
+            "metadata_from_backup":metadata_from_backup,
+            "autosave":slot.starts_with("auto-"),"bytes":fs::metadata(&path).ok().filter(|m|m.is_file()).map(|m|m.len())})
         })
         .collect::<Vec<_>>();
     let directory = fs::canonicalize(root).unwrap_or_else(|_| root.to_path_buf());
@@ -622,4 +678,251 @@ mod tests {
         assert!(root.join("saves/auto-2.json.bak").is_file());
         fs::remove_dir_all(root).unwrap();
     }
+
+    // Match new_game's playable capabilities and first history point. Legacy
+    // Game::new defaults intentionally migrate on load and are not a byte-exact
+    // roundtrip fixture for current campaign recovery.
+    fn recovery_game() -> Game {
+        let mut game = Game::new_fresh(1990, Some(crate::NationId::France));
+        crate::fresh_play_rules(&mut game).unwrap();
+        crate::resources::warm(&mut game.world);
+        game.history.clear();
+        game.snapshot();
+        game
+    }
+
+    #[test]
+    fn recovery_backup_only_default_and_named_slots_remain_discoverable() {
+        let root = root();
+        let mut game = recovery_game();
+        game.record("Earlier recoverable point.".into());
+        let old_world = crate::save(&game.world);
+        let old_log = game.log.clone();
+        for slot in ["default", "France-recovery"] { write(&root, slot, &game).unwrap(); }
+        game.world.nation_mut(crate::NationId::France).political_capital -= 0.25;
+        game.record("Newest save whose primary file is now missing.".into());
+        for slot in ["default", "France-recovery"] {
+            write(&root, slot, &game).unwrap();
+            fs::remove_file(slot_path(&root, slot).unwrap()).unwrap();
+        }
+        let listing = list(&root);
+        let rows = listing["slots"].as_array().unwrap();
+        assert_eq!(rows.len(), 2, "Both backup-only slots must remain selectable");
+        for slot in ["default", "France-recovery"] {
+            let row = rows.iter().find(|row| row["slot"] == slot).unwrap();
+            assert_eq!(row["current_exists"], false);
+            assert_eq!(row["readable"], false, "No primary can be loaded");
+            assert_eq!(row["backup"], true);
+            assert_eq!(row["metadata_from_backup"], true);
+            assert_eq!(row["player"], "France");
+            assert_eq!(row["date"], game.world.date_str());
+            assert!(row["bytes"].is_null());
+            assert!(read(&root, slot, false).is_err());
+            let recovered = read(&root, slot, true).unwrap();
+            assert!(crate::save(&recovered.world) == old_world, "Recovered world must match the earlier point exactly");
+            assert!(recovered.log == old_log, "Recovered log must match the earlier point exactly");
+            assert_ne!(recovered.session_id, game.session_id);
+        }
+        fs::remove_dir_all(root).unwrap();
+    }
+
+    #[test]
+    fn recovery_listing_uses_backup_metadata_without_claiming_backup_validity() {
+        let root = root();
+        let mut game = recovery_game();
+        write(&root, "France-recovery", &game).unwrap();
+        game.world.day = 2;
+        game.record("A later primary.".into());
+        write(&root, "France-recovery", &game).unwrap();
+        let primary = slot_path(&root, "France-recovery").unwrap();
+        fs::write(&primary, b"{interrupted").unwrap();
+        fs::write(root.join("saves/OnlyDamage.json.bak"), b"{broken backup").unwrap();
+        // These names cannot be selected by slot_path and must not appear as
+        // misleading options (including the reserved default alias in saves/).
+        for name in ["bad.name.json", "bad.name.json.bak", ".json", "default.json", "default.json.bak"] {
+            fs::write(root.join("saves").join(name), encode(&game).unwrap()).unwrap();
+        }
+        let listing = list(&root);
+        let rows = listing["slots"].as_array().unwrap();
+        assert_eq!(rows.len(), 2, "Union only valid, addressable current/backup slot names");
+        let row = rows.iter().find(|row| row["slot"] == "France-recovery").unwrap();
+        assert_eq!(row["current_exists"], true);
+        assert_eq!(row["readable"], false);
+        assert_eq!(row["metadata_from_backup"], true);
+        assert_eq!(row["date"], "1 Jan 1990");
+        assert_eq!(row["player"], "France");
+        let broken = rows.iter().find(|row| row["slot"] == "OnlyDamage").unwrap();
+        assert_eq!(broken["backup"], true, "Existence is not a full validity claim");
+        assert_eq!(broken["readable"], false);
+        assert_eq!(broken["metadata_from_backup"], false);
+        assert!(broken["date"].is_null());
+        assert!(read(&root, "OnlyDamage", true).is_err());
+        // A parseable primary keeps precedence; listing is not full decode.
+        fs::write(&primary, br#"{"format":"future-unknown","saved_date":"primary label","player":"primary label"}"#).unwrap();
+        let listing = list(&root);
+        let row = listing["slots"].as_array().unwrap().iter().find(|row| row["slot"] == "France-recovery").unwrap();
+        assert_eq!(row["readable"], true);
+        assert_eq!(row["metadata_from_backup"], false);
+        assert_eq!(row["date"], "primary label");
+        assert!(read(&root, "France-recovery", false).is_err());
+        fs::remove_dir_all(root).unwrap();
+    }
+
+    #[test]
+    fn recovery_timestamp_only_repeated_save_preserves_the_prior_point() {
+        let root = root();
+        let mut game = recovery_game();
+        write(&root, "default", &game).unwrap();
+        let path = slot_path(&root, "default").unwrap();
+        let previous = fs::read(&path).unwrap();
+        game.world.nation_mut(crate::NationId::France).political_capital -= 0.25;
+        game.record("Current point with an interior saved_unix: 9 and a quoted \"saved_unix\" label.".into());
+        write(&root, "default", &game).unwrap();
+        assert!(fs::read(path.with_extension("json.bak")).unwrap() == previous, "Changed state must retain the prior archive bytes exactly");
+        let text = fs::read_to_string(&path).unwrap();
+        let (prefix, _) = text.rsplit_once(",\"saved_unix\":").unwrap();
+        let timestamp_only = format!("{prefix},\"saved_unix\":0}}");
+        assert!(decode(&timestamp_only).is_ok());
+        fs::write(&path, timestamp_only).unwrap();
+        let world = crate::save(&game.world);
+        let history = game.history.clone();
+        let log = game.log.clone();
+        for _ in 0..2 { write(&root, "default", &game).unwrap(); }
+        assert!(fs::read(path.with_extension("json.bak")).unwrap() == previous,
+            "A lost save response followed by retry cannot replace the earlier recovery point");
+        let restored = read(&root, "default", false).unwrap();
+        assert!(crate::save(&restored.world) == world, "Repeated save must roundtrip the full world exactly");
+        assert!(restored.history == history, "Repeated save must roundtrip all history exactly");
+        assert!(restored.log == log, "Repeated save must roundtrip the complete log exactly");
+        fs::remove_dir_all(root).unwrap();
+    }
+
+    #[test]
+    fn recovery_same_day_world_history_log_and_journey_changes_still_rotate() {
+        let root = root();
+        let mut game = recovery_game();
+        write(&root, "default", &game).unwrap();
+        let path = slot_path(&root, "default").unwrap();
+        let date = game.world.date_str();
+        // Political capital is a persisted independent stock. Mutating GDP
+        // alone would leave debt_gdp inconsistent with the authoritative debt_bn
+        // and correctly invoke load-time financial repair.
+        for change in 0..5 {
+            let previous = fs::read(&path).unwrap();
+            match change {
+                0 => game.world.nation_mut(crate::NationId::France).political_capital -= 0.25,
+                1 => game.record("A same-day dispatch containing \"saved_unix\":123.".into()),
+                2 => game.history[0].oil += 0.5,
+                3 => game.history_epoch += 1,
+                _ => game.journey.observing = true,
+            }
+            assert_eq!(game.world.date_str(), date);
+            write(&root, "default", &game).unwrap();
+            assert!(fs::read(path.with_extension("json.bak")).unwrap() == previous,
+                "Same-day change {change} must create a distinct recovery point");
+            let restored = read(&root, "default", false).unwrap();
+            assert!(crate::save(&restored.world) == crate::save(&game.world), "Same-day change {change} must roundtrip the full world exactly");
+            assert!(restored.history == game.history, "Same-day change {change} must roundtrip all history exactly");
+            assert!(restored.log == game.log, "Same-day change {change} must roundtrip the complete log exactly");
+            assert_eq!(restored.history_epoch, game.history_epoch);
+            assert!(restored.journey == game.journey, "Same-day change {change} must roundtrip the complete journey exactly");
+        }
+        fs::remove_dir_all(root).unwrap();
+    }
+
+    #[test]
+    fn recovery_noncanonical_and_legacy_valid_saves_keep_normal_rotation() {
+        let root = root();
+        let game = recovery_game();
+        let path = slot_path(&root, "default").unwrap();
+        let compact = encode(&game).unwrap();
+        let value: Value = serde_json::from_str(&compact).unwrap();
+        for text in [format!("{compact}\n"), serde_json::to_string_pretty(&value).unwrap(),
+            serde_json::to_string(&value).unwrap(), crate::save(&game.world)] {
+            assert!(decode(&text).is_ok());
+            fs::write(&path, &text).unwrap();
+            write(&root, "default", &game).unwrap();
+            assert!(fs::read(path.with_extension("json.bak")).unwrap() == text.as_bytes(),
+                "Conservative duplicate detection must not canonicalize legacy or reordered input");
+        }
+        fs::remove_dir_all(root).unwrap();
+    }
+
+    #[test]
+    fn recovery_invalid_primary_never_replaces_the_retained_valid_backup() {
+        let root = root();
+        let mut game = recovery_game();
+        write(&root, "default", &game).unwrap();
+        let path = slot_path(&root, "default").unwrap();
+        let good = fs::read(&path).unwrap();
+        game.world.nation_mut(crate::NationId::France).political_capital -= 0.25;
+        write(&root, "default", &game).unwrap();
+        for bad in ["{truncated".to_owned(), encode(&game).unwrap().replacen("\"version\":1", "\"version\":999", 1)] {
+            assert!(decode(&bad).is_err());
+            fs::write(&path, bad).unwrap();
+            write(&root, "default", &game).unwrap();
+            assert!(fs::read(path.with_extension("json.bak")).unwrap() == good, "Invalid primary must preserve the valid backup bytes exactly");
+            assert!(crate::save(&read(&root, "default", false).unwrap().world) == crate::save(&game.world), "Replacement primary must roundtrip the full world exactly");
+        }
+        fs::remove_dir_all(root).unwrap();
+    }
+
+    #[test]
+    fn recovery_preexisting_temporary_candidate_is_not_ours_to_delete() {
+        let root = root();
+        let candidate = root.join("save.tmp-collision");
+        let original = b"Earlier interrupted operation's candidate";
+        fs::write(&candidate, original).unwrap();
+        let error = stage_at(candidate.clone(), |_| panic!("Writer must not run after create_new fails")).unwrap_err();
+        assert_eq!(error.kind(), std::io::ErrorKind::AlreadyExists);
+        assert_eq!(fs::read(&candidate).ok().as_deref(), Some(original.as_slice()),
+            "Failed exclusive creation cannot delete a pre-existing file");
+        fs::remove_dir_all(root).unwrap();
+    }
+
+    #[test]
+    fn recovery_backup_promotion_failure_keeps_primary_and_cleans_owned_temps() {
+        let root = root();
+        let mut game = recovery_game();
+        write(&root, "default", &game).unwrap();
+        let path = slot_path(&root, "default").unwrap();
+        let primary = fs::read(&path).unwrap();
+        let backup = path.with_extension("json.bak");
+        fs::create_dir(&backup).unwrap();
+        let sentinel = backup.join("keep.txt");
+        fs::write(&sentinel, b"Directory blocks backup rename").unwrap();
+        game.record("Would be a new save, but backup promotion fails.".into());
+        assert!(write(&root, "default", &game).is_err());
+        assert!(fs::read(&path).unwrap() == primary, "Failed backup promotion must leave primary bytes unchanged");
+        assert_eq!(fs::read(&sentinel).unwrap(), b"Directory blocks backup rename");
+        assert!(!fs::read_dir(&root).unwrap().any(|e| e.unwrap().file_name().to_string_lossy().contains("tmp-")));
+        assert!(read(&root, "default", false).is_ok());
+        fs::remove_dir_all(root).unwrap();
+    }
+
+
+    #[test]
+    fn recovery_first_repeated_save_establishes_backup_then_keeps_it() {
+        let root = root();
+        let game = recovery_game();
+        write(&root, "default", &game).unwrap();
+        let path = slot_path(&root, "default").unwrap();
+        let backup = path.with_extension("json.bak");
+        assert!(!backup.exists());
+        let initial = fs::read_to_string(&path).unwrap();
+        let (prefix, _) = initial.rsplit_once(",\"saved_unix\":").unwrap();
+        let first = format!("{prefix},\"saved_unix\":0}}");
+        fs::write(&path, &first).unwrap();
+        write(&root, "default", &game).unwrap();
+        assert!(fs::read(&backup).unwrap() == first.as_bytes(),
+            "The first retry can establish a backup when none exists");
+        let second = format!("{prefix},\"saved_unix\":1}}");
+        fs::write(&path, second).unwrap();
+        write(&root, "default", &game).unwrap();
+        assert!(fs::read(&backup).unwrap() == first.as_bytes(),
+            "Further identical saves keep the established recovery copy");
+        assert!(crate::save(&read(&root, "default", true).unwrap().world) == crate::save(&game.world), "First repeated-save backup must roundtrip the full world exactly");
+        fs::remove_dir_all(root).unwrap();
+    }
+
 }
