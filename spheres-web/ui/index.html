@@ -5709,8 +5709,16 @@ function closeEquipmentDrawer() {
   if (!wasOpen) return;
   $("#app").inert=false;
   const previous=EQUIPMENT_ROOM.lastFocus;
-  const target=previous?.isConnected && previous.getClientRects().length && !previous.closest?.('[hidden], [inert]') ? previous : $("#techBtn");
-  target?.focus({preventScroll:true});
+  // Touch launchers may blur to BODY when their pending handler disables them.
+  // A connected node alone is not a usable focus destination after a room closes.
+  const targets=[previous,$("#techBtn"),$('[data-drawer="intelDrawer"]'),$("#worldFindBtn")];
+  for (const target of targets) {
+    if (!target?.isConnected || target===document.body || target===document.documentElement || target.disabled
+      || !target.matches?.('button, a[href], input, select, textarea, [tabindex]')
+      || !target.getClientRects().length || target.closest?.('[hidden], [inert], [aria-hidden="true"]')) continue;
+    target.focus({preventScroll:true});
+    if (document.activeElement===target) break;
+  }
   EQUIPMENT_ROOM.lastFocus=null;
 }
 function equipmentExternalPending() {
