@@ -1,0 +1,335 @@
+test_accepted_and_unattributed_sources_are_not_wholly_accepted (test_certified_boundary_matrix.IndependentReviewRegressions.test_accepted_and_unattributed_sources_are_not_wholly_accepted) ... FAIL
+test_changed_research_cutoff_and_duplicate_identity_fail_closed (test_certified_boundary_matrix.IndependentReviewRegressions.test_changed_research_cutoff_and_duplicate_identity_fail_closed) ... FAIL
+test_death_day_coverage_and_open_ended_portraits_are_flagged (test_certified_boundary_matrix.IndependentReviewRegressions.test_death_day_coverage_and_open_ended_portraits_are_flagged) ... 
+  test_death_day_coverage_and_open_ended_portraits_are_flagged (test_certified_boundary_matrix.IndependentReviewRegressions.test_death_day_coverage_and_open_ended_portraits_are_flagged) (end='1995-06-11') ... FAIL
+  test_death_day_coverage_and_open_ended_portraits_are_flagged (test_certified_boundary_matrix.IndependentReviewRegressions.test_death_day_coverage_and_open_ended_portraits_are_flagged) (end=None) ... FAIL
+test_enabled_missing_book_does_not_invent_legacy_executive_identity (test_certified_boundary_matrix.IndependentReviewRegressions.test_enabled_missing_book_does_not_invent_legacy_executive_identity) ... FAIL
+test_executive_inherits_paired_office_handover_and_attestation_dates (test_certified_boundary_matrix.IndependentReviewRegressions.test_executive_inherits_paired_office_handover_and_attestation_dates) ... ERROR
+test_fictional_manifest_entry_does_not_count_as_served_art (test_certified_boundary_matrix.IndependentReviewRegressions.test_fictional_manifest_entry_does_not_count_as_served_art) ... FAIL
+test_invalid_calendar_and_noncanonical_portrait_windows_never_bind (test_certified_boundary_matrix.IndependentReviewRegressions.test_invalid_calendar_and_noncanonical_portrait_windows_never_bind) ... 
+  test_invalid_calendar_and_noncanonical_portrait_windows_never_bind (test_certified_boundary_matrix.IndependentReviewRegressions.test_invalid_calendar_and_noncanonical_portrait_windows_never_bind) (start='1990-02-30', end='1991-01-01') ... FAIL
+  test_invalid_calendar_and_noncanonical_portrait_windows_never_bind (test_certified_boundary_matrix.IndependentReviewRegressions.test_invalid_calendar_and_noncanonical_portrait_windows_never_bind) (start='1990-01-01', end='1991-02-30') ... FAIL
+  test_invalid_calendar_and_noncanonical_portrait_windows_never_bind (test_certified_boundary_matrix.IndependentReviewRegressions.test_invalid_calendar_and_noncanonical_portrait_windows_never_bind) (start='1990-01-01', end='19911231') ... FAIL
+  test_invalid_calendar_and_noncanonical_portrait_windows_never_bind (test_certified_boundary_matrix.IndependentReviewRegressions.test_invalid_calendar_and_noncanonical_portrait_windows_never_bind) (start='2026-09-31', end='2036-01-01') ... FAIL
+  test_invalid_calendar_and_noncanonical_portrait_windows_never_bind (test_certified_boundary_matrix.IndependentReviewRegressions.test_invalid_calendar_and_noncanonical_portrait_windows_never_bind) (start='20260908', end='2036-01-01') ... FAIL
+  test_invalid_calendar_and_noncanonical_portrait_windows_never_bind (test_certified_boundary_matrix.IndependentReviewRegressions.test_invalid_calendar_and_noncanonical_portrait_windows_never_bind) (start='2026-09-08', end='2035-02-30') ... FAIL
+  test_invalid_calendar_and_noncanonical_portrait_windows_never_bind (test_certified_boundary_matrix.IndependentReviewRegressions.test_invalid_calendar_and_noncanonical_portrait_windows_never_bind) (start='2026-09-08', end='20350101') ... FAIL
+test_negative_acceptance_mentions_do_not_accept_a_packet (test_certified_boundary_matrix.IndependentReviewRegressions.test_negative_acceptance_mentions_do_not_accept_a_packet) ... 
+  test_negative_acceptance_mentions_do_not_accept_a_packet (test_certified_boundary_matrix.IndependentReviewRegressions.test_negative_acceptance_mentions_do_not_accept_a_packet) (text='# Review\n\nNot accepted.\n') ... FAIL
+  test_negative_acceptance_mentions_do_not_accept_a_packet (test_certified_boundary_matrix.IndependentReviewRegressions.test_negative_acceptance_mentions_do_not_accept_a_packet) (text='# Review\n\nThe prior packet was accepted; this submission is pending.\n') ... FAIL
+  test_negative_acceptance_mentions_do_not_accept_a_packet (test_certified_boundary_matrix.IndependentReviewRegressions.test_negative_acceptance_mentions_do_not_accept_a_packet) (text='# Review\n\n> **Decision: accepted as bounded research.**\n\nQuoted request only.\n') ... FAIL
+test_period_observations_never_become_exact_day_holders (test_certified_boundary_matrix.IndependentReviewRegressions.test_period_observations_never_become_exact_day_holders) ... 
+  test_period_observations_never_become_exact_day_holders (test_certified_boundary_matrix.IndependentReviewRegressions.test_period_observations_never_become_exact_day_holders) (when='1990-07-01') ... FAIL
+  test_period_observations_never_become_exact_day_holders (test_certified_boundary_matrix.IndependentReviewRegressions.test_period_observations_never_become_exact_day_holders) (when='1990-07-15') ... FAIL
+  test_period_observations_never_become_exact_day_holders (test_certified_boundary_matrix.IndependentReviewRegressions.test_period_observations_never_become_exact_day_holders) (when='1990-07-31') ... FAIL
+  test_period_observations_never_become_exact_day_holders (test_certified_boundary_matrix.IndependentReviewRegressions.test_period_observations_never_become_exact_day_holders) (when='2022-04-19') ... FAIL
+  test_period_observations_never_become_exact_day_holders (test_certified_boundary_matrix.IndependentReviewRegressions.test_period_observations_never_become_exact_day_holders) (when='2022-04-20') ... FAIL
+  test_period_observations_never_become_exact_day_holders (test_certified_boundary_matrix.IndependentReviewRegressions.test_period_observations_never_become_exact_day_holders) (when='2022-04-21') ... FAIL
+test_period_observations_never_become_exact_day_holders (test_certified_boundary_matrix.IndependentReviewRegressions.test_period_observations_never_become_exact_day_holders) ... FAIL
+test_saved_executive_assignment_precedes_legacy_office_row (test_certified_boundary_matrix.IndependentReviewRegressions.test_saved_executive_assignment_precedes_legacy_office_row) ... FAIL
+test_saved_report_pins_exact_save_and_marks_future_history_inapplicable (test_certified_boundary_matrix.IndependentReviewRegressions.test_saved_report_pins_exact_save_and_marks_future_history_inapplicable) ... ERROR
+test_shared_asset_with_missing_checksum_is_reported_not_crashed (test_certified_boundary_matrix.IndependentReviewRegressions.test_shared_asset_with_missing_checksum_is_reported_not_crashed) ... ERROR
+test_unknown_kind_dissolved_party_is_inapplicable_not_missing (test_certified_boundary_matrix.IndependentReviewRegressions.test_unknown_kind_dissolved_party_is_inapplicable_not_missing) ... FAIL
+
+======================================================================
+ERROR: test_executive_inherits_paired_office_handover_and_attestation_dates (test_certified_boundary_matrix.IndependentReviewRegressions.test_executive_inherits_paired_office_handover_and_attestation_dates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\avatars\test_certified_boundary_matrix.py", line 562, in test_executive_inherits_paired_office_handover_and_attestation_dates
+    executive = self.case('executive', when)
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\avatars\test_certified_boundary_matrix.py", line 261, in case
+    return next(c for c in self.role(key, doc)['cases'] if c['date'] == when)
+StopIteration
+
+======================================================================
+ERROR: test_saved_report_pins_exact_save_and_marks_future_history_inapplicable (test_certified_boundary_matrix.IndependentReviewRegressions.test_saved_report_pins_exact_save_and_marks_future_history_inapplicable)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\avatars\test_certified_boundary_matrix.py", line 606, in test_saved_report_pins_exact_save_and_marks_future_history_inapplicable
+    self.assertEqual(report['save_identity']['sha256'], sha(raw))
+                     ~~~~~~^^^^^^^^^^^^^^^^^
+KeyError: 'save_identity'
+
+======================================================================
+ERROR: test_shared_asset_with_missing_checksum_is_reported_not_crashed (test_certified_boundary_matrix.IndependentReviewRegressions.test_shared_asset_with_missing_checksum_is_reported_not_crashed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\avatars\test_certified_boundary_matrix.py", line 659, in test_shared_asset_with_missing_checksum_is_reported_not_crashed
+    row = matrix.Assets(matrix.Inputs(self.tmp), production).check(matrix.PORTRAIT_PREFIX + 'p-old-cartoon.png')
+  File "git:8c9f6ce1d533504143419af483e4435cde21835b:tools/avatars/certified_boundary_matrix.py", line 721, in check
+TypeError: '<' not supported between instances of 'str' and 'NoneType'
+
+======================================================================
+FAIL: test_accepted_and_unattributed_sources_are_not_wholly_accepted (test_certified_boundary_matrix.IndependentReviewRegressions.test_accepted_and_unattributed_sources_are_not_wholly_accepted)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\avatars\test_certified_boundary_matrix.py", line 534, in test_accepted_and_unattributed_sources_are_not_wholly_accepted
+    self.assertEqual(status, 'mixed_intake')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'accepted' != 'mixed_intake'
+- accepted
++ mixed_intake
+
+
+======================================================================
+FAIL: test_changed_research_cutoff_and_duplicate_identity_fail_closed (test_certified_boundary_matrix.IndependentReviewRegressions.test_changed_research_cutoff_and_duplicate_identity_fail_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\avatars\test_certified_boundary_matrix.py", line 638, in test_changed_research_cutoff_and_duplicate_identity_fail_closed
+    with self.assertRaisesRegex(matrix.MatrixError, 'Research cutoff changed'):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: MatrixError not raised
+
+======================================================================
+FAIL: test_death_day_coverage_and_open_ended_portraits_are_flagged (test_certified_boundary_matrix.IndependentReviewRegressions.test_death_day_coverage_and_open_ended_portraits_are_flagged) (end='1995-06-11')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\avatars\test_certified_boundary_matrix.py", line 631, in test_death_day_coverage_and_open_ended_portraits_are_flagged
+    self.assertEqual(person['portrait_windows'][0]['extends_past_recorded_death'], expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False != True
+
+======================================================================
+FAIL: test_death_day_coverage_and_open_ended_portraits_are_flagged (test_certified_boundary_matrix.IndependentReviewRegressions.test_death_day_coverage_and_open_ended_portraits_are_flagged) (end=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\avatars\test_certified_boundary_matrix.py", line 631, in test_death_day_coverage_and_open_ended_portraits_are_flagged
+    self.assertEqual(person['portrait_windows'][0]['extends_past_recorded_death'], expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False != True
+
+======================================================================
+FAIL: test_enabled_missing_book_does_not_invent_legacy_executive_identity (test_certified_boundary_matrix.IndependentReviewRegressions.test_enabled_missing_book_does_not_invent_legacy_executive_identity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\avatars\test_certified_boundary_matrix.py", line 587, in test_enabled_missing_book_does_not_invent_legacy_executive_identity
+    self.assertIsNone(matrix.campaign_observation(production, world, 'Alpha')['person'])
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'p_exec' is not None
+
+======================================================================
+FAIL: test_fictional_manifest_entry_does_not_count_as_served_art (test_certified_boundary_matrix.IndependentReviewRegressions.test_fictional_manifest_entry_does_not_count_as_served_art)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\avatars\test_certified_boundary_matrix.py", line 648, in test_fictional_manifest_entry_does_not_count_as_served_art
+    self.assertEqual(stats['fictional_candidates_with_portrait'], 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_invalid_calendar_and_noncanonical_portrait_windows_never_bind (test_certified_boundary_matrix.IndependentReviewRegressions.test_invalid_calendar_and_noncanonical_portrait_windows_never_bind) (start='1990-02-30', end='1991-01-01')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\avatars\test_certified_boundary_matrix.py", line 573, in test_invalid_calendar_and_noncanonical_portrait_windows_never_bind
+    self.assertEqual(production.portrait('p_exec', date(1990, 6, 1))['binding'], 'unbound')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'bound' != 'unbound'
+- bound
++ unbound
+? ++
+
+
+======================================================================
+FAIL: test_invalid_calendar_and_noncanonical_portrait_windows_never_bind (test_certified_boundary_matrix.IndependentReviewRegressions.test_invalid_calendar_and_noncanonical_portrait_windows_never_bind) (start='1990-01-01', end='1991-02-30')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\avatars\test_certified_boundary_matrix.py", line 573, in test_invalid_calendar_and_noncanonical_portrait_windows_never_bind
+    self.assertEqual(production.portrait('p_exec', date(1990, 6, 1))['binding'], 'unbound')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'bound' != 'unbound'
+- bound
++ unbound
+? ++
+
+
+======================================================================
+FAIL: test_invalid_calendar_and_noncanonical_portrait_windows_never_bind (test_certified_boundary_matrix.IndependentReviewRegressions.test_invalid_calendar_and_noncanonical_portrait_windows_never_bind) (start='1990-01-01', end='19911231')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\avatars\test_certified_boundary_matrix.py", line 573, in test_invalid_calendar_and_noncanonical_portrait_windows_never_bind
+    self.assertEqual(production.portrait('p_exec', date(1990, 6, 1))['binding'], 'unbound')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'bound' != 'unbound'
+- bound
++ unbound
+? ++
+
+
+======================================================================
+FAIL: test_invalid_calendar_and_noncanonical_portrait_windows_never_bind (test_certified_boundary_matrix.IndependentReviewRegressions.test_invalid_calendar_and_noncanonical_portrait_windows_never_bind) (start='2026-09-31', end='2036-01-01')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\avatars\test_certified_boundary_matrix.py", line 579, in test_invalid_calendar_and_noncanonical_portrait_windows_never_bind
+    self.assertEqual(production.portrait(pid, date(2030, 1, 1))['binding'], 'unbound')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'bound' != 'unbound'
+- bound
++ unbound
+? ++
+
+
+======================================================================
+FAIL: test_invalid_calendar_and_noncanonical_portrait_windows_never_bind (test_certified_boundary_matrix.IndependentReviewRegressions.test_invalid_calendar_and_noncanonical_portrait_windows_never_bind) (start='20260908', end='2036-01-01')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\avatars\test_certified_boundary_matrix.py", line 579, in test_invalid_calendar_and_noncanonical_portrait_windows_never_bind
+    self.assertEqual(production.portrait(pid, date(2030, 1, 1))['binding'], 'unbound')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'bound' != 'unbound'
+- bound
++ unbound
+? ++
+
+
+======================================================================
+FAIL: test_invalid_calendar_and_noncanonical_portrait_windows_never_bind (test_certified_boundary_matrix.IndependentReviewRegressions.test_invalid_calendar_and_noncanonical_portrait_windows_never_bind) (start='2026-09-08', end='2035-02-30')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\avatars\test_certified_boundary_matrix.py", line 579, in test_invalid_calendar_and_noncanonical_portrait_windows_never_bind
+    self.assertEqual(production.portrait(pid, date(2030, 1, 1))['binding'], 'unbound')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'bound' != 'unbound'
+- bound
++ unbound
+? ++
+
+
+======================================================================
+FAIL: test_invalid_calendar_and_noncanonical_portrait_windows_never_bind (test_certified_boundary_matrix.IndependentReviewRegressions.test_invalid_calendar_and_noncanonical_portrait_windows_never_bind) (start='2026-09-08', end='20350101')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\avatars\test_certified_boundary_matrix.py", line 579, in test_invalid_calendar_and_noncanonical_portrait_windows_never_bind
+    self.assertEqual(production.portrait(pid, date(2030, 1, 1))['binding'], 'unbound')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'bound' != 'unbound'
+- bound
++ unbound
+? ++
+
+
+======================================================================
+FAIL: test_negative_acceptance_mentions_do_not_accept_a_packet (test_certified_boundary_matrix.IndependentReviewRegressions.test_negative_acceptance_mentions_do_not_accept_a_packet) (text='# Review\n\nNot accepted.\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\avatars\test_certified_boundary_matrix.py", line 529, in test_negative_acceptance_mentions_do_not_accept_a_packet
+    self.assertEqual(packets['CLAUDE-C01-33']['status'], 'unclassified_packet')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'accepted' != 'unclassified_packet'
+- accepted
++ unclassified_packet
+
+
+======================================================================
+FAIL: test_negative_acceptance_mentions_do_not_accept_a_packet (test_certified_boundary_matrix.IndependentReviewRegressions.test_negative_acceptance_mentions_do_not_accept_a_packet) (text='# Review\n\nThe prior packet was accepted; this submission is pending.\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\avatars\test_certified_boundary_matrix.py", line 529, in test_negative_acceptance_mentions_do_not_accept_a_packet
+    self.assertEqual(packets['CLAUDE-C01-33']['status'], 'unclassified_packet')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'accepted' != 'unclassified_packet'
+- accepted
++ unclassified_packet
+
+
+======================================================================
+FAIL: test_negative_acceptance_mentions_do_not_accept_a_packet (test_certified_boundary_matrix.IndependentReviewRegressions.test_negative_acceptance_mentions_do_not_accept_a_packet) (text='# Review\n\n> **Decision: accepted as bounded research.**\n\nQuoted request only.\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\avatars\test_certified_boundary_matrix.py", line 529, in test_negative_acceptance_mentions_do_not_accept_a_packet
+    self.assertEqual(packets['CLAUDE-C01-33']['status'], 'unclassified_packet')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'accepted' != 'unclassified_packet'
+- accepted
++ unclassified_packet
+
+
+======================================================================
+FAIL: test_period_observations_never_become_exact_day_holders (test_certified_boundary_matrix.IndependentReviewRegressions.test_period_observations_never_become_exact_day_holders) (when='1990-07-01')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\avatars\test_certified_boundary_matrix.py", line 550, in test_period_observations_never_become_exact_day_holders
+    self.assertNotIn(cell['status'], matrix.IDENTIFIED)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'period_attested' unexpectedly found in ('boundary_day', 'established', 'attested', 'period_attested')
+
+======================================================================
+FAIL: test_period_observations_never_become_exact_day_holders (test_certified_boundary_matrix.IndependentReviewRegressions.test_period_observations_never_become_exact_day_holders) (when='1990-07-15')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\avatars\test_certified_boundary_matrix.py", line 550, in test_period_observations_never_become_exact_day_holders
+    self.assertNotIn(cell['status'], matrix.IDENTIFIED)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'period_attested' unexpectedly found in ('boundary_day', 'established', 'attested', 'period_attested')
+
+======================================================================
+FAIL: test_period_observations_never_become_exact_day_holders (test_certified_boundary_matrix.IndependentReviewRegressions.test_period_observations_never_become_exact_day_holders) (when='1990-07-31')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\avatars\test_certified_boundary_matrix.py", line 550, in test_period_observations_never_become_exact_day_holders
+    self.assertNotIn(cell['status'], matrix.IDENTIFIED)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'period_attested' unexpectedly found in ('boundary_day', 'established', 'attested', 'period_attested')
+
+======================================================================
+FAIL: test_period_observations_never_become_exact_day_holders (test_certified_boundary_matrix.IndependentReviewRegressions.test_period_observations_never_become_exact_day_holders) (when='2022-04-19')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\avatars\test_certified_boundary_matrix.py", line 550, in test_period_observations_never_become_exact_day_holders
+    self.assertNotIn(cell['status'], matrix.IDENTIFIED)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'period_attested' unexpectedly found in ('boundary_day', 'established', 'attested', 'period_attested')
+
+======================================================================
+FAIL: test_period_observations_never_become_exact_day_holders (test_certified_boundary_matrix.IndependentReviewRegressions.test_period_observations_never_become_exact_day_holders) (when='2022-04-20')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\avatars\test_certified_boundary_matrix.py", line 550, in test_period_observations_never_become_exact_day_holders
+    self.assertNotIn(cell['status'], matrix.IDENTIFIED)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'period_attested' unexpectedly found in ('boundary_day', 'established', 'attested', 'period_attested')
+
+======================================================================
+FAIL: test_period_observations_never_become_exact_day_holders (test_certified_boundary_matrix.IndependentReviewRegressions.test_period_observations_never_become_exact_day_holders) (when='2022-04-21')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\avatars\test_certified_boundary_matrix.py", line 550, in test_period_observations_never_become_exact_day_holders
+    self.assertNotIn(cell['status'], matrix.IDENTIFIED)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'period_attested' unexpectedly found in ('boundary_day', 'established', 'attested', 'period_attested')
+
+======================================================================
+FAIL: test_period_observations_never_become_exact_day_holders (test_certified_boundary_matrix.IndependentReviewRegressions.test_period_observations_never_become_exact_day_holders)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\avatars\test_certified_boundary_matrix.py", line 556, in test_period_observations_never_become_exact_day_holders
+    self.assertTrue({date(1990, 6, 30), date(1990, 7, 1), date(1990, 7, 2), date(1990, 7, 30),
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     date(1990, 7, 31), date(1990, 8, 1)} <= set(dates))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_saved_executive_assignment_precedes_legacy_office_row (test_certified_boundary_matrix.IndependentReviewRegressions.test_saved_executive_assignment_precedes_legacy_office_row)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\avatars\test_certified_boundary_matrix.py", line 595, in test_saved_executive_assignment_precedes_legacy_office_row
+    self.assertEqual(matrix.campaign_observation(production, world, 'Alpha')['person'], 'p_new')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: None != 'p_new'
+
+======================================================================
+FAIL: test_unknown_kind_dissolved_party_is_inapplicable_not_missing (test_certified_boundary_matrix.IndependentReviewRegressions.test_unknown_kind_dissolved_party_is_inapplicable_not_missing)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\s22-economic-ranking\tools\avatars\test_certified_boundary_matrix.py", line 621, in test_unknown_kind_dissolved_party_is_inapplicable_not_missing
+    self.assertEqual(cell, {'status': 'inapplicable', 'reason': 'organization_not_existing'})
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'status': 'unresearched', 'reason': 'party_kind_unknown_no_researched_chain'} != {'status': 'inapplicable', 'reason': 'organization_not_existing'}
+- {'reason': 'party_kind_unknown_no_researched_chain', 'status': 'unresearched'}
++ {'reason': 'organization_not_existing', 'status': 'inapplicable'}
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.590s
+
+FAILED (failures=25, errors=3)
+{"scope": "new regressions against exact submitted implementation; intentional negative control", "submission": "8c9f6ce1d533504143419af483e4435cde21835b", "tests_run": 13, "failed_assertions_including_subtests": 25, "errors": 3}
