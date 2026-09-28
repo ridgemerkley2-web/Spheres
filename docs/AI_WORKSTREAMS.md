@@ -9,10 +9,12 @@ G5, CP1 certification and worldwide character coverage remain open. S23 is next:
 
 Codex is executing the user's independent engineering order: recovery, long-campaign
 stability, then packaging. **CODEX-S24-RECOVERY-01 is complete** with native, UI
-and actual five-boundary browser recovery evidence. The stability runner/pilot
-is next; packaging follows it. These bounded tasks do not change canonical
+and actual five-boundary browser recovery evidence. **CODEX-S25-RUNNER-01 is
+complete**: both annual save/resume pilots and independent retained-evidence
+verification pass. **CODEX-S28-PACKAGE-01 is in progress**. These bounded tasks do not change canonical
 S24/S25/S28 dependencies. [Scope](planning/ai-handoffs/CODEX-INDEPENDENT-ENGINEERING.md)
-and [recovery closeout](campaign-certification/S24/repairs/campaign-recovery/README.md).
+and [recovery closeout](campaign-certification/S24/repairs/campaign-recovery/README.md),
+plus the [stability runner and pilot](campaign-certification/S25/preparation/native-stability/README.md).
 
 | Area | Verified state | Next owner / action |
 |---|---|---|
@@ -28,7 +30,7 @@ and [recovery closeout](campaign-certification/S24/repairs/campaign-recovery/REA
 | Budget explanation repair | **CODEX-S24-BUDGET-01 complete.** Rate floor and sovereign risk are now shown separately. | [Native/UI/browser evidence](campaign-certification/S24/repairs/budget-rate-explanation/README.md), current runtime `52e1c2ab`; unchanged economic charges. |
 | E05 company pilot | **CLAUDE-E05-RESEARCH-01 complete as research preparation.** Eight dossiers, corrected validator and 61 tests. | [Review](campaign-certification/E05/integrations/CLAUDE-E05-RESEARCH-01/README.md). 68/99 bodies retrieved (54 byte-exact, 14 changed); explicit claim-level content limits remain. No runtime installation. |
 | S26 human-playtest preparation | **CODEX-S26-PREP-01 complete.** Facilitator guide, eight-country plan and evidence/coverage validator; 23 synthetic tests pass. | [Kit](campaign-certification/S26/preparation/README.md). Zero actual human observations; S26 still awaits S24 and real participants. |
-| Pending Claude work | C01-23/24/25/27 await independent historical review. C01-28/29 preserve active Russia/Japan claims. | Check Git between completed sections; avoid duplicate work. |
+| Pending Claude work | C01-23/24/25/27 await independent historical review. Japan branch C01-29 now has new submission `e0bb7a01`, noted but not accepted in this engineering pass. C01-28 preserves the active Russia claim. | Check Git between completed sections; avoid duplicate work. |
 
 S19 closure does not award CP1. The flight proof records an actual launch and store
 consumption with no opposing target contact, so it does not claim combat damage.

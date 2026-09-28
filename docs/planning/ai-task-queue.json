@@ -295,27 +295,27 @@
       "id": "CODEX-S25-RUNNER-01",
       "owner": "Codex",
       "session": "S25",
-      "state": "in_progress",
+      "state": "complete",
       "priority": 20,
       "title": "Build paired long-campaign stability runner",
       "handoff": "docs/planning/ai-handoffs/CODEX-INDEPENDENT-ENGINEERING.md",
       "depends_on": [
         "CODEX-S24-RECOVERY-01"
       ],
-      "next": "Implement native paired runner and strict matrix coverage verifier; exercise France1990/Tonga7 pilot across annual renewal. Full24-cell qualification remains separate."
+      "next": "Closed: native runner, strict fixed plans, independent retained-evidence verifier and France1990/Tonga7 annual pilot pass. 1592 daily advances; evidence in docs/campaign-certification/S25/preparation/native-stability/README.md. Full24-cell/S25 qualification remains outstanding."
     },
     {
       "id": "CODEX-S28-PACKAGE-01",
       "owner": "Codex",
       "session": "S28",
-      "state": "queued",
+      "state": "in_progress",
       "priority": 21,
       "title": "Verify portable release identity and recovery",
       "handoff": "docs/planning/ai-handoffs/CODEX-INDEPENDENT-ENGINEERING.md",
       "depends_on": [
         "CODEX-S25-RUNNER-01"
       ],
-      "next": "After the stability pilot, harden package identity/collisions/reproducibility/licenses and run extracted offline smoke checks. Final frozen-release qualification remains separate."
+      "next": "Implement cross-platform package identity, deterministic archives, license inclusion, safe extraction and actual offline browser recovery checks. Canonical S28 remains dependent on frozen-candidate and both-platform qualification."
     }
   ]
 }

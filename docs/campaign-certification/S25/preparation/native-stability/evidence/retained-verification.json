@@ -1,0 +1,169 @@
+{
+  "format": "spheres-stability-retained-verification/v1",
+  "integrity_verified": true,
+  "native_reexecuted": false,
+  "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S25\\preparation\\native-stability\\evidence\\pilot-01",
+  "recorded_origin": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/stability-pilot-01",
+  "candidate_revision": "0106ecedfb4968bf3b10d55768a5ece08713882b",
+  "frozen_harness_sha256": "26edcf8e6630c59e544d9b929465bec685e23d81866062431bf291e2e9ee147d",
+  "verifier": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\campaign\\stability_matrix.py",
+    "bytes": 55145,
+    "sha256": "6be5598c4167caccbf7d8cf4311d021fd875fa0b3090740691dcf8655111a285"
+  },
+  "binary_reexecuted_or_rebuilt": false,
+  "passed": true,
+  "coverage": {
+    "declared": 2,
+    "attempted": 2,
+    "passed": 2,
+    "failed": [],
+    "missing_requested": [],
+    "requested_plan_passed": true,
+    "pilot_passed": true,
+    "full_matrix_passed": false,
+    "missing_full_cases": [
+      {
+        "country": "Brazil",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Brazil",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Brazil",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "France",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "France",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "France",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "India",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "India",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "India",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Japan",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Japan",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Japan",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SaudiArabia",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SaudiArabia",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SaudiArabia",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SouthAfrica",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SouthAfrica",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "SouthAfrica",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Tonga",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Tonga",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "Tonga",
+        "seed": 1990,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "USSR",
+        "seed": 7,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "USSR",
+        "seed": 42,
+        "through": "2035-12-31"
+      },
+      {
+        "country": "USSR",
+        "seed": 1990,
+        "through": "2035-12-31"
+      }
+    ],
+    "controlled_ussr_to_russia_case_passed": false,
+    "s25_complete": false,
+    "qualification": false
+  },
+  "cells": [
+    {
+      "id": "france-1990",
+      "passed": true,
+      "files_verified": 11,
+      "archives_verified": 4
+    },
+    {
+      "id": "tonga-7",
+      "passed": true,
+      "files_verified": 11,
+      "archives_verified": 4
+    }
+  ],
+  "files_verified": 29,
+  "archives_verified": 8,
+  "qualification": false,
+  "s25_complete": false
+}
