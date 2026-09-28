@@ -1,0 +1,40 @@
+{
+  "format": "spheres-research-review/v1",
+  "task": "CLAUDE-C01-24",
+  "status": "accepted_for_integration",
+  "reviewer": "Codex",
+  "reviewed_commit": "a32d44536b4ea290e57c8b51be2e5bf469c344d0",
+  "decision": "Bounded packet acceptable after five missing originals reproduced and their five claims were independently read; combine with the preserved prior 44-source review. No parent historical/visual/runtime gate closes.",
+  "evidence": [
+    {
+      "path": ".gitattributes",
+      "bytes": 20,
+      "sha256": "e97602ab9cac70102245345c5ab0fc9830df8b17f1072b188265a662a3a547ae"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1610,
+      "sha256": "7a595dbb20a77ceb731704f6117590d6297eb01e79740d497d19e619b4a7977c"
+    },
+    {
+      "path": "resolution.json",
+      "bytes": 6174,
+      "sha256": "ac6b1801a8cdbc4c993696f3b5b4de67bd9fa8af0f7b14cebdd4f0540bf85609"
+    },
+    {
+      "path": "retrieval-04.log",
+      "bytes": 219,
+      "sha256": "6ccaef8202df345e9ab51e1cb147ac51040ee5c1c5da8a50aca8d36552e84cf7"
+    },
+    {
+      "path": "retrieval-attempt-04.jsonl",
+      "bytes": 4856,
+      "sha256": "49bce7fa9138aca8a7877304137c188e02f776d301019fe1800e6ed5dc123692"
+    },
+    {
+      "path": "retrieval-summary-04.json",
+      "bytes": 5613,
+      "sha256": "92615506ac37a83f8fd4d2c84266f6c44e378196d6c4250c3b306119247ec834"
+    }
+  ]
+}
