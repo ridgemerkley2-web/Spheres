@@ -99,12 +99,12 @@ Observation decisions:
 | SDP-CHAIR-11 | Accepted in part: the 2026 election (notice 4 March, inconclusive count 23 March, run-off count 6 April); 福島瑞穂 observed 8 April 2026; continuations 29 April and 29 July 2026 |
 
 Integration decisions (the report's table gives each): the Prime Minister's replies naming the chair are leads, not party
-officers' statements, so 土井たか子 and 田邊誠 are dated by two secretary-general statements the integrator found and 村山富市 by his own
+officers' statements, so 土井たか子 and 田邊誠 are dated by two secretary-general statements found when this packet merged its two research parts and 村山富市 by his own
 statement; 山花貞夫's statements of 7 October 1993, made as a minister holding no party office, are leads (CLAUDE-C01-18's rule for
 河野洋平); a recollection printing no year has no structured date; the 2020 observation is dated by the party's news items of 28
 February 2020, not by an address given at the end of the convention; 吉田忠智's recalled takeover day is never a start. Every
 recorded identity was downloaded again by this packet on 28 September 2026 (all 54 at 15:34Z-15:37Z and again at 16:09Z-16:13Z,
-the 22 Diet responses also with a cache-busting query), with the same byte count and SHA-256 each time; three captures' SHA-1 differ
+the 15 Diet responses also with a cache-busting query), with the same byte count and SHA-256 each time; three captures' SHA-1 differ
 from their CDX digests (two chunked records and an early ARC record), with stable served bytes. Nothing was blocked; no terms,
 logins or CAPTCHAs were met. The central task-queue entry (`claimed`) is Codex's to update.
 
