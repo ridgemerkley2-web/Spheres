@@ -7,7 +7,10 @@ const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const lib = require('./successor-fixtures/lib.cjs');
+const cp = require('node:child_process');
+const zlib = require('node:zlib');
+const lib = require(process.env.S24_HARNESS_MODULE_DIR ? path.join(process.env.S24_HARNESS_MODULE_DIR, 'lib.cjs') : './successor-fixtures/lib.cjs');
+const harness = require(process.env.S24_HARNESS_MODULE_DIR ? path.join(process.env.S24_HARNESS_MODULE_DIR, 'run.cjs') : './successor-fixtures/run.cjs');
 const { buildInventory } = require('./successor-fixtures/inventory.cjs');
 
 const ROOT = path.resolve(__dirname, '../..');
@@ -17,7 +20,7 @@ const readJson = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 const inventory = () => readJson(path.join(DIR, 'inventory.json'));
 const results = () => readJson(path.join(EVIDENCE, 'result.json'));
 const clone = value => JSON.parse(JSON.stringify(value));
-const options = { requireFinal: true, exists: f => fs.existsSync(path.join(EVIDENCE, f)), hashOf: f => lib.fileSha256(path.join(EVIDENCE, f)) };
+const options = { requireFinal: true, allowHistoricalHashOnly: true, exists: f => fs.existsSync(path.join(EVIDENCE, f)), hashOf: f => lib.fileSha256(path.join(EVIDENCE, f)) };
 const identityView = inv => ({ expectation: inv.expectation.successor_identities,
   rows: inv.rows.map(r => [r.id, r.parent, r.dissolution, r.player_continuation, r.native_activation_path]) });
 
@@ -80,15 +83,17 @@ test('committed results are complete, labelled and tied to this exact inventory 
   assert.deepEqual(r.cleanup.remaining_saves, [], 'Disposable campaigns must be deleted after hashing');
 });
 
-test('committed results were produced by the committed harness files', () => {
-  // A harness edit without a fresh run would leave results describing code
-  // that no longer exists; re-run and re-commit the evidence instead.
+test('historical submitted results pin the exact historical harness blobs', () => {
+  // Preserve the authored run; later fixes get separate evidence. These old
+  // receipts contain no restorable input and do not meet current acceptance.
   const recorded = results().harness.files_sha256_lf;
   assert.equal(results().harness.tree_clean_for_harness_and_runtime, true);
   for (const file of ['run.cjs', 'lib.cjs', 'inventory.cjs']) {
     const rel = 'tools/ui/successor-fixtures/' + file;
-    const lf = Buffer.from(fs.readFileSync(path.join(ROOT, rel), 'utf8').replace(/\r\n/g, '\n'), 'utf8');
-    assert.equal(recorded[rel], lib.sha256(lf), rel + ' changed after the committed run');
+    const git = cp.spawnSync('git', ['show', results().harness.revision + ':' + rel], { cwd: ROOT });
+    assert.equal(git.status, 0, 'Historical source must remain available in Git');
+    const lf = git.stdout;
+    assert.equal(recorded[rel], lib.sha256(lf), rel + ' historical source pin differs');
   }
 });
 
@@ -191,7 +196,7 @@ test('Rust readers ignore comments, strings and lifetimes', () => {
   assert.deepEqual(lib.journeyFamilies(journey), { USSR: { flag: 'ussr_dissolved', family: ['Russia', 'Ukraine'] } });
 });
 
-test('the native exporter input is reproducible and is the one the results consumed', () => {
+test('historical exporter receipts report matching projections, without retained original bytes', () => {
   const provenance = readJson(path.join(EVIDENCE, 'native-s21-export.json'));
   assert.equal(provenance.runs.length, 2);
   assert.equal(provenance.runs[0].projection_sha256, provenance.runs[1].projection_sha256);
@@ -200,4 +205,79 @@ test('the native exporter input is reproducible and is the one the results consu
   assert(n1, 'The USSR cases consume the existing S21 exporter fixture');
   assert.equal(n1.projection_sha256, provenance.runs[0].projection_sha256);
   assert.equal(n1.exporter.revision, results().build.expected_revision);
+});
+
+// Independent review regressions. The historical receipts above are immutable;
+// these negative controls close validator/retention gaps without rewriting them.
+test('current acceptance rejects historical hash-only inputs', () => {
+  const errors = lib.validateResults(results(), inventory(), { ...options, allowHistoricalHashOnly: false });
+  assert.match(errors.join('\n'), /retained input verification failed/);
+});
+test('passing requires every named check exactly once and retained browser screenshots', () => {
+  const inv = inventory();
+  for (const layer of lib.LAYERS) {
+    const r = results(), c = r.cases.find(c => c.layer === layer && c.status === 'passed');
+    c.checks = [{ name: 'arbitrary', status: 'passed' }];
+    assert.match(lib.validateResults(r, inv, options).join('\n'), /missing required check/);
+  }
+  const r = results(), c = r.cases.find(c => c.layer === 'browser_ui' && c.status === 'passed');
+  c.checks.push(clone(c.checks[0])); c.screenshots = [];
+  assert.match(lib.validateResults(r, inv, options).join('\n'), /duplicate check name/);
+  assert.match(lib.validateResults(r, inv, options).join('\n'), /needs retained screenshots/);
+});
+test('runtime, clean-tree and served asset proof cannot be waived by a passed browser case', () => {
+  for (const mutate of [r => { r.build.runtime_source_equal_to_expected = false; }, r => { r.harness.tree_clean_for_harness_and_runtime = false; }, r => { r.build.served_assets_verified = { error: 'wrong asset' }; }, r => { delete r.build.served_assets_verified.assets['index.html']; }, r => { r.build.served_assets_verified.binary_sha256 = '0'.repeat(64); }]) {
+    const r = results(); mutate(r);
+    assert(lib.validateResults(r, inventory(), options).length > 0);
+  }
+});
+test('native exporter provenance must pin the exact consumed archive and runtime', () => {
+  for (const mutate of [f => { f.exporter.revision = '0'.repeat(40); }, f => { f.exporter.runs[0].succession_sha256 = '0'.repeat(64); }, f => { f.exporter.runs[0].bytes++; }, f => { f.exporter.test_binary_sha256 = null; }]) {
+    const r = results(), f = r.fixture_inputs.find(f => f.recipe === 'N1'); mutate(f);
+    assert.match(lib.validateResults(r, inventory(), options).join('\n'), /exporter provenance does not match/);
+  }
+});
+test('failed staging cannot support a passed activation', () => {
+  const r = results(), f = r.fixture_inputs.find(f => f.recipe === 'H1');
+  f.status = 'failed'; f.checks[0].status = 'failed';
+  assert.match(lib.validateResults(r, inventory(), options).join('\n'), /staged fixture checks did not pass/);
+});
+test('blocked environment errors remain blocked even before the first check', () => {
+  const r = results(), c = r.cases.find(c => c.layer === 'browser_ui' && c.status === 'passed');
+  Object.assign(c, { status: 'blocked', checks: [], blocked_stage: 'browser launch', error: 'executable missing', screenshots: [] });
+  r.summary = lib.summarize(r.cases);
+  assert.deepEqual(lib.validateResults(r, inventory(), options), []);
+});
+test('failed or blocked cases yield nonzero command exit even when the record is valid', () => {
+  assert.equal(lib.resultExitCode({ cases: [{ status: 'passed' }, { status: 'unrun' }] }, []), 0);
+  for (const status of ['failed', 'blocked']) assert.equal(lib.resultExitCode({ cases: [{ status }] }, []), 1);
+  assert.equal(lib.resultExitCode({ cases: [] }, ['invalid']), 1);
+});
+test('unrun no-hook claims cannot hide supported activation or selection cases', () => {
+  const r = results(), c = r.cases.find(c => c.identity === 'Russia' && c.layer === 'activation_save_load');
+  Object.assign(c, { status: 'unrun', checks: [], reason: 'no_native_hook', proposal: lib.PROPOSAL });
+  r.summary = lib.summarize(r.cases);
+  assert.match(lib.validateResults(r, inventory(), options).join('\n'), /contradicts the available native path/);
+});
+test('retained archive verification checks gzip and decoded bytes and confines references', () => {
+  const raw = Buffer.from('{"format":"spheres-campaign","world":{},"saved_unix":1}'), packed = zlib.gzipSync(raw);
+  const rec = { file: 'fixtures/input.json.gz', compression: 'gzip', bytes: raw.length, sha256: lib.sha256(raw), gzip_bytes: packed.length, gzip_sha256: lib.sha256(packed) };
+  assert(lib.retainedArchive(rec, () => packed).equals(raw));
+  for (const file of ['../input.gz', '/input.gz', 'C:/input.gz', 'fixtures/../input.gz', 'fixtures\\input.gz']) assert.throws(() => lib.retainedArchive({ ...rec, file }, () => packed), /invalid/);
+  assert.throws(() => lib.retainedArchive({ ...rec, sha256: '0'.repeat(64) }, () => packed), /archive bytes\/hash differ/);
+  assert.throws(() => lib.retainedArchive(rec, () => Buffer.from('wrong')), /gzip bytes\/hash differ/);
+  assert.throws(() => lib.retainedArchive(rec), /byte verification is required/);
+});
+test('screenshot references cannot leave the evidence directory', () => {
+  const r = results(), c = r.cases.find(c => c.screenshots?.length);
+  c.screenshots[0].file = '../foreign.jpg';
+  assert.match(lib.validateResults(r, inventory(), { ...options, exists: () => true, hashOf: () => c.screenshots[0].sha256 }).join('\n'), /screenshot without file/);
+});
+test('staging rejects duplicate JSON keys instead of patching a shadowed value', () => {
+  const text = '{"nations":[{"id":"USSR","alive":true,"stability":50,"stability":60,"separatism":0.5}]}';
+  assert.throws(() => lib.stageNationFields(text, 'USSR', { stability: '0.0', separatism: '1.0' }), /Duplicate JSON key/);
+});
+test('command options reject unknown recipes and duplicate requested identities', () => {
+  const base = ['--binary', 'unused.exe', '--expected-revision', '0'.repeat(40), '--out', path.resolve('unused-output')];
+  for (const extra of [['--browser', 'Russia:invented'], ['--browser', 'Russia:N1:ignored'], ['--browser', 'Russia:N1,Russia:H1'], ['--api', 'Russia,Russia']]) assert.throws(() => harness.parseArgs([...base, ...extra]), /recipe|duplicate/);
 });

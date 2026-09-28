@@ -75,7 +75,7 @@ nothing else about the world is authored, and every later step is ordinary play.
 * The port is a free local port and never 7777 (another session's server); the server
   gets `--no-open`, and is stopped at the end (`cleanup.server_stopped`).
 * Browser contexts are fresh and headless; nothing persists between cases.
-* Every disposable archive is hashed and then deleted (`--keep-saves` keeps them).
+* Original consumed fixture inputs and each staging base/edited save are retained as gzip under `fixtures/`, with original and gzip byte counts and SHA-256, verified by decompression before transient save cleanup. `--keep-saves` also keeps transient outputs.
 
 ## Setup
 
@@ -119,7 +119,7 @@ node tools/ui/successor-fixtures/run.cjs --binary <frozen>/spheres-web.exe \
 Outputs in `--out`: `result.json` (format `spheres-s24-successor-fixture-results/v1`),
 `screenshots/*.jpg` (viewport-clipped, modest), `progress.jsonl` (HTTP timings),
 `server.log`, and an empty `server/saves` after cleanup. The run validates its own
-result with `lib.validateResults` and exits non-zero on any validation error.
+result with `lib.validateResults` and exits non-zero on any validation error, failed case, or blocked case. Browser cases cannot run after an asset-identity failure; passed cases must contain every required check. Original inputs are retained in `fixtures/*.json.gz` and validated against the result descriptors.
 
 A **failed** case is a product check that did not hold (the failing check and observed
 values are recorded); **blocked** means the harness could not reach a stage (environment
@@ -144,9 +144,9 @@ activation paths against live sources and validates the committed results.
 
 ## Cleanup
 
-Automatic: the server is stopped and every disposable archive deleted. Afterwards
-delete the `--out` directory, any `SPHERES_S21_FIXTURE_DIR` directories and your
-cargo target directory. Nothing else is created.
+Automatic: the server is stopped; transient comparison saves are deleted only inside the resolved isolated saves directory. Original fixture bytes remain recoverable from the verified `fixtures/*.json.gz` records. Preserve `--out` and native exporter provenance as evidence; no build cache deletion is required. Restore a fixture into a new destination by decompressing its gzip and verifying its recorded original SHA-256 and byte count before loading.
+
+The immutable authored evidence under `preparation/successor-fixtures/evidence` predates these safeguards and retained input hashes only. It remains historical receipt evidence, explicitly inspected with `allowHistoricalHashOnly: true`; it does not satisfy current original-input retention. Its source hashes refer to its recorded historical Git revision. Independent review runs live in the S24 integration packet and never overwrite the authored attempt.
 
 ## Limits
 

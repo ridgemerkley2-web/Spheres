@@ -4,6 +4,8 @@
 // a campaign or writes outside the paths a caller passes explicitly.
 const crypto = require('node:crypto');
 const fs = require('node:fs');
+const path = require('node:path');
+const zlib = require('node:zlib');
 
 const FORMAT_INVENTORY = 'spheres-s24-successor-inventory/v1';
 const FORMAT_RESULT = 'spheres-s24-successor-fixture-results/v1';
@@ -266,6 +268,7 @@ function objectEntries(t, i) {
     i = skipWs(t, keyEnd);
     if (t[i] !== ':') throw new Error('Expected : at ' + i);
     const start = skipWs(t, i + 1), end = scanValue(t, start);
+    if (out.some(e => e.key === key)) throw new Error('Duplicate JSON key: ' + key);
     out.push({ key, start, end });
     i = skipWs(t, end);
     if (t[i] === ',') { i = skipWs(t, i + 1); continue; }
@@ -409,12 +412,44 @@ function summarize(cases) {
   return summary;
 }
 
+const REQUIRED_ASSETS = Object.freeze(['index.html', 'campaign-transport.js', 'campaign-ui.js', 'fiscal-recovery-ui.js', 'cash-flow-ui.js', 'companies-ui.js', 'companies.css', 'government-ui.js', 'government-ui.css', 'campaign-operations-ui.js', 'campaign-operations-ui.css', 'map-controls.js', 'map-controls.css', 'guidance-ui.js', 'guidance-ui.css', 'globe3d.js', 'city-layer.js', 'city-mesh.js', 'water-detail.js', 'equipment-mesh.js', 'equipment-ui.js', 'equipment-ui.css']);
+function requiredChecks(layer) {
+  if (layer === 'selection_guard') return ['start_refused', 'refusal_left_campaign_untouched', 'absent_from_starter_roster', 'dossier_identity'];
+  if (layer === 'activation_save_load') return ['fixture:dissolved_parent', 'fixture:succession_offer', 'fixture:turns_paused_until_continuation', 'continuation_command', 'lost_response_replay_is_idempotent', 'ordinary_reload', 'readings_equal_after_reload', 'archive_roundtrip_exact', 'seven_days_as_successor', ...['after_activation', 'after_reload'].flatMap(stage => ['selection_identity', 'map_ownership', 'government', 'budget', 'guidance', 'capabilities_retained'].map(part => stage + ':' + part))];
+  if (layer === 'browser_ui') return ['ui_fixture_loaded', 'ui_succession_offer', 'ui_continuation', 'ui_named_save', 'ui_reload', 'ui_archive_roundtrip_exact', 'ui_single_continuation_and_no_advance', 'ui_no_page_errors', ...['after_activation', 'after_reload'].flatMap(stage => ['ui_selection_identity', 'ui_government', 'ui_budget', 'ui_guidance'].map(part => stage + ':' + part))];
+  return [];
+}
+function safeRelative(file) {
+  return typeof file === 'string' && file.length > 0 && !path.posix.isAbsolute(file) && !path.win32.isAbsolute(file)
+    && !file.includes('\\') && !file.includes(':') && file.split('/').every(p => p && p !== '.' && p !== '..');
+}
+// The callback must read the exact retained gzip bytes from the result directory.
+// Historical hash-only receipts are inspectable only by explicit opt-in; they
+// never satisfy current fixture-retention acceptance.
+function retainedArchive(record, readBytes) {
+  if (!record || !safeRelative(record.file) || record.compression !== 'gzip' || !HEX64.test(record.sha256 || '') || !HEX64.test(record.gzip_sha256 || '')
+    || !Number.isSafeInteger(record.bytes) || record.bytes <= 0 || !Number.isSafeInteger(record.gzip_bytes) || record.gzip_bytes <= 0) throw new Error('invalid retained archive descriptor');
+  if (typeof readBytes !== 'function') throw new Error('retained archive byte verification is required');
+  const packed = readBytes(record.file);
+  if (!Buffer.isBuffer(packed) || packed.length !== record.gzip_bytes || sha256(packed) !== record.gzip_sha256) throw new Error('retained gzip bytes/hash differ');
+  const raw = zlib.gunzipSync(packed, { maxOutputLength: record.bytes });
+  if (raw.length !== record.bytes || sha256(raw) !== record.sha256) throw new Error('retained archive bytes/hash differ');
+  if (!Buffer.from(raw.toString('utf8'), 'utf8').equals(raw)) throw new Error('retained archive is not UTF-8');
+  return raw;
+}
+function resultExitCode(result, errors) {
+  return errors.length || (result.cases || []).some(c => c.status === 'failed' || c.status === 'blocked')
+    || (result.fixture_inputs || []).some(f => f.status === 'failed') ? 1 : 0;
+}
+
 const HEX40 = /^[0-9a-f]{40}$/, HEX64 = /^[0-9a-f]{64}$/;
-function validateResults(result, inventory, { requireFinal = false, exists = () => true, hashOf = null } = {}) {
-  const errors = [];
+function validateResults(result, inventory, { requireFinal = false, exists = () => true, hashOf = null, readBytes = null, allowHistoricalHashOnly = false } = {}) {
+  const errors = [...validateInventory(inventory)];
   if (!result || result.format !== FORMAT_RESULT) return ['Result format must be ' + FORMAT_RESULT];
   if (result.disclaimer !== DISCLAIMER) errors.push('Result-level fixture disclaimer is missing or altered');
   if (requireFinal && result.development_run !== false) errors.push('Committed evidence must come from a non-development run');
+  if (!Array.isArray(result.cases) || !Array.isArray(result.fixture_inputs)) return [...errors, 'Results need cases and fixture_inputs arrays'];
+  if (result.cases.some(c => !c || typeof c !== 'object')) return [...errors, 'Malformed case'];
   const b = result.build || {};
   const executed = (result.cases || []).filter(c => c.status !== 'unrun');
   if (executed.length) {
@@ -422,8 +457,15 @@ function validateResults(result, inventory, { requireFinal = false, exists = () 
     if (!HEX64.test(b.binary_sha256 || '')) errors.push('Executed results need the binary SHA-256');
     if (b.served_revision !== String(b.expected_revision || '').slice(0, 12)) errors.push('Served revision does not match the expected build revision');
     if (b.save_directory_isolated !== true) errors.push('Executed results must prove the isolated save directory');
+    if (b.runtime_source_equal_to_expected !== true) errors.push('Runtime source identity must be verified');
+    if (requireFinal && result.harness?.tree_clean_for_harness_and_runtime !== true) errors.push('Final results require a clean harness/runtime tree');
   }
   if (!result.inventory || result.inventory.digest !== inventoryDigest(inventory)) errors.push('Results were produced against a different inventory; regenerate the inventory and re-run the harness');
+  if (result.cases.some(c => c.layer === 'browser_ui' && c.status === 'passed')) {
+    const verified = b.served_assets_verified;
+    if (!verified || verified.error || verified.revision !== b.expected_revision || verified.binary_sha256 !== b.binary_sha256
+      || REQUIRED_ASSETS.some(name => !HEX64.test(verified.assets?.[name] || ''))) errors.push('Passed browser cases require complete served asset identity verification');
+  }
   const rows = new Map((inventory.rows || []).map(r => [r.id, r]));
   const inputs = new Map();
   for (const f of result.fixture_inputs || []) {
@@ -432,12 +474,29 @@ function validateResults(result, inventory, { requireFinal = false, exists = () 
     inputs.set(f.id, f);
     if (!KINDS[f.kind] || !KINDS[f.kind].fixture) errors.push(where + ': unknown activation kind');
     if (!HEX64.test(f.archive_sha256 || '') || !HEX64.test(f.projection_sha256 || '')) errors.push(where + ': archive and projection SHA-256 are required');
+    if (f.kind === 'native_s21_authored_dissolution') {
+      if (f.parent !== 'USSR' || f.exporter?.revision !== b.expected_revision || !HEX64.test(f.exporter?.test_binary_sha256 || '')
+        || !f.exporter?.runs?.some(run => run.succession_sha256 === f.archive_sha256 && run.projection_sha256 === f.projection_sha256 && run.bytes === f.bytes)) errors.push(where + ': native exporter provenance does not match the consumed input/build');
+    }
     if (f.kind === 'harness_staged_parent_collapse') {
       const fields = (f.patch || []).map(p => String(p.path).split('/').pop()).sort().join(',');
       const values = Object.fromEntries((f.patch || []).map(p => [String(p.path).split('/').pop(), p.to_raw]));
       if (fields !== 'separatism,stability' || values.stability !== '0.0' || values.separatism !== '1.0') errors.push(where + ': staging must replace exactly stability=0.0 and separatism=1.0');
+      if (f.status !== 'passed' || !Array.isArray(f.checks) || !f.checks.length || f.checks.some(c => c.status !== 'passed')) errors.push(where + ': staged fixture checks did not pass');
       if (f.verified_only_patched !== true) errors.push(where + ': staged bytes were not proven identical outside the patch');
       if (!HEX64.test(f.base_archive_sha256 || '')) errors.push(where + ': the unstaged base archive hash is required');
+    }
+    if (!allowHistoricalHashOnly || f.retained) {
+      try {
+        const raw = retainedArchive(f.retained?.archive, readBytes);
+        if (sha256(raw) !== f.archive_sha256 || raw.length !== f.bytes || sha256(Buffer.from(archiveProjection(raw.toString('utf8')), 'utf8')) !== f.projection_sha256) throw new Error('consumed archive does not match retained input');
+        if (f.kind === 'harness_staged_parent_collapse') {
+          const base = retainedArchive(f.retained?.base, readBytes), staged = retainedArchive(f.retained?.staged, readBytes);
+          if (sha256(base) !== f.base_archive_sha256 || sha256(staged) !== f.staged_archive_sha256 || !verifyOnlyPatched(base, staged, f.patch)) throw new Error('retained staging proof differs');
+          const recreated = stageNationFields(base.toString('utf8'), f.parent, { stability: '0.0', separatism: '1.0' });
+          if (!Buffer.from(recreated.text, 'utf8').equals(staged) || canonical(recreated.patch) !== canonical(f.patch)) throw new Error('staging did not target the declared parent');
+        }
+      } catch (error) { errors.push(where + ': retained input verification failed: ' + error.message); }
     }
   }
   const seen = new Set();
@@ -449,13 +508,17 @@ function validateResults(result, inventory, { requireFinal = false, exists = () 
     seen.add(key);
     if (!STATUSES.includes(c.status)) { errors.push(where + ': status must be one of ' + STATUSES.join('/')); continue; }
     const row = rows.get(c.identity), checks = Array.isArray(c.checks) ? c.checks : [];
-    if (checks.some(k => k.status !== 'passed' && k.status !== 'failed')) errors.push(where + ': every executed check must be passed or failed');
+    if (checks.some(k => !k || k.status !== 'passed' && k.status !== 'failed')) errors.push(where + ': every executed check must be passed or failed');
     if (c.status === 'unrun') {
       if (!UNRUN_REASONS.includes(c.reason)) errors.push(where + ': unrun needs a reason of ' + UNRUN_REASONS.join('/'));
       if (checks.length) errors.push(where + ': an unrun case cannot carry executed checks');
+      if (c.reason === 'no_native_hook' && (row.native_activation_path || c.layer === 'selection_guard')) errors.push(where + ': no_native_hook contradicts the available native path');
       if (c.reason === 'no_native_hook' && c.proposal !== PROPOSAL) errors.push(where + ': a missing native hook must cite the integration proposal');
     } else {
-      if (!checks.length) errors.push(where + ': an executed case needs checks');
+      if (!checks.length && c.status !== 'blocked') errors.push(where + ': an executed case needs checks');
+      const names = checks.map(k => k && k.name);
+      if (new Set(names).size !== names.length) errors.push(where + ': duplicate check name');
+      if (c.status === 'passed') for (const name of requiredChecks(c.layer)) if (!names.includes(name)) errors.push(where + ': missing required check ' + name);
       if (c.status === 'passed' && checks.some(k => k.status !== 'passed')) errors.push(where + ': passed with a failed check');
       if (c.status === 'failed' && !checks.some(k => k.status === 'failed')) errors.push(where + ': failed without a failed check');
       if (c.status === 'blocked' && (!c.blocked_stage || !c.error)) errors.push(where + ': blocked needs the blocking stage and error');
@@ -480,8 +543,9 @@ function validateResults(result, inventory, { requireFinal = false, exists = () 
     if (c.layer !== 'selection_guard' && !row.native_activation_path) {
       if (c.status !== 'unrun' || c.reason !== 'no_native_hook') errors.push(where + ': no native activation path exists, so this must be unrun/no_native_hook');
     }
+    if (c.status === 'passed' && c.layer === 'browser_ui' && !(c.screenshots || []).length) errors.push(where + ': passed browser case needs retained screenshots');
     for (const shot of c.screenshots || []) {
-      if (!shot || typeof shot.file !== 'string' || !HEX64.test(shot.sha256 || '')) { errors.push(where + ': screenshot without file and SHA-256'); continue; }
+      if (!shot || !safeRelative(shot.file) || !HEX64.test(shot.sha256 || '')) { errors.push(where + ': screenshot without file and SHA-256'); continue; }
       if (!exists(shot.file)) errors.push(where + ': missing screenshot ' + shot.file);
       else if (hashOf && hashOf(shot.file) !== shot.sha256) errors.push(where + ': screenshot hash differs for ' + shot.file);
     }
@@ -493,7 +557,7 @@ function validateResults(result, inventory, { requireFinal = false, exists = () 
 }
 
 module.exports = {
-  FORMAT_INVENTORY, FORMAT_RESULT, STATUSES, LAYERS, UNRUN_REASONS, DISCLAIMER, PROPOSAL, KINDS,
+  REQUIRED_ASSETS, requiredChecks, safeRelative, retainedArchive, resultExitCode, FORMAT_INVENTORY, FORMAT_RESULT, STATUSES, LAYERS, UNRUN_REASONS, DISCLAIMER, PROPOSAL, KINDS,
   label, sha256, canonical, digest, fileSha256, stripRustComments, scanBalanced, splitTopLevel, rosterRows, successorParents,
   dissolutionFamilies, journeyFamilies, stageNationFields, verifyOnlyPatched, archiveProjection, locateNation,
   objectEntries, worldEntries, validateInventory, validateResults, summarize, inventorySemantic, inventoryDigest

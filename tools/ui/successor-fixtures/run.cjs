@@ -11,12 +11,13 @@ const fs = require('node:fs');
 const path = require('node:path');
 const cp = require('node:child_process');
 const net = require('node:net');
+const zlib = require('node:zlib');
 const lib = require('./lib.cjs');
 const { buildInventory, ROOT } = require('./inventory.cjs');
 
 const CLIENT = 's24-successor-fixtures';
 const DEFAULT_BROWSER = 'Russia:N1,Kazakhstan:N1,Serbia:H1,Croatia:H1';
-const HARNESS_FILES = ['tools/ui/successor-fixtures/run.cjs', 'tools/ui/successor-fixtures/lib.cjs', 'tools/ui/successor-fixtures/inventory.cjs'];
+const HARNESS_FILES = ['tools/ui/successor-fixtures/run.cjs', 'tools/ui/successor-fixtures/lib.cjs', 'tools/ui/successor-fixtures/inventory.cjs', 'tools/ui/ci-integrated.cjs'];
 const RUNTIME_PATHS = ['spheres-sim', 'spheres-cli', 'spheres-web', 'Cargo.toml', 'Cargo.lock'];
 const MINISTRIES = ['health', 'education', 'housing', 'pensions', 'infrastructure', 'industry', 'science', 'defense', 'security', 'diplomacy'];
 // Opening macro readings retained for review (not pass/fail criteria).
@@ -45,6 +46,9 @@ function parseArgs(argv) {
   }
   if (!o.binary || !o.expected || !o.out) throw new Error(usage());
   if (!/^[0-9a-f]{40}$/.test(o.expected)) throw new Error('--expected-revision must be a full 40-character commit');
+  for (const [what, values] of [['api', o.api === 'all' || o.api === 'none' ? [] : o.api.split(',')], ['browser', o.browser === 'none' ? [] : o.browser.split(',').map(value => { const parts = value.split(':'); if (parts.length > 2 || !['H1', 'N1'].includes(parts[1] || 'H1')) throw new Error('Unknown browser recipe: ' + value); return parts[0]; })]]) {
+    if (values.some(value => !value) || new Set(values).size !== values.length) throw new Error('Empty or duplicate ' + what + ' identity');
+  }
   if (!path.isAbsolute(o.out)) throw new Error('--out must be absolute');
   return o;
 }
@@ -135,7 +139,21 @@ async function saveSlot(ctx, slot, sessionId) {
 }
 function discard(ctx, file) {
   if (ctx.keepSaves) return;
-  for (const f of [file, file.replace(/\.json$/, '.json.bak')]) if (fs.existsSync(f)) { fs.rmSync(f); ctx.discarded.push(path.relative(ctx.out, f)); }
+  const saves = fs.realpathSync(path.join(ctx.run, 'saves'));
+  for (const f of [file, file.replace(/\.json$/, '.json.bak')]) if (fs.existsSync(f)) {
+    assert(/^[A-Za-z0-9_-]+\.json(?:\.bak)?$/.test(path.basename(f)), 'Unexpected disposable archive name');
+    assert.equal(path.dirname(fs.realpathSync(f)), saves, 'Refusing cleanup outside the isolated saves directory');
+    fs.rmSync(f); ctx.discarded.push(path.relative(ctx.out, f));
+  }
+}
+function retainArchive(ctx, file, name) {
+  assert.match(name, /^[A-Za-z0-9_-]+$/);
+  const raw = fs.readFileSync(file), packed = zlib.gzipSync(raw), rel = 'fixtures/' + name + '.json.gz';
+  fs.mkdirSync(path.join(ctx.out, 'fixtures'), { recursive: true });
+  fs.writeFileSync(path.join(ctx.out, rel), packed, { flag: 'wx' });
+  const record = { file: rel, compression: 'gzip', bytes: raw.length, sha256: lib.sha256(raw), gzip_bytes: packed.length, gzip_sha256: lib.sha256(packed) };
+  assert(lib.retainedArchive(record, file => fs.readFileSync(path.join(ctx.out, file))).equals(raw), 'Retained fixture roundtrip differs');
+  return record;
 }
 const DISTRICTS = { nations: null };
 function districtList(id) { return (DISTRICTS.nations[id] || []).map(d => d.id); }
@@ -215,6 +233,10 @@ async function nativeFixture(ctx, dir, provenance) {
   const slot = 'n1-ussr-succession';
   fs.copyFileSync(source, slotFile(ctx, slot), fs.constants.COPYFILE_EXCL);
   f.slot = slot;
+  assert.equal(provenance?.revision, ctx.expected, 'Native exporter revision must match the exact runtime');
+  assert(/^[0-9a-f]{64}$/.test(provenance?.test_binary_sha256 || ''), 'Native exporter binary hash is required');
+  assert(provenance?.runs?.some(run => run.succession_sha256 === f.archive_sha256 && run.projection_sha256 === f.projection_sha256 && run.bytes === f.bytes), 'Native exporter provenance must pin the actual consumed input');
+  f.retained = { archive: retainArchive(ctx, source, f.id) };
   return f;
 }
 async function stagedFixture(ctx, parent, { aim = false } = {}) {
@@ -250,6 +272,7 @@ async function stagedFixture(ctx, parent, { aim = false } = {}) {
   f.checks.push({ name: 'real_daily_dissolution', status: f.dissolution.flag_set && f.dissolution.parent_dead && f.dissolution.journey_status === 'succession' && JSON.stringify([...offered].sort()) === JSON.stringify([...family].sort()) ? 'passed' : 'failed', observed: f.dissolution });
   const dissolved = await saveSlot(ctx, id + '-dissolved', advanced.session_id);
   Object.assign(f, { slot: id + '-dissolved', bytes: dissolved.bytes, archive_sha256: dissolved.archive_sha256, projection_sha256: dissolved.projection_sha256 });
+  f.retained = { base: retainArchive(ctx, base.file, id + '-base'), staged: retainArchive(ctx, stagedFile, id + '-staged'), archive: retainArchive(ctx, dissolved.file, id + '-dissolved') };
   discard(ctx, base.file); discard(ctx, stagedFile);
   f.status = f.checks.every(k => k.status === 'passed') ? 'passed' : 'failed';
   return f;
@@ -576,7 +599,7 @@ async function main() {
   const inventory = buildInventory();
   DISTRICTS.nations = JSON.parse(fs.readFileSync(path.join(ROOT, 'spheres-sim/data/districts.json'), 'utf8')).nations;
   const telemetryFile = path.join(out, 'progress.jsonl');
-  const ctx = { out, run, binary, inventory, keepSaves: o.keepSaves, discarded: [], telemetry: (event, details) => fs.appendFileSync(telemetryFile, JSON.stringify({ utc: new Date().toISOString(), event, ...details }) + '\n') };
+  const ctx = { out, run, binary, inventory, expected: o.expected, keepSaves: o.keepSaves, discarded: [], telemetry: (event, details) => fs.appendFileSync(telemetryFile, JSON.stringify({ utc: new Date().toISOString(), event, ...details }) + '\n') };
   const result = {
     format: lib.FORMAT_RESULT,
     scope: 'S24 preparation only: labelled successor-country fixtures (selection guard, activation, save/reload and served/UI inspection). Not S24 qualification, not organic succession and not the S25 campaign route; Codex retains exact-build startup/recovery qualification.',
@@ -587,6 +610,7 @@ async function main() {
       node: process.version, argv: process.argv.slice(2), options: { api: o.api, browser: o.browser, cross_check: o.crossCheck, keep_saves: o.keepSaves } },
     build: null,
     inventory: { format: inventory.format, rows: inventory.rows.length, expectation: inventory.expectation.successor_identities, native_activation_paths: inventory.counts.native_activation_paths, digest: lib.inventoryDigest(inventory) },
+    retention_policy: 'Exact consumed fixture inputs and staging bases retained as verified gzip; transient comparison outputs are hash receipts.',
     fixture_inputs: [], cases: [], cross_checks: [], observations: [], summary: null, cleanup: {}
   };
   const write = () => fs.writeFileSync(path.join(out, 'result.json'), JSON.stringify(result, null, 2) + '\n');
@@ -619,6 +643,7 @@ async function main() {
       if (recipe === 'N1') { if (!native) throw new Error('Recipe N1 needs --native-s21'); if (row.parent !== 'USSR') throw new Error('N1 only authors the USSR dissolution'); return native; }
       const f = await need(row.parent);
       if (!result.fixture_inputs.includes(f)) result.fixture_inputs.push(f);
+      if (f.status !== 'passed') throw new Error('Staged fixture failed its native checks: ' + f.id);
       return f;
     };
     for (const row of inventory.rows) {
@@ -662,8 +687,9 @@ async function main() {
             const verified = await require('../ci-integrated.cjs').verifyBuild({ page, url: ctx.url, root: ROOT, run, binary });
             result.build.served_assets_verified = { revision: verified.revision, binary_sha256: verified.binary_sha256, assets: Object.fromEntries(Object.entries(verified.assets).map(([k, v]) => [k, v.served_sha256])) };
             await page.context().close();
-          } catch (error) { result.build.served_assets_verified = { error: String(error.stack || error).slice(0, 2000) }; }
+          } catch (error) { result.build.served_assets_verified = { error: String(error.stack || error).slice(0, 2000) }; throw error; }
         }
+        assert(result.build.served_assets_verified && !result.build.served_assets_verified.error, 'Served asset identity verification must pass before browser cases');
         c = await browserCase(ctx, browser, row, fixture);
       } catch (error) {
         c = newCase(row.id, 'browser_ui', { recipe: plan.recipe + '+B1', label: lib.label(plan.recipe === 'N1' ? 'native_s21_authored_dissolution' : 'harness_staged_parent_collapse'), status: 'blocked', blocked_stage: 'browser setup', error: String(error.stack || error).slice(0, 4000), screenshots: [] });
@@ -679,7 +705,7 @@ async function main() {
     for (const f of result.fixture_inputs) if (f.slot) discard(ctx, slotFile(ctx, f.slot));
     result.cleanup.discarded_archives = ctx.discarded.length;
     result.cleanup.remaining_saves = fs.existsSync(path.join(run, 'saves')) ? fs.readdirSync(path.join(run, 'saves')) : [];
-    result.cleanup.note = o.keepSaves ? 'Archives kept by --keep-saves; delete ' + run + ' when finished.' : 'Every disposable archive was hashed and then deleted; only logs, results and screenshots remain.';
+    result.cleanup.note = o.keepSaves ? 'Archives kept by --keep-saves; delete ' + run + ' when finished.' : 'Every disposable archive was hashed and then deleted; logs, results, screenshots and verified original fixture gzip archives remain.';
     const order = new Map(inventory.rows.map((r, i) => [r.id, i]));
     result.cases.sort((x, y) => lib.LAYERS.indexOf(x.layer) - lib.LAYERS.indexOf(y.layer) || order.get(x.identity) - order.get(y.identity));
     try { result.observations.push(...observe(result.cases)); } catch (error) { result.observations.push({ id: 'observe-error', error: String(error) }); }
@@ -687,10 +713,10 @@ async function main() {
     result.finished_utc = new Date().toISOString();
     write();
   }
-  const errors = lib.validateResults(result, inventory, { exists: f => fs.existsSync(path.join(out, f)), hashOf: f => lib.fileSha256(path.join(out, f)) });
+  const errors = lib.validateResults(result, inventory, { exists: f => fs.existsSync(path.join(out, f)), hashOf: f => lib.fileSha256(path.join(out, f)), readBytes: f => fs.readFileSync(path.join(out, f)) });
   console.log(JSON.stringify({ result: path.join(out, 'result.json'), summary: result.summary, validation_errors: errors }, null, 2));
-  if (errors.length) process.exitCode = 1;
+  process.exitCode = lib.resultExitCode(result, errors);
 }
 
 if (require.main === module) main().catch(error => { console.error(error.stack || String(error)); process.exitCode = 1; });
-module.exports = { parseArgs, canonical, project };
+module.exports = { parseArgs, canonical, project, discard, retainArchive };
