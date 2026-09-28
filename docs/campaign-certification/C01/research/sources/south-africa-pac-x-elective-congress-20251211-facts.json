@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_pac_x_elective_congress_opens_20251211",
+  "source_url": "https://web.archive.org/web/20251211181701id_/https://twitter.com/MyPAConline/status/1999181644658266150",
+  "original_url": "https://twitter.com/MyPAConline/status/1999181644658266150",
+  "archive_capture_utc": "2025-12-11T18:17:01Z",
+  "accessed_date": "2026-09-28",
+  "published_date": "2025-12-11",
+  "access_method": "downloaded_archived_raw_capture_and_json_text_read",
+  "source_response_bytes": 6398,
+  "source_response_sha256": "4ca01fee1db58b1e3d5bb4f68eb372a3aa9beb13e01397d8f220e643b7c9e248",
+  "source_response_sha1_base32": "WTLPGJRHU7FRIL64ULQL6SM4XGRVGSNF",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture, fetched with plain curl (no Accept-Encoding, no decoding). First downloaded on 2026-09-28T21:15:26Z; downloaded again at 2026-09-28T21:54:22Z, 2026-09-28T22:37:59Z, the last at least 30 minutes after the first, each with the same byte count and SHA-256 (6398 bytes). The base32 SHA-1 of the bytes equals the Internet Archive's CDX digest for the capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of a post on the PAC's X account @MyPAConline (the account named as the PAC's social-media account on its own website), captured at 2025-12-11T18:17:01Z (before the 7 September 2026 cutoff); the archive stores and replays the post as a fixed JSON payload, and no live X page is used. The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture made 11 December 2025 of a post on the PAC's X account, stored by the archive as a JSON payload (created_at 2025-12-11T18:17:01.000Z). Served without content encoding.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived JSON payload text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_pac_x_national_elective_congress_opens_20251211",
+      "observation_id": "za_iec_n2024_039",
+      "review_observation": "ZA-PAC-11",
+      "role_id": "za_pac_president",
+      "holder_name": null,
+      "role_title": "President of the Pan Africanist Congress of Azania",
+      "event_kind": "congress_session_start",
+      "attested_on": "2025-12-11",
+      "text": "The PAC's post of 11 December 2025 says that in \"Gqeberha, Eastern Cape, the PAC kicks off its National Elective Congress!\" and that the next chapter \"begins today at the National Congress\".",
+      "locator": {
+        "section": "Post text"
+      }
+    }
+  ],
+  "bounded_scope": "PAC President observations for CLAUDE-C01-32 only (role za_pac_president on the PAN AFRICANIST CONGRESS OF AZANIA observation). Constitution amendments are organization claims (role_id null) and set no lifecycle; elections, result publications, acting service, suspensions, expulsions, rival claims, court orders and findings, congress sessions, other party offices and in-office attestations stay separate rows; holder observations are decided in the packet, not by any row, and a disputed presidency is recorded as disputed, never resolved. State and parliamentary offices are excluded and no row feeds them."
+}

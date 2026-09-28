@@ -12,6 +12,7 @@ from urllib.parse import urlsplit
 import campaign_research as research
 from test_south_africa_deputy_presidents_c01_21 import RESPONSES as C01_21_RESPONSES
 from test_south_africa_party_leaders_c01_30 import RESPONSES as C01_30_RESPONSES
+from test_south_africa_pac_presidents_c01_32 import RESPONSES as C01_32_RESPONSES
 
 ANC_ID = 'za_iec_n2024_014'
 ROLE = 'za_anc_president'
@@ -434,13 +435,15 @@ class SouthAfricaAncPresidentsTests(unittest.TestCase):
         ids = self.validate()
         self.assertEqual((len(NEW_SOURCES), len(self.new_claims)), (54, 73))
         order = [s['id'] for s in self.packet['sources']]
-        # CLAUDE-C01-21 appends its Deputy President sources after these, and CLAUDE-C01-30 its ACDP, Freedom Front and
-        # IFP sources after those, each pinned in its own test.
+        # CLAUDE-C01-21 appends its Deputy President sources after these, CLAUDE-C01-30 its ACDP, Freedom Front and IFP
+        # sources after those, and CLAUDE-C01-32 its PAC sources after those, each pinned in its own test.
         self.assertEqual(order[EARLIER_SOURCE_COUNT:EARLIER_SOURCE_COUNT + len(NEW_SOURCES)], NEW_SOURCES)
-        self.assertEqual(order[EARLIER_SOURCE_COUNT + len(NEW_SOURCES):], list(C01_21_RESPONSES) + list(C01_30_RESPONSES))
+        self.assertEqual(order[EARLIER_SOURCE_COUNT + len(NEW_SOURCES):],
+                         list(C01_21_RESPONSES) + list(C01_30_RESPONSES) + list(C01_32_RESPONSES))
         self.assertFalse([sid for sid in order[:EARLIER_SOURCE_COUNT] if sid.startswith('za_anc')])
-        # CLAUDE-C01-30 adds three party-leader roles (za_acdp_president, za_ff_leader, za_ifp_president).
-        self.assertEqual((len(ids['entries']), len(ids['roles'])), (53, 10))
+        # CLAUDE-C01-30 adds three party-leader roles (za_acdp_president, za_ff_leader, za_ifp_president) and CLAUDE-C01-32
+        # one (za_pac_president).
+        self.assertEqual((len(ids['entries']), len(ids['roles'])), (53, 11))
         # Every new claim is either a holder claim or a claim that never feeds a holder, never both.
         holder_claims = [cid for ids_ in HOLDER_CLAIMS for cid in ids_]
         self.assertEqual(len(holder_claims), 13)
@@ -734,7 +737,7 @@ class SouthAfricaAncPresidentsTests(unittest.TestCase):
         country = next(p for p in index['countries'] if p['nation'] == 'SouthAfrica')
         self.assertFalse(country['country_census_complete'])
         self.assertIsNone(country['unrepresented_organization_count'])
-        self.assertEqual((country['role_observations'], country['source_claims']), (10, 406))
+        self.assertEqual((country['role_observations'], country['source_claims']), (11, 471))
         self.assertEqual({w['status'] for w in index['work_orders'] if w['nation'] == 'SouthAfrica'}, {'open'})
         self.assertFalse(index['c01_complete'])
 

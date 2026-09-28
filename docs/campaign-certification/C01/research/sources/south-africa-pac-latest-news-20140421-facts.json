@@ -1,0 +1,41 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_id": "za_pac_latest_news_page_2014",
+  "source_url": "https://web.archive.org/web/20140421043905id_/http://www.pac.org.za:80/latest-news/",
+  "original_url": "http://www.pac.org.za/latest-news/",
+  "archive_capture_utc": "2014-04-21T04:39:05Z",
+  "accessed_date": "2026-09-28",
+  "published_date": null,
+  "access_method": "downloaded_archived_raw_capture_and_page_text_read",
+  "source_response_bytes": 31154,
+  "source_response_sha256": "07bb0b9bc447059439a4d2a299bc8d854630029e73b139957e9c95a593ace180",
+  "source_response_sha1_base32": "WQI3EOIGHCGWEBUZUUOSW3H4RJZ5UAQ4",
+  "source_response_content_encoding": "identity",
+  "fetch_recipe": "GET the recorded url exactly (raw Internet Archive id_ form) with no Accept-Encoding request header and no automatic decoding (for example curl -s -o FILE URL, without --compressed), then hash the bytes as received. A client that sends Accept-Encoding can receive an on-the-fly gzip body with different bytes, and a decoding client unpacks bodies that the archive stores compressed.",
+  "source_response_checked_in": false,
+  "stability_check": "Raw Internet Archive id_ replay of a fixed capture, fetched with plain curl (no Accept-Encoding, no decoding). First downloaded on 2026-09-28T21:20:47Z; downloaded again at 2026-09-28T21:52:51Z, 2026-09-28T22:36:54Z, the last at least 30 minutes after the first, each with the same byte count and SHA-256 (31154 bytes). The base32 SHA-1 of the bytes equals the Internet Archive's CDX digest for the capture.",
+  "provenance_note": "Raw Internet Archive capture (id_ form) of the PAC's original page, captured at 2014-04-21T04:39:05Z (before the 7 September 2026 cutoff); that form replays the archived bytes unchanged and is used in place of any live copy (the old www.paca.org.za and www.pac.org.za pages are no longer served as captured, and the PAC's later sites are not used live). The response identity recorded here was confirmed by downloads at least 30 minutes apart (see stability_check). This checked-in file is a derived factual extract, not a copy of the original response. Original response bodies and page renders are not checked into this repository. Its own checksum is recorded separately in the packet.",
+  "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, logos, signatures or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
+  "scope_note": "Raw Internet Archive capture made 21 April 2014 of a hand-edited PAC page carrying an undated report on the commemorations of 21 March 2014. Served without content encoding.",
+  "visual_review": {
+    "pdf_pages_one_based": [],
+    "method": "Archived HTML text read; no images reviewed."
+  },
+  "rows": [
+    {
+      "claim_id": "za_pac_report_president_mphethi_20140321",
+      "observation_id": "za_iec_n2024_039",
+      "review_observation": "ZA-PAC-06",
+      "role_id": "za_pac_president",
+      "holder_name": "Alton Mphethi",
+      "role_title": "President of the Pan Africanist Congress of Azania",
+      "event_kind": "in_office_attestation",
+      "attested_on": "2014-03-21",
+      "text": "The PAC's report on the 54th anniversary of the Sharpeville/Langa massacre says of \"Friday 21 March 2014\" that \"The commemorations were addressed by the President of the PAC Cde Alton Mphethi and the leader of the EFF Cde Julius Malema.\"",
+      "locator": {
+        "section": "Second item, paragraph beginning \"The government and the ruling party\""
+      }
+    }
+  ],
+  "bounded_scope": "PAC President observations for CLAUDE-C01-32 only (role za_pac_president on the PAN AFRICANIST CONGRESS OF AZANIA observation). Constitution amendments are organization claims (role_id null) and set no lifecycle; elections, result publications, acting service, suspensions, expulsions, rival claims, court orders and findings, congress sessions, other party offices and in-office attestations stay separate rows; holder observations are decided in the packet, not by any row, and a disputed presidency is recorded as disputed, never resolved. State and parliamentary offices are excluded and no row feeds them."
+}
