@@ -1,0 +1,18 @@
+
+running 1 test
+test performance::s22_observed_schedule_matches_native_commands_airbases_and_headlines ... FAILED
+
+failures:
+
+---- performance::s22_observed_schedule_matches_native_commands_airbases_and_headlines stdout ----
+
+thread 'performance::s22_observed_schedule_matches_native_commands_airbases_and_headlines' (26116) panicked at spheres-web\src\s22_diagnosis.rs:195:35:
+called `Result::unwrap()` on an `Err` value: "Required certified workload capabilities are absent or autonomous policies are dormant; explicit ordinary adoption is needed, never a synthetic flag/stock patch"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    performance::s22_observed_schedule_matches_native_commands_airbases_and_headlines
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 448 filtered out; finished in 0.12s
+

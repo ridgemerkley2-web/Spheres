@@ -1,0 +1,15 @@
+{
+  "format": "s22-diagnostic-provenance/v1",
+  "started_utc": "2026-09-28T05:18:52.3508583Z",
+  "finished_utc": "2026-09-28T05:19:53.2219893Z",
+  "candidate_revision": "4ef20c6c",
+  "binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+  "binary_sha256": "33644cdd6fce5856cad5a54c0f4ba19f1c70146986d465c49e76780f858c3065",
+  "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-preparation-active-01\\campaigns\\saves\\s22-2006-01-01.json",
+  "source_sha256_before": "7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325",
+  "source_sha256_after": "7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325",
+  "copied_input_sha256": "7de5c6d0cb30506f9fa6024e6025d31649246e1d53c138d82d0482f447726325",
+  "test": "performance::s22_daily_subsystem_diagnosis --exact --ignored --nocapture --test-threads=1",
+  "exit_code": 0,
+  "qualification": false
+}

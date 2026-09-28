@@ -1,0 +1,42 @@
+{
+  "captured_utc": "2026-09-28T04:49:46.1984021Z",
+  "reference": "SPHERES-REF-WIN-01",
+  "cpu": [
+    {
+      "Name": "AMD Ryzen 7 9800X3D 8-Core Processor           ",
+      "NumberOfCores": 8,
+      "NumberOfLogicalProcessors": 16
+    }
+  ],
+  "system": [
+    {
+      "TotalPhysicalMemory": 33408655360,
+      "Manufacturer": "ABS Computer Technologies",
+      "Model": "ABS Gaming PC"
+    }
+  ],
+  "os": [
+    {
+      "Caption": "Microsoft Windows 11 Home",
+      "Version": "10.0.26200",
+      "BuildNumber": "26200"
+    }
+  ],
+  "gpu": [
+    {
+      "Name": "NVIDIA GeForce RTX 5070",
+      "DriverVersion": "32.0.15.9186",
+      "CurrentHorizontalResolution": 3440,
+      "CurrentVerticalResolution": 1440,
+      "CurrentRefreshRate": 99
+    },
+    {
+      "Name": "AMD Radeon(TM) Graphics",
+      "DriverVersion": "32.0.13018.6",
+      "CurrentHorizontalResolution": null,
+      "CurrentVerticalResolution": null,
+      "CurrentRefreshRate": null
+    }
+  ],
+  "browser_method": "Owned headless Edge process; unrelated existing workstation apps remain open and uncontrolled"
+}
