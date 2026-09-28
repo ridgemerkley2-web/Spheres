@@ -720,9 +720,16 @@ pub(crate) mod graph_handoff_tests {
     #[test]
     #[ignore = "explicit actual-checkpoint original-path parity; no timing assertions"]
     fn campaign_graph_handoff_matches_actual_checkpoint_for_31_complete_days() {
-        let path = std::env::var("SPHERES_S22_CHECKPOINT").expect("actual simulation checkpoint required");
+        let path = std::env::var("SPHERES_S22_CHECKPOINT").expect("actual campaign or simulation checkpoint required");
         let source = std::fs::read_to_string(&path).unwrap();
-        let mut cached = crate::load(&source).unwrap();
+        let mut envelope: serde_json::Value = serde_json::from_str(&source).unwrap();
+        let world = if envelope.get("format").and_then(serde_json::Value::as_str) == Some("spheres-campaign") {
+            envelope.get_mut("world").expect("campaign world is required").take()
+        } else {
+            envelope.take()
+        };
+        drop(envelope);
+        let mut cached = crate::load_value(world).unwrap();
         assert!(crate::campaign::enabled(&cached));
         let mut original = cached.clone();
         let before = HANDOFFS.with(Cell::get);
