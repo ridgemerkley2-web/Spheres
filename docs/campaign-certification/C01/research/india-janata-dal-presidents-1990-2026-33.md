@@ -14,7 +14,7 @@ This packet adds to [india.json](india.json) one organization observation, `in_e
 of 10 January 1998 (O.N. 18(E)), because the Janata Dal has no row in the March 2024 notifications the packet was built
 from. The observation carries one party role, `in_jd_president` ("President of the Janata Dal", kind `party_leader`). The
 packet adds 22 sources and 41 claims (14 about the organisation, whose rows carry `role_id` null, and 27 about the office),
-three holder observations with no stated start or end, a role scope note, an observation coverage note and one bounded
+two holder observations with no stated start or end, a role scope note, an observation coverage note and one bounded
 note in the packet coverage. The observation's lifecycle stays `unresearched`, its coverage `reporting_identity_only` and
 its game mapping empty; no successor is merged into it, and the 2024 rows of the Janata Dal (Secular), the Janata Dal
 (United) and the Rashtriya Janata Dal are untouched. It changes nothing that CLAUDE-C01-11, CLAUDE-C01-15, CLAUDE-C01-20
@@ -30,8 +30,8 @@ C06, S23, WC1 and CP1) remains open.
 | JD-PRES-01 | The President when the period opens (V. P. Singh) | **Declined:** the Rajya Sabha record of 28 Dec 1989 ('He is the President of the Janata Dal') is before the period; on 18 May 1990 a member recalls that 'The Prime Minister in his capacity as President of the Janata dal' wrote to the Election Commissioner, an undated act that names nobody; no record attests V. P. Singh in the office on a single day from 1 Jan 1990, and no record of the day he left it or of the day S. R. Bommai took it over was found |
 | JD-PRES-02 | S. R. Bommai (1990-1991) | **Accepted in part:** observed on 14 Jul 1990 (the Prime Minister's letter of that day to 'Shri S. R. Bommai, President, Janata Dal', printed in the Rajya Sabha's written answer of 28 Aug 1990); styled again in that answer and in the Ministry of Welfare's resolution of 29 Mar 1991; a Lok Sabha statement of 29 Aug 1991 lists him from the National Integration Council 'last reconstituted in 1990' (a list of an earlier date); his own 1997 recollection of a 1989 report made 'As Janata Dal President' is kept as printed; no start |
 | JD-PRES-03 | The split of 1992-1993 (Ajit Singh) | **Accepted in part:** claims only. Bommai styled President in the Welfare resolution of 14 Feb 1992 and, in a pleading recalled by the Speaker's decision of 1 Jun 1993, as the President who expelled Shri Ajit Singh (26 Dec 1991) and four other members (19 Jul 1992); the Ajit Singh group's claim that he was endorsed as President on 5 Feb 1992; the Election Commission froze the name and symbol on 14 Jan 1993, recognised the groups headed by Ajit Singh and Bommai ad hoc as the Janata Dal (A) and (B), and on 22 Jul 1993 recognised the group represented by Bommai as the Janata Dal; no holder changes |
-| JD-PRES-04 | Laloo Prasad Yadav (1996) and Bommai's end | **Accepted in part:** observed on 15 Jul 1996 ('The Janata Dal Party Supremo, the party President, the Bihar Chief Minister', Lok Sabha, in English); styled again under the heading 'Presidents of all Major National Political Parties' on 14 Oct 1996 and as 'your president and kingmaker' on 22 Apr 1997; President of the Rashtriya Janata Dal, another organisation, by 29 Jul 1997; the 2007 obituary synopsis gives Bommai 'from 1990 to 1996' (retrospective); no record of Bommai's end or of Laloo Prasad Yadav's election, start or end |
-| JD-PRES-05 | Sharad Yadav (1997) | **Accepted in part:** 'the working President of Janta Dal' on 17 Mar 1997 (a claim only); observed on 29 Jul 1997 ('party president, Shri Sharad Yadav' and 'Democratically elected president Shri Sharad Yadav', Lok Sabha, official translation); styled again under the Presidents heading on 29 Sep 1997; an unnamed 'President of the JD' on 5 Aug 1997; no record of the day he was elected or assumed the office |
+| JD-PRES-04 | Laloo Prasad Yadav (1996) and Bommai's end | **Accepted in part:** observed on 15 Jul 1996 ('The Janata Dal Party Supremo, the party President, the Bihar Chief Minister', Lok Sabha, in English, by a member who is not a Janata Dal officer, in a passage naming 'the ruling Janata Dal'; disclosed); styled again under the heading 'Presidents of all Major National Political Parties' on 14 Oct 1996 and as 'your president and kingmaker' on 22 Apr 1997; President of the Rashtriya Janata Dal, another organisation, by 29 Jul 1997; the 2007 obituary synopsis gives Bommai 'from 1990 to 1996' (retrospective); no record of Bommai's end or of Laloo Prasad Yadav's election, start or end |
+| JD-PRES-05 | Sharad Yadav (1997) | **Accepted in part:** claims only. 'the working President of Janta Dal' on 17 Mar 1997; on 29 Jul 1997 ('party president, Shri Sharad Yadav' after 'the Leader of the House, Shri Ram Vilas Paswan', and 'Democratically elected president Shri Sharad Yadav', Lok Sabha, official translation) neither statement names the Janata Dal, one names no party office and neither speaker is identified as a Janata Dal officer, so both are leads that never feed a holder; listed under the Presidents heading on 29 Sep 1997; an unnamed 'President of the JD' on 5 Aug 1997; no holder, and no record of the day he was elected or assumed the office |
 | JD-PRES-06 | The dispute of 1999 (Sharad Yadav and H. D. Deve Gowda) | **Accepted in part:** claims only. The Political Affairs Committee is claimed to have removed Sharad Yadav on 21 Jul 1999 and elected Deve Gowda; Deve Gowda applied on 22 Jul 1999 'as the President'; the National Executive's endorsement of Sharad Yadav is claimed for 29 Jul 1999; on 7 Aug 1999 the Commission recorded Sharad Yadav as President 'As per the Commission's records', found the party split vertically and recognised both groups ad hoc; no end for Sharad Yadav and no holder for Deve Gowda |
 | JD-PRES-07 | The organisation observation | **Accepted:** new observation `in_eci_19980110_np_06` from row 6 of the Commission's national-party table of 10 Jan 1998 ('Janata Dal', Chakra (Wheel), 7, Jantar Mantar Road); the table entries of 23 Jul 1993 and 5 Feb 1996 ('Janta Dal', so printed) are organisation claims |
 | JD-PRES-08 | The name after the 1999 split | **Accepted in part:** the table of 9 Aug 1999 keeps entry 6 'Janata Dal' as 'The name of the party and the symbol under dispute' and adds 6(A) Janata Dal (Secular) and 6(B) Janata Dal (United); the compilation's note on the Commission's subsequent order of 7 Aug 1999; both groups are claims about the organisation, never successors or inherited leaders; no holder is tied to the Janata Dal name after 7 Aug 1999 |
@@ -40,23 +40,23 @@ The resulting holder observations of `in_jd_president`, in date order:
 
 | Holder | `attested_on` | `from` | `until` | Basis |
 |---|---|---|---|---|
-| S. R. Bommai | 1990-07-14 | null | null | the Prime Minister's letter of 14 Jul 1990 to 'Shri S. R. Bommai, President, Janata Dal', printed in the Rajya Sabha's written answer of 28 Aug 1990 (official debates store) |
-| Laloo Prasad Yadav | 1996-07-15 | null | null | Lok Sabha, 15 Jul 1996: Shri Sriballav Panigrahi, in English, 'The Janata Dal Party Supremo, the party President, the Bihar Chief Minister' (Internet Archive copy of the Lok Sabha Secretariat's file) |
-| Sharad Yadav | 1997-07-29 | null | null | Lok Sabha, 29 Jul 1997: Shri Ram Naik, 'party president, Shri Sharad Yadav', and Shri Anandrao Vithoba Adsul, 'Democratically elected president Shri Sharad Yadav' (official translation; Internet Archive copy) |
+| S. R. Bommai | 1990-07-14 | null | null | the Prime Minister's letter of 14 Jul 1990 to 'Shri S. R. Bommai, President, Janata Dal', printed in the Rajya Sabha's written answer of 28 Aug 1990 (official debates store); V. P. Singh's letter as the Janata Dal's leader on party business, printed by the House, which decided nothing about the office |
+| Laloo Prasad Yadav | 1996-07-15 | null | null | Lok Sabha, 15 Jul 1996: Shri Sriballav Panigrahi (Deogarh), in English, 'The Janata Dal Party Supremo, the party President, the Bihar Chief Minister' (Internet Archive copy of the Lok Sabha Secretariat's file); the speaker is not a Janata Dal officer (disclosed) |
 
 ### How a start and an end are decided
 
 The rule of the stacked India packets and of the party-leader packets (CLAUDE-C01-16, CLAUDE-C01-20 and CLAUDE-C01-27)
 applies. A holder has `from` only where a source states the day the office was assumed, and `until` only where a source
 states the day it ended; otherwise the holder is dated by `attested_on`, from a same-day in-office attestation that names
-the holder and styles the office. No record reviewed states either day for any President of the Janata Dal, so the three
+the holder and styles the office. No record reviewed states either day for any President of the Janata Dal, so the two
 holders are dated observations only, each citing only in-office attestations of its own day.
 
 Kept as claims that never feed a holder: later attestations of a holder already observed (`in_office_continuation_attestation`),
 lists under a category heading, a list describing an earlier composition, the working presidency, recollections of acts
 (dated or not), retrospective statements and spans, an attestation before the period, rival claims to the office, a
-removal claimed, an endorsement claimed, the Commission's statement of its records, a passage that names nobody, and the
-presidency of another organisation (the Rashtriya Janata Dal). Claims about the organisation (the Commission's table rows,
+removal claimed, an endorsement claimed, the Commission's statement of its records, a passage that names nobody,
+statements that do not name the party (`party_not_named_lead`, leads only), and the presidency of another organisation
+(the Rashtriya Janata Dal). Claims about the organisation (the Commission's table rows,
 its 1993 and 1999 dispute orders and the rows of the Janata Dal (Secular) and (United)) carry `role_id` null and
 `holder_name` null and never feed the office. Parliament records and Government resolutions are used only where they
 record the party office.
@@ -74,7 +74,18 @@ Rulings on the questions the research left open:
   `holder_name` null and the names stay in the text.
 - **A heading is not an observation.** The resolutions of 14 October 1996 and 29 September 1997 list Laloo Prasad Yadav
   and Sharad Yadav under 'Presidents of all Major National Political Parties', a heading that also covers two General
-  Secretaries; both are continuations of holders already observed on single days in Parliament.
+  Secretaries; Laloo Prasad Yadav's entry continues a holder already observed on a single day in Parliament, and Sharad
+  Yadav's is a claim only, since no record that names the party observes him.
+- **The party must be named.** Neither Lok Sabha statement of 29 July 1997 names the Janata Dal: Shri Ram Naik's 'party
+  president, Shri Sharad Yadav' follows 'the Leader of the House, Shri Ram Vilas Paswan', and Shri Anandrao Vithoba
+  Adsul's 'Democratically elected president Shri Sharad Yadav' names no party office. The party is read only from context
+  and neither speaker is identified in the record as a Janata Dal officer, so both are leads (`party_not_named_lead`) that
+  never feed a holder. Bommai's observation is V. P. Singh's letter, as the Janata Dal's leader, to 'Shri S. R. Bommai,
+  President, Janata Dal' on party business, which the House printed without deciding anything about the office. Laloo
+  Prasad Yadav's rests on a statement by a member who is not a Janata Dal officer (Shri Sriballav Panigrahi, Deogarh), in a
+  passage that names 'the ruling Janata Dal'; it is kept, as India's integrated packets accept such parliamentary
+  statements (CLAUDE-C01-20, CLAUDE-C01-27), and disclosed, because CLAUDE-C01-29 applied a stricter party-officer-only
+  rule to Diet minutes.
 - **A list of an earlier date attests nothing on its answer's day.** The Lok Sabha statement of 29 August 1991 lists the
   National Integration Council 'last reconstituted in 1990' and still names Rajiv Gandhi, who had died in May 1991, as
   Congress President; its Bommai entry has no structured date.
@@ -105,7 +116,8 @@ Rulings on the questions the research left open:
 ### Date ledger
 
 Each row is a separate dated fact with its own claim; two facts on one day stay two claims. "Observed" marks a holder's
-`attested_on` claim, "organisation" a claim about the observation; every other claim never feeds a holder.
+`attested_on` claim, "organisation" a claim about the observation and "lead" a statement that does not name the party;
+every other claim never feeds a holder.
 
 | Date | Events | Claims |
 |---|---|---|
@@ -126,9 +138,9 @@ Each row is a separate dated fact with its own claim; two facts on one day stay 
 | 14 Oct 1996 | Laloo Prasad Yadav: in office again (heading) | `in_gazette_hrd_resolution_laloo_under_presidents_of_major_parties_19961014` (claim) |
 | 17 Mar 1997 | Sharad Yadav: working President | `in_ls_ram_naik_sharad_yadav_working_president_19970317` (claim) |
 | 22 Apr 1997 | Laloo Prasad Yadav: in office again | `in_ls_sushma_swaraj_your_president_laloo_prasad_yadav_19970422` (claim) |
-| 29 Jul 1997 | Sharad Yadav: in office; Sharad Yadav: in office; Laloo Prasad Yadav: Rashtriya Janata Dal office | `in_ls_ram_naik_party_president_sharad_yadav_19970729` (observed), `in_ls_adsul_democratically_elected_president_sharad_yadav_19970729` (observed), `in_ls_virendra_kumar_singh_laloo_rjd_party_president_19970729` (claim) |
+| 29 Jul 1997 | Sharad Yadav: 'party president' (party not named); Sharad Yadav: 'Democratically elected president' (party not named); Laloo Prasad Yadav: Rashtriya Janata Dal office | `in_ls_ram_naik_party_president_sharad_yadav_19970729` (lead), `in_ls_adsul_democratically_elected_president_sharad_yadav_19970729` (lead), `in_ls_virendra_kumar_singh_laloo_rjd_party_president_19970729` (claim) |
 | 5 Aug 1997 | unnamed: President of the JD | `in_rs_som_pal_president_of_jd_charge_framed_19970805` (claim) |
-| 29 Sep 1997 | Sharad Yadav: in office again (heading) | `in_gazette_hrd_resolution_sharad_yadav_under_presidents_of_major_parties_19970929` (claim) |
+| 29 Sep 1997 | Sharad Yadav: listed under the Presidents heading | `in_gazette_hrd_resolution_sharad_yadav_under_presidents_of_major_parties_19970929` (claim) |
 | 10 Jan 1998 | organisation: table row 6 (the observation) | `in_eci_19980110_np_row_06` (organisation) |
 | 21 Jul 1999 | Sharad Yadav: removal claimed | `in_eci_dispute_1999_pac_removal_of_sharad_yadav_claimed_19990721` (claim) |
 | 22 Jul 1999 | Deve Gowda: rival claim (application) | `in_eci_dispute_1999_deve_gowda_application_as_president_19990722` (claim) |
@@ -166,8 +178,9 @@ President, Janata Dal' among the members of the Ambedkar centenary committee (an
 Lok Sabha statement of 29 August 1991 on the National Integration Council lists him from the 1990 composition. On 26 August
 1997 Bommai recalled a 1989 report made 'As Janata Dal President'.
 
-Decision: **Accepted in part.** Observed on 14 July 1990, the day of the letter; the later records are continuations or a
-list of an earlier date, and his 1997 recollection is a claim. No start.
+Decision: **Accepted in part.** Observed on 14 July 1990, the day of the letter: V. P. Singh's letter, as the Janata Dal's
+leader, to the party's President on party business, which the House printed without deciding anything about the office.
+The later records are continuations or a list of an earlier date, and his 1997 recollection is a claim. No start.
 
 ### JD-PRES-03 — The split of 1992-1993
 
@@ -197,9 +210,11 @@ August 1997 a Rajya Sabha member recalled that 'as President of the Janata Dal' 
 Common Minimum Programme. The Rajya Sabha's obituary synopsis of 15 November 2007 says Bommai 'was President of the All
 India Janta Dal from 1990 to 1996'.
 
-Decision: **Accepted in part.** Observed on 15 July 1996. No start: no record of his election or of the day he took the
-office; no end, and his Rashtriya Janata Dal presidency is another organisation's office. Bommai's end is not recorded:
-the span is retrospective and Laloo Prasad Yadav's observation is not used as it.
+Decision: **Accepted in part.** Observed on 15 July 1996. The speaker (Deogarh) is not a Janata Dal officer; he speaks of
+the ruling Janata Dal from outside it. India's integrated packets accept such parliamentary statements (CLAUDE-C01-20,
+CLAUDE-C01-27); CLAUDE-C01-29 applied a stricter party-officer-only rule to Diet minutes. No start: no record of his
+election or of the day he took the office; no end, and his Rashtriya Janata Dal presidency is another organisation's
+office. Bommai's end is not recorded: the span is retrospective and Laloo Prasad Yadav's observation is not used as it.
 
 ### JD-PRES-05 — Sharad Yadav
 
@@ -210,8 +225,13 @@ Yadav', and Shri Anandrao Vithoba Adsul of 'Democratically elected president Shr
 without a name. The Human Resource Development resolution of 29 September 1997 lists 'Shri Sharad Yadav, Janata Dal' under
 'PRESIDENTS OF ALL MAJOR NATIONAL POLITICAL PARTIES'.
 
-Decision: **Accepted in part.** Observed on 29 July 1997, from the two same-day attestations. The working presidency is a
-claim only, never a holder, and 'Democratically elected' dates no election. No start.
+Decision: **Accepted in part.** Claims only; no holder observation. Neither statement of 29 July 1997 names the Janata
+Dal: Shri Ram Naik's 'party president' follows 'the Leader of the House, Shri Ram Vilas Paswan', and Shri Adsul's
+'Democratically elected president' names no party office. The party is read only from context, and neither speaker is
+identified in the record as a Janata Dal officer, so both statements are leads (`party_not_named_lead`) that never feed a
+holder. The working presidency is a claim only, never a holder, the heading list of 29 September 1997 is a claim only,
+and 'Democratically elected' dates no election. Sharad Yadav stays in the packet through his claims, among them the
+working presidency of 17 March 1997 and the 1999 dispute.
 
 ### JD-PRES-06 — The dispute of 1999
 
@@ -223,8 +243,8 @@ Yadav by the National Executive on 29 July 1999; and the Commission's finding th
 'provisional and ad-hoc recognition to both the rival groups as National parties' and neither group allowed the name or
 the symbol until further orders.
 
-Decision: **Accepted in part.** Claims only. The Commission decided nothing about the office: Sharad Yadav has no end and
-Deve Gowda no holder observation.
+Decision: **Accepted in part.** Claims only. The Commission decided nothing about the office: neither Sharad Yadav nor
+Deve Gowda has a holder observation, and nothing here is an end.
 
 ### JD-PRES-07 — The organisation observation
 
@@ -270,7 +290,7 @@ August 1999. Later orders on the frozen name were not found.
 | `in_rs_debate_19970826_human_development_discussion` | Rajya Sabha Debates, 26 August 1997 (Session 181): Discussion on Human Development and Science and Technology, cols 72-220 (store file ID_181_26081997_01_p72-220_1.pdf) | official file, Rajya Sabha debates store (handle 123456789/135374); PDF pages 40, 41 read from the text layer |
 | `in_gazette_hrd_resolution_19970929` | The Gazette of India, Extraordinary, Part I - Section 1, No. 194, New Delhi, Wednesday 1 October 1997: Ministry of Human Resource Development (Department of Culture) Resolution No. F. 29-2/97-C&M of 29 September 1997 (National Committee to observe the 50th Anniversary of the Martyrdom of Mahatma Gandhi) | official file, eGazette (equal to the Internet Archive item `in.gazette.central.e.1997-10-01.8273`); PDF pages 4, 5 read from the text layer |
 | `in_eci_on18e_19980110_national_parties` | The Gazette of India, Extraordinary, Part II - Section 3 - Sub-section (iii), New Delhi, Thursday 15 January 1998: Election Commission of India notification O.N. 18(E) of 10 January 1998, Table I, National Parties | stored Gazette copy, Internet Archive item `in.gazette.central.e.1998-01-15.7285`; PDF pages 82, 83 rendered or read |
-| `in_eci_dispute_case_1_of_1999_order_19990807` | Election Commission of India, order of 7 August 1999 in Dispute Case No. 1 of 1999 (application of Shri H.D. Deve Gowda under paragraph 15 of the Election Symbols (Reservation and Allotment) Order, 1968), compilation pages 329-338 (IFES Election Judgments file 16008740057920ye3h4iaksq.pdf) | third-party repository copy (IFES Election Judgments) of an Election Commission order; PDF pages 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 read from the text layer |
+| `in_eci_dispute_case_1_of_1999_order_19990807` | Election Commission of India, order of 7 August 1999 in Dispute Case No. 1 of 1999 (application of Shri H.D. Deve Gowda under paragraph 15 of the Election Symbols (Reservation and Allotment) Order, 1968), compilation pages 329-338 (IFES Election Judgments file 16008740057920ye3h4iaksq.pdf) | third-party repository copy (IFES Election Judgments) of an Election Commission order, typeset in a compilation that neither the file nor the IFES record identifies, not a facsimile; PDF pages 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 read from the text layer |
 | `in_eci_on28e_19990809_janata_dal_dispute` | The Gazette of India, Extraordinary, Part II - Section 3 - Sub-section (iii), No. 24, New Delhi, Monday 9 August 1999: Election Commission of India notification O.N. 28(E) of 9 August 1999 (No. 56/99/Jud.-III) | stored Gazette copy, Internet Archive item `in.gazette.central.e.1999-08-09.4826`; PDF pages 1, 2, 3 rendered or read |
 | `in_rs_synopsis_20071115_obituary_bommai` | Rajya Sabha, Synopsis of Debates, 15 November 2007 (Session 212): Obituary references (Shri S.R. Bommai) | official file, Rajya Sabha CMS; PDF page 5 read from the text layer |
 
@@ -411,7 +431,7 @@ No site terms, licences or cookie banners were accepted, no CAPTCHA or challenge
   `6fdb950e`). CLAUDE-C01-27 has since been integrated, and the branch merged current integration `032cd6a3` at `a266ebcb`
   (the only conflict was the generated research index, taken from integration and then regenerated), so nothing needs
   merging first; this packet adds only its own records on top of CLAUDE-C01-27's, whose content and test are unchanged
-  apart from the re-expressed pins below.
+  apart from the re-expressed pins and the comment below.
 - **Existing files edited.** `india.json` is edited by appending only: 22 sources after CLAUDE-C01-27's, one organization
   observation after the 82 recognition rows, and one note at the end of the packet coverage. No existing extract is edited.
   The pinned tests are re-expressed, never loosened: `test_india_research_s10e.py` (packet counts 85/297/599/5, 83
@@ -420,13 +440,20 @@ No site terms, licences or cookie banners were accepted, no CAPTCHA or challenge
   `test_india_prime_ministers_c01_11.py`, `test_india_presidents_c01_15.py`, `test_india_inc_presidents_c01_20.py` and
   `test_india_bjp_presidents_c01_27.py` (the same counts, the source order extended by the new observation's sources, the
   party-leader list extended by `in_jd_president`, the BJP coverage note at index 10 with the new note after it, 12
-  coverage notes and 5 roles; in the C01-11 test the set of other packets' rows also includes the new observation's).
+  coverage notes and 5 roles; in the C01-11 test the set of other packets' rows also includes the new observation's). The
+  comments on the C01-33 pins in the C01-11, C01-15 and C01-27 tests say the packet was claimed while stacked and is now
+  based on integration.
+- **Evidence standard for party offices in parliamentary records.** CLAUDE-C01-29 (Japan) admitted Diet minutes only where
+  a party officer's statement records the party office, while India's integrated CLAUDE-C01-20 and CLAUDE-C01-27 accept
+  other members' statements naming a party president (Kesri, Rao, Rajiv Gandhi, Joshi). This packet keeps Bommai (party
+  letter) and Laloo Prasad Yadav (a non-member's statement naming the party) under the India practice and demotes Sharad
+  Yadav (party not named). A single cross-country ruling is for the integrator.
 - **Shared generated file.** `docs/campaign-certification/C01/research-index.json` is the only file shared with other
   pending packets; it is regenerated in its own commit and should be regenerated again after merging.
 - **Gap ledger.** `tools/avatars/test_certified_gap_ledger.py` fails on this branch until Codex classifies the new commits
-  and pins their attribution, as on every new packet branch (here it stops at the stacked CLAUDE-C01-27 source
-  `in_bjp_elib_party_document_vol5_political_resolutions`, 'has no pinned attribution'); it is disclosed, not fixed, and
-  `docs/campaign-certification/C01/gap-ledger/` is untouched.
+  and pins their attribution, as on every new packet branch (here it stops at this packet's first source
+  `in_rs_debate_19891228_motion_of_thanks`, 'has no pinned attribution'; CLAUDE-C01-27's sources are pinned since its
+  integration); it is disclosed, not fixed, and `docs/campaign-certification/C01/gap-ledger/` is untouched.
 - **S23 boundary matrix.** The S23 boundary-matrix test (`tools/avatars/test_certified_boundary_matrix.py`) needs
   `spheres-web/src`, which is absent from this sparse checkout (it stops at `spheres-web/src/person_avatar_assets.rs`), so
   it could not pass here; Codex must regenerate that matrix when it merges, because the India packet gains an organization
@@ -435,7 +462,8 @@ No site terms, licences or cookie banners were accepted, no CAPTCHA or challenge
 
 ## Checks
 
-Run from the worktree with `PYTHONDONTWRITEBYTECODE=1` on 28 September 2026, after merging integration `032cd6a3`:
+Run from the worktree with `PYTHONDONTWRITEBYTECODE=1` on 28 September 2026, after merging integration `032cd6a3`, and
+rerun after the verifier's fixes:
 
 ```text
 python -X utf8 tools/avatars/campaign_research.py
@@ -452,8 +480,8 @@ git diff --check
 | Check | Result |
 |---|---|
 | `campaign_research.py`, then `--check` | passed: 9 country packets, 842 organization and 35 institution observations, 1,593 sources, 4,223 claims, 93 open discovery batches |
-| `campaign_census.py --check` | **fails, inherited from integration:** 'C01 evidence differs: census.json', because integration commits `262d5f61` and `032cd6a3` (after `4a3d0572`) changed `spheres-sim/src/government.rs` without regenerating `docs/campaign-certification/C01/census.json`, whose production snapshot pins that file's SHA-256 (`0e2dbdef...`, now `3f846b4b...`). The other four C01 outputs regenerate identically; this packet touches no census input, and the check passed on the branch before that merge. Not fixed here (outside the file boundary); Codex should regenerate the census at integration. |
-| `test_india*.py` | 57 passed, including the 11 tests of `test_india_janata_dal_presidents_c01_33.py` (its mutation test rejects 12 validator cases, 52 rule cases and 5 collapsed events) |
+| `campaign_census.py --check` | **fails, inherited from integration:** 'C01 evidence differs: census.json', because integration commit `262d5f61` (after `4a3d0572`; its test-only A1 observer hooks) changed `spheres-sim/src/government.rs` without regenerating `docs/campaign-certification/C01/census.json`, whose production snapshot pins that file's SHA-256 (`0e2dbdef...`, now `3f846b4b...`). The other four C01 outputs regenerate identically; this packet touches no census input, and the check passed on the branch before that merge. Not fixed here (outside the file boundary); Codex should regenerate the census at integration. |
+| `test_india*.py` | 57 passed, including the 11 tests of `test_india_janata_dal_presidents_c01_33.py` (its mutation test rejects 12 validator cases, 54 rule cases, among them 'Sharad Yadav holder restored from a lead', and 5 collapsed events) |
 | `test_*research*.py` | 79 passed |
 | `test_campaign*.py` | 16 passed |
 | `check_leadership_research_review.cjs` | 11 passed |

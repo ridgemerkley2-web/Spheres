@@ -11458,7 +11458,7 @@
             "columns": "263-264",
             "section": "speech of Shri Sriballav Panigrahi (Deogarh)"
           },
-          "uncertainty": "Dates the holder observation: a member's statement in the House that names him and styles him the party President on that day; the earliest single-day record found. No start: no record reviewed states the day he was elected or assumed the office, nor the day S. R. Bommai left it. The chief ministership of Bihar is a state office outside this role."
+          "uncertainty": "Dates the holder observation: a member's statement in the House that names him and styles him the party President on that day; the earliest single-day record found. No start: no record reviewed states the day he was elected or assumed the office, nor the day S. R. Bommai left it. The chief ministership of Bihar is a state office outside this role. The speaker (Deogarh) is not a Janata Dal officer; he speaks of the ruling Janata Dal from outside it. India's integrated packets accept such parliamentary statements (CLAUDE-C01-20, CLAUDE-C01-27); CLAUDE-C01-29 applied a stricter party-officer-only rule to Diet minutes."
         }
       ]
     },
@@ -11504,13 +11504,13 @@
       "scope_note": "Mirror-only provenance: the hashed response is a third-party copy of the Lok Sabha Secretariat's PDF in the Internet Archive item eparlib.nic.in.10363, an upload of 11 July 2025 whose metadata names the Parliament Digital Library file for record 123456789/10363 as its source; its PDF was made with ReportLab on 29 January 2024 (CreationDate), so it may be a later rendering of the official file, whose bytes could not be compared. The eparlib hosts could not be reached. The speech is in Hindi and the report prints the official English translation; the page header prints 'PHALGUNA 26, 1918 (Saka)', the date of 17 March 1997.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/india-loksabha-working-president-19970317-facts.json",
-        "bytes": 4372,
-        "sha256": "af9119139b30d85aeb80911946c409adc45ba9316f24db664ef2cb0441a8c4f2"
+        "bytes": 4423,
+        "sha256": "9dbe39ed6ffbce2ee29172b51ab964d47f0d9083c5b3bb5673bd6908625b2df3"
       },
       "claims": [
         {
           "id": "in_ls_ram_naik_sharad_yadav_working_president_19970317",
-          "text": "In the Lok Sabha on 17 March 1997 Shri Ram Naik (Mumbai North) said, in the official translation, that the area had not 'been represented in that Committee Shri Sharad Yadav is the working President of Janta Dal and his worker Shri Vilas Vichare, being the member of N.G.O.K., has been included in that Committee'.",
+          "text": "In the Lok Sabha on 17 March 1997 Shri Ram Naik (Mumbai North) said, in the official translation, that 'Shri Chintaman Wanaga is the only M.P. of that area. But he has not been represented in that Committee Shri Sharad Yadav is the working President of Janta Dal and his worker Shri Vilas Vichare, being the member of N.G.O.K., has been included in that Committee'.",
           "attested_on": "1997-03-17",
           "locator": {
             "pdf_page": 5,
@@ -11565,8 +11565,8 @@
       "scope_note": "Mirror-only provenance: the hashed response is a third-party copy of the Lok Sabha Secretariat's PDF in the Internet Archive item eparlib.nic.in.8795, an upload of 11 July 2025 whose metadata names the Parliament Digital Library file for record 123456789/8795 as its source; its PDF was made with ReportLab on 29 January 2024 (CreationDate), so it may be a later rendering of the official file, whose bytes could not be compared. The eparlib hosts could not be reached. The three speeches used are in Hindi and the report prints the official English translation; the page header prints 'SHRAVANA 7, 1919 (Saka)', the date of 29 July 1997.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/india-loksabha-bihar-situation-19970729-facts.json",
-        "bytes": 5898,
-        "sha256": "bbe394b42b7e90dfc55bf8c1e3a750b6e9e2a61bb2bec57fc19dc62f875be546"
+        "bytes": 5896,
+        "sha256": "bcd44cd8272b209d914786add52ce4057631ff132b684f625220feb4e6da83da"
       },
       "claims": [
         {
@@ -11578,7 +11578,7 @@
             "columns": "445",
             "section": "intervention of Shri Ram Naik"
           },
-          "uncertainty": "Dates the holder observation: named and styled party president on that day. Leader of the House is a parliamentary office outside this role. No start: no record reviewed states the day he was elected or assumed the office (the working presidency of 17 March 1997 is a claim)."
+          "uncertainty": "A lead only, never a holder: the passage does not name the party ('party president, Shri Sharad Yadav' follows 'the Leader of the House, Shri Ram Vilas Paswan'), the party is read only from context, and the speaker is not identified in the record as a Janata Dal officer. Leader of the House is a parliamentary office outside this role."
         },
         {
           "id": "in_ls_adsul_democratically_elected_president_sharad_yadav_19970729",
@@ -11589,7 +11589,7 @@
             "columns": "445",
             "section": "speech of Shri Anandrao Vithoba Adsul (Buldhana), begun on PDF page 23"
           },
-          "uncertainty": "Dates the holder observation with the other attestation of the same day. 'Democratically elected' dates no election."
+          "uncertainty": "A lead only, never a holder: the passage does not name the party and names no party office ('Democratically elected president'), the party is read only from context, and the speaker is not identified in the record as a Janata Dal officer. 'Democratically elected' dates no election."
         },
         {
           "id": "in_ls_virendra_kumar_singh_laloo_rjd_party_president_19970729",
@@ -11698,7 +11698,7 @@
             "pdf_page": 5,
             "section": "heading 'PRESIDENTS OF ALL MAJOR NATIONAL POLITICAL PARTIES', item 57"
           },
-          "uncertainty": "A later attestation of a holder already observed, whose office comes from the list's heading: a claim only."
+          "uncertainty": "An attestation whose office comes only from the list's heading: a claim only, never a holder. No holder observation of Sharad Yadav is recorded (the Lok Sabha statements of 29 July 1997 do not name the party and are leads)."
         }
       ]
     },
@@ -11742,11 +11742,11 @@
       "access_method": "downloaded_third_party_repository_copy_pdf_text_layer_read",
       "source_type": "primary_election_commission_order_third_party_repository_copy",
       "rights_note": "Factual observations paraphrased with attribution; short quotations only. No photographs, emblems, seals, signatures, scanned pages or long speech text copied. No open license, portrait permission or likeness approval is asserted.",
-      "scope_note": "A third-party repository copy: the order's text as printed in a compilation of the Commission's orders (pages 329-338, with the compiler's headnote, summary and note), in a PDF made with Acrobat Distiller 3.0 (CreationDate 10 July 2002) and uploaded to the IFES Election Judgments database on 23 September 2020 (entity puqmcocuakg). The Commission's own host answered HTTP 406 and no copy of the order on an official host was found. The compiler's summary and note are recorded separately from the order's text.",
+      "scope_note": "A third-party repository copy, not a facsimile: the order's text as typeset in a compilation (pages 329-338, with the compiler's headnote, summary and note) that neither the file nor the IFES record identifies, in a PDF made with Acrobat Distiller 3.0 (CreationDate 10 July 2002) and uploaded to the IFES Election Judgments database on 23 September 2020 (entity puqmcocuakg). It prints the Commission's name, the coram, the case number, the date ('Dated: 7th August, 1999') and 'Sd/-' lines for the three Commissioners, but no letterhead and no file or reference number. The Commission's own host answered HTTP 406 and no copy of the order on an official host was found. The compiler's summary and note are recorded separately from the order's text.",
       "snapshot": {
         "path": "docs/campaign-certification/C01/research/sources/india-eci-dispute-order-19990807-facts.json",
-        "bytes": 9340,
-        "sha256": "3cba541d1a246bcb237a33a698ae948f32bd33674eea30a09a10905451856570"
+        "bytes": 9578,
+        "sha256": "b4e1909d295f8210ac16a955428a5db2ebc8c14ce872bc1cf41031267aa98cc5"
       },
       "claims": [
         {
@@ -16762,7 +16762,7 @@
               "claim_ids": [
                 "in_rs_pm_letter_to_bommai_president_janata_dal_19900714"
               ],
-              "note": "Observed on 14 July 1990: the Prime Minister's letter of that day, printed in the Rajya Sabha's written answer of 28 August 1990 (official debates store), is addressed to 'Shri S. R. Bommai, President, Janata Dal'; the earliest single-day record adopted.",
+              "note": "Observed on 14 July 1990: the Prime Minister's letter of that day, printed in the Rajya Sabha's written answer of 28 August 1990 (official debates store), is addressed to 'Shri S. R. Bommai, President, Janata Dal'; the earliest single-day record adopted. The letter is V. P. Singh's, written as the Janata Dal's leader to the party's President on party business (a meeting of the National Front Parliamentary Party to elect a new leader); the House printed it and decided nothing about the office.",
               "uncertainty": "No start: no record reviewed states the day he assumed the office, and his own recollection of 1997 ('As Janata Dal President, I have given a report in 1989') gives a year only. No end: the Rajya Sabha's 2007 obituary synopsis says 'from 1990 to 1996' (retrospective), and no record states the day he left the office; Laloo Prasad Yadav's later observation is not used as his end. The Election Commission's orders of 1993 name the group 'headed by' or 'represented by' him, not his office."
             },
             {
@@ -16776,26 +16776,11 @@
               "claim_ids": [
                 "in_ls_panigrahi_laloo_prasad_yadav_party_president_19960715"
               ],
-              "note": "Observed on 15 July 1996: in the Lok Sabha Shri Sriballav Panigrahi, speaking in English, called him 'the Janata Dal Party Supremo, the party President, the Bihar Chief Minister' (Internet Archive copy of the Lok Sabha Secretariat's file); the earliest single-day record found.",
-              "uncertainty": "No start: no record reviewed states the day he was elected or assumed the office. No end: the records of 29 July 1997 style him President of the Rashtriya Janata Dal, another organisation, and no record states the day he left this office; Sharad Yadav's observation is not used as his end."
-            },
-            {
-              "name": "Sharad Yadav",
-              "attested_on": "1997-07-29",
-              "from": null,
-              "until": null,
-              "sources": [
-                "in_ls_debate_19970729_bihar_situation"
-              ],
-              "claim_ids": [
-                "in_ls_ram_naik_party_president_sharad_yadav_19970729",
-                "in_ls_adsul_democratically_elected_president_sharad_yadav_19970729"
-              ],
-              "note": "Observed on 29 July 1997: in the Lok Sabha Shri Ram Naik spoke of 'party president, Shri Sharad Yadav' and Shri Anandrao Vithoba Adsul of 'Democratically elected president Shri Sharad Yadav' (official English translation; Internet Archive copy of the Lok Sabha Secretariat's file).",
-              "uncertainty": "No start: he is 'the working President of Janta Dal' on 17 March 1997 (a claim) and no record states the day he was elected or assumed the office. No end: on 21 July 1999 the Political Affairs Committee is claimed to have removed him, a claim he contested, and on 7 August 1999 the Election Commission recorded him as President 'As per the Commission's records' while leaving the dispute undecided; neither is used as an end."
+              "note": "Observed on 15 July 1996: in the Lok Sabha Shri Sriballav Panigrahi, speaking in English, called him 'the Janata Dal Party Supremo, the party President, the Bihar Chief Minister' (Internet Archive copy of the Lok Sabha Secretariat's file); the earliest single-day record found. The speaker (Deogarh) is not a Janata Dal officer; he speaks of the ruling Janata Dal from outside it. India's integrated packets accept such parliamentary statements (CLAUDE-C01-20, CLAUDE-C01-27); CLAUDE-C01-29 applied a stricter party-officer-only rule to Diet minutes.",
+              "uncertainty": "No start: no record reviewed states the day he was elected or assumed the office. No end: the records of 29 July 1997 style him President of the Rashtriya Janata Dal, another organisation, and no record states the day he left this office; the 1997 claims and leads naming Sharad Yadav are not used as his end."
             }
           ],
-          "scope_note": "President of the Janata Dal, the national party office, recorded on the Janata Dal recognition observation from the Election Commission's table of 10 January 1998. CLAUDE-C01-33 keeps in-office attestations, later attestations of a holder already observed (in_office_continuation_attestation), a working presidency, rival claims to the office (the group of Shri Ajit Singh in 1992 and of Shri H. D. Deve Gowda in 1999), a removal claimed and an endorsement claimed in the 1999 dispute, recalled acts, retrospective statements and spans, composition lists of an earlier date and the Election Commission's statement of its records as separate dated claims. A holder has a start only where a source states the day the office was assumed and an end only where a source states the day it ended; no record reviewed does either, so every holder is a dated observation (attested_on) from a same-day in-office attestation that names the holder. Do not fill the interval between observations or infer an outgoing holder's last day from a successor's observation; a removal claimed, a rival election, a dispute order and a later recollection are never boundaries. The working presidency (Sharad Yadav, 17 March 1997) is a claim only, never a holder, and V. P. Singh's attestation of 28 December 1989 is before the period, so it never dates a holder. A passage that names nobody has holder_name null. Party office and state office stay separate: no in_prime_minister or in_presidency claim or source feeds this role, none of its claims feeds either institution, and in_inc_president and in_bjp_president are untouched; Parliament records and Government resolutions are used only where they record the party office, and the chief ministership of Bihar, the prime-ministership, parliamentary leaderships and state-unit presidencies are outside it. The Rashtriya Janata Dal, the Janata Dal (A), the Janata Dal (Secular) and the Janata Dal (United) are other organisations: the splits and the Commission's orders about them are claims about the organisation, never merged identities or inherited leaders, and no holder is tied to the Janata Dal name after the Commission's order of 7 August 1999. The Election Symbols Order is procedure only, never a date."
+          "scope_note": "President of the Janata Dal, the national party office, recorded on the Janata Dal recognition observation from the Election Commission's table of 10 January 1998. CLAUDE-C01-33 keeps in-office attestations, later attestations of a holder already observed and lists under a category heading (in_office_continuation_attestation), a working presidency, rival claims to the office (the group of Shri Ajit Singh in 1992 and of Shri H. D. Deve Gowda in 1999), a removal claimed and an endorsement claimed in the 1999 dispute, recalled acts, retrospective statements and spans, composition lists of an earlier date and the Election Commission's statement of its records as separate dated claims. A holder has a start only where a source states the day the office was assumed and an end only where a source states the day it ended; no record reviewed does either, so every holder is a dated observation (attested_on) from a same-day in-office attestation that names the holder. Do not fill the interval between observations or infer an outgoing holder's last day from a successor's observation; a removal claimed, a rival election, a dispute order and a later recollection are never boundaries. The working presidency (Sharad Yadav, 17 March 1997) is a claim only, never a holder, and V. P. Singh's attestation of 28 December 1989 is before the period, so it never dates a holder. A passage that names nobody has holder_name null. A statement that does not name the party, so that the party is read only from context, by a speaker not identified in the record as a Janata Dal officer, is a lead only (party_not_named_lead), never a holder: the Lok Sabha statements of 29 July 1997 naming Sharad Yadav are such leads. Party office and state office stay separate: no in_prime_minister or in_presidency claim or source feeds this role, none of its claims feeds either institution, and in_inc_president and in_bjp_president are untouched; Parliament records and Government resolutions are used only where they record the party office, and the chief ministership of Bihar, the prime-ministership, parliamentary leaderships and state-unit presidencies are outside it. The Rashtriya Janata Dal, the Janata Dal (A), the Janata Dal (Secular) and the Janata Dal (United) are other organisations: the splits and the Commission's orders about them are claims about the organisation, never merged identities or inherited leaders, and no holder is tied to the Janata Dal name after the Commission's order of 7 August 1999. The Election Symbols Order is procedure only, never a date."
         }
       ],
       "sources": [
@@ -16871,7 +16856,7 @@
           "Reconcile exact organization identity, jurisdiction and name variants before mapping to the game.",
           "Research founding, splits, mergers, dissolution and separately dated party offices from 1990 through the fixed cutoff.",
           "Review later amendments and any identity or status qualifications; no current legal conclusion is drawn.",
-          "Janata Dal Presidents 1990-2026 (CLAUDE-C01-33): role in_jd_president holds three holder observations from Rajya Sabha and Lok Sabha records: S. R. Bommai (14 July 1990), Laloo Prasad Yadav (15 July 1996) and Sharad Yadav (29 July 1997), none with a stated start or end. The observation's own claims record the Election Commission's recognition rows of 23 July 1993, 5 February 1996 and 10 January 1998, the 1993 dispute (name and symbol frozen on 14 January 1993, the Janata Dal (A) and (B) interim groups, the final order of 22 July 1993) and the 1999 dispute (the order of 7 August 1999 and the table of 9 August 1999 adding the Janata Dal (Secular) and the Janata Dal (United)). Still open: V. P. Singh's presidency within the period, the day of each election or assumption (1990, 1996 and 1997) and of each end, the Election Commission's own copy of the 1999 order and of its later orders on the frozen name and symbol, the Lok Sabha records on the official eparlib host, the Janata Dal's own records, and the 1990 split (Janata Dal (Socialist)). The lifecycle, successors and game mapping of this observation remain unresearched."
+          "Janata Dal Presidents 1990-2026 (CLAUDE-C01-33): role in_jd_president holds two holder observations from Rajya Sabha and Lok Sabha records: S. R. Bommai (14 July 1990) and Laloo Prasad Yadav (15 July 1996), none with a stated start or end; the Lok Sabha statements of 29 July 1997 naming Sharad Yadav do not name the party and are leads only. The observation's own claims record the Election Commission's recognition rows of 23 July 1993, 5 February 1996 and 10 January 1998, the 1993 dispute (name and symbol frozen on 14 January 1993, the Janata Dal (A) and (B) interim groups, the final order of 22 July 1993) and the 1999 dispute (the order of 7 August 1999 and the table of 9 August 1999 adding the Janata Dal (Secular) and the Janata Dal (United)). Still open: V. P. Singh's presidency within the period, a same-day record naming the Janata Dal for Sharad Yadav's presidency, the day of each election or assumption (1990, 1996 and 1997) and of each end, the Election Commission's own copy of the 1999 order and of its later orders on the frozen name and symbol, the Lok Sabha records on the official eparlib host, the Janata Dal's own records, and the 1990 split (Janata Dal (Socialist)). The lifecycle, successors and game mapping of this observation remain unresearched."
         ]
       }
     }
@@ -18017,7 +18002,7 @@
       "Presidents 1990-2026 (CLAUDE-C01-15): the packet now holds a second institution, in_presidency, with one role, in_president, and eight dated holder observations (R. Venkataraman observed on 13 January 1990, and stated starts on 25 July 1992, 1997, 2002, 2007, 2012, 2017 and 2022 for his seven successors). No primary source reviewed states the day any President's office ended, so no holder has an end. Still open for the presidency: every end, the text of the 2002 notification of assumption, the names of the Chief Justices who administered the 1997, 2002, 2007 and 2012 oaths, and the Election Commission's own result records. Vice-presidents, acting arrangements, party offices and all other institutions remain outside this intake. No game identity or portrait permission is granted.",
       "INC Presidents 1990-2026 (CLAUDE-C01-20, INC-PRES-01..10): the party office is a separate role, in_inc_president, on the Indian National Congress recognition observation, with ten holder observations dated by same-day in-office attestations (Rajiv Gandhi 1990, P. V. Narasimha Rao 1996, Sitaram Kesri 1997, Sonia Gandhi 1999, 2000 and 2017, Rahul Gandhi 2017 and 2019, Mallikarjun Kharge 2022 and 2026) and no start or end. Working Committee decisions, AICC sessions, the Central Election Authority's notices and declarations, certificates, handovers, resignations, farewells and the 2019-2022 interim arrangement are claims only; no record reviewed states the day any President assumed or left the office. The prime-ministership and the presidency never feed the party office or the reverse, and no game identity or portrait permission is granted.",
       "BJP Presidents 1990-2026 (CLAUDE-C01-27, BJP-PRES-01..10): the party office is a separate role, in_bjp_president, on the Bharatiya Janata Party recognition observation, with nineteen holder observations: L. K. Advani (observed 1991, 1997 and 2004), Murli Manohar Joshi (1991), Kushabhau Thakre (1999), Bangaru Laxman (observed 2000; stated end 14 March 2001), M. Venkaiah Naidu (stated start 1 July 2002), Rajnath Singh (2006 and 2013), Nitin Gadkari (2009 and 2013), Amit Shah (2014, 2016 and 2019), J. P. Nadda (stated start 20 January 2020; observed 2023 and 2025) and Nitin Nabin (stated start 20 January 2026; observed 17 August 2026). Elections, nominations, declarations, endorsements, acting and working presidencies, extensions, handovers, resignations and farewells are claims only. The prime-ministership, the presidency and the Congress presidency never feed the party office or the reverse, and no game identity or portrait permission is granted.",
-      "Janata Dal Presidents 1990-2026 (CLAUDE-C01-33, JD-PRES-01..08): the Janata Dal has a new recognition observation, in_eci_19980110_np_06, from row 6 of the Election Commission's national-party table of 10 January 1998, with one party role, in_jd_president, holding three holder observations dated by same-day in-office attestations (S. R. Bommai 1990, Laloo Prasad Yadav 1996, Sharad Yadav 1997) and no start or end. V. P. Singh is attested only before the period (28 December 1989); the working presidency, the rival claims of Shri Ajit Singh (1992) and Shri H. D. Deve Gowda (1999), the removal claimed on 21 July 1999 and the Commission's statement of its records are claims only. The splits of 1993 and 1999 and the Janata Dal (A), Janata Dal (Secular), Janata Dal (United) and Rashtriya Janata Dal are claims about the organisation or other organisations, never merged identities or inherited leaders. The prime-ministership, the presidency and the Congress and BJP presidencies never feed the party office or the reverse, and no game identity or portrait permission is granted."
+      "Janata Dal Presidents 1990-2026 (CLAUDE-C01-33, JD-PRES-01..08): the Janata Dal has a new recognition observation, in_eci_19980110_np_06, from row 6 of the Election Commission's national-party table of 10 January 1998, with one party role, in_jd_president, holding two holder observations dated by same-day in-office attestations (S. R. Bommai 1990, Laloo Prasad Yadav 1996) and no start or end; the 1997 statements naming Sharad Yadav without naming the party are leads only. V. P. Singh is attested only before the period (28 December 1989); the working presidency, the rival claims of Shri Ajit Singh (1992) and Shri H. D. Deve Gowda (1999), the removal claimed on 21 July 1999 and the Commission's statement of its records are claims only. The splits of 1993 and 1999 and the Janata Dal (A), Janata Dal (Secular), Janata Dal (United) and Rashtriya Janata Dal are claims about the organisation or other organisations, never merged identities or inherited leaders. The prime-ministership, the presidency and the Congress and BJP presidencies never feed the party office or the reverse, and no game identity or portrait permission is granted."
     ]
   }
 }

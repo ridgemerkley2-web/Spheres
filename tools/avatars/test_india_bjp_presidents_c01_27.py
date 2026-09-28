@@ -951,9 +951,9 @@ PER_REQUEST = re.compile(r'[?&](cb|_|s|q|token|sessionid|search|checkcb)=|review
                          r'__VIEWSTATE|_fields=', re.I)
 OFFICIAL_HOSTS = {'library.bjp.org', 'bucketapi.rajyasabha.digital'}
 REPORT = research.RESEARCH / 'india-bjp-presidents-1990-2026-27.md'
-# CLAUDE-C01-33 (stacked on this packet) adds one organization observation, the Janata Dal row of the Election
-# Commission's national-party table of 10 January 1998, with one party role, and appends its sources after this packet's;
-# its own test pins them. This packet's assertions are unchanged for its own records.
+# CLAUDE-C01-33 (claimed while stacked on this packet, now based on integration) adds one organization observation, the
+# Janata Dal row of the Election Commission's national-party table of 10 January 1998, with one party role, and appends
+# its sources after this packet's; its own test pins them. This packet's assertions are unchanged for its own records.
 C01_33_ORG = 'in_eci_19980110_np_06'
 C01_33_ROLE = 'in_jd_president'
 C01_33_COUNTS = (22, 41)

@@ -1,10 +1,10 @@
 """CLAUDE-C01-33: the Presidents of the Janata Dal, 1990-2026, are one party role on a new Janata Dal recognition
 observation (row 6 of the Election Commission's national-party table of 10 January 1998), kept apart from the
 prime-ministership, the presidency and the Congress and BJP presidencies both ways. In-office attestations, continuations,
-a working presidency, rival claims, a removal claimed, recollections, spans and the Commission's statement of its records
-stay separate claims; the 1993 and 1999 disputes and the Janata Dal (A), (Secular) and (United) groups are claims about the
-organisation, never merged identities or inherited leaders. No source states a day of assumption or end, so every holder
-is a dated in-office observation."""
+a working presidency, statements that do not name the party (leads), rival claims, a removal claimed, recollections, spans
+and the Commission's statement of its records stay separate claims; the 1993 and 1999 disputes and the Janata Dal (A),
+(Secular) and (United) groups are claims about the organisation, never merged identities or inherited leaders. No source
+states a day of assumption or end, so every holder is a dated in-office observation."""
 import copy
 import hashlib
 import json
@@ -26,7 +26,7 @@ VPS, SRB, LPY, SY, HDG, AJS = ('Vishwanath Pratap Singh', 'S. R. Bommai', 'Laloo
                                'Ajit Singh')
 # The surname that every claim naming that person must carry in its text; at most ten people in the packet.
 SURNAMES = {VPS: 'Singh', SRB: 'Bommai', LPY: 'Laloo', SY: 'Yadav', HDG: 'Deve Gowda', AJS: 'Ajit Singh'}
-HOLDER_NAMES = {SRB, LPY, SY}
+HOLDER_NAMES = {SRB, LPY}
 
 # Original response identity recorded in each extract: (bytes, sha256), in packet order. Every source is reproducible.
 RESPONSES = {
@@ -178,9 +178,9 @@ EVENTS = {
     'in_ls_sushma_swaraj_your_president_laloo_prasad_yadav_19970422':
         ('1997-04-22', 'in_office_continuation_attestation', 'JD-PRES-04', LPY, ROLE),
     'in_ls_ram_naik_party_president_sharad_yadav_19970729':
-        ('1997-07-29', 'in_office_attestation', 'JD-PRES-05', SY, ROLE),
+        ('1997-07-29', 'party_not_named_lead', 'JD-PRES-05', SY, ROLE),
     'in_ls_adsul_democratically_elected_president_sharad_yadav_19970729':
-        ('1997-07-29', 'in_office_attestation', 'JD-PRES-05', SY, ROLE),
+        ('1997-07-29', 'party_not_named_lead', 'JD-PRES-05', SY, ROLE),
     'in_ls_virendra_kumar_singh_laloo_rjd_party_president_19970729':
         ('1997-07-29', 'other_party_office_reference', 'JD-PRES-04', LPY, ROLE),
     'in_rs_joyanta_roy_laloo_as_president_of_janata_dal_cmp_recalled':
@@ -233,32 +233,37 @@ RETROSPECTIVE_KINDS = {'recalled_act_dated', 'recalled_act_undated', 'retrospect
 DISPUTE_KINDS = {'rival_presidency_claim', 'removal_claimed', 'endorsement_claimed', 'registration_record_statement'}
 WORKING_KINDS = {'working_presidency'}
 OTHER_PARTY_KINDS = {'other_party_office_reference'}
+# Statements that do not name the party (it is read only from context), by speakers not identified in the record as
+# Janata Dal officers: leads that never feed a holder (Sharad Yadav, 29 July 1997).
+LEAD_KINDS = {'party_not_named_lead'}
 NEVER_KINDS = (CONTINUATION_KINDS | BEFORE_PERIOD_KINDS | UNNAMED_KINDS | RETROSPECTIVE_KINDS | DISPUTE_KINDS
-               | WORKING_KINDS | OTHER_PARTY_KINDS)
+               | WORKING_KINDS | OTHER_PARTY_KINDS | LEAD_KINDS)
 HOLDERS = [
     (SRB, '1990-07-14', None, None),
     (LPY, '1996-07-15', None, None),
-    (SY, '1997-07-29', None, None),
 ]
 HOLDER_CLAIMS = [
     ['in_rs_pm_letter_to_bommai_president_janata_dal_19900714'],
     ['in_ls_panigrahi_laloo_prasad_yadav_party_president_19960715'],
-    ['in_ls_ram_naik_party_president_sharad_yadav_19970729',
-     'in_ls_adsul_democratically_elected_president_sharad_yadav_19970729'],
 ]
-HOLDER_REVIEW = ['JD-PRES-02', 'JD-PRES-04', 'JD-PRES-05']
+HOLDER_REVIEW = ['JD-PRES-02', 'JD-PRES-04']
+# The leads of 29 July 1997 that once made Sharad Yadav a holder; restoring that holder must fail.
+SY_LEADS = ['in_ls_ram_naik_party_president_sharad_yadav_19970729',
+            'in_ls_adsul_democratically_elected_president_sharad_yadav_19970729']
 HOLDER_OBSERVATIONS = tuple(cid for cid, e in EVENTS.items() if e[1] in HOLDER_KINDS)
 NEVER_HOLDER = tuple(cid for cid in ROLE_CLAIMS if cid not in HOLDER_OBSERVATIONS)
 # No source states the day any President assumed or left the office.
 STARTS, ENDS = [], []
-# The working presidency and the rival claims are never holders; V. P. Singh is attested only before the period.
+# The working presidency, the rival claims and the leads that do not name the party are never holders; V. P. Singh is
+# attested only before the period.
 WORKING = {SY: ('1997-03-17', '1997-03-17')}
-NOT_HOLDERS = {VPS, HDG, AJS}
+NOT_HOLDERS = {VPS, HDG, AJS, SY}
 HOLDER_DATES = {d for h in HOLDERS for d in h[1:] if d}
 # Dates that are never any holder's attested_on, start or end: continuations, recollections, rival claims, the removal
-# claimed, the endorsement claimed, the Commission's statement of its records, the working presidency, the attestation
-# before the period, the Rashtriya Janata Dal presidency and every organisation event; and rejected candidate days (the
-# printed header '[13 MAY 1990]', the Bihar Assembly statement of 23 July 1996 and the claimed election of 3 July 1997).
+# claimed, the endorsement claimed, the Commission's statement of its records, the working presidency, the leads that do
+# not name the party, the attestation before the period, the Rashtriya Janata Dal presidency and every organisation event;
+# and rejected candidate days (the printed header '[13 MAY 1990]', the Bihar Assembly statement of 23 July 1996 and the
+# claimed election of 3 July 1997).
 NEVER_HOLDER_DATE = sorted(({e[0] for cid, e in EVENTS.items() if cid not in HOLDER_OBSERVATIONS and e[0]} - HOLDER_DATES)
                            | {'1990-05-13', '1996-07-23', '1997-07-03'})
 UNDATED = tuple(cid for cid, e in EVENTS.items() if e[0] is None)
@@ -358,6 +363,7 @@ def jd_rules(packet, rows):
     for holder in role['holder_claims']:
         name = holder['name']
         assert isinstance(holder, dict) and name in HOLDER_NAMES, name
+        assert name not in NOT_HOLDERS, (name, 'a working presidency, a rival claim, a lead or a pre-period attestation')
         dated = [d for d in (holder['attested_on'], holder['from']) if d]
         assert len(dated) == 1, (name, 'a holder is dated by exactly one of attested_on and from')
         assert dated[0] >= previous, (name, 'holders stay in chronological order')
@@ -471,7 +477,7 @@ class IndiaJanataDalPresidentsTests(unittest.TestCase):
         self.assertFalse((set(holder_claims) | set(NEVER_HOLDER)) & set(ORG_CLAIMS))
         self.assertEqual(set(holder_claims) | set(NEVER_HOLDER) | set(ORG_CLAIMS), set(self.new_claims))
         self.assertEqual(sorted(holder_claims), sorted(HOLDER_OBSERVATIONS))
-        self.assertEqual((len(holder_claims), len(NEVER_HOLDER), len(ORG_CLAIMS), len(HOLDERS)), (4, 23, 14, 3))
+        self.assertEqual((len(holder_claims), len(NEVER_HOLDER), len(ORG_CLAIMS), len(HOLDERS)), (2, 25, 14, 2))
         self.assertEqual(list(EVENTS), self.new_claims)
         # Every new claim and source is cited by the Janata Dal observation (and, for role claims, its role) only.
         self.assertEqual(self.org['claim_ids'], self.new_claims)
@@ -631,6 +637,21 @@ class IndiaJanataDalPresidentsTests(unittest.TestCase):
                       self.claims['in_ls_virendra_kumar_singh_laloo_rjd_party_president_19970729']['uncertainty'])
         self.assertIn('prime-ministership is a separate office',
                       self.claims['in_rs_raj_mohan_gandhi_pm_wrote_as_janata_dal_president_recalled_1990']['uncertainty'])
+        # The statements of 29 July 1997 do not name the party and come from speakers not identified as Janata Dal
+        # officers: leads only.
+        for cid in SY_LEADS:
+            self.assertEqual(self.rows[cid]['event_kind'], 'party_not_named_lead', cid)
+            for phrase in ('A lead only, never a holder', 'does not name the party', 'read only from context',
+                           'not identified in the record as a Janata Dal officer'):
+                self.assertIn(phrase, self.claims[cid]['uncertainty'], cid)
+        self.assertIn('names no party office', self.claims[SY_LEADS[1]]['uncertainty'])
+        # Laloo Prasad Yadav's observation rests on a non-member's statement naming the party, disclosed as such; Bommai's
+        # on a party letter that the House printed without deciding the office.
+        bommai, laloo = self.role['holder_claims']
+        disclosure = 'The speaker (Deogarh) is not a Janata Dal officer'
+        self.assertIn(disclosure, laloo['note'])
+        self.assertIn(disclosure, self.claims[laloo['claim_ids'][0]]['uncertainty'])
+        self.assertIn('decided nothing about the office', bommai['note'])
 
     def test_extracts_match_packet_claims_and_record_original_responses(self):
         for sid in NEW_SOURCES:
@@ -804,8 +825,8 @@ class IndiaJanataDalPresidentsTests(unittest.TestCase):
             (lambda p: source(p, 'in_ls_debate_19970729_bihar_situation')['snapshot'].update(bytes=1), 'checksum mismatch'),
             (lambda p: source(p, 'in_eci_on18e_19980110_national_parties')['snapshot'].update(path=REPORT.as_posix()),
              'escapes'),
-            (lambda p: holder(p, 2).update(attested_on='2026-09-08'), 'exceeds cutoff'),
-            (lambda p: holder(p, 2).update(until='2026-09-08'), 'exceeds cutoff'),
+            (lambda p: holder(p, 1).update(attested_on='2026-09-08'), 'exceeds cutoff'),
+            (lambda p: holder(p, 1).update(until='2026-09-08'), 'exceeds cutoff'),
             (lambda p: claim(p, 'in_eci_19980110_np_row_06').update(attested_on='2026-09-08'), 'exceeds cutoff'),
             (lambda p: org(p)['recognition'].update(attested_on='2026-09-08'), 'exceeds cutoff'),
             (lambda p: claim(p, 'in_rs_obituary_bommai_president_all_india_janta_dal_1990_to_1996').update(
@@ -825,21 +846,23 @@ class IndiaJanataDalPresidentsTests(unittest.TestCase):
             ('successor observation used as an end (Bommai)', lambda p: holder(p, 0).update(until='1996-07-15')),
             ('successor observation cited as an end (Bommai)',
              cite(0, 'in_ls_panigrahi_laloo_prasad_yadav_party_president_19960715', until='1996-07-15')),
-            ('successor observation used as an end (Laloo Prasad Yadav)', lambda p: holder(p, 1).update(until='1997-07-29')),
-            ('an end invented at the cutoff (Sharad Yadav)', lambda p: holder(p, 2).update(until='2026-09-07')),
+            ("successor's lead day used as an end (Laloo Prasad Yadav)",
+             lambda p: holder(p, 1).update(until='1997-07-29')),
+            ('an end invented at the cutoff (Laloo Prasad Yadav)', lambda p: holder(p, 1).update(until='2026-09-07')),
             # A removal claimed, a dispute order, a span or a recollection used as an end.
-            ('removal claimed used as an end (Sharad Yadav)', lambda p: holder(p, 2).update(until='1999-07-21')),
-            ('removal claimed cited as an end (Sharad Yadav)',
-             cite(2, 'in_eci_dispute_1999_pac_removal_of_sharad_yadav_claimed_19990721', until='1999-07-21')),
-            ('dispute order day used as an end (Sharad Yadav)', lambda p: holder(p, 2).update(until='1999-08-07')),
+            ('removal claimed used as an end (Laloo Prasad Yadav)', lambda p: holder(p, 1).update(until='1999-07-21')),
+            ('removal claimed cited as an end (Laloo Prasad Yadav)',
+             cite(1, 'in_eci_dispute_1999_pac_removal_of_sharad_yadav_claimed_19990721', until='1999-07-21')),
+            ('dispute order day used as an end (Laloo Prasad Yadav)', lambda p: holder(p, 1).update(until='1999-08-07')),
             ('span used as an end (Bommai)', lambda p: holder(p, 0).update(until='1996-12-31')),
             ('RJD presidency cited as an end (Laloo Prasad Yadav)',
              cite(1, 'in_ls_virendra_kumar_singh_laloo_rjd_party_president_19970729', until='1997-07-29')),
             # An election, a claimed election or a working presidency used as a start without a stated assumption.
-            ('claimed election day used as a start (Sharad Yadav)',
-             lambda p: holder(p, 2).update({'attested_on': None, 'from': '1997-07-03'})),
-            ('working presidency used as a start (Sharad Yadav)',
-             lambda p: holder(p, 2).update({'attested_on': None, 'from': '1997-03-17'})),
+            ('claimed election day used as a start (Sharad Yadav restored)',
+             lambda p: role(p)['holder_claims'].append(extra_holder(SY, None, SY_LEADS[0], start='1997-07-03'))),
+            ('working presidency used as a start (Sharad Yadav restored)',
+             lambda p: role(p)['holder_claims'].append(extra_holder(
+                 SY, None, 'in_ls_ram_naik_sharad_yadav_working_president_19970317', start='1997-03-17'))),
             ('observation day turned into a start (Laloo Prasad Yadav)',
              lambda p: holder(p, 1).update({'attested_on': None, 'from': '1996-07-15'})),
             ('recollection used as a start (Bommai 1989)',
@@ -850,17 +873,21 @@ class IndiaJanataDalPresidentsTests(unittest.TestCase):
              cite(0, 'in_gazette_welfare_resolution_bommai_president_janata_dal_19910329')),
             ('stale composition list cited by a holder (Bommai)',
              cite(0, 'in_ls_nic_statement_lists_bommai_president_janata_dal_1990_composition')),
-            ("Commission's records cited by a holder (Sharad Yadav)",
-             cite(2, 'in_eci_dispute_1999_commission_records_sharad_yadav_president_19990807')),
+            ("Commission's records cited by a holder (Laloo Prasad Yadav)",
+             cite(1, 'in_eci_dispute_1999_commission_records_sharad_yadav_president_19990807')),
             ('heading-derived list cited by a holder (Laloo Prasad Yadav)',
              cite(1, 'in_gazette_hrd_resolution_laloo_under_presidents_of_major_parties_19961014')),
             ('recollection cited by a holder (Laloo Prasad Yadav)',
              cite(1, 'in_rs_joyanta_roy_laloo_as_president_of_janata_dal_cmp_recalled')),
-            ('continuation day used as an observation (Sharad Yadav)', lambda p: holder(p, 2).update(
-                attested_on='1997-09-29')),
-            # Acting, working, rival and pre-period holders added.
+            ('continuation day used as an observation (Laloo Prasad Yadav)', lambda p: holder(p, 1).update(
+                attested_on='1996-10-14')),
+            # Leads, acting, working, rival and pre-period holders added.
+            ('Sharad Yadav holder restored from a lead', lambda p: role(p)['holder_claims'].append({
+                'name': SY, 'attested_on': '1997-07-29', 'from': None, 'until': None,
+                'sources': ['in_ls_debate_19970729_bihar_situation'], 'claim_ids': list(SY_LEADS),
+                'note': 'Observed on 29 July 1997.', 'uncertainty': 'No start. No end.'})),
             ('working presidency added as a holder (acting or working, Sharad Yadav)',
-             lambda p: role(p)['holder_claims'].insert(2, extra_holder(
+             lambda p: role(p)['holder_claims'].append(extra_holder(
                  SY, '1997-03-17', 'in_ls_ram_naik_sharad_yadav_working_president_19970317'))),
             ('rival claimant added as a holder (Deve Gowda)', lambda p: role(p)['holder_claims'].append(extra_holder(
                 HDG, '1999-07-22', 'in_eci_dispute_1999_deve_gowda_application_as_president_19990722'))),
@@ -896,7 +923,7 @@ class IndiaJanataDalPresidentsTests(unittest.TestCase):
             ('party President added to the presidency',
              lambda p: president_role(p)['holder_claims'].append(copy.deepcopy(holder(p, 0)))),
             ('party President added to the BJP role',
-             lambda p: other_role(p, c01_27.ORG)['holder_claims'].append(copy.deepcopy(holder(p, 2)))),
+             lambda p: other_role(p, c01_27.ORG)['holder_claims'].append(copy.deepcopy(holder(p, 1)))),
             ('prime-ministership claim cited by a party President', cite(0, 'in_rao_appointed_pm_wef_19910621')),
             ('party claim moved onto the prime-ministership', lambda p: (
                 pm_role(p)['claim_ids'].append('in_rs_pm_letter_to_bommai_president_janata_dal_19900714'),
