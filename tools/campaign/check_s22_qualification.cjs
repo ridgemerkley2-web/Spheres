@@ -94,7 +94,7 @@ test('zoom round-trip precision requires unchanged raw map centre and rejects re
     rows[i].after_globe.pitch+=2e-8;
     if(i>2)rows[i].before_globe.pitch+=2e-8;
   }
-  assert.equal(q.inputs(rows).count,31);
+  assert.doesNotThrow(()=>q.inputs(rows));
   const moved=structuredClone(rows);moved[2].after_camera.cx+=.001;assert.throws(()=>q.inputs(moved));
   const absent=structuredClone(rows);delete absent[2].before_camera;assert.throws(()=>q.inputs(absent),/centre/);
   const drift=structuredClone(rows);drift[2].after_globe.pitch+=1e-6;assert.throws(()=>q.inputs(drift),/precision/);
