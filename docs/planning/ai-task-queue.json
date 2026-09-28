@@ -45,12 +45,12 @@
       "id": "CLAUDE-C01-SOURCE-26",
       "owner": "Claude",
       "session": "C01",
-      "state": "claimed",
+      "state": "ready_for_review",
       "priority": 4,
       "title": "Review Vedomosti facsimile provenance",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
       "depends_on": [],
-      "next": "Follow the exact source-review scope and evidence requirements in the handoff; return a focused ready-for-review repair without claiming historical acceptance.",
+      "next": "Remote handoff declares ready_for_review at c1f537f2d5d364ef03fde75cc32db576af17aa39. Await independent Codex source, scope and test review; not merged or accepted. Do not duplicate this submission.",
       "branch": "claude/c01-source-26",
       "claim_revision": "529a3ebb310d8af5ff933849cf22818d3e3a58b6"
     },
@@ -58,13 +58,13 @@
       "id": "CLAUDE-C01-23",
       "owner": "Claude",
       "session": "C01",
-      "state": "claimed",
+      "state": "ready_for_review",
       "priority": 5,
       "title": "Finish existing claim: French presidents",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
       "branch": "claude/c01-fr-23",
       "depends_on": [],
-      "next": "Preserve the existing claim, incorporate current integration, complete its bounded packet, and return exact commits plus research/campaign/atlas checks. Prioritize the source follow-ups first."
+      "next": "Remote handoff declares ready_for_review at fa470d8136890ee5b9c7a38f2b793f4cbf060fa3. Await independent Codex source, scope and test review; not merged or accepted. Do not duplicate this submission."
     },
     {
       "id": "CLAUDE-C01-24",
@@ -82,13 +82,13 @@
       "id": "CLAUDE-C01-25",
       "owner": "Claude",
       "session": "C01",
-      "state": "claimed",
+      "state": "ready_for_review",
       "priority": 7,
       "title": "Finish existing claim: Saudi council chairs",
       "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md",
       "branch": "claude/c01-sa-25",
       "depends_on": [],
-      "next": "Preserve the existing claim, incorporate current integration, complete its bounded packet, and return exact commits plus research/campaign/atlas checks. Prioritize the source follow-ups first."
+      "next": "Remote handoff declares ready_for_review at c06839c1908d4ac691fa8de28c66eee97369a7fe. Await independent Codex source, scope and test review; not merged or accepted. Do not duplicate this submission."
     },
     {
       "id": "CLAUDE-C01-27",
@@ -139,6 +139,72 @@
       "handoff": "docs/planning/ai-handoffs/CODEX-C01-SOURCE-06-REVIEW.md",
       "depends_on": [],
       "next": "Independently review claude/c01-source-06 at 93467faaef254a71b4a776d00e56c16dda963eca, reproduce source/content identity and affected checks, then merge only if accepted. Preserve the title-only observation; C01 remains open."
+    },
+    {
+      "id": "CLAUDE-C01-GAPS-01",
+      "owner": "Claude",
+      "session": "C01",
+      "state": "queued",
+      "priority": 9,
+      "title": "Build the certified-country research gap ledger",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C01-GAPS-01.md",
+      "depends_on": [],
+      "next": "Generate a reproducible eight-country gap ledger and numbered next research batches; preserve pending evidence and minority/coalition roles. Available independently of the remaining source repairs; follow the bounded handoff."
+    },
+    {
+      "id": "CLAUDE-C03-REVIEW-01",
+      "owner": "Claude",
+      "session": "C03",
+      "state": "queued",
+      "priority": 10,
+      "title": "Build a cartoon review workbench",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C03-REVIEW-01.md",
+      "depends_on": [],
+      "next": "Implement an isolated small-card/full-size cartoon reviewer, asset validation and a six-to-eight portrait visual audit; no production artwork installation. Available independently of the remaining source repairs; follow the bounded handoff."
+    },
+    {
+      "id": "CLAUDE-C04-PREP-01",
+      "owner": "Claude",
+      "session": "C04",
+      "state": "queued",
+      "priority": 11,
+      "title": "Prepare a fictional successor pilot",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-C04-PREP-01.md",
+      "depends_on": [],
+      "next": "Deliver eight clearly fictional France/Tonga proposals, institutional research, appearance briefs and a validator; no runtime candidate installation. Available independently of the remaining source repairs; follow the bounded handoff."
+    },
+    {
+      "id": "CLAUDE-S23-MATRIX-01",
+      "owner": "Claude",
+      "session": "S23",
+      "state": "queued",
+      "priority": 12,
+      "title": "Build the historical and cartoon boundary audit",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-S23-MATRIX-01.md",
+      "depends_on": [],
+      "next": "Implement deterministic date/role/art coverage checks against current inputs; retain actual coverage gaps and all canonical S23 prerequisites. Available independently of the remaining source repairs; follow the bounded handoff."
+    },
+    {
+      "id": "CLAUDE-S24-SUCCESSORS-01",
+      "owner": "Claude",
+      "session": "S24",
+      "state": "queued",
+      "priority": 13,
+      "title": "Build successor-country fixture coverage",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-S24-SUCCESSORS-01.md",
+      "depends_on": [],
+      "next": "Inventory all 23 expected successor identities and build an isolated activation/load/UI harness; label seeded fixtures and unrun cases. Codex retains full S24 qualification. Available independently of the remaining source repairs; follow the bounded handoff."
+    },
+    {
+      "id": "CLAUDE-E05-RESEARCH-01",
+      "owner": "Claude",
+      "session": "E05",
+      "state": "queued",
+      "priority": 14,
+      "title": "Research important French and Japanese companies",
+      "handoff": "docs/planning/ai-handoffs/CLAUDE-E05-RESEARCH-01.md",
+      "depends_on": [],
+      "next": "Deliver eight sourced company dossiers and proposed catalog mappings. Research only now; production integration remains after S30/CP1. Available independently of the remaining source repairs; follow the bounded handoff."
     }
   ]
 }

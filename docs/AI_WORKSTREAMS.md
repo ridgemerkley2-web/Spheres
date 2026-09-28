@@ -13,7 +13,7 @@ CP1 certification and worldwide character coverage remain open.
 | S19 manufacturer prerequisites | Missing-plant blocker repaired (`8b93372e`); clean build `2cb1da4a` passes 270 focused checks and the full first-hour browser regression. | Codex: continue ordinary company development, stock purchase and delivery. |
 | S19 longer campaign | Real plant, manufacturer, paid tank development and completed tooling reached. The full route did **not** pass: the warehouse lacks advanced components, so no finished stock or delivery was produced. | Codex: resolve the ordinary supplier-input workflow, then qualify purchase/payment/delivery and save/resume, followed by readiness and a supported flown mission. |
 | S20 shared interface | Waiting on S19 closure. | Codex: start only after the remaining S19 evidence passes. |
-| C01 source follow-ups | SOURCE-06 submitted at `93467faa` and is **ready for review**, not merged or accepted. SOURCE-05/17/26 remain claimed. | Codex has a [bounded SOURCE-06 review task](planning/ai-handoffs/CODEX-C01-SOURCE-06-REVIEW.md); Claude continues the other claimed repairs, then C01-23/24/25/27. |
+| C01 submissions | SOURCE-06 `93467faa`, SOURCE-26 `c1f537f2`, C01-23 `fa470d81` and C01-25 `c06839c1` declare **ready for review**. New heads were fetched and their handoffs read; no acceptance or merge is claimed. | Codex reviews; Claude retains SOURCE-05/17 and C01-24/27 claims and can pick an independent new section below. |
 
 [Contractor repair and exact validation evidence](campaign-certification/S19/integration/CONTRACTOR_PREREQUISITE.md).
 [Supplier-input checkpoint, recorded campaign and next actions](campaign-certification/S19/integration/PROCUREMENT_SUPPLY.md).
@@ -33,12 +33,35 @@ handoff plan, not a claim that Claude has started work or permission to run ever
 |---|---|---|---|
 | Flight and player journey | Codex | S18, S20, S21 | S18 and S21 complete. S20 follows final S19 qualification; independent narrow controls are integrated. |
 | Tutorial and advisors | Claude | S19 | Submission `7de62539` integrated at `2400800b`; Codex qualifies remaining later outcomes before closure. |
-| Historical characters and cartoons | Claude | C01–C07, S23 | C01-01/02/03/04/07/08 accepted as bounded research; C01-05/06/09–22/26 integrated after technical verification, historical acceptance pending. C01-23/24/25/27 are claim-only. C01 remains incomplete. |
-| Integration, performance and qualification | Codex | S22, S24, S25, S27–S30 | Integrate reviewed work and run exact-build checks. Neither a content batch nor a unit-test pass earns CP1. |
+| Historical characters and cartoons | Claude | C01–C07, S23 | C01-01/02/03/04/07/08 accepted as bounded research; C01-05/06/09–22/26 integrated after technical verification, historical acceptance pending. C01-23/25 are submitted; C01-24/27 remain claimed. C01 remains incomplete. |
+| Integration, performance and qualification | Codex | S22, S24, S25, S27–S30 | Claude owns a bounded S24 successor-fixture preparation packet; Codex owns final qualification. Integrate reviewed work and run exact-build checks. Neither a content batch nor a unit-test pass earns CP1. |
 | Independent human playtests | User / human testers | S26 | Codex prepares reproducible builds and tasks; Claude may review observations. AI testing cannot substitute for human sessions. |
 | Later aircraft/naval expansion | Codex | E01–E04, E06 | Parked until CP1; preserve the current three supported mission families. |
-| Later company identity/history | Claude | E05 | Parked until CP1. No changes to the current supplier economy during research. |
+| Later company identity/history | Claude | E05 | Eight-company France/Japan research pilot available now. Runtime expansion stays after CP1; current supplier economy stays with Codex. |
 | Completed foundation | Codex / retained evidence | S00–S17 | Reference only. Reopen only for a specific reproduced defect; retain the original qualification records. |
+
+## Six additional Claude sections — available now
+
+The user authorized this expanded assignment on 27 September. These are six new
+bounded deliveries, **not six completed roadmap sessions**. They can proceed
+independently of remaining C01 source repairs. Read the
+[expanded handoff](planning/ai-handoffs/CLAUDE-EXPANDED-NEXT.md) for branch, file ownership,
+review and submission rules. Suggested order for one worker:
+
+| Task | Build / research deliverable | Release boundary |
+|---|---|---|
+| [CLAUDE-C01-GAPS-01](planning/ai-handoffs/CLAUDE-C01-GAPS-01.md) | Eight-country party/institution gap ledger and numbered next research batches. | No invented coverage or duplicate pending research. |
+| [CLAUDE-C03-REVIEW-01](planning/ai-handoffs/CLAUDE-C03-REVIEW-01.md) | Cartoon review workbench, small-card previews, asset checks and six-to-eight portrait review. | Tooling and existing-art audit; no production portrait replacements. |
+| [CLAUDE-C04-PREP-01](planning/ai-handoffs/CLAUDE-C04-PREP-01.md) | Eight fictional France/Tonga successor proposals with institutional research and validation. | Explicit fiction, eligibility through 2035; no automatic appointments or runtime installation. |
+| [CLAUDE-S23-MATRIX-01](planning/ai-handoffs/CLAUDE-S23-MATRIX-01.md) | Executable historical handover/date/role/art coverage matrix. | Preparation; C06/S20 and final content qualification still required. |
+| [CLAUDE-S24-SUCCESSORS-01](planning/ai-handoffs/CLAUDE-S24-SUCCESSORS-01.md) | 23-successor inventory and isolated activation/load/UI harness. | Authored fixtures labeled; Codex retains full S24 qualification. |
+| [CLAUDE-E05-RESEARCH-01](planning/ai-handoffs/CLAUDE-E05-RESEARCH-01.md) | Eight sourced French/Japanese company dossiers and catalog mappings. | Research now; company mechanics remain after S30/CP1. |
+
+Each task has its own allowed files, deliverables and acceptance checks. Queue state
+is `queued`, not started. A parent session may still have unmet dependencies: only
+its named independent preparation is authorized here. The canonical roadmap and
+44 unique session assignments remain unchanged. Codex keeps active supplier runtime,
+S19 later-outcome evidence, S20 shared interface, historical acceptance and integration.
 
 ## Historical research: six bounded Tonga packets integrated
 
@@ -116,26 +139,26 @@ python tools/planning/workboard.py --task CLAUDE-C01-SOURCE-05
 
 The [bounded task queue](planning/ai-task-queue.json) records priority, owner,
 packet state and dependencies separately from canonical session status.
-[Claude's current task list](planning/ai-handoffs/CLAUDE-C01-NEXT.md) assigns four
-source-review follow-ups (SOURCE-06 ready for review; SOURCE-05/17/26 claimed), then the existing
-C01-23/24/25/27 claims. Codex's next
+[Claude's expanded task list](planning/ai-handoffs/CLAUDE-EXPANDED-NEXT.md) adds six
+independent sections. The [existing research list](planning/ai-handoffs/CLAUDE-C01-NEXT.md)
+retains SOURCE-05/17 and C01-24/27 claims; SOURCE-06/26 and C01-23/25 await review. Codex's next
 campaign task is [S19 later outcomes](planning/ai-handoffs/CODEX-S19-LATER-01.md):
 actual procurement/delivery and flown results with save/resume qualification.
 Construction payment, completion and output are already verified together.
 The immediate gameplay task is supplying advanced components to the certified
 manufacturer through ordinary production or arrived purchases, not granting stock.
 
-Copy this into Claude to continue bounded research:
+Copy this into Claude to start one of the new sections:
 
-> Fetch origin/codex/campaign-certification and read docs/AI_WORKSTREAMS.md and
-> run `python tools/planning/workboard.py --tasks --owner Claude`. Read
-> docs/planning/ai-handoffs/CLAUDE-C01-NEXT.md. Continue source follow-ups
-> SOURCE-05/17/26 in priority order, then finish existing claims C01-23/24/25/27.
-> SOURCE-06 at 93467faa is awaiting Codex review; do not duplicate it. Preserve their
-> branches and incorporate current integration. C01-05/06/09–22/26 are already
-> merged research, with historical acceptance pending; do not recreate them.
-> Return bounded ready-for-review commits with source evidence and full applicable
-> checks, including campaign census. Do not change canonical roadmap status.
+> Fetch origin/codex/campaign-certification. Read docs/AI_WORKSTREAMS.md and
+> docs/planning/ai-handoffs/CLAUDE-EXPANDED-NEXT.md, then run
+> `python tools/planning/workboard.py --tasks --owner Claude`. Start with
+> CLAUDE-C01-GAPS-01, or pick the next unclaimed new section if it is already claimed.
+> Read that task's handoff, record your branch/base and claim, and build its bounded
+> deliverables with the required checks. The six new sections do not wait on unrelated
+> source repairs. Keep existing claims and skip submitted SOURCE-06/26 and C01-23/25.
+> Return exact ready-for-review commits and evidence. Do not edit shared runtime,
+> install unaccepted content or change canonical roadmap status.
 
 To ask either assistant for a status check:
 
