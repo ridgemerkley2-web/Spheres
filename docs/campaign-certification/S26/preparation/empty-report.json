@@ -1,0 +1,41 @@
+{
+  "format": "spheres-s26-preparation-report/v1",
+  "s26_complete": false,
+  "qualification_awarded": false,
+  "status": "coverage_incomplete",
+  "scope": "Recorded coverage only. Human authenticity, S24 dependency, source/save suitability and final S26 acceptance require independent review.",
+  "errors": [],
+  "missing": [
+    "Declare five distinct first-time humans for the 4-of-5 opening-path sample before sessions begin.",
+    "Independent first-time humans: 0/5 minimum.",
+    "Observed independent human sessions: 0/8 minimum (aborted/planned/AI excluded).",
+    "Missing country cases: France, Japan, India, Brazil, South Africa, Tonga, Saudi Arabia, USSR → Russia.",
+    "First-attempt uncoached opening paths: 0/4 required in the declared five-person cohort.",
+    "Government/actionable-blocker explanations missing or incorrect: no human observations.",
+    "No observed keyboard-only human session.",
+    "No observed 390px-layout human session.",
+    "No observed later-game session from a pinned save."
+  ],
+  "planned_sessions": 8,
+  "observed_human_sessions": 0,
+  "independent_humans": 0,
+  "first_time_humans": 0,
+  "excluded_sessions": [],
+  "verified_evidence": [],
+  "country_coverage": {
+    "France": [],
+    "Japan": [],
+    "India": [],
+    "Brazil": [],
+    "South Africa": [],
+    "Tonga": [],
+    "Saudi Arabia": [],
+    "USSR → Russia": []
+  },
+  "opening_path_sample": [],
+  "identifications": [],
+  "keyboard_sessions": [],
+  "narrow_390px_sessions": [],
+  "later_save_sessions": [],
+  "failures": []
+}

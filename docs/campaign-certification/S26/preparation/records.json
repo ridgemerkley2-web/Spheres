@@ -1,0 +1,85 @@
+{
+  "format": "spheres-human-playtest/v1",
+  "protocol_source_revision": "d2b21c15ad8070ad9bde5363d888a31e1c4dc63c",
+  "study": {
+    "id": "S26-STUDY-001",
+    "cohort_locked_at_utc": null,
+    "first_time_cohort": [],
+    "distinct_humans_attestation": null
+  },
+  "build": {
+    "source_revision": null,
+    "data_assets_revision": null,
+    "package_sha256": null,
+    "evidence_refs": []
+  },
+  "planned_sessions": [
+    {
+      "slot": "PLAN-01",
+      "country_case": "France",
+      "participant": null,
+      "phase": "opening",
+      "keyboard_only": false,
+      "viewport_width": 1440
+    },
+    {
+      "slot": "PLAN-02",
+      "country_case": "Japan",
+      "participant": null,
+      "phase": "opening",
+      "keyboard_only": false,
+      "viewport_width": 1440
+    },
+    {
+      "slot": "PLAN-03",
+      "country_case": "India",
+      "participant": null,
+      "phase": "opening",
+      "keyboard_only": false,
+      "viewport_width": 1440
+    },
+    {
+      "slot": "PLAN-04",
+      "country_case": "Brazil",
+      "participant": null,
+      "phase": "opening",
+      "keyboard_only": false,
+      "viewport_width": 1440
+    },
+    {
+      "slot": "PLAN-05",
+      "country_case": "South Africa",
+      "participant": null,
+      "phase": "later",
+      "keyboard_only": true,
+      "viewport_width": 1440
+    },
+    {
+      "slot": "PLAN-06",
+      "country_case": "Tonga",
+      "participant": null,
+      "phase": "opening",
+      "keyboard_only": false,
+      "viewport_width": 1440
+    },
+    {
+      "slot": "PLAN-07",
+      "country_case": "Saudi Arabia",
+      "participant": null,
+      "phase": "later",
+      "keyboard_only": false,
+      "viewport_width": 390
+    },
+    {
+      "slot": "PLAN-08",
+      "country_case": "USSR → Russia",
+      "participant": null,
+      "phase": "later",
+      "keyboard_only": false,
+      "viewport_width": 1440
+    }
+  ],
+  "participants": [],
+  "sessions": [],
+  "evidence": []
+}
