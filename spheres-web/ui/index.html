@@ -2677,7 +2677,7 @@
         <button id="agencyBtn" type="button" onclick="openAgency()">Decisions <span id="agencyCount"></span></button>
         <span class="grow"></span>
         <details class="arc-map-tools"><summary>Map layers</summary><div id="mapModes"></div></details>
-        <nav class="decision-nav" aria-label="Map assistance"><button type="button" onclick="homeNation()">Home</button><button type="button" onclick="openWorldFinder()">Find</button><button type="button" onclick="openGuidance('advisors')">Advisors</button><button type="button" onclick="openGuidance('tutorial')">Tutorial</button><button type="button" onclick="openBuildInfo()">About</button></nav>
+        <nav class="decision-nav" aria-label="Map assistance"><button type="button" onclick="homeNation()">Home</button><button type="button" id="worldFindBtn" onclick="openWorldFinder()">Find</button><button type="button" onclick="openGuidance('advisors')">Advisors</button><button type="button" onclick="openGuidance('tutorial')">Tutorial</button><button type="button" onclick="openBuildInfo()">About</button></nav>
       </div>
       <div class="pane on" id="pane-map"></div>
       <div class="pane" id="pane-charts"></div>
@@ -4859,6 +4859,7 @@ document.addEventListener("keydown", (e) => {
     if (PROD.open && PROD.mode === "build" && PROD.view !== "queue") { constructionInvalidatePreview(true); PROD.view = "queue"; PROD.pickKind = null; renderProductionPanel(); return; }
     if (PROD.open && PROD.mode === "build" && PROD.selected) { productionSelect(null); return; }
     if (PROD.open) { closeProduction(); return; }
+    if (ui.selectedCity) { closeMapCity(); return; }
     if (selectedDistrict) { closeProvince(); return; }
     closeSheet();
     return;
@@ -5571,7 +5572,7 @@ function industryNavigate(action) {
   } else if (action.action === "research") {
     closeGameDrawers(); openTech();
   } else if (action.action === "manufacture") {
-    PROD.mode = "manufacture"; openProduction();
+    openEquipment({tab:"companies"});
   } else if (action.action === "province" && action.district) {
     closeGameDrawers(); selectProvince(action.district, true);
   } else return false;
@@ -9504,17 +9505,18 @@ async function loadDistrictSpecs() {
 }
 
 async function loadProvincePopulation(did, keepOld) {
-  const request = ++PROVINCE_POPULATION_REQUEST;
+  const request = ++PROVINCE_POPULATION_REQUEST, key=provinceReadingKey(), readDate=S?.date;
   if (!keepOld || !PROVINCE_POPULATION || PROVINCE_POPULATION.id !== did) {
     PROVINCE_POPULATION = { id: did, loading: true };
-    renderProvinceDossier();
-  }
+  } else PROVINCE_POPULATION = {...PROVINCE_POPULATION,refreshing:true};
+  renderProvinceDossier();
   try {
     const reading = await api("/api/district-population/" + encodeURIComponent(did));
-    if (request !== PROVINCE_POPULATION_REQUEST || selectedDistrict !== did) return;
-    PROVINCE_POPULATION = reading;
+    if (request !== PROVINCE_POPULATION_REQUEST || selectedDistrict !== did || key!==provinceReadingKey()) return;
+    if (!reading || reading.id!==did) throw new Error("The response did not match this province.");
+    PROVINCE_POPULATION = {...reading,read_date:readDate};
   } catch (e) {
-    if (request !== PROVINCE_POPULATION_REQUEST || selectedDistrict !== did) return;
+    if (request !== PROVINCE_POPULATION_REQUEST || selectedDistrict !== did || key!==provinceReadingKey()) return;
     PROVINCE_POPULATION = { id: did, error: e.message || "population unavailable" };
   }
   renderProvinceDossier();
@@ -9548,11 +9550,11 @@ function provinceDossierHtml() {
   const area = spec && spec.area_sqkm ? Math.round(spec.area_sqkm).toLocaleString("en-US") + " km²" : "loading…";
   const neighbours = spec ? (spec.adj || []) : [];
   const links = neighbours.length ? neighbours.map((id) => `<button type="button" class="province-tag"
-    onclick="selectProvince('${id}',true)">${escText(DINDEX[id] ? DINDEX[id].name : id)}</button>`).join("")
+    data-map-detail-focus="border-${logisticsEscAttr(id)}" onclick="selectProvince('${id}',true)">${escText(DINDEX[id] ? DINDEX[id].name : id)}</button>`).join("")
     : `<span class="province-tag">${spec ? "island / no land border" : "loading borders…"}</span>`;
   return `<div class="province-head"><div class="province-lock">Selected province</div>
-    <div class="province-title"><h2 id="provinceTitle">${escText(info.name)}</h2><button class="province-close"
-      onclick="closeProvince()" aria-label="Close">&times;</button></div>
+    <div class="province-title"><h2 id="provinceTitle" tabindex="-1" data-map-detail-heading>${escText(info.name)}</h2><button type="button" class="province-close" data-map-detail-focus="province-close"
+      onclick="closeProvince()" aria-label="Close province">&times;</button></div>
     <div class="province-owner">${escText(owner ? owner.name : ownerId || "Unaligned")} · ${escText(did)}</div></div>
     <div class="province-body"><div class="province-stats">
       <div class="province-stat population"><div class="k">Population</div><div class="v">${residents}</div>
@@ -9561,9 +9563,9 @@ function provinceDossierHtml() {
       <div class="province-stat"><div class="k">Area</div><div class="v">${area}</div></div>
     </div>
     <div class="province-feature"><span>Physical region</span>${escText(feature)}</div>
-    <div class="province-actions"><button onclick="centerProvince('${did}')">◎ Center on map</button>
-      <button onclick="openNation('${ownerId}')">Nation dashboard</button></div>
-    ${ownerId === S.player ? `<div class="province-actions"><button data-construction-province="${logisticsEscAttr(did)}" onclick="openConstruction({province:this.dataset.constructionProvince})">Build here →</button></div>` : ""}
+    <div class="province-actions"><button type="button" data-map-detail-focus="province-center" onclick="centerProvince('${did}')">◎ Center on map</button>
+      <button type="button" data-map-detail-focus="province-nation" onclick="openNation('${ownerId}')" ${owner?'':'disabled'}>Nation dashboard</button></div>
+    ${ownerId === S.player ? `<div class="province-actions"><button type="button" data-map-detail-focus="province-build" data-construction-province="${logisticsEscAttr(did)}" onclick="openConstruction({province:this.dataset.constructionProvince})">Build here →</button></div>` : ""}
     ${provinceEconomyHtml(pop)}
     <details data-detail-key="geography"><summary>Population &amp; geography</summary>
     <p class="province-note">The residents remain with the province when borders move.</p><div class="province-stats">
@@ -9586,16 +9588,19 @@ function renderProvinceDossier() {
   const view = provinceDossierView(selectedDistrict);
   box.classList.toggle("open", open);
   box.setAttribute("aria-hidden", open ? "false" : "true");
+  box.setAttribute("aria-busy",String(open && (!PROVINCE_POPULATION || !!PROVINCE_POPULATION.loading || !!PROVINCE_POPULATION.refreshing)));
   box.innerHTML = open ? provinceDossierHtml() : "";
   box.dataset.province = selectedDistrict || "";
   economicRestoreDetails(box, view.details);
   box.scrollTop = view.scroll;
   wireProvinceDossierState(box);
+  restoreMapDetailFocus(box,view.focus);
 }
 
 window.selectProvince = function (did, move) {
   const info = DINDEX[did];
-  if (!info) return;
+  if (!info) return false;
+  if (!selectedDistrict) PROVINCE_DOSSIER_UI.opener=document.activeElement;
   selectedDistrict = did;
   SEL.dirty = true;
   renderProvinceDossier();
@@ -9603,6 +9608,8 @@ window.selectProvince = function (did, move) {
   if (move) camTween(info.cx, info.cy, Math.max(ui.cam.k, ZB2 + 1));
   loadDistrictSpecs();
   loadProvincePopulation(did, false);
+  document.getElementById('provinceTitle')?.focus({preventScroll:true});
+  return true;
 };
 
 window.centerProvince = function (did) {
@@ -9612,13 +9619,16 @@ window.centerProvince = function (did) {
   camTween(info.cx, info.cy, Math.max(ui.cam.k, ZB2 + 1));
 };
 
-window.closeProvince = function () {
+window.closeProvince = function (restoreFocus=true) {
+  const focused=rememberMapDetailFocus(document.getElementById('provinceDossier'));
   PROVINCE_POPULATION_REQUEST++;
   PROVINCE_POPULATION = null;
   selectedDistrict = null;
   SEL.dirty = true;
   renderProvinceDossier();
   if (GLOBE) GLOBE.render();
+  if (restoreFocus && focused) returnMapDetailFocus(PROVINCE_DOSSIER_UI.opener);
+  PROVINCE_DOSSIER_UI.opener=null;
 };
 
 /* ================= the GL physical underlay (RENDER) =================
@@ -13980,8 +13990,10 @@ function onMapPick(e) {
 
 window.selectMapCity = function(city, focus = true) {
   camUserInput();
+  const entering=!ui.selectedCity || ui.selectedCity.name!==city.name || ui.selectedCity.lon!==city.lon || ui.selectedCity.lat!==city.lat;
+  if (!ui.selectedCity) PROVINCE_DOSSIER_UI.cityOpener=document.activeElement;
   ui.selectedCity = city;
-  closeProvince();
+  closeProvince(false);
   if (focus) {
     ui.mapMode = 'terrain'; ui.mapTilt = true;
     if (!ui.mapDetails) ui.mapDetails = {};
@@ -13991,18 +14003,34 @@ window.selectMapCity = function(city, focus = true) {
     renderMap();
   }
   renderMapCity();
+  if (entering) document.getElementById('mapCityTitle')?.focus({preventScroll:true});
   GLOBE?.schedule();
 };
-function renderMapCity() {
+function cityProvince(city) {
+  const w=Globe3D.project(city.lon,city.lat), code=countryAt(w[0],w[1]);
+  const district=code && districtAt(code,w[0],w[1]);
+  return district && DINDEX[district.id] ? district : null;
+}
+function closeMapCity(restoreFocus=true) {
+  const focused=rememberMapDetailFocus(document.getElementById('mapCityCard'));
+  ui.selectedCity=null; renderMapCity(); GLOBE?.schedule();
+  if (restoreFocus && focused) returnMapDetailFocus(PROVINCE_DOSSIER_UI.cityOpener);
+  PROVINCE_DOSSIER_UI.cityOpener=null;
+}
+function renderMapCity(savedFocus=rememberMapDetailFocus(document.getElementById('mapCityCard'))) {
   document.getElementById('mapCityCard')?.remove();
   const city = ui.selectedCity, stage = document.querySelector('#pane-map .globe-stage');
   if (!city || !stage) return;
   const card = document.createElement('aside'); card.id = 'mapCityCard'; card.className = 'map-city-card';
   card.setAttribute('aria-label', 'Selected city');
   const title = document.createElement('h2'); title.textContent = city.name;
+  title.id='mapCityTitle'; title.tabIndex=-1; title.dataset.mapDetailHeading='';
   const text = document.createElement('p');
   text.textContent = `${city.capital ? 'Capital · ' : ''}${Math.abs(city.lat).toFixed(2)}°${city.lat<0?'S':'N'} ${Math.abs(city.lon).toFixed(2)}°${city.lon<0?'W':'E'}`;
   const note = document.createElement('p'); note.className = 'map-city-note'; note.textContent = 'City location · zoom to explore the surrounding terrain';
+  const district=cityProvince(city), ownerId=district && nationOfDistrict(district.id), owner=ownerId && nationById(ownerId);
+  const ownerLine=document.createElement('p'); ownerLine.className='map-city-owner';
+  ownerLine.textContent=district ? `Current owner: ${owner?.name || ownerId || 'Unaligned'} · ${DINDEX[district.id].name}` : 'Province mapping unavailable at this location.';
   // A BIRDS-EYE OF THE CITY, and three things about it are worth stating here.
   //
   // WHAT IS SOURCED: the extent follows the record's population, the ground
@@ -14045,18 +14073,21 @@ function renderMapCity() {
     vignette._mountCity = () => Arsenal3D.mount(canvas, 'city:' + cityIndex + '/close', { pitch: 58 });
   }
   const actions = document.createElement('div');
-  const focus = document.createElement('button'); focus.textContent = 'Explore city'; focus.onclick = () => selectMapCity(city, true);
-  const province = document.createElement('button'); province.textContent = 'Province'; province.onclick = () => {
-    const w = Globe3D.project(city.lon, city.lat), code = countryAt(w[0],w[1]), d = code && districtAt(code,w[0],w[1]);
-    ui.selectedCity = null; renderMapCity(); if (d) selectProvince(d.id,false);
+  const focus = document.createElement('button'); focus.type='button'; focus.dataset.mapDetailFocus='city-explore'; focus.textContent = 'Explore city'; focus.onclick = () => selectMapCity(city, true);
+  const province = document.createElement('button'); province.type='button'; province.dataset.mapDetailFocus='city-province'; province.textContent = 'Province'; province.disabled=!district; province.onclick = () => {
+    // Recheck the current geometry before dismissing the city; an unmapped city remains inspectable.
+    const current=cityProvince(city);
+    if (!current || !selectProvince(current.id,false)) return;
+    closeMapCity(false);
   };
-  const close = document.createElement('button'); close.textContent = 'Close'; close.setAttribute('aria-label','Close city'); close.onclick = () => { ui.selectedCity=null; renderMapCity(); GLOBE?.schedule(); };
+  const close = document.createElement('button'); close.type='button'; close.dataset.mapDetailFocus='city-close'; close.textContent = 'Close'; close.setAttribute('aria-label','Close city'); close.onclick = () => closeMapCity();
   actions.append(focus,province,close);
-  card.append(title,text,note);
+  card.append(title,text,ownerLine,note);
   if (vignette) card.append(vignette);
   card.append(actions);
   stage.append(card);
   if (vignette) { installSurfaceTreatment(); vignette._mountCity(); }
+  restoreMapDetailFocus(card,savedFocus);
 }
 
 /// The keyboard, and the buttons that stand for it. Arrows turn the globe by a
@@ -14120,6 +14151,7 @@ function restoreMapControlFocus(saved) {
 /// globe that the world it is drawing has changed.
 function renderMap() {
   const mapFocus = rememberMapControlFocus();
+  const cityFocus = rememberMapDetailFocus(document.getElementById('mapCityCard'));
   const legendScroll = $("#pane-map .map-legend")?.scrollTop || 0;
   const modesScroll = $("#mapModes")?.scrollTop || 0;
   rememberProvinceDossier();
@@ -14177,7 +14209,7 @@ function renderMap() {
   if (!GL.ready && !GL.reason) glBoot();
   renderProvinceDossier();
 
-  renderMapCity();
+  renderMapCity(cityFocus);
   renderFlightMapCard();
 
   if (ui.mapMode === "resources" || ui.resOverlay) {
