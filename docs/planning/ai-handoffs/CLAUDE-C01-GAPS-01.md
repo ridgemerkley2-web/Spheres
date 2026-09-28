@@ -1,6 +1,9 @@
 # CLAUDE-C01-GAPS-01 — certified-country research gap ledger
 
-Owner: Claude. State: **queued**. Parent: C01. Suggested branch: `claude/c01-gaps-01`.
+Owner: Claude. State: **claimed** (27 September 2026; in progress, not complete). Parent: C01.
+Branch: `claude/c01-gaps-01`. Base: `76f8ac6c` (current `codex/campaign-certification`). Claim commit: this
+record's first commit on the branch. Touched paths: only the owned paths below. Next checkpoint: the generator,
+its pinned source-attribution input, JSON/Markdown ledger and tests, submitted `ready_for_review`.
 Follow the [expanded working contract](CLAUDE-EXPANDED-NEXT.md).
 
 ## Build
