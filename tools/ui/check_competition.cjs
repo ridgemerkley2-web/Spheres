@@ -30,6 +30,28 @@ function fixture() {
 }
 const run=(c,s)=>vm.runInContext(s,c);
 
+test('advanced component navigation resets old quotes and preserves the native shortage',async()=>{
+  const c=fixture();
+  run(c,`COMP.quotes={quotes:[{good:'intermediates'}]};COMP.searching=true;COMP.quoteSeq=9;`);
+  assert.equal(run(c,`competitionFocusGood('advanced_components',0.3441)`),true);
+  assert.equal(run(c,'COMP.trade.good'),'advanced_components');
+  assert.equal(run(c,'COMP.trade.quantity'),0.3441);
+  assert.equal(run(c,'COMP.quotes'),null);assert.equal(run(c,'COMP.quoteSeq'),10);
+  assert.equal(run(c,'COMP.searching'),false);assert.equal(c.sent.length,0);
+  const html=run(c,`competitionTradeHtml({commerce:{goods:[]}})`);
+  assert.match(html,/<option value="advanced_components" selected>Advanced components/);
+  assert.equal(run(c,`competitionGood('advanced_components')`),'Advanced components');
+  assert.equal(run(c,`competitionGood('unknown')`),'Unknown good');
+  assert.equal(run(c,`competitionFocusGood('invented',100)`),false);
+  assert.equal(run(c,'COMP.trade.good'),'advanced_components');
+  run(c,`competitionFocusGood('advanced_components',-1)`);
+  assert.equal(run(c,'COMP.trade.quantity'),0.3441);
+  await run(c,`competitionFindSuppliers({elements:{good:{value:'advanced_components'},quantity:{value:'0.3441'},delivery_days:{value:'30'}}})`);
+  assert.equal(c.sent.length,1);assert.equal(c.sent[0].p,'/api/goods-quotes');
+  assert.equal(c.sent[0].b.good,'advanced_components');assert.equal(c.sent[0].b.quantity,0.3441);
+  assert(!c.sent.some(r=>r.p==='/api/command'),'Finding suppliers never purchases stock');
+});
+
 test('Every Exchange snapshot and quote read carries the active campaign identity',async()=>{
   const c=fixture();run(c,'COMP.open=true;');
   await run(c,'competitionFetch()');

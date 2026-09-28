@@ -1265,6 +1265,19 @@ test('S18 flight pages separate live records, retain local drafts, and never inv
   c.eq.busy=false;c.S={session_id:'other',player:'Japan'};c.equipmentResetCampaign();assert.equal(c.eq.flightPage,'command');assert.equal(c.eq.flightAircraft,null);
 });
 
+test('supplier input recovery preserves industry, component and construction targets without orders',async()=>{
+  const c=shellFixture();loaded(c);
+  for(const action of [{action:'industry'},{action:'trade',good:'advanced_components',quantity:0.4441}]){
+    c.room.hidden=false;c.eq.open=true;
+    assert.equal(await c.equipmentNavigate(action),true);
+    assert.deepEqual(c.calls.at(-1),['budget',action]);
+  }
+  c.room.hidden=false;c.eq.open=true;
+  await c.equipmentNavigate({action:'construction',kind:'advanced_industry'});
+  assert.deepEqual(c.calls.at(-1),['construction',{kind:'advanced_industry'}]);
+  assert.equal(c.requests.length,0);
+});
+
 test('s12-s15 air shell sends all reviewed kinds through protected receipts and returns to flight',async()=>{
   const c=shellFixture();loaded(c,flightSnapshot());c.room.hidden=false;c.eq.draft.name='Unfinished aircraft';
   const commands=[

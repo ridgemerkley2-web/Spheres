@@ -520,7 +520,27 @@ fn company_board(w: &WorldState, me: NationId) -> Value {
     let market=company_supplier_market(w,me);
     company_board_from_reads(w,me,&raw,&market)
 }
+// Reuse the simulation's exact next-work input quote. Historical status text is
+// not a supply estimate, and another product's scheduled packet is not this one's.
+fn company_input_recovery(operation:&Value, metrics:&mut Vec<Value>, actions:&mut Vec<Value>) {
+    let Some(inputs)=operation["next_packet"]["inputs"].as_array() else {return};
+    if operation["grandfathered"]==true || inputs.is_empty() {return;}
+    metrics.push(metric("Input quantities", "Next scheduled work only; shared warehouse stock is not reserved"));
+    for input in inputs {
+        let (Some(required),Some(available),Some(missing))=(input["required"].as_f64(),input["available"].as_f64(),input["missing"].as_f64()) else {continue};
+        if ![required,available,missing].iter().all(|n|n.is_finite()&&*n>=0.0) {continue;}
+        metrics.push(metric(company_text(input,"name"),format!("{required:.4} needed / {available:.4} available / {missing:.4} missing {}",company_text(input,"unit"))));
+        if missing>0.0 && input["key"]=="advanced_components" {
+            actions.push(nav("Inspect operating industry",json!({"action":"industry"})));
+            actions.push(nav("Review advanced-components plant",json!({"action":"construction","kind":"advanced_industry"})));
+            actions.push(nav("Review component imports",json!({"action":"trade","good":"advanced_components","quantity":missing})));
+        } else if missing>0.0 {
+            actions.push(nav(&format!("Inspect {} supply",company_text(input,"name")),json!({"action":"resources","commodity":input["key"]})));
+        }
+    }
+}
 fn company_board_from_reads(w:&WorldState,me:NationId,raw:&Value,market:&Value)->Value {
+    let operations=spheres_sim::supplier_operations::snapshot(w,me);
     let empty=Vec::new();
     let firms=raw["companies"].as_array().unwrap_or(&empty);
     let site_options: Vec<_>=raw["sites"].as_array().unwrap_or(&empty).iter().filter(|s|company_count(s,"slots")>0).map(|s| {
@@ -609,6 +629,12 @@ fn company_board_from_reads(w:&WorldState,me:NationId,raw:&Value,market:&Value)-
                 metrics.push(metric("Compatible mission stores",eq::ammo_def(&air.store_family).map_or(air.store_family.as_str(),|def|def.name)));
                 metrics.push(metric("Mission stores included","None · acquire separately"));
             }
+            if operations["enabled"]==true && !cancelled {
+                if let Some(operation)=operations["companies"].as_array().and_then(|rows|rows.iter().find(|op|
+                    op["company"].as_u64()==Some(id) && op["work_id"].as_u64()==Some(pid) && op["work_kind"]=="equipment")) {
+                    company_input_recovery(operation,&mut metrics,&mut product_actions);
+                }
+            }
             product_rows.push(json!({"id":format!("{}:{}",id,pid),"company":id,"product":pid,"name":p["name"],"supplier_name":firm["name"],
                 "family":p["family"],"platform_name":p["platform_name"],"unit_label":p["unit_label"],
                 "source_revision":revision,"spec":p["spec"],"phase":phase,"status":status,"detail":p["reason"],
@@ -664,6 +690,28 @@ fn company_board_from_reads(w:&WorldState,me:NationId,raw:&Value,market:&Value)-
 mod company_view_tests {
     use super::*;
     const ME:NationId=NationId::France;
+    #[test]
+    fn supplier_input_recovery_shows_exact_shortfall_without_ordering_goods() {
+        // Authored quote tests presentation, not an earned campaign outcome.
+        let mut operation=json!({"grandfathered":false,"next_packet":{"inputs":[
+            {"key":"advanced_components","name":"Advanced components","unit":"components",
+                "required":0.4441,"available":0.1,"missing":0.3441},
+            {"key":"iron","name":"Iron","unit":"resource units","required":55.0,"available":100.0,"missing":0.0}
+        ]}});
+        let before=operation.clone();let mut metrics=vec![];let mut actions=vec![];
+        company_input_recovery(&operation,&mut metrics,&mut actions);
+        assert_eq!(operation,before);
+        assert!(metrics.iter().any(|m|m["label"]=="Advanced components" && m["value"].as_str().unwrap().contains("0.4441 needed / 0.1000 available / 0.3441 missing")));
+        assert!(actions.iter().all(|a|a.get("command").is_none()));
+        assert!(actions.iter().any(|a|a["navigate"]["kind"]=="advanced_industry"));
+        assert!(actions.iter().any(|a|a["navigate"]["good"]=="advanced_components" && a["navigate"]["quantity"]==0.3441));
+        operation["next_packet"]["inputs"][0]["missing"]=json!(0.0);
+        actions.clear();metrics.clear();company_input_recovery(&operation,&mut metrics,&mut actions);
+        assert!(actions.is_empty(),"Available stock does not need recovery navigation");
+        operation["grandfathered"]=json!(true);
+        metrics.clear();company_input_recovery(&operation,&mut metrics,&mut actions);
+        assert!(metrics.is_empty(),"Legacy paid work must retain its original input terms");
+    }
     fn fixture()->(super::super::Game,String) {
         let mut g=super::super::Game::new(1990,Some(ME));
         super::super::play_rules(&mut g);
