@@ -1,0 +1,44 @@
+{
+  "what": "Independent rerun of unchanged S21 exporter using immutable 5d11 test binary; fixture preparation only.",
+  "revision": "5d11dd6dae436eeca105dbaf0d02732cd768b35b",
+  "test_binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-5d11dd6d\\native-tests.exe",
+  "test_binary_sha256": "a27da17d309391620c5df7f7d3c8306884c71ddedf4a5a598ea43e39e774e024",
+  "command": [
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s22-runtime-5d11dd6d\\native-tests.exe",
+    "campaign_journey::tests::s21_export_review_fixtures",
+    "--ignored",
+    "--exact",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "runs": [
+    {
+      "directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s24-successor-review\\native-s21-01",
+      "started_utc": "2026-09-28T14:32:10.618333+00:00",
+      "finished_utc": "2026-09-28T14:32:11.524097+00:00",
+      "exit_code": 0,
+      "succession_sha256": "745b95035ee84110e9b60881e5b2da7cf0e56027812559759001029e8e88a5d7",
+      "projection_sha256": "810292a432f5d839ae02f3ad14da96254f57429b2de2327a48f3ecd68b5cce48",
+      "bytes": 13648610,
+      "environment": {
+        "SPHERES_S21_FIXTURE_DIR": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s24-successor-review\\native-s21-01"
+      },
+      "log": "native-s21-01.log"
+    },
+    {
+      "directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s24-successor-review\\native-s21-02",
+      "started_utc": "2026-09-28T14:32:11.534956+00:00",
+      "finished_utc": "2026-09-28T14:32:12.382004+00:00",
+      "exit_code": 0,
+      "succession_sha256": "56c6bd9ec4cd1129f9bdaf90c9dadfc6341d88ed87ff330cbccf1e67674fd029",
+      "projection_sha256": "810292a432f5d839ae02f3ad14da96254f57429b2de2327a48f3ecd68b5cce48",
+      "bytes": 13648610,
+      "environment": {
+        "SPHERES_S21_FIXTURE_DIR": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s24-successor-review\\native-s21-02"
+      },
+      "log": "native-s21-02.log"
+    }
+  ],
+  "binary_unchanged": true,
+  "reproducible_projection": true
+}

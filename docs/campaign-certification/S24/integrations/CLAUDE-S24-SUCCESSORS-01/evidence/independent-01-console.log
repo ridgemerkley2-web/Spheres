@@ -1,0 +1,49 @@
+Armenia activation_save_load: passed
+Azerbaijan activation_save_load: passed
+Belarus activation_save_load: passed
+Bosnia activation_save_load: passed
+Croatia activation_save_load: passed
+Estonia activation_save_load: passed
+Georgia activation_save_load: passed
+Kazakhstan activation_save_load: passed
+Kyrgyzstan activation_save_load: passed
+Latvia activation_save_load: passed
+Lithuania activation_save_load: passed
+Macedonia activation_save_load: passed
+Moldova activation_save_load: passed
+Montenegro activation_save_load: passed
+Russia activation_save_load: passed
+Serbia activation_save_load: passed
+Slovenia activation_save_load: passed
+Tajikistan activation_save_load: passed
+Turkmenistan activation_save_load: passed
+Ukraine activation_save_load: passed
+Uzbekistan activation_save_load: passed
+Croatia browser_ui: blocked
+Kazakhstan browser_ui: blocked
+Russia browser_ui: blocked
+Serbia browser_ui: blocked
+{
+  "result": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\s24-successor-review\\independent-01\\result.json",
+  "summary": {
+    "selection_guard": {
+      "passed": 23,
+      "failed": 0,
+      "blocked": 0,
+      "unrun": 0
+    },
+    "activation_save_load": {
+      "passed": 21,
+      "failed": 0,
+      "blocked": 0,
+      "unrun": 2
+    },
+    "browser_ui": {
+      "passed": 0,
+      "failed": 0,
+      "blocked": 4,
+      "unrun": 19
+    }
+  },
+  "validation_errors": []
+}
