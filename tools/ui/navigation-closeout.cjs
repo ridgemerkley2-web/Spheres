@@ -15,8 +15,19 @@ module.exports=async function navigationCloseout({page,tap,state,read,shot,evide
     text:document.activeElement?.textContent?.trim().slice(0,120)||'',tag:document.activeElement?.tagName||'',
     visible:!!document.activeElement?.getClientRects().length,insideProvince:!!document.activeElement?.closest('#provinceDossier')}));
   async function expectFocus(locator,label){
-    const observation={label,...await active()};proof.focus.push(observation);
-    assert(await locator.evaluate(el=>el===document.activeElement),label+'; active='+JSON.stringify(observation));
+    // Locator resolution and evaluation cross a process boundary. A native
+    // reading can replace that node between them. Retry only detached targets;
+    // a connected target with focus elsewhere is an actual product failure.
+    for(let i=0;i<4;i++){
+      const observation=await locator.evaluate(el=>({connected:el.isConnected,focused:el===document.activeElement,
+        id:document.activeElement?.id||'',key:document.activeElement?.dataset.mapDetailFocus||'',
+        text:document.activeElement?.textContent?.trim().slice(0,120)||'',tag:document.activeElement?.tagName||'',
+        visible:!!document.activeElement?.getClientRects().length,insideProvince:!!document.activeElement?.closest('#provinceDossier')}));
+      proof.focus.push({label,...observation});
+      if(!observation.connected)continue;
+      assert(observation.focused,label+'; active='+JSON.stringify(observation));return;
+    }
+    throw Error(label+': target kept being replaced before focus observation');
   }
   async function keyboardTo(locator,label){
     await locator.waitFor({state:'visible'});
@@ -145,6 +156,8 @@ module.exports=async function navigationCloseout({page,tap,state,read,shot,evide
     assert.equal(preview.district,id);assert.equal(preview.project_kind,kind);
     assert.equal(await page.locator('.construction-impact-scope').count(),2);
     await shot(label+'-review');await escape('Cancel unconfirmed project review');
+    await page.waitForFunction(()=>PROD.open&&PROD.view==='queue'&&PROD.preview===null);
+    await activate(page.locator('#productionClose'),mode,'Close Construction after cancelling review');
     await page.locator('#productionPanel').waitFor({state:'hidden'});
     await expectFocus(page.locator('[data-map-detail-focus="province-build"]'),'Cancelled construction returns to Build here');
   }
