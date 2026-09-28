@@ -51,7 +51,7 @@ mod empty_import_tests {
         }}
     }
 
-    fn with_ammunition_stock() -> WorldState {
+    pub(super) fn with_ammunition_stock() -> WorldState {
         // Reuse the existing ordinary paid/certified supplier fixture. The
         // ammunition programme and stock below are earned by native work days.
         let (mut w,cid)=stocked();

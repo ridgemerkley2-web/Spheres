@@ -5,6 +5,7 @@ const SMALL: NationId = NationId::Malta;
 
 include!("military_import_command_tests.rs");
 include!("military_empty_import_tests.rs");
+include!("military_ground_offer_tests.rs");
 
 #[test]
 fn planned_aircraft_families_all_have_native_designs_and_company_support() {
@@ -599,10 +600,18 @@ fn ground_staff_uses_finite_ammunition_and_counts_inbound_rounds() {
         co::company(&w, HOME, cid).unwrap().ammunition_products[0]
     );
     programs::begin_day(&mut w);
+    let mut original = w.clone();
+    let mut original_allowance = allowance;
     let result = ground_stores(&mut w, HOME, &mut allowance).unwrap();
+    assert_eq!(result, ground_offer_tests::original(|| ground_stores(&mut original, HOME, &mut original_allowance)).unwrap());
+    assert_eq!(allowance.to_bits(), original_allowance.to_bits());
+    assert_eq!(crate::save(&w), crate::save(&original), "same paid ammunition purchase and complete world");
     assert!(result.starts_with("Purchased"), "{result}");
     let ledger = w.companies.ammunition_deliveries.len();
     let again = ground_stores(&mut w, HOME, &mut allowance).unwrap();
+    assert_eq!(again, ground_offer_tests::original(|| ground_stores(&mut original, HOME, &mut original_allowance)).unwrap());
+    assert_eq!(allowance.to_bits(), original_allowance.to_bits());
+    assert_eq!(crate::save(&w), crate::save(&original), "inbound stock and retry remain exact");
     assert_eq!(w.companies.ammunition_deliveries.len(), ledger, "{again}");
     assert_eq!(eq::ammo_reserve_status(&w, HOME, family).stock, 0.0);
     for _ in 0..10 {

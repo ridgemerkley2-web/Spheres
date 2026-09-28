@@ -310,6 +310,24 @@ fn support(w: &mut WorldState, n: NationId) -> Result<String, String> {
     })
 }
 
+#[cfg(test)]
+thread_local! {
+    static TEST_ORIGINAL_GROUND_OFFERS: std::cell::Cell<bool> = const { std::cell::Cell::new(false) };
+    static TEST_FILTERED_GROUND_REVIEWS: std::cell::Cell<u64> = const { std::cell::Cell::new(0) };
+}
+
+fn ground_store_offers(w: &WorldState, n: NationId, families: &BTreeMap<String, f64>) -> Vec<co::ImportOffer> {
+    #[cfg(test)]
+    if TEST_ORIGINAL_GROUND_OFFERS.with(|flag| flag.get()) {
+        let mut offers = co::domestic_offers(w, n);
+        offers.extend(co::import_offers(w, n));
+        return offers;
+    }
+    #[cfg(test)]
+    TEST_FILTERED_GROUND_REVIEWS.with(|count| count.set(count.get() + 1));
+    co::ammunition_offers_for(w, n, |family| families.contains_key(family))
+}
+
 fn ground_stores(w: &mut WorldState, n: NationId, allowance: &mut f64) -> Result<String, String> {
     let mut families = BTreeMap::<String, f64>::new();
     for h in &w.nation(n).arsenal.held {
@@ -332,8 +350,7 @@ fn ground_stores(w: &mut WorldState, n: NationId, allowance: &mut f64) -> Result
     if families.is_empty() {
         return Ok("No custom ground ammunition requirement.".into());
     }
-    let mut offers = co::domestic_offers(w, n);
-    offers.extend(co::import_offers(w, n));
+    let mut offers = ground_store_offers(w, n, &families);
     offers.retain(|o| o.ammunition && o.ready_stock > 0);
     offers.sort_by(|a, b| {
         a.unit_price_bn

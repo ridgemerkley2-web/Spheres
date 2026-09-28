@@ -273,6 +273,20 @@ pub fn import_purchase_quote(
     q
 }
 pub fn import_offers(w: &WorldState, buyer: NationId) -> Vec<ImportOffer> {
+    import_offers_matching(w, buyer, |_, _, _| true)
+}
+#[cfg(test)]
+thread_local! {
+    static SKIPPED_AMMUNITION_OFFER_QUOTES: std::cell::Cell<u64> = const { std::cell::Cell::new(0) };
+}
+#[cfg(test)]
+pub(crate) fn skipped_ammunition_offer_quotes() -> u64 {
+    SKIPPED_AMMUNITION_OFFER_QUOTES.with(|count| count.get())
+}
+fn import_offers_matching(
+    w: &WorldState, buyer: NationId,
+    include: impl Fn(bool, u32, Option<&str>) -> bool,
+) -> Vec<ImportOffer> {
     let mut out = Vec::new();
     for c in w.companies.firms.iter().filter(|c| c.nation != buyer) {
         for (pid, ammo) in c
@@ -284,6 +298,11 @@ pub fn import_offers(w: &WorldState, buyer: NationId) -> Vec<ImportOffer> {
             let Ok((_, r, stock, _, family)) = import_source(w, c.nation, c.id, pid, ammo) else {
                 continue;
             };
+            if !include(ammo, stock, family.as_deref()) {
+                #[cfg(test)]
+                SKIPPED_AMMUNITION_OFFER_QUOTES.with(|count| count.set(count.get() + 1));
+                continue;
+            }
             let (q, _) = import_terms(w, buyer, c.nation, c.id, pid, ammo, 1);
             let mut affordable = if q.unit_price_bn > 0.0 && q.unit_price_bn.is_finite() {
                 (q.purchase_available_bn / q.unit_price_bn)
@@ -818,6 +837,12 @@ fn validate_imports(w: &WorldState, ids: &mut BTreeSet<u32>) -> Result<(), Strin
     Ok(())
 }
 pub fn domestic_offers(w: &WorldState, buyer: NationId) -> Vec<ImportOffer> {
+    domestic_offers_matching(w, buyer, |_, _, _| true)
+}
+fn domestic_offers_matching(
+    w: &WorldState, buyer: NationId,
+    include: impl Fn(bool, u32, Option<&str>) -> bool,
+) -> Vec<ImportOffer> {
     let mut out = Vec::new();
     for c in w.companies.firms.iter().filter(|c| c.nation == buyer) {
         for (pid, ammo) in c
@@ -829,6 +854,11 @@ pub fn domestic_offers(w: &WorldState, buyer: NationId) -> Vec<ImportOffer> {
             let Ok((_, r, stock, _, family)) = import_source(w, buyer, c.id, pid, ammo) else {
                 continue;
             };
+            if !include(ammo, stock, family.as_deref()) {
+                #[cfg(test)]
+                SKIPPED_AMMUNITION_OFFER_QUOTES.with(|count| count.set(count.get() + 1));
+                continue;
+            }
             let q = if ammo {
                 ammo_purchase_terms(w, buyer, c.id, pid, 1)
             } else {
@@ -877,4 +907,19 @@ pub fn domestic_offers(w: &WorldState, buyer: NationId) -> Vec<ImportOffer> {
         }
     }
     out
+}
+
+/// Ground-store reviews consume only stocked ammunition in required families.
+/// Resolve each product through the same source lookup before filtering, so
+/// duplicate/malformed IDs retain their original first-match behavior. Quote
+/// every retained row exactly as the public catalogue does, including refusals.
+pub(crate) fn ammunition_offers_for(
+    w: &WorldState, buyer: NationId, needed: impl Fn(&str) -> bool,
+) -> Vec<ImportOffer> {
+    let include = |ammo, stock, family: Option<&str>| {
+        ammo && stock > 0 && family.is_some_and(&needed)
+    };
+    let mut offers = domestic_offers_matching(w, buyer, &include);
+    offers.extend(import_offers_matching(w, buyer, include));
+    offers
 }
